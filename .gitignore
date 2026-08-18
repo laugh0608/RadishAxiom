@@ -1,0 +1,15 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+
+*.log
+
+.cache/
+.tmp/
+build/
+dist/
+coverage/
+
+.idea/
+.vscode/
