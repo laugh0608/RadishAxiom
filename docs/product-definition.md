@@ -51,6 +51,15 @@ RadishAxiom 是面向 AI Agent 的验证优先语言与可信语义层。项目�
 - Radish、RadishFlow、RadishCatalyst 和 RadishLex 可以在未来提供真实领域案例，但不作为首个原型的强制依赖。
 - RadishX 负责家族公开入口；`axiom.radishx.com` 只有在形成稳定公开产品后才进入部署。
 
+## 许可证策略
+
+- RadishAxiom 的原创代码、文档与配置采用 Apache License 2.0。
+- 允许个人与组织使用、修改、分发和商业集成，以降低编译器、Axiom IR、验证器、SDK 与后端适配器的采用门槛。
+- 第三方组件继续遵循其各自的许可证；项目名称、Logo 与其他品牌标识不因 Apache License 2.0 而获得商标授权。
+- 未来的托管验证服务、企业连接器、合规策略包、认证与支持可以独立提供商业服务，无需收紧开放核心的许可证。
+
+开放基础层、商业化边界、用户产物、品牌认证和外部贡献治理的长期原则见[许可证与生态策略](licensing-strategy.md)。
+
 ## 尚未冻结的决策
 
 - 首个目标领域；
@@ -59,4 +68,3 @@ RadishAxiom 是面向 AI Agent 的验证优先语言与可信语义层。项目�
 - SMT、证明助手或其他验证后端；
 - Axiom Evidence 的证书级别与独立检查方式；
 - 解释执行、代码生成或双路径运行模型；
-- 开源或 source-available 许可证。
