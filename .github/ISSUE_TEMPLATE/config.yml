@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 私下报告安全问题
+    url: https://github.com/laugh0608/RadishAxiom/security/policy
+    about: 不要公开披露尚未修复的漏洞、凭据或敏感验证材料。

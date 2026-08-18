@@ -1,0 +1,55 @@
+name: 缺陷报告
+description: 报告可复现的实现、文档、语义或 Evidence 问题。
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢报告问题。可利用的安全漏洞请使用仓库 Security 页面私下报告，不要填写公开 Issue。
+  - type: textarea
+    id: summary
+    attributes:
+      label: 问题摘要
+      description: 简洁说明实际行为以及它为什么是问题。
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 最小复现
+      description: 提供最小 `.rax`、IR、Evidence、命令或文档路径；删除凭据和私人数据。
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望与实际结果
+      description: 分别说明规范期望、实际输出、验证状态和错误信息。
+    validations:
+      required: true
+  - type: textarea
+    id: trust
+    attributes:
+      label: 语义、信任与 Evidence 影响
+      description: 是否涉及错误 proved/checked、遗漏 trusted、状态传播、反例或独立检查差异？
+  - type: input
+    id: revision
+    attributes:
+      label: 版本或提交
+      description: 提供版本号、commit SHA 或文档更新时间。
+      placeholder: 例如 d42e611
+  - type: textarea
+    id: environment
+    attributes:
+      label: 环境
+      description: 操作系统、工具版本、后端和相关配置；不要粘贴密钥。
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: 确认
+      options:
+        - label: 我已搜索现有 Issue，并尽量提供最小复现。
+          required: true
+        - label: 本报告不包含未修复漏洞、凭据、私人数据或受限材料。
+          required: true

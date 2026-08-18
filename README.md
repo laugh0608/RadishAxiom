@@ -28,11 +28,31 @@ RadishAxiom 是 Radish 家族中面向 AI Agent 的语言与可信语义项目�
 
 项目处于定义阶段。实现语言、验证后端和目标运行时尚未冻结；在这些决策完成前，不预设完整编译器工具链。
 
+当前阶段、已确定事项与下一批决策见[当前状态](docs/status/current.md)。
+
 ## 文档
 
 - [文档入口](docs/README.md)
 - [产品定义](docs/product-definition.md)
 - [许可证与生态策略](docs/licensing-strategy.md)
+- [仓库治理](docs/governance/repository-governance.md)
+- [参与贡献](CONTRIBUTING.md)
+- [社区行为准则](CODE_OF_CONDUCT.md)
+- [安全策略](SECURITY.md)
+
+## 仓库检查
+
+macOS、Linux 或 Git Bash：
+
+```bash
+./scripts/check-repo.sh
+```
+
+Windows PowerShell：
+
+```powershell
+pwsh ./scripts/check-repo.ps1
+```
 
 ## 许可证
 
