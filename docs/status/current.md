@@ -40,3 +40,4 @@
 - [许可证与生态策略](../licensing-strategy.md)
 - [仓库治理](../governance/repository-governance.md)
 - [ADR 0001：分支、PR 与 Ruleset 治理](../adr/0001-branch-and-pr-governance.md)
+- [面向 Agent 的语言设计：证据与开放问题](../research/agent-oriented-language-design-evidence.md)

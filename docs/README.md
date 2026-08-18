@@ -19,6 +19,10 @@
 - [PR 模板](../.github/PULL_REQUEST_TEMPLATE.md)：语义、信任、Evidence、验证与回流检查清单。
 - [Ruleset 说明](../.github/rulesets/README.md)：远程保护模板与启用顺序。
 
+## 研究备忘
+
+- [面向 Agent 的语言设计：证据与开放问题](research/agent-oriented-language-design-evidence.md)：外部证据、证据限制、项目假设与最小实验要求；不作为正式语法或技术栈规范。
+
 ## 后续文档
 
 进入实现前，至少需要补齐：
