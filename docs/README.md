@@ -23,11 +23,14 @@
 
 - [面向 Agent 的语言设计：证据与开放问题](research/agent-oriented-language-design-evidence.md)：外部证据、证据限制、项目假设与最小实验要求；不作为正式语法或技术栈规范。
 
-## 后续文档
+## 正式设计规范
 
-进入实现前，至少需要补齐：
+- [有键有限表转换：首版类型化语义](semantics/keyed-finite-table-semantics.md)：首个目标领域的值、表、转换、契约、效果、失败、反例与信任边界。
 
-- 核心语义与类型系统；
+## 进入实现前待补齐
+
+进入实现前，还需要补齐：
+
 - Axiom IR 结构和规范化规则；
 - 验证状态、信任边界与 Axiom Evidence 格式；
 - 编译管线与目标运行时选择；
