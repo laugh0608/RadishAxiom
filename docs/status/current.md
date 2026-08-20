@@ -4,7 +4,7 @@
 
 ## 当前阶段
 
-项目处于首域语义、Axiom IR v0.1、Axiom Evidence v0.1、版本身份分层、四题版本化基准语料和 Agent 对比实验预注册已经形成的设计阶段。当前目标是以已物化语料比较实现语言、验证后端与目标运行时；在验收边界完成前不进入编译器实现或正式模型调用。
+项目处于首域语义、Axiom IR v0.1、Axiom Evidence v0.1、版本身份分层、四题版本化基准语料、Agent 对比实验预注册和 `raxc` 生产实现语言已经形成的设计阶段。当前目标是以已物化语料继续比较验证后端与目标运行时；在验收边界完成前不进入编译器实现或正式模型调用。
 
 ## 已确定
 
@@ -18,20 +18,21 @@
 - 有键有限表基准语料 v0.1：四个任务各有一个正确候选、两个错误候选、基础 / 边界 / 无效输入、黄金输出，以及正确、错误、后端超时和输入拒绝场景的 Expected Evidence 断言；生成结果与摘要可离线重现。
 - Agent 表示与验证反馈对比实验预注册 v0.1：固定 SQL、普通 JSON plan 和 Axiom projection 三种表示，两个模型条件、72 个 trial bundle、配对反馈、确认阈值、预算与停止线；正式调用仍须 execution lock 和单独授权。
 - 版本身份：项目发布采用 `YY.M.RELEASE` CalVer 与 `dev` / `test` / `release` 轨道；语言语义、Axiom IR、Axiom Evidence 和工具实现分别标识，CalVer 不表达兼容性。
+- `raxc` 生产编译器实现语言：Rust 2024 edition 与精确固定的 stable 工具链；该选择不适用于独立 checker，也不冻结表面语法、验证后端或目标运行时。
 - 许可证：Apache License 2.0，并形成开放基础层与商业化边界策略。
 - 仓库治理：`master` 稳定主线、`dev` 日常集成、PR 门禁和合并后回流策略。
 - 当前仓库级验证：`./scripts/check-repo.sh` 或 `pwsh ./scripts/check-repo.ps1`。
 
 ## 下一阶段决策
 
-1. 用基准制品比较实现语言，记录确定性、生态、许可证、可移植性、维护成本和替代方案。
-2. 比较验证后端与目标运行时，记录可信计算基、`unknown` 行为、独立复核能力和宿主语义承载边界。
-3. 分别以受审阅决策冻结首个工具链；满足 ADR 0002 全部入口条件后再进入实现，工具链可用后才准备 Agent 实验 execution lock。
+1. 比较验证后端，记录可信计算基、证书 / 重放能力、`unknown` 行为、资源边界、许可证和跨平台分发。
+2. 比较目标运行时与执行路径，记录受界算术、文本、表、故障和宿主一致性边界。
+3. 分别以受审阅决策冻结首版管线与独立 checker 隔离边界；满足 ADR 0002 和 ADR 0004 全部入口条件后再进入实现，工具链可用后才准备 Agent 实验 execution lock。
 
 ## 尚未冻结
 
 - 表面语法；
-- 编译器实现语言；
+- 独立 checker 的实现语言与具体实现；
 - SMT、证明助手或其他验证后端；
 - 解释执行、代码生成或双路径运行模型；
 - Agent 实验的 execution lock、模型精确 revision、提示材料和 runner；
@@ -49,6 +50,7 @@
 - [ADR 0001：分支、PR 与 Ruleset 治理](../adr/0001-branch-and-pr-governance.md)
 - [ADR 0002：首个目标领域与基准任务](../adr/0002-first-target-domain-and-benchmarks.md)
 - [ADR 0003：版本标识与兼容性分层](../adr/0003-version-identities-and-compatibility-layers.md)
+- [ADR 0004：`raxc` 生产编译器实现语言](../adr/0004-raxc-production-implementation-language.md)
 - [有键有限表转换：首版类型化语义](../semantics/keyed-finite-table-semantics.md)
 - [Axiom IR v0.1：规范化形式与版本策略](../ir/axiom-ir-v0.md)
 - [Axiom Evidence v0.1：证据模型与独立检查边界](../evidence/axiom-evidence-v0.md)
