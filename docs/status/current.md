@@ -4,7 +4,7 @@
 
 ## 当前阶段
 
-项目处于首域语义、Axiom IR v0.1、Axiom Evidence v0.1、版本身份分层和四题版本化基准语料已经形成的设计阶段。当前目标是预注册 Agent 对比实验，再以已物化语料比较实现技术栈；在验收边界完成前不进入编译器实现。
+项目处于首域语义、Axiom IR v0.1、Axiom Evidence v0.1、版本身份分层和四题版本化基准语料已经形成的设计阶段。Agent 表示与验证反馈对比实验预注册 v0.1 草案已物化，当前目标是完成审阅，再以已物化语料比较实现技术栈；在验收边界完成前不进入编译器实现或正式模型调用。
 
 ## 已确定
 
@@ -23,9 +23,9 @@
 
 ## 下一阶段决策
 
-1. 预注册 Agent 对比实验的表示变体、模型条件、指标、阈值和停止条件。
+1. 审阅并接受 Agent 对比实验预注册 v0.1；正式调用前另行冻结模型 revision、提示材料、适配器、评分器和 checker 的 execution lock。
 2. 用基准制品比较实现语言、验证后端与目标运行时，记录可信计算基、`unknown` 行为、许可证、维护成本和替代方案。
-3. 分别以受审阅决策冻结首个工具链；满足 ADR 0002 全部入口条件后再进入实现。
+3. 分别以受审阅决策冻结首个工具链；满足 ADR 0002 全部入口条件后再进入实现，工具链可用后才执行已登记实验。
 
 ## 尚未冻结
 
@@ -33,6 +33,7 @@
 - 编译器实现语言；
 - SMT、证明助手或其他验证后端；
 - 解释执行、代码生成或双路径运行模型；
+- Agent 实验的 execution lock、模型精确 revision、提示材料和 runner；
 - 包管理、IDE、插件和发布载体；
 - 首个具体产品版本、发布载体、发布记录与自动化；
 - v1 后语言语义、Axiom IR、Axiom Evidence 及未来公共包的兼容性承诺。
@@ -51,4 +52,5 @@
 - [Axiom IR v0.1：规范化形式与版本策略](../ir/axiom-ir-v0.md)
 - [Axiom Evidence v0.1：证据模型与独立检查边界](../evidence/axiom-evidence-v0.md)
 - [有键有限表基准语料库 v0.1](../benchmarks/keyed-finite-table-corpus-v0.md)
+- [Agent 表示与验证反馈对比实验预注册 v0.1](../experiments/agent-representation-preregistration-v0.md)
 - [面向 Agent 的语言设计：证据与开放问题](../research/agent-oriented-language-design-evidence.md)

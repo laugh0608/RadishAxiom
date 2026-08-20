@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import subprocess
@@ -39,10 +40,14 @@ REQUIRED_FILES = (
     "docs/README.md",
     "docs/adr/0001-branch-and-pr-governance.md",
     "docs/benchmarks/keyed-finite-table-corpus-v0.md",
+    "docs/experiments/agent-representation-preregistration-v0.md",
     "docs/governance/repository-governance.md",
     "docs/licensing-strategy.md",
     "docs/product-definition.md",
     "docs/status/current.md",
+    "experiments/agent-representation-v0.1/README.md",
+    "experiments/agent-representation-v0.1/registration.json",
+    "experiments/agent-representation-v0.1/registration.sha256",
     "scripts/check-repo.py",
     "scripts/check-repo.ps1",
     "scripts/check-repo.sh",
@@ -77,6 +82,7 @@ TEXT_SUFFIXES = {
     ".py",
     ".rax",
     ".rs",
+    ".sha256",
     ".scss",
     ".sh",
     ".sql",
@@ -309,6 +315,99 @@ def check_benchmark_corpus(errors: list[str]) -> None:
         errors.append(f"benchmark corpus check failed: {detail}")
 
 
+def sha256(path: Path) -> str:
+    return "sha256:" + hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def check_agent_experiment_registration(errors: list[str]) -> None:
+    root = REPO_ROOT / "experiments/agent-representation-v0.1"
+    path = root / "registration.json"
+    digest_path = root / "registration.sha256"
+    if not path.is_file() or not digest_path.is_file():
+        return
+
+    expected_line = f"{sha256(path).removeprefix('sha256:')}  registration.json\n"
+    if digest_path.read_text(encoding="utf-8") != expected_line:
+        errors.append("agent experiment registration.sha256 does not match registration.json")
+
+    try:
+        registration = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return
+    if not isinstance(registration, dict):
+        errors.append("agent experiment registration must be a JSON object")
+        return
+
+    bindings = registration.get("bindings")
+    if not isinstance(bindings, dict):
+        errors.append("agent experiment registration must define bindings")
+        return
+    for name, binding in bindings.items():
+        if not isinstance(binding, dict) or not isinstance(binding.get("path"), str):
+            errors.append(f"agent experiment binding is invalid: {name}")
+            continue
+        bound_path = (REPO_ROOT / binding["path"]).resolve()
+        try:
+            bound_path.relative_to(REPO_ROOT)
+        except ValueError:
+            errors.append(f"agent experiment binding escapes repository: {name}")
+            continue
+        if not bound_path.is_file():
+            errors.append(f"agent experiment binding is missing: {name}")
+        elif sha256(bound_path) != binding.get("raw_sha256"):
+            errors.append(f"agent experiment binding digest changed: {name}")
+
+    models = registration.get("models", [])
+    representations = registration.get("representations", [])
+    tasks = registration.get("tasks", [])
+    replicates = registration.get("replicates", [])
+    schedule = registration.get("schedule", {})
+    budgets = registration.get("budgets", {})
+    if not all(
+        isinstance(value, list)
+        for value in (models, representations, tasks, replicates)
+    ) or not isinstance(schedule, dict) or not isinstance(budgets, dict):
+        errors.append("agent experiment design arrays or budget objects are invalid")
+        return
+    bundle_count = len(models) * len(representations) * len(tasks) * len(replicates)
+    if (len(models), len(representations), len(tasks), len(replicates)) != (2, 3, 4, 3):
+        errors.append("agent experiment must keep the registered 2x3x4x3 design")
+    if schedule.get("bundle_count") != bundle_count or bundle_count != 72:
+        errors.append("agent experiment bundle count is inconsistent")
+    maximum_calls = bundle_count * budgets.get("maximum_calls_per_bundle", 0)
+    if budgets.get("maximum_total_model_calls") != maximum_calls or maximum_calls != 432:
+        errors.append("agent experiment model-call budget is inconsistent")
+    if budgets.get("maximum_total_visible_input_tokens") != (
+        maximum_calls * budgets.get("per_call_visible_input_tokens", 0)
+    ):
+        errors.append("agent experiment input-token budget is inconsistent")
+    if budgets.get("maximum_total_visible_output_tokens") != (
+        maximum_calls * budgets.get("per_call_visible_output_tokens", 0)
+    ):
+        errors.append("agent experiment output-token budget is inconsistent")
+
+    corpus_binding = bindings.get("corpus", {})
+    if not isinstance(corpus_binding, dict) or not isinstance(corpus_binding.get("path"), str):
+        errors.append("agent experiment corpus binding is invalid")
+        return
+    corpus_path = REPO_ROOT / corpus_binding.get("path", "")
+    if corpus_path.is_file():
+        try:
+            corpus = json.loads(corpus_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            corpus = {}
+        if not isinstance(corpus, dict):
+            corpus = {}
+        corpus_tasks = [item.get("benchmark_id") for item in corpus.get("tasks", [])]
+        if tasks != corpus_tasks:
+            errors.append("agent experiment task list differs from the bound corpus")
+
+    if registration.get("status") not in {"proposed", "accepted"}:
+        errors.append("agent experiment registration has an invalid status")
+    if registration.get("execution_lock", {}).get("required_before_benchmark_calls") is not True:
+        errors.append("agent experiment must require an execution lock before model calls")
+
+
 def check_diff(base_ref: str | None, errors: list[str]) -> None:
     commands = []
     if base_ref:
@@ -360,6 +459,7 @@ def main() -> int:
     check_ruleset_contract(errors)
     check_workflow_contract(errors)
     check_benchmark_corpus(errors)
+    check_agent_experiment_registration(errors)
     check_diff(args.base_ref, errors)
     check_commit_messages(args.base_ref, errors)
 
