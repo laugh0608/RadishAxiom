@@ -14,7 +14,7 @@
 
 本文投影[有键有限表转换的现行语义](../semantics/keyed-finite-table-semantics.md)，不得改变其中的值域、表、算术、连接、聚合、非干扰、效果或失败含义。Axiom IR v0.1 绑定该语义文档的 UTF-8 文件内容摘要：
 
-`sha256:f12a64649a065e0b8f448c315a611cc545964e00c0213a6679193a5654b1accb`
+`sha256:6b18d65eefa439956db8eebe1f4ce90e08b4def4abf7c718c2605e7528598d0d`
 
 IR 中必须记录这一精确摘要。语义文件发生任何字节变化后，新生成的 IR 必须记录新摘要；工具不能把 `latest`、分支名或可变 URL 当作语义版本。将来冻结稳定语义版本后，可以增加从稳定版本到精确摘要的受审计映射，但不能抹去原始摘要。
 
@@ -56,7 +56,7 @@ Axiom IR v0.1 采用以下边界：
   "record_types": [],
   "semantics": {
     "name": "keyed-finite-table-semantics",
-    "sha256": "f12a64649a065e0b8f448c315a611cc545964e00c0213a6679193a5654b1accb"
+    "sha256": "6b18d65eefa439956db8eebe1f4ce90e08b4def4abf7c718c2605e7528598d0d"
   },
   "table_types": []
 }
@@ -609,7 +609,7 @@ pretty 空白、object member 输入顺序和伴随来源映射不构成语义�
 ## 仍未冻结
 
 - `.rax` 表面语法与 source-to-IR 映射；
-- Axiom Evidence 格式、义务 ID、证书和独立检查器实现；
+- Axiom Evidence 的具体证明证书格式、制品打包容器和独立检查器实现；
 - 验证后端、证明策略和 `unknown` 的后端细分；
 - 编译器实现语言、宿主运行时、解释或代码生成路径；
 - 伴随来源映射的具体容器、诊断协议和编辑器集成；

@@ -4,7 +4,7 @@
 
 ## 当前阶段
 
-项目处于首域语义、Axiom IR v0.1 与版本身份分层已形成、Evidence 边界待冻结的设计阶段。当前目标是定义可独立检查的 Axiom Evidence，再物化覆盖 IR、义务与反例的可复现实验；在这些边界完成前不进入编译器实现。
+项目处于首域语义、Axiom IR v0.1、Axiom Evidence v0.1 与版本身份分层已形成的设计阶段。当前目标是物化覆盖 IR、义务、状态、反例与独立复核的版本化基准语料，再以这些真实制品比较实现技术栈；在验收边界完成前不进入编译器实现。
 
 ## 已确定
 
@@ -14,6 +14,7 @@
 - 首个目标领域：有键有限表的确定性转换；核心纯且无外部副作用，首批基准覆盖净额计算、键连接、守恒聚合和敏感字段非干扰。
 - 首域语义：受界值、闭合记录、公开主键、无序有限表、显式缺失、无回绕算术、恰好一次连接、守恒聚合、关系非干扰和核心效果 `∅`。
 - Axiom IR v0.1：严格版本化的 canonical JSON、内容寻址 DAG、无名称绑定、稳定摘要、无损 pretty 投影、结构化差异和显式迁移；未知字段与版本严格拒绝。
+- Axiom Evidence v0.1：canonical JSON 证据清单、内容寻址义务、五种不可互换状态、可重放反例、显式 trust / uncovered、确定性结论聚合和独立义务重建；生产报告不能自证。
 - 版本身份：项目发布采用 `YY.M.RELEASE` CalVer 与 `dev` / `test` / `release` 轨道；语言语义、Axiom IR、Axiom Evidence 和工具实现分别标识，CalVer 不表达兼容性。
 - 许可证：Apache License 2.0，并形成开放基础层与商业化边界策略。
 - 仓库治理：`master` 稳定主线、`dev` 日常集成、PR 门禁和合并后回流策略。
@@ -21,9 +22,9 @@
 
 ## 下一阶段决策
 
-1. 定义 Axiom Evidence 的最小格式、状态语义和独立检查边界。
-2. 物化 ADR 0002 的版本化基准语料库，并预注册 Agent 对比实验条件。
-3. 比较实现语言、验证后端与目标运行时，再冻结首个工具链并进入实现。
+1. 物化 ADR 0002 的四个版本化基准语料、错误候选、反例与预期 Evidence。
+2. 预注册 Agent 对比实验的表示变体、模型条件、指标、阈值和停止条件。
+3. 用基准制品比较实现语言、验证后端与目标运行时，再分别冻结首个工具链。
 
 ## 尚未冻结
 
@@ -47,4 +48,5 @@
 - [ADR 0003：版本标识与兼容性分层](../adr/0003-version-identities-and-compatibility-layers.md)
 - [有键有限表转换：首版类型化语义](../semantics/keyed-finite-table-semantics.md)
 - [Axiom IR v0.1：规范化形式与版本策略](../ir/axiom-ir-v0.md)
+- [Axiom Evidence v0.1：证据模型与独立检查边界](../evidence/axiom-evidence-v0.md)
 - [面向 Agent 的语言设计：证据与开放问题](../research/agent-oriented-language-design-evidence.md)
