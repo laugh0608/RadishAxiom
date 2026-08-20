@@ -34,8 +34,11 @@ REQUIRED_FILES = (
     "LICENSE",
     "README.md",
     "SECURITY.md",
+    "benchmarks/keyed-finite-table-v0.1/README.md",
+    "benchmarks/keyed-finite-table-v0.1/corpus.json",
     "docs/README.md",
     "docs/adr/0001-branch-and-pr-governance.md",
+    "docs/benchmarks/keyed-finite-table-corpus-v0.md",
     "docs/governance/repository-governance.md",
     "docs/licensing-strategy.md",
     "docs/product-definition.md",
@@ -43,6 +46,7 @@ REQUIRED_FILES = (
     "scripts/check-repo.py",
     "scripts/check-repo.ps1",
     "scripts/check-repo.sh",
+    "scripts/generate-benchmark-corpus.py",
 )
 
 TEXT_SUFFIXES = {
@@ -288,6 +292,23 @@ def check_workflow_contract(errors: list[str]) -> None:
             errors.append(f"PR workflow is missing contract fragment: {fragment.strip()}")
 
 
+def check_benchmark_corpus(errors: list[str]) -> None:
+    generator = REPO_ROOT / "scripts/generate-benchmark-corpus.py"
+    if not generator.is_file():
+        return
+
+    result = subprocess.run(
+        [sys.executable, str(generator), "--check"],
+        cwd=REPO_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        detail = (result.stdout + result.stderr).strip()
+        errors.append(f"benchmark corpus check failed: {detail}")
+
+
 def check_diff(base_ref: str | None, errors: list[str]) -> None:
     commands = []
     if base_ref:
@@ -338,6 +359,7 @@ def main() -> int:
     check_agent_files(errors)
     check_ruleset_contract(errors)
     check_workflow_contract(errors)
+    check_benchmark_corpus(errors)
     check_diff(args.base_ref, errors)
     check_commit_messages(args.base_ref, errors)
 

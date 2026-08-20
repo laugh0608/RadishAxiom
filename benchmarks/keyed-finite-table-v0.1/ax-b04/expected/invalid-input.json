@@ -1,0 +1,44 @@
+{
+  "assertion_version": "0.1",
+  "benchmark_id": "AX-B04",
+  "candidate": "correct",
+  "counterexample": {
+    "kind": "row-pair",
+    "minimality": "reduced",
+    "required_fields": [
+      "ticket_id"
+    ],
+    "required_keys": [
+      "tickets:T1"
+    ]
+  },
+  "expected_conclusion": "input_rejected",
+  "expected_independent_result": "accepted-with-trust",
+  "fixtures": [
+    "invalid"
+  ],
+  "format": "axiom-expected-evidence",
+  "required_results": [
+    {
+      "kind": "input-conformance",
+      "status": "failed"
+    }
+  ],
+  "required_trust": [
+    "cryptographic-primitive",
+    "decoder-normalizer",
+    "input-origin",
+    "production-generator",
+    "sensitivity-classification",
+    "specification-intent"
+  ],
+  "required_uncovered": [
+    "host-fidelity-for-all-inputs",
+    "legal-regulatory-compliance",
+    "long-term-archival-authenticity",
+    "real-world-intent",
+    "resource-performance",
+    "source-truth-completeness",
+    "timing-memory-log-side-channel"
+  ]
+}

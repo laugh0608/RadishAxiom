@@ -8,7 +8,9 @@
 
 读者：基准语料维护者、Evidence 与独立检查器实现者、工具链评估者和阶段验收者。
 
-不包含：新的 Evidence 字段、状态、义务类别、证明后端、实现语言或已经物化的基准制品。
+不包含：新的 Evidence 字段、状态、义务类别、证明后端、实现语言或基准制品字节级格式的重复定义。
+
+四个任务的版本化候选、fixture 和 Expected Evidence 最低断言见[有键有限表基准语料库 v0.1](../benchmarks/keyed-finite-table-corpus-v0.md)。这些断言不是已经产生的 Axiom Evidence。
 
 ## 四个基准的 Evidence 映射
 

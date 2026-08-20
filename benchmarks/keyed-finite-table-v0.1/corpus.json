@@ -1,0 +1,37 @@
+{
+  "corpus_version": "0.1",
+  "evidence_version": "0.1",
+  "format": "axiom-benchmark-corpus",
+  "generator": {
+    "path": "scripts/generate-benchmark-corpus.py",
+    "sha256": "sha256:3f93bcedf43c09168847b72b5b568ed3bc29e3f8af3aeba9ed25970b07e05da8",
+    "version": "0.1"
+  },
+  "ir_version": "0.1",
+  "semantics": {
+    "name": "keyed-finite-table-semantics",
+    "sha256": "6b18d65eefa439956db8eebe1f4ce90e08b4def4abf7c718c2605e7528598d0d"
+  },
+  "tasks": [
+    {
+      "benchmark_id": "AX-B01",
+      "path": "ax-b01/task.json",
+      "sha256": "sha256:94da3e83f9767aa8db3321beddbd6ff58ae834a6a7e3564621ef52fb40bb15b0"
+    },
+    {
+      "benchmark_id": "AX-B02",
+      "path": "ax-b02/task.json",
+      "sha256": "sha256:23d3c8f235b72e9e0b9c7f5c538e3b1511f8e6be268689132eacf2d576b7b037"
+    },
+    {
+      "benchmark_id": "AX-B03",
+      "path": "ax-b03/task.json",
+      "sha256": "sha256:6a9d404a5333104fd823f6d5ab22bdd8adbef85b938c44965c6c72ab4a33d7e8"
+    },
+    {
+      "benchmark_id": "AX-B04",
+      "path": "ax-b04/task.json",
+      "sha256": "sha256:5586ac2198af0f578f697d27ffe437710bbfc9e6c9690b599dedc3f66d60bddf"
+    }
+  ]
+}

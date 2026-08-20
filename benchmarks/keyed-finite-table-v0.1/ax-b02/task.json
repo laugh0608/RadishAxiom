@@ -1,0 +1,124 @@
+{
+  "benchmark_id": "AX-B02",
+  "candidates": [
+    {
+      "canonical": {
+        "path": "ax-b02/candidates/correct.ir.jcs",
+        "sha256": "sha256:104487f51b802522dd33fd29933fee0d14829b48e83d032a663952e5e39df161"
+      },
+      "document_digest": "sha256:f4c6520e0e536b1908e696008f3df3971fbda2687e1b8abafc0a645006018dd1",
+      "name": "correct",
+      "pretty": {
+        "path": "ax-b02/candidates/correct.ir.json",
+        "sha256": "sha256:8ccb936526d333d67ac46e227a01c620e6e18a77b281fc027d2feca05834eaa0"
+      }
+    },
+    {
+      "canonical": {
+        "path": "ax-b02/candidates/wrong-constant-tier.ir.jcs",
+        "sha256": "sha256:04237985285e5005afe8c8dcd3af9141db7cf9e27340aeb217c572eb7275480f"
+      },
+      "document_digest": "sha256:88e8e6be1748acbdf0491fcc95d4134772a87bc446221f325409f2cfba2a6f24",
+      "name": "wrong-constant-tier",
+      "pretty": {
+        "path": "ax-b02/candidates/wrong-constant-tier.ir.json",
+        "sha256": "sha256:afc247779777ae40385296a45506d119d0865d893e5b0f95546493043ea1aebf"
+      }
+    },
+    {
+      "canonical": {
+        "path": "ax-b02/candidates/wrong-region-join.ir.jcs",
+        "sha256": "sha256:6c6111650778602b0989424f58975aea4879fc648dd09f7519a0e04dc369d209"
+      },
+      "document_digest": "sha256:319c4968cba20a67ba0433094dfbe7e3664b4b0b986decdfa96c8f9d05de1101",
+      "name": "wrong-region-join",
+      "pretty": {
+        "path": "ax-b02/candidates/wrong-region-join.ir.json",
+        "sha256": "sha256:fd93ff156880cb20dc052e758d2c12ddcccd5f4199000233afa5321106488d27"
+      }
+    }
+  ],
+  "corpus_version": "0.1",
+  "fixtures": [
+    {
+      "golden": {
+        "path": "ax-b02/fixtures/base.golden.json",
+        "sha256": "sha256:bd2e80747fd3c718b684d6657a2675c3a876c6248cc9d84d4c0e4779a3a35880"
+      },
+      "input": {
+        "path": "ax-b02/fixtures/base.input.json",
+        "sha256": "sha256:b6060a5d40f8448156147eed40627dc8b0d73d09b93f153eb2b3c51474db16fd"
+      },
+      "kind": "valid",
+      "name": "base"
+    },
+    {
+      "golden": {
+        "path": "ax-b02/fixtures/boundary.golden.json",
+        "sha256": "sha256:534b8a41af7832ed1eb49368e2601af6fdf9499c9170d1c876bd51995e34e4d4"
+      },
+      "input": {
+        "path": "ax-b02/fixtures/boundary.input.json",
+        "sha256": "sha256:38128f4047438a9a6a57997af8c570ce39bfcd18c3c90b204d7744ab5792531e"
+      },
+      "kind": "valid",
+      "name": "boundary"
+    },
+    {
+      "input": {
+        "path": "ax-b02/fixtures/invalid.input.json",
+        "sha256": "sha256:b41249872a868523e90e4b55f513ee9c640c93e6caaf08efea54ab198c186539"
+      },
+      "kind": "invalid",
+      "name": "invalid"
+    }
+  ],
+  "format": "axiom-benchmark-task",
+  "input_ports": [
+    {
+      "name": "customers",
+      "table_type": "sha256:b4a33178c32ed370b79a169f91d857fa68be19613a1a5bf83b1d6ebc818a9cbd"
+    },
+    {
+      "name": "orders",
+      "table_type": "sha256:99ddee983bf06282e909d6899ca5f4e78cc47513bad42f4c3f891a9ce39257ee"
+    }
+  ],
+  "output": {
+    "name": "order_tiers",
+    "table_type": "sha256:ff1165ac0ae062f42206becfe57fb49935efb82d91a88b29bec22476c80c6bd9"
+  },
+  "scenarios": [
+    {
+      "name": "backend-timeout",
+      "path": "ax-b02/expected/backend-timeout.json",
+      "sha256": "sha256:01d2d5832cfe1846471d88d0df556aa7970807d4d9aa2edf2d64ec248f17b0c8"
+    },
+    {
+      "name": "correct",
+      "path": "ax-b02/expected/correct.json",
+      "sha256": "sha256:f34ad8445185aba9500af98b68e8df8389b3807a0e953c2c22c0beb661c03b9e"
+    },
+    {
+      "name": "invalid-input",
+      "path": "ax-b02/expected/invalid-input.json",
+      "sha256": "sha256:1eff15a61f900fe654e55590b18288ab3220769791294b655f4ea4690750cf21"
+    },
+    {
+      "name": "wrong-constant-tier",
+      "path": "ax-b02/expected/wrong-constant-tier.json",
+      "sha256": "sha256:e8876500123baa2c5b975c084c207b15fb78c6403beb6512301cd2880eff3d22"
+    },
+    {
+      "name": "wrong-region-join",
+      "path": "ax-b02/expected/wrong-region-join.json",
+      "sha256": "sha256:2da90a018a22243cfc3dad452ac6006ef99d5c72c65e0c1467d6ae4366b8a540"
+    }
+  ],
+  "task_contract_ids": [
+    "sha256:31403ef7660d1ac6bfb27f09f2959b558eff46de6d00fcc2176cb2850b807d9d",
+    "sha256:a0a3c984a292a016703d0f55d00162413b405cf00d743c26a6a938bf89436f37"
+  ],
+  "task_digest": "sha256:3dcd164d3570f7a84f080b1e037b7d51216497e4b40b1378c9fb29a9880a223f",
+  "task_version": "0.1"
+}

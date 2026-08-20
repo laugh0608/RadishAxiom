@@ -28,11 +28,11 @@
 - [有键有限表转换：首版类型化语义](semantics/keyed-finite-table-semantics.md)：首个目标领域的值、表、转换、契约、效果、失败、反例与信任边界。
 - [Axiom IR v0.1：规范化形式与版本策略](ir/axiom-ir-v0.md)：规范化数据模型、canonical JSON、内容寻址、人类投影、语义差异与版本演进。
 - [Axiom Evidence v0.1：证据模型与独立检查边界](evidence/axiom-evidence-v0.md)：义务身份、五种状态、反例、信任清单、结论聚合与独立复核。
+- [有键有限表基准语料库 v0.1](benchmarks/keyed-finite-table-corpus-v0.md)：四个基准的生成目录、任务身份、合成数据、正确 / 错误候选和 Expected Evidence 断言。
 
 ## 进入实现前待补齐
 
 进入实现前，还需要补齐：
 
-- 四个基准的版本化语料、错误候选与预期 Evidence；
 - Agent 对比实验的表示、指标、阈值和停止条件预注册；
 - 实现语言、验证后端、编译管线与目标运行时选择。

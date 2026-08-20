@@ -1,0 +1,120 @@
+{
+  "benchmark_id": "AX-B04",
+  "candidates": [
+    {
+      "canonical": {
+        "path": "ax-b04/candidates/correct.ir.jcs",
+        "sha256": "sha256:048a9dc0a64d78199c1fed10f5fca6c4be7f14a28b4da871be9252fde5b419ff"
+      },
+      "document_digest": "sha256:e78b481ab473e047c9a26978cf203104086baac60057485f4ae696cec641976b",
+      "name": "correct",
+      "pretty": {
+        "path": "ax-b04/candidates/correct.ir.json",
+        "sha256": "sha256:1573f59bd9f131d8a45611aea5e21c783660edfd9a286a4b631e7358e7b66748"
+      }
+    },
+    {
+      "canonical": {
+        "path": "ax-b04/candidates/wrong-sensitive-filter.ir.jcs",
+        "sha256": "sha256:862ac3ece8ba13d378adc6fd8a5ccc09a7f81d099730171006849b1fb3a94237"
+      },
+      "document_digest": "sha256:9769d5fc550f34ff15cd7199bb9cdfcba8eb6ab71b848b6ebee60189eec05802",
+      "name": "wrong-sensitive-filter",
+      "pretty": {
+        "path": "ax-b04/candidates/wrong-sensitive-filter.ir.json",
+        "sha256": "sha256:d7d13a78420bd111ab372444dd55e52144473e2053c954feec2f4947cc5e4c60"
+      }
+    },
+    {
+      "canonical": {
+        "path": "ax-b04/candidates/wrong-sensitive-priority.ir.jcs",
+        "sha256": "sha256:e1d15f3b00dd061166044c9d67a461314055c2b44fc0b370606c9c7ae995e219"
+      },
+      "document_digest": "sha256:66964758f77a0f398ebd193716657780424d59d7959cd409ace2516a50aef507",
+      "name": "wrong-sensitive-priority",
+      "pretty": {
+        "path": "ax-b04/candidates/wrong-sensitive-priority.ir.json",
+        "sha256": "sha256:9ff022527a46c35be46558e2b15a0325774faba0f3a3d116cf1c4363b44643a5"
+      }
+    }
+  ],
+  "corpus_version": "0.1",
+  "fixtures": [
+    {
+      "golden": {
+        "path": "ax-b04/fixtures/base.golden.json",
+        "sha256": "sha256:78200cbf36fd68b05bdd1d2bbf4c1d8d4459296d994b2eace297396bfd7021e8"
+      },
+      "input": {
+        "path": "ax-b04/fixtures/base.input.json",
+        "sha256": "sha256:a42b5f769329733253bb8e860d6b55abfe003868772599d5b484a7961d4ad678"
+      },
+      "kind": "valid",
+      "name": "base"
+    },
+    {
+      "golden": {
+        "path": "ax-b04/fixtures/boundary.golden.json",
+        "sha256": "sha256:78200cbf36fd68b05bdd1d2bbf4c1d8d4459296d994b2eace297396bfd7021e8"
+      },
+      "input": {
+        "path": "ax-b04/fixtures/boundary.input.json",
+        "sha256": "sha256:9559a1538239f96b2cf93bffbbddbd347956d33507b2751ada0c74ed2ea01aca"
+      },
+      "kind": "valid",
+      "name": "boundary"
+    },
+    {
+      "input": {
+        "path": "ax-b04/fixtures/invalid.input.json",
+        "sha256": "sha256:e78bcd63bb1ce0202f53c36fccc855e32e5d8d8f427abd219e66ddbc7c2ebe88"
+      },
+      "kind": "invalid",
+      "name": "invalid"
+    }
+  ],
+  "format": "axiom-benchmark-task",
+  "input_ports": [
+    {
+      "name": "tickets",
+      "table_type": "sha256:f0977533192281ee998fb5172d13603b0605e8046e7f35aadd2e1b8cfa14ccd4"
+    }
+  ],
+  "output": {
+    "name": "export",
+    "table_type": "sha256:d8011c16d6a8a15c588bf084ba0e4596926e80a1a411cc109a24c25f98679472"
+  },
+  "scenarios": [
+    {
+      "name": "backend-timeout",
+      "path": "ax-b04/expected/backend-timeout.json",
+      "sha256": "sha256:e96c350709a03bc99e7067a81fd87f92f779edb9ec51138e0f45b4b0ec522587"
+    },
+    {
+      "name": "correct",
+      "path": "ax-b04/expected/correct.json",
+      "sha256": "sha256:a43b75855d046dac034171890a1e57c33bee75ff00a913675c70c7bd6842b25b"
+    },
+    {
+      "name": "invalid-input",
+      "path": "ax-b04/expected/invalid-input.json",
+      "sha256": "sha256:cdc5c98736e00de06322d5f5b7a2c2f36f45010e4ba9067b25118af5befa6bc3"
+    },
+    {
+      "name": "wrong-sensitive-filter",
+      "path": "ax-b04/expected/wrong-sensitive-filter.json",
+      "sha256": "sha256:4a6fa08f6916a35bcb3e64dba824be9beb1bc9d27d03c37e51c8b08f7465d553"
+    },
+    {
+      "name": "wrong-sensitive-priority",
+      "path": "ax-b04/expected/wrong-sensitive-priority.json",
+      "sha256": "sha256:91f6b4880093ac28b8dd3b67985d0ffec8046751c90f344bb5377f8d5352c201"
+    }
+  ],
+  "task_contract_ids": [
+    "sha256:3a0ecbc8d68da8e76d5625cfaedf1ccc7b8e6dece096cdf91d055251439b5c12",
+    "sha256:7264400267fd5a2b270022a28361d6c60f393ef6b8d1fba3da15f88520b26f35"
+  ],
+  "task_digest": "sha256:805fc75b280ce5dee6e32657ab724671cb98b868e4887436f5a710e633fa46b7",
+  "task_version": "0.1"
+}

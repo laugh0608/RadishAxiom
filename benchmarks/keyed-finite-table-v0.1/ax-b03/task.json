@@ -1,0 +1,119 @@
+{
+  "benchmark_id": "AX-B03",
+  "candidates": [
+    {
+      "canonical": {
+        "path": "ax-b03/candidates/correct.ir.jcs",
+        "sha256": "sha256:f8be39c0b85266fa44c78b83a5bd2dc9b4ca939f2d449c28d3cb149927f9ca42"
+      },
+      "document_digest": "sha256:a2521de9589f758de397e19bc1acfd39ff891fc6998af26e54af5208ee01ceb3",
+      "name": "correct",
+      "pretty": {
+        "path": "ax-b03/candidates/correct.ir.json",
+        "sha256": "sha256:9118e934700c2476f51fbbc352d94bc3e53a8d8af4494e26eea09a4e254e9146"
+      }
+    },
+    {
+      "canonical": {
+        "path": "ax-b03/candidates/wrong-single-group.ir.jcs",
+        "sha256": "sha256:ac12631a3437d53f7282eb4be04d7f12390ba295df842a84d132c8b7dc68bd9d"
+      },
+      "document_digest": "sha256:88fc732d2adae560dc714d2f098c2c181734f231bc64c8d00de29e0ecc987671",
+      "name": "wrong-single-group",
+      "pretty": {
+        "path": "ax-b03/candidates/wrong-single-group.ir.json",
+        "sha256": "sha256:793f1e720598467e3f8fbbb59f9b5a3b6c71ff38e740a92469957515540c039e"
+      }
+    },
+    {
+      "canonical": {
+        "path": "ax-b03/candidates/wrong-unit-sum.ir.jcs",
+        "sha256": "sha256:95ea7ae8cf2b95e68c2b59c8c5f1729a4678409d008bef94dae0bcf262104be0"
+      },
+      "document_digest": "sha256:7dedf589ed14d8b8507608f84100e3afef3a604bcf505aa5c18ca27eee094adf",
+      "name": "wrong-unit-sum",
+      "pretty": {
+        "path": "ax-b03/candidates/wrong-unit-sum.ir.json",
+        "sha256": "sha256:c5968051a88907d1fc8e9a0d573bb25d47e64246a75d0be7ade29fb7c83bf92c"
+      }
+    }
+  ],
+  "corpus_version": "0.1",
+  "fixtures": [
+    {
+      "golden": {
+        "path": "ax-b03/fixtures/base.golden.json",
+        "sha256": "sha256:3be5ed5a1c2d5f48c48b797f5d7cb7e31deccc880e27a430ec439860fb0a7175"
+      },
+      "input": {
+        "path": "ax-b03/fixtures/base.input.json",
+        "sha256": "sha256:37e3fe3bab561d516f2c4704f668fffdded439497f25922e2519cff02b14d956"
+      },
+      "kind": "valid",
+      "name": "base"
+    },
+    {
+      "golden": {
+        "path": "ax-b03/fixtures/boundary.golden.json",
+        "sha256": "sha256:8e3738571b94a0e7e85ac6cdc05d3cb6d4a80d3aa331c0244b969d4d73a4434f"
+      },
+      "input": {
+        "path": "ax-b03/fixtures/boundary.input.json",
+        "sha256": "sha256:3bb2dfab2f1d9676ff4b7078b9afe6658c0abcf7d9388591e50b381019354094"
+      },
+      "kind": "valid",
+      "name": "boundary"
+    },
+    {
+      "input": {
+        "path": "ax-b03/fixtures/invalid.input.json",
+        "sha256": "sha256:c905ee63249c889614e2ccbb565400f951e3ac05f2a68e2d41352cb7f69d2de9"
+      },
+      "kind": "invalid",
+      "name": "invalid"
+    }
+  ],
+  "format": "axiom-benchmark-task",
+  "input_ports": [
+    {
+      "name": "usage_events",
+      "table_type": "sha256:f28778b9c727c5872a44926398aafdc48a910325d563c1781f06a42a376a8a63"
+    }
+  ],
+  "output": {
+    "name": "account_usage",
+    "table_type": "sha256:532e477eb1ee3b8a2ce990b08ea378f04744d188646a47c0aedd5476191a7f94"
+  },
+  "scenarios": [
+    {
+      "name": "backend-timeout",
+      "path": "ax-b03/expected/backend-timeout.json",
+      "sha256": "sha256:e95de336bd137cb4344871fa592c61c0318138c9cc87911fc7ad3d93f470ce12"
+    },
+    {
+      "name": "correct",
+      "path": "ax-b03/expected/correct.json",
+      "sha256": "sha256:6005e31f0b5f36d213678a999bbc150bbe6dee065236523ed31914fbe1753e58"
+    },
+    {
+      "name": "invalid-input",
+      "path": "ax-b03/expected/invalid-input.json",
+      "sha256": "sha256:5e0cf0ddae0c6d4b2d3b5c948017d5c3097cc17f62454a2354f90e782b34ba4f"
+    },
+    {
+      "name": "wrong-single-group",
+      "path": "ax-b03/expected/wrong-single-group.json",
+      "sha256": "sha256:9128555775df16318d383e827ea1201c0dc7ba463485980b50fa86c333506b13"
+    },
+    {
+      "name": "wrong-unit-sum",
+      "path": "ax-b03/expected/wrong-unit-sum.json",
+      "sha256": "sha256:76fe74308f5c4a40d63a70cdbc296c55c357cad756e837645c2c9e70ef8c5159"
+    }
+  ],
+  "task_contract_ids": [
+    "sha256:03f1ee2e4a257a6d717bcacb3efd7ccb0fb0b55872fe68bcf7dd67756b0bf2db"
+  ],
+  "task_digest": "sha256:cc54958fb2ed3a615cf2b863c0f86aaa931667e2c2ca4b5b87d19d3075d7501a",
+  "task_version": "0.1"
+}

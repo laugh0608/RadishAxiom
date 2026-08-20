@@ -1,0 +1,45 @@
+{
+  "assertion_version": "0.1",
+  "benchmark_id": "AX-B03",
+  "candidate": "wrong-unit-sum",
+  "counterexample": {
+    "kind": "group",
+    "minimality": "reduced",
+    "required_fields": [
+      "total_units",
+      "units"
+    ],
+    "required_keys": [
+      "usage_events:E1",
+      "usage_events:E2"
+    ]
+  },
+  "expected_conclusion": "violated",
+  "expected_independent_result": "accepted-with-trust",
+  "fixtures": [
+    "base"
+  ],
+  "format": "axiom-expected-evidence",
+  "required_results": [
+    {
+      "kind": "contract-guarantee",
+      "status": "failed"
+    }
+  ],
+  "required_trust": [
+    "cryptographic-primitive",
+    "decoder-normalizer",
+    "input-origin",
+    "production-generator",
+    "specification-intent"
+  ],
+  "required_uncovered": [
+    "host-fidelity-for-all-inputs",
+    "legal-regulatory-compliance",
+    "long-term-archival-authenticity",
+    "real-world-intent",
+    "resource-performance",
+    "source-truth-completeness",
+    "timing-memory-log-side-channel"
+  ]
+}
