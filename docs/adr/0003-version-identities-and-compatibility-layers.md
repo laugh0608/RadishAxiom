@@ -115,7 +115,7 @@ Axiom IR 和 Axiom Evidence 是两个独立公共格式，各自维护版本、�
 
 ### 公共包版本边界
 
-实现语言和包生态尚未冻结，因此本 ADR 不决定未来 Cargo crate、npm package、Python package 或其他公共库的依赖版本语义。
+[ADR 0004](0004-raxc-production-implementation-language.md)已经为生产 `raxc` 选择 Rust，但公共包边界和包生态仍未冻结。因此本 ADR 不决定未来 Cargo crate、npm package、Python package 或其他公共库的依赖版本语义。
 
 若发布环境会把 `YY.M.RELEASE` 当作 SemVer 并据此自动放宽依赖范围，必须在首次公开包发布前单独决策：公共库是采用真正表达破坏性变化的 SemVer、使用精确版本约束，还是仅作为与工具链绑定的非独立组件。不能把 CalVer 的三段数字外形当作已经满足 SemVer 兼容承诺。
 

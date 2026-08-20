@@ -4,7 +4,7 @@
 
 ## 默认入口
 
-- [当前状态](status/current.md)：当前阶段、已确定事项、下一批决策与验证入口。
+- [当前状态](status/current.md)：当前阶段、已确定事项、明日安排与验证入口。
 - [产品定义](product-definition.md)：项目定位、命名、边界与首个里程碑。
 - [许可证与生态策略](licensing-strategy.md)：开放基础层、商业化边界与长期贡献治理。
 - [仓库治理](governance/repository-governance.md)：协作、Git、PR、CI 与 GitHub Rulesets 的统一口径。
