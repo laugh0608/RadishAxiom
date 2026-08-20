@@ -1,4 +1,5 @@
 {
+  "accepted_on": "2026-08-20",
   "analysis": {
     "counterexample_quality_scale": {
       "0": "missing-or-not-replayable",
@@ -55,7 +56,7 @@
     },
     "protocol": {
       "path": "docs/experiments/agent-representation-preregistration-v0.md",
-      "raw_sha256": "sha256:eacbdac6a95c19af4d86a278ae1e6979e1ebcb3b56a0c3d53dcd05bdbe4d9c43"
+      "raw_sha256": "sha256:e770092f94a37bb8ec33456edc77b2ff143753b49bf17b604bd162f0101e6591"
     },
     "semantics": {
       "path": "docs/semantics/keyed-finite-table-semantics.md",
@@ -185,7 +186,7 @@
     "randomization": "sha256-derived-fisher-yates",
     "seed": "radishaxiom-agent-representation-v0.1"
   },
-  "status": "proposed",
+  "status": "accepted",
   "stop_conditions": [
     "registered-artifact-digest-drift",
     "model-revision-drift-or-unverifiable-identity",
