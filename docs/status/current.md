@@ -1,27 +1,28 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-08-18
+更新日期：2026-08-20
 
 ## 当前阶段
 
-项目处于定义与仓库治理初始化阶段。当前目标是冻结产品边界、协作规则和可演进的验证门禁，为后续选择首个目标领域与语义核心提供稳定地基。
+项目处于目标领域已确定、语义与证据边界待冻结的设计阶段。当前目标是围绕首个目标领域补齐类型化语义、Axiom IR、Axiom Evidence 与可复现实验设计；在这些边界完成前不进入编译器实现。
 
 ## 已确定
 
 - 项目定位：面向 AI Agent 的验证优先语言与可信语义层。
 - 命名：`.rax`、`raxc`、Axiom IR、Axiom Evidence。
 - 核心原则：约束显式、信任可见、验证状态分层、证据可复核、小可信内核。
+- 首个目标领域：有键有限表的确定性转换；核心纯且无外部副作用，首批基准覆盖净额计算、键连接、守恒聚合和敏感字段非干扰。
 - 许可证：Apache License 2.0，并形成开放基础层与商业化边界策略。
 - 仓库治理：`master` 稳定主线、`dev` 日常集成、PR 门禁和合并后回流策略。
 - 当前仓库级验证：`./scripts/check-repo.sh` 或 `pwsh ./scripts/check-repo.ps1`。
 
 ## 下一阶段决策
 
-1. 选择首个边界清楚的目标领域和基准任务。
-2. 定义类型化语义、效果与信任边界的最小闭环。
-3. 定义 Axiom IR 的规范化形式与版本策略。
-4. 定义 Axiom Evidence 的最小格式、状态语义和独立检查边界。
-5. 比较实现语言、验证后端与目标运行时，再冻结首个工具链。
+1. 定义有键有限表转换的类型化语义、效果与信任边界。
+2. 定义 Axiom IR 的规范化形式与版本策略。
+3. 定义 Axiom Evidence 的最小格式、状态语义和独立检查边界。
+4. 物化 ADR 0002 的版本化基准语料库，并预注册 Agent 对比实验条件。
+5. 比较实现语言、验证后端与目标运行时，再冻结首个工具链并进入实现。
 
 ## 尚未冻结
 
@@ -40,4 +41,5 @@
 - [许可证与生态策略](../licensing-strategy.md)
 - [仓库治理](../governance/repository-governance.md)
 - [ADR 0001：分支、PR 与 Ruleset 治理](../adr/0001-branch-and-pr-governance.md)
+- [ADR 0002：首个目标领域与基准任务](../adr/0002-first-target-domain-and-benchmarks.md)
 - [面向 Agent 的语言设计：证据与开放问题](../research/agent-oriented-language-design-evidence.md)
