@@ -1,0 +1,1 @@
+{"format":"axiom-host-data","format_version":"0.1","ir_document_digest":"sha256:1fa8846fb3ba15937e3e4b5848e74d84d89050711086d7462eb16175510b4154","role":"golden-output","tables":[{"name":"orders","rows":[{"discount_cents":"100","order_id":"O1","state":"settled","subtotal_cents":"1000"}]}]}

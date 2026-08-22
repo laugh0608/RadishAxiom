@@ -1,0 +1,347 @@
+{
+  "bindings": [
+    {
+      "name": "adr-0007",
+      "path": "docs/adr/0007-first-verification-first-compilation-pipeline.md",
+      "raw_sha256": "sha256:ac12d9db0cd942edd9d3ead02aa8275a62d97100c3ee03126daeef5718de15b7"
+    },
+    {
+      "name": "axiom-evidence-v0.1",
+      "path": "docs/evidence/axiom-evidence-v0.md",
+      "raw_sha256": "sha256:23698ed8dd76ed937098e01f0c4fe3bac9760c4f014d8f5b92d77b4fe781c525"
+    },
+    {
+      "name": "axiom-ir-v0.1",
+      "path": "docs/ir/axiom-ir-v0.md",
+      "raw_sha256": "sha256:3f934789331aa1fc75bee3d1216f30fafcbc3c36c70a7bd147b97b3bed04124a"
+    },
+    {
+      "name": "keyed-finite-table-semantics",
+      "path": "docs/semantics/keyed-finite-table-semantics.md",
+      "raw_sha256": "sha256:6b18d65eefa439956db8eebe1f4ce90e08b4def4abf7c718c2605e7528598d0d"
+    },
+    {
+      "name": "toolchain-adapter-identities-v0.1",
+      "path": "contracts/toolchain-adapters-v0.1/registry.json",
+      "raw_sha256": "sha256:decfd442ace85e0d82aa727bfe85cd2a5ed1b04646c6bdabb6c47af504d43b3e",
+      "registry_digest": "sha256:fcfa6f50ca1adc20281a9e4186e76cedf5e25502b498e1650bdaad58b8708200"
+    }
+  ],
+  "content_domains": {
+    "attempt": "axiom-pipeline-v0.1:attempt",
+    "cache_key": "axiom-pipeline-v0.1:cache-key",
+    "obligation": "axiom-evidence-v0.1:obligation",
+    "tool": "axiom-evidence-v0.1:tool"
+  },
+  "formats": [
+    {
+      "kind": "canonical-json",
+      "name": "axiom-host-data",
+      "schema": "schemas/axiom-host-data.schema.json",
+      "version": "0.1"
+    },
+    {
+      "kind": "canonical-json",
+      "name": "axiom-obligation-set",
+      "schema": "schemas/axiom-obligation-set.schema.json",
+      "version": "0.1"
+    },
+    {
+      "kind": "raw-utf8-lf",
+      "name": "axiom-node-esm",
+      "profile": "node-24-esm-keyed-finite-table-v0.1",
+      "version": "node-24-esm-keyed-finite-table-v0.1"
+    },
+    {
+      "kind": "canonical-json",
+      "name": "axiom-pipeline-receipt",
+      "schema": "schemas/axiom-pipeline-receipt.schema.json",
+      "version": "0.1"
+    },
+    {
+      "kind": "raw-ascii-lf",
+      "name": "axiom-smtlib2-qf-uflia-query",
+      "profile": "cvc5-1.3.4-qf-uflia-v0.1",
+      "version": "0.1"
+    }
+  ],
+  "generated_files": [
+    {
+      "byte_length": "11086",
+      "path": "fixtures/expected.json",
+      "sha256": "sha256:d1ddb93d65cd31a6dc5dde786a6e07db8be3be7cd86e1fb54cb078f863087f26"
+    },
+    {
+      "byte_length": "282",
+      "path": "fixtures/minimal/host-input.jcs",
+      "sha256": "sha256:26ce2c39ce0186bdaf61df0e4b8865a9845abd83e672dd931ba5962aae97eacd"
+    },
+    {
+      "byte_length": "240",
+      "path": "fixtures/minimal/host-output.jcs",
+      "sha256": "sha256:643d96e04540cfce902a7dabfa19c2056473a3bd5546382f62c9e97de4d0cb46"
+    },
+    {
+      "byte_length": "985",
+      "path": "fixtures/minimal/obligation-set.jcs",
+      "sha256": "sha256:66312db8f36f1d9fe0b48ea85b7ed65264f03a6a71d60b949e213bdaa724f52e"
+    },
+    {
+      "byte_length": "275",
+      "path": "fixtures/minimal/options.jcs",
+      "sha256": "sha256:1fb898f597451c51f6d0b2b7dea8f2a3b0f6b8038244837974514dab4d78d486"
+    },
+    {
+      "byte_length": "96",
+      "path": "fixtures/minimal/policy.jcs",
+      "sha256": "sha256:52835fd98823874223ccd1cb1abbf4eb565d58757b646149503ce40af1e0c045"
+    },
+    {
+      "byte_length": "164",
+      "path": "fixtures/minimal/query.smt2",
+      "sha256": "sha256:189ae5bb247a42e5e9bf0b38133d886ab985cd1148283bde169921de4e107d4d"
+    },
+    {
+      "byte_length": "12594",
+      "path": "fixtures/minimal/receipt.jcs",
+      "sha256": "sha256:3201ade1644c99b69a88d8ac684607a2be9dfb3b181a1d96a5e2edf49f1eaeb4"
+    },
+    {
+      "byte_length": "179",
+      "path": "fixtures/minimal/target.mjs",
+      "sha256": "sha256:84d86f70d6e573420831c687b78a4e3cb4b2a9c567a9bf393f46ab75bd826352"
+    },
+    {
+      "byte_length": "58",
+      "path": "fixtures/minimal/tool.txt",
+      "sha256": "sha256:21822386a7652a29666fa6726e72332563cef13380c2b8b7375046c495d2a231"
+    },
+    {
+      "byte_length": "392",
+      "path": "fixtures/negative/host-duplicate-table.invalid.jcs",
+      "sha256": "sha256:b44c9919c1d6b3a1ba44ce22383f598340f6afe3b2b83385d494164f37236997"
+    },
+    {
+      "byte_length": "295",
+      "path": "fixtures/negative/host-invalid-option.invalid.jcs",
+      "sha256": "sha256:e8e65c04ecab8e1fde08c38742a7ce88867663201ff3df617b79230767395afb"
+    },
+    {
+      "byte_length": "281",
+      "path": "fixtures/negative/host-json-null.invalid.jcs",
+      "sha256": "sha256:9d972bd617cda6d6e922de42f4d191235090930c9c3100918529b625cdfb32c1"
+    },
+    {
+      "byte_length": "280",
+      "path": "fixtures/negative/host-json-number.invalid.jcs",
+      "sha256": "sha256:a24a48d7e4167dad5ba41228af7b0bc019232603f53f4cb3a0dcd777cac43334"
+    },
+    {
+      "byte_length": "294",
+      "path": "fixtures/negative/host-unknown-member.invalid.jcs",
+      "sha256": "sha256:db3ca8f9793cdea6499e61ae09a0511ba574f5c86f9d30bc9d28a03d2a472837"
+    },
+    {
+      "byte_length": "290",
+      "path": "fixtures/negative/host-unknown-role.invalid.jcs",
+      "sha256": "sha256:1ec646dbd60b03f72c199476411d960f615518640b0028dac04005d4db02b946"
+    },
+    {
+      "byte_length": "282",
+      "path": "fixtures/negative/host-unknown-version.invalid.jcs",
+      "sha256": "sha256:6ee66e4fcd4410d8e981acba8893789658d0058015f890ab7a316c02be9663ca"
+    },
+    {
+      "byte_length": "323",
+      "path": "fixtures/negative/host-unsorted-tables.invalid.jcs",
+      "sha256": "sha256:9fcb1c36e9f895abf1942f9a661632c00c566d60bcd5970118dfa0b11cc7f1a9"
+    },
+    {
+      "byte_length": "1245",
+      "path": "fixtures/negative/obligation-duplicate.invalid.jcs",
+      "sha256": "sha256:76fcf2cdef1286e972e06b43963a3817d36473a324a27c7e527db2dfb9026b63"
+    },
+    {
+      "byte_length": "985",
+      "path": "fixtures/negative/obligation-expectation-mismatch.invalid.jcs",
+      "sha256": "sha256:a8b7d70bda19cc3335ee404f80f47e39f451d834cdccd7fe01f72240a73babeb"
+    },
+    {
+      "byte_length": "985",
+      "path": "fixtures/negative/obligation-id-mismatch.invalid.jcs",
+      "sha256": "sha256:66e65d16405fc950226c9defc03417a19cbb11b1f0886da2be9d5b74d6311e90"
+    },
+    {
+      "byte_length": "997",
+      "path": "fixtures/negative/obligation-unknown-member.invalid.jcs",
+      "sha256": "sha256:80f84f6e1ff61ba363fb6063dac067d2ac4640473d93f3d9054d8f147d472905"
+    },
+    {
+      "byte_length": "964",
+      "path": "fixtures/negative/obligation-unknown-profile.invalid.jcs",
+      "sha256": "sha256:73e64bd5adb32f311694d1bb49534a05137fde46e53d7bba002a14912c3c04cb"
+    },
+    {
+      "byte_length": "890",
+      "path": "fixtures/negative/obligation-unknown-subject.invalid.jcs",
+      "sha256": "sha256:cce27d46fa6e6dc732b7fc5ac91b50c0c0c60eee71e9536013cdc26e04be66d1"
+    },
+    {
+      "byte_length": "985",
+      "path": "fixtures/negative/obligation-unknown-version.invalid.jcs",
+      "sha256": "sha256:00806561c535bbc459c6fc4610537b8d763b1d9a7ac8f2534ee9e3105f173b1f"
+    },
+    {
+      "byte_length": "985",
+      "path": "fixtures/negative/obligation-unsorted.invalid.jcs",
+      "sha256": "sha256:20ddd4d186f05f78d910b776641ba35a13ecec8135121a85795d820fbb401ce5"
+    },
+    {
+      "byte_length": "173",
+      "path": "fixtures/negative/query-comment.invalid.smt2",
+      "sha256": "sha256:4486ade3b674ad4b712e2f20259bcc5805b2924b5e9499a5fa36e3a59c8b9a04"
+    },
+    {
+      "byte_length": "169",
+      "path": "fixtures/negative/query-crlf.invalid.smt2",
+      "sha256": "sha256:1f583b775582f6dacc29ef01fd48f414903ae72501abd43f150f5752f8e64814"
+    },
+    {
+      "byte_length": "165",
+      "path": "fixtures/negative/query-extra-final-lf.invalid.smt2",
+      "sha256": "sha256:795ff77926c2fb1254ceb2319c0c04db433da23ffde9f2ae46d13beaec9d67e3"
+    },
+    {
+      "byte_length": "163",
+      "path": "fixtures/negative/query-missing-final-lf.invalid.smt2",
+      "sha256": "sha256:ee46d56d1d62b3ea3988873680896f7b754e481ae1f7e21145f74796a27515f6"
+    },
+    {
+      "byte_length": "198",
+      "path": "fixtures/negative/query-option.invalid.smt2",
+      "sha256": "sha256:79fceba3835433f9b81b040adc59590a764d81b82141a1b9efc894119445ea23"
+    },
+    {
+      "byte_length": "200",
+      "path": "fixtures/negative/query-quantifier.invalid.smt2",
+      "sha256": "sha256:69b45b28ec9463385c043c0917d1bf4eb44d5ca5d53e6d6baa4e3fd76fe5031a"
+    },
+    {
+      "byte_length": "12593",
+      "path": "fixtures/negative/receipt-cache-hit-without-output.invalid.jcs",
+      "sha256": "sha256:e355770a3cb752ed5452b5dcaed6b7538c39eb5c68781a3909aa6294a6f31208"
+    },
+    {
+      "byte_length": "12594",
+      "path": "fixtures/negative/receipt-cache-key.invalid.jcs",
+      "sha256": "sha256:e66fef282fb432b153fe73af3f8062bbcb1b7bd37a0b01ffe6bb27206cecc983"
+    },
+    {
+      "byte_length": "10130",
+      "path": "fixtures/negative/receipt-gate-bypass.invalid.jcs",
+      "sha256": "sha256:ac5cd35ca2a223aa5b2b7a32bc9fbaa6274b14003f62c23b24ec1340dd9747b5"
+    },
+    {
+      "byte_length": "12594",
+      "path": "fixtures/negative/receipt-gate-reference.invalid.jcs",
+      "sha256": "sha256:970ec92551a0f814da9d0eec53a9810bcd10df89e842cad4a0385ad2ba5992c0"
+    },
+    {
+      "byte_length": "10076",
+      "path": "fixtures/negative/receipt-not-run-blocker.invalid.jcs",
+      "sha256": "sha256:16409389c8d65b1831ec00178d68b36b524bbded5e9913558f885956c23cedad"
+    },
+    {
+      "byte_length": "12606",
+      "path": "fixtures/negative/receipt-unknown-member.invalid.jcs",
+      "sha256": "sha256:9f108bdf81f51ca816b62fa4c9c30bb6b3805aef108bb246c643b0f2a3eb6cc2"
+    },
+    {
+      "byte_length": "12563",
+      "path": "fixtures/negative/receipt-unknown-profile.invalid.jcs",
+      "sha256": "sha256:ec651e8bf7cd78fda1e76225b492edd0aec0c772b5cec03057e12f80e9571c21"
+    },
+    {
+      "byte_length": "12594",
+      "path": "fixtures/negative/receipt-unknown-tool.invalid.jcs",
+      "sha256": "sha256:b1fc098ee57f173662fca5b9f99b9f1995fa508649832e7dd77fdb7e8fbd7170"
+    },
+    {
+      "byte_length": "12594",
+      "path": "fixtures/negative/receipt-unknown-version.invalid.jcs",
+      "sha256": "sha256:6a4858e2c5f91d6275e5c5b81d3b8140116f1f818af3e830b681a361271d9164"
+    },
+    {
+      "byte_length": "12594",
+      "path": "fixtures/negative/receipt-unsorted-stages.invalid.jcs",
+      "sha256": "sha256:9314c25cac8728752fca3391573c08039593adfb2757f8b62a3d2cfdfc721c50"
+    },
+    {
+      "byte_length": "183",
+      "path": "fixtures/negative/target-crlf.mjs.invalid",
+      "sha256": "sha256:745e0e2663371caec43d366bdedbed86918841df946d670c9f38c6d4702d5b5a"
+    },
+    {
+      "byte_length": "214",
+      "path": "fixtures/negative/target-environment.mjs.invalid",
+      "sha256": "sha256:6db7e8a1b8450b3cd1d226410a9b299e5f1540d9c624752f4244978ac1b9a331"
+    },
+    {
+      "byte_length": "190",
+      "path": "fixtures/negative/target-eval.mjs.invalid",
+      "sha256": "sha256:cd044accf9c3a4205136b3929c6bc0792fdb0c8ae91561ead80733837c8cf9f2"
+    },
+    {
+      "byte_length": "197",
+      "path": "fixtures/negative/target-import.mjs.invalid",
+      "sha256": "sha256:fe2fd30a81c670b4ccb704411bf33906ba3b6ae45ccd19bba098b42c8f96cb76"
+    },
+    {
+      "byte_length": "178",
+      "path": "fixtures/negative/target-missing-final-lf.mjs.invalid",
+      "sha256": "sha256:8659d86e265734ca218e390fc4a110f4b6513db6ecf9f673756c5c804763af3b"
+    },
+    {
+      "byte_length": "205",
+      "path": "fixtures/negative/target-number.mjs.invalid",
+      "sha256": "sha256:3c116beca6e0d7d3f5ec167fbf8696eb71cac266c94acb68ed42543aba586831"
+    },
+    {
+      "byte_length": "10130",
+      "path": "fixtures/partial/backend-timeout.receipt.jcs",
+      "sha256": "sha256:2586b80910bc936c6230ebf7579fba5d44f6d5fea568c09ace146c7d81e3a91a"
+    },
+    {
+      "byte_length": "2543",
+      "path": "schemas/axiom-host-data.schema.json",
+      "sha256": "sha256:198a188b6635771e3bbdfd7eaf7d7d0d3ca983add6a10c0eca145c0cb96e0dca"
+    },
+    {
+      "byte_length": "6584",
+      "path": "schemas/axiom-obligation-set.schema.json",
+      "sha256": "sha256:1493efe632bba28a2cb172424fec80668c8cc7762fe319e66052af666f1c43aa"
+    },
+    {
+      "byte_length": "12583",
+      "path": "schemas/axiom-pipeline-receipt.schema.json",
+      "sha256": "sha256:3e17a52971ecae62ddd36b4b3e1b10824ae14fb61689b37374837757e1058f32"
+    }
+  ],
+  "negative_fixture_count": "38",
+  "pipeline_profile": "raxc-keyed-finite-table-pipeline-v0.1",
+  "raw_byte_profiles": {
+    "axiom-node-esm": {
+      "encoding": "UTF-8",
+      "final_lf": "exactly-one",
+      "line_endings": "LF",
+      "validator_scope": "contract-fixture-subset-not-a-complete-ecmascript-parser"
+    },
+    "axiom-smtlib2-qf-uflia-query": {
+      "encoding": "ASCII",
+      "final_lf": "exactly-one",
+      "line_endings": "LF",
+      "validator_scope": "contract-fixture-subset-not-a-complete-smtlib-parser"
+    }
+  },
+  "version": "0.1"
+}

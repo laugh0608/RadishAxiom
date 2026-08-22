@@ -127,7 +127,7 @@
       "kind": "pipeline-profile",
       "materialization": "specified-artifact-contracts-pending",
       "specification": "docs/adr/0007-first-verification-first-compilation-pipeline.md",
-      "specification_sha256": "sha256:52a5be1a89878959ae308750555bc3f90ee3051e8dc2f7f7b889fcd6565bded9",
+      "specification_sha256": "sha256:ac12d9db0cd942edd9d3ead02aa8275a62d97100c3ee03126daeef5718de15b7",
       "tool": "rust-toolchain"
     },
     {
@@ -145,7 +145,7 @@
       "tool": "rust-toolchain"
     }
   ],
-  "registry_digest": "sha256:427523b7b0877e7aac7105a0178cc263d320e7582d45a9062f9946e3ea870246",
+  "registry_digest": "sha256:fcfa6f50ca1adc20281a9e4186e76cedf5e25502b498e1650bdaad58b8708200",
   "review_date": "2026-08-22",
   "sources": [
     {

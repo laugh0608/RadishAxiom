@@ -265,4 +265,4 @@ receipt 能说明生产管线声称做过什么，不能证明制品正确。独
 
 修改首版阶段顺序、放宽验证门控、允许核心失败 / 未知后执行、使用长驻后端 session、引入路径 / 时间缓存身份、删除历史 attempt、把 receipt 当 proof support 或扩展 Evidence v0.1 的 kind / role，必须以新 ADR 替代本决策或先正式升级对应公共格式。
 
-本管线引用的 Rust build、cvc5 adapter、Node target / invocation 和 Go checker build profile 已登记到 [Toolchain & Adapter Identity Registry v0.1](../../contracts/toolchain-adapters-v0.1/README.md)。该清单固定 profile 身份与禁止 fallback 边界，不替代本 ADR 尚待物化的 options、limits、artifact schema、receipt 或 gate fixture。
+本管线引用的 Rust build、cvc5 adapter、Node target / invocation 和 Go checker build profile 已登记到 [Toolchain & Adapter Identity Registry v0.1](../../contracts/toolchain-adapters-v0.1/README.md)。obligation set、host data、SMT query、target module 与 pipeline receipt 的首批规范字节、schema、gate / cache / partial failure fixture 已物化到 [Pipeline Artifact Contract v0.1](../../contracts/pipeline-artifacts-v0.1/README.md)；两个契约仍不替代尚未冻结的完整 options / limits、全部场景矩阵或实际 adapter / launcher 实现。

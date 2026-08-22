@@ -40,6 +40,12 @@ REQUIRED_FILES = (
     "contracts/README.md",
     "contracts/independent-check-v0.1/README.md",
     "contracts/independent-check-v0.1/contract.json",
+    "contracts/pipeline-artifacts-v0.1/README.md",
+    "contracts/pipeline-artifacts-v0.1/contract.json",
+    "contracts/pipeline-artifacts-v0.1/fixtures/expected.json",
+    "contracts/pipeline-artifacts-v0.1/schemas/axiom-host-data.schema.json",
+    "contracts/pipeline-artifacts-v0.1/schemas/axiom-obligation-set.schema.json",
+    "contracts/pipeline-artifacts-v0.1/schemas/axiom-pipeline-receipt.schema.json",
     "contracts/toolchain-adapters-v0.1/README.md",
     "contracts/toolchain-adapters-v0.1/registry.json",
     "contracts/toolchain-adapters-v0.1/schemas/toolchain-adapter-identities.schema.json",
@@ -60,6 +66,7 @@ REQUIRED_FILES = (
     "scripts/check-repo.sh",
     "scripts/generate-benchmark-corpus.py",
     "scripts/generate-independent-check-contracts.py",
+    "scripts/generate-pipeline-artifact-contracts.py",
     "scripts/generate-toolchain-adapter-identities.py",
 )
 
@@ -358,6 +365,23 @@ def check_toolchain_adapter_identities(errors: list[str]) -> None:
         errors.append(f"toolchain adapter identities failed: {detail}")
 
 
+def check_pipeline_artifact_contracts(errors: list[str]) -> None:
+    generator = REPO_ROOT / "scripts/generate-pipeline-artifact-contracts.py"
+    if not generator.is_file():
+        return
+
+    result = subprocess.run(
+        [sys.executable, str(generator), "--check"],
+        cwd=REPO_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        detail = (result.stdout + result.stderr).strip()
+        errors.append(f"pipeline artifact contracts failed: {detail}")
+
+
 def sha256(path: Path) -> str:
     return "sha256:" + hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -504,6 +528,7 @@ def main() -> int:
     check_benchmark_corpus(errors)
     check_independent_check_contracts(errors)
     check_toolchain_adapter_identities(errors)
+    check_pipeline_artifact_contracts(errors)
     check_agent_experiment_registration(errors)
     check_diff(args.base_ref, errors)
     check_commit_messages(args.base_ref, errors)

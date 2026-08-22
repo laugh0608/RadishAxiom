@@ -37,11 +37,12 @@
 - [实现就绪契约入口](../contracts/README.md)：由已接受规范和 ADR 生成的机器 schema、canonical fixture、负向样例与黄金摘要；这些制品不替代正式语义，也不表示生产实现已经完成。
 - [Independent Check Contract v0.1](../contracts/independent-check-v0.1/README.md)：独立 checker request / bundle / result 的首批结构契约、严格拒绝 bundle 与负向矩阵。
 - [Toolchain & Adapter Identity Registry v0.1](../contracts/toolchain-adapters-v0.1/README.md)：Rust / Go / cvc5 / Node 的精确版本、六平台候选制品、官方摘要来源、未验收供应链状态和执行 profile 身份。
+- [Pipeline Artifact Contract v0.1](../contracts/pipeline-artifacts-v0.1/README.md)：obligation set、host data、SMT query、target module 与 pipeline receipt 的首批规范字节、身份、gate / cache / partial failure 契约。
 
 ## 进入实现前物化事项
 
 实现语言、验证后端、目标执行、生产管线和独立 checker 的架构决策已经闭环。进入首个受控实现切片前，还需要物化：
 
 - 已登记制品的 payload 摘要复算、签名 / 来源验证、包内依赖与许可证验收，以及 profile 的完整 options / limits 契约；
-- 其余 pipeline artifact，以及完整 Evidence / IR / checker 语义交换的 canonical fixture、黄金摘要和跨实现负向矩阵；
+- 完整 Evidence / IR / checker bundle、其余 pipeline 场景的 canonical fixture、黄金摘要与跨实现负向矩阵；
 - 通过上述门禁后的小而完整实现切片及其授权边界。
