@@ -149,8 +149,8 @@ manifest 恰好包含 `bundle_version: "0.1"` 和按 `content_digest` 排序且�
 首版交换载体是普通只读目录，不是 ZIP、tar、OCI image 或远程对象服务：
 
 ```text
-request.jcs.json
-manifest.jcs.json
+request.jcs
+manifest.jcs
 blobs/
   sha256/
     <64 个小写十六进制字符>
@@ -315,3 +315,7 @@ checker 进程在形成规范结果前崩溃、被外层杀死、无法读取 re
 - Lean 或另一小内核路径能以更小、可审计且可分发的可信基覆盖同一 certificate 和反例边界。
 
 修改 checker 语言、允许复用生产语义代码、合并仓库或依赖图、改为 in-process / daemon / FFI、允许网络 resolver 或路径 fallback、把 attestation 当独立 proof、把 `incomplete` / `rejected` 混同、把独立结果写入 Evidence，必须以新 ADR 替代本决策。只增加暴露既有规则错误的负向 fixture 不改变格式版本；改变 request、manifest、result 字段、check kind / outcome、聚合优先级或域摘要必须提升相应 v0 minor 并显式迁移。
+
+## 机器契约与当前物化范围
+
+request、bundle manifest、result、check code registry、严格 Evidence 拒绝 bundle 与首批结构负例已经物化为 [Independent Check Contract v0.1](../../contracts/independent-check-v0.1/README.md)，由依赖为零的生成入口复算并纳入仓库门禁。该契约只覆盖 ASCII 结构 fixture、摘要、顺序、身份与四态聚合拒绝；它不表示完整 Evidence 正例、义务重建、语义解释、certificate 或跨平台 checker 已经实现，也不放宽本 ADR 的进入实现条件。

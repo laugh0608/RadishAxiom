@@ -1,0 +1,9 @@
+# 实现就绪契约
+
+`contracts/` 保存由已接受规范和 ADR 物化出的版本化机器契约、canonical fixture、负向样例与黄金摘要。这里的文件用于跨实现交换和进入实现前验收，不是生产编译器或独立 checker 源码。
+
+当前契约：
+
+- [Independent Check Contract v0.1](independent-check-v0.1/README.md)：ADR 0008 的 request、bundle manifest、独立 result、摘要和结构拒绝样例。
+
+每个子目录必须说明规范来源、生成入口、手工维护边界和仍未覆盖的语义。生成文件不得手工修改，也不得因 schema 校验通过就声称完整 Evidence 已被独立复核。

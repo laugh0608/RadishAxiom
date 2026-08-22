@@ -4,7 +4,7 @@
 
 ## 当前阶段
 
-项目处于首域语义、Axiom IR v0.1、Axiom Evidence v0.1、版本身份分层、四题版本化基准语料、Agent 对比实验预注册、`raxc` 生产实现语言、首个验证后端、首个目标执行路径、首版编译管线和独立 checker 隔离边界都已经形成的设计到受控实现入口物化阶段。当前目标是把这些决策转化为精确工具身份、机器契约、canonical fixture 和跨实现负向矩阵；在实现就绪门禁完成前不进入编译器 / checker 实现或正式模型调用。
+项目处于首域语义、Axiom IR v0.1、Axiom Evidence v0.1、版本身份分层、四题版本化基准语料、Agent 对比实验预注册、`raxc` 生产实现语言、首个验证后端、首个目标执行路径、首版编译管线和独立 checker 隔离边界都已经形成的设计到受控实现入口物化阶段。checker request / bundle / result 的首批结构契约已经物化；当前目标是继续固定精确工具身份、adapter 与其余 pipeline artifact 契约和跨实现语义矩阵。在实现就绪门禁完成前不进入编译器 / checker 实现或正式模型调用。
 
 ## 已确定
 
@@ -23,15 +23,16 @@
 - 首个目标执行路径：从 canonical Axiom IR 确定性生成受限 ECMAScript ES module，由 Node.js 24.19.0 LTS 独立进程一次执行一个制品；语义整数只用 `BigInt`、文本拒绝未配对 surrogate、表输出按规范键排序，禁止 npm、动态代码和隐式宿主能力；production generator、host runtime 与 codec trust 保持可见，宿主语义差异映射为 `implementation_inconsistent`，不可归因的操作失败保持 `inconclusive`。
 - 首版编译管线：`raxc-keyed-finite-table-pipeline-v0.1` 内容寻址制品 DAG；固定 IR 规范化、完整义务、单义务 query / cvc5 attempt、反例重放、输入检查、验证门控、Node target、宿主比较与 Evidence 装配顺序；缓存只复用精确身份的不可变制品，partial failure 进入非证明性 receipt，核心 `failed` / `unknown` 与输入拒绝均阻断目标生成和执行。
 - 独立 checker：Go 1.26 语言基线与 `go1.26.7` 精确工具链；与生产 Rust `raxc` 分仓、分依赖图、分发布流水线和分进程，禁止复用生产 parser、normalizer、义务生成器、解释器或 adapter；以只读内容寻址 bundle 离线交换制品，独立结果在 Evidence 外区分 `accepted`、`accepted-with-trust`、`incomplete` 和 `rejected`，certificate / backend attestation、剩余 trust、资源失败与 checker 自身可信基保持可见。
+- Independent Check Contract v0.1：以 JSON Schema Draft 2020-12 描述 request / bundle manifest / result 抽象结构，并由独立生成器固定 JCS 字节、域摘要、check ID、闭合 code registry、四态聚合、一个严格 Evidence 拒绝 bundle 和 18 个结构 / 顺序 / 身份负例；当前只覆盖 ASCII fixture，不冒充完整 Unicode / JCS、Evidence 语义或 checker 实现。
 - 许可证：Apache License 2.0，并形成开放基础层与商业化边界策略。
 - 仓库治理：`master` 稳定主线、`dev` 日常集成、PR 门禁和合并后回流策略。
 - 当前仓库级验证：`./scripts/check-repo.sh` 或 `pwsh ./scripts/check-repo.ps1`。
 
 ## 近期事项
 
-1. 下一步建议只完成“首个实现就绪契约包”的设计物化，不安装 Rust / Go / cvc5 / Node 工具链，不创建 Cargo / Go workspace，不实现 parser、adapter、runner 或 checker。
-2. 契约包必须固定 ADR 0004–0008 要求的精确工具与源码制品、来源、摘要、adapter / policy / limits、依赖和许可证，并物化 pipeline artifact 与 checker request / bundle / result 的机器 schema、canonical 正例、逐字段负例和黄金摘要。
-3. 跨实现矩阵必须覆盖 AX-B01 至 AX-B04 的正确候选、八个错误候选、invalid input、backend timeout、host mismatch、gate 绕过、义务遗漏、artifact 篡改、attestation / certificate policy、checker 资源失败、进程崩溃和六平台结果一致性。
+1. 下一步建议只完成“工具链与执行 adapter 身份清单 v0.1”，不下载或安装 Rust / Go / cvc5 / Node，不创建 Cargo / Go workspace，不实现 parser、adapter、runner 或 checker。
+2. 身份清单必须固定 ADR 0004–0008 要求的 Rust / Go 工具链与源码、cvc5 / Node 各目标制品、官方来源、摘要来源、平台、adapter / invocation profile、依赖和许可证；无法从权威发布材料确认的摘要必须保持未验收，不能用本机 PATH 或推测值补齐。
+3. 身份清单审阅后，再物化 obligation set、SMT query、host data、target module、pipeline receipt 与完整 checker bundle 的 schema / fixture，并让跨实现矩阵覆盖 AX-B01 至 AX-B04、八个错误候选、invalid input、backend timeout、host mismatch、gate 绕过、义务遗漏、artifact 篡改、certificate policy、资源失败、进程崩溃和六平台一致性。
 
 实现就绪契约包审阅通过后，才能提出第一个仅覆盖严格 request / bundle 解析、摘要核对和一组拒绝 fixture 的受控实现切片；工具链可用且纵向门禁通过后才准备 Agent 实验 execution lock。
 
@@ -41,7 +42,7 @@
 
 - 表面语法；
 - Axiom Evidence 的具体证明 certificate 格式与独立 checker 内部实现；
-- 首批 Rust / Go / cvc5 / Node 制品、依赖、adapter、机器契约与实现就绪清单；
+- 首批 Rust / Go / cvc5 / Node 制品、依赖、adapter、其余 pipeline / 语义机器契约与实现就绪清单；
 - Agent 实验的 execution lock、模型精确 revision、提示材料和 runner；
 - 包管理、IDE、插件和发布载体；
 - 首个具体产品版本、发布载体、发布记录与自动化；
@@ -62,6 +63,7 @@
 - [ADR 0006：首个目标运行时与执行路径](../adr/0006-first-target-runtime-and-execution-path.md)
 - [ADR 0007：首版验证优先编译管线与制品协议](../adr/0007-first-verification-first-compilation-pipeline.md)
 - [ADR 0008：独立 checker 的实现语言、制品交换与隔离边界](../adr/0008-independent-checker-isolation-and-artifact-exchange.md)
+- [Independent Check Contract v0.1](../../contracts/independent-check-v0.1/README.md)
 - [有键有限表转换：首版类型化语义](../semantics/keyed-finite-table-semantics.md)
 - [Axiom IR v0.1：规范化形式与版本策略](../ir/axiom-ir-v0.md)
 - [Axiom Evidence v0.1：证据模型与独立检查边界](../evidence/axiom-evidence-v0.md)

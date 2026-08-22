@@ -32,10 +32,15 @@
 - [有键有限表基准语料库 v0.1](benchmarks/keyed-finite-table-corpus-v0.md)：四个基准的生成目录、任务身份、合成数据、正确 / 错误候选和 Expected Evidence 断言。
 - [Agent 表示与验证反馈对比实验预注册 v0.1](experiments/agent-representation-preregistration-v0.md)：三种表示、两种模型条件、配对反馈、指标、阈值、预算和停止规则。
 
+## 机器契约与生成制品
+
+- [实现就绪契约入口](../contracts/README.md)：由已接受规范和 ADR 生成的机器 schema、canonical fixture、负向样例与黄金摘要；这些制品不替代正式语义，也不表示生产实现已经完成。
+- [Independent Check Contract v0.1](../contracts/independent-check-v0.1/README.md)：独立 checker request / bundle / result 的首批结构契约、严格拒绝 bundle 与负向矩阵。
+
 ## 进入实现前物化事项
 
 实现语言、验证后端、目标执行、生产管线和独立 checker 的架构决策已经闭环。进入首个受控实现切片前，还需要物化：
 
 - Rust / Go 工具链、cvc5 / Node 制品、adapter、依赖与许可证的精确身份；
-- pipeline artifact 与 checker request / bundle / result 的机器契约、canonical fixture、黄金摘要和跨实现负向矩阵；
+- 其余 pipeline artifact，以及完整 Evidence / IR / checker 语义交换的 canonical fixture、黄金摘要和跨实现负向矩阵；
 - 通过上述门禁后的小而完整实现切片及其授权边界。

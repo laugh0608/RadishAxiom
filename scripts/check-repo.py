@@ -37,6 +37,9 @@ REQUIRED_FILES = (
     "SECURITY.md",
     "benchmarks/keyed-finite-table-v0.1/README.md",
     "benchmarks/keyed-finite-table-v0.1/corpus.json",
+    "contracts/README.md",
+    "contracts/independent-check-v0.1/README.md",
+    "contracts/independent-check-v0.1/contract.json",
     "docs/README.md",
     "docs/adr/0001-branch-and-pr-governance.md",
     "docs/benchmarks/keyed-finite-table-corpus-v0.md",
@@ -53,6 +56,7 @@ REQUIRED_FILES = (
     "scripts/check-repo.ps1",
     "scripts/check-repo.sh",
     "scripts/generate-benchmark-corpus.py",
+    "scripts/generate-independent-check-contracts.py",
 )
 
 TEXT_SUFFIXES = {
@@ -316,6 +320,23 @@ def check_benchmark_corpus(errors: list[str]) -> None:
         errors.append(f"benchmark corpus check failed: {detail}")
 
 
+def check_independent_check_contracts(errors: list[str]) -> None:
+    generator = REPO_ROOT / "scripts/generate-independent-check-contracts.py"
+    if not generator.is_file():
+        return
+
+    result = subprocess.run(
+        [sys.executable, str(generator), "--check"],
+        cwd=REPO_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        detail = (result.stdout + result.stderr).strip()
+        errors.append(f"independent check contracts failed: {detail}")
+
+
 def sha256(path: Path) -> str:
     return "sha256:" + hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -460,6 +481,7 @@ def main() -> int:
     check_ruleset_contract(errors)
     check_workflow_contract(errors)
     check_benchmark_corpus(errors)
+    check_independent_check_contracts(errors)
     check_agent_experiment_registration(errors)
     check_diff(args.base_ref, errors)
     check_commit_messages(args.base_ref, errors)
