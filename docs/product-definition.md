@@ -72,8 +72,12 @@ RadishAxiom 是面向 AI Agent 的验证优先语言与可信语义层。项目�
 
 首个目标运行时采用 Node.js 24.19.0 LTS 的独立命令行程序，首条执行路径从 canonical Axiom IR 确定性生成受限 ECMAScript ES module，并在静态核心义务和具体输入检查全部通过后一次一进程执行。数学整数、精确文本、表顺序、codec、host conformance、`implementation_inconsistent`、操作失败、权限、许可证与重新评估边界见 [ADR 0006：首个目标运行时与执行路径](adr/0006-first-target-runtime-and-execution-path.md)。该决定不选择首版编译管线、独立 checker、表面语法或发布载体。
 
+## 已冻结的首版编译管线边界
+
+首版生产管线采用内容寻址、失败关闭、可离线重放的显式制品 DAG，从 Axiom IR candidate 开始，依次完成规范化、完整义务生成、单义务 query / cvc5 attempt、反例重放、具体输入检查、验证门控、Node target 生成、宿主执行、输出比较和 Axiom Evidence 装配。每个阶段绑定精确制品、工具、策略与资源限制；未被 Evidence v0.1 建模的生成阶段进入非证明性 pipeline receipt，不能伪装为新 Evidence kind。具体阶段、artifact、缓存、恢复和失败矩阵见 [ADR 0007：首版验证优先编译管线与制品协议](adr/0007-first-verification-first-compilation-pipeline.md)。该决定不选择独立 checker、表面语法、实现模块结构或发布载体。
+
 ## 尚未冻结的决策
 
 - 表面语法；
 - Axiom Evidence 的具体证明证书格式与独立检查器实现；
-- 首版编译管线的阶段、制品与失败协议；
+- 独立 checker 的实现语言、制品交换与隔离边界；

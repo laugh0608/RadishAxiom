@@ -17,3 +17,4 @@
 - [ADR 0004：`raxc` 生产编译器实现语言](0004-raxc-production-implementation-language.md)
 - [ADR 0005：首个验证后端与失败关闭边界](0005-first-verification-backend.md)
 - [ADR 0006：首个目标运行时与执行路径](0006-first-target-runtime-and-execution-path.md)
+- [ADR 0007：首版验证优先编译管线与制品协议](0007-first-verification-first-compilation-pipeline.md)
