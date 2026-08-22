@@ -4,7 +4,8 @@
 
 ## 默认入口
 
-- [当前状态](status/current.md)：当前阶段、已确定事项、明日安排与验证入口。
+- [当前状态](status/current.md)：当前阶段、已确定事项、近期安排、临时门禁与验证入口。
+- [Agent 协作与执行规则](governance/agent-collaboration.md)：根入口之外按需读取的工作区、授权、实施、验证与交接细则。
 - [产品定义](product-definition.md)：项目定位、命名、边界与首个里程碑。
 - [许可证与生态策略](licensing-strategy.md)：开放基础层、商业化边界与长期贡献治理。
 - [仓库治理](governance/repository-governance.md)：协作、Git、PR、CI 与 GitHub Rulesets 的统一口径。
@@ -12,7 +13,7 @@
 
 ## 仓库级入口
 
-- [`AGENTS.md`](../AGENTS.md) / [`CLAUDE.md`](../CLAUDE.md)：人工与 AI 协作约定，两份文件必须完全一致。
+- [`AGENTS.md`](../AGENTS.md) / [`CLAUDE.md`](../CLAUDE.md)：启动级长期约束与任务路由，两份文件必须完全一致。
 - [`CONTRIBUTING.md`](../CONTRIBUTING.md)：外部贡献流程与正确性要求。
 - [`CODE_OF_CONDUCT.md`](../CODE_OF_CONDUCT.md)：社区讨论、审查与行为边界。
 - [`SECURITY.md`](../SECURITY.md)：安全问题范围与私下报告方式。

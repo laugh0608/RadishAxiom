@@ -28,7 +28,7 @@ RadishAxiom 是 Radish 家族中面向 AI Agent 的语言与可信语义项目�
 
 项目处于设计阶段。生产 `raxc` 已选择 Rust；验证后端、目标运行时、首版编译管线和独立 checker 仍未冻结。在这些入口条件完成前，不进入编译器实现。
 
-当前阶段、已确定事项与明日安排见[当前状态](docs/status/current.md)。
+当前阶段、已确定事项与近期安排见[当前状态](docs/status/current.md)。
 
 ## 文档
 

@@ -41,6 +41,7 @@ REQUIRED_FILES = (
     "docs/adr/0001-branch-and-pr-governance.md",
     "docs/benchmarks/keyed-finite-table-corpus-v0.md",
     "docs/experiments/agent-representation-preregistration-v0.md",
+    "docs/governance/agent-collaboration.md",
     "docs/governance/repository-governance.md",
     "docs/licensing-strategy.md",
     "docs/product-definition.md",
