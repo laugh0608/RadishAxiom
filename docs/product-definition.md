@@ -62,11 +62,14 @@ RadishAxiom 是面向 AI Agent 的验证优先语言与可信语义层。项目�
 
 ## 已冻结的实现宿主边界
 
-生产 `raxc` 使用 Rust 2024 edition 与精确固定的 stable 工具链，具体理由、约束和重新评估条件见 [ADR 0004：`raxc` 生产编译器实现语言](adr/0004-raxc-production-implementation-language.md)。该决定不适用于独立 checker，也不冻结表面语法、验证后端、目标运行时或首版编译管线。
+生产 `raxc` 使用 Rust 2024 edition 与精确固定的 stable 工具链，具体理由、约束和重新评估条件见 [ADR 0004：`raxc` 生产编译器实现语言](adr/0004-raxc-production-implementation-language.md)。该决定不适用于独立 checker，也不冻结表面语法、目标运行时或首版编译管线。
+
+## 已冻结的首个验证后端边界
+
+首个验证后端采用 cvc5 1.3.4 的独立命令行程序，通过版本化、可摘要、可限时的子进程边界承载量化词自由的受界义务。`unsat` 的证明 support、`sat` model 的反例重放、`unknown` 与操作失败的关闭规则，以及许可证和重新评估边界见 [ADR 0005：首个验证后端与失败关闭边界](adr/0005-first-verification-backend.md)。该决定不选择最终证明证书格式、独立 checker、目标运行时、编译管线或表面语法。
 
 ## 尚未冻结的决策
 
 - 表面语法；
-- SMT、证明助手或其他验证后端；
 - Axiom Evidence 的具体证明证书格式与独立检查器实现；
 - 解释执行、代码生成或双路径运行模型；

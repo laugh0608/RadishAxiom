@@ -4,7 +4,7 @@
 
 ## 当前阶段
 
-项目处于首域语义、Axiom IR v0.1、Axiom Evidence v0.1、版本身份分层、四题版本化基准语料、Agent 对比实验预注册和 `raxc` 生产实现语言已经形成的设计阶段。当前目标是以已物化语料继续比较验证后端与目标运行时；在验收边界完成前不进入编译器实现或正式模型调用。
+项目处于首域语义、Axiom IR v0.1、Axiom Evidence v0.1、版本身份分层、四题版本化基准语料、Agent 对比实验预注册、`raxc` 生产实现语言和首个验证后端已经形成的设计阶段。当前目标是以已物化语料比较目标运行时与执行路径；在验收边界完成前不进入编译器实现或正式模型调用。
 
 ## 已确定
 
@@ -18,26 +18,26 @@
 - 有键有限表基准语料 v0.1：四个任务各有一个正确候选、两个错误候选、基础 / 边界 / 无效输入、黄金输出，以及正确、错误、后端超时和输入拒绝场景的 Expected Evidence 断言；生成结果与摘要可离线重现。
 - Agent 表示与验证反馈对比实验预注册 v0.1：固定 SQL、普通 JSON plan 和 Axiom projection 三种表示，两个模型条件、72 个 trial bundle、配对反馈、确认阈值、预算与停止线；正式调用仍须 execution lock 和单独授权。
 - 版本身份：项目发布采用 `YY.M.RELEASE` CalVer 与 `dev` / `test` / `release` 轨道；语言语义、Axiom IR、Axiom Evidence 和工具实现分别标识，CalVer 不表达兼容性。
-- `raxc` 生产编译器实现语言：Rust 2024 edition 与精确固定的 stable 工具链；该选择不适用于独立 checker，也不冻结表面语法、验证后端或目标运行时。
+- `raxc` 生产编译器实现语言：Rust 2024 edition 与精确固定的 stable 工具链；该选择不适用于独立 checker，也不冻结表面语法或目标运行时。
+- 首个验证后端：cvc5 1.3.4 独立 CLI；首版使用受容量约束的量化词自由 QF_UFLIA 类编码，优先评估 Alethe certificate，保留透明 `backend-attestation`，model 必须重放为规范反例，`unknown` / 超时 / 资源耗尽 / 协议错误失败关闭；不通过 FFI 或 SDK 链接进 `raxc`。
 - 许可证：Apache License 2.0，并形成开放基础层与商业化边界策略。
 - 仓库治理：`master` 稳定主线、`dev` 日常集成、PR 门禁和合并后回流策略。
 - 当前仓库级验证：`./scripts/check-repo.sh` 或 `pwsh ./scripts/check-repo.ps1`。
 
 ## 近期事项
 
-1. 下一步建议只完成“首个验证后端”的正式比较与决策，不安装依赖、不编写适配器或编译器骨架。
-2. 比较必须以 AX-B01 至 AX-B04 为共同载荷，至少覆盖可信计算基、证明证书或独立重放能力、`unknown` 与超时 / 资源耗尽行为、版本化子进程协议、跨平台分发、许可证、供应链和长期维护成本。
-3. 明确后端适用范围、Evidence 映射、失败关闭边界、依赖政策、重新评估条件和进入原型的验收条件；该决策不自动选择独立 checker、目标运行时或 `.rax` 表面语法。
+1. 下一步建议只完成“首个目标运行时与执行路径”的正式比较与决策，不安装运行时依赖、不编写 emitter、解释器或编译器骨架。
+2. 比较必须以 AX-B01 至 AX-B04 为共同载荷，至少覆盖数学整数与精确文本承载、无序表和确定性聚合、输入 / 输出解码、运行故障、host conformance、跨平台分发、许可证、供应链和长期维护成本。
+3. 明确解释执行、代码生成或受控双路径的取舍，冻结 implementation inconsistency 的 Evidence 映射、失败关闭边界、依赖政策、重新评估条件和进入原型的验收条件；该决策不自动选择独立 checker、编译管线或 `.rax` 表面语法。
 
-验证后端决策审阅通过后，再依次比较目标运行时与执行路径、冻结首版编译管线和独立 checker 隔离边界。只有 ADR 0002 与 ADR 0004 的全部入口条件满足后才进入实现；工具链可用后才准备 Agent 实验 execution lock。
+目标运行时决策审阅通过后，再依次冻结首版编译管线和独立 checker 隔离边界。只有 ADR 0002、ADR 0004 与 ADR 0005 的全部入口条件满足后才进入实现；工具链可用后才准备 Agent 实验 execution lock。
 
-首域语义与 Axiom IR 中早于 ADR 0004 的“实现语言尚未冻结”属于其接受时的范围说明；现行实现语言口径以 ADR 0004 为准。首域语义的原始摘要已被基准语料和 Agent 实验注册绑定，Axiom IR 规范的原始摘要也已被实验注册绑定，不能为同步阶段措辞而原地改写。
+首域语义、Axiom IR、Axiom Evidence 与 ADR 0004 中早于后续技术决策的“实现语言 / 验证后端尚未冻结”属于其接受时的范围说明；现行实现语言与首个验证后端口径分别以 ADR 0004、ADR 0005 为准。首域语义的原始摘要已被基准语料和 Agent 实验注册绑定，Axiom IR 规范的原始摘要也已被实验注册绑定，不能为同步阶段措辞而原地改写。
 
 ## 尚未冻结
 
 - 表面语法；
 - 独立 checker 的实现语言与具体实现；
-- SMT、证明助手或其他验证后端；
 - 解释执行、代码生成或双路径运行模型；
 - Agent 实验的 execution lock、模型精确 revision、提示材料和 runner；
 - 包管理、IDE、插件和发布载体；
@@ -55,6 +55,7 @@
 - [ADR 0002：首个目标领域与基准任务](../adr/0002-first-target-domain-and-benchmarks.md)
 - [ADR 0003：版本标识与兼容性分层](../adr/0003-version-identities-and-compatibility-layers.md)
 - [ADR 0004：`raxc` 生产编译器实现语言](../adr/0004-raxc-production-implementation-language.md)
+- [ADR 0005：首个验证后端与失败关闭边界](../adr/0005-first-verification-backend.md)
 - [有键有限表转换：首版类型化语义](../semantics/keyed-finite-table-semantics.md)
 - [Axiom IR v0.1：规范化形式与版本策略](../ir/axiom-ir-v0.md)
 - [Axiom Evidence v0.1：证据模型与独立检查边界](../evidence/axiom-evidence-v0.md)
