@@ -11,8 +11,8 @@
 3. `docs/product-definition.md` 决定产品长期定位和语义原则。
 4. `docs/adr/` 决定已接受的长期架构与治理决策。
 5. 本文决定仓库操作、PR、CI 和远程设置的一致口径。
-6. `docs/status/current.md` 决定当前阶段、近期重点和当前验证入口。
-7. `AGENTS.md` / `CLAUDE.md` 决定协作者在任务中的执行方式。
+6. `AGENTS.md` / `CLAUDE.md` 与 `docs/governance/agent-collaboration.md` 决定协作者在任务中的执行方式。
+7. `docs/status/current.md` 决定当前阶段、近期重点、临时门禁和当前验证入口。
 8. `.github/` 和 `scripts/` 实施可自动执行的门禁，不自行创造与文档冲突的新政策。
 
 如果规则与实现不一致，应先判断哪一方已经过期，再在同一变更中统一修正；不得仅修改检查器来掩盖政策漂移。
@@ -21,7 +21,8 @@
 
 | 资产 | 职责 |
 | --- | --- |
-| `AGENTS.md` / `CLAUDE.md` | 长期协作、执行边界和 RadishAxiom 特有语义约束 |
+| `AGENTS.md` / `CLAUDE.md` | 启动级长期协作、执行边界、可信性红线和任务路由 |
+| `docs/governance/agent-collaboration.md` | 按任务读取的稳定协作、工作区、验证和交接细则 |
 | `CONTRIBUTING.md` | 面向外部贡献者的最小入口 |
 | `CODE_OF_CONDUCT.md` | 社区讨论、审查和违规处理边界 |
 | `SECURITY.md` | 私下漏洞报告与安全问题范围 |
@@ -108,9 +109,10 @@
 
 | 变更 | 必须同步检查 |
 | --- | --- |
-| 分支或合并策略 | ADR、本文、Ruleset README/JSON、PR 模板、协作文件 |
+| 分支或合并策略 | ADR、本文、Ruleset README/JSON、PR 模板 |
 | required context 或 CI 组件 | workflow、Ruleset README/JSON、检查器、ADR |
-| 当前阶段或验证入口 | `docs/status/current.md`、文档入口、协作文件中的稳定引用 |
+| Agent 协作或执行边界 | `AGENTS.md`、`CLAUDE.md`、Agent 协作专题、相关检查器或模板 |
+| 当前阶段、临时门禁或验证入口 | `docs/status/current.md`；公开摘要变化时再更新文档入口或根 README |
 | 语义或公共格式 | 产品定义、对应专题 / ADR、PR 影响面、兼容性测试 |
 | 许可证或贡献授权 | `LICENSE`、许可策略、CONTRIBUTING、README |
 | 安全报告边界 | SECURITY、PR 模板、相关威胁模型或运行手册 |
@@ -119,6 +121,7 @@
 
 - 没有真实所有权结构时不创建装饰性 CODEOWNERS。
 - 没有可稳定执行的检查时，不把占位 job 设为 required。
-- 没有发布载体、版本与兼容性方案时，不创建自动发布和 tag 保护幻象。
+- 没有具体产品版本、发布载体、支持矩阵与兼容 / 回滚验收时，不创建自动发布和 tag 保护幻象。
 - 不复制兄弟项目的语言栈、应用检查、平台脚本或业务风险清单。
+- 不把当前阶段、临时门禁、“当前不做”、易过期命令或批次事实复制到 Agent 根入口。
 - 不用更多文档替代自动化；稳定规则一旦可机器验证，应进入 `scripts/check-repo.py` 或后续正式检查组件。

@@ -1,0 +1,120 @@
+{
+  "benchmark_id": "AX-B01",
+  "candidates": [
+    {
+      "canonical": {
+        "path": "ax-b01/candidates/correct.ir.jcs",
+        "sha256": "sha256:8d6ec839cf3cf795539e121c488b3bc4be84a33f24ac8c349d5ceebb29e559e7"
+      },
+      "document_digest": "sha256:1fa8846fb3ba15937e3e4b5848e74d84d89050711086d7462eb16175510b4154",
+      "name": "correct",
+      "pretty": {
+        "path": "ax-b01/candidates/correct.ir.json",
+        "sha256": "sha256:36639eefceab0d5604f4b902a8d48bb043b0135411c0cd5df5ae683e86a6d9a6"
+      }
+    },
+    {
+      "canonical": {
+        "path": "ax-b01/candidates/wrong-add.ir.jcs",
+        "sha256": "sha256:8c6f651f433bcb6dcd879cf536875e60330fdbe398c0088e8115880872afc944"
+      },
+      "document_digest": "sha256:e6ea5438be9616c71a5b32de5937ea7b0e95cc2dcaf79b886a1546a15fac8aff",
+      "name": "wrong-add",
+      "pretty": {
+        "path": "ax-b01/candidates/wrong-add.ir.json",
+        "sha256": "sha256:df1c15dca04c2630555d06a8237511fb850291ae8f4071b5a4b97f8da9760848"
+      }
+    },
+    {
+      "canonical": {
+        "path": "ax-b01/candidates/wrong-drop-zero.ir.jcs",
+        "sha256": "sha256:c4c063c5b7ad9714b79f5ef3704d90c4e5dc53df90324724081dc34ee8d05900"
+      },
+      "document_digest": "sha256:91bfa0b2e6cfa700b2228c224bd82750fe12102c5cb0a0c209d2fcfe30423db3",
+      "name": "wrong-drop-zero",
+      "pretty": {
+        "path": "ax-b01/candidates/wrong-drop-zero.ir.json",
+        "sha256": "sha256:ab795db77049fe8dd4a1ab9b3957b6128db8f9593ec3ae1caaae403ce1489b1e"
+      }
+    }
+  ],
+  "corpus_version": "0.1",
+  "fixtures": [
+    {
+      "golden": {
+        "path": "ax-b01/fixtures/base.golden.json",
+        "sha256": "sha256:a50d2888c279ba2a392b2d7a8e168bf6693eb2009c88c1777560e2871dab8039"
+      },
+      "input": {
+        "path": "ax-b01/fixtures/base.input.json",
+        "sha256": "sha256:c327ee14ce840ffe5229209702adaecb1ae3ebf8ae4116a07fe73e59ed7c2458"
+      },
+      "kind": "valid",
+      "name": "base"
+    },
+    {
+      "golden": {
+        "path": "ax-b01/fixtures/boundary.golden.json",
+        "sha256": "sha256:fa906babdb6610eb05c949e82d2f24bc67ae1435655e30095fb083728ed9649a"
+      },
+      "input": {
+        "path": "ax-b01/fixtures/boundary.input.json",
+        "sha256": "sha256:259044e0a4ca4d3801efcf27ed1932036745a75fdb7c902897456567312de268"
+      },
+      "kind": "valid",
+      "name": "boundary"
+    },
+    {
+      "input": {
+        "path": "ax-b01/fixtures/invalid.input.json",
+        "sha256": "sha256:6696f9f034391a5b6b8e15e0dbdcf47eb157fddec3078638074e2f0d92af4805"
+      },
+      "kind": "invalid",
+      "name": "invalid"
+    }
+  ],
+  "format": "axiom-benchmark-task",
+  "input_ports": [
+    {
+      "name": "orders",
+      "table_type": "sha256:8874e753ea64d8143b1d0892ae1615ba3c95f97f57277613b6a18ce35f37bac4"
+    }
+  ],
+  "output": {
+    "name": "net_orders",
+    "table_type": "sha256:92c78f929861167713db33d217f890a79e8abb3ce59e0675ff139da17e822cd6"
+  },
+  "scenarios": [
+    {
+      "name": "backend-timeout",
+      "path": "ax-b01/expected/backend-timeout.json",
+      "sha256": "sha256:00a5902e602e37f7923a3a06c4d953cf9e5ec03dd0f21c27b647068cf2806de6"
+    },
+    {
+      "name": "correct",
+      "path": "ax-b01/expected/correct.json",
+      "sha256": "sha256:0241506b83ed9c450fd54cb9a2ad51a6f67430b75d107dd5dc23d06dbabba4c9"
+    },
+    {
+      "name": "invalid-input",
+      "path": "ax-b01/expected/invalid-input.json",
+      "sha256": "sha256:c08a1ca839d42e8b816badcf3b4eadb262c9fe26b9da153841faea16136dac29"
+    },
+    {
+      "name": "wrong-add",
+      "path": "ax-b01/expected/wrong-add.json",
+      "sha256": "sha256:d7b42d6abd3b059e9312768b4e448ae908c99e4f8890a97c2ed5162c99ce73eb"
+    },
+    {
+      "name": "wrong-drop-zero",
+      "path": "ax-b01/expected/wrong-drop-zero.json",
+      "sha256": "sha256:385c0ffdf8a50cf2ab7b4abe1bc572a167e62635e269a71afe0e352e4f111699"
+    }
+  ],
+  "task_contract_ids": [
+    "sha256:391bce1f2212e7af05604201a710dad704dc0fe69645ef13100bc67e4eda08ba",
+    "sha256:97ab38db96b159faad681eb656d829c89902f8c434116649f389d1d42c612ad6"
+  ],
+  "task_digest": "sha256:e394f69ab45ae77a4ce21ad0394f64cf6c81f0a485e0ca1c1771f89ab99c1791",
+  "task_version": "0.1"
+}

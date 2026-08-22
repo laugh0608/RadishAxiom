@@ -1,0 +1,38 @@
+{
+  "assertion_version": "0.1",
+  "benchmark_id": "AX-B01",
+  "candidate": "correct",
+  "counterexample": {
+    "kind": "none"
+  },
+  "expected_conclusion": "inconclusive",
+  "expected_independent_result": "accepted-with-trust",
+  "fixtures": [
+    "base"
+  ],
+  "format": "axiom-expected-evidence",
+  "required_results": [
+    {
+      "kind": "contract-guarantee",
+      "reason": "timeout",
+      "status": "unknown"
+    }
+  ],
+  "required_trust": [
+    "cryptographic-primitive",
+    "decoder-normalizer",
+    "input-origin",
+    "production-generator",
+    "proof-backend",
+    "specification-intent"
+  ],
+  "required_uncovered": [
+    "host-fidelity-for-all-inputs",
+    "legal-regulatory-compliance",
+    "long-term-archival-authenticity",
+    "real-world-intent",
+    "resource-performance",
+    "source-truth-completeness",
+    "timing-memory-log-side-channel"
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "accepted_on": "2026-08-20",
+  "analysis": {
+    "counterexample_quality_scale": {
+      "0": "missing-or-not-replayable",
+      "1": "replayable-but-not-diagnostic-or-not-reduced",
+      "2": "diagnostic-with-required-keys-and-fields",
+      "3": "diagnostic-reduced-honest-minimality-and-complete-trace"
+    },
+    "h1": {
+      "comparison": "axiom-projection-v0.1-vs-each-baseline",
+      "decision_metric": "few-shot-first-attempt-strict-success",
+      "minimum_absolute_gain_percentage_points": 12.5,
+      "minimum_net_successes_out_of_24": 3,
+      "model_stratum_difference_must_be_nonnegative": true,
+      "per_benchmark_maximum_joint_deficit_out_of_6": 1,
+      "visible_token_median_ratio_ceiling": 2.0
+    },
+    "h4": {
+      "comparison": "structured-evidence-vs-matched-free-text",
+      "counterexample_quality_median_floor": 2,
+      "decision_metric": "repair-strict-success-within-two-rounds",
+      "minimum_absolute_gain_percentage_points": 16.7,
+      "minimum_eligible_failed_first_attempts": 12,
+      "model_stratum_difference_must_be_nonnegative": true,
+      "repair_round_median_must_not_increase": true,
+      "unreplayable_rate_must_not_increase": true
+    },
+    "primary_population": "intent-to-treat",
+    "strict_success_requires": [
+      "single-candidate-envelope-accepted",
+      "representation-adapter-accepted",
+      "axiom-ir-structure-accepted",
+      "all-required-core-obligations-proved",
+      "no-required-failed-unknown-or-trusted-bypass",
+      "hidden-valid-outputs-match",
+      "hidden-invalid-inputs-rejected",
+      "independent-evidence-check-accepted"
+    ]
+  },
+  "bindings": {
+    "corpus": {
+      "path": "benchmarks/keyed-finite-table-v0.1/corpus.json",
+      "raw_sha256": "sha256:1b07e93cf52dfbb1daff0bbc62ff42a0a083329945ed2218b56ebfbaa058633f",
+      "version": "0.1"
+    },
+    "evidence": {
+      "path": "docs/evidence/axiom-evidence-v0.md",
+      "raw_sha256": "sha256:23698ed8dd76ed937098e01f0c4fe3bac9760c4f014d8f5b92d77b4fe781c525",
+      "version": "0.1"
+    },
+    "ir": {
+      "path": "docs/ir/axiom-ir-v0.md",
+      "raw_sha256": "sha256:3f934789331aa1fc75bee3d1216f30fafcbc3c36c70a7bd147b97b3bed04124a",
+      "version": "0.1"
+    },
+    "protocol": {
+      "path": "docs/experiments/agent-representation-preregistration-v0.md",
+      "raw_sha256": "sha256:e770092f94a37bb8ec33456edc77b2ff143753b49bf17b604bd162f0101e6591"
+    },
+    "semantics": {
+      "path": "docs/semantics/keyed-finite-table-semantics.md",
+      "raw_sha256": "sha256:6b18d65eefa439956db8eebe1f4ce90e08b4def4abf7c718c2605e7528598d0d"
+    }
+  },
+  "budgets": {
+    "maximum_calls_per_bundle": 6,
+    "maximum_total_model_calls": 432,
+    "maximum_total_visible_input_tokens": 7077888,
+    "maximum_total_visible_output_tokens": 1769472,
+    "per_call_visible_input_tokens": 16384,
+    "per_call_visible_output_tokens": 4096,
+    "transport_retries_without_response": 1
+  },
+  "execution_lock": {
+    "path": "experiments/agent-representation-v0.1/execution-lock.json",
+    "required_before_benchmark_calls": true,
+    "required_digests": [
+      "exact-model-revisions",
+      "common-system-prompt",
+      "representation-cards",
+      "few-shot-demonstrations",
+      "benchmark-task-cards",
+      "request-assembly-rules",
+      "representation-adapters",
+      "obligation-generator",
+      "verification-backend",
+      "host-executor",
+      "evidence-generator",
+      "independent-evidence-checker",
+      "scorer",
+      "deterministic-schedule"
+    ]
+  },
+  "feedback": {
+    "branches": [
+      {
+        "condition_id": "F-TEXT",
+        "encoding": "matched-free-text-v0.1",
+        "maximum_repair_rounds": 2
+      },
+      {
+        "condition_id": "F-EVIDENCE",
+        "encoding": "axiom-evidence-feedback-projection-v0.1",
+        "maximum_repair_rounds": 2
+      }
+    ],
+    "branch_only_when_few_shot_first_attempt_fails": true,
+    "facts_must_be_identical_across_branches": true,
+    "fork_same_first_attempt": true
+  },
+  "format": "axiom-agent-experiment-registration",
+  "hypotheses": [
+    {
+      "hypothesis_id": "H1",
+      "kind": "confirmatory",
+      "statement": "axiom-projection-improves-few-shot-first-attempt-strict-success"
+    },
+    {
+      "hypothesis_id": "H4",
+      "kind": "confirmatory",
+      "statement": "structured-evidence-improves-two-round-repair-over-matched-free-text"
+    }
+  ],
+  "models": [
+    {
+      "condition_id": "M-LUNA",
+      "exact_revision_policy": "must-be-probed-and-locked-before-benchmarks",
+      "model_alias": "gpt-5.6-luna",
+      "reasoning_effort": "medium",
+      "runtime": "codex",
+      "service_tier": "priority"
+    },
+    {
+      "condition_id": "M-SOL",
+      "exact_revision_policy": "must-be-probed-and-locked-before-benchmarks",
+      "model_alias": "gpt-5.6-sol",
+      "reasoning_effort": "medium",
+      "runtime": "codex",
+      "service_tier": "priority"
+    }
+  ],
+  "prepared_on": "2026-08-20",
+  "prompt_regimes": [
+    {
+      "condition_id": "P0",
+      "description": "reference-card-and-task-with-no-worked-transformation",
+      "worked_examples": 0
+    },
+    {
+      "condition_id": "P1",
+      "description": "reference-card-task-and-two-semantically-matched-worked-transformations",
+      "worked_examples": 2
+    }
+  ],
+  "registration_version": "0.1",
+  "replicates": [
+    "R01",
+    "R02",
+    "R03"
+  ],
+  "representations": [
+    {
+      "adapter_target": "axiom-ir-v0.1",
+      "condition_id": "R-AXIOM",
+      "representation_id": "axiom-projection-v0.1",
+      "role": "candidate-axiom-projection"
+    },
+    {
+      "adapter_target": "axiom-ir-v0.1",
+      "condition_id": "R-JSON",
+      "representation_id": "neutral-plan-json-v0.1",
+      "role": "ordinary-structured-dsl-baseline"
+    },
+    {
+      "adapter_target": "axiom-ir-v0.1",
+      "condition_id": "R-SQL",
+      "representation_id": "sql-select-v0.1",
+      "role": "domain-familiar-baseline"
+    }
+  ],
+  "schedule": {
+    "bundle_count": 72,
+    "derivation": "2-models-x-3-representations-x-4-benchmarks-x-3-replicates",
+    "interleave_model_conditions": true,
+    "randomization": "sha256-derived-fisher-yates",
+    "seed": "radishaxiom-agent-representation-v0.1"
+  },
+  "status": "accepted",
+  "stop_conditions": [
+    "registered-artifact-digest-drift",
+    "model-revision-drift-or-unverifiable-identity",
+    "hidden-material-or-cross-trial-leakage",
+    "production-and-independent-checker-disagreement",
+    "operational-failure-rate-above-ten-percent-per-model",
+    "model-call-or-token-budget-exhausted",
+    "credential-privacy-security-or-license-incident"
+  ],
+  "tasks": [
+    "AX-B01",
+    "AX-B02",
+    "AX-B03",
+    "AX-B04"
+  ],
+  "tool_access": {
+    "browser": false,
+    "filesystem": false,
+    "memory": false,
+    "network": false,
+    "repository": false,
+    "shell": false,
+    "tools": false
+  }
+}

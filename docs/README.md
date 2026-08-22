@@ -4,7 +4,8 @@
 
 ## 默认入口
 
-- [当前状态](status/current.md)：当前阶段、已确定事项、下一批决策与验证入口。
+- [当前状态](status/current.md)：当前阶段、已确定事项、近期安排、临时门禁与验证入口。
+- [Agent 协作与执行规则](governance/agent-collaboration.md)：根入口之外按需读取的工作区、授权、实施、验证与交接细则。
 - [产品定义](product-definition.md)：项目定位、命名、边界与首个里程碑。
 - [许可证与生态策略](licensing-strategy.md)：开放基础层、商业化边界与长期贡献治理。
 - [仓库治理](governance/repository-governance.md)：协作、Git、PR、CI 与 GitHub Rulesets 的统一口径。
@@ -12,7 +13,7 @@
 
 ## 仓库级入口
 
-- [`AGENTS.md`](../AGENTS.md) / [`CLAUDE.md`](../CLAUDE.md)：人工与 AI 协作约定，两份文件必须完全一致。
+- [`AGENTS.md`](../AGENTS.md) / [`CLAUDE.md`](../CLAUDE.md)：启动级长期约束与任务路由，两份文件必须完全一致。
 - [`CONTRIBUTING.md`](../CONTRIBUTING.md)：外部贡献流程与正确性要求。
 - [`CODE_OF_CONDUCT.md`](../CODE_OF_CONDUCT.md)：社区讨论、审查与行为边界。
 - [`SECURITY.md`](../SECURITY.md)：安全问题范围与私下报告方式。
@@ -23,12 +24,16 @@
 
 - [面向 Agent 的语言设计：证据与开放问题](research/agent-oriented-language-design-evidence.md)：外部证据、证据限制、项目假设与最小实验要求；不作为正式语法或技术栈规范。
 
-## 后续文档
+## 正式设计规范
 
-进入实现前，至少需要补齐：
+- [有键有限表转换：首版类型化语义](semantics/keyed-finite-table-semantics.md)：首个目标领域的值、表、转换、契约、效果、失败、反例与信任边界。
+- [Axiom IR v0.1：规范化形式与版本策略](ir/axiom-ir-v0.md)：规范化数据模型、canonical JSON、内容寻址、人类投影、语义差异与版本演进。
+- [Axiom Evidence v0.1：证据模型与独立检查边界](evidence/axiom-evidence-v0.md)：义务身份、五种状态、反例、信任清单、结论聚合与独立复核。
+- [有键有限表基准语料库 v0.1](benchmarks/keyed-finite-table-corpus-v0.md)：四个基准的生成目录、任务身份、合成数据、正确 / 错误候选和 Expected Evidence 断言。
+- [Agent 表示与验证反馈对比实验预注册 v0.1](experiments/agent-representation-preregistration-v0.md)：三种表示、两种模型条件、配对反馈、指标、阈值、预算和停止规则。
 
-- 核心语义与类型系统；
-- Axiom IR 结构和规范化规则；
-- 验证状态、信任边界与 Axiom Evidence 格式；
-- 编译管线与目标运行时选择；
-- 基准任务、反例和评测方法。
+## 进入实现前待补齐
+
+进入实现前，还需要补齐：
+
+- 验证后端、编译管线、目标运行时，以及独立 checker 的实现语言与隔离边界。
