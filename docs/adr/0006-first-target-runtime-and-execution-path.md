@@ -187,3 +187,5 @@ Node Permission Model 必须以拒绝式配置启用，并只授予加载精确�
 - 生产生成器与 Node 路径不能提供足够独立的 host conformance，受控双路径能以明确成本改进缺陷发现。
 
 修改首个目标运行时、改为解释执行或默认双路径、允许 silent fallback、允许 `Number` 承载语义整数、允许 npm / 动态代码 / 隐式宿主能力、取消精确 runtime identity 或放宽失败关闭规则，必须以新 ADR 替代本决策。
+
+Node.js `24.19.0` 的六平台官方候选、signed checksum manifest 中记录的摘要、source、许可证入口、target profile 与 invocation profile 已登记到 [Toolchain & Adapter Identity Registry v0.1](../../contracts/toolchain-adapters-v0.1/README.md)。签名尚未验证、payload 尚未下载、包内第三方许可证尚未盘点，因此所有候选仍为 `not-accepted`，invocation options / limits 也仍须由后续机器契约固定。

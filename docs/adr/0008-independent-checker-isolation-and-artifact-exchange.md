@@ -319,3 +319,5 @@ checker 进程在形成规范结果前崩溃、被外层杀死、无法读取 re
 ## 机器契约与当前物化范围
 
 request、bundle manifest、result、check code registry、严格 Evidence 拒绝 bundle 与首批结构负例已经物化为 [Independent Check Contract v0.1](../../contracts/independent-check-v0.1/README.md)，由依赖为零的生成入口复算并纳入仓库门禁。该契约只覆盖 ASCII 结构 fixture、摘要、顺序、身份与四态聚合拒绝；它不表示完整 Evidence 正例、义务重建、语义解释、certificate 或跨平台 checker 已经实现，也不放宽本 ADR 的进入实现条件。
+
+Go `go1.26.7` 的 source、六平台官方归档与 publisher 摘要，以及生产 Rust、cvc5、Node 和相关 profile 的共同实现就绪身份，已经登记到 [Toolchain & Adapter Identity Registry v0.1](../../contracts/toolchain-adapters-v0.1/README.md)。所有 payload、包内容和许可证仍保持未验收；清单也不表示未来 checker binary 已经构建或具备六平台运行证据。

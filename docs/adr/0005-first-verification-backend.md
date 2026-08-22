@@ -135,3 +135,5 @@ Alethe 是首选 certificate 互操作候选，因为当前官方覆盖 EUF 与�
 - Z3 或证明助手路径后来能以更小可信计算基、完整证书和可接受成本覆盖同一四题。
 
 修改首个验证后端、允许默认 FFI / SDK 链接、允许 silent fallback、把 `unknown` 当成功、取消 model 重放或允许不完整证明冒充 certificate，必须以新 ADR 替代本决策。只升级精确 cvc5 patch 版本仍须单独进行语义、proof、model、平台、许可证和供应链复验；通过后可更新本 ADR 的实现基线，不自动改变首域语义或 Evidence 格式。
+
+cvc5 `1.3.4` 的六平台官方 non-GPL static 候选、publisher 记录摘要、source 摘要缺口、依赖审阅目标和 adapter profile 已登记到 [Toolchain & Adapter Identity Registry v0.1](../../contracts/toolchain-adapters-v0.1/README.md)。在 payload 重算、包内依赖与许可证清单完成前，所有候选仍为 `not-accepted`；登记不满足本 ADR 的受控原型入口条件。

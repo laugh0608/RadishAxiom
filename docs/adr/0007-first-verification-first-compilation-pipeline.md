@@ -264,3 +264,5 @@ receipt 能说明生产管线声称做过什么，不能证明制品正确。独
 - 离线包无法在不访问网络、不依赖原工作路径的情况下复核 Evidence。
 
 修改首版阶段顺序、放宽验证门控、允许核心失败 / 未知后执行、使用长驻后端 session、引入路径 / 时间缓存身份、删除历史 attempt、把 receipt 当 proof support 或扩展 Evidence v0.1 的 kind / role，必须以新 ADR 替代本决策或先正式升级对应公共格式。
+
+本管线引用的 Rust build、cvc5 adapter、Node target / invocation 和 Go checker build profile 已登记到 [Toolchain & Adapter Identity Registry v0.1](../../contracts/toolchain-adapters-v0.1/README.md)。该清单固定 profile 身份与禁止 fallback 边界，不替代本 ADR 尚待物化的 options、limits、artifact schema、receipt 或 gate fixture。

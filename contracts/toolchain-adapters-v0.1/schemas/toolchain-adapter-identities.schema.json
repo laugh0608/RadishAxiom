@@ -1,0 +1,385 @@
+{
+  "$defs": {
+    "artifact": {
+      "additionalProperties": false,
+      "properties": {
+        "acceptance": {
+          "const": "not-accepted"
+        },
+        "archive_inspection": {
+          "const": "not-performed"
+        },
+        "digest": {
+          "$ref": "#/$defs/digestEvidence"
+        },
+        "filename": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "payload_verification": {
+          "const": "not-downloaded"
+        },
+        "platform": {
+          "enum": [
+            "linux-amd64",
+            "linux-arm64",
+            "macos-amd64",
+            "macos-arm64",
+            "source",
+            "windows-amd64",
+            "windows-arm64"
+          ]
+        },
+        "source_url": {
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "acceptance",
+        "archive_inspection",
+        "digest",
+        "filename",
+        "payload_verification",
+        "platform",
+        "source_url"
+      ],
+      "type": "object"
+    },
+    "digestEvidence": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "publisher-recorded"
+            },
+            "sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "source": {
+              "pattern": "^[a-z0-9][a-z0-9.-]*$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256",
+            "source"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "pending-publisher-capture"
+            },
+            "reason": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "source_url": {
+              "format": "uri",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "reason",
+            "source_url"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "platform": {
+      "additionalProperties": false,
+      "properties": {
+        "architecture": {
+          "enum": [
+            "amd64",
+            "arm64"
+          ]
+        },
+        "id": {
+          "pattern": "^[a-z0-9-]+$",
+          "type": "string"
+        },
+        "os": {
+          "enum": [
+            "linux",
+            "macos",
+            "windows"
+          ]
+        },
+        "rust_target": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "architecture",
+        "id",
+        "os",
+        "rust_target"
+      ],
+      "type": "object"
+    },
+    "profile": {
+      "additionalProperties": false,
+      "properties": {
+        "boundary": {
+          "additionalProperties": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minProperties": 1,
+          "type": "object"
+        },
+        "id": {
+          "pattern": "^[a-z0-9][a-z0-9.-]*$",
+          "type": "string"
+        },
+        "kind": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "materialization": {
+          "enum": [
+            "reserved-not-materialized",
+            "specified-artifact-contracts-pending",
+            "specified-not-materialized"
+          ]
+        },
+        "specification": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "specification_sha256": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "tool": {
+          "pattern": "^[a-z0-9][a-z0-9.-]*$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "boundary",
+        "id",
+        "kind",
+        "materialization",
+        "specification",
+        "specification_sha256",
+        "tool"
+      ],
+      "type": "object"
+    },
+    "source": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[a-z0-9][a-z0-9.-]*$",
+          "type": "string"
+        },
+        "kind": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "publisher": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "reviewed_claims": {
+          "items": {
+            "pattern": "^[a-z0-9-]+$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "url": {
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "publisher",
+        "reviewed_claims",
+        "url"
+      ],
+      "type": "object"
+    },
+    "tool": {
+      "additionalProperties": false,
+      "properties": {
+        "artifacts": {
+          "items": {
+            "$ref": "#/$defs/artifact"
+          },
+          "maxItems": 7,
+          "minItems": 7,
+          "type": "array"
+        },
+        "dependencies": {
+          "additionalProperties": false,
+          "properties": {
+            "declared_review_targets": {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array",
+              "uniqueItems": true
+            },
+            "inventory_status": {
+              "const": "artifact-contents-not-inspected"
+            }
+          },
+          "required": [
+            "declared_review_targets",
+            "inventory_status"
+          ],
+          "type": "object"
+        },
+        "id": {
+          "enum": [
+            "cvc5-cli",
+            "go-toolchain",
+            "node-runtime",
+            "rust-toolchain"
+          ]
+        },
+        "license": {
+          "additionalProperties": false,
+          "properties": {
+            "artifact_inventory_status": {
+              "const": "not-inspected"
+            },
+            "main_expressions": {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array",
+              "uniqueItems": true
+            },
+            "review_status": {
+              "const": "not-accepted"
+            },
+            "source": {
+              "pattern": "^[a-z0-9][a-z0-9.-]*$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "artifact_inventory_status",
+            "main_expressions",
+            "review_status",
+            "source"
+          ],
+          "type": "object"
+        },
+        "provenance_status": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "independent-checker-toolchain",
+            "production-toolchain",
+            "target-runtime",
+            "verification-backend"
+          ]
+        },
+        "version": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifacts",
+        "dependencies",
+        "id",
+        "license",
+        "provenance_status",
+        "role",
+        "version"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://radishaxiom.dev/schema/toolchain-adapter-identities/0.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "digest_domain": {
+      "const": "radishaxiom.toolchain-adapter-identities.v0.1"
+    },
+    "format": {
+      "const": "radishaxiom-toolchain-adapter-identities"
+    },
+    "format_version": {
+      "const": "0.1"
+    },
+    "platforms": {
+      "items": {
+        "$ref": "#/$defs/platform"
+      },
+      "maxItems": 6,
+      "minItems": 6,
+      "type": "array"
+    },
+    "profiles": {
+      "items": {
+        "$ref": "#/$defs/profile"
+      },
+      "maxItems": 7,
+      "minItems": 7,
+      "type": "array"
+    },
+    "registry_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "review_date": {
+      "const": "2026-08-22"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/source"
+      },
+      "maxItems": 9,
+      "minItems": 9,
+      "type": "array"
+    },
+    "tools": {
+      "items": {
+        "$ref": "#/$defs/tool"
+      },
+      "maxItems": 4,
+      "minItems": 4,
+      "type": "array"
+    }
+  },
+  "required": [
+    "format",
+    "format_version",
+    "digest_domain",
+    "platforms",
+    "profiles",
+    "registry_digest",
+    "review_date",
+    "sources",
+    "tools"
+  ],
+  "title": "RadishAxiom toolchain and adapter identity registry v0.1",
+  "type": "object"
+}

@@ -70,7 +70,7 @@ Go 的工具链、交叉编译、单可执行文件和标准库覆盖最有利�
 
 ## 决策
 
-选择 **Rust 2024 edition 的 stable 工具链**实现生产 `raxc`。
+选择 **Rust 2024 edition 的 stable 工具链**实现生产 `raxc`。首次实现基线精确固定为 **Rust `1.97.1`**；截至 2026-08-22，`1.98.0` 刚于两天前发布，本次不自动采用，后续升级仍须单独审阅。`1.97.1` 是修复已知 LLVM miscompilation 的 stable patch；补丁修复不代表本项目已经执行过编译或语义验证。[Rust 1.97.1](https://blog.rust-lang.org/2026/07/16/Rust-1.97.1/)、[Rust 1.98.0](https://blog.rust-lang.org/releases/1.98.0/)
 
 适用范围包括：未来的 source-to-IR 前端、Axiom IR 规范化与严格检查、类型 / 效果检查、义务生成、验证后端适配、反例缩减、Axiom Evidence 生产、诊断来源映射，以及由 `raxc` 直接承载的宿主输出适配。具体模块划分须由实现设计决定，本 ADR 不授权提前创建骨架。
 
@@ -133,3 +133,5 @@ Go 的工具链、交叉编译、单可执行文件和标准库覆盖最有利�
 收益是生产编译器获得闭合数据建模、显式失败、受控 `unsafe`、主流平台原生分发和可锁定依赖的统一基础；代价是需要承担 Rust 学习 / 编译成本，并自行证明规范化而不能依赖 serializer 或集合默认值。
 
 修改 `raxc` 生产实现语言、允许 nightly 进入正式构建、允许核心 `unsafe`、取消依赖锁定或让独立 checker 复用生产语义实现，必须以新 ADR 替代本决策。改变 checker、表面语法、验证后端或目标运行时而保持这些边界，不自动替代本 ADR，但仍需各自决策与兼容性验证。
+
+Rust `1.97.1` 的六平台候选 URL、源码、摘要状态、许可证来源与 build profile 已登记到 [Toolchain & Adapter Identity Registry v0.1](../../contracts/toolchain-adapters-v0.1/README.md)。登记不等于 payload、签名、包内组件或许可证已经验收；Rust 摘要未从 publisher manifest 捕获前仍禁止进入构建门禁。

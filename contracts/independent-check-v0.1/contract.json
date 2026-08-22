@@ -3,7 +3,7 @@
     {
       "name": "adr-0008",
       "path": "docs/adr/0008-independent-checker-isolation-and-artifact-exchange.md",
-      "raw_sha256": "sha256:00d38d65cc6870a86796a046fe85089e7e99f135cbdced13639978408389f33a"
+      "raw_sha256": "sha256:d752664635ecbc770a3d07d00fa8035cc1dee52abc239396d70687bdd6b60f1a"
     },
     {
       "name": "axiom-evidence-v0.1",
