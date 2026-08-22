@@ -30,14 +30,26 @@
 - 仓库治理：`master` 稳定主线、`dev` 日常集成、PR 门禁和合并后回流策略。
 - 当前仓库级验证：`./scripts/check-repo.sh` 或 `pwsh ./scripts/check-repo.ps1`。
 
-## 近期事项
+## 明日事项（2026-08-23）
 
-1. 下一步建议只完成“完整 checker bundle 与跨实现矩阵”第一批：把 AX-B01 的 correct / wrong、invalid input、backend timeout、host mismatch、gate 绕过、义务遗漏和 artifact 篡改映射到唯一合法阶段图、bundle 成员、稳定结果与停止线；不实现 Rust emitter、cvc5 adapter、Node launcher 或 checker。
-2. 第一批矩阵必须复用现有 IR / Evidence、Independent Check Contract、Pipeline Artifact Contract 与工具身份，不新造平行格式；每个场景显式区分 production receipt、Evidence 结论和 independent result，并固定不得出现的 target / host artifact。
-3. 随后扩展 AX-B02 至 AX-B04、八个错误候选、certificate policy、资源失败、进程崩溃和 Linux / macOS / Windows `amd64` / `arm64` 字节一致性；矩阵闭环后再提出只覆盖严格 request / bundle 解析、摘要核对和一组拒绝 fixture 的受控实现切片。
-4. 工具 payload 验收是并行但独立授权的供应链任务：只有明确允许下载后，才可在隔离临时目录中获取已登记 artifact、重算 SHA-256、验证可用签名 / 来源并盘点包内依赖与许可证；当前 registry 不能作为安装或执行许可。
+明日主项是物化“实现就绪场景矩阵 v0.1”，把今天形成的语义、IR、Evidence、benchmark、pipeline、checker 与工具身份契约统一到一份可生成、可拒绝、可追溯的验收清单中。它是实现入口契约，不是生产执行记录，也不提前声称 solver、Node 或 checker 已经运行。
 
-实现就绪契约包审阅通过后，才能提出第一个仅覆盖严格 request / bundle 解析、摘要核对和一组拒绝 fixture 的受控实现切片；工具链可用且纵向门禁通过后才准备 Agent 实验 execution lock。
+1. 先按仓库源码规模原则拆分当前 2063 行的 `scripts/generate-pipeline-artifact-contracts.py`，保留原命令入口和领域边界，不引入第三方依赖；拆分前后 53 个生成文件及清单登记的 52 个原始字节摘要必须完全一致。
+2. 建立 `contracts/implementation-readiness-v0.1/` 及依赖为零的生成入口，绑定四题语料、Axiom IR / Evidence、Independent Check Contract、Pipeline Artifact Contract、工具身份注册表与 ADR 0007 / 0008 原始摘要。
+3. 场景注册表必须覆盖四题现有 20 个 benchmark 场景、ADR 0008 的 16 个 `CHK-*` 场景，以及 ADR 0007 的 gate、cache、partial receipt、恢复和新 attempt 路径；重叠要求使用显式来源映射，不以复制场景制造两个结果口径。
+4. 每个场景固定稳定 ID、输入 candidate / fixture、P0–P9 阶段结果、gate 决策、必须与禁止出现的 artifact role、receipt outcome、Evidence 结论、independent result / code、剩余 trust / uncovered、平台适用范围和证据等级。`specified` 与真实 `observed` 必须分开，未执行场景不能写成跨平台通过。
+5. 同批提交 JSON Schema、canonical manifest、黄金摘要和非法组合负例，至少拒绝 gate 绕过、义务遗漏、artifact 篡改、伪造 cache hit、缺失 bundle、attestation 越权、错误结论聚合、进程失败伪装成四态结果及 unknown member / version / profile。
+
+明日完成标准：所有 ADR 0007 / 0008 验收条件和矩阵行都有可追溯场景 ID；wrong / `unknown` / invalid 路径明确禁止 target module 与 `execute-host`；production receipt、Axiom Evidence 和 independent result 保持三层职责；生成器重放、负例期望、原始字节摘要、文档链接与仓库级检查全部通过。
+
+明日不下载或安装 Rust、Go、cvc5、Node payload，不创建编译器 / checker 工程，不实现 emitter、adapter、launcher 或 parser，不执行正式模型调用，也不把静态 fixture 写成六平台运行证据。
+
+## 后续顺位
+
+1. 依据已验收场景矩阵生成 AX-B01 至 AX-B04 的完整 IR / Evidence / checker 离线 bundle，并补齐 host mismatch、certificate policy、资源失败和进程崩溃的跨契约拒绝路径。
+2. 工具 payload 验收作为独立授权的供应链任务，在隔离临时目录中重算 SHA-256、验证可用签名 / 来源并盘点包内依赖与许可证；当前 registry 不能作为安装或执行许可。
+3. 场景矩阵、完整 bundle、options / limits 和供应链门禁审阅通过后，再提出 checker 严格 request / bundle 解析、摘要核对和拒绝路径的受控实现任务；远程仓库、依赖安装、push、发布与部署仍分别授权。
+4. 工具链可用且实现入口验证通过后，才准备 Agent 实验 execution lock 和正式模型调用。
 
 首域语义、Axiom IR、Axiom Evidence 与较早 ADR 中“后续技术决策尚未冻结”的文字属于其接受时的范围说明；现行实现语言、验证后端、目标执行、生产管线和独立 checker 口径分别以 ADR 0004–0008 为准。首域语义的原始摘要已被基准语料和 Agent 实验注册绑定，Axiom IR 规范的原始摘要也已被实验注册绑定，不能为同步阶段措辞而原地改写。
 

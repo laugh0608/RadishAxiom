@@ -32,7 +32,7 @@ RadishAxiom 是面向 AI Agent 的验证优先语言与可信语义层。项目�
 
 ## 初始边界
 
-首个可行版本选择“有键有限表的确定性转换”：程序接收具有显式模式与键约束的有限输入表，以无外部副作用的确定性转换产生有限输出表。首批能力和基准边界见 [ADR 0002：首个目标领域与基准任务](adr/0002-first-target-domain-and-benchmarks.md)。该领域打通以下闭环：
+首版范围选择“有键有限表的确定性转换”：程序接收具有显式模式与键约束的有限输入表，以无外部副作用的确定性转换产生有限输出表。首批能力和基准边界见 [ADR 0002：首个目标领域与基准任务](adr/0002-first-target-domain-and-benchmarks.md)。该领域覆盖以下完整开发与复核链路：
 
 1. 解析或接收结构化程序；
 2. 生成规范化 Axiom IR；
@@ -62,19 +62,19 @@ RadishAxiom 是面向 AI Agent 的验证优先语言与可信语义层。项目�
 
 ## 已冻结的实现宿主边界
 
-生产 `raxc` 使用 Rust 2024 edition 与精确固定的 stable 工具链，具体理由、约束和重新评估条件见 [ADR 0004：`raxc` 生产编译器实现语言](adr/0004-raxc-production-implementation-language.md)。该决定不适用于独立 checker，也不冻结表面语法、目标运行时或首版编译管线。
+生产 `raxc` 使用 Rust 2024 edition 与精确固定的 stable 工具链，具体理由、约束和重新评估条件见 [ADR 0004：`raxc` 生产编译器实现语言](adr/0004-raxc-production-implementation-language.md)。该决定只约束生产编译器宿主；目标运行时、生产管线和独立 checker 分别由 ADR 0006–0008 承载，表面语法仍未冻结。
 
 ## 已冻结的首个验证后端边界
 
-首个验证后端采用 cvc5 1.3.4 的独立命令行程序，通过版本化、可摘要、可限时的子进程边界承载量化词自由的受界义务。`unsat` 的证明 support、`sat` model 的反例重放、`unknown` 与操作失败的关闭规则，以及许可证和重新评估边界见 [ADR 0005：首个验证后端与失败关闭边界](adr/0005-first-verification-backend.md)。该决定不选择最终证明证书格式、独立 checker、目标运行时、编译管线或表面语法。
+首个验证后端采用 cvc5 1.3.4 的独立命令行程序，通过版本化、可摘要、可限时的子进程边界承载量化词自由的受界义务。`unsat` 的证明 support、`sat` model 的反例重放、`unknown` 与操作失败的关闭规则，以及许可证和重新评估边界见 [ADR 0005：首个验证后端与失败关闭边界](adr/0005-first-verification-backend.md)。目标运行时、生产管线和独立 checker 已分别由 ADR 0006–0008 确定；最终证明证书格式和表面语法仍未冻结。
 
 ## 已冻结的首个目标执行边界
 
-首个目标运行时采用 Node.js 24.19.0 LTS 的独立命令行程序，首条执行路径从 canonical Axiom IR 确定性生成受限 ECMAScript ES module，并在静态核心义务和具体输入检查全部通过后一次一进程执行。数学整数、精确文本、表顺序、codec、host conformance、`implementation_inconsistent`、操作失败、权限、许可证与重新评估边界见 [ADR 0006：首个目标运行时与执行路径](adr/0006-first-target-runtime-and-execution-path.md)。该决定不选择首版编译管线、独立 checker、表面语法或发布载体。
+首个目标运行时采用 Node.js 24.19.0 LTS 的独立命令行程序，首条执行路径从 canonical Axiom IR 确定性生成受限 ECMAScript ES module，并在静态核心义务和具体输入检查全部通过后一次一进程执行。数学整数、精确文本、表顺序、codec、host conformance、`implementation_inconsistent`、操作失败、权限、许可证与重新评估边界见 [ADR 0006：首个目标运行时与执行路径](adr/0006-first-target-runtime-and-execution-path.md)。生产管线和独立 checker 已分别由 ADR 0007、0008 确定；表面语法和发布载体仍未冻结。
 
 ## 已冻结的首版编译管线边界
 
-首版生产管线采用内容寻址、失败关闭、可离线重放的显式制品 DAG，从 Axiom IR candidate 开始，依次完成规范化、完整义务生成、单义务 query / cvc5 attempt、反例重放、具体输入检查、验证门控、Node target 生成、宿主执行、输出比较和 Axiom Evidence 装配。每个阶段绑定精确制品、工具、策略与资源限制；未被 Evidence v0.1 建模的生成阶段进入非证明性 pipeline receipt，不能伪装为新 Evidence kind。具体阶段、artifact、缓存、恢复和失败矩阵见 [ADR 0007：首版验证优先编译管线与制品协议](adr/0007-first-verification-first-compilation-pipeline.md)。该决定不选择独立 checker、表面语法、实现模块结构或发布载体。
+首版生产管线采用内容寻址、失败关闭、可离线重放的显式制品 DAG，从 Axiom IR candidate 开始，依次完成规范化、完整义务生成、单义务 query / cvc5 attempt、反例重放、具体输入检查、验证门控、Node target 生成、宿主执行、输出比较和 Axiom Evidence 装配。每个阶段绑定精确制品、工具、策略与资源限制；未被 Evidence v0.1 建模的生成阶段进入非证明性 pipeline receipt，不能伪装为新 Evidence kind。具体阶段、artifact、缓存、恢复和失败矩阵见 [ADR 0007：首版验证优先编译管线与制品协议](adr/0007-first-verification-first-compilation-pipeline.md)。独立 checker 已由 ADR 0008 确定；表面语法、实现模块结构和发布载体仍未冻结。
 
 ## 已冻结的独立复核边界
 
@@ -84,3 +84,6 @@ RadishAxiom 是面向 AI Agent 的验证优先语言与可信语义层。项目�
 
 - 表面语法；
 - Axiom Evidence 的具体证明证书格式与独立 checker 内部实现；
+- 包管理、IDE、插件与公开 SDK 边界；
+- 首个公开产品版本、发布签名、分发与部署载体；
+- v1 后语言语义、Axiom IR、Axiom Evidence 与公共包的兼容性承诺。
