@@ -76,8 +76,11 @@ RadishAxiom 是面向 AI Agent 的验证优先语言与可信语义层。项目�
 
 首版生产管线采用内容寻址、失败关闭、可离线重放的显式制品 DAG，从 Axiom IR candidate 开始，依次完成规范化、完整义务生成、单义务 query / cvc5 attempt、反例重放、具体输入检查、验证门控、Node target 生成、宿主执行、输出比较和 Axiom Evidence 装配。每个阶段绑定精确制品、工具、策略与资源限制；未被 Evidence v0.1 建模的生成阶段进入非证明性 pipeline receipt，不能伪装为新 Evidence kind。具体阶段、artifact、缓存、恢复和失败矩阵见 [ADR 0007：首版验证优先编译管线与制品协议](adr/0007-first-verification-first-compilation-pipeline.md)。该决定不选择独立 checker、表面语法、实现模块结构或发布载体。
 
+## 已冻结的独立复核边界
+
+首个独立 checker 使用 Go 1.26 语言基线与 `go1.26.7` 精确工具链，源码、依赖图和发布流水线与生产 Rust `raxc` 分仓隔离，一次请求一个离线进程。checker 只从只读的内容寻址 bundle 接收 canonical IR、Evidence 和引用制品，独立解析、重建义务、重放反例与具体检查、分级处理 certificate / backend attestation，并在 Evidence 外输出 `accepted`、`accepted-with-trust`、`incomplete` 或 `rejected`。允许共享的规范材料、禁止共享的生产实现、request / manifest / result 协议、资源失败和跨平台边界见 [ADR 0008：独立 checker 的实现语言、制品交换与隔离边界](adr/0008-independent-checker-isolation-and-artifact-exchange.md)。该决定不冻结最终 certificate 格式、checker 内部模块、表面语法或发布签名。
+
 ## 尚未冻结的决策
 
 - 表面语法；
-- Axiom Evidence 的具体证明证书格式与独立检查器实现；
-- 独立 checker 的实现语言、制品交换与隔离边界；
+- Axiom Evidence 的具体证明证书格式与独立 checker 内部实现；

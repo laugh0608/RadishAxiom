@@ -4,7 +4,7 @@
 
 ## 当前阶段
 
-项目处于首域语义、Axiom IR v0.1、Axiom Evidence v0.1、版本身份分层、四题版本化基准语料、Agent 对比实验预注册、`raxc` 生产实现语言、首个验证后端、首个目标执行路径和首版编译管线已经形成的设计阶段。当前目标是冻结独立 checker 的实现语言、制品交换与隔离边界；在验收边界完成前不进入编译器实现或正式模型调用。
+项目处于首域语义、Axiom IR v0.1、Axiom Evidence v0.1、版本身份分层、四题版本化基准语料、Agent 对比实验预注册、`raxc` 生产实现语言、首个验证后端、首个目标执行路径、首版编译管线和独立 checker 隔离边界都已经形成的设计到受控实现入口物化阶段。当前目标是把这些决策转化为精确工具身份、机器契约、canonical fixture 和跨实现负向矩阵；在实现就绪门禁完成前不进入编译器 / checker 实现或正式模型调用。
 
 ## 已确定
 
@@ -22,24 +22,26 @@
 - 首个验证后端：cvc5 1.3.4 独立 CLI；首版使用受容量约束的量化词自由 QF_UFLIA 类编码，优先评估 Alethe certificate，保留透明 `backend-attestation`，model 必须重放为规范反例，`unknown` / 超时 / 资源耗尽 / 协议错误失败关闭；不通过 FFI 或 SDK 链接进 `raxc`。
 - 首个目标执行路径：从 canonical Axiom IR 确定性生成受限 ECMAScript ES module，由 Node.js 24.19.0 LTS 独立进程一次执行一个制品；语义整数只用 `BigInt`、文本拒绝未配对 surrogate、表输出按规范键排序，禁止 npm、动态代码和隐式宿主能力；production generator、host runtime 与 codec trust 保持可见，宿主语义差异映射为 `implementation_inconsistent`，不可归因的操作失败保持 `inconclusive`。
 - 首版编译管线：`raxc-keyed-finite-table-pipeline-v0.1` 内容寻址制品 DAG；固定 IR 规范化、完整义务、单义务 query / cvc5 attempt、反例重放、输入检查、验证门控、Node target、宿主比较与 Evidence 装配顺序；缓存只复用精确身份的不可变制品，partial failure 进入非证明性 receipt，核心 `failed` / `unknown` 与输入拒绝均阻断目标生成和执行。
+- 独立 checker：Go 1.26 语言基线与 `go1.26.7` 精确工具链；与生产 Rust `raxc` 分仓、分依赖图、分发布流水线和分进程，禁止复用生产 parser、normalizer、义务生成器、解释器或 adapter；以只读内容寻址 bundle 离线交换制品，独立结果在 Evidence 外区分 `accepted`、`accepted-with-trust`、`incomplete` 和 `rejected`，certificate / backend attestation、剩余 trust、资源失败与 checker 自身可信基保持可见。
 - 许可证：Apache License 2.0，并形成开放基础层与商业化边界策略。
 - 仓库治理：`master` 稳定主线、`dev` 日常集成、PR 门禁和合并后回流策略。
 - 当前仓库级验证：`./scripts/check-repo.sh` 或 `pwsh ./scripts/check-repo.ps1`。
 
 ## 近期事项
 
-1. 下一步建议只完成“独立 checker 隔离边界”的正式比较与决策，不安装工具链、不实现 checker、parser、certificate adapter 或运行器。
-2. 比较必须覆盖 checker 实现语言、生产代码零复用边界、canonical IR / Evidence 严格解析、义务独立重建、artifact resolver、counterexample / concrete check 重放、certificate / backend-attestation 分级、结论重算、离线包、资源失败与跨平台分发。
-3. 冻结 checker 输入 / 输出格式、独立结果 `accepted` / `accepted-with-trust` / `incomplete` / `rejected` 的判定、与 `raxc` 的进程 / 仓库 / 依赖隔离、允许共享的规范材料和禁止共享的生产实现；该决策不自动选择表面语法、产品发布或 Agent execution lock。
+1. 下一步建议只完成“首个实现就绪契约包”的设计物化，不安装 Rust / Go / cvc5 / Node 工具链，不创建 Cargo / Go workspace，不实现 parser、adapter、runner 或 checker。
+2. 契约包必须固定 ADR 0004–0008 要求的精确工具与源码制品、来源、摘要、adapter / policy / limits、依赖和许可证，并物化 pipeline artifact 与 checker request / bundle / result 的机器 schema、canonical 正例、逐字段负例和黄金摘要。
+3. 跨实现矩阵必须覆盖 AX-B01 至 AX-B04 的正确候选、八个错误候选、invalid input、backend timeout、host mismatch、gate 绕过、义务遗漏、artifact 篡改、attestation / certificate policy、checker 资源失败、进程崩溃和六平台结果一致性。
 
-独立 checker 决策审阅通过后，再逐项物化 ADR 0004–0007 的工具链、adapter、artifact 格式和负向矩阵，才能提出首个受控实现切片；工具链可用后才准备 Agent 实验 execution lock。
+实现就绪契约包审阅通过后，才能提出第一个仅覆盖严格 request / bundle 解析、摘要核对和一组拒绝 fixture 的受控实现切片；工具链可用且纵向门禁通过后才准备 Agent 实验 execution lock。
 
-首域语义、Axiom IR、Axiom Evidence 与 ADR 0004–0006 中早于后续技术决策的“实现语言 / 验证后端 / 目标运行时 / 编译管线尚未冻结”属于其接受时的范围说明；现行实现语言、首个验证后端、首个目标执行与首版编译管线口径分别以 ADR 0004、ADR 0005、ADR 0006、ADR 0007 为准。首域语义的原始摘要已被基准语料和 Agent 实验注册绑定，Axiom IR 规范的原始摘要也已被实验注册绑定，不能为同步阶段措辞而原地改写。
+首域语义、Axiom IR、Axiom Evidence 与较早 ADR 中“后续技术决策尚未冻结”的文字属于其接受时的范围说明；现行实现语言、验证后端、目标执行、生产管线和独立 checker 口径分别以 ADR 0004–0008 为准。首域语义的原始摘要已被基准语料和 Agent 实验注册绑定，Axiom IR 规范的原始摘要也已被实验注册绑定，不能为同步阶段措辞而原地改写。
 
 ## 尚未冻结
 
 - 表面语法；
-- 独立 checker 的实现语言与具体实现；
+- Axiom Evidence 的具体证明 certificate 格式与独立 checker 内部实现；
+- 首批 Rust / Go / cvc5 / Node 制品、依赖、adapter、机器契约与实现就绪清单；
 - Agent 实验的 execution lock、模型精确 revision、提示材料和 runner；
 - 包管理、IDE、插件和发布载体；
 - 首个具体产品版本、发布载体、发布记录与自动化；
@@ -59,6 +61,7 @@
 - [ADR 0005：首个验证后端与失败关闭边界](../adr/0005-first-verification-backend.md)
 - [ADR 0006：首个目标运行时与执行路径](../adr/0006-first-target-runtime-and-execution-path.md)
 - [ADR 0007：首版验证优先编译管线与制品协议](../adr/0007-first-verification-first-compilation-pipeline.md)
+- [ADR 0008：独立 checker 的实现语言、制品交换与隔离边界](../adr/0008-independent-checker-isolation-and-artifact-exchange.md)
 - [有键有限表转换：首版类型化语义](../semantics/keyed-finite-table-semantics.md)
 - [Axiom IR v0.1：规范化形式与版本策略](../ir/axiom-ir-v0.md)
 - [Axiom Evidence v0.1：证据模型与独立检查边界](../evidence/axiom-evidence-v0.md)

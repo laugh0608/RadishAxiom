@@ -32,8 +32,10 @@
 - [有键有限表基准语料库 v0.1](benchmarks/keyed-finite-table-corpus-v0.md)：四个基准的生成目录、任务身份、合成数据、正确 / 错误候选和 Expected Evidence 断言。
 - [Agent 表示与验证反馈对比实验预注册 v0.1](experiments/agent-representation-preregistration-v0.md)：三种表示、两种模型条件、配对反馈、指标、阈值、预算和停止规则。
 
-## 进入实现前待补齐
+## 进入实现前物化事项
 
-进入实现前，还需要补齐：
+实现语言、验证后端、目标执行、生产管线和独立 checker 的架构决策已经闭环。进入首个受控实现切片前，还需要物化：
 
-- 独立 checker 的实现语言、制品交换与隔离边界。
+- Rust / Go 工具链、cvc5 / Node 制品、adapter、依赖与许可证的精确身份；
+- pipeline artifact 与 checker request / bundle / result 的机器契约、canonical fixture、黄金摘要和跨实现负向矩阵；
+- 通过上述门禁后的小而完整实现切片及其授权边界。
