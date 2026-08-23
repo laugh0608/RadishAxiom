@@ -335,7 +335,7 @@ def _benchmark_scenarios() -> list[dict[str, Any]]:
                     uncovered=expected["required_uncovered"],
                     independent_process="completed",
                     independent_outcome=expected["expected_independent_result"],
-                    bundle="specified-not-materialized",
+                    bundle="complete",
                     cache_decision="miss",
                     cache_identity="exact",
                     input_value=input_value,

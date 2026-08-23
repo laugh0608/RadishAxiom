@@ -39,11 +39,12 @@
 - [Toolchain & Adapter Identity Registry v0.1](../contracts/toolchain-adapters-v0.1/README.md)：Rust / Go / cvc5 / Node 的精确版本、六平台候选制品、官方摘要来源、未验收供应链状态和执行 profile 身份。
 - [Pipeline Artifact Contract v0.1](../contracts/pipeline-artifacts-v0.1/README.md)：obligation set、host data、SMT query、target module 与 pipeline receipt 的首批规范字节、身份、gate / cache / partial failure 契约。
 - [Implementation Readiness Contract v0.1](../contracts/implementation-readiness-v0.1/README.md)：20 个 benchmark、16 个 CHK-* 与 pipeline / readiness 路径的统一实现入口矩阵、来源覆盖和负向拒绝契约。
+- [Keyed Finite Table Checker Bundle Contract v0.1](../contracts/keyed-finite-table-checker-bundles-v0.1/README.md)：28 个 readiness 场景的完整离线 bundle、Axiom Evidence、receipt、独立预期结果、进程失败边界与负例摘要链。
 
 ## 进入实现前物化事项
 
 实现语言、验证后端、目标执行、生产管线和独立 checker 的架构决策已经确定，首批交换格式与身份契约也已进入仓库门禁。进入受控实现前，还需要完成：
 
-- 依据已物化的实现就绪场景矩阵生成对应的完整 IR / Evidence / checker 离线 bundle；
-- 已登记制品的 payload 摘要复算、签名 / 来源验证、包内依赖与许可证验收，以及 profile 的完整 options / limits 契约；
+- 冻结 cvc5 options、Node invocation limits、checker resource limits 与 certificate 能力矩阵，使已物化 bundle 能直接成为首个受控 checker 切片的验收输入；
+- 完成已登记制品的 payload 摘要复算、签名 / 来源验证、包内依赖与许可证验收；
 - 通过上述门禁后，按已冻结职责实现 checker 的严格 request / bundle 解析、摘要核对和拒绝路径；每次实现必须覆盖其声明范围内的完整成功、失败与资源边界。

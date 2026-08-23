@@ -51,79 +51,79 @@
   "format_version": "0.1",
   "generated_files": [
     {
-      "byte_length": "111926",
+      "byte_length": "111566",
       "path": "fixtures/negative/artifact-tamper.invalid.jcs",
-      "sha256": "sha256:8b1a79e9b61bb6fff31e56d4f1a4ab2f0fef76a77aab5abfa7dbcc71f87f56f0"
+      "sha256": "sha256:0400851158be2e34cc2a960f5555bbc8c58958584f7c08d2f7d644d80213fa2c"
     },
     {
-      "byte_length": "111915",
+      "byte_length": "111555",
       "path": "fixtures/negative/attestation-overreach.invalid.jcs",
-      "sha256": "sha256:39cd862b8ea7c68fbd9ffd04dc61563edb0dba759ca863199ba927faf7364023"
+      "sha256": "sha256:93870bcf755ae0c095e792fe6956d029f7d24bc962a42bb2d80ec4fccbfed892"
     },
     {
-      "byte_length": "111929",
+      "byte_length": "111569",
       "path": "fixtures/negative/cache-forged-hit.invalid.jcs",
-      "sha256": "sha256:a9dc45f15d67793ce95c2ee8226d8225b519b78bda93b4f09ce3f1eb9f06fdc2"
+      "sha256": "sha256:c664893c5a1c4f918a9c40c76fc2a4e3171a9023d05111da5022ff42bd52eb93"
     },
     {
-      "byte_length": "111927",
+      "byte_length": "111567",
       "path": "fixtures/negative/conclusion-aggregation.invalid.jcs",
-      "sha256": "sha256:8008443dd38392e936434d58a1e567fdf95e56d295389396c96245edb075d2f5"
+      "sha256": "sha256:abe952659e626c90d07d8aed3d8a9fff0f4559003d5be8ab0cb18d469695e65f"
     },
     {
-      "byte_length": "113444",
+      "byte_length": "113084",
       "path": "fixtures/negative/duplicate-scenario.invalid.jcs",
-      "sha256": "sha256:818c0bbdb6660407d0e518404a90981a842854eb30997159b92ae89b1c033e62"
+      "sha256": "sha256:b4bfbc42bcb34f7f6e5003ba3f022bb2f81ba2338d1d9c9e2fa508e815435b4b"
     },
     {
       "byte_length": "3070",
       "path": "fixtures/negative/expected.json",
-      "sha256": "sha256:d677eb6bdb7aac6adde75ef4913511f7af5b05136f1a83fccd69d223bb4f0b44"
+      "sha256": "sha256:109791ecac43708b978967d681268218a0e7fd4d0790bb9ee23f233378210514"
     },
     {
-      "byte_length": "111926",
+      "byte_length": "111566",
       "path": "fixtures/negative/gate-bypass.invalid.jcs",
-      "sha256": "sha256:39f9dec919b46b4ab040a0bd260399f4e3e77874ee68e58338672406da9d0440"
+      "sha256": "sha256:295775400248f2d9bc9096a1dd3af46861df4ba7c634562971a2bb54e71c1008"
     },
     {
-      "byte_length": "111924",
+      "byte_length": "111564",
       "path": "fixtures/negative/missing-bundle-accepted.invalid.jcs",
-      "sha256": "sha256:9f519bec6a0ba3d7267312174ecafd29051222901ecd63dae04e9366b5ac850d"
+      "sha256": "sha256:5cb3d84008cfd6edac36e635f9438c4199db95a5450d23e16fb8142654baf32a"
     },
     {
-      "byte_length": "111881",
+      "byte_length": "111521",
       "path": "fixtures/negative/obligation-omission.invalid.jcs",
-      "sha256": "sha256:9810717b459f6cff86331a3a4abab74608d6a20483b6683e37e907a4b047b4d0"
+      "sha256": "sha256:a18d8bd481e84634868e93469f6bcc7f07a0d09c0c24b47bcca8ce74dddcb0c2"
     },
     {
-      "byte_length": "111922",
+      "byte_length": "111562",
       "path": "fixtures/negative/process-failure-disguised.invalid.jcs",
-      "sha256": "sha256:7c2aeb33b88ccdbf54740f1479b5822f46a1cff0f3e7969d0d383e12cb05bfe2"
+      "sha256": "sha256:7ee7e88a9483a8e77e49fb62c6f3c2b04a85ca3654a886619c7d751edfe79d01"
     },
     {
-      "byte_length": "111944",
+      "byte_length": "111584",
       "path": "fixtures/negative/unknown-member.invalid.jcs",
-      "sha256": "sha256:4bad406a0b7f578c9a9b05d18c67054eea1ce2e7229ec0e865474d7c24764529"
+      "sha256": "sha256:f39bd4ef907c29dc869ba784fb0a4f07b47b5b95c9a71a295bc16b8671f2281b"
     },
     {
-      "byte_length": "111884",
+      "byte_length": "111524",
       "path": "fixtures/negative/unknown-profile.invalid.jcs",
-      "sha256": "sha256:78c33d20e79af019340c1f4ab358a40f3fb28a589dee1956764890e716330054"
+      "sha256": "sha256:1c24f28839ae32f3ad5f9d928281edde13c44c57ae0cad24f7469ed0e7cd12e9"
     },
     {
-      "byte_length": "111926",
+      "byte_length": "111566",
       "path": "fixtures/negative/unknown-version.invalid.jcs",
-      "sha256": "sha256:2902f49c06dc75d5460d3dec31997c54600da2bc08c07bae42779a2c2f608673"
+      "sha256": "sha256:c6e35b7a693d1d7f1aa20c182f418d058f9922c57123545c47c2f93eea03afba"
     },
     {
-      "byte_length": "111926",
+      "byte_length": "111566",
       "path": "fixtures/negative/unsorted-scenarios.invalid.jcs",
-      "sha256": "sha256:bcab8e004068662bedc82494cef3beac4c2d0ab1defa164958edefe06f9bd8e6"
+      "sha256": "sha256:b3097cae9c41f03d44b2665a6920822dd0a239613c2cffa99b36cf36934f198d"
     },
     {
-      "byte_length": "111926",
+      "byte_length": "111566",
       "path": "manifest.jcs",
-      "sha256": "sha256:ff3555ac5c53541dbdb6d4d15d27943f8a00344ef2c4cec9b9e1991eeccd7034"
+      "sha256": "sha256:7766b7ebc146551706b930ba3e27bd779ec02f280b434e2142f266c77f0d0f82"
     },
     {
       "byte_length": "22804",
@@ -150,15 +150,15 @@
     },
     {
       "path": "scripts/implementation_readiness/scenarios.py",
-      "raw_sha256": "sha256:421f1ccb66514e5dc752d5e4f89a88bf1727a2a046f61b33f700408374711541"
+      "raw_sha256": "sha256:e3c07dcc8885912a0c2eb4516040b0dcc1de19081a2d9e5d0c72c60e6544cf7c"
     },
     {
       "path": "scripts/implementation_readiness/schema.py",
       "raw_sha256": "sha256:2f7d61772ef097d468d902c6c586b26d680d22d6b6ad3755598a921139fd879a"
     }
   ],
-  "manifest_document_digest": "sha256:acf6e5378c4fd8f124efff380caec147ce52154d0cc29bd0cd7cacf2aff8485a",
-  "manifest_raw_sha256": "sha256:ff3555ac5c53541dbdb6d4d15d27943f8a00344ef2c4cec9b9e1991eeccd7034",
+  "manifest_document_digest": "sha256:e54cc468ad78cee709b7a160e0db52a8d1f8159b2fef6e3916a74518fdabc294",
+  "manifest_raw_sha256": "sha256:7766b7ebc146551706b930ba3e27bd779ec02f280b434e2142f266c77f0d0f82",
   "negative_fixture_count": "13",
   "observation_level": "specified",
   "profile": "keyed-finite-table-implementation-readiness-v0.1",

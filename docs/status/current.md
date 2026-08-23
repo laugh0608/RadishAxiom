@@ -4,7 +4,7 @@
 
 ## 当前阶段
 
-项目处于首域语义、Axiom IR v0.1、Axiom Evidence v0.1、版本身份分层、四题版本化基准语料、Agent 对比实验预注册、`raxc` 生产实现语言、首个验证后端、首个目标执行路径、首版编译管线和独立 checker 隔离边界都已经形成的设计到受控实现入口物化阶段。checker request / bundle / result 的首批结构契约、工具链 / adapter 元数据身份清单、首批 pipeline artifact 契约与实现就绪场景矩阵已经物化；当前目标是依据统一矩阵扩展完整 checker 离线 bundle 和跨契约语义 fixture，同时保留工具 payload、许可证、完整 options / limits 与真实跨平台执行的未验收停止线。在全部实现就绪门禁完成并取得单独授权前不进入编译器 / checker 实现或正式模型调用。
+项目处于首域语义、Axiom IR v0.1、Axiom Evidence v0.1、版本身份分层、四题版本化基准语料、Agent 对比实验预注册、`raxc` 生产实现语言、首个验证后端、首个目标执行路径、首版编译管线和独立 checker 隔离边界都已经形成的设计到受控实现入口物化阶段。checker request / bundle / result 的结构契约、工具链 / adapter 元数据身份清单、pipeline artifact 契约、实现就绪场景矩阵，以及四题完整 checker 离线 bundle 与跨契约 fixture 已经物化；当前目标是冻结 cvc5 / Node / checker 的完整 options / limits 与 certificate 能力矩阵，同时保留工具 payload、许可证和真实跨平台执行的未验收停止线。在全部实现就绪门禁完成并取得单独授权前不进入编译器 / checker 实现或正式模型调用。
 
 ## 已确定
 
@@ -27,6 +27,7 @@
 - Toolchain & Adapter Identity Registry v0.1：固定 Rust `1.97.1`、Go `go1.26.7`、cvc5 `1.3.4`、Node.js `24.19.0` 的 source 与 Linux / macOS / Windows `amd64` / `arm64` 候选制品，登记官方来源、publisher 摘要、依赖审阅目标、许可证来源以及七个 build / adapter / target / invocation / pipeline / checker profile；全部 payload、archive 内容和许可证仍明确为 `not-accepted`，Rust 制品与 cvc5 source 摘要仍待权威元数据捕获。
 - Pipeline Artifact Contract v0.1：以三个 JSON Schema 和两个原始文本 profile 固定 obligation set、host data、SMT query、target module 与 pipeline receipt 的首批结构和规范字节；包含 gate 打开的完整 receipt、cvc5 timeout 后阻断 P6–P8 的 partial receipt、域摘要 / tool / cache 身份及 38 个关键负例。当前只覆盖 ASCII 合成 fixture 和 AX-B01 最小结构切片，不冒充义务完整性、parser、solver、target 执行、Evidence 或跨平台结果。
 - Implementation Readiness Contract v0.1：以 canonical manifest 和 JSON Schema 统一 20 个 benchmark、ADR 0008 的 16 个 `CHK-*` 及 10 个 pipeline / readiness 场景，逐行固定输入、P0–P9、gate、artifact role、receipt、Evidence、独立结果 / 进程、trust / uncovered 与六平台注册适用范围；59 条 benchmark / ADR 来源要求全部具有反向场景覆盖，并以 13 个负例拒绝 gate 绕过、义务遗漏、artifact 篡改、伪造 cache hit、缺失 bundle 后错误接受、attestation 越权、错误结论聚合、进程失败伪装结果及未知 member / version / profile。全部场景保持 `specified`，`observed` 为 0。
+- Keyed Finite Table Checker Bundle Contract v0.1：从 readiness 的稳定 ID 物化 20 个 benchmark、5 个跨契约场景和 3 个负例；每个目录仅含 request、manifest 与内容寻址 blob，完整绑定 IR、义务、pipeline receipt、Axiom Evidence、独立预期结果及 10 类 check ID。正确 / 错误 / 非法输入 / timeout、host mismatch、certificate required / attestation allowed、checker 内部资源不足与进程外层失败均保持独立聚合；全部仍为 `specified`，不冒充 checker、solver、Node 或六平台执行。
 - 许可证：Apache License 2.0，并形成开放基础层与商业化边界策略。
 - 仓库治理：`master` 稳定主线、`dev` 日常集成、PR 门禁和合并后回流策略。
 - 当前仓库级验证：`./scripts/check-repo.sh` 或 `pwsh ./scripts/check-repo.ps1`。
@@ -38,27 +39,32 @@
 3. 物化 46 行 canonical 场景矩阵和 59 条来源覆盖：20 个 benchmark、16 个 `CHK-*`、10 个 pipeline / readiness 路径；重叠验收要求只通过 `source_refs` / `coverage` 映射，不复制第二套结果。
 4. 每行固定 P0–P9、gate、artifact role、receipt、Evidence、独立 result / process、trust / uncovered 和平台注册适用范围；全部为 `specified`，`observed_scenarios` 为 0。wrong、`unknown`、invalid 及 P0 工具未验收路径明确禁止 target module、host output 与 `execute-host`。
 5. 同批生成 JSON Schema、canonical manifest、域摘要、原始字节摘要及 13 个非法组合负例；Pipeline 专项、Readiness 专项和仓库级检查均通过。
+6. 建立 `contracts/keyed-finite-table-checker-bundles-v0.1/` 与零第三方依赖生成入口，从 readiness manifest 的稳定场景 ID 生成 20 个 benchmark bundle、5 个跨契约 bundle 和 3 个缺失 / 篡改 / 省略负例。
+7. 为四题 canonical IR 重建完整 benchmark obligation set，逐项物化节点总性 / 键基数、算术与聚合范围、row coverage、输出字段来源、guarantee / noninterference、具体输入、宿主输出、黄金比较及 trust-boundary；Evidence 状态、反例 world、attempt、receipt 和结论保持摘要闭合。
+8. `CHK-CONCRETE-01` 将 host mismatch 保持为 `implementation_inconsistent`，`CHK-PROOF-01` / `02` 分别固定 certificate-required 的 `incomplete` 与 attestation-allowed 的 `accepted-with-trust`，`CHK-RESOURCE-01` 使用请求内 step budget 形成 `incomplete`，`CHK-PROCESS-01` 只生成外层进程失败而不伪造四态结果。
+9. 每个 bundle 只物化 manifest 列出的普通 blob；request、manifest、Evidence、receipt、独立结果、条目和 check ID 均可离线重算，预期结果保持在输入 bundle 之外。readiness 的 20 个 benchmark 行已从 `specified-not-materialized` 收口为 `complete`，证据等级仍为 `specified`。
+10. Checker Bundle、Independent Check、Pipeline Artifact、Implementation Readiness、Toolchain Registry、Benchmark Corpus 专项生成检查、JSON Schema Draft 2020-12 校验和仓库级 776 文件检查均已通过。
 
 本日没有下载或安装 Rust、Go、cvc5、Node payload，没有创建编译器 / checker 工程，没有执行 solver、Node、checker 或正式模型调用，也没有产生六平台运行证据。
 
-## 明日事项（2026-08-24）
+## 下一事项（2026-08-24）
 
-明日主项是依据已验收矩阵物化“有键有限表完整 checker 离线 bundle v0.1”，先让 AX-B01 至 AX-B04 的规范 IR、完整 obligation、Expected Evidence、pipeline artifact 引用、checker request / manifest / result 形成同一生成入口和唯一摘要链；这些仍是指定的离线验收 fixture，不冒充生产工具执行记录。
+下一主项是物化“执行 profile options / limits 与 certificate 能力契约 v0.1”，把 bundle 已使用的概念性限制收口为生产管线、Node invocation 和独立 checker 共用但职责分离的机器契约；这仍是零第三方依赖的指定态工作，不下载或运行登记工具。
 
-1. 建立版本化 bundle contract 与零第三方依赖生成器，从 readiness manifest 的稳定场景 ID 取用输入和预期，不重抄 benchmark、Evidence 或 `CHK-*` 结论。
-2. 覆盖四题正确、八个错误、invalid input 与 backend timeout，补入 `CHK-CONCRETE-01` host mismatch、`CHK-PROOF-01` / `02` certificate policy、`CHK-RESOURCE-01` 和 `CHK-PROCESS-01` 所需的跨契约 artifact；missing / tampered / omitted 只作为负例。
-3. 每个 bundle 只包含 manifest 列出的只读普通 blob，固定 byte length、SHA-256、format / role、Evidence digest、request check ID 和预期 independent outcome / code；禁止路径 fallback、网络补齐、symlink 或生产 cache 引用。
-4. production receipt、Axiom Evidence 与 independent result 继续分别生成和校验；checker process failure 只形成外层运行失败 fixture，不写成四态 result。certificate 不可用时保留 `incomplete`，attestation 最多 `accepted-with-trust`。
-5. 保持 `specified` / `observed` 分层并增加跨契约负例，至少拒绝 Evidence / IR / artifact 篡改、义务遗漏、bundle 缺失、host mismatch 错聚合、certificate 越权和旧 digest 引用。
+1. 为 cvc5 1.3.4 QF_UFLIA adapter 冻结允许的 CLI 参数、stdin / stdout 协议、wall-clock / memory / semantic step 上限、退出码与 `unknown` / timeout / error 映射；拒绝未登记 option、环境继承、随机种子和路径输入。
+2. 为 Node 24.19.0 invocation 冻结允许的 flags、环境清空、stdin / stdout framing、BigInt / UTF-8 codec、进程与输出上限，以及 target capability denylist；操作失败继续与 Evidence 语义状态分离。
+3. 为 Go checker 冻结 request 七项 limit 的确定性计数位置、外层 OS hard limit 伴随记录、结果可形成与不可形成边界，并把 `CHK-RESOURCE-01` / `CHK-PROCESS-01` 作为黄金场景。
+4. 建立 certificate capability matrix；在首个格式、规则覆盖和独立 certificate checker 未验收前，受支持 profile 集合保持为空，`certificate-required` 稳定产生 `incomplete`，不得把 attestation 升级为 proof。
+5. 版本化生成 schema、canonical 正例、逐字段负例、来源摘要和 bundle / readiness 反向覆盖；不复制第二套 outcome、trust 或 code 结论。
 
-明日完成标准：四题及上述跨契约行都能由 readiness scenario ID 解析到唯一 bundle / 期望结果；全部 blob 摘要、check ID、Evidence 结论、trust / uncovered 与拒绝码可离线重放；生成器、负例、文档链接及仓库级检查全部通过。
+完成标准：cvc5、Node 与 checker 的全部允许 option / limit 都有唯一机器表示和失败映射；certificate 能力为空的停止线可由 `CHK-PROOF-01` / `02` 重放；生成器、负例、现有 28 个 bundle、文档链接及仓库级检查全部通过。
 
-明日仍不下载或安装工具 payload，不创建生产编译器或 checker 工程，不执行 solver、Node、checker 或正式模型调用；工具供应链、完整 options / limits、真实六平台结果和首次实现授权继续保持停止线。
+下一事项仍不下载或安装工具 payload，不创建生产编译器或 checker 工程，不执行 solver、Node、checker 或正式模型调用；工具供应链、真实六平台结果和首次实现授权继续保持停止线。
 
 ## 后续顺位
 
-1. 工具 payload 验收作为独立授权的供应链任务，在隔离临时目录中重算 SHA-256、验证可用签名 / 来源并盘点包内依赖与许可证；当前 registry 不能作为安装或执行许可。
-2. 完整 bundle 形成后冻结 cvc5 options、Node invocation limits、checker resource limits 与 certificate 能力矩阵，并将其纳入同一 readiness profile。
+1. 先冻结 cvc5 options、Node invocation limits、checker resource limits 与 certificate 能力矩阵，并将其纳入同一 readiness / bundle profile。
+2. 工具 payload 验收作为独立授权的供应链任务，在隔离临时目录中重算 SHA-256、验证可用签名 / 来源并盘点包内依赖与许可证；当前 registry 不能作为安装或执行许可。
 3. 场景矩阵、完整 bundle、options / limits 和供应链门禁审阅通过后，再提出 checker 严格 request / bundle 解析、摘要核对和拒绝路径的受控实现任务；远程仓库、依赖安装、push、发布与部署仍分别授权。
 4. 工具链可用且实现入口验证通过后，才准备 Agent 实验 execution lock 和正式模型调用。
 
@@ -68,7 +74,7 @@
 
 - 表面语法；
 - Axiom Evidence 的具体证明 certificate 格式与独立 checker 内部实现；
-- Rust / Go / cvc5 / Node payload 的实际摘要 / 签名验收、包内依赖与许可证清单、cvc5 options、Node invocation limits、完整 checker bundle、certificate 能力与真实跨实现 / 跨平台语义结果；
+- Rust / Go / cvc5 / Node payload 的实际摘要 / 签名验收、包内依赖与许可证清单、cvc5 options、Node invocation limits、checker resource limits、certificate 能力与真实跨实现 / 跨平台语义结果；
 - Agent 实验的 execution lock、模型精确 revision、提示材料和 runner；
 - 包管理、IDE、插件和发布载体；
 - 首个具体产品版本、发布载体、发布记录与自动化；
@@ -93,6 +99,7 @@
 - [Toolchain & Adapter Identity Registry v0.1](../../contracts/toolchain-adapters-v0.1/README.md)
 - [Pipeline Artifact Contract v0.1](../../contracts/pipeline-artifacts-v0.1/README.md)
 - [Implementation Readiness Contract v0.1](../../contracts/implementation-readiness-v0.1/README.md)
+- [Keyed Finite Table Checker Bundle Contract v0.1](../../contracts/keyed-finite-table-checker-bundles-v0.1/README.md)
 - [有键有限表转换：首版类型化语义](../semantics/keyed-finite-table-semantics.md)
 - [Axiom IR v0.1：规范化形式与版本策略](../ir/axiom-ir-v0.md)
 - [Axiom Evidence v0.1：证据模型与独立检查边界](../evidence/axiom-evidence-v0.md)

@@ -4,7 +4,7 @@
 
 目标读者：准备受控实现切片、审阅跨契约停止线或构造后续离线 bundle 的维护者。
 
-不包含：生产编译器、solver / Node / checker 执行记录、完整 IR / Evidence / checker bundle、工具 payload 验收、正式模型调用或六平台通过声明。
+不包含：生产编译器、solver / Node / checker 执行记录、内嵌的完整 IR / Evidence / checker bundle、工具 payload 验收、正式模型调用或六平台通过声明；完整 bundle 由独立版本化契约按本矩阵 ID 维护。
 
 ## 固定内容
 
@@ -54,7 +54,7 @@ checker 外层构建或进程失败使用 independent.process / process_codes，
 
 ## 仍未解除的停止线
 
-- benchmark bundle 均为 specified-not-materialized，后续仍须生成 AX-B01–AX-B04 的完整 IR / Evidence / checker 离线 bundle；
+- benchmark bundle 已由 [Keyed Finite Table Checker Bundle Contract v0.1](../keyed-finite-table-checker-bundles-v0.1/README.md) 物化，矩阵与 bundle 均保持 `specified`，不表示 checker 已执行；
 - 工具 registry 中的 payload、包内容和许可证仍未验收，PIPE-TOOLCHAIN-NOT-ACCEPTED-01 保持 gate 关闭；
 - certificate 能力、完整 options / limits、真实跨平台语义一致性和首次 checker 实现仍须分别验收或授权；
 - 本契约通过只说明静态实现入口一致，不授权下载依赖、创建编译器 / checker 工程或运行 solver、Node、checker 与正式模型实验。
