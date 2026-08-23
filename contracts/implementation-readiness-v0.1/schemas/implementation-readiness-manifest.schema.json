@@ -1,0 +1,820 @@
+{
+  "$defs": {
+    "digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "scenario": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_roles": {
+          "additionalProperties": false,
+          "properties": {
+            "forbidden": {
+              "items": {
+                "pattern": "^[A-Za-z][A-Za-z0-9._:-]*$",
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "must_appear": {
+              "items": {
+                "pattern": "^[A-Za-z][A-Za-z0-9._:-]*$",
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "forbidden",
+            "must_appear"
+          ],
+          "type": "object"
+        },
+        "bundle": {
+          "enum": [
+            "complete",
+            "invalid",
+            "missing",
+            "not-applicable",
+            "specified-not-materialized"
+          ]
+        },
+        "cache": {
+          "additionalProperties": false,
+          "properties": {
+            "decision": {
+              "enum": [
+                "hit",
+                "miss",
+                "not-applicable"
+              ]
+            },
+            "identity": {
+              "enum": [
+                "exact",
+                "mismatch",
+                "not-applicable"
+              ]
+            }
+          },
+          "required": [
+            "decision",
+            "identity"
+          ],
+          "type": "object"
+        },
+        "evidence": {
+          "additionalProperties": false,
+          "properties": {
+            "availability": {
+              "enum": [
+                "forbidden",
+                "input-only",
+                "not-applicable",
+                "required"
+              ]
+            },
+            "conclusion": {
+              "enum": [
+                "implementation_inconsistent",
+                "inconclusive",
+                "input_rejected",
+                "not-applicable",
+                "not-produced",
+                "satisfied",
+                "violated"
+              ]
+            },
+            "remaining_trust": {
+              "items": {
+                "pattern": "^[A-Za-z][A-Za-z0-9._:-]*$",
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "required_results": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "kind": {
+                    "pattern": "^[A-Za-z][A-Za-z0-9._:-]*$",
+                    "type": "string"
+                  },
+                  "reason": {
+                    "pattern": "^[A-Za-z][A-Za-z0-9._:-]*$",
+                    "type": "string"
+                  },
+                  "status": {
+                    "enum": [
+                      "checked",
+                      "failed",
+                      "proved",
+                      "trusted",
+                      "unknown"
+                    ]
+                  }
+                },
+                "required": [
+                  "kind",
+                  "status"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "uncovered": {
+              "items": {
+                "pattern": "^[A-Za-z][A-Za-z0-9._:-]*$",
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "availability",
+            "conclusion",
+            "remaining_trust",
+            "required_results",
+            "uncovered"
+          ],
+          "type": "object"
+        },
+        "gate": {
+          "additionalProperties": false,
+          "properties": {
+            "basis": {
+              "items": {
+                "pattern": "^[A-Za-z][A-Za-z0-9._:-]*$",
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            "decision": {
+              "enum": [
+                "closed",
+                "not-applicable",
+                "opened"
+              ]
+            }
+          },
+          "required": [
+            "basis",
+            "decision"
+          ],
+          "type": "object"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9._:-]*$",
+          "type": "string"
+        },
+        "independent": {
+          "additionalProperties": false,
+          "properties": {
+            "codes": {
+              "items": {
+                "pattern": "^[A-Za-z][A-Za-z0-9._:-]*$",
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "outcome": {
+              "enum": [
+                "accepted",
+                "accepted-with-trust",
+                "incomplete",
+                "not-applicable",
+                "not-produced",
+                "rejected"
+              ]
+            },
+            "process": {
+              "enum": [
+                "completed",
+                "failed",
+                "not-run"
+              ]
+            },
+            "process_codes": {
+              "items": {
+                "pattern": "^[A-Za-z][A-Za-z0-9._:-]*$",
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "codes",
+            "outcome",
+            "process",
+            "process_codes"
+          ],
+          "type": "object"
+        },
+        "input": {
+          "additionalProperties": false,
+          "properties": {
+            "candidate": {
+              "oneOf": [
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "document_digest": {
+                      "pattern": "^sha256:[0-9a-f]{64}$",
+                      "type": "string"
+                    },
+                    "materialization": {
+                      "const": "bound-artifact"
+                    },
+                    "name": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "path": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "sha256": {
+                      "pattern": "^sha256:[0-9a-f]{64}$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "materialization",
+                    "path",
+                    "sha256"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "materialization": {
+                      "const": "not-applicable"
+                    }
+                  },
+                  "required": [
+                    "materialization"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "materialization": {
+                      "const": "specified-not-materialized"
+                    },
+                    "name": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "materialization"
+                  ],
+                  "type": "object"
+                }
+              ]
+            },
+            "fixtures": {
+              "items": {
+                "oneOf": [
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "materialization": {
+                        "const": "specified-not-materialized"
+                      },
+                      "name": {
+                        "minLength": 1,
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "materialization",
+                      "name"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "golden": {
+                        "oneOf": [
+                          {
+                            "additionalProperties": false,
+                            "properties": {
+                              "document_digest": {
+                                "pattern": "^sha256:[0-9a-f]{64}$",
+                                "type": "string"
+                              },
+                              "materialization": {
+                                "const": "bound-artifact"
+                              },
+                              "name": {
+                                "minLength": 1,
+                                "type": "string"
+                              },
+                              "path": {
+                                "minLength": 1,
+                                "type": "string"
+                              },
+                              "sha256": {
+                                "pattern": "^sha256:[0-9a-f]{64}$",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "materialization",
+                              "path",
+                              "sha256"
+                            ],
+                            "type": "object"
+                          },
+                          {
+                            "additionalProperties": false,
+                            "properties": {
+                              "materialization": {
+                                "const": "not-applicable"
+                              }
+                            },
+                            "required": [
+                              "materialization"
+                            ],
+                            "type": "object"
+                          },
+                          {
+                            "additionalProperties": false,
+                            "properties": {
+                              "materialization": {
+                                "const": "specified-not-materialized"
+                              },
+                              "name": {
+                                "minLength": 1,
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "materialization"
+                            ],
+                            "type": "object"
+                          }
+                        ]
+                      },
+                      "input": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "document_digest": {
+                            "pattern": "^sha256:[0-9a-f]{64}$",
+                            "type": "string"
+                          },
+                          "materialization": {
+                            "const": "bound-artifact"
+                          },
+                          "name": {
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "path": {
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "sha256": {
+                            "pattern": "^sha256:[0-9a-f]{64}$",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "materialization",
+                          "path",
+                          "sha256"
+                        ],
+                        "type": "object"
+                      },
+                      "kind": {
+                        "enum": [
+                          "invalid",
+                          "valid"
+                        ]
+                      },
+                      "materialization": {
+                        "const": "bound-fixture"
+                      },
+                      "name": {
+                        "minLength": 1,
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "golden",
+                      "input",
+                      "kind",
+                      "materialization",
+                      "name"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "scenario_assertion": {
+              "oneOf": [
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "document_digest": {
+                      "pattern": "^sha256:[0-9a-f]{64}$",
+                      "type": "string"
+                    },
+                    "materialization": {
+                      "const": "bound-artifact"
+                    },
+                    "name": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "path": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "sha256": {
+                      "pattern": "^sha256:[0-9a-f]{64}$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "materialization",
+                    "path",
+                    "sha256"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "materialization": {
+                      "const": "not-applicable"
+                    }
+                  },
+                  "required": [
+                    "materialization"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "materialization": {
+                      "const": "specified-not-materialized"
+                    },
+                    "name": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "materialization"
+                  ],
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "required": [
+            "candidate",
+            "fixtures",
+            "scenario_assertion"
+          ],
+          "type": "object"
+        },
+        "kind": {
+          "enum": [
+            "benchmark",
+            "cross-contract",
+            "independent-check",
+            "pipeline",
+            "pipeline-rejection",
+            "readiness-stop"
+          ]
+        },
+        "level": {
+          "const": "specified"
+        },
+        "platforms": {
+          "items": {
+            "enum": [
+              "linux-amd64",
+              "linux-arm64",
+              "macos-amd64",
+              "macos-arm64",
+              "windows-amd64",
+              "windows-arm64"
+            ]
+          },
+          "type": "array"
+        },
+        "profile": {
+          "const": "keyed-finite-table-implementation-readiness-v0.1"
+        },
+        "receipt": {
+          "additionalProperties": false,
+          "properties": {
+            "availability": {
+              "enum": [
+                "invalid-input",
+                "not-applicable",
+                "required"
+              ]
+            },
+            "codes": {
+              "items": {
+                "pattern": "^[A-Za-z][A-Za-z0-9._:-]*$",
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "outcome": {
+              "enum": [
+                "blocked",
+                "completed",
+                "error",
+                "not-applicable",
+                "partial",
+                "rejected"
+              ]
+            }
+          },
+          "required": [
+            "availability",
+            "codes",
+            "outcome"
+          ],
+          "type": "object"
+        },
+        "source_refs": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9._:-]*$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "stages": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "enum": [
+                  "P0",
+                  "P1",
+                  "P2",
+                  "P3",
+                  "P4",
+                  "P5",
+                  "P6",
+                  "P7",
+                  "P8",
+                  "P9"
+                ]
+              },
+              "result": {
+                "enum": [
+                  "completed",
+                  "error",
+                  "invalid",
+                  "not-applicable",
+                  "not-run",
+                  "resource-exhausted",
+                  "timeout",
+                  "unavailable",
+                  "unsupported"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "result"
+            ],
+            "type": "object"
+          },
+          "maxItems": 10,
+          "minItems": 10,
+          "type": "array"
+        }
+      },
+      "required": [
+        "artifact_roles",
+        "bundle",
+        "cache",
+        "evidence",
+        "gate",
+        "id",
+        "independent",
+        "input",
+        "kind",
+        "level",
+        "platforms",
+        "profile",
+        "receipt",
+        "source_refs",
+        "stages"
+      ],
+      "type": "object"
+    },
+    "stableId": {
+      "pattern": "^[A-Za-z][A-Za-z0-9._:-]*$",
+      "type": "string"
+    }
+  },
+  "$id": "https://radishaxiom.dev/schema/implementation-readiness/manifest/0.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "bindings": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "pattern": "^[A-Za-z][A-Za-z0-9._:-]*$",
+            "type": "string"
+          },
+          "path": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "raw_sha256": {
+            "pattern": "^sha256:[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "registry_digest": {
+            "pattern": "^sha256:[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "task_digest": {
+            "pattern": "^sha256:[0-9a-f]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "path",
+          "raw_sha256"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "coverage": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "requirement": {
+            "pattern": "^[A-Za-z][A-Za-z0-9._:-]*$",
+            "type": "string"
+          },
+          "scenarios": {
+            "items": {
+              "pattern": "^[A-Za-z][A-Za-z0-9._:-]*$",
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "requirement",
+          "scenarios"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "format": {
+      "const": "radishaxiom-implementation-readiness"
+    },
+    "format_version": {
+      "const": "0.1"
+    },
+    "observation": {
+      "additionalProperties": false,
+      "properties": {
+        "level": {
+          "const": "specified"
+        },
+        "observed_scenarios": {
+          "const": "0"
+        }
+      },
+      "required": [
+        "level",
+        "observed_scenarios"
+      ],
+      "type": "object"
+    },
+    "platforms": {
+      "items": {
+        "enum": [
+          "linux-amd64",
+          "linux-arm64",
+          "macos-amd64",
+          "macos-arm64",
+          "windows-amd64",
+          "windows-arm64"
+        ]
+      },
+      "type": "array"
+    },
+    "profile": {
+      "const": "keyed-finite-table-implementation-readiness-v0.1"
+    },
+    "profiles": {
+      "items": {
+        "pattern": "^[A-Za-z][A-Za-z0-9._:-]*$",
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "requirement_count": {
+      "pattern": "^(0|[1-9][0-9]*)$",
+      "type": "string"
+    },
+    "requirements": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "binding": {
+            "pattern": "^[A-Za-z][A-Za-z0-9._:-]*$",
+            "type": "string"
+          },
+          "id": {
+            "pattern": "^[A-Za-z][A-Za-z0-9._:-]*$",
+            "type": "string"
+          },
+          "locator": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "binding",
+          "id",
+          "locator"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "scenario_counts": {
+      "additionalProperties": false,
+      "properties": {
+        "benchmark": {
+          "pattern": "^(0|[1-9][0-9]*)$",
+          "type": "string"
+        },
+        "checker": {
+          "pattern": "^(0|[1-9][0-9]*)$",
+          "type": "string"
+        },
+        "pipeline_and_readiness": {
+          "pattern": "^(0|[1-9][0-9]*)$",
+          "type": "string"
+        },
+        "total": {
+          "pattern": "^(0|[1-9][0-9]*)$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "benchmark",
+        "checker",
+        "pipeline_and_readiness",
+        "total"
+      ],
+      "type": "object"
+    },
+    "scenarios": {
+      "items": {
+        "$ref": "#/$defs/scenario"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "bindings",
+    "coverage",
+    "format",
+    "format_version",
+    "observation",
+    "platforms",
+    "profile",
+    "profiles",
+    "requirement_count",
+    "requirements",
+    "scenario_counts",
+    "scenarios"
+  ],
+  "title": "RadishAxiom Implementation Readiness Manifest v0.1",
+  "type": "object"
+}

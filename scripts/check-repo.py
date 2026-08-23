@@ -40,6 +40,11 @@ REQUIRED_FILES = (
     "contracts/README.md",
     "contracts/independent-check-v0.1/README.md",
     "contracts/independent-check-v0.1/contract.json",
+    "contracts/implementation-readiness-v0.1/README.md",
+    "contracts/implementation-readiness-v0.1/contract.json",
+    "contracts/implementation-readiness-v0.1/fixtures/negative/expected.json",
+    "contracts/implementation-readiness-v0.1/manifest.jcs",
+    "contracts/implementation-readiness-v0.1/schemas/implementation-readiness-manifest.schema.json",
     "contracts/pipeline-artifacts-v0.1/README.md",
     "contracts/pipeline-artifacts-v0.1/contract.json",
     "contracts/pipeline-artifacts-v0.1/fixtures/expected.json",
@@ -66,6 +71,7 @@ REQUIRED_FILES = (
     "scripts/check-repo.sh",
     "scripts/generate-benchmark-corpus.py",
     "scripts/generate-independent-check-contracts.py",
+    "scripts/generate-implementation-readiness.py",
     "scripts/generate-pipeline-artifact-contracts.py",
     "scripts/generate-toolchain-adapter-identities.py",
 )
@@ -382,6 +388,23 @@ def check_pipeline_artifact_contracts(errors: list[str]) -> None:
         errors.append(f"pipeline artifact contracts failed: {detail}")
 
 
+def check_implementation_readiness(errors: list[str]) -> None:
+    generator = REPO_ROOT / "scripts/generate-implementation-readiness.py"
+    if not generator.is_file():
+        return
+
+    result = subprocess.run(
+        [sys.executable, str(generator), "--check"],
+        cwd=REPO_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        detail = (result.stdout + result.stderr).strip()
+        errors.append(f"implementation readiness contract failed: {detail}")
+
+
 def sha256(path: Path) -> str:
     return "sha256:" + hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -529,6 +552,7 @@ def main() -> int:
     check_independent_check_contracts(errors)
     check_toolchain_adapter_identities(errors)
     check_pipeline_artifact_contracts(errors)
+    check_implementation_readiness(errors)
     check_agent_experiment_registration(errors)
     check_diff(args.base_ref, errors)
     check_commit_messages(args.base_ref, errors)

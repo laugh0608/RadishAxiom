@@ -26,7 +26,7 @@ RadishAxiom 是 Radish 家族中面向 AI Agent 的语言与可信语义项目�
 
 ## 当前状态
 
-项目处于设计到受控实现的入口物化阶段。生产 `raxc` 已选择 Rust，首个验证后端已选择独立进程运行的 cvc5 1.3.4，首个目标执行路径已选择 Node.js 24.19.0 LTS，首版编译管线已选择内容寻址、验证门控和可离线重放的显式制品 DAG；独立 checker 已选择 Go 1.26 / `go1.26.7`，并冻结独立仓库、独立进程、离线 bundle 与 Evidence 外部四态结果边界。独立检查交换契约、工具链 / adapter 身份和首批 pipeline artifact 契约已经物化；实现就绪场景矩阵、完整离线 bundle 与工具 payload 验收完成前，不进入编译器或 checker 实现。
+项目处于设计到受控实现的入口物化阶段。生产 `raxc` 已选择 Rust，首个验证后端已选择独立进程运行的 cvc5 1.3.4，首个目标执行路径已选择 Node.js 24.19.0 LTS，首版编译管线已选择内容寻址、验证门控和可离线重放的显式制品 DAG；独立 checker 已选择 Go 1.26 / `go1.26.7`，并冻结独立仓库、独立进程、离线 bundle 与 Evidence 外部四态结果边界。独立检查交换契约、工具链 / adapter 身份、首批 pipeline artifact 契约与实现就绪场景矩阵已经物化；完整离线 bundle、options / limits 与工具 payload 验收完成并取得单独授权前，不进入编译器或 checker 实现。
 
 当前阶段、已确定事项、明日事项与后续顺位见[当前状态](docs/status/current.md)。
 

@@ -1,0 +1,171 @@
+{
+  "bindings": [
+    {
+      "name": "adr-0007",
+      "path": "docs/adr/0007-first-verification-first-compilation-pipeline.md",
+      "raw_sha256": "sha256:ac12d9db0cd942edd9d3ead02aa8275a62d97100c3ee03126daeef5718de15b7"
+    },
+    {
+      "name": "adr-0008",
+      "path": "docs/adr/0008-independent-checker-isolation-and-artifact-exchange.md",
+      "raw_sha256": "sha256:d752664635ecbc770a3d07d00fa8035cc1dee52abc239396d70687bdd6b60f1a"
+    },
+    {
+      "name": "axiom-evidence-v0.1",
+      "path": "docs/evidence/axiom-evidence-v0.md",
+      "raw_sha256": "sha256:23698ed8dd76ed937098e01f0c4fe3bac9760c4f014d8f5b92d77b4fe781c525"
+    },
+    {
+      "name": "axiom-ir-v0.1",
+      "path": "docs/ir/axiom-ir-v0.md",
+      "raw_sha256": "sha256:3f934789331aa1fc75bee3d1216f30fafcbc3c36c70a7bd147b97b3bed04124a"
+    },
+    {
+      "name": "benchmark-corpus-v0.1",
+      "path": "benchmarks/keyed-finite-table-v0.1/corpus.json",
+      "raw_sha256": "sha256:1b07e93cf52dfbb1daff0bbc62ff42a0a083329945ed2218b56ebfbaa058633f"
+    },
+    {
+      "name": "independent-check-v0.1",
+      "path": "contracts/independent-check-v0.1/contract.json",
+      "raw_sha256": "sha256:8cd14c2078b6f930150ecfdccaa8dad99c7b926cdf173190d8229d79ac53accf"
+    },
+    {
+      "name": "keyed-finite-table-semantics",
+      "path": "docs/semantics/keyed-finite-table-semantics.md",
+      "raw_sha256": "sha256:6b18d65eefa439956db8eebe1f4ce90e08b4def4abf7c718c2605e7528598d0d"
+    },
+    {
+      "name": "pipeline-artifacts-v0.1",
+      "path": "contracts/pipeline-artifacts-v0.1/contract.json",
+      "raw_sha256": "sha256:f9180eb9b9bb4a15ede308691017e489d45289a943da91a0f39ae6802ae69f01"
+    },
+    {
+      "name": "toolchain-adapters-v0.1",
+      "path": "contracts/toolchain-adapters-v0.1/registry.json",
+      "raw_sha256": "sha256:decfd442ace85e0d82aa727bfe85cd2a5ed1b04646c6bdabb6c47af504d43b3e",
+      "registry_digest": "sha256:fcfa6f50ca1adc20281a9e4186e76cedf5e25502b498e1650bdaad58b8708200"
+    }
+  ],
+  "format": "radishaxiom-implementation-readiness",
+  "format_version": "0.1",
+  "generated_files": [
+    {
+      "byte_length": "111926",
+      "path": "fixtures/negative/artifact-tamper.invalid.jcs",
+      "sha256": "sha256:8b1a79e9b61bb6fff31e56d4f1a4ab2f0fef76a77aab5abfa7dbcc71f87f56f0"
+    },
+    {
+      "byte_length": "111915",
+      "path": "fixtures/negative/attestation-overreach.invalid.jcs",
+      "sha256": "sha256:39cd862b8ea7c68fbd9ffd04dc61563edb0dba759ca863199ba927faf7364023"
+    },
+    {
+      "byte_length": "111929",
+      "path": "fixtures/negative/cache-forged-hit.invalid.jcs",
+      "sha256": "sha256:a9dc45f15d67793ce95c2ee8226d8225b519b78bda93b4f09ce3f1eb9f06fdc2"
+    },
+    {
+      "byte_length": "111927",
+      "path": "fixtures/negative/conclusion-aggregation.invalid.jcs",
+      "sha256": "sha256:8008443dd38392e936434d58a1e567fdf95e56d295389396c96245edb075d2f5"
+    },
+    {
+      "byte_length": "113444",
+      "path": "fixtures/negative/duplicate-scenario.invalid.jcs",
+      "sha256": "sha256:818c0bbdb6660407d0e518404a90981a842854eb30997159b92ae89b1c033e62"
+    },
+    {
+      "byte_length": "3070",
+      "path": "fixtures/negative/expected.json",
+      "sha256": "sha256:d677eb6bdb7aac6adde75ef4913511f7af5b05136f1a83fccd69d223bb4f0b44"
+    },
+    {
+      "byte_length": "111926",
+      "path": "fixtures/negative/gate-bypass.invalid.jcs",
+      "sha256": "sha256:39f9dec919b46b4ab040a0bd260399f4e3e77874ee68e58338672406da9d0440"
+    },
+    {
+      "byte_length": "111924",
+      "path": "fixtures/negative/missing-bundle-accepted.invalid.jcs",
+      "sha256": "sha256:9f519bec6a0ba3d7267312174ecafd29051222901ecd63dae04e9366b5ac850d"
+    },
+    {
+      "byte_length": "111881",
+      "path": "fixtures/negative/obligation-omission.invalid.jcs",
+      "sha256": "sha256:9810717b459f6cff86331a3a4abab74608d6a20483b6683e37e907a4b047b4d0"
+    },
+    {
+      "byte_length": "111922",
+      "path": "fixtures/negative/process-failure-disguised.invalid.jcs",
+      "sha256": "sha256:7c2aeb33b88ccdbf54740f1479b5822f46a1cff0f3e7969d0d383e12cb05bfe2"
+    },
+    {
+      "byte_length": "111944",
+      "path": "fixtures/negative/unknown-member.invalid.jcs",
+      "sha256": "sha256:4bad406a0b7f578c9a9b05d18c67054eea1ce2e7229ec0e865474d7c24764529"
+    },
+    {
+      "byte_length": "111884",
+      "path": "fixtures/negative/unknown-profile.invalid.jcs",
+      "sha256": "sha256:78c33d20e79af019340c1f4ab358a40f3fb28a589dee1956764890e716330054"
+    },
+    {
+      "byte_length": "111926",
+      "path": "fixtures/negative/unknown-version.invalid.jcs",
+      "sha256": "sha256:2902f49c06dc75d5460d3dec31997c54600da2bc08c07bae42779a2c2f608673"
+    },
+    {
+      "byte_length": "111926",
+      "path": "fixtures/negative/unsorted-scenarios.invalid.jcs",
+      "sha256": "sha256:bcab8e004068662bedc82494cef3beac4c2d0ab1defa164958edefe06f9bd8e6"
+    },
+    {
+      "byte_length": "111926",
+      "path": "manifest.jcs",
+      "sha256": "sha256:ff3555ac5c53541dbdb6d4d15d27943f8a00344ef2c4cec9b9e1991eeccd7034"
+    },
+    {
+      "byte_length": "22804",
+      "path": "schemas/implementation-readiness-manifest.schema.json",
+      "sha256": "sha256:f244eba7d8a9b16219aa300620cbf1205ef51018d287a7e2700b16850fd1b055"
+    }
+  ],
+  "generator_files": [
+    {
+      "path": "scripts/generate-implementation-readiness.py",
+      "raw_sha256": "sha256:b24bfee9787a0a95cffef87210548c11b9c0e5caafc5c1e65b33a9bf51b50316"
+    },
+    {
+      "path": "scripts/implementation_readiness/__init__.py",
+      "raw_sha256": "sha256:af079b7aae3233152cee2ef8a19186410fb2878d831f3d40618df64aedd853c1"
+    },
+    {
+      "path": "scripts/implementation_readiness/common.py",
+      "raw_sha256": "sha256:2e7659cdf2416d15088edfb59bd4ddd3798cdd970baf9adf7272914ccb3eff32"
+    },
+    {
+      "path": "scripts/implementation_readiness/generator.py",
+      "raw_sha256": "sha256:6f23e866bbe66de1d73cb0c66558d4c3ef43fd9803a119f2997c7d2aeb4d0e44"
+    },
+    {
+      "path": "scripts/implementation_readiness/scenarios.py",
+      "raw_sha256": "sha256:421f1ccb66514e5dc752d5e4f89a88bf1727a2a046f61b33f700408374711541"
+    },
+    {
+      "path": "scripts/implementation_readiness/schema.py",
+      "raw_sha256": "sha256:2f7d61772ef097d468d902c6c586b26d680d22d6b6ad3755598a921139fd879a"
+    }
+  ],
+  "manifest_document_digest": "sha256:acf6e5378c4fd8f124efff380caec147ce52154d0cc29bd0cd7cacf2aff8485a",
+  "manifest_raw_sha256": "sha256:ff3555ac5c53541dbdb6d4d15d27943f8a00344ef2c4cec9b9e1991eeccd7034",
+  "negative_fixture_count": "13",
+  "observation_level": "specified",
+  "profile": "keyed-finite-table-implementation-readiness-v0.1",
+  "scenario_counts": {
+    "benchmark": "20",
+    "checker": "16",
+    "pipeline_and_readiness": "10",
+    "total": "46"
+  }
+}

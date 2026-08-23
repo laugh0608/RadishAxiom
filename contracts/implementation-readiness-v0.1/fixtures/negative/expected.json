@@ -1,0 +1,74 @@
+{
+  "negative": [
+    {
+      "expected_code": "artifact-digest-mismatch",
+      "path": "fixtures/negative/artifact-tamper.invalid.jcs",
+      "sha256": "sha256:8b1a79e9b61bb6fff31e56d4f1a4ab2f0fef76a77aab5abfa7dbcc71f87f56f0"
+    },
+    {
+      "expected_code": "trust-outcome-mismatch",
+      "path": "fixtures/negative/attestation-overreach.invalid.jcs",
+      "sha256": "sha256:39cd862b8ea7c68fbd9ffd04dc61563edb0dba759ca863199ba927faf7364023"
+    },
+    {
+      "expected_code": "cache-identity-mismatch",
+      "path": "fixtures/negative/cache-forged-hit.invalid.jcs",
+      "sha256": "sha256:a9dc45f15d67793ce95c2ee8226d8225b519b78bda93b4f09ce3f1eb9f06fdc2"
+    },
+    {
+      "expected_code": "conclusion-aggregation",
+      "path": "fixtures/negative/conclusion-aggregation.invalid.jcs",
+      "sha256": "sha256:8008443dd38392e936434d58a1e567fdf95e56d295389396c96245edb075d2f5"
+    },
+    {
+      "expected_code": "duplicate-scenario",
+      "path": "fixtures/negative/duplicate-scenario.invalid.jcs",
+      "sha256": "sha256:818c0bbdb6660407d0e518404a90981a842854eb30997159b92ae89b1c033e62"
+    },
+    {
+      "expected_code": "gate-stage-mismatch",
+      "path": "fixtures/negative/gate-bypass.invalid.jcs",
+      "sha256": "sha256:39f9dec919b46b4ab040a0bd260399f4e3e77874ee68e58338672406da9d0440"
+    },
+    {
+      "expected_code": "bundle-outcome-mismatch",
+      "path": "fixtures/negative/missing-bundle-accepted.invalid.jcs",
+      "sha256": "sha256:9f519bec6a0ba3d7267312174ecafd29051222901ecd63dae04e9366b5ac850d"
+    },
+    {
+      "expected_code": "obligation-omission",
+      "path": "fixtures/negative/obligation-omission.invalid.jcs",
+      "sha256": "sha256:9810717b459f6cff86331a3a4abab74608d6a20483b6683e37e907a4b047b4d0"
+    },
+    {
+      "expected_code": "process-outcome-mismatch",
+      "path": "fixtures/negative/process-failure-disguised.invalid.jcs",
+      "sha256": "sha256:7c2aeb33b88ccdbf54740f1479b5822f46a1cff0f3e7969d0d383e12cb05bfe2"
+    },
+    {
+      "expected_code": "unknown-member",
+      "path": "fixtures/negative/unknown-member.invalid.jcs",
+      "sha256": "sha256:4bad406a0b7f578c9a9b05d18c67054eea1ce2e7229ec0e865474d7c24764529"
+    },
+    {
+      "expected_code": "unsupported-profile",
+      "path": "fixtures/negative/unknown-profile.invalid.jcs",
+      "sha256": "sha256:78c33d20e79af019340c1f4ab358a40f3fb28a589dee1956764890e716330054"
+    },
+    {
+      "expected_code": "unsupported-version",
+      "path": "fixtures/negative/unknown-version.invalid.jcs",
+      "sha256": "sha256:2902f49c06dc75d5460d3dec31997c54600da2bc08c07bae42779a2c2f608673"
+    },
+    {
+      "expected_code": "scenarios-not-sorted",
+      "path": "fixtures/negative/unsorted-scenarios.invalid.jcs",
+      "sha256": "sha256:bcab8e004068662bedc82494cef3beac4c2d0ab1defa164958edefe06f9bd8e6"
+    }
+  ],
+  "positive": {
+    "document_digest": "sha256:acf6e5378c4fd8f124efff380caec147ce52154d0cc29bd0cd7cacf2aff8485a",
+    "path": "manifest.jcs",
+    "sha256": "sha256:ff3555ac5c53541dbdb6d4d15d27943f8a00344ef2c4cec9b9e1991eeccd7034"
+  }
+}
