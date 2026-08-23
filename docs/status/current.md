@@ -82,14 +82,18 @@
 
 本日没有安装任何工具或修改本机 Go 环境；先在隔离临时前缀执行已验收的 Go `go1.26.7` 和 checker parser 局部测试并删除临时工具链，后续源码身份与 Axiom IR 结构 / 类型良构切片只使用本机默认 Go `go1.26.3` 与隔离临时 cache。没有执行 solver、Node、生产编译器或正式模型调用，没有构建发布 binary、生成 `checker.artifact` 或独立 checker result、创建 remote、push、发布或产生六平台运行证据。
 
+本次文档收口前已按日历日复核主仓库 10 个提交与 checker 仓库 8 个提交：主仓库的契约 / payload 物化和六次 checker 状态提交，与 checker 的仓库边界、严格 request / bundle、锁定语料、`checker.source` 及四段 Axiom IR 实现提交逐项一致。checker `README.md`、源码身份说明和 Axiom IR 实现说明已覆盖实际代码边界；主仓库规范、机器契约 README 与 ADR 0008 没有因实现切片产生语义变更，保持不动。文档索引原有“进入实现前再实现 request / bundle”的旧顺位已改为当前受控实现入口。
+
 ## 下一事项（2026-08-24）
 
-下一主项是为锁定 bundle 中的 Axiom Evidence v0.1 建立严格结构与身份解析入口。继续遵守 Go checker 与生产 Rust `raxc` 分仓、分依赖图、分发布流水线，以及禁止复用生产 Evidence parser / 聚合器 / 义务生成器的 ADR 0008 边界；`checker.source` manifest 必须随任何有意源码变化重放并审阅。
+明日建议按以下顺序，为锁定 bundle 中的 Axiom Evidence v0.1 建立严格结构与身份解析入口。继续遵守 Go checker 与生产 Rust `raxc` 分仓、分依赖图、分发布流水线，以及禁止复用生产 Evidence parser / 聚合器 / 义务生成器的 ADR 0008 边界；`checker.source` manifest 必须随任何有意源码变化重放并审阅。
 
-1. 只使用 checker 自有 strict JSON/JCS 与 SHA-256，从 bundle 已验证的唯一 Evidence artifact 解析当前 28 个场景实际使用的闭合顶层、entry、tag 与引用；逐项重算 tool、execution、obligation、trust、uncovered 和完整 document domain ID，但不接受生产 ID 作为事实。
-2. 先冻结实际 Evidence tag / support / conclusion 组合和确定性顺序，加入未知 member / version / tag、非规范顺序、definition ID / document digest 漂移、重复 / 悬空引用及 subject 绑定负例；bundle 的 artifact missing、raw digest 与 resource limit 仍必须在 Evidence parser 前先行失败。
-3. 本切片只形成 Evidence 结构、身份、闭合引用索引和顶层计数，不判断五种 obligation 状态是否被正确使用，不比较义务集合完整性，不重放反例 / concrete check，不检查 certificate / attestation，也不重算 conclusion 或生成独立四态 result。
+1. 先盘点并冻结 28 个场景实际使用的 Evidence 顶层 member、entry / support / conclusion tag、domain separator、引用目标和确定性顺序；声明范围外的组合继续失败关闭，不从生产实现导入 parser 或生成代码。
+2. 只使用 checker 自有 strict JSON/JCS 与 SHA-256，从 bundle 已验证的唯一 Evidence artifact 解析该闭合 profile；逐项重算 tool、execution、obligation、trust、uncovered 和完整 document domain ID，建立闭合引用索引，但不接受生产 ID 作为事实。
+3. 加入未知 member / version / tag、非规范顺序、definition ID / document digest 漂移、重复 / 悬空引用及 subject 绑定负例；bundle 的 artifact missing、raw digest 与 resource limit 仍必须在 Evidence parser 前先行失败。
 4. 每次源码变化都先更新并审阅 `checker.source` manifest，再要求现有 request / bundle、28 个 bundle、Axiom IR、源码身份专项门禁和全量 test / vet 保持通过；精确工具链或平台结论只按实际运行记录声明。
+
+停止线：本切片只形成 Evidence 结构、身份、闭合引用索引和顶层计数，不判断五种 obligation 状态是否被正确使用，不比较义务集合完整性，不重放反例 / concrete check，不检查 certificate / attestation，也不重算 conclusion 或生成独立四态 result。
 
 完成标准：Evidence parser 对锁定 28 个 bundle 的实际 v0.1 结构、全部 domain identity 与闭合引用形成小而完整的成功 / 拒绝路径；结构解析成功不评价 Evidence 对程序的结论是否正确。现有 28 个 bundle、Axiom IR、checker 测试、源码身份门禁和两个仓库级门禁继续通过，测试结果不升级为 `checked`、`proved` 或六平台结论。
 

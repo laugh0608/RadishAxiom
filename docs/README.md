@@ -43,10 +43,10 @@
 - [Implementation Readiness Contract v0.1](../contracts/implementation-readiness-v0.1/README.md)：20 个 benchmark、16 个 CHK-* 与 pipeline / readiness 路径的统一实现入口矩阵、来源覆盖和负向拒绝契约。
 - [Keyed Finite Table Checker Bundle Contract v0.1](../contracts/keyed-finite-table-checker-bundles-v0.1/README.md)：28 个 readiness 场景的完整离线 bundle、Axiom Evidence、receipt、独立预期结果、进程失败边界与负例摘要链。
 
-## 进入实现前物化事项
+## 受控实现进展与下一入口
 
-实现语言、验证后端、目标执行、生产管线和独立 checker 的架构决策已经确定，首批交换格式与身份契约也已进入仓库门禁。进入受控实现前，还需要完成：
+实现语言、验证后端、目标执行、生产管线和独立 checker 的架构决策已经确定，首批交换格式、身份契约、执行 profile 与 28 个离线 bundle 已进入仓库门禁。独立 checker 已在外部隔离仓库完成严格 request / manifest、只读 bundle、`checker.source`，以及锁定 Axiom IR profile 的结构与类型良构切片；这些结果不代表完整 Evidence 检查或独立结论。
 
-- 审阅已冻结的 cvc5 options、Node invocation limits、checker resource limits 与 certificate 空能力停止线；28 个 bundle 已绑定该契约，可作为首个受控 checker 切片的验收输入；
-- Go `go1.26.7` macOS arm64 host/source 已完成局部 payload 验收；cvc5、Node、Rust 与其余平台仍须按真实实现依赖顺位完成摘要、签名 / 来源、包内依赖与许可证验收；
-- 通过上述门禁后，按已冻结职责实现 checker 的严格 request / bundle 解析、摘要核对和拒绝路径；每次实现必须覆盖其声明范围内的完整成功、失败与资源边界。
+- 当前阶段、精确实现范围、下一事项与停止线统一以[当前状态](status/current.md)为准，不在文档索引复制易漂移的源码摘要或提交身份；
+- 下一受控入口是 Axiom Evidence v0.1 的严格结构、domain identity 与闭合引用解析，之后才依次进入 obligation completeness、state / support、replay 和 conclusion recompute；
+- Go `go1.26.7` macOS arm64 host/source 已完成局部 payload 验收；cvc5、Node、Rust 与其余平台仍须按真实实现依赖顺位完成摘要、签名 / 来源、包内依赖与许可证验收。
