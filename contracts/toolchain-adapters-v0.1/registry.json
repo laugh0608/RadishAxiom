@@ -51,7 +51,7 @@
       },
       "id": "cvc5-1.3.4-qf-uflia-v0.1",
       "kind": "verification-adapter",
-      "materialization": "reserved-not-materialized",
+      "materialization": "specified-not-materialized",
       "specification": "docs/adr/0005-first-verification-backend.md",
       "specification_sha256": "sha256:f243478dced0d1a987ebdc32cf656645b67d71f5f962520f549ba273954cfa71",
       "tool": "cvc5-cli"
@@ -96,7 +96,7 @@
       },
       "id": "node-24-esm-invocation-v0.1",
       "kind": "runtime-invocation-profile",
-      "materialization": "reserved-not-materialized",
+      "materialization": "specified-not-materialized",
       "specification": "docs/adr/0006-first-target-runtime-and-execution-path.md",
       "specification_sha256": "sha256:c49b8ac5bd9861291d50f08338469ea04aaa0f156a3b290ff227f8b6052ff9ed",
       "tool": "node-runtime"
@@ -145,8 +145,8 @@
       "tool": "rust-toolchain"
     }
   ],
-  "registry_digest": "sha256:fcfa6f50ca1adc20281a9e4186e76cedf5e25502b498e1650bdaad58b8708200",
-  "review_date": "2026-08-22",
+  "registry_digest": "sha256:9bd23e416810cfeaa4e61d70e2ddc3bcba976371785d063e07f9cf26e30833ea",
+  "review_date": "2026-08-23",
   "sources": [
     {
       "id": "cvc5-copying-1.3.4",
@@ -407,28 +407,30 @@
           "source_url": "https://go.dev/dl/go1.26.7.darwin-amd64.tar.gz"
         },
         {
-          "acceptance": "not-accepted",
-          "archive_inspection": "not-performed",
+          "acceptance": "accepted-for-controlled-build-input",
+          "acceptance_record": "contracts/toolchain-payload-acceptance-v0.1/records/go1.26.7-darwin-arm64.acceptance.json",
+          "archive_inspection": "passed-toolchain-tar-v0.1",
           "digest": {
             "kind": "publisher-recorded",
             "sha256": "020a1e8224811be75163e920bc77e0926a1390a6aeea19bdcf23f74b9d749f6d",
             "source": "go-downloads-1.26.7"
           },
           "filename": "go1.26.7.darwin-arm64.tar.gz",
-          "payload_verification": "not-downloaded",
+          "payload_verification": "sha256-matched-publisher-record",
           "platform": "macos-arm64",
           "source_url": "https://go.dev/dl/go1.26.7.darwin-arm64.tar.gz"
         },
         {
-          "acceptance": "not-accepted",
-          "archive_inspection": "not-performed",
+          "acceptance": "accepted-for-controlled-build-input",
+          "acceptance_record": "contracts/toolchain-payload-acceptance-v0.1/records/go1.26.7-source.acceptance.json",
+          "archive_inspection": "passed-toolchain-tar-v0.1",
           "digest": {
             "kind": "publisher-recorded",
             "sha256": "0ed24eac755105085b89fe9cabc2742b91a0ad7b94b59d3ad364918ebc8956ad",
             "source": "go-downloads-1.26.7"
           },
           "filename": "go1.26.7.src.tar.gz",
-          "payload_verification": "not-downloaded",
+          "payload_verification": "sha256-matched-publisher-record",
           "platform": "source",
           "source_url": "https://go.dev/dl/go1.26.7.src.tar.gz"
         },

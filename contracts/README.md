@@ -5,7 +5,9 @@
 当前契约：
 
 - [Independent Check Contract v0.1](independent-check-v0.1/README.md)：ADR 0008 的 request、bundle manifest、独立 result、摘要和结构拒绝样例。
+- [Execution Profile Contract v0.1](execution-profiles-v0.1/README.md)：cvc5 / Node / Go checker 的允许 invocation、职责分离 limits、进程结果边界和空 certificate 能力矩阵。
 - [Toolchain & Adapter Identity Registry v0.1](toolchain-adapters-v0.1/README.md)：ADR 0004–0008 的精确工具版本、六平台候选制品、官方元数据、供应链停止线与 profile 身份。
+- [Toolchain Payload Acceptance v0.1](toolchain-payload-acceptance-v0.1/README.md)：逐 payload 绑定 publisher / 项目摘要、只读 archive 观察、vendor / 许可证清单、签名状态与受限最终 acceptance；当前仅接受 Go `go1.26.7` macOS arm64 host 与 source。
 - [Pipeline Artifact Contract v0.1](pipeline-artifacts-v0.1/README.md)：ADR 0007 的 obligation set、host data、SMT query、target module、pipeline receipt、gate / cache / partial failure 结构与负例。
 - [Implementation Readiness Contract v0.1](implementation-readiness-v0.1/README.md)：统一四题 benchmark、P0–P9、gate / cache / receipt、Evidence、独立检查与实现停止线的版本化场景矩阵。
 - [Keyed Finite Table Checker Bundle Contract v0.1](keyed-finite-table-checker-bundles-v0.1/README.md)：把 readiness 稳定场景 ID 物化为 20 个完整 benchmark bundle、5 个跨契约 bundle、3 个缺失 / 篡改 / 省略负例及独立预期结果。

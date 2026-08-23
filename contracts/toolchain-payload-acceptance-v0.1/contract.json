@@ -1,0 +1,40 @@
+{
+  "contract_digest": "sha256:f88d0f53b5f23e885636488e54597af50664e8bfa576ecb557f2a9f984eff22b",
+  "counts": {
+    "accepted_records": "2",
+    "observations": "2"
+  },
+  "digest_domain": "radishaxiom.toolchain-payload-acceptance-set.v0.1",
+  "format": "radishaxiom-toolchain-payload-acceptance-set",
+  "format_version": "0.1",
+  "inspection_method": {
+    "path": "scripts/inspect-toolchain-tar.py",
+    "raw_sha256": "sha256:c098e87a566d2883754aad71baa4db1164071d48688a59290fbca551ae225f9f"
+  },
+  "records": [
+    {
+      "artifact_filename": "go1.26.7.darwin-arm64.tar.gz",
+      "decision": "accepted-for-controlled-build-input",
+      "id": "go1.26.7-darwin-arm64-2026-08-23",
+      "path": "contracts/toolchain-payload-acceptance-v0.1/records/go1.26.7-darwin-arm64.acceptance.json",
+      "platform": "macos-arm64",
+      "raw_sha256": "sha256:c5c50b2144d5898c0d610e38c242cc5b5a5e8944e5c0cbc5590b8e1491b3e874",
+      "record_digest": "sha256:75e83f73d5794c1e5ddfafc98a4868e90cb97b74bd7f65976663637e0e1c682e"
+    },
+    {
+      "artifact_filename": "go1.26.7.src.tar.gz",
+      "decision": "accepted-for-controlled-build-input",
+      "id": "go1.26.7-source-2026-08-23",
+      "path": "contracts/toolchain-payload-acceptance-v0.1/records/go1.26.7-source.acceptance.json",
+      "platform": "source",
+      "raw_sha256": "sha256:397566ea4be2264089360829911bd756b26acb75455f400e2e22853eae170f9f",
+      "record_digest": "sha256:ca484056d0f5e3aa6aa26a2e2f5db71db7151f6dcc48115cea886bf2819a9122"
+    }
+  ],
+  "registry_binding": {
+    "path": "contracts/toolchain-adapters-v0.1/registry.json",
+    "raw_sha256": "sha256:3a9dbcf106fb1626244b5f1491ff74b783300ece0db44c9b81d356261326724d",
+    "registry_digest": "sha256:9bd23e416810cfeaa4e61d70e2ddc3bcba976371785d063e07f9cf26e30833ea"
+  },
+  "review_date": "2026-08-23"
+}

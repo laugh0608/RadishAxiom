@@ -37,6 +37,12 @@ NORMATIVE_SPECS = (
         "0008",
     ),
     (
+        "execution-profile-contract",
+        Path("contracts/execution-profiles-v0.1/manifest.jcs"),
+        "radishaxiom-execution-profile-set",
+        "0.1",
+    ),
+    (
         "keyed-finite-table-semantics",
         Path("docs/semantics/keyed-finite-table-semantics.md"),
         "markdown",

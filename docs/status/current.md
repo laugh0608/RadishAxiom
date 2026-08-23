@@ -4,7 +4,7 @@
 
 ## 当前阶段
 
-项目处于首域语义、Axiom IR v0.1、Axiom Evidence v0.1、版本身份分层、四题版本化基准语料、Agent 对比实验预注册、`raxc` 生产实现语言、首个验证后端、首个目标执行路径、首版编译管线和独立 checker 隔离边界都已经形成的设计到受控实现入口物化阶段。checker request / bundle / result 的结构契约、工具链 / adapter 元数据身份清单、pipeline artifact 契约、实现就绪场景矩阵，以及四题完整 checker 离线 bundle 与跨契约 fixture 已经物化；当前目标是冻结 cvc5 / Node / checker 的完整 options / limits 与 certificate 能力矩阵，同时保留工具 payload、许可证和真实跨平台执行的未验收停止线。在全部实现就绪门禁完成并取得单独授权前不进入编译器 / checker 实现或正式模型调用。
+项目处于首域语义、Axiom IR v0.1、Axiom Evidence v0.1、版本身份分层、四题版本化基准语料、Agent 对比实验预注册、`raxc` 生产实现语言、首个验证后端、首个目标执行路径、首版编译管线和独立 checker 隔离边界都已经形成的设计到受控实现入口物化阶段。checker request / bundle / result 的结构契约、工具链 / adapter 元数据身份清单、pipeline artifact 契约、实现就绪场景矩阵、四题完整 checker 离线 bundle，以及 cvc5 / Node / checker 的 options / limits 与 certificate 空能力矩阵已经物化。Go `go1.26.7` macOS arm64 host/source 两个精确 payload 已完成局部供应链验收；下一阶段进入需要单独授权的 checker 严格 request / bundle parser 小切片，仍不把 payload 验收当成安装、执行、checker 正确性或正式模型调用许可。
 
 ## 已确定
 
@@ -24,7 +24,9 @@
 - 首版编译管线：`raxc-keyed-finite-table-pipeline-v0.1` 内容寻址制品 DAG；固定 IR 规范化、完整义务、单义务 query / cvc5 attempt、反例重放、输入检查、验证门控、Node target、宿主比较与 Evidence 装配顺序；缓存只复用精确身份的不可变制品，partial failure 进入非证明性 receipt，核心 `failed` / `unknown` 与输入拒绝均阻断目标生成和执行。
 - 独立 checker：Go 1.26 语言基线与 `go1.26.7` 精确工具链；与生产 Rust `raxc` 分仓、分依赖图、分发布流水线和分进程，禁止复用生产 parser、normalizer、义务生成器、解释器或 adapter；以只读内容寻址 bundle 离线交换制品，独立结果在 Evidence 外区分 `accepted`、`accepted-with-trust`、`incomplete` 和 `rejected`，certificate / backend attestation、剩余 trust、资源失败与 checker 自身可信基保持可见。
 - Independent Check Contract v0.1：以 JSON Schema Draft 2020-12 描述 request / bundle manifest / result 抽象结构，并由独立生成器固定 JCS 字节、域摘要、check ID、闭合 code registry、四态聚合、一个严格 Evidence 拒绝 bundle 和 18 个结构 / 顺序 / 身份负例；当前只覆盖 ASCII fixture，不冒充完整 Unicode / JCS、Evidence 语义或 checker 实现。
-- Toolchain & Adapter Identity Registry v0.1：固定 Rust `1.97.1`、Go `go1.26.7`、cvc5 `1.3.4`、Node.js `24.19.0` 的 source 与 Linux / macOS / Windows `amd64` / `arm64` 候选制品，登记官方来源、publisher 摘要、依赖审阅目标、许可证来源以及七个 build / adapter / target / invocation / pipeline / checker profile；全部 payload、archive 内容和许可证仍明确为 `not-accepted`，Rust 制品与 cvc5 source 摘要仍待权威元数据捕获。
+- Toolchain & Adapter Identity Registry v0.1：固定 Rust `1.97.1`、Go `go1.26.7`、cvc5 `1.3.4`、Node.js `24.19.0` 的 source 与 Linux / macOS / Windows `amd64` / `arm64` 候选制品，登记官方来源、publisher 摘要、依赖审阅目标、许可证来源以及七个 build / adapter / target / invocation / pipeline / checker profile；Go macOS arm64 host/source 两项绑定版本化 acceptance record，其余 payload 保持 `not-accepted`，Rust 制品与 cvc5 source 摘要仍待权威元数据捕获。
+- Toolchain Payload Acceptance v0.1：Go `go1.26.7` macOS arm64 host 64,772,572 bytes 与 source 34,150,794 bytes 的项目重算 SHA-256 均匹配 publisher 记录；只读检查 16,701 / 16,675 个 archive member，路径、重复项、类型、链接、setuid/setgid、权限/owner/mtime 和顶层布局通过，host/source 的 `VERSION`、`LICENSE`、`PATENTS`、36 项许可证/专利清单、3 份 vendor manifest 与 17 个模块一致。两项仅接受为 `accepted-for-controlled-build-input`，签名保持 `not-verified-no-signature-input`，不授权安装或执行。
+- Execution Profile Contract v0.1：以单一 canonical manifest 固定 cvc5 `1.3.4` QF_UFLIA、Node.js `24.19.0` invocation 与 Go checker 的允许参数、清空环境、stdin / stdout framing、内部与外层资源边界、checker 七项确定性计数和结果形成停止线；Alethe / CPC 仅列为候选，受支持 certificate profile 集合为 0，proof / attestation 结论反向引用既有权威场景而不复制第二套 outcome、trust 或 code。
 - Pipeline Artifact Contract v0.1：以三个 JSON Schema 和两个原始文本 profile 固定 obligation set、host data、SMT query、target module 与 pipeline receipt 的首批结构和规范字节；包含 gate 打开的完整 receipt、cvc5 timeout 后阻断 P6–P8 的 partial receipt、域摘要 / tool / cache 身份及 38 个关键负例。当前只覆盖 ASCII 合成 fixture 和 AX-B01 最小结构切片，不冒充义务完整性、parser、solver、target 执行、Evidence 或跨平台结果。
 - Implementation Readiness Contract v0.1：以 canonical manifest 和 JSON Schema 统一 20 个 benchmark、ADR 0008 的 16 个 `CHK-*` 及 10 个 pipeline / readiness 场景，逐行固定输入、P0–P9、gate、artifact role、receipt、Evidence、独立结果 / 进程、trust / uncovered 与六平台注册适用范围；59 条 benchmark / ADR 来源要求全部具有反向场景覆盖，并以 13 个负例拒绝 gate 绕过、义务遗漏、artifact 篡改、伪造 cache hit、缺失 bundle 后错误接受、attestation 越权、错误结论聚合、进程失败伪装结果及未知 member / version / profile。全部场景保持 `specified`，`observed` 为 0。
 - Keyed Finite Table Checker Bundle Contract v0.1：从 readiness 的稳定 ID 物化 20 个 benchmark、5 个跨契约场景和 3 个负例；每个目录仅含 request、manifest 与内容寻址 blob，完整绑定 IR、义务、pipeline receipt、Axiom Evidence、独立预期结果及 10 类 check ID。正确 / 错误 / 非法输入 / timeout、host mismatch、certificate required / attestation allowed、checker 内部资源不足与进程外层失败均保持独立聚合；全部仍为 `specified`，不冒充 checker、solver、Node 或六平台执行。
@@ -44,28 +46,34 @@
 8. `CHK-CONCRETE-01` 将 host mismatch 保持为 `implementation_inconsistent`，`CHK-PROOF-01` / `02` 分别固定 certificate-required 的 `incomplete` 与 attestation-allowed 的 `accepted-with-trust`，`CHK-RESOURCE-01` 使用请求内 step budget 形成 `incomplete`，`CHK-PROCESS-01` 只生成外层进程失败而不伪造四态结果。
 9. 每个 bundle 只物化 manifest 列出的普通 blob；request、manifest、Evidence、receipt、独立结果、条目和 check ID 均可离线重算，预期结果保持在输入 bundle 之外。readiness 的 20 个 benchmark 行已从 `specified-not-materialized` 收口为 `complete`，证据等级仍为 `specified`。
 10. Checker Bundle、Independent Check、Pipeline Artifact、Implementation Readiness、Toolchain Registry、Benchmark Corpus 专项生成检查、JSON Schema Draft 2020-12 校验和仓库级 776 文件检查均已通过。
+11. 建立 `contracts/execution-profiles-v0.1/` 与零第三方依赖生成入口；单一 manifest 物化 3 个执行 profile、5 个职责分离 limit set、5 个 canonical 投影、27 个逐字段 / 边界负例和来源摘要。
+12. cvc5 profile 固定 safe / strict / QF_UFLIA、model / proof 生产与内部检查、`rlimit-per` / `tlimit-per` 和外层 stream / wall / memory 上限，拒绝路径参数、环境继承、随机 seed 与未登记 option；Node profile 固定 Permission Model、目标模块摘要解析只读 grant、BigInt / UTF-8 codec、进程 / 输出限制和能力 denylist。
+13. checker profile 为 request 七项 limit 固定 parser、摘要、IR / obligation、replay、certificate、wall-clock 与逻辑内存的计数位置；`CHK-RESOURCE-01` 只允许内部检测后形成规范结果，`CHK-PROCESS-01` 的外层 kill / crash / 截断只能形成进程失败记录。certificate 支持集合保持为空，`CHK-PROOF-01` / `02` 继续作为唯一结论权威。
+14. cvc5 / Node registry profile 更新为 `specified-not-materialized`，不改变 payload 的 `not-accepted`；28 个 checker bundle 全部新增 Execution Profile manifest normative blob 与 contract 来源绑定，摘要链按 registry → pipeline → readiness → execution profiles → bundles 顺序重算。
+15. Toolchain Registry、Pipeline Artifact、Implementation Readiness、Execution Profile、Checker Bundle 专项重放、3 份 JSON Schema Draft 2020-12 校验、28 个 bundle profile blob 绑定检查和仓库级 848 文件检查均通过；全部仍为 `specified`，没有产生工具运行观察。
+16. 从 registry 登记的官方 HTTPS URL 下载 Go `go1.26.7` macOS arm64 host 与 source 到隔离临时目录；host 单连接中断后断点续传，source 低速连接停止后按官方 Range 能力补齐连续区间。两项最终字节数和项目重算 SHA-256 都与 publisher 记录完全一致，没有安装或执行归档内容。
+17. 新增 `scripts/inspect-toolchain-tar.py`，不释放 archive 即拒绝绝对 / 非规范 / 越界 / 重复路径、越界链接、特殊文件和 setuid/setgid，记录全成员元数据摘要、布局、必需文件、许可证/专利与 vendor module 清单；host/source 分别观察 16,701 / 16,675 个成员，链接与特殊文件均为 0。
+18. 建立 `contracts/toolchain-payload-acceptance-v0.1/`：两份脱离绝对路径的观察、两份逐 payload acceptance record、registry / inspector 摘要绑定、两份 Draft 2020-12 schema 和 7 个负例；Go host/source 的许可证与依赖清单一致，最终作用域明确排除安装、执行、签名验证、源码可复现性、checker 正确性、跨平台等价和具体分发法律判断。
+19. Toolchain Registry、Payload Acceptance、Pipeline Artifact、Implementation Readiness、Execution Profile 与 Checker Bundle 的完整摘要 DAG 已按顺序重算和重放；两份新 schema 通过 Draft 2020-12 校验，仓库级 866 文件检查通过。128 MiB 隔离下载目录及其中 13 个归档、分段和临时检查文件已经精确删除。
 
-本日没有下载或安装 Rust、Go、cvc5、Node payload，没有创建编译器 / checker 工程，没有执行 solver、Node、checker 或正式模型调用，也没有产生六平台运行证据。
+本日只下载并检查上述两个 Go payload；没有安装任何工具，没有创建编译器 / checker 工程，没有执行归档内 Go、solver、Node、checker 或正式模型调用，也没有产生六平台运行证据。下载归档只存在于隔离临时目录，并在验收记录与验证完成后删除。
 
 ## 下一事项（2026-08-24）
 
-下一主项是物化“执行 profile options / limits 与 certificate 能力契约 v0.1”，把 bundle 已使用的概念性限制收口为生产管线、Node invocation 和独立 checker 共用但职责分离的机器契约；这仍是零第三方依赖的指定态工作，不下载或运行登记工具。
+下一主项是独立 checker 的严格 request / bundle parser 小切片。实现仍须单独授权，并继续遵守 Go checker 与生产 Rust `raxc` 分仓、分依赖图、分发布流水线和禁止复用生产 parser / normalizer 的 ADR 0008 边界。
 
-1. 为 cvc5 1.3.4 QF_UFLIA adapter 冻结允许的 CLI 参数、stdin / stdout 协议、wall-clock / memory / semantic step 上限、退出码与 `unknown` / timeout / error 映射；拒绝未登记 option、环境继承、随机种子和路径输入。
-2. 为 Node 24.19.0 invocation 冻结允许的 flags、环境清空、stdin / stdout framing、BigInt / UTF-8 codec、进程与输出上限，以及 target capability denylist；操作失败继续与 Evidence 语义状态分离。
-3. 为 Go checker 冻结 request 七项 limit 的确定性计数位置、外层 OS hard limit 伴随记录、结果可形成与不可形成边界，并把 `CHK-RESOURCE-01` / `CHK-PROCESS-01` 作为黄金场景。
-4. 建立 certificate capability matrix；在首个格式、规则覆盖和独立 certificate checker 未验收前，受支持 profile 集合保持为空，`certificate-required` 稳定产生 `incomplete`，不得把 attestation 升级为 proof。
-5. 版本化生成 schema、canonical 正例、逐字段负例、来源摘要和 bundle / readiness 反向覆盖；不复制第二套 outcome、trust 或 code 结论。
+1. 先冻结 parser 切片的仓库位置、输入范围和停止线：只覆盖 request 与 bundle manifest 的严格 JSON/JCS 外壳、闭合字段、版本 / profile、相对路径与 raw length / SHA-256 核对，不进入完整 Axiom IR、Evidence 语义、obligation 重建、certificate 或四态聚合。
+2. 如需真实构建或测试，另行说明并授权如何取得已验收的 `go1.26.7` host payload；优先在隔离临时前缀精确解包，不修改现有 `mise`、PATH 或全局 Go。当前本机 `go1.26.3` 不替代精确构建身份。
+3. 以现有 28 个 bundle 和 3 个缺失 / 篡改 / 省略 bundle 作为输入边界，先交付拒绝优先的最小闭环；测试通过只形成实现检查证据，不升级为 `proved` 或六平台结论。
+4. cvc5、Node、Rust 与其余 Go 平台 payload 按后续真实实现依赖顺位分别验收；不把本批 Go host/source acceptance 外推或打包成隐式安装。
 
-完成标准：cvc5、Node 与 checker 的全部允许 option / limit 都有唯一机器表示和失败映射；certificate 能力为空的停止线可由 `CHK-PROOF-01` / `02` 重放；生成器、负例、现有 28 个 bundle、文档链接及仓库级检查全部通过。
-
-下一事项仍不下载或安装工具 payload，不创建生产编译器或 checker 工程，不执行 solver、Node、checker 或正式模型调用；工具供应链、真实六平台结果和首次实现授权继续保持停止线。
+完成标准：parser 对声明范围内的成功与拒绝路径形成可审阅实现和测试，工具链身份与隔离方式可复核，未覆盖语义保持显式；现有生成器、28 个 bundle、文档链接和仓库门禁继续通过。没有新的实现 / 工具使用授权时只停留在本状态说明。
 
 ## 后续顺位
 
-1. 先冻结 cvc5 options、Node invocation limits、checker resource limits 与 certificate 能力矩阵，并将其纳入同一 readiness / bundle profile。
-2. 工具 payload 验收作为独立授权的供应链任务，在隔离临时目录中重算 SHA-256、验证可用签名 / 来源并盘点包内依赖与许可证；当前 registry 不能作为安装或执行许可。
-3. 场景矩阵、完整 bundle、options / limits 和供应链门禁审阅通过后，再提出 checker 严格 request / bundle 解析、摘要核对和拒绝路径的受控实现任务；远程仓库、依赖安装、push、发布与部署仍分别授权。
+1. Go host/source 局部供应链门禁已经通过；下一步只在明确授权下进入 checker 严格 request / bundle 解析、摘要核对和拒绝路径，不把 payload acceptance 当成安装或执行许可。
+2. parser 小切片通过后再扩展 Axiom IR / obligation / Evidence 的独立重建；远程仓库创建、依赖安装、push、发布与部署仍分别授权。
+3. cvc5、Node、Rust payload 与六平台原生结果按实现依赖逐批验收；certificate profile 只有在格式、checker、完整规则覆盖和 trust step 政策独立通过后才可加入非空支持集合。
 4. 工具链可用且实现入口验证通过后，才准备 Agent 实验 execution lock 和正式模型调用。
 
 首域语义、Axiom IR、Axiom Evidence 与较早 ADR 中“后续技术决策尚未冻结”的文字属于其接受时的范围说明；现行实现语言、验证后端、目标执行、生产管线和独立 checker 口径分别以 ADR 0004–0008 为准。首域语义的原始摘要已被基准语料和 Agent 实验注册绑定，Axiom IR 规范的原始摘要也已被实验注册绑定，不能为同步阶段措辞而原地改写。
@@ -74,7 +82,7 @@
 
 - 表面语法；
 - Axiom Evidence 的具体证明 certificate 格式与独立 checker 内部实现；
-- Rust / Go / cvc5 / Node payload 的实际摘要 / 签名验收、包内依赖与许可证清单、cvc5 options、Node invocation limits、checker resource limits、certificate 能力与真实跨实现 / 跨平台语义结果；
+- Rust / cvc5 / Node、其余 Go 平台 payload 的实际摘要 / 签名验收、包内依赖与许可证清单，Go host/source 的 publisher 签名与源码可复现性，首个受支持 certificate 格式 / checker / 规则覆盖，以及真实跨实现 / 跨平台语义结果；
 - Agent 实验的 execution lock、模型精确 revision、提示材料和 runner；
 - 包管理、IDE、插件和发布载体；
 - 首个具体产品版本、发布载体、发布记录与自动化；
@@ -96,6 +104,7 @@
 - [ADR 0007：首版验证优先编译管线与制品协议](../adr/0007-first-verification-first-compilation-pipeline.md)
 - [ADR 0008：独立 checker 的实现语言、制品交换与隔离边界](../adr/0008-independent-checker-isolation-and-artifact-exchange.md)
 - [Independent Check Contract v0.1](../../contracts/independent-check-v0.1/README.md)
+- [Execution Profile Contract v0.1](../../contracts/execution-profiles-v0.1/README.md)
 - [Toolchain & Adapter Identity Registry v0.1](../../contracts/toolchain-adapters-v0.1/README.md)
 - [Pipeline Artifact Contract v0.1](../../contracts/pipeline-artifacts-v0.1/README.md)
 - [Implementation Readiness Contract v0.1](../../contracts/implementation-readiness-v0.1/README.md)

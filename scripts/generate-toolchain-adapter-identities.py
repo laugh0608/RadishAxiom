@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Generate and validate the toolchain / adapter identity registry v0.1.
 
-The registry records reviewed publisher metadata. It does not download an
-artifact, verify a payload digest, inspect an archive, or accept a license.
+The registry records reviewed publisher metadata and points to separately
+versioned payload acceptance records. It never derives acceptance from a
+version match or from another platform's artifact.
 """
 
 from __future__ import annotations
@@ -21,10 +22,21 @@ CONTRACT_ROOT = REPO_ROOT / "contracts/toolchain-adapters-v0.1"
 FORMAT = "radishaxiom-toolchain-adapter-identities"
 FORMAT_VERSION = "0.1"
 DIGEST_DOMAIN = "radishaxiom.toolchain-adapter-identities.v0.1"
-REVIEW_DATE = "2026-08-22"
+REVIEW_DATE = "2026-08-23"
 
 SHA256_PATTERN = re.compile(r"^[0-9a-f]{64}$")
 ID_PATTERN = re.compile(r"^[a-z0-9][a-z0-9.-]*$")
+
+ACCEPTED_ARTIFACTS = {
+    "go1.26.7.darwin-arm64.tar.gz": (
+        "contracts/toolchain-payload-acceptance-v0.1/records/"
+        "go1.26.7-darwin-arm64.acceptance.json"
+    ),
+    "go1.26.7.src.tar.gz": (
+        "contracts/toolchain-payload-acceptance-v0.1/records/"
+        "go1.26.7-source.acceptance.json"
+    ),
+}
 
 PLATFORMS = (
     {
@@ -185,7 +197,7 @@ def artifact(
     source_url: str,
     digest: dict[str, str],
 ) -> dict[str, Any]:
-    return {
+    result = {
         "acceptance": "not-accepted",
         "archive_inspection": "not-performed",
         "digest": digest,
@@ -194,6 +206,17 @@ def artifact(
         "platform": platform,
         "source_url": source_url,
     }
+    acceptance_record = ACCEPTED_ARTIFACTS.get(filename)
+    if acceptance_record is not None:
+        result.update(
+            {
+                "acceptance": "accepted-for-controlled-build-input",
+                "acceptance_record": acceptance_record,
+                "archive_inspection": "passed-toolchain-tar-v0.1",
+                "payload_verification": "sha256-matched-publisher-record",
+            }
+        )
+    return result
 
 
 def source_artifact(
@@ -399,7 +422,7 @@ PROFILES = (
         },
         "id": "cvc5-1.3.4-qf-uflia-v0.1",
         "kind": "verification-adapter",
-        "materialization": "reserved-not-materialized",
+        "materialization": "specified-not-materialized",
         "specification": "docs/adr/0005-first-verification-backend.md",
         "tool": "cvc5-cli",
     },
@@ -441,7 +464,7 @@ PROFILES = (
         },
         "id": "node-24-esm-invocation-v0.1",
         "kind": "runtime-invocation-profile",
-        "materialization": "reserved-not-materialized",
+        "materialization": "specified-not-materialized",
         "specification": "docs/adr/0006-first-target-runtime-and-execution-path.md",
         "tool": "node-runtime",
     },
@@ -555,12 +578,42 @@ def schema() -> dict[str, Any]:
     }
     artifact_schema = {
         "additionalProperties": False,
+        "allOf": [
+            {
+                "else": {"not": {"required": ["acceptance_record"]}},
+                "if": {
+                    "properties": {
+                        "acceptance": {
+                            "const": "accepted-for-controlled-build-input"
+                        }
+                    },
+                    "required": ["acceptance"],
+                },
+                "then": {"required": ["acceptance_record"]},
+            }
+        ],
         "properties": {
-            "acceptance": {"const": "not-accepted"},
-            "archive_inspection": {"const": "not-performed"},
+            "acceptance": {
+                "enum": [
+                    "accepted-for-controlled-build-input",
+                    "not-accepted",
+                ]
+            },
+            "acceptance_record": {
+                "pattern": (
+                    "^contracts/toolchain-payload-acceptance-v0\\.1/records/"
+                    "[a-z0-9.-]+\\.acceptance\\.json$"
+                ),
+                "type": "string",
+            },
+            "archive_inspection": {
+                "enum": ["not-performed", "passed-toolchain-tar-v0.1"]
+            },
             "digest": {"$ref": "#/$defs/digestEvidence"},
             "filename": {"minLength": 1, "type": "string"},
-            "payload_verification": {"const": "not-downloaded"},
+            "payload_verification": {
+                "enum": ["not-downloaded", "sha256-matched-publisher-record"]
+            },
             "platform": {
                 "enum": [
                     "linux-amd64",
@@ -876,12 +929,43 @@ def validate_registry(value: dict[str, Any]) -> None:
         if artifact_keys != sorted(artifact_keys):
             raise ValueError(f"tool artifacts must be sorted: {item['id']}")
         for entry in artifacts:
-            if entry["acceptance"] != "not-accepted":
-                raise ValueError(f"artifact acceptance overclaimed: {entry['filename']}")
-            if entry["payload_verification"] != "not-downloaded":
-                raise ValueError(f"payload verification overclaimed: {entry['filename']}")
-            if entry["archive_inspection"] != "not-performed":
-                raise ValueError(f"archive inspection overclaimed: {entry['filename']}")
+            acceptance_record = ACCEPTED_ARTIFACTS.get(entry["filename"])
+            if acceptance_record is None:
+                if entry["acceptance"] != "not-accepted":
+                    raise ValueError(
+                        f"artifact acceptance overclaimed: {entry['filename']}"
+                    )
+                if entry["payload_verification"] != "not-downloaded":
+                    raise ValueError(
+                        f"payload verification overclaimed: {entry['filename']}"
+                    )
+                if entry["archive_inspection"] != "not-performed":
+                    raise ValueError(
+                        f"archive inspection overclaimed: {entry['filename']}"
+                    )
+                if "acceptance_record" in entry:
+                    raise ValueError(
+                        f"unaccepted artifact has a record: {entry['filename']}"
+                    )
+            else:
+                expected_status = {
+                    "acceptance": "accepted-for-controlled-build-input",
+                    "archive_inspection": "passed-toolchain-tar-v0.1",
+                    "payload_verification": "sha256-matched-publisher-record",
+                }
+                for field, expected in expected_status.items():
+                    if entry[field] != expected:
+                        raise ValueError(
+                            f"accepted artifact {field} drifted: {entry['filename']}"
+                        )
+                if entry.get("acceptance_record") != acceptance_record:
+                    raise ValueError(
+                        f"artifact acceptance record drifted: {entry['filename']}"
+                    )
+                if item["id"] != "go-toolchain":
+                    raise ValueError(
+                        f"unexpected accepted tool artifact: {entry['filename']}"
+                    )
             if not entry["source_url"].startswith("https://"):
                 raise ValueError(f"artifact URL must use HTTPS: {entry['filename']}")
             digest = entry["digest"]

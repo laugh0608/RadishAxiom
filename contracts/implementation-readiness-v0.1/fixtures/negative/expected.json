@@ -3,72 +3,72 @@
     {
       "expected_code": "artifact-digest-mismatch",
       "path": "fixtures/negative/artifact-tamper.invalid.jcs",
-      "sha256": "sha256:0400851158be2e34cc2a960f5555bbc8c58958584f7c08d2f7d644d80213fa2c"
+      "sha256": "sha256:b1e0ea8cd08042086f344d695e78cf976093562f4f66eb208d05f3cf26a7012c"
     },
     {
       "expected_code": "trust-outcome-mismatch",
       "path": "fixtures/negative/attestation-overreach.invalid.jcs",
-      "sha256": "sha256:93870bcf755ae0c095e792fe6956d029f7d24bc962a42bb2d80ec4fccbfed892"
+      "sha256": "sha256:09ffe1309947cce39f027fac281052841517f2c64cdfa42c5ebbe881bb97e1f5"
     },
     {
       "expected_code": "cache-identity-mismatch",
       "path": "fixtures/negative/cache-forged-hit.invalid.jcs",
-      "sha256": "sha256:c664893c5a1c4f918a9c40c76fc2a4e3171a9023d05111da5022ff42bd52eb93"
+      "sha256": "sha256:19b5efb3e728b9f6b5cb507fed0cc47416b323cf677613c6440101015a87b8fb"
     },
     {
       "expected_code": "conclusion-aggregation",
       "path": "fixtures/negative/conclusion-aggregation.invalid.jcs",
-      "sha256": "sha256:abe952659e626c90d07d8aed3d8a9fff0f4559003d5be8ab0cb18d469695e65f"
+      "sha256": "sha256:4d3cf9a65982393563d5901bdf7d2ae7493fe2c0e0f91d147fd660291cba53d9"
     },
     {
       "expected_code": "duplicate-scenario",
       "path": "fixtures/negative/duplicate-scenario.invalid.jcs",
-      "sha256": "sha256:b4bfbc42bcb34f7f6e5003ba3f022bb2f81ba2338d1d9c9e2fa508e815435b4b"
+      "sha256": "sha256:e6f35d71a0c7b969a5bfaa8c06b462d64fc1067df212a64326040c431ebc91e6"
     },
     {
       "expected_code": "gate-stage-mismatch",
       "path": "fixtures/negative/gate-bypass.invalid.jcs",
-      "sha256": "sha256:295775400248f2d9bc9096a1dd3af46861df4ba7c634562971a2bb54e71c1008"
+      "sha256": "sha256:85633e4b24cd592c17868051e88a50cacd092849b613415a0aae8d1e5d10d630"
     },
     {
       "expected_code": "bundle-outcome-mismatch",
       "path": "fixtures/negative/missing-bundle-accepted.invalid.jcs",
-      "sha256": "sha256:5cb3d84008cfd6edac36e635f9438c4199db95a5450d23e16fb8142654baf32a"
+      "sha256": "sha256:4301102a3316e2ea678bebdaeff5c1d3e3fb04ea334dae8c11df081937a685c1"
     },
     {
       "expected_code": "obligation-omission",
       "path": "fixtures/negative/obligation-omission.invalid.jcs",
-      "sha256": "sha256:a18d8bd481e84634868e93469f6bcc7f07a0d09c0c24b47bcca8ce74dddcb0c2"
+      "sha256": "sha256:f5f23e66f5c127739211ee62cdce294ac4697819cdb2ede080792e9764ed2c9b"
     },
     {
       "expected_code": "process-outcome-mismatch",
       "path": "fixtures/negative/process-failure-disguised.invalid.jcs",
-      "sha256": "sha256:7ee7e88a9483a8e77e49fb62c6f3c2b04a85ca3654a886619c7d751edfe79d01"
+      "sha256": "sha256:60b6a63b2cc674714ee3050795c6445f42d56b46d3d87e369a0cdd6adec3fc26"
     },
     {
       "expected_code": "unknown-member",
       "path": "fixtures/negative/unknown-member.invalid.jcs",
-      "sha256": "sha256:f39bd4ef907c29dc869ba784fb0a4f07b47b5b95c9a71a295bc16b8671f2281b"
+      "sha256": "sha256:852c68c9b2f6d06cbdc4da3c10bc57a9f106cc71d73a5a3603b0e14114626b13"
     },
     {
       "expected_code": "unsupported-profile",
       "path": "fixtures/negative/unknown-profile.invalid.jcs",
-      "sha256": "sha256:1c24f28839ae32f3ad5f9d928281edde13c44c57ae0cad24f7469ed0e7cd12e9"
+      "sha256": "sha256:387e5d71704c0bd7b7a31719f0259d0e2760f97a08d3f56d3dd461ea3f495930"
     },
     {
       "expected_code": "unsupported-version",
       "path": "fixtures/negative/unknown-version.invalid.jcs",
-      "sha256": "sha256:c6e35b7a693d1d7f1aa20c182f418d058f9922c57123545c47c2f93eea03afba"
+      "sha256": "sha256:dd6ddab207794bffde1bf44de84a70f7da02749be443aa3fc50af7055fe90419"
     },
     {
       "expected_code": "scenarios-not-sorted",
       "path": "fixtures/negative/unsorted-scenarios.invalid.jcs",
-      "sha256": "sha256:b3097cae9c41f03d44b2665a6920822dd0a239613c2cffa99b36cf36934f198d"
+      "sha256": "sha256:ad1a7ce0c04381473f4859066d73040e93f26b3e9be2540f4e9956b80ab24f34"
     }
   ],
   "positive": {
-    "document_digest": "sha256:e54cc468ad78cee709b7a160e0db52a8d1f8159b2fef6e3916a74518fdabc294",
+    "document_digest": "sha256:20abe98eaba4973ecf9955a2da83c38b6310e7318a0cb499ecb5ec5eb00c9f36",
     "path": "manifest.jcs",
-    "sha256": "sha256:7766b7ebc146551706b930ba3e27bd779ec02f280b434e2142f266c77f0d0f82"
+    "sha256": "sha256:c8404217d21fa965f90d057367793f77da74a49bcc7b8f0c8107f82d6e80eb9b"
   }
 }

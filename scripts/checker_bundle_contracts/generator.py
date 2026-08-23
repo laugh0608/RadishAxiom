@@ -36,6 +36,7 @@ from .scenarios import (
 
 SOURCE_BINDINGS = (
     ("benchmark-corpus-v0.1", Path("benchmarks/keyed-finite-table-v0.1/corpus.json")),
+    ("execution-profiles-v0.1", Path("contracts/execution-profiles-v0.1/contract.json")),
     ("implementation-readiness-v0.1", Path("contracts/implementation-readiness-v0.1/manifest.jcs")),
     ("independent-check-v0.1", Path("contracts/independent-check-v0.1/contract.json")),
     ("pipeline-artifacts-v0.1", Path("contracts/pipeline-artifacts-v0.1/contract.json")),

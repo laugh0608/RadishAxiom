@@ -2,12 +2,48 @@
   "$defs": {
     "artifact": {
       "additionalProperties": false,
+      "allOf": [
+        {
+          "else": {
+            "not": {
+              "required": [
+                "acceptance_record"
+              ]
+            }
+          },
+          "if": {
+            "properties": {
+              "acceptance": {
+                "const": "accepted-for-controlled-build-input"
+              }
+            },
+            "required": [
+              "acceptance"
+            ]
+          },
+          "then": {
+            "required": [
+              "acceptance_record"
+            ]
+          }
+        }
+      ],
       "properties": {
         "acceptance": {
-          "const": "not-accepted"
+          "enum": [
+            "accepted-for-controlled-build-input",
+            "not-accepted"
+          ]
+        },
+        "acceptance_record": {
+          "pattern": "^contracts/toolchain-payload-acceptance-v0\\.1/records/[a-z0-9.-]+\\.acceptance\\.json$",
+          "type": "string"
         },
         "archive_inspection": {
-          "const": "not-performed"
+          "enum": [
+            "not-performed",
+            "passed-toolchain-tar-v0.1"
+          ]
         },
         "digest": {
           "$ref": "#/$defs/digestEvidence"
@@ -17,7 +53,10 @@
           "type": "string"
         },
         "payload_verification": {
-          "const": "not-downloaded"
+          "enum": [
+            "not-downloaded",
+            "sha256-matched-publisher-record"
+          ]
         },
         "platform": {
           "enum": [
@@ -350,7 +389,7 @@
       "type": "string"
     },
     "review_date": {
-      "const": "2026-08-22"
+      "const": "2026-08-23"
     },
     "sources": {
       "items": {

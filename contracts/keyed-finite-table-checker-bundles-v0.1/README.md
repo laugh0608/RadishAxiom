@@ -12,7 +12,7 @@
 - `s/<scenario-id>/expected-result.jcs`：Evidence 之外的指定态独立结果；`CHK-PROCESS-01` 改用 `expected-process-failure.jcs`，明确不产生四态 result。
 - `contract.json`：来源绑定、生成器源码、全部生成文件摘要、bundle set 内容摘要和域摘要。
 
-每个 manifest 只列普通 blob，按 content digest 唯一排序并固定 `byte_length`、`format`、`format_version` 与 role。Evidence 的 artifact 清单覆盖其直接引用及所绑定 receipt 的传递制品闭包，receipt 由结构检查 execution 显式引用；normative spec 保持独立 role，不能改写 checker 规则。bundle 不包含路径 resolver、URL、凭据、网络 fallback、生产 cache key、symlink 或可变工具身份。预期结果不位于输入 bundle 内，checker 也不得修改 bundle。
+每个 manifest 只列普通 blob，按 content digest 唯一排序并固定 `byte_length`、`format`、`format_version` 与 role。Evidence 的 artifact 清单覆盖其直接引用及所绑定 receipt 的传递制品闭包，receipt 由结构检查 execution 显式引用；normative spec 包括 [Execution Profile Contract v0.1](../execution-profiles-v0.1/README.md)，保持独立 role 且不能改写 checker 规则。bundle 不包含路径 resolver、URL、凭据、网络 fallback、生产 cache key、symlink 或可变工具身份。预期结果不位于输入 bundle 内，checker 也不得修改 bundle。
 
 ## 场景范围
 
@@ -48,5 +48,5 @@ checker result 中每个 check definition 的 `codes` 沿用 Independent Check C
 - 独立 checker 的 Go 工程、严格 parser、义务重建、有限表解释器、certificate checker 与跨平台构建尚未实现；
 - bundle 是指定态 fixture，`observed` 仍为 0，不能作为真实工具运行或证明记录；
 - 工具 payload、archive 内容、签名 / 来源、依赖与许可证仍未验收；
-- cvc5 完整 options、Node invocation limits、checker resource limits 与首个可检查 certificate profile 尚未冻结；
+- cvc5 options、Node invocation limits 与 checker resource limits 已在 Execution Profile Contract v0.1 指定；真实实现 / 六平台观察未完成，certificate 受支持 profile 集合仍为空；
 - 未经单独授权不得下载 / 安装工具、创建生产 compiler / checker、执行 solver / Node / checker、push、发布或部署。

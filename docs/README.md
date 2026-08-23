@@ -36,7 +36,9 @@
 
 - [实现就绪契约入口](../contracts/README.md)：由已接受规范和 ADR 生成的机器 schema、canonical fixture、负向样例与黄金摘要；这些制品不替代正式语义，也不表示生产实现已经完成。
 - [Independent Check Contract v0.1](../contracts/independent-check-v0.1/README.md)：独立 checker request / bundle / result 的首批结构契约、严格拒绝 bundle 与负向矩阵。
-- [Toolchain & Adapter Identity Registry v0.1](../contracts/toolchain-adapters-v0.1/README.md)：Rust / Go / cvc5 / Node 的精确版本、六平台候选制品、官方摘要来源、未验收供应链状态和执行 profile 身份。
+- [Execution Profile Contract v0.1](../contracts/execution-profiles-v0.1/README.md)：cvc5 / Node / Go checker 的允许参数、内部与外层资源限制、结果形成边界和 certificate 空能力停止线。
+- [Toolchain & Adapter Identity Registry v0.1](../contracts/toolchain-adapters-v0.1/README.md)：Rust / Go / cvc5 / Node 的精确版本、六平台候选制品、官方摘要来源、逐制品供应链状态和执行 profile 身份。
+- [Toolchain Payload Acceptance v0.1](../contracts/toolchain-payload-acceptance-v0.1/README.md)：Go `go1.26.7` macOS arm64 host/source 的摘要重算、只读 archive 观察、vendor / 许可证清单、签名停止线与局部 acceptance。
 - [Pipeline Artifact Contract v0.1](../contracts/pipeline-artifacts-v0.1/README.md)：obligation set、host data、SMT query、target module 与 pipeline receipt 的首批规范字节、身份、gate / cache / partial failure 契约。
 - [Implementation Readiness Contract v0.1](../contracts/implementation-readiness-v0.1/README.md)：20 个 benchmark、16 个 CHK-* 与 pipeline / readiness 路径的统一实现入口矩阵、来源覆盖和负向拒绝契约。
 - [Keyed Finite Table Checker Bundle Contract v0.1](../contracts/keyed-finite-table-checker-bundles-v0.1/README.md)：28 个 readiness 场景的完整离线 bundle、Axiom Evidence、receipt、独立预期结果、进程失败边界与负例摘要链。
@@ -45,6 +47,6 @@
 
 实现语言、验证后端、目标执行、生产管线和独立 checker 的架构决策已经确定，首批交换格式与身份契约也已进入仓库门禁。进入受控实现前，还需要完成：
 
-- 冻结 cvc5 options、Node invocation limits、checker resource limits 与 certificate 能力矩阵，使已物化 bundle 能直接成为首个受控 checker 切片的验收输入；
-- 完成已登记制品的 payload 摘要复算、签名 / 来源验证、包内依赖与许可证验收；
+- 审阅已冻结的 cvc5 options、Node invocation limits、checker resource limits 与 certificate 空能力停止线；28 个 bundle 已绑定该契约，可作为首个受控 checker 切片的验收输入；
+- Go `go1.26.7` macOS arm64 host/source 已完成局部 payload 验收；cvc5、Node、Rust 与其余平台仍须按真实实现依赖顺位完成摘要、签名 / 来源、包内依赖与许可证验收；
 - 通过上述门禁后，按已冻结职责实现 checker 的严格 request / bundle 解析、摘要核对和拒绝路径；每次实现必须覆盖其声明范围内的完整成功、失败与资源边界。

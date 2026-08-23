@@ -1,0 +1,411 @@
+{
+  "$id": "https://radishaxiom.dev/schema/toolchain-tar-inspection/0.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "archive": {
+      "additionalProperties": false,
+      "properties": {
+        "compression": {
+          "type": "string"
+        },
+        "duplicate_path_validation": {
+          "type": "string"
+        },
+        "gid_values": {
+          "items": {
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "gname_values": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "link_inventory": {
+          "additionalProperties": false,
+          "properties": {
+            "count": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            },
+            "jcs_sha256": {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "count",
+            "jcs_sha256"
+          ],
+          "type": "object"
+        },
+        "link_target_validation": {
+          "type": "string"
+        },
+        "max_regular_file": {
+          "additionalProperties": false,
+          "properties": {
+            "bytes": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "bytes",
+            "path"
+          ],
+          "type": "object"
+        },
+        "member_count": {
+          "pattern": "^(0|[1-9][0-9]*)$",
+          "type": "string"
+        },
+        "member_inventory": {
+          "additionalProperties": false,
+          "properties": {
+            "count": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            },
+            "jcs_sha256": {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "count",
+            "jcs_sha256"
+          ],
+          "type": "object"
+        },
+        "mode_values": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "mtime": {
+          "additionalProperties": false,
+          "properties": {
+            "maximum": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            },
+            "minimum": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            },
+            "unique_count": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "maximum",
+            "minimum",
+            "unique_count"
+          ],
+          "type": "object"
+        },
+        "path_validation": {
+          "type": "string"
+        },
+        "permission_validation": {
+          "type": "string"
+        },
+        "special_file_validation": {
+          "type": "string"
+        },
+        "top_level": {
+          "type": "string"
+        },
+        "total_regular_bytes": {
+          "pattern": "^(0|[1-9][0-9]*)$",
+          "type": "string"
+        },
+        "type_counts": {
+          "additionalProperties": false,
+          "properties": {
+            "directory": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            },
+            "file": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            },
+            "hardlink": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            },
+            "symlink": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "directory",
+            "file",
+            "hardlink",
+            "symlink"
+          ],
+          "type": "object"
+        },
+        "uid_values": {
+          "items": {
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "uname_values": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "compression",
+        "duplicate_path_validation",
+        "gid_values",
+        "gname_values",
+        "link_inventory",
+        "link_target_validation",
+        "max_regular_file",
+        "member_count",
+        "member_inventory",
+        "mode_values",
+        "mtime",
+        "path_validation",
+        "permission_validation",
+        "special_file_validation",
+        "top_level",
+        "total_regular_bytes",
+        "type_counts",
+        "uid_values",
+        "uname_values"
+      ],
+      "type": "object"
+    },
+    "artifact": {
+      "additionalProperties": false,
+      "properties": {
+        "bytes": {
+          "pattern": "^(0|[1-9][0-9]*)$",
+          "type": "string"
+        },
+        "filename": {
+          "type": "string"
+        },
+        "raw_sha256": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "bytes",
+        "filename",
+        "raw_sha256"
+      ],
+      "type": "object"
+    },
+    "format": {
+      "const": "radishaxiom-toolchain-tar-inspection"
+    },
+    "format_version": {
+      "const": "0.1"
+    },
+    "inspection_profile": {
+      "type": "string"
+    },
+    "layout_assertions": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "expectation": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "expectation",
+          "path"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "layout_validation": {
+      "type": "string"
+    },
+    "license_inventory": {
+      "additionalProperties": false,
+      "properties": {
+        "count": {
+          "pattern": "^(0|[1-9][0-9]*)$",
+          "type": "string"
+        },
+        "files": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "bytes": {
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "type": "string"
+              },
+              "path": {
+                "type": "string"
+              },
+              "raw_sha256": {
+                "pattern": "^sha256:[0-9a-f]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "bytes",
+              "path",
+              "raw_sha256"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "jcs_sha256": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "count",
+        "files",
+        "jcs_sha256"
+      ],
+      "type": "object"
+    },
+    "required_files": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "bytes": {
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "raw_sha256": {
+            "pattern": "^sha256:[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "utf8_text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "bytes",
+          "path",
+          "raw_sha256"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "vendor_inventory": {
+      "additionalProperties": false,
+      "properties": {
+        "manifest_count": {
+          "pattern": "^(0|[1-9][0-9]*)$",
+          "type": "string"
+        },
+        "manifests": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "bytes": {
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "type": "string"
+              },
+              "path": {
+                "type": "string"
+              },
+              "raw_sha256": {
+                "pattern": "^sha256:[0-9a-f]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "bytes",
+              "path",
+              "raw_sha256"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "module_count": {
+          "pattern": "^(0|[1-9][0-9]*)$",
+          "type": "string"
+        },
+        "modules": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "manifest": {
+                "type": "string"
+              },
+              "module": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "manifest",
+              "module",
+              "version"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "modules_jcs_sha256": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "manifest_count",
+        "manifests",
+        "module_count",
+        "modules",
+        "modules_jcs_sha256"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "archive",
+    "artifact",
+    "format",
+    "format_version",
+    "inspection_profile",
+    "layout_assertions",
+    "layout_validation",
+    "license_inventory",
+    "required_files",
+    "vendor_inventory"
+  ],
+  "title": "RadishAxiom toolchain tar inspection observation v0.1",
+  "type": "object"
+}
