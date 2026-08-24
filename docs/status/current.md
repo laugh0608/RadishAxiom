@@ -1,10 +1,10 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-08-23
+更新日期：2026-08-24
 
 ## 当前阶段
 
-项目处于首域语义、Axiom IR v0.1、Axiom Evidence v0.1、版本身份分层、四题版本化基准语料、Agent 对比实验预注册、`raxc` 生产实现语言、首个验证后端、首个目标执行路径、首版编译管线和独立 checker 隔离边界都已经形成的设计到受控实现阶段。checker request / bundle / result 的结构契约、工具链 / adapter 元数据身份清单、pipeline artifact 契约、实现就绪场景矩阵、四题完整 checker 离线 bundle，以及 cvc5 / Node / checker 的 options / limits 与 certificate 空能力矩阵已经物化。Go `go1.26.7` macOS arm64 host/source 两个精确 payload 已完成局部供应链验收；独立 Git 仓库 `RadishAxiomChecker` 已形成严格 request / manifest、只读 bundle、`checker.source`，以及 Axiom IR v0.1 严格结构、声明、expression 与 node table relationship 类型良构实现。下一阶段进入 Axiom Evidence v0.1 严格结构与身份解析；当前结果仍不代表完整 checker、obligation / Evidence 状态语义、`checked` / `proved` 结论或六平台运行证据。
+项目处于首域语义、Axiom IR v0.1、Axiom Evidence v0.1、版本身份分层、四题版本化基准语料、Agent 对比实验预注册、`raxc` 生产实现语言、首个验证后端、首个目标执行路径、首版编译管线和独立 checker 隔离边界都已经形成的设计到受控实现阶段。checker request / bundle / result 的结构契约、工具链 / adapter 元数据身份清单、pipeline artifact 契约、实现就绪场景矩阵、四题完整 checker 离线 bundle，以及 cvc5 / Node / checker 的 options / limits 与 certificate 空能力矩阵已经物化。Go `go1.26.7` macOS arm64 host/source 两个精确 payload 已完成局部供应链验收；独立 Git 仓库 `RadishAxiomChecker` 已形成严格 request / manifest、只读 bundle、`checker.source`、Axiom IR v0.1 严格结构与类型良构，以及 Axiom Evidence v0.1 严格结构、definition / document 身份、直接引用索引和 IR subject 双摘要绑定。下一阶段进入 obligation completeness；当前结果仍不代表 obligation / Evidence 状态语义、反例或 concrete replay、conclusion 重算、独立四态 result、`checked` / `proved` 结论或六平台运行证据。
 
 ## 已确定
 
@@ -24,8 +24,9 @@
 - 首版编译管线：`raxc-keyed-finite-table-pipeline-v0.1` 内容寻址制品 DAG；固定 IR 规范化、完整义务、单义务 query / cvc5 attempt、反例重放、输入检查、验证门控、Node target、宿主比较与 Evidence 装配顺序；缓存只复用精确身份的不可变制品，partial failure 进入非证明性 receipt，核心 `failed` / `unknown` 与输入拒绝均阻断目标生成和执行。
 - 独立 checker：Go 1.26 语言基线与 `go1.26.7` 精确工具链；与生产 Rust `raxc` 分仓、分依赖图、分发布流水线和分进程，禁止复用生产 parser、normalizer、义务生成器、解释器或 adapter；以只读内容寻址 bundle 离线交换制品，独立结果在 Evidence 外区分 `accepted`、`accepted-with-trust`、`incomplete` 和 `rejected`，certificate / backend attestation、剩余 trust、资源失败与 checker 自身可信基保持可见。
 - 独立 checker 首个实现切片：单独 Git 仓库与 Go module `radishaxiom.dev/independent-checker-go`，初始提交身份为 `edc55e3c37e7106d18a8046b0a289a6d6c354035`；只使用 Go 标准库，自有字节级 JSON/JCS 层拒绝重复 member、非法 UTF-8、非规范字节与未知字段，request / manifest / profile / limit set 闭合解析，bundle 只读核对普通文件、路径别名、长度、SHA-256 与 request 绑定。
-- 独立 checker 源码快照身份 v0.1：闭合输入为除根 `.git` metadata 和 manifest 自身 sidecar 外的全部非目录 entry；路径限制为可移植 ASCII 组件并按 UTF-8 原始字节排序，只接受 `0644` / `0755` 普通文件，记录原始 byte length 与 SHA-256，并精确锁定 module、Go 语言基线和 toolchain 声明。canonical manifest 当前覆盖 610 个文件，`checker.source` 为 `sha256:66859a2587068f64f8b4c94040deaccdc3439ee5507efce3326c28b8ae51845a`；Git commit / tree 只作来源追溯，不能替代该身份。
+- 独立 checker 源码快照身份 v0.1：闭合输入为除根 `.git` metadata 和 manifest 自身 sidecar 外的全部非目录 entry；路径限制为可移植 ASCII 组件并按 UTF-8 原始字节排序，只接受 `0644` / `0755` 普通文件，记录原始 byte length 与 SHA-256，并精确锁定 module、Go 语言基线和 toolchain 声明。canonical manifest 当前覆盖 619 个文件，`checker.source` 为 `sha256:45084c7cb2f4d0834fd3c8b1bd760140bc821fef5d280dffe6d3e0ce8cd2c8ca`；Git commit / tree 只作来源追溯，不能替代该身份。
 - 独立 checker Axiom IR v0.1 严格结构与类型良构 profile：先由 bundle 层核对 raw content SHA-256，再由自有严格 JSON/JCS 层解析 IR；当前闭合接受 28 个 bundle 实际使用的 4 类 value type、5 类 node、18 类 expression、2 类 contract 与 2 类 aggregate tag，核对全部 definition domain ID、声明 / 接口引用、节点 DAG / 可达性和完整文档 domain digest。enum / record / table 独立索引同时核对 field 类型 / 标签与 primary key；expression 类型器核对无名称环境、字段、操作数、分支、table binder 和 Bool 顶层；node 关系检查核对 filter、projection、join pair、group key / aggregate、主键与 capacity。成功仍只返回身份与顶层计数，不形成 obligation、Evidence 状态语义或四态结果。
+- 独立 checker Axiom Evidence v0.1 严格结构与身份 profile：bundle 层先行核对 raw content SHA-256 和资源边界，再由 checker 自有 strict JSON/JCS 与 SHA-256 解析 28 个锁定场景实际使用的 13 个顶层 member、闭合 subject / profile / entry / result / support / counterexample / trust / uncovered / conclusion tag；独立重算 tool、execution、obligation、trust、uncovered definition ID 和完整 Evidence document domain digest，建立 artifact / tool / execution / obligation / trust / IR document 的直接引用索引，并分别绑定 Axiom IR raw content 与 document domain digest。25 个身份有效场景覆盖 25 份唯一 Evidence 与 12 份唯一 IR；成功只返回身份与顶层计数，不判断 obligation 完整性、五态或 conclusion。
 - Independent Check Contract v0.1：以 JSON Schema Draft 2020-12 描述 request / bundle manifest / result 抽象结构，并由独立生成器固定 JCS 字节、域摘要、check ID、闭合 code registry、四态聚合、一个严格 Evidence 拒绝 bundle 和 18 个结构 / 顺序 / 身份负例；当前只覆盖 ASCII fixture，不冒充完整 Unicode / JCS、Evidence 语义或 checker 实现。
 - Toolchain & Adapter Identity Registry v0.1：固定 Rust `1.97.1`、Go `go1.26.7`、cvc5 `1.3.4`、Node.js `24.19.0` 的 source 与 Linux / macOS / Windows `amd64` / `arm64` 候选制品，登记官方来源、publisher 摘要、依赖审阅目标、许可证来源以及七个 build / adapter / target / invocation / pipeline / checker profile；Go macOS arm64 host/source 两项绑定版本化 acceptance record，其余 payload 保持 `not-accepted`，Rust 制品与 cvc5 source 摘要仍待权威元数据捕获。
 - Toolchain Payload Acceptance v0.1：Go `go1.26.7` macOS arm64 host 64,772,572 bytes 与 source 34,150,794 bytes 的项目重算 SHA-256 均匹配 publisher 记录；只读检查 16,701 / 16,675 个 archive member，路径、重复项、类型、链接、setuid/setgid、权限/owner/mtime 和顶层布局通过，host/source 的 `VERSION`、`LICENSE`、`PATENTS`、36 项许可证/专利清单、3 份 vendor manifest 与 17 个模块一致。两项仅接受为 `accepted-for-controlled-build-input`，签名保持 `not-verified-no-signature-input`，不授权安装或执行。
@@ -37,7 +38,20 @@
 - 仓库治理：`master` 稳定主线、`dev` 日常集成、PR 门禁和合并后回流策略。
 - 当前仓库级验证：`./scripts/check-repo.sh` 或 `pwsh ./scripts/check-repo.ps1`。
 
-## 今日进展（2026-08-23）
+## 今日进展（2026-08-24）
+
+1. 盘点并冻结 28 个 checker bundle 实际使用的 Axiom Evidence v0.1 闭合 profile：13 个顶层 member、2 个 obligation profile、tool / execution / obligation / trust / uncovered definition domain、五种 result、两种 proof support、五种 counterexample、直接引用目标与确定性数组顺序；范围外组合继续失败关闭。
+2. 在独立 checker 新增零第三方依赖 `internal/axiomevidence`，只使用 checker 自有 `strictjson`、canonical bytes、SHA-256 与闭合 tagged union；没有导入、复制或生成生产 Evidence parser、聚合器、义务生成器、反例重放器或测试 helper。
+3. parser 逐项重算 tool、execution、obligation、trust、uncovered definition ID 和完整 Evidence document domain digest；obligation `result` 不进入 obligation ID，map 只用于摘要查找，不参与规范输出、摘要或拒绝顺序。
+4. 建立 artifact、tool、execution、obligation、trust 与 IR document 的直接引用索引，拒绝悬空 producer / artifact / execution / obligation / trust、歧义 conclusion ref、错误 producer role 和 subject 外 IR document；subject artifact 必须解析到 `axiom-ir` `0.1`，并分别绑定独立 IR parser 的 raw content 与 document domain digest。
+5. counterexample 当前只闭合解析锁定语料的五种 kind、`reduced` minimality、document / obligation / observation trace、world / table / record 结构、`enum` / `int` / `text` value 和两种 observed；不重放 world、`WF` / `Pre`、失败义务、公开等价或最小性。
+6. 25 个身份有效场景全部完成 Evidence raw / document identity 与 IR subject 双摘要核对，覆盖 25 份唯一 Evidence 和 12 份唯一 IR；`chk-bundle-01`、`chk-digest-01`、`chk-resource-01` 继续在 artifact missing、raw digest、resource limit 层先行拒绝。
+7. 新增未知顶层 member / version / support tag、非规范 artifact / conclusion ref 顺序、definition ID 漂移、悬空 producer、错误 subject artifact、Evidence document digest 与 IR subject 绑定不匹配负例；结构成功不判断 expectation / 五态、support 语义、obligation 完整性或 conclusion 正确性。
+8. 新增 `docs/axiom-evidence-structure-v0.1.md` 并更新 checker README，明确锁定 artifact 清单中 options / policy 可由 receipt 间接绑定；当前 parser 只保证直接引用闭合，未读取 receipt，也不冒充 artifact graph 最终消费检查。
+9. `checker.source` 重放为 619 个文件、170,987 bytes manifest 与 `sha256:45084c7cb2f4d0834fd3c8b1bd760140bc821fef5d280dffe6d3e0ce8cd2c8ca`。以本机 Go `go1.26.3`、`GOTOOLCHAIN=local`、`CGO_ENABLED=0`、`GOPROXY=off` 和隔离 cache 运行源码身份专项门禁、全量 `go test -count=1 ./...`、`go vet ./...`、脚本语法与 `go list -m all`，全部通过且 module 集合只有 checker 自身；这不是精确 `go1.26.7` 或六平台证据。
+10. 本切片没有安装依赖、执行 solver / Node / 生产编译器、构建 binary、生成 `checker.artifact` / 独立 result、创建 remote、push、发布或部署。checker 实现提交为 `2aaa3ab02ff8203155e2d156727478d3da086a85`、tree 为 `e879b69f184fc7b28dad0017ea25c274beaff820`；Git 身份只作来源追溯，不替代 `checker.source` 或协议摘要。
+
+## 昨日进展（2026-08-23）
 
 1. 将原 2063 行的 Pipeline Artifact Contract 生成器按公共编码、fixture 构造、校验、负例、Schema 和输出编排拆分为私有模块，保留原命令入口；拆分后 53 个生成文件及 contract 登记的 52 个原始字节摘要未变化。
 2. 建立 `contracts/implementation-readiness-v0.1/` 与零第三方依赖生成入口，原始摘要绑定四题语料、首域语义、Axiom IR / Evidence、Independent Check Contract、Pipeline Artifact Contract、工具身份注册表及 ADR 0007 / 0008。
@@ -84,23 +98,23 @@
 
 本次文档收口前已按日历日复核主仓库 10 个提交与 checker 仓库 8 个提交：主仓库的契约 / payload 物化和六次 checker 状态提交，与 checker 的仓库边界、严格 request / bundle、锁定语料、`checker.source` 及四段 Axiom IR 实现提交逐项一致。checker `README.md`、源码身份说明和 Axiom IR 实现说明已覆盖实际代码边界；主仓库规范、机器契约 README 与 ADR 0008 没有因实现切片产生语义变更，保持不动。文档索引原有“进入实现前再实现 request / bundle”的旧顺位已改为当前受控实现入口。
 
-## 下一事项（2026-08-24）
+## 下一事项（2026-08-25）
 
-明日建议按以下顺序，为锁定 bundle 中的 Axiom Evidence v0.1 建立严格结构与身份解析入口。继续遵守 Go checker 与生产 Rust `raxc` 分仓、分依赖图、分发布流水线，以及禁止复用生产 Evidence parser / 聚合器 / 义务生成器的 ADR 0008 边界；`checker.source` manifest 必须随任何有意源码变化重放并审阅。
+下一步建议按以下顺序，为锁定 Axiom IR 与 Evidence profile 建立独立 obligation completeness 切片。继续遵守 checker 不导入生产义务生成器、obligation set 或“已检查”布尔结果的 ADR 0008 边界；Evidence 中的 obligation definition 仍是不可信待比较输入。
 
-1. 先盘点并冻结 28 个场景实际使用的 Evidence 顶层 member、entry / support / conclusion tag、domain separator、引用目标和确定性顺序；声明范围外的组合继续失败关闭，不从生产实现导入 parser 或生成代码。
-2. 只使用 checker 自有 strict JSON/JCS 与 SHA-256，从 bundle 已验证的唯一 Evidence artifact 解析该闭合 profile；逐项重算 tool、execution、obligation、trust、uncovered 和完整 document domain ID，建立闭合引用索引，但不接受生产 ID 作为事实。
-3. 加入未知 member / version / tag、非规范顺序、definition ID / document digest 漂移、重复 / 悬空引用及 subject 绑定负例；bundle 的 artifact missing、raw digest 与 resource limit 仍必须在 Evidence parser 前先行失败。
-4. 每次源码变化都先更新并审阅 `checker.source` manifest，再要求现有 request / bundle、28 个 bundle、Axiom IR、源码身份专项门禁和全量 test / vet 保持通过；精确工具链或平台结论只按实际运行记录声明。
+1. 先从现行语义、Axiom IR、Evidence 规范和 12 份唯一 IR 盘点 verification / benchmark profile 的 obligation 生成位置、definition 结构、anchor 路径与确定性遍历顺序；重叠要求只映射，不复制第二套规则。
+2. 扩展 checker 自有 Axiom IR 内部模型，使独立 obligation builder 能只凭已解析 IR、profile 和明确的 benchmark artifact / execution 边界生成 definition 与 domain ID；不能读取生产 `axiom-obligation-set` 作为真相源。
+3. 将独立生成的 `(id, definition)` 集合与 Evidence 精确比较，拒绝缺失、多余、重复、错误 expectation、无法解析或类别不匹配的 node / contract / expression / interface / field / artifact anchor；`chk-obligation-01` 必须从“结构良构”推进为 obligation completeness 拒绝。
+4. 增加缺失 / 多余义务、definition / path / expectation 漂移、重复 anchor 与不确定遍历顺序负例；现有 24 个非 obligation-negative 身份有效场景、3 个早期 bundle 拒绝、IR / Evidence 结构门禁和源码身份门禁继续保持原结论。
 
-停止线：本切片只形成 Evidence 结构、身份、闭合引用索引和顶层计数，不判断五种 obligation 状态是否被正确使用，不比较义务集合完整性，不重放反例 / concrete check，不检查 certificate / attestation，也不重算 conclusion 或生成独立四态 result。
+停止线：本切片只判定 obligation definition 与集合完整性，不判断 `proved` / `checked` / `unknown` / `failed` / `trusted` 是否正确，不检查 support / execution / trust 的语义配对，不重放反例 / concrete check，不重算 conclusion，也不生成独立四态 result。
 
-完成标准：Evidence parser 对锁定 28 个 bundle 的实际 v0.1 结构、全部 domain identity 与闭合引用形成小而完整的成功 / 拒绝路径；结构解析成功不评价 Evidence 对程序的结论是否正确。现有 28 个 bundle、Axiom IR、checker 测试、源码身份门禁和两个仓库级门禁继续通过，测试结果不升级为 `checked`、`proved` 或六平台结论。
+完成标准：checker 能从锁定 IR 与 profile 独立生成稳定 obligation set，并对 28 个 bundle 形成缺失、多余、身份、anchor 的成功 / 拒绝路径；`chk-obligation-01` 以规范缺失义务被拒绝，其他结论不超出实际检查边界。全量 test / vet、`checker.source` 与主仓库级门禁继续通过，结果不升级为 `checked`、`proved` 或六平台结论。
 
 ## 后续顺位
 
-1. Go host/source 局部供应链门禁、checker request / bundle parser、`checker.source` v0.1 与当前锁定 Axiom IR 结构 / 类型良构已经通过；下一步建立 Axiom Evidence 严格结构与身份入口，Git 对象 ID 与 payload acceptance 继续不能冒充协议源码身份。
-2. Evidence 结构身份之后再分别推进 obligation completeness、state / support、反例 / concrete replay 与 conclusion recompute；当前离线单仓工作不需要 checker remote，远程仓库创建、依赖安装、push、发布与部署仍分别提醒并授权。
+1. Go host/source 局部供应链门禁、checker request / bundle parser、`checker.source` v0.1、当前锁定 Axiom IR 结构 / 类型良构与 Axiom Evidence 结构 / 身份已经通过；下一步建立 obligation completeness，Git 对象 ID 与 payload acceptance 继续不能冒充协议源码身份。
+2. Obligation completeness 之后再分别推进 state / support、反例 / concrete replay 与 conclusion recompute；当前离线单仓工作不需要 checker remote，远程仓库创建、依赖安装、push、发布与部署仍分别提醒并授权。
 3. cvc5、Node、Rust payload 与六平台原生结果按实现依赖逐批验收；certificate profile 只有在格式、checker、完整规则覆盖和 trust step 政策独立通过后才可加入非空支持集合。
 4. 工具链可用且实现入口验证通过后，才准备 Agent 实验 execution lock 和正式模型调用。
 
@@ -109,7 +123,7 @@
 ## 尚未冻结
 
 - 表面语法；
-- Axiom Evidence 的具体证明 certificate 格式，以及独立 checker 的 Axiom IR 完整类型 / 语义检查、obligation / Evidence / result、累计资源核算、`checker.artifact` 和 CLI 实现；
+- Axiom Evidence 的具体证明 certificate 格式，以及独立 checker 的 Axiom IR 完整语义检查、obligation completeness、五态 / support、反例 / concrete replay、conclusion / result、累计资源核算、`checker.artifact` 和 CLI 实现；
 - Rust / cvc5 / Node、其余 Go 平台 payload 的实际摘要 / 签名验收、包内依赖与许可证清单，Go host/source 的 publisher 签名与源码可复现性，首个受支持 certificate 格式 / checker / 规则覆盖，以及真实跨实现 / 跨平台语义结果；
 - Agent 实验的 execution lock、模型精确 revision、提示材料和 runner；
 - 包管理、IDE、插件和发布载体；
