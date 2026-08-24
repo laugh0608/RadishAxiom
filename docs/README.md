@@ -46,8 +46,8 @@
 
 ## 受控实现进展与下一入口
 
-实现语言、验证后端、目标执行、生产管线和独立 checker 的架构决策已经确定，首批交换格式、身份契约、执行 profile 与 28 个离线 bundle 已进入仓库门禁。独立 checker 已在外部隔离仓库完成严格 request / manifest、只读 bundle、`checker.source`、锁定 Axiom IR profile 的结构与类型良构、Axiom Evidence 结构与身份，以及 obligation completeness；这些结果不代表状态 / support、重放、结论重算或独立结论已经完成。
+实现语言、验证后端、目标执行、生产管线和独立 checker 的架构决策已经确定，首批交换格式、身份契约、执行 profile 与 28 个离线 bundle 已进入仓库门禁。独立 checker 已在外部隔离仓库完成严格 request / manifest、只读 bundle、`checker.source`、锁定 Axiom IR profile 的结构与类型良构、Axiom Evidence 结构与身份、obligation completeness、state / support，以及 counterexample 有限 world / `WF`；这些结果不代表绑定 concrete artifact、`Pre`、IR 执行、目标反例、proof / attestation、结论重算或独立结论已经完成。
 
 - 当前阶段、精确实现范围、下一事项与停止线统一以[当前状态](status/current.md)为准，不在文档索引复制易漂移的源码摘要或提交身份；
-- 下一受控入口是锁定 Evidence profile 的 state / support 闭合检查，之后才依次进入 replay、proof support 真值检查和 conclusion recompute；
+- 下一受控入口是绑定 concrete input artifact 并独立求值 assume / `Pre`，之后才依次进入 IR DAG / 目标 replay、proof support 真值检查和 conclusion recompute；
 - Go `go1.26.7` macOS arm64 host/source 已完成局部 payload 验收；cvc5、Node、Rust 与其余平台仍须按真实实现依赖顺位完成摘要、签名 / 来源、包内依赖与许可证验收。
