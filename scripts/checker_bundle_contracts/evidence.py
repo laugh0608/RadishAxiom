@@ -751,6 +751,23 @@ def validate_evidence(
     if obligation_ids != sorted(set(obligation_ids)):
         raise ValueError("Evidence obligations are not sorted and unique")
     trust_ids = {item["id"] for item in evidence["trust"]}
+    tools = {item["id"]: item["definition"] for item in evidence["tools"]}
+    required_roles = {
+        "check-certificate": "certificate-checker",
+        "check-fixture": "fixture-checker",
+        "compare-output": "output-comparator",
+        "execute-host": "host-executor",
+        "generate-obligations": "obligation-generator",
+        "normalize": "ir-normalizer",
+        "prove": "prover",
+        "replay-counterexample": "counterexample-replayer",
+    }
+    for execution in evidence["executions"]:
+        definition = execution["definition"]
+        tool = tools.get(definition["tool"])
+        required_role = required_roles.get(definition["kind"])
+        if tool is None or required_role not in tool["roles"]:
+            raise ValueError("Evidence execution tool role mismatch")
     for item in evidence["obligations"]:
         if item["id"] != content_id(
             "axiom-evidence-v0.1:obligation", item["definition"]

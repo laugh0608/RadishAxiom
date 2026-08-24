@@ -19,3 +19,4 @@
 - [ADR 0006：首个目标运行时与执行路径](0006-first-target-runtime-and-execution-path.md)
 - [ADR 0007：首版验证优先编译管线与制品协议](0007-first-verification-first-compilation-pipeline.md)
 - [ADR 0008：独立 checker 的实现语言、制品交换与隔离边界](0008-independent-checker-isolation-and-artifact-exchange.md)
+- [ADR 0009：Axiom Evidence v0.1 漂移收口与 v0.2 迁移边界](0009-axiom-evidence-v0-drift-and-migration.md)

@@ -44,6 +44,7 @@ def production_tool() -> dict[str, Any]:
             "artifact": raw_digest(TOOL_BYTES),
             "name": "checker-bundle-production-fixture-tool",
             "roles": [
+                "counterexample-replayer",
                 "evidence-producer",
                 "fixture-checker",
                 "host-executor",

@@ -30,7 +30,7 @@
 
 ## 指定态 Evidence 投影
 
-反例 world 使用 Evidence v0.1 的显式 tagged value 与完整 record；trace 只使用 document、obligation 和 observation 稳定 step。`reduced` 只绑定 `axiom-witness-order-v0.1`，不声明 `proved-minimal`。正确场景的 `proved` 使用绑定 query / response / execution / proof-backend trust 的 `backend-attestation`；错误候选和非法输入中其余可完成静态义务使用指定态 `kernel-replay`，失败义务绑定完整 world 与 replay execution。backend timeout 使用真实非空 attempt 结构，不写成 `failed`。
+反例 world 使用 Evidence v0.1 的显式 tagged value 与完整 record；trace 只使用 document、obligation 和 observation 稳定 step。`reduced` 只绑定 `axiom-witness-order-v0.1`，不声明 `proved-minimal`。正确场景的 `proved` 使用绑定 query / response / execution / proof-backend trust 的 `backend-attestation`；错误候选和非法输入中其余可完成静态义务使用指定态 `kernel-replay`，失败义务绑定完整 world 与 replay execution。backend timeout 使用真实非空 attempt 结构，不写成 `failed`。执行 `replay-counterexample` 的 fixture tool 必须显式声明既有 `counterexample-replayer` role；生成器按全部 execution kind 检查对应 tool role，不接受角色 alias。
 
 checker result 中每个 check definition 的 `codes` 沿用 Independent Check Contract v0.1 的闭合集合；bundle set 顶层 `expected.codes` 只保留 readiness 场景要求的决定性 code，因此成功接收场景可为空。`remaining_trust` 存放 Evidence trust ID，bundle set 另从 Evidence definition 重算类别，二者不可互换。
 
@@ -45,7 +45,7 @@ checker result 中每个 check definition 的 `codes` 沿用 Independent Check C
 
 ## 仍未解除的停止线
 
-- 独立 checker 的 Go 工程、严格 parser、义务重建、有限表解释器、certificate checker 与跨平台构建尚未实现；
+- 独立 checker 的 Go 工程已经实现到严格 parser、IR 良构、Evidence 身份、义务重建与 state / support 闭合；有限表解释器、反例 / concrete replay、proof 真值、结论重算、certificate checker、独立 result / CLI 与跨平台构建仍未实现；
 - bundle 是指定态 fixture，`observed` 仍为 0，不能作为真实工具运行或证明记录；
 - 工具 payload、archive 内容、签名 / 来源、依赖与许可证仍未验收；
 - cvc5 options、Node invocation limits 与 checker resource limits 已在 Execution Profile Contract v0.1 指定；真实实现 / 六平台观察未完成，certificate 受支持 profile 集合仍为空；

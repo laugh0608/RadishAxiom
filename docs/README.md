@@ -29,6 +29,7 @@
 - [有键有限表转换：首版类型化语义](semantics/keyed-finite-table-semantics.md)：首个目标领域的值、表、转换、契约、效果、失败、反例与信任边界。
 - [Axiom IR v0.1：规范化形式与版本策略](ir/axiom-ir-v0.md)：规范化数据模型、canonical JSON、内容寻址、人类投影、语义差异与版本演进。
 - [Axiom Evidence v0.1：证据模型与独立检查边界](evidence/axiom-evidence-v0.md)：义务身份、五种状态、反例、信任清单、结论聚合与独立复核。
+- [ADR 0009：Axiom Evidence v0.1 漂移收口与 v0.2 迁移边界](adr/0009-axiom-evidence-v0-drift-and-migration.md)：冻结 v0.1 原始规范字节，记录 group 覆盖遗漏，并限定后续 v0.2 修正与摘要迁移。
 - [有键有限表基准语料库 v0.1](benchmarks/keyed-finite-table-corpus-v0.md)：四个基准的生成目录、任务身份、合成数据、正确 / 错误候选和 Expected Evidence 断言。
 - [Agent 表示与验证反馈对比实验预注册 v0.1](experiments/agent-representation-preregistration-v0.md)：三种表示、两种模型条件、配对反馈、指标、阈值、预算和停止规则。
 
@@ -45,8 +46,8 @@
 
 ## 受控实现进展与下一入口
 
-实现语言、验证后端、目标执行、生产管线和独立 checker 的架构决策已经确定，首批交换格式、身份契约、执行 profile 与 28 个离线 bundle 已进入仓库门禁。独立 checker 已在外部隔离仓库完成严格 request / manifest、只读 bundle、`checker.source`，以及锁定 Axiom IR profile 的结构与类型良构切片；这些结果不代表完整 Evidence 检查或独立结论。
+实现语言、验证后端、目标执行、生产管线和独立 checker 的架构决策已经确定，首批交换格式、身份契约、执行 profile 与 28 个离线 bundle 已进入仓库门禁。独立 checker 已在外部隔离仓库完成严格 request / manifest、只读 bundle、`checker.source`、锁定 Axiom IR profile 的结构与类型良构、Axiom Evidence 结构与身份，以及 obligation completeness；这些结果不代表状态 / support、重放、结论重算或独立结论已经完成。
 
 - 当前阶段、精确实现范围、下一事项与停止线统一以[当前状态](status/current.md)为准，不在文档索引复制易漂移的源码摘要或提交身份；
-- 下一受控入口是 Axiom Evidence v0.1 的严格结构、domain identity 与闭合引用解析，之后才依次进入 obligation completeness、state / support、replay 和 conclusion recompute；
+- 下一受控入口是锁定 Evidence profile 的 state / support 闭合检查，之后才依次进入 replay、proof support 真值检查和 conclusion recompute；
 - Go `go1.26.7` macOS arm64 host/source 已完成局部 payload 验收；cvc5、Node、Rust 与其余平台仍须按真实实现依赖顺位完成摘要、签名 / 来源、包内依赖与许可证验收。
