@@ -258,12 +258,13 @@
 8. GitHub Actions 的 `master` push run `33235447011` 与 `dev` push run `33235480072` 均在精确治理提交上完成并成功；两次 run 的 `Repository Governance`、`Checker Go Quality` 与 `Candidate Quality` 三个 job 均由 job 级读取确认为 `success`，稳定 required context 已实际产生。workflow success 是 CI 证据，不是形式证明或 runtime acceptance。
 9. checker 最终工作树干净，`dev` / `master` 分别跟踪 `origin/dev` / `origin/master` 且无 ahead / behind。主仓本轮只同步正式状态源，不推送；历史 macOS arm64 payload 仍绑定旧 source，不得登记为当前 source artifact。
 10. 主仓新增 Checker Runtime Payload Registration v0.1：两份域摘要记录分别保留旧 source 候选的精确 artifact / provenance / acceptance / 三场景历史身份及 `historical-ineligible` 结论，并把当前 `checker.source = sha256:256dc873e83362ea3321a62a1ce00a30dc24e96cf79d6014adf2ef6208246b59` 记为 `awaiting-controlled-build-and-acceptance`。契约显式记录三类原始字节的 retention / fetch / re-verification 条件，active runtime 为 0；6 个负例拒绝 source 重绑、retention 过度声明、历史候选冒充登记、安装范围扩张、孤立 artifact 摘要和未知 member。仓库门禁已接入离线生成复核，没有下载、构建、执行、安装或发布 checker。
+11. checker 新增唯一 payload 候选归档命令：`pack` 将闭合 acceptance 目录中的 artifact、canonical provenance / acceptance 与新 retention manifest 按固定 member 顺序、mode、uid / gid、mtime 和无扩展 header 确定性封装为未压缩 USTAR；`verify` 严格重算成员摘要、canonical manifest 与完整 archive bytes，拒绝额外文件、错误模式、未知字段、非规范 JSON、member / header / 尾随字节漂移，并在写入前后重放 source 防止竞态。源码身份更新为 695 个文件、185,571 bytes 与 `sha256:675f8ff470a621124ede081bcf8330b73910ab34e20b7b174356d57423e6ee74`；本机 Go `go1.26.3` 的全量 test / vet、source identity、module 闭包、gofmt、治理和差异卫生通过，但不是精确 `go1.26.7` payload 证据。主仓 pending record 与两级 storage policy 同步：Actions artifact 仅作最多 90 天、按精确 artifact ID 和 provider 回读绑定的候选暂存，永远不能激活 runtime；durable active provider 仍未选择，GitHub immutable Release 也未获发布治理或外部授权。本切片没有下载 Go、构建 / 执行 binary、上传 artifact、运行远程 workflow、创建 tag / Release 或 active registration。
 
 停止线：Ruleset 尚未获得本任务授权，不因 `Candidate Quality` 已出现而自动写入；后续若启用必须先读取远程现状、形成精确策略并单独授权。不安装或替换系统 Go，不自动下载本地工具链或 binary，不提交 executable，不创建 Release / 部署，不检查 minimality，不增加非空 kernel / certificate 能力，不执行 solver、生产 Node target、生产编译器或正式模型调用，也不宣称 release、产品安装或六平台通过。
 
 ## 后续顺位
 
-1. Go host/source 局部供应链门禁、checker request / bundle parser、`checker.source` v0.1、当前锁定 Axiom IR 结构 / 类型良构与有限执行、Axiom Evidence 结构 / 身份、obligation completeness、state / support、counterexample world / `WF`、concrete input / `Pre`、8 个 proof-failure target replay、host / golden output comparison、proof support 真值边界、production conclusion 精确重算、内存四态结果、canonical companion codec、invocation failure envelope、完整 invocation / 累计资源、唯一产品 CLI、首个 macOS arm64 payload 的历史可重复构建 / 独立 acceptance、checker 公开远程仓库 / 分支 / CI 基线，以及 runtime payload 登记契约已经通过；下一连续实现切片为当前 source 的精确受控构建、原始字节 retention / fetch 决策、独立 acceptance 与 active registration，Git 对象 ID、CI success 或旧 artifact 摘要继续不能冒充协议 source、binary identity 或 runtime acceptance。
+1. Go host/source 局部供应链门禁、checker request / bundle parser、`checker.source` v0.1、当前锁定 Axiom IR 结构 / 类型良构与有限执行、Axiom Evidence 结构 / 身份、obligation completeness、state / support、counterexample world / `WF`、concrete input / `Pre`、8 个 proof-failure target replay、host / golden output comparison、proof support 真值边界、production conclusion 精确重算、内存四态结果、canonical companion codec、invocation failure envelope、完整 invocation / 累计资源、唯一产品 CLI、首个 macOS arm64 payload 的历史可重复构建 / 独立 acceptance、checker 公开远程仓库 / 分支 / CI 基线、runtime payload 登记契约及确定性候选归档已经通过；下一连续实现切片为当前 source 的精确受控构建、独立 acceptance、候选归档、Actions artifact 精确上传 / provider 回读与 pending registration 更新，这些外部动作仍须单独授权。Actions artifact 只能形成有限期候选；Git 对象 ID、CI success、旧 artifact 摘要或临时 provider 对象继续不能冒充协议 source、binary identity、durable active runtime 或正式发布。
 2. 只有独立远程仓库 / CI 基线、精确 `go1.26.7` 确定性构建、source → artifact 映射、独立 payload acceptance、主仓登记与 launcher 运行约束连续通过，才能形成正式 runtime companion；产品安装、依赖安装、发布与部署仍分别提醒并授权。
 3. cvc5、Node、Rust payload 与六平台原生结果按实现依赖逐批验收；certificate profile 只有在格式、checker、完整规则覆盖和 trust step 政策独立通过后才可加入非空支持集合。
 4. 工具链可用且实现入口验证通过后，才准备 Agent 实验 execution lock 和正式模型调用。
@@ -273,7 +274,7 @@
 ## 尚未冻结
 
 - 表面语法；
-- Axiom Evidence 的具体证明 certificate 格式、非空 kernel / certificate 能力，以及独立 checker `master` Ruleset、当前 source payload 的构建 / acceptance / retention / active registration、正式 runtime companion 与 launcher OS 隔离实现；
+- Axiom Evidence 的具体证明 certificate 格式、非空 kernel / certificate 能力，以及独立 checker `master` Ruleset、当前 source payload 的构建 / acceptance / Actions provider 回读、durable active storage / registration、正式 runtime companion 与 launcher OS 隔离实现；
 - Rust / cvc5 / Node、其余 Go 平台 payload 的实际摘要 / 签名验收、包内依赖与许可证清单，Go host/source 的 publisher 签名与源码可复现性，首个受支持 certificate 格式 / checker / 规则覆盖，以及真实跨实现 / 跨平台语义结果；
 - Agent 实验的 execution lock、模型精确 revision、提示材料和 runner；
 - 包管理、IDE、插件和发布载体；

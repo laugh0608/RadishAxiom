@@ -439,6 +439,9 @@
             "artifact_bytes": {
               "type": "string"
             },
+            "candidate_archive_bytes": {
+              "type": "string"
+            },
             "fetch": {
               "additionalProperties": false,
               "properties": {
@@ -462,6 +465,7 @@
           "required": [
             "acceptance_bytes",
             "artifact_bytes",
+            "candidate_archive_bytes",
             "fetch",
             "provenance_bytes"
           ],

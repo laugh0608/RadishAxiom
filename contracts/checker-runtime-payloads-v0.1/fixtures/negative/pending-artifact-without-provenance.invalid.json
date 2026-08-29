@@ -13,9 +13,9 @@
   "checker": {
     "implementation": "radishaxiom-independent-checker-go",
     "source": {
-      "file_count": "691",
-      "identity": "sha256:256dc873e83362ea3321a62a1ce00a30dc24e96cf79d6014adf2ef6208246b59",
-      "manifest_byte_length": "184791"
+      "file_count": "695",
+      "identity": "sha256:675f8ff470a621124ede081bcf8330b73910ab34e20b7b174356d57423e6ee74",
+      "manifest_byte_length": "185571"
     },
     "toolchain": "go1.26.7",
     "version": "0.1-dev"
@@ -24,11 +24,12 @@
   "format": "radishaxiom-checker-runtime-payload-registration",
   "format_version": "0.1",
   "id": "checker-go0.1-dev-darwin-arm64-current-pending-2026-08-29",
-  "record_digest": "sha256:7164a72b04a1edc92b239c414da8f4d04800f9d1125540ef432c5920a609c585",
+  "record_digest": "sha256:9623e7a1a4250525c8ddeda915e492e909ab8bc016db791a9558c91f370c51c0",
   "registration": {
     "reasons": [
       "acceptance-not-produced",
       "artifact-not-produced",
+      "candidate-archive-not-produced",
       "provenance-not-produced"
     ],
     "status": "awaiting-controlled-build-and-acceptance"
@@ -36,6 +37,7 @@
   "retention": {
     "acceptance_bytes": "not-produced",
     "artifact_bytes": "not-produced",
+    "candidate_archive_bytes": "not-produced",
     "fetch": {
       "kind": "unavailable",
       "reason": "no current-source candidate has been built or accepted"
@@ -47,6 +49,7 @@
       "accepted-current-source-candidate",
       "retained-or-fetchable-acceptance-bytes",
       "retained-or-fetchable-artifact-bytes",
+      "retained-or-fetchable-candidate-archive",
       "retained-or-fetchable-provenance-bytes"
     ],
     "status": "awaiting-controlled-build-and-acceptance"

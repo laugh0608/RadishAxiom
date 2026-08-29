@@ -1,5 +1,5 @@
 {
-  "contract_digest": "sha256:5364a3f310ea93a28433d4169c90d4d4559c6fa147c598a440ff878b636aa6fa",
+  "contract_digest": "sha256:0e47291717cb437a895653996c110ba721b6bd8c2ad176e35f6d910c1258e8a5",
   "counts": {
     "active": "0",
     "historical_ineligible": "1",
@@ -7,16 +7,16 @@
     "records": "2"
   },
   "current_checker_source": {
-    "file_count": "691",
-    "identity": "sha256:256dc873e83362ea3321a62a1ce00a30dc24e96cf79d6014adf2ef6208246b59",
-    "manifest_byte_length": "184791"
+    "file_count": "695",
+    "identity": "sha256:675f8ff470a621124ede081bcf8330b73910ab34e20b7b174356d57423e6ee74",
+    "manifest_byte_length": "185571"
   },
   "digest_domain": "radishaxiom.checker-runtime-payload-registration-set.v0.1",
   "format": "radishaxiom-checker-runtime-payload-registration-set",
   "format_version": "0.1",
   "generator": {
     "path": "scripts/generate-checker-runtime-payloads.py",
-    "raw_sha256": "sha256:e3aeed419ce3463f05624c27d4078d22e6827fb1e93b8e1d87763c536d6ffff1"
+    "raw_sha256": "sha256:8c720801b71cc4bdd80a9e8b0eee35f6ac7d5a2099481392d1bae5b88330fee4"
   },
   "records": [
     {
@@ -30,11 +30,52 @@
     {
       "id": "checker-go0.1-dev-darwin-arm64-current-pending-2026-08-29",
       "path": "contracts/checker-runtime-payloads-v0.1/records/checker-go0.1-dev-darwin-arm64-current-pending.json",
-      "raw_sha256": "sha256:b6ac5f4d744934d18b1f2a7cda8ab9dcc2ec95507523724aed3af0595f92cd6c",
-      "record_digest": "sha256:f4ee0f846cf6452afe07f9a7cf97d5c730669d3bf82913675c1de5f95c6e2a1b",
+      "raw_sha256": "sha256:7f276b562dcc0445f6b0d74ee378e12ff75b049e65cc1831f6830e715e15a8bb",
+      "record_digest": "sha256:2635b7b03f63454516a721511db198d4db3c8b31d2de681bb577a27e7e0dc5ee",
       "registration_status": "awaiting-controlled-build-and-acceptance",
-      "source": "sha256:256dc873e83362ea3321a62a1ce00a30dc24e96cf79d6014adf2ef6208246b59"
+      "source": "sha256:675f8ff470a621124ede081bcf8330b73910ab34e20b7b174356d57423e6ee74"
     }
   ],
-  "runtime_statement": "no-current-source-runtime-payload-is-registered"
+  "runtime_statement": "no-current-source-runtime-payload-is-registered",
+  "storage_policy": {
+    "active_runtime": {
+      "provider": "not-selected",
+      "requirements": [
+        "independent-provider-readback",
+        "immutable-asset-bytes",
+        "no-latest-alias",
+        "raw-byte-length-and-sha256",
+        "revocation-and-replacement-policy",
+        "separate-publication-authorization",
+        "stable-exact-fetch"
+      ],
+      "status": "blocked-release-and-storage-governance-pending"
+    },
+    "candidate": {
+      "expiration_effect": "candidate-becomes-unavailable",
+      "fetch_resolution": "exact-artifact-id-only",
+      "provider": "github-actions-artifact",
+      "readback": "separate-job-provider-download-and-inner-archive-verification",
+      "registration_effect": "candidate-only-never-active",
+      "repository": "laugh0608/RadishAxiomChecker",
+      "required_inner_bindings": [
+        "archive-byte-length",
+        "archive-raw-sha256",
+        "retention-manifest-byte-length",
+        "retention-manifest-raw-sha256"
+      ],
+      "required_provider_bindings": [
+        "artifact-id",
+        "created-at",
+        "expires-at",
+        "provider-archive-digest",
+        "provider-archive-size",
+        "workflow-head-sha",
+        "workflow-run-id"
+      ],
+      "retention_days": "90",
+      "status": "selected-not-materialized",
+      "upload_object": "deterministic-inner-ustar"
+    }
+  }
 }

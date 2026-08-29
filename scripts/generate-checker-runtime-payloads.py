@@ -23,9 +23,9 @@ SET_DOMAIN = "radishaxiom.checker-runtime-payload-registration-set.v0.1"
 SHA256_PATTERN = re.compile(r"^sha256:[0-9a-f]{64}$")
 
 CURRENT_SOURCE = {
-    "file_count": "691",
-    "identity": "sha256:256dc873e83362ea3321a62a1ce00a30dc24e96cf79d6014adf2ef6208246b59",
-    "manifest_byte_length": "184791",
+    "file_count": "695",
+    "identity": "sha256:675f8ff470a621124ede081bcf8330b73910ab34e20b7b174356d57423e6ee74",
+    "manifest_byte_length": "185571",
 }
 HISTORICAL_SOURCE = {
     "file_count": "682",
@@ -46,6 +46,48 @@ EXCLUDED_SCOPE = [
     "publication",
     "release-signing",
 ]
+
+STORAGE_POLICY = {
+    "active_runtime": {
+        "provider": "not-selected",
+        "requirements": [
+            "independent-provider-readback",
+            "immutable-asset-bytes",
+            "no-latest-alias",
+            "raw-byte-length-and-sha256",
+            "revocation-and-replacement-policy",
+            "separate-publication-authorization",
+            "stable-exact-fetch",
+        ],
+        "status": "blocked-release-and-storage-governance-pending",
+    },
+    "candidate": {
+        "expiration_effect": "candidate-becomes-unavailable",
+        "fetch_resolution": "exact-artifact-id-only",
+        "provider": "github-actions-artifact",
+        "readback": "separate-job-provider-download-and-inner-archive-verification",
+        "registration_effect": "candidate-only-never-active",
+        "repository": "laugh0608/RadishAxiomChecker",
+        "required_inner_bindings": [
+            "archive-byte-length",
+            "archive-raw-sha256",
+            "retention-manifest-byte-length",
+            "retention-manifest-raw-sha256",
+        ],
+        "required_provider_bindings": [
+            "artifact-id",
+            "created-at",
+            "expires-at",
+            "provider-archive-digest",
+            "provider-archive-size",
+            "workflow-head-sha",
+            "workflow-run-id",
+        ],
+        "retention_days": "90",
+        "status": "selected-not-materialized",
+        "upload_object": "deterministic-inner-ustar",
+    },
+}
 
 
 def canonical_bytes(value: Any) -> bytes:
@@ -183,6 +225,7 @@ def pending_record() -> dict[str, Any]:
             "reasons": [
                 "acceptance-not-produced",
                 "artifact-not-produced",
+                "candidate-archive-not-produced",
                 "provenance-not-produced",
             ],
             "status": "awaiting-controlled-build-and-acceptance",
@@ -190,6 +233,7 @@ def pending_record() -> dict[str, Any]:
         "retention": {
             "acceptance_bytes": "not-produced",
             "artifact_bytes": "not-produced",
+            "candidate_archive_bytes": "not-produced",
             "fetch": {
                 "kind": "unavailable",
                 "reason": "no current-source candidate has been built or accepted",
@@ -201,6 +245,7 @@ def pending_record() -> dict[str, Any]:
                 "accepted-current-source-candidate",
                 "retained-or-fetchable-acceptance-bytes",
                 "retained-or-fetchable-artifact-bytes",
+                "retained-or-fetchable-candidate-archive",
                 "retained-or-fetchable-provenance-bytes",
             ],
             "status": "awaiting-controlled-build-and-acceptance",
@@ -335,6 +380,7 @@ def build_contract(records: list[tuple[str, dict[str, Any]]]) -> dict[str, Any]:
         "generator": {"path": "scripts/generate-checker-runtime-payloads.py", "raw_sha256": raw_sha256(Path(__file__))},
         "records": rows,
         "runtime_statement": "no-current-source-runtime-payload-is-registered",
+        "storage_policy": STORAGE_POLICY,
     }
     return {**body, "contract_digest": domain_digest(SET_DOMAIN, body)}
 
