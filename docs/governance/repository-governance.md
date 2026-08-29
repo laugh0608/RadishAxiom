@@ -36,9 +36,9 @@
 
 ## 分支与提交
 
-- `master` 是 GitHub 默认稳定主线；`dev` 是常态集成分支。
-- 普通贡献进入 `dev`，阶段性稳定化和 hotfix 才进入 `master`。
-- 主题分支使用 `feature/*`、`fix/*`、`docs/*`、`proposal/*`、`experiment/*`、`chore/*` 或 `hotfix/*`。
+- `master` 是 GitHub 默认稳定主线；`dev` 是常态开发与集成分支。
+- 串行推进的普通任务直接进入 `dev`；外部贡献、并行写入、风险隔离或明确评审需求通过主题分支 PR 进入 `dev`，阶段性稳定化和 hotfix 才进入 `master`。
+- 需要主题分支时，使用 `feature/*`、`fix/*`、`docs/*`、`proposal/*`、`experiment/*`、`chore/*` 或 `hotfix/*`；Agent 不自动创建 `codex/*` 分支或额外 worktree。
 - 共享分支禁止 force push 和破坏性历史重写。
 - 提交遵循 Conventional Commits；允许 Git 生成的正常 merge commit。
 - 提交使用真实贡献者身份，不加入 AI 协作者署名。

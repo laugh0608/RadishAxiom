@@ -1,6 +1,6 @@
 # ADR 0001：分支、PR 与 Ruleset 治理
 
-日期：2026-08-18
+日期：2026-08-29
 
 状态：Accepted
 
@@ -26,9 +26,9 @@ RadishAxiom 是语言、Axiom IR、验证器与 Axiom Evidence 的公共基础�
 
 ### 开发与合并拓扑
 
-普通变更以 `topic -> dev -> master -> dev` 形成闭环：
+普通变更以 `dev -> master -> dev` 形成闭环；确有隔离或评审需要时，在前面增加 `topic -> dev`：
 
-1. 主题分支默认向 `dev` 发起 PR；单人连续开发可直接进入 `dev`，但仍须执行本地验证。
+1. 串行推进的普通开发直接在 `dev` 完成，并执行风险匹配的本地验证；项目所有者明确要求、外部贡献、并行写入、风险隔离或明确评审需求才使用主题分支 PR。Agent 不自动创建 `codex/*` 分支或额外 worktree。
 2. 阶段性语义、工具链或治理基线稳定后，从 `dev` 向 `master` 发起 PR。
 3. `dev -> master` 优先使用 merge commit，以保留阶段边界和可快进回流的祖先关系。
 4. 仓库允许 rebase merge，但使用后必须接受提交 SHA 改变，并以普通 merge 把 `master` 回流到 `dev`。
