@@ -1,5 +1,5 @@
 {
-  "contract_digest": "sha256:9aecc7e721028c7c88ea3e9800f5cb69f24d963057ea3ec847a8f0726d330266",
+  "contract_digest": "sha256:db6b16f0cd749c75cac534e818d62cb7f72f75c052b2b77ff2fc87868873fb9e",
   "counts": {
     "active": "0",
     "historical_ineligible": "1",
@@ -16,7 +16,7 @@
   "format_version": "0.1",
   "generator": {
     "path": "scripts/generate-checker-runtime-payloads.py",
-    "raw_sha256": "sha256:04ccdc6a1a25f32285fa9f912b97f4b411365e65d051f6b0895946f6d556b610"
+    "raw_sha256": "sha256:c55051c0cdffa37e2f942ac37dfbe2d1388396b41a42f248a71b03eee8d983f2"
   },
   "records": [
     {
@@ -30,9 +30,9 @@
     {
       "id": "checker-go0.1-dev-darwin-arm64-current-pending-2026-08-29",
       "path": "contracts/checker-runtime-payloads-v0.1/records/checker-go0.1-dev-darwin-arm64-current-pending.json",
-      "raw_sha256": "sha256:073116f9e34b18329f65223de379a1bfc526038e3a27d66733c6eb7be9f51585",
-      "record_digest": "sha256:4b49a4025c0afd1da75a5cae705d7f7dd5e5ef95d6097c1a53761e90c3d74cc2",
-      "registration_status": "awaiting-controlled-build-and-acceptance",
+      "raw_sha256": "sha256:8f4032fb5f7993a16e7c31fa5a2becc5c56d9e65e2d6dc9eb6629c0b5e3bc0c6",
+      "record_digest": "sha256:0cf553ce65eb32dcbe156ff5f902ffae7c17999826281f3ecffe1c41b9e28dfe",
+      "registration_status": "candidate-retained-temporarily",
       "source": "sha256:e2c4ae31b15162051735a76e44c2fc0a079117994caf3ef53d5710ead1199044"
     }
   ],
@@ -110,7 +110,7 @@
         "workflow-run-id"
       ],
       "retention_days": "90",
-      "status": "workflow-on-default-branch-not-materialized",
+      "status": "candidate-retained-temporarily-provider-readback-passed",
       "upload_action": {
         "archive": "false",
         "commit": "043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",

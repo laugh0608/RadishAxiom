@@ -50,5 +50,5 @@
 实现语言、验证后端、目标执行、生产管线和独立 checker 的架构决策已经确定，首批交换格式、身份契约、执行 profile 与 28 个离线 bundle 已进入仓库门禁。独立 checker 已在外部隔离仓库完成从严格 request / bundle、`checker.source`、锁定 Axiom IR / Evidence 检查，到有限执行、反例重放、output / proof support 审计、production conclusion 重算、四态聚合、canonical codec、累计资源、唯一产品 CLI，以及 payload 确定性候选归档的闭合路径；Checker Runtime Payload Registration v0.1 进一步固定 source → artifact / provenance / acceptance / candidate archive 及 retention / fetch / 重新验证边界，但当前 active runtime 仍为 0。
 
 - 当前阶段、精确实现范围、下一事项与停止线统一以[当前状态](status/current.md)为准，不在文档索引复制易漂移的源码摘要或提交身份；
-- 下一受控入口是当前 `checker.source` 的精确受控构建、独立 acceptance、确定性归档与 Actions provider 回读；这最多形成有限期候选，durable active storage 仍须另行冻结和授权，之后才进入 launcher OS 限制和产品安装协调；
+- 当前 `checker.source` 已完成精确受控构建、独立 acceptance、确定性归档与 Actions provider 回读，只形成有限期候选；下一受控入口是另行冻结并授权 durable active storage / registration，之后才进入 launcher OS 限制和产品安装协调；
 - Go `go1.26.7` macOS arm64 host/source 已完成局部 payload 验收；cvc5、Node、Rust 与其余平台仍须按真实实现依赖顺位完成摘要、签名 / 来源、包内依赖与许可证验收。

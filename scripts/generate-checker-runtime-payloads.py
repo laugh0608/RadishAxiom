@@ -47,6 +47,90 @@ EXCLUDED_SCOPE = [
     "release-signing",
 ]
 
+CURRENT_ARTIFACT = {
+    "byte_length": "4689378",
+    "kind": "known-digest",
+    "raw_sha256": "sha256:02bdc09e3628a61364c5f5638245b9c5b745f20246ab34ff5d278503bb73a2e5",
+}
+CURRENT_PROVENANCE = {
+    "byte_length": "1389",
+    "format": "radishaxiom-checker-build-provenance",
+    "format_version": "0.1",
+    "kind": "known-digest",
+    "raw_sha256": "sha256:74777711e628da1ae3862b488eedaca7741cb60d90f173021ce72d5f814b4812",
+}
+CURRENT_ACCEPTANCE = {
+    "byte_length": "1580",
+    "decision": "accepted-for-controlled-runtime-registration",
+    "excluded_scope": EXCLUDED_SCOPE,
+    "format": "radishaxiom-checker-payload-acceptance",
+    "format_version": "0.1",
+    "kind": "known-digest",
+    "raw_sha256": "sha256:afbfe9aef14573d5a4facfe5290962684027614099117273c953dab701a079a4",
+    "scenarios": [
+        {
+            "byte_length": "7699",
+            "id": "ax-b01-correct",
+            "outcome": "accepted-with-trust",
+            "raw_sha256": "sha256:9c83df7948060b050fe8743e4933ba9f9948a2d4ee1c2bf3cb50aa3c5687ba3a",
+        },
+        {
+            "byte_length": "2254",
+            "id": "chk-digest-01",
+            "outcome": "rejected",
+            "raw_sha256": "sha256:56de23b703ee5ce62ca33aa42b1d969b40d81360aec3ae2a622f9d5a04b88909",
+        },
+        {
+            "byte_length": "2935",
+            "id": "chk-resource-01",
+            "outcome": "incomplete",
+            "raw_sha256": "sha256:01dd88943b954fe79e893eb563f273bd35689be2f7565a1d8ac8a98e6e76bc2a",
+        },
+    ],
+    "scope": ACCEPTED_SCOPE,
+}
+CURRENT_CANDIDATE_ARCHIVE = {
+    "byte_length": "4697600",
+    "filename": "radishaxiom-checker-darwin-arm64-0.1-dev-e2c4ae31b15162051735a76e44c2fc0a079117994caf3ef53d5710ead1199044.tar",
+    "format": "ustar",
+    "kind": "known-digest",
+    "manifest": {
+        "byte_length": "1295",
+        "filename": "checker-payload-retention-manifest-v0.1.jcs",
+        "format": "radishaxiom-checker-payload-retention-manifest",
+        "format_version": "0.1",
+        "raw_sha256": "sha256:f357e32d2832b81ee4fb5f95822d4067a002d0964a25c966f339542fc5d2667c",
+    },
+    "raw_sha256": "sha256:5e567fb39e2971db6b971f7139dfb54c4c7d6bbb58b8c9b90775c2c9cb6eb701",
+}
+CURRENT_CANDIDATE_RUN = {
+    "attempt": "1",
+    "conclusion": "success",
+    "created_at": "2026-08-29T09:47:37Z",
+    "event": "workflow_dispatch",
+    "head_sha": "a81f5b4704efddd1d8c293f9e8e47c58149e65b7",
+    "inputs": {
+        "confirm_candidate_upload": True,
+        "source_identity": CURRENT_SOURCE["identity"],
+        "version": "0.1-dev",
+    },
+    "jobs": [
+        {
+            "conclusion": "success",
+            "id": "99084274782",
+            "name": "Build, Accept, Pack, and Upload Candidate",
+        },
+        {
+            "conclusion": "success",
+            "id": "99084367932",
+            "name": "Read Back Exact Candidate by Artifact ID",
+        },
+    ],
+    "ref": "refs/heads/master",
+    "run_id": "33246312135",
+    "workflow": "Checker Payload Candidate",
+}
+
 STORAGE_POLICY = {
     "active_runtime": {
         "provider": "not-selected",
@@ -120,7 +204,7 @@ STORAGE_POLICY = {
             "workflow-run-id",
         ],
         "retention_days": "90",
-        "status": "workflow-on-default-branch-not-materialized",
+        "status": "candidate-retained-temporarily-provider-readback-passed",
         "upload_action": {
             "archive": "false",
             "commit": "043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
@@ -262,9 +346,10 @@ def historical_record() -> dict[str, Any]:
 def pending_record() -> dict[str, Any]:
     body = {
         **common("checker-go0.1-dev-darwin-arm64-current-pending-2026-08-29", CURRENT_SOURCE),
-        "acceptance": {"kind": "not-produced"},
-        "artifact": {"kind": "not-produced"},
-        "build_provenance": {"kind": "not-produced"},
+        "acceptance": CURRENT_ACCEPTANCE,
+        "artifact": CURRENT_ARTIFACT,
+        "build_provenance": CURRENT_PROVENANCE,
+        "candidate_archive": CURRENT_CANDIDATE_ARCHIVE,
         "candidate_workflow": {
             "ci": {
                 "conclusion": "success",
@@ -291,31 +376,53 @@ def pending_record() -> dict[str, Any]:
                 "merge_method": "merge-commit",
                 "pr_number": "1",
             },
-            "remote_ref": "refs/heads/dev",
+            "remote_ref": "refs/heads/master",
             "repository": "laugh0608/RadishAxiomChecker",
-            "state": "deployed-on-master-and-backflowed-to-dev-ci-passed-not-run",
+            "run": CURRENT_CANDIDATE_RUN,
+            "state": "candidate-built-accepted-uploaded-and-read-back",
             "tree": "128ea8b12c49fe5319783930e74bb3f089233bb9",
             "trigger": "workflow-dispatch-only",
         },
         "registration": {
             "reasons": [
-                "acceptance-not-produced",
-                "artifact-not-produced",
-                "candidate-archive-not-produced",
-                "candidate-workflow-not-run",
-                "provenance-not-produced",
+                "active-provider-not-selected",
+                "candidate-storage-is-temporary",
+                "launcher-isolation-not-implemented",
+                "separate-publication-authorization-required",
             ],
-            "status": "awaiting-controlled-build-and-acceptance",
+            "status": "candidate-retained-temporarily",
         },
         "retention": {
-            "acceptance_bytes": "not-produced",
-            "artifact_bytes": "not-produced",
-            "candidate_archive_bytes": "not-produced",
+            "acceptance_bytes": "retained-in-candidate-archive",
+            "artifact_bytes": "retained-in-candidate-archive",
+            "candidate_archive_bytes": "retained-temporarily-by-provider",
             "fetch": {
-                "kind": "unavailable",
-                "reason": "the current-source workflow is deployed on remote master and backflowed to dev with regular CI passing, but the manual workflow has not been run, so no candidate has been built or accepted",
+                "kind": "github-actions-direct-file-exact-artifact-id",
+                "provider": {
+                    "artifact_id": "9712952210",
+                    "created_at": "2026-08-29T09:48:31Z",
+                    "digest": CURRENT_CANDIDATE_ARCHIVE["raw_sha256"],
+                    "expired_at_readback": False,
+                    "expires_at": "2026-11-27T09:47:39Z",
+                    "name": CURRENT_CANDIDATE_ARCHIVE["filename"],
+                    "size_in_bytes": CURRENT_CANDIDATE_ARCHIVE["byte_length"],
+                    "url": "https://github.com/laugh0608/RadishAxiomChecker/actions/runs/33246312135/artifacts/9712952210",
+                },
+                "readback": {
+                    "exact_artifact_id": True,
+                    "job_id": "99084367932",
+                    "payload_archive_verified": True,
+                    "provider_metadata_verified": True,
+                },
+                "repository": "laugh0608/RadishAxiomChecker",
+                "workflow": {
+                    "head_sha": CURRENT_CANDIDATE_RUN["head_sha"],
+                    "ref": CURRENT_CANDIDATE_RUN["ref"],
+                    "run_attempt": CURRENT_CANDIDATE_RUN["attempt"],
+                    "run_id": CURRENT_CANDIDATE_RUN["run_id"],
+                },
             },
-            "provenance_bytes": "not-produced",
+            "provenance_bytes": "retained-in-candidate-archive",
         },
         "reverification": {
             "required_inputs": [
@@ -325,7 +432,7 @@ def pending_record() -> dict[str, Any]:
                 "retained-or-fetchable-candidate-archive",
                 "retained-or-fetchable-provenance-bytes",
             ],
-            "status": "awaiting-controlled-build-and-acceptance",
+            "status": "candidate-archive-provider-readback-passed",
         },
     }
     return record(body)
@@ -376,6 +483,8 @@ def infer_schema(values: list[Any], key: str = "") -> dict[str, Any]:
         if all(re.fullmatch(r"0|[1-9][0-9]*", value) for value in values):
             return {"pattern": "^(0|[1-9][0-9]*)$", "type": "string"}
         return {"type": "string"}
+    if values and all(isinstance(value, bool) for value in values):
+        return {"type": "boolean"}
     raise ValueError(f"cannot infer schema for {key}")
 
 
@@ -429,7 +538,7 @@ def negative_fixtures(historical: dict[str, Any], pending: dict[str, Any]) -> li
     value["acceptance"]["excluded_scope"].remove("installation")
     rows.append(("installation-exclusion-missing.invalid.json", "acceptance cannot be expanded to installation", refreshed(value)))
     value = copy.deepcopy(pending)
-    value["artifact"] = copy.deepcopy(historical["artifact"])
+    value["build_provenance"] = {"kind": "not-produced"}
     rows.append(("pending-artifact-without-provenance.invalid.json", "artifact digest alone cannot complete current-source registration", refreshed(value)))
     value = copy.deepcopy(pending)
     value["unexpected"] = "member"

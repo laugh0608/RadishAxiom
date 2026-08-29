@@ -318,36 +318,191 @@
         "acceptance": {
           "additionalProperties": false,
           "properties": {
+            "byte_length": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            },
+            "decision": {
+              "type": "string"
+            },
+            "excluded_scope": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "format": {
+              "type": "string"
+            },
+            "format_version": {
+              "type": "string"
+            },
             "kind": {
-              "const": "not-produced"
+              "const": "known-digest"
+            },
+            "raw_sha256": {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "scenarios": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "byte_length": {
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "outcome": {
+                    "type": "string"
+                  },
+                  "raw_sha256": {
+                    "pattern": "^sha256:[0-9a-f]{64}$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "byte_length",
+                  "id",
+                  "outcome",
+                  "raw_sha256"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "scope": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
             }
           },
           "required": [
-            "kind"
+            "byte_length",
+            "decision",
+            "excluded_scope",
+            "format",
+            "format_version",
+            "kind",
+            "raw_sha256",
+            "scenarios",
+            "scope"
           ],
           "type": "object"
         },
         "artifact": {
           "additionalProperties": false,
           "properties": {
+            "byte_length": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            },
             "kind": {
-              "const": "not-produced"
+              "const": "known-digest"
+            },
+            "raw_sha256": {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
             }
           },
           "required": [
-            "kind"
+            "byte_length",
+            "kind",
+            "raw_sha256"
           ],
           "type": "object"
         },
         "build_provenance": {
           "additionalProperties": false,
           "properties": {
+            "byte_length": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            },
+            "format": {
+              "type": "string"
+            },
+            "format_version": {
+              "type": "string"
+            },
             "kind": {
-              "const": "not-produced"
+              "const": "known-digest"
+            },
+            "raw_sha256": {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
             }
           },
           "required": [
-            "kind"
+            "byte_length",
+            "format",
+            "format_version",
+            "kind",
+            "raw_sha256"
+          ],
+          "type": "object"
+        },
+        "candidate_archive": {
+          "additionalProperties": false,
+          "properties": {
+            "byte_length": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            },
+            "filename": {
+              "type": "string"
+            },
+            "format": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string"
+            },
+            "manifest": {
+              "additionalProperties": false,
+              "properties": {
+                "byte_length": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                },
+                "filename": {
+                  "type": "string"
+                },
+                "format": {
+                  "type": "string"
+                },
+                "format_version": {
+                  "type": "string"
+                },
+                "raw_sha256": {
+                  "pattern": "^sha256:[0-9a-f]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "byte_length",
+                "filename",
+                "format",
+                "format_version",
+                "raw_sha256"
+              ],
+              "type": "object"
+            },
+            "raw_sha256": {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "byte_length",
+            "filename",
+            "format",
+            "kind",
+            "manifest",
+            "raw_sha256"
           ],
           "type": "object"
         },
@@ -463,6 +618,95 @@
             "repository": {
               "type": "string"
             },
+            "run": {
+              "additionalProperties": false,
+              "properties": {
+                "attempt": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                },
+                "conclusion": {
+                  "type": "string"
+                },
+                "created_at": {
+                  "type": "string"
+                },
+                "event": {
+                  "type": "string"
+                },
+                "head_sha": {
+                  "type": "string"
+                },
+                "inputs": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "confirm_candidate_upload": {
+                      "type": "boolean"
+                    },
+                    "source_identity": {
+                      "pattern": "^sha256:[0-9a-f]{64}$",
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "confirm_candidate_upload",
+                    "source_identity",
+                    "version"
+                  ],
+                  "type": "object"
+                },
+                "jobs": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "conclusion": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "pattern": "^(0|[1-9][0-9]*)$",
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "conclusion",
+                      "id",
+                      "name"
+                    ],
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "ref": {
+                  "type": "string"
+                },
+                "run_id": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                },
+                "workflow": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "attempt",
+                "conclusion",
+                "created_at",
+                "event",
+                "head_sha",
+                "inputs",
+                "jobs",
+                "ref",
+                "run_id",
+                "workflow"
+              ],
+              "type": "object"
+            },
             "state": {
               "type": "string"
             },
@@ -481,6 +725,7 @@
             "promotion",
             "remote_ref",
             "repository",
+            "run",
             "state",
             "tree",
             "trigger"
@@ -557,7 +802,7 @@
               "type": "array"
             },
             "status": {
-              "const": "awaiting-controlled-build-and-acceptance"
+              "const": "candidate-retained-temporarily"
             }
           },
           "required": [
@@ -584,13 +829,110 @@
                 "kind": {
                   "type": "string"
                 },
-                "reason": {
+                "provider": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "artifact_id": {
+                      "pattern": "^(0|[1-9][0-9]*)$",
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "digest": {
+                      "pattern": "^sha256:[0-9a-f]{64}$",
+                      "type": "string"
+                    },
+                    "expired_at_readback": {
+                      "type": "boolean"
+                    },
+                    "expires_at": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "size_in_bytes": {
+                      "pattern": "^(0|[1-9][0-9]*)$",
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "artifact_id",
+                    "created_at",
+                    "digest",
+                    "expired_at_readback",
+                    "expires_at",
+                    "name",
+                    "size_in_bytes",
+                    "url"
+                  ],
+                  "type": "object"
+                },
+                "readback": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "exact_artifact_id": {
+                      "type": "boolean"
+                    },
+                    "job_id": {
+                      "pattern": "^(0|[1-9][0-9]*)$",
+                      "type": "string"
+                    },
+                    "payload_archive_verified": {
+                      "type": "boolean"
+                    },
+                    "provider_metadata_verified": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "exact_artifact_id",
+                    "job_id",
+                    "payload_archive_verified",
+                    "provider_metadata_verified"
+                  ],
+                  "type": "object"
+                },
+                "repository": {
                   "type": "string"
+                },
+                "workflow": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "head_sha": {
+                      "type": "string"
+                    },
+                    "ref": {
+                      "type": "string"
+                    },
+                    "run_attempt": {
+                      "pattern": "^(0|[1-9][0-9]*)$",
+                      "type": "string"
+                    },
+                    "run_id": {
+                      "pattern": "^(0|[1-9][0-9]*)$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "head_sha",
+                    "ref",
+                    "run_attempt",
+                    "run_id"
+                  ],
+                  "type": "object"
                 }
               },
               "required": [
                 "kind",
-                "reason"
+                "provider",
+                "readback",
+                "repository",
+                "workflow"
               ],
               "type": "object"
             },
@@ -655,6 +997,7 @@
         "acceptance",
         "artifact",
         "build_provenance",
+        "candidate_archive",
         "candidate_workflow",
         "checker",
         "digest_domain",
