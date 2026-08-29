@@ -8,12 +8,21 @@
   "build_provenance": {
     "kind": "not-produced"
   },
+  "candidate_workflow": {
+    "commit": "014f35cc268cb6cce6c35b840841696cff538f7b",
+    "default_branch_presence": "not-deployed",
+    "file": ".github/workflows/checker-payload-candidate.yml",
+    "repository": "laugh0608/RadishAxiomChecker",
+    "state": "committed-on-local-dev-not-deployed-or-run",
+    "tree": "128ea8b12c49fe5319783930e74bb3f089233bb9",
+    "trigger": "workflow-dispatch-only"
+  },
   "checker": {
     "implementation": "radishaxiom-independent-checker-go",
     "source": {
-      "file_count": "695",
-      "identity": "sha256:675f8ff470a621124ede081bcf8330b73910ab34e20b7b174356d57423e6ee74",
-      "manifest_byte_length": "185571"
+      "file_count": "696",
+      "identity": "sha256:e2c4ae31b15162051735a76e44c2fc0a079117994caf3ef53d5710ead1199044",
+      "manifest_byte_length": "185774"
     },
     "toolchain": "go1.26.7",
     "version": "0.1-dev"
@@ -22,12 +31,13 @@
   "format": "radishaxiom-checker-runtime-payload-registration",
   "format_version": "0.1",
   "id": "checker-go0.1-dev-darwin-arm64-current-pending-2026-08-29",
-  "record_digest": "sha256:d53f13a2106d3fc4f76162654269777a7fe932e0472152d69a0ac07ffccb1640",
+  "record_digest": "sha256:ca44d7e4fc23c69106882ef81905e0b56b6b0fe5ff7bd78c4a8ec33ed4c7d0ee",
   "registration": {
     "reasons": [
       "acceptance-not-produced",
       "artifact-not-produced",
       "candidate-archive-not-produced",
+      "candidate-workflow-not-deployed-or-run",
       "provenance-not-produced"
     ],
     "status": "awaiting-controlled-build-and-acceptance"
@@ -38,7 +48,7 @@
     "candidate_archive_bytes": "not-produced",
     "fetch": {
       "kind": "unavailable",
-      "reason": "no current-source candidate has been built or accepted"
+      "reason": "the current-source workflow is committed on local dev but has not been pushed, deployed to the default branch, or run, so no candidate has been built or accepted"
     },
     "provenance_bytes": "not-produced"
   },

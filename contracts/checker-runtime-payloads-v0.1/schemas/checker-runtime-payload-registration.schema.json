@@ -351,6 +351,42 @@
           ],
           "type": "object"
         },
+        "candidate_workflow": {
+          "additionalProperties": false,
+          "properties": {
+            "commit": {
+              "type": "string"
+            },
+            "default_branch_presence": {
+              "type": "string"
+            },
+            "file": {
+              "type": "string"
+            },
+            "repository": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "tree": {
+              "type": "string"
+            },
+            "trigger": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "commit",
+            "default_branch_presence",
+            "file",
+            "repository",
+            "state",
+            "tree",
+            "trigger"
+          ],
+          "type": "object"
+        },
         "checker": {
           "additionalProperties": false,
           "properties": {
@@ -519,6 +555,7 @@
         "acceptance",
         "artifact",
         "build_provenance",
+        "candidate_workflow",
         "checker",
         "digest_domain",
         "format",

@@ -23,9 +23,9 @@ SET_DOMAIN = "radishaxiom.checker-runtime-payload-registration-set.v0.1"
 SHA256_PATTERN = re.compile(r"^sha256:[0-9a-f]{64}$")
 
 CURRENT_SOURCE = {
-    "file_count": "695",
-    "identity": "sha256:675f8ff470a621124ede081bcf8330b73910ab34e20b7b174356d57423e6ee74",
-    "manifest_byte_length": "185571",
+    "file_count": "696",
+    "identity": "sha256:e2c4ae31b15162051735a76e44c2fc0a079117994caf3ef53d5710ead1199044",
+    "manifest_byte_length": "185774",
 }
 HISTORICAL_SOURCE = {
     "file_count": "682",
@@ -62,10 +62,19 @@ STORAGE_POLICY = {
         "status": "blocked-release-and-storage-governance-pending",
     },
     "candidate": {
+        "activation_precondition": "workflow-file-present-on-default-branch",
+        "build_runner": "macos-15-arm64",
+        "download_action": {
+            "commit": "3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+            "name": "actions/download-artifact",
+            "version": "v8.0.1",
+        },
         "expiration_effect": "candidate-becomes-unavailable",
         "fetch_resolution": "exact-artifact-id-only",
-        "provider": "github-actions-artifact",
-        "readback": "separate-job-provider-download-and-inner-archive-verification",
+        "implementation_commit": "014f35cc268cb6cce6c35b840841696cff538f7b",
+        "implementation_tree": "128ea8b12c49fe5319783930e74bb3f089233bb9",
+        "provider": "github-actions-direct-file-artifact",
+        "readback": "separate-job-exact-artifact-id-direct-file-download-and-inner-archive-verification",
         "registration_effect": "candidate-only-never-active",
         "repository": "laugh0608/RadishAxiomChecker",
         "required_inner_bindings": [
@@ -76,16 +85,27 @@ STORAGE_POLICY = {
         ],
         "required_provider_bindings": [
             "artifact-id",
+            "artifact-name",
             "created-at",
             "expires-at",
-            "provider-archive-digest",
-            "provider-archive-size",
+            "provider-direct-file-digest",
+            "provider-direct-file-size",
             "workflow-head-sha",
+            "workflow-ref",
+            "workflow-run-attempt",
             "workflow-run-id",
         ],
         "retention_days": "90",
-        "status": "selected-not-materialized",
-        "upload_object": "deterministic-inner-ustar",
+        "status": "workflow-committed-not-deployed-or-materialized",
+        "upload_action": {
+            "archive": "false",
+            "commit": "043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+            "name": "actions/upload-artifact",
+            "version": "v7.0.1",
+        },
+        "upload_object": "deterministic-inner-ustar-direct-file-no-provider-archive",
+        "workflow_file": ".github/workflows/checker-payload-candidate.yml",
+        "workflow_trigger": "workflow-dispatch-only",
     },
 }
 
@@ -221,11 +241,21 @@ def pending_record() -> dict[str, Any]:
         "acceptance": {"kind": "not-produced"},
         "artifact": {"kind": "not-produced"},
         "build_provenance": {"kind": "not-produced"},
+        "candidate_workflow": {
+            "commit": "014f35cc268cb6cce6c35b840841696cff538f7b",
+            "default_branch_presence": "not-deployed",
+            "file": ".github/workflows/checker-payload-candidate.yml",
+            "repository": "laugh0608/RadishAxiomChecker",
+            "state": "committed-on-local-dev-not-deployed-or-run",
+            "tree": "128ea8b12c49fe5319783930e74bb3f089233bb9",
+            "trigger": "workflow-dispatch-only",
+        },
         "registration": {
             "reasons": [
                 "acceptance-not-produced",
                 "artifact-not-produced",
                 "candidate-archive-not-produced",
+                "candidate-workflow-not-deployed-or-run",
                 "provenance-not-produced",
             ],
             "status": "awaiting-controlled-build-and-acceptance",
@@ -236,7 +266,7 @@ def pending_record() -> dict[str, Any]:
             "candidate_archive_bytes": "not-produced",
             "fetch": {
                 "kind": "unavailable",
-                "reason": "no current-source candidate has been built or accepted",
+                "reason": "the current-source workflow is committed on local dev but has not been pushed, deployed to the default branch, or run, so no candidate has been built or accepted",
             },
             "provenance_bytes": "not-produced",
         },
