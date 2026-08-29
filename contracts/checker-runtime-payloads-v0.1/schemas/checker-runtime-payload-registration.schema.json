@@ -384,6 +384,79 @@
             "file": {
               "type": "string"
             },
+            "promotion": {
+              "additionalProperties": false,
+              "properties": {
+                "dev_backflow_ci": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "conclusion": {
+                      "type": "string"
+                    },
+                    "run_id": {
+                      "pattern": "^(0|[1-9][0-9]*)$",
+                      "type": "string"
+                    },
+                    "workflow": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "conclusion",
+                    "run_id",
+                    "workflow"
+                  ],
+                  "type": "object"
+                },
+                "dev_ref": {
+                  "type": "string"
+                },
+                "master_ci": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "conclusion": {
+                      "type": "string"
+                    },
+                    "run_id": {
+                      "pattern": "^(0|[1-9][0-9]*)$",
+                      "type": "string"
+                    },
+                    "workflow": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "conclusion",
+                    "run_id",
+                    "workflow"
+                  ],
+                  "type": "object"
+                },
+                "master_ref": {
+                  "type": "string"
+                },
+                "merge_commit": {
+                  "type": "string"
+                },
+                "merge_method": {
+                  "type": "string"
+                },
+                "pr_number": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "dev_backflow_ci",
+                "dev_ref",
+                "master_ci",
+                "master_ref",
+                "merge_commit",
+                "merge_method",
+                "pr_number"
+              ],
+              "type": "object"
+            },
             "remote_ref": {
               "type": "string"
             },
@@ -405,6 +478,7 @@
             "commit",
             "default_branch_presence",
             "file",
+            "promotion",
             "remote_ref",
             "repository",
             "state",

@@ -7,7 +7,7 @@
 `contract.json` 明确登记 `active = 0`，即当前没有可由产品 launcher 使用的 runtime payload：
 
 - 2026-08-28 的 macOS arm64 候选曾通过 `accepted-for-controlled-runtime-registration`，但它绑定旧 `checker.source = sha256:3b809b...d90b4`；artifact、canonical provenance 与 canonical acceptance 原始字节已经删除，也没有登记 fetch 入口，因此只保留为 `historical-ineligible`，不得重绑到当前 source。
-- 当前 `checker.source = sha256:e2c4ae...9044` 只形成 `awaiting-controlled-build-and-acceptance` 记录；闭合 source 已包含只手工触发的候选 workflow 实现，checker `origin/dev` 已精确指向 commit `014f35cc268cb6cce6c35b840841696cff538f7b`，常规 `Checker Checks` run `33238577710` 成功，但该文件尚未进入默认分支或运行，仍无 artifact、provenance、acceptance 或 candidate archive。Git commit、远程 ref 与 CI 只作来源和治理追溯，不能补全或替代 payload 身份。
+- 当前 `checker.source = sha256:e2c4ae...9044` 只形成 `awaiting-controlled-build-and-acceptance` 记录；闭合 source 中只手工触发的候选 workflow 实现仍绑定 commit `014f35cc268cb6cce6c35b840841696cff538f7b` 与 tree `128ea8b12c49fe5319783930e74bb3f089233bb9`。PR #1 以 merge commit `a81f5b4704efddd1d8c293f9e8e47c58149e65b7` 进入默认分支，`master` 常规 `Checker Checks` run `33239697298` 成功；该 merge commit 随后快进回流到 `dev`，run `33239918358` 成功，远程双分支均指向同一提交。但候选 workflow 尚未运行，仍无 artifact、provenance、acceptance 或 candidate archive。Git commit、远程 ref 与 CI 只作来源和治理追溯，不能补全或替代 payload 身份。
 
 已知摘要仍可用于审计历史陈述，但摘要存在不等于字节可取得、可重新验证、已安装或可运行。未来把记录提升为正式登记，至少要让当前 source 经过精确 `go1.26.7` 受控构建和独立 acceptance，并为 artifact、provenance、acceptance 三类规范字节形成可复核的 retention 或 fetch 边界；launcher 的 OS / architecture 硬隔离仍是之后的独立门禁。
 
@@ -15,7 +15,7 @@
 
 `contract.json` 选择 `laugh0608/RadishAxiomChecker` 的 GitHub Actions direct-file artifact 作为候选阶段有限期暂存：上传对象必须是 checker 仓库归档器形成的确定性 USTAR 单文件，并由精确固定的 `actions/upload-artifact` v7.0.1 以 `archive: false` 上传，不生成 provider 外层 ZIP。它绑定精确 workflow run / attempt / ref / head SHA、artifact ID / name / created / expires / provider direct-file digest / size，以及内层 archive / retention manifest 身份。fetch 只允许精确 artifact ID；上传后还须由独立 job 使用精确固定的 `actions/download-artifact` v8.0.1 从 provider 原样回读并复核内层 USTAR 与 REST API 元数据。公开仓库最长 90 天的 Actions artifact 只允许 `candidate-only-never-active`，到期或 workflow run / artifact 被删除后必须转为 unavailable。
 
-候选 workflow 只有 `workflow_dispatch`，要求显式 source、version 和上传确认，并限制为 `dev` / `master` ref；构建 job 使用 `macos-15` arm64 runner，read-back job 使用 Ubuntu。GitHub 只会接收已经存在于默认分支的手工 workflow，因此当前状态是 `workflow-on-dev-not-default-branch-or-materialized`；进入 `master`、下载 Go archive、构建、上传和回读都属于后续分别授权的远程动作。
+候选 workflow 只有 `workflow_dispatch`，要求显式 source、version 和上传确认，并限制为 `dev` / `master` ref；构建 job 使用 `macos-15` arm64 runner，read-back job 使用 Ubuntu。该文件已经进入默认分支并回流到 `dev`，当前状态是 `workflow-on-default-branch-not-materialized`；手工运行、下载 Go archive、构建、上传和回读仍属于后续单独授权的远程动作。
 
 active runtime 的 durable provider 仍保持 `not-selected`。它必须满足不可变资产、稳定精确 fetch、原始长度 / SHA-256、provider 独立回读、无 latest alias、撤销 / replacement 规则和单独发布授权。GitHub immutable release assets 只是待发布治理审查的候选；当前契约没有选择、创建或授权 Release / tag / upload。
 
