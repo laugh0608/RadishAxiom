@@ -1,0 +1,40 @@
+{
+  "contract_digest": "sha256:5364a3f310ea93a28433d4169c90d4d4559c6fa147c598a440ff878b636aa6fa",
+  "counts": {
+    "active": "0",
+    "historical_ineligible": "1",
+    "pending": "1",
+    "records": "2"
+  },
+  "current_checker_source": {
+    "file_count": "691",
+    "identity": "sha256:256dc873e83362ea3321a62a1ce00a30dc24e96cf79d6014adf2ef6208246b59",
+    "manifest_byte_length": "184791"
+  },
+  "digest_domain": "radishaxiom.checker-runtime-payload-registration-set.v0.1",
+  "format": "radishaxiom-checker-runtime-payload-registration-set",
+  "format_version": "0.1",
+  "generator": {
+    "path": "scripts/generate-checker-runtime-payloads.py",
+    "raw_sha256": "sha256:e3aeed419ce3463f05624c27d4078d22e6827fb1e93b8e1d87763c536d6ffff1"
+  },
+  "records": [
+    {
+      "id": "checker-go0.1-dev-darwin-arm64-historical-2026-08-28",
+      "path": "contracts/checker-runtime-payloads-v0.1/records/checker-go0.1-dev-darwin-arm64-historical.json",
+      "raw_sha256": "sha256:46953307393ed81393c80f93d36d93c0f6e2cee7509f2657b51c5afa1a1ee0a1",
+      "record_digest": "sha256:084b29ea137289d3d2dc4740c8cb495a06c12481fc8b9350c767abfd45cfe2f0",
+      "registration_status": "historical-ineligible",
+      "source": "sha256:3b809ba6f062dbc1c543b64d9eb01f1fe46bdadf29f2d441b6d1c068200d90b4"
+    },
+    {
+      "id": "checker-go0.1-dev-darwin-arm64-current-pending-2026-08-29",
+      "path": "contracts/checker-runtime-payloads-v0.1/records/checker-go0.1-dev-darwin-arm64-current-pending.json",
+      "raw_sha256": "sha256:b6ac5f4d744934d18b1f2a7cda8ab9dcc2ec95507523724aed3af0595f92cd6c",
+      "record_digest": "sha256:f4ee0f846cf6452afe07f9a7cf97d5c730669d3bf82913675c1de5f95c6e2a1b",
+      "registration_status": "awaiting-controlled-build-and-acceptance",
+      "source": "sha256:256dc873e83362ea3321a62a1ce00a30dc24e96cf79d6014adf2ef6208246b59"
+    }
+  ],
+  "runtime_statement": "no-current-source-runtime-payload-is-registered"
+}

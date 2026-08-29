@@ -1,0 +1,533 @@
+{
+  "$id": "https://radishaxiom.dev/schema/checker-runtime-payload-registration/0.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "additionalProperties": false,
+      "properties": {
+        "acceptance": {
+          "additionalProperties": false,
+          "properties": {
+            "byte_length": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            },
+            "decision": {
+              "type": "string"
+            },
+            "excluded_scope": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "format": {
+              "type": "string"
+            },
+            "format_version": {
+              "type": "string"
+            },
+            "kind": {
+              "const": "known-digest"
+            },
+            "raw_sha256": {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "scenarios": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "byte_length": {
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "outcome": {
+                    "type": "string"
+                  },
+                  "raw_sha256": {
+                    "pattern": "^sha256:[0-9a-f]{64}$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "byte_length",
+                  "id",
+                  "outcome",
+                  "raw_sha256"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "scope": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "byte_length",
+            "decision",
+            "excluded_scope",
+            "format",
+            "format_version",
+            "kind",
+            "raw_sha256",
+            "scenarios",
+            "scope"
+          ],
+          "type": "object"
+        },
+        "artifact": {
+          "additionalProperties": false,
+          "properties": {
+            "byte_length": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            },
+            "kind": {
+              "const": "known-digest"
+            },
+            "raw_sha256": {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "byte_length",
+            "kind",
+            "raw_sha256"
+          ],
+          "type": "object"
+        },
+        "build_provenance": {
+          "additionalProperties": false,
+          "properties": {
+            "byte_length": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            },
+            "format": {
+              "type": "string"
+            },
+            "format_version": {
+              "type": "string"
+            },
+            "kind": {
+              "const": "known-digest"
+            },
+            "raw_sha256": {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "byte_length",
+            "format",
+            "format_version",
+            "kind",
+            "raw_sha256"
+          ],
+          "type": "object"
+        },
+        "checker": {
+          "additionalProperties": false,
+          "properties": {
+            "implementation": {
+              "type": "string"
+            },
+            "source": {
+              "additionalProperties": false,
+              "properties": {
+                "file_count": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                },
+                "identity": {
+                  "pattern": "^sha256:[0-9a-f]{64}$",
+                  "type": "string"
+                },
+                "manifest_byte_length": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "file_count",
+                "identity",
+                "manifest_byte_length"
+              ],
+              "type": "object"
+            },
+            "toolchain": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "implementation",
+            "source",
+            "toolchain",
+            "version"
+          ],
+          "type": "object"
+        },
+        "digest_domain": {
+          "const": "radishaxiom.checker-runtime-payload-registration.v0.1"
+        },
+        "format": {
+          "const": "radishaxiom-checker-runtime-payload-registration"
+        },
+        "format_version": {
+          "const": "0.1"
+        },
+        "id": {
+          "const": "checker-go0.1-dev-darwin-arm64-historical-2026-08-28"
+        },
+        "record_digest": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "registration": {
+          "additionalProperties": false,
+          "properties": {
+            "reasons": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "status": {
+              "const": "historical-ineligible"
+            }
+          },
+          "required": [
+            "reasons",
+            "status"
+          ],
+          "type": "object"
+        },
+        "retention": {
+          "additionalProperties": false,
+          "properties": {
+            "acceptance_bytes": {
+              "type": "string"
+            },
+            "artifact_bytes": {
+              "type": "string"
+            },
+            "fetch": {
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "reason": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "kind",
+                "reason"
+              ],
+              "type": "object"
+            },
+            "provenance_bytes": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "acceptance_bytes",
+            "artifact_bytes",
+            "fetch",
+            "provenance_bytes"
+          ],
+          "type": "object"
+        },
+        "reverification": {
+          "additionalProperties": false,
+          "properties": {
+            "required_inputs": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "required_inputs",
+            "status"
+          ],
+          "type": "object"
+        },
+        "target": {
+          "additionalProperties": false,
+          "properties": {
+            "executable_format": {
+              "type": "string"
+            },
+            "goarch": {
+              "type": "string"
+            },
+            "goarm64": {
+              "type": "string"
+            },
+            "goos": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "executable_format",
+            "goarch",
+            "goarm64",
+            "goos"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "acceptance",
+        "artifact",
+        "build_provenance",
+        "checker",
+        "digest_domain",
+        "format",
+        "format_version",
+        "id",
+        "record_digest",
+        "registration",
+        "retention",
+        "reverification",
+        "target"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "acceptance": {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "not-produced"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        },
+        "artifact": {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "not-produced"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        },
+        "build_provenance": {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "not-produced"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        },
+        "checker": {
+          "additionalProperties": false,
+          "properties": {
+            "implementation": {
+              "type": "string"
+            },
+            "source": {
+              "additionalProperties": false,
+              "properties": {
+                "file_count": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                },
+                "identity": {
+                  "pattern": "^sha256:[0-9a-f]{64}$",
+                  "type": "string"
+                },
+                "manifest_byte_length": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "file_count",
+                "identity",
+                "manifest_byte_length"
+              ],
+              "type": "object"
+            },
+            "toolchain": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "implementation",
+            "source",
+            "toolchain",
+            "version"
+          ],
+          "type": "object"
+        },
+        "digest_domain": {
+          "const": "radishaxiom.checker-runtime-payload-registration.v0.1"
+        },
+        "format": {
+          "const": "radishaxiom-checker-runtime-payload-registration"
+        },
+        "format_version": {
+          "const": "0.1"
+        },
+        "id": {
+          "const": "checker-go0.1-dev-darwin-arm64-current-pending-2026-08-29"
+        },
+        "record_digest": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "registration": {
+          "additionalProperties": false,
+          "properties": {
+            "reasons": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "status": {
+              "const": "awaiting-controlled-build-and-acceptance"
+            }
+          },
+          "required": [
+            "reasons",
+            "status"
+          ],
+          "type": "object"
+        },
+        "retention": {
+          "additionalProperties": false,
+          "properties": {
+            "acceptance_bytes": {
+              "type": "string"
+            },
+            "artifact_bytes": {
+              "type": "string"
+            },
+            "fetch": {
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "reason": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "kind",
+                "reason"
+              ],
+              "type": "object"
+            },
+            "provenance_bytes": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "acceptance_bytes",
+            "artifact_bytes",
+            "fetch",
+            "provenance_bytes"
+          ],
+          "type": "object"
+        },
+        "reverification": {
+          "additionalProperties": false,
+          "properties": {
+            "required_inputs": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "required_inputs",
+            "status"
+          ],
+          "type": "object"
+        },
+        "target": {
+          "additionalProperties": false,
+          "properties": {
+            "executable_format": {
+              "type": "string"
+            },
+            "goarch": {
+              "type": "string"
+            },
+            "goarm64": {
+              "type": "string"
+            },
+            "goos": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "executable_format",
+            "goarch",
+            "goarm64",
+            "goos"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "acceptance",
+        "artifact",
+        "build_provenance",
+        "checker",
+        "digest_domain",
+        "format",
+        "format_version",
+        "id",
+        "record_digest",
+        "registration",
+        "retention",
+        "reverification",
+        "target"
+      ],
+      "type": "object"
+    }
+  ],
+  "title": "RadishAxiom checker runtime payload registration v0.1"
+}

@@ -1,0 +1,30 @@
+{
+  "fixtures": [
+    {
+      "file": "historical-artifact-current-source.invalid.json",
+      "reason": "historical artifact cannot be rebound to current source"
+    },
+    {
+      "file": "missing-artifact-retention-overclaim.invalid.json",
+      "reason": "deleted artifact bytes cannot be claimed as retained"
+    },
+    {
+      "file": "historical-payload-registered.invalid.json",
+      "reason": "source-mismatched unavailable payload cannot be registered"
+    },
+    {
+      "file": "installation-exclusion-missing.invalid.json",
+      "reason": "acceptance cannot be expanded to installation"
+    },
+    {
+      "file": "pending-artifact-without-provenance.invalid.json",
+      "reason": "artifact digest alone cannot complete current-source registration"
+    },
+    {
+      "file": "unknown-member.invalid.json",
+      "reason": "closed registration rejects unknown members"
+    }
+  ],
+  "format": "radishaxiom-checker-runtime-payload-negative-set",
+  "format_version": "0.1"
+}

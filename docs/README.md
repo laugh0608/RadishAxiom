@@ -40,14 +40,15 @@
 - [Execution Profile Contract v0.1](../contracts/execution-profiles-v0.1/README.md)：cvc5 / Node / Go checker 的允许参数、内部与外层资源限制、结果形成边界和 certificate 空能力停止线。
 - [Toolchain & Adapter Identity Registry v0.1](../contracts/toolchain-adapters-v0.1/README.md)：Rust / Go / cvc5 / Node 的精确版本、六平台候选制品、官方摘要来源、逐制品供应链状态和执行 profile 身份。
 - [Toolchain Payload Acceptance v0.1](../contracts/toolchain-payload-acceptance-v0.1/README.md)：Go `go1.26.7` macOS arm64 host/source 的摘要重算、只读 archive 观察、vendor / 许可证清单、签名停止线与局部 acceptance。
+- [Checker Runtime Payload Registration v0.1](../contracts/checker-runtime-payloads-v0.1/README.md)：闭合 checker source、target、artifact / provenance / acceptance 身份及 retention / fetch / 重新验证边界；当前 active runtime 为 0。
 - [Pipeline Artifact Contract v0.1](../contracts/pipeline-artifacts-v0.1/README.md)：obligation set、host data、SMT query、target module 与 pipeline receipt 的首批规范字节、身份、gate / cache / partial failure 契约。
 - [Implementation Readiness Contract v0.1](../contracts/implementation-readiness-v0.1/README.md)：20 个 benchmark、16 个 CHK-* 与 pipeline / readiness 路径的统一实现入口矩阵、来源覆盖和负向拒绝契约。
 - [Keyed Finite Table Checker Bundle Contract v0.1](../contracts/keyed-finite-table-checker-bundles-v0.1/README.md)：28 个 readiness 场景的完整离线 bundle、Axiom Evidence、receipt、独立预期结果、进程失败边界与负例摘要链。
 
 ## 受控实现进展与下一入口
 
-实现语言、验证后端、目标执行、生产管线和独立 checker 的架构决策已经确定，首批交换格式、身份契约、执行 profile 与 28 个离线 bundle 已进入仓库门禁。独立 checker 已在外部隔离仓库完成严格 request / manifest、只读 bundle、`checker.source`、锁定 Axiom IR profile 的结构与类型良构、Axiom Evidence 结构与身份、obligation completeness、state / support、counterexample 有限 world / `WF`，以及 concrete input artifact / `Pre`；这些结果不代表 IR DAG 执行、非输入目标反例、host / golden output、proof / attestation、结论重算或独立结论已经完成。
+实现语言、验证后端、目标执行、生产管线和独立 checker 的架构决策已经确定，首批交换格式、身份契约、执行 profile 与 28 个离线 bundle 已进入仓库门禁。独立 checker 已在外部隔离仓库完成从严格 request / bundle、`checker.source`、锁定 Axiom IR / Evidence 检查，到有限执行、反例重放、output / proof support 审计、production conclusion 重算、四态聚合、canonical codec、累计资源和唯一产品 CLI 的闭合路径；Checker Runtime Payload Registration v0.1 进一步固定 source → artifact / provenance / acceptance 及 retention / fetch / 重新验证边界，但当前 active runtime 仍为 0。
 
 - 当前阶段、精确实现范围、下一事项与停止线统一以[当前状态](status/current.md)为准，不在文档索引复制易漂移的源码摘要或提交身份；
-- 下一受控入口是 IR DAG 有限解释与非输入目标 counterexample replay，之后才依次进入 host / golden output 比较、proof support 真值检查和 conclusion recompute；
+- 下一受控入口是当前 `checker.source` 的精确受控构建、原始字节 retention / fetch 决策、独立 acceptance 与 active registration；之后才进入 launcher OS 限制和产品安装协调；
 - Go `go1.26.7` macOS arm64 host/source 已完成局部 payload 验收；cvc5、Node、Rust 与其余平台仍须按真实实现依赖顺位完成摘要、签名 / 来源、包内依赖与许可证验收。

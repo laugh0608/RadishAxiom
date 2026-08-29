@@ -38,6 +38,12 @@ REQUIRED_FILES = (
     "benchmarks/keyed-finite-table-v0.1/README.md",
     "benchmarks/keyed-finite-table-v0.1/corpus.json",
     "contracts/README.md",
+    "contracts/checker-runtime-payloads-v0.1/README.md",
+    "contracts/checker-runtime-payloads-v0.1/contract.json",
+    "contracts/checker-runtime-payloads-v0.1/fixtures/negative/expected.json",
+    "contracts/checker-runtime-payloads-v0.1/records/checker-go0.1-dev-darwin-arm64-current-pending.json",
+    "contracts/checker-runtime-payloads-v0.1/records/checker-go0.1-dev-darwin-arm64-historical.json",
+    "contracts/checker-runtime-payloads-v0.1/schemas/checker-runtime-payload-registration.schema.json",
     "contracts/execution-profiles-v0.1/README.md",
     "contracts/execution-profiles-v0.1/contract.json",
     "contracts/execution-profiles-v0.1/fixtures/negative/expected.json",
@@ -88,6 +94,7 @@ REQUIRED_FILES = (
     "scripts/check-repo.ps1",
     "scripts/check-repo.sh",
     "scripts/generate-benchmark-corpus.py",
+    "scripts/generate-checker-runtime-payloads.py",
     "scripts/generate-checker-bundle-contracts.py",
     "scripts/generate-execution-profile-contracts.py",
     "scripts/generate-independent-check-contracts.py",
@@ -410,6 +417,23 @@ def check_toolchain_payload_acceptance(errors: list[str]) -> None:
         errors.append(f"toolchain payload acceptance failed: {detail}")
 
 
+def check_checker_runtime_payloads(errors: list[str]) -> None:
+    generator = REPO_ROOT / "scripts/generate-checker-runtime-payloads.py"
+    if not generator.is_file():
+        return
+
+    result = subprocess.run(
+        [sys.executable, str(generator), "--check"],
+        cwd=REPO_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        detail = (result.stdout + result.stderr).strip()
+        errors.append(f"checker runtime payload registrations failed: {detail}")
+
+
 def check_pipeline_artifact_contracts(errors: list[str]) -> None:
     generator = REPO_ROOT / "scripts/generate-pipeline-artifact-contracts.py"
     if not generator.is_file():
@@ -625,6 +649,7 @@ def main() -> int:
     check_independent_check_contracts(errors)
     check_toolchain_adapter_identities(errors)
     check_toolchain_payload_acceptance(errors)
+    check_checker_runtime_payloads(errors)
     check_pipeline_artifact_contracts(errors)
     check_implementation_readiness(errors)
     check_execution_profile_contracts(errors)

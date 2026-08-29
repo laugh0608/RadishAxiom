@@ -1,0 +1,58 @@
+{
+  "acceptance": {
+    "kind": "not-produced"
+  },
+  "artifact": {
+    "kind": "not-produced"
+  },
+  "build_provenance": {
+    "kind": "not-produced"
+  },
+  "checker": {
+    "implementation": "radishaxiom-independent-checker-go",
+    "source": {
+      "file_count": "691",
+      "identity": "sha256:256dc873e83362ea3321a62a1ce00a30dc24e96cf79d6014adf2ef6208246b59",
+      "manifest_byte_length": "184791"
+    },
+    "toolchain": "go1.26.7",
+    "version": "0.1-dev"
+  },
+  "digest_domain": "radishaxiom.checker-runtime-payload-registration.v0.1",
+  "format": "radishaxiom-checker-runtime-payload-registration",
+  "format_version": "0.1",
+  "id": "checker-go0.1-dev-darwin-arm64-current-pending-2026-08-29",
+  "record_digest": "sha256:f4ee0f846cf6452afe07f9a7cf97d5c730669d3bf82913675c1de5f95c6e2a1b",
+  "registration": {
+    "reasons": [
+      "acceptance-not-produced",
+      "artifact-not-produced",
+      "provenance-not-produced"
+    ],
+    "status": "awaiting-controlled-build-and-acceptance"
+  },
+  "retention": {
+    "acceptance_bytes": "not-produced",
+    "artifact_bytes": "not-produced",
+    "fetch": {
+      "kind": "unavailable",
+      "reason": "no current-source candidate has been built or accepted"
+    },
+    "provenance_bytes": "not-produced"
+  },
+  "reverification": {
+    "required_inputs": [
+      "accepted-current-source-candidate",
+      "retained-or-fetchable-acceptance-bytes",
+      "retained-or-fetchable-artifact-bytes",
+      "retained-or-fetchable-provenance-bytes"
+    ],
+    "status": "awaiting-controlled-build-and-acceptance"
+  },
+  "target": {
+    "executable_format": "macho-64-arm64",
+    "goarch": "arm64",
+    "goarm64": "v8.0",
+    "goos": "darwin"
+  }
+}
