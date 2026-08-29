@@ -30,7 +30,7 @@
 - [Axiom IR v0.1：规范化形式与版本策略](ir/axiom-ir-v0.md)：规范化数据模型、canonical JSON、内容寻址、人类投影、语义差异与版本演进。
 - [Axiom Evidence v0.1：证据模型与独立检查边界](evidence/axiom-evidence-v0.md)：义务身份、五种状态、反例、信任清单、结论聚合与独立复核。
 - [ADR 0009：Axiom Evidence v0.1 漂移收口与 v0.2 迁移边界](adr/0009-axiom-evidence-v0-drift-and-migration.md)：冻结 v0.1 原始规范字节，记录 group 覆盖遗漏，并限定后续 v0.2 修正与摘要迁移。
-- [ADR 0010：独立 checker runtime payload 的持久发布与登记](adr/0010-checker-runtime-payload-durable-registration.md)：选择 GitHub immutable Release asset，冻结专用 tag / distribution package、登记状态机、独立回读与 append-only replacement；当前只完成设计，不表示仓库设置已经验证或 Release 已创建。
+- [ADR 0010：独立 checker runtime payload 的持久发布与登记](adr/0010-checker-runtime-payload-durable-registration.md)：选择 GitHub immutable Release asset，冻结专用 tag / distribution package、登记状态机、独立回读与 append-only replacement；distribution 实现已进入 Checker 默认分支，但不表示仓库设置已经验证、当前 source 候选已经形成或 Release 已创建。
 - [有键有限表基准语料库 v0.1](benchmarks/keyed-finite-table-corpus-v0.md)：四个基准的生成目录、任务身份、合成数据、正确 / 错误候选和 Expected Evidence 断言。
 - [Agent 表示与验证反馈对比实验预注册 v0.1](experiments/agent-representation-preregistration-v0.md)：三种表示、两种模型条件、配对反馈、指标、阈值、预算和停止规则。
 
@@ -51,5 +51,5 @@
 实现语言、验证后端、目标执行、生产管线和独立 checker 的架构决策已经确定，首批交换格式、身份契约、执行 profile 与 28 个离线 bundle 已进入仓库门禁。独立 checker 已在外部隔离仓库完成从严格 request / bundle、`checker.source`、锁定 Axiom IR / Evidence 检查，到有限执行、反例重放、output / proof support 审计、production conclusion 重算、四态聚合、canonical codec、累计资源、唯一产品 CLI，以及 payload 确定性候选归档的闭合路径；Checker Runtime Payload Registration v0.1 进一步固定 source → artifact / provenance / acceptance / candidate archive 及 retention / fetch / 重新验证边界，但当前 active runtime 仍为 0。
 
 - 当前阶段、精确实现范围、下一事项与停止线统一以[当前状态](status/current.md)为准，不在文档索引复制易漂移的源码摘要或提交身份；
-- 当前 `checker.source` 已完成精确受控构建、独立 acceptance、确定性归档与 Actions provider 回读，只形成有限期候选；durable provider 与登记状态机已经冻结，下一受控入口是在 checker 仓库实现自包含 distribution package / 独立分发验收并形成新的 source 候选，之后才可另行授权 immutable Release，最后进入 launcher OS 限制和产品安装协调；
+- 最近可取得的有限期候选绑定旧 `checker.source = sha256:e2c4ae...9044`；自包含 distribution package / 独立分发验收已经实现并进入 Checker `master` / `dev`，形成当前 `checker.source = sha256:401158...e3999`，下一受控入口是为该精确 source 形成新的 distribution candidate，之后才可另行授权 immutable Release，最后进入 launcher OS 限制和产品安装协调；
 - Go `go1.26.7` macOS arm64 host/source 已完成局部 payload 验收；cvc5、Node、Rust 与其余平台仍须按真实实现依赖顺位完成摘要、签名 / 来源、包内依赖与许可证验收。

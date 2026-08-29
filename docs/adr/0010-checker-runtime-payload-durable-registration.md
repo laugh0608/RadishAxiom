@@ -14,7 +14,7 @@
 
 [ADR 0008](0008-independent-checker-isolation-and-artifact-exchange.md)冻结了独立 checker 的分仓、构建、进程与离线制品边界，但把远程 artifact service、release signing 和产品安装留在范围外。[Checker Runtime Payload Registration v0.1](../../contracts/checker-runtime-payloads-v0.1/README.md)随后把 source、target、binary、build provenance、payload acceptance、retention、fetch 与重新验证条件闭合，并明确区分历史不可用记录、有限期候选和 active runtime。
 
-当前 `checker.source = sha256:e2c4ae31b15162051735a76e44c2fc0a079117994caf3ef53d5710ead1199044` 的 macOS arm64 候选已经完成精确 `go1.26.7` 双次隔离构建、独立 payload acceptance、确定性 USTAR、GitHub Actions 直传和按 artifact ID 独立回读。但 GitHub Actions artifact 最长只保留 90 天，到期或删除后不可取得，不能作为 active runtime 的持久来源。
+本 ADR 接受时，`checker.source = sha256:e2c4ae31b15162051735a76e44c2fc0a079117994caf3ef53d5710ead1199044` 的 macOS arm64 候选已经完成精确 `go1.26.7` 双次隔离构建、独立 payload acceptance、确定性 USTAR、GitHub Actions 直传和按 artifact ID 独立回读。但 GitHub Actions artifact 最长只保留 90 天，到期或删除后不可取得，不能作为 active runtime 的持久来源。后续 source、候选与落地状态以[当前状态](../status/current.md)为准，不回写到本 ADR 的长期决策中。
 
 当前候选归档也不是分发包。它只包含 binary、canonical build provenance、canonical payload acceptance 和 retention manifest；payload acceptance 明确排除 `legal-compliance-for-distribution`、`publication` 与 `release-signing`。把该 USTAR 原样上传到 Release 会把“受控登记候选”错误升级为“可分发制品”，同时遗漏 checker 与 Go runtime 所需许可证 / 专利材料。
 
@@ -47,7 +47,7 @@ checker payload 的持久 tag 不使用 [ADR 0003](0003-version-identities-and-c
 checker-payload/go0.1-dev/<goos>-<goarch>-<variant>/sha256-<checker-source-hex>
 ```
 
-当前 `e2c4ae...9044` source 缺少 distribution 实现且不能原样发布；实现本 ADR 会形成新的 source identity，因此不为当前候选预先分配具体 tag。一个 Release 只承载一个 source / version / target，避免先发布单平台 immutable Release 后无法追加其他平台 asset，也不让单平台证据冒充六平台支持。
+本 ADR 接受时的 `e2c4ae...9044` source 缺少 distribution 实现且不能原样发布；实现本 ADR 会形成新的 source identity，因此不为该候选预先分配具体 tag。一个 Release 只承载一个 source / version / target，避免先发布单平台 immutable Release 后无法追加其他平台 asset，也不让单平台证据冒充六平台支持。
 
 唯一 runtime distribution asset 名称规范为：
 
