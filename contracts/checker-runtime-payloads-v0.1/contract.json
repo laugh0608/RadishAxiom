@@ -1,5 +1,5 @@
 {
-  "contract_digest": "sha256:208fc94719238151c85479c918268e6aeac2089f0ad7ec72dbcdbedea7d17555",
+  "contract_digest": "sha256:366219755a7c5ee7a57255a4e44ec84ba3258e4373e7767e22d12dbce2b3b8f5",
   "counts": {
     "active": "0",
     "historical_ineligible": "1",
@@ -16,7 +16,7 @@
   "format_version": "0.1",
   "generator": {
     "path": "scripts/generate-checker-runtime-payloads.py",
-    "raw_sha256": "sha256:8eef4a1f6da974bb6edaad4850caf6bcb03a0f1137837f41e2e927a687eefd29"
+    "raw_sha256": "sha256:29e33e0430d86fbc0ea83dc91c5ba25fff981b7ee354dcd63588426e59b0c935"
   },
   "records": [
     {
@@ -130,6 +130,7 @@
         "outer_archive": "deterministic-ustar",
         "required_members": [
           "checker-payload-candidate.tar",
+          "checker-payload-distribution-acceptance-v0.1.jcs",
           "checker-payload-distribution-manifest-v0.1.jcs",
           "licenses/go/LICENSE",
           "licenses/go/PATENTS",

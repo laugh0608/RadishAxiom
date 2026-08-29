@@ -63,6 +63,7 @@ radishaxiom-checker-go0.1-dev-<goos>-<goarch>-<variant>-sha256-<checker-source-h
 
 ```text
 checker-payload-candidate.tar
+checker-payload-distribution-acceptance-v0.1.jcs
 checker-payload-distribution-manifest-v0.1.jcs
 licenses/go/LICENSE
 licenses/go/PATENTS

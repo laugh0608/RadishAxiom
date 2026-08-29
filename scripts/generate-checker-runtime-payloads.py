@@ -224,6 +224,7 @@ STORAGE_POLICY = {
             "outer_archive": "deterministic-ustar",
             "required_members": [
                 "checker-payload-candidate.tar",
+                "checker-payload-distribution-acceptance-v0.1.jcs",
                 "checker-payload-distribution-manifest-v0.1.jcs",
                 "licenses/go/LICENSE",
                 "licenses/go/PATENTS",
