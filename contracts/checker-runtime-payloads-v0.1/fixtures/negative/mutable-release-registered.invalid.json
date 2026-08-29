@@ -147,7 +147,7 @@
     "provider": {
       "independent_readback": "required-before-registration",
       "kind": "github-immutable-release-asset",
-      "release": "not-materialized",
+      "release": "materialized-mutable",
       "repository": "laugh0608/RadishAxiomChecker",
       "repository_immutability": "not-verified"
     },
@@ -156,7 +156,7 @@
   "format": "radishaxiom-checker-runtime-payload-registration",
   "format_version": "0.1",
   "id": "checker-go0.1-dev-darwin-arm64-current-pending-2026-08-29",
-  "record_digest": "sha256:6fb0b0e7b0209d0fe2e4ce70212b8a31045862d6400c14d2011248cf5b6b5f8c",
+  "record_digest": "sha256:d92d228a8d88a88734a17a9a7ec72a8e3e118cf636b4f9b0e36f0f082fb9396a",
   "registration": {
     "reasons": [
       "candidate-storage-is-temporary",
@@ -166,7 +166,7 @@
       "launcher-isolation-not-implemented",
       "separate-publication-authorization-required"
     ],
-    "status": "candidate-retained-temporarily"
+    "status": "registered-inactive"
   },
   "retention": {
     "acceptance_bytes": "retained-in-candidate-archive",
@@ -215,6 +215,5 @@
     "goarch": "arm64",
     "goarm64": "v8.0",
     "goos": "darwin"
-  },
-  "unexpected": "member"
+  }
 }

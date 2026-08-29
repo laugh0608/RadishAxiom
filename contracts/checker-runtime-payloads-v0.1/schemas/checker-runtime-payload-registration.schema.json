@@ -779,6 +779,72 @@
         "digest_domain": {
           "const": "radishaxiom.checker-runtime-payload-registration.v0.1"
         },
+        "durable_registration": {
+          "additionalProperties": false,
+          "properties": {
+            "distribution_package": {
+              "additionalProperties": false,
+              "properties": {
+                "format": {
+                  "type": "string"
+                },
+                "format_version": {
+                  "type": "string"
+                },
+                "kind": {
+                  "type": "string"
+                },
+                "reason": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "format",
+                "format_version",
+                "kind",
+                "reason"
+              ],
+              "type": "object"
+            },
+            "provider": {
+              "additionalProperties": false,
+              "properties": {
+                "independent_readback": {
+                  "type": "string"
+                },
+                "kind": {
+                  "type": "string"
+                },
+                "release": {
+                  "type": "string"
+                },
+                "repository": {
+                  "type": "string"
+                },
+                "repository_immutability": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "independent_readback",
+                "kind",
+                "release",
+                "repository",
+                "repository_immutability"
+              ],
+              "type": "object"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "distribution_package",
+            "provider",
+            "status"
+          ],
+          "type": "object"
+        },
         "format": {
           "const": "radishaxiom-checker-runtime-payload-registration"
         },
@@ -1001,6 +1067,7 @@
         "candidate_workflow",
         "checker",
         "digest_domain",
+        "durable_registration",
         "format",
         "format_version",
         "id",

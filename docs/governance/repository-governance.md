@@ -78,7 +78,7 @@
 | squash merge | 禁用 |
 | 管理员 bypass | 仅 Pull Request 内 |
 | commit signature | 暂不强制 |
-| tag / release rules | 版本方案冻结后另行设计 |
+| tag / release rules | RadishAxiom 产品发布待具体版本后设计；独立 Checker payload 只按 ADR 0010 的专用 namespace / immutable Release 执行 |
 
 远程 GitHub 设置才具有强制力；仓库模板负责审阅、复现和防止口径丢失。修改远程前后都应导出或读取实际状态，并确认没有创建重复 Ruleset。
 
@@ -121,7 +121,7 @@
 
 - 没有真实所有权结构时不创建装饰性 CODEOWNERS。
 - 没有可稳定执行的检查时，不把占位 job 设为 required。
-- 没有具体产品版本、发布载体、支持矩阵与兼容 / 回滚验收时，不创建自动发布和 tag 保护幻象。
+- 没有具体产品版本、发布载体、支持矩阵与兼容 / 回滚验收时，不创建产品自动发布和 tag 保护幻象；独立 checker payload 的专用不可变发布只按 [ADR 0010](../adr/0010-checker-runtime-payload-durable-registration.md) 执行，不冒充产品 Release。
 - 不复制兄弟项目的语言栈、应用检查、平台脚本或业务风险清单。
 - 不把当前阶段、临时门禁、“当前不做”、易过期命令或批次事实复制到 Agent 根入口。
 - 不用更多文档替代自动化；稳定规则一旦可机器验证，应进入 `scripts/check-repo.py` 或后续正式检查组件。

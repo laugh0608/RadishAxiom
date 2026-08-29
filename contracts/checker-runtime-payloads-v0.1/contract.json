@@ -1,5 +1,5 @@
 {
-  "contract_digest": "sha256:db6b16f0cd749c75cac534e818d62cb7f72f75c052b2b77ff2fc87868873fb9e",
+  "contract_digest": "sha256:208fc94719238151c85479c918268e6aeac2089f0ad7ec72dbcdbedea7d17555",
   "counts": {
     "active": "0",
     "historical_ineligible": "1",
@@ -16,7 +16,7 @@
   "format_version": "0.1",
   "generator": {
     "path": "scripts/generate-checker-runtime-payloads.py",
-    "raw_sha256": "sha256:c55051c0cdffa37e2f942ac37dfbe2d1388396b41a42f248a71b03eee8d983f2"
+    "raw_sha256": "sha256:8eef4a1f6da974bb6edaad4850caf6bcb03a0f1137837f41e2e927a687eefd29"
   },
   "records": [
     {
@@ -30,8 +30,8 @@
     {
       "id": "checker-go0.1-dev-darwin-arm64-current-pending-2026-08-29",
       "path": "contracts/checker-runtime-payloads-v0.1/records/checker-go0.1-dev-darwin-arm64-current-pending.json",
-      "raw_sha256": "sha256:8f4032fb5f7993a16e7c31fa5a2becc5c56d9e65e2d6dc9eb6629c0b5e3bc0c6",
-      "record_digest": "sha256:0cf553ce65eb32dcbe156ff5f902ffae7c17999826281f3ecffe1c41b9e28dfe",
+      "raw_sha256": "sha256:d9f642e2094f8d7ec39ab6dfd0710c11ad19a6aa57b5205f3170d9bd2bcc79ae",
+      "record_digest": "sha256:73ff2adb9ddef1590078b2a136b1a521ba40917140b84af407a33b65a0f8ed55",
       "registration_status": "candidate-retained-temporarily",
       "source": "sha256:e2c4ae31b15162051735a76e44c2fc0a079117994caf3ef53d5710ead1199044"
     }
@@ -39,8 +39,9 @@
   "runtime_statement": "no-current-source-runtime-payload-is-registered",
   "storage_policy": {
     "active_runtime": {
-      "provider": "not-selected",
+      "provider": "github-immutable-release-asset",
       "requirements": [
+        "distribution-package-accepted",
         "independent-provider-readback",
         "immutable-asset-bytes",
         "no-latest-alias",
@@ -49,7 +50,7 @@
         "separate-publication-authorization",
         "stable-exact-fetch"
       ],
-      "status": "blocked-release-and-storage-governance-pending"
+      "status": "provider-selected-setting-not-verified-release-not-materialized"
     },
     "candidate": {
       "activation_precondition": "workflow-file-present-on-default-branch",
@@ -120,6 +121,74 @@
       "upload_object": "deterministic-inner-ustar-direct-file-no-provider-archive",
       "workflow_file": ".github/workflows/checker-payload-candidate.yml",
       "workflow_trigger": "workflow-dispatch-only"
+    },
+    "durable": {
+      "asset_name_template": "radishaxiom-checker-go0.1-dev-<goos>-<goarch>-<variant>-sha256-<checker-source-hex>.distribution.tar",
+      "distribution_format": {
+        "format": "radishaxiom-checker-runtime-distribution",
+        "format_version": "0.1",
+        "outer_archive": "deterministic-ustar",
+        "required_members": [
+          "checker-payload-candidate.tar",
+          "checker-payload-distribution-manifest-v0.1.jcs",
+          "licenses/go/LICENSE",
+          "licenses/go/PATENTS",
+          "licenses/radishaxiom-checker/LICENSE"
+        ]
+      },
+      "draft_policy": "assemble-and-read-back-all-assets-before-single-publication",
+      "latest_alias_policy": "forbidden",
+      "provider": "github-immutable-release-asset",
+      "provider_attestation_role": "supplemental-provider-provenance-not-payload-acceptance",
+      "provider_selection_status": "selected-setting-not-verified-release-not-materialized",
+      "release_cardinality": "one-checker-source-version-target-per-release",
+      "repository": "laugh0608/RadishAxiomChecker",
+      "required_provider_bindings": [
+        "asset-api-url",
+        "asset-browser-download-url",
+        "asset-digest",
+        "asset-id",
+        "asset-name",
+        "asset-size",
+        "asset-state",
+        "published-at",
+        "release-id",
+        "release-immutable-true",
+        "release-tag",
+        "target-commit-sha"
+      ],
+      "required_verifications": [
+        "distribution-package-independent-acceptance",
+        "draft-asset-byte-length-and-sha256",
+        "draft-inner-candidate-and-license-inventory",
+        "post-publication-exact-asset-independent-readback",
+        "post-publication-provider-metadata-readback",
+        "release-attestation-verification",
+        "repository-immutable-releases-enabled-before-draft"
+      ],
+      "status": "blocked-distribution-package-and-repository-immutability-verification",
+      "tag_template": "checker-payload/go0.1-dev/<goos>-<goarch>-<variant>/sha256-<checker-source-hex>"
+    },
+    "registration_state_machine": {
+      "replacement_policy": "append-new-record-and-release-never-mutate-or-repoint",
+      "states": [
+        "candidate-retained-temporarily",
+        "distribution-package-accepted",
+        "durable-published",
+        "registered-inactive",
+        "active",
+        "revoked"
+      ],
+      "transition_policy": "explicit-evidence-and-separate-authorization-no-automatic-promotion",
+      "transitions": [
+        "candidate-retained-temporarily->distribution-package-accepted",
+        "distribution-package-accepted->durable-published",
+        "durable-published->revoked",
+        "durable-published->registered-inactive",
+        "registered-inactive->active",
+        "registered-inactive->revoked",
+        "active->revoked"
+      ]
     }
   }
 }

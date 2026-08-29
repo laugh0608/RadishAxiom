@@ -1,6 +1,6 @@
 # Checker Runtime Payload Registration v0.1
 
-本目录把独立 checker 的源码身份、目标平台、候选二进制、构建 provenance、独立 acceptance、字节保留 / 取得方式和重新验证条件绑定为闭合登记记录。它物化 [ADR 0003](../../docs/adr/0003-version-identities-and-compatibility-layers.md)、[ADR 0008](../../docs/adr/0008-independent-checker-isolation-and-artifact-exchange.md) 与[当前状态](../../docs/status/current.md)的 runtime 身份边界，不定义安装器、launcher、Release 或公共 Evidence 新字段。
+本目录把独立 checker 的源码身份、目标平台、候选二进制、构建 provenance、独立 acceptance、字节保留 / 取得方式和重新验证条件绑定为闭合登记记录。它物化 [ADR 0003](../../docs/adr/0003-version-identities-and-compatibility-layers.md)、[ADR 0008](../../docs/adr/0008-independent-checker-isolation-and-artifact-exchange.md)、[ADR 0010](../../docs/adr/0010-checker-runtime-payload-durable-registration.md) 与[当前状态](../../docs/status/current.md)的 runtime 身份边界，不定义安装器、launcher 或公共 Evidence 新字段，也不授权创建 Release。
 
 ## 当前结论
 
@@ -9,7 +9,7 @@
 - 2026-08-28 的 macOS arm64 候选曾通过 `accepted-for-controlled-runtime-registration`，但它绑定旧 `checker.source = sha256:3b809b...d90b4`；artifact、canonical provenance 与 canonical acceptance 原始字节已经删除，也没有登记 fetch 入口，因此只保留为 `historical-ineligible`，不得重绑到当前 source。
 - 当前 `checker.source = sha256:e2c4ae...9044` 已形成 `candidate-retained-temporarily` 记录：`Checker Payload Candidate` run `33246312135` 在精确 `master` head `a81f5b4704efddd1d8c293f9e8e47c58149e65b7` 上以 attempt 1 成功；构建 / 上传 job `99084274782` 与按 artifact ID 回读 job `99084367932` 均成功。当前 binary 为 4,689,378 bytes / `sha256:02bdc0...3a2e5`，canonical provenance 为 1,389 bytes / `sha256:747777...4812`，canonical acceptance 为 1,580 bytes / `sha256:afbfe9...79a4`；acceptance 决定仍为 `accepted-for-controlled-runtime-registration`。三类字节与 1,295-byte retention manifest 已封装进 4,697,600-byte USTAR `sha256:5e567f...eb701`，由 GitHub Actions artifact ID `9712952210` 暂存并完成 provider 独立回读。Git commit、远程 ref、CI 与临时候选仍不能替代 durable active runtime 登记。
 
-已知摘要仍可用于审计历史陈述，但摘要存在不等于字节可取得、可重新验证、已安装或可运行。当前候选的精确 fetch 只在 artifact ID `9712952210` 未过期且 provider 对象仍存在时成立；provider 回读时记录的创建时间为 `2026-08-29T09:48:31Z`，到期时间为 `2026-11-27T09:47:39Z`。把它提升为正式登记仍须另行选择 durable active provider，形成稳定精确 fetch、独立 provider 回读、撤销 / replacement 规则与单独发布授权；launcher 的 OS / architecture 硬隔离仍是之后的独立门禁。
+已知摘要仍可用于审计历史陈述，但摘要存在不等于字节可取得、可重新验证、已安装或可运行。当前候选的精确 fetch 只在 artifact ID `9712952210` 未过期且 provider 对象仍存在时成立；provider 回读时记录的创建时间为 `2026-08-29T09:48:31Z`，到期时间为 `2026-11-27T09:47:39Z`。ADR 0010 已选择 Checker 仓库的 GitHub immutable Release asset 作为首个 durable provider，但当前仓库设置尚未验证，distribution package 尚未产生，tag / Release / asset 均不存在；provider 选型不等于正式登记。launcher 的 OS / architecture 硬隔离仍是之后的独立门禁。
 
 ## 两级存储策略
 
@@ -17,14 +17,28 @@
 
 候选 workflow 只有 `workflow_dispatch`，要求显式 source、version 和上传确认，并限制为 `dev` / `master` ref；构建 job 使用 `macos-15` arm64 runner，read-back job 使用 Ubuntu。该文件已经进入默认分支并回流到 `dev`，当前状态是 `candidate-retained-temporarily-provider-readback-passed`。本次只运行 attempt 1，没有重跑；候选未被安装、发布、复制到 durable provider 或提升为 active runtime。
 
-active runtime 的 durable provider 仍保持 `not-selected`。它必须满足不可变资产、稳定精确 fetch、原始长度 / SHA-256、provider 独立回读、无 latest alias、撤销 / replacement 规则和单独发布授权。GitHub immutable release assets 只是待发布治理审查的候选；当前契约没有选择、创建或授权 Release / tag / upload。
+active runtime 的 durable provider 已选择 `laugh0608/RadishAxiomChecker` 的 GitHub immutable Release asset，状态为 `selected-setting-not-verified-release-not-materialized`。每个 source / implementation version / target 使用一个专用 `checker-payload/...` tag 与唯一 distribution asset；禁止 `latest` alias，登记必须绑定 release / asset ID、immutable flag、target commit、名称、长度、digest、state、发布时间和精确 fetch，并在发布后完成 provider 元数据与原始 asset 的独立回读。release attestation 只是补充 provider provenance，不能替代 payload / distribution acceptance。
+
+当前候选 USTAR 不是可发布 distribution asset：它缺少 checker Apache-2.0 与 Go `LICENSE` / `PATENTS` 材料，现有 acceptance 也明确排除 distribution legal compliance 与 publication。下一前置切片须形成 `radishaxiom-checker-runtime-distribution` `0.1` 确定性外层 USTAR，绑定内层候选归档、distribution manifest 与闭合许可证 inventory，并由独立 distribution acceptance 通过。之后才可经单独授权在启用 immutable releases 后走 draft → 一次发布 → provider verification → 独立回读。当前没有创建或授权 Release / tag / upload。
+
+登记状态机只允许：
+
+```text
+candidate-retained-temporarily
+  -> distribution-package-accepted
+  -> durable-published
+  -> registered-inactive
+  -> active
+```
+
+`durable-published` / `registered-inactive` / `active` 可转为 `revoked`；replacement 必须使用新 source / version / target、新 immutable Release 和新记录，不能原地替换 asset 或重指 tag。激活仍要求单独的 launcher 隔离、安装协调与授权。
 
 ## 文件与生成边界
 
 - `records/` 保存历史不可用记录和当前仍未激活的临时候选记录；每份记录都以 `radishaxiom.checker-runtime-payload-registration.v0.1` 域摘要闭合。
 - `contract.json` 绑定当前 `checker.source`、记录原始摘要 / 域摘要、状态计数、两级 storage policy 和生成器原始摘要。
 - `schemas/` 固定 Draft 2020-12 闭合结构；schema 通过不能提升任何 acceptance 或运行结论。
-- `fixtures/negative/` 拒绝旧 artifact 重绑当前 source、已删除字节的 retention 过度声明、历史 payload 冒充正式登记、把 acceptance 扩大到安装、只有 binary 摘要却没有 provenance / acceptance，以及未知 member。
+- `fixtures/negative/` 拒绝旧 artifact 重绑当前 source、已删除字节的 retention 过度声明、历史 payload 冒充正式登记、把 acceptance 扩大到安装、只有 binary 摘要却没有 provenance / acceptance、未知 member、临时候选直接 active、可变 Release 登记、`latest` alias、用 release attestation 冒充 distribution acceptance、缺少独立回读和原地 replacement。
 
 除本 README 外，本目录由以下入口生成，生成文件不得手工修改：
 

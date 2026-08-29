@@ -23,6 +23,30 @@
     {
       "file": "unknown-member.invalid.json",
       "reason": "closed registration rejects unknown members"
+    },
+    {
+      "file": "temporary-candidate-active.invalid.json",
+      "reason": "temporary candidate cannot become active"
+    },
+    {
+      "file": "mutable-release-registered.invalid.json",
+      "reason": "mutable release cannot back a registered payload"
+    },
+    {
+      "file": "latest-release-alias.invalid.json",
+      "reason": "latest release alias cannot identify durable bytes"
+    },
+    {
+      "file": "release-attestation-as-acceptance.invalid.json",
+      "reason": "provider attestation cannot replace distribution acceptance"
+    },
+    {
+      "file": "durable-release-without-readback.invalid.json",
+      "reason": "durable registration requires independent exact-asset readback"
+    },
+    {
+      "file": "in-place-replacement.invalid.json",
+      "reason": "replacement must use a new immutable release and record"
     }
   ],
   "format": "radishaxiom-checker-runtime-payload-negative-set",

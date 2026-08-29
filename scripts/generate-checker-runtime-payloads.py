@@ -133,8 +133,9 @@ CURRENT_CANDIDATE_RUN = {
 
 STORAGE_POLICY = {
     "active_runtime": {
-        "provider": "not-selected",
+        "provider": "github-immutable-release-asset",
         "requirements": [
+            "distribution-package-accepted",
             "independent-provider-readback",
             "immutable-asset-bytes",
             "no-latest-alias",
@@ -143,7 +144,7 @@ STORAGE_POLICY = {
             "separate-publication-authorization",
             "stable-exact-fetch",
         ],
-        "status": "blocked-release-and-storage-governance-pending",
+        "status": "provider-selected-setting-not-verified-release-not-materialized",
     },
     "candidate": {
         "activation_precondition": "workflow-file-present-on-default-branch",
@@ -214,6 +215,74 @@ STORAGE_POLICY = {
         "upload_object": "deterministic-inner-ustar-direct-file-no-provider-archive",
         "workflow_file": ".github/workflows/checker-payload-candidate.yml",
         "workflow_trigger": "workflow-dispatch-only",
+    },
+    "durable": {
+        "asset_name_template": "radishaxiom-checker-go0.1-dev-<goos>-<goarch>-<variant>-sha256-<checker-source-hex>.distribution.tar",
+        "distribution_format": {
+            "format": "radishaxiom-checker-runtime-distribution",
+            "format_version": "0.1",
+            "outer_archive": "deterministic-ustar",
+            "required_members": [
+                "checker-payload-candidate.tar",
+                "checker-payload-distribution-manifest-v0.1.jcs",
+                "licenses/go/LICENSE",
+                "licenses/go/PATENTS",
+                "licenses/radishaxiom-checker/LICENSE",
+            ],
+        },
+        "draft_policy": "assemble-and-read-back-all-assets-before-single-publication",
+        "latest_alias_policy": "forbidden",
+        "provider": "github-immutable-release-asset",
+        "provider_attestation_role": "supplemental-provider-provenance-not-payload-acceptance",
+        "provider_selection_status": "selected-setting-not-verified-release-not-materialized",
+        "release_cardinality": "one-checker-source-version-target-per-release",
+        "repository": "laugh0608/RadishAxiomChecker",
+        "required_provider_bindings": [
+            "asset-api-url",
+            "asset-browser-download-url",
+            "asset-digest",
+            "asset-id",
+            "asset-name",
+            "asset-size",
+            "asset-state",
+            "published-at",
+            "release-id",
+            "release-immutable-true",
+            "release-tag",
+            "target-commit-sha",
+        ],
+        "required_verifications": [
+            "distribution-package-independent-acceptance",
+            "draft-asset-byte-length-and-sha256",
+            "draft-inner-candidate-and-license-inventory",
+            "post-publication-exact-asset-independent-readback",
+            "post-publication-provider-metadata-readback",
+            "release-attestation-verification",
+            "repository-immutable-releases-enabled-before-draft",
+        ],
+        "status": "blocked-distribution-package-and-repository-immutability-verification",
+        "tag_template": "checker-payload/go0.1-dev/<goos>-<goarch>-<variant>/sha256-<checker-source-hex>",
+    },
+    "registration_state_machine": {
+        "replacement_policy": "append-new-record-and-release-never-mutate-or-repoint",
+        "states": [
+            "candidate-retained-temporarily",
+            "distribution-package-accepted",
+            "durable-published",
+            "registered-inactive",
+            "active",
+            "revoked",
+        ],
+        "transitions": [
+            "candidate-retained-temporarily->distribution-package-accepted",
+            "distribution-package-accepted->durable-published",
+            "durable-published->revoked",
+            "durable-published->registered-inactive",
+            "registered-inactive->active",
+            "registered-inactive->revoked",
+            "active->revoked",
+        ],
+        "transition_policy": "explicit-evidence-and-separate-authorization-no-automatic-promotion",
     },
 }
 
@@ -383,10 +452,28 @@ def pending_record() -> dict[str, Any]:
             "tree": "128ea8b12c49fe5319783930e74bb3f089233bb9",
             "trigger": "workflow-dispatch-only",
         },
+        "durable_registration": {
+            "distribution_package": {
+                "format": "radishaxiom-checker-runtime-distribution",
+                "format_version": "0.1",
+                "kind": "not-produced",
+                "reason": "current candidate archive omits distribution license materials and its acceptance excludes legal compliance and publication",
+            },
+            "provider": {
+                "independent_readback": "required-before-registration",
+                "kind": "github-immutable-release-asset",
+                "release": "not-materialized",
+                "repository": "laugh0608/RadishAxiomChecker",
+                "repository_immutability": "not-verified",
+            },
+            "status": "blocked-prerequisites",
+        },
         "registration": {
             "reasons": [
-                "active-provider-not-selected",
                 "candidate-storage-is-temporary",
+                "distribution-package-not-accepted",
+                "durable-release-not-materialized",
+                "immutable-release-setting-not-verified",
                 "launcher-isolation-not-implemented",
                 "separate-publication-authorization-required",
             ],
@@ -543,6 +630,27 @@ def negative_fixtures(historical: dict[str, Any], pending: dict[str, Any]) -> li
     value = copy.deepcopy(pending)
     value["unexpected"] = "member"
     rows.append(("unknown-member.invalid.json", "closed registration rejects unknown members", refreshed(value)))
+    value = copy.deepcopy(pending)
+    value["registration"]["status"] = "active"
+    rows.append(("temporary-candidate-active.invalid.json", "temporary candidate cannot become active", refreshed(value)))
+    value = copy.deepcopy(pending)
+    value["durable_registration"]["provider"]["release"] = "materialized-mutable"
+    value["registration"]["status"] = "registered-inactive"
+    rows.append(("mutable-release-registered.invalid.json", "mutable release cannot back a registered payload", refreshed(value)))
+    value = copy.deepcopy(pending)
+    value["durable_registration"]["provider"]["fetch"] = "releases-latest-download"
+    rows.append(("latest-release-alias.invalid.json", "latest release alias cannot identify durable bytes", refreshed(value)))
+    value = copy.deepcopy(pending)
+    value["durable_registration"]["distribution_package"] = {
+        "kind": "accepted-by-provider-release-attestation"
+    }
+    rows.append(("release-attestation-as-acceptance.invalid.json", "provider attestation cannot replace distribution acceptance", refreshed(value)))
+    value = copy.deepcopy(pending)
+    value["durable_registration"]["provider"]["independent_readback"] = "not-performed"
+    rows.append(("durable-release-without-readback.invalid.json", "durable registration requires independent exact-asset readback", refreshed(value)))
+    value = copy.deepcopy(pending)
+    value["durable_registration"]["replacement"] = "replace-existing-asset-in-place"
+    rows.append(("in-place-replacement.invalid.json", "replacement must use a new immutable release and record", refreshed(value)))
     return rows
 
 

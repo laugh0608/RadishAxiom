@@ -8,7 +8,7 @@
 - [Execution Profile Contract v0.1](execution-profiles-v0.1/README.md)：cvc5 / Node / Go checker 的允许 invocation、职责分离 limits、进程结果边界和空 certificate 能力矩阵。
 - [Toolchain & Adapter Identity Registry v0.1](toolchain-adapters-v0.1/README.md)：ADR 0004–0008 的精确工具版本、六平台候选制品、官方元数据、供应链停止线与 profile 身份。
 - [Toolchain Payload Acceptance v0.1](toolchain-payload-acceptance-v0.1/README.md)：逐 payload 绑定 publisher / 项目摘要、只读 archive 观察、vendor / 许可证清单、签名状态与受限最终 acceptance；当前仅接受 Go `go1.26.7` macOS arm64 host 与 source。
-- [Checker Runtime Payload Registration v0.1](checker-runtime-payloads-v0.1/README.md)：绑定 checker source、target、artifact / provenance / acceptance 身份、字节 retention / fetch 与重新验证条件；当前只有历史不可用记录和当前 source 待构建记录，active runtime 为 0。
+- [Checker Runtime Payload Registration v0.1](checker-runtime-payloads-v0.1/README.md)：绑定 checker source、target、artifact / provenance / acceptance、候选 / durable provider、字节 retention / fetch 与登记状态机；当前 source 只有已完成 provider 回读的有限期候选，GitHub immutable Release provider 已选但设置尚未验证且 Release 未物化，active runtime 为 0。
 - [Pipeline Artifact Contract v0.1](pipeline-artifacts-v0.1/README.md)：ADR 0007 的 obligation set、host data、SMT query、target module、pipeline receipt、gate / cache / partial failure 结构与负例。
 - [Implementation Readiness Contract v0.1](implementation-readiness-v0.1/README.md)：统一四题 benchmark、P0–P9、gate / cache / receipt、Evidence、独立检查与实现停止线的版本化场景矩阵。
 - [Keyed Finite Table Checker Bundle Contract v0.1](keyed-finite-table-checker-bundles-v0.1/README.md)：把 readiness 稳定场景 ID 物化为 20 个完整 benchmark bundle、5 个跨契约 bundle、3 个缺失 / 篡改 / 省略负例及独立预期结果。

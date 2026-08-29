@@ -137,14 +137,32 @@
     "version": "0.1-dev"
   },
   "digest_domain": "radishaxiom.checker-runtime-payload-registration.v0.1",
+  "durable_registration": {
+    "distribution_package": {
+      "format": "radishaxiom-checker-runtime-distribution",
+      "format_version": "0.1",
+      "kind": "not-produced",
+      "reason": "current candidate archive omits distribution license materials and its acceptance excludes legal compliance and publication"
+    },
+    "provider": {
+      "independent_readback": "required-before-registration",
+      "kind": "github-immutable-release-asset",
+      "release": "not-materialized",
+      "repository": "laugh0608/RadishAxiomChecker",
+      "repository_immutability": "not-verified"
+    },
+    "status": "blocked-prerequisites"
+  },
   "format": "radishaxiom-checker-runtime-payload-registration",
   "format_version": "0.1",
   "id": "checker-go0.1-dev-darwin-arm64-current-pending-2026-08-29",
-  "record_digest": "sha256:0cf553ce65eb32dcbe156ff5f902ffae7c17999826281f3ecffe1c41b9e28dfe",
+  "record_digest": "sha256:73ff2adb9ddef1590078b2a136b1a521ba40917140b84af407a33b65a0f8ed55",
   "registration": {
     "reasons": [
-      "active-provider-not-selected",
       "candidate-storage-is-temporary",
+      "distribution-package-not-accepted",
+      "durable-release-not-materialized",
+      "immutable-release-setting-not-verified",
       "launcher-isolation-not-implemented",
       "separate-publication-authorization-required"
     ],
