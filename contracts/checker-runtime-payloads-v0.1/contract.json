@@ -1,5 +1,5 @@
 {
-  "contract_digest": "sha256:64210a6b8dcb76c69f6dd3f34262f2ea9894a7e9886e88e9827fb61e74bc88b0",
+  "contract_digest": "sha256:c96c69561368ce5a39d58cbf7826e0b8539972131a13bbfccefefe4f109fbb41",
   "counts": {
     "active": "0",
     "historical_ineligible": "1",
@@ -16,7 +16,7 @@
   "format_version": "0.1",
   "generator": {
     "path": "scripts/generate-checker-runtime-payloads.py",
-    "raw_sha256": "sha256:cb84d8901883ed95f5907e45a8159cd5870de690066d49d21398ca07b7510d12"
+    "raw_sha256": "sha256:bbd3cd20f77622eea6c1e0d7b7f65910d2c220ca7b632d290878cc8f7e3dc82e"
   },
   "records": [
     {
@@ -30,8 +30,8 @@
     {
       "id": "checker-go0.1-dev-darwin-arm64-current-pending-2026-08-29",
       "path": "contracts/checker-runtime-payloads-v0.1/records/checker-go0.1-dev-darwin-arm64-current-pending.json",
-      "raw_sha256": "sha256:a48ad351acd28023193b330f4ca4fbf95d0996141503bf96ffbcab47688f9375",
-      "record_digest": "sha256:40d41443ae6db7d8d1bfbe143cc69c799e77ac72491463f64a1db66aaba09274",
+      "raw_sha256": "sha256:6c6e0fa9ab309782b73e573274e9d815ced4136cb01dfe9deaf7b37e252a5911",
+      "record_digest": "sha256:a2bce5c2bb127d3c86a98a9a7bd4b9a8911a324b9218e8b4626d2802a5486dfe",
       "registration_status": "awaiting-controlled-build-and-acceptance",
       "source": "sha256:e2c4ae31b15162051735a76e44c2fc0a079117994caf3ef53d5710ead1199044"
     }
@@ -61,7 +61,13 @@
       },
       "expiration_effect": "candidate-becomes-unavailable",
       "fetch_resolution": "exact-artifact-id-only",
+      "implementation_ci": {
+        "conclusion": "success",
+        "run_id": "33238577710",
+        "workflow": "Checker Checks"
+      },
       "implementation_commit": "014f35cc268cb6cce6c35b840841696cff538f7b",
+      "implementation_remote_ref": "refs/heads/dev",
       "implementation_tree": "128ea8b12c49fe5319783930e74bb3f089233bb9",
       "provider": "github-actions-direct-file-artifact",
       "readback": "separate-job-exact-artifact-id-direct-file-download-and-inner-archive-verification",
@@ -86,7 +92,7 @@
         "workflow-run-id"
       ],
       "retention_days": "90",
-      "status": "workflow-committed-not-deployed-or-materialized",
+      "status": "workflow-on-dev-not-default-branch-or-materialized",
       "upload_action": {
         "archive": "false",
         "commit": "043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",

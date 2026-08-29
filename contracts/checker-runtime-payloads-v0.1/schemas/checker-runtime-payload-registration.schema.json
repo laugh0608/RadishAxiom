@@ -354,6 +354,27 @@
         "candidate_workflow": {
           "additionalProperties": false,
           "properties": {
+            "ci": {
+              "additionalProperties": false,
+              "properties": {
+                "conclusion": {
+                  "type": "string"
+                },
+                "run_id": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                },
+                "workflow": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "conclusion",
+                "run_id",
+                "workflow"
+              ],
+              "type": "object"
+            },
             "commit": {
               "type": "string"
             },
@@ -361,6 +382,9 @@
               "type": "string"
             },
             "file": {
+              "type": "string"
+            },
+            "remote_ref": {
               "type": "string"
             },
             "repository": {
@@ -377,9 +401,11 @@
             }
           },
           "required": [
+            "ci",
             "commit",
             "default_branch_presence",
             "file",
+            "remote_ref",
             "repository",
             "state",
             "tree",
