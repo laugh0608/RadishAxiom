@@ -887,6 +887,93 @@
                 "kind": {
                   "type": "string"
                 },
+                "planned_release": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "asset": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "byte_length": {
+                          "pattern": "^(0|[1-9][0-9]*)$",
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "raw_sha256": {
+                          "pattern": "^sha256:[0-9a-f]{64}$",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "byte_length",
+                        "name",
+                        "raw_sha256"
+                      ],
+                      "type": "object"
+                    },
+                    "draft": {
+                      "type": "string"
+                    },
+                    "inventory": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "checked_at": {
+                          "type": "string"
+                        },
+                        "exact_tag": {
+                          "type": "string"
+                        },
+                        "releases": {
+                          "type": "string"
+                        },
+                        "tags": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "checked_at",
+                        "exact_tag",
+                        "releases",
+                        "tags"
+                      ],
+                      "type": "object"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "publication": {
+                      "type": "string"
+                    },
+                    "release_classification": {
+                      "type": "string"
+                    },
+                    "tag": {
+                      "type": "string"
+                    },
+                    "target_commit": {
+                      "type": "string"
+                    },
+                    "verification": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "asset",
+                    "draft",
+                    "inventory",
+                    "name",
+                    "publication",
+                    "release_classification",
+                    "tag",
+                    "target_commit",
+                    "verification"
+                  ],
+                  "type": "object"
+                },
                 "release": {
                   "type": "string"
                 },
@@ -894,12 +981,46 @@
                   "type": "string"
                 },
                 "repository_immutability": {
-                  "type": "string"
+                  "additionalProperties": false,
+                  "properties": {
+                    "api_version": {
+                      "type": "string"
+                    },
+                    "checked_at": {
+                      "type": "string"
+                    },
+                    "enabled": {
+                      "type": "boolean"
+                    },
+                    "endpoint": {
+                      "type": "string"
+                    },
+                    "enforced_by_owner": {
+                      "type": "boolean"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "viewer_permission": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "api_version",
+                    "checked_at",
+                    "enabled",
+                    "endpoint",
+                    "enforced_by_owner",
+                    "status",
+                    "viewer_permission"
+                  ],
+                  "type": "object"
                 }
               },
               "required": [
                 "independent_readback",
                 "kind",
+                "planned_release",
                 "release",
                 "repository",
                 "repository_immutability"

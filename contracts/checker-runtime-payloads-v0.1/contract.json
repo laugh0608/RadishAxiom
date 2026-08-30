@@ -1,5 +1,5 @@
 {
-  "contract_digest": "sha256:84dd0e9f44816ee5235868f56ddc4ad6b34928dede84f0f6f9f741d13c9f7d7d",
+  "contract_digest": "sha256:9623ae362db38cecdfc553be3dbe109249578750130571c4fe14052efbf1cc33",
   "counts": {
     "active": "0",
     "historical_ineligible": "1",
@@ -16,7 +16,7 @@
   "format_version": "0.1",
   "generator": {
     "path": "scripts/generate-checker-runtime-payloads.py",
-    "raw_sha256": "sha256:91cfc6cbd53e1773934b7baaf992ab47052029f128d13195c4c7236975639de9"
+    "raw_sha256": "sha256:0c454a8a80185f8f613a226634f942c484db4640da85d74691559dca4dedc9e9"
   },
   "records": [
     {
@@ -30,8 +30,8 @@
     {
       "id": "checker-go0.1-dev-darwin-arm64-current-pending-2026-08-30",
       "path": "contracts/checker-runtime-payloads-v0.1/records/checker-go0.1-dev-darwin-arm64-current-pending.json",
-      "raw_sha256": "sha256:a1498218ef20f05acfa2c3b6a081a8ffb72c3fc4bb56c617bff7b6632efb7808",
-      "record_digest": "sha256:6d3b3a198bb7afc83332608d042778ee1bef12841d59c7f9453525705d2b3564",
+      "raw_sha256": "sha256:bf390b84ba3d7439d229b1223b1a682b6d29167ce2e7bd3d58aa1c039044562c",
+      "record_digest": "sha256:543d7ddee172aca0b19f5ca081f524ff97a67cce0faad6017746bb8362682732",
       "registration_status": "distribution-package-accepted",
       "source": "sha256:401158c3c304f45faebebe879edf064512998423d7b08aec486f4be0012e3999"
     }
@@ -50,7 +50,7 @@
         "separate-publication-authorization",
         "stable-exact-fetch"
       ],
-      "status": "provider-selected-setting-not-verified-release-not-materialized"
+      "status": "provider-selected-setting-verified-disabled-release-not-materialized"
     },
     "candidate": {
       "activation_precondition": "workflow-file-present-on-default-branch",
@@ -142,11 +142,47 @@
       },
       "draft_policy": "assemble-and-read-back-all-assets-before-single-publication",
       "latest_alias_policy": "forbidden",
+      "next_release": {
+        "asset": {
+          "byte_length": "4720640",
+          "name": "radishaxiom-checker-go0.1-dev-darwin-arm64-v8.0-sha256-401158c3c304f45faebebe879edf064512998423d7b08aec486f4be0012e3999.distribution.tar",
+          "raw_sha256": "sha256:17b44a1eb5ea9caeafd7b590bb8eb0ba87359bf53d5af2933a424d17fadfa437"
+        },
+        "draft": "required-not-materialized",
+        "inventory": {
+          "checked_at": "2026-08-30T08:36:33Z",
+          "exact_tag": "absent",
+          "releases": "empty",
+          "tags": "empty"
+        },
+        "name": "RadishAxiom Checker go0.1-dev darwin-arm64-v8.0",
+        "publication": "single-transition-after-draft-byte-verification",
+        "release_classification": "checker-runtime-payload-not-product-release",
+        "tag": "checker-payload/go0.1-dev/darwin-arm64-v8.0/sha256-401158c3c304f45faebebe879edf064512998423d7b08aec486f4be0012e3999",
+        "target_commit": "f960603aa1120ebe427eb9227f116f4a41513d5e",
+        "verification": [
+          "release-rest-immutable-true",
+          "release-attestation-verified",
+          "release-asset-attestation-verified",
+          "exact-asset-api-metadata-readback",
+          "exact-asset-raw-byte-readback",
+          "distribution-and-inner-candidate-strict-verification"
+        ]
+      },
       "provider": "github-immutable-release-asset",
       "provider_attestation_role": "supplemental-provider-provenance-not-payload-acceptance",
-      "provider_selection_status": "selected-setting-not-verified-release-not-materialized",
+      "provider_selection_status": "selected-setting-verified-disabled-release-not-materialized",
       "release_cardinality": "one-checker-source-version-target-per-release",
       "repository": "laugh0608/RadishAxiomChecker",
+      "repository_immutability": {
+        "api_version": "2026-03-10",
+        "checked_at": "2026-08-30T08:36:33Z",
+        "enabled": false,
+        "endpoint": "/repos/laugh0608/RadishAxiomChecker/immutable-releases",
+        "enforced_by_owner": false,
+        "status": "verified-disabled",
+        "viewer_permission": "ADMIN"
+      },
       "required_provider_bindings": [
         "asset-api-url",
         "asset-browser-download-url",
@@ -170,7 +206,7 @@
         "release-attestation-verification",
         "repository-immutable-releases-enabled-before-draft"
       ],
-      "status": "blocked-repository-immutability-verification-and-publication-authorization",
+      "status": "blocked-repository-immutability-disabled-and-publication-authorization",
       "tag_template": "checker-payload/go0.1-dev/<goos>-<goarch>-<variant>/sha256-<checker-source-hex>"
     },
     "registration_state_machine": {

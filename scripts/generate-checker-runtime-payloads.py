@@ -140,6 +140,42 @@ CURRENT_DISTRIBUTION_PACKAGE = {
     },
     "raw_sha256": "sha256:17b44a1eb5ea9caeafd7b590bb8eb0ba87359bf53d5af2933a424d17fadfa437",
 }
+IMMUTABLE_RELEASES_OBSERVATION = {
+    "api_version": "2026-03-10",
+    "checked_at": "2026-08-30T08:36:33Z",
+    "enabled": False,
+    "endpoint": "/repos/laugh0608/RadishAxiomChecker/immutable-releases",
+    "enforced_by_owner": False,
+    "status": "verified-disabled",
+    "viewer_permission": "ADMIN",
+}
+PLANNED_DURABLE_RELEASE = {
+    "asset": {
+        "byte_length": CURRENT_DISTRIBUTION_PACKAGE["byte_length"],
+        "name": CURRENT_DISTRIBUTION_PACKAGE["filename"],
+        "raw_sha256": CURRENT_DISTRIBUTION_PACKAGE["raw_sha256"],
+    },
+    "draft": "required-not-materialized",
+    "inventory": {
+        "checked_at": "2026-08-30T08:36:33Z",
+        "exact_tag": "absent",
+        "releases": "empty",
+        "tags": "empty",
+    },
+    "name": "RadishAxiom Checker go0.1-dev darwin-arm64-v8.0",
+    "publication": "single-transition-after-draft-byte-verification",
+    "release_classification": "checker-runtime-payload-not-product-release",
+    "tag": "checker-payload/go0.1-dev/darwin-arm64-v8.0/sha256-401158c3c304f45faebebe879edf064512998423d7b08aec486f4be0012e3999",
+    "target_commit": "f960603aa1120ebe427eb9227f116f4a41513d5e",
+    "verification": [
+        "release-rest-immutable-true",
+        "release-attestation-verified",
+        "release-asset-attestation-verified",
+        "exact-asset-api-metadata-readback",
+        "exact-asset-raw-byte-readback",
+        "distribution-and-inner-candidate-strict-verification",
+    ],
+}
 CURRENT_CANDIDATE_RUN = {
     "attempt": "1",
     "conclusion": "success",
@@ -181,7 +217,7 @@ STORAGE_POLICY = {
             "separate-publication-authorization",
             "stable-exact-fetch",
         ],
-        "status": "provider-selected-setting-not-verified-release-not-materialized",
+        "status": "provider-selected-setting-verified-disabled-release-not-materialized",
     },
     "candidate": {
         "activation_precondition": "workflow-file-present-on-default-branch",
@@ -275,7 +311,8 @@ STORAGE_POLICY = {
         "latest_alias_policy": "forbidden",
         "provider": "github-immutable-release-asset",
         "provider_attestation_role": "supplemental-provider-provenance-not-payload-acceptance",
-        "provider_selection_status": "selected-setting-not-verified-release-not-materialized",
+        "provider_selection_status": "selected-setting-verified-disabled-release-not-materialized",
+        "repository_immutability": IMMUTABLE_RELEASES_OBSERVATION,
         "release_cardinality": "one-checker-source-version-target-per-release",
         "repository": "laugh0608/RadishAxiomChecker",
         "required_provider_bindings": [
@@ -301,8 +338,9 @@ STORAGE_POLICY = {
             "release-attestation-verification",
             "repository-immutable-releases-enabled-before-draft",
         ],
-        "status": "blocked-repository-immutability-verification-and-publication-authorization",
+        "status": "blocked-repository-immutability-disabled-and-publication-authorization",
         "tag_template": "checker-payload/go0.1-dev/<goos>-<goarch>-<variant>/sha256-<checker-source-hex>",
+        "next_release": PLANNED_DURABLE_RELEASE,
     },
     "registration_state_machine": {
         "replacement_policy": "append-new-record-and-release-never-mutate-or-repoint",
@@ -495,17 +533,18 @@ def pending_record() -> dict[str, Any]:
             "provider": {
                 "independent_readback": "required-before-registration",
                 "kind": "github-immutable-release-asset",
+                "planned_release": PLANNED_DURABLE_RELEASE,
                 "release": "not-materialized",
                 "repository": "laugh0608/RadishAxiomChecker",
-                "repository_immutability": "not-verified",
+                "repository_immutability": IMMUTABLE_RELEASES_OBSERVATION,
             },
-            "status": "distribution-package-accepted-provider-not-materialized",
+            "status": "distribution-package-accepted-provider-setting-disabled-release-not-materialized",
         },
         "registration": {
             "reasons": [
                 "candidate-storage-is-temporary",
                 "durable-release-not-materialized",
-                "immutable-release-setting-not-verified",
+                "immutable-release-setting-disabled",
                 "launcher-isolation-not-implemented",
                 "separate-publication-authorization-required",
             ],
