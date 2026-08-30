@@ -1,0 +1,509 @@
+{
+  "$id": "https://radishaxiom.dev/schema/checker-runtime-launcher-policy/0.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "activation": {
+      "additionalProperties": false,
+      "properties": {
+        "authorization": {
+          "type": "string"
+        },
+        "current_status": {
+          "type": "string"
+        },
+        "preconditions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "product_selection": {
+          "type": "string"
+        },
+        "runtime_cardinality": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "authorization",
+        "current_status",
+        "preconditions",
+        "product_selection",
+        "runtime_cardinality"
+      ],
+      "type": "object"
+    },
+    "authority": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "raw_sha256": {
+            "pattern": "^sha256:[0-9a-f]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "path",
+          "raw_sha256"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "digest_domain": {
+      "const": "radishaxiom.checker-runtime-launcher-policy.v0.1"
+    },
+    "failure_boundary": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "classification": {
+            "type": "string"
+          },
+          "condition": {
+            "type": "string"
+          },
+          "independent_result": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "classification",
+          "condition",
+          "independent_result"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "format": {
+      "const": "radishaxiom-checker-runtime-launcher-policy"
+    },
+    "format_version": {
+      "const": "0.1"
+    },
+    "host_selection": {
+      "additionalProperties": false,
+      "properties": {
+        "current_supported_targets": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "executable_format": {
+                "type": "string"
+              },
+              "goarch": {
+                "type": "string"
+              },
+              "goarm64": {
+                "type": "string"
+              },
+              "goos": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "executable_format",
+              "goarch",
+              "goarm64",
+              "goos"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "executable_format_verification": {
+          "type": "string"
+        },
+        "forbidden_resolution": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "host_identity_source": {
+          "type": "string"
+        },
+        "match": {
+          "type": "string"
+        },
+        "product_registration_status": {
+          "type": "string"
+        },
+        "qualification_registration_status": {
+          "type": "string"
+        },
+        "rosetta_policy": {
+          "type": "string"
+        },
+        "selection_cardinality": {
+          "type": "string"
+        },
+        "unknown_target": {
+          "type": "string"
+        },
+        "variant_policy": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "current_supported_targets",
+        "executable_format_verification",
+        "forbidden_resolution",
+        "host_identity_source",
+        "match",
+        "product_registration_status",
+        "qualification_registration_status",
+        "rosetta_policy",
+        "selection_cardinality",
+        "unknown_target",
+        "variant_policy"
+      ],
+      "type": "object"
+    },
+    "installation": {
+      "additionalProperties": false,
+      "properties": {
+        "authorization": {
+          "type": "string"
+        },
+        "current_status": {
+          "type": "string"
+        },
+        "executable": {
+          "additionalProperties": false,
+          "properties": {
+            "mode": {
+              "type": "string"
+            },
+            "relative_path": {
+              "type": "string"
+            },
+            "required_checks": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "mode",
+            "relative_path",
+            "required_checks"
+          ],
+          "type": "object"
+        },
+        "fetch": {
+          "type": "string"
+        },
+        "installed_state": {
+          "type": "string"
+        },
+        "network_boundary": {
+          "type": "string"
+        },
+        "publication": {
+          "type": "string"
+        },
+        "receipt": {
+          "additionalProperties": false,
+          "properties": {
+            "canonicalization": {
+              "type": "string"
+            },
+            "digest_domain": {
+              "type": "string"
+            },
+            "filename": {
+              "type": "string"
+            },
+            "format": {
+              "type": "string"
+            },
+            "format_version": {
+              "type": "string"
+            },
+            "required_bindings": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "canonicalization",
+            "digest_domain",
+            "filename",
+            "format",
+            "format_version",
+            "required_bindings",
+            "status"
+          ],
+          "type": "object"
+        },
+        "recovery": {
+          "type": "string"
+        },
+        "root": {
+          "type": "string"
+        },
+        "single_writer": {
+          "type": "string"
+        },
+        "slot_identity": {
+          "type": "string"
+        },
+        "slot_mutation": {
+          "type": "string"
+        },
+        "staging_rejections": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "authorization",
+        "current_status",
+        "executable",
+        "fetch",
+        "installed_state",
+        "network_boundary",
+        "publication",
+        "receipt",
+        "recovery",
+        "root",
+        "single_writer",
+        "slot_identity",
+        "slot_mutation",
+        "staging_rejections"
+      ],
+      "type": "object"
+    },
+    "invocation": {
+      "additionalProperties": false,
+      "properties": {
+        "argument_tokens": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "bundle": {
+          "type": "string"
+        },
+        "environment": {
+          "type": "string"
+        },
+        "executable_resolution": {
+          "type": "string"
+        },
+        "execution_profile": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            },
+            "raw_sha256": {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "path",
+            "raw_sha256"
+          ],
+          "type": "object"
+        },
+        "identity_revalidation": {
+          "type": "string"
+        },
+        "network": {
+          "type": "string"
+        },
+        "retry": {
+          "type": "string"
+        },
+        "stderr": {
+          "type": "string"
+        },
+        "stdin": {
+          "type": "string"
+        },
+        "stdout": {
+          "type": "string"
+        },
+        "working_directory": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "argument_tokens",
+        "bundle",
+        "environment",
+        "executable_resolution",
+        "execution_profile",
+        "identity_revalidation",
+        "network",
+        "retry",
+        "stderr",
+        "stdin",
+        "stdout",
+        "working_directory"
+      ],
+      "type": "object"
+    },
+    "level": {
+      "type": "string"
+    },
+    "policy_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "runtime_companion": {
+      "additionalProperties": false,
+      "properties": {
+        "current_status": {
+          "type": "string"
+        },
+        "format": {
+          "type": "string"
+        },
+        "format_version": {
+          "type": "string"
+        },
+        "identity_requirements": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "invocation_failure_format": {
+          "type": "string"
+        },
+        "qualification_record": {
+          "additionalProperties": false,
+          "properties": {
+            "canonicalization": {
+              "type": "string"
+            },
+            "current_status": {
+              "type": "string"
+            },
+            "digest_domain": {
+              "type": "string"
+            },
+            "format": {
+              "type": "string"
+            },
+            "format_version": {
+              "type": "string"
+            },
+            "required_bindings": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "storage": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "canonicalization",
+            "current_status",
+            "digest_domain",
+            "format",
+            "format_version",
+            "required_bindings",
+            "storage"
+          ],
+          "type": "object"
+        },
+        "qualification_scenarios": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "byte_length": {
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "outcome": {
+                "type": "string"
+              },
+              "raw_sha256": {
+                "pattern": "^sha256:[0-9a-f]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "byte_length",
+              "id",
+              "outcome",
+              "raw_sha256"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "qualification_status": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "strict_contract": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "current_status",
+        "format",
+        "format_version",
+        "identity_requirements",
+        "invocation_failure_format",
+        "qualification_record",
+        "qualification_scenarios",
+        "qualification_status",
+        "role",
+        "strict_contract"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "activation",
+    "authority",
+    "digest_domain",
+    "failure_boundary",
+    "format",
+    "format_version",
+    "host_selection",
+    "installation",
+    "invocation",
+    "level",
+    "policy_digest",
+    "runtime_companion"
+  ],
+  "title": "RadishAxiom checker runtime launcher policy v0.1",
+  "type": "object"
+}

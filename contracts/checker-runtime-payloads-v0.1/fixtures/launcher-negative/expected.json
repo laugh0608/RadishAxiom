@@ -1,0 +1,38 @@
+{
+  "fixtures": [
+    {
+      "file": "registered-inactive-selectable.invalid.json",
+      "reason": "product launcher cannot select a registered-inactive payload"
+    },
+    {
+      "file": "target-fallback.invalid.json",
+      "reason": "OS architecture variant and executable format require exact matching"
+    },
+    {
+      "file": "path-fallback.invalid.json",
+      "reason": "launcher cannot resolve checker through PATH or another fallback"
+    },
+    {
+      "file": "non-atomic-install.invalid.json",
+      "reason": "installation must publish a verified same-filesystem staging directory atomically"
+    },
+    {
+      "file": "installation-receipt-optional.invalid.json",
+      "reason": "a complete installation receipt is required before qualification or activation"
+    },
+    {
+      "file": "runtime-companion-optional.invalid.json",
+      "reason": "formal runtime companions are required before activation"
+    },
+    {
+      "file": "process-failure-as-result.invalid.json",
+      "reason": "outer process failure cannot be reclassified as an independent incomplete result"
+    },
+    {
+      "file": "preinvoke-reverification-omitted.invalid.json",
+      "reason": "active executable identity must be checked before and after every spawn"
+    }
+  ],
+  "format": "radishaxiom-checker-runtime-launcher-policy-negative-set",
+  "format_version": "0.1"
+}

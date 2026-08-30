@@ -1,8 +1,28 @@
 {
-  "contract_digest": "sha256:0aaf6fd431a3f4d817e1d1ad255fa17264ddb38f83ce98e19151722b60c5a6a5",
+  "activation_readiness": {
+    "authorization": "not-granted",
+    "decision": "blocked",
+    "installation": "not-materialized",
+    "launcher_policy": {
+      "format": "radishaxiom-checker-runtime-launcher-policy",
+      "format_version": "0.1",
+      "path": "contracts/checker-runtime-payloads-v0.1/launcher-policy.jcs",
+      "policy_digest": "sha256:a26a6664c2e4eeefd538d3477a4ce8dd6ad99285f65557ec3f208aae88613cd6",
+      "status": "specified-not-implemented"
+    },
+    "reasons": [
+      "activation-transition-requires-separate-authorization",
+      "installation-not-materialized",
+      "launcher-policy-not-implemented",
+      "runtime-companion-not-materialized-by-product-launcher"
+    ],
+    "runtime_companion": "not-materialized-by-product-launcher"
+  },
+  "contract_digest": "sha256:ab131cf7a810344f30cfade2f04a3996a24d015b035cf64296577c760396bb7b",
   "counts": {
     "active": "0",
     "historical_ineligible": "1",
+    "launcher_policies": "1",
     "records": "2",
     "registered_inactive": "1"
   },
@@ -16,7 +36,15 @@
   "format_version": "0.1",
   "generator": {
     "path": "scripts/generate-checker-runtime-payloads.py",
-    "raw_sha256": "sha256:f6a83322858b3e3a5cd8635958d51f1d23dfc390ac0436a441dcbceb71ba8028"
+    "raw_sha256": "sha256:a9791854ca14efd85bc72b5840890b84d1b78ece74a970e3ff6a6c058fd354d4"
+  },
+  "launcher_policy": {
+    "format": "radishaxiom-checker-runtime-launcher-policy",
+    "format_version": "0.1",
+    "level": "specified-not-implemented",
+    "path": "contracts/checker-runtime-payloads-v0.1/launcher-policy.jcs",
+    "policy_digest": "sha256:a26a6664c2e4eeefd538d3477a4ce8dd6ad99285f65557ec3f208aae88613cd6",
+    "raw_sha256": "sha256:f66adf5bee373afe7b6d6c19b774bc88e00924c30dfe1fc1a916feecf0548fc6"
   },
   "records": [
     {
@@ -39,6 +67,12 @@
   "runtime_statement": "current-source-runtime-payload-is-registered-inactive-not-active",
   "storage_policy": {
     "active_runtime": {
+      "launcher_policy": {
+        "format": "radishaxiom-checker-runtime-launcher-policy",
+        "format_version": "0.1",
+        "path": "contracts/checker-runtime-payloads-v0.1/launcher-policy.jcs",
+        "status": "specified-not-implemented"
+      },
       "provider": "github-immutable-release-asset",
       "requirements": [
         "durable-registration",
@@ -48,7 +82,7 @@
         "runtime-companion",
         "separate-activation-authorization"
       ],
-      "status": "registered-inactive-not-installed-or-active"
+      "status": "registered-inactive-launcher-policy-specified-installation-and-companion-not-materialized"
     },
     "candidate": {
       "activation_precondition": "workflow-file-present-on-default-branch",
@@ -234,7 +268,7 @@
         "release-attestation-verification",
         "repository-immutable-releases-enabled-before-draft"
       ],
-      "status": "registered-inactive-launcher-installation-and-activation-pending",
+      "status": "registered-inactive-launcher-policy-specified-installation-companion-and-activation-pending",
       "tag_template": "checker-payload/go0.1-dev/<goos>-<goarch>-<variant>/sha256-<checker-source-hex>"
     },
     "registration_state_machine": {

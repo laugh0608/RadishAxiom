@@ -20,6 +20,9 @@ FORMAT_VERSION = "0.1"
 RECORD_DOMAIN = "radishaxiom.checker-runtime-payload-registration.v0.1"
 SET_FORMAT = "radishaxiom-checker-runtime-payload-registration-set"
 SET_DOMAIN = "radishaxiom.checker-runtime-payload-registration-set.v0.1"
+LAUNCHER_POLICY_FORMAT = "radishaxiom-checker-runtime-launcher-policy"
+LAUNCHER_POLICY_VERSION = "0.1"
+LAUNCHER_POLICY_DOMAIN = "radishaxiom.checker-runtime-launcher-policy.v0.1"
 SHA256_PATTERN = re.compile(r"^sha256:[0-9a-f]{64}$")
 
 CURRENT_SOURCE = {
@@ -233,6 +236,12 @@ CURRENT_CANDIDATE_RUN = {
 
 STORAGE_POLICY = {
     "active_runtime": {
+        "launcher_policy": {
+            "format": LAUNCHER_POLICY_FORMAT,
+            "format_version": LAUNCHER_POLICY_VERSION,
+            "path": "contracts/checker-runtime-payloads-v0.1/launcher-policy.jcs",
+            "status": "specified-not-implemented",
+        },
         "provider": "github-immutable-release-asset",
         "requirements": [
             "durable-registration",
@@ -242,7 +251,7 @@ STORAGE_POLICY = {
             "runtime-companion",
             "separate-activation-authorization",
         ],
-        "status": "registered-inactive-not-installed-or-active",
+        "status": "registered-inactive-launcher-policy-specified-installation-and-companion-not-materialized",
     },
     "candidate": {
         "activation_precondition": "workflow-file-present-on-default-branch",
@@ -363,7 +372,7 @@ STORAGE_POLICY = {
             "release-attestation-verification",
             "repository-immutable-releases-enabled-before-draft",
         ],
-        "status": "registered-inactive-launcher-installation-and-activation-pending",
+        "status": "registered-inactive-launcher-policy-specified-installation-companion-and-activation-pending",
         "tag_template": "checker-payload/go0.1-dev/<goos>-<goarch>-<variant>/sha256-<checker-source-hex>",
         "current_release": CURRENT_DURABLE_RELEASE,
     },
@@ -413,6 +422,249 @@ def raw_sha256(path: Path) -> str:
 
 def domain_digest(domain: str, body: dict[str, Any]) -> str:
     return sha256_bytes(domain.encode("ascii") + b"\0" + canonical_bytes(body))
+
+
+def launcher_policy() -> dict[str, Any]:
+    target = {
+        "executable_format": "macho-64-arm64",
+        "goarch": "arm64",
+        "goarm64": "v8.0",
+        "goos": "darwin",
+    }
+    body = {
+        "activation": {
+            "authorization": "separate-explicit-authorization-required",
+            "current_status": "not-authorized",
+            "preconditions": [
+                "active-registration-transition-authorized",
+                "durable-registration-still-valid-and-not-revoked",
+                "exact-target-launcher-policy-implemented-and-native-tested",
+                "immutable-installation-slot-and-complete-receipt-reverified",
+                "qualification-record-and-companions-exactly-match-accepted-scenarios",
+            ],
+            "product_selection": "active-registration-and-qualified-installation-only",
+            "runtime_cardinality": "exactly-one-active-record-per-target-or-fail",
+        },
+        "authority": [
+            {
+                "name": "adr-0011",
+                "path": "docs/adr/0011-checker-runtime-launcher-installation-and-activation.md",
+                "raw_sha256": raw_sha256(
+                    REPO_ROOT
+                    / "docs/adr/0011-checker-runtime-launcher-installation-and-activation.md"
+                ),
+            },
+            {
+                "name": "execution-profile-v0.1",
+                "path": "contracts/execution-profiles-v0.1/manifest.jcs",
+                "raw_sha256": raw_sha256(
+                    REPO_ROOT / "contracts/execution-profiles-v0.1/manifest.jcs"
+                ),
+            },
+            {
+                "name": "independent-check-v0.1",
+                "path": "contracts/independent-check-v0.1/contract.json",
+                "raw_sha256": raw_sha256(
+                    REPO_ROOT / "contracts/independent-check-v0.1/contract.json"
+                ),
+            },
+        ],
+        "digest_domain": LAUNCHER_POLICY_DOMAIN,
+        "failure_boundary": [
+            {
+                "classification": "runtime-unavailable",
+                "condition": "no-active-record-target-mismatch-or-installed-identity-failure",
+                "independent_result": "not-produced",
+            },
+            {
+                "classification": "installation-failed",
+                "condition": "fetch-unpack-verification-or-atomic-publication-failure",
+                "independent_result": "not-produced",
+            },
+            {
+                "classification": "qualification-failed",
+                "condition": "qualification-output-identity-outcome-or-digest-mismatch",
+                "independent_result": "not-produced",
+            },
+            {
+                "classification": "process-failure",
+                "condition": "spawn-kill-timeout-memory-crash-signal-nonzero-exit-or-output-failure",
+                "independent_result": "not-produced",
+            },
+            {
+                "classification": "identity-failure",
+                "condition": "canonical-result-does-not-bind-active-registration-request-or-executable",
+                "independent_result": "not-consumable",
+            },
+            {
+                "classification": "completed",
+                "condition": "one-canonical-result-strictly-parsed-and-all-runtime-identities-match",
+                "independent_result": "consumable",
+            },
+        ],
+        "format": LAUNCHER_POLICY_FORMAT,
+        "format_version": LAUNCHER_POLICY_VERSION,
+        "host_selection": {
+            "current_supported_targets": [target],
+            "executable_format_verification": "inspect-installed-bytes-never-infer-from-name",
+            "forbidden_resolution": [
+                "actions-artifact",
+                "adjacent-directory",
+                "current-working-directory",
+                "latest-alias",
+                "neighbor-cache",
+                "path-search",
+                "system-go-installation",
+                "user-supplied-executable",
+            ],
+            "host_identity_source": "trusted-launcher-adapter-and-native-process-identity",
+            "match": "exact-goos-goarch-goarm64-executable-format",
+            "product_registration_status": "active-only",
+            "qualification_registration_status": "registered-inactive-only",
+            "rosetta_policy": "translated-amd64-process-cannot-select-arm64-payload",
+            "selection_cardinality": "exactly-one-or-fail",
+            "unknown_target": "fail-closed-no-fallback",
+            "variant_policy": "closed-launcher-table-darwin-arm64-maps-only-to-v8.0",
+        },
+        "installation": {
+            "authorization": "separate-explicit-authorization-required",
+            "current_status": "not-materialized",
+            "executable": {
+                "mode": "0755",
+                "relative_path": "payload/radishaxiom-independent-checker-go",
+                "required_checks": [
+                    "absolute-canonical-slot-contained-realpath",
+                    "exact-byte-length",
+                    "exact-raw-sha256",
+                    "macho-64-arm64",
+                    "no-setuid-setgid-sticky",
+                    "regular-file-no-links",
+                ],
+            },
+            "fetch": "exact-immutable-release-and-asset-identities-only",
+            "installed_state": "installed-inactive",
+            "network_boundary": "installation-coordinator-only-checker-remains-offline",
+            "publication": "same-filesystem-verified-staging-then-atomic-rename",
+            "receipt": {
+                "canonicalization": "canonical-json-ascii-no-trailing-newline",
+                "digest_domain": "radishaxiom.checker-runtime-installation-receipt.v0.1",
+                "filename": "checker-runtime-installation-receipt-v0.1.jcs",
+                "format": "radishaxiom-checker-runtime-installation-receipt",
+                "format_version": "0.1",
+                "required_bindings": [
+                    "artifact-byte-length-and-raw-sha256",
+                    "checker-source-version-toolchain",
+                    "distribution-byte-length-and-raw-sha256",
+                    "installation-time",
+                    "installation-verifier-identity",
+                    "provider-repository-release-tag-and-asset-ids",
+                    "registration-record-id-and-digest-at-installation",
+                    "slot-relative-identity",
+                    "target-goos-goarch-goarm64-executable-format",
+                ],
+                "status": "required-not-materialized",
+            },
+            "recovery": "discard-only-owned-incomplete-staging-while-lock-held",
+            "root": "product-managed-user-local-private-data-root",
+            "single_writer": "per-target-installation-lock",
+            "slot_identity": "target-and-distribution-raw-sha256",
+            "slot_mutation": "immutable-no-in-place-repair-or-replacement",
+            "staging_rejections": [
+                "absolute-path",
+                "device",
+                "dot-dot-or-empty-component",
+                "extra-or-trailing-bytes",
+                "fifo",
+                "hard-link",
+                "pax-or-xattr",
+                "socket",
+                "symbolic-link",
+                "unknown-member-or-mode",
+            ],
+        },
+        "invocation": {
+            "argument_tokens": [
+                "check",
+                "--bundle-root=<caller-mounted-readonly-canonical-realpath>",
+            ],
+            "bundle": "caller-mounted-readonly-canonical-realpath",
+            "environment": "empty-no-inheritance",
+            "executable_resolution": "exact-active-content-addressed-slot-only",
+            "execution_profile": {
+                "id": "keyed-finite-table-independent-check-v0.1",
+                "path": "contracts/execution-profiles-v0.1/manifest.jcs",
+                "raw_sha256": raw_sha256(
+                    REPO_ROOT / "contracts/execution-profiles-v0.1/manifest.jcs"
+                ),
+            },
+            "identity_revalidation": "before-and-after-every-spawn",
+            "network": "forbidden",
+            "retry": "new-attempt-same-exact-slot-only-never-automatic-fallback",
+            "stderr": "bounded-diagnostic-never-result",
+            "stdin": "empty-then-eof",
+            "stdout": "one-canonical-independent-result-or-no-result",
+            "working_directory": "isolated-empty",
+        },
+        "level": "specified-not-implemented",
+        "runtime_companion": {
+            "current_status": "not-materialized-by-product-launcher",
+            "format": "axiom-independent-check-result",
+            "format_version": "0.1",
+            "identity_requirements": [
+                "actual-installed-checker-artifact",
+                "checker-source-and-implementation-version",
+                "exact-go1.26.7-toolchain",
+                "four-runtime-tcb-artifacts",
+                "request-and-evidence-identities",
+                "strict-result-document-digest",
+            ],
+            "invocation_failure_format": "axiom-checker-invocation-failure-0.1-when-canonical-request-identity-exists",
+            "qualification_record": {
+                "canonicalization": "canonical-json-ascii-no-trailing-newline",
+                "current_status": "not-materialized",
+                "digest_domain": "radishaxiom.checker-runtime-qualification-record.v0.1",
+                "format": "radishaxiom-checker-runtime-qualification-record",
+                "format_version": "0.1",
+                "required_bindings": [
+                    "actual-artifact-and-target",
+                    "installation-receipt-digest",
+                    "launcher-policy-and-execution-profile-identities",
+                    "qualification-companion-scenario-outcome-raw-and-document-digests",
+                ],
+                "storage": "product-managed-evidence-area-outside-immutable-slot",
+            },
+            "qualification_scenarios": [
+                {
+                    "byte_length": item["byte_length"],
+                    "id": item["id"],
+                    "outcome": item["outcome"],
+                    "raw_sha256": item["raw_sha256"],
+                }
+                for item in CURRENT_ACCEPTANCE["scenarios"]
+            ],
+            "qualification_status": "required-not-run-by-product-launcher",
+            "role": "existing-independent-check-canonical-result-not-launcher-metadata",
+            "strict_contract": "contracts/independent-check-v0.1/contract.json",
+        },
+    }
+    return {**body, "policy_digest": domain_digest(LAUNCHER_POLICY_DOMAIN, body)}
+
+
+def validate_launcher_policy(value: dict[str, Any]) -> None:
+    expected = launcher_policy()
+    if set(value) != set(expected):
+        raise ValueError("runtime launcher policy members drifted")
+    body = {key: item for key, item in value.items() if key != "policy_digest"}
+    if value.get("policy_digest") != domain_digest(LAUNCHER_POLICY_DOMAIN, body):
+        raise ValueError("runtime launcher policy digest mismatch")
+    if canonical_bytes(value) != canonical_bytes(expected):
+        raise ValueError("runtime launcher policy exceeds or drifts from accepted boundaries")
+
+
+def refreshed_launcher_policy(value: dict[str, Any]) -> dict[str, Any]:
+    body = {key: item for key, item in value.items() if key != "policy_digest"}
+    value["policy_digest"] = domain_digest(LAUNCHER_POLICY_DOMAIN, body)
+    return value
 
 
 def record(body: dict[str, Any]) -> dict[str, Any]:
@@ -787,7 +1039,82 @@ def negative_fixtures(historical: dict[str, Any], current: dict[str, Any]) -> li
     return rows
 
 
+def launcher_negative_fixtures(
+    policy: dict[str, Any],
+) -> list[tuple[str, str, dict[str, Any]]]:
+    rows: list[tuple[str, str, dict[str, Any]]] = []
+    value = copy.deepcopy(policy)
+    value["host_selection"]["product_registration_status"] = "registered-inactive-or-active"
+    rows.append((
+        "registered-inactive-selectable.invalid.json",
+        "product launcher cannot select a registered-inactive payload",
+        refreshed_launcher_policy(value),
+    ))
+    value = copy.deepcopy(policy)
+    value["host_selection"]["match"] = "compatible-target-with-fallback"
+    rows.append((
+        "target-fallback.invalid.json",
+        "OS architecture variant and executable format require exact matching",
+        refreshed_launcher_policy(value),
+    ))
+    value = copy.deepcopy(policy)
+    value["invocation"]["executable_resolution"] = "path-search-or-active-slot"
+    rows.append((
+        "path-fallback.invalid.json",
+        "launcher cannot resolve checker through PATH or another fallback",
+        refreshed_launcher_policy(value),
+    ))
+    value = copy.deepcopy(policy)
+    value["installation"]["publication"] = "copy-over-existing-slot"
+    rows.append((
+        "non-atomic-install.invalid.json",
+        "installation must publish a verified same-filesystem staging directory atomically",
+        refreshed_launcher_policy(value),
+    ))
+    value = copy.deepcopy(policy)
+    value["installation"]["receipt"]["status"] = "optional"
+    rows.append((
+        "installation-receipt-optional.invalid.json",
+        "a complete installation receipt is required before qualification or activation",
+        refreshed_launcher_policy(value),
+    ))
+    value = copy.deepcopy(policy)
+    value["runtime_companion"]["qualification_status"] = "optional"
+    rows.append((
+        "runtime-companion-optional.invalid.json",
+        "formal runtime companions are required before activation",
+        refreshed_launcher_policy(value),
+    ))
+    value = copy.deepcopy(policy)
+    value["failure_boundary"][3]["independent_result"] = "incomplete"
+    rows.append((
+        "process-failure-as-result.invalid.json",
+        "outer process failure cannot be reclassified as an independent incomplete result",
+        refreshed_launcher_policy(value),
+    ))
+    value = copy.deepcopy(policy)
+    value["invocation"]["identity_revalidation"] = "installation-time-only"
+    rows.append((
+        "preinvoke-reverification-omitted.invalid.json",
+        "active executable identity must be checked before and after every spawn",
+        refreshed_launcher_policy(value),
+    ))
+    return rows
+
+
+def launcher_policy_schema(policy: dict[str, Any]) -> dict[str, Any]:
+    result = infer_schema([policy])
+    result["$id"] = "https://radishaxiom.dev/schema/checker-runtime-launcher-policy/0.1"
+    result["$schema"] = "https://json-schema.org/draft/2020-12/schema"
+    result["properties"]["digest_domain"] = {"const": LAUNCHER_POLICY_DOMAIN}
+    result["properties"]["format"] = {"const": LAUNCHER_POLICY_FORMAT}
+    result["properties"]["format_version"] = {"const": LAUNCHER_POLICY_VERSION}
+    result["title"] = "RadishAxiom checker runtime launcher policy v0.1"
+    return result
+
+
 def build_contract(records: list[tuple[str, dict[str, Any]]]) -> dict[str, Any]:
+    policy = launcher_policy()
     rows = []
     for path, value in records:
         rows.append({
@@ -799,12 +1126,45 @@ def build_contract(records: list[tuple[str, dict[str, Any]]]) -> dict[str, Any]:
             "source": value["checker"]["source"]["identity"],
         })
     body = {
-        "counts": {"active": "0", "historical_ineligible": "1", "records": "2", "registered_inactive": "1"},
+        "activation_readiness": {
+            "authorization": "not-granted",
+            "decision": "blocked",
+            "installation": "not-materialized",
+            "launcher_policy": {
+                "format": policy["format"],
+                "format_version": policy["format_version"],
+                "path": "contracts/checker-runtime-payloads-v0.1/launcher-policy.jcs",
+                "policy_digest": policy["policy_digest"],
+                "status": policy["level"],
+            },
+            "reasons": [
+                "activation-transition-requires-separate-authorization",
+                "installation-not-materialized",
+                "launcher-policy-not-implemented",
+                "runtime-companion-not-materialized-by-product-launcher",
+            ],
+            "runtime_companion": "not-materialized-by-product-launcher",
+        },
+        "counts": {
+            "active": "0",
+            "historical_ineligible": "1",
+            "launcher_policies": "1",
+            "records": "2",
+            "registered_inactive": "1",
+        },
         "current_checker_source": CURRENT_SOURCE,
         "digest_domain": SET_DOMAIN,
         "format": SET_FORMAT,
         "format_version": FORMAT_VERSION,
         "generator": {"path": "scripts/generate-checker-runtime-payloads.py", "raw_sha256": raw_sha256(Path(__file__))},
+        "launcher_policy": {
+            "format": policy["format"],
+            "format_version": policy["format_version"],
+            "level": policy["level"],
+            "path": "contracts/checker-runtime-payloads-v0.1/launcher-policy.jcs",
+            "policy_digest": policy["policy_digest"],
+            "raw_sha256": sha256_bytes(canonical_bytes(policy)),
+        },
         "records": rows,
         "runtime_statement": "current-source-runtime-payload-is-registered-inactive-not-active",
         "storage_policy": STORAGE_POLICY,
@@ -815,14 +1175,20 @@ def build_contract(records: list[tuple[str, dict[str, Any]]]) -> dict[str, Any]:
 def outputs() -> dict[Path, bytes]:
     historical = historical_record()
     current = registered_inactive_record()
+    policy = launcher_policy()
     records = [
         ("contracts/checker-runtime-payloads-v0.1/records/checker-go0.1-dev-darwin-arm64-historical.json", historical),
         ("contracts/checker-runtime-payloads-v0.1/records/checker-go0.1-dev-darwin-arm64-current-registered-inactive.json", current),
     ]
     for _, value in records:
         validate_record(value)
+    validate_launcher_policy(policy)
     expected = {REPO_ROOT / path: pretty_bytes(value) for path, value in records}
     expected[CONTRACT_ROOT / "contract.json"] = pretty_bytes(build_contract(records))
+    expected[CONTRACT_ROOT / "launcher-policy.jcs"] = canonical_bytes(policy)
+    expected[CONTRACT_ROOT / "schemas/checker-runtime-launcher-policy.schema.json"] = pretty_bytes(
+        launcher_policy_schema(policy)
+    )
     expected[CONTRACT_ROOT / "schemas/checker-runtime-payload-registration.schema.json"] = pretty_bytes(schema([historical, current]))
     negative_rows = []
     for filename, reason, value in negative_fixtures(historical, current):
@@ -838,6 +1204,21 @@ def outputs() -> dict[Path, bytes]:
         "fixtures": negative_rows,
         "format": "radishaxiom-checker-runtime-payload-negative-set",
         "format_version": FORMAT_VERSION,
+    })
+    launcher_negative_rows = []
+    for filename, reason, value in launcher_negative_fixtures(policy):
+        try:
+            validate_launcher_policy(value)
+        except ValueError:
+            pass
+        else:
+            raise ValueError(f"launcher negative fixture was accepted: {filename}")
+        expected[CONTRACT_ROOT / "fixtures/launcher-negative" / filename] = pretty_bytes(value)
+        launcher_negative_rows.append({"file": filename, "reason": reason})
+    expected[CONTRACT_ROOT / "fixtures/launcher-negative/expected.json"] = pretty_bytes({
+        "fixtures": launcher_negative_rows,
+        "format": "radishaxiom-checker-runtime-launcher-policy-negative-set",
+        "format_version": LAUNCHER_POLICY_VERSION,
     })
     return expected
 

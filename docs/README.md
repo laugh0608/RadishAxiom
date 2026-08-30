@@ -30,7 +30,8 @@
 - [Axiom IR v0.1：规范化形式与版本策略](ir/axiom-ir-v0.md)：规范化数据模型、canonical JSON、内容寻址、人类投影、语义差异与版本演进。
 - [Axiom Evidence v0.1：证据模型与独立检查边界](evidence/axiom-evidence-v0.md)：义务身份、五种状态、反例、信任清单、结论聚合与独立复核。
 - [ADR 0009：Axiom Evidence v0.1 漂移收口与 v0.2 迁移边界](adr/0009-axiom-evidence-v0-drift-and-migration.md)：冻结 v0.1 原始规范字节，记录 group 覆盖遗漏，并限定后续 v0.2 修正与摘要迁移。
-- [ADR 0010：独立 checker runtime payload 的持久发布与登记](adr/0010-checker-runtime-payload-durable-registration.md)：选择 GitHub immutable Release asset，冻结专用 tag / distribution package、登记状态机、独立回读与 append-only replacement；当前 source 的临时 distribution candidate 已形成并完成 provider 回读，仓库 immutable releases 设置已确认关闭，Release 尚未创建且 runtime 未登记。
+- [ADR 0010：独立 checker runtime payload 的持久发布与登记](adr/0010-checker-runtime-payload-durable-registration.md)：选择 GitHub immutable Release asset，冻结专用 tag / distribution package、登记状态机、独立回读与 append-only replacement；当前精确 asset 已不可变发布并登记为 `registered-inactive`。
+- [ADR 0011：独立 checker runtime launcher、安装与激活边界](adr/0011-checker-runtime-launcher-installation-and-activation.md)：冻结 active-only 精确目标选择、content-addressed 原子安装、三条 qualification companion、每次调用身份复核和外层失败不形成四态的边界。
 - [有键有限表基准语料库 v0.1](benchmarks/keyed-finite-table-corpus-v0.md)：四个基准的生成目录、任务身份、合成数据、正确 / 错误候选和 Expected Evidence 断言。
 - [Agent 表示与验证反馈对比实验预注册 v0.1](experiments/agent-representation-preregistration-v0.md)：三种表示、两种模型条件、配对反馈、指标、阈值、预算和停止规则。
 
@@ -41,7 +42,7 @@
 - [Execution Profile Contract v0.1](../contracts/execution-profiles-v0.1/README.md)：cvc5 / Node / Go checker 的允许参数、内部与外层资源限制、结果形成边界和 certificate 空能力停止线。
 - [Toolchain & Adapter Identity Registry v0.1](../contracts/toolchain-adapters-v0.1/README.md)：Rust / Go / cvc5 / Node 的精确版本、六平台候选制品、官方摘要来源、逐制品供应链状态和执行 profile 身份。
 - [Toolchain Payload Acceptance v0.1](../contracts/toolchain-payload-acceptance-v0.1/README.md)：Go `go1.26.7` macOS arm64 host/source 的摘要重算、只读 archive 观察、vendor / 许可证清单、签名停止线与局部 acceptance。
-- [Checker Runtime Payload Registration v0.1](../contracts/checker-runtime-payloads-v0.1/README.md)：闭合 checker source、target、artifact / provenance / acceptance 身份及 retention / fetch / 重新验证边界；当前 active runtime 为 0。
+- [Checker Runtime Payload Registration v0.1](../contracts/checker-runtime-payloads-v0.1/README.md)：闭合 checker source、target、artifact / provenance / acceptance、retention / fetch / 重新验证，以及 launcher / 安装 / qualification / 激活策略；当前 launcher policy 已指定但未实现，active runtime 为 0。
 - [Pipeline Artifact Contract v0.1](../contracts/pipeline-artifacts-v0.1/README.md)：obligation set、host data、SMT query、target module 与 pipeline receipt 的首批规范字节、身份、gate / cache / partial failure 契约。
 - [Implementation Readiness Contract v0.1](../contracts/implementation-readiness-v0.1/README.md)：20 个 benchmark、16 个 CHK-* 与 pipeline / readiness 路径的统一实现入口矩阵、来源覆盖和负向拒绝契约。
 - [Keyed Finite Table Checker Bundle Contract v0.1](../contracts/keyed-finite-table-checker-bundles-v0.1/README.md)：28 个 readiness 场景的完整离线 bundle、Axiom Evidence、receipt、独立预期结果、进程失败边界与负例摘要链。
@@ -51,5 +52,5 @@
 实现语言、验证后端、目标执行、生产管线和独立 checker 的架构决策已经确定，首批交换格式、身份契约、执行 profile 与 28 个离线 bundle 已进入仓库门禁。独立 checker 已在外部隔离仓库完成从严格 request / bundle、`checker.source`、锁定 Axiom IR / Evidence 检查，到有限执行、反例重放、output / proof support 审计、production conclusion 重算、四态聚合、canonical codec、累计资源、唯一产品 CLI，以及 payload 确定性候选归档的闭合路径；Checker Runtime Payload Registration v0.1 进一步固定 source → artifact / provenance / acceptance / candidate archive 及 retention / fetch / 重新验证边界，但当前 active runtime 仍为 0。
 
 - 当前阶段、精确实现范围、下一事项与停止线统一以[当前状态](status/current.md)为准，不在文档索引复制易漂移的源码摘要或提交身份；
-- 当前 `checker.source = sha256:401158...e3999` 的自包含 distribution candidate 已完成精确构建、payload / distribution acceptance、临时直传和按 artifact ID 独立回读；immutable releases 专用 API 已确认设置关闭且 tag / Release 为空，下一受控入口是单独授权启用设置并回读，之后再另行授权 draft / 单次发布与持久回读；
+- 当前 `checker.source = sha256:401158...e3999` 的自包含 distribution 已完成精确构建、payload / distribution acceptance、不可变发布、发布后独立回读与 `registered-inactive` 登记；launcher policy 已冻结，下一受控入口是本地 installer / launcher 验证核心实现，真实安装与激活仍分别授权；
 - Go `go1.26.7` macOS arm64 host/source 已完成局部 payload 验收；cvc5、Node、Rust 与其余平台仍须按真实实现依赖顺位完成摘要、签名 / 来源、包内依赖与许可证验收。
