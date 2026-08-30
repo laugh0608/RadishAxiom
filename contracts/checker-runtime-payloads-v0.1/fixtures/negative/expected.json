@@ -17,16 +17,16 @@
       "reason": "acceptance cannot be expanded to installation"
     },
     {
-      "file": "pending-artifact-without-provenance.invalid.json",
-      "reason": "artifact digest alone cannot complete current-source registration"
+      "file": "registered-inactive-without-provenance.invalid.json",
+      "reason": "registered-inactive payload requires retained build provenance"
     },
     {
       "file": "unknown-member.invalid.json",
       "reason": "closed registration rejects unknown members"
     },
     {
-      "file": "durable-published-direct-active.invalid.json",
-      "reason": "durable-published payload cannot bypass registered-inactive and launcher isolation"
+      "file": "registered-inactive-direct-active.invalid.json",
+      "reason": "registered-inactive payload cannot bypass launcher isolation, installation, and activation authorization"
     },
     {
       "file": "mutable-release-registered.invalid.json",

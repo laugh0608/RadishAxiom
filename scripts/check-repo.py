@@ -41,7 +41,7 @@ REQUIRED_FILES = (
     "contracts/checker-runtime-payloads-v0.1/README.md",
     "contracts/checker-runtime-payloads-v0.1/contract.json",
     "contracts/checker-runtime-payloads-v0.1/fixtures/negative/expected.json",
-    "contracts/checker-runtime-payloads-v0.1/records/checker-go0.1-dev-darwin-arm64-current-pending.json",
+    "contracts/checker-runtime-payloads-v0.1/records/checker-go0.1-dev-darwin-arm64-current-registered-inactive.json",
     "contracts/checker-runtime-payloads-v0.1/records/checker-go0.1-dev-darwin-arm64-historical.json",
     "contracts/checker-runtime-payloads-v0.1/schemas/checker-runtime-payload-registration.schema.json",
     "contracts/execution-profiles-v0.1/README.md",

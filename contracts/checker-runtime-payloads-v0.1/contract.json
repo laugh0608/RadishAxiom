@@ -1,10 +1,10 @@
 {
-  "contract_digest": "sha256:409928a24dac4e6b7b64d503171c049bdb52113eb1926b8fb8a6452ae667113c",
+  "contract_digest": "sha256:0aaf6fd431a3f4d817e1d1ad255fa17264ddb38f83ce98e19151722b60c5a6a5",
   "counts": {
     "active": "0",
     "historical_ineligible": "1",
-    "pending": "1",
-    "records": "2"
+    "records": "2",
+    "registered_inactive": "1"
   },
   "current_checker_source": {
     "file_count": "703",
@@ -16,7 +16,7 @@
   "format_version": "0.1",
   "generator": {
     "path": "scripts/generate-checker-runtime-payloads.py",
-    "raw_sha256": "sha256:efd3617c91d19b4fa95aa461f0aff9d0a931242fadf9904acf50e7a0ebe43cc1"
+    "raw_sha256": "sha256:f6a83322858b3e3a5cd8635958d51f1d23dfc390ac0436a441dcbceb71ba8028"
   },
   "records": [
     {
@@ -28,29 +28,27 @@
       "source": "sha256:3b809ba6f062dbc1c543b64d9eb01f1fe46bdadf29f2d441b6d1c068200d90b4"
     },
     {
-      "id": "checker-go0.1-dev-darwin-arm64-current-pending-2026-08-30",
-      "path": "contracts/checker-runtime-payloads-v0.1/records/checker-go0.1-dev-darwin-arm64-current-pending.json",
-      "raw_sha256": "sha256:a509f516dbfbc3e944f0bb50fe60a435ccaf562f3dc3d44f9d9edfcbacb125c8",
-      "record_digest": "sha256:409551342e97d15f43857864dbd1107a314e82535204d910f405eabe25de2817",
-      "registration_status": "durable-published",
+      "id": "checker-go0.1-dev-darwin-arm64-current-registered-inactive-2026-08-30",
+      "path": "contracts/checker-runtime-payloads-v0.1/records/checker-go0.1-dev-darwin-arm64-current-registered-inactive.json",
+      "raw_sha256": "sha256:ec0c5408e2ae0f840b450c0b64ee8a91831a44e916760698fcc9dd87c61bfa13",
+      "record_digest": "sha256:7b7bac3a1541253792f475de0dba2d92030ad5a28ad61bfb50c80803e667808d",
+      "registration_status": "registered-inactive",
       "source": "sha256:401158c3c304f45faebebe879edf064512998423d7b08aec486f4be0012e3999"
     }
   ],
-  "runtime_statement": "no-current-source-runtime-payload-is-registered",
+  "runtime_statement": "current-source-runtime-payload-is-registered-inactive-not-active",
   "storage_policy": {
     "active_runtime": {
       "provider": "github-immutable-release-asset",
       "requirements": [
-        "distribution-package-accepted",
-        "independent-provider-readback",
-        "immutable-asset-bytes",
-        "no-latest-alias",
-        "raw-byte-length-and-sha256",
-        "revocation-and-replacement-policy",
-        "separate-publication-authorization",
-        "stable-exact-fetch"
+        "durable-registration",
+        "exact-os-architecture-variant-match",
+        "installation-coordination",
+        "launcher-hard-isolation",
+        "runtime-companion",
+        "separate-activation-authorization"
       ],
-      "status": "durable-published-not-registered-inactive-or-active"
+      "status": "registered-inactive-not-installed-or-active"
     },
     "candidate": {
       "activation_precondition": "workflow-file-present-on-default-branch",
@@ -236,7 +234,7 @@
         "release-attestation-verification",
         "repository-immutable-releases-enabled-before-draft"
       ],
-      "status": "durable-published-registration-authorization-required",
+      "status": "registered-inactive-launcher-installation-and-activation-pending",
       "tag_template": "checker-payload/go0.1-dev/<goos>-<goarch>-<variant>/sha256-<checker-source-hex>"
     },
     "registration_state_machine": {

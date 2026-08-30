@@ -235,16 +235,14 @@ STORAGE_POLICY = {
     "active_runtime": {
         "provider": "github-immutable-release-asset",
         "requirements": [
-            "distribution-package-accepted",
-            "independent-provider-readback",
-            "immutable-asset-bytes",
-            "no-latest-alias",
-            "raw-byte-length-and-sha256",
-            "revocation-and-replacement-policy",
-            "separate-publication-authorization",
-            "stable-exact-fetch",
+            "durable-registration",
+            "exact-os-architecture-variant-match",
+            "installation-coordination",
+            "launcher-hard-isolation",
+            "runtime-companion",
+            "separate-activation-authorization",
         ],
-        "status": "durable-published-not-registered-inactive-or-active",
+        "status": "registered-inactive-not-installed-or-active",
     },
     "candidate": {
         "activation_precondition": "workflow-file-present-on-default-branch",
@@ -365,7 +363,7 @@ STORAGE_POLICY = {
             "release-attestation-verification",
             "repository-immutable-releases-enabled-before-draft",
         ],
-        "status": "durable-published-registration-authorization-required",
+        "status": "registered-inactive-launcher-installation-and-activation-pending",
         "tag_template": "checker-payload/go0.1-dev/<goos>-<goarch>-<variant>/sha256-<checker-source-hex>",
         "current_release": CURRENT_DURABLE_RELEASE,
     },
@@ -518,9 +516,9 @@ def historical_record() -> dict[str, Any]:
     return record(body)
 
 
-def pending_record() -> dict[str, Any]:
+def registered_inactive_record() -> dict[str, Any]:
     body = {
-        **common("checker-go0.1-dev-darwin-arm64-current-pending-2026-08-30", CURRENT_SOURCE),
+        **common("checker-go0.1-dev-darwin-arm64-current-registered-inactive-2026-08-30", CURRENT_SOURCE),
         "acceptance": CURRENT_ACCEPTANCE,
         "artifact": CURRENT_ARTIFACT,
         "build_provenance": CURRENT_PROVENANCE,
@@ -571,14 +569,16 @@ def pending_record() -> dict[str, Any]:
                 "repository": "laugh0608/RadishAxiomChecker",
                 "repository_immutability": IMMUTABLE_RELEASES_OBSERVATION,
             },
-            "status": "durable-published-immutable-provider-readback-passed",
+            "status": "registered-inactive-immutable-provider-readback-passed",
         },
         "registration": {
             "reasons": [
+                "activation-transition-requires-separate-authorization",
+                "installation-not-materialized",
                 "launcher-isolation-not-implemented",
-                "registered-inactive-transition-requires-separate-authorization",
             ],
-            "status": "durable-published",
+            "registered_at": "2026-08-30T09:21:33Z",
+            "status": "registered-inactive",
         },
         "retention": {
             "acceptance_bytes": "retained-in-candidate-archive",
@@ -652,7 +652,7 @@ def pending_record() -> dict[str, Any]:
                 "retained-or-fetchable-distribution-package",
                 "retained-or-fetchable-provenance-bytes",
             ],
-            "status": "durable-published-provider-and-strict-readback-passed",
+            "status": "registered-inactive-provider-and-strict-readback-passed",
         },
     }
     return record(body)
@@ -664,8 +664,8 @@ def require_digest(value: Any, label: str) -> None:
 
 
 def validate_record(value: dict[str, Any]) -> None:
-    expected = historical_record() if value.get("id") == historical_record()["id"] else pending_record()
-    if value.get("id") not in {historical_record()["id"], pending_record()["id"]}:
+    expected = historical_record() if value.get("id") == historical_record()["id"] else registered_inactive_record()
+    if value.get("id") not in {historical_record()["id"], registered_inactive_record()["id"]}:
         raise ValueError("unknown runtime payload record id")
     if set(value) != set(expected):
         raise ValueError("runtime payload record members drifted")
@@ -743,7 +743,7 @@ def refreshed(value: dict[str, Any]) -> dict[str, Any]:
     return value
 
 
-def negative_fixtures(historical: dict[str, Any], pending: dict[str, Any]) -> list[tuple[str, str, dict[str, Any]]]:
+def negative_fixtures(historical: dict[str, Any], current: dict[str, Any]) -> list[tuple[str, str, dict[str, Any]]]:
     rows: list[tuple[str, str, dict[str, Any]]] = []
     value = copy.deepcopy(historical)
     value["checker"]["source"] = copy.deepcopy(CURRENT_SOURCE)
@@ -757,31 +757,31 @@ def negative_fixtures(historical: dict[str, Any], pending: dict[str, Any]) -> li
     value = copy.deepcopy(historical)
     value["acceptance"]["excluded_scope"].remove("installation")
     rows.append(("installation-exclusion-missing.invalid.json", "acceptance cannot be expanded to installation", refreshed(value)))
-    value = copy.deepcopy(pending)
+    value = copy.deepcopy(current)
     value["build_provenance"] = {"kind": "not-produced"}
-    rows.append(("pending-artifact-without-provenance.invalid.json", "artifact digest alone cannot complete current-source registration", refreshed(value)))
-    value = copy.deepcopy(pending)
+    rows.append(("registered-inactive-without-provenance.invalid.json", "registered-inactive payload requires retained build provenance", refreshed(value)))
+    value = copy.deepcopy(current)
     value["unexpected"] = "member"
     rows.append(("unknown-member.invalid.json", "closed registration rejects unknown members", refreshed(value)))
-    value = copy.deepcopy(pending)
+    value = copy.deepcopy(current)
     value["registration"]["status"] = "active"
-    rows.append(("durable-published-direct-active.invalid.json", "durable-published payload cannot bypass registered-inactive and launcher isolation", refreshed(value)))
-    value = copy.deepcopy(pending)
+    rows.append(("registered-inactive-direct-active.invalid.json", "registered-inactive payload cannot bypass launcher isolation, installation, and activation authorization", refreshed(value)))
+    value = copy.deepcopy(current)
     value["durable_registration"]["provider"]["release"] = "materialized-mutable"
     value["registration"]["status"] = "registered-inactive"
     rows.append(("mutable-release-registered.invalid.json", "mutable release cannot back a registered payload", refreshed(value)))
-    value = copy.deepcopy(pending)
+    value = copy.deepcopy(current)
     value["durable_registration"]["provider"]["fetch"] = "releases-latest-download"
     rows.append(("latest-release-alias.invalid.json", "latest release alias cannot identify durable bytes", refreshed(value)))
-    value = copy.deepcopy(pending)
+    value = copy.deepcopy(current)
     value["durable_registration"]["distribution_package"] = {
         "kind": "accepted-by-provider-release-attestation"
     }
     rows.append(("release-attestation-as-acceptance.invalid.json", "provider attestation cannot replace distribution acceptance", refreshed(value)))
-    value = copy.deepcopy(pending)
+    value = copy.deepcopy(current)
     value["durable_registration"]["provider"]["independent_readback"] = "not-performed"
     rows.append(("durable-release-without-readback.invalid.json", "durable registration requires independent exact-asset readback", refreshed(value)))
-    value = copy.deepcopy(pending)
+    value = copy.deepcopy(current)
     value["durable_registration"]["replacement"] = "replace-existing-asset-in-place"
     rows.append(("in-place-replacement.invalid.json", "replacement must use a new immutable release and record", refreshed(value)))
     return rows
@@ -799,14 +799,14 @@ def build_contract(records: list[tuple[str, dict[str, Any]]]) -> dict[str, Any]:
             "source": value["checker"]["source"]["identity"],
         })
     body = {
-        "counts": {"active": "0", "historical_ineligible": "1", "pending": "1", "records": "2"},
+        "counts": {"active": "0", "historical_ineligible": "1", "records": "2", "registered_inactive": "1"},
         "current_checker_source": CURRENT_SOURCE,
         "digest_domain": SET_DOMAIN,
         "format": SET_FORMAT,
         "format_version": FORMAT_VERSION,
         "generator": {"path": "scripts/generate-checker-runtime-payloads.py", "raw_sha256": raw_sha256(Path(__file__))},
         "records": rows,
-        "runtime_statement": "no-current-source-runtime-payload-is-registered",
+        "runtime_statement": "current-source-runtime-payload-is-registered-inactive-not-active",
         "storage_policy": STORAGE_POLICY,
     }
     return {**body, "contract_digest": domain_digest(SET_DOMAIN, body)}
@@ -814,18 +814,18 @@ def build_contract(records: list[tuple[str, dict[str, Any]]]) -> dict[str, Any]:
 
 def outputs() -> dict[Path, bytes]:
     historical = historical_record()
-    pending = pending_record()
+    current = registered_inactive_record()
     records = [
         ("contracts/checker-runtime-payloads-v0.1/records/checker-go0.1-dev-darwin-arm64-historical.json", historical),
-        ("contracts/checker-runtime-payloads-v0.1/records/checker-go0.1-dev-darwin-arm64-current-pending.json", pending),
+        ("contracts/checker-runtime-payloads-v0.1/records/checker-go0.1-dev-darwin-arm64-current-registered-inactive.json", current),
     ]
     for _, value in records:
         validate_record(value)
     expected = {REPO_ROOT / path: pretty_bytes(value) for path, value in records}
     expected[CONTRACT_ROOT / "contract.json"] = pretty_bytes(build_contract(records))
-    expected[CONTRACT_ROOT / "schemas/checker-runtime-payload-registration.schema.json"] = pretty_bytes(schema([historical, pending]))
+    expected[CONTRACT_ROOT / "schemas/checker-runtime-payload-registration.schema.json"] = pretty_bytes(schema([historical, current]))
     negative_rows = []
-    for filename, reason, value in negative_fixtures(historical, pending):
+    for filename, reason, value in negative_fixtures(historical, current):
         try:
             validate_record(value)
         except ValueError:

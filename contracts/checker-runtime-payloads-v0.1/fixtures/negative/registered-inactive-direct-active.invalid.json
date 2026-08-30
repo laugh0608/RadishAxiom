@@ -250,17 +250,19 @@
         "viewer_permission": "ADMIN"
       }
     },
-    "status": "durable-published-immutable-provider-readback-passed"
+    "status": "registered-inactive-immutable-provider-readback-passed"
   },
   "format": "radishaxiom-checker-runtime-payload-registration",
   "format_version": "0.1",
-  "id": "checker-go0.1-dev-darwin-arm64-current-pending-2026-08-30",
-  "record_digest": "sha256:bd30acb6c8382dd85c040ece2286ba98f12e430a559e622e769f40db8a37ad81",
+  "id": "checker-go0.1-dev-darwin-arm64-current-registered-inactive-2026-08-30",
+  "record_digest": "sha256:99fb2baf96274d5a9679f642ddcb82b5ead8e56cc6ba2a337f7f50f5426968f6",
   "registration": {
     "reasons": [
-      "launcher-isolation-not-implemented",
-      "registered-inactive-transition-requires-separate-authorization"
+      "activation-transition-requires-separate-authorization",
+      "installation-not-materialized",
+      "launcher-isolation-not-implemented"
     ],
+    "registered_at": "2026-08-30T09:21:33Z",
     "status": "active"
   },
   "retention": {
@@ -335,7 +337,7 @@
       "retained-or-fetchable-distribution-package",
       "retained-or-fetchable-provenance-bytes"
     ],
-    "status": "durable-published-provider-and-strict-readback-passed"
+    "status": "registered-inactive-provider-and-strict-readback-passed"
   },
   "target": {
     "executable_format": "macho-64-arm64",

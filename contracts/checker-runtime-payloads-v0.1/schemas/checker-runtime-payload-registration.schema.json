@@ -1223,7 +1223,7 @@
           "const": "0.1"
         },
         "id": {
-          "const": "checker-go0.1-dev-darwin-arm64-current-pending-2026-08-30"
+          "const": "checker-go0.1-dev-darwin-arm64-current-registered-inactive-2026-08-30"
         },
         "record_digest": {
           "pattern": "^sha256:[0-9a-f]{64}$",
@@ -1238,12 +1238,16 @@
               },
               "type": "array"
             },
+            "registered_at": {
+              "type": "string"
+            },
             "status": {
-              "const": "durable-published"
+              "const": "registered-inactive"
             }
           },
           "required": [
             "reasons",
+            "registered_at",
             "status"
           ],
           "type": "object"
