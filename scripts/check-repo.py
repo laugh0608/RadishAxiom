@@ -97,6 +97,12 @@ REQUIRED_FILES = (
     "scripts/check-repo.py",
     "scripts/check-repo.ps1",
     "scripts/check-repo.sh",
+    "scripts/check-checker-runtime-launcher.py",
+    "scripts/checker_runtime_launcher/__init__.py",
+    "scripts/checker_runtime_launcher/core.py",
+    "scripts/checker_runtime_launcher/qualification.py",
+    "scripts/checker_runtime_launcher/tests.py",
+    "scripts/checker_runtime_launcher/ustar.py",
     "scripts/generate-benchmark-corpus.py",
     "scripts/generate-checker-runtime-payloads.py",
     "scripts/generate-checker-bundle-contracts.py",
@@ -438,6 +444,23 @@ def check_checker_runtime_payloads(errors: list[str]) -> None:
         errors.append(f"checker runtime payload registrations failed: {detail}")
 
 
+def check_checker_runtime_launcher(errors: list[str]) -> None:
+    checker = REPO_ROOT / "scripts/check-checker-runtime-launcher.py"
+    if not checker.is_file():
+        return
+
+    result = subprocess.run(
+        [sys.executable, str(checker)],
+        cwd=REPO_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        detail = (result.stdout + result.stderr).strip()
+        errors.append(f"checker runtime launcher conformance failed: {detail}")
+
+
 def check_pipeline_artifact_contracts(errors: list[str]) -> None:
     generator = REPO_ROOT / "scripts/generate-pipeline-artifact-contracts.py"
     if not generator.is_file():
@@ -654,6 +677,7 @@ def main() -> int:
     check_toolchain_adapter_identities(errors)
     check_toolchain_payload_acceptance(errors)
     check_checker_runtime_payloads(errors)
+    check_checker_runtime_launcher(errors)
     check_pipeline_artifact_contracts(errors)
     check_implementation_readiness(errors)
     check_execution_profile_contracts(errors)

@@ -31,6 +31,24 @@ active runtime 的 durable provider 已选择 `laugh0608/RadishAxiomChecker` 的
 
 因此当前只是 launcher 规范已冻结，`active = 0` 不变。进入 `active` 还必须分别完成实现、原生测试、真实安装、三条 qualification、重新验证与激活授权。
 
+## 本地一致性验证核心
+
+`scripts/check-checker-runtime-launcher.py` 是 ADR 0011 的依赖无关、纯本地一致性验证入口。它直接读取本目录的 canonical launcher policy 和 registered-inactive record，在临时目录及合成进程观察上检查：
+
+- 产品只选 active、qualification 只选 registered-inactive，目标键与翻译进程严格失败关闭；
+- USTAR 闭合 inventory、路径、member type、mode、长度、SHA-256、顺序、padding 和 trailer；
+- installation receipt 的必需身份绑定与域摘要、slot 内普通文件 / mode / Mach-O arm64 header、持锁的同文件系统 rename、既有 slot 精确复用与不覆盖；
+- 三条已由 Independent Check Contract parser 接受的 companion 的场景、outcome、raw / document digest 和 checker 身份绑定，以及 qualification record 的 exclusive create；
+- spawn、kill、timeout、signal、非零退出、stdout 失败与 spawn 前后身份漂移的外层分类，确保它们不被改写成 checker 四态结果。
+
+该核心不联网，不下载或执行 payload，不解析真实 distribution 的两层业务 manifest，也不取代 Independent Check Contract 的完整 companion parser、平台 sandbox / memory enforcement、生产安装协调器或 launcher。它只把策略决策和事务不变量变成可执行回归模型；因此 `launcher-policy.jcs.level` 继续是 `specified-not-implemented`，不能据此推进安装或 active 状态。
+
+定向复核：
+
+```bash
+python3 scripts/check-checker-runtime-launcher.py
+```
+
 登记状态机只允许：
 
 ```text
