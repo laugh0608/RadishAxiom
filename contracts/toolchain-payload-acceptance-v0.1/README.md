@@ -34,7 +34,7 @@ Go host/source 的 `VERSION`、许可证/专利清单、vendor manifest 和版�
 - 其他 Go 平台制品、其他工具或跨平台结果等价；
 - 任一具体再分发方案已经完成法律合规判断。
 
-因此其余 Go 五个平台、Rust standalone 与其他 Rust 平台 payload 仍保持 `not-downloaded` / `not-accepted`。Rust 工具级依赖与许可证状态只升级为 `partial-accepted-set-only`，不把本批局部审阅外推到未观察归档；rustup distribution 也保持 `installation = not-authorized`。
+因此其余 Go 五个平台、Rust standalone 与其他 Rust 平台 payload 仍保持 `not-downloaded` / `not-accepted`。Rust 工具级依赖与许可证状态只升级为 `partial-accepted-set-only`，不把本批局部审阅外推到未观察归档；rustup distribution 的 `installation = not-authorized` 保留为本验收批次不自行授权安装的历史边界，不作为开发主机的可变 rustup inventory。当前用户级安装观察见[首个 Rust 纵向切片审阅单](../../docs/checker-runtime-rust-first-slice-review.md)与[当前状态](../../docs/status/current.md)。
 
 ## 复核入口
 
