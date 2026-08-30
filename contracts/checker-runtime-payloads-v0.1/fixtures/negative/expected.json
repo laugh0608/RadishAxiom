@@ -25,8 +25,8 @@
       "reason": "closed registration rejects unknown members"
     },
     {
-      "file": "temporary-candidate-active.invalid.json",
-      "reason": "temporary candidate cannot become active"
+      "file": "durable-published-direct-active.invalid.json",
+      "reason": "durable-published payload cannot bypass registered-inactive and launcher isolation"
     },
     {
       "file": "mutable-release-registered.invalid.json",

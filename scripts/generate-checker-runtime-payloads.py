@@ -150,32 +150,58 @@ IMMUTABLE_RELEASES_OBSERVATION = {
     "status": "verified-enabled",
     "viewer_permission": "ADMIN",
 }
-PLANNED_DURABLE_RELEASE = {
+CURRENT_DURABLE_RELEASE = {
     "asset": {
+        "api_url": "https://api.github.com/repos/laugh0608/RadishAxiomChecker/releases/assets/536372439",
+        "browser_download_url": "https://github.com/laugh0608/RadishAxiomChecker/releases/download/checker-payload/go0.1-dev/darwin-arm64-v8.0/sha256-401158c3c304f45faebebe879edf064512998423d7b08aec486f4be0012e3999/radishaxiom-checker-go0.1-dev-darwin-arm64-v8.0-sha256-401158c3c304f45faebebe879edf064512998423d7b08aec486f4be0012e3999.distribution.tar",
         "byte_length": CURRENT_DISTRIBUTION_PACKAGE["byte_length"],
+        "content_type": "application/x-tar",
+        "created_at": "2026-08-30T08:50:52Z",
+        "digest": CURRENT_DISTRIBUTION_PACKAGE["raw_sha256"],
+        "id": "536372439",
         "name": CURRENT_DISTRIBUTION_PACKAGE["filename"],
+        "node_id": "RA_kwDOUHvPb84f-GTX",
         "raw_sha256": CURRENT_DISTRIBUTION_PACKAGE["raw_sha256"],
+        "state": "uploaded",
+        "updated_at": "2026-08-30T08:51:09Z",
     },
-    "draft": "required-not-materialized",
-    "inventory": {
-        "checked_at": "2026-08-30T08:44:13Z",
-        "exact_tag": "absent",
-        "releases": "empty",
-        "tags": "empty",
+    "attestation": {
+        "asset_subject": {
+            "digest": CURRENT_DISTRIBUTION_PACKAGE["raw_sha256"],
+            "name": CURRENT_DISTRIBUTION_PACKAGE["filename"],
+        },
+        "asset_verified": True,
+        "certificate_subject_alternative_name": "https://dotcom.releases.github.com",
+        "predicate_type": "https://in-toto.io/attestation/release/v0.2",
+        "release_subject": {
+            "digest": "sha1:f960603aa1120ebe427eb9227f116f4a41513d5e",
+            "uri": "pkg:github/laugh0608/RadishAxiomChecker@checker-payload%2Fgo0.1-dev%2Fdarwin-arm64-v8.0%2Fsha256-401158c3c304f45faebebe879edf064512998423d7b08aec486f4be0012e3999",
+        },
+        "release_verified": True,
+        "timestamp": "2026-08-30T08:53:08Z",
+        "trusted_root": "github-instance-root-fetched-by-gh-attestation-trusted-root",
+        "verification_tool": {"name": "gh", "version": "2.96.0"},
     },
+    "draft": False,
+    "html_url": "https://github.com/laugh0608/RadishAxiomChecker/releases/tag/checker-payload/go0.1-dev/darwin-arm64-v8.0/sha256-401158c3c304f45faebebe879edf064512998423d7b08aec486f4be0012e3999",
+    "id": "379226889",
+    "immutable": True,
     "name": "RadishAxiom Checker go0.1-dev darwin-arm64-v8.0",
-    "publication": "single-transition-after-draft-byte-verification",
+    "prerelease": False,
+    "published_at": "2026-08-30T08:53:07Z",
     "release_classification": "checker-runtime-payload-not-product-release",
     "tag": "checker-payload/go0.1-dev/darwin-arm64-v8.0/sha256-401158c3c304f45faebebe879edf064512998423d7b08aec486f4be0012e3999",
     "target_commit": "f960603aa1120ebe427eb9227f116f4a41513d5e",
-    "verification": [
-        "release-rest-immutable-true",
-        "release-attestation-verified",
-        "release-asset-attestation-verified",
-        "exact-asset-api-metadata-readback",
-        "exact-asset-raw-byte-readback",
-        "distribution-and-inner-candidate-strict-verification",
-    ],
+    "tag_resolved_commit": "f960603aa1120ebe427eb9227f116f4a41513d5e",
+    "verification": {
+        "draft_asset_api_metadata_readback": True,
+        "draft_asset_raw_byte_readback": True,
+        "post_publication_asset_api_metadata_readback": True,
+        "post_publication_cli_raw_byte_readback": True,
+        "post_publication_distribution_and_inner_candidate_strict_verification": True,
+        "post_publication_public_raw_byte_readback": True,
+        "verified_at": "2026-08-30T08:59:00Z",
+    },
 }
 CURRENT_CANDIDATE_RUN = {
     "attempt": "1",
@@ -218,7 +244,7 @@ STORAGE_POLICY = {
             "separate-publication-authorization",
             "stable-exact-fetch",
         ],
-        "status": "provider-selected-setting-verified-enabled-release-not-materialized",
+        "status": "durable-published-not-registered-inactive-or-active",
     },
     "candidate": {
         "activation_precondition": "workflow-file-present-on-default-branch",
@@ -312,7 +338,7 @@ STORAGE_POLICY = {
         "latest_alias_policy": "forbidden",
         "provider": "github-immutable-release-asset",
         "provider_attestation_role": "supplemental-provider-provenance-not-payload-acceptance",
-        "provider_selection_status": "selected-setting-verified-enabled-release-not-materialized",
+        "provider_selection_status": "selected-setting-enabled-release-published-immutable-verified",
         "repository_immutability": IMMUTABLE_RELEASES_OBSERVATION,
         "release_cardinality": "one-checker-source-version-target-per-release",
         "repository": "laugh0608/RadishAxiomChecker",
@@ -339,9 +365,9 @@ STORAGE_POLICY = {
             "release-attestation-verification",
             "repository-immutable-releases-enabled-before-draft",
         ],
-        "status": "blocked-publication-authorization",
+        "status": "durable-published-registration-authorization-required",
         "tag_template": "checker-payload/go0.1-dev/<goos>-<goarch>-<variant>/sha256-<checker-source-hex>",
-        "next_release": PLANNED_DURABLE_RELEASE,
+        "current_release": CURRENT_DURABLE_RELEASE,
     },
     "registration_state_machine": {
         "replacement_policy": "append-new-record-and-release-never-mutate-or-repoint",
@@ -532,32 +558,33 @@ def pending_record() -> dict[str, Any]:
         "durable_registration": {
             "distribution_package": CURRENT_DISTRIBUTION_PACKAGE,
             "provider": {
-                "independent_readback": "required-before-registration",
+                "independent_readback": {
+                    "asset_api_metadata": "verified",
+                    "cli_release_download": "verified",
+                    "distribution_archive": "verified",
+                    "inner_candidate": "verified",
+                    "public_browser_download": "verified",
+                    "verified_at": "2026-08-30T08:59:00Z",
+                },
                 "kind": "github-immutable-release-asset",
-                "planned_release": PLANNED_DURABLE_RELEASE,
-                "release": "not-materialized",
+                "release": CURRENT_DURABLE_RELEASE,
                 "repository": "laugh0608/RadishAxiomChecker",
                 "repository_immutability": IMMUTABLE_RELEASES_OBSERVATION,
             },
-            "status": "distribution-package-accepted-provider-setting-enabled-release-not-materialized",
+            "status": "durable-published-immutable-provider-readback-passed",
         },
         "registration": {
             "reasons": [
-                "candidate-storage-is-temporary",
-                "durable-release-not-materialized",
                 "launcher-isolation-not-implemented",
-                "separate-publication-authorization-required",
+                "registered-inactive-transition-requires-separate-authorization",
             ],
-            "status": "distribution-package-accepted",
+            "status": "durable-published",
         },
         "retention": {
             "acceptance_bytes": "retained-in-candidate-archive",
             "artifact_bytes": "retained-in-candidate-archive",
             "candidate_archive_bytes": "retained-in-distribution-package",
-            "distribution_acceptance_bytes": "retained-in-distribution-package",
-            "distribution_manifest_bytes": "retained-in-distribution-package",
-            "distribution_package_bytes": "retained-temporarily-by-provider",
-            "fetch": {
+            "candidate_fetch": {
                 "kind": "github-actions-direct-file-exact-artifact-id",
                 "provider": {
                     "artifact_id": "9729031154",
@@ -584,6 +611,34 @@ def pending_record() -> dict[str, Any]:
                     "run_id": CURRENT_CANDIDATE_RUN["run_id"],
                 },
             },
+            "distribution_acceptance_bytes": "retained-in-distribution-package",
+            "distribution_manifest_bytes": "retained-in-distribution-package",
+            "distribution_package_bytes": "retained-by-immutable-release-asset",
+            "fetch": {
+                "kind": "github-immutable-release-asset-exact-id-and-tag",
+                "provider": {
+                    "asset_api_url": CURRENT_DURABLE_RELEASE["asset"]["api_url"],
+                    "asset_browser_download_url": CURRENT_DURABLE_RELEASE["asset"]["browser_download_url"],
+                    "asset_digest": CURRENT_DURABLE_RELEASE["asset"]["digest"],
+                    "asset_id": CURRENT_DURABLE_RELEASE["asset"]["id"],
+                    "asset_name": CURRENT_DURABLE_RELEASE["asset"]["name"],
+                    "asset_size": CURRENT_DURABLE_RELEASE["asset"]["byte_length"],
+                    "release_id": CURRENT_DURABLE_RELEASE["id"],
+                    "release_immutable": CURRENT_DURABLE_RELEASE["immutable"],
+                    "release_tag": CURRENT_DURABLE_RELEASE["tag"],
+                    "target_commit": CURRENT_DURABLE_RELEASE["target_commit"],
+                },
+                "readback": {
+                    "asset_attestation_verified": True,
+                    "distribution_archive_verified": True,
+                    "exact_asset_id": True,
+                    "inner_candidate_verified": True,
+                    "public_download_verified": True,
+                    "provider_metadata_verified": True,
+                    "release_attestation_verified": True,
+                },
+                "repository": "laugh0608/RadishAxiomChecker",
+            },
             "provenance_bytes": "retained-in-candidate-archive",
         },
         "reverification": {
@@ -597,7 +652,7 @@ def pending_record() -> dict[str, Any]:
                 "retained-or-fetchable-distribution-package",
                 "retained-or-fetchable-provenance-bytes",
             ],
-            "status": "distribution-package-provider-readback-passed",
+            "status": "durable-published-provider-and-strict-readback-passed",
         },
     }
     return record(body)
@@ -710,7 +765,7 @@ def negative_fixtures(historical: dict[str, Any], pending: dict[str, Any]) -> li
     rows.append(("unknown-member.invalid.json", "closed registration rejects unknown members", refreshed(value)))
     value = copy.deepcopy(pending)
     value["registration"]["status"] = "active"
-    rows.append(("temporary-candidate-active.invalid.json", "temporary candidate cannot become active", refreshed(value)))
+    rows.append(("durable-published-direct-active.invalid.json", "durable-published payload cannot bypass registered-inactive and launcher isolation", refreshed(value)))
     value = copy.deepcopy(pending)
     value["durable_registration"]["provider"]["release"] = "materialized-mutable"
     value["registration"]["status"] = "registered-inactive"

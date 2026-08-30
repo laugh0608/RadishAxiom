@@ -882,67 +882,207 @@
               "additionalProperties": false,
               "properties": {
                 "independent_readback": {
-                  "type": "string"
+                  "additionalProperties": false,
+                  "properties": {
+                    "asset_api_metadata": {
+                      "type": "string"
+                    },
+                    "cli_release_download": {
+                      "type": "string"
+                    },
+                    "distribution_archive": {
+                      "type": "string"
+                    },
+                    "inner_candidate": {
+                      "type": "string"
+                    },
+                    "public_browser_download": {
+                      "type": "string"
+                    },
+                    "verified_at": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "asset_api_metadata",
+                    "cli_release_download",
+                    "distribution_archive",
+                    "inner_candidate",
+                    "public_browser_download",
+                    "verified_at"
+                  ],
+                  "type": "object"
                 },
                 "kind": {
                   "type": "string"
                 },
-                "planned_release": {
+                "release": {
                   "additionalProperties": false,
                   "properties": {
                     "asset": {
                       "additionalProperties": false,
                       "properties": {
+                        "api_url": {
+                          "type": "string"
+                        },
+                        "browser_download_url": {
+                          "type": "string"
+                        },
                         "byte_length": {
+                          "pattern": "^(0|[1-9][0-9]*)$",
+                          "type": "string"
+                        },
+                        "content_type": {
+                          "type": "string"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "digest": {
+                          "pattern": "^sha256:[0-9a-f]{64}$",
+                          "type": "string"
+                        },
+                        "id": {
                           "pattern": "^(0|[1-9][0-9]*)$",
                           "type": "string"
                         },
                         "name": {
                           "type": "string"
                         },
+                        "node_id": {
+                          "type": "string"
+                        },
                         "raw_sha256": {
                           "pattern": "^sha256:[0-9a-f]{64}$",
+                          "type": "string"
+                        },
+                        "state": {
+                          "type": "string"
+                        },
+                        "updated_at": {
                           "type": "string"
                         }
                       },
                       "required": [
+                        "api_url",
+                        "browser_download_url",
                         "byte_length",
+                        "content_type",
+                        "created_at",
+                        "digest",
+                        "id",
                         "name",
-                        "raw_sha256"
+                        "node_id",
+                        "raw_sha256",
+                        "state",
+                        "updated_at"
+                      ],
+                      "type": "object"
+                    },
+                    "attestation": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "asset_subject": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "digest": {
+                              "pattern": "^sha256:[0-9a-f]{64}$",
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "digest",
+                            "name"
+                          ],
+                          "type": "object"
+                        },
+                        "asset_verified": {
+                          "type": "boolean"
+                        },
+                        "certificate_subject_alternative_name": {
+                          "type": "string"
+                        },
+                        "predicate_type": {
+                          "type": "string"
+                        },
+                        "release_subject": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "digest": {
+                              "type": "string"
+                            },
+                            "uri": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "digest",
+                            "uri"
+                          ],
+                          "type": "object"
+                        },
+                        "release_verified": {
+                          "type": "boolean"
+                        },
+                        "timestamp": {
+                          "type": "string"
+                        },
+                        "trusted_root": {
+                          "type": "string"
+                        },
+                        "verification_tool": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "version": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "name",
+                            "version"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "asset_subject",
+                        "asset_verified",
+                        "certificate_subject_alternative_name",
+                        "predicate_type",
+                        "release_subject",
+                        "release_verified",
+                        "timestamp",
+                        "trusted_root",
+                        "verification_tool"
                       ],
                       "type": "object"
                     },
                     "draft": {
+                      "type": "boolean"
+                    },
+                    "html_url": {
                       "type": "string"
                     },
-                    "inventory": {
-                      "additionalProperties": false,
-                      "properties": {
-                        "checked_at": {
-                          "type": "string"
-                        },
-                        "exact_tag": {
-                          "type": "string"
-                        },
-                        "releases": {
-                          "type": "string"
-                        },
-                        "tags": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "checked_at",
-                        "exact_tag",
-                        "releases",
-                        "tags"
-                      ],
-                      "type": "object"
+                    "id": {
+                      "pattern": "^(0|[1-9][0-9]*)$",
+                      "type": "string"
+                    },
+                    "immutable": {
+                      "type": "boolean"
                     },
                     "name": {
                       "type": "string"
                     },
-                    "publication": {
+                    "prerelease": {
+                      "type": "boolean"
+                    },
+                    "published_at": {
                       "type": "string"
                     },
                     "release_classification": {
@@ -951,31 +1091,66 @@
                     "tag": {
                       "type": "string"
                     },
+                    "tag_resolved_commit": {
+                      "type": "string"
+                    },
                     "target_commit": {
                       "type": "string"
                     },
                     "verification": {
-                      "items": {
-                        "type": "string"
+                      "additionalProperties": false,
+                      "properties": {
+                        "draft_asset_api_metadata_readback": {
+                          "type": "boolean"
+                        },
+                        "draft_asset_raw_byte_readback": {
+                          "type": "boolean"
+                        },
+                        "post_publication_asset_api_metadata_readback": {
+                          "type": "boolean"
+                        },
+                        "post_publication_cli_raw_byte_readback": {
+                          "type": "boolean"
+                        },
+                        "post_publication_distribution_and_inner_candidate_strict_verification": {
+                          "type": "boolean"
+                        },
+                        "post_publication_public_raw_byte_readback": {
+                          "type": "boolean"
+                        },
+                        "verified_at": {
+                          "type": "string"
+                        }
                       },
-                      "type": "array"
+                      "required": [
+                        "draft_asset_api_metadata_readback",
+                        "draft_asset_raw_byte_readback",
+                        "post_publication_asset_api_metadata_readback",
+                        "post_publication_cli_raw_byte_readback",
+                        "post_publication_distribution_and_inner_candidate_strict_verification",
+                        "post_publication_public_raw_byte_readback",
+                        "verified_at"
+                      ],
+                      "type": "object"
                     }
                   },
                   "required": [
                     "asset",
+                    "attestation",
                     "draft",
-                    "inventory",
+                    "html_url",
+                    "id",
+                    "immutable",
                     "name",
-                    "publication",
+                    "prerelease",
+                    "published_at",
                     "release_classification",
                     "tag",
+                    "tag_resolved_commit",
                     "target_commit",
                     "verification"
                   ],
                   "type": "object"
-                },
-                "release": {
-                  "type": "string"
                 },
                 "repository": {
                   "type": "string"
@@ -1024,7 +1199,6 @@
               "required": [
                 "independent_readback",
                 "kind",
-                "planned_release",
                 "release",
                 "repository",
                 "repository_immutability"
@@ -1065,7 +1239,7 @@
               "type": "array"
             },
             "status": {
-              "const": "distribution-package-accepted"
+              "const": "durable-published"
             }
           },
           "required": [
@@ -1086,16 +1260,7 @@
             "candidate_archive_bytes": {
               "type": "string"
             },
-            "distribution_acceptance_bytes": {
-              "type": "string"
-            },
-            "distribution_manifest_bytes": {
-              "type": "string"
-            },
-            "distribution_package_bytes": {
-              "type": "string"
-            },
-            "fetch": {
+            "candidate_fetch": {
               "additionalProperties": false,
               "properties": {
                 "kind": {
@@ -1212,6 +1377,121 @@
               ],
               "type": "object"
             },
+            "distribution_acceptance_bytes": {
+              "type": "string"
+            },
+            "distribution_manifest_bytes": {
+              "type": "string"
+            },
+            "distribution_package_bytes": {
+              "type": "string"
+            },
+            "fetch": {
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "provider": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "asset_api_url": {
+                      "type": "string"
+                    },
+                    "asset_browser_download_url": {
+                      "type": "string"
+                    },
+                    "asset_digest": {
+                      "pattern": "^sha256:[0-9a-f]{64}$",
+                      "type": "string"
+                    },
+                    "asset_id": {
+                      "pattern": "^(0|[1-9][0-9]*)$",
+                      "type": "string"
+                    },
+                    "asset_name": {
+                      "type": "string"
+                    },
+                    "asset_size": {
+                      "pattern": "^(0|[1-9][0-9]*)$",
+                      "type": "string"
+                    },
+                    "release_id": {
+                      "pattern": "^(0|[1-9][0-9]*)$",
+                      "type": "string"
+                    },
+                    "release_immutable": {
+                      "type": "boolean"
+                    },
+                    "release_tag": {
+                      "type": "string"
+                    },
+                    "target_commit": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "asset_api_url",
+                    "asset_browser_download_url",
+                    "asset_digest",
+                    "asset_id",
+                    "asset_name",
+                    "asset_size",
+                    "release_id",
+                    "release_immutable",
+                    "release_tag",
+                    "target_commit"
+                  ],
+                  "type": "object"
+                },
+                "readback": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "asset_attestation_verified": {
+                      "type": "boolean"
+                    },
+                    "distribution_archive_verified": {
+                      "type": "boolean"
+                    },
+                    "exact_asset_id": {
+                      "type": "boolean"
+                    },
+                    "inner_candidate_verified": {
+                      "type": "boolean"
+                    },
+                    "provider_metadata_verified": {
+                      "type": "boolean"
+                    },
+                    "public_download_verified": {
+                      "type": "boolean"
+                    },
+                    "release_attestation_verified": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "asset_attestation_verified",
+                    "distribution_archive_verified",
+                    "exact_asset_id",
+                    "inner_candidate_verified",
+                    "provider_metadata_verified",
+                    "public_download_verified",
+                    "release_attestation_verified"
+                  ],
+                  "type": "object"
+                },
+                "repository": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "kind",
+                "provider",
+                "readback",
+                "repository"
+              ],
+              "type": "object"
+            },
             "provenance_bytes": {
               "type": "string"
             }
@@ -1220,6 +1500,7 @@
             "acceptance_bytes",
             "artifact_bytes",
             "candidate_archive_bytes",
+            "candidate_fetch",
             "distribution_acceptance_bytes",
             "distribution_manifest_bytes",
             "distribution_package_bytes",
