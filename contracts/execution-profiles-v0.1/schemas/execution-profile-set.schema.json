@@ -736,7 +736,7 @@
         {
           "name": "implementation-readiness-v0.1",
           "path": "contracts/implementation-readiness-v0.1/manifest.jcs",
-          "sha256": "sha256:c126ffebab4b63be21eb8f3ac42f48161c988d63a411a12775d419666351df80"
+          "sha256": "sha256:13f6928d6ac76ee878a2e0782a108d2c25f6bb19798dc54d38563e4cf85e5651"
         },
         {
           "name": "independent-check-v0.1",
@@ -746,12 +746,12 @@
         {
           "name": "pipeline-artifacts-v0.1",
           "path": "contracts/pipeline-artifacts-v0.1/contract.json",
-          "sha256": "sha256:3fbc40e64cd4e6e9b9e5d765c3d2b460e18ca27cb200f60d679257a91e5b25ba"
+          "sha256": "sha256:38089967d1cf07fc2f35d8c461cd57d1e0b927c1c88b9ab2172d24697ba11435"
         },
         {
           "name": "toolchain-adapters-v0.1",
           "path": "contracts/toolchain-adapters-v0.1/registry.json",
-          "sha256": "sha256:3a8e522c6d927cc769e0caa56b9bbb71e401e0452fe39b675c05354baf59262f"
+          "sha256": "sha256:b515e255501b61c7fa997509b5ecd31718d284a82ea176736f58199290a9d09a"
         }
       ]
     }

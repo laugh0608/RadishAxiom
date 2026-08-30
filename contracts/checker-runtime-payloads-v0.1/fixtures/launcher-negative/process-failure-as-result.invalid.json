@@ -26,7 +26,7 @@
     {
       "name": "execution-profile-v0.1",
       "path": "contracts/execution-profiles-v0.1/manifest.jcs",
-      "raw_sha256": "sha256:ac2044def383833b68b4ce10c8c7d8e23c23429c3e77dbc0ec0abfe10f6a6aa2"
+      "raw_sha256": "sha256:cf331d08d5c97c8edfd283531d22a6d5be4d16d77ee1283cbd82279b5533f054"
     },
     {
       "name": "independent-check-v0.1",
@@ -177,7 +177,7 @@
     "execution_profile": {
       "id": "keyed-finite-table-independent-check-v0.1",
       "path": "contracts/execution-profiles-v0.1/manifest.jcs",
-      "raw_sha256": "sha256:ac2044def383833b68b4ce10c8c7d8e23c23429c3e77dbc0ec0abfe10f6a6aa2"
+      "raw_sha256": "sha256:cf331d08d5c97c8edfd283531d22a6d5be4d16d77ee1283cbd82279b5533f054"
     },
     "identity_revalidation": "before-and-after-every-spawn",
     "network": "forbidden",
@@ -211,7 +211,7 @@
     "root_discovery": "never-environment-cwd-repository-or-user-input",
     "slot_identity": "target-and-distribution-raw-sha256"
   },
-  "policy_digest": "sha256:d545f7e193ee9c210f0603b69d77dc82d9ebecdb646fc8f4ae035e5192515d32",
+  "policy_digest": "sha256:2755c6d9084cacc4fffe284b41345e041d2eb8ac27cd2005ae36e9f14af0f7c6",
   "runtime_companion": {
     "current_status": "not-materialized-by-product-launcher",
     "format": "axiom-independent-check-result",

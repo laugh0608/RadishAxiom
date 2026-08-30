@@ -23,8 +23,8 @@
     {
       "name": "toolchain-adapter-identities-v0.1",
       "path": "contracts/toolchain-adapters-v0.1/registry.json",
-      "raw_sha256": "sha256:3a8e522c6d927cc769e0caa56b9bbb71e401e0452fe39b675c05354baf59262f",
-      "registry_digest": "sha256:c8e6f4c8cfd8b4dfe8e95b5785ec9b3ce67f0c17d4c7be01a5e269746f2dab26"
+      "raw_sha256": "sha256:b515e255501b61c7fa997509b5ecd31718d284a82ea176736f58199290a9d09a",
+      "registry_digest": "sha256:d1177c2656d0bf752d098ce0abab9a78b9f07b036492c40f53811ede395d3d1e"
     }
   ],
   "content_domains": {

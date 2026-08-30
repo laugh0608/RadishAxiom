@@ -40,6 +40,9 @@
           "pattern": "^(0|[1-9][0-9]*)$",
           "type": "string"
         },
+        "component": {
+          "type": "string"
+        },
         "filename": {
           "type": "string"
         },
@@ -65,6 +68,64 @@
     "dependency_inventory": {
       "additionalProperties": false,
       "properties": {
+        "cargo_lock_count": {
+          "pattern": "^(0|[1-9][0-9]*)$",
+          "type": "string"
+        },
+        "cargo_manifest_count": {
+          "pattern": "^(0|[1-9][0-9]*)$",
+          "type": "string"
+        },
+        "component": {
+          "type": "string"
+        },
+        "component_manifest_count": {
+          "pattern": "^(0|[1-9][0-9]*)$",
+          "type": "string"
+        },
+        "component_manifest_entries": {
+          "additionalProperties": false,
+          "properties": {
+            "count": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            },
+            "jcs_sha256": {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "count",
+            "jcs_sha256"
+          ],
+          "type": "object"
+        },
+        "component_manifests": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "bytes": {
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "type": "string"
+              },
+              "path": {
+                "type": "string"
+              },
+              "raw_sha256": {
+                "pattern": "^sha256:[0-9a-f]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "bytes",
+              "path",
+              "raw_sha256"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
         "manifest_count": {
           "pattern": "^(0|[1-9][0-9]*)$",
           "type": "string"
@@ -133,11 +194,6 @@
         }
       },
       "required": [
-        "manifest_count",
-        "manifests",
-        "module_count",
-        "modules",
-        "modules_jcs_sha256",
         "scope",
         "status"
       ],
@@ -423,6 +479,9 @@
     "license_review": {
       "additionalProperties": false,
       "properties": {
+        "bundled_inventory_status": {
+          "type": "string"
+        },
         "conclusions": {
           "items": {
             "additionalProperties": false,
@@ -467,6 +526,50 @@
           "pattern": "^sha256:[0-9a-f]{64}$",
           "type": "string"
         },
+        "license_metadata_spdx": {
+          "additionalProperties": false,
+          "properties": {
+            "expressions": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "expression": {
+                    "type": "string"
+                  },
+                  "occurrences": {
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "expression",
+                  "occurrences"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "jcs_sha256": {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "occurrence_count": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            },
+            "unique_count": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "expressions",
+            "jcs_sha256",
+            "occurrence_count",
+            "unique_count"
+          ],
+          "type": "object"
+        },
         "main_expression": {
           "type": "string"
         },
@@ -492,6 +595,31 @@
           ],
           "type": "object"
         },
+        "main_license_files": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "bytes": {
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "type": "string"
+              },
+              "path": {
+                "type": "string"
+              },
+              "raw_sha256": {
+                "pattern": "^sha256:[0-9a-f]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "bytes",
+              "path",
+              "raw_sha256"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
         "patent_grant": {
           "additionalProperties": false,
           "properties": {
@@ -514,6 +642,50 @@
           ],
           "type": "object"
         },
+        "reuse_spdx": {
+          "additionalProperties": false,
+          "properties": {
+            "expressions": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "expression": {
+                    "type": "string"
+                  },
+                  "occurrences": {
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "expression",
+                  "occurrences"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "jcs_sha256": {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "occurrence_count": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            },
+            "unique_count": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "expressions",
+            "jcs_sha256",
+            "occurrence_count",
+            "unique_count"
+          ],
+          "type": "object"
+        },
         "scope": {
           "type": "string"
         },
@@ -522,12 +694,9 @@
         }
       },
       "required": [
-        "conclusions",
         "inventory_count",
         "inventory_jcs_sha256",
         "main_expression",
-        "main_license",
-        "patent_grant",
         "scope",
         "status"
       ],

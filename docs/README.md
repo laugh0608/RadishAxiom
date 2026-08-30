@@ -43,7 +43,7 @@
 - [Independent Check Contract v0.1](../contracts/independent-check-v0.1/README.md)：独立 checker request / bundle / result 的首批结构契约、严格拒绝 bundle 与负向矩阵。
 - [Execution Profile Contract v0.1](../contracts/execution-profiles-v0.1/README.md)：cvc5 / Node / Go checker 的允许参数、内部与外层资源限制、结果形成边界和 certificate 空能力停止线。
 - [Toolchain & Adapter Identity Registry v0.1](../contracts/toolchain-adapters-v0.1/README.md)：Rust / Go / cvc5 / Node 的精确版本、六平台候选制品、官方摘要来源、逐制品供应链状态和执行 profile 身份。
-- [Toolchain Payload Acceptance v0.1](../contracts/toolchain-payload-acceptance-v0.1/README.md)：Go `go1.26.7` macOS arm64 host/source 的摘要重算、只读 archive 观察、vendor / 许可证清单、签名停止线与局部 acceptance。
+- [Toolchain Payload Acceptance v0.1](../contracts/toolchain-payload-acceptance-v0.1/README.md)：Go `go1.26.7` macOS arm64 host/source 与 Rust `1.97.1` rustup component/source 的摘要重算、只读 archive 观察、依赖 / 许可证库存、签名停止线与局部 acceptance。
 - [Checker Runtime Payload Registration v0.1](../contracts/checker-runtime-payloads-v0.1/README.md)：闭合 checker source、target、artifact / provenance / acceptance、retention / fetch / 重新验证，以及 launcher / 安装 / qualification / 激活策略；当前 launcher policy 已指定但未实现，active runtime 为 0。
 - [Pipeline Artifact Contract v0.1](../contracts/pipeline-artifacts-v0.1/README.md)：obligation set、host data、SMT query、target module 与 pipeline receipt 的首批规范字节、身份、gate / cache / partial failure 契约。
 - [Implementation Readiness Contract v0.1](../contracts/implementation-readiness-v0.1/README.md)：20 个 benchmark、16 个 CHK-* 与 pipeline / readiness 路径的统一实现入口矩阵、来源覆盖和负向拒绝契约。
@@ -54,5 +54,5 @@
 实现语言、验证后端、目标执行、生产管线和独立 checker 的架构决策已经确定，首批交换格式、身份契约、执行 profile 与 28 个离线 bundle 已进入仓库门禁。独立 checker 已在外部隔离仓库完成从严格 request / bundle、`checker.source`、锁定 Axiom IR / Evidence 检查，到有限执行、反例重放、output / proof support 审计、production conclusion 重算、四态聚合、canonical codec、累计资源、唯一产品 CLI，以及 payload 确定性候选归档的闭合路径；Checker Runtime Payload Registration v0.1 进一步固定 source → artifact / provenance / acceptance / candidate archive 及 retention / fetch / 重新验证边界，但当前 active runtime 仍为 0。
 
 - 当前阶段、精确实现范围、下一事项与停止线统一以[当前状态](status/current.md)为准，不在文档索引复制易漂移的源码摘要或提交身份；
-- 当前 `checker.source = sha256:401158...e3999` 的自包含 distribution 已完成精确构建、payload / distribution acceptance、不可变发布、发布后独立回读与 `registered-inactive` 登记；launcher policy、产品实现宿主与持久化接口均已冻结，依赖无关的一致性核心已形成，首个原生 Rust 纵向切片也已完成工具链 / 依赖审阅并收敛为零第三方依赖的单 crate 方案；下一受控入口是先验收实际安装的 Rust `1.97.1` 字节，安装、workspace 写入、真实 checker 安装与激活仍分别授权；
-- Go `go1.26.7` macOS arm64 host/source 已完成局部 payload 验收；Rust `1.97.1` macOS arm64 standalone/source 只完成 publisher 摘要登记，rustup component 身份与 payload acceptance 尚未闭合；cvc5、Node、Rust 与其余平台仍须按真实实现依赖顺位完成摘要、签名 / 来源、包内依赖与许可证验收。
+- 当前 `checker.source = sha256:401158...e3999` 的自包含 distribution 已完成精确构建、payload / distribution acceptance、不可变发布、发布后独立回读与 `registered-inactive` 登记；launcher policy、产品实现宿主与持久化接口均已冻结，依赖无关的一致性核心已形成，首个原生 Rust 纵向切片也已完成依赖审阅并收敛为零第三方依赖的单 crate 方案；Rust `1.97.1` 的 rustup component/source 已完成精确 payload 验收，下一受控入口是单独授权安装该工具链，workspace 写入、真实 checker 安装与激活仍分别授权；
+- Go `go1.26.7` macOS arm64 host/source 与 Rust `1.97.1` macOS arm64 rustup component/source 已完成局部 payload 验收；Rust standalone、cvc5、Node 与其余平台仍须按真实实现依赖顺位完成摘要、签名 / 来源、包内依赖与许可证验收。

@@ -226,7 +226,7 @@
     ],
     "method": {
       "path": "scripts/inspect-toolchain-tar.py",
-      "raw_sha256": "sha256:c098e87a566d2883754aad71baa4db1164071d48688a59290fbca551ae225f9f"
+      "raw_sha256": "sha256:423f2d163e16364a1bb8158b6157c5dc2b153de59cd6a4ebbaf6fe06662aaa73"
     },
     "observation": {
       "path": "contracts/toolchain-payload-acceptance-v0.1/observations/go1.26.7-darwin-arm64.inspection.json",
@@ -353,5 +353,5 @@
       "status": "not-verified-no-signature-input"
     }
   },
-  "record_digest": "sha256:011273e698c87d566ccd127bb81215c3a4e87358181e333f3d3dcd36e87a1bd2"
+  "record_digest": "sha256:0cb4542f513bd5bf274b53c8805b5c905b723fed9e101a2ee22dfacecde805de"
 }

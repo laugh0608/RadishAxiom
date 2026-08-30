@@ -36,6 +36,30 @@ ACCEPTED_ARTIFACTS = {
         "contracts/toolchain-payload-acceptance-v0.1/records/"
         "go1.26.7-source.acceptance.json"
     ),
+    "cargo-1.97.1-aarch64-apple-darwin.tar.xz": (
+        "contracts/toolchain-payload-acceptance-v0.1/records/"
+        "cargo-1.97.1-aarch64-apple-darwin.acceptance.json"
+    ),
+    "clippy-1.97.1-aarch64-apple-darwin.tar.xz": (
+        "contracts/toolchain-payload-acceptance-v0.1/records/"
+        "clippy-1.97.1-aarch64-apple-darwin.acceptance.json"
+    ),
+    "rust-std-1.97.1-aarch64-apple-darwin.tar.xz": (
+        "contracts/toolchain-payload-acceptance-v0.1/records/"
+        "rust-std-1.97.1-aarch64-apple-darwin.acceptance.json"
+    ),
+    "rustc-1.97.1-aarch64-apple-darwin.tar.xz": (
+        "contracts/toolchain-payload-acceptance-v0.1/records/"
+        "rustc-1.97.1-aarch64-apple-darwin.acceptance.json"
+    ),
+    "rustc-1.97.1-src.tar.xz": (
+        "contracts/toolchain-payload-acceptance-v0.1/records/"
+        "rustc-1.97.1-source.acceptance.json"
+    ),
+    "rustfmt-1.97.1-aarch64-apple-darwin.tar.xz": (
+        "contracts/toolchain-payload-acceptance-v0.1/records/"
+        "rustfmt-1.97.1-aarch64-apple-darwin.acceptance.json"
+    ),
 }
 
 PLATFORMS = (
@@ -142,6 +166,19 @@ SOURCES = (
             "source-archive",
         ],
         "url": "https://nodejs.org/download/release/v24.19.0/SHASUMS256.txt",
+    },
+    {
+        "id": "rust-channel-1.97.1",
+        "kind": "channel-manifest",
+        "publisher": "Rust project",
+        "reviewed_claims": [
+            "channel-date",
+            "component-archive-urls",
+            "component-publisher-recorded-sha256",
+            "manifest-version",
+            "minimal-profile",
+        ],
+        "url": "https://static.rust-lang.org/dist/channel-rust-1.97.1.toml",
     },
     {
         "id": "rust-dist-1.97.1",
@@ -264,6 +301,62 @@ def rust_artifacts() -> list[dict[str, Any]]:
     return sorted(result, key=lambda item: (item["platform"], item["filename"]))
 
 
+def rustup_distribution() -> dict[str, Any]:
+    base = "https://static.rust-lang.org/dist/2026-07-16"
+    values = (
+        (
+            "cargo",
+            "cargo-1.97.1-aarch64-apple-darwin.tar.xz",
+            "2d84a74e9558192a7de674aca6aa3ab7464bed2df97e0377156ddb7e09a0fd7a",
+        ),
+        (
+            "clippy-preview",
+            "clippy-1.97.1-aarch64-apple-darwin.tar.xz",
+            "5e44c0ac5ca9b6f14a3c9031a61f583348b902f908f46e95717aef1dbd2807db",
+        ),
+        (
+            "rust-std",
+            "rust-std-1.97.1-aarch64-apple-darwin.tar.xz",
+            "a4895f5c6995e83cab8687e46b14324592398049def71ce75ca308c981cf200d",
+        ),
+        (
+            "rustc",
+            "rustc-1.97.1-aarch64-apple-darwin.tar.xz",
+            "6076cad38ccabaa24325f26a74080a363a2633a9cd34c473a8977255d8a593cb",
+        ),
+        (
+            "rustfmt-preview",
+            "rustfmt-1.97.1-aarch64-apple-darwin.tar.xz",
+            "358bbba5d0c7c37116ec15f67cfd3ac4da5d3c319cddb49389c26d3a0c65747a",
+        ),
+    )
+    components = []
+    for component, filename, sha256 in values:
+        row = artifact(
+            filename=filename,
+            platform="macos-arm64",
+            source_url=f"{base}/{filename}",
+            digest=recorded_digest(sha256, "rust-channel-1.97.1"),
+        )
+        row["component"] = component
+        components.append(row)
+    return {
+        "channel": "1.97.1",
+        "components": sorted(components, key=lambda item: item["component"]),
+        "explicit_components": ["clippy-preview", "rustfmt-preview"],
+        "installation": "not-authorized",
+        "manager": "rustup",
+        "manifest": {
+            "date": "2026-07-16",
+            "format_version": "2",
+            "raw_sha256": "sha256:03569b1886ceb5c05276b50c8431ab111de944cd6140fe1fa7d821dd8e0f29cf",
+            "source": "rust-channel-1.97.1",
+        },
+        "profile": "minimal",
+        "target": "aarch64-apple-darwin",
+    }
+
+
 def go_artifacts() -> list[dict[str, Any]]:
     base = "https://go.dev/dl"
     values = (
@@ -349,8 +442,9 @@ def tool(
     provenance: str,
     role: str,
     version: str,
+    rustup: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    return {
+    result = {
         "artifacts": sorted(
             artifacts, key=lambda item: (item["platform"], item["filename"])
         ),
@@ -369,10 +463,13 @@ def tool(
         "role": role,
         "version": version,
     }
+    if rustup is not None:
+        result["rustup_distribution"] = rustup
+    return result
 
 
 def build_tools() -> list[dict[str, Any]]:
-    return [
+    tools = [
         tool(
             artifacts=cvc5_artifacts(),
             dependencies=[
@@ -416,11 +513,19 @@ def build_tools() -> list[dict[str, Any]]:
             identity="rust-toolchain",
             license_expression=["Apache-2.0", "MIT"],
             license_source="rust-license",
-            provenance="release-version-reviewed-selected-checksums-recorded",
+            provenance="channel-manifest-and-selected-checksums-recorded",
             role="production-toolchain",
+            rustup=rustup_distribution(),
             version="1.97.1",
         ),
     ]
+    rust = tools[-1]
+    rust["dependencies"]["inventory_status"] = (
+        "accepted-set-inspected-unaccepted-matrix-not-inspected"
+    )
+    rust["license"]["artifact_inventory_status"] = "partial-accepted-set-only"
+    rust["license"]["review_status"] = "partial-accepted-set-only"
+    return tools
 
 
 PROFILES = (
@@ -621,6 +726,15 @@ def schema() -> dict[str, Any]:
             "archive_inspection": {
                 "enum": ["not-performed", "passed-toolchain-tar-v0.1"]
             },
+            "component": {
+                "enum": [
+                    "cargo",
+                    "clippy-preview",
+                    "rust-std",
+                    "rustc",
+                    "rustfmt-preview",
+                ]
+            },
             "digest": {"$ref": "#/$defs/digestEvidence"},
             "filename": {"minLength": 1, "type": "string"},
             "payload_verification": {
@@ -732,7 +846,10 @@ def schema() -> dict[str, Any]:
                         "uniqueItems": True,
                     },
                     "inventory_status": {
-                        "const": "artifact-contents-not-inspected"
+                        "enum": [
+                            "accepted-set-inspected-unaccepted-matrix-not-inspected",
+                            "artifact-contents-not-inspected",
+                        ]
                     },
                 },
                 "required": ["declared_review_targets", "inventory_status"],
@@ -749,14 +866,18 @@ def schema() -> dict[str, Any]:
             "license": {
                 "additionalProperties": False,
                 "properties": {
-                    "artifact_inventory_status": {"const": "not-inspected"},
+                    "artifact_inventory_status": {
+                        "enum": ["not-inspected", "partial-accepted-set-only"]
+                    },
                     "main_expressions": {
                         "items": {"minLength": 1, "type": "string"},
                         "minItems": 1,
                         "type": "array",
                         "uniqueItems": True,
                     },
-                    "review_status": {"const": "not-accepted"},
+                    "review_status": {
+                        "enum": ["not-accepted", "partial-accepted-set-only"]
+                    },
                     "source": {
                         "pattern": "^[a-z0-9][a-z0-9.-]*$",
                         "type": "string",
@@ -778,6 +899,54 @@ def schema() -> dict[str, Any]:
                     "target-runtime",
                     "verification-backend",
                 ]
+            },
+            "rustup_distribution": {
+                "additionalProperties": False,
+                "properties": {
+                    "channel": {"const": "1.97.1"},
+                    "components": {
+                        "items": {"$ref": "#/$defs/artifact"},
+                        "maxItems": 5,
+                        "minItems": 5,
+                        "type": "array",
+                    },
+                    "explicit_components": {
+                        "const": ["clippy-preview", "rustfmt-preview"]
+                    },
+                    "installation": {"const": "not-authorized"},
+                    "manager": {"const": "rustup"},
+                    "manifest": {
+                        "additionalProperties": False,
+                        "properties": {
+                            "date": {"const": "2026-07-16"},
+                            "format_version": {"const": "2"},
+                            "raw_sha256": {
+                                "const": "sha256:03569b1886ceb5c05276b50c8431ab111de944cd6140fe1fa7d821dd8e0f29cf"
+                            },
+                            "source": {"const": "rust-channel-1.97.1"},
+                        },
+                        "required": [
+                            "date",
+                            "format_version",
+                            "raw_sha256",
+                            "source",
+                        ],
+                        "type": "object",
+                    },
+                    "profile": {"const": "minimal"},
+                    "target": {"const": "aarch64-apple-darwin"},
+                },
+                "required": [
+                    "channel",
+                    "components",
+                    "explicit_components",
+                    "installation",
+                    "manager",
+                    "manifest",
+                    "profile",
+                    "target",
+                ],
+                "type": "object",
             },
             "version": {"minLength": 1, "type": "string"},
         },
@@ -816,8 +985,8 @@ def schema() -> dict[str, Any]:
             "review_date": {"const": REVIEW_DATE},
             "sources": {
                 "items": {"$ref": "#/$defs/source"},
-                "maxItems": 9,
-                "minItems": 9,
+                "maxItems": 10,
+                "minItems": 10,
                 "type": "array",
             },
             "tools": {
@@ -925,12 +1094,29 @@ def validate_registry(value: dict[str, Any]) -> None:
             raise ValueError(f"tool artifact matrix incomplete: {item['id']}")
         if len(artifact_platforms) != 7:
             raise ValueError(f"tool artifact matrix has duplicates: {item['id']}")
-        if item["license"]["review_status"] != "not-accepted":
-            raise ValueError(f"license review overclaimed: {item['id']}")
+        expected_review = (
+            "partial-accepted-set-only"
+            if item["id"] == "rust-toolchain"
+            else "not-accepted"
+        )
+        if item["license"]["review_status"] != expected_review:
+            raise ValueError(f"license review status drifted: {item['id']}")
+        expected_artifact_inventory = (
+            "partial-accepted-set-only"
+            if item["id"] == "rust-toolchain"
+            else "not-inspected"
+        )
+        if item["license"]["artifact_inventory_status"] != expected_artifact_inventory:
+            raise ValueError(f"license inventory status drifted: {item['id']}")
         if item["license"]["source"] not in source_ids:
             raise ValueError(f"license source is unknown: {item['id']}")
-        if item["dependencies"]["inventory_status"] != "artifact-contents-not-inspected":
-            raise ValueError(f"dependency inventory overclaimed: {item['id']}")
+        expected_dependency_inventory = (
+            "accepted-set-inspected-unaccepted-matrix-not-inspected"
+            if item["id"] == "rust-toolchain"
+            else "artifact-contents-not-inspected"
+        )
+        if item["dependencies"]["inventory_status"] != expected_dependency_inventory:
+            raise ValueError(f"dependency inventory status drifted: {item['id']}")
         dependency_targets = item["dependencies"]["declared_review_targets"]
         require_sorted_unique(dependency_targets, f"dependency targets for {item['id']}")
         license_expressions = item["license"]["main_expressions"]
@@ -941,6 +1127,10 @@ def validate_registry(value: dict[str, Any]) -> None:
         if artifact_keys != sorted(artifact_keys):
             raise ValueError(f"tool artifacts must be sorted: {item['id']}")
         for entry in artifacts:
+            if "component" in entry:
+                raise ValueError(
+                    f"platform artifact unexpectedly names a rustup component: {entry['filename']}"
+                )
             acceptance_record = ACCEPTED_ARTIFACTS.get(entry["filename"])
             if acceptance_record is None:
                 if entry["acceptance"] != "not-accepted":
@@ -974,7 +1164,12 @@ def validate_registry(value: dict[str, Any]) -> None:
                     raise ValueError(
                         f"artifact acceptance record drifted: {entry['filename']}"
                     )
-                if item["id"] != "go-toolchain":
+                if item["id"] == "rust-toolchain":
+                    if entry["filename"] != "rustc-1.97.1-src.tar.xz":
+                        raise ValueError(
+                            f"unexpected accepted Rust matrix artifact: {entry['filename']}"
+                        )
+                elif item["id"] != "go-toolchain":
                     raise ValueError(
                         f"unexpected accepted tool artifact: {entry['filename']}"
                     )
@@ -993,6 +1188,39 @@ def validate_registry(value: dict[str, Any]) -> None:
                 raise ValueError(f"unknown digest status: {entry['filename']}")
             if item["id"] == "cvc5-cli" and "-gpl" in entry["filename"].lower():
                 raise ValueError("GPL cvc5 artifact entered the candidate matrix")
+
+        rustup = item.get("rustup_distribution")
+        if item["id"] != "rust-toolchain":
+            if rustup is not None:
+                raise ValueError(f"non-Rust tool contains rustup distribution: {item['id']}")
+            continue
+        expected_rustup = rustup_distribution()
+        if rustup != expected_rustup:
+            raise ValueError("Rust rustup distribution selection drifted")
+        if rustup["manifest"]["source"] not in source_ids:
+            raise ValueError("Rust channel manifest source is unknown")
+        component_ids = [entry["component"] for entry in rustup["components"]]
+        require_sorted_unique(component_ids, "Rust rustup component ids")
+        for entry in rustup["components"]:
+            if entry["platform"] != "macos-arm64":
+                raise ValueError("Rust rustup component platform drifted")
+            if entry["digest"]["source"] != "rust-channel-1.97.1":
+                raise ValueError("Rust rustup component digest source drifted")
+            acceptance_record = ACCEPTED_ARTIFACTS.get(entry["filename"])
+            expected_status = {
+                "acceptance": "accepted-for-controlled-build-input",
+                "archive_inspection": "passed-toolchain-tar-v0.1",
+                "payload_verification": "sha256-matched-publisher-record",
+            }
+            for field, expected in expected_status.items():
+                if entry[field] != expected:
+                    raise ValueError(
+                        f"Rust component {field} drifted: {entry['filename']}"
+                    )
+            if entry.get("acceptance_record") != acceptance_record:
+                raise ValueError(
+                    f"Rust component acceptance record drifted: {entry['filename']}"
+                )
 
     profile_ids = [item["id"] for item in value["profiles"]]
     require_sorted_unique(profile_ids, "profile ids")

@@ -145,7 +145,7 @@
       "tool": "rust-toolchain"
     }
   ],
-  "registry_digest": "sha256:c8e6f4c8cfd8b4dfe8e95b5785ec9b3ce67f0c17d4c7be01a5e269746f2dab26",
+  "registry_digest": "sha256:d1177c2656d0bf752d098ce0abab9a78b9f07b036492c40f53811ede395d3d1e",
   "review_date": "2026-08-30",
   "sources": [
     {
@@ -214,6 +214,19 @@
         "source-archive"
       ],
       "url": "https://nodejs.org/download/release/v24.19.0/SHASUMS256.txt"
+    },
+    {
+      "id": "rust-channel-1.97.1",
+      "kind": "channel-manifest",
+      "publisher": "Rust project",
+      "reviewed_claims": [
+        "channel-date",
+        "component-archive-urls",
+        "component-publisher-recorded-sha256",
+        "manifest-version",
+        "minimal-profile"
+      ],
+      "url": "https://static.rust-lang.org/dist/channel-rust-1.97.1.toml"
     },
     {
       "id": "rust-dist-1.97.1",
@@ -653,15 +666,16 @@
           "source_url": "https://static.rust-lang.org/dist/rust-1.97.1-aarch64-apple-darwin.tar.xz"
         },
         {
-          "acceptance": "not-accepted",
-          "archive_inspection": "not-performed",
+          "acceptance": "accepted-for-controlled-build-input",
+          "acceptance_record": "contracts/toolchain-payload-acceptance-v0.1/records/rustc-1.97.1-source.acceptance.json",
+          "archive_inspection": "passed-toolchain-tar-v0.1",
           "digest": {
             "kind": "publisher-recorded",
             "sha256": "0ed06fdaffd4722a7702e0b4eebfafc897ab8f513e8e1b247cdd7e5c6df6ded2",
             "source": "rust-dist-1.97.1"
           },
           "filename": "rustc-1.97.1-src.tar.xz",
-          "payload_verification": "not-downloaded",
+          "payload_verification": "sha256-matched-publisher-record",
           "platform": "source",
           "source_url": "https://static.rust-lang.org/dist/rustc-1.97.1-src.tar.xz"
         },
@@ -698,20 +712,114 @@
           "Rust-standard-library",
           "bundled-toolchain-components"
         ],
-        "inventory_status": "artifact-contents-not-inspected"
+        "inventory_status": "accepted-set-inspected-unaccepted-matrix-not-inspected"
       },
       "id": "rust-toolchain",
       "license": {
-        "artifact_inventory_status": "not-inspected",
+        "artifact_inventory_status": "partial-accepted-set-only",
         "main_expressions": [
           "Apache-2.0",
           "MIT"
         ],
-        "review_status": "not-accepted",
+        "review_status": "partial-accepted-set-only",
         "source": "rust-license"
       },
-      "provenance_status": "release-version-reviewed-selected-checksums-recorded",
+      "provenance_status": "channel-manifest-and-selected-checksums-recorded",
       "role": "production-toolchain",
+      "rustup_distribution": {
+        "channel": "1.97.1",
+        "components": [
+          {
+            "acceptance": "accepted-for-controlled-build-input",
+            "acceptance_record": "contracts/toolchain-payload-acceptance-v0.1/records/cargo-1.97.1-aarch64-apple-darwin.acceptance.json",
+            "archive_inspection": "passed-toolchain-tar-v0.1",
+            "component": "cargo",
+            "digest": {
+              "kind": "publisher-recorded",
+              "sha256": "2d84a74e9558192a7de674aca6aa3ab7464bed2df97e0377156ddb7e09a0fd7a",
+              "source": "rust-channel-1.97.1"
+            },
+            "filename": "cargo-1.97.1-aarch64-apple-darwin.tar.xz",
+            "payload_verification": "sha256-matched-publisher-record",
+            "platform": "macos-arm64",
+            "source_url": "https://static.rust-lang.org/dist/2026-07-16/cargo-1.97.1-aarch64-apple-darwin.tar.xz"
+          },
+          {
+            "acceptance": "accepted-for-controlled-build-input",
+            "acceptance_record": "contracts/toolchain-payload-acceptance-v0.1/records/clippy-1.97.1-aarch64-apple-darwin.acceptance.json",
+            "archive_inspection": "passed-toolchain-tar-v0.1",
+            "component": "clippy-preview",
+            "digest": {
+              "kind": "publisher-recorded",
+              "sha256": "5e44c0ac5ca9b6f14a3c9031a61f583348b902f908f46e95717aef1dbd2807db",
+              "source": "rust-channel-1.97.1"
+            },
+            "filename": "clippy-1.97.1-aarch64-apple-darwin.tar.xz",
+            "payload_verification": "sha256-matched-publisher-record",
+            "platform": "macos-arm64",
+            "source_url": "https://static.rust-lang.org/dist/2026-07-16/clippy-1.97.1-aarch64-apple-darwin.tar.xz"
+          },
+          {
+            "acceptance": "accepted-for-controlled-build-input",
+            "acceptance_record": "contracts/toolchain-payload-acceptance-v0.1/records/rust-std-1.97.1-aarch64-apple-darwin.acceptance.json",
+            "archive_inspection": "passed-toolchain-tar-v0.1",
+            "component": "rust-std",
+            "digest": {
+              "kind": "publisher-recorded",
+              "sha256": "a4895f5c6995e83cab8687e46b14324592398049def71ce75ca308c981cf200d",
+              "source": "rust-channel-1.97.1"
+            },
+            "filename": "rust-std-1.97.1-aarch64-apple-darwin.tar.xz",
+            "payload_verification": "sha256-matched-publisher-record",
+            "platform": "macos-arm64",
+            "source_url": "https://static.rust-lang.org/dist/2026-07-16/rust-std-1.97.1-aarch64-apple-darwin.tar.xz"
+          },
+          {
+            "acceptance": "accepted-for-controlled-build-input",
+            "acceptance_record": "contracts/toolchain-payload-acceptance-v0.1/records/rustc-1.97.1-aarch64-apple-darwin.acceptance.json",
+            "archive_inspection": "passed-toolchain-tar-v0.1",
+            "component": "rustc",
+            "digest": {
+              "kind": "publisher-recorded",
+              "sha256": "6076cad38ccabaa24325f26a74080a363a2633a9cd34c473a8977255d8a593cb",
+              "source": "rust-channel-1.97.1"
+            },
+            "filename": "rustc-1.97.1-aarch64-apple-darwin.tar.xz",
+            "payload_verification": "sha256-matched-publisher-record",
+            "platform": "macos-arm64",
+            "source_url": "https://static.rust-lang.org/dist/2026-07-16/rustc-1.97.1-aarch64-apple-darwin.tar.xz"
+          },
+          {
+            "acceptance": "accepted-for-controlled-build-input",
+            "acceptance_record": "contracts/toolchain-payload-acceptance-v0.1/records/rustfmt-1.97.1-aarch64-apple-darwin.acceptance.json",
+            "archive_inspection": "passed-toolchain-tar-v0.1",
+            "component": "rustfmt-preview",
+            "digest": {
+              "kind": "publisher-recorded",
+              "sha256": "358bbba5d0c7c37116ec15f67cfd3ac4da5d3c319cddb49389c26d3a0c65747a",
+              "source": "rust-channel-1.97.1"
+            },
+            "filename": "rustfmt-1.97.1-aarch64-apple-darwin.tar.xz",
+            "payload_verification": "sha256-matched-publisher-record",
+            "platform": "macos-arm64",
+            "source_url": "https://static.rust-lang.org/dist/2026-07-16/rustfmt-1.97.1-aarch64-apple-darwin.tar.xz"
+          }
+        ],
+        "explicit_components": [
+          "clippy-preview",
+          "rustfmt-preview"
+        ],
+        "installation": "not-authorized",
+        "manager": "rustup",
+        "manifest": {
+          "date": "2026-07-16",
+          "format_version": "2",
+          "raw_sha256": "sha256:03569b1886ceb5c05276b50c8431ab111de944cd6140fe1fa7d821dd8e0f29cf",
+          "source": "rust-channel-1.97.1"
+        },
+        "profile": "minimal",
+        "target": "aarch64-apple-darwin"
+      },
       "version": "1.97.1"
     }
   ]

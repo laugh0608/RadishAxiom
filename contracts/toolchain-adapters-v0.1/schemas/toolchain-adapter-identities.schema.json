@@ -45,6 +45,15 @@
             "passed-toolchain-tar-v0.1"
           ]
         },
+        "component": {
+          "enum": [
+            "cargo",
+            "clippy-preview",
+            "rust-std",
+            "rustc",
+            "rustfmt-preview"
+          ]
+        },
         "digest": {
           "$ref": "#/$defs/digestEvidence"
         },
@@ -278,7 +287,10 @@
               "uniqueItems": true
             },
             "inventory_status": {
-              "const": "artifact-contents-not-inspected"
+              "enum": [
+                "accepted-set-inspected-unaccepted-matrix-not-inspected",
+                "artifact-contents-not-inspected"
+              ]
             }
           },
           "required": [
@@ -299,7 +311,10 @@
           "additionalProperties": false,
           "properties": {
             "artifact_inventory_status": {
-              "const": "not-inspected"
+              "enum": [
+                "not-inspected",
+                "partial-accepted-set-only"
+              ]
             },
             "main_expressions": {
               "items": {
@@ -311,7 +326,10 @@
               "uniqueItems": true
             },
             "review_status": {
-              "const": "not-accepted"
+              "enum": [
+                "not-accepted",
+                "partial-accepted-set-only"
+              ]
             },
             "source": {
               "pattern": "^[a-z0-9][a-z0-9.-]*$",
@@ -337,6 +355,75 @@
             "target-runtime",
             "verification-backend"
           ]
+        },
+        "rustup_distribution": {
+          "additionalProperties": false,
+          "properties": {
+            "channel": {
+              "const": "1.97.1"
+            },
+            "components": {
+              "items": {
+                "$ref": "#/$defs/artifact"
+              },
+              "maxItems": 5,
+              "minItems": 5,
+              "type": "array"
+            },
+            "explicit_components": {
+              "const": [
+                "clippy-preview",
+                "rustfmt-preview"
+              ]
+            },
+            "installation": {
+              "const": "not-authorized"
+            },
+            "manager": {
+              "const": "rustup"
+            },
+            "manifest": {
+              "additionalProperties": false,
+              "properties": {
+                "date": {
+                  "const": "2026-07-16"
+                },
+                "format_version": {
+                  "const": "2"
+                },
+                "raw_sha256": {
+                  "const": "sha256:03569b1886ceb5c05276b50c8431ab111de944cd6140fe1fa7d821dd8e0f29cf"
+                },
+                "source": {
+                  "const": "rust-channel-1.97.1"
+                }
+              },
+              "required": [
+                "date",
+                "format_version",
+                "raw_sha256",
+                "source"
+              ],
+              "type": "object"
+            },
+            "profile": {
+              "const": "minimal"
+            },
+            "target": {
+              "const": "aarch64-apple-darwin"
+            }
+          },
+          "required": [
+            "channel",
+            "components",
+            "explicit_components",
+            "installation",
+            "manager",
+            "manifest",
+            "profile",
+            "target"
+          ],
+          "type": "object"
         },
         "version": {
           "minLength": 1,
@@ -395,8 +482,8 @@
       "items": {
         "$ref": "#/$defs/source"
       },
-      "maxItems": 9,
-      "minItems": 9,
+      "maxItems": 10,
+      "minItems": 10,
       "type": "array"
     },
     "tools": {

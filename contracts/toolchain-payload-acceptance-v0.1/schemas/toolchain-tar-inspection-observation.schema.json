@@ -320,6 +320,168 @@
       },
       "type": "array"
     },
+    "rust_inventory": {
+      "additionalProperties": false,
+      "properties": {
+        "cargo_lock_count": {
+          "pattern": "^(0|[1-9][0-9]*)$",
+          "type": "string"
+        },
+        "cargo_manifest_count": {
+          "pattern": "^(0|[1-9][0-9]*)$",
+          "type": "string"
+        },
+        "component": {
+          "type": "string"
+        },
+        "component_manifest_count": {
+          "pattern": "^(0|[1-9][0-9]*)$",
+          "type": "string"
+        },
+        "component_manifest_entries": {
+          "additionalProperties": false,
+          "properties": {
+            "count": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            },
+            "jcs_sha256": {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "count",
+            "jcs_sha256"
+          ],
+          "type": "object"
+        },
+        "component_manifests": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "bytes": {
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "type": "string"
+              },
+              "path": {
+                "type": "string"
+              },
+              "raw_sha256": {
+                "pattern": "^sha256:[0-9a-f]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "bytes",
+              "path",
+              "raw_sha256"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "license_metadata_spdx": {
+          "additionalProperties": false,
+          "properties": {
+            "expressions": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "expression": {
+                    "type": "string"
+                  },
+                  "occurrences": {
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "expression",
+                  "occurrences"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "jcs_sha256": {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "occurrence_count": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            },
+            "unique_count": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "expressions",
+            "jcs_sha256",
+            "occurrence_count",
+            "unique_count"
+          ],
+          "type": "object"
+        },
+        "reuse_spdx": {
+          "additionalProperties": false,
+          "properties": {
+            "expressions": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "expression": {
+                    "type": "string"
+                  },
+                  "occurrences": {
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "expression",
+                  "occurrences"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "jcs_sha256": {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "occurrence_count": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            },
+            "unique_count": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "expressions",
+            "jcs_sha256",
+            "occurrence_count",
+            "unique_count"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "cargo_lock_count",
+        "cargo_manifest_count",
+        "component",
+        "component_manifest_count",
+        "component_manifest_entries",
+        "component_manifests",
+        "license_metadata_spdx",
+        "reuse_spdx"
+      ],
+      "type": "object"
+    },
     "vendor_inventory": {
       "additionalProperties": false,
       "properties": {
@@ -403,8 +565,7 @@
     "layout_assertions",
     "layout_validation",
     "license_inventory",
-    "required_files",
-    "vendor_inventory"
+    "required_files"
   ],
   "title": "RadishAxiom toolchain tar inspection observation v0.1",
   "type": "object"

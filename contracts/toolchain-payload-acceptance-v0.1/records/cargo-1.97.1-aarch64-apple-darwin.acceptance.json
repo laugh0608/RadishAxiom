@@ -1,0 +1,170 @@
+{
+  "acceptance": {
+    "accepted_scope": [
+      "archive-layout-and-metadata",
+      "archive-license-and-component-inventory",
+      "payload-byte-identity",
+      "registered-future-isolated-build-input"
+    ],
+    "decision": "accepted-for-controlled-build-input",
+    "excluded_scope": [
+      "artifact-execution",
+      "artifact-installation",
+      "binary-source-reproducibility",
+      "checker-implementation-correctness",
+      "cross-platform-equivalence",
+      "legal-compliance-for-any-specific-distribution",
+      "publisher-signature-verification"
+    ],
+    "review_date": "2026-08-30"
+  },
+  "artifact": {
+    "bytes": "8876992",
+    "component": "cargo",
+    "filename": "cargo-1.97.1-aarch64-apple-darwin.tar.xz",
+    "platform": "macos-arm64",
+    "tool": "rust-toolchain",
+    "version": "1.97.1"
+  },
+  "dependency_inventory": {
+    "cargo_lock_count": "0",
+    "cargo_manifest_count": "0",
+    "component": "cargo",
+    "component_manifest_count": "1",
+    "component_manifest_entries": {
+      "count": "44",
+      "jcs_sha256": "sha256:1d713b39c7223b149e0085fe09d1a52fb30f9b994527744221de38f4029138bd"
+    },
+    "component_manifests": [
+      {
+        "bytes": "1532",
+        "path": "cargo-1.97.1-aarch64-apple-darwin/cargo/manifest.in",
+        "raw_sha256": "sha256:5b2160ec3635b8c8f3129f12cbeee078d55d882f9362313e56e9fd484febe8ba"
+      }
+    ],
+    "scope": "archive-contained-rust-static-metadata",
+    "status": "inventoried-not-executed"
+  },
+  "digest_domain": "radishaxiom.toolchain-payload-acceptance-record.v0.1",
+  "format": "radishaxiom-toolchain-payload-acceptance-record",
+  "format_version": "0.1",
+  "id": "cargo-1.97.1-aarch64-apple-darwin-2026-08-30",
+  "inspection": {
+    "archive": {
+      "compression": "xz",
+      "duplicate_path_validation": "passed",
+      "gid_values": [
+        "0"
+      ],
+      "gname_values": [
+        ""
+      ],
+      "link_inventory": {
+        "count": "0",
+        "jcs_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "link_target_validation": "passed",
+      "max_regular_file": {
+        "bytes": "31867672",
+        "path": "cargo-1.97.1-aarch64-apple-darwin/cargo/bin/cargo"
+      },
+      "member_count": "68",
+      "member_inventory": {
+        "count": "68",
+        "jcs_sha256": "sha256:98d89c727664d915b982feacaa8cc7f9e1856c6080d1eb52b7d33458f94b8245"
+      },
+      "mode_values": [
+        "0644",
+        "0755"
+      ],
+      "mtime": {
+        "maximum": "1784041988",
+        "minimum": "1153704088",
+        "unique_count": "2"
+      },
+      "path_validation": "passed",
+      "permission_validation": "passed",
+      "special_file_validation": "passed",
+      "top_level": "cargo-1.97.1-aarch64-apple-darwin",
+      "total_regular_bytes": "32496408",
+      "type_counts": {
+        "directory": "12",
+        "file": "56",
+        "hardlink": "0",
+        "symlink": "0"
+      },
+      "uid_values": [
+        "0"
+      ],
+      "uname_values": [
+        ""
+      ]
+    },
+    "layout_assertions": [
+      {
+        "expectation": "present",
+        "path": "cargo-1.97.1-aarch64-apple-darwin/cargo/bin/cargo"
+      }
+    ],
+    "method": {
+      "path": "scripts/inspect-toolchain-tar.py",
+      "raw_sha256": "sha256:423f2d163e16364a1bb8158b6157c5dc2b153de59cd6a4ebbaf6fe06662aaa73"
+    },
+    "observation": {
+      "path": "contracts/toolchain-payload-acceptance-v0.1/observations/cargo-1.97.1-aarch64-apple-darwin.inspection.json",
+      "raw_sha256": "sha256:0e4e95d70cc306cb9012a2c7c4baba564e767c2c387d7f13f381c3ae8176a889"
+    },
+    "profile": "rust-1.97.1-cargo-aarch64-apple-darwin",
+    "result": "passed"
+  },
+  "license_review": {
+    "bundled_inventory_status": "recorded-not-a-legal-conclusion",
+    "inventory_count": "3",
+    "inventory_jcs_sha256": "sha256:afb53053d6d49dfdf7569bc7ae2464ca3cafef70d6eaede271a553f5af6d479a",
+    "license_metadata_spdx": {
+      "expressions": [],
+      "jcs_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "occurrence_count": "0",
+      "unique_count": "0"
+    },
+    "main_expression": "MIT OR Apache-2.0",
+    "main_license_files": [
+      {
+        "bytes": "10860",
+        "path": "cargo-1.97.1-aarch64-apple-darwin/LICENSE-APACHE",
+        "raw_sha256": "sha256:8ada45cd9f843acf64e4722ae262c622a2b3b3007c7310ef36ac1061a30f6adb"
+      },
+      {
+        "bytes": "1023",
+        "path": "cargo-1.97.1-aarch64-apple-darwin/LICENSE-MIT",
+        "raw_sha256": "sha256:23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+      }
+    ],
+    "reuse_spdx": {
+      "expressions": [],
+      "jcs_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "occurrence_count": "0",
+      "unique_count": "0"
+    },
+    "scope": "selected-root-license-files-and-publisher-license-metadata",
+    "status": "archive-inventory-recorded"
+  },
+  "provenance": {
+    "download_method": "https-curl-official-range-reassembly",
+    "download_url": "https://static.rust-lang.org/dist/2026-07-16/cargo-1.97.1-aarch64-apple-darwin.tar.xz",
+    "project_recomputation": {
+      "raw_sha256": "sha256:2d84a74e9558192a7de674aca6aa3ab7464bed2df97e0377156ddb7e09a0fd7a",
+      "result": "matched"
+    },
+    "publisher_digest": {
+      "kind": "publisher-recorded",
+      "raw_sha256": "sha256:2d84a74e9558192a7de674aca6aa3ab7464bed2df97e0377156ddb7e09a0fd7a",
+      "source": "rust-channel-1.97.1"
+    },
+    "signature": {
+      "reason": "no detached-signature input is recorded for this artifact in registry v0.1",
+      "status": "not-verified-no-signature-input"
+    }
+  },
+  "record_digest": "sha256:7a5a0544c97ae27dbd58eb574588fbd79d5d046e2b707225810bd07f703bb5b2"
+}

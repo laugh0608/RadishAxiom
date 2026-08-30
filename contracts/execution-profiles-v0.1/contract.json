@@ -4,72 +4,72 @@
     {
       "byte_length": "14944",
       "path": "fixtures/negative/attestation-upgraded.invalid.jcs",
-      "sha256": "sha256:252d58d23686a98b8eecf9fb15899c88b8d7fd06780258a0df213ecf3a27b481"
+      "sha256": "sha256:1d47db70152380d78c3f57a82aad96e6d5cd72d30b5198f98916af4e7f707e0e"
     },
     {
       "byte_length": "14976",
       "path": "fixtures/negative/certificate-profile-unaccepted.invalid.jcs",
-      "sha256": "sha256:98798959c7551a794facf03fbfe47e7a981c89b55e4500b88d5bd980bec502be"
+      "sha256": "sha256:57032bb139c34c81161b9d66bfd4cd40afc1ebe1b4a1190f5b9634324912c0fb"
     },
     {
       "byte_length": "14952",
       "path": "fixtures/negative/checker-counter-order.invalid.jcs",
-      "sha256": "sha256:8af346b50220bff0f9bf26fe6750b3e9d906c9919f26774b000f519126e4dd67"
+      "sha256": "sha256:ba80215f616093219ed664df3d720ae7cabf0463fcf26c867dbb91487d1bbb7d"
     },
     {
       "byte_length": "14862",
       "path": "fixtures/negative/checker-limit-missing.invalid.jcs",
-      "sha256": "sha256:85a7ced4fb6b9a3d993f1a463c7e989be4f6dea1a3092bc96a6341f24cc00fb4"
+      "sha256": "sha256:d0deb66debe927d85341afc8918c9b11de53a4aba8a97a2aec09bba026798a8b"
     },
     {
       "byte_length": "14950",
       "path": "fixtures/negative/checker-process-as-result.invalid.jcs",
-      "sha256": "sha256:6e41c52f0b231382eb310542b7a4f902f7b1427a27d997f5044733e25df5a4f4"
+      "sha256": "sha256:cb5dd9318c1e0b71f2c80bcbfe8ef48a3f0223f847ba20630bbcd5c637b4e589"
     },
     {
       "byte_length": "14927",
       "path": "fixtures/negative/coverage-drift.invalid.jcs",
-      "sha256": "sha256:7762070d160e8f7658afaf4a5806fa610a866eea001e8a77a2c282b843386dd0"
+      "sha256": "sha256:1c5a1bbbd0b5952833cab4881ed8035a9a92bce2c5419e3489fc5c5fb57f7e66"
     },
     {
       "byte_length": "14952",
       "path": "fixtures/negative/cvc5-environment-inheritance.invalid.jcs",
-      "sha256": "sha256:cf31d4b1d66a39901920ba5e38867170da3734326f503ae635d536ec429bb90a"
+      "sha256": "sha256:9eec332351b4fe7e34a9e573690eb761db70eb51482608b6d80b500f90d8cb3e"
     },
     {
       "byte_length": "14906",
       "path": "fixtures/negative/cvc5-missing-strict-parsing.invalid.jcs",
-      "sha256": "sha256:be3dfb98c93bf1e713cb0623b1c82dfc1decf76a67750f458040f883b6d9e514"
+      "sha256": "sha256:8f03141fea5180496c14c1d4f6d95be804b74cf8175742f44a1cb04c6763446c"
     },
     {
       "byte_length": "14992",
       "path": "fixtures/negative/cvc5-path-input.invalid.jcs",
-      "sha256": "sha256:0b1fe675ad99c1a181dbf1926ee9e2b4b41bb0ea4095b6995ea92418a6349c1c"
+      "sha256": "sha256:14124f959aac632b9f02fe50f98d353f36984eaca80b52f5268f1e8054dc6be1"
     },
     {
       "byte_length": "14997",
       "path": "fixtures/negative/cvc5-random-seed.invalid.jcs",
-      "sha256": "sha256:9d6e3964db67e14a3858b8c3bae5bdcec14e830dcf646632239de081f5dbe2af"
+      "sha256": "sha256:9e1d2e179640d6e1acfdd78e9551581259b4a72a92ed5ef8bad240675b36aac4"
     },
     {
       "byte_length": "14989",
       "path": "fixtures/negative/cvc5-unknown-option.invalid.jcs",
-      "sha256": "sha256:f4ff98b84ec70835c4e1a517a55337fbf7755454b6e648c353a637d406cd08fb"
+      "sha256": "sha256:0697d5dc585135d48113dad5f6e1a1b2e1b5738f409d3d786f21380a8950dd54"
     },
     {
       "byte_length": "15042",
       "path": "fixtures/negative/duplicate-limit.invalid.jcs",
-      "sha256": "sha256:3ac933316ac747881c6dbff14fe645c4af52e3d24fae5c43484c4c60527fcbb9"
+      "sha256": "sha256:32b8c711506eb9c09a5145363d4eea738eaf7a4a8a9a7bdfff5d5488caff9ed1"
     },
     {
       "byte_length": "14997",
       "path": "fixtures/negative/duplicate-member.invalid.jcs",
-      "sha256": "sha256:3bca056856260677f89a10259a5c3a56c910b0c102454228e27cbb73a44a3cc7"
+      "sha256": "sha256:9d30fb5fc2e303c477058d28fdc8e6d01114426e00f2b8d5097c4014bdabb1e0"
     },
     {
       "byte_length": "16995",
       "path": "fixtures/negative/duplicate-profile.invalid.jcs",
-      "sha256": "sha256:e7878806b27d0706051030e4805dba536702b95717111162e8ad9bed98eb1d76"
+      "sha256": "sha256:0e89077270f29d52e09b151388282fe643d8ead6c286d57481ac2e28c1d7b4d1"
     },
     {
       "byte_length": "2978",
@@ -79,67 +79,67 @@
     {
       "byte_length": "14694",
       "path": "fixtures/negative/missing-limit-set.invalid.jcs",
-      "sha256": "sha256:8ad7525d168b64f32ab78c8050f959a99735abbad606391e72ca6c3e1ea23593"
+      "sha256": "sha256:c11ee82df637720276629fbac439bd5287b1cbdc767052fbaa404020a54ee5fa"
     },
     {
       "byte_length": "14995",
       "path": "fixtures/negative/node-environment-inheritance.invalid.jcs",
-      "sha256": "sha256:724a41a95efc2a0cd4dc03f01444a5ee549d5c23c372df0811764195fd6d1341"
+      "sha256": "sha256:4b2b07ed7f94bdafc9509bb8943014fc4fbb1310d5233524244bd6a3cb14e38b"
     },
     {
       "byte_length": "14934",
       "path": "fixtures/negative/node-network-capability.invalid.jcs",
-      "sha256": "sha256:bc15c257984bc895487522f02def5810305d1c8d40f44274bab9ec9e74ef2e64"
+      "sha256": "sha256:755846cfd86d164746051081a2b4f91a041309e1e1449ea8af5d8443e785d554"
     },
     {
       "byte_length": "14919",
       "path": "fixtures/negative/node-number-codec.invalid.jcs",
-      "sha256": "sha256:d86f1ac85cd890c361df8cc93cd369eae5b97dc57f4308573a6d21e7a869b13c"
+      "sha256": "sha256:376788f6337e8b80366c0e3564b5e6b9cd1ce045899e038a5c1fc66a924891bb"
     },
     {
       "byte_length": "14860",
       "path": "fixtures/negative/node-output-limit-missing.invalid.jcs",
-      "sha256": "sha256:eecae2e74b798339c2c0a91628c015e6ce6b361cc78fe86797fbdbaf6d128780"
+      "sha256": "sha256:31b22ddeac549e95944cd7c46089577c8abd2c1a23548700a64b7a03aab99df8"
     },
     {
       "byte_length": "14991",
       "path": "fixtures/negative/node-unknown-option.invalid.jcs",
-      "sha256": "sha256:adf18a6f269fa47d32c269aef6062294ca26770770c3aab3537d339fc06b1d20"
+      "sha256": "sha256:c808f8faee6fcf706b5953f3524b3df2314bd84e291d4d785a03c6dba53b170a"
     },
     {
       "byte_length": "14953",
       "path": "fixtures/negative/noncanonical-whitespace.invalid.jcs",
-      "sha256": "sha256:7cb2467a7e42f0325ca7de9b6c73a414794ca6040107ea76a2beae31792d07bd"
+      "sha256": "sha256:ca90c8f20354b36d73b3b329927cf103f1812a74fa21f13a07dc31aef1299312"
     },
     {
       "byte_length": "14952",
       "path": "fixtures/negative/source-digest-drift.invalid.jcs",
-      "sha256": "sha256:edd6fedb0604c88f226be1b1b5a82b9ef6fa0f8ccf310ef31bcb000937d6c5db"
+      "sha256": "sha256:e8ae7de56a25381e7bf2f1705a438dda6277af295f9319c8a32d0a7cc218d620"
     },
     {
       "byte_length": "14960",
       "path": "fixtures/negative/unknown-format.invalid.jcs",
-      "sha256": "sha256:902b728563f38c67bfdb367ef5ade35d25d8a99acae1576e9c1d4ccf2c16c255"
+      "sha256": "sha256:21a4bee6b0654c9e9d7557f613fc1c82d46cb0309b1ea56bc460b9232d3649ec"
     },
     {
       "byte_length": "14977",
       "path": "fixtures/negative/unknown-member.invalid.jcs",
-      "sha256": "sha256:72c3eec0b1e539bf102b682141da3ff24cb81f47cb8c77c2d8fd01c99ddb3d41"
+      "sha256": "sha256:f8c07b88fa2ecfd5ad038d7a2be7eebda8d657bd5e1364dea7b3df349410d21c"
     },
     {
       "byte_length": "14952",
       "path": "fixtures/negative/unknown-version.invalid.jcs",
-      "sha256": "sha256:218b7b1fc4cb78721961afda6e4b0e4a405a86ff945dbafbaaf38e7742b4e390"
+      "sha256": "sha256:826eb79a02ce4cf115ec5c5a0f388ed1ade6d0fb569baa88faf1d0806a1357a6"
     },
     {
       "byte_length": "14952",
       "path": "fixtures/negative/unsorted-profiles.invalid.jcs",
-      "sha256": "sha256:3a2c2edffc8863f2fc9b083f2173314bbda01945e79cc6ebabb88cf5c28219ef"
+      "sha256": "sha256:c9eb45fee92e3c2d1b98ba2478dde596608abbfd1cad7cce02aebf36047afd2f"
     },
     {
       "byte_length": "14946",
       "path": "fixtures/negative/zero-limit.invalid.jcs",
-      "sha256": "sha256:5254b80d555cd4938f335ff4bc7e6dd53da6b32fa05014efc32063cd8bfdbe42"
+      "sha256": "sha256:9eec480e470cf3aca25081a872672a6c7c7e8773fa6c34375ae019716e9a2bf4"
     },
     {
       "byte_length": "702",
@@ -169,12 +169,12 @@
     {
       "byte_length": "14952",
       "path": "manifest.jcs",
-      "sha256": "sha256:ac2044def383833b68b4ce10c8c7d8e23c23429c3e77dbc0ec0abfe10f6a6aa2"
+      "sha256": "sha256:cf331d08d5c97c8edfd283531d22a6d5be4d16d77ee1283cbd82279b5533f054"
     },
     {
       "byte_length": "25773",
       "path": "schemas/execution-profile-set.schema.json",
-      "sha256": "sha256:d021c25a58d9fa20425707e3dec92f34455d7793fefc7dc1bd0290d8c99f2d1d"
+      "sha256": "sha256:3c1ad3b1575e8ecb39630f8649c55eee9d388ebe78fc0faa16724f00a50f312f"
     }
   ],
   "format": "radishaxiom-execution-profile-contract",
@@ -209,8 +209,8 @@
     }
   ],
   "manifest": {
-    "content_digest": "sha256:ac2044def383833b68b4ce10c8c7d8e23c23429c3e77dbc0ec0abfe10f6a6aa2",
-    "document_digest": "sha256:9e56ecaa2ce3d10b9c4b808775d8021311dbc563579212d268384fc1f9a5f0c3",
+    "content_digest": "sha256:cf331d08d5c97c8edfd283531d22a6d5be4d16d77ee1283cbd82279b5533f054",
+    "document_digest": "sha256:c34c783aecc8dbfede16d6d26f6499600ecebcd979bc83fde1c25e41a2255fbe",
     "path": "manifest.jcs"
   },
   "negative_fixture_count": "27",
@@ -234,7 +234,7 @@
     {
       "name": "implementation-readiness-v0.1",
       "path": "contracts/implementation-readiness-v0.1/manifest.jcs",
-      "sha256": "sha256:c126ffebab4b63be21eb8f3ac42f48161c988d63a411a12775d419666351df80"
+      "sha256": "sha256:13f6928d6ac76ee878a2e0782a108d2c25f6bb19798dc54d38563e4cf85e5651"
     },
     {
       "name": "independent-check-v0.1",
@@ -244,12 +244,12 @@
     {
       "name": "pipeline-artifacts-v0.1",
       "path": "contracts/pipeline-artifacts-v0.1/contract.json",
-      "sha256": "sha256:3fbc40e64cd4e6e9b9e5d765c3d2b460e18ca27cb200f60d679257a91e5b25ba"
+      "sha256": "sha256:38089967d1cf07fc2f35d8c461cd57d1e0b927c1c88b9ab2172d24697ba11435"
     },
     {
       "name": "toolchain-adapters-v0.1",
       "path": "contracts/toolchain-adapters-v0.1/registry.json",
-      "sha256": "sha256:3a8e522c6d927cc769e0caa56b9bbb71e401e0452fe39b675c05354baf59262f"
+      "sha256": "sha256:b515e255501b61c7fa997509b5ecd31718d284a82ea176736f58199290a9d09a"
     }
   ]
 }

@@ -1,0 +1,173 @@
+{
+  "archive": {
+    "compression": "xz",
+    "duplicate_path_validation": "passed",
+    "gid_values": [
+      "0"
+    ],
+    "gname_values": [
+      ""
+    ],
+    "link_inventory": {
+      "count": "0",
+      "jcs_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "link_target_validation": "passed",
+    "max_regular_file": {
+      "bytes": "207258056",
+      "path": "rustc-1.97.1-aarch64-apple-darwin/rustc/lib/librustc_driver-e03ed1db822dfa4c.dylib"
+    },
+    "member_count": "72",
+    "member_inventory": {
+      "count": "72",
+      "jcs_sha256": "sha256:276b98cfcda205521c6955159934c36e9bda9e3f182d55ba33747bc7345e14b4"
+    },
+    "mode_values": [
+      "0644",
+      "0755"
+    ],
+    "mtime": {
+      "maximum": "1784041988",
+      "minimum": "1153704088",
+      "unique_count": "2"
+    },
+    "path_validation": "passed",
+    "permission_validation": "passed",
+    "special_file_validation": "passed",
+    "top_level": "rustc-1.97.1-aarch64-apple-darwin",
+    "total_regular_bytes": "391144454",
+    "type_counts": {
+      "directory": "17",
+      "file": "55",
+      "hardlink": "0",
+      "symlink": "0"
+    },
+    "uid_values": [
+      "0"
+    ],
+    "uname_values": [
+      ""
+    ]
+  },
+  "artifact": {
+    "bytes": "68127952",
+    "filename": "rustc-1.97.1-aarch64-apple-darwin.tar.xz",
+    "raw_sha256": "sha256:6076cad38ccabaa24325f26a74080a363a2633a9cd34c473a8977255d8a593cb"
+  },
+  "format": "radishaxiom-toolchain-tar-inspection",
+  "format_version": "0.1",
+  "inspection_profile": "rust-1.97.1-rustc-aarch64-apple-darwin",
+  "layout_assertions": [
+    {
+      "expectation": "present",
+      "path": "rustc-1.97.1-aarch64-apple-darwin/rustc/bin/rustc"
+    },
+    {
+      "expectation": "present",
+      "path": "rustc-1.97.1-aarch64-apple-darwin/rustc/bin/rustdoc"
+    }
+  ],
+  "layout_validation": "passed",
+  "license_inventory": {
+    "count": "3",
+    "files": [
+      {
+        "bytes": "1571",
+        "path": "rustc-1.97.1-aarch64-apple-darwin/COPYRIGHT",
+        "raw_sha256": "sha256:172020dbfd5b53a226dfde77616190a48dcff519b0bc0e6deb91a8450782c4af"
+      },
+      {
+        "bytes": "9723",
+        "path": "rustc-1.97.1-aarch64-apple-darwin/LICENSE-APACHE",
+        "raw_sha256": "sha256:62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+      },
+      {
+        "bytes": "1068",
+        "path": "rustc-1.97.1-aarch64-apple-darwin/LICENSE-MIT",
+        "raw_sha256": "sha256:b71bd43a069ca0641a9ecfe585ca7b3c53b5cc1608f8b68321168698e28b5ea1"
+      }
+    ],
+    "jcs_sha256": "sha256:f62e987a606a36babd725647d5ba608cee0e73dece4b0a680067d2bb1c0468db"
+  },
+  "required_files": [
+    {
+      "bytes": "1571",
+      "path": "rustc-1.97.1-aarch64-apple-darwin/COPYRIGHT",
+      "raw_sha256": "sha256:172020dbfd5b53a226dfde77616190a48dcff519b0bc0e6deb91a8450782c4af"
+    },
+    {
+      "bytes": "9723",
+      "path": "rustc-1.97.1-aarch64-apple-darwin/LICENSE-APACHE",
+      "raw_sha256": "sha256:62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    {
+      "bytes": "1068",
+      "path": "rustc-1.97.1-aarch64-apple-darwin/LICENSE-MIT",
+      "raw_sha256": "sha256:b71bd43a069ca0641a9ecfe585ca7b3c53b5cc1608f8b68321168698e28b5ea1"
+    },
+    {
+      "bytes": "6",
+      "path": "rustc-1.97.1-aarch64-apple-darwin/components",
+      "raw_sha256": "sha256:17c769d50277575d5571ae0769c76c9cbbdd65314954e278e5b4c6faba8e0721",
+      "utf8_text": "rustc\n"
+    },
+    {
+      "bytes": "40",
+      "path": "rustc-1.97.1-aarch64-apple-darwin/git-commit-hash",
+      "raw_sha256": "sha256:c60a41fd857ed7cc29207d7733c9816bedd227259cbd2751cf8efc825fa62280",
+      "utf8_text": "8bab26f4f68e0e26f0bb7960be334d5b520ea452"
+    },
+    {
+      "bytes": "62",
+      "path": "rustc-1.97.1-aarch64-apple-darwin/git-commit-info",
+      "raw_sha256": "sha256:a0320549c5e0882ad131eb23c9cd01915005edbb9bb87c03c8d3dc18a6dce645",
+      "utf8_text": "8bab26f4f68e0e26f0bb7960be334d5b520ea452\n8bab26f4f\n2026-07-14\n"
+    },
+    {
+      "bytes": "2",
+      "path": "rustc-1.97.1-aarch64-apple-darwin/rust-installer-version",
+      "raw_sha256": "sha256:1121cfccd5913f0a63fec40a6ffd44ea64f9dc135c66634ba001d10bcf4302a2",
+      "utf8_text": "3\n"
+    },
+    {
+      "bytes": "1737",
+      "path": "rustc-1.97.1-aarch64-apple-darwin/rustc/manifest.in",
+      "raw_sha256": "sha256:559d120ad913445f821362a25e074a2b66122a7f21736aa6197cf968c22f49af"
+    },
+    {
+      "bytes": "29",
+      "path": "rustc-1.97.1-aarch64-apple-darwin/version",
+      "raw_sha256": "sha256:efdbdc87cc633bcdf30695627e6321d5a744ca69c78719aa51489d7a55961268",
+      "utf8_text": "1.97.1 (8bab26f4f 2026-07-14)"
+    }
+  ],
+  "rust_inventory": {
+    "cargo_lock_count": "0",
+    "cargo_manifest_count": "0",
+    "component": "rustc",
+    "component_manifest_count": "1",
+    "component_manifest_entries": {
+      "count": "43",
+      "jcs_sha256": "sha256:e2cc0361ce4788cc12494e16b4365db9326bd8fbdd86b6c0cb0b3998b792dd13"
+    },
+    "component_manifests": [
+      {
+        "bytes": "1737",
+        "path": "rustc-1.97.1-aarch64-apple-darwin/rustc/manifest.in",
+        "raw_sha256": "sha256:559d120ad913445f821362a25e074a2b66122a7f21736aa6197cf968c22f49af"
+      }
+    ],
+    "license_metadata_spdx": {
+      "expressions": [],
+      "jcs_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "occurrence_count": "0",
+      "unique_count": "0"
+    },
+    "reuse_spdx": {
+      "expressions": [],
+      "jcs_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "occurrence_count": "0",
+      "unique_count": "0"
+    }
+  }
+}

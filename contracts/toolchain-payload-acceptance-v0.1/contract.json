@@ -1,15 +1,15 @@
 {
-  "contract_digest": "sha256:6bdd95848cc37d286630ef6a0caaa6d36b5ab0d7ade67d51b2209ac3b22a2adf",
+  "contract_digest": "sha256:f0febb910b302608f543d36940ee246a1b6c29968eb5aef6468ee81ba58bb61e",
   "counts": {
-    "accepted_records": "2",
-    "observations": "2"
+    "accepted_records": "8",
+    "observations": "8"
   },
   "digest_domain": "radishaxiom.toolchain-payload-acceptance-set.v0.1",
   "format": "radishaxiom-toolchain-payload-acceptance-set",
   "format_version": "0.1",
   "inspection_method": {
     "path": "scripts/inspect-toolchain-tar.py",
-    "raw_sha256": "sha256:c098e87a566d2883754aad71baa4db1164071d48688a59290fbca551ae225f9f"
+    "raw_sha256": "sha256:423f2d163e16364a1bb8158b6157c5dc2b153de59cd6a4ebbaf6fe06662aaa73"
   },
   "records": [
     {
@@ -18,8 +18,8 @@
       "id": "go1.26.7-darwin-arm64-2026-08-23",
       "path": "contracts/toolchain-payload-acceptance-v0.1/records/go1.26.7-darwin-arm64.acceptance.json",
       "platform": "macos-arm64",
-      "raw_sha256": "sha256:c5c50b2144d5898c0d610e38c242cc5b5a5e8944e5c0cbc5590b8e1491b3e874",
-      "record_digest": "sha256:75e83f73d5794c1e5ddfafc98a4868e90cb97b74bd7f65976663637e0e1c682e"
+      "raw_sha256": "sha256:c563406946f1882ca09341d53aca64e1b2d8a68ce1c2896795170725fc3c66e4",
+      "record_digest": "sha256:ec9d181b1b9317bed0249b61f9005c12451084e2859ea3fbf9f70f2f0359a6ff"
     },
     {
       "artifact_filename": "go1.26.7.src.tar.gz",
@@ -27,14 +27,68 @@
       "id": "go1.26.7-source-2026-08-23",
       "path": "contracts/toolchain-payload-acceptance-v0.1/records/go1.26.7-source.acceptance.json",
       "platform": "source",
-      "raw_sha256": "sha256:397566ea4be2264089360829911bd756b26acb75455f400e2e22853eae170f9f",
-      "record_digest": "sha256:ca484056d0f5e3aa6aa26a2e2f5db71db7151f6dcc48115cea886bf2819a9122"
+      "raw_sha256": "sha256:cd4214028e0414df022ac8a559c822913cb9645f996cc81c203e2e807cbcccc1",
+      "record_digest": "sha256:7dfa6937dcb2d990ae91aa4cd0611d3771d5d51d64ddabb2856050741e11b3cf"
+    },
+    {
+      "artifact_filename": "cargo-1.97.1-aarch64-apple-darwin.tar.xz",
+      "decision": "accepted-for-controlled-build-input",
+      "id": "cargo-1.97.1-aarch64-apple-darwin-2026-08-30",
+      "path": "contracts/toolchain-payload-acceptance-v0.1/records/cargo-1.97.1-aarch64-apple-darwin.acceptance.json",
+      "platform": "macos-arm64",
+      "raw_sha256": "sha256:de9de633dd6b0402cd6bf74a6830bcc79432ea2cd9d809d336d2d2474e456dd0",
+      "record_digest": "sha256:7a5a0544c97ae27dbd58eb574588fbd79d5d046e2b707225810bd07f703bb5b2"
+    },
+    {
+      "artifact_filename": "clippy-1.97.1-aarch64-apple-darwin.tar.xz",
+      "decision": "accepted-for-controlled-build-input",
+      "id": "clippy-1.97.1-aarch64-apple-darwin-2026-08-30",
+      "path": "contracts/toolchain-payload-acceptance-v0.1/records/clippy-1.97.1-aarch64-apple-darwin.acceptance.json",
+      "platform": "macos-arm64",
+      "raw_sha256": "sha256:14f2ef498e3a225ba05164ff6d719fe7cefa7bb2e1f841f353fafb08847479f0",
+      "record_digest": "sha256:92c4edb8669447358ad3a393cb10e3061730d8269a806a82fbb7ed1bb0b5a8e5"
+    },
+    {
+      "artifact_filename": "rust-std-1.97.1-aarch64-apple-darwin.tar.xz",
+      "decision": "accepted-for-controlled-build-input",
+      "id": "rust-std-1.97.1-aarch64-apple-darwin-2026-08-30",
+      "path": "contracts/toolchain-payload-acceptance-v0.1/records/rust-std-1.97.1-aarch64-apple-darwin.acceptance.json",
+      "platform": "macos-arm64",
+      "raw_sha256": "sha256:6d80d07402c2301b196f9072ef4465684cc9253e500631cd5fbd9d059775a369",
+      "record_digest": "sha256:029ba2d9c10119bb71ea873b4d7a9f570fed3b4a524fb5990a9864c77da36364"
+    },
+    {
+      "artifact_filename": "rustc-1.97.1-aarch64-apple-darwin.tar.xz",
+      "decision": "accepted-for-controlled-build-input",
+      "id": "rustc-1.97.1-aarch64-apple-darwin-2026-08-30",
+      "path": "contracts/toolchain-payload-acceptance-v0.1/records/rustc-1.97.1-aarch64-apple-darwin.acceptance.json",
+      "platform": "macos-arm64",
+      "raw_sha256": "sha256:32c10861961fa01709dc050d059dcf9e379763c41eecac2b44f392ca854f7532",
+      "record_digest": "sha256:2122fe95f9a94ca907fa2d18bbefaf5ab602fa06077010945dce62fce5071607"
+    },
+    {
+      "artifact_filename": "rustc-1.97.1-src.tar.xz",
+      "decision": "accepted-for-controlled-build-input",
+      "id": "rustc-1.97.1-source-2026-08-30",
+      "path": "contracts/toolchain-payload-acceptance-v0.1/records/rustc-1.97.1-source.acceptance.json",
+      "platform": "source",
+      "raw_sha256": "sha256:3b25a6a7ccce7f3edbd1270f697ff415792db48a8e8f95d19298fde3467603cd",
+      "record_digest": "sha256:5fd930254b9b2c9d1df1104ae149715e50261263a663df40ac801778971bad05"
+    },
+    {
+      "artifact_filename": "rustfmt-1.97.1-aarch64-apple-darwin.tar.xz",
+      "decision": "accepted-for-controlled-build-input",
+      "id": "rustfmt-1.97.1-aarch64-apple-darwin-2026-08-30",
+      "path": "contracts/toolchain-payload-acceptance-v0.1/records/rustfmt-1.97.1-aarch64-apple-darwin.acceptance.json",
+      "platform": "macos-arm64",
+      "raw_sha256": "sha256:90d3160ff6d6c137095a0022240c7e17a5abadf8c9cfa246f0c7f78133ee3dea",
+      "record_digest": "sha256:0ae1ae6ab5f3b65b668e47e34b8def69adeb7cec7c7fc669ab7973a0ba1cdb3d"
     }
   ],
   "registry_binding": {
     "path": "contracts/toolchain-adapters-v0.1/registry.json",
-    "raw_sha256": "sha256:3a8e522c6d927cc769e0caa56b9bbb71e401e0452fe39b675c05354baf59262f",
-    "registry_digest": "sha256:c8e6f4c8cfd8b4dfe8e95b5785ec9b3ce67f0c17d4c7be01a5e269746f2dab26"
+    "raw_sha256": "sha256:b515e255501b61c7fa997509b5ecd31718d284a82ea176736f58199290a9d09a",
+    "registry_digest": "sha256:d1177c2656d0bf752d098ce0abab9a78b9f07b036492c40f53811ede395d3d1e"
   },
-  "review_date": "2026-08-23"
+  "review_date": "2026-08-30"
 }
