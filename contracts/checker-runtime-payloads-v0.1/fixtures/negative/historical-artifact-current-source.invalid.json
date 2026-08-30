@@ -56,9 +56,9 @@
   "checker": {
     "implementation": "radishaxiom-independent-checker-go",
     "source": {
-      "file_count": "696",
-      "identity": "sha256:e2c4ae31b15162051735a76e44c2fc0a079117994caf3ef53d5710ead1199044",
-      "manifest_byte_length": "185774"
+      "file_count": "703",
+      "identity": "sha256:401158c3c304f45faebebe879edf064512998423d7b08aec486f4be0012e3999",
+      "manifest_byte_length": "187178"
     },
     "toolchain": "go1.26.7",
     "version": "0.1-dev"
@@ -67,7 +67,7 @@
   "format": "radishaxiom-checker-runtime-payload-registration",
   "format_version": "0.1",
   "id": "checker-go0.1-dev-darwin-arm64-historical-2026-08-28",
-  "record_digest": "sha256:aaeb36aee4e0fb6a2e35ada0c6592dcdc1f7b162e90d3a2165310904476df0e3",
+  "record_digest": "sha256:a2ad9d6100cee5f750eabd190aca822f401e7442072f6b409d5fea24a35e933b",
   "registration": {
     "reasons": [
       "acceptance-bytes-not-retained",

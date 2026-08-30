@@ -542,50 +542,8 @@
             "promotion": {
               "additionalProperties": false,
               "properties": {
-                "dev_backflow_ci": {
-                  "additionalProperties": false,
-                  "properties": {
-                    "conclusion": {
-                      "type": "string"
-                    },
-                    "run_id": {
-                      "pattern": "^(0|[1-9][0-9]*)$",
-                      "type": "string"
-                    },
-                    "workflow": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "conclusion",
-                    "run_id",
-                    "workflow"
-                  ],
-                  "type": "object"
-                },
                 "dev_ref": {
                   "type": "string"
-                },
-                "master_ci": {
-                  "additionalProperties": false,
-                  "properties": {
-                    "conclusion": {
-                      "type": "string"
-                    },
-                    "run_id": {
-                      "pattern": "^(0|[1-9][0-9]*)$",
-                      "type": "string"
-                    },
-                    "workflow": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "conclusion",
-                    "run_id",
-                    "workflow"
-                  ],
-                  "type": "object"
                 },
                 "master_ref": {
                   "type": "string"
@@ -596,19 +554,47 @@
                 "merge_method": {
                   "type": "string"
                 },
+                "pr_ci": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "conclusion": {
+                      "type": "string"
+                    },
+                    "run_id": {
+                      "pattern": "^(0|[1-9][0-9]*)$",
+                      "type": "string"
+                    },
+                    "workflow": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "conclusion",
+                    "run_id",
+                    "workflow"
+                  ],
+                  "type": "object"
+                },
                 "pr_number": {
                   "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                },
+                "push_ci": {
+                  "type": "string"
+                },
+                "source_identity_commit": {
                   "type": "string"
                 }
               },
               "required": [
-                "dev_backflow_ci",
                 "dev_ref",
-                "master_ci",
                 "master_ref",
                 "merge_commit",
                 "merge_method",
-                "pr_number"
+                "pr_ci",
+                "pr_number",
+                "push_ci",
+                "source_identity_commit"
               ],
               "type": "object"
             },
@@ -785,6 +771,57 @@
             "distribution_package": {
               "additionalProperties": false,
               "properties": {
+                "acceptance": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "byte_length": {
+                      "pattern": "^(0|[1-9][0-9]*)$",
+                      "type": "string"
+                    },
+                    "decision": {
+                      "type": "string"
+                    },
+                    "excluded_scope": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "format": {
+                      "type": "string"
+                    },
+                    "format_version": {
+                      "type": "string"
+                    },
+                    "raw_sha256": {
+                      "pattern": "^sha256:[0-9a-f]{64}$",
+                      "type": "string"
+                    },
+                    "scope": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "byte_length",
+                    "decision",
+                    "excluded_scope",
+                    "format",
+                    "format_version",
+                    "raw_sha256",
+                    "scope"
+                  ],
+                  "type": "object"
+                },
+                "byte_length": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                },
+                "filename": {
+                  "type": "string"
+                },
                 "format": {
                   "type": "string"
                 },
@@ -794,15 +831,50 @@
                 "kind": {
                   "type": "string"
                 },
-                "reason": {
+                "manifest": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "byte_length": {
+                      "pattern": "^(0|[1-9][0-9]*)$",
+                      "type": "string"
+                    },
+                    "filename": {
+                      "type": "string"
+                    },
+                    "format": {
+                      "type": "string"
+                    },
+                    "format_version": {
+                      "type": "string"
+                    },
+                    "raw_sha256": {
+                      "pattern": "^sha256:[0-9a-f]{64}$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "byte_length",
+                    "filename",
+                    "format",
+                    "format_version",
+                    "raw_sha256"
+                  ],
+                  "type": "object"
+                },
+                "raw_sha256": {
+                  "pattern": "^sha256:[0-9a-f]{64}$",
                   "type": "string"
                 }
               },
               "required": [
+                "acceptance",
+                "byte_length",
+                "filename",
                 "format",
                 "format_version",
                 "kind",
-                "reason"
+                "manifest",
+                "raw_sha256"
               ],
               "type": "object"
             },
@@ -852,7 +924,7 @@
           "const": "0.1"
         },
         "id": {
-          "const": "checker-go0.1-dev-darwin-arm64-current-pending-2026-08-29"
+          "const": "checker-go0.1-dev-darwin-arm64-current-pending-2026-08-30"
         },
         "record_digest": {
           "pattern": "^sha256:[0-9a-f]{64}$",
@@ -868,7 +940,7 @@
               "type": "array"
             },
             "status": {
-              "const": "candidate-retained-temporarily"
+              "const": "distribution-package-accepted"
             }
           },
           "required": [
@@ -887,6 +959,15 @@
               "type": "string"
             },
             "candidate_archive_bytes": {
+              "type": "string"
+            },
+            "distribution_acceptance_bytes": {
+              "type": "string"
+            },
+            "distribution_manifest_bytes": {
+              "type": "string"
+            },
+            "distribution_package_bytes": {
               "type": "string"
             },
             "fetch": {
@@ -941,24 +1022,28 @@
                 "readback": {
                   "additionalProperties": false,
                   "properties": {
+                    "distribution_archive_verified": {
+                      "type": "boolean"
+                    },
                     "exact_artifact_id": {
+                      "type": "boolean"
+                    },
+                    "inner_candidate_verified": {
                       "type": "boolean"
                     },
                     "job_id": {
                       "pattern": "^(0|[1-9][0-9]*)$",
                       "type": "string"
                     },
-                    "payload_archive_verified": {
-                      "type": "boolean"
-                    },
                     "provider_metadata_verified": {
                       "type": "boolean"
                     }
                   },
                   "required": [
+                    "distribution_archive_verified",
                     "exact_artifact_id",
+                    "inner_candidate_verified",
                     "job_id",
-                    "payload_archive_verified",
                     "provider_metadata_verified"
                   ],
                   "type": "object"
@@ -1010,6 +1095,9 @@
             "acceptance_bytes",
             "artifact_bytes",
             "candidate_archive_bytes",
+            "distribution_acceptance_bytes",
+            "distribution_manifest_bytes",
+            "distribution_package_bytes",
             "fetch",
             "provenance_bytes"
           ],
