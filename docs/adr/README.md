@@ -22,3 +22,4 @@
 - [ADR 0009：Axiom Evidence v0.1 漂移收口与 v0.2 迁移边界](0009-axiom-evidence-v0-drift-and-migration.md)
 - [ADR 0010：独立 checker runtime payload 的持久发布与登记](0010-checker-runtime-payload-durable-registration.md)
 - [ADR 0011：独立 checker runtime launcher、安装与激活边界](0011-checker-runtime-launcher-installation-and-activation.md)
+- [ADR 0012：产品侧 checker runtime 宿主与持久化接口](0012-product-checker-runtime-host-and-persistence-interface.md)

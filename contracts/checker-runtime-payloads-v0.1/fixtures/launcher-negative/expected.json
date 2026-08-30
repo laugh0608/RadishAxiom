@@ -31,8 +31,32 @@
     {
       "file": "preinvoke-reverification-omitted.invalid.json",
       "reason": "active executable identity must be checked before and after every spawn"
+    },
+    {
+      "file": "python-product-runtime.invalid.json",
+      "reason": "Python conformance code cannot become the product runtime host"
+    },
+    {
+      "file": "in-process-checker-reuse.invalid.json",
+      "reason": "the product runtime cannot reuse or link the independent checker implementation"
+    },
+    {
+      "file": "runtime-core-network.invalid.json",
+      "reason": "the installer and launcher core cannot hold provider network capability"
+    },
+    {
+      "file": "implicit-store-root.invalid.json",
+      "reason": "the product must inject the private runtime root instead of discovering it implicitly"
+    },
+    {
+      "file": "superseded-launcher-policy-v0.1.invalid.json",
+      "reason": "the superseded closed launcher policy version cannot be accepted as version 0.2"
+    },
+    {
+      "file": "split-store-root.invalid.json",
+      "reason": "installation and persistence cannot use different runtime root identities"
     }
   ],
   "format": "radishaxiom-checker-runtime-launcher-policy-negative-set",
-  "format_version": "0.1"
+  "format_version": "0.2"
 }

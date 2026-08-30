@@ -1,5 +1,5 @@
 {
-  "$id": "https://radishaxiom.dev/schema/checker-runtime-launcher-policy/0.1",
+  "$id": "https://radishaxiom.dev/schema/checker-runtime-launcher-policy/0.2",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
@@ -59,7 +59,7 @@
       "type": "array"
     },
     "digest_domain": {
-      "const": "radishaxiom.checker-runtime-launcher-policy.v0.1"
+      "const": "radishaxiom.checker-runtime-launcher-policy.v0.2"
     },
     "failure_boundary": {
       "items": {
@@ -88,7 +88,7 @@
       "const": "radishaxiom-checker-runtime-launcher-policy"
     },
     "format_version": {
-      "const": "0.1"
+      "const": "0.2"
     },
     "host_selection": {
       "additionalProperties": false,
@@ -166,6 +166,55 @@
         "selection_cardinality",
         "unknown_target",
         "variant_policy"
+      ],
+      "type": "object"
+    },
+    "implementation": {
+      "additionalProperties": false,
+      "properties": {
+        "checker_boundary": {
+          "type": "string"
+        },
+        "component": {
+          "type": "string"
+        },
+        "dependency_status": {
+          "type": "string"
+        },
+        "edition": {
+          "pattern": "^(0|[1-9][0-9]*)$",
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "network_capability": {
+          "type": "string"
+        },
+        "public_surface": {
+          "type": "string"
+        },
+        "python_conformance": {
+          "type": "string"
+        },
+        "toolchain": {
+          "type": "string"
+        },
+        "workspace": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "checker_boundary",
+        "component",
+        "dependency_status",
+        "edition",
+        "language",
+        "network_capability",
+        "public_surface",
+        "python_conformance",
+        "toolchain",
+        "workspace"
       ],
       "type": "object"
     },
@@ -372,6 +421,56 @@
     "level": {
       "type": "string"
     },
+    "persistence": {
+      "additionalProperties": false,
+      "properties": {
+        "attempt_storage": {
+          "type": "string"
+        },
+        "canonical_identity_excludes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "capabilities": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "interface": {
+          "type": "string"
+        },
+        "qualification_storage": {
+          "type": "string"
+        },
+        "recovery": {
+          "type": "string"
+        },
+        "root": {
+          "type": "string"
+        },
+        "root_discovery": {
+          "type": "string"
+        },
+        "slot_identity": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "attempt_storage",
+        "canonical_identity_excludes",
+        "capabilities",
+        "interface",
+        "qualification_storage",
+        "recovery",
+        "root",
+        "root_discovery",
+        "slot_identity"
+      ],
+      "type": "object"
+    },
     "policy_digest": {
       "pattern": "^sha256:[0-9a-f]{64}$",
       "type": "string"
@@ -488,6 +587,42 @@
         "strict_contract"
       ],
       "type": "object"
+    },
+    "runtime_interfaces": {
+      "additionalProperties": false,
+      "properties": {
+        "fetch": {
+          "type": "string"
+        },
+        "host_identity": {
+          "type": "string"
+        },
+        "installation_input": {
+          "type": "string"
+        },
+        "outer_failure": {
+          "type": "string"
+        },
+        "registry_input": {
+          "type": "string"
+        },
+        "result_consumer": {
+          "type": "string"
+        },
+        "spawn_plan": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "fetch",
+        "host_identity",
+        "installation_input",
+        "outer_failure",
+        "registry_input",
+        "result_consumer",
+        "spawn_plan"
+      ],
+      "type": "object"
     }
   },
   "required": [
@@ -498,12 +633,15 @@
     "format",
     "format_version",
     "host_selection",
+    "implementation",
     "installation",
     "invocation",
     "level",
+    "persistence",
     "policy_digest",
-    "runtime_companion"
+    "runtime_companion",
+    "runtime_interfaces"
   ],
-  "title": "RadishAxiom checker runtime launcher policy v0.1",
+  "title": "RadishAxiom checker runtime launcher policy v0.2",
   "type": "object"
 }

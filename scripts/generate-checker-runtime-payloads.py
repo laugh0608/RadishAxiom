@@ -21,8 +21,8 @@ RECORD_DOMAIN = "radishaxiom.checker-runtime-payload-registration.v0.1"
 SET_FORMAT = "radishaxiom-checker-runtime-payload-registration-set"
 SET_DOMAIN = "radishaxiom.checker-runtime-payload-registration-set.v0.1"
 LAUNCHER_POLICY_FORMAT = "radishaxiom-checker-runtime-launcher-policy"
-LAUNCHER_POLICY_VERSION = "0.1"
-LAUNCHER_POLICY_DOMAIN = "radishaxiom.checker-runtime-launcher-policy.v0.1"
+LAUNCHER_POLICY_VERSION = "0.2"
+LAUNCHER_POLICY_DOMAIN = "radishaxiom.checker-runtime-launcher-policy.v0.2"
 SHA256_PATTERN = re.compile(r"^sha256:[0-9a-f]{64}$")
 
 CURRENT_SOURCE = {
@@ -455,6 +455,14 @@ def launcher_policy() -> dict[str, Any]:
                 ),
             },
             {
+                "name": "adr-0012",
+                "path": "docs/adr/0012-product-checker-runtime-host-and-persistence-interface.md",
+                "raw_sha256": raw_sha256(
+                    REPO_ROOT
+                    / "docs/adr/0012-product-checker-runtime-host-and-persistence-interface.md"
+                ),
+            },
+            {
                 "name": "execution-profile-v0.1",
                 "path": "contracts/execution-profiles-v0.1/manifest.jcs",
                 "raw_sha256": raw_sha256(
@@ -526,6 +534,18 @@ def launcher_policy() -> dict[str, Any]:
             "unknown_target": "fail-closed-no-fallback",
             "variant_policy": "closed-launcher-table-darwin-arm64-maps-only-to-v8.0",
         },
+        "implementation": {
+            "checker_boundary": "exact-digest-offline-subprocess-only-no-source-or-parser-reuse",
+            "component": "main-repository-internal-product-runtime",
+            "dependency_status": "not-proposed-or-authorized",
+            "edition": "2024",
+            "language": "rust",
+            "network_capability": "absent-from-installer-launcher-core",
+            "public_surface": "no-standalone-cli-daemon-plugin-or-sdk-frozen",
+            "python_conformance": "test-oracle-only-never-product-runtime",
+            "toolchain": "1.97.1",
+            "workspace": "same-cargo-workspace-and-product-release-graph-as-raxc",
+        },
         "installation": {
             "authorization": "separate-explicit-authorization-required",
             "current_status": "not-materialized",
@@ -565,7 +585,7 @@ def launcher_policy() -> dict[str, Any]:
                 "status": "required-not-materialized",
             },
             "recovery": "discard-only-owned-incomplete-staging-while-lock-held",
-            "root": "product-managed-user-local-private-data-root",
+            "root": "product-injected-canonical-user-local-private-root",
             "single_writer": "per-target-installation-lock",
             "slot_identity": "target-and-distribution-raw-sha256",
             "slot_mutation": "immutable-no-in-place-repair-or-replacement",
@@ -581,6 +601,38 @@ def launcher_policy() -> dict[str, Any]:
                 "symbolic-link",
                 "unknown-member-or-mode",
             ],
+        },
+        "persistence": {
+            "attempt_storage": "append-only-bounded-outside-slot",
+            "canonical_identity_excludes": [
+                "absolute-path",
+                "environment-value",
+                "pid",
+                "transaction-identity",
+            ],
+            "capabilities": [
+                "acquire-target-lock",
+                "create-owned-staging",
+                "publish-slot-exclusive",
+                "read-slot-exact",
+                "create-qualification-exclusive",
+                "append-attempt",
+            ],
+            "interface": "checker-runtime-store-v0.1",
+            "qualification_storage": "outside-slot-exclusive-create-by-record-and-document-identity",
+            "recovery": "held-lock-reverify-bytes-and-discard-only-owned-incomplete-staging",
+            "root": "product-injected-canonical-user-local-private-root",
+            "root_discovery": "never-environment-cwd-repository-or-user-input",
+            "slot_identity": "target-and-distribution-raw-sha256",
+        },
+        "runtime_interfaces": {
+            "fetch": "separate-authorized-coordinator-never-core",
+            "host_identity": "trusted-native-platform-adapter-only",
+            "installation_input": "validated-registration-native-host-held-lock-and-exact-distribution-bytes",
+            "outer_failure": "typed-product-outcome-never-independent-result",
+            "registry_input": "product-provided-canonical-policy-and-registration-snapshot-bytes",
+            "result_consumer": "single-product-rust-consumer-shared-by-qualification-and-invocation",
+            "spawn_plan": "single-immutable-plan-shared-by-qualification-and-product-invocation",
         },
         "invocation": {
             "argument_tokens": [
@@ -1099,17 +1151,64 @@ def launcher_negative_fixtures(
         "active executable identity must be checked before and after every spawn",
         refreshed_launcher_policy(value),
     ))
+    value = copy.deepcopy(policy)
+    value["implementation"]["language"] = "python"
+    rows.append((
+        "python-product-runtime.invalid.json",
+        "Python conformance code cannot become the product runtime host",
+        refreshed_launcher_policy(value),
+    ))
+    value = copy.deepcopy(policy)
+    value["implementation"]["checker_boundary"] = "in-process-go-parser-reuse"
+    rows.append((
+        "in-process-checker-reuse.invalid.json",
+        "the product runtime cannot reuse or link the independent checker implementation",
+        refreshed_launcher_policy(value),
+    ))
+    value = copy.deepcopy(policy)
+    value["implementation"]["network_capability"] = "provider-download-enabled"
+    rows.append((
+        "runtime-core-network.invalid.json",
+        "the installer and launcher core cannot hold provider network capability",
+        refreshed_launcher_policy(value),
+    ))
+    value = copy.deepcopy(policy)
+    value["persistence"]["root_discovery"] = "environment-or-current-directory"
+    rows.append((
+        "implicit-store-root.invalid.json",
+        "the product must inject the private runtime root instead of discovering it implicitly",
+        refreshed_launcher_policy(value),
+    ))
+    value = copy.deepcopy(policy)
+    value["format_version"] = "0.1"
+    rows.append((
+        "superseded-launcher-policy-v0.1.invalid.json",
+        "the superseded closed launcher policy version cannot be accepted as version 0.2",
+        refreshed_launcher_policy(value),
+    ))
+    value = copy.deepcopy(policy)
+    value["installation"]["root"] = "separately-discovered-installation-root"
+    rows.append((
+        "split-store-root.invalid.json",
+        "installation and persistence cannot use different runtime root identities",
+        refreshed_launcher_policy(value),
+    ))
     return rows
 
 
 def launcher_policy_schema(policy: dict[str, Any]) -> dict[str, Any]:
     result = infer_schema([policy])
-    result["$id"] = "https://radishaxiom.dev/schema/checker-runtime-launcher-policy/0.1"
+    result["$id"] = (
+        "https://radishaxiom.dev/schema/checker-runtime-launcher-policy/"
+        + LAUNCHER_POLICY_VERSION
+    )
     result["$schema"] = "https://json-schema.org/draft/2020-12/schema"
     result["properties"]["digest_domain"] = {"const": LAUNCHER_POLICY_DOMAIN}
     result["properties"]["format"] = {"const": LAUNCHER_POLICY_FORMAT}
     result["properties"]["format_version"] = {"const": LAUNCHER_POLICY_VERSION}
-    result["title"] = "RadishAxiom checker runtime launcher policy v0.1"
+    result["title"] = (
+        "RadishAxiom checker runtime launcher policy v" + LAUNCHER_POLICY_VERSION
+    )
     return result
 
 

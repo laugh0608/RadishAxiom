@@ -5,9 +5,9 @@
     "installation": "not-materialized",
     "launcher_policy": {
       "format": "radishaxiom-checker-runtime-launcher-policy",
-      "format_version": "0.1",
+      "format_version": "0.2",
       "path": "contracts/checker-runtime-payloads-v0.1/launcher-policy.jcs",
-      "policy_digest": "sha256:a26a6664c2e4eeefd538d3477a4ce8dd6ad99285f65557ec3f208aae88613cd6",
+      "policy_digest": "sha256:c55dbf8f6a2b0f265273d015cd89941aca2af1c0994bd44826a96aadb73750eb",
       "status": "specified-not-implemented"
     },
     "reasons": [
@@ -18,7 +18,7 @@
     ],
     "runtime_companion": "not-materialized-by-product-launcher"
   },
-  "contract_digest": "sha256:ab131cf7a810344f30cfade2f04a3996a24d015b035cf64296577c760396bb7b",
+  "contract_digest": "sha256:25cace961870838bd5493828ee8041092882eb65f7b15b63bbec1786152778db",
   "counts": {
     "active": "0",
     "historical_ineligible": "1",
@@ -36,15 +36,15 @@
   "format_version": "0.1",
   "generator": {
     "path": "scripts/generate-checker-runtime-payloads.py",
-    "raw_sha256": "sha256:a9791854ca14efd85bc72b5840890b84d1b78ece74a970e3ff6a6c058fd354d4"
+    "raw_sha256": "sha256:34235d979505d37ff1f7712c65c45e1cdce9c775ea9bfa0d2bedeb8713b3b9b2"
   },
   "launcher_policy": {
     "format": "radishaxiom-checker-runtime-launcher-policy",
-    "format_version": "0.1",
+    "format_version": "0.2",
     "level": "specified-not-implemented",
     "path": "contracts/checker-runtime-payloads-v0.1/launcher-policy.jcs",
-    "policy_digest": "sha256:a26a6664c2e4eeefd538d3477a4ce8dd6ad99285f65557ec3f208aae88613cd6",
-    "raw_sha256": "sha256:f66adf5bee373afe7b6d6c19b774bc88e00924c30dfe1fc1a916feecf0548fc6"
+    "policy_digest": "sha256:c55dbf8f6a2b0f265273d015cd89941aca2af1c0994bd44826a96aadb73750eb",
+    "raw_sha256": "sha256:d465cb693215e67ba3c756df171d95c6fad60dbe9ce6681a0cadab46bf115567"
   },
   "records": [
     {
@@ -69,7 +69,7 @@
     "active_runtime": {
       "launcher_policy": {
         "format": "radishaxiom-checker-runtime-launcher-policy",
-        "format_version": "0.1",
+        "format_version": "0.2",
         "path": "contracts/checker-runtime-payloads-v0.1/launcher-policy.jcs",
         "status": "specified-not-implemented"
       },

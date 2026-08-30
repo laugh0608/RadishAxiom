@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any
 
 from .core import (
+    POLICY_VERSION,
     InstallationReceipt,
     LauncherValidationError,
     Target,
@@ -237,7 +238,7 @@ def validate_qualification_record(data: bytes) -> QualificationRecord:
     )
     if launcher_policy.get("format") != "radishaxiom-checker-runtime-launcher-policy":
         raise LauncherValidationError("qualification-policy-format")
-    if launcher_policy.get("format_version") != "0.1":
+    if launcher_policy.get("format_version") != POLICY_VERSION:
         raise LauncherValidationError("qualification-policy-version")
     _digest(launcher_policy.get("policy_digest"), "$.launcher_policy.policy_digest")
 

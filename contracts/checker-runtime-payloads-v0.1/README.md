@@ -1,6 +1,6 @@
 # Checker Runtime Payload Registration v0.1
 
-本目录把独立 checker 的源码身份、目标平台、候选二进制、构建 provenance、独立 acceptance、字节保留 / 取得方式、重新验证条件，以及 active 前的 launcher / 安装策略绑定为闭合机器契约。它物化 [ADR 0003](../../docs/adr/0003-version-identities-and-compatibility-layers.md)、[ADR 0008](../../docs/adr/0008-independent-checker-isolation-and-artifact-exchange.md)、[ADR 0010](../../docs/adr/0010-checker-runtime-payload-durable-registration.md)、[ADR 0011](../../docs/adr/0011-checker-runtime-launcher-installation-and-activation.md) 与[当前状态](../../docs/status/current.md)的 runtime 身份边界。本契约不实现、下载或安装 launcher / payload，不修改公共 Evidence / Independent Check 格式，也不授权激活、发布或部署。
+本目录把独立 checker 的源码身份、目标平台、候选二进制、构建 provenance、独立 acceptance、字节保留 / 取得方式、重新验证条件，以及 active 前的 launcher / 安装策略绑定为闭合机器契约。它物化 [ADR 0003](../../docs/adr/0003-version-identities-and-compatibility-layers.md)、[ADR 0008](../../docs/adr/0008-independent-checker-isolation-and-artifact-exchange.md)、[ADR 0010](../../docs/adr/0010-checker-runtime-payload-durable-registration.md)、[ADR 0011](../../docs/adr/0011-checker-runtime-launcher-installation-and-activation.md)、[ADR 0012](../../docs/adr/0012-product-checker-runtime-host-and-persistence-interface.md) 与[当前状态](../../docs/status/current.md)的 runtime 身份边界。本契约不实现、下载或安装 launcher / payload，不修改公共 Evidence / Independent Check 格式，也不授权激活、发布或部署。
 
 ## 当前结论
 
@@ -21,25 +21,29 @@ active runtime 的 durable provider 已选择 `laugh0608/RadishAxiomChecker` 的
 
 当前外层 distribution 已包含内层候选、distribution acceptance / manifest、checker Apache-2.0 `LICENSE` 与 Go `LICENSE` / `PATENTS` 六个成员，并由独立 acceptance 接受为受控 durable publication candidate。精确 tag `checker-payload/go0.1-dev/darwin-arm64-v8.0/sha256-401158...e3999`、target commit `f960603...13d5e`、Release ID `379226889` 与唯一 4,720,640-byte asset ID `536372439` 已通过不可变发布和全部发布后门禁；经独立状态转换授权，主仓现已绑定持久字节和重新验证路径并推进到 `registered-inactive`。
 
-`launcher-policy.jcs` 进一步冻结：
+`launcher-policy.jcs` `0.2` 进一步冻结：
 
 - 产品选择只接受恰好一个 `active` 记录；安装资格复核只能显式执行 `registered-inactive`，两条入口不可混用；
 - 首个目标必须精确匹配 `darwin / arm64 / v8.0 / macho-64-arm64`，翻译进程、未知 variant、`PATH`、相邻目录、latest alias、cache 和用户 executable 全部不 fallback；
 - 安装只使用精确 immutable Release / asset 身份，经同文件系统 staging、严格两层 archive / manifest / binary 复核和原子 rename 形成 content-addressed immutable slot；当前 installation receipt 仍为 `required-not-materialized`；
 - qualification 必须由安装后的 exact binary 在同一 launcher 边界下重放 `ax-b01-correct`、`chk-digest-01`、`chk-resource-01`，得到与 payload acceptance 一致的三份 `axiom-independent-check-result` `0.1`。这才是正式 runtime companion，不另造 launcher companion 格式；
 - 外层 kill、crash、timeout、资源终止、非零退出、stdout 截断 / 超限或身份不符都不能形成或消费 checker 四态结果。只有 canonical request 身份已经形成时，才可另存既有 `axiom-checker-invocation-failure` `0.1`。
+- 产品实现宿主固定为与 `raxc` 同一 Cargo workspace / 发布图的 Rust 2024、精确 `1.97.1` 内部组件；禁止复用 Checker Go parser 或让 Python oracle 成为产品 runtime；
+- installer / launcher core 不持有网络能力，真实 fetch 属于单独授权的协调层；`checker-runtime-store-v0.1` 只允许持目标锁、创建 owned staging、exclusive publish / qualification、精确重读 slot 和追加 attempt，私有根必须由产品注入；
+- qualification 与产品 invocation 共用一个严格的主仓 Rust result consumer 和 immutable spawn plan；外层产品失败与 Independent Check 四态保持不同类型。
 
-因此当前只是 launcher 规范已冻结，`active = 0` 不变。进入 `active` 还必须分别完成实现、原生测试、真实安装、三条 qualification、重新验证与激活授权。
+新增的宿主 / store 必需字段使 ADR 0011 的闭合 policy `0.1` 不再足够，因此当前 policy 与摘要域已显式升级到 `0.2`；登记集合和既有 inactive record 仍为 `v0.1` 且字节不变，旧 policy 不回退接受。当前仍只是 launcher 规范已冻结，`active = 0` 不变。进入 `active` 还必须分别完成实现、原生测试、真实安装、三条 qualification、重新验证与激活授权。
 
 ## 本地一致性验证核心
 
-`scripts/check-checker-runtime-launcher.py` 是 ADR 0011 的依赖无关、纯本地一致性验证入口。它直接读取本目录的 canonical launcher policy 和 registered-inactive record，在临时目录及合成进程观察上检查：
+`scripts/check-checker-runtime-launcher.py` 是 ADR 0011 / 0012 的依赖无关、纯本地一致性验证入口。它直接读取本目录的 canonical launcher policy 和 registered-inactive record，在临时目录及合成进程观察上检查：
 
 - 产品只选 active、qualification 只选 registered-inactive，目标键与翻译进程严格失败关闭；
 - USTAR 闭合 inventory、路径、member type、mode、长度、SHA-256、顺序、padding 和 trailer；
 - installation receipt 的必需身份绑定与域摘要、slot 内普通文件 / mode / Mach-O arm64 header、持锁的同文件系统 rename、既有 slot 精确复用与不覆盖；
 - 三条已由 Independent Check Contract parser 接受的 companion 的场景、outcome、raw / document digest 和 checker 身份绑定，以及 qualification record 的 exclusive create；
 - spawn、kill、timeout、signal、非零退出、stdout 失败与 spawn 前后身份漂移的外层分类，确保它们不被改写成 checker 四态结果。
+- Rust 产品宿主、无 Checker Go 实现复用、无网络 core、显式 store root / 能力集合、单一 result consumer 与外层失败类型边界。
 
 该核心不联网，不下载或执行 payload，不解析真实 distribution 的两层业务 manifest，也不取代 Independent Check Contract 的完整 companion parser、平台 sandbox / memory enforcement、生产安装协调器或 launcher。它只把策略决策和事务不变量变成可执行回归模型；因此 `launcher-policy.jcs.level` 继续是 `specified-not-implemented`，不能据此推进安装或 active 状态。
 
@@ -64,11 +68,11 @@ candidate-retained-temporarily
 ## 文件与生成边界
 
 - `records/` 保存历史不可用记录和当前已正式登记但尚未激活的 `registered-inactive` 记录；每份记录都以 `radishaxiom.checker-runtime-payload-registration.v0.1` 域摘要闭合。
-- `launcher-policy.jcs` 是 launcher / 安装 / qualification / 激活策略的唯一 canonical 机器表示，以 `radishaxiom.checker-runtime-launcher-policy.v0.1` 域摘要闭合；它的 `specified-not-implemented` 不能冒充产品实现。
+- `launcher-policy.jcs` 是 launcher / 安装 / qualification / 激活策略的唯一 canonical `0.2` 机器表示，以 `radishaxiom.checker-runtime-launcher-policy.v0.2` 域摘要闭合；它的 `specified-not-implemented` 不能冒充产品实现。
 - `contract.json` 绑定当前 `checker.source`、记录与 launcher policy 的原始摘要 / 域摘要、状态计数、两级 storage policy 和生成器原始摘要。
 - `schemas/` 固定登记记录与 launcher policy 的 Draft 2020-12 闭合结构；schema 通过不能提升任何 acceptance、安装、companion 或运行结论。
 - `fixtures/negative/` 拒绝旧 artifact 重绑当前 source、已删除字节的 retention 过度声明、历史 payload 冒充正式登记、把 acceptance 扩大到安装、正式 inactive 登记缺少 provenance、未知 member、`registered-inactive` 跳过 launcher 隔离 / 安装 / 激活授权直接 active、可变 Release 登记、`latest` alias、用 release attestation 冒充 distribution acceptance、缺少独立回读和原地 replacement。
-- `fixtures/launcher-negative/` 拒绝 inactive 被产品选择、目标 / PATH fallback、非原子安装、可选 receipt / companion、把进程失败写成 `incomplete`，以及省略每次 spawn 前后 executable 身份复核。
+- `fixtures/launcher-negative/` 拒绝 inactive 被产品选择、目标 / PATH fallback、非原子安装、可选 receipt / companion、把进程失败写成 `incomplete`、省略每次 spawn 前后 executable 身份复核、Python 产品 runtime、复用 Checker Go parser、core 持有网络能力、隐式发现或分裂 store root，以及把已替代的 policy `0.1` 当作 `0.2` 接受。
 
 除本 README 外，本目录由以下入口生成，生成文件不得手工修改：
 

@@ -84,6 +84,7 @@ REQUIRED_FILES = (
     "docs/README.md",
     "docs/adr/0001-branch-and-pr-governance.md",
     "docs/adr/0011-checker-runtime-launcher-installation-and-activation.md",
+    "docs/adr/0012-product-checker-runtime-host-and-persistence-interface.md",
     "docs/benchmarks/keyed-finite-table-corpus-v0.md",
     "docs/experiments/agent-representation-preregistration-v0.md",
     "docs/governance/agent-collaboration.md",

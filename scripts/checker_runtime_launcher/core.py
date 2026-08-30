@@ -22,7 +22,8 @@ JsonValue: TypeAlias = dict[str, Any] | list[Any] | str | bool
 SHA256_PATTERN = re.compile(r"^sha256:[0-9a-f]{64}$")
 UTC_TIMESTAMP = re.compile(r"^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$")
 TARGET_COMPONENT = re.compile(r"^[a-z0-9][a-z0-9.-]*$")
-POLICY_DOMAIN = "radishaxiom.checker-runtime-launcher-policy.v0.1"
+POLICY_VERSION = "0.2"
+POLICY_DOMAIN = "radishaxiom.checker-runtime-launcher-policy.v0.2"
 REGISTRATION_DOMAIN = "radishaxiom.checker-runtime-payload-registration.v0.1"
 INSTALLATION_RECEIPT_DOMAIN = "radishaxiom.checker-runtime-installation-receipt.v0.1"
 
@@ -219,7 +220,7 @@ class SlotVerification:
 def validate_launcher_policy(policy: dict[str, Any]) -> None:
     if policy.get("format") != "radishaxiom-checker-runtime-launcher-policy":
         raise LauncherValidationError("policy-format")
-    if policy.get("format_version") != "0.1":
+    if policy.get("format_version") != POLICY_VERSION:
         raise LauncherValidationError("policy-version")
     if policy.get("digest_domain") != POLICY_DOMAIN:
         raise LauncherValidationError("policy-domain")
@@ -245,6 +246,60 @@ def validate_launcher_policy(policy: dict[str, Any]) -> None:
     ]
     if not supported or len(supported) != len(set(supported)):
         raise LauncherValidationError("supported-target-set")
+
+    implementation = _object(policy.get("implementation"), "$.implementation")
+    if (
+        implementation.get("language") != "rust"
+        or implementation.get("edition") != "2024"
+        or implementation.get("toolchain") != "1.97.1"
+        or implementation.get("workspace")
+        != "same-cargo-workspace-and-product-release-graph-as-raxc"
+    ):
+        raise LauncherValidationError("product-runtime-host")
+    if (
+        implementation.get("checker_boundary")
+        != "exact-digest-offline-subprocess-only-no-source-or-parser-reuse"
+    ):
+        raise LauncherValidationError("checker-implementation-reuse")
+    if implementation.get("network_capability") != "absent-from-installer-launcher-core":
+        raise LauncherValidationError("runtime-core-network-capability")
+    if implementation.get("python_conformance") != "test-oracle-only-never-product-runtime":
+        raise LauncherValidationError("python-runtime-dependency")
+
+    persistence = _object(policy.get("persistence"), "$.persistence")
+    if persistence.get("interface") != "checker-runtime-store-v0.1":
+        raise LauncherValidationError("runtime-store-interface")
+    if persistence.get("root") != "product-injected-canonical-user-local-private-root":
+        raise LauncherValidationError("runtime-store-root")
+    if persistence.get("root_discovery") != "never-environment-cwd-repository-or-user-input":
+        raise LauncherValidationError("runtime-store-root-discovery")
+    installation = _object(policy.get("installation"), "$.installation")
+    if installation.get("root") != persistence.get("root"):
+        raise LauncherValidationError("runtime-store-root")
+    expected_capabilities = [
+        "acquire-target-lock",
+        "create-owned-staging",
+        "publish-slot-exclusive",
+        "read-slot-exact",
+        "create-qualification-exclusive",
+        "append-attempt",
+    ]
+    if persistence.get("capabilities") != expected_capabilities:
+        raise LauncherValidationError("runtime-store-capabilities")
+
+    interfaces = _object(policy.get("runtime_interfaces"), "$.runtime_interfaces")
+    if interfaces.get("fetch") != "separate-authorized-coordinator-never-core":
+        raise LauncherValidationError("runtime-fetch-boundary")
+    if (
+        interfaces.get("result_consumer")
+        != "single-product-rust-consumer-shared-by-qualification-and-invocation"
+    ):
+        raise LauncherValidationError("runtime-result-consumer")
+    if (
+        interfaces.get("outer_failure")
+        != "typed-product-outcome-never-independent-result"
+    ):
+        raise LauncherValidationError("outer-failure-result-boundary")
 
 
 def load_launcher_policy(path: Path) -> dict[str, Any]:

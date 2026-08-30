@@ -248,6 +248,62 @@ class SelectionTests(unittest.TestCase):
                 executable_format="macho-64-arm64",
             )
 
+    def test_product_host_store_and_network_boundaries_fail_closed(self) -> None:
+        mutations = (
+            (("implementation", "language"), "python", "product-runtime-host"),
+            (
+                ("implementation", "checker_boundary"),
+                "in-process-go-parser-reuse",
+                "checker-implementation-reuse",
+            ),
+            (
+                ("implementation", "network_capability"),
+                "provider-download-enabled",
+                "runtime-core-network-capability",
+            ),
+            (
+                ("persistence", "root_discovery"),
+                "environment-or-current-directory",
+                "runtime-store-root-discovery",
+            ),
+        )
+        for path, replacement, code in mutations:
+            with self.subTest(code=code):
+                value = copy.deepcopy(self.policy)
+                value[path[0]][path[1]] = replacement
+                _refresh_document_digest(value, "policy_digest", POLICY_DOMAIN)
+                with self.assertRaisesRegex(LauncherValidationError, code):
+                    select_registration(
+                        value,
+                        [self.record],
+                        HostIdentity(self.target),
+                        "qualification",
+                    )
+
+    def test_superseded_policy_version_is_not_accepted(self) -> None:
+        value = copy.deepcopy(self.policy)
+        value["format_version"] = "0.1"
+        _refresh_document_digest(value, "policy_digest", POLICY_DOMAIN)
+        with self.assertRaisesRegex(LauncherValidationError, "policy-version"):
+            select_registration(
+                value,
+                [self.record],
+                HostIdentity(self.target),
+                "qualification",
+            )
+
+    def test_installation_and_store_roots_cannot_diverge(self) -> None:
+        value = copy.deepcopy(self.policy)
+        value["installation"]["root"] = "separately-discovered-installation-root"
+        _refresh_document_digest(value, "policy_digest", POLICY_DOMAIN)
+        with self.assertRaisesRegex(LauncherValidationError, "runtime-store-root"):
+            select_registration(
+                value,
+                [self.record],
+                HostIdentity(self.target),
+                "qualification",
+            )
+
 
 class ArchiveTests(unittest.TestCase):
     def setUp(self) -> None:
