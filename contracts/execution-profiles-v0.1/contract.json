@@ -4,72 +4,72 @@
     {
       "byte_length": "14944",
       "path": "fixtures/negative/attestation-upgraded.invalid.jcs",
-      "sha256": "sha256:149ade127b4a6a75839bb5723a45c7fc30ffec0dbe73d927af22a732ff55ebbc"
+      "sha256": "sha256:252d58d23686a98b8eecf9fb15899c88b8d7fd06780258a0df213ecf3a27b481"
     },
     {
       "byte_length": "14976",
       "path": "fixtures/negative/certificate-profile-unaccepted.invalid.jcs",
-      "sha256": "sha256:195b542ca0338de71baed4dbec1c90868722118f81206ab41a06231b9628a579"
+      "sha256": "sha256:98798959c7551a794facf03fbfe47e7a981c89b55e4500b88d5bd980bec502be"
     },
     {
       "byte_length": "14952",
       "path": "fixtures/negative/checker-counter-order.invalid.jcs",
-      "sha256": "sha256:f8ad45b05eb8f4dfdf1d8abe1e81ad4054dae2d60398334fc915b19a246856d8"
+      "sha256": "sha256:8af346b50220bff0f9bf26fe6750b3e9d906c9919f26774b000f519126e4dd67"
     },
     {
       "byte_length": "14862",
       "path": "fixtures/negative/checker-limit-missing.invalid.jcs",
-      "sha256": "sha256:7e9c0eb97999b04aed2052951b2ef77c1262c59a946c6c2521f722e24b3a484a"
+      "sha256": "sha256:85a7ced4fb6b9a3d993f1a463c7e989be4f6dea1a3092bc96a6341f24cc00fb4"
     },
     {
       "byte_length": "14950",
       "path": "fixtures/negative/checker-process-as-result.invalid.jcs",
-      "sha256": "sha256:763eab6a0e4688d09f72bfd52b30cf7a7d414cd6feec9ee3cf0cefe3913e7746"
+      "sha256": "sha256:6e41c52f0b231382eb310542b7a4f902f7b1427a27d997f5044733e25df5a4f4"
     },
     {
       "byte_length": "14927",
       "path": "fixtures/negative/coverage-drift.invalid.jcs",
-      "sha256": "sha256:3a6dc83eb2375b9169d6d02f605093becc6d086b3677b208ac13ad4ffdd41ce3"
+      "sha256": "sha256:7762070d160e8f7658afaf4a5806fa610a866eea001e8a77a2c282b843386dd0"
     },
     {
       "byte_length": "14952",
       "path": "fixtures/negative/cvc5-environment-inheritance.invalid.jcs",
-      "sha256": "sha256:f6c75d64e01af4aa853827b5214303a59d152e9d038410ce7da4cd50847ef73b"
+      "sha256": "sha256:cf31d4b1d66a39901920ba5e38867170da3734326f503ae635d536ec429bb90a"
     },
     {
       "byte_length": "14906",
       "path": "fixtures/negative/cvc5-missing-strict-parsing.invalid.jcs",
-      "sha256": "sha256:6cde256111c0bef825d03bc3b00e1442ed99f4a7c42379809b39f367161af6a1"
+      "sha256": "sha256:be3dfb98c93bf1e713cb0623b1c82dfc1decf76a67750f458040f883b6d9e514"
     },
     {
       "byte_length": "14992",
       "path": "fixtures/negative/cvc5-path-input.invalid.jcs",
-      "sha256": "sha256:af28cdc656370bfb1d9d41a205c7e2a48a93db0db6028642e76492e7cfc017b2"
+      "sha256": "sha256:0b1fe675ad99c1a181dbf1926ee9e2b4b41bb0ea4095b6995ea92418a6349c1c"
     },
     {
       "byte_length": "14997",
       "path": "fixtures/negative/cvc5-random-seed.invalid.jcs",
-      "sha256": "sha256:29c7c7601d2141cd3095f17bfb1090294f4b3d455e12b1843329cda35edd319a"
+      "sha256": "sha256:9d6e3964db67e14a3858b8c3bae5bdcec14e830dcf646632239de081f5dbe2af"
     },
     {
       "byte_length": "14989",
       "path": "fixtures/negative/cvc5-unknown-option.invalid.jcs",
-      "sha256": "sha256:5c75d7924b214fceb4a0f4d8d7c1bebaf628384bf2b745486430363a1dc50dbd"
+      "sha256": "sha256:f4ff98b84ec70835c4e1a517a55337fbf7755454b6e648c353a637d406cd08fb"
     },
     {
       "byte_length": "15042",
       "path": "fixtures/negative/duplicate-limit.invalid.jcs",
-      "sha256": "sha256:8d5662f2ec315cc9655f7e94be27be4dcb34777613f5e5803188b484c8d1ac65"
+      "sha256": "sha256:3ac933316ac747881c6dbff14fe645c4af52e3d24fae5c43484c4c60527fcbb9"
     },
     {
       "byte_length": "14997",
       "path": "fixtures/negative/duplicate-member.invalid.jcs",
-      "sha256": "sha256:3e672b7bab4d77cc1526cc60cb719ed523ea30b90b940b6fc3f32e88ffb2b3d8"
+      "sha256": "sha256:3bca056856260677f89a10259a5c3a56c910b0c102454228e27cbb73a44a3cc7"
     },
     {
       "byte_length": "16995",
       "path": "fixtures/negative/duplicate-profile.invalid.jcs",
-      "sha256": "sha256:084269050d11571ff37d6b155d6068c94f4ffc18c231be7af4f00721363d04e2"
+      "sha256": "sha256:e7878806b27d0706051030e4805dba536702b95717111162e8ad9bed98eb1d76"
     },
     {
       "byte_length": "2978",
@@ -79,67 +79,67 @@
     {
       "byte_length": "14694",
       "path": "fixtures/negative/missing-limit-set.invalid.jcs",
-      "sha256": "sha256:8778eefe031832d2a5ce4c1e12b73eecf1793c0d66d4209e34f516804cbc1361"
+      "sha256": "sha256:8ad7525d168b64f32ab78c8050f959a99735abbad606391e72ca6c3e1ea23593"
     },
     {
       "byte_length": "14995",
       "path": "fixtures/negative/node-environment-inheritance.invalid.jcs",
-      "sha256": "sha256:b3a1228888fd68b4289f084b322ca5ed653cf0a9fe431bd87bd8b071c1ae0dea"
+      "sha256": "sha256:724a41a95efc2a0cd4dc03f01444a5ee549d5c23c372df0811764195fd6d1341"
     },
     {
       "byte_length": "14934",
       "path": "fixtures/negative/node-network-capability.invalid.jcs",
-      "sha256": "sha256:b729a891305aefd5117172b225ebdb811a5e08177d6cd4e63a7abb71777e3623"
+      "sha256": "sha256:bc15c257984bc895487522f02def5810305d1c8d40f44274bab9ec9e74ef2e64"
     },
     {
       "byte_length": "14919",
       "path": "fixtures/negative/node-number-codec.invalid.jcs",
-      "sha256": "sha256:cecc1e47b9cb22d31e876956fb98f5f8ecc4fededd86461962cb67027abfc2dd"
+      "sha256": "sha256:d86f1ac85cd890c361df8cc93cd369eae5b97dc57f4308573a6d21e7a869b13c"
     },
     {
       "byte_length": "14860",
       "path": "fixtures/negative/node-output-limit-missing.invalid.jcs",
-      "sha256": "sha256:9b192c35e63cc466d2dffd3fb939ffd74e7720d62277569982075093bc0ace86"
+      "sha256": "sha256:eecae2e74b798339c2c0a91628c015e6ce6b361cc78fe86797fbdbaf6d128780"
     },
     {
       "byte_length": "14991",
       "path": "fixtures/negative/node-unknown-option.invalid.jcs",
-      "sha256": "sha256:99f75834218960cd04d3c56eb471db8989f70be8ef7f12efae8b2f0e1831ee17"
+      "sha256": "sha256:adf18a6f269fa47d32c269aef6062294ca26770770c3aab3537d339fc06b1d20"
     },
     {
       "byte_length": "14953",
       "path": "fixtures/negative/noncanonical-whitespace.invalid.jcs",
-      "sha256": "sha256:1dcfe8a5f63f2fb22eda88abd3314cdcf6cf273ece34664b69abb39a49a8e0c7"
+      "sha256": "sha256:7cb2467a7e42f0325ca7de9b6c73a414794ca6040107ea76a2beae31792d07bd"
     },
     {
       "byte_length": "14952",
       "path": "fixtures/negative/source-digest-drift.invalid.jcs",
-      "sha256": "sha256:a1405cad9f6ad0b6ad5945fa44cebd3055b0fd9b3330efee407cafb9bd581407"
+      "sha256": "sha256:edd6fedb0604c88f226be1b1b5a82b9ef6fa0f8ccf310ef31bcb000937d6c5db"
     },
     {
       "byte_length": "14960",
       "path": "fixtures/negative/unknown-format.invalid.jcs",
-      "sha256": "sha256:b0e2e0711a2b3c51af019e0089c0e5afbf2bb0ff72711dcee20d8bbe5fbf2012"
+      "sha256": "sha256:902b728563f38c67bfdb367ef5ade35d25d8a99acae1576e9c1d4ccf2c16c255"
     },
     {
       "byte_length": "14977",
       "path": "fixtures/negative/unknown-member.invalid.jcs",
-      "sha256": "sha256:0eba5751dcc182dfd8b8c315404ab0c8bb5a2e84006aeebd64cc69bdaa5decd3"
+      "sha256": "sha256:72c3eec0b1e539bf102b682141da3ff24cb81f47cb8c77c2d8fd01c99ddb3d41"
     },
     {
       "byte_length": "14952",
       "path": "fixtures/negative/unknown-version.invalid.jcs",
-      "sha256": "sha256:af02873e54fe7213166342117e5a3bd2ed84460648e0cdc067c946412ca7e6f2"
+      "sha256": "sha256:218b7b1fc4cb78721961afda6e4b0e4a405a86ff945dbafbaaf38e7742b4e390"
     },
     {
       "byte_length": "14952",
       "path": "fixtures/negative/unsorted-profiles.invalid.jcs",
-      "sha256": "sha256:82a43596555eeba55babc74b57047a3977e1db7aa4be2b51940817a3a0abf98e"
+      "sha256": "sha256:3a2c2edffc8863f2fc9b083f2173314bbda01945e79cc6ebabb88cf5c28219ef"
     },
     {
       "byte_length": "14946",
       "path": "fixtures/negative/zero-limit.invalid.jcs",
-      "sha256": "sha256:0f8385a7408c1f5147f5bb913bd816eefdccdca37dd71747c004378e09ee6f41"
+      "sha256": "sha256:5254b80d555cd4938f335ff4bc7e6dd53da6b32fa05014efc32063cd8bfdbe42"
     },
     {
       "byte_length": "702",
@@ -169,12 +169,12 @@
     {
       "byte_length": "14952",
       "path": "manifest.jcs",
-      "sha256": "sha256:f291e79b25723fad82d8a1e9e9e706ab74d40c6cac812333389519f239c6249e"
+      "sha256": "sha256:ac2044def383833b68b4ce10c8c7d8e23c23429c3e77dbc0ec0abfe10f6a6aa2"
     },
     {
       "byte_length": "25773",
       "path": "schemas/execution-profile-set.schema.json",
-      "sha256": "sha256:ab8566d0ec8b7c3efbf664462ba5a93724e5dc82a0c8f2fc44badf9b434e4dc6"
+      "sha256": "sha256:d021c25a58d9fa20425707e3dec92f34455d7793fefc7dc1bd0290d8c99f2d1d"
     }
   ],
   "format": "radishaxiom-execution-profile-contract",
@@ -209,8 +209,8 @@
     }
   ],
   "manifest": {
-    "content_digest": "sha256:f291e79b25723fad82d8a1e9e9e706ab74d40c6cac812333389519f239c6249e",
-    "document_digest": "sha256:0676a994e3828921af3432caff64c8fb9ac4935441f46eaff7ef058f8549ac52",
+    "content_digest": "sha256:ac2044def383833b68b4ce10c8c7d8e23c23429c3e77dbc0ec0abfe10f6a6aa2",
+    "document_digest": "sha256:9e56ecaa2ce3d10b9c4b808775d8021311dbc563579212d268384fc1f9a5f0c3",
     "path": "manifest.jcs"
   },
   "negative_fixture_count": "27",
@@ -234,7 +234,7 @@
     {
       "name": "implementation-readiness-v0.1",
       "path": "contracts/implementation-readiness-v0.1/manifest.jcs",
-      "sha256": "sha256:c8404217d21fa965f90d057367793f77da74a49bcc7b8f0c8107f82d6e80eb9b"
+      "sha256": "sha256:c126ffebab4b63be21eb8f3ac42f48161c988d63a411a12775d419666351df80"
     },
     {
       "name": "independent-check-v0.1",
@@ -244,12 +244,12 @@
     {
       "name": "pipeline-artifacts-v0.1",
       "path": "contracts/pipeline-artifacts-v0.1/contract.json",
-      "sha256": "sha256:db2cd0d34dea968f2dbdb1ee1e217cdde6dd74d74c2c80cd8e11b79caf90dc37"
+      "sha256": "sha256:3fbc40e64cd4e6e9b9e5d765c3d2b460e18ca27cb200f60d679257a91e5b25ba"
     },
     {
       "name": "toolchain-adapters-v0.1",
       "path": "contracts/toolchain-adapters-v0.1/registry.json",
-      "sha256": "sha256:3a9dbcf106fb1626244b5f1491ff74b783300ece0db44c9b81d356261326724d"
+      "sha256": "sha256:3a8e522c6d927cc769e0caa56b9bbb71e401e0452fe39b675c05354baf59262f"
     }
   ]
 }

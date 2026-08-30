@@ -22,7 +22,7 @@ CONTRACT_ROOT = REPO_ROOT / "contracts/toolchain-adapters-v0.1"
 FORMAT = "radishaxiom-toolchain-adapter-identities"
 FORMAT_VERSION = "0.1"
 DIGEST_DOMAIN = "radishaxiom.toolchain-adapter-identities.v0.1"
-REVIEW_DATE = "2026-08-23"
+REVIEW_DATE = "2026-08-30"
 
 SHA256_PATTERN = re.compile(r"^[0-9a-f]{64}$")
 ID_PATTERN = re.compile(r"^[a-z0-9][a-z0-9.-]*$")
@@ -150,6 +150,8 @@ SOURCES = (
         "reviewed_claims": [
             "publisher-checksum-endpoint-pattern",
             "release-version",
+            "selected-artifact-publisher-recorded-sha256",
+            "source-archive",
         ],
         "url": "https://static.rust-lang.org/dist/2026-07-16/index.html",
     },
@@ -236,17 +238,27 @@ def rust_artifacts() -> list[dict[str, Any]]:
         source_artifact(
             filename="rustc-1.97.1-src.tar.xz",
             source_url=f"{base}/rustc-1.97.1-src.tar.xz",
-            digest=pending_digest(f"{base}/rustc-1.97.1-src.tar.xz.sha256"),
+            digest=recorded_digest(
+                "0ed06fdaffd4722a7702e0b4eebfafc897ab8f513e8e1b247cdd7e5c6df6ded2",
+                "rust-dist-1.97.1",
+            ),
         )
     ]
     for platform in PLATFORMS:
         filename = f"rust-1.97.1-{platform['rust_target']}.tar.xz"
+        if platform["id"] == "macos-arm64":
+            digest = recorded_digest(
+                "c9748cc86107734a2a024069908a895de7caa2d37062fb641eef9f756938ace2",
+                "rust-dist-1.97.1",
+            )
+        else:
+            digest = pending_digest(f"{base}/{filename}.sha256")
         result.append(
             artifact(
                 filename=filename,
                 platform=platform["id"],
                 source_url=f"{base}/{filename}",
-                digest=pending_digest(f"{base}/{filename}.sha256"),
+                digest=digest,
             )
         )
     return sorted(result, key=lambda item: (item["platform"], item["filename"]))
@@ -404,7 +416,7 @@ def build_tools() -> list[dict[str, Any]]:
             identity="rust-toolchain",
             license_expression=["Apache-2.0", "MIT"],
             license_source="rust-license",
-            provenance="release-version-reviewed-checksums-pending-capture",
+            provenance="release-version-reviewed-selected-checksums-recorded",
             role="production-toolchain",
             version="1.97.1",
         ),

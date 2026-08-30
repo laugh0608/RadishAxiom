@@ -537,7 +537,7 @@ def launcher_policy() -> dict[str, Any]:
         "implementation": {
             "checker_boundary": "exact-digest-offline-subprocess-only-no-source-or-parser-reuse",
             "component": "main-repository-internal-product-runtime",
-            "dependency_status": "not-proposed-or-authorized",
+            "dependency_status": "reviewed-zero-third-party-not-authorized",
             "edition": "2024",
             "language": "rust",
             "network_capability": "absent-from-installer-launcher-core",

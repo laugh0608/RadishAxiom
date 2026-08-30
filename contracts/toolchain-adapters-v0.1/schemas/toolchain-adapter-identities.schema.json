@@ -389,7 +389,7 @@
       "type": "string"
     },
     "review_date": {
-      "const": "2026-08-23"
+      "const": "2026-08-30"
     },
     "sources": {
       "items": {

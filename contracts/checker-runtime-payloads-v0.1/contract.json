@@ -7,7 +7,7 @@
       "format": "radishaxiom-checker-runtime-launcher-policy",
       "format_version": "0.2",
       "path": "contracts/checker-runtime-payloads-v0.1/launcher-policy.jcs",
-      "policy_digest": "sha256:c55dbf8f6a2b0f265273d015cd89941aca2af1c0994bd44826a96aadb73750eb",
+      "policy_digest": "sha256:00a6edcf290a0752403c9b06cb2438bdb95aa90880f0740f684ea7165ca84a9b",
       "status": "specified-not-implemented"
     },
     "reasons": [
@@ -18,7 +18,7 @@
     ],
     "runtime_companion": "not-materialized-by-product-launcher"
   },
-  "contract_digest": "sha256:25cace961870838bd5493828ee8041092882eb65f7b15b63bbec1786152778db",
+  "contract_digest": "sha256:0517a3bbe4eaa4c9882ca5105a091d4353d6bb79b8a0aa36d22da7018cd60252",
   "counts": {
     "active": "0",
     "historical_ineligible": "1",
@@ -36,15 +36,15 @@
   "format_version": "0.1",
   "generator": {
     "path": "scripts/generate-checker-runtime-payloads.py",
-    "raw_sha256": "sha256:34235d979505d37ff1f7712c65c45e1cdce9c775ea9bfa0d2bedeb8713b3b9b2"
+    "raw_sha256": "sha256:b9e351c6f77d1d46fd4671ba1b7a427c4af64d4c91335f96bb6573a3b30bcc4f"
   },
   "launcher_policy": {
     "format": "radishaxiom-checker-runtime-launcher-policy",
     "format_version": "0.2",
     "level": "specified-not-implemented",
     "path": "contracts/checker-runtime-payloads-v0.1/launcher-policy.jcs",
-    "policy_digest": "sha256:c55dbf8f6a2b0f265273d015cd89941aca2af1c0994bd44826a96aadb73750eb",
-    "raw_sha256": "sha256:d465cb693215e67ba3c756df171d95c6fad60dbe9ce6681a0cadab46bf115567"
+    "policy_digest": "sha256:00a6edcf290a0752403c9b06cb2438bdb95aa90880f0740f684ea7165ca84a9b",
+    "raw_sha256": "sha256:82f3dc313049ce7cfe3daccd9681c628471d7beadaf3b475f96e00d96bbf8527"
   },
   "records": [
     {

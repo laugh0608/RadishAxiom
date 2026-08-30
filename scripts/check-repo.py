@@ -86,6 +86,7 @@ REQUIRED_FILES = (
     "docs/adr/0011-checker-runtime-launcher-installation-and-activation.md",
     "docs/adr/0012-product-checker-runtime-host-and-persistence-interface.md",
     "docs/benchmarks/keyed-finite-table-corpus-v0.md",
+    "docs/checker-runtime-rust-first-slice-review.md",
     "docs/experiments/agent-representation-preregistration-v0.md",
     "docs/governance/agent-collaboration.md",
     "docs/governance/repository-governance.md",

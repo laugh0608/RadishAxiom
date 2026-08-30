@@ -26,7 +26,7 @@
     {
       "name": "execution-profile-v0.1",
       "path": "contracts/execution-profiles-v0.1/manifest.jcs",
-      "raw_sha256": "sha256:f291e79b25723fad82d8a1e9e9e706ab74d40c6cac812333389519f239c6249e"
+      "raw_sha256": "sha256:ac2044def383833b68b4ce10c8c7d8e23c23429c3e77dbc0ec0abfe10f6a6aa2"
     },
     {
       "name": "independent-check-v0.1",
@@ -101,7 +101,7 @@
   "implementation": {
     "checker_boundary": "exact-digest-offline-subprocess-only-no-source-or-parser-reuse",
     "component": "main-repository-internal-product-runtime",
-    "dependency_status": "not-proposed-or-authorized",
+    "dependency_status": "reviewed-zero-third-party-not-authorized",
     "edition": "2024",
     "language": "python",
     "network_capability": "absent-from-installer-launcher-core",
@@ -177,7 +177,7 @@
     "execution_profile": {
       "id": "keyed-finite-table-independent-check-v0.1",
       "path": "contracts/execution-profiles-v0.1/manifest.jcs",
-      "raw_sha256": "sha256:f291e79b25723fad82d8a1e9e9e706ab74d40c6cac812333389519f239c6249e"
+      "raw_sha256": "sha256:ac2044def383833b68b4ce10c8c7d8e23c23429c3e77dbc0ec0abfe10f6a6aa2"
     },
     "identity_revalidation": "before-and-after-every-spawn",
     "network": "forbidden",
@@ -211,7 +211,7 @@
     "root_discovery": "never-environment-cwd-repository-or-user-input",
     "slot_identity": "target-and-distribution-raw-sha256"
   },
-  "policy_digest": "sha256:763e70360c5958c66d7d6483ff5f494097aec6d802aa94e77231beafd3ac0e48",
+  "policy_digest": "sha256:202276e08ecc69840698b3c6d95061d346c4f34dcfb7a1c24b38177df118e371",
   "runtime_companion": {
     "current_status": "not-materialized-by-product-launcher",
     "format": "axiom-independent-check-result",

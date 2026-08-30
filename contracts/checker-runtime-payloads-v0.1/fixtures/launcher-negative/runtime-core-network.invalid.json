@@ -26,7 +26,7 @@
     {
       "name": "execution-profile-v0.1",
       "path": "contracts/execution-profiles-v0.1/manifest.jcs",
-      "raw_sha256": "sha256:f291e79b25723fad82d8a1e9e9e706ab74d40c6cac812333389519f239c6249e"
+      "raw_sha256": "sha256:ac2044def383833b68b4ce10c8c7d8e23c23429c3e77dbc0ec0abfe10f6a6aa2"
     },
     {
       "name": "independent-check-v0.1",
@@ -101,7 +101,7 @@
   "implementation": {
     "checker_boundary": "exact-digest-offline-subprocess-only-no-source-or-parser-reuse",
     "component": "main-repository-internal-product-runtime",
-    "dependency_status": "not-proposed-or-authorized",
+    "dependency_status": "reviewed-zero-third-party-not-authorized",
     "edition": "2024",
     "language": "rust",
     "network_capability": "provider-download-enabled",
@@ -177,7 +177,7 @@
     "execution_profile": {
       "id": "keyed-finite-table-independent-check-v0.1",
       "path": "contracts/execution-profiles-v0.1/manifest.jcs",
-      "raw_sha256": "sha256:f291e79b25723fad82d8a1e9e9e706ab74d40c6cac812333389519f239c6249e"
+      "raw_sha256": "sha256:ac2044def383833b68b4ce10c8c7d8e23c23429c3e77dbc0ec0abfe10f6a6aa2"
     },
     "identity_revalidation": "before-and-after-every-spawn",
     "network": "forbidden",
@@ -211,7 +211,7 @@
     "root_discovery": "never-environment-cwd-repository-or-user-input",
     "slot_identity": "target-and-distribution-raw-sha256"
   },
-  "policy_digest": "sha256:c4a14e2de2a366a01cd61aa59559bf64927723edc6e090ab311e74290655f98b",
+  "policy_digest": "sha256:c5d2af5335be495ec799946af6fe7c4309caeb9d919e8773260eb7eff7788410",
   "runtime_companion": {
     "current_status": "not-materialized-by-product-launcher",
     "format": "axiom-independent-check-result",

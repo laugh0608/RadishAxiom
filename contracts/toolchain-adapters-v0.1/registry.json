@@ -145,8 +145,8 @@
       "tool": "rust-toolchain"
     }
   ],
-  "registry_digest": "sha256:9bd23e416810cfeaa4e61d70e2ddc3bcba976371785d063e07f9cf26e30833ea",
-  "review_date": "2026-08-23",
+  "registry_digest": "sha256:c8e6f4c8cfd8b4dfe8e95b5785ec9b3ce67f0c17d4c7be01a5e269746f2dab26",
+  "review_date": "2026-08-30",
   "sources": [
     {
       "id": "cvc5-copying-1.3.4",
@@ -221,7 +221,9 @@
       "publisher": "Rust project",
       "reviewed_claims": [
         "publisher-checksum-endpoint-pattern",
-        "release-version"
+        "release-version",
+        "selected-artifact-publisher-recorded-sha256",
+        "source-archive"
       ],
       "url": "https://static.rust-lang.org/dist/2026-07-16/index.html"
     },
@@ -641,9 +643,9 @@
           "acceptance": "not-accepted",
           "archive_inspection": "not-performed",
           "digest": {
-            "kind": "pending-publisher-capture",
-            "reason": "checksum value was not captured from authoritative metadata",
-            "source_url": "https://static.rust-lang.org/dist/rust-1.97.1-aarch64-apple-darwin.tar.xz.sha256"
+            "kind": "publisher-recorded",
+            "sha256": "c9748cc86107734a2a024069908a895de7caa2d37062fb641eef9f756938ace2",
+            "source": "rust-dist-1.97.1"
           },
           "filename": "rust-1.97.1-aarch64-apple-darwin.tar.xz",
           "payload_verification": "not-downloaded",
@@ -654,9 +656,9 @@
           "acceptance": "not-accepted",
           "archive_inspection": "not-performed",
           "digest": {
-            "kind": "pending-publisher-capture",
-            "reason": "checksum value was not captured from authoritative metadata",
-            "source_url": "https://static.rust-lang.org/dist/rustc-1.97.1-src.tar.xz.sha256"
+            "kind": "publisher-recorded",
+            "sha256": "0ed06fdaffd4722a7702e0b4eebfafc897ab8f513e8e1b247cdd7e5c6df6ded2",
+            "source": "rust-dist-1.97.1"
           },
           "filename": "rustc-1.97.1-src.tar.xz",
           "payload_verification": "not-downloaded",
@@ -708,7 +710,7 @@
         "review_status": "not-accepted",
         "source": "rust-license"
       },
-      "provenance_status": "release-version-reviewed-checksums-pending-capture",
+      "provenance_status": "release-version-reviewed-selected-checksums-recorded",
       "role": "production-toolchain",
       "version": "1.97.1"
     }
