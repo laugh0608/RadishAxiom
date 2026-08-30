@@ -992,6 +992,9 @@
                     "enabled": {
                       "type": "boolean"
                     },
+                    "enabled_at": {
+                      "type": "string"
+                    },
                     "endpoint": {
                       "type": "string"
                     },
@@ -1009,6 +1012,7 @@
                     "api_version",
                     "checked_at",
                     "enabled",
+                    "enabled_at",
                     "endpoint",
                     "enforced_by_owner",
                     "status",

@@ -142,11 +142,12 @@ CURRENT_DISTRIBUTION_PACKAGE = {
 }
 IMMUTABLE_RELEASES_OBSERVATION = {
     "api_version": "2026-03-10",
-    "checked_at": "2026-08-30T08:36:33Z",
-    "enabled": False,
+    "checked_at": "2026-08-30T08:43:30Z",
+    "enabled": True,
+    "enabled_at": "2026-08-30T08:43:23Z",
     "endpoint": "/repos/laugh0608/RadishAxiomChecker/immutable-releases",
     "enforced_by_owner": False,
-    "status": "verified-disabled",
+    "status": "verified-enabled",
     "viewer_permission": "ADMIN",
 }
 PLANNED_DURABLE_RELEASE = {
@@ -157,7 +158,7 @@ PLANNED_DURABLE_RELEASE = {
     },
     "draft": "required-not-materialized",
     "inventory": {
-        "checked_at": "2026-08-30T08:36:33Z",
+        "checked_at": "2026-08-30T08:44:13Z",
         "exact_tag": "absent",
         "releases": "empty",
         "tags": "empty",
@@ -217,7 +218,7 @@ STORAGE_POLICY = {
             "separate-publication-authorization",
             "stable-exact-fetch",
         ],
-        "status": "provider-selected-setting-verified-disabled-release-not-materialized",
+        "status": "provider-selected-setting-verified-enabled-release-not-materialized",
     },
     "candidate": {
         "activation_precondition": "workflow-file-present-on-default-branch",
@@ -311,7 +312,7 @@ STORAGE_POLICY = {
         "latest_alias_policy": "forbidden",
         "provider": "github-immutable-release-asset",
         "provider_attestation_role": "supplemental-provider-provenance-not-payload-acceptance",
-        "provider_selection_status": "selected-setting-verified-disabled-release-not-materialized",
+        "provider_selection_status": "selected-setting-verified-enabled-release-not-materialized",
         "repository_immutability": IMMUTABLE_RELEASES_OBSERVATION,
         "release_cardinality": "one-checker-source-version-target-per-release",
         "repository": "laugh0608/RadishAxiomChecker",
@@ -338,7 +339,7 @@ STORAGE_POLICY = {
             "release-attestation-verification",
             "repository-immutable-releases-enabled-before-draft",
         ],
-        "status": "blocked-repository-immutability-disabled-and-publication-authorization",
+        "status": "blocked-publication-authorization",
         "tag_template": "checker-payload/go0.1-dev/<goos>-<goarch>-<variant>/sha256-<checker-source-hex>",
         "next_release": PLANNED_DURABLE_RELEASE,
     },
@@ -538,13 +539,12 @@ def pending_record() -> dict[str, Any]:
                 "repository": "laugh0608/RadishAxiomChecker",
                 "repository_immutability": IMMUTABLE_RELEASES_OBSERVATION,
             },
-            "status": "distribution-package-accepted-provider-setting-disabled-release-not-materialized",
+            "status": "distribution-package-accepted-provider-setting-enabled-release-not-materialized",
         },
         "registration": {
             "reasons": [
                 "candidate-storage-is-temporary",
                 "durable-release-not-materialized",
-                "immutable-release-setting-disabled",
                 "launcher-isolation-not-implemented",
                 "separate-publication-authorization-required",
             ],

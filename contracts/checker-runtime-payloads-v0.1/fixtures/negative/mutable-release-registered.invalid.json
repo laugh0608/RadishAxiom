@@ -183,7 +183,7 @@
         },
         "draft": "required-not-materialized",
         "inventory": {
-          "checked_at": "2026-08-30T08:36:33Z",
+          "checked_at": "2026-08-30T08:44:13Z",
           "exact_tag": "absent",
           "releases": "empty",
           "tags": "empty"
@@ -206,25 +206,25 @@
       "repository": "laugh0608/RadishAxiomChecker",
       "repository_immutability": {
         "api_version": "2026-03-10",
-        "checked_at": "2026-08-30T08:36:33Z",
-        "enabled": false,
+        "checked_at": "2026-08-30T08:43:30Z",
+        "enabled": true,
+        "enabled_at": "2026-08-30T08:43:23Z",
         "endpoint": "/repos/laugh0608/RadishAxiomChecker/immutable-releases",
         "enforced_by_owner": false,
-        "status": "verified-disabled",
+        "status": "verified-enabled",
         "viewer_permission": "ADMIN"
       }
     },
-    "status": "distribution-package-accepted-provider-setting-disabled-release-not-materialized"
+    "status": "distribution-package-accepted-provider-setting-enabled-release-not-materialized"
   },
   "format": "radishaxiom-checker-runtime-payload-registration",
   "format_version": "0.1",
   "id": "checker-go0.1-dev-darwin-arm64-current-pending-2026-08-30",
-  "record_digest": "sha256:500cdd4353417f425d76c4594c69d470cdd6c5d01f7efa9feeb13e001fc67e73",
+  "record_digest": "sha256:e62ddddf97e2f204d5f6ec51b7408294f7815c95717a184584a2a219880062a2",
   "registration": {
     "reasons": [
       "candidate-storage-is-temporary",
       "durable-release-not-materialized",
-      "immutable-release-setting-disabled",
       "launcher-isolation-not-implemented",
       "separate-publication-authorization-required"
     ],
