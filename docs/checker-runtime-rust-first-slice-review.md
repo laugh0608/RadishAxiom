@@ -1,19 +1,19 @@
 # Checker runtime 首个 Rust 纵向切片审阅单
 
-状态：工具链 payload 与用户级安装已核对，workspace 与实现待推进
-审阅日期：2026-08-30
+状态：首个零第三方依赖 Rust 纵向切片已实现并通过本地门禁
+审阅日期：2026-08-31
 
 ## 目标与结论
 
-本审阅单把 [ADR 0004](adr/0004-raxc-production-implementation-language.md)、[ADR 0011](adr/0011-checker-runtime-launcher-installation-and-activation.md) 和 [ADR 0012](adr/0012-product-checker-runtime-host-and-persistence-interface.md) 冻结的边界压缩为首个可提交、可测试的原生 Rust 纵向切片。工具链 payload 的隔离下载、只读验收和用户级安装已经分别授权并完成；本单仍不自行授权创建 Cargo workspace、生成 lockfile、实现产品代码或激活 runtime。
+本审阅单把 [ADR 0004](adr/0004-raxc-production-implementation-language.md)、[ADR 0011](adr/0011-checker-runtime-launcher-installation-and-activation.md) 和 [ADR 0012](adr/0012-product-checker-runtime-host-and-persistence-interface.md) 冻结的边界压缩为首个可提交、可测试的原生 Rust 纵向切片。工具链 payload 的隔离下载、只读验收和用户级安装已经分别授权并完成；2026-08-31 获得实现授权后，workspace、Cargo 生成 lockfile 与本单限定的产品代码已经物化。本单仍不授权真实安装、payload 执行、runtime 激活或远程动作。
 
 结论如下：
 
-- 首个切片只创建一个内部 library crate `radishaxiom-checker-runtime`，不创建 `raxc` 空壳、公开 CLI、provider client、平台 facade 或第二套配置入口；
-- 首个切片的 production dependencies 与 dev-dependencies 都保持为空，只依赖 Rust standard library；
-- 首个真实路径只闭合 canonical launcher policy / registered-inactive record 的严格读取、身份重算、精确 target selection 和 qualification / product 两种选择语义；不在同一提交混入 distribution 下载、USTAR 安装、进程执行或系统隔离；
-- 精确 Rust `1.97.1` 已选择 rustup `minimal` + 显式 `rustfmt` / `clippy` 路径；macOS arm64 的五个实际 component 与 source 已分别通过 publisher 摘要和只读归档验收，standalone archive 保持未接受；同一精确用户级工具链已安装并核对，workspace 写入尚未发生；
-- 本机默认 Rust 仍为 `1.96.0`，只能用于环境观察；后续 workspace 必须由仓库 `rust-toolchain.toml` 固定并使用已安装的 `1.97.1` 生成 `Cargo.lock`、格式化结果、静态分析结果和测试证据。
+- 首个切片已经只创建一个内部 library crate `radishaxiom-checker-runtime`，没有创建 `raxc` 空壳、公开 CLI、provider client、平台 facade 或第二套配置入口；
+- production dependencies 与 dev-dependencies 均为空，只依赖 Rust standard library；crate 根使用 `#![forbid(unsafe_code)]`；
+- 首个真实路径已经闭合 canonical launcher policy / registered-inactive record 的严格读取、完整闭合对象形状、域分离身份重算、typed native target，以及 qualification / product 两种 registration selection 语义；没有混入 distribution 下载、USTAR 安装、进程执行或系统隔离；
+- 精确 Rust `1.97.1` 已选择 rustup `minimal` + 显式 `rustfmt` / `clippy` 路径；macOS arm64 的五个实际 component 与 source 已分别通过 publisher 摘要和只读归档验收，standalone archive 保持未接受；同一精确用户级工具链已安装并核对，仓库已写入 toolchain pin；
+- 本机默认 Rust 与当前任务进程的 `RUSTUP_TOOLCHAIN` 覆盖仍为 `1.96.0`，只能用于环境观察；本切片的 lockfile 生成、格式化、静态分析、metadata、dependency tree 和测试均显式使用 `+1.97.1-aarch64-apple-darwin`，没有把 `1.96.0` 结果计入验收。
 
 ## 工具链来源审阅
 
@@ -32,7 +32,7 @@ Rust 项目于 2026-07-16 发布 `1.97.1`，该 patch 修复了 `1.97.0` 随带 
 | `rust-1.97.1-aarch64-apple-darwin.tar.xz` | `c9748cc86107734a2a024069908a895de7caa2d37062fb641eef9f756938ace2` | standalone；`not-downloaded` / `not-accepted` |
 | `channel-rust-1.97.1.toml` | `03569b1886ceb5c05276b50c8431ab111de944cd6140fe1fa7d821dd8e0f29cf` | component URL / 摘要 / profile 的 publisher 元数据绑定 |
 
-后续仓库 pin 为 `rust-toolchain.toml` 中精确 `channel = "1.97.1"`、`profile = "minimal"`，并显式加入 `rustfmt` 与 `clippy`，以同时形成编译、格式化和静态分析门禁。[rustup profile](https://rust-lang.github.io/rustup/concepts/profiles.html) 说明 minimal profile 只保证 `rustc`、`rust-std` 与 `cargo`；附加组件因此必须显式列出。[rustup override](https://rust-lang.github.io/rustup/overrides.html) 也说明 toolchain file 会让 Cargo 以固定 channel 运行。
+仓库 pin 已在 `rust-toolchain.toml` 中精确使用 `channel = "1.97.1"`、`profile = "minimal"`，并显式加入 `rustfmt` 与 `clippy`，以同时形成编译、格式化和静态分析门禁。[rustup profile](https://rust-lang.github.io/rustup/concepts/profiles.html) 说明 minimal profile 只保证 `rustc`、`rust-std` 与 `cargo`；附加组件因此必须显式列出。[rustup override](https://rust-lang.github.io/rustup/overrides.html) 也说明 toolchain file 会让 Cargo 以固定 channel 运行。调用环境若显式设置 `RUSTUP_TOOLCHAIN`，该环境变量会覆盖仓库文件；正式门禁必须读取实际 `rustc` / `cargo` 身份，不能只从文件存在推断工具版本。
 
 供应链路径已经选择 rustup component，并在 Toolchain Registry 中把 channel manifest、target、profile、显式组件和五个精确归档分别登记。只读验收没有执行归档内程序：component 都没有 link / hardlink / 特殊文件；source 的 148 个 symlink 均解析在同一顶层内，4,613 份 `Cargo.toml`、1,977 份 `Cargo.lock` 与两套许可证元数据只作为库存记录。Rust 主项目仍记录为 `MIT OR Apache-2.0`，但 source 中的 LLVM exception、Unicode、OFL、GPL / GCC exception 等表达式不被错误归并为双许可证，也不构成任一具体分发的法律结论。
 
@@ -48,7 +48,7 @@ standalone archive 继续保持独立的 `not-downloaded` / `not-accepted` 候�
 - `rustc-aarch64-apple-darwin`；
 - `rustfmt-aarch64-apple-darwin`。
 
-实际工具身份为 `rustc 1.97.1 (8bab26f4f 2026-07-14)`、`cargo 1.97.1 (c980f4866 2026-06-30)`、`rustfmt 1.9.0-stable` 和 `clippy 0.1.97`。下载恢复期间只使用官方 `2026-07-16` dist URL 的连续 Range；五个组件整包 SHA-256 全部重新匹配上表及版本化 acceptance record 后才进入 rustup 安装。安装后默认工具链仍为 `1.96.0-aarch64-apple-darwin`，仓库没有 override；中断残片和隔离临时目录均已删除。
+实际工具身份为 `rustc 1.97.1 (8bab26f4f 2026-07-14)`、`cargo 1.97.1 (c980f4866 2026-06-30)`、`rustfmt 1.9.0-stable` 和 `clippy 0.1.97`。下载恢复期间只使用官方 `2026-07-16` dist URL 的连续 Range；五个组件整包 SHA-256 全部重新匹配上表及版本化 acceptance record 后才进入 rustup 安装。安装后默认工具链仍为 `1.96.0-aarch64-apple-darwin`；本切片随后新增仓库 toolchain file，但没有修改用户默认工具链、shell 或系统配置。中断残片和隔离临时目录均已删除。
 
 这是一台开发主机上的用户级可用性观察，不是可移植安装 receipt、CI / 六平台证据或 checker runtime 安装。Toolchain Registry 的 `installation = not-authorized` 继续表达 payload acceptance 批次本身不授予安装权限，不作为本机 rustup inventory；当前可变主机状态只在本审阅单和[当前状态](status/current.md)中记录。
 
@@ -76,7 +76,7 @@ standalone archive 继续保持独立的 `not-downloaded` / `not-accepted` 候�
 
 ## 最小 workspace 与 crate 边界
 
-首次获准写入时只创建以下结构：
+本切片获准后只创建以下结构：
 
 ```text
 Cargo.toml
@@ -107,7 +107,7 @@ crates/checker-runtime/
 
 ## 验证门禁
 
-在 workspace 获准写入并由仓库 toolchain file 选择精确工具链后，首次实现至少通过：
+首次实现的门禁为：
 
 - `cargo fmt --all --check`；
 - `cargo clippy --workspace --all-targets --all-features -- -D warnings`；
@@ -119,8 +119,10 @@ crates/checker-runtime/
 
 测试至少覆盖 policy / record 正例、duplicate / unknown / noncanonical JSON、摘要错配、unknown target、Rosetta / architecture mismatch、active-only 拒绝 inactive、qualification 接受精确 inactive、重复 target 和 ambiguous selection 失败关闭，以及上述 SHA-256 向量。通过这些动态和静态门禁只说明实现满足当前规范与测试，不升级为形式证明或 runtime activation。
 
+2026-08-31 的实际结果为：精确 `rustc 1.97.1` / `cargo 1.97.1` 下 `cargo fmt --all --check`、`clippy -D warnings`、13 项 Rust test、locked / offline metadata 与 dependency tree 全部通过；metadata 只有唯一 library package、Rust 2024、resolver `3`、零 dependency / feature。既有 Python launcher oracle 19 项测试、checker runtime payload 34 个生成文件和仓库级 935 文件门禁同时通过。真实 policy / record 的既有 Python 域摘要作为跨实现 fixture 被 Rust 独立重算匹配；这些结果仍不是形式证明、安装证据、runtime companion、跨平台证据或 active runtime。
+
 ## 下一次授权边界
 
-用户级工具链安装与身份核对已经完成。下一连续动作是按本审阅单所列结构创建 workspace / toolchain file，由精确 `1.97.1` 生成 lockfile，并实施首个零第三方依赖切片：safe SHA-256、闭合 canonical JSON、policy / registered-inactive identity 与 qualification / product selection。该切片可通过回退对应 workspace 提交撤销。
+首个 workspace / identity / selection 切片已经完成。下一连续实现应在重新审阅后，从严格 outer / inner archive inventory、installation receipt 与 store transaction 中选择一个仍可独立验收的真实切片；不得把它们与 result consumer、subprocess、平台资源隔离或真实安装一次性混合。若下一切片需要第三方 crate、build script、proc macro、native code、网络能力或新的平台适配，必须先重新完成依赖与授权审阅。
 
-下一切片仍不包含真实 checker distribution 下载 / 安装、checker payload 执行、store / USTAR / receipt、subprocess / 系统隔离、系统配置修改、远程写入、push 或 `registered-inactive -> active`。若实现需要任何第三方 crate、build script、proc macro、native code 或网络能力，必须停止并重新完成依赖审阅与授权，不能扩大本次零依赖结论。
+后续实现仍不自行授权真实 checker distribution 下载 / 安装、checker payload 执行、系统配置修改、远程写入、push 或 `registered-inactive -> active`。当前 policy 继续保持 `specified-not-implemented`、active runtime 继续为 0：本切片只实现其中的 registry input、身份和 registration selection 前段，不能冒充完整 installer / launcher。

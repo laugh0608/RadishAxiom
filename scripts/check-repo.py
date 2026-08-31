@@ -32,9 +32,18 @@ REQUIRED_FILES = (
     "CLAUDE.md",
     "CODE_OF_CONDUCT.md",
     "CONTRIBUTING.md",
+    "Cargo.lock",
+    "Cargo.toml",
     "LICENSE",
     "README.md",
     "SECURITY.md",
+    "crates/checker-runtime/Cargo.toml",
+    "crates/checker-runtime/src/canonical.rs",
+    "crates/checker-runtime/src/lib.rs",
+    "crates/checker-runtime/src/policy.rs",
+    "crates/checker-runtime/src/registration.rs",
+    "crates/checker-runtime/src/selection.rs",
+    "crates/checker-runtime/src/sha256.rs",
     "benchmarks/keyed-finite-table-v0.1/README.md",
     "benchmarks/keyed-finite-table-v0.1/corpus.json",
     "contracts/README.md",
@@ -127,6 +136,7 @@ REQUIRED_FILES = (
     "scripts/generate-toolchain-adapter-identities.py",
     "scripts/generate-toolchain-payload-acceptance.py",
     "scripts/inspect-toolchain-tar.py",
+    "rust-toolchain.toml",
 )
 
 TEXT_SUFFIXES = {
