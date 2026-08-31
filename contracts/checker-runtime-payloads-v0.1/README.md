@@ -47,6 +47,8 @@ active runtime 的 durable provider 已选择 `laugh0608/RadishAxiomChecker` 的
 
 该核心不联网，不下载或执行 payload，不解析真实 distribution 的两层业务 manifest，也不取代 Independent Check Contract 的完整 companion parser、平台 sandbox / memory enforcement、生产安装协调器或 launcher。它只把策略决策和事务不变量变成可执行回归模型；因此 `launcher-policy.jcs.level` 继续是 `specified-not-implemented`，不能据此推进安装或 active 状态。
 
+主仓 Rust 产品组件现已实现同一确定性 USTAR header profile 与 extraction-free 闭合清单原语：严格核对内层四成员和外层六成员的路径、普通文件类型、uid / gid / mtime / user / group / device 字段、checksum、mode、长度、SHA-256、顺序、padding 与精确双零 trailer，并直接借用成员字节供下一层复核。该切片尚不解析 retention / distribution manifest，不写 staging 或 slot，也不说明真实 Release asset 已下载或安装；完整 policy 状态和 active count 因此不变。
+
 定向复核：
 
 ```bash

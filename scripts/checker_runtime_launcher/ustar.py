@@ -85,6 +85,50 @@ def _header_checksum(header: bytes) -> int:
     return sum(header[:148]) + (8 * ord(" ")) + sum(header[156:])
 
 
+def _canonical_octal(value: int, width: int, label: str) -> bytes:
+    digits = f"{value:o}".encode("ascii")
+    if len(digits) >= width:
+        raise ArchiveValidationError("noncanonical-header", label)
+    return (b"0" * (width - 1 - len(digits))) + digits + b"\0"
+
+
+def _canonical_name_fields(name: str) -> tuple[str, str]:
+    if len(name) <= 100:
+        return "", name
+    split_at = name.rfind("/", 0, min(len(name), 156))
+    if split_at <= 0:
+        raise ArchiveValidationError("nonportable-member-name", name)
+    prefix = name[:split_at]
+    suffix = name[split_at + 1 :]
+    if len(prefix) > 155 or not suffix or len(suffix) > 100:
+        raise ArchiveValidationError("nonportable-member-name", name)
+    return prefix, suffix
+
+
+def _canonical_header(name: str, mode: int, size: int) -> bytes:
+    prefix, suffix = _canonical_name_fields(name)
+    header = bytearray(BLOCK_SIZE)
+    header[: len(suffix)] = suffix.encode("ascii")
+    header[100:108] = _canonical_octal(mode, 8, "mode")
+    header[108:116] = _canonical_octal(0, 8, "uid")
+    header[116:124] = _canonical_octal(0, 8, "gid")
+    header[124:136] = _canonical_octal(size, 12, "size")
+    header[136:148] = _canonical_octal(0, 12, "mtime")
+    header[148:156] = b"        "
+    header[156:157] = b"0"
+    header[257:263] = b"ustar\0"
+    header[263:265] = b"00"
+    header[329:337] = _canonical_octal(0, 8, "device-major")
+    header[337:345] = _canonical_octal(0, 8, "device-minor")
+    header[345 : 345 + len(prefix)] = prefix.encode("ascii")
+    checksum = sum(header)
+    encoded_checksum = f"{checksum:06o}".encode("ascii") + b"\0 "
+    if len(encoded_checksum) != 8:
+        raise ArchiveValidationError("noncanonical-header", "checksum")
+    header[148:156] = encoded_checksum
+    return bytes(header)
+
+
 def _parse_header(header: bytes) -> tuple[str, int, int]:
     if len(header) != BLOCK_SIZE:
         raise ArchiveValidationError("truncated-header")
@@ -104,7 +148,7 @@ def _parse_header(header: bytes) -> tuple[str, int, int]:
         raise ArchiveValidationError("fifo")
     if typeflag in {b"x", b"g"}:
         raise ArchiveValidationError("pax-or-xattr")
-    if typeflag not in {b"0", b"\0"}:
+    if typeflag != b"0":
         raise ArchiveValidationError("unknown-member-or-mode")
     if any(header[157:257]):
         raise ArchiveValidationError("hard-link")
@@ -116,6 +160,8 @@ def _parse_header(header: bytes) -> tuple[str, int, int]:
     _validate_member_name(name)
     mode = _octal_field(header[100:108], "mode")
     size = _octal_field(header[124:136], "size")
+    if header != _canonical_header(name, mode, size):
+        raise ArchiveValidationError("noncanonical-header", name)
     return name, mode, size
 
 

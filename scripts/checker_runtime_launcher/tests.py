@@ -145,6 +145,8 @@ def _ustar(
         header[156:157] = typeflag
         header[257:263] = b"ustar\0"
         header[263:265] = b"00"
+        header[329:337] = _octal(0, 8)
+        header[337:345] = _octal(0, 8)
         checksum = sum(header)
         header[148:156] = f"{checksum:06o}".encode("ascii") + b"\0 "
         archive.extend(header)
@@ -329,6 +331,7 @@ class ArchiveTests(unittest.TestCase):
             ([('payload/link', b'', 0o755, b"2")], "symbolic-link"),
             ([('payload/hard', b'', 0o755, b"1")], "hard-link"),
             ([('payload/pax', b'', 0o644, b"x")], "pax-or-xattr"),
+            ([('payload/null-type', b'', 0o644, b"\0")], "unknown-member-or-mode"),
         )
         for entries, code in cases:
             with self.subTest(code=code):
@@ -355,6 +358,14 @@ class ArchiveTests(unittest.TestCase):
             with self.subTest(code=code):
                 with self.assertRaisesRegex(ArchiveValidationError, code):
                     validate_ustar(archive, expected)
+
+    def test_noncanonical_header_profile_is_rejected(self) -> None:
+        archive = bytearray(_ustar(self.entries))
+        archive[108] = ord("1")
+        archive[148:156] = b"        "
+        archive[148:156] = f"{sum(archive[:512]):06o}".encode("ascii") + b"\0 "
+        with self.assertRaisesRegex(ArchiveValidationError, "noncanonical-header"):
+            validate_ustar(bytes(archive), self.expected)
 
 
 class InstallationTests(unittest.TestCase):

@@ -126,3 +126,5 @@ crates/checker-runtime/
 首个 workspace / identity / selection 切片已经完成。下一连续实现应在重新审阅后，从严格 outer / inner archive inventory、installation receipt 与 store transaction 中选择一个仍可独立验收的真实切片；不得把它们与 result consumer、subprocess、平台资源隔离或真实安装一次性混合。若下一切片需要第三方 crate、build script、proc macro、native code、网络能力或新的平台适配，必须先重新完成依赖与授权审阅。
 
 后续实现仍不自行授权真实 checker distribution 下载 / 安装、checker payload 执行、系统配置修改、远程写入、push 或 `registered-inactive -> active`。当前 policy 继续保持 `specified-not-implemented`、active runtime 继续为 0：本切片只实现其中的 registry input、身份和 registration selection 前段，不能冒充完整 installer / launcher。
+
+后续状态：同日已按该停止线完成下一项[严格 USTAR 切片](checker-runtime-rust-ustar-slice-review.md)；receipt、store、result consumer、subprocess、真实安装与激活仍未由本单授权或实现。
