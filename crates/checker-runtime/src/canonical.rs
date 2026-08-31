@@ -86,12 +86,16 @@ pub(crate) fn domain_digest(
             .cloned()
             .collect(),
     );
-    let canonical = canonical_bytes(&body);
+    Ok(domain_digest_value(domain, &body))
+}
+
+pub(crate) fn domain_digest_value(domain: &str, value: &Value) -> String {
+    let canonical = canonical_bytes(value);
     let mut input = Vec::with_capacity(domain.len() + 1 + canonical.len());
     input.extend_from_slice(domain.as_bytes());
     input.push(0);
     input.extend_from_slice(&canonical);
-    Ok(format!("sha256:{}", sha256::digest_hex(&input)))
+    format!("sha256:{}", sha256::digest_hex(&input))
 }
 
 pub(crate) fn validate_shape(value: &Value, spec: &ShapeSpec<'_>) -> Result<(), DocumentError> {
@@ -122,6 +126,13 @@ pub(crate) fn as_string<'a>(value: &'a Value, path: &str) -> Result<&'a str, Doc
     }
 }
 
+pub(crate) fn as_bool(value: &Value, path: &str) -> Result<bool, DocumentError> {
+    match value {
+        Value::Bool(value) => Ok(*value),
+        _ => Err(DocumentError::new("invalid-boolean", path)),
+    }
+}
+
 pub(crate) fn member<'a>(
     object: &'a [(String, Value)],
     name: &str,
@@ -139,6 +150,14 @@ pub(crate) fn string_member<'a>(
     path: &str,
 ) -> Result<&'a str, DocumentError> {
     as_string(member(object, name, path)?, &format!("{path}.{name}"))
+}
+
+pub(crate) fn bool_member(
+    object: &[(String, Value)],
+    name: &str,
+    path: &str,
+) -> Result<bool, DocumentError> {
+    as_bool(member(object, name, path)?, &format!("{path}.{name}"))
 }
 
 pub(crate) fn validate_digest(text: &str, path: &str) -> Result<(), DocumentError> {

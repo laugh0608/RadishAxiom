@@ -35,6 +35,7 @@
 - [ADR 0012：产品侧 checker runtime 宿主与持久化接口](adr/0012-product-checker-runtime-host-and-persistence-interface.md)：选择主仓 Rust 生产图中的内部 runtime 组件，冻结无网络安装核心、版本化 store 能力、单一 Rust result consumer 和独立 checker parser 隔离边界。
 - [Checker runtime 首个 Rust 纵向切片审阅单](checker-runtime-rust-first-slice-review.md)：核对精确 `1.97.1` 来源、standalone / rustup component 身份缝隙、零第三方依赖选择，并记录首个 workspace / identity / target selection 实现、验证门禁与下一次授权停止线。
 - [Checker runtime Rust 严格 USTAR 切片审阅单](checker-runtime-rust-ustar-slice-review.md)：记录 extraction-free 内外层归档清单实现、确定性 header profile、Python oracle 漂移收口、验证矩阵与安装停止线。
+- [Checker runtime Rust installation receipt 切片审阅单](checker-runtime-rust-receipt-slice-review.md)：记录纯内存 canonical receipt 构造 / 重读、provider / registration / slot 身份绑定、跨实现黄金字节与 store 停止线。
 - [有键有限表基准语料库 v0.1](benchmarks/keyed-finite-table-corpus-v0.md)：四个基准的生成目录、任务身份、合成数据、正确 / 错误候选和 Expected Evidence 断言。
 - [Agent 表示与验证反馈对比实验预注册 v0.1](experiments/agent-representation-preregistration-v0.md)：三种表示、两种模型条件、配对反馈、指标、阈值、预算和停止规则。
 
@@ -45,7 +46,7 @@
 - [Execution Profile Contract v0.1](../contracts/execution-profiles-v0.1/README.md)：cvc5 / Node / Go checker 的允许参数、内部与外层资源限制、结果形成边界和 certificate 空能力停止线。
 - [Toolchain & Adapter Identity Registry v0.1](../contracts/toolchain-adapters-v0.1/README.md)：Rust / Go / cvc5 / Node 的精确版本、六平台候选制品、官方摘要来源、逐制品供应链状态和执行 profile 身份。
 - [Toolchain Payload Acceptance v0.1](../contracts/toolchain-payload-acceptance-v0.1/README.md)：Go `go1.26.7` macOS arm64 host/source 与 Rust `1.97.1` rustup component/source 的摘要重算、只读 archive 观察、依赖 / 许可证库存、签名停止线与局部 acceptance。
-- [Checker Runtime Payload Registration v0.1](../contracts/checker-runtime-payloads-v0.1/README.md)：闭合 checker source、target、artifact / provenance / acceptance、retention / fetch / 重新验证，以及 launcher / 安装 / qualification / 激活策略；当前 Rust 已实现 registry identity / target selection 与严格内外层 USTAR 清单，完整 launcher policy 仍未实现，active runtime 为 0。
+- [Checker Runtime Payload Registration v0.1](../contracts/checker-runtime-payloads-v0.1/README.md)：闭合 checker source、target、artifact / provenance / acceptance、retention / fetch / 重新验证，以及 launcher / 安装 / qualification / 激活策略；当前 Rust 已实现 registry identity / target selection、严格内外层 USTAR 清单与纯内存 installation receipt，完整 launcher policy 仍未实现，active runtime 为 0。
 - [Pipeline Artifact Contract v0.1](../contracts/pipeline-artifacts-v0.1/README.md)：obligation set、host data、SMT query、target module 与 pipeline receipt 的首批规范字节、身份、gate / cache / partial failure 契约。
 - [Implementation Readiness Contract v0.1](../contracts/implementation-readiness-v0.1/README.md)：20 个 benchmark、16 个 CHK-* 与 pipeline / readiness 路径的统一实现入口矩阵、来源覆盖和负向拒绝契约。
 - [Keyed Finite Table Checker Bundle Contract v0.1](../contracts/keyed-finite-table-checker-bundles-v0.1/README.md)：28 个 readiness 场景的完整离线 bundle、Axiom Evidence、receipt、独立预期结果、进程失败边界与负例摘要链。
@@ -55,5 +56,5 @@
 实现语言、验证后端、目标执行、生产管线和独立 checker 的架构决策已经确定，首批交换格式、身份契约、执行 profile 与 28 个离线 bundle 已进入仓库门禁。独立 checker 已在外部隔离仓库完成从严格 request / bundle、`checker.source`、锁定 Axiom IR / Evidence 检查，到有限执行、反例重放、output / proof support 审计、production conclusion 重算、四态聚合、canonical codec、累计资源、唯一产品 CLI，以及 payload 确定性候选归档的闭合路径；Checker Runtime Payload Registration v0.1 进一步固定 source → artifact / provenance / acceptance / candidate archive 及 retention / fetch / 重新验证边界，但当前 active runtime 仍为 0。
 
 - 当前阶段、精确实现范围、下一事项与停止线统一以[当前状态](status/current.md)为准，不在文档索引复制易漂移的源码摘要或提交身份；
-- 当前 `checker.source = sha256:401158...e3999` 的自包含 distribution 已完成精确构建、payload / distribution acceptance、不可变发布、发布后独立回读与 `registered-inactive` 登记；launcher policy、产品实现宿主与持久化接口均已冻结，依赖无关的一致性核心已形成；Rust `1.97.1` 的 rustup component/source payload 验收、当前用户级五组件安装，以及零第三方依赖的单 crate workspace、strict policy / record identity、target selection 与 extraction-free USTAR 清单切片均已完成，真实 checker 安装与激活仍分别授权；
+- 当前 `checker.source = sha256:401158...e3999` 的自包含 distribution 已完成精确构建、payload / distribution acceptance、不可变发布、发布后独立回读与 `registered-inactive` 登记；launcher policy、产品实现宿主与持久化接口均已冻结，依赖无关的一致性核心已形成；Rust `1.97.1` 的 rustup component/source payload 验收、当前用户级五组件安装，以及零第三方依赖的单 crate workspace、strict policy / record identity、target selection、extraction-free USTAR 清单与纯内存 installation receipt 切片均已完成，真实 checker 安装与激活仍分别授权；
 - Go `go1.26.7` macOS arm64 host/source 与 Rust `1.97.1` macOS arm64 rustup component/source 已完成局部 payload 验收；Rust standalone、cvc5、Node 与其余平台仍须按真实实现依赖顺位完成摘要、签名 / 来源、包内依赖与许可证验收。

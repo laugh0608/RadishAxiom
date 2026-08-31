@@ -3,6 +3,7 @@
 mod archive;
 mod canonical;
 mod policy;
+mod receipt;
 mod registration;
 mod selection;
 mod sha256;
@@ -13,9 +14,13 @@ pub use archive::{
 };
 pub use canonical::DocumentError;
 pub use policy::{LauncherPolicy, parse_launcher_policy};
+pub use receipt::{
+    InstallationReceipt, InstallationVerifierIdentity, build_installation_receipt,
+    parse_installation_receipt,
+};
 pub use registration::{
-    ArtifactIdentity, CheckerIdentity, RegistrationRecord, RegistrationStatus,
-    parse_registration_record,
+    ArtifactIdentity, CheckerIdentity, ProviderReleaseIdentity, RegistrationRecord,
+    RegistrationStatus, parse_registration_record,
 };
 pub use selection::{
     NativeHostIdentity, NativeProcessMode, NativeTarget, SelectionError, SelectionPurpose,

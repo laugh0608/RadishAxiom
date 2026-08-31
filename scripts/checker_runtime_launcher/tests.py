@@ -393,6 +393,23 @@ class InstallationTests(unittest.TestCase):
         with self.assertRaisesRegex(LauncherValidationError, "noncanonical-json"):
             validate_installation_receipt(receipt.canonical + b"\n", self.policy, self.record)
 
+    def test_real_record_receipt_matches_rust_golden(self) -> None:
+        receipt = build_installation_receipt(
+            self.policy,
+            self.original_record,
+            installed_at="2026-08-30T10:00:00Z",
+            verifier=VERIFIER,
+        )
+        self.assertEqual(len(receipt.canonical), 1_797)
+        self.assertEqual(
+            raw_digest(receipt.canonical),
+            "sha256:54c1dad27b5f35efcc706a8599dd1b23798de9cda1ce313b48bbec798efe53c1",
+        )
+        self.assertEqual(
+            receipt.document_digest,
+            "sha256:7a53b34f39059e97363a87d33532ee265cf4faa3d438a22a709f25ee47170ac2",
+        )
+
     def test_atomic_publish_and_exact_reuse(self) -> None:
         receipt = self._receipt()
         with tempfile.TemporaryDirectory(prefix="radishaxiom-launcher-") as temporary:

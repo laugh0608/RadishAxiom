@@ -44,4 +44,4 @@ Rust 测试独立重建相同字节和摘要，并从外层借用 `checker-paylo
 
 精确 `+1.97.1-aarch64-apple-darwin` 下的格式、Clippy、locked / offline test、metadata 与 dependency tree 继续作为 Rust 门禁；Python launcher oracle、checker runtime payload 生成复核、仓库级检查与差异卫生继续作为跨实现和仓库门禁。通过这些测试只说明实现满足所测闭合边界，不构成形式证明或真实安装证据。
 
-下一连续实现应在 installation receipt 与 `checker-runtime-store-v0.1` transaction 中再选择一个可独立验收的切片。真实 immutable asset fetch / install、业务 manifest parser、result consumer、subprocess / isolation、qualification、激活、push 与远程状态仍分别验证、分别授权；本切片不扩大任何既有授权。
+后续状态：同日已按该停止线完成下一项[installation receipt 切片](checker-runtime-rust-receipt-slice-review.md)；`checker-runtime-store-v0.1` transaction、真实 immutable asset fetch / install、业务 manifest parser、result consumer、subprocess / isolation、qualification、激活、push 与远程状态仍分别验证、分别授权。

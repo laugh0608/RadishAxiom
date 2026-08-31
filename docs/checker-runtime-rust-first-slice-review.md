@@ -127,4 +127,4 @@ crates/checker-runtime/
 
 后续实现仍不自行授权真实 checker distribution 下载 / 安装、checker payload 执行、系统配置修改、远程写入、push 或 `registered-inactive -> active`。当前 policy 继续保持 `specified-not-implemented`、active runtime 继续为 0：本切片只实现其中的 registry input、身份和 registration selection 前段，不能冒充完整 installer / launcher。
 
-后续状态：同日已按该停止线完成下一项[严格 USTAR 切片](checker-runtime-rust-ustar-slice-review.md)；receipt、store、result consumer、subprocess、真实安装与激活仍未由本单授权或实现。
+后续状态：同日已按该停止线完成[严格 USTAR 切片](checker-runtime-rust-ustar-slice-review.md)及后续[installation receipt 切片](checker-runtime-rust-receipt-slice-review.md)；store、result consumer、subprocess、真实安装与激活仍未由本单授权或实现。

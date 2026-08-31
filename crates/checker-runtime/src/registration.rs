@@ -1,8 +1,8 @@
 use std::fmt;
 
 use crate::canonical::{
-    DocumentError, ShapeSpec, Value, as_object, domain_digest, member, parse, parse_decimal,
-    string_member, validate_digest, validate_shape,
+    DocumentError, ShapeSpec, Value, as_object, bool_member, domain_digest, member, parse,
+    parse_decimal, string_member, validate_digest, validate_shape,
 };
 use crate::selection::NativeTarget;
 
@@ -224,6 +224,62 @@ pub struct CheckerIdentity {
     version: Box<str>,
 }
 
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct ProviderReleaseIdentity {
+    repository: Box<str>,
+    release_id: Box<str>,
+    release_tag: Box<str>,
+    target_commit: Box<str>,
+    immutable: bool,
+    draft: bool,
+    asset_id: Box<str>,
+    asset_name: Box<str>,
+    asset_byte_length: u64,
+    asset_raw_sha256: Box<str>,
+}
+
+impl ProviderReleaseIdentity {
+    pub fn repository(&self) -> &str {
+        &self.repository
+    }
+
+    pub fn release_id(&self) -> &str {
+        &self.release_id
+    }
+
+    pub fn release_tag(&self) -> &str {
+        &self.release_tag
+    }
+
+    pub fn target_commit(&self) -> &str {
+        &self.target_commit
+    }
+
+    pub fn immutable(&self) -> bool {
+        self.immutable
+    }
+
+    pub fn draft(&self) -> bool {
+        self.draft
+    }
+
+    pub fn asset_id(&self) -> &str {
+        &self.asset_id
+    }
+
+    pub fn asset_name(&self) -> &str {
+        &self.asset_name
+    }
+
+    pub fn asset_byte_length(&self) -> u64 {
+        self.asset_byte_length
+    }
+
+    pub fn asset_raw_sha256(&self) -> &str {
+        &self.asset_raw_sha256
+    }
+}
+
 impl CheckerIdentity {
     pub fn implementation(&self) -> &str {
         &self.implementation
@@ -268,6 +324,8 @@ pub struct RegistrationRecord {
     checker: CheckerIdentity,
     artifact: ArtifactIdentity,
     distribution: ArtifactIdentity,
+    distribution_filename: Box<str>,
+    provider_release: ProviderReleaseIdentity,
 }
 
 impl RegistrationRecord {
@@ -297,6 +355,14 @@ impl RegistrationRecord {
 
     pub fn distribution(&self) -> &ArtifactIdentity {
         &self.distribution
+    }
+
+    pub fn distribution_filename(&self) -> &str {
+        &self.distribution_filename
+    }
+
+    pub fn provider_release(&self) -> &ProviderReleaseIdentity {
+        &self.provider_release
     }
 }
 
@@ -365,10 +431,65 @@ pub fn parse_registration_record(bytes: &[u8]) -> Result<RegistrationRecord, Doc
 
     let artifact = parse_artifact(object_member(root, "artifact", "$")?, "$.artifact")?;
     let durable = object_member(root, "durable_registration", "$")?;
+    let distribution_value =
+        object_member(durable, "distribution_package", "$.durable_registration")?;
     let distribution = parse_artifact(
-        object_member(durable, "distribution_package", "$.durable_registration")?,
+        distribution_value,
         "$.durable_registration.distribution_package",
     )?;
+    let distribution_filename = string_member(
+        distribution_value,
+        "filename",
+        "$.durable_registration.distribution_package",
+    )?;
+    let provider = object_member(durable, "provider", "$.durable_registration")?;
+    let release = object_member(provider, "release", "$.durable_registration.provider")?;
+    let asset = object_member(release, "asset", "$.durable_registration.provider.release")?;
+    let asset_raw_sha256 = string_member(
+        asset,
+        "raw_sha256",
+        "$.durable_registration.provider.release.asset",
+    )?;
+    validate_digest(
+        asset_raw_sha256,
+        "$.durable_registration.provider.release.asset.raw_sha256",
+    )?;
+    let provider_release = ProviderReleaseIdentity {
+        repository: string_member(provider, "repository", "$.durable_registration.provider")?
+            .into(),
+        release_id: string_member(release, "id", "$.durable_registration.provider.release")?.into(),
+        release_tag: string_member(release, "tag", "$.durable_registration.provider.release")?
+            .into(),
+        target_commit: string_member(
+            release,
+            "target_commit",
+            "$.durable_registration.provider.release",
+        )?
+        .into(),
+        immutable: bool_member(
+            release,
+            "immutable",
+            "$.durable_registration.provider.release",
+        )?,
+        draft: bool_member(release, "draft", "$.durable_registration.provider.release")?,
+        asset_id: string_member(asset, "id", "$.durable_registration.provider.release.asset")?
+            .into(),
+        asset_name: string_member(
+            asset,
+            "name",
+            "$.durable_registration.provider.release.asset",
+        )?
+        .into(),
+        asset_byte_length: parse_decimal(
+            string_member(
+                asset,
+                "byte_length",
+                "$.durable_registration.provider.release.asset",
+            )?,
+            "$.durable_registration.provider.release.asset.byte_length",
+        )?,
+        asset_raw_sha256: asset_raw_sha256.into(),
+    };
 
     Ok(RegistrationRecord {
         id: id.into(),
@@ -378,6 +499,8 @@ pub fn parse_registration_record(bytes: &[u8]) -> Result<RegistrationRecord, Doc
         checker,
         artifact,
         distribution,
+        distribution_filename: distribution_filename.into(),
+        provider_release,
     })
 }
 
