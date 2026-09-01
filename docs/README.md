@@ -37,6 +37,7 @@
 - [Checker runtime Rust 严格 USTAR 切片审阅单](checker-runtime-rust-ustar-slice-review.md)：记录 extraction-free 内外层归档清单实现、确定性 header profile、Python oracle 漂移收口、验证矩阵与安装停止线。
 - [Checker runtime Rust installation receipt 切片审阅单](checker-runtime-rust-receipt-slice-review.md)：记录纯内存 canonical receipt 构造 / 重读、provider / registration / slot 身份绑定、跨实现黄金字节与 store 停止线。
 - [Checker runtime Rust store 最小事务切片审阅单](checker-runtime-rust-store-slice-review.md)：记录 target lock、owned staging、exact publish / read / recovery、跨实现 tree digest，以及生产原生文件系统竞态停止线。
+- [Checker runtime Darwin 生产文件系统边界审阅单](checker-runtime-darwin-filesystem-review.md)：记录 no-replace / descriptor-relative / full-sync 原语、威胁模型、私有平台 crate 与 `libc` 依赖选择、原生并发 / crash 矩阵和实施授权停止线。
 - [有键有限表基准语料库 v0.1](benchmarks/keyed-finite-table-corpus-v0.md)：四个基准的生成目录、任务身份、合成数据、正确 / 错误候选和 Expected Evidence 断言。
 - [Agent 表示与验证反馈对比实验预注册 v0.1](experiments/agent-representation-preregistration-v0.md)：三种表示、两种模型条件、配对反馈、指标、阈值、预算和停止规则。
 

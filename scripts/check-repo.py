@@ -112,6 +112,7 @@ REQUIRED_FILES = (
     "docs/adr/0012-product-checker-runtime-host-and-persistence-interface.md",
     "docs/benchmarks/keyed-finite-table-corpus-v0.md",
     "docs/checker-runtime-rust-first-slice-review.md",
+    "docs/checker-runtime-darwin-filesystem-review.md",
     "docs/checker-runtime-rust-receipt-slice-review.md",
     "docs/checker-runtime-rust-store-slice-review.md",
     "docs/checker-runtime-rust-ustar-slice-review.md",

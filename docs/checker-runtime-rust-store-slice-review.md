@@ -61,4 +61,4 @@ Rust 测试还实际打开两个 store handle 验证 OS 锁互斥与释放后重
 
 2026-09-01 的实际结果为：`cargo fmt --all --check`、locked / offline `clippy -D warnings`、28 项 locked / offline Rust test、metadata 与 dependency tree 全部通过；metadata 仍只有一个 `publish = false` 的 Rust 2024 library、零 dependency / feature。Python launcher oracle 21 项测试、checker runtime payload 34 个生成文件、仓库级 942 文件门禁和 `git diff --check` 同时通过。
 
-下一连续实现优先设计并审阅生产文件系统适配所需的原生原语：原子 no-replace publication、descriptor-relative containment、目录持久化与真实并发 / crash 矩阵。若需要第三方 crate、`unsafe`、native FFI、build script 或新平台依赖，必须先完成依赖、许可证、供应链和可信边界审阅。真实 immutable asset fetch / install、业务 manifest parser、result consumer、subprocess / isolation、qualification、激活、push 与远程状态继续分别验证、分别授权。
+后续[Darwin 生产文件系统边界审阅](checker-runtime-darwin-filesystem-review.md)已确认需要原子 no-replace publication、descriptor-relative containment、目录持久化与真实并发 / crash 矩阵，并收敛到私有平台 crate + 精确 `libc` binding 的方案。由于这会改变 policy 的零第三方依赖声明并引入 build script / `unsafe` / native FFI，policy 迁移、依赖验收和实现仍须取得精确授权。真实 immutable asset fetch / install、业务 manifest parser、result consumer、subprocess / isolation、qualification、激活、push 与远程状态继续分别验证、分别授权。
