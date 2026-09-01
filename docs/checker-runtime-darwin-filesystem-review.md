@@ -3,6 +3,8 @@
 状态：Darwin 原语、威胁模型、依赖方向与原生测试矩阵已审阅；policy 迁移、第三方依赖和 `unsafe` 实现尚未授权
 审阅日期：2026-09-01
 
+实施进展：项目所有者随后精确授权本审阅的四项范围，实际结果见 [Darwin store 生产切片审阅单](checker-runtime-darwin-store-slice-review.md)。本文件保留实施前判断与授权停止线，不追溯改写为实现证据。
+
 ## 目标与结论
 
 本审阅承接 [Rust store 最小事务切片](checker-runtime-rust-store-slice-review.md)，只回答生产 `FilesystemStore` 如何关闭当前 cooperative lock + path-based rename 的已知边界。它不实现平台适配，不修改 Cargo dependency / lockfile，不改变 launcher policy 字节，不读取产品安装根，不安装或执行 checker，也不授权 qualification、激活或远程动作。

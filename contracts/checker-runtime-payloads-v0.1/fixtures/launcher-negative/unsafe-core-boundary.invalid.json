@@ -116,7 +116,7 @@
       },
       "ffi": "darwin-filesystem-only",
       "target": "cfg-target-os-macos",
-      "unsafe_boundary": "private-platform-crate-only-core-forbids-unsafe"
+      "unsafe_boundary": "unsafe-allowed-in-core"
     },
     "public_surface": "no-standalone-cli-daemon-plugin-or-sdk-frozen",
     "python_conformance": "test-oracle-only-never-product-runtime",
@@ -200,7 +200,7 @@
     ],
     "bundle": "caller-mounted-readonly-canonical-realpath",
     "environment": "empty-no-inheritance",
-    "executable_resolution": "path-search-or-active-slot",
+    "executable_resolution": "exact-active-content-addressed-slot-only",
     "execution_profile": {
       "id": "keyed-finite-table-independent-check-v0.1",
       "path": "contracts/execution-profiles-v0.1/manifest.jcs",
@@ -238,7 +238,7 @@
     "root_discovery": "never-environment-cwd-repository-or-user-input",
     "slot_identity": "target-and-distribution-raw-sha256"
   },
-  "policy_digest": "sha256:88b6e3815a43b996e6f5c7b0a727d88b9ac2d8dc3704d001e1d8776d8015c487",
+  "policy_digest": "sha256:f2f116db18fa63e2b053c427412905be99dc7c6ded2f08fbecad49b9d27b0f85",
   "runtime_companion": {
     "current_status": "not-materialized-by-product-launcher",
     "format": "axiom-independent-check-result",

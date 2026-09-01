@@ -21,18 +21,19 @@ active runtime 的 durable provider 已选择 `laugh0608/RadishAxiomChecker` 的
 
 当前外层 distribution 已包含内层候选、distribution acceptance / manifest、checker Apache-2.0 `LICENSE` 与 Go `LICENSE` / `PATENTS` 六个成员，并由独立 acceptance 接受为受控 durable publication candidate。精确 tag `checker-payload/go0.1-dev/darwin-arm64-v8.0/sha256-401158...e3999`、target commit `f960603...13d5e`、Release ID `379226889` 与唯一 4,720,640-byte asset ID `536372439` 已通过不可变发布和全部发布后门禁；经独立状态转换授权，主仓现已绑定持久字节和重新验证路径并推进到 `registered-inactive`。
 
-`launcher-policy.jcs` `0.2` 进一步冻结：
+`launcher-policy.jcs` `0.3` 进一步冻结：
 
 - 产品选择只接受恰好一个 `active` 记录；安装资格复核只能显式执行 `registered-inactive`，两条入口不可混用；
 - 首个目标必须精确匹配 `darwin / arm64 / v8.0 / macho-64-arm64`，翻译进程、未知 variant、`PATH`、相邻目录、latest alias、cache 和用户 executable 全部不 fallback；
-- 安装只使用精确 immutable Release / asset 身份，经同文件系统 staging、严格两层 archive / manifest / binary 复核和原子 rename 形成 content-addressed immutable slot；Rust 已实现 receipt codec 与 Unix 临时根上的 target lock / owned staging / exact slot publish / read / recovery 最小事务，但生产 no-replace / descriptor-relative 文件系统适配和真实安装尚未完成，policy 中 installation receipt 的运行状态仍为 `required-not-materialized`；
+- 安装只使用精确 immutable Release / asset 身份，经同文件系统 staging、严格两层 archive / manifest / binary 复核和原子 no-replace publication 形成 content-addressed immutable slot；Darwin 生产适配固定为 descriptor-relative、no-follow / beneath、`renameatx_np` exclusive publication 和文件 / 目录 `F_FULLFSYNC`，缺少能力时失败关闭，不回退到 portable rename；policy 中 installation receipt 的运行状态仍为 `required-not-materialized`；
 - qualification 必须由安装后的 exact binary 在同一 launcher 边界下重放 `ax-b01-correct`、`chk-digest-01`、`chk-resource-01`，得到与 payload acceptance 一致的三份 `axiom-independent-check-result` `0.1`。这才是正式 runtime companion，不另造 launcher companion 格式；
 - 外层 kill、crash、timeout、资源终止、非零退出、stdout 截断 / 超限或身份不符都不能形成或消费 checker 四态结果。只有 canonical request 身份已经形成时，才可另存既有 `axiom-checker-invocation-failure` `0.1`。
 - 产品实现宿主固定为与 `raxc` 同一 Cargo workspace / 发布图的 Rust 2024、精确 `1.97.1` 内部组件；禁止复用 Checker Go parser 或让 Python oracle 成为产品 runtime；
+- core crate 继续禁止 `unsafe`；唯一 macOS-only 私有 `radishaxiom-checker-runtime-darwin-store` crate 以 exact `libc 0.2.189` 承载 Darwin 文件系统 FFI，`unsafe` 只允许存在于该窄 wrapper，不增加项目 C shim 或 build script；
 - installer / launcher core 不持有网络能力，真实 fetch 属于单独授权的协调层；`checker-runtime-store-v0.1` 只允许持目标锁、创建 owned staging、exclusive publish / qualification、精确重读 slot 和追加 attempt，私有根必须由产品注入；
 - qualification 与产品 invocation 共用一个严格的主仓 Rust result consumer 和 immutable spawn plan；外层产品失败与 Independent Check 四态保持不同类型。
 
-新增的宿主 / store 必需字段使 ADR 0011 的闭合 policy `0.1` 不再足够，因此当前 policy 与摘要域已显式升级到 `0.2`；登记集合和既有 inactive record 仍为 `v0.1` 且字节不变，旧 policy 不回退接受。当前仍只是 launcher 规范已冻结，`active = 0` 不变。进入 `active` 还必须分别完成实现、原生测试、真实安装、三条 qualification、重新验证与激活授权。
+新增的宿主 / store 必需字段曾使 ADR 0011 的闭合 policy `0.1` 升级为 `0.2`；2026-09-01 获授权的 Darwin 生产适配又引入 exact `libc`、私有平台 crate、`unsafe` / FFI 与更强文件系统原语，因此当前 policy 与摘要域显式升级到 `0.3`。登记集合和既有 inactive record 仍为 `v0.1` 且原字节不变，`0.1` / `0.2` policy 均不回退接受。当前仍只是 launcher 规范与实现边界已冻结，`active = 0` 不变。进入 `active` 还必须分别完成完整实现、原生测试、真实安装、三条 qualification、重新验证与激活授权。
 
 ## 本地一致性验证核心
 
@@ -70,11 +71,11 @@ candidate-retained-temporarily
 ## 文件与生成边界
 
 - `records/` 保存历史不可用记录和当前已正式登记但尚未激活的 `registered-inactive` 记录；每份记录都以 `radishaxiom.checker-runtime-payload-registration.v0.1` 域摘要闭合。
-- `launcher-policy.jcs` 是 launcher / 安装 / qualification / 激活策略的唯一 canonical `0.2` 机器表示，以 `radishaxiom.checker-runtime-launcher-policy.v0.2` 域摘要闭合；它的 `specified-not-implemented` 不能冒充产品实现。
+- `launcher-policy.jcs` 是 launcher / 安装 / qualification / 激活策略的唯一 canonical `0.3` 机器表示，以 `radishaxiom.checker-runtime-launcher-policy.v0.3` 域摘要闭合；它的 `specified-not-implemented` 不能冒充产品实现。
 - `contract.json` 绑定当前 `checker.source`、记录与 launcher policy 的原始摘要 / 域摘要、状态计数、两级 storage policy 和生成器原始摘要。
 - `schemas/` 固定登记记录与 launcher policy 的 Draft 2020-12 闭合结构；schema 通过不能提升任何 acceptance、安装、companion 或运行结论。
 - `fixtures/negative/` 拒绝旧 artifact 重绑当前 source、已删除字节的 retention 过度声明、历史 payload 冒充正式登记、把 acceptance 扩大到安装、正式 inactive 登记缺少 provenance、未知 member、`registered-inactive` 跳过 launcher 隔离 / 安装 / 激活授权直接 active、可变 Release 登记、`latest` alias、用 release attestation 冒充 distribution acceptance、缺少独立回读和原地 replacement。
-- `fixtures/launcher-negative/` 拒绝 inactive 被产品选择、目标 / PATH fallback、非原子安装、可选 receipt / companion、把进程失败写成 `incomplete`、省略每次 spawn 前后 executable 身份复核、Python 产品 runtime、复用 Checker Go parser、core 持有网络能力、隐式发现或分裂 store root，以及把已替代的 policy `0.1` 当作 `0.2` 接受。
+- `fixtures/launcher-negative/` 拒绝 inactive 被产品选择、目标 / PATH fallback、非原子安装、可选 receipt / companion、把进程失败写成 `incomplete`、省略每次 spawn 前后 executable 身份复核、Python 产品 runtime、复用 Checker Go parser、core 持有网络能力、隐式发现或分裂 store root、未审阅平台依赖、core `unsafe`、较弱文件系统 fallback，以及把已替代的 policy `0.1` / `0.2` 当作 `0.3` 接受。
 
 除本 README 外，本目录由以下入口生成，生成文件不得手工修改：
 

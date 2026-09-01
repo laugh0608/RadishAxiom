@@ -68,7 +68,7 @@
     }
   ],
   "format": "radishaxiom-checker-runtime-launcher-policy",
-  "format_version": "0.3",
+  "format_version": "0.2",
   "host_selection": {
     "current_supported_targets": [
       {
@@ -200,7 +200,7 @@
     ],
     "bundle": "caller-mounted-readonly-canonical-realpath",
     "environment": "empty-no-inheritance",
-    "executable_resolution": "path-search-or-active-slot",
+    "executable_resolution": "exact-active-content-addressed-slot-only",
     "execution_profile": {
       "id": "keyed-finite-table-independent-check-v0.1",
       "path": "contracts/execution-profiles-v0.1/manifest.jcs",
@@ -238,7 +238,7 @@
     "root_discovery": "never-environment-cwd-repository-or-user-input",
     "slot_identity": "target-and-distribution-raw-sha256"
   },
-  "policy_digest": "sha256:88b6e3815a43b996e6f5c7b0a727d88b9ac2d8dc3704d001e1d8776d8015c487",
+  "policy_digest": "sha256:7a51d6c0a6ddf546938b096815bd8c6605fb432551bc481fb4e2b664444c96e0",
   "runtime_companion": {
     "current_status": "not-materialized-by-product-launcher",
     "format": "axiom-independent-check-result",

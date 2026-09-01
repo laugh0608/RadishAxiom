@@ -21,8 +21,8 @@ RECORD_DOMAIN = "radishaxiom.checker-runtime-payload-registration.v0.1"
 SET_FORMAT = "radishaxiom-checker-runtime-payload-registration-set"
 SET_DOMAIN = "radishaxiom.checker-runtime-payload-registration-set.v0.1"
 LAUNCHER_POLICY_FORMAT = "radishaxiom-checker-runtime-launcher-policy"
-LAUNCHER_POLICY_VERSION = "0.2"
-LAUNCHER_POLICY_DOMAIN = "radishaxiom.checker-runtime-launcher-policy.v0.2"
+LAUNCHER_POLICY_VERSION = "0.3"
+LAUNCHER_POLICY_DOMAIN = "radishaxiom.checker-runtime-launcher-policy.v0.3"
 SHA256_PATTERN = re.compile(r"^sha256:[0-9a-f]{64}$")
 
 CURRENT_SOURCE = {
@@ -537,10 +537,23 @@ def launcher_policy() -> dict[str, Any]:
         "implementation": {
             "checker_boundary": "exact-digest-offline-subprocess-only-no-source-or-parser-reuse",
             "component": "main-repository-internal-product-runtime",
-            "dependency_status": "reviewed-zero-third-party-not-authorized",
+            "dependency_status": "libc-0.2.189-exact-reviewed-and-authorized",
             "edition": "2024",
             "language": "rust",
             "network_capability": "absent-from-installer-launcher-core",
+            "platform_binding": {
+                "build_boundary": "libc-upstream-build-script-only-no-project-c-shim",
+                "crate": "radishaxiom-checker-runtime-darwin-store",
+                "dependency": {
+                    "crates_io_checksum": "sha256:3eaf3ede3fee6db1a4c2ee091bf8a8b4dccdc6d17f656fb07896ee72867612f2",
+                    "license": "MIT OR Apache-2.0",
+                    "name": "libc",
+                    "version": "0.2.189",
+                },
+                "ffi": "darwin-filesystem-only",
+                "target": "cfg-target-os-macos",
+                "unsafe_boundary": "private-platform-crate-only-core-forbids-unsafe",
+            },
             "public_surface": "no-standalone-cli-daemon-plugin-or-sdk-frozen",
             "python_conformance": "test-oracle-only-never-product-runtime",
             "toolchain": "1.97.1",
@@ -562,9 +575,23 @@ def launcher_policy() -> dict[str, Any]:
                 ],
             },
             "fetch": "exact-immutable-release-and-asset-identities-only",
+            "filesystem": {
+                "containment": "descriptor-relative-no-follow-beneath",
+                "durability": "f-fullfsync-files-and-directories-before-success",
+                "platform": "darwin",
+                "publication": "renameatx-np-exclusive-no-follow-beneath",
+                "required_primitives": [
+                    "f-fullfsync",
+                    "o-nofollow-any",
+                    "renameatx-np-rename-excl",
+                    "renameatx-np-rename-nofollow-any",
+                    "renameatx-np-rename-resolve-beneath",
+                ],
+                "unsupported": "fail-closed-no-weaker-fallback",
+            },
             "installed_state": "installed-inactive",
             "network_boundary": "installation-coordinator-only-checker-remains-offline",
-            "publication": "same-filesystem-verified-staging-then-atomic-rename",
+            "publication": "same-filesystem-descriptor-relative-verified-staging-then-exclusive-renameatx-np",
             "receipt": {
                 "canonicalization": "canonical-json-ascii-no-trailing-newline",
                 "digest_domain": "radishaxiom.checker-runtime-installation-receipt.v0.1",
@@ -1180,10 +1207,38 @@ def launcher_negative_fixtures(
         refreshed_launcher_policy(value),
     ))
     value = copy.deepcopy(policy)
+    value["implementation"]["dependency_status"] = "unreviewed-platform-dependency"
+    rows.append((
+        "unreviewed-platform-dependency.invalid.json",
+        "the production runtime may use only the exact reviewed and authorized platform dependency",
+        refreshed_launcher_policy(value),
+    ))
+    value = copy.deepcopy(policy)
+    value["implementation"]["platform_binding"]["unsafe_boundary"] = "unsafe-allowed-in-core"
+    rows.append((
+        "unsafe-core-boundary.invalid.json",
+        "unsafe Darwin FFI must remain confined to the private platform crate",
+        refreshed_launcher_policy(value),
+    ))
+    value = copy.deepcopy(policy)
+    value["installation"]["filesystem"]["unsupported"] = "fallback-to-portable-rename"
+    rows.append((
+        "weaker-filesystem-fallback.invalid.json",
+        "missing Darwin filesystem capabilities must fail closed without a weaker fallback",
+        refreshed_launcher_policy(value),
+    ))
+    value = copy.deepcopy(policy)
+    value["format_version"] = "0.2"
+    rows.append((
+        "superseded-launcher-policy-v0.2.invalid.json",
+        "the superseded closed launcher policy version cannot be accepted as version 0.3",
+        refreshed_launcher_policy(value),
+    ))
+    value = copy.deepcopy(policy)
     value["format_version"] = "0.1"
     rows.append((
         "superseded-launcher-policy-v0.1.invalid.json",
-        "the superseded closed launcher policy version cannot be accepted as version 0.2",
+        "the superseded closed launcher policy version cannot be accepted as version 0.3",
         refreshed_launcher_policy(value),
     ))
     value = copy.deepcopy(policy)

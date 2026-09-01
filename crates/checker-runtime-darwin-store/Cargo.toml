@@ -1,0 +1,11 @@
+[package]
+name = "radishaxiom-checker-runtime-darwin-store"
+version = "0.0.0"
+edition = "2024"
+publish = false
+
+[target.'cfg(target_os = "macos")'.dependencies]
+libc = { version = "=0.2.189", default-features = false, features = ["std"] }
+
+[lints.rust]
+unsafe_op_in_unsafe_fn = "deny"

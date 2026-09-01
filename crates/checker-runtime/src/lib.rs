@@ -1,9 +1,11 @@
 #![forbid(unsafe_code)]
 
 mod archive;
+mod attempt;
 mod canonical;
 mod policy;
 mod portable_path;
+mod qualification;
 mod receipt;
 mod registration;
 mod selection;
@@ -14,8 +16,16 @@ pub use archive::{
     ArchiveMemberExpectation, ArchiveValidationError, CHECKER_PAYLOAD_CANDIDATE_MEMBER_ORDER,
     CHECKER_RUNTIME_DISTRIBUTION_MEMBER_ORDER, ValidatedArchiveMember, validate_ustar,
 };
+pub use attempt::{
+    AttemptClassification, AttemptStage, BoundedAttemptObservation, MAX_ATTEMPT_OBSERVATION_BYTES,
+    MAX_ATTEMPTS_PER_REGISTRATION,
+};
 pub use canonical::DocumentError;
 pub use policy::{InstallationLayout, LauncherPolicy, parse_launcher_policy};
+pub use qualification::{
+    MAX_QUALIFICATION_COMPANION_BYTES, MAX_QUALIFICATION_RECORD_BYTES, QualificationArtifacts,
+    QualificationCompanionInput,
+};
 pub use receipt::{
     InstallationReceipt, InstallationVerifierIdentity, build_installation_receipt,
     parse_installation_receipt,
@@ -29,7 +39,8 @@ pub use selection::{
     select_registration,
 };
 pub use store::{
-    CHECKER_RUNTIME_STORE_INTERFACE, FilesystemStore, HeldTargetLock, InstalledInactiveSlot,
-    OwnedStaging, SlotPublication, SlotPublishAction, SlotVerification, StagingRecovery,
-    StoreError, StoreTransactionIdentity, VerifiedStaging,
+    AppendedAttempt, CHECKER_RUNTIME_STORE_INTERFACE, FilesystemStore, HeldTargetLock,
+    InstalledInactiveSlot, OwnedStaging, PersistedQualification, SlotPublication,
+    SlotPublishAction, SlotVerification, StagingRecovery, StoreError, StoreTransactionIdentity,
+    VerifiedStaging,
 };

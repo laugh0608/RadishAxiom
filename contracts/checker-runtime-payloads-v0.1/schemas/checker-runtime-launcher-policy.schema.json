@@ -1,5 +1,5 @@
 {
-  "$id": "https://radishaxiom.dev/schema/checker-runtime-launcher-policy/0.2",
+  "$id": "https://radishaxiom.dev/schema/checker-runtime-launcher-policy/0.3",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
@@ -59,7 +59,7 @@
       "type": "array"
     },
     "digest_domain": {
-      "const": "radishaxiom.checker-runtime-launcher-policy.v0.2"
+      "const": "radishaxiom.checker-runtime-launcher-policy.v0.3"
     },
     "failure_boundary": {
       "items": {
@@ -88,7 +88,7 @@
       "const": "radishaxiom-checker-runtime-launcher-policy"
     },
     "format_version": {
-      "const": "0.2"
+      "const": "0.3"
     },
     "host_selection": {
       "additionalProperties": false,
@@ -191,6 +191,60 @@
         "network_capability": {
           "type": "string"
         },
+        "platform_binding": {
+          "additionalProperties": false,
+          "properties": {
+            "build_boundary": {
+              "type": "string"
+            },
+            "crate": {
+              "type": "string"
+            },
+            "dependency": {
+              "additionalProperties": false,
+              "properties": {
+                "crates_io_checksum": {
+                  "pattern": "^sha256:[0-9a-f]{64}$",
+                  "type": "string"
+                },
+                "license": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "version": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "crates_io_checksum",
+                "license",
+                "name",
+                "version"
+              ],
+              "type": "object"
+            },
+            "ffi": {
+              "type": "string"
+            },
+            "target": {
+              "type": "string"
+            },
+            "unsafe_boundary": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "build_boundary",
+            "crate",
+            "dependency",
+            "ffi",
+            "target",
+            "unsafe_boundary"
+          ],
+          "type": "object"
+        },
         "public_surface": {
           "type": "string"
         },
@@ -211,6 +265,7 @@
         "edition",
         "language",
         "network_capability",
+        "platform_binding",
         "public_surface",
         "python_conformance",
         "toolchain",
@@ -252,6 +307,41 @@
         },
         "fetch": {
           "type": "string"
+        },
+        "filesystem": {
+          "additionalProperties": false,
+          "properties": {
+            "containment": {
+              "type": "string"
+            },
+            "durability": {
+              "type": "string"
+            },
+            "platform": {
+              "type": "string"
+            },
+            "publication": {
+              "type": "string"
+            },
+            "required_primitives": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "unsupported": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "containment",
+            "durability",
+            "platform",
+            "publication",
+            "required_primitives",
+            "unsupported"
+          ],
+          "type": "object"
         },
         "installed_state": {
           "type": "string"
@@ -328,6 +418,7 @@
         "current_status",
         "executable",
         "fetch",
+        "filesystem",
         "installed_state",
         "network_boundary",
         "publication",
@@ -642,6 +733,6 @@
     "runtime_companion",
     "runtime_interfaces"
   ],
-  "title": "RadishAxiom checker runtime launcher policy v0.2",
+  "title": "RadishAxiom checker runtime launcher policy v0.3",
   "type": "object"
 }

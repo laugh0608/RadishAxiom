@@ -62,3 +62,7 @@ Rust 测试还实际打开两个 store handle 验证 OS 锁互斥与释放后重
 2026-09-01 的实际结果为：`cargo fmt --all --check`、locked / offline `clippy -D warnings`、28 项 locked / offline Rust test、metadata 与 dependency tree 全部通过；metadata 仍只有一个 `publish = false` 的 Rust 2024 library、零 dependency / feature。Python launcher oracle 21 项测试、checker runtime payload 34 个生成文件、仓库级 942 文件门禁和 `git diff --check` 同时通过。
 
 后续[Darwin 生产文件系统边界审阅](checker-runtime-darwin-filesystem-review.md)已确认需要原子 no-replace publication、descriptor-relative containment、目录持久化与真实并发 / crash 矩阵，并收敛到私有平台 crate + 精确 `libc` binding 的方案。由于这会改变 policy 的零第三方依赖声明并引入 build script / `unsafe` / native FFI，policy 迁移、依赖验收和实现仍须取得精确授权。真实 immutable asset fetch / install、业务 manifest parser、result consumer、subprocess / isolation、qualification、激活、push 与远程状态继续分别验证、分别授权。
+
+项目所有者随后授权并完成该范围；policy `0.3`、依赖验收、descriptor-backed macOS core 与原生进程矩阵的实际结果见 [Darwin store 生产切片审阅](checker-runtime-darwin-store-slice-review.md)。本文件保留最小事务候选完成时的边界，不把当时 28 项 path-based 测试追溯写成生产原语证据。
+
+同日后续又按独立范围补齐 [qualification / attempt store 切片](checker-runtime-evidence-store-slice-review.md)；该后续实现不改变本文件记录的最小事务历史证据。

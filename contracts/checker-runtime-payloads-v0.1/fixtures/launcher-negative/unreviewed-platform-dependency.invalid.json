@@ -101,7 +101,7 @@
   "implementation": {
     "checker_boundary": "exact-digest-offline-subprocess-only-no-source-or-parser-reuse",
     "component": "main-repository-internal-product-runtime",
-    "dependency_status": "libc-0.2.189-exact-reviewed-and-authorized",
+    "dependency_status": "unreviewed-platform-dependency",
     "edition": "2024",
     "language": "rust",
     "network_capability": "absent-from-installer-launcher-core",
@@ -200,7 +200,7 @@
     ],
     "bundle": "caller-mounted-readonly-canonical-realpath",
     "environment": "empty-no-inheritance",
-    "executable_resolution": "path-search-or-active-slot",
+    "executable_resolution": "exact-active-content-addressed-slot-only",
     "execution_profile": {
       "id": "keyed-finite-table-independent-check-v0.1",
       "path": "contracts/execution-profiles-v0.1/manifest.jcs",
@@ -238,7 +238,7 @@
     "root_discovery": "never-environment-cwd-repository-or-user-input",
     "slot_identity": "target-and-distribution-raw-sha256"
   },
-  "policy_digest": "sha256:88b6e3815a43b996e6f5c7b0a727d88b9ac2d8dc3704d001e1d8776d8015c487",
+  "policy_digest": "sha256:2e668105ed768d14b7e6901d81421884d97d93820ec8e4db540d267e989e53bb",
   "runtime_companion": {
     "current_status": "not-materialized-by-product-launcher",
     "format": "axiom-independent-check-result",

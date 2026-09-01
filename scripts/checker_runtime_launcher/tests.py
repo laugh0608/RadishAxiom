@@ -264,6 +264,16 @@ class SelectionTests(unittest.TestCase):
                 "runtime-core-network-capability",
             ),
             (
+                ("implementation", "dependency_status"),
+                "unreviewed-platform-dependency",
+                "runtime-dependency-boundary",
+            ),
+            (
+                ("installation", "publication"),
+                "portable-rename-fallback",
+                "runtime-store-publication",
+            ),
+            (
                 ("persistence", "root_discovery"),
                 "environment-or-current-directory",
                 "runtime-store-root-discovery",
@@ -283,16 +293,18 @@ class SelectionTests(unittest.TestCase):
                     )
 
     def test_superseded_policy_version_is_not_accepted(self) -> None:
-        value = copy.deepcopy(self.policy)
-        value["format_version"] = "0.1"
-        _refresh_document_digest(value, "policy_digest", POLICY_DOMAIN)
-        with self.assertRaisesRegex(LauncherValidationError, "policy-version"):
-            select_registration(
-                value,
-                [self.record],
-                HostIdentity(self.target),
-                "qualification",
-            )
+        for version in ("0.1", "0.2"):
+            with self.subTest(version=version):
+                value = copy.deepcopy(self.policy)
+                value["format_version"] = version
+                _refresh_document_digest(value, "policy_digest", POLICY_DOMAIN)
+                with self.assertRaisesRegex(LauncherValidationError, "policy-version"):
+                    select_registration(
+                        value,
+                        [self.record],
+                        HostIdentity(self.target),
+                        "qualification",
+                    )
 
     def test_installation_and_store_roots_cannot_diverge(self) -> None:
         value = copy.deepcopy(self.policy)

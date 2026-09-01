@@ -307,7 +307,7 @@ fn provider_value(provider: &ProviderReleaseIdentity) -> Value {
     ])
 }
 
-fn valid_utc_timestamp(value: &str) -> bool {
+pub(crate) fn valid_utc_timestamp(value: &str) -> bool {
     let bytes = value.as_bytes();
     bytes.len() == 20
         && bytes.iter().enumerate().all(|(index, byte)| match index {

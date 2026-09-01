@@ -21,7 +21,7 @@
     {
       "name": "adr-0012",
       "path": "docs/adr/0012-product-checker-runtime-host-and-persistence-interface.md",
-      "raw_sha256": "sha256:2c76cf67906bfc6d09831a19dfdf9ce0a43d22c96894fef4e6b7eee637586c39"
+      "raw_sha256": "sha256:7d677e19f9c9e119e0cfbd296a567ff3676539308c9936589845284f7eee1dc6"
     },
     {
       "name": "execution-profile-v0.1",
@@ -34,7 +34,7 @@
       "raw_sha256": "sha256:8cd14c2078b6f930150ecfdccaa8dad99c7b926cdf173190d8229d79ac53accf"
     }
   ],
-  "digest_domain": "radishaxiom.checker-runtime-launcher-policy.v0.2",
+  "digest_domain": "radishaxiom.checker-runtime-launcher-policy.v0.3",
   "failure_boundary": [
     {
       "classification": "runtime-unavailable",
@@ -68,7 +68,7 @@
     }
   ],
   "format": "radishaxiom-checker-runtime-launcher-policy",
-  "format_version": "0.2",
+  "format_version": "0.3",
   "host_selection": {
     "current_supported_targets": [
       {
@@ -101,10 +101,23 @@
   "implementation": {
     "checker_boundary": "exact-digest-offline-subprocess-only-no-source-or-parser-reuse",
     "component": "main-repository-internal-product-runtime",
-    "dependency_status": "reviewed-zero-third-party-not-authorized",
+    "dependency_status": "libc-0.2.189-exact-reviewed-and-authorized",
     "edition": "2024",
     "language": "rust",
     "network_capability": "absent-from-installer-launcher-core",
+    "platform_binding": {
+      "build_boundary": "libc-upstream-build-script-only-no-project-c-shim",
+      "crate": "radishaxiom-checker-runtime-darwin-store",
+      "dependency": {
+        "crates_io_checksum": "sha256:3eaf3ede3fee6db1a4c2ee091bf8a8b4dccdc6d17f656fb07896ee72867612f2",
+        "license": "MIT OR Apache-2.0",
+        "name": "libc",
+        "version": "0.2.189"
+      },
+      "ffi": "darwin-filesystem-only",
+      "target": "cfg-target-os-macos",
+      "unsafe_boundary": "private-platform-crate-only-core-forbids-unsafe"
+    },
     "public_surface": "no-standalone-cli-daemon-plugin-or-sdk-frozen",
     "python_conformance": "test-oracle-only-never-product-runtime",
     "toolchain": "1.97.1",
@@ -126,9 +139,23 @@
       ]
     },
     "fetch": "exact-immutable-release-and-asset-identities-only",
+    "filesystem": {
+      "containment": "descriptor-relative-no-follow-beneath",
+      "durability": "f-fullfsync-files-and-directories-before-success",
+      "platform": "darwin",
+      "publication": "renameatx-np-exclusive-no-follow-beneath",
+      "required_primitives": [
+        "f-fullfsync",
+        "o-nofollow-any",
+        "renameatx-np-rename-excl",
+        "renameatx-np-rename-nofollow-any",
+        "renameatx-np-rename-resolve-beneath"
+      ],
+      "unsupported": "fail-closed-no-weaker-fallback"
+    },
     "installed_state": "installed-inactive",
     "network_boundary": "installation-coordinator-only-checker-remains-offline",
-    "publication": "same-filesystem-verified-staging-then-atomic-rename",
+    "publication": "same-filesystem-descriptor-relative-verified-staging-then-exclusive-renameatx-np",
     "receipt": {
       "canonicalization": "canonical-json-ascii-no-trailing-newline",
       "digest_domain": "radishaxiom.checker-runtime-installation-receipt.v0.1",
@@ -211,7 +238,7 @@
     "root_discovery": "never-environment-cwd-repository-or-user-input",
     "slot_identity": "target-and-distribution-raw-sha256"
   },
-  "policy_digest": "sha256:6cf119623cc3d1e0fa19b26458020835308937bae5f8632644686bcf8944ea0a",
+  "policy_digest": "sha256:6eafd1bb44bee53c4ea3e0c7f8bed6e915836843fdd97bec9a3ba276f986a7cf",
   "runtime_companion": {
     "current_status": "not-materialized-by-product-launcher",
     "format": "axiom-independent-check-result",

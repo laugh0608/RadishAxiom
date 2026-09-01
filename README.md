@@ -26,7 +26,7 @@ RadishAxiom 是 Radish 家族中面向 AI Agent 的语言与可信语义项目�
 
 ## 当前状态
 
-项目处于设计到受控实现阶段。首域语义、Axiom IR / Evidence、工具链与 pipeline artifact 契约已经冻结；独立 Go checker 已在分仓完成严格离线 bundle 检查、四态 canonical result、累计资源、产品 CLI 和首个 macOS arm64 payload 的不可变发布与 `registered-inactive` 登记。主仓已建立精确 Rust `1.97.1`、Rust 2024、零第三方依赖的产品 workspace，闭合 checker runtime policy / record 身份、qualification / product registration selection、extraction-free 的严格内外层 USTAR 清单、canonical installation receipt，以及 Unix 临时根上的 target lock / owned staging / exact slot publish / read / recovery 最小事务；生产文件系统原语、完整 installer / launcher、真实安装、runtime companion 与激活仍未完成。
+项目处于设计到受控实现阶段。首域语义、Axiom IR / Evidence、工具链与 pipeline artifact 契约已经冻结；独立 Go checker 已在分仓完成严格离线 bundle 检查、四态 canonical result、累计资源、产品 CLI 和首个 macOS arm64 payload 的不可变发布与 `registered-inactive` 登记。主仓已建立精确 Rust `1.97.1`、Rust 2024 产品 workspace，闭合 checker runtime policy / record 身份、qualification / product registration selection、extraction-free 的严格内外层 USTAR 清单和 canonical installation receipt；Darwin store 已通过唯一 exact `libc 0.2.189` 私有平台 binding 实现 descriptor-relative containment、no-replace slot / qualification publication、append-only attempt、full-sync、真实进程并发与 crash recovery。完整 installer / launcher、真实安装、runtime companion 与激活仍未完成。
 
 当前阶段、已确定事项、今日进展、下一事项与后续顺位见[当前状态](docs/status/current.md)。
 
@@ -67,4 +67,4 @@ pwsh ./scripts/check-repo.ps1
 
 ## 许可证
 
-本项目采用 [Apache License 2.0](LICENSE)。第三方组件仍遵循其各自的许可证；项目名称与标识不因本许可证而获得商标授权。
+本项目采用 [Apache License 2.0](LICENSE)。第三方组件及精确依赖记录见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)，仍遵循其各自许可证；项目名称与标识不因本许可证而获得商标授权。

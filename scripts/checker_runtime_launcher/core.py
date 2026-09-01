@@ -22,8 +22,8 @@ JsonValue: TypeAlias = dict[str, Any] | list[Any] | str | bool
 SHA256_PATTERN = re.compile(r"^sha256:[0-9a-f]{64}$")
 UTC_TIMESTAMP = re.compile(r"^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$")
 TARGET_COMPONENT = re.compile(r"^[a-z0-9][a-z0-9.-]*$")
-POLICY_VERSION = "0.2"
-POLICY_DOMAIN = "radishaxiom.checker-runtime-launcher-policy.v0.2"
+POLICY_VERSION = "0.3"
+POLICY_DOMAIN = "radishaxiom.checker-runtime-launcher-policy.v0.3"
 REGISTRATION_DOMAIN = "radishaxiom.checker-runtime-payload-registration.v0.1"
 INSTALLATION_RECEIPT_DOMAIN = "radishaxiom.checker-runtime-installation-receipt.v0.1"
 
@@ -265,6 +265,25 @@ def validate_launcher_policy(policy: dict[str, Any]) -> None:
         raise LauncherValidationError("runtime-core-network-capability")
     if implementation.get("python_conformance") != "test-oracle-only-never-product-runtime":
         raise LauncherValidationError("python-runtime-dependency")
+    if implementation.get("dependency_status") != "libc-0.2.189-exact-reviewed-and-authorized":
+        raise LauncherValidationError("runtime-dependency-boundary")
+    platform_binding = _object(
+        implementation.get("platform_binding"), "$.implementation.platform_binding"
+    )
+    if platform_binding != {
+        "build_boundary": "libc-upstream-build-script-only-no-project-c-shim",
+        "crate": "radishaxiom-checker-runtime-darwin-store",
+        "dependency": {
+            "crates_io_checksum": "sha256:3eaf3ede3fee6db1a4c2ee091bf8a8b4dccdc6d17f656fb07896ee72867612f2",
+            "license": "MIT OR Apache-2.0",
+            "name": "libc",
+            "version": "0.2.189",
+        },
+        "ffi": "darwin-filesystem-only",
+        "target": "cfg-target-os-macos",
+        "unsafe_boundary": "private-platform-crate-only-core-forbids-unsafe",
+    }:
+        raise LauncherValidationError("runtime-platform-binding")
 
     persistence = _object(policy.get("persistence"), "$.persistence")
     if persistence.get("interface") != "checker-runtime-store-v0.1":
@@ -276,6 +295,27 @@ def validate_launcher_policy(policy: dict[str, Any]) -> None:
     installation = _object(policy.get("installation"), "$.installation")
     if installation.get("root") != persistence.get("root"):
         raise LauncherValidationError("runtime-store-root")
+    if (
+        installation.get("publication")
+        != "same-filesystem-descriptor-relative-verified-staging-then-exclusive-renameatx-np"
+    ):
+        raise LauncherValidationError("runtime-store-publication")
+    filesystem = _object(installation.get("filesystem"), "$.installation.filesystem")
+    if filesystem != {
+        "containment": "descriptor-relative-no-follow-beneath",
+        "durability": "f-fullfsync-files-and-directories-before-success",
+        "platform": "darwin",
+        "publication": "renameatx-np-exclusive-no-follow-beneath",
+        "required_primitives": [
+            "f-fullfsync",
+            "o-nofollow-any",
+            "renameatx-np-rename-excl",
+            "renameatx-np-rename-nofollow-any",
+            "renameatx-np-rename-resolve-beneath",
+        ],
+        "unsupported": "fail-closed-no-weaker-fallback",
+    }:
+        raise LauncherValidationError("runtime-store-filesystem-boundary")
     expected_capabilities = [
         "acquire-target-lock",
         "create-owned-staging",

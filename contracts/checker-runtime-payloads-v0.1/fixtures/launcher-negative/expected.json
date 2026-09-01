@@ -49,8 +49,24 @@
       "reason": "the product must inject the private runtime root instead of discovering it implicitly"
     },
     {
+      "file": "unreviewed-platform-dependency.invalid.json",
+      "reason": "the production runtime may use only the exact reviewed and authorized platform dependency"
+    },
+    {
+      "file": "unsafe-core-boundary.invalid.json",
+      "reason": "unsafe Darwin FFI must remain confined to the private platform crate"
+    },
+    {
+      "file": "weaker-filesystem-fallback.invalid.json",
+      "reason": "missing Darwin filesystem capabilities must fail closed without a weaker fallback"
+    },
+    {
+      "file": "superseded-launcher-policy-v0.2.invalid.json",
+      "reason": "the superseded closed launcher policy version cannot be accepted as version 0.3"
+    },
+    {
       "file": "superseded-launcher-policy-v0.1.invalid.json",
-      "reason": "the superseded closed launcher policy version cannot be accepted as version 0.2"
+      "reason": "the superseded closed launcher policy version cannot be accepted as version 0.3"
     },
     {
       "file": "split-store-root.invalid.json",
@@ -58,5 +74,5 @@
     }
   ],
   "format": "radishaxiom-checker-runtime-launcher-policy-negative-set",
-  "format_version": "0.2"
+  "format_version": "0.3"
 }

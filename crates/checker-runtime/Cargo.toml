@@ -6,4 +6,7 @@ publish = false
 
 [dependencies]
 
+[target.'cfg(target_os = "macos")'.dependencies]
+radishaxiom-checker-runtime-darwin-store = { path = "../checker-runtime-darwin-store" }
+
 [dev-dependencies]

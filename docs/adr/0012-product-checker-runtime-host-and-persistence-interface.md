@@ -63,6 +63,8 @@ ADR 0011 已将目标选择、安装与 qualification 物化为闭合的 `radish
 
 Checker Runtime Payload Registration 集合与现有 payload record 继续保持 `v0.1` 且字节不作追溯修改；它们只把当前 policy 的版本和摘要作为外部 readiness 输入。历史 policy `0.1` 由 Git 保留审计，不允许被 `0.2` parser 接受，也不建立回退。当前没有产品实现、installation receipt、qualification record 或 active runtime，因此这次 pre-implementation 迁移不需要双读期；未来再改变闭合字段或语义仍须升级 policy 版本。
 
+2026-09-01 的 Darwin 生产文件系统审阅确认：标准库 path-based rename 无法关闭非协作 writer 与 containment 的检查 / 使用竞态，生产适配需要 exact `libc 0.2.189`、macOS-only 私有 crate、窄 `unsafe` / FFI、descriptor-relative lookup、`renameatx_np` exclusive publication 与文件 / 目录 full-sync。这些事实与 `0.2` 的 `reviewed-zero-third-party-not-authorized` 闭合声明不相容，因此 policy 再迁移为 `format_version = 0.3` 与 `radishaxiom.checker-runtime-launcher-policy.v0.3` 摘要域，并闭合记录依赖 checksum / 许可证、build boundary、core 禁止 `unsafe`、必需 Darwin 原语和无较弱 fallback。既有两份 payload record 不包含 launcher policy 身份，迁移复核确认其 `v0.1` 原字节可保持；集合 contract、policy schema、launcher 负例和所有 policy consumer 必须重算或升级，`0.1` / `0.2` 不双读、不回退。
+
 ### 六个实际职责边界
 
 首版只建立以下有真实输入、输出和失败边界的职责，不建立泛化插件框架：
