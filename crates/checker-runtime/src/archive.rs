@@ -1,5 +1,6 @@
 use std::fmt;
 
+use crate::portable_path::{PortablePathError, validate_portable_relative_path};
 use crate::sha256::digest_hex;
 
 const BLOCK_SIZE: usize = 512;
@@ -442,24 +443,16 @@ fn write_checksum(field: &mut [u8], value: u64) -> Result<(), ArchiveValidationE
 }
 
 fn validate_member_name(name: &str) -> Result<(), ArchiveValidationError> {
-    if name.is_empty() || name.starts_with('/') || name.starts_with('\\') {
-        return Err(ArchiveValidationError::new("absolute-path", name));
-    }
-    for component in name.split('/') {
-        if component.is_empty() || component == "." || component == ".." {
-            return Err(ArchiveValidationError::new(
-                "dot-dot-or-empty-component",
-                name,
-            ));
-        }
-        if !component
-            .bytes()
-            .all(|byte| byte.is_ascii_alphanumeric() || matches!(byte, b'.' | b'_' | b'-'))
-        {
-            return Err(ArchiveValidationError::new("nonportable-member-name", name));
-        }
-    }
-    Ok(())
+    validate_portable_relative_path(name).map_err(|error| {
+        ArchiveValidationError::new(
+            match error {
+                PortablePathError::Absolute => "absolute-path",
+                PortablePathError::Component => "dot-dot-or-empty-component",
+                PortablePathError::Character => "nonportable-member-name",
+            },
+            name,
+        )
+    })
 }
 
 fn valid_sha256(value: &str) -> bool {

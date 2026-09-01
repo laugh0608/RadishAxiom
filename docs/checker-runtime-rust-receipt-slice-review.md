@@ -46,4 +46,4 @@ Python 参考实现与 Rust 对当前真实 `registered-inactive` record、`2026
 
 精确 `+1.97.1-aarch64-apple-darwin` 下的格式、Clippy、locked / offline test、metadata 与 dependency tree 继续作为 Rust 门禁；Python launcher oracle、checker runtime payload 生成复核、仓库级检查与差异卫生继续作为跨实现和仓库门禁。通过这些测试只说明实现满足所测字节与身份边界，不构成形式证明或安装证据。
 
-下一连续实现进入 `checker-runtime-store-v0.1` 的最小事务切片，优先形成纯接口与 owned staging / target lock / exclusive publish 的可测试状态机；绝对产品根仍由未来产品适配层注入。真实 immutable asset fetch / install、业务 manifest parser、result consumer、subprocess / isolation、qualification、激活、push 与远程状态继续分别验证、分别授权。
+下一连续实现进入 `checker-runtime-store-v0.1` 的最小事务切片，优先形成纯接口与 owned staging / target lock / exclusive publish 的可测试状态机；其完成情况与后续原生文件系统停止线见[store 最小事务切片审阅单](checker-runtime-rust-store-slice-review.md)。绝对产品根仍由未来产品适配层注入。真实 immutable asset fetch / install、业务 manifest parser、result consumer、subprocess / isolation、qualification、激活、push 与远程状态继续分别验证、分别授权。

@@ -2,6 +2,7 @@ use crate::canonical::{
     DocumentError, ShapeSpec, Value, as_array, as_object, domain_digest, member, parse,
     string_member, validate_digest, validate_shape,
 };
+use crate::portable_path::validate_portable_relative_path;
 use crate::selection::NativeTarget;
 
 const POLICY_FORMAT: &str = "radishaxiom-checker-runtime-launcher-policy";
@@ -100,6 +101,23 @@ const POLICY_SHAPE: ShapeSpec<'static> = ShapeSpec {
 pub struct LauncherPolicy {
     document_digest: String,
     supported_targets: Vec<NativeTarget>,
+    installation_layout: InstallationLayout,
+}
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct InstallationLayout {
+    executable_relative_path: Box<str>,
+    receipt_filename: Box<str>,
+}
+
+impl InstallationLayout {
+    pub fn executable_relative_path(&self) -> &str {
+        &self.executable_relative_path
+    }
+
+    pub fn receipt_filename(&self) -> &str {
+        &self.receipt_filename
+    }
 }
 
 impl LauncherPolicy {
@@ -109,6 +127,10 @@ impl LauncherPolicy {
 
     pub fn supported_targets(&self) -> &[NativeTarget] {
         &self.supported_targets
+    }
+
+    pub fn installation_layout(&self) -> &InstallationLayout {
+        &self.installation_layout
     }
 
     pub(crate) fn supports(&self, target: &NativeTarget) -> bool {
@@ -148,12 +170,13 @@ pub fn parse_launcher_policy(bytes: &[u8]) -> Result<LauncherPolicy, DocumentErr
     validate_activation(root)?;
     let supported_targets = validate_host_selection(root)?;
     validate_implementation(root)?;
-    validate_store_boundaries(root)?;
+    let installation_layout = validate_store_boundaries(root)?;
     validate_runtime_interfaces(root)?;
 
     Ok(LauncherPolicy {
         document_digest: calculated_digest,
         supported_targets,
+        installation_layout,
     })
 }
 
@@ -271,7 +294,9 @@ fn validate_implementation(root: &[(String, Value)]) -> Result<(), DocumentError
     Ok(())
 }
 
-fn validate_store_boundaries(root: &[(String, Value)]) -> Result<(), DocumentError> {
+fn validate_store_boundaries(
+    root: &[(String, Value)],
+) -> Result<InstallationLayout, DocumentError> {
     let persistence = object_member(root, "persistence", "$")?;
     expect_string(
         persistence,
@@ -328,7 +353,34 @@ fn validate_store_boundaries(root: &[(String, Value)]) -> Result<(), DocumentErr
             "$.installation.root",
         ));
     }
-    Ok(())
+    let executable = object_member(installation, "executable", "$.installation")?;
+    expect_string(
+        executable,
+        "mode",
+        "0755",
+        "$.installation.executable",
+        "installation-executable-mode",
+    )?;
+    let executable_relative_path =
+        string_member(executable, "relative_path", "$.installation.executable")?;
+    validate_portable_relative_path(executable_relative_path).map_err(|_| {
+        DocumentError::new(
+            "installation-layout-path",
+            "$.installation.executable.relative_path",
+        )
+    })?;
+    let receipt = object_member(installation, "receipt", "$.installation")?;
+    let receipt_filename = string_member(receipt, "filename", "$.installation.receipt")?;
+    validate_portable_relative_path(receipt_filename).map_err(|_| {
+        DocumentError::new(
+            "installation-layout-path",
+            "$.installation.receipt.filename",
+        )
+    })?;
+    Ok(InstallationLayout {
+        executable_relative_path: executable_relative_path.into(),
+        receipt_filename: receipt_filename.into(),
+    })
 }
 
 fn validate_runtime_interfaces(root: &[(String, Value)]) -> Result<(), DocumentError> {
@@ -423,6 +475,14 @@ mod tests {
             "sha256:2a85a00c4e96b204223865b126963dba7e1a2003bf721bfb6660feca1eaeb42d"
         );
         assert_eq!(policy.supported_targets().len(), 1);
+        assert_eq!(
+            policy.installation_layout().executable_relative_path(),
+            "payload/radishaxiom-independent-checker-go"
+        );
+        assert_eq!(
+            policy.installation_layout().receipt_filename(),
+            "checker-runtime-installation-receipt-v0.1.jcs"
+        );
     }
 
     #[test]

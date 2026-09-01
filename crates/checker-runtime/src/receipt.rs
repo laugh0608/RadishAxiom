@@ -142,14 +142,7 @@ pub fn build_installation_receipt(
     let distribution = record.distribution();
     let provider = record.provider_release();
     let target = record.target();
-    let slot_relative_identity = format!(
-        "slots/{}/{}/{}/{}/{}",
-        target.goos(),
-        target.goarch(),
-        target.variant(),
-        target.executable_format(),
-        distribution.raw_sha256().replace(':', "-")
-    );
+    let slot_relative_identity = slot_relative_identity(record);
 
     let mut body_members = vec![
         (
@@ -229,6 +222,18 @@ pub fn build_installation_receipt(
         slot_relative_identity: slot_relative_identity.into(),
         verifier: verifier.clone(),
     })
+}
+
+pub(crate) fn slot_relative_identity(record: &RegistrationRecord) -> String {
+    let target = record.target();
+    format!(
+        "slots/{}/{}/{}/{}/{}",
+        target.goos(),
+        target.goarch(),
+        target.variant(),
+        target.executable_format(),
+        record.distribution().raw_sha256().replace(':', "-")
+    )
 }
 
 pub fn parse_installation_receipt(

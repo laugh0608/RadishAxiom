@@ -424,6 +424,10 @@ class InstallationTests(unittest.TestCase):
                 lock_held=True,
             )
             self.assertEqual(action, "published")
+            self.assertEqual(
+                first_verification.tree_digest,
+                "sha256:856141f47eceb4962bc290c8d2bcacfb39ef6a6e90631af6d241e5b5ab4f81fd",
+            )
             self.assertTrue(final.is_dir())
             self.assertFalse(first.exists())
 

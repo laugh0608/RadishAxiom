@@ -25,7 +25,7 @@ active runtime 的 durable provider 已选择 `laugh0608/RadishAxiomChecker` 的
 
 - 产品选择只接受恰好一个 `active` 记录；安装资格复核只能显式执行 `registered-inactive`，两条入口不可混用；
 - 首个目标必须精确匹配 `darwin / arm64 / v8.0 / macho-64-arm64`，翻译进程、未知 variant、`PATH`、相邻目录、latest alias、cache 和用户 executable 全部不 fallback；
-- 安装只使用精确 immutable Release / asset 身份，经同文件系统 staging、严格两层 archive / manifest / binary 复核和原子 rename 形成 content-addressed immutable slot；Rust 已实现 receipt 的纯内存 canonical 构造 / 重读，但尚未发生真实安装，policy 中 installation receipt 的运行状态仍为 `required-not-materialized`；
+- 安装只使用精确 immutable Release / asset 身份，经同文件系统 staging、严格两层 archive / manifest / binary 复核和原子 rename 形成 content-addressed immutable slot；Rust 已实现 receipt codec 与 Unix 临时根上的 target lock / owned staging / exact slot publish / read / recovery 最小事务，但生产 no-replace / descriptor-relative 文件系统适配和真实安装尚未完成，policy 中 installation receipt 的运行状态仍为 `required-not-materialized`；
 - qualification 必须由安装后的 exact binary 在同一 launcher 边界下重放 `ax-b01-correct`、`chk-digest-01`、`chk-resource-01`，得到与 payload acceptance 一致的三份 `axiom-independent-check-result` `0.1`。这才是正式 runtime companion，不另造 launcher companion 格式；
 - 外层 kill、crash、timeout、资源终止、非零退出、stdout 截断 / 超限或身份不符都不能形成或消费 checker 四态结果。只有 canonical request 身份已经形成时，才可另存既有 `axiom-checker-invocation-failure` `0.1`。
 - 产品实现宿主固定为与 `raxc` 同一 Cargo workspace / 发布图的 Rust 2024、精确 `1.97.1` 内部组件；禁止复用 Checker Go parser 或让 Python oracle 成为产品 runtime；
@@ -47,7 +47,7 @@ active runtime 的 durable provider 已选择 `laugh0608/RadishAxiomChecker` 的
 
 该核心不联网，不下载或执行 payload，不解析真实 distribution 的两层业务 manifest，也不取代 Independent Check Contract 的完整 companion parser、平台 sandbox / memory enforcement、生产安装协调器或 launcher。它只把策略决策和事务不变量变成可执行回归模型；因此 `launcher-policy.jcs.level` 继续是 `specified-not-implemented`，不能据此推进安装或 active 状态。
 
-主仓 Rust 产品组件现已实现同一确定性 USTAR header profile 与 extraction-free 闭合清单原语：严格核对内层四成员和外层六成员的路径、普通文件类型、uid / gid / mtime / user / group / device 字段、checksum、mode、长度、SHA-256、顺序、padding 与精确双零 trailer，并直接借用成员字节供下一层复核。后续纯内存 receipt 切片又以当前登记记录闭合 artifact、checker、distribution、provider、registration、target、slot、verifier、安装时间与 `installed-inactive`，并与 Python oracle 的 1,797-byte 黄金结果逐字一致。两项切片仍不解析 retention / distribution manifest，不写 staging 或 slot，也不说明真实 Release asset 已下载或安装；完整 policy 状态和 active count 因此不变。
+主仓 Rust 产品组件现已实现同一确定性 USTAR header profile 与 extraction-free 闭合清单原语：严格核对内层四成员和外层六成员的路径、普通文件类型、uid / gid / mtime / user / group / device 字段、checksum、mode、长度、SHA-256、顺序、padding 与精确双零 trailer，并直接借用成员字节供下一层复核。后续 receipt 切片以当前登记记录闭合 artifact、checker、distribution、provider、registration、target、slot、verifier、安装时间与 `installed-inactive`，并与 Python oracle 的 1,797-byte 黄金结果逐字一致。当前 store 最小事务再以调用方注入的 Unix 临时根闭合真实 OS target lock、owned staging、同文件系统 publish、exact reuse / mismatch、slot read 与 held-lock recovery；两种实现对合成 slot 得到相同 tree digest。该实现仍不解析 retention / distribution manifest，不读取真实产品根或真实 Release asset，且尚未关闭非合作 writer 的 no-replace 和 path-based TOCTOU 风险；完整 policy 状态和 active count 因此不变。
 
 定向复核：
 
