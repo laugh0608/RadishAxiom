@@ -8,6 +8,9 @@ use crate::selection::NativeTarget;
 const POLICY_FORMAT: &str = "radishaxiom-checker-runtime-launcher-policy";
 const POLICY_VERSION: &str = "0.3";
 const POLICY_DOMAIN: &str = "radishaxiom.checker-runtime-launcher-policy.v0.3";
+pub(crate) const CHECKER_EXECUTION_PROFILE_ID: &str = "keyed-finite-table-independent-check-v0.1";
+pub(crate) const CHECKER_EXECUTION_PROFILE_PATH: &str =
+    "contracts/execution-profiles-v0.1/manifest.jcs";
 
 const POLICY_OBJECT_FIELDS: &[(&str, &str)] = &[
     (
@@ -208,6 +211,7 @@ pub fn parse_launcher_policy(bytes: &[u8]) -> Result<LauncherPolicy, DocumentErr
     validate_activation(root)?;
     let supported_targets = validate_host_selection(root)?;
     validate_implementation(root)?;
+    validate_invocation(root)?;
     let installation_layout = validate_store_boundaries(root)?;
     let (execution_profile, qualification_scenarios) = validate_runtime_companion(root)?;
     validate_runtime_interfaces(root)?;
@@ -219,6 +223,77 @@ pub fn parse_launcher_policy(bytes: &[u8]) -> Result<LauncherPolicy, DocumentErr
         execution_profile,
         qualification_scenarios,
     })
+}
+
+fn validate_invocation(root: &[(String, Value)]) -> Result<(), DocumentError> {
+    let invocation = object_member(root, "invocation", "$")?;
+    for (field, expected, code) in [
+        (
+            "bundle",
+            "caller-mounted-readonly-canonical-realpath",
+            "invocation-bundle-boundary",
+        ),
+        (
+            "environment",
+            "empty-no-inheritance",
+            "invocation-environment-boundary",
+        ),
+        (
+            "executable_resolution",
+            "exact-active-content-addressed-slot-only",
+            "invocation-executable-resolution",
+        ),
+        (
+            "identity_revalidation",
+            "before-and-after-every-spawn",
+            "invocation-identity-revalidation",
+        ),
+        ("network", "forbidden", "invocation-network-boundary"),
+        (
+            "retry",
+            "new-attempt-same-exact-slot-only-never-automatic-fallback",
+            "invocation-retry-boundary",
+        ),
+        (
+            "stderr",
+            "bounded-diagnostic-never-result",
+            "invocation-stderr-boundary",
+        ),
+        ("stdin", "empty-then-eof", "invocation-stdin-boundary"),
+        (
+            "stdout",
+            "one-canonical-independent-result-or-no-result",
+            "invocation-stdout-boundary",
+        ),
+        (
+            "working_directory",
+            "isolated-empty",
+            "invocation-working-directory",
+        ),
+    ] {
+        expect_string(invocation, field, expected, "$.invocation", code)?;
+    }
+
+    let arguments = as_array(
+        member(invocation, "argument_tokens", "$.invocation")?,
+        "$.invocation.argument_tokens",
+    )?;
+    let expected = [
+        "check",
+        "--bundle-root=<caller-mounted-readonly-canonical-realpath>",
+    ];
+    if arguments.len() != expected.len()
+        || arguments
+            .iter()
+            .zip(expected)
+            .any(|(actual, expected)| !matches!(actual, Value::String(text) if text == expected))
+    {
+        return Err(DocumentError::new(
+            "invocation-argument-tokens",
+            "$.invocation.argument_tokens",
+        ));
+    }
+    Ok(())
 }
 
 fn validate_activation(root: &[(String, Value)]) -> Result<(), DocumentError> {
@@ -564,8 +639,21 @@ fn validate_runtime_companion(
             "$.invocation.execution_profile.path",
         )
     })?;
+    if profile_path != CHECKER_EXECUTION_PROFILE_PATH {
+        return Err(DocumentError::new(
+            "qualification-execution-profile-path",
+            "$.invocation.execution_profile.path",
+        ));
+    }
+    let profile_id = string_member(profile, "id", "$.invocation.execution_profile")?;
+    if profile_id != CHECKER_EXECUTION_PROFILE_ID {
+        return Err(DocumentError::new(
+            "qualification-execution-profile-id",
+            "$.invocation.execution_profile.id",
+        ));
+    }
     let execution_profile = ExecutionProfileIdentity {
-        id: string_member(profile, "id", "$.invocation.execution_profile")?.into(),
+        id: profile_id.into(),
         path: profile_path.into(),
         raw_sha256: profile_digest.into(),
     };
@@ -700,6 +788,28 @@ mod tests {
         };
         let (_, member) = object.iter_mut().find(|(name, _)| name == key).unwrap();
         *member = Value::String(replacement.into());
+    }
+
+    fn set_path_string(value: &mut Value, path: &[&str], replacement: &str) {
+        let mut current = value;
+        for component in &path[..path.len() - 1] {
+            let Value::Object(object) = current else {
+                panic!("fixture path must contain objects");
+            };
+            current = &mut object
+                .iter_mut()
+                .find(|(name, _)| name == component)
+                .unwrap()
+                .1;
+        }
+        let Value::Object(object) = current else {
+            panic!("fixture target must be an object");
+        };
+        object
+            .iter_mut()
+            .find(|(name, _)| name == path[path.len() - 1])
+            .unwrap()
+            .1 = Value::String(replacement.into());
     }
 
     fn refresh_digest(value: &mut Value) {
@@ -856,9 +966,81 @@ mod tests {
                 "registered-inactive-allowed",
                 "inactive-product-selection",
             ),
+            (
+                "invocation",
+                "environment",
+                "inherit-process-environment",
+                "invocation-environment-boundary",
+            ),
+            (
+                "invocation",
+                "identity_revalidation",
+                "installation-time-only",
+                "invocation-identity-revalidation",
+            ),
+            (
+                "invocation",
+                "network",
+                "allowed",
+                "invocation-network-boundary",
+            ),
         ] {
             let mut value = parse(POLICY, true).unwrap();
             set_nested_string(&mut value, parent, key, replacement);
+            refresh_digest(&mut value);
+            assert_eq!(
+                parse_launcher_policy(&canonical_bytes(&value))
+                    .unwrap_err()
+                    .code(),
+                code
+            );
+        }
+
+        let mut arguments = parse(POLICY, true).unwrap();
+        let Value::Object(root) = &mut arguments else {
+            unreachable!();
+        };
+        let (_, Value::Object(invocation)) = root
+            .iter_mut()
+            .find(|(name, _)| name == "invocation")
+            .unwrap()
+        else {
+            unreachable!();
+        };
+        let (_, Value::Array(tokens)) = invocation
+            .iter_mut()
+            .find(|(name, _)| name == "argument_tokens")
+            .unwrap()
+        else {
+            unreachable!();
+        };
+        tokens.push(Value::String("--fallback".into()));
+        refresh_digest(&mut arguments);
+        assert_eq!(
+            parse_launcher_policy(&canonical_bytes(&arguments))
+                .unwrap_err()
+                .code(),
+            "invocation-argument-tokens"
+        );
+
+        for (field, replacement, code) in [
+            (
+                "id",
+                "other-profile-v0.1",
+                "qualification-execution-profile-id",
+            ),
+            (
+                "path",
+                "contracts/other/manifest.jcs",
+                "qualification-execution-profile-path",
+            ),
+        ] {
+            let mut value = parse(POLICY, true).unwrap();
+            set_path_string(
+                &mut value,
+                &["invocation", "execution_profile", field],
+                replacement,
+            );
             refresh_digest(&mut value);
             assert_eq!(
                 parse_launcher_policy(&canonical_bytes(&value))

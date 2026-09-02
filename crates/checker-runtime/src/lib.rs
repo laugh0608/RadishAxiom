@@ -12,6 +12,7 @@ mod registration;
 mod result;
 mod selection;
 mod sha256;
+mod spawn;
 mod store;
 
 pub use archive::{
@@ -48,6 +49,15 @@ pub use result::{
 pub use selection::{
     NativeHostIdentity, NativeProcessMode, NativeTarget, SelectionError, SelectionPurpose,
     select_registration,
+};
+pub use spawn::{
+    CHECKER_STDERR_LIMIT_BYTES, CHECKER_STDOUT_LIMIT_BYTES, CHECKER_WALL_CLOCK_LIMIT_MILLIS,
+    CHECKER_WORKING_MEMORY_LIMIT_BYTES, CheckerProcessOutcome, CheckerSpawnPlan,
+    ExecutableIdentityObservation, ExecutionProfileContract, FilesystemObjectIdentity,
+    IsolatedWorkingDirectoryObservation, MAX_EXECUTION_PROFILE_MANIFEST_BYTES,
+    NativeIsolationStatus, OuterFailureClassification, OuterInvocationFailure,
+    PostflightExecutableObservation, ProcessObservation, ProcessTerminationObservation,
+    ReadonlyBundleObservation, SpawnPurpose, StreamCapture, consume_process_observation,
 };
 pub use store::{
     AppendedAttempt, CHECKER_RUNTIME_STORE_INTERFACE, FilesystemStore, HeldTargetLock,
