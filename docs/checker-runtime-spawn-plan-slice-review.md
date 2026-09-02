@@ -36,4 +36,4 @@
 
 `ReadonlyBundleObservation`、`IsolatedWorkingDirectoryObservation` 与 filesystem object identity 是未来可信 native adapter 的输入契约，不是当前 core 对 mount、目录内容或 OS metadata 的自行证明。`NativeIsolationStatus` 被固定为 `RequiredNotProven`：plan 中的 network prohibition、wall deadline 与 working-memory hard limit 只是必须施加的配置，不能冒充 Darwin 已实际隔离、杀死或计量进程。
 
-下一连续本地切片应先审阅 Darwin 可用的原生 process spawn、network / filesystem isolation、hard deadline、working-memory hard limit 与 postflight identity 原语，并只运行合成 helper。若需要新增依赖、扩展当前 filesystem-only FFI、修改系统配置或权限，必须停下另行授权。真实 checker 执行、产品绝对根、qualification 和 activation 继续分别验证、分别授权。
+[Darwin process isolation 原语审阅](checker-runtime-darwin-process-isolation-review.md)随后确认 exact spawn、descriptor working directory、stream / deadline supervisor、process-group kill、direct-child reap 与 executable / rusage observation 可由公开 API 形成；但 App Sandbox 会引入签名 / entitlement / 产品打包边界，`128 MiB` hard working-memory limit 在当前普通进程中没有可用 enforcement，process group 与 path-based spawn 也不能闭合不可逃逸 process tree 和 executable lookup TOCTOU。因此 `RequiredNotProven` 保持不变。新增 process FFI / 平台 crate、强隔离架构或弱化 public hard limit 都必须先分别决策和授权；真实 checker 执行、产品绝对根、qualification 和 activation 继续分别验证、分别授权。

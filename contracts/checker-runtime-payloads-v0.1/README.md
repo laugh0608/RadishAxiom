@@ -54,6 +54,8 @@ active runtime 的 durable provider 已选择 `laugh0608/RadishAxiomChecker` 的
 
 当前 Rust 又实现 qualification / invocation 共用的 immutable spawn plan 与外层 result-or-failure 排他状态机。policy invocation 字段、execution profile 原始摘要、唯一参数、空 environment / stdin、只读 bundle / empty working-directory observation，以及 stdout 1 MiB、stderr 64 KiB、6 秒 wall-clock、128 MiB working-memory limit 已闭合；成功 stdout 只能进入上述单一 result consumer，进程 / 输出 / 身份失败只能形成不同类型的 outer failure。该切片只消费合成 observation，`NativeIsolationStatus` 仍为 `RequiredNotProven`，不创建子进程、不执行 checker，也不表示 Darwin network / filesystem isolation 或 memory hard limit 已实现。
 
+后续 Darwin 原语审阅只在合成 helper 上确认 exact `posix_spawn`、descriptor working directory、空 environment / EOF stdin、pipe、process group、deadline kill、direct-child `wait4` 与 `proc_pidpath` / rusage observation 可用。它同时确认 legacy sandbox 已不受支持、App Sandbox 需要签名 / entitlement / 产品打包、当前普通进程无法施加 `128 MiB` hard physical-memory limit，process group 与 path-based spawn 也不能证明不可逃逸 process tree 或关闭 executable lookup TOCTOU。因此没有新增 native adapter，`RequiredNotProven`、`specified-not-implemented` 与 `active = 0` 均保持不变；强隔离设计和 process FFI 必须分别授权。
+
 定向复核：
 
 ```bash
