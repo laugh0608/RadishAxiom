@@ -8,7 +8,8 @@ use crate::selection::NativeTarget;
 
 const REGISTRATION_FORMAT: &str = "radishaxiom-checker-runtime-payload-registration";
 const REGISTRATION_VERSION: &str = "0.1";
-const REGISTRATION_DOMAIN: &str = "radishaxiom.checker-runtime-payload-registration.v0.1";
+pub(crate) const REGISTRATION_DOMAIN: &str =
+    "radishaxiom.checker-runtime-payload-registration.v0.1";
 
 const REGISTRATION_OBJECT_FIELDS: &[(&str, &str)] = &[
     (
@@ -207,6 +208,13 @@ pub struct ArtifactIdentity {
 }
 
 impl ArtifactIdentity {
+    pub(crate) fn from_parts(byte_length: u64, raw_sha256: impl Into<Box<str>>) -> Self {
+        Self {
+            byte_length,
+            raw_sha256: raw_sha256.into(),
+        }
+    }
+
     pub fn byte_length(&self) -> u64 {
         self.byte_length
     }
@@ -323,7 +331,13 @@ pub struct RegistrationRecord {
     target: NativeTarget,
     checker: CheckerIdentity,
     artifact: ArtifactIdentity,
+    build_provenance: ArtifactIdentity,
+    payload_acceptance: ArtifactIdentity,
+    candidate_archive: ArtifactIdentity,
+    candidate_manifest: ArtifactIdentity,
     distribution: ArtifactIdentity,
+    distribution_acceptance: ArtifactIdentity,
+    distribution_manifest: ArtifactIdentity,
     distribution_filename: Box<str>,
     provider_release: ProviderReleaseIdentity,
 }
@@ -353,8 +367,32 @@ impl RegistrationRecord {
         &self.artifact
     }
 
+    pub fn build_provenance(&self) -> &ArtifactIdentity {
+        &self.build_provenance
+    }
+
+    pub fn payload_acceptance(&self) -> &ArtifactIdentity {
+        &self.payload_acceptance
+    }
+
+    pub fn candidate_archive(&self) -> &ArtifactIdentity {
+        &self.candidate_archive
+    }
+
+    pub fn candidate_manifest(&self) -> &ArtifactIdentity {
+        &self.candidate_manifest
+    }
+
     pub fn distribution(&self) -> &ArtifactIdentity {
         &self.distribution
+    }
+
+    pub fn distribution_acceptance(&self) -> &ArtifactIdentity {
+        &self.distribution_acceptance
+    }
+
+    pub fn distribution_manifest(&self) -> &ArtifactIdentity {
+        &self.distribution_manifest
     }
 
     pub fn distribution_filename(&self) -> &str {
@@ -430,12 +468,40 @@ pub fn parse_registration_record(bytes: &[u8]) -> Result<RegistrationRecord, Doc
     };
 
     let artifact = parse_artifact(object_member(root, "artifact", "$")?, "$.artifact")?;
+    let build_provenance = parse_artifact(
+        object_member(root, "build_provenance", "$")?,
+        "$.build_provenance",
+    )?;
+    let payload_acceptance =
+        parse_artifact(object_member(root, "acceptance", "$")?, "$.acceptance")?;
+    let candidate_value = object_member(root, "candidate_archive", "$")?;
+    let candidate_archive = parse_artifact(candidate_value, "$.candidate_archive")?;
+    let candidate_manifest = parse_artifact(
+        object_member(candidate_value, "manifest", "$.candidate_archive")?,
+        "$.candidate_archive.manifest",
+    )?;
     let durable = object_member(root, "durable_registration", "$")?;
     let distribution_value =
         object_member(durable, "distribution_package", "$.durable_registration")?;
     let distribution = parse_artifact(
         distribution_value,
         "$.durable_registration.distribution_package",
+    )?;
+    let distribution_acceptance = parse_artifact(
+        object_member(
+            distribution_value,
+            "acceptance",
+            "$.durable_registration.distribution_package",
+        )?,
+        "$.durable_registration.distribution_package.acceptance",
+    )?;
+    let distribution_manifest = parse_artifact(
+        object_member(
+            distribution_value,
+            "manifest",
+            "$.durable_registration.distribution_package",
+        )?,
+        "$.durable_registration.distribution_package.manifest",
     )?;
     let distribution_filename = string_member(
         distribution_value,
@@ -498,7 +564,13 @@ pub fn parse_registration_record(bytes: &[u8]) -> Result<RegistrationRecord, Doc
         target,
         checker,
         artifact,
+        build_provenance,
+        payload_acceptance,
+        candidate_archive,
+        candidate_manifest,
         distribution,
+        distribution_acceptance,
+        distribution_manifest,
         distribution_filename: distribution_filename.into(),
         provider_release,
     })
@@ -604,7 +676,13 @@ mod tests {
             "sha256:7b7bac3a1541253792f475de0dba2d92030ad5a28ad61bfb50c80803e667808d"
         );
         assert_eq!(record.artifact().byte_length(), 4_689_378);
+        assert_eq!(record.build_provenance().byte_length(), 1_389);
+        assert_eq!(record.payload_acceptance().byte_length(), 1_580);
+        assert_eq!(record.candidate_archive().byte_length(), 4_697_600);
+        assert_eq!(record.candidate_manifest().byte_length(), 1_295);
         assert_eq!(record.distribution().byte_length(), 4_720_640);
+        assert_eq!(record.distribution_acceptance().byte_length(), 1_869);
+        assert_eq!(record.distribution_manifest().byte_length(), 1_721);
         assert_eq!(record.checker().toolchain(), "go1.26.7");
     }
 

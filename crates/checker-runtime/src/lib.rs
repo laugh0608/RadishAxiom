@@ -3,6 +3,7 @@
 mod archive;
 mod attempt;
 mod canonical;
+mod manifest;
 mod policy;
 mod portable_path;
 mod qualification;
@@ -22,6 +23,10 @@ pub use attempt::{
     MAX_ATTEMPTS_PER_REGISTRATION,
 };
 pub use canonical::DocumentError;
+pub use manifest::{
+    MAX_CHECKER_RUNTIME_MANIFEST_BYTES, PayloadManifestContent, PayloadManifestIdentity,
+    ValidatedPayloadManifest, ValidatedPayloadManifests, validate_payload_manifests,
+};
 pub use policy::{InstallationLayout, LauncherPolicy, parse_launcher_policy};
 pub use qualification::{
     MAX_QUALIFICATION_COMPANION_BYTES, MAX_QUALIFICATION_RECORD_BYTES, QualificationArtifacts,

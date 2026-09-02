@@ -46,4 +46,4 @@ Rust 自身测试独立接受 28 份公共 canonical result，按锁定错误码
 
 本切片只处理合成内存 bytes 和既有测试临时根；没有读取真实产品根、下载 / 安装 / 执行 checker、解析两层 distribution / candidate 业务 manifest、创建 spawn plan、施加系统资源限制、形成真实 qualification、激活 runtime、修改远程状态、提交或 push。active runtime 保持 0，launcher policy 继续为 `specified-not-implemented`。
 
-下一本地切片应优先审阅两层业务 manifest parser，随后才把已验证 slot、单一 result consumer 和进程观察接入 immutable spawn plan。真实 asset fetch / install、checker 执行、qualification 与 `registered-inactive -> active` 继续分别验证、分别授权。
+后续状态：两层业务 manifest parser 已按该顺位完成，下一本地切片把已验证 slot、单一 result consumer 和进程观察接入 qualification / invocation 共用的 immutable spawn plan。真实 asset fetch / install、checker 执行、qualification 与 `registered-inactive -> active` 继续分别验证、分别授权。

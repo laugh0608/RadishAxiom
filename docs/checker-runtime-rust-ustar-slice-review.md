@@ -10,10 +10,10 @@
 `radishaxiom-checker-runtime` 新增并公开：
 
 - `ArchiveMemberExpectation`：调用方显式提供相对路径、`0644` / `0755` mode、原始长度和 `sha256:` 身份；构造时即拒绝不可移植路径、危险组件、未知 mode 和非法摘要；
-- `validate_ustar`：只在完整 archive 字节与闭合期望清单同时给出时工作，按期望基数有界解析并返回借用原始成员切片的 `ValidatedArchiveMember`，不提取、复制或写盘；
+- `validate_ustar`：只在完整 archive 字节与闭合期望清单同时给出时工作，按期望基数有界解析并返回借用原始成员切片的 `ValidatedArchiveMember`；成员同时保留父归档长度 / SHA-256，不提取、复制或写盘；
 - `CHECKER_PAYLOAD_CANDIDATE_MEMBER_ORDER` 与 `CHECKER_RUNTIME_DISTRIBUTION_MEMBER_ORDER`：分别固定当前内层四成员和外层六成员顺序，但不以名称常量替代 manifest、长度或摘要验证。
 
-成功只表示这批输入字节满足当前 USTAR header profile 与调用方提供的精确清单。它不说明 retention / distribution manifest 的 canonical JSON、字段身份或相互绑定已经解析，也不把 archive digest 升级为 payload acceptance、installation receipt、runtime companion 或 active runtime。
+成功只表示这批输入字节满足当前 USTAR header profile 与调用方提供的精确清单。业务 manifest 是否成立仍须进入后续[两层业务 manifest parser](checker-runtime-manifest-parser-slice-review.md)；USTAR 成功本身不把 archive digest 升级为 payload acceptance、installation receipt、runtime companion 或 active runtime。
 
 ## 严格字节边界
 
@@ -44,4 +44,4 @@ Rust 测试独立重建相同字节和摘要，并从外层借用 `checker-paylo
 
 精确 `+1.97.1-aarch64-apple-darwin` 下的格式、Clippy、locked / offline test、metadata 与 dependency tree 继续作为 Rust 门禁；Python launcher oracle、checker runtime payload 生成复核、仓库级检查与差异卫生继续作为跨实现和仓库门禁。通过这些测试只说明实现满足所测闭合边界，不构成形式证明或真实安装证据。
 
-后续状态：同日已按该停止线完成下一项[installation receipt 切片](checker-runtime-rust-receipt-slice-review.md)；`checker-runtime-store-v0.1` transaction、真实 immutable asset fetch / install、业务 manifest parser、result consumer、subprocess / isolation、qualification、激活、push 与远程状态仍分别验证、分别授权。
+后续状态：同日已按该停止线完成[installation receipt 切片](checker-runtime-rust-receipt-slice-review.md)，并在后续切片完成 store、result consumer 与[两层业务 manifest parser](checker-runtime-manifest-parser-slice-review.md)。真实 immutable asset fetch / install、provenance / acceptance 正文 parser、subprocess / isolation、qualification、激活、push 与远程状态仍分别验证、分别授权。

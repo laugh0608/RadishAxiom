@@ -124,6 +124,8 @@ pub struct ValidatedArchiveMember<'archive> {
     mode: u32,
     data: &'archive [u8],
     raw_sha256: Box<str>,
+    archive_byte_length: u64,
+    archive_raw_sha256: Box<str>,
 }
 
 impl<'archive> ValidatedArchiveMember<'archive> {
@@ -145,6 +147,14 @@ impl<'archive> ValidatedArchiveMember<'archive> {
 
     pub fn raw_sha256(&self) -> &str {
         &self.raw_sha256
+    }
+
+    pub fn archive_byte_length(&self) -> u64 {
+        self.archive_byte_length
+    }
+
+    pub fn archive_raw_sha256(&self) -> &str {
+        &self.archive_raw_sha256
     }
 }
 
@@ -170,6 +180,9 @@ pub fn validate_ustar<'archive>(
         }
     }
 
+    let archive_byte_length =
+        u64::try_from(data.len()).expect("usize archive byte length fits in u64");
+    let archive_raw_sha256: Box<str> = format!("sha256:{}", digest_hex(data)).into();
     let mut members = Vec::with_capacity(expected_members.len());
     let mut offset = 0_usize;
     let found_trailer = loop {
@@ -241,6 +254,8 @@ pub fn validate_ustar<'archive>(
             mode,
             data: member_data,
             raw_sha256: raw_sha256.into(),
+            archive_byte_length,
+            archive_raw_sha256: archive_raw_sha256.clone(),
         });
         offset = padded_end;
     };
@@ -304,7 +319,7 @@ fn parse_header(header: &[u8; BLOCK_SIZE]) -> Result<(Box<str>, u32, u64), Archi
     Ok((name, mode, size))
 }
 
-fn canonical_header(
+pub(crate) fn canonical_header(
     name: &str,
     mode: u32,
     size: u64,
@@ -609,6 +624,15 @@ mod tests {
         let outer_expected: Vec<_> = outer_entries.iter().map(expectation).collect();
         let outer_members = validate_ustar(&outer, &outer_expected).unwrap();
         assert_eq!(outer_members[0].data(), inner);
+        assert_eq!(outer_members[0].archive_byte_length(), 11_776);
+        assert_eq!(
+            outer_members[0].archive_raw_sha256(),
+            "sha256:d5ce0e3a00d7a66366c152257d54f71957778c39d08315b7ca65cd22dd8dd424"
+        );
+        assert!(outer_members.iter().all(|member| {
+            member.archive_byte_length() == outer_members[0].archive_byte_length()
+                && member.archive_raw_sha256() == outer_members[0].archive_raw_sha256()
+        }));
         validate_ustar(outer_members[0].data(), &inner_expected).unwrap();
     }
 
