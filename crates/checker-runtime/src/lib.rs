@@ -8,6 +8,7 @@ mod portable_path;
 mod qualification;
 mod receipt;
 mod registration;
+mod result;
 mod selection;
 mod sha256;
 mod store;
@@ -33,6 +34,11 @@ pub use receipt::{
 pub use registration::{
     ArtifactIdentity, CheckerIdentity, ProviderReleaseIdentity, RegistrationRecord,
     RegistrationStatus, parse_registration_record,
+};
+pub use result::{
+    CheckerInvocationFailure, ConsumedIndependentResult, IndependentCheckOutcome,
+    IndependentDocumentBinding, MAX_INDEPENDENT_RESULT_BYTES, MAX_INVOCATION_FAILURE_BYTES,
+    consume_independent_result, parse_checker_invocation_failure,
 };
 pub use selection::{
     NativeHostIdentity, NativeProcessMode, NativeTarget, SelectionError, SelectionPurpose,

@@ -23,7 +23,7 @@
 - 重新按同一 policy / registration 验证的 installation receipt digest；
 - policy 固定的三条 scenario、canonical companion 原始长度 / SHA-256、现有 Independent Check result document digest、outcome 和 checker identity。
 
-Rust 与 Python oracle 对同一合成输入形成完全相同的 2,020-byte qualification record：raw SHA-256 为 `sha256:e09b055f2784a3df2e9fc81c4f204f083484ba04231cba03069ea55a0b916f1a`，document digest 为 `sha256:c82f6576c49d55f4fcc30b6e2419e5497bfd2e10aaa720dedd062baf71cd3b97`。本切片没有修改 qualification、installation receipt、launcher policy 或 Independent Check result 的公共格式，也没有实现完整 Independent Check result consumer；companion 的完整 contract validity 仍须由后续单一 Rust consumer 提供。
+本切片实施时，Rust 与 Python oracle 对三份简化合成 companion 形成完全相同的 2,020-byte qualification record：raw SHA-256 为 `sha256:e09b055f2784a3df2e9fc81c4f204f083484ba04231cba03069ea55a0b916f1a`，document digest 为 `sha256:c82f6576c49d55f4fcc30b6e2419e5497bfd2e10aaa720dedd062baf71cd3b97`。后续 [result consumer 切片](checker-runtime-result-consumer-slice-review.md)已将输入升级为完整公共 result 并把 qualification 接到单一 consumer；qualification、installation receipt、launcher policy 与 Independent Check result 的公共格式均未改变。
 
 `BoundedAttemptObservation` 是 store 接口的闭合内存输入，只允许：
 

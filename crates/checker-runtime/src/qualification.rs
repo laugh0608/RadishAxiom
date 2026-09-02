@@ -1,21 +1,23 @@
 use crate::canonical::{
-    DocumentError, ShapeSpec, Value, as_array, as_object, domain_digest, domain_digest_value,
-    member, parse, parse_decimal, string_member, validate_digest, validate_shape,
+    DocumentError, ShapeSpec, Value, as_array, as_object, domain_digest, member, parse,
+    parse_decimal, string_member, validate_digest, validate_shape,
 };
 use crate::policy::LauncherPolicy;
 use crate::receipt::{InstallationReceipt, parse_installation_receipt, valid_utc_timestamp};
 use crate::registration::{RegistrationRecord, RegistrationStatus};
+use crate::result::{
+    ConsumedIndependentResult, IndependentDocumentBinding, MAX_INDEPENDENT_RESULT_BYTES,
+    consume_independent_result,
+};
 use crate::selection::NativeTarget;
-use crate::sha256::digest_hex;
 
 const QUALIFICATION_FORMAT: &str = "radishaxiom-checker-runtime-qualification-record";
 const QUALIFICATION_VERSION: &str = "0.1";
 const QUALIFICATION_DOMAIN: &str = "radishaxiom.checker-runtime-qualification-record.v0.1";
-const INDEPENDENT_RESULT_DOMAIN: &str = "axiom-independent-check-v0.1:result";
 
 pub const QUALIFICATION_RECORD_FILENAME: &str = "qualification-record-v0.1.jcs";
 pub const MAX_QUALIFICATION_RECORD_BYTES: usize = 65_536;
-pub const MAX_QUALIFICATION_COMPANION_BYTES: usize = 1_048_576;
+pub const MAX_QUALIFICATION_COMPANION_BYTES: usize = MAX_INDEPENDENT_RESULT_BYTES;
 
 const QUALIFICATION_SHAPE: ShapeSpec<'static> = ShapeSpec {
     object_fields: &[
@@ -40,20 +42,16 @@ const QUALIFICATION_SHAPE: ShapeSpec<'static> = ShapeSpec {
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct QualificationCompanionInput {
     scenario_id: Box<str>,
-    canonical_result: Box<[u8]>,
-    document_digest: Box<str>,
-    outcome: Box<str>,
-    checker_artifact: Box<str>,
-    checker_name: Box<str>,
-    checker_source: Box<str>,
-    checker_toolchain: Box<str>,
-    checker_version: Box<str>,
+    result: ConsumedIndependentResult,
 }
 
 impl QualificationCompanionInput {
     pub fn try_new(
         scenario_id: impl Into<Box<str>>,
         canonical_result: impl Into<Box<[u8]>>,
+        record: &RegistrationRecord,
+        request: &IndependentDocumentBinding,
+        evidence: &IndependentDocumentBinding,
     ) -> Result<Self, DocumentError> {
         let scenario_id = scenario_id.into();
         if scenario_id.contains('/')
@@ -61,39 +59,10 @@ impl QualificationCompanionInput {
         {
             return Err(DocumentError::new("qualification-scenario-id", "$"));
         }
-        let canonical_result = canonical_result.into();
-        if canonical_result.is_empty() || canonical_result.len() > MAX_QUALIFICATION_COMPANION_BYTES
-        {
-            return Err(DocumentError::new("qualification-result-length", "$"));
-        }
-        let value = parse(&canonical_result, true)?;
-        let root = as_object(&value, "$result")?;
-        let checker = as_object(member(root, "checker", "$result")?, "$result.checker")?;
-        let result = as_object(member(root, "result", "$result")?, "$result.result")?;
-        let outcome = string_member(result, "kind", "$result.result")?;
-        if !matches!(
-            outcome,
-            "accepted" | "accepted-with-trust" | "incomplete" | "rejected"
-        ) {
-            return Err(DocumentError::new(
-                "qualification-outcome",
-                "$result.result.kind",
-            ));
-        }
-        let checker_artifact = string_member(checker, "artifact", "$result.checker")?;
-        let checker_source = string_member(checker, "source", "$result.checker")?;
-        validate_digest(checker_artifact, "$result.checker.artifact")?;
-        validate_digest(checker_source, "$result.checker.source")?;
+        let result = consume_independent_result(canonical_result, record, request, evidence)?;
         Ok(Self {
             scenario_id,
-            canonical_result,
-            document_digest: domain_digest_value(INDEPENDENT_RESULT_DOMAIN, &value).into(),
-            outcome: outcome.into(),
-            checker_artifact: checker_artifact.into(),
-            checker_name: string_member(checker, "name", "$result.checker")?.into(),
-            checker_source: checker_source.into(),
-            checker_toolchain: string_member(checker, "toolchain", "$result.checker")?.into(),
-            checker_version: string_member(checker, "version", "$result.checker")?.into(),
+            result,
         })
     }
 
@@ -102,15 +71,15 @@ impl QualificationCompanionInput {
     }
 
     pub fn canonical_result(&self) -> &[u8] {
-        &self.canonical_result
+        self.result.canonical_result()
     }
 
     pub fn document_digest(&self) -> &str {
-        &self.document_digest
+        self.result.document_digest()
     }
 
     pub fn raw_sha256(&self) -> String {
-        format!("sha256:{}", digest_hex(&self.canonical_result))
+        self.result.raw_sha256()
     }
 }
 
@@ -343,24 +312,18 @@ fn validate_companion_inputs(
     record: &RegistrationRecord,
     companions: &[QualificationCompanionInput],
 ) -> Result<(), DocumentError> {
-    let checker = record.checker();
     for (input, expected) in companions.iter().zip(policy.qualification_scenarios()) {
         if input.scenario_id.as_ref() != expected.id.as_ref()
-            || input.canonical_result.len() as u64 != expected.byte_length
+            || input.canonical_result().len() as u64 != expected.byte_length
             || input.raw_sha256() != expected.raw_sha256.as_ref()
-            || input.outcome.as_ref() != expected.outcome.as_ref()
+            || input.result.outcome().as_str() != expected.outcome.as_ref()
         {
             return Err(DocumentError::new(
                 "qualification-companion-policy-binding",
                 format!("$.companions.{}", input.scenario_id),
             ));
         }
-        if input.checker_artifact.as_ref() != record.artifact().raw_sha256()
-            || input.checker_name.as_ref() != checker.implementation()
-            || input.checker_source.as_ref() != checker.source()
-            || input.checker_toolchain.as_ref() != checker.toolchain()
-            || input.checker_version.as_ref() != checker.version()
-        {
+        if input.result.registration_digest() != record.document_digest() {
             return Err(DocumentError::new(
                 "qualification-checker-identity",
                 format!("$.companions.{}", input.scenario_id),
@@ -388,10 +351,10 @@ fn validate_companion_rows(
             || parse_decimal(
                 string_member(row, "byte_length", &path)?,
                 &format!("{path}.byte_length"),
-            )? != input.canonical_result.len() as u64
+            )? != input.canonical_result().len() as u64
             || string_member(row, "raw_sha256", &path)? != input.raw_sha256()
-            || string_member(row, "document_digest", &path)? != input.document_digest.as_ref()
-            || string_member(row, "outcome", &path)? != input.outcome.as_ref()
+            || string_member(row, "document_digest", &path)? != input.document_digest()
+            || string_member(row, "outcome", &path)? != input.result.outcome().as_str()
         {
             return Err(DocumentError::new(
                 "qualification-companion-record-binding",

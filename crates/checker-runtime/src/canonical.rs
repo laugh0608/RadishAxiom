@@ -49,7 +49,11 @@ pub(crate) struct ShapeSpec<'a> {
 }
 
 pub(crate) fn parse(data: &[u8], require_compact: bool) -> Result<Value, DocumentError> {
-    let mut parser = Parser { data, offset: 0 };
+    let mut parser = Parser {
+        data,
+        offset: 0,
+        depth: 0,
+    };
     let value = parser.parse_value()?;
     parser.skip_whitespace();
     if parser.offset != data.len() {
@@ -297,12 +301,18 @@ fn encode_string(text: &str, output: &mut Vec<u8>) {
 struct Parser<'a> {
     data: &'a [u8],
     offset: usize,
+    depth: usize,
 }
 
 impl Parser<'_> {
     fn parse_value(&mut self) -> Result<Value, DocumentError> {
+        const MAX_JSON_DEPTH: usize = 128;
+        if self.depth >= MAX_JSON_DEPTH {
+            return Err(self.error("json-depth-limit"));
+        }
+        self.depth += 1;
         self.skip_whitespace();
-        match self.peek() {
+        let result = match self.peek() {
             Some(b'"') => self.parse_string().map(Value::String),
             Some(b'{') => self.parse_object(),
             Some(b'[') => self.parse_array(),
@@ -316,7 +326,9 @@ impl Parser<'_> {
             }
             Some(_) => Err(self.error("number-null-or-unsupported-json")),
             None => Err(self.error("unexpected-eof")),
-        }
+        };
+        self.depth -= 1;
+        result
     }
 
     fn parse_object(&mut self) -> Result<Value, DocumentError> {

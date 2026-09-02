@@ -1734,12 +1734,15 @@ mod tests {
         FilesystemStore, SlotPublishAction, StagingRecovery, StoreTransactionIdentity, raw_digest,
         set_mode,
     };
-    use crate::canonical::{Value, canonical_bytes, domain_digest, domain_digest_value, parse};
+    use crate::canonical::{
+        Value, as_object, canonical_bytes, domain_digest, domain_digest_value, member, parse,
+        string_member,
+    };
     use crate::{
-        AttemptClassification, AttemptStage, BoundedAttemptObservation, InstallationReceipt,
-        InstallationVerifierIdentity, LauncherPolicy, OwnedStaging, QualificationArtifacts,
-        QualificationCompanionInput, RegistrationRecord, build_installation_receipt,
-        parse_launcher_policy, parse_registration_record,
+        AttemptClassification, AttemptStage, BoundedAttemptObservation, IndependentDocumentBinding,
+        InstallationReceipt, InstallationVerifierIdentity, LauncherPolicy, OwnedStaging,
+        QualificationArtifacts, QualificationCompanionInput, RegistrationRecord,
+        build_installation_receipt, parse_launcher_policy, parse_registration_record,
     };
 
     const POLICY: &[u8] =
@@ -1747,6 +1750,18 @@ mod tests {
     const RECORD: &[u8] = include_bytes!(concat!(
         "../../../contracts/checker-runtime-payloads-v0.1/records/",
         "checker-go0.1-dev-darwin-arm64-current-registered-inactive.json"
+    ));
+    const AX_B01_CORRECT_RESULT: &[u8] = include_bytes!(concat!(
+        "../../../contracts/keyed-finite-table-checker-bundles-v0.1/s/",
+        "ax-b01-correct/expected-result.jcs"
+    ));
+    const CHK_DIGEST_RESULT: &[u8] = include_bytes!(concat!(
+        "../../../contracts/keyed-finite-table-checker-bundles-v0.1/s/",
+        "chk-digest-01/expected-result.jcs"
+    ));
+    const CHK_RESOURCE_RESULT: &[u8] = include_bytes!(concat!(
+        "../../../contracts/keyed-finite-table-checker-bundles-v0.1/s/",
+        "chk-resource-01/expected-result.jcs"
     ));
     const REGISTRATION_DOMAIN: &str = "radishaxiom.checker-runtime-payload-registration.v0.1";
     const POLICY_DOMAIN: &str = "radishaxiom.checker-runtime-launcher-policy.v0.3";
@@ -1903,35 +1918,75 @@ mod tests {
         )
     }
 
-    fn synthetic_result(record: &RegistrationRecord, outcome: &str) -> Vec<u8> {
+    fn synthetic_result(record: &RegistrationRecord, template: &[u8]) -> Vec<u8> {
         let checker = record.checker();
-        canonical_bytes(&object([
-            (
-                "checker",
-                object([
-                    ("artifact", string(record.artifact().raw_sha256())),
-                    ("name", string(checker.implementation())),
-                    ("source", string(checker.source())),
-                    ("toolchain", string(checker.toolchain())),
-                    ("version", string(checker.version())),
-                ]),
-            ),
-            ("result", object([("kind", string(outcome))])),
-            ("result_version", string("0.1")),
-        ]))
+        let mut value = parse(template, true).unwrap();
+        set_string(
+            &mut value,
+            &["checker", "artifact"],
+            record.artifact().raw_sha256(),
+        );
+        set_string(&mut value, &["checker", "name"], checker.implementation());
+        set_string(&mut value, &["checker", "source"], checker.source());
+        set_string(&mut value, &["checker", "toolchain"], checker.toolchain());
+        set_string(&mut value, &["checker", "version"], checker.version());
+        let root = object_mut(&mut value, &[]);
+        let (_, Value::Array(tcb)) = root.iter_mut().find(|(name, _)| name == "tcb").unwrap()
+        else {
+            panic!("result TCB must be an array");
+        };
+        for item in tcb {
+            let Value::Object(item) = item else {
+                panic!("result TCB item must be an object");
+            };
+            item.iter_mut()
+                .find(|(name, _)| name == "artifact")
+                .unwrap()
+                .1 = string(record.artifact().raw_sha256());
+            item.iter_mut()
+                .find(|(name, _)| name == "version")
+                .unwrap()
+                .1 = string(checker.version());
+        }
+        canonical_bytes(&value)
+    }
+
+    fn result_binding(bytes: &[u8], name: &str) -> IndependentDocumentBinding {
+        let value = parse(bytes, true).unwrap();
+        let root = as_object(&value, "$").unwrap();
+        let binding = as_object(member(root, name, "$").unwrap(), name).unwrap();
+        let content = string_member(binding, "content_digest", name).unwrap();
+        let document = as_object(
+            member(binding, "document_digest", name).unwrap(),
+            "document_digest",
+        )
+        .unwrap();
+        match string_member(document, "kind", "document_digest").unwrap() {
+            "available" => IndependentDocumentBinding::try_available(
+                content,
+                string_member(document, "value", "document_digest").unwrap(),
+            )
+            .unwrap(),
+            "unavailable" => IndependentDocumentBinding::try_unavailable(content).unwrap(),
+            _ => panic!("unknown document availability"),
+        }
     }
 
     fn synthetic_qualification_fixture(
         record: &RegistrationRecord,
     ) -> (LauncherPolicy, InstallationReceipt, QualificationArtifacts) {
-        let outcomes = [
-            ("ax-b01-correct", "accepted-with-trust"),
-            ("chk-digest-01", "rejected"),
-            ("chk-resource-01", "incomplete"),
+        let fixtures = [
+            (
+                "ax-b01-correct",
+                "accepted-with-trust",
+                AX_B01_CORRECT_RESULT,
+            ),
+            ("chk-digest-01", "rejected", CHK_DIGEST_RESULT),
+            ("chk-resource-01", "incomplete", CHK_RESOURCE_RESULT),
         ];
-        let results: Vec<(String, Vec<u8>)> = outcomes
+        let results: Vec<(String, Vec<u8>)> = fixtures
             .iter()
-            .map(|(scenario, outcome)| ((*scenario).into(), synthetic_result(record, outcome)))
+            .map(|(scenario, _, template)| ((*scenario).into(), synthetic_result(record, template)))
             .collect();
 
         let mut policy_value = parse(POLICY, true).unwrap();
@@ -1979,6 +2034,9 @@ mod tests {
                 QualificationCompanionInput::try_new(
                     scenario.as_str(),
                     bytes.clone().into_boxed_slice(),
+                    record,
+                    &result_binding(bytes, "request"),
+                    &result_binding(bytes, "evidence"),
                 )
                 .unwrap()
             })
@@ -1999,9 +2057,9 @@ mod tests {
                     (
                         "outcome",
                         string(
-                            outcomes
+                            fixtures
                                 .iter()
-                                .find(|(id, _)| *id == companion.scenario_id())
+                                .find(|(id, _, _)| *id == companion.scenario_id())
                                 .unwrap()
                                 .1,
                         ),
@@ -2609,14 +2667,14 @@ mod tests {
     fn qualification_matches_python_canonical_golden() {
         let (_, record, _) = fixture();
         let (_, _, qualification) = synthetic_qualification_fixture(&record);
-        assert_eq!(qualification.qualification_record().len(), 2_020);
+        assert_eq!(qualification.qualification_record().len(), 2_023);
         assert_eq!(
             raw_digest(qualification.qualification_record()),
-            "sha256:e09b055f2784a3df2e9fc81c4f204f083484ba04231cba03069ea55a0b916f1a"
+            "sha256:12b3e3610a049473b3d56566bbf64cc4ce19f6ac4a4d3945bf947f6ca129221f"
         );
         assert_eq!(
             qualification.document_digest(),
-            "sha256:c82f6576c49d55f4fcc30b6e2419e5497bfd2e10aaa720dedd062baf71cd3b97"
+            "sha256:e90fe30fe00b6108e073887675d99967fc2b68ea9713177b8737d625a5f14ef9"
         );
     }
 
