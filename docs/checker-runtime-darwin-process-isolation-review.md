@@ -3,6 +3,8 @@
 状态：当前主机的公开 spawn / 观察原语已形成合成证据，但现行 isolation / hard-memory 契约不可由其完整实现
 审阅日期：2026-09-02
 
+后续决策：2026-09-03 接受的 [ADR 0013](adr/0013-darwin-checker-hard-isolation.md)保留全部 hard boundary，拒绝 native best-effort adapter，并将 per-invocation signed App-Sandboxed Hypervisor runner 冻结为唯一实施候选；本审阅继续作为 native 原语与阻断项证据，不表示 runner 已实现。
+
 ## 目标与结论
 
 本审阅承接 [immutable spawn plan 切片](checker-runtime-spawn-plan-slice-review.md)，只判断 Darwin 当前公开原语能否承载 [ADR 0011](adr/0011-checker-runtime-launcher-installation-and-activation.md)、[ADR 0012](adr/0012-product-checker-runtime-host-and-persistence-interface.md) 与 Execution Profile Contract v0.1 已冻结的进程边界。所有动态观察只运行自行编译的合成 helper，并只写 `/private/tmp` 下的精确临时目录；没有执行 checker、读取产品根、修改系统配置 / 权限或写远程状态。

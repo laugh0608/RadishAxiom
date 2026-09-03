@@ -23,3 +23,4 @@
 - [ADR 0010：独立 checker runtime payload 的持久发布与登记](0010-checker-runtime-payload-durable-registration.md)
 - [ADR 0011：独立 checker runtime launcher、安装与激活边界](0011-checker-runtime-launcher-installation-and-activation.md)
 - [ADR 0012：产品侧 checker runtime 宿主与持久化接口](0012-product-checker-runtime-host-and-persistence-interface.md)
+- [ADR 0013：Darwin checker 强隔离宿主与虚拟执行边界](0013-darwin-checker-hard-isolation.md)
