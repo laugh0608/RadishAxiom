@@ -31,7 +31,7 @@
 | signed helper + App Sandbox | 由内核执行静态 filesystem / network capability；可形成独立签名身份 | 不提供 `128 MiB` hard memory 或 process-tree container；直接 child 继承 sandbox 也不能单独表达全部能力 | 只作为所选 runner 的外层宿主，不单独成立 |
 | privileged broker / `SMAppService` launch daemon | 理论上可取得 footprint privilege，并可隔离产品权限 | 需要用户 / 管理员批准和系统持久状态；公开 API 没有补齐不可逃逸 process tree；`task_set_phys_footprint_limit` 的长期支持不稳定 | 拒绝 |
 | `Virtualization.framework` per-invocation Linux VM | 公开配置可表达固定 guest memory、空 network devices、只读 directory share 和整 VM 生命周期 | boot loader、disk image 与 directory share 仍以 URL 为主要身份；当前 Darwin Mach-O checker 不能在 Linux guest 执行；entitlement、guest TCB、启动时延均未验收 | 保留为可行性对照，不可形成正式 adapter |
-| signed、App-Sandboxed 的 per-invocation Hypervisor runner | guest memory 由固定映射形成；checker 及其全部 guest descendants 在同一 VM；可只从已打开 descriptor 装载精确字节；不实现 network device | 需要新的受审阅 VMM / Linux microguest TCB、签名与 entitlement、单独产品制品、guest payload 身份和后续 policy 迁移 | **采用，仍受实施门槛阻断** |
+| signed、App-Sandboxed 的 per-invocation Hypervisor runner | guest memory 由固定映射形成；checker 及其全部 guest descendants 在同一 VM；可只从已打开 descriptor 装载精确字节；不实现 network device | 需要新的受审阅 VMM / Linux microguest TCB、签名与 entitlement、单独产品制品、guest payload 身份和后续 policy 迁移 | **采用；synthetic Linux feasibility 已通过，产品化门槛仍阻断** |
 | 弱化公共 hard boundary | 可减少平台实现成本 | 改变已冻结的失败、资源和信任语义 | 拒绝 |
 
 ## 决策
@@ -42,7 +42,7 @@
 
 ### 采用逐次 Hypervisor runner
 
-Darwin hard-isolation 的唯一进入实施候选是一个**每次调用新建、签名、App-Sandboxed、无持久状态的 Hypervisor runner**：
+Darwin hard-isolation 的唯一进入实施候选是一个**每次调用新建、签名、App-Sandboxed、无请求派生持久状态的 Hypervisor runner**；App Sandbox 固有 container 的安装级状态边界由 [ADR 0014](0014-darwin-app-sandbox-container-state.md)窄修订：
 
 ```text
 product / Rust runtime core
@@ -62,7 +62,7 @@ product / Rust runtime core
   -> feed one complete stdout result or one outer failure to existing consumer
 ```
 
-runner 属于产品侧可信计算基，与主仓 Rust runtime core 共用仓库、精确工具链治理和产品发布图，但它是独立签名的私有产品制品，不是公共 CLI、daemon、登录项、launch agent 或 launch daemon。每次请求必须创建新的 runner process 和新的 VM；禁止常驻 service、warm VM、跨请求 guest memory、结果 cache 或失败后切换 native adapter。
+runner 属于产品侧可信计算基，与主仓 Rust runtime core 共用仓库、精确工具链治理和产品发布图，但它是独立签名的私有产品制品，不是公共 CLI、daemon、登录项、launch agent 或 launch daemon。每次请求必须创建新的 runner process 和新的 VM；禁止常驻 service、warm VM、跨请求 guest memory、结果 cache 或失败后切换 native adapter。只允许固定 bundle identifier 对应的 OS-managed container skeleton 作为安装级 host state；runner 禁止读写该 container，container 不得成为输入、输出、cache 或 guest device。
 
 这对 ADR 0012 的“首版不冻结单独产品进程”形成窄修订：installer / store / policy / result core 继续留在现有 Rust workspace，只有 Darwin checker execution boundary 被允许拆为独立签名 runner。ADR 0012 的网络隔离、store 六项能力、单一 result consumer、Checker Go parser 不复用和 Python 非生产依赖等其余决策保持不变。
 
@@ -79,6 +79,7 @@ runner 属于产品侧可信计算基，与主仓 Rust runtime core 共用仓库
 | bounded stdout / stderr | host / guest channel 具有固定容量，达到上限即停止接受结果并形成 outer failure；截断前缀不得进入 result consumer |
 | process containment | checker fork / exec 的任何后代都只能存在于 guest；调用结束销毁全部 vCPU / VM，不使用 process group 冒充 guest process tree containment |
 | executable identity | parent 在 suspended runner 开始用户逻辑前用 Security framework 取得 dynamic code，并核对签名有效性、opaque unique identity、designated requirement 与 entitlement；kernel / init / checker / bundle 只从 pre-opened descriptor 按接受的长度 / SHA-256 读入映射，不再按 path 查找 |
+| persistent host state | 只允许固定 runner identity 对应的 OS-managed App Sandbox container skeleton；不得有请求派生 container data、逐请求 identity / container、App Group、security-scoped bookmark、VM image、日志或 cache；runner 不发现、读取或写入 container path |
 
 runner 自身、Darwin Hypervisor / App Sandbox / code-signing enforcement、guest Linux kernel、minimal init、host / guest transport、现有 Rust orchestration / store / result consumer，以及 checker binary 都必须分别进入 runtime TCB。Hypervisor 隔离不会把这些组件自动升级为独立 proof。
 
@@ -93,7 +94,7 @@ ADR 0011 当前把 host target 与 checker payload target 合并为同一个四�
 - Darwin execution host 与签名 runner identity；
 - guest platform / architecture / executable format；
 - guest kernel、init、transport 与 checker artifact identity；
-- guest-memory enforcement 和无设备能力证明；
+- guest-memory enforcement 和无 network / disk / host share 等 capability-bearing guest I/O device 证明；
 - native 与 virtualized adapter 的 closed selection，且无 fallback。
 
 现有 `CheckerSpawnPlan` 也只表达 host executable path 与 `--bundle-root=<canonical-realpath>`，不能被静默重解释成 runner / guest plan。后续迁移必须建立排他的 virtualized plan；checker 在 guest 内仍只接受原有 `check` 与单一 `--bundle-root=` 形状，host / guest transport 不得成为 checker 的第二个公共 CLI。
@@ -108,17 +109,17 @@ Apple 的高层 API 已公开：`VZVirtualMachineConfiguration.memorySize` 表�
 
 ## 实施前门槛
 
-本 ADR 接受后，最近的实现入口仍只是单独授权的**合成 microguest feasibility 切片**，且不得执行 checker。它必须同时证明：
+本 ADR 接受后的首个实现入口只是单独授权的**合成 microguest feasibility 切片**，且不得执行 checker。其门槛为：
 
 1. 使用独立测试签名和 `com.apple.security.app-sandbox` / `com.apple.security.hypervisor` entitlement 的临时 runner；说明签名目标、持续时间、写入范围和清理方式，不能借用生产身份或注册系统 service；
 2. parent suspended-spawn 后用公开 Security API 验证 dynamic code、designated requirement 与精确 entitlement，再允许 runner 继续；失败必须在 guest 创建前关闭；
 3. 所有 guest 输入由 pre-opened descriptor / bounded pipe 提供，strace 等调试工具不得成为生产依赖；加入 path replacement、descriptor drift、截断和重复输入负例；
-4. 只映射 `128 MiB` guest RAM，建立 one-VM / one-vCPU / no-device 最小生命周期，证明 deadline 能迫使 vCPU exit、destroy 和 runner reap；
+4. 只映射 `128 MiB` guest RAM，建立 one-VM / one-vCPU 最小生命周期；Linux 启动必需的 interrupt controller / timer 与 output-only transport 必须显式进入 TCB，除此之外不实现 network、disk、host share、input 或 writable-host device；证明 deadline 能迫使 vCPU exit、destroy 和 runner reap；
 5. 使用不会解释公共 checker 协议的 synthetic guest，覆盖正常、超时、越界内存访问、guest crash、尝试网络 / writable filesystem、fork / exec 后代和 stream overflow；
 6. 记录完整 TCB source / artifact / toolchain / license、启动与峰值资源、最低 macOS 和硬件前置；`6,000 ms` 必须包含冷启动，不允许先热机；
-7. 证明失败后没有 guest / runner 残留，也没有产品根、container data、VM image、日志、credential 或系统设置残留。
+7. 证明失败后没有 guest / runner process、VM / vCPU、mapping、临时文件、VM image、日志、credential、系统设置或请求派生 container data；只允许 ADR 0014 定义的固定 OS-managed container skeleton 与 opaque metadata 基线，且 runner 不读写它、不把它暴露给 guest。
 
-只有该切片通过，才可另行提出 guest checker 构建、公共 policy / registration / receipt 迁移和真实 product packaging。真实 checker execution、qualification、系统签名 / entitlement 变更和 activation 继续分别验证、分别授权。
+当前主机上的 synthetic Linux 结果与限制记录在[强隔离架构审阅单](../checker-runtime-darwin-hard-isolation-review.md)：该切片已通过，但只解除“可以另行提出”后续设计 / 实施切片的停止线。guest checker 构建、公共 policy / registration / receipt 迁移和真实 product packaging 尚未因此被接受；真实 checker execution、qualification、系统签名 / entitlement 变更和 activation 继续分别验证、分别授权。
 
 ## 后果
 
@@ -133,9 +134,10 @@ Apple 的高层 API 已公开：`VZVirtualMachineConfiguration.memorySize` 表�
 
 - 新增低层 VMM、Linux kernel / init、host / guest transport、签名 runner 和 entitlement，可信基与发布面显著扩大；
 - current Darwin payload 不能复用，需要新的 guest target、受控构建、许可证清单、acceptance、registration 和 policy identity；
-- `128 MiB` 同时容纳 kernel、init、bundle 和 checker 的可行性，以及 `6,000 ms` 冷启动预算，尚未动态证明；若失败，不允许自动增大 limit 或改用 warm VM；
+- synthetic Linux kernel + minimal init + 1.84 MiB Go probe 已在 exact `128 MiB` mapping 与 `6,000 ms` cold deadline 内动态通过，但真实 resolved bundle + checker 的容量、时延和失败分布尚未证明；若失败，不允许自动增大 limit 或改用 warm VM；
 - Hypervisor API 只提供虚拟化原语，不提供 Linux boot、设备模型、guest filesystem 或协议实现；这些都需要独立审阅，不能把 Apple framework 通过当作 runner 通过；
 - entitlement 和签名会改变产品打包 / 更新边界，最低 macOS 与支持矩阵尚待合成切片冻结。
+- App Sandbox 固有 container 是 runner 默认可写的持久 host namespace；ADR 0014 把“不读写它、无请求派生增量”列为 runner TCB 义务，而不是声称物理零持久状态。安装、升级、卸载与异常增量审计必须单独闭合。
 
 回滚保持失败关闭：删除尚未激活的 runner / guest 候选和对应 future registration 即可；现有 `registered-inactive` Darwin record 与公共格式原字节不追溯修改，产品继续报告 runtime unavailable。不得以回滚为理由重新启用 native best-effort adapter。
 
@@ -145,8 +147,9 @@ Apple 的高层 API 已公开：`VZVirtualMachineConfiguration.memorySize` 表�
 
 出现以下任一事实时，以新 ADR 重新比较，而不是增加 fallback：
 
-- synthetic microguest 无法在 `128 MiB` guest memory 和 `6,000 ms` cold deadline 内稳定完成；
+- synthetic microguest 或后续真实 checker 在受支持主机上无法在 `128 MiB` guest memory 和 `6,000 ms` cold deadline 内稳定完成；
 - App Sandbox / Hypervisor entitlement 无法在目标产品签名与分发渠道中获得或保持；
+- 固定 container 基线出现请求派生写入、跨请求读取、无法审计的非 opaque 增量，或必须增加 App Group / bookmark / 清理权限；
 - descriptor-fed boot / checker / bundle 装载无法避免新的 path / writable-host dependency；
 - VMM / guest TCB 无法被限制到可独立审阅的规模，或其依赖 / 许可证不可接受；
 - Apple 提供新的公开 native process container，能同时闭合 hard memory、不可逃逸 process tree、filesystem / network 与 atomic executable identity，且可信基明显更小；

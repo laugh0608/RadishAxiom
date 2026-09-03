@@ -24,3 +24,4 @@
 - [ADR 0011：独立 checker runtime launcher、安装与激活边界](0011-checker-runtime-launcher-installation-and-activation.md)
 - [ADR 0012：产品侧 checker runtime 宿主与持久化接口](0012-product-checker-runtime-host-and-persistence-interface.md)
 - [ADR 0013：Darwin checker 强隔离宿主与虚拟执行边界](0013-darwin-checker-hard-isolation.md)
+- [ADR 0014：Darwin App Sandbox container 与 runner 无状态边界](0014-darwin-app-sandbox-container-state.md)
