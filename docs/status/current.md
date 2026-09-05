@@ -24,7 +24,7 @@
 
 分仓、发布与动态事实沿用既有记录，本次未重验；受限 checker profile 仍须遵循 [ADR 0009](../adr/0009-axiom-evidence-v0-drift-and-migration.md) 的 group 义务漂移与 Evidence v0.2 迁移边界。
 
-历史锁定场景中，20 个 `failed` 条目已完成相应动态检查；213 个 producer `proved` claim 分为 65 个 attestation-only 与 148 个缺少可检查材料的 kernel claim，独立证明数仍为 0。25 个进入结果层的场景形成 22 个 `accepted-with-trust`、2 个 `incomplete`、1 个 `rejected`。计数只描述历史锁定场景，不代表生产证明能力。
+历史锁定场景曾完成 20 个 `failed` 条目的动态检查；213 个 producer `proved` claim 分为 65 个 attestation-only 与 148 个材料不足的 kernel claim，独立证明数为 0。原 25 个结果层场景为 22 个 `accepted-with-trust`、2 个 `incomplete`、1 个 `rejected`，不代表生产证明能力。2026-09-05 静态审阅提出部分反例目标归因的待复现疑点，尚未据此判定历史结果失效；跨仓验收见[开发计划](../development-plan.md#独立-checker-语义验收与跨仓交接)。
 
 精确工具为 Rust `1.97.1` / Rust 2024、Go `go1.26.7`、cvc5 `1.3.4`、Node.js `24.19.0`；逐项来源见[工具登记](../../contracts/toolchain-adapters-v0.1/README.md)和[payload 验收](../../contracts/toolchain-payload-acceptance-v0.1/README.md)。policy 为 `0.3` / `specified-not-implemented`；精确 payload 身份以[登记契约](../../contracts/checker-runtime-payloads-v0.1/README.md)及其 canonical record 为准。
 
@@ -34,7 +34,7 @@
 2. **完成隔离产品化与核心闭环依赖审阅。** 保留 ADR 0013 的既定候选，先做不执行 checker、不改公共字节的设计切片：明确 kernel / init / VMM / transport 来源、可重现构建、更新与许可证、最低系统 / 硬件、container 基线、TCB 维护预算；提出排他的 virtualized spawn plan 和 host / runner / guest 身份，解决 `128 MiB` guest 上界与整个 host footprint 的兼容问题。同一审阅列出 AX-B01 真实 P0–P9 的必要前置，避免把无关包装工作扩大为所有语义工作的前置。
 3. **按前置证据推进真实负载与核心管线。** 设计通过后，分别提出 Linux arm64 checker source → artifact acceptance、代表性 / 上限 bundle 的容量与 cold deadline 矩阵，以及 cvc5 / Node 验收和真实 AX-B01 切片。执行各自仍须满足 ADR 0007、0011–0014 与授权边界；先形成真实路径，再扩展到四题与完整失败矩阵。具体切片顺序由依赖审阅结果更新本页，不以计划预先解除门禁。
 
-后续补规范负例、资源曲线、独立证明覆盖和装置审计；工具与实现入口通过后锁定并另行授权 Agent 实验。语法、跨域、SDK / IDE、平台与商业扩张后置。
+Checker 语义线先核实目标归因，再验收同域泛化、独立证明链和结果解释；不改变上述 runtime 前置。后续补规范负例、资源曲线和装置审计，工具与实现入口通过后锁定并另行授权 Agent 实验；语法、跨域、SDK / IDE、平台与商业扩张后置。
 
 ## 当前停止线与待决策
 

@@ -46,6 +46,18 @@ ADR 0007 的实现入口、ADR 0011–0014 的 launcher / isolation 边界仍然
 
 自有 SHA-256、ASCII canonical JSON 和严格 USTAR 保持各自用途边界。后续测试优先增加有独立期望的差分、输入变异、深度 / 大小 / 截断边界与拒绝路径；不能用同一 helper 同时产生实际值和唯一期望值。当前 runtime ASCII parser 不直接升级为完整 Unicode Axiom IR parser。
 
+### 独立 Checker 语义验收与跨仓交接
+
+Checker 语义线按其[开发计划](https://github.com/laugh0608/RadishAxiomChecker/blob/dev/docs/development-plan.md)依次核实反例目标归因、同域新题与接口改名、首条完整正向证明链和结果解释。该链接仅作开发导航；规范或 fixture 导入仍绑定精确提交与摘要，不能形成可变运行依赖。Checker 的当前能力与待复核项由其[状态页](https://github.com/laugh0608/RadishAxiomChecker/blob/dev/docs/status/current.md)维护，不在本仓另存完整矩阵。
+
+本仓负责跨仓涉及的正式语义与公共契约决策。反例需确认所声明义务确实违反，验收应包含“其他义务失败、声明目标成立”的区分例，并重算完整 bundle 身份以抵达目标检查。静态发现局部特征与其他 guarantee 失败被组合，只构成待复现疑点；不能据此宣布历史结果失效，也不能把锁定场景通过外推为一般归因成立。若覆盖、分组或来源义务缺少唯一的目标谓词，先明确规范及迁移影响，再修实现。
+
+首条正向证明须连接独立重建的义务、正确的逻辑编码与可检查证明，尤其拒绝“有效证明对应错误命题”。同域新材料保留为独立合成验收集，不改四题 fixture 和正式实验注册；需要泛化数据绑定、诊断字段或支持集合时先走版本化决策。
+
+结果消费与 launcher 联调同时核对程序结论、证据接受四态、逐义务覆盖和外层运行保证。允许接受正确报告 `violated` 的 Evidence，不等于全部 proof claim 已验证；Checker 自身 `isolation-report` 不能替代 launcher 的 OS 隔离证据。当前 companion 无法承载的细节先从引用材料解释，正式扩展另行迁移。
+
+这条语义线不改变下文产品隔离前置。Checker 文档也参与 `checker.source`；源码更新不重绑既有 binary、acceptance、Release 或 inactive 登记，新 payload 另行验收。
+
 ## 规范质量与资源可行性
 
 在现有四题之外规划独立的规范审查材料，覆盖矛盾前置条件、过弱后置条件、漏标敏感字段、仅空表有效和遗漏业务约束。每个材料区分形式结论是否成立与业务意图是否被充分描述。
