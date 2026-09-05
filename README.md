@@ -26,15 +26,18 @@ RadishAxiom 是 Radish 家族中面向 AI Agent 的语言与可信语义项目�
 
 ## 当前状态
 
-项目处于设计到受控实现阶段。首域语义、Axiom IR / Evidence、工具链与 pipeline artifact 契约已经冻结；独立 Go checker 已在分仓完成严格离线 bundle 检查、四态 canonical result、累计资源、产品 CLI 和首个 macOS arm64 payload 的不可变发布与 `registered-inactive` 登记。主仓已建立精确 Rust `1.97.1`、Rust 2024 产品 workspace，闭合 checker runtime policy / record 身份、qualification / product registration selection、extraction-free 的严格内外层 USTAR、两层业务 manifest、canonical installation receipt、单一 result consumer、immutable spawn plan 与外层 result-or-failure 排他状态机；Darwin store 已通过唯一 exact `libc 0.2.189` 私有平台 binding 实现 descriptor-relative containment、no-replace slot / qualification publication、append-only attempt、full-sync、真实进程并发与 crash recovery。Darwin process 原语审阅已确认 exact spawn、stream / deadline supervisor 与进程观察可局部实现，但 App Sandbox 签名 / entitlement、`128 MiB` hard memory、不可逃逸 process tree 与 path-exec TOCTOU 尚未闭合；真实安装、runtime companion 与激活仍未完成。
+项目处于设计到受控实现阶段。首域为有键有限表的确定性纯转换，语义、IR / Evidence 与机器契约已形成；分仓 Go checker 已有受限 profile 的离线复核和 CLI，主仓 Rust 已实现 checker runtime 的身份、归档、存储与结果消费组件。
 
-当前阶段、已确定事项、今日进展、下一事项与后续顺位见[当前状态](docs/status/current.md)。
+完整 `raxc` 生产管线、产品 checker runtime 和 Agent 收益尚未验收，active runtime 为 0。Darwin 强隔离采用 ADR 0013 / 0014 的逐次 Hypervisor runner 方向；已有合成 Linux guest 观察，真实 checker 负载、产品化与公共身份迁移仍待完成。
+
+现有材料可用于规范审阅与组件回归，尚无面向用户的完整编译运行入口。当前能力、近期顺位和停止线见[当前状态](docs/status/current.md)；核心闭环、运行能力和实验的完成标准见[开发目标与验收计划](docs/development-plan.md)。
 
 ## 文档
 
 - [文档入口](docs/README.md)
 - [机器契约入口](contracts/README.md)
-- [产品定义](docs/product-definition.md)
+- [产品定义与首批工作流](docs/product-definition.md)
+- [开发目标与验收计划](docs/development-plan.md)
 - [许可证与生态策略](docs/licensing-strategy.md)
 - [仓库治理](docs/governance/repository-governance.md)
 - [参与贡献](CONTRIBUTING.md)
@@ -43,13 +46,15 @@ RadishAxiom 是 Radish 家族中面向 AI Agent 的语言与可信语义项目�
 
 ## 仓库检查
 
-Rust production workspace：
+Rust production workspace（工具链与依赖已验收并安装后）：
 
 ```bash
 cargo fmt --all --check
-cargo clippy --workspace --all-targets --all-features -- -D warnings
-cargo test --workspace --all-targets
+cargo clippy --workspace --all-targets --all-features --locked --offline -- -D warnings
+cargo test --workspace --all-targets --locked --offline
 ```
+
+先核对实际工具链是否为 `rust-toolchain.toml` 的精确版本；环境 override 会影响选择。当前 macOS arm64 主机的显式命令见[验证入口](docs/status/current.md#验证入口与本次审阅)。命令不授权自动安装工具链或依赖。
 
 仓库级契约与文本门禁：
 
@@ -64,6 +69,8 @@ Windows PowerShell：
 ```powershell
 pwsh ./scripts/check-repo.ps1
 ```
+
+当前 `Candidate Quality` 仅聚合仓库检查，尚未运行 Rust 门禁；本地 Rust 验证与 CI 的实际覆盖分别报告，接入目标见[仓库治理](docs/governance/repository-governance.md#已有-rust-实现的待补门禁)。
 
 ## 许可证
 

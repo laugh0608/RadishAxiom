@@ -95,7 +95,21 @@
 - Ruleset、PR workflow 与 required context 契约；
 - PR diff 空白和 Conventional Commits。
 
-技术栈冻结后，应按风险把以下组件逐步加入聚合，而不是把所有逻辑堆进一个难定位的 job：
+该 job 还通过仓库检查器运行基准、机器契约、摘要链、指定态 bundle、实验注册和 Python launcher 一致性检查。它不运行 Cargo，也不执行真实 checker、cvc5、Node 或 Hypervisor。普通 `dev` push 不自动触发 CI；当前 workflow 由面向 `dev` / `master` 的 PR 或手动调度触发。
+
+### 已有 Rust 实现的待补门禁
+
+Rust workspace 已有真实实现，格式、Clippy 与测试应作为下一工程切片接入 `Candidate Quality`。这是待实现的目标，不能从本文推断 workflow 已覆盖 Rust。接入时应：
+
+- 使用仓库精确工具链，显式核对实际身份并处理环境 override；工具与 runner 来源按已有供应链要求审阅，不隐式升级或写动 lockfile；
+- 按职责分离格式 / 静态检查与测试，聚合必须依赖实际结果，不能把 skipped、cancelled 或失败当成功；
+- 为 Darwin 文件系统原语与真实进程测试选择匹配的平台；Linux 上未编译或未运行的 Darwin 代码不得计入原生验证；
+- 验证一个真实 Rust 故障会使聚合失败，并保留平台、命令与限制；不启动真实 checker、服务或 VM 来扩大 CI 授权范围；
+- 保持 required context 名称和现有分支流程，修改 workflow 与检查器契约时同步复核本专题；远程 Ruleset 或设置变更仍单独授权。
+
+接入前，Rust 变更必须附实际本地格式、Clippy、测试及平台证据；绿色 `Candidate Quality` 只说明当前聚合覆盖的内容通过，不替代这些验证。当前命令与覆盖缺口由[当前状态](../status/current.md)维护。
+
+后续按真实能力与风险把以下组件逐步加入聚合，而不是把所有逻辑堆进一个难定位的 job：
 
 - 解析器、类型与效果系统测试；
 - Axiom IR schema 和规范化兼容性；

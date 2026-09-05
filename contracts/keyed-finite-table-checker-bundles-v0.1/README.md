@@ -43,10 +43,10 @@ checker result 中每个 check definition 的 `codes` 沿用 Independent Check C
 
 生成器复用 Independent Check Contract v0.1 的 request / manifest / result 校验入口和 Pipeline Artifact Contract v0.1 的 receipt 校验入口；它不会调用 solver、Node 或 checker。仓库级检查同时执行 bundle 生成重放、摘要链、readiness 断言、负例、路径与文本卫生校验。
 
-## 仍未解除的停止线
+## 指定态边界与运行进展
 
-- 独立 checker 的 Go 工程已经实现到严格 parser、IR 良构、Evidence 身份、义务重建与 state / support 闭合；有限表解释器、反例 / concrete replay、proof 真值、结论重算、certificate checker、独立 result / CLI 与跨平台构建仍未实现；
-- bundle 是指定态 fixture，`observed` 仍为 0，不能作为真实工具运行或证明记录；
-- 工具 payload、archive 内容、签名 / 来源、依赖与许可证仍未验收；
-- cvc5 options、Node invocation limits 与 checker resource limits 已在 Execution Profile Contract v0.1 指定；真实实现 / 六平台观察未完成，certificate 受支持 profile 集合仍为空；
-- 未经单独授权不得下载 / 安装工具、创建生产 compiler / checker、执行 solver / Node / checker、push、发布或部署。
+- 本目录 bundle 是指定态 fixture，`observed` 保持为 0，不能作为真实工具运行或证明记录。后续 checker 对它的实际运行应另存绑定输入身份的结果，不原地把期望制品改写为观察证据。
+- checker 已有的有限执行、反例 / concrete replay、结论重算、独立 result / CLI 和 payload 进展统一见[当前状态](../../docs/status/current.md)。生成器不会因这些实现完成而变成生产工具；支持范围仍受 profile 和 [ADR 0009](../../docs/adr/0009-axiom-evidence-v0-drift-and-migration.md) 约束。
+- 工具来源、包内容和依赖 / 许可证按[逐 payload 验收](../toolchain-payload-acceptance-v0.1/README.md)及[checker 登记](../checker-runtime-payloads-v0.1/README.md)判断；单项已验收不代表全工具链、全部平台或 runtime 已激活。
+- cvc5 options、Node invocation limits 与 checker resource limits 由 Execution Profile Contract v0.1 指定。契约通过不证明真实执行满足限制，也不扩大 certificate 支持集合或把 backend attestation 升为独立 proof。
+- 本契约不授予下载 / 安装、生产实现、工具执行、push、发布或部署授权；实际任务按当前状态与对应 ADR 的前置和授权规则执行。

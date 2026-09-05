@@ -197,3 +197,9 @@ synthetic Linux closure 已降低 guest boot、process / syscall、128 MiB 与 6
 后续 microguest probe 的 `/private/tmp/radishaxiom-microguest-feasibility-a13-v1`、两个定位用 crash report 和 App Sandbox container Data 树也已精确删除；没有 runner 进程、VM image、日志或临时根残留。唯一未能删除的是上文记录的 container-manager metadata plist 与空父目录。仓库只更新本审阅和当前状态，没有保留 probe code、binary、entitlement、公共格式或机器 fixture。
 
 本轮 Linux probe 记录最终摘要后，精确 `/private/tmp/radishaxiom-linux-microguest-feasibility-a14-v1` 已递归删除并确认不存在；新 identity `dev.radishaxiom.synthetic.linux-microguest.runner.a14` 的 `Data` 子树已清空且无 entry，进程精确匹配为空，DiagnosticReports 中没有 `SyntheticRunner` crash report。按 ADR 0014 保留 OS-managed container 父目录、空 `Data` 目录与 29,400-byte `.com.apple.containermanagerd.metadata.plist`，未读取或改写 metadata 内容。仓库没有保留 probe source / binary / entitlement，也没有写入 VM image、产品根、系统 service 或远程状态。
+
+## 复现材料缺口（2026-09-05 审阅补记）
+
+上述 probe 的摘要、环境与结果叙述保留了历史身份和观察，但自有源码、完整构建 / 运行入口及输入字节未持久留存，独立协作者不能仅凭本记录复现原实验。这不撤销当时观察，也不构成新的运行验收；后续不得把它计为已具备可重跑回归的产品证据。
+
+后续产品化实验应按[协作规则](governance/agent-collaboration.md)先保留最小源码、配置、合成输入和机器结果，再清理临时运行产物。新实验使用新身份与实际证据，不能用重新编写的 probe 冒充原摘要对应源码。真实 checker / bundle、资源语义与 TCB 审查入口见[开发计划](development-plan.md)。

@@ -55,6 +55,7 @@ checker 外层构建或进程失败使用 independent.process / process_codes，
 ## 仍未解除的停止线
 
 - benchmark bundle 已由 [Keyed Finite Table Checker Bundle Contract v0.1](../keyed-finite-table-checker-bundles-v0.1/README.md) 物化，矩阵与 bundle 均保持 `specified`，不表示 checker 已执行；
-- 工具 registry 中的 payload、包内容和许可证仍未验收，PIPE-TOOLCHAIN-NOT-ACCEPTED-01 保持 gate 关闭；
-- certificate 能力、完整 options / limits、真实跨平台语义一致性和首次 checker 实现仍须分别验收或授权；
+- `PIPE-TOOLCHAIN-NOT-ACCEPTED-01` 表达工具未验收时必须关闭 gate 的指定态场景，不是全仓工具尚未验收的实时声明；逐项事实见[payload 验收](../toolchain-payload-acceptance-v0.1/README.md)与[当前状态](../../docs/status/current.md)；
+- options / limits 已由 [Execution Profile Contract v0.1](../execution-profiles-v0.1/README.md)物化；checker 实现和 payload 的后续进展不改变本矩阵 `specified` / `observed_scenarios = "0"` 的性质，真实结果另存并绑定输入；
+- certificate 能力、真实跨平台语义一致性、产品安装 / qualification / 激活仍按各自契约验收，静态矩阵不解除其门禁；
 - 本契约通过只说明静态实现入口一致，不授权下载依赖、创建编译器 / checker 工程或运行 solver、Node、checker 与正式模型实验。
