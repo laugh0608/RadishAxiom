@@ -70,7 +70,7 @@ Windows PowerShell：
 pwsh ./scripts/check-repo.ps1
 ```
 
-当前 `Candidate Quality` 仅聚合仓库检查，尚未运行 Rust 门禁；本地 Rust 验证与 CI 的实际覆盖分别报告，接入目标见[仓库治理](docs/governance/repository-governance.md#已有-rust-实现的待补门禁)。
+`Candidate Quality` 聚合 `Repo Hygiene`、Rust 格式 / Clippy 和 Rust 测试，只有三者全部成功才通过。Rust job 在 `macos-26` arm64 上使用精确工具链；普通 `dev` push 不自动触发 CI。执行契约见[仓库治理](docs/governance/repository-governance.md#rust-工程门禁)，实际验收与未覆盖范围见[当前状态](docs/status/current.md#验证入口与本次审阅)。
 
 ## 许可证
 

@@ -30,10 +30,13 @@
 
 ## 近期顺位
 
-Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收，见下文记录；普通 `dev` push 仍不自动触发 CI。下一顺位为：
+Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收；普通 `dev` push 仍不自动触发 CI。2026-09-06 的提交与核对结论见[日终回顾](../records/2026-09-06-closeout.md)。kernel / Debian 来源及 Rust Linux 输入均已有诊断留存，尚未形成完整 source lock、真实安装或构建验收。
 
-1. **审阅资源 ADR 草案并闭合维护投入。** 项目所有者已确认另立虚拟执行 profile 的起草方向：[ADR 0015（Proposed）](../adr/0015-virtualized-checker-resource-profile.md)明确 guest 128 MiB 硬限、宿主总内存无等价硬保证、排他选择与迁移闭包。草案尚未替代 Accepted ADR，不能原地重解释 v0.1。[产品化依赖审阅](../checker-runtime-productization-dependency-review.md)中的维护负责人、预算和具体来源仍待确认或验收。
-2. **收口静态 runtime 来源与隔离构建环境。** kernel [归档诊断](../records/linux-6.18.49-archive-inventory/README.md)及 [Debian 包来源链 / 三包安装模拟](../records/linux-builder-source-chain/README.md)已有留存；模拟无升级或移除，但固定 Debian 快照不代表最新安全状态。后续 [Rust Linux 输入诊断](../records/rust-linux-input-review/README.md)已取得 GNU host / musl std 实际字节、匹配摘要并完成本轮 GnuPG 签名核验、归档 / 安装候选和部分 ELF 依赖盘点；kernel 精确 tag 元数据与 tar commit 对应，许可材料亦已审阅。Rust 公钥旧 SHA-1 自认证、musl / CRT / unwind 精确来源、driver / LLVM / 系统库闭包仍待收口，再确认三包及选定 Rust component 的隔离安装 / 有限执行范围。尚未真实安装或构建；新记录的 8 项合成检查单独执行，原 27 项仍接入仓库门禁。旧公共链、ADR 接受、完整 source lock、公共迁移与产品运行继续分别验收及授权。
+### 明日事项（2026-09-07）
+
+1. **收口资源与维护决策。** 审阅 [ADR 0015（Proposed）](../adr/0015-virtualized-checker-resource-profile.md)的 guest 128 MiB 硬限、宿主总内存无等价硬保证及兼容性影响，确认[维护负责人和投入](../checker-runtime-productization-dependency-review.md#许可证与维护责任)。起草方向已确认，正式接受及预算仍待决定；在此之前不迁移 v0.1 或进入真实 checker 执行。
+2. **补齐剩余来源证据。** 从 [Rust Linux 核验记录](../records/rust-linux-input-review/README.md)继续：明确旧 SHA-1 公钥自认证的绑定策略；对应 musl / CRT / unwind 的精确构建配方、源码与许可；核对 driver / LLVM / loader / 系统库完整依赖。kernel tag 元数据已与 tar commit 对应，但原始 tag 签名及最终分发材料仍未验收。保留失败和 trust 缺口，不重复把已取得的 payload 列为待下载，也不把摘要 / GnuPG 成功升级为完整 acceptance。
+3. **形成可批准的隔离安装切片。** 依据[三包模拟](../records/linux-builder-source-chain/README.md)和 Rust 选定 component 清单，固定镜像、新安装前缀、依赖差异、执行命令、时限、日志及容器删除方式；明确安装器会处理旧组件和默认 `ldconfig` 的副作用。来源前置与精确范围收口后再申请安装 / 有限执行，不将模拟当成安装回执。完整 source lock、公共迁移、签名 / VM 和产品运行继续分别验收与授权。
 
 [AX-B01 首切片依赖审阅](../axiom-pipeline-first-slice-dependency-review.md)已列出 P0–P9 前置；cvc5 / Node 自身的来源与外层硬限制仍需独立闭合。纯设计无需等待产品安装 / 激活，生产实现遵守 ADR 0007 全部入口或正式替代决策。
 
@@ -67,14 +70,7 @@ cargo +1.97.1-aarch64-apple-darwin test --workspace --all-targets --locked --off
 
 命令以工具和依赖已验收安装为前提，不授权下载；其他平台先确认精确工具与执行范围。
 
-2026-09-06 本地通过 Rust 格式 / Clippy、61 项测试、YAML / shell 检查、125 种聚合状态、7 种 workflow 退化修改及真实失败测试的阻断验证；仓库门禁通过 969 个文件，diff 卫生通过。授权后的真实 CI 结果为：
-
-| 提交与运行 | 实际平台 | 结果 |
-| --- | --- | --- |
-| `cf0be91` / [首跑](https://github.com/laugh0608/RadishAxiom/actions/runs/34030049866) | macOS 15.7.9；image `20260829.0321.1` | 工具准备、格式 / Clippy 通过；独占 rename 返回 `EINVAL`，core 为 50 通过、8 失败；Cargo 退出 101，聚合正确退出 1 |
-| `e600e181cd15fc0675b6c9638a755f405f55dc54` / [验收运行](https://github.com/laugh0608/RadishAxiom/actions/runs/34030297501) | macOS 26.6.2 / `25G83`；image `20260831.0337.3` | 精确工具准备、格式 / Clippy、58 项 core 与 3 项 Darwin 测试均通过，无忽略项；三个组件和聚合全部成功 |
-
-修正只调整 CI runner，未放宽 flags 或跳过测试。成功与失败传播记录共同完成工程回归入口验收，不代表最低系统矩阵、产品 qualification 或独立证明能力。未执行真实 checker、cvc5、Node、Hypervisor 或模型实验。工程门禁来源与边界见[仓库治理](../governance/repository-governance.md#rust-工程门禁)。
+2026-09-06 的 Rust 本地 61 项测试与 CI 成功 / 失败传播已经验收；macOS 15 的 `EINVAL` 失败及 macOS 26.6.2 的成功运行均留在[日终记录](../records/2026-09-06-closeout.md#ci-与早前本地验证)。日终仓库门禁通过 1,034 个文件（含 source-tar / Debian 来源链的 27 项合成检查），另行通过库存 6 项与 Rust 输入诊断 8 项检查。日终未重跑 Rust、CI、真实归档核验、安装或产品执行；这些诊断不构成产品 qualification 或独立证明。工程门禁来源与边界见[仓库治理](../governance/repository-governance.md#rust-工程门禁)。
 
 ## 按需阅读
 

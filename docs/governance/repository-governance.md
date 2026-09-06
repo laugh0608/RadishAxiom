@@ -95,7 +95,9 @@
 - Ruleset、PR workflow 与 required context 契约；
 - PR diff 空白和 Conventional Commits。
 
-该 job 还通过仓库检查器运行基准、机器契约、摘要链、指定态 bundle、实验注册和 Python launcher 一致性检查。它不运行 Cargo，也不执行真实 checker、cvc5、Node 或 Hypervisor。普通 `dev` push 不自动触发 CI；当前 workflow 由面向 `dev` / `master` 的 PR 或手动调度触发。
+该 job 还通过仓库检查器运行基准、机器契约、摘要链、指定态 bundle、实验注册和 Python launcher 一致性检查，以及 source-tar / Debian source-chain 的合成拒绝检查。两个来源检查分别由 `check-source-tar-inventory.py` / `check-debian-source-chain.py` 运行，各限 30 秒，超时或非零退出使仓库门禁失败。这里不下载实际归档、不验签、不盘点容器或模拟安装；来源记录中的独立命令及其合成测试也不会因文件位于仓库内而自动进入默认门禁。
+
+`Repo Hygiene` 不运行 Cargo，也不执行真实 checker、cvc5、Node 或 Hypervisor。普通 `dev` push 不自动触发 CI；当前 workflow 由面向 `dev` / `master` 的 PR 或手动调度触发。
 
 ### Rust 工程门禁
 
@@ -109,7 +111,7 @@
 - 准备阶段以 `cargo fetch --locked --target aarch64-apple-darwin` 获取现有 lockfile 的依赖，后续 Clippy 和测试使用 `--locked --offline`。现有唯一 registry crate 的来源、checksum、许可证及 build script 边界见 [Darwin store 切片审阅](../checker-runtime-darwin-store-slice-review.md)。不升级依赖或改写 lockfile；临时 toolchain 和 Cargo 缓存随 hosted job 销毁，不产生发布制品。
 - 仓库基线检查固定 job、平台、命令、聚合依赖与结果绑定，防止接入后静默退回仅文本检查。修改门禁时应复验一个真实 Rust 故障能阻断聚合，同时核对取消 / 跳过结果；本地执行聚合 shell 不能替代 GitHub 的实际调度和失败传播验收。
 
-这些 job 只检查仓库已有实现，不运行真实 checker、cvc5、Node 或 Hypervisor。首次远程运行前仍需按具体目标授权推送 / 调度；远程 Ruleset 或设置修改单独授权。本地命令与未完成的远程验收由[当前状态](../status/current.md)维护。
+这些 job 只检查仓库已有实现，不运行真实 checker、cvc5、Node 或 Hypervisor。远程推送 / 调度仍需按具体任务授权，Ruleset 或设置修改单独授权；首次运行已经完成不构成后续远程动作的授权。本地命令、实际验收与未覆盖范围由[当前状态](../status/current.md)维护。
 
 后续按真实能力与风险把以下组件逐步加入聚合，而不是把所有逻辑堆进一个难定位的 job：
 
