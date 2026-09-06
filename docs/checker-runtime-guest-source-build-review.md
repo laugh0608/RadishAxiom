@@ -2,7 +2,7 @@
 
 审阅日期：2026-09-06
 
-状态：候选环境与 kernel 归档盘点、Debian 包签名摘要链及安装模拟完成诊断；尚未形成完整 source lock、安装或构建验收。
+状态：候选环境、kernel / Debian 来源与 Rust Linux 输入已形成诊断；安装、完整 source lock 与构建验收尚未完成。
 
 用途：把 kernel / init / runner / transport 与 Linux checker 的来源前置落实为可核对输入、构建职责和验收交付，支撑[产品化依赖审阅](checker-runtime-productization-dependency-review.md)的来源切片。
 
@@ -26,8 +26,8 @@
 | 压缩源码 | [linux-6.18.49.tar.xz](https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.49.tar.xz) | 已下载 154,627,808 bytes，原始摘要见下行 |
 | 发布者 SHA-256 | `ae826f33111fea6f1d279dde7299d7463c8dfd204aeb75a8fb5432bc60a28191` | 本地重算匹配 [sha256sums.asc](https://www.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc)所列摘要；未以该索引自动签名替代开发者签名 |
 | 开发者分离签名 | [linux-6.18.49.tar.sign](https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.49.tar.sign) | 第二次离线验证返回 0 / `VALIDSIG`，完整指纹 `647F28654894E3BD457199BE38DBBDC86092693E`；首次缺 UID 导入失败留存 |
-| 未压缩 tar、归档文件库存 | 1,610,598,400 bytes；SHA-256 `e1ff34affa6a24460d47dbad47d60ff971b88a18c06841554664358313d5026c` | 已只读盘点 91,120 个普通文件、85 个链接及许可证材料；未展开或完成许可审阅 |
-| stable tag / commit | tar 的 PAX comment 为 `1c732c6b94f0faee1526bd375add2fe10cba2e26`，与本轮 stable 镜像分支页面相符 | 已保留源包内 commit 声明；尚未验证 tag 原始签名或重建 Git tree |
+| 未压缩 tar、归档文件库存 | 1,610,598,400 bytes；SHA-256 `e1ff34affa6a24460d47dbad47d60ff971b88a18c06841554664358313d5026c` | 已只读盘点文件 / 链接及许可材料；未提取为构建目录或形成完整许可验收 |
+| stable tag / commit | tar 的 PAX comment 为 `1c732c6b94f0faee1526bd375add2fe10cba2e26`，与 stable 镜像 `refs/tags/v6.18.49` JSON 的 peeled commit 相符 | 精确 tag 元数据对应已补齐；原始 tag 签名 / Git tree 重建尚未完成，TEXT 入口 HTTP 400 留存 |
 
 [kernel.org 签名说明](https://www.kernel.org/signature.html)区分两条链：开发者签名对应**未压缩 tar**；`sha256sums.asc` 的自动签名用于镜像一致性，不替代开发者签名。后续必须分别核对压缩文件摘要、解压后的 tar 签名、签名公钥指纹与所采用的信任来源。不能将网页可访问、摘要相等或 `Good signature` 单独写成完整来源可信。
 
@@ -60,7 +60,9 @@
 
 [精确候选记录](records/linux-6.18.49-archive-inventory/builder-package-candidates.json)固定的三个 arm64 包已完成后续[签名来源链诊断](records/linux-builder-source-chain/README.md)：InRelease 验签、Packages / Sources 摘要以及 3 个 binary / 9 个 source 材料的长度与摘要全部匹配。包内控制字段与签名索引一致；无网络 apt 模拟显示只新增三包、无升级或移除、未安装 recommends。`flex` 的 debconf 前置依赖、`bison` 的 alternatives / 旧 manpage 操作、`bc` 的条件 menu 更新已列明；首次只读 /tmp 导致模拟失败与修正均留存。尚未实际安装或执行脚本，不把模拟当成配置 / 回滚验收。
 
-Rust Linux 沿用 registry 已列出的 `rust-1.97.1-aarch64-unknown-linux-gnu.tar.xz` 入口，官方 SHA-256 已另行捕获为 `9a7a2c336b4787f1b72f6bab7c35d5b7af2fd03cbd39b4fc721466a70d402a7d`；尚未下载 payload、验签或回写正式登记。musl std / CRT / linker 独立验收。旧镜像的 `1.96.1` 不能代替它，也不为缩短准备切换 init 语言。最终 kernel config 尚未冻结，条件工具清单仍按上文核实。
+后续 [Rust Linux 诊断](records/rust-linux-input-review/README.md)已取得 GNU host 与 musl std 实际归档，均匹配固定 channel manifest 摘要并通过本轮 GnuPG 分离签名核验；逻辑归档、文件 / component 清单和部分 ELF 动态依赖已盘点。公钥旧 SHA-1 自认证、镜像 / 工具来源、实际静态 runtime 来源与动态库闭包仍未完整验收，未回写正式登记。旧镜像的 `1.96.1` 不能代替 `1.97.1`，也不为缩短准备切换 init 语言。
+
+实际 musl 包带有 `libc.a`、`libunwind.a` 和 9 个 CRT 对象；GNU host 的 `rustc` component 提供 `rust-lld`，但后者自身需要 builder 的 loader、LLVM / zlib / libc 等库。下一步对应精确源码 / 许可及宿主库，不再把这些文件列为“尚未取得”。安装候选仅选择 GNU 的 rustc / cargo / std 与 musl std，采用新隔离前缀并禁用 `ldconfig`；安装器会处理旧组件，不能直接复用已有 prefix。尚未实际安装或构建，最终 kernel config 和条件工具仍未冻结。
 
 ### 归档诊断的范围
 
@@ -75,7 +77,7 @@ init 是产品侧 guest TCB：准备只读文件系统、管理 checker 子进�
 | 候选 | 可复用前置 | 需要补齐的真实边界 | 本次判断 |
 | --- | --- | --- | --- |
 | Go `go1.26.7` / `CGO_ENABLED=0` | 既有 Darwin host / source 验收；checker 也使用 Go | `SysProcAttr` 有 chroot / credential 等字段，但没有通用 pre-exec 或 seccomp 配置入口；自行 fork、重入 runtime 或新增 trampoline 都会扩大审阅面 | 不按“标准库即可”冻结；保留重新比较 |
-| Rust `1.97.1` / Linux arm64 静态 ELF | 产品工具链与 Rust source 验收；`pre_exec` 提供明确的 child 执行前位置 | Linux target std、libc / CRT / linker 与 Linux 系统调用绑定未验收；hook 内必须遵守 fork 后限制 | **优先论证建议**，未授权下载 / 新增依赖 |
+| Rust `1.97.1` / Linux arm64 静态 ELF | 产品工具链与 Rust source 验收；`pre_exec` 提供明确的 child 执行前位置 | Linux target std、libc / CRT / linker 与 Linux 系统调用绑定未验收；hook 内必须遵守 fork 后限制 | **优先论证建议**；材料已获准下载诊断，安装 / 新增项目依赖尚未授权 |
 | C / 自定义裸 syscall init | 可与 kernel builder 使用同一 C 工具族 | 新语言实现面、手工 ABI / 内存安全 / libc 或运行时维护 | 不为缩短来源准备而采用 |
 
 本判断基于精确标签的 [Go exec_linux.go](https://raw.githubusercontent.com/golang/go/go1.26.7/src/syscall/exec_linux.go)和 [Rust Unix process API 源码](https://raw.githubusercontent.com/rust-lang/rust/1.97.1/library/std/src/os/unix/process.rs)。Go 没有直接 hook 不等于无法实现隔离；只意味着此前的“Go 标准库单用途 init”还缺具体安全启动设计。不能先启动 checker 再从 parent 补装限制，也不能给整个多线程 PID 1 加过滤器后假定全部线程、管理路径和后代均符合预期。
@@ -122,13 +124,13 @@ initramfs 输入先采用固定 `newc` 布局，逐项列路径、类型、mode�
 
 ## 下一可执行切片
 
-已有候选环境库存、kernel 归档诊断、三个缺失包的签名摘要链与实际安装模拟、Rust Linux 发布者摘要，以及版本化只读检查入口。下一步取得并验收 Rust Linux payload / 静态目标输入、核对 kernel 许可 / stable tag，并单独确认精确三包的隔离安装范围；镜像、诊断工具与包源码许可仍不是完整 acceptance，不直接修改历史摘要绑定入口。接着分别验收 Linux source archive、builder、Rust Linux init 目标与 Go checker build 输入，之后才写入 source lock。
+已有 kernel / Debian 诊断、Rust Linux 实际字节 / 签名 / 库存、kernel tag 元数据对应和许可材料审阅。下一步收口 Rust 公钥绑定策略、musl / CRT / unwind 精确来源、driver / LLVM / 系统库闭包，以及三包加选定 Rust component 的隔离安装 / 有限执行范围。kernel 分发需保留对应源码、patch、配置与构建 / 安装脚本的候选交付已列明，具体产物 / 分发方案尚未接受。镜像、诊断工具和材料库存不等于完整 acceptance；旧摘要绑定入口不改动。分别验收 source、builder、init target 与 Go checker 输入后才写入 source lock。
 
 | 切片 | 完成交付 | 当前缺口 |
 | --- | --- | --- |
-| 构建环境确定 | 精确环境、工具 / 库库存、版本 / 摘要、隔离与清理范围 | 固定镜像已盘点；三包摘要链与模拟完成但未安装，Rust 版本不符；镜像 / 工具 / 包源码许可尚未完整验收 |
-| Kernel source 验收 | 压缩摘要、未压缩 tar 签名、完整指纹、文件 / 许可证库存、来源记录 | 压缩 / tar 摘要、签名与归档文件 / 链接 / 许可证材料库存已核验；许可义务、tag 对应关系及工具来源仍待验收 |
-| init 方案收口 | 语言 / target / 依赖决定、child 限制安装顺序、失败矩阵 | Rust 优先建议尚待设计验收，Linux std / linker 未验收 |
+| 构建环境确定 | 精确环境、工具 / 库库存、版本 / 摘要、隔离与清理范围 | 三包模拟与 Rust 选定 component 清单已有；尚未安装，镜像 / 工具 / 动态库和源码许可未完整验收 |
+| Kernel source 验收 | 压缩摘要、未压缩 tar 签名、完整指纹、文件 / 许可证库存、来源记录 | 摘要 / 签名 / 文件库存、tag 元数据对应及许可材料已审阅；原始 tag、实际分发材料与工具来源尚未完整验收 |
+| init 方案收口 | 语言 / target / 依赖决定、child 限制安装顺序、失败矩阵 | Rust 优先建议待设计验收；Linux std / CRT / linker 已盘点，静态 runtime 来源与实际链接未验收 |
 | 可留存合成装置 | 自有 runner / init / transport 源码、输入与重跑入口 | 先满足 ADR、工具、私有 FFI 范围与单独签名 / VM 授权 |
 
 本审阅没有解除来源、资源或真实执行门槛。当前产品能力与下一顺位仍只由[当前状态](status/current.md)统一维护。

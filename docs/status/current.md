@@ -33,7 +33,7 @@
 Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收，见下文记录；普通 `dev` push 仍不自动触发 CI。下一顺位为：
 
 1. **审阅资源 ADR 草案并闭合维护投入。** 项目所有者已确认另立虚拟执行 profile 的起草方向：[ADR 0015（Proposed）](../adr/0015-virtualized-checker-resource-profile.md)明确 guest 128 MiB 硬限、宿主总内存无等价硬保证、排他选择与迁移闭包。草案尚未替代 Accepted ADR，不能原地重解释 v0.1。[产品化依赖审阅](../checker-runtime-productization-dependency-review.md)中的维护负责人、预算和具体来源仍待确认或验收。
-2. **补齐 Rust Linux 材料与 kernel 许可，明确隔离安装。** kernel `6.18.49` 的[来源与归档诊断](../records/linux-6.18.49-archive-inventory/README.md)已形成文件、链接与许可材料库存；后续[构建包诊断](../records/linux-builder-source-chain/README.md)完成 InRelease 验签、索引与 12 个包 / 源材料摘要匹配、控制字段核对及无网络 apt 模拟。模拟只新增 `flex` / `bison` / `bc`，无升级或移除；真实安装尚未执行。Release 是无 Valid-Until 的 Debian 12.15 固定快照，不代表最新安全状态或完整工具 acceptance。Rust `1.97.1` Linux arm64 官方摘要已捕获，payload / 静态目标尚未验收。下一步补齐这些材料、kernel 许可 / stable tag 对应关系，并按已列明副作用确认三包的隔离安装范围。旧公共验收链不变，两个诊断入口的 27 项合成测试接入仓库检查；完整 source lock、构建、ADR 正式接受后的公共迁移及产品运行仍分别验收与授权。
+2. **收口静态 runtime 来源与隔离构建环境。** kernel [归档诊断](../records/linux-6.18.49-archive-inventory/README.md)及 [Debian 包来源链 / 三包安装模拟](../records/linux-builder-source-chain/README.md)已有留存；模拟无升级或移除，但固定 Debian 快照不代表最新安全状态。后续 [Rust Linux 输入诊断](../records/rust-linux-input-review/README.md)已取得 GNU host / musl std 实际字节、匹配摘要并完成本轮 GnuPG 签名核验、归档 / 安装候选和部分 ELF 依赖盘点；kernel 精确 tag 元数据与 tar commit 对应，许可材料亦已审阅。Rust 公钥旧 SHA-1 自认证、musl / CRT / unwind 精确来源、driver / LLVM / 系统库闭包仍待收口，再确认三包及选定 Rust component 的隔离安装 / 有限执行范围。尚未真实安装或构建；新记录的 8 项合成检查单独执行，原 27 项仍接入仓库门禁。旧公共链、ADR 接受、完整 source lock、公共迁移与产品运行继续分别验收及授权。
 
 [AX-B01 首切片依赖审阅](../axiom-pipeline-first-slice-dependency-review.md)已列出 P0–P9 前置；cvc5 / Node 自身的来源与外层硬限制仍需独立闭合。纯设计无需等待产品安装 / 激活，生产实现遵守 ADR 0007 全部入口或正式替代决策。
 

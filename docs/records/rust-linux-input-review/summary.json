@@ -1,0 +1,631 @@
+{
+  "acceptance": "not-assessed",
+  "archive_attempts": [
+    {
+      "attempt": 1,
+      "exit_code": 1,
+      "method_sha256": "5af81b63f03eaf512a140e38119e6e3076ad57d4b7c45e67cdfcde6d79dc666a",
+      "reason": "XZ decoder memory requirement exceeded 128 MiB; no successful inventory output"
+    },
+    {
+      "attempt": 2,
+      "change": "Host-only diagnostic XZ memory cap raised to 256 MiB; no product guest budget change",
+      "exit_code": 0,
+      "method_sha256": "e9a417881e4caff2da92441dc19e958d93dba27173b38d3ce4425a9fd7c3b949"
+    }
+  ],
+  "archive_inventory": {
+    "compressed_bytes": 3188514,
+    "compressed_sha256": "53ab99369b0cc344bd732feb749873d0c2d1b2ec59a591ece983bc67f41f2a7f",
+    "file": "archive-inventory.json.gz",
+    "uncompressed_bytes": 28225710,
+    "uncompressed_sha256": "aef0833c6220ac259ee52decde39cb0590f7d2963b7f208c791c58bc6eae83da"
+  },
+  "archives": [
+    {
+      "bytes": 175976652,
+      "component_claim_count": 180,
+      "components": [
+        "rustc",
+        "rust-std-aarch64-unknown-linux-gnu",
+        "rust-docs",
+        "rust-docs-json-preview",
+        "cargo",
+        "rustfmt-preview",
+        "rust-analyzer-preview",
+        "llvm-tools-preview",
+        "clippy-preview",
+        "rust-analysis-aarch64-unknown-linux-gnu",
+        "llvm-bitcode-linker-preview"
+      ],
+      "file": "rust-1.97.1-aarch64-unknown-linux-gnu.tar.xz",
+      "licenses": [
+        {
+          "bytes": 10860,
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-1.97.1-aarch64-unknown-linux-gnu/cargo/share/doc/cargo/LICENSE-APACHE",
+          "pax_headers": {},
+          "sha256": "8ada45cd9f843acf64e4722ae262c622a2b3b3007c7310ef36ac1061a30f6adb",
+          "uid": 0
+        },
+        {
+          "bytes": 9723,
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rust-analyzer-preview/share/doc/rust-analyzer/LICENSE-APACHE",
+          "pax_headers": {},
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+          "uid": 0
+        },
+        {
+          "bytes": 10852,
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rustfmt-preview/share/doc/rustfmt/LICENSE-APACHE",
+          "pax_headers": {},
+          "sha256": "092c8e82c47fb859d7385253c1b04052dbd65a8bcf0bbd8b6f7dba58a9e8753d",
+          "uid": 0
+        },
+        {
+          "bytes": 9723,
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-1.97.1-aarch64-unknown-linux-gnu/LICENSE-APACHE",
+          "pax_headers": {},
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+          "uid": 0
+        },
+        {
+          "bytes": 10848,
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-1.97.1-aarch64-unknown-linux-gnu/clippy-preview/share/doc/clippy/LICENSE-APACHE",
+          "pax_headers": {},
+          "sha256": "d8b56cd45661bfc7ccf4ce5722388cab275f9dabb9e471c922cc80e36bbf9caa",
+          "uid": 0
+        },
+        {
+          "bytes": 1571,
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-1.97.1-aarch64-unknown-linux-gnu/COPYRIGHT",
+          "pax_headers": {},
+          "sha256": "172020dbfd5b53a226dfde77616190a48dcff519b0bc0e6deb91a8450782c4af",
+          "uid": 0
+        },
+        {
+          "bytes": 1023,
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-1.97.1-aarch64-unknown-linux-gnu/cargo/share/doc/cargo/LICENSE-MIT",
+          "pax_headers": {},
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+          "uid": 0
+        },
+        {
+          "bytes": 1023,
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rust-analyzer-preview/share/doc/rust-analyzer/LICENSE-MIT",
+          "pax_headers": {},
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+          "uid": 0
+        },
+        {
+          "bytes": 1076,
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rustfmt-preview/share/doc/rustfmt/LICENSE-MIT",
+          "pax_headers": {},
+          "sha256": "ae0f1f791e3b4faccf981c0b530199235a8b8a021c7ef0c3c85c6c676ea4d27f",
+          "uid": 0
+        },
+        {
+          "bytes": 1068,
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-1.97.1-aarch64-unknown-linux-gnu/LICENSE-MIT",
+          "pax_headers": {},
+          "sha256": "b71bd43a069ca0641a9ecfe585ca7b3c53b5cc1608f8b68321168698e28b5ea1",
+          "uid": 0
+        },
+        {
+          "bytes": 1081,
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-1.97.1-aarch64-unknown-linux-gnu/clippy-preview/share/doc/clippy/LICENSE-MIT",
+          "pax_headers": {},
+          "sha256": "8d07f0c9c9966be0aaec4196d7863b56ade114e9714dbc31ebba576c0446d2fc",
+          "uid": 0
+        },
+        {
+          "bytes": 68430,
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-1.97.1-aarch64-unknown-linux-gnu/cargo/share/doc/cargo/LICENSE-THIRD-PARTY",
+          "pax_headers": {},
+          "sha256": "cbc759b1f17a2ac38fe3eb9e9563b1a08ba0f900611c49faaf68b46907b6d898",
+          "uid": 0
+        },
+        {
+          "bytes": 15287199,
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/share/doc/rust/COPYRIGHT.html",
+          "pax_headers": {},
+          "sha256": "0f5145af4007e81334d8d9777460e7a0c56f6e6bf33fe85159ccf6053ba098c6",
+          "uid": 0
+        },
+        {
+          "bytes": 279302,
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/share/doc/rust/COPYRIGHT-library.html",
+          "pax_headers": {},
+          "sha256": "0a65bb747c49c7bb816cbc7188319bd6e4e8d08091c1190b8a3c0971c47968ed",
+          "uid": 0
+        },
+        {
+          "bytes": 10847,
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rust-docs/share/doc/rust/html/static.files/LICENSE-APACHE-a60eea81.txt",
+          "pax_headers": {},
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+          "uid": 0
+        },
+        {
+          "bytes": 1023,
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rust-docs/share/doc/rust/html/static.files/LICENSE-MIT-23f18e03.txt",
+          "pax_headers": {},
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+          "uid": 0
+        },
+        {
+          "bytes": 2791,
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rust-docs/share/doc/rust/html/static.files/COPYRIGHT-685a456c.txt",
+          "pax_headers": {},
+          "sha256": "685a456c489e9173a0c5fc16efbd46b64c7d93782f18a085327dec4aaa041a72",
+          "uid": 0
+        }
+      ],
+      "member_count": 67330,
+      "metadata": {
+        "components": "rustc\nrust-std-aarch64-unknown-linux-gnu\nrust-docs\nrust-docs-json-preview\ncargo\nrustfmt-preview\nrust-analyzer-preview\nllvm-tools-preview\nclippy-preview\nrust-analysis-aarch64-unknown-linux-gnu\nllvm-bitcode-linker-preview\n",
+        "git-commit-hash": "8bab26f4f68e0e26f0bb7960be334d5b520ea452",
+        "rust-installer-version": "3\n",
+        "version": "1.97.1 (8bab26f4f 2026-07-14)"
+      },
+      "proposed_components": [
+        "rustc",
+        "cargo",
+        "rust-std-aarch64-unknown-linux-gnu"
+      ],
+      "selected_payload_bytes": 543554271,
+      "selected_payload_files": 146,
+      "sha256": "9a7a2c336b4787f1b72f6bab7c35d5b7af2fd03cbd39b4fc721466a70d402a7d",
+      "static_inputs": [
+        {
+          "bytes": 8207608,
+          "elf_header": {
+            "byte_order": 1,
+            "class": 2,
+            "machine": 183,
+            "type": 3
+          },
+          "gid": 0,
+          "kind": "file",
+          "mode": "0755",
+          "mtime": 1784041988,
+          "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/rust-lld",
+          "pax_headers": {},
+          "sha256": "533dffee7995258d3de4f995b0c926f18a5245a0aef09896901deee6ef144eb7",
+          "uid": 0
+        },
+        {
+          "bytes": 5288360,
+          "elf_header": {
+            "byte_order": 1,
+            "class": 2,
+            "machine": 183,
+            "type": 3
+          },
+          "gid": 0,
+          "kind": "file",
+          "mode": "0755",
+          "mtime": 1784041988,
+          "path": "rust-1.97.1-aarch64-unknown-linux-gnu/llvm-bitcode-linker-preview/lib/rustlib/aarch64-unknown-linux-gnu/bin/self-contained/llvm-bitcode-linker",
+          "pax_headers": {},
+          "sha256": "105578606d3de38862ad315ab3df6ccd0b6f699545d900f0aecd22809eb70a3d",
+          "uid": 0
+        }
+      ],
+      "tar_bytes": 1694910464,
+      "tar_sha256": "f7d196a7a2ece5fc80cdae16a635246ea7b7b14e5c1080a5405568c0d15387bc",
+      "type_counts": {
+        "directory": 1545,
+        "file": 65785
+      }
+    },
+    {
+      "bytes": 29062284,
+      "component_claim_count": 66,
+      "components": [
+        "rust-std-aarch64-unknown-linux-musl"
+      ],
+      "file": "rust-std-1.97.1-aarch64-unknown-linux-musl.tar.xz",
+      "licenses": [
+        {
+          "bytes": 9723,
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-std-1.97.1-aarch64-unknown-linux-musl/LICENSE-APACHE",
+          "pax_headers": {},
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+          "uid": 0
+        },
+        {
+          "bytes": 1571,
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-std-1.97.1-aarch64-unknown-linux-musl/COPYRIGHT",
+          "pax_headers": {},
+          "sha256": "172020dbfd5b53a226dfde77616190a48dcff519b0bc0e6deb91a8450782c4af",
+          "uid": 0
+        },
+        {
+          "bytes": 1068,
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-std-1.97.1-aarch64-unknown-linux-musl/LICENSE-MIT",
+          "pax_headers": {},
+          "sha256": "b71bd43a069ca0641a9ecfe585ca7b3c53b5cc1608f8b68321168698e28b5ea1",
+          "uid": 0
+        }
+      ],
+      "member_count": 85,
+      "metadata": {
+        "components": "rust-std-aarch64-unknown-linux-musl\n",
+        "git-commit-hash": "8bab26f4f68e0e26f0bb7960be334d5b520ea452",
+        "rust-installer-version": "3\n",
+        "version": "1.97.1 (8bab26f4f 2026-07-14)"
+      },
+      "proposed_components": [
+        "rust-std-aarch64-unknown-linux-musl"
+      ],
+      "selected_payload_bytes": 152642974,
+      "selected_payload_files": 66,
+      "sha256": "49ff0879d94e2e8e86d5e85eb15a9215943e8c78b51363d6553443598cab5d31",
+      "static_inputs": [
+        {
+          "ar_magic": true,
+          "bytes": 6455370,
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-std-1.97.1-aarch64-unknown-linux-musl/rust-std-aarch64-unknown-linux-musl/lib/rustlib/aarch64-unknown-linux-musl/lib/self-contained/libc.a",
+          "pax_headers": {},
+          "sha256": "b03473b6f1efb72f700f561b4407a88885b37e0edb5cdb2a64de0df5499e813f",
+          "uid": 0
+        },
+        {
+          "ar_magic": true,
+          "bytes": 196542,
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-std-1.97.1-aarch64-unknown-linux-musl/rust-std-aarch64-unknown-linux-musl/lib/rustlib/aarch64-unknown-linux-musl/lib/self-contained/libunwind.a",
+          "pax_headers": {},
+          "sha256": "06977ce3e033cf2c06fcbac9b25b7c9213c7b4aa09f2a4d4b4427fb809b9f203",
+          "uid": 0
+        },
+        {
+          "bytes": 4000,
+          "elf_header": {
+            "byte_order": 1,
+            "class": 2,
+            "machine": 183,
+            "type": 1
+          },
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-std-1.97.1-aarch64-unknown-linux-musl/rust-std-aarch64-unknown-linux-musl/lib/rustlib/aarch64-unknown-linux-musl/lib/self-contained/crt1.o",
+          "pax_headers": {},
+          "sha256": "2c8595cff75b182ad59c0278d5f81bed2cf1e51b5bf9324db52142c89dd6479f",
+          "uid": 0
+        },
+        {
+          "bytes": 4000,
+          "elf_header": {
+            "byte_order": 1,
+            "class": 2,
+            "machine": 183,
+            "type": 1
+          },
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-std-1.97.1-aarch64-unknown-linux-musl/rust-std-aarch64-unknown-linux-musl/lib/rustlib/aarch64-unknown-linux-musl/lib/self-contained/Scrt1.o",
+          "pax_headers": {},
+          "sha256": "8bb3021de91cbf0132042a13851deec579519b3b4644ad5f1c6ddbb4ff3be4ef",
+          "uid": 0
+        },
+        {
+          "bytes": 5792,
+          "elf_header": {
+            "byte_order": 1,
+            "class": 2,
+            "machine": 183,
+            "type": 1
+          },
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-std-1.97.1-aarch64-unknown-linux-musl/rust-std-aarch64-unknown-linux-musl/lib/rustlib/aarch64-unknown-linux-musl/lib/self-contained/rcrt1.o",
+          "pax_headers": {},
+          "sha256": "e65dadc816775ab1d8d915f7f6fc4baa5080c1bea633b4372ff73e3b7b2df81c",
+          "uid": 0
+        },
+        {
+          "bytes": 1088,
+          "elf_header": {
+            "byte_order": 1,
+            "class": 2,
+            "machine": 183,
+            "type": 1
+          },
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-std-1.97.1-aarch64-unknown-linux-musl/rust-std-aarch64-unknown-linux-musl/lib/rustlib/aarch64-unknown-linux-musl/lib/self-contained/crtendS.o",
+          "pax_headers": {},
+          "sha256": "9fd9518f8a0ba537a77c5d5c638ec30efa388a9458c21ad84f5607c535547adb",
+          "uid": 0
+        },
+        {
+          "bytes": 4056,
+          "elf_header": {
+            "byte_order": 1,
+            "class": 2,
+            "machine": 183,
+            "type": 1
+          },
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-std-1.97.1-aarch64-unknown-linux-musl/rust-std-aarch64-unknown-linux-musl/lib/rustlib/aarch64-unknown-linux-musl/lib/self-contained/crtbeginS.o",
+          "pax_headers": {},
+          "sha256": "522c4ac7628b80df407f1873be18b6b9b398db5be7f9f5586835cdfd189f6a9e",
+          "uid": 0
+        },
+        {
+          "bytes": 1088,
+          "elf_header": {
+            "byte_order": 1,
+            "class": 2,
+            "machine": 183,
+            "type": 1
+          },
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-std-1.97.1-aarch64-unknown-linux-musl/rust-std-aarch64-unknown-linux-musl/lib/rustlib/aarch64-unknown-linux-musl/lib/self-contained/crtend.o",
+          "pax_headers": {},
+          "sha256": "9fd9518f8a0ba537a77c5d5c638ec30efa388a9458c21ad84f5607c535547adb",
+          "uid": 0
+        },
+        {
+          "bytes": 2712,
+          "elf_header": {
+            "byte_order": 1,
+            "class": 2,
+            "machine": 183,
+            "type": 1
+          },
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-std-1.97.1-aarch64-unknown-linux-musl/rust-std-aarch64-unknown-linux-musl/lib/rustlib/aarch64-unknown-linux-musl/lib/self-contained/crti.o",
+          "pax_headers": {},
+          "sha256": "b49a67e2e36eed4836023fc26ff9da617e2020a2317aadfeb7971e4cbe612bf7",
+          "uid": 0
+        },
+        {
+          "bytes": 4056,
+          "elf_header": {
+            "byte_order": 1,
+            "class": 2,
+            "machine": 183,
+            "type": 1
+          },
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-std-1.97.1-aarch64-unknown-linux-musl/rust-std-aarch64-unknown-linux-musl/lib/rustlib/aarch64-unknown-linux-musl/lib/self-contained/crtbegin.o",
+          "pax_headers": {},
+          "sha256": "522c4ac7628b80df407f1873be18b6b9b398db5be7f9f5586835cdfd189f6a9e",
+          "uid": 0
+        },
+        {
+          "bytes": 2656,
+          "elf_header": {
+            "byte_order": 1,
+            "class": 2,
+            "machine": 183,
+            "type": 1
+          },
+          "gid": 0,
+          "kind": "file",
+          "mode": "0644",
+          "mtime": 1784041988,
+          "path": "rust-std-1.97.1-aarch64-unknown-linux-musl/rust-std-aarch64-unknown-linux-musl/lib/rustlib/aarch64-unknown-linux-musl/lib/self-contained/crtn.o",
+          "pax_headers": {},
+          "sha256": "b2f52a98df83f38814f34f7477aeb629d5e1fb1c1379ef2739cad91ab9ab8734",
+          "uid": 0
+        }
+      ],
+      "tar_bytes": 152835072,
+      "tar_sha256": "f0314c4b28d4d5d89cd7fba9144e3a97e2643d6918a3807458b5b8d35c8e7d77",
+      "type_counts": {
+        "directory": 7,
+        "file": 78
+      }
+    }
+  ],
+  "baseline": "bb014fd",
+  "kernel_tag": {
+    "metadata_url": "https://kernel.googlesource.com/pub/scm/linux/kernel/git/stable/linux-stable.git/+/refs/tags/v6.18.49?format=JSON",
+    "peeled_commit": "1c732c6b94f0faee1526bd375add2fe10cba2e26",
+    "raw_tag_attempt": {
+      "curl_transfer_exit_code": 56,
+      "http_status": 400,
+      "overall_curl_multi_transfer_exit_code": 0,
+      "url": "https://kernel.googlesource.com/pub/scm/linux/kernel/git/stable/linux-stable.git/+show/refs/tags/v6.18.49?format=TEXT"
+    },
+    "raw_tag_signature": "not-verified",
+    "response_format": "Gitiles JSON with anti-XSSI prefix; raw response retained unchanged",
+    "tar_pax_commit_matches": true,
+    "tree": "3fd77c646490ad640a4cb7f37c63a1eaf8c2bd7b"
+  },
+  "kind": "diagnostic-observation",
+  "limits": {
+    "compressed": 536870912,
+    "entries": 200000,
+    "member": 536870912,
+    "path": 4096,
+    "tar": 4294967296,
+    "text": 8388608,
+    "xz_memory": 268435456
+  },
+  "manifest_sha256": "03569b1886ceb5c05276b50c8431ab111de944cd6140fe1fa7d821dd8e0f29cf",
+  "methods": {
+    "check-diagnostics.py": "5973d713b71fb5f8ef8247a0f3b3b9ce92dd148a3bb997e4d354872d13854cdd",
+    "inspect-archives.py": "e9a417881e4caff2da92441dc19e958d93dba27173b38d3ce4425a9fd7c3b949",
+    "inspect-selected-inputs.py": "8286b3c9f270c77f20ea24c5bcbea3f6a5415e7c013a7ec39aa8c29ebccbb4be",
+    "verify-signatures.py": "2c48df42e96aec61ef295d9f71a5c6514d18e8fd3b8f629aed71712703d81be2"
+  },
+  "observed_at": "2026-09-06T13:57:16.868769+00:00",
+  "python": "3.14.5 (main, May 10 2026, 19:20:57) [Clang 22.1.3 ]",
+  "retained_files": {
+    "archive-inventory-attempt-1-method.patch": {
+      "bytes": 172,
+      "sha256": "470ffae867cb0707333c2d04cb9f4b54623781769477c424271daa2f04c2f5b4"
+    },
+    "archive-inventory-attempt-1.stderr": {
+      "bytes": 2504,
+      "sha256": "08c35dda37e5673be61d549b5e1dd9b2ac55d0c3f80a2fc4d1c60147c3adaa79"
+    },
+    "archive-inventory.json.gz": {
+      "bytes": 3188514,
+      "sha256": "53ab99369b0cc344bd732feb749873d0c2d1b2ec59a591ece983bc67f41f2a7f"
+    },
+    "channel-rust-1.97.1.toml": {
+      "bytes": 845916,
+      "sha256": "03569b1886ceb5c05276b50c8431ab111de944cd6140fe1fa7d821dd8e0f29cf"
+    },
+    "channel-rust-1.97.1.toml.asc": {
+      "bytes": 801,
+      "sha256": "14553bf89b963f1d1f0a92413b91510ed43f8d50c68fe665763747d815022017"
+    },
+    "check-diagnostics.py": {
+      "bytes": 6020,
+      "sha256": "5973d713b71fb5f8ef8247a0f3b3b9ce92dd148a3bb997e4d354872d13854cdd"
+    },
+    "inspect-archives.py": {
+      "bytes": 10104,
+      "sha256": "e9a417881e4caff2da92441dc19e958d93dba27173b38d3ce4425a9fd7c3b949"
+    },
+    "inspect-selected-inputs.py": {
+      "bytes": 6633,
+      "sha256": "8286b3c9f270c77f20ea24c5bcbea3f6a5415e7c013a7ec39aa8c29ebccbb4be"
+    },
+    "kernel-tag.response.txt": {
+      "bytes": 1491,
+      "sha256": "433fd039d8f26a69f5ba73cb8d3075a09da8434bb5428d3d8b950b0ff5e698e4"
+    },
+    "rust-1.97.1-aarch64-unknown-linux-gnu.tar.xz.asc": {
+      "bytes": 801,
+      "sha256": "cf41d023854ddfdde51f8dafe19e4b4d7d36b43f3d61434be89aa1338f5b1047"
+    },
+    "rust-key.gpg.ascii": {
+      "bytes": 5326,
+      "sha256": "e54b09a439647e006b4831eec9785cbaaf3e07ab371c3a6ee6a68e1bdb9fbc6b"
+    },
+    "rust-std-1.97.1-aarch64-unknown-linux-musl.tar.xz.asc": {
+      "bytes": 801,
+      "sha256": "7263b4a1d296d39eb07543b4e5777d4333e67f43402ca652dbe97554fb13b7f2"
+    },
+    "selected-inputs.json": {
+      "bytes": 23142,
+      "sha256": "a2bee06c85ba57870c9648fa293785cb3b73a595a977f144644d8067904d6ea1"
+    },
+    "signature-verification.json": {
+      "bytes": 6787,
+      "sha256": "7945bafbc68c849ff9cc2ad5b20b5e5e4d7fc7f6542482c9b1dc7ca4f37f2e49"
+    },
+    "signature-verification.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verify-signatures.py": {
+      "bytes": 3308,
+      "sha256": "2c48df42e96aec61ef295d9f71a5c6514d18e8fd3b8f629aed71712703d81be2"
+    }
+  }
+}

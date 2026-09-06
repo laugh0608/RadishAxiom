@@ -57,7 +57,7 @@
 
 Linux 6.18.49 只是本次源码审阅起点。进入下载 / 构建任务前重查该分支安全修复；需要换 patch 时显式更新候选和身份，不在脚本使用 `latest`。不从 tag 名生成虚构 digest，也不因官网列出版本就标记源码或 binary 已验收。
 
-固定源包 URL / 发布者摘要、开发者签名与镜像校验的区别、Linux builder 库存、init 候选比较和 Checker 精确来源交接已在[来源与构建入口审阅](checker-runtime-guest-source-build-review.md)收口。后续[实际核验记录](records/linux-6.18.49-source-review/README.md)已保留源包摘要 / 签名诊断与固定 Linux 镜像库存；后续[归档盘点](records/linux-6.18.49-archive-inventory/README.md)补齐文件 / 链接和许可证材料库存；后续[构建包诊断](records/linux-builder-source-chain/README.md)补齐三包签名摘要链和安装模拟，并捕获 Rust Linux 官方摘要；镜像 / 工具来源、Rust payload 和许可义务仍未完整闭合，不能作为完整 source lock。
+来源、builder 库存、init 比较与 Checker 交接由[来源与构建入口审阅](checker-runtime-guest-source-build-review.md)承接。[来源核验](records/linux-6.18.49-source-review/README.md)、[kernel 归档盘点](records/linux-6.18.49-archive-inventory/README.md)和[Debian 包诊断](records/linux-builder-source-chain/README.md)已留存各自实际结果；后续 [Rust Linux 输入诊断](records/rust-linux-input-review/README.md)取得 host / musl 实际字节、签名、归档和安装候选，并补齐 kernel tag 元数据对应与许可材料审阅。公钥旧自认证、镜像 / 工具、静态 runtime / 动态库来源及实际分发材料仍未闭合，不能作为完整 source lock。
 
 ### 可复现构建的验收单位
 
@@ -198,7 +198,7 @@ P0–P9 逐阶段的输入、解除证据与首个纵向验收集合见[AX-B01 �
 | 顺位 | 输入与具体交付 | 完成 / 停止标准 |
 | --- | --- | --- |
 | 1：资源与维护决策 | [ADR 0015 草案](adr/0015-virtualized-checker-resource-profile.md)与兼容性清单已形成；维护负责人及 8,000 行 / 10 人日 / 每周 4 小时预算仍待确认 | 正式接受前维持 v0.1 与不可执行状态；接受起草方向不自动批准维护预算或公共字节迁移 |
-| 2：来源与可复现输入锁 | [来源与构建审阅](checker-runtime-guest-source-build-review.md)已形成固定来源入口、builder 库存要求、init 建议与跨仓任务范围；已实际盘点隔离 Linux 镜像并核验 kernel 摘要 / 签名；版本化 source-tar 诊断入口和精确缺失包候选已形成，三包签名摘要链与安装模拟已完成诊断；下一步 Rust Linux payload / 静态目标、kernel 许可 / tag 与精确隔离安装范围，再完成 source lock | 不把发布者摘要标成已重算 / 验签，不沿用默认 Go 或未知 builder；下载 / 构建仍需精确授权，不导入旧 probe 的虚构源码 |
+| 2：来源与可复现输入锁 | kernel / Debian 来源诊断、Rust Linux 实际字节 / 签名 / 库存、tag 元数据与许可材料已有留存；下一步 Rust 公钥绑定、静态 runtime / 宿主动态库来源与精确容器安装 / 有限执行范围，再完成 source lock | 不把摘要 / GnuPG 成功 / 库存等同完整 acceptance；不沿用默认 Go 或未知 builder；安装 / 构建须精确授权，不导入旧 probe 的虚构源码 |
 | 3：公共迁移与合成装置 | 接受的资源 ADR、source lock、身份 / consumer 闭包；生成新 policy / profile / 外层记录的正负例，再实现可留存合成 runner / guest | 未完成字节迁移和单独签名 / VM 授权前不得运行；不把合成装置算作产品 qualification |
 | 4：真实容量与离线复核 | accepted Linux checker + guest TCB、代表性 / 上限输入和预注册 cold 矩阵 | 分别授权受控执行；失败保留，超预算或不可审计 container 触发重新决策 |
 | 按独立依赖准备：核心管线入口 | cvc5 / Node 来源与各自执行边界、ADR 0007 八项入口核对、AX-B01 P0–P9 切片设计、checker 目标归因交接 | 纯设计不必等待产品安装 / 激活；生产实现仍需全部入口或正式切片例外决策，不跨仓写入 |

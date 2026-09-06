@@ -1,0 +1,36 @@
+Traceback (most recent call last):
+  File "/Users/luobo/Code/RadishAxiom/docs/records/rust-linux-input-review/inspect-archives.py", line 208, in <module>
+    main()
+    ~~~~^^
+  File "/Users/luobo/Code/RadishAxiom/docs/records/rust-linux-input-review/inspect-archives.py", line 201, in main
+    results.append(inspect(args.inputs / name, expected))
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/luobo/Code/RadishAxiom/docs/records/rust-linux-input-review/inspect-archives.py", line 178, in inspect
+    result = inspect_members(reader, path.name.removesuffix(".tar.xz"))
+  File "/Users/luobo/Code/RadishAxiom/docs/records/rust-linux-input-review/inspect-archives.py", line 86, in inspect_members
+    with tarfile.open(fileobj=reader, mode="r|", bufsize=512) as archive:
+         ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/luobo/.local/share/mise/installs/python/3.14.5/lib/python3.14/tarfile.py", line 1959, in open
+    t = cls(name, filemode, stream, **kwargs)
+  File "/Users/luobo/.local/share/mise/installs/python/3.14.5/lib/python3.14/tarfile.py", line 1822, in __init__
+    self.firstmember = self.next()
+                       ~~~~~~~~~^^
+  File "/Users/luobo/.local/share/mise/installs/python/3.14.5/lib/python3.14/tarfile.py", line 2888, in next
+    raise e
+  File "/Users/luobo/.local/share/mise/installs/python/3.14.5/lib/python3.14/tarfile.py", line 2861, in next
+    tarinfo = self.tarinfo.fromtarfile(self)
+  File "/Users/luobo/.local/share/mise/installs/python/3.14.5/lib/python3.14/tarfile.py", line 1360, in fromtarfile
+    return cls._fromtarfile(tarfile)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/luobo/.local/share/mise/installs/python/3.14.5/lib/python3.14/tarfile.py", line 1367, in _fromtarfile
+    buf = tarfile.fileobj.read(BLOCKSIZE)
+  File "/Users/luobo/.local/share/mise/installs/python/3.14.5/lib/python3.14/tarfile.py", line 536, in read
+    buf = self._read(size)
+  File "/Users/luobo/.local/share/mise/installs/python/3.14.5/lib/python3.14/tarfile.py", line 544, in _read
+    return self.__read(size)
+           ~~~~~~~~~~~^^^^^^
+  File "/Users/luobo/.local/share/mise/installs/python/3.14.5/lib/python3.14/tarfile.py", line 574, in __read
+    buf = self.fileobj.read(self.bufsize)
+  File "/Users/luobo/Code/RadishAxiom/docs/records/rust-linux-input-review/inspect-archives.py", line 75, in read
+    part = self.decoder.decompress(data, max_length=size - len(result))
+_lzma.LZMAError: Memory usage limit exceeded
