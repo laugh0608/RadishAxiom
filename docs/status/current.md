@@ -33,7 +33,9 @@
 Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收，见下文记录；普通 `dev` push 仍不自动触发 CI。下一顺位为：
 
 1. **审阅资源 ADR 草案并闭合维护投入。** 项目所有者已确认另立虚拟执行 profile 的起草方向：[ADR 0015（Proposed）](../adr/0015-virtualized-checker-resource-profile.md)明确 guest 128 MiB 硬限、宿主总内存无等价硬保证、排他选择与迁移闭包。草案尚未替代 Accepted ADR，不能原地重解释 v0.1。[产品化依赖审阅](../checker-runtime-productization-dependency-review.md)中的维护负责人、预算和具体来源仍待确认或验收。
-2. **按独立依赖准备来源与核心入口。** 下一来源切片锁定 Linux kernel / builder、init / runner / transport，以及 Linux checker source → artifact 验收方案；ADR 正式接受后再提出公共迁移和可留存合成装置。真实负载依产品化审阅的代表性 / 上限 cold 矩阵另行授权。[AX-B01 首切片依赖审阅](../axiom-pipeline-first-slice-dependency-review.md)已列出 P0–P9 必要前置：cvc5 / Node 自身的来源与外层硬限制尚未闭合，不能套用 checker 隔离决策。纯设计无需等待产品安装 / 激活，生产实现仍遵守 ADR 0007 全部入口或正式替代决策。
+2. **确定 Linux 构建环境并验收来源。** [来源与构建审阅](../checker-runtime-guest-source-build-review.md)已形成 kernel 固定入口 / 发布者摘要、builder 库存要求和 Linux checker 交接范围；尚无实际字节验签或完整 source lock。init 因 Go child API 的 seccomp 安装缺口，建议优先论证 Rust 路径，Linux std / 链接来源仍待验收。下一步先确定隔离 Linux 环境及精确工具，再分别授权取得与验收材料；ADR 正式接受后提出公共迁移和可留存合成装置。真实负载按 cold 矩阵另行授权。
+
+[AX-B01 首切片依赖审阅](../axiom-pipeline-first-slice-dependency-review.md)已列出 P0–P9 前置；cvc5 / Node 自身的来源与外层硬限制仍需独立闭合。纯设计无需等待产品安装 / 激活，生产实现遵守 ADR 0007 全部入口或正式替代决策。
 
 Checker 语义线先核实目标归因，再验收同域泛化、独立证明链和结果解释；不改变上述 runtime 前置。后续补规范负例、资源曲线和装置审计，工具与实现入口通过后锁定并另行授权 Agent 实验；语法、跨域、SDK / IDE、平台与商业扩张后置。
 
