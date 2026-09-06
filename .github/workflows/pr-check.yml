@@ -80,7 +80,7 @@ jobs:
 
   rust-quality:
     name: Rust Quality (macOS arm64)
-    runs-on: macos-15
+    runs-on: macos-26
     timeout-minutes: 20
 
     steps:
@@ -102,7 +102,7 @@ jobs:
 
   rust-tests:
     name: Rust Tests (macOS arm64)
-    runs-on: macos-15
+    runs-on: macos-26
     timeout-minutes: 20
 
     steps:

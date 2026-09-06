@@ -30,7 +30,7 @@
 
 ## 近期顺位
 
-1. **完成工程门禁远程验收。** Rust 格式 / Clippy 与测试已分别接入 workflow 的 macOS arm64 job，`Candidate Quality` 只接受三个组件全部成功；本地验证与故障注入已通过，GitHub 上的实际工具准备、Darwin 测试及失败传播尚待验收。下一步在精确提交上另行授权推送 / 调度，保留真实成功和 Rust 失败阻断记录；不能仅凭 workflow 配置或本地聚合检查宣布工程里程碑完成。普通 `dev` push 不自动触发 CI。
+1. **完成工程门禁远程验收。** Rust 格式 / Clippy 与测试已分别接入 workflow 的 macOS arm64 job，`Candidate Quality` 只接受三个组件全部成功。首跑已验证工具准备、静态检查及真实 Rust 失败传播，但 macOS 15.7.9 的独占 rename 返回 `EINVAL`，8 项 store 测试失败；现改用匹配既有 SDK flags 的 `macos-26`，待实际成功验收。不能仅凭 workflow 配置或本地聚合检查宣布工程里程碑完成。普通 `dev` push 不自动触发 CI。
 2. **完成隔离产品化与核心闭环依赖审阅。** 保留 ADR 0013 的既定候选，先做不执行 checker、不改公共字节的设计切片：明确 kernel / init / VMM / transport 来源、可重现构建、更新与许可证、最低系统 / 硬件、container 基线、TCB 维护预算；提出排他的 virtualized spawn plan 和 host / runner / guest 身份，解决 `128 MiB` guest 上界与整个 host footprint 的兼容问题。同一审阅列出 AX-B01 真实 P0–P9 的必要前置，避免把无关包装工作扩大为所有语义工作的前置。
 3. **按前置证据推进真实负载与核心管线。** 设计通过后，分别提出 Linux arm64 checker source → artifact acceptance、代表性 / 上限 bundle 的容量与 cold deadline 矩阵，以及 cvc5 / Node 验收和真实 AX-B01 切片。执行各自仍须满足 ADR 0007、0011–0014 与授权边界；先形成真实路径，再扩展到四题与完整失败矩阵。具体切片顺序由依赖审阅结果更新本页，不以计划预先解除门禁。
 
@@ -64,7 +64,7 @@ cargo +1.97.1-aarch64-apple-darwin test --workspace --all-targets --locked --off
 
 命令以工具和依赖已验收安装为前提，不授权下载；其他平台先确认精确工具与执行范围。
 
-2026-09-06 本地通过 Rust 格式 / Clippy、58 项 core 与 3 项 Darwin 测试；workflow 与 composite action 的 YAML / shell 检查、聚合状态矩阵和隔离副本中的真实 Rust 测试失败阻断检查通过。仓库门禁通过 969 个文件，diff 卫生通过。尚未执行 CI 中的工具下载 / 安装或 GitHub 调度，不将本地结果外推为 hosted runner 验收；未执行真实 checker、cvc5、Node、Hypervisor 或模型实验。工程门禁的来源、命令与覆盖边界见[仓库治理](../governance/repository-governance.md#rust-工程门禁)。
+2026-09-06 本地通过 Rust 格式 / Clippy、58 项 core 与 3 项 Darwin 测试；YAML / shell 检查、125 种聚合状态、7 种 workflow 退化修改和隔离副本的真实 Rust 失败阻断验证通过。仓库门禁通过 969 个文件，diff 卫生通过。授权后提交 `cf0be91` 的 [CI 首跑](https://github.com/laugh0608/RadishAxiom/actions/runs/34030049866) 在 image `macos-15-arm64 / 20260829.0321.1` 完成精确工具安装、锁定依赖获取与 Rust 格式 / Clippy；core 测试为 50 通过、8 失败，Cargo 退出 101，聚合读取 `success / success / failure` 并退出 1。错误来自 `rename-exclusive` 的 `EINVAL`，仍按 `unsupported-store-capability` 拒绝，未放宽 flags 或跳过测试。macOS 26 的成功结果尚待记录；未执行真实 checker、cvc5、Node、Hypervisor 或模型实验。工程门禁来源与边界见[仓库治理](../governance/repository-governance.md#rust-工程门禁)。
 
 ## 按需阅读
 

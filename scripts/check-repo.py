@@ -412,7 +412,7 @@ def check_workflow_contract(errors: list[str]) -> None:
     for job, commands in rust_commands.items():
         body = jobs.get(job, "")
         for fragment in (
-            "    runs-on: macos-15\n",
+            "    runs-on: macos-26\n",
             "    timeout-minutes: 20\n",
             "        uses: ./.github/actions/setup-rust\n",
             "          ref: ${{ github.event.pull_request.head.sha || github.sha }}\n",
