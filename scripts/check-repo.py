@@ -153,6 +153,8 @@ REQUIRED_FILES = (
     "scripts/inspect-toolchain-tar.py",
     "scripts/inspect-source-tar-v1.py",
     "scripts/check-source-tar-inventory.py",
+    "scripts/inspect-debian-source-chain.py",
+    "scripts/check-debian-source-chain.py",
     "rust-toolchain.toml",
 )
 
@@ -572,21 +574,22 @@ def check_checker_runtime_launcher(errors: list[str]) -> None:
         errors.append(f"checker runtime launcher conformance failed: {detail}")
 
 
-def check_source_tar_inventory(errors: list[str]) -> None:
-    checker = REPO_ROOT / "scripts/check-source-tar-inventory.py"
-    if not checker.is_file():
-        return  # Required-file validation reports the missing entry.
-    try:
-        result = subprocess.run(
-            [sys.executable, str(checker)], cwd=REPO_ROOT, check=False,
-            capture_output=True, text=True, timeout=30,
-        )
-    except subprocess.TimeoutExpired:
-        errors.append("source tar inventory synthetic checks timed out")
-        return
-    if result.returncode != 0:
-        detail = (result.stdout + result.stderr).strip()
-        errors.append(f"source tar inventory synthetic checks failed: {detail}")
+def check_source_inventory_tools(errors: list[str]) -> None:
+    for name in ("check-source-tar-inventory.py", "check-debian-source-chain.py"):
+        checker = REPO_ROOT / "scripts" / name
+        if not checker.is_file():
+            continue  # Required-file validation reports the missing entry.
+        try:
+            result = subprocess.run(
+                [sys.executable, str(checker)], cwd=REPO_ROOT, check=False,
+                capture_output=True, text=True, timeout=30,
+            )
+        except subprocess.TimeoutExpired:
+            errors.append(f"{name} synthetic checks timed out")
+            continue
+        if result.returncode != 0:
+            detail = (result.stdout + result.stderr).strip()
+            errors.append(f"{name} synthetic checks failed: {detail}")
 
 
 def check_pipeline_artifact_contracts(errors: list[str]) -> None:
@@ -806,7 +809,7 @@ def main() -> int:
     check_toolchain_payload_acceptance(errors)
     check_checker_runtime_payloads(errors)
     check_checker_runtime_launcher(errors)
-    check_source_tar_inventory(errors)
+    check_source_inventory_tools(errors)
     check_pipeline_artifact_contracts(errors)
     check_implementation_readiness(errors)
     check_execution_profile_contracts(errors)

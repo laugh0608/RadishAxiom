@@ -1,0 +1,20 @@
+NOTE: This is only a simulation!
+      apt-get needs root privileges for real execution.
+      Keep also in mind that locking is deactivated,
+      so don't depend on the relevance to the real current situation!
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Suggested packages:
+  bison-doc build-essential flex-doc
+Recommended packages:
+  libfl-dev
+The following NEW packages will be installed:
+  bc bison flex
+0 upgraded, 3 newly installed, 0 to remove and 0 not upgraded.
+Inst flex (2.6.4-8.2 local-deb [arm64])
+Inst bc (1.07.1-3 local-deb [arm64])
+Inst bison (2:3.8.2+dfsg-1+b1 local-deb [arm64])
+Conf flex (2.6.4-8.2 local-deb [arm64])
+Conf bc (1.07.1-3 local-deb [arm64])
+Conf bison (2:3.8.2+dfsg-1+b1 local-deb [arm64])

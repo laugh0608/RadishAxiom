@@ -1,0 +1,259 @@
+{
+  "acceptance": "not-assessed",
+  "artifacts": [
+    {
+      "bytes": 411032,
+      "filename": "flex_2.6.4-8.2_arm64.deb",
+      "package": "flex",
+      "role": "binary",
+      "sha256": "e457c7052b77de6526b417387d676b63e1b51d4be36be255cf868b2a3c8f23ed",
+      "url": "https://deb.debian.org/debian/pool/main/f/flex/flex_2.6.4-8.2_arm64.deb"
+    },
+    {
+      "bytes": 2107,
+      "filename": "flex_2.6.4-8.2.dsc",
+      "package": "flex",
+      "role": "source",
+      "sha256": "5c77d8dda81631d43361e6cf29f5901bcaf0c20935f0a2c9a21bffa7a8666e22",
+      "url": "https://deb.debian.org/debian/pool/main/f/flex/flex_2.6.4-8.2.dsc"
+    },
+    {
+      "bytes": 1419096,
+      "filename": "flex_2.6.4.orig.tar.gz",
+      "package": "flex",
+      "role": "source",
+      "sha256": "e87aae032bf07c26f85ac0ed3250998c37621d95f8bd748b31f15b33c45ee995",
+      "url": "https://deb.debian.org/debian/pool/main/f/flex/flex_2.6.4.orig.tar.gz"
+    },
+    {
+      "bytes": 60738,
+      "filename": "flex_2.6.4-8.2.diff.gz",
+      "package": "flex",
+      "role": "source",
+      "sha256": "c2ee0c631289f8a4f945a4c62ac05b7fe4abee9c72be1ab5604b9cc44a3d8678",
+      "url": "https://deb.debian.org/debian/pool/main/f/flex/flex_2.6.4-8.2.diff.gz"
+    },
+    {
+      "bytes": 1152428,
+      "filename": "bison_3.8.2+dfsg-1+b1_arm64.deb",
+      "package": "bison",
+      "role": "binary",
+      "sha256": "00301cacacd98f2bece7cfc1d2eaf133596bfba4c5fd89d6bf5f8c3d51d62755",
+      "url": "https://deb.debian.org/debian/pool/main/b/bison/bison_3.8.2+dfsg-1+b1_arm64.deb"
+    },
+    {
+      "bytes": 1855,
+      "filename": "bison_3.8.2+dfsg-1.dsc",
+      "package": "bison",
+      "role": "source",
+      "sha256": "62069748f3e82bff18e7e1e4f96e7a55606305623be4bec435d4d016e7c4c7d9",
+      "url": "https://deb.debian.org/debian/pool/main/b/bison/bison_3.8.2+dfsg-1.dsc"
+    },
+    {
+      "bytes": 2654920,
+      "filename": "bison_3.8.2+dfsg.orig.tar.xz",
+      "package": "bison",
+      "role": "source",
+      "sha256": "dff8a3c96dd34121828f62a7fa49e1f7765815b89e59f564e8d2a9e71c177be5",
+      "url": "https://deb.debian.org/debian/pool/main/b/bison/bison_3.8.2+dfsg.orig.tar.xz"
+    },
+    {
+      "bytes": 11164,
+      "filename": "bison_3.8.2+dfsg-1.debian.tar.xz",
+      "package": "bison",
+      "role": "source",
+      "sha256": "e878473ddbc8601c1b9b8558fab86950ae6ae5b7c146802d587e284d5e1c9abb",
+      "url": "https://deb.debian.org/debian/pool/main/b/bison/bison_3.8.2+dfsg-1.debian.tar.xz"
+    },
+    {
+      "bytes": 106660,
+      "filename": "bc_1.07.1-3_arm64.deb",
+      "package": "bc",
+      "role": "binary",
+      "sha256": "05c76885eb988eb171087e7c41dd7d2e3da521ffd1fe88f955f8e69c81ff16fb",
+      "url": "https://deb.debian.org/debian/pool/main/b/bc/bc_1.07.1-3_arm64.deb"
+    },
+    {
+      "bytes": 1903,
+      "filename": "bc_1.07.1-3.dsc",
+      "package": "bc",
+      "role": "source",
+      "sha256": "92f057cf569b6a90f95f423b293e49dce8e7cf7e99764d4aef4dfe6aa2642e15",
+      "url": "https://deb.debian.org/debian/pool/main/b/bc/bc_1.07.1-3.dsc"
+    },
+    {
+      "bytes": 419850,
+      "filename": "bc_1.07.1.orig.tar.gz",
+      "package": "bc",
+      "role": "source",
+      "sha256": "62adfca89b0a1c0164c2cdca59ca210c1d44c3ffc46daf9931cf4942664cb02a",
+      "url": "https://deb.debian.org/debian/pool/main/b/bc/bc_1.07.1.orig.tar.gz"
+    },
+    {
+      "bytes": 23384,
+      "filename": "bc_1.07.1-3.debian.tar.xz",
+      "package": "bc",
+      "role": "source",
+      "sha256": "6df0a810e2f1baad5d54ff93dba7ef1cb168ab5546983156f44dd554850576bc",
+      "url": "https://deb.debian.org/debian/pool/main/b/bc/bc_1.07.1-3.debian.tar.xz"
+    }
+  ],
+  "binary_stanzas": {
+    "bc": {
+      "architecture": "arm64",
+      "depends": "libc6 (>= 2.17), libreadline8 (>= 6.0)",
+      "description": "GNU bc arbitrary precision calculator language",
+      "description-md5": "b8da7e3f115e4c703a180cdb05aec611",
+      "filename": "pool/main/b/bc/bc_1.07.1-3_arm64.deb",
+      "homepage": "https://www.gnu.org/software/bc/",
+      "installed-size": "236",
+      "maintainer": "Ryan Kavanagh <rak@debian.org>",
+      "md5sum": "bd461e4e049ea48676227d082e4a1bf7",
+      "multi-arch": "foreign",
+      "package": "bc",
+      "priority": "optional",
+      "section": "math",
+      "sha256": "05c76885eb988eb171087e7c41dd7d2e3da521ffd1fe88f955f8e69c81ff16fb",
+      "size": "106660",
+      "tag": "devel::interpreter, field::mathematics, implemented-in::c,\ninterface::text-mode, role::program, scope::utility, suite::gnu,\nuitoolkit::ncurses",
+      "version": "1.07.1-3"
+    },
+    "bison": {
+      "architecture": "arm64",
+      "depends": "m4, libc6 (>= 2.34)",
+      "description": "YACC-compatible parser generator",
+      "description-md5": "3b8154d16aa228f689bcd81364e7088c",
+      "filename": "pool/main/b/bison/bison_3.8.2+dfsg-1+b1_arm64.deb",
+      "homepage": "https://www.gnu.org/software/bison/",
+      "installed-size": "3160",
+      "maintainer": "Chuan-kai Lin <cklin@debian.org>",
+      "md5sum": "7c10409b05d79915d198f3ee20466a09",
+      "multi-arch": "foreign",
+      "package": "bison",
+      "priority": "optional",
+      "section": "devel",
+      "sha256": "00301cacacd98f2bece7cfc1d2eaf133596bfba4c5fd89d6bf5f8c3d51d62755",
+      "size": "1152428",
+      "source": "bison (2:3.8.2+dfsg-1)",
+      "suggests": "bison-doc",
+      "tag": "devel::code-generator, devel::lang:c, devel::lang:c++, devel::library,\nimplemented-in::c, interface::commandline, role::devel-lib,\nrole::program, scope::utility, suite::gnu, works-with::software:source",
+      "version": "2:3.8.2+dfsg-1+b1"
+    },
+    "flex": {
+      "architecture": "arm64",
+      "conflicts": "flex-old",
+      "depends": "libc6 (>= 2.34), m4",
+      "description": "fast lexical analyzer generator",
+      "description-md5": "c30a7ef9a61fca3debe97b92c3f65013",
+      "filename": "pool/main/f/flex/flex_2.6.4-8.2_arm64.deb",
+      "homepage": "https://github.com/westes/flex",
+      "installed-size": "1293",
+      "maintainer": "Manoj Srivastava <srivasta@debian.org>",
+      "md5sum": "e07e07b041a4b916e578e8741c470110",
+      "multi-arch": "foreign",
+      "package": "flex",
+      "pre-depends": "debconf | debconf-2.0",
+      "priority": "optional",
+      "recommends": "gcc | c-compiler, libfl-dev",
+      "replaces": "flex-old",
+      "section": "devel",
+      "sha256": "e457c7052b77de6526b417387d676b63e1b51d4be36be255cf868b2a3c8f23ed",
+      "size": "411032",
+      "suggests": "bison, build-essential, flex-doc",
+      "tag": "devel::code-generator, implemented-in::c, interface::commandline,\nrole::program, scope::utility, works-with::software:source",
+      "version": "2.6.4-8.2"
+    }
+  },
+  "candidate_record_sha256": "3e6ab4b4473be5b8bc369c0cd029c991a46308c816947aaf21ae3df11afaa5c7",
+  "format_version": "1",
+  "freshness": "no-publisher-expiry; fixed snapshot only, no latest-security claim",
+  "indexes": {
+    "Packages.xz": {
+      "bytes": 8689464,
+      "path": "main/binary-arm64/Packages.xz",
+      "sha256": "2ddb1737692e8c45c53e8d57c0ce4cd21c78c5703b830c3226b1423566a06c00"
+    },
+    "Sources.xz": {
+      "bytes": 9491888,
+      "path": "main/source/Sources.xz",
+      "sha256": "92d11a035571df011f06f28c61cb9825130ef1d92abb2f2e0525e8674dc44af8"
+    }
+  },
+  "inrelease_sha256": "77737fa4b34f2693e982cc9ee35736816c35a7778fc2d326cc1bbf5b301fe1aa",
+  "kind": "diagnostic-debian-source-chain",
+  "method_sha256": "c6f18880b4f347467ad949ccf25b1960c7bef141e5b48f610ae93ab22479da2a",
+  "observed_at": "2026-09-06T13:24:47+00:00",
+  "payload_verification": "all-lengths-and-sha256-match",
+  "release": {
+    "codename": "bookworm",
+    "date": "Sat, 11 Jul 2026 10:16:37 UTC",
+    "origin": "Debian",
+    "suite": "oldstable",
+    "valid-until": null,
+    "version": "12.15"
+  },
+  "signature_observation_sha256": "bd36e788d0f0262dbbfb23dbaa445ff9435a053ee9ccc98264c7b9a26d80c30a",
+  "signer_primary_fingerprints": [
+    "04B54C3CDCA79751B16BC6B5225629DF75B188BD",
+    "4D64FEC119C2029067D6E791F8D2585B8783D481",
+    "B8B80B5B623EAB6AD8775C45B7C5D7D6350947F8"
+  ],
+  "source_stanzas": {
+    "bc": {
+      "architecture": "any",
+      "binary": "bc, dc",
+      "build-depends": "bison, debhelper (>= 11), debhelper-compat (= 11), ed, file, flex, libreadline-dev | libreadline6-dev, texinfo",
+      "checksums-sha256": "\n92f057cf569b6a90f95f423b293e49dce8e7cf7e99764d4aef4dfe6aa2642e15 1903 bc_1.07.1-3.dsc\n62adfca89b0a1c0164c2cdca59ca210c1d44c3ffc46daf9931cf4942664cb02a 419850 bc_1.07.1.orig.tar.gz\n6df0a810e2f1baad5d54ff93dba7ef1cb168ab5546983156f44dd554850576bc 23384 bc_1.07.1-3.debian.tar.xz",
+      "directory": "pool/main/b/bc",
+      "files": "\n92185e2c4291f66807a009c48ccd7439 1903 bc_1.07.1-3.dsc\ncda93857418655ea43590736fc3ca9fc 419850 bc_1.07.1.orig.tar.gz\n18d91728dc81c52e8535ce0387327300 23384 bc_1.07.1-3.debian.tar.xz",
+      "format": "3.0 (quilt)",
+      "homepage": "https://www.gnu.org/software/bc/",
+      "maintainer": "Ryan Kavanagh <rak@debian.org>",
+      "package": "bc",
+      "package-list": "\nbc deb math standard arch=any\ndc deb math standard arch=any",
+      "priority": "source",
+      "section": "math",
+      "standards-version": "4.6.0",
+      "vcs-browser": "https://salsa.debian.org/debian/bc",
+      "vcs-git": "https://salsa.debian.org/debian/bc.git",
+      "version": "1.07.1-3"
+    },
+    "bison": {
+      "architecture": "any",
+      "binary": "bison, libbison-dev",
+      "build-depends": "debhelper-compat (= 12), gettext, flex, m4 (>= 1.4-14), help2man",
+      "checksums-sha256": "\n62069748f3e82bff18e7e1e4f96e7a55606305623be4bec435d4d016e7c4c7d9 1855 bison_3.8.2+dfsg-1.dsc\ndff8a3c96dd34121828f62a7fa49e1f7765815b89e59f564e8d2a9e71c177be5 2654920 bison_3.8.2+dfsg.orig.tar.xz\ne878473ddbc8601c1b9b8558fab86950ae6ae5b7c146802d587e284d5e1c9abb 11164 bison_3.8.2+dfsg-1.debian.tar.xz",
+      "directory": "pool/main/b/bison",
+      "files": "\n0d9a88f7de930f683c3377d228738635 1855 bison_3.8.2+dfsg-1.dsc\na502bd24cdca3c17eb648b5a9132613d 2654920 bison_3.8.2+dfsg.orig.tar.xz\ne152dd8a66a18274d5099bb780ac75f8 11164 bison_3.8.2+dfsg-1.debian.tar.xz",
+      "format": "3.0 (quilt)",
+      "homepage": "https://www.gnu.org/software/bison/",
+      "maintainer": "Chuan-kai Lin <cklin@debian.org>",
+      "package": "bison",
+      "package-list": "\nbison deb devel optional arch=any\nlibbison-dev deb libdevel optional arch=any",
+      "priority": "source",
+      "section": "devel",
+      "standards-version": "4.6.0",
+      "version": "2:3.8.2+dfsg-1"
+    },
+    "flex": {
+      "architecture": "any all",
+      "binary": "flex, flex-doc, libfl2, libfl-dev",
+      "build-depends": "bison, gettext, texinfo, help2man, file, po-debconf, debhelper-compat (= 12), dh-autoreconf, dpkg-dev (>= 1.17.14), flex <cross>",
+      "build-depends-indep": "texlive-latex-base, texlive-fonts-recommended, cm-super-minimal",
+      "checksums-sha256": "\n5c77d8dda81631d43361e6cf29f5901bcaf0c20935f0a2c9a21bffa7a8666e22 2107 flex_2.6.4-8.2.dsc\ne87aae032bf07c26f85ac0ed3250998c37621d95f8bd748b31f15b33c45ee995 1419096 flex_2.6.4.orig.tar.gz\nc2ee0c631289f8a4f945a4c62ac05b7fe4abee9c72be1ab5604b9cc44a3d8678 60738 flex_2.6.4-8.2.diff.gz",
+      "directory": "pool/main/f/flex",
+      "files": "\n12d9fbbdb844d61e4a075d15a81e0ccc 2107 flex_2.6.4-8.2.dsc\n2882e3179748cc9f9c23ec593d6adc8d 1419096 flex_2.6.4.orig.tar.gz\n5830af0682a2ba84c1e1d11cab09c7d1 60738 flex_2.6.4-8.2.diff.gz",
+      "format": "1.0",
+      "homepage": "https://github.com/westes/flex",
+      "maintainer": "Manoj Srivastava <srivasta@debian.org>",
+      "package": "flex",
+      "package-list": "\nflex deb devel optional arch=any\nflex-doc deb doc optional arch=all\nlibfl-dev deb libdevel optional arch=any\nlibfl2 deb libs optional arch=any",
+      "priority": "source",
+      "section": "devel",
+      "standards-version": "4.3.0",
+      "vcs-browser": "https://salsa.debian.org/srivasta/flex",
+      "vcs-git": "https://salsa.debian.org/srivasta/flex.git",
+      "version": "2.6.4-8.2"
+    }
+  }
+}

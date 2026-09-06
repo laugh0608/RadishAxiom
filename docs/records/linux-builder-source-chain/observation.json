@@ -1,0 +1,100 @@
+{
+  "acceptance": "not-assessed",
+  "additional_announcement_result": "web fetch returned 403; not independently checked",
+  "additional_announcement_url": "https://lists.debian.org/debian-devel-announce/2023/03/msg00001.html",
+  "controls_review": {
+    "bc": "postinst/postrm conditionally call update-menus when available",
+    "bison": "preinst removes /usr/share/man/man1/bison.1; postinst registers yacc alternatives and manpage slave; prerm removes alternative on removal/deconfiguration",
+    "flex": "postinst largely no-op branches; prerm may remove legacy /usr/doc/flex symlink on remove/upgrade; debconf is Pre-Depends",
+    "scope": "static reading only; scripts not executed; successful configuration/rollback not demonstrated"
+  },
+  "date": "2026-09-06",
+  "image": "sha256:a339861ae23e9abb272cea45dfafde21760d2ce6577a70f8a926153677902663",
+  "index_urls": {
+    "Packages.xz": "https://deb.debian.org/debian/dists/bookworm/main/binary-arm64/by-hash/SHA256/2ddb1737692e8c45c53e8d57c0ce4cd21c78c5703b830c3226b1423566a06c00",
+    "Sources.xz": "https://deb.debian.org/debian/dists/bookworm/main/source/by-hash/SHA256/92d11a035571df011f06f28c61cb9825130ef1d92abb2f2e0525e8674dc44af8"
+  },
+  "inrelease_url": "https://deb.debian.org/debian/dists/bookworm/InRelease",
+  "key_fingerprint_reference": "https://ftp-master.debian.org/keys.html",
+  "kind": "diagnostic-source-review",
+  "repository_base_commit": "8cc7406",
+  "retained_files": {
+    "InRelease": {
+      "bytes": 151075,
+      "sha256": "77737fa4b34f2693e982cc9ee35736816c35a7778fc2d326cc1bbf5b301fe1aa"
+    },
+    "Packages.xz": {
+      "bytes": 8689464,
+      "sha256": "2ddb1737692e8c45c53e8d57c0ce4cd21c78c5703b830c3226b1423566a06c00"
+    },
+    "Sources.xz": {
+      "bytes": 9491888,
+      "sha256": "92d11a035571df011f06f28c61cb9825130ef1d92abb2f2e0525e8674dc44af8"
+    },
+    "control-inventory.json": {
+      "bytes": 3655,
+      "sha256": "f661ef28988482d6c5c0619b85ae89ec1e327de567bdb9b7f9b275b37de0cac8"
+    },
+    "fetch-payloads.sh": {
+      "bytes": 2972,
+      "sha256": "b806fa55fd1da1cbe265683e150359ae5fe4698fe43a6fd6c3785581e40f042e"
+    },
+    "inspect-controls.py": {
+      "bytes": 4427,
+      "sha256": "40f142c4d407c8a2fc85c469ba70735cee5671e204e359e44b9f7ad9af36fda3"
+    },
+    "install-simulation-attempt-2.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "install-simulation-attempt-2.stdout": {
+      "bytes": 762,
+      "sha256": "a83f9c7984ab43fe046bd0384fa878d1c561a0f937124bf26a1ab63f2e8cb809"
+    },
+    "install-simulation.stderr": {
+      "bytes": 176,
+      "sha256": "1e1bf506d21ab81e9387c84e9f0f847be2bba04a5825d5a8b68c492e1f5ca2e9"
+    },
+    "install-simulation.stdout": {
+      "bytes": 237,
+      "sha256": "5a8f2d771ae354333e94889548d9b87426b9dde16dd97c7acc3be72c95135787"
+    },
+    "payload-chain.json": {
+      "bytes": 12005,
+      "sha256": "d7f85c4e189c4d9f4835c436aa0ad61023d3e87dc959da5984033c34ce719750"
+    },
+    "release-verification.json": {
+      "bytes": 228352,
+      "sha256": "bd36e788d0f0262dbbfb23dbaa445ff9435a053ee9ccc98264c7b9a26d80c30a"
+    },
+    "rust-linux.sha256": {
+      "bytes": 111,
+      "sha256": "2bae29e2d144d12efcb717d5d3f2811426f8f17e78f538556590e895189a5f7c"
+    },
+    "verify-release.sh": {
+      "bytes": 1626,
+      "sha256": "9a69f44056eb7f157a91431e772a03447a6666c96a085f250925dc7dc9bf1f68"
+    }
+  },
+  "rust_linux": {
+    "checksum_url": "https://static.rust-lang.org/dist/rust-1.97.1-aarch64-unknown-linux-gnu.tar.xz.sha256",
+    "payload_download": "not-performed",
+    "publisher_sha256": "9a7a2c336b4787f1b72f6bab7c35d5b7af2fd03cbd39b4fc721466a70d402a7d",
+    "signature_verification": "not-performed",
+    "target_std_musl": "not-covered",
+    "url": "https://static.rust-lang.org/dist/rust-1.97.1-aarch64-unknown-linux-gnu.tar.xz"
+  },
+  "simulation": [
+    {
+      "attempt": 1,
+      "exit_code": 100,
+      "result": "read-only /tmp prevented apt temporary file creation"
+    },
+    {
+      "attempt": 2,
+      "exit_code": 0,
+      "result": "0 upgraded, 3 newly installed, 0 to remove and 0 not upgraded; simulation only",
+      "temporary_directory": "16 MiB tmpfs; noexec,nosuid,nodev; destroyed with container"
+    }
+  ]
+}

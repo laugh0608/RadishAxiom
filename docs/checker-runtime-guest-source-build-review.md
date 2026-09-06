@@ -2,7 +2,7 @@
 
 审阅日期：2026-09-06
 
-状态：静态审阅、候选 Linux 环境盘点、kernel 摘要 / 签名诊断及归档文件盘点完成；尚未形成完整 source lock 或构建验收。
+状态：候选环境与 kernel 归档盘点、Debian 包签名摘要链及安装模拟完成诊断；尚未形成完整 source lock、安装或构建验收。
 
 用途：把 kernel / init / runner / transport 与 Linux checker 的来源前置落实为可核对输入、构建职责和验收交付，支撑[产品化依赖审阅](checker-runtime-productization-dependency-review.md)的来源切片。
 
@@ -58,9 +58,9 @@
 
 ### 已核对的缺失包与后续来源链
 
-[精确候选记录](records/linux-6.18.49-archive-inventory/builder-package-candidates.json)已固定 Debian bookworm arm64 的 `flex=2.6.4-8.2`、`bison=2:3.8.2+dfsg-1+b1`、`bc=1.07.1-3`，包括 binary / source 版本、发布者 SHA-256、长度与 copyright 来源。直接依赖与镜像库存已比较；未运行 apt 求解、下载或安装，不能承诺只新增三项。下一步先验收签名索引到 binary / source 的完整链，再审阅 maintainer scripts 和安装差异，不自动升级镜像中的已有包。
+[精确候选记录](records/linux-6.18.49-archive-inventory/builder-package-candidates.json)固定的三个 arm64 包已完成后续[签名来源链诊断](records/linux-builder-source-chain/README.md)：InRelease 验签、Packages / Sources 摘要以及 3 个 binary / 9 个 source 材料的长度与摘要全部匹配。包内控制字段与签名索引一致；无网络 apt 模拟显示只新增三包、无升级或移除、未安装 recommends。`flex` 的 debconf 前置依赖、`bison` 的 alternatives / 旧 manpage 操作、`bc` 的条件 menu 更新已列明；首次只读 /tmp 导致模拟失败与修正均留存。尚未实际安装或执行脚本，不把模拟当成配置 / 回滚验收。
 
-Rust Linux 沿用 registry 已列出的 `rust-1.97.1-aarch64-unknown-linux-gnu.tar.xz` 入口，摘要 / bytes 尚未取得；musl std / CRT / linker 独立验收。旧镜像的 `1.96.1` 不能代替它，也不为缩短准备切换 init 语言。最终 kernel config 尚未冻结，条件工具清单仍按上文核实。
+Rust Linux 沿用 registry 已列出的 `rust-1.97.1-aarch64-unknown-linux-gnu.tar.xz` 入口，官方 SHA-256 已另行捕获为 `9a7a2c336b4787f1b72f6bab7c35d5b7af2fd03cbd39b4fc721466a70d402a7d`；尚未下载 payload、验签或回写正式登记。musl std / CRT / linker 独立验收。旧镜像的 `1.96.1` 不能代替它，也不为缩短准备切换 init 语言。最终 kernel config 尚未冻结，条件工具清单仍按上文核实。
 
 ### 归档诊断的范围
 
@@ -122,11 +122,11 @@ initramfs 输入先采用固定 `newc` 布局，逐项列路径、类型、mode�
 
 ## 下一可执行切片
 
-已有候选环境库存、kernel 摘要 / 签名与归档盘点、三个缺失包的精确元数据，以及版本化只读检查入口。下一步验收包索引与 source / binary 来源链、Rust Linux 输入及 kernel 许可 / stable tag 对应关系；安装清单经实际求解复核后另行授权，不直接修改历史摘要绑定入口。接着分别验收 Linux source archive、builder、Rust Linux init 目标与 Go checker build 输入，之后才写入 source lock。
+已有候选环境库存、kernel 归档诊断、三个缺失包的签名摘要链与实际安装模拟、Rust Linux 发布者摘要，以及版本化只读检查入口。下一步取得并验收 Rust Linux payload / 静态目标输入、核对 kernel 许可 / stable tag，并单独确认精确三包的隔离安装范围；镜像、诊断工具与包源码许可仍不是完整 acceptance，不直接修改历史摘要绑定入口。接着分别验收 Linux source archive、builder、Rust Linux init 目标与 Go checker build 输入，之后才写入 source lock。
 
 | 切片 | 完成交付 | 当前缺口 |
 | --- | --- | --- |
-| 构建环境确定 | 精确环境、工具 / 库库存、版本 / 摘要、隔离与清理范围 | 固定本地 Debian 12 arm64 镜像已盘点，缺失工具 / Rust 版本不符，镜像与包来源尚未验收；未沿用兄弟项目环境 |
+| 构建环境确定 | 精确环境、工具 / 库库存、版本 / 摘要、隔离与清理范围 | 固定镜像已盘点；三包摘要链与模拟完成但未安装，Rust 版本不符；镜像 / 工具 / 包源码许可尚未完整验收 |
 | Kernel source 验收 | 压缩摘要、未压缩 tar 签名、完整指纹、文件 / 许可证库存、来源记录 | 压缩 / tar 摘要、签名与归档文件 / 链接 / 许可证材料库存已核验；许可义务、tag 对应关系及工具来源仍待验收 |
 | init 方案收口 | 语言 / target / 依赖决定、child 限制安装顺序、失败矩阵 | Rust 优先建议尚待设计验收，Linux std / linker 未验收 |
 | 可留存合成装置 | 自有 runner / init / transport 源码、输入与重跑入口 | 先满足 ADR、工具、私有 FFI 范围与单独签名 / VM 授权 |
