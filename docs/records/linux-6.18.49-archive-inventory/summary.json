@@ -1,0 +1,709 @@
+{
+  "acceptance": "not-assessed",
+  "archive_commit_comment": "1c732c6b94f0faee1526bd375add2fe10cba2e26",
+  "attempts": [
+    {
+      "exit_code": 1,
+      "method": {
+        "bytes": 15168,
+        "sha256": "6f23cbac23fbd60464de77441d656ef5bac258f7f725a104feb992941caf73da"
+      },
+      "method_reconstruction": "apply attempt-1-method.patch to final source copy",
+      "number": 1,
+      "reason": "initial inspector incorrectly limited source modes to binary-like 0644/0755; actual root directory mode 0775",
+      "stderr": {
+        "bytes": 83,
+        "sha256": "cb68c14cd5971c3f37fa81d5844a44c5914e12b8d1207c289b94af7fce8ae35c"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "comparison": "all source-derived fields match final run; method identity differs",
+      "exit_code": 0,
+      "method": {
+        "bytes": 15477,
+        "sha256": "eb3daca13df976635f92ef87827102af3a03c6991446c2970d02ddcaa9b35155"
+      },
+      "method_reconstruction": "apply attempt-2-method.patch to final source copy",
+      "method_record": {
+        "path": "scripts/inspect-source-tar-v1.py",
+        "python": "3.14.5 (main, May 10 2026, 19:20:57) [Clang 22.1.3 ]",
+        "sha256": "eb3daca13df976635f92ef87827102af3a03c6991446c2970d02ddcaa9b35155"
+      },
+      "number": 2,
+      "reason": "source mode policy corrected; later final run added physical USTAR/path spelling checks",
+      "stdout": {
+        "bytes": 42275109,
+        "sha256": "55b6d980813558097c2d9225c7424129773072d1eb4aa7536975592fe1d7fd5b"
+      }
+    },
+    {
+      "exit_code": 0,
+      "label": "final",
+      "number": 3,
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "date": "2026-09-06",
+  "extensions": 1,
+  "format": "radishaxiom-source-tar-inventory",
+  "format_version": "1",
+  "inspection_profile": "linux-6.18.49-source",
+  "kind": "diagnostic-observation",
+  "license_files": [
+    {
+      "bytes": 496,
+      "path": "linux-6.18.49/COPYING",
+      "sha256": "fb5a425bd3b3cd6071a3a9aff9909a859e7c1158d54d32e07658398cd67eb6a0"
+    },
+    {
+      "bytes": 875,
+      "path": "linux-6.18.49/Documentation/images/COPYING-logo",
+      "sha256": "351e2234f52ffdbdab095dbeb26ddabee5d6196043e3c848b441e6d8481c8474"
+    },
+    {
+      "bytes": 18352,
+      "path": "linux-6.18.49/Documentation/process/license-rules.rst",
+      "sha256": "187ec351ff615334fe0374051318b7e6a306ee348f6cc39c2abc15b60cd37031"
+    },
+    {
+      "bytes": 2713,
+      "path": "linux-6.18.49/Documentation/scsi/LICENSE.FlashPoint",
+      "sha256": "effc722d2f0ee223eaa9e1e352fb4ac421119dd9b5328f9e566489c17c6384c3"
+    },
+    {
+      "bytes": 19663,
+      "path": "linux-6.18.49/Documentation/translations/it_IT/process/license-rules.rst",
+      "sha256": "bf90d52465d79494f004acde2cf3abd51e32669b870ca6bf3fa69d49fb9a6e36"
+    },
+    {
+      "bytes": 14876,
+      "path": "linux-6.18.49/Documentation/translations/zh_CN/process/license-rules.rst",
+      "sha256": "ccbf1dfdd8682497720c61c663bd6288dd870d036004d5a5f22642c07abf5e07"
+    },
+    {
+      "bytes": 14930,
+      "path": "linux-6.18.49/Documentation/translations/zh_TW/process/license-rules.rst",
+      "sha256": "36f87a2d8aceb5e86a50fff77d391da18be90c3e9a8243809147b3825146ef0c"
+    },
+    {
+      "bytes": 983,
+      "path": "linux-6.18.49/LICENSES/deprecated/0BSD",
+      "sha256": "6b50bcee8c2f90c73558dee62e444dde54f3cea86ccfcea84aa8be60005e67b4"
+    },
+    {
+      "bytes": 7386,
+      "path": "linux-6.18.49/LICENSES/deprecated/CC0-1.0",
+      "sha256": "c8a97e7369419869e2d60eab21a9f13bf293bfc33aed0de3c459644a8edd0c80"
+    },
+    {
+      "bytes": 19177,
+      "path": "linux-6.18.49/LICENSES/deprecated/GFDL-1.1",
+      "sha256": "8f13a0664b7e0f30d7a9001f3ecd87d3dea7964559d08337ca1a4b129d9e0e0d"
+    },
+    {
+      "bytes": 21352,
+      "path": "linux-6.18.49/LICENSES/deprecated/GFDL-1.2",
+      "sha256": "e43e6da62a83b8bf96819ff1226151da373cb87f165cd538f405978a0a8c6b7a"
+    },
+    {
+      "bytes": 12951,
+      "path": "linux-6.18.49/LICENSES/deprecated/GPL-1.0",
+      "sha256": "e72efc63ce52380f374733ec7a733f5c11efa3c1f2b0cb48a9c355868ee5b09c"
+    },
+    {
+      "bytes": 1046,
+      "path": "linux-6.18.49/LICENSES/deprecated/ISC",
+      "sha256": "cbdf535b99a9f4cb208c5495c6dd9a1f84104d83c03f8f0d98ee7a0c43805388"
+    },
+    {
+      "bytes": 1317,
+      "path": "linux-6.18.49/LICENSES/deprecated/Linux-OpenIB",
+      "sha256": "8ae20d34c2a74c85ae2760dd0034baf18e44bee3289b9b3a4fe46768b4ea2cd6"
+    },
+    {
+      "bytes": 1625,
+      "path": "linux-6.18.49/LICENSES/deprecated/X11",
+      "sha256": "21115f2385035c1ceeda8820b7f050c89a30418457a5e2a5c6091f2545d40e44"
+    },
+    {
+      "bytes": 1165,
+      "path": "linux-6.18.49/LICENSES/deprecated/Zlib",
+      "sha256": "3b42160485d3d596ff8a4956958c4360dc55f1e2414c964aef0ad2d3c2a92abb"
+    },
+    {
+      "bytes": 10045,
+      "path": "linux-6.18.49/LICENSES/dual/Apache-2.0",
+      "sha256": "7e4d3fba250d15e9e0afa380d4b611828fa2560cc8fdebe95bcf2f01a487de12"
+    },
+    {
+      "bytes": 19355,
+      "path": "linux-6.18.49/LICENSES/dual/CC-BY-4.0",
+      "sha256": "84d5ad08940d29065d8a6f062effa4204c2235c9f2487aa53748ed0a0a6cce86"
+    },
+    {
+      "bytes": 19511,
+      "path": "linux-6.18.49/LICENSES/dual/CDDL-1.0",
+      "sha256": "490abf7869e4638fbb43df99a20e5683224617a6bf9ffd06971cb02b153e53c1"
+    },
+    {
+      "bytes": 26321,
+      "path": "linux-6.18.49/LICENSES/dual/MPL-1.1",
+      "sha256": "ccbda1d2f0cfef821f39e1880aae9213c7933e07713ee638ad1fb02547c0b97b"
+    },
+    {
+      "bytes": 11429,
+      "path": "linux-6.18.49/LICENSES/dual/copyleft-next-0.3.1",
+      "sha256": "28386705873e5eacf16b5d34dd06e58737a2c5a3622acda380a0f236c0a6d02a"
+    },
+    {
+      "bytes": 997,
+      "path": "linux-6.18.49/LICENSES/exceptions/GCC-exception-2.0",
+      "sha256": "0dca50b78073055447d02e8f6ae4fa94c1d0e6d7fbb4c874c9db5eb960c8b3d4"
+    },
+    {
+      "bytes": 1258,
+      "path": "linux-6.18.49/LICENSES/exceptions/Linux-syscall-note",
+      "sha256": "8e378ab93586eb55135d3bc119cce787f7324f48394777d00c34fa3d0be3303f"
+    },
+    {
+      "bytes": 1641,
+      "path": "linux-6.18.49/LICENSES/preferred/BSD-2-Clause",
+      "sha256": "6313108c23efffa36948f8b2cff1560a5935373b527b0e1a837cc77e6ed1bacd"
+    },
+    {
+      "bytes": 1845,
+      "path": "linux-6.18.49/LICENSES/preferred/BSD-3-Clause",
+      "sha256": "7a83b1aeb460458db9a4bd521d7f237c45b1650f6e60ea5ffc71e49472454de3"
+    },
+    {
+      "bytes": 2035,
+      "path": "linux-6.18.49/LICENSES/preferred/BSD-3-Clause-Clear",
+      "sha256": "3f8a01d020e77c045e364c4681ee78c591041b7a38aa61972f689f4bc4cb5088"
+    },
+    {
+      "bytes": 18600,
+      "path": "linux-6.18.49/LICENSES/preferred/GPL-2.0",
+      "sha256": "8780e78a1a737e127f25a65f6d95269bffd36158dc261114de7859b490bfc5aa"
+    },
+    {
+      "bytes": 26144,
+      "path": "linux-6.18.49/LICENSES/preferred/LGPL-2.0",
+      "sha256": "967792c8a6a57bbbc123a69fff6c3020af80b04623916b82ba721b0347e64433"
+    },
+    {
+      "bytes": 27391,
+      "path": "linux-6.18.49/LICENSES/preferred/LGPL-2.1",
+      "sha256": "b5b8b75228bc1de1cca15cf00f90229e936d9712c62df52b057fffad21ffec48"
+    },
+    {
+      "bytes": 1372,
+      "path": "linux-6.18.49/LICENSES/preferred/MIT",
+      "sha256": "323c587d0ccf10e376f8bf9a7f31fb4ca6078105194b42e0b1e0ee2bc9bde71f"
+    },
+    {
+      "bytes": 891,
+      "path": "linux-6.18.49/drivers/net/LICENSE.SRC",
+      "sha256": "926bbcf0ff4b061b3ee987a486877fc09fb1ecb506e3375652bd97d925c9cd12"
+    },
+    {
+      "bytes": 717,
+      "path": "linux-6.18.49/drivers/net/wireless/marvell/libertas/LICENSE",
+      "sha256": "d252a214b30d9a81ad9eb2e3b6b7e1c8ed75f40a43db173903f1d38559234a99"
+    },
+    {
+      "bytes": 418,
+      "path": "linux-6.18.49/include/linux/license.h",
+      "sha256": "fcd903604a4382c8913ef9c5e1779a2475248b09781a3b52e743bc066f5a6ff7"
+    },
+    {
+      "bytes": 17997,
+      "path": "linux-6.18.49/tools/usb/usbip/COPYING",
+      "sha256": "cd5c66af63b509ccd75ec85fee41b6e5cbb77cd6bf9392a54900acc0f02be4a6"
+    }
+  ],
+  "limits": {
+    "compressed_bytes": 268435456,
+    "entries": 200000,
+    "extension_bytes": 16384,
+    "link_hops": 40,
+    "member_bytes": 33554432,
+    "path_bytes": 4096,
+    "tar_bytes": 2147483648,
+    "xz_decoder_bytes": 134217728
+  },
+  "links": [
+    {
+      "path": "linux-6.18.49/Documentation/Changes",
+      "resolved_path": "linux-6.18.49/Documentation/process/changes.rst",
+      "target": "process/changes.rst"
+    },
+    {
+      "path": "linux-6.18.49/arch/arm/boot/dts/allwinner/sun8i-a23-ippo-q8h-v1.2.dts",
+      "resolved_path": "linux-6.18.49/arch/arm/boot/dts/allwinner/sun8i-a23-q8-tablet.dts",
+      "target": "sun8i-a23-q8-tablet.dts"
+    },
+    {
+      "path": "linux-6.18.49/arch/arm/boot/dts/allwinner/sun8i-a23-ippo-q8h-v5.dts",
+      "resolved_path": "linux-6.18.49/arch/arm/boot/dts/allwinner/sun8i-a23-q8-tablet.dts",
+      "target": "sun8i-a23-q8-tablet.dts"
+    },
+    {
+      "path": "linux-6.18.49/arch/arm/boot/dts/allwinner/sun8i-a33-et-q8-v1.6.dts",
+      "resolved_path": "linux-6.18.49/arch/arm/boot/dts/allwinner/sun8i-a33-q8-tablet.dts",
+      "target": "sun8i-a33-q8-tablet.dts"
+    },
+    {
+      "path": "linux-6.18.49/arch/arm/boot/dts/allwinner/sun8i-a33-ippo-q8h-v1.2.dts",
+      "resolved_path": "linux-6.18.49/arch/arm/boot/dts/allwinner/sun8i-a33-q8-tablet.dts",
+      "target": "sun8i-a33-q8-tablet.dts"
+    },
+    {
+      "path": "linux-6.18.49/arch/arm64/boot/dts/renesas/r9a07g054l2-smarc-cru-csi-ov5645.dtso",
+      "resolved_path": "linux-6.18.49/arch/arm64/boot/dts/renesas/r9a07g044l2-smarc-cru-csi-ov5645.dtso",
+      "target": "r9a07g044l2-smarc-cru-csi-ov5645.dtso"
+    },
+    {
+      "path": "linux-6.18.49/arch/arm64/tools/syscall_64.tbl",
+      "resolved_path": "linux-6.18.49/scripts/syscall.tbl",
+      "target": "../../../scripts/syscall.tbl"
+    },
+    {
+      "path": "linux-6.18.49/arch/powerpc/configs/kvm_guest.config",
+      "resolved_path": "linux-6.18.49/kernel/configs/kvm_guest.config",
+      "target": "../../../kernel/configs/kvm_guest.config"
+    },
+    {
+      "path": "linux-6.18.49/include/dt-bindings/clock/qcom,dispcc-sm8150.h",
+      "resolved_path": "linux-6.18.49/include/dt-bindings/clock/qcom,dispcc-sm8250.h",
+      "target": "qcom,dispcc-sm8250.h"
+    },
+    {
+      "path": "linux-6.18.49/include/dt-bindings/clock/qcom,dispcc-sm8350.h",
+      "resolved_path": "linux-6.18.49/include/dt-bindings/clock/qcom,dispcc-sm8250.h",
+      "target": "qcom,dispcc-sm8250.h"
+    },
+    {
+      "path": "linux-6.18.49/include/dt-bindings/clock/qcom,sm8650-dispcc.h",
+      "resolved_path": "linux-6.18.49/include/dt-bindings/clock/qcom,sm8550-dispcc.h",
+      "target": "qcom,sm8550-dispcc.h"
+    },
+    {
+      "path": "linux-6.18.49/include/dt-bindings/input/linux-event-codes.h",
+      "resolved_path": "linux-6.18.49/include/uapi/linux/input-event-codes.h",
+      "target": "../../uapi/linux/input-event-codes.h"
+    },
+    {
+      "path": "linux-6.18.49/scripts/dtc/include-prefixes/arc",
+      "resolved_path": "linux-6.18.49/arch/arc/boot/dts",
+      "target": "../../../arch/arc/boot/dts"
+    },
+    {
+      "path": "linux-6.18.49/scripts/dtc/include-prefixes/arm",
+      "resolved_path": "linux-6.18.49/arch/arm/boot/dts",
+      "target": "../../../arch/arm/boot/dts"
+    },
+    {
+      "path": "linux-6.18.49/scripts/dtc/include-prefixes/arm64",
+      "resolved_path": "linux-6.18.49/arch/arm64/boot/dts",
+      "target": "../../../arch/arm64/boot/dts"
+    },
+    {
+      "path": "linux-6.18.49/scripts/dtc/include-prefixes/dt-bindings",
+      "resolved_path": "linux-6.18.49/include/dt-bindings",
+      "target": "../../../include/dt-bindings"
+    },
+    {
+      "path": "linux-6.18.49/scripts/dtc/include-prefixes/microblaze",
+      "resolved_path": "linux-6.18.49/arch/microblaze/boot/dts",
+      "target": "../../../arch/microblaze/boot/dts"
+    },
+    {
+      "path": "linux-6.18.49/scripts/dtc/include-prefixes/mips",
+      "resolved_path": "linux-6.18.49/arch/mips/boot/dts",
+      "target": "../../../arch/mips/boot/dts"
+    },
+    {
+      "path": "linux-6.18.49/scripts/dtc/include-prefixes/nios2",
+      "resolved_path": "linux-6.18.49/arch/nios2/boot/dts",
+      "target": "../../../arch/nios2/boot/dts"
+    },
+    {
+      "path": "linux-6.18.49/scripts/dtc/include-prefixes/openrisc",
+      "resolved_path": "linux-6.18.49/arch/openrisc/boot/dts",
+      "target": "../../../arch/openrisc/boot/dts"
+    },
+    {
+      "path": "linux-6.18.49/scripts/dtc/include-prefixes/powerpc",
+      "resolved_path": "linux-6.18.49/arch/powerpc/boot/dts",
+      "target": "../../../arch/powerpc/boot/dts"
+    },
+    {
+      "path": "linux-6.18.49/scripts/dtc/include-prefixes/riscv",
+      "resolved_path": "linux-6.18.49/arch/riscv/boot/dts",
+      "target": "../../../arch/riscv/boot/dts"
+    },
+    {
+      "path": "linux-6.18.49/scripts/dtc/include-prefixes/sh",
+      "resolved_path": "linux-6.18.49/arch/sh/boot/dts",
+      "target": "../../../arch/sh/boot/dts"
+    },
+    {
+      "path": "linux-6.18.49/scripts/dtc/include-prefixes/xtensa",
+      "resolved_path": "linux-6.18.49/arch/xtensa/boot/dts",
+      "target": "../../../arch/xtensa/boot/dts"
+    },
+    {
+      "path": "linux-6.18.49/scripts/dummy-tools/nm",
+      "resolved_path": "linux-6.18.49/scripts/dummy-tools/ld",
+      "target": "ld"
+    },
+    {
+      "path": "linux-6.18.49/scripts/dummy-tools/objcopy",
+      "resolved_path": "linux-6.18.49/scripts/dummy-tools/ld",
+      "target": "ld"
+    },
+    {
+      "path": "linux-6.18.49/scripts/kernel-doc",
+      "resolved_path": "linux-6.18.49/scripts/kernel-doc.py",
+      "target": "kernel-doc.py"
+    },
+    {
+      "path": "linux-6.18.49/tools/include/linux/pci_ids.h",
+      "resolved_path": "linux-6.18.49/include/linux/pci_ids.h",
+      "target": "../../../include/linux/pci_ids.h"
+    },
+    {
+      "path": "linux-6.18.49/tools/perf/arch/arm64/entry/syscalls/syscall_64.tbl",
+      "resolved_path": "linux-6.18.49/tools/scripts/syscall.tbl",
+      "target": "../../../../../scripts/syscall.tbl"
+    },
+    {
+      "path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/bullet-07/firmware.json",
+      "resolved_path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/bullet/firmware.json",
+      "target": "../bullet/firmware.json"
+    },
+    {
+      "path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/bullet-07/instruction.json",
+      "resolved_path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/bullet/instruction.json",
+      "target": "../bullet/instruction.json"
+    },
+    {
+      "path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/bullet-07/memory.json",
+      "resolved_path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/bullet/memory.json",
+      "target": "../bullet/memory.json"
+    },
+    {
+      "path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/bullet-0d/cycle-and-instruction-count.json",
+      "resolved_path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/bullet-07/cycle-and-instruction-count.json",
+      "target": "../bullet-07/cycle-and-instruction-count.json"
+    },
+    {
+      "path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/bullet-0d/firmware.json",
+      "resolved_path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/bullet/firmware.json",
+      "target": "../bullet/firmware.json"
+    },
+    {
+      "path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/bullet-0d/instruction.json",
+      "resolved_path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/bullet/instruction.json",
+      "target": "../bullet/instruction.json"
+    },
+    {
+      "path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/bullet-0d/memory.json",
+      "resolved_path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/bullet/memory.json",
+      "target": "../bullet/memory.json"
+    },
+    {
+      "path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/bullet-0d/watchpoint.json",
+      "resolved_path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/bullet-07/watchpoint.json",
+      "target": "../bullet-07/watchpoint.json"
+    },
+    {
+      "path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/p550/firmware.json",
+      "resolved_path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/bullet/firmware.json",
+      "target": "../bullet/firmware.json"
+    },
+    {
+      "path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/p550/instruction.json",
+      "resolved_path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/bullet/instruction.json",
+      "target": "../bullet/instruction.json"
+    },
+    {
+      "path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/p550/microarch.json",
+      "resolved_path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/bullet/microarch.json",
+      "target": "../bullet/microarch.json"
+    },
+    {
+      "path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/p650/cycle-and-instruction-count.json",
+      "resolved_path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/bullet-07/cycle-and-instruction-count.json",
+      "target": "../bullet-07/cycle-and-instruction-count.json"
+    },
+    {
+      "path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/p650/firmware.json",
+      "resolved_path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/bullet/firmware.json",
+      "target": "../bullet/firmware.json"
+    },
+    {
+      "path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/p650/instruction.json",
+      "resolved_path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/bullet/instruction.json",
+      "target": "../bullet/instruction.json"
+    },
+    {
+      "path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/p650/watchpoint.json",
+      "resolved_path": "linux-6.18.49/tools/perf/pmu-events/arch/riscv/sifive/bullet-07/watchpoint.json",
+      "target": "../bullet-07/watchpoint.json"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/bpf/disasm.c",
+      "resolved_path": "linux-6.18.49/kernel/bpf/disasm.c",
+      "target": "../../../../kernel/bpf/disasm.c"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/bpf/disasm.h",
+      "resolved_path": "linux-6.18.49/kernel/bpf/disasm.h",
+      "target": "../../../../kernel/bpf/disasm.h"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/bpf/json_writer.c",
+      "resolved_path": "linux-6.18.49/tools/bpf/bpftool/json_writer.c",
+      "target": "../../../bpf/bpftool/json_writer.c"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/bpf/json_writer.h",
+      "resolved_path": "linux-6.18.49/tools/bpf/bpftool/json_writer.h",
+      "target": "../../../bpf/bpftool/json_writer.h"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/drivers/net/dsa/bridge_locked_port.sh",
+      "resolved_path": "linux-6.18.49/tools/testing/selftests/drivers/net/dsa/run_net_forwarding_test.sh",
+      "target": "run_net_forwarding_test.sh"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/drivers/net/dsa/bridge_mdb.sh",
+      "resolved_path": "linux-6.18.49/tools/testing/selftests/drivers/net/dsa/run_net_forwarding_test.sh",
+      "target": "run_net_forwarding_test.sh"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/drivers/net/dsa/bridge_mld.sh",
+      "resolved_path": "linux-6.18.49/tools/testing/selftests/drivers/net/dsa/run_net_forwarding_test.sh",
+      "target": "run_net_forwarding_test.sh"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/drivers/net/dsa/bridge_vlan_aware.sh",
+      "resolved_path": "linux-6.18.49/tools/testing/selftests/drivers/net/dsa/run_net_forwarding_test.sh",
+      "target": "run_net_forwarding_test.sh"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/drivers/net/dsa/bridge_vlan_mcast.sh",
+      "resolved_path": "linux-6.18.49/tools/testing/selftests/drivers/net/dsa/run_net_forwarding_test.sh",
+      "target": "run_net_forwarding_test.sh"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/drivers/net/dsa/bridge_vlan_unaware.sh",
+      "resolved_path": "linux-6.18.49/tools/testing/selftests/drivers/net/dsa/run_net_forwarding_test.sh",
+      "target": "run_net_forwarding_test.sh"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/drivers/net/dsa/local_termination.sh",
+      "resolved_path": "linux-6.18.49/tools/testing/selftests/drivers/net/dsa/run_net_forwarding_test.sh",
+      "target": "run_net_forwarding_test.sh"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/drivers/net/dsa/no_forwarding.sh",
+      "resolved_path": "linux-6.18.49/tools/testing/selftests/drivers/net/dsa/run_net_forwarding_test.sh",
+      "target": "run_net_forwarding_test.sh"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/drivers/net/dsa/tc_actions.sh",
+      "resolved_path": "linux-6.18.49/tools/testing/selftests/drivers/net/dsa/run_net_forwarding_test.sh",
+      "target": "run_net_forwarding_test.sh"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/drivers/net/dsa/tc_taprio.sh",
+      "resolved_path": "linux-6.18.49/tools/testing/selftests/drivers/net/dsa/run_net_forwarding_test.sh",
+      "target": "run_net_forwarding_test.sh"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/drivers/net/mlxsw/spectrum-2/port_range_scale.sh",
+      "resolved_path": "linux-6.18.49/tools/testing/selftests/drivers/net/mlxsw/spectrum/port_range_scale.sh",
+      "target": "../spectrum/port_range_scale.sh"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/drivers/net/mlxsw/spectrum-2/rif_counter_scale.sh",
+      "resolved_path": "linux-6.18.49/tools/testing/selftests/drivers/net/mlxsw/spectrum/rif_counter_scale.sh",
+      "target": "../spectrum/rif_counter_scale.sh"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/net/tcp_ao/icmps-accept.c",
+      "resolved_path": "linux-6.18.49/tools/testing/selftests/net/tcp_ao/icmps-discard.c",
+      "target": "icmps-discard.c"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/powerpc/copyloops/copy_mc_64.S",
+      "resolved_path": "linux-6.18.49/arch/powerpc/lib/copy_mc_64.S",
+      "target": "../../../../../arch/powerpc/lib/copy_mc_64.S"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/powerpc/copyloops/copyuser_64.S",
+      "resolved_path": "linux-6.18.49/arch/powerpc/lib/copyuser_64.S",
+      "target": "../../../../../arch/powerpc/lib/copyuser_64.S"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/powerpc/copyloops/copyuser_power7.S",
+      "resolved_path": "linux-6.18.49/arch/powerpc/lib/copyuser_power7.S",
+      "target": "../../../../../arch/powerpc/lib/copyuser_power7.S"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/powerpc/copyloops/mem_64.S",
+      "resolved_path": "linux-6.18.49/arch/powerpc/lib/mem_64.S",
+      "target": "../../../../../arch/powerpc/lib/mem_64.S"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/powerpc/copyloops/memcpy_64.S",
+      "resolved_path": "linux-6.18.49/arch/powerpc/lib/memcpy_64.S",
+      "target": "../../../../../arch/powerpc/lib/memcpy_64.S"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/powerpc/copyloops/memcpy_power7.S",
+      "resolved_path": "linux-6.18.49/arch/powerpc/lib/memcpy_power7.S",
+      "target": "../../../../../arch/powerpc/lib/memcpy_power7.S"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/powerpc/mce/vas-api.h",
+      "resolved_path": "linux-6.18.49/arch/powerpc/include/uapi/asm/vas-api.h",
+      "target": "../../../../../arch/powerpc/include/uapi/asm/vas-api.h"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/powerpc/nx-gzip/include/vas-api.h",
+      "resolved_path": "linux-6.18.49/arch/powerpc/include/uapi/asm/vas-api.h",
+      "target": "../../../../../../arch/powerpc/include/uapi/asm/vas-api.h"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/powerpc/primitives/asm/asm-compat.h",
+      "resolved_path": "linux-6.18.49/arch/powerpc/include/asm/asm-compat.h",
+      "target": "../.././../../../../arch/powerpc/include/asm/asm-compat.h"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/powerpc/primitives/asm/asm-const.h",
+      "resolved_path": "linux-6.18.49/arch/powerpc/include/asm/asm-const.h",
+      "target": "../../../../../../arch/powerpc/include/asm/asm-const.h"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/powerpc/primitives/asm/extable.h",
+      "resolved_path": "linux-6.18.49/arch/powerpc/include/asm/extable.h",
+      "target": "../../../../../../arch/powerpc/include/asm/extable.h"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/powerpc/primitives/asm/feature-fixups.h",
+      "resolved_path": "linux-6.18.49/arch/powerpc/include/asm/feature-fixups.h",
+      "target": "../../../../../../arch/powerpc/include/asm/feature-fixups.h"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/powerpc/primitives/asm/ppc_asm.h",
+      "resolved_path": "linux-6.18.49/arch/powerpc/include/asm/ppc_asm.h",
+      "target": "../../../../../../arch/powerpc/include/asm/ppc_asm.h"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/powerpc/primitives/linux/wordpart.h",
+      "resolved_path": "linux-6.18.49/include/linux/wordpart.h",
+      "target": "../../../../../../include/linux/wordpart.h"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/powerpc/primitives/word-at-a-time.h",
+      "resolved_path": "linux-6.18.49/arch/powerpc/include/asm/word-at-a-time.h",
+      "target": "../../../../../arch/powerpc/include/asm/word-at-a-time.h"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/powerpc/stringloops/memcmp_32.S",
+      "resolved_path": "linux-6.18.49/arch/powerpc/lib/memcmp_32.S",
+      "target": "../../../../../arch/powerpc/lib/memcmp_32.S"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/powerpc/stringloops/memcmp_64.S",
+      "resolved_path": "linux-6.18.49/arch/powerpc/lib/memcmp_64.S",
+      "target": "../../../../../arch/powerpc/lib/memcmp_64.S"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/powerpc/stringloops/strlen_32.S",
+      "resolved_path": "linux-6.18.49/arch/powerpc/lib/strlen_32.S",
+      "target": "../../../../../arch/powerpc/lib/strlen_32.S"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/powerpc/vphn/asm/vphn.h",
+      "resolved_path": "linux-6.18.49/arch/powerpc/include/asm/vphn.h",
+      "target": "../../../../../../arch/powerpc/include/asm/vphn.h"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/powerpc/vphn/vphn.c",
+      "resolved_path": "linux-6.18.49/arch/powerpc/platforms/pseries/vphn.c",
+      "target": "../../../../../arch/powerpc/platforms/pseries/vphn.c"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/vDSO/vdso_standalone_test_x86.c",
+      "resolved_path": "linux-6.18.49/tools/testing/selftests/vDSO/vdso_test_gettimeofday.c",
+      "target": "vdso_test_gettimeofday.c"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/vfio/lib/drivers/dsa/registers.h",
+      "resolved_path": "linux-6.18.49/drivers/dma/idxd/registers.h",
+      "target": "../../../../../../../drivers/dma/idxd/registers.h"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/vfio/lib/drivers/ioat/hw.h",
+      "resolved_path": "linux-6.18.49/drivers/dma/ioat/hw.h",
+      "target": "../../../../../../../drivers/dma/ioat/hw.h"
+    },
+    {
+      "path": "linux-6.18.49/tools/testing/selftests/vfio/lib/drivers/ioat/registers.h",
+      "resolved_path": "linux-6.18.49/drivers/dma/ioat/registers.h",
+      "target": "../../../../../../../drivers/dma/ioat/registers.h"
+    }
+  ],
+  "members": {
+    "count": 97253,
+    "total_regular_bytes": 1537369970
+  },
+  "method": {
+    "path": "scripts/inspect-source-tar-v1.py",
+    "python": "3.14.5 (main, May 10 2026, 19:20:57) [Clang 22.1.3 ]",
+    "sha256": "e6f7c4be6cc08fd2d38170b4c83360240a0c8045a794be252d0cc04c03c1bb3e"
+  },
+  "repository_base_commit": "ee7b0a0",
+  "retained_inventory": {
+    "compression": "Python gzip.compress(compresslevel=9, mtime=0)",
+    "decoded_json": {
+      "bytes": 42275109,
+      "sha256": "6de475e03a2268507d425f87b4573e0ae079afd83be5684a5736b867030a7d66"
+    },
+    "file": "inventory.json.gz",
+    "gzip": {
+      "bytes": 5243991,
+      "sha256": "6e8492675028fef8312954b3ecaf9aa94b3e038e349c7890d2e4ddc7b0664878"
+    }
+  },
+  "source": {
+    "bytes": 154627808,
+    "filename": "linux-6.18.49.tar.xz",
+    "sha256": "ae826f33111fea6f1d279dde7299d7463c8dfd204aeb75a8fb5432bc60a28191"
+  },
+  "spdx_prefix_scan": {
+    "bytes_per_file": 8192,
+    "declaration_count": 75970,
+    "scope": "raw marker text only, not an SPDX expression validator or complete license audit"
+  },
+  "tar": {
+    "bytes": 1610598400,
+    "sha256": "e1ff34affa6a24460d47dbad47d60ff971b88a18c06841554664358313d5026c"
+  },
+  "type_counts": {
+    "directory": 6048,
+    "file": 91120,
+    "symlink": 85
+  }
+}

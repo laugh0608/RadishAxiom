@@ -33,7 +33,7 @@
 Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收，见下文记录；普通 `dev` push 仍不自动触发 CI。下一顺位为：
 
 1. **审阅资源 ADR 草案并闭合维护投入。** 项目所有者已确认另立虚拟执行 profile 的起草方向：[ADR 0015（Proposed）](../adr/0015-virtualized-checker-resource-profile.md)明确 guest 128 MiB 硬限、宿主总内存无等价硬保证、排他选择与迁移闭包。草案尚未替代 Accepted ADR，不能原地重解释 v0.1。[产品化依赖审阅](../checker-runtime-productization-dependency-review.md)中的维护负责人、预算和具体来源仍待确认或验收。
-2. **补齐构建来源并审阅 archive 检查入口版本化。** [实际核验记录](../records/linux-6.18.49-source-review/README.md)已盘点固定 Debian 12 arm64 镜像的 413 个包条目，取得 Linux `6.18.49` 源包并完成压缩摘要匹配、未压缩 tar 的固定完整指纹签名核验；首次公钥缺 UID 导致的失败也已保留。镜像缺少 `flex` / `bison` / `bc`，Rust 为 `1.96.1`，尚不能作为候选 `1.97.1` init builder。下一步形成精确缺失依赖及来源清单，审阅 archive 检查入口版本化（旧入口摘要已绑定历史 acceptance），再完成源码文件 / 许可证库存与工具来源验收；当前不是完整 source lock。[来源与构建审阅](../checker-runtime-guest-source-build-review.md)继续约束 Rust init 建议与 Linux checker 交接。ADR 正式接受后提出公共迁移和可留存合成装置；构建、真实负载与 cold 矩阵另行授权。
+2. **验收构建包来源链与 kernel 许可。** [来源核验](../records/linux-6.18.49-source-review/README.md)已完成固定 Linux 镜像盘点与 Linux `6.18.49` 摘要 / 签名诊断；后续[归档盘点](../records/linux-6.18.49-archive-inventory/README.md)取得未压缩 tar 摘要、91,120 个普通文件与 85 个链接库存、许可证材料和完整 commit 声明。新 source-tar v1 诊断入口与 17 项合成测试已形成，旧验收摘要链不变。`flex` / `bison` / `bc` 的 arm64 版本、发布者摘要和依赖候选已列明；下一步验收签名包索引到 source / binary 的链、Rust `1.97.1` Linux 材料及 kernel 许可 / stable tag 对应关系，之后再核对精确安装差异。本轮仍未构建或接受完整 source lock。[来源与构建审阅](../checker-runtime-guest-source-build-review.md)继续约束 init、条件工具与跨仓交接；ADR 正式接受后的公共迁移、隔离构建及产品运行分别授权。
 
 [AX-B01 首切片依赖审阅](../axiom-pipeline-first-slice-dependency-review.md)已列出 P0–P9 前置；cvc5 / Node 自身的来源与外层硬限制仍需独立闭合。纯设计无需等待产品安装 / 激活，生产实现遵守 ADR 0007 全部入口或正式替代决策。
 

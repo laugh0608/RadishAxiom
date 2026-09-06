@@ -151,6 +151,8 @@ REQUIRED_FILES = (
     "scripts/generate-toolchain-adapter-identities.py",
     "scripts/generate-toolchain-payload-acceptance.py",
     "scripts/inspect-toolchain-tar.py",
+    "scripts/inspect-source-tar-v1.py",
+    "scripts/check-source-tar-inventory.py",
     "rust-toolchain.toml",
 )
 
@@ -570,6 +572,23 @@ def check_checker_runtime_launcher(errors: list[str]) -> None:
         errors.append(f"checker runtime launcher conformance failed: {detail}")
 
 
+def check_source_tar_inventory(errors: list[str]) -> None:
+    checker = REPO_ROOT / "scripts/check-source-tar-inventory.py"
+    if not checker.is_file():
+        return  # Required-file validation reports the missing entry.
+    try:
+        result = subprocess.run(
+            [sys.executable, str(checker)], cwd=REPO_ROOT, check=False,
+            capture_output=True, text=True, timeout=30,
+        )
+    except subprocess.TimeoutExpired:
+        errors.append("source tar inventory synthetic checks timed out")
+        return
+    if result.returncode != 0:
+        detail = (result.stdout + result.stderr).strip()
+        errors.append(f"source tar inventory synthetic checks failed: {detail}")
+
+
 def check_pipeline_artifact_contracts(errors: list[str]) -> None:
     generator = REPO_ROOT / "scripts/generate-pipeline-artifact-contracts.py"
     if not generator.is_file():
@@ -787,6 +806,7 @@ def main() -> int:
     check_toolchain_payload_acceptance(errors)
     check_checker_runtime_payloads(errors)
     check_checker_runtime_launcher(errors)
+    check_source_tar_inventory(errors)
     check_pipeline_artifact_contracts(errors)
     check_implementation_readiness(errors)
     check_execution_profile_contracts(errors)
