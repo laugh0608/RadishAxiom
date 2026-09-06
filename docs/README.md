@@ -66,6 +66,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 | process 与隔离可行性 | [native process](checker-runtime-darwin-process-isolation-review.md)、[强隔离与 synthetic Linux 观察](checker-runtime-darwin-hard-isolation-review.md) |
 | 隔离产品化与核心闭环依赖 | [产品化设计审阅](checker-runtime-productization-dependency-review.md)、[AX-B01 首切片依赖](axiom-pipeline-first-slice-dependency-review.md) |
 | guest 来源与构建入口 | [kernel / builder / init 与 Linux checker 交接审阅](checker-runtime-guest-source-build-review.md) |
+| Linux 来源实际核验 | [6.18.49 摘要 / 签名诊断与候选 builder 库存](records/linux-6.18.49-source-review/README.md) |
 | 早期状态、完整批次身份与实施流水 | [截至 2026-09-03 的原状态归档](records/status-through-2026-09-03.md) |
 
 架构 probe 的历史观察与可重跑材料分别判断；强隔离审阅单已注明原 probe 源码未留存的复现缺口。

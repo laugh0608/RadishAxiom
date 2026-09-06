@@ -1,0 +1,3518 @@
+{
+  "acceptance": "not-assessed",
+  "format": "radishaxiom-linux-builder-inventory",
+  "format_version": "0.1",
+  "kernel": {
+    "machine": "aarch64",
+    "release": "7.0.11-orbstack-00360-gc9bc4d96ac70"
+  },
+  "kind": "diagnostic-observation",
+  "os_release": {
+    "ID": "debian",
+    "PRETTY_NAME": "Debian GNU/Linux 12 (bookworm)",
+    "VERSION_CODENAME": "bookworm",
+    "VERSION_ID": "12"
+  },
+  "packages": [
+    {
+      "architecture": "all",
+      "package": "adduser",
+      "source": "adduser",
+      "source_version": "3.134",
+      "status": "installed",
+      "version": "3.134"
+    },
+    {
+      "architecture": "arm64",
+      "package": "apt",
+      "source": "apt",
+      "source_version": "2.6.1",
+      "status": "installed",
+      "version": "2.6.1"
+    },
+    {
+      "architecture": "all",
+      "package": "autoconf",
+      "source": "autoconf",
+      "source_version": "2.71-3",
+      "status": "installed",
+      "version": "2.71-3"
+    },
+    {
+      "architecture": "all",
+      "package": "automake",
+      "source": "automake-1.16",
+      "source_version": "1:1.16.5-1.3",
+      "status": "installed",
+      "version": "1:1.16.5-1.3"
+    },
+    {
+      "architecture": "all",
+      "package": "autotools-dev",
+      "source": "autotools-dev",
+      "source_version": "20220109.1",
+      "status": "installed",
+      "version": "20220109.1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "base-files",
+      "source": "base-files",
+      "source_version": "12.4+deb12u14",
+      "status": "installed",
+      "version": "12.4+deb12u14"
+    },
+    {
+      "architecture": "arm64",
+      "package": "base-passwd",
+      "source": "base-passwd",
+      "source_version": "3.6.1",
+      "status": "installed",
+      "version": "3.6.1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "bash",
+      "source": "bash",
+      "source_version": "5.2.15-2",
+      "status": "installed",
+      "version": "5.2.15-2+b13"
+    },
+    {
+      "architecture": "arm64",
+      "package": "binutils",
+      "source": "binutils",
+      "source_version": "2.40-2",
+      "status": "installed",
+      "version": "2.40-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "binutils-aarch64-linux-gnu",
+      "source": "binutils",
+      "source_version": "2.40-2",
+      "status": "installed",
+      "version": "2.40-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "binutils-common:arm64",
+      "source": "binutils",
+      "source_version": "2.40-2",
+      "status": "installed",
+      "version": "2.40-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "bsdutils",
+      "source": "util-linux",
+      "source_version": "2.38.1-5+deb12u3",
+      "status": "installed",
+      "version": "1:2.38.1-5+deb12u3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "bzip2",
+      "source": "bzip2",
+      "source_version": "1.0.8-5",
+      "status": "installed",
+      "version": "1.0.8-5+b1"
+    },
+    {
+      "architecture": "all",
+      "package": "ca-certificates",
+      "source": "ca-certificates",
+      "source_version": "20230311+deb12u1",
+      "status": "installed",
+      "version": "20230311+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "comerr-dev:arm64",
+      "source": "e2fsprogs",
+      "source_version": "1.47.0-2",
+      "status": "installed",
+      "version": "2.1-1.47.0-2+b2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "coreutils",
+      "source": "coreutils",
+      "source_version": "9.1-1",
+      "status": "installed",
+      "version": "9.1-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "cpp",
+      "source": "gcc-defaults",
+      "source_version": "1.203",
+      "status": "installed",
+      "version": "4:12.2.0-3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "cpp-12",
+      "source": "gcc-12",
+      "source_version": "12.2.0-14+deb12u1",
+      "status": "installed",
+      "version": "12.2.0-14+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "curl",
+      "source": "curl",
+      "source_version": "7.88.1-10+deb12u14",
+      "status": "installed",
+      "version": "7.88.1-10+deb12u14"
+    },
+    {
+      "architecture": "arm64",
+      "package": "dash",
+      "source": "dash",
+      "source_version": "0.5.12-2",
+      "status": "installed",
+      "version": "0.5.12-2"
+    },
+    {
+      "architecture": "all",
+      "package": "debconf",
+      "source": "debconf",
+      "source_version": "1.5.82",
+      "status": "installed",
+      "version": "1.5.82"
+    },
+    {
+      "architecture": "all",
+      "package": "debian-archive-keyring",
+      "source": "debian-archive-keyring",
+      "source_version": "2023.3+deb12u2",
+      "status": "installed",
+      "version": "2023.3+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "debianutils",
+      "source": "debianutils",
+      "source_version": "5.7-0.5~deb12u1",
+      "status": "installed",
+      "version": "5.7-0.5~deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "default-libmysqlclient-dev:arm64",
+      "source": "mysql-defaults",
+      "source_version": "1.1.0",
+      "status": "installed",
+      "version": "1.1.0"
+    },
+    {
+      "architecture": "arm64",
+      "package": "diffutils",
+      "source": "diffutils",
+      "source_version": "1:3.8-4",
+      "status": "installed",
+      "version": "1:3.8-4"
+    },
+    {
+      "architecture": "arm64",
+      "package": "dirmngr",
+      "source": "gnupg2",
+      "source_version": "2.2.40-1.1+deb12u2",
+      "status": "installed",
+      "version": "2.2.40-1.1+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "dpkg",
+      "source": "dpkg",
+      "source_version": "1.21.23",
+      "status": "installed",
+      "version": "1.21.23"
+    },
+    {
+      "architecture": "all",
+      "package": "dpkg-dev",
+      "source": "dpkg",
+      "source_version": "1.21.23",
+      "status": "installed",
+      "version": "1.21.23"
+    },
+    {
+      "architecture": "arm64",
+      "package": "e2fsprogs",
+      "source": "e2fsprogs",
+      "source_version": "1.47.0-2",
+      "status": "installed",
+      "version": "1.47.0-2+b2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "file",
+      "source": "file",
+      "source_version": "1:5.44-3",
+      "status": "installed",
+      "version": "1:5.44-3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "findutils",
+      "source": "findutils",
+      "source_version": "4.9.0-4",
+      "status": "installed",
+      "version": "4.9.0-4"
+    },
+    {
+      "architecture": "arm64",
+      "package": "fontconfig",
+      "source": "fontconfig",
+      "source_version": "2.14.1-4",
+      "status": "installed",
+      "version": "2.14.1-4"
+    },
+    {
+      "architecture": "arm64",
+      "package": "fontconfig-config",
+      "source": "fontconfig",
+      "source_version": "2.14.1-4",
+      "status": "installed",
+      "version": "2.14.1-4"
+    },
+    {
+      "architecture": "all",
+      "package": "fonts-dejavu-core",
+      "source": "fonts-dejavu",
+      "source_version": "2.37-6",
+      "status": "installed",
+      "version": "2.37-6"
+    },
+    {
+      "architecture": "arm64",
+      "package": "g++",
+      "source": "gcc-defaults",
+      "source_version": "1.203",
+      "status": "installed",
+      "version": "4:12.2.0-3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "g++-12",
+      "source": "gcc-12",
+      "source_version": "12.2.0-14+deb12u1",
+      "status": "installed",
+      "version": "12.2.0-14+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "gcc",
+      "source": "gcc-defaults",
+      "source_version": "1.203",
+      "status": "installed",
+      "version": "4:12.2.0-3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "gcc-12",
+      "source": "gcc-12",
+      "source_version": "12.2.0-14+deb12u1",
+      "status": "installed",
+      "version": "12.2.0-14+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "gcc-12-base:arm64",
+      "source": "gcc-12",
+      "source_version": "12.2.0-14+deb12u1",
+      "status": "installed",
+      "version": "12.2.0-14+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "gir1.2-freedesktop:arm64",
+      "source": "gobject-introspection",
+      "source_version": "1.74.0-3",
+      "status": "installed",
+      "version": "1.74.0-3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "gir1.2-gdkpixbuf-2.0:arm64",
+      "source": "gdk-pixbuf",
+      "source_version": "2.42.10+dfsg-1+deb12u4",
+      "status": "installed",
+      "version": "2.42.10+dfsg-1+deb12u4"
+    },
+    {
+      "architecture": "arm64",
+      "package": "gir1.2-glib-2.0:arm64",
+      "source": "gobject-introspection",
+      "source_version": "1.74.0-3",
+      "status": "installed",
+      "version": "1.74.0-3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "gir1.2-rsvg-2.0:arm64",
+      "source": "librsvg",
+      "source_version": "2.54.7+dfsg-1~deb12u1",
+      "status": "installed",
+      "version": "2.54.7+dfsg-1~deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "git",
+      "source": "git",
+      "source_version": "1:2.39.5-0+deb12u3",
+      "status": "installed",
+      "version": "1:2.39.5-0+deb12u3"
+    },
+    {
+      "architecture": "all",
+      "package": "git-man",
+      "source": "git",
+      "source_version": "1:2.39.5-0+deb12u3",
+      "status": "installed",
+      "version": "1:2.39.5-0+deb12u3"
+    },
+    {
+      "architecture": "all",
+      "package": "gnupg",
+      "source": "gnupg2",
+      "source_version": "2.2.40-1.1+deb12u2",
+      "status": "installed",
+      "version": "2.2.40-1.1+deb12u2"
+    },
+    {
+      "architecture": "all",
+      "package": "gnupg-l10n",
+      "source": "gnupg2",
+      "source_version": "2.2.40-1.1+deb12u2",
+      "status": "installed",
+      "version": "2.2.40-1.1+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "gnupg-utils",
+      "source": "gnupg2",
+      "source_version": "2.2.40-1.1+deb12u2",
+      "status": "installed",
+      "version": "2.2.40-1.1+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "gpg",
+      "source": "gnupg2",
+      "source_version": "2.2.40-1.1+deb12u2",
+      "status": "installed",
+      "version": "2.2.40-1.1+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "gpg-agent",
+      "source": "gnupg2",
+      "source_version": "2.2.40-1.1+deb12u2",
+      "status": "installed",
+      "version": "2.2.40-1.1+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "gpg-wks-client",
+      "source": "gnupg2",
+      "source_version": "2.2.40-1.1+deb12u2",
+      "status": "installed",
+      "version": "2.2.40-1.1+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "gpg-wks-server",
+      "source": "gnupg2",
+      "source_version": "2.2.40-1.1+deb12u2",
+      "status": "installed",
+      "version": "2.2.40-1.1+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "gpgconf",
+      "source": "gnupg2",
+      "source_version": "2.2.40-1.1+deb12u2",
+      "status": "installed",
+      "version": "2.2.40-1.1+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "gpgsm",
+      "source": "gnupg2",
+      "source_version": "2.2.40-1.1+deb12u2",
+      "status": "installed",
+      "version": "2.2.40-1.1+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "gpgv",
+      "source": "gnupg2",
+      "source_version": "2.2.40-1.1+deb12u2",
+      "status": "installed",
+      "version": "2.2.40-1.1+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "grep",
+      "source": "grep",
+      "source_version": "3.8-5",
+      "status": "installed",
+      "version": "3.8-5"
+    },
+    {
+      "architecture": "arm64",
+      "package": "gzip",
+      "source": "gzip",
+      "source_version": "1.12-1",
+      "status": "installed",
+      "version": "1.12-1"
+    },
+    {
+      "architecture": "all",
+      "package": "hicolor-icon-theme",
+      "source": "hicolor-icon-theme",
+      "source_version": "0.17-2",
+      "status": "installed",
+      "version": "0.17-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "hostname",
+      "source": "hostname",
+      "source_version": "3.23+nmu1",
+      "status": "installed",
+      "version": "3.23+nmu1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "icu-devtools",
+      "source": "icu",
+      "source_version": "72.1-3+deb12u1",
+      "status": "installed",
+      "version": "72.1-3+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "imagemagick",
+      "source": "imagemagick",
+      "source_version": "8:6.9.11.60+dfsg-1.6+deb12u11",
+      "status": "installed",
+      "version": "8:6.9.11.60+dfsg-1.6+deb12u11"
+    },
+    {
+      "architecture": "all",
+      "package": "imagemagick-6-common",
+      "source": "imagemagick",
+      "source_version": "8:6.9.11.60+dfsg-1.6+deb12u11",
+      "status": "installed",
+      "version": "8:6.9.11.60+dfsg-1.6+deb12u11"
+    },
+    {
+      "architecture": "arm64",
+      "package": "imagemagick-6.q16",
+      "source": "imagemagick",
+      "source_version": "8:6.9.11.60+dfsg-1.6+deb12u11",
+      "status": "installed",
+      "version": "8:6.9.11.60+dfsg-1.6+deb12u11"
+    },
+    {
+      "architecture": "all",
+      "package": "init-system-helpers",
+      "source": "init-system-helpers",
+      "source_version": "1.65.2+deb12u1",
+      "status": "installed",
+      "version": "1.65.2+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "krb5-multidev:arm64",
+      "source": "krb5",
+      "source_version": "1.20.1-2+deb12u5",
+      "status": "installed",
+      "version": "1.20.1-2+deb12u5"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libacl1:arm64",
+      "source": "acl",
+      "source_version": "2.3.1-3",
+      "status": "installed",
+      "version": "2.3.1-3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libaom3:arm64",
+      "source": "aom",
+      "source_version": "3.6.0-1+deb12u2",
+      "status": "installed",
+      "version": "3.6.0-1+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libapr1:arm64",
+      "source": "apr",
+      "source_version": "1.7.2-3+deb12u1",
+      "status": "installed",
+      "version": "1.7.2-3+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libaprutil1:arm64",
+      "source": "apr-util",
+      "source_version": "1.6.3-1",
+      "status": "installed",
+      "version": "1.6.3-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libapt-pkg6.0:arm64",
+      "source": "apt",
+      "source_version": "2.6.1",
+      "status": "installed",
+      "version": "2.6.1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libasan8:arm64",
+      "source": "gcc-12",
+      "source_version": "12.2.0-14+deb12u1",
+      "status": "installed",
+      "version": "12.2.0-14+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libassuan0:arm64",
+      "source": "libassuan",
+      "source_version": "2.5.5-5",
+      "status": "installed",
+      "version": "2.5.5-5"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libatomic1:arm64",
+      "source": "gcc-12",
+      "source_version": "12.2.0-14+deb12u1",
+      "status": "installed",
+      "version": "12.2.0-14+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libattr1:arm64",
+      "source": "attr",
+      "source_version": "1:2.5.1-4",
+      "status": "installed",
+      "version": "1:2.5.1-4"
+    },
+    {
+      "architecture": "all",
+      "package": "libaudit-common",
+      "source": "audit",
+      "source_version": "1:3.0.9-1",
+      "status": "installed",
+      "version": "1:3.0.9-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libaudit1:arm64",
+      "source": "audit",
+      "source_version": "1:3.0.9-1",
+      "status": "installed",
+      "version": "1:3.0.9-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libbinutils:arm64",
+      "source": "binutils",
+      "source_version": "2.40-2",
+      "status": "installed",
+      "version": "2.40-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libblkid-dev:arm64",
+      "source": "util-linux",
+      "source_version": "2.38.1-5+deb12u3",
+      "status": "installed",
+      "version": "2.38.1-5+deb12u3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libblkid1:arm64",
+      "source": "util-linux",
+      "source_version": "2.38.1-5+deb12u3",
+      "status": "installed",
+      "version": "2.38.1-5+deb12u3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libbrotli-dev:arm64",
+      "source": "brotli",
+      "source_version": "1.0.9-2",
+      "status": "installed",
+      "version": "1.0.9-2+b6"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libbrotli1:arm64",
+      "source": "brotli",
+      "source_version": "1.0.9-2",
+      "status": "installed",
+      "version": "1.0.9-2+b6"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libbsd0:arm64",
+      "source": "libbsd",
+      "source_version": "0.11.7-2",
+      "status": "installed",
+      "version": "0.11.7-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libbz2-1.0:arm64",
+      "source": "bzip2",
+      "source_version": "1.0.8-5",
+      "status": "installed",
+      "version": "1.0.8-5+b1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libbz2-dev:arm64",
+      "source": "bzip2",
+      "source_version": "1.0.8-5",
+      "status": "installed",
+      "version": "1.0.8-5+b1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libc-bin",
+      "source": "glibc",
+      "source_version": "2.36-9+deb12u14",
+      "status": "installed",
+      "version": "2.36-9+deb12u14"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libc-dev-bin",
+      "source": "glibc",
+      "source_version": "2.36-9+deb12u14",
+      "status": "installed",
+      "version": "2.36-9+deb12u14"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libc6-dev:arm64",
+      "source": "glibc",
+      "source_version": "2.36-9+deb12u14",
+      "status": "installed",
+      "version": "2.36-9+deb12u14"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libc6:arm64",
+      "source": "glibc",
+      "source_version": "2.36-9+deb12u14",
+      "status": "installed",
+      "version": "2.36-9+deb12u14"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libcairo-gobject2:arm64",
+      "source": "cairo",
+      "source_version": "1.16.0-7",
+      "status": "installed",
+      "version": "1.16.0-7"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libcairo-script-interpreter2:arm64",
+      "source": "cairo",
+      "source_version": "1.16.0-7",
+      "status": "installed",
+      "version": "1.16.0-7"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libcairo2-dev:arm64",
+      "source": "cairo",
+      "source_version": "1.16.0-7",
+      "status": "installed",
+      "version": "1.16.0-7"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libcairo2:arm64",
+      "source": "cairo",
+      "source_version": "1.16.0-7",
+      "status": "installed",
+      "version": "1.16.0-7"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libcap-ng0:arm64",
+      "source": "libcap-ng",
+      "source_version": "0.8.3-1",
+      "status": "installed",
+      "version": "0.8.3-1+b3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libcap2:arm64",
+      "source": "libcap2",
+      "source_version": "1:2.66-4+deb12u3",
+      "status": "installed",
+      "version": "1:2.66-4+deb12u3+b1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libcbor0.8:arm64",
+      "source": "libcbor",
+      "source_version": "0.8.0-2",
+      "status": "installed",
+      "version": "0.8.0-2+b1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libcc1-0:arm64",
+      "source": "gcc-12",
+      "source_version": "12.2.0-14+deb12u1",
+      "status": "installed",
+      "version": "12.2.0-14+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libcom-err2:arm64",
+      "source": "e2fsprogs",
+      "source_version": "1.47.0-2",
+      "status": "installed",
+      "version": "1.47.0-2+b2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libcrypt-dev:arm64",
+      "source": "libxcrypt",
+      "source_version": "1:4.4.33-2",
+      "status": "installed",
+      "version": "1:4.4.33-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libcrypt1:arm64",
+      "source": "libxcrypt",
+      "source_version": "1:4.4.33-2",
+      "status": "installed",
+      "version": "1:4.4.33-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libctf-nobfd0:arm64",
+      "source": "binutils",
+      "source_version": "2.40-2",
+      "status": "installed",
+      "version": "2.40-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libctf0:arm64",
+      "source": "binutils",
+      "source_version": "2.40-2",
+      "status": "installed",
+      "version": "2.40-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libcurl3-gnutls:arm64",
+      "source": "curl",
+      "source_version": "7.88.1-10+deb12u14",
+      "status": "installed",
+      "version": "7.88.1-10+deb12u14"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libcurl4-openssl-dev:arm64",
+      "source": "curl",
+      "source_version": "7.88.1-10+deb12u14",
+      "status": "installed",
+      "version": "7.88.1-10+deb12u14"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libcurl4:arm64",
+      "source": "curl",
+      "source_version": "7.88.1-10+deb12u14",
+      "status": "installed",
+      "version": "7.88.1-10+deb12u14"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libdatrie1:arm64",
+      "source": "libdatrie",
+      "source_version": "0.2.13-2",
+      "status": "installed",
+      "version": "0.2.13-2+b1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libdav1d6:arm64",
+      "source": "dav1d",
+      "source_version": "1.0.0-2+deb12u1",
+      "status": "installed",
+      "version": "1.0.0-2+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libdb-dev:arm64",
+      "source": "db-defaults",
+      "source_version": "5.3.2",
+      "status": "installed",
+      "version": "5.3.2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libdb5.3-dev",
+      "source": "db5.3",
+      "source_version": "5.3.28+dfsg2-1",
+      "status": "installed",
+      "version": "5.3.28+dfsg2-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libdb5.3:arm64",
+      "source": "db5.3",
+      "source_version": "5.3.28+dfsg2-1",
+      "status": "installed",
+      "version": "5.3.28+dfsg2-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libde265-0:arm64",
+      "source": "libde265",
+      "source_version": "1.0.11-1+deb12u2",
+      "status": "installed",
+      "version": "1.0.11-1+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libdebconfclient0:arm64",
+      "source": "cdebconf",
+      "source_version": "0.270",
+      "status": "installed",
+      "version": "0.270"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libdeflate-dev:arm64",
+      "source": "libdeflate",
+      "source_version": "1.14-1",
+      "status": "installed",
+      "version": "1.14-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libdeflate0:arm64",
+      "source": "libdeflate",
+      "source_version": "1.14-1",
+      "status": "installed",
+      "version": "1.14-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libdjvulibre-dev:arm64",
+      "source": "djvulibre",
+      "source_version": "3.5.28-2.2~deb12u1",
+      "status": "installed",
+      "version": "3.5.28-2.2~deb12u1"
+    },
+    {
+      "architecture": "all",
+      "package": "libdjvulibre-text",
+      "source": "djvulibre",
+      "source_version": "3.5.28-2.2~deb12u1",
+      "status": "installed",
+      "version": "3.5.28-2.2~deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libdjvulibre21:arm64",
+      "source": "djvulibre",
+      "source_version": "3.5.28-2.2~deb12u1",
+      "status": "installed",
+      "version": "3.5.28-2.2~deb12u1"
+    },
+    {
+      "architecture": "all",
+      "package": "libdpkg-perl",
+      "source": "dpkg",
+      "source_version": "1.21.23",
+      "status": "installed",
+      "version": "1.21.23"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libedit2:arm64",
+      "source": "libedit",
+      "source_version": "3.1-20221030-2",
+      "status": "installed",
+      "version": "3.1-20221030-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libelf1:arm64",
+      "source": "elfutils",
+      "source_version": "0.188-2.1",
+      "status": "installed",
+      "version": "0.188-2.1"
+    },
+    {
+      "architecture": "all",
+      "package": "liberror-perl",
+      "source": "liberror-perl",
+      "source_version": "0.17029-2",
+      "status": "installed",
+      "version": "0.17029-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libevent-2.1-7:arm64",
+      "source": "libevent",
+      "source_version": "2.1.12-stable-8",
+      "status": "installed",
+      "version": "2.1.12-stable-8"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libevent-core-2.1-7:arm64",
+      "source": "libevent",
+      "source_version": "2.1.12-stable-8",
+      "status": "installed",
+      "version": "2.1.12-stable-8"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libevent-dev",
+      "source": "libevent",
+      "source_version": "2.1.12-stable-8",
+      "status": "installed",
+      "version": "2.1.12-stable-8"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libevent-extra-2.1-7:arm64",
+      "source": "libevent",
+      "source_version": "2.1.12-stable-8",
+      "status": "installed",
+      "version": "2.1.12-stable-8"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libevent-openssl-2.1-7:arm64",
+      "source": "libevent",
+      "source_version": "2.1.12-stable-8",
+      "status": "installed",
+      "version": "2.1.12-stable-8"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libevent-pthreads-2.1-7:arm64",
+      "source": "libevent",
+      "source_version": "2.1.12-stable-8",
+      "status": "installed",
+      "version": "2.1.12-stable-8"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libexif-dev:arm64",
+      "source": "libexif",
+      "source_version": "0.6.24-1+deb12u1",
+      "status": "installed",
+      "version": "0.6.24-1+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libexif12:arm64",
+      "source": "libexif",
+      "source_version": "0.6.24-1+deb12u1",
+      "status": "installed",
+      "version": "0.6.24-1+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libexpat1-dev:arm64",
+      "source": "expat",
+      "source_version": "2.5.0-1+deb12u2",
+      "status": "installed",
+      "version": "2.5.0-1+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libexpat1:arm64",
+      "source": "expat",
+      "source_version": "2.5.0-1+deb12u2",
+      "status": "installed",
+      "version": "2.5.0-1+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libext2fs2:arm64",
+      "source": "e2fsprogs",
+      "source_version": "1.47.0-2",
+      "status": "installed",
+      "version": "1.47.0-2+b2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libffi-dev:arm64",
+      "source": "libffi",
+      "source_version": "3.4.4-1",
+      "status": "installed",
+      "version": "3.4.4-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libffi8:arm64",
+      "source": "libffi",
+      "source_version": "3.4.4-1",
+      "status": "installed",
+      "version": "3.4.4-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libfftw3-double3:arm64",
+      "source": "fftw3",
+      "source_version": "3.3.10-1",
+      "status": "installed",
+      "version": "3.3.10-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libfido2-1:arm64",
+      "source": "libfido2",
+      "source_version": "1.12.0-2",
+      "status": "installed",
+      "version": "1.12.0-2+b1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libfontconfig-dev:arm64",
+      "source": "fontconfig",
+      "source_version": "2.14.1-4",
+      "status": "installed",
+      "version": "2.14.1-4"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libfontconfig1:arm64",
+      "source": "fontconfig",
+      "source_version": "2.14.1-4",
+      "status": "installed",
+      "version": "2.14.1-4"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libfreetype-dev:arm64",
+      "source": "freetype",
+      "source_version": "2.12.1+dfsg-5+deb12u4",
+      "status": "installed",
+      "version": "2.12.1+dfsg-5+deb12u4"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libfreetype6-dev:arm64",
+      "source": "freetype",
+      "source_version": "2.12.1+dfsg-5+deb12u4",
+      "status": "installed",
+      "version": "2.12.1+dfsg-5+deb12u4"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libfreetype6:arm64",
+      "source": "freetype",
+      "source_version": "2.12.1+dfsg-5+deb12u4",
+      "status": "installed",
+      "version": "2.12.1+dfsg-5+deb12u4"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libfribidi0:arm64",
+      "source": "fribidi",
+      "source_version": "1.0.8-2.1",
+      "status": "installed",
+      "version": "1.0.8-2.1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libgcc-12-dev:arm64",
+      "source": "gcc-12",
+      "source_version": "12.2.0-14+deb12u1",
+      "status": "installed",
+      "version": "12.2.0-14+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libgcc-s1:arm64",
+      "source": "gcc-12",
+      "source_version": "12.2.0-14+deb12u1",
+      "status": "installed",
+      "version": "12.2.0-14+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libgcrypt20:arm64",
+      "source": "libgcrypt20",
+      "source_version": "1.10.1-3+deb12u1",
+      "status": "installed",
+      "version": "1.10.1-3+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libgdbm-compat4:arm64",
+      "source": "gdbm",
+      "source_version": "1.23-3",
+      "status": "installed",
+      "version": "1.23-3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libgdbm-dev:arm64",
+      "source": "gdbm",
+      "source_version": "1.23-3",
+      "status": "installed",
+      "version": "1.23-3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libgdbm6:arm64",
+      "source": "gdbm",
+      "source_version": "1.23-3",
+      "status": "installed",
+      "version": "1.23-3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libgdk-pixbuf-2.0-0:arm64",
+      "source": "gdk-pixbuf",
+      "source_version": "2.42.10+dfsg-1+deb12u4",
+      "status": "installed",
+      "version": "2.42.10+dfsg-1+deb12u4"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libgdk-pixbuf-2.0-dev:arm64",
+      "source": "gdk-pixbuf",
+      "source_version": "2.42.10+dfsg-1+deb12u4",
+      "status": "installed",
+      "version": "2.42.10+dfsg-1+deb12u4"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libgdk-pixbuf2.0-bin",
+      "source": "gdk-pixbuf",
+      "source_version": "2.42.10+dfsg-1+deb12u4",
+      "status": "installed",
+      "version": "2.42.10+dfsg-1+deb12u4"
+    },
+    {
+      "architecture": "all",
+      "package": "libgdk-pixbuf2.0-common",
+      "source": "gdk-pixbuf",
+      "source_version": "2.42.10+dfsg-1+deb12u4",
+      "status": "installed",
+      "version": "2.42.10+dfsg-1+deb12u4"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libgirepository-1.0-1:arm64",
+      "source": "gobject-introspection",
+      "source_version": "1.74.0-3",
+      "status": "installed",
+      "version": "1.74.0-3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libglib2.0-0:arm64",
+      "source": "glib2.0",
+      "source_version": "2.74.6-2+deb12u9",
+      "status": "installed",
+      "version": "2.74.6-2+deb12u9"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libglib2.0-bin",
+      "source": "glib2.0",
+      "source_version": "2.74.6-2+deb12u9",
+      "status": "installed",
+      "version": "2.74.6-2+deb12u9"
+    },
+    {
+      "architecture": "all",
+      "package": "libglib2.0-data",
+      "source": "glib2.0",
+      "source_version": "2.74.6-2+deb12u9",
+      "status": "installed",
+      "version": "2.74.6-2+deb12u9"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libglib2.0-dev-bin",
+      "source": "glib2.0",
+      "source_version": "2.74.6-2+deb12u9",
+      "status": "installed",
+      "version": "2.74.6-2+deb12u9"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libglib2.0-dev:arm64",
+      "source": "glib2.0",
+      "source_version": "2.74.6-2+deb12u9",
+      "status": "installed",
+      "version": "2.74.6-2+deb12u9"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libgmp-dev:arm64",
+      "source": "gmp",
+      "source_version": "2:6.2.1+dfsg1-1.1",
+      "status": "installed",
+      "version": "2:6.2.1+dfsg1-1.1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libgmp10:arm64",
+      "source": "gmp",
+      "source_version": "2:6.2.1+dfsg1-1.1",
+      "status": "installed",
+      "version": "2:6.2.1+dfsg1-1.1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libgmpxx4ldbl:arm64",
+      "source": "gmp",
+      "source_version": "2:6.2.1+dfsg1-1.1",
+      "status": "installed",
+      "version": "2:6.2.1+dfsg1-1.1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libgnutls30:arm64",
+      "source": "gnutls28",
+      "source_version": "3.7.9-2+deb12u7",
+      "status": "installed",
+      "version": "3.7.9-2+deb12u7"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libgomp1:arm64",
+      "source": "gcc-12",
+      "source_version": "12.2.0-14+deb12u1",
+      "status": "installed",
+      "version": "12.2.0-14+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libgpg-error0:arm64",
+      "source": "libgpg-error",
+      "source_version": "1.46-1",
+      "status": "installed",
+      "version": "1.46-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libgprofng0:arm64",
+      "source": "binutils",
+      "source_version": "2.40-2",
+      "status": "installed",
+      "version": "2.40-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libgraphite2-3:arm64",
+      "source": "graphite2",
+      "source_version": "1.3.14-1",
+      "status": "installed",
+      "version": "1.3.14-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libgssapi-krb5-2:arm64",
+      "source": "krb5",
+      "source_version": "1.20.1-2+deb12u5",
+      "status": "installed",
+      "version": "1.20.1-2+deb12u5"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libgssrpc4:arm64",
+      "source": "krb5",
+      "source_version": "1.20.1-2+deb12u5",
+      "status": "installed",
+      "version": "1.20.1-2+deb12u5"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libharfbuzz0b:arm64",
+      "source": "harfbuzz",
+      "source_version": "6.0.0+dfsg-3",
+      "status": "installed",
+      "version": "6.0.0+dfsg-3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libheif1:arm64",
+      "source": "libheif",
+      "source_version": "1.15.1-1+deb12u1",
+      "status": "installed",
+      "version": "1.15.1-1+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libhogweed6:arm64",
+      "source": "nettle",
+      "source_version": "3.8.1-2",
+      "status": "installed",
+      "version": "3.8.1-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libhwasan0:arm64",
+      "source": "gcc-12",
+      "source_version": "12.2.0-14+deb12u1",
+      "status": "installed",
+      "version": "12.2.0-14+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libice-dev:arm64",
+      "source": "libice",
+      "source_version": "2:1.0.10-1",
+      "status": "installed",
+      "version": "2:1.0.10-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libice6:arm64",
+      "source": "libice",
+      "source_version": "2:1.0.10-1",
+      "status": "installed",
+      "version": "2:1.0.10-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libicu-dev:arm64",
+      "source": "icu",
+      "source_version": "72.1-3+deb12u1",
+      "status": "installed",
+      "version": "72.1-3+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libicu72:arm64",
+      "source": "icu",
+      "source_version": "72.1-3+deb12u1",
+      "status": "installed",
+      "version": "72.1-3+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libidn2-0:arm64",
+      "source": "libidn2",
+      "source_version": "2.3.3-1",
+      "status": "installed",
+      "version": "2.3.3-1+b1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libimath-3-1-29:arm64",
+      "source": "imath",
+      "source_version": "3.1.6-1",
+      "status": "installed",
+      "version": "3.1.6-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libimath-dev:arm64",
+      "source": "imath",
+      "source_version": "3.1.6-1",
+      "status": "installed",
+      "version": "3.1.6-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libisl23:arm64",
+      "source": "isl",
+      "source_version": "0.25-1.1",
+      "status": "installed",
+      "version": "0.25-1.1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libitm1:arm64",
+      "source": "gcc-12",
+      "source_version": "12.2.0-14+deb12u1",
+      "status": "installed",
+      "version": "12.2.0-14+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libjansson4:arm64",
+      "source": "jansson",
+      "source_version": "2.14-2",
+      "status": "installed",
+      "version": "2.14-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libjbig-dev:arm64",
+      "source": "jbigkit",
+      "source_version": "2.1-6.1",
+      "status": "installed",
+      "version": "2.1-6.1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libjbig0:arm64",
+      "source": "jbigkit",
+      "source_version": "2.1-6.1",
+      "status": "installed",
+      "version": "2.1-6.1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libjpeg-dev:arm64",
+      "source": "libjpeg-turbo",
+      "source_version": "1:2.1.5-2",
+      "status": "installed",
+      "version": "1:2.1.5-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libjpeg62-turbo-dev:arm64",
+      "source": "libjpeg-turbo",
+      "source_version": "1:2.1.5-2",
+      "status": "installed",
+      "version": "1:2.1.5-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libjpeg62-turbo:arm64",
+      "source": "libjpeg-turbo",
+      "source_version": "1:2.1.5-2",
+      "status": "installed",
+      "version": "1:2.1.5-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libk5crypto3:arm64",
+      "source": "krb5",
+      "source_version": "1.20.1-2+deb12u5",
+      "status": "installed",
+      "version": "1.20.1-2+deb12u5"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libkadm5clnt-mit12:arm64",
+      "source": "krb5",
+      "source_version": "1.20.1-2+deb12u5",
+      "status": "installed",
+      "version": "1.20.1-2+deb12u5"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libkadm5srv-mit12:arm64",
+      "source": "krb5",
+      "source_version": "1.20.1-2+deb12u5",
+      "status": "installed",
+      "version": "1.20.1-2+deb12u5"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libkdb5-10:arm64",
+      "source": "krb5",
+      "source_version": "1.20.1-2+deb12u5",
+      "status": "installed",
+      "version": "1.20.1-2+deb12u5"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libkeyutils1:arm64",
+      "source": "keyutils",
+      "source_version": "1.6.3-2",
+      "status": "installed",
+      "version": "1.6.3-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libkrb5-3:arm64",
+      "source": "krb5",
+      "source_version": "1.20.1-2+deb12u5",
+      "status": "installed",
+      "version": "1.20.1-2+deb12u5"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libkrb5-dev:arm64",
+      "source": "krb5",
+      "source_version": "1.20.1-2+deb12u5",
+      "status": "installed",
+      "version": "1.20.1-2+deb12u5"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libkrb5support0:arm64",
+      "source": "krb5",
+      "source_version": "1.20.1-2+deb12u5",
+      "status": "installed",
+      "version": "1.20.1-2+deb12u5"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libksba8:arm64",
+      "source": "libksba",
+      "source_version": "1.6.3-2",
+      "status": "installed",
+      "version": "1.6.3-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "liblcms2-2:arm64",
+      "source": "lcms2",
+      "source_version": "2.14-2+deb12u1",
+      "status": "installed",
+      "version": "2.14-2+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "liblcms2-dev:arm64",
+      "source": "lcms2",
+      "source_version": "2.14-2+deb12u1",
+      "status": "installed",
+      "version": "2.14-2+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libldap-2.5-0:arm64",
+      "source": "openldap",
+      "source_version": "2.5.13+dfsg-5",
+      "status": "installed",
+      "version": "2.5.13+dfsg-5"
+    },
+    {
+      "architecture": "arm64",
+      "package": "liblerc-dev:arm64",
+      "source": "lerc",
+      "source_version": "4.0.0+ds-2",
+      "status": "installed",
+      "version": "4.0.0+ds-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "liblerc4:arm64",
+      "source": "lerc",
+      "source_version": "4.0.0+ds-2",
+      "status": "installed",
+      "version": "4.0.0+ds-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "liblqr-1-0-dev:arm64",
+      "source": "liblqr",
+      "source_version": "0.4.2-2.1",
+      "status": "installed",
+      "version": "0.4.2-2.1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "liblqr-1-0:arm64",
+      "source": "liblqr",
+      "source_version": "0.4.2-2.1",
+      "status": "installed",
+      "version": "0.4.2-2.1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "liblsan0:arm64",
+      "source": "gcc-12",
+      "source_version": "12.2.0-14+deb12u1",
+      "status": "installed",
+      "version": "12.2.0-14+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libltdl-dev:arm64",
+      "source": "libtool",
+      "source_version": "2.4.7-7~deb12u1",
+      "status": "installed",
+      "version": "2.4.7-7~deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libltdl7:arm64",
+      "source": "libtool",
+      "source_version": "2.4.7-7~deb12u1",
+      "status": "installed",
+      "version": "2.4.7-7~deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "liblz4-1:arm64",
+      "source": "lz4",
+      "source_version": "1.9.4-1",
+      "status": "installed",
+      "version": "1.9.4-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "liblzma-dev:arm64",
+      "source": "xz-utils",
+      "source_version": "5.4.1-1",
+      "status": "installed",
+      "version": "5.4.1-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "liblzma5:arm64",
+      "source": "xz-utils",
+      "source_version": "5.4.1-1",
+      "status": "installed",
+      "version": "5.4.1-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "liblzo2-2:arm64",
+      "source": "lzo2",
+      "source_version": "2.10-2",
+      "status": "installed",
+      "version": "2.10-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libmagic-mgc",
+      "source": "file",
+      "source_version": "1:5.44-3",
+      "status": "installed",
+      "version": "1:5.44-3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libmagic1:arm64",
+      "source": "file",
+      "source_version": "1:5.44-3",
+      "status": "installed",
+      "version": "1:5.44-3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libmagickcore-6-arch-config:arm64",
+      "source": "imagemagick",
+      "source_version": "8:6.9.11.60+dfsg-1.6+deb12u11",
+      "status": "installed",
+      "version": "8:6.9.11.60+dfsg-1.6+deb12u11"
+    },
+    {
+      "architecture": "all",
+      "package": "libmagickcore-6-headers",
+      "source": "imagemagick",
+      "source_version": "8:6.9.11.60+dfsg-1.6+deb12u11",
+      "status": "installed",
+      "version": "8:6.9.11.60+dfsg-1.6+deb12u11"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libmagickcore-6.q16-6-extra:arm64",
+      "source": "imagemagick",
+      "source_version": "8:6.9.11.60+dfsg-1.6+deb12u11",
+      "status": "installed",
+      "version": "8:6.9.11.60+dfsg-1.6+deb12u11"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libmagickcore-6.q16-6:arm64",
+      "source": "imagemagick",
+      "source_version": "8:6.9.11.60+dfsg-1.6+deb12u11",
+      "status": "installed",
+      "version": "8:6.9.11.60+dfsg-1.6+deb12u11"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libmagickcore-6.q16-dev:arm64",
+      "source": "imagemagick",
+      "source_version": "8:6.9.11.60+dfsg-1.6+deb12u11",
+      "status": "installed",
+      "version": "8:6.9.11.60+dfsg-1.6+deb12u11"
+    },
+    {
+      "architecture": "all",
+      "package": "libmagickcore-dev",
+      "source": "imagemagick",
+      "source_version": "8:6.9.11.60+dfsg-1.6+deb12u11",
+      "status": "installed",
+      "version": "8:6.9.11.60+dfsg-1.6+deb12u11"
+    },
+    {
+      "architecture": "all",
+      "package": "libmagickwand-6-headers",
+      "source": "imagemagick",
+      "source_version": "8:6.9.11.60+dfsg-1.6+deb12u11",
+      "status": "installed",
+      "version": "8:6.9.11.60+dfsg-1.6+deb12u11"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libmagickwand-6.q16-6:arm64",
+      "source": "imagemagick",
+      "source_version": "8:6.9.11.60+dfsg-1.6+deb12u11",
+      "status": "installed",
+      "version": "8:6.9.11.60+dfsg-1.6+deb12u11"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libmagickwand-6.q16-dev:arm64",
+      "source": "imagemagick",
+      "source_version": "8:6.9.11.60+dfsg-1.6+deb12u11",
+      "status": "installed",
+      "version": "8:6.9.11.60+dfsg-1.6+deb12u11"
+    },
+    {
+      "architecture": "all",
+      "package": "libmagickwand-dev",
+      "source": "imagemagick",
+      "source_version": "8:6.9.11.60+dfsg-1.6+deb12u11",
+      "status": "installed",
+      "version": "8:6.9.11.60+dfsg-1.6+deb12u11"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libmariadb-dev",
+      "source": "mariadb",
+      "source_version": "1:10.11.14-0+deb12u2",
+      "status": "installed",
+      "version": "1:10.11.14-0+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libmariadb-dev-compat",
+      "source": "mariadb",
+      "source_version": "1:10.11.14-0+deb12u2",
+      "status": "installed",
+      "version": "1:10.11.14-0+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libmariadb3:arm64",
+      "source": "mariadb",
+      "source_version": "1:10.11.14-0+deb12u2",
+      "status": "installed",
+      "version": "1:10.11.14-0+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libmaxminddb-dev:arm64",
+      "source": "libmaxminddb",
+      "source_version": "1.7.1-1",
+      "status": "installed",
+      "version": "1.7.1-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libmaxminddb0:arm64",
+      "source": "libmaxminddb",
+      "source_version": "1.7.1-1",
+      "status": "installed",
+      "version": "1.7.1-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libmd0:arm64",
+      "source": "libmd",
+      "source_version": "1.0.4-2",
+      "status": "installed",
+      "version": "1.0.4-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libmount-dev:arm64",
+      "source": "util-linux",
+      "source_version": "2.38.1-5+deb12u3",
+      "status": "installed",
+      "version": "2.38.1-5+deb12u3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libmount1:arm64",
+      "source": "util-linux",
+      "source_version": "2.38.1-5+deb12u3",
+      "status": "installed",
+      "version": "2.38.1-5+deb12u3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libmpc3:arm64",
+      "source": "mpclib3",
+      "source_version": "1.3.1-1",
+      "status": "installed",
+      "version": "1.3.1-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libmpfr6:arm64",
+      "source": "mpfr4",
+      "source_version": "4.2.0-1",
+      "status": "installed",
+      "version": "4.2.0-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libncurses-dev:arm64",
+      "source": "ncurses",
+      "source_version": "6.4-4",
+      "status": "installed",
+      "version": "6.4-4"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libncurses5-dev:arm64",
+      "source": "ncurses",
+      "source_version": "6.4-4",
+      "status": "installed",
+      "version": "6.4-4"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libncurses6:arm64",
+      "source": "ncurses",
+      "source_version": "6.4-4",
+      "status": "installed",
+      "version": "6.4-4"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libncursesw5-dev:arm64",
+      "source": "ncurses",
+      "source_version": "6.4-4",
+      "status": "installed",
+      "version": "6.4-4"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libncursesw6:arm64",
+      "source": "ncurses",
+      "source_version": "6.4-4",
+      "status": "installed",
+      "version": "6.4-4"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libnettle8:arm64",
+      "source": "nettle",
+      "source_version": "3.8.1-2",
+      "status": "installed",
+      "version": "3.8.1-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libnghttp2-14:arm64",
+      "source": "nghttp2",
+      "source_version": "1.52.0-1+deb12u3",
+      "status": "installed",
+      "version": "1.52.0-1+deb12u3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libnpth0:arm64",
+      "source": "npth",
+      "source_version": "1.6-3",
+      "status": "installed",
+      "version": "1.6-3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libnsl-dev:arm64",
+      "source": "libnsl",
+      "source_version": "1.3.0-2",
+      "status": "installed",
+      "version": "1.3.0-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libnsl2:arm64",
+      "source": "libnsl",
+      "source_version": "1.3.0-2",
+      "status": "installed",
+      "version": "1.3.0-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libnuma1:arm64",
+      "source": "numactl",
+      "source_version": "2.0.16-1",
+      "status": "installed",
+      "version": "2.0.16-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libopenexr-3-1-30:arm64",
+      "source": "openexr",
+      "source_version": "3.1.5-5",
+      "status": "installed",
+      "version": "3.1.5-5"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libopenexr-dev",
+      "source": "openexr",
+      "source_version": "3.1.5-5",
+      "status": "installed",
+      "version": "3.1.5-5"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libopenjp2-7-dev:arm64",
+      "source": "openjpeg2",
+      "source_version": "2.5.0-2+deb12u3",
+      "status": "installed",
+      "version": "2.5.0-2+deb12u3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libopenjp2-7:arm64",
+      "source": "openjpeg2",
+      "source_version": "2.5.0-2+deb12u3",
+      "status": "installed",
+      "version": "2.5.0-2+deb12u3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libp11-kit0:arm64",
+      "source": "p11-kit",
+      "source_version": "0.24.1-2",
+      "status": "installed",
+      "version": "0.24.1-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libpam-modules-bin",
+      "source": "pam",
+      "source_version": "1.5.2-6+deb12u2",
+      "status": "installed",
+      "version": "1.5.2-6+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libpam-modules:arm64",
+      "source": "pam",
+      "source_version": "1.5.2-6+deb12u2",
+      "status": "installed",
+      "version": "1.5.2-6+deb12u2"
+    },
+    {
+      "architecture": "all",
+      "package": "libpam-runtime",
+      "source": "pam",
+      "source_version": "1.5.2-6+deb12u2",
+      "status": "installed",
+      "version": "1.5.2-6+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libpam0g:arm64",
+      "source": "pam",
+      "source_version": "1.5.2-6+deb12u2",
+      "status": "installed",
+      "version": "1.5.2-6+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libpango-1.0-0:arm64",
+      "source": "pango1.0",
+      "source_version": "1.50.12+ds-1",
+      "status": "installed",
+      "version": "1.50.12+ds-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libpangocairo-1.0-0:arm64",
+      "source": "pango1.0",
+      "source_version": "1.50.12+ds-1",
+      "status": "installed",
+      "version": "1.50.12+ds-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libpangoft2-1.0-0:arm64",
+      "source": "pango1.0",
+      "source_version": "1.50.12+ds-1",
+      "status": "installed",
+      "version": "1.50.12+ds-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libpcre2-16-0:arm64",
+      "source": "pcre2",
+      "source_version": "10.42-1",
+      "status": "installed",
+      "version": "10.42-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libpcre2-32-0:arm64",
+      "source": "pcre2",
+      "source_version": "10.42-1",
+      "status": "installed",
+      "version": "10.42-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libpcre2-8-0:arm64",
+      "source": "pcre2",
+      "source_version": "10.42-1",
+      "status": "installed",
+      "version": "10.42-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libpcre2-dev:arm64",
+      "source": "pcre2",
+      "source_version": "10.42-1",
+      "status": "installed",
+      "version": "10.42-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libpcre2-posix3:arm64",
+      "source": "pcre2",
+      "source_version": "10.42-1",
+      "status": "installed",
+      "version": "10.42-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libperl5.36:arm64",
+      "source": "perl",
+      "source_version": "5.36.0-7+deb12u3",
+      "status": "installed",
+      "version": "5.36.0-7+deb12u3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libpixman-1-0:arm64",
+      "source": "pixman",
+      "source_version": "0.42.2-1",
+      "status": "installed",
+      "version": "0.42.2-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libpixman-1-dev:arm64",
+      "source": "pixman",
+      "source_version": "0.42.2-1",
+      "status": "installed",
+      "version": "0.42.2-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libpkgconf3:arm64",
+      "source": "pkgconf",
+      "source_version": "1.8.1-1",
+      "status": "installed",
+      "version": "1.8.1-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libpng-dev:arm64",
+      "source": "libpng1.6",
+      "source_version": "1.6.39-2+deb12u5",
+      "status": "installed",
+      "version": "1.6.39-2+deb12u5"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libpng16-16:arm64",
+      "source": "libpng1.6",
+      "source_version": "1.6.39-2+deb12u5",
+      "status": "installed",
+      "version": "1.6.39-2+deb12u5"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libpq-dev",
+      "source": "postgresql-15",
+      "source_version": "15.18-0+deb12u1",
+      "status": "installed",
+      "version": "15.18-0+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libpq5:arm64",
+      "source": "postgresql-15",
+      "source_version": "15.18-0+deb12u1",
+      "status": "installed",
+      "version": "15.18-0+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libproc2-0:arm64",
+      "source": "procps",
+      "source_version": "2:4.0.2-3",
+      "status": "installed",
+      "version": "2:4.0.2-3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libpsl5:arm64",
+      "source": "libpsl",
+      "source_version": "0.21.2-1",
+      "status": "installed",
+      "version": "0.21.2-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libpthread-stubs0-dev:arm64",
+      "source": "libpthread-stubs",
+      "source_version": "0.4-1",
+      "status": "installed",
+      "version": "0.4-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libpython3-stdlib:arm64",
+      "source": "python3-defaults",
+      "source_version": "3.11.2-1",
+      "status": "installed",
+      "version": "3.11.2-1+b1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libpython3.11-minimal:arm64",
+      "source": "python3.11",
+      "source_version": "3.11.2-6+deb12u7",
+      "status": "installed",
+      "version": "3.11.2-6+deb12u7"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libpython3.11-stdlib:arm64",
+      "source": "python3.11",
+      "source_version": "3.11.2-6+deb12u7",
+      "status": "installed",
+      "version": "3.11.2-6+deb12u7"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libreadline-dev:arm64",
+      "source": "readline",
+      "source_version": "8.2-1.3",
+      "status": "installed",
+      "version": "8.2-1.3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libreadline8:arm64",
+      "source": "readline",
+      "source_version": "8.2-1.3",
+      "status": "installed",
+      "version": "8.2-1.3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "librsvg2-2:arm64",
+      "source": "librsvg",
+      "source_version": "2.54.7+dfsg-1~deb12u1",
+      "status": "installed",
+      "version": "2.54.7+dfsg-1~deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "librsvg2-common:arm64",
+      "source": "librsvg",
+      "source_version": "2.54.7+dfsg-1~deb12u1",
+      "status": "installed",
+      "version": "2.54.7+dfsg-1~deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "librsvg2-dev:arm64",
+      "source": "librsvg",
+      "source_version": "2.54.7+dfsg-1~deb12u1",
+      "status": "installed",
+      "version": "2.54.7+dfsg-1~deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "librtmp1:arm64",
+      "source": "rtmpdump",
+      "source_version": "2.4+20151223.gitfa8646d.1-2",
+      "status": "installed",
+      "version": "2.4+20151223.gitfa8646d.1-2+b2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libsasl2-2:arm64",
+      "source": "cyrus-sasl2",
+      "source_version": "2.1.28+dfsg-10",
+      "status": "installed",
+      "version": "2.1.28+dfsg-10"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libsasl2-modules-db:arm64",
+      "source": "cyrus-sasl2",
+      "source_version": "2.1.28+dfsg-10",
+      "status": "installed",
+      "version": "2.1.28+dfsg-10"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libseccomp2:arm64",
+      "source": "libseccomp",
+      "source_version": "2.5.4-1+deb12u1",
+      "status": "installed",
+      "version": "2.5.4-1+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libselinux1-dev:arm64",
+      "source": "libselinux",
+      "source_version": "3.4-1",
+      "status": "installed",
+      "version": "3.4-1+b6"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libselinux1:arm64",
+      "source": "libselinux",
+      "source_version": "3.4-1",
+      "status": "installed",
+      "version": "3.4-1+b6"
+    },
+    {
+      "architecture": "all",
+      "package": "libsemanage-common",
+      "source": "libsemanage",
+      "source_version": "3.4-1",
+      "status": "installed",
+      "version": "3.4-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libsemanage2:arm64",
+      "source": "libsemanage",
+      "source_version": "3.4-1",
+      "status": "installed",
+      "version": "3.4-1+b5"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libsepol-dev:arm64",
+      "source": "libsepol",
+      "source_version": "3.4-2.1",
+      "status": "installed",
+      "version": "3.4-2.1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libsepol2:arm64",
+      "source": "libsepol",
+      "source_version": "3.4-2.1",
+      "status": "installed",
+      "version": "3.4-2.1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libserf-1-1:arm64",
+      "source": "serf",
+      "source_version": "1.3.9-11",
+      "status": "installed",
+      "version": "1.3.9-11"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libsm-dev:arm64",
+      "source": "libsm",
+      "source_version": "2:1.2.3-1",
+      "status": "installed",
+      "version": "2:1.2.3-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libsm6:arm64",
+      "source": "libsm",
+      "source_version": "2:1.2.3-1",
+      "status": "installed",
+      "version": "2:1.2.3-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libsmartcols1:arm64",
+      "source": "util-linux",
+      "source_version": "2.38.1-5+deb12u3",
+      "status": "installed",
+      "version": "2.38.1-5+deb12u3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libsqlite3-0:arm64",
+      "source": "sqlite3",
+      "source_version": "3.40.1-2+deb12u2",
+      "status": "installed",
+      "version": "3.40.1-2+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libsqlite3-dev:arm64",
+      "source": "sqlite3",
+      "source_version": "3.40.1-2+deb12u2",
+      "status": "installed",
+      "version": "3.40.1-2+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libss2:arm64",
+      "source": "e2fsprogs",
+      "source_version": "1.47.0-2",
+      "status": "installed",
+      "version": "1.47.0-2+b2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libssh2-1:arm64",
+      "source": "libssh2",
+      "source_version": "1.10.0-3",
+      "status": "installed",
+      "version": "1.10.0-3+b1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libssl-dev:arm64",
+      "source": "openssl",
+      "source_version": "3.0.20-1~deb12u2",
+      "status": "installed",
+      "version": "3.0.20-1~deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libssl3:arm64",
+      "source": "openssl",
+      "source_version": "3.0.20-1~deb12u2",
+      "status": "installed",
+      "version": "3.0.20-1~deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libstdc++-12-dev:arm64",
+      "source": "gcc-12",
+      "source_version": "12.2.0-14+deb12u1",
+      "status": "installed",
+      "version": "12.2.0-14+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libstdc++6:arm64",
+      "source": "gcc-12",
+      "source_version": "12.2.0-14+deb12u1",
+      "status": "installed",
+      "version": "12.2.0-14+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libsvn1:arm64",
+      "source": "subversion",
+      "source_version": "1.14.2-4+deb12u1",
+      "status": "installed",
+      "version": "1.14.2-4+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libsystemd0:arm64",
+      "source": "systemd",
+      "source_version": "252.39-1~deb12u2",
+      "status": "installed",
+      "version": "252.39-1~deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libtasn1-6:arm64",
+      "source": "libtasn1-6",
+      "source_version": "4.19.0-2+deb12u1",
+      "status": "installed",
+      "version": "4.19.0-2+deb12u1"
+    },
+    {
+      "architecture": "all",
+      "package": "libthai-data",
+      "source": "libthai",
+      "source_version": "0.1.29-1",
+      "status": "installed",
+      "version": "0.1.29-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libthai0:arm64",
+      "source": "libthai",
+      "source_version": "0.1.29-1",
+      "status": "installed",
+      "version": "0.1.29-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libtiff-dev:arm64",
+      "source": "tiff",
+      "source_version": "4.5.0-6+deb12u4",
+      "status": "installed",
+      "version": "4.5.0-6+deb12u4"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libtiff6:arm64",
+      "source": "tiff",
+      "source_version": "4.5.0-6+deb12u4",
+      "status": "installed",
+      "version": "4.5.0-6+deb12u4"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libtiffxx6:arm64",
+      "source": "tiff",
+      "source_version": "4.5.0-6+deb12u4",
+      "status": "installed",
+      "version": "4.5.0-6+deb12u4"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libtinfo6:arm64",
+      "source": "ncurses",
+      "source_version": "6.4-4",
+      "status": "installed",
+      "version": "6.4-4"
+    },
+    {
+      "architecture": "all",
+      "package": "libtirpc-common",
+      "source": "libtirpc",
+      "source_version": "1.3.3+ds-1",
+      "status": "installed",
+      "version": "1.3.3+ds-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libtirpc-dev:arm64",
+      "source": "libtirpc",
+      "source_version": "1.3.3+ds-1",
+      "status": "installed",
+      "version": "1.3.3+ds-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libtirpc3:arm64",
+      "source": "libtirpc",
+      "source_version": "1.3.3+ds-1",
+      "status": "installed",
+      "version": "1.3.3+ds-1"
+    },
+    {
+      "architecture": "all",
+      "package": "libtool",
+      "source": "libtool",
+      "source_version": "2.4.7-7~deb12u1",
+      "status": "installed",
+      "version": "2.4.7-7~deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libtsan2:arm64",
+      "source": "gcc-12",
+      "source_version": "12.2.0-14+deb12u1",
+      "status": "installed",
+      "version": "12.2.0-14+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libubsan1:arm64",
+      "source": "gcc-12",
+      "source_version": "12.2.0-14+deb12u1",
+      "status": "installed",
+      "version": "12.2.0-14+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libudev1:arm64",
+      "source": "systemd",
+      "source_version": "252.39-1~deb12u2",
+      "status": "installed",
+      "version": "252.39-1~deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libunistring2:arm64",
+      "source": "libunistring",
+      "source_version": "1.0-2",
+      "status": "installed",
+      "version": "1.0-2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libutf8proc2:arm64",
+      "source": "utf8proc",
+      "source_version": "2.8.0-1",
+      "status": "installed",
+      "version": "2.8.0-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libuuid1:arm64",
+      "source": "util-linux",
+      "source_version": "2.38.1-5+deb12u3",
+      "status": "installed",
+      "version": "2.38.1-5+deb12u3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libwebp-dev:arm64",
+      "source": "libwebp",
+      "source_version": "1.2.4-0.2+deb12u1",
+      "status": "installed",
+      "version": "1.2.4-0.2+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libwebp7:arm64",
+      "source": "libwebp",
+      "source_version": "1.2.4-0.2+deb12u1",
+      "status": "installed",
+      "version": "1.2.4-0.2+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libwebpdemux2:arm64",
+      "source": "libwebp",
+      "source_version": "1.2.4-0.2+deb12u1",
+      "status": "installed",
+      "version": "1.2.4-0.2+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libwebpmux3:arm64",
+      "source": "libwebp",
+      "source_version": "1.2.4-0.2+deb12u1",
+      "status": "installed",
+      "version": "1.2.4-0.2+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libwmf-0.2-7:arm64",
+      "source": "libwmf",
+      "source_version": "0.2.12-5.1",
+      "status": "installed",
+      "version": "0.2.12-5.1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libwmf-dev",
+      "source": "libwmf",
+      "source_version": "0.2.12-5.1",
+      "status": "installed",
+      "version": "0.2.12-5.1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libwmflite-0.2-7:arm64",
+      "source": "libwmf",
+      "source_version": "0.2.12-5.1",
+      "status": "installed",
+      "version": "0.2.12-5.1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libx11-6:arm64",
+      "source": "libx11",
+      "source_version": "2:1.8.4-2+deb12u2",
+      "status": "installed",
+      "version": "2:1.8.4-2+deb12u2"
+    },
+    {
+      "architecture": "all",
+      "package": "libx11-data",
+      "source": "libx11",
+      "source_version": "2:1.8.4-2+deb12u2",
+      "status": "installed",
+      "version": "2:1.8.4-2+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libx11-dev:arm64",
+      "source": "libx11",
+      "source_version": "2:1.8.4-2+deb12u2",
+      "status": "installed",
+      "version": "2:1.8.4-2+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libx265-199:arm64",
+      "source": "x265",
+      "source_version": "3.5-2",
+      "status": "installed",
+      "version": "3.5-2+b1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libxau-dev:arm64",
+      "source": "libxau",
+      "source_version": "1:1.0.9-1",
+      "status": "installed",
+      "version": "1:1.0.9-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libxau6:arm64",
+      "source": "libxau",
+      "source_version": "1:1.0.9-1",
+      "status": "installed",
+      "version": "1:1.0.9-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libxcb-render0-dev:arm64",
+      "source": "libxcb",
+      "source_version": "1.15-1",
+      "status": "installed",
+      "version": "1.15-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libxcb-render0:arm64",
+      "source": "libxcb",
+      "source_version": "1.15-1",
+      "status": "installed",
+      "version": "1.15-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libxcb-shm0-dev:arm64",
+      "source": "libxcb",
+      "source_version": "1.15-1",
+      "status": "installed",
+      "version": "1.15-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libxcb-shm0:arm64",
+      "source": "libxcb",
+      "source_version": "1.15-1",
+      "status": "installed",
+      "version": "1.15-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libxcb1-dev:arm64",
+      "source": "libxcb",
+      "source_version": "1.15-1",
+      "status": "installed",
+      "version": "1.15-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libxcb1:arm64",
+      "source": "libxcb",
+      "source_version": "1.15-1",
+      "status": "installed",
+      "version": "1.15-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libxdmcp-dev:arm64",
+      "source": "libxdmcp",
+      "source_version": "1:1.1.2-3",
+      "status": "installed",
+      "version": "1:1.1.2-3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libxdmcp6:arm64",
+      "source": "libxdmcp",
+      "source_version": "1:1.1.2-3",
+      "status": "installed",
+      "version": "1:1.1.2-3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libxext-dev:arm64",
+      "source": "libxext",
+      "source_version": "2:1.3.4-1",
+      "status": "installed",
+      "version": "2:1.3.4-1+b1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libxext6:arm64",
+      "source": "libxext",
+      "source_version": "2:1.3.4-1",
+      "status": "installed",
+      "version": "2:1.3.4-1+b1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libxml2-dev:arm64",
+      "source": "libxml2",
+      "source_version": "2.9.14+dfsg-1.3~deb12u5",
+      "status": "installed",
+      "version": "2.9.14+dfsg-1.3~deb12u5"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libxml2:arm64",
+      "source": "libxml2",
+      "source_version": "2.9.14+dfsg-1.3~deb12u5",
+      "status": "installed",
+      "version": "2.9.14+dfsg-1.3~deb12u5"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libxrender-dev:arm64",
+      "source": "libxrender",
+      "source_version": "1:0.9.10-1.1",
+      "status": "installed",
+      "version": "1:0.9.10-1.1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libxrender1:arm64",
+      "source": "libxrender",
+      "source_version": "1:0.9.10-1.1",
+      "status": "installed",
+      "version": "1:0.9.10-1.1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libxslt1-dev:arm64",
+      "source": "libxslt",
+      "source_version": "1.1.35-1+deb12u4",
+      "status": "installed",
+      "version": "1.1.35-1+deb12u4"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libxslt1.1:arm64",
+      "source": "libxslt",
+      "source_version": "1.1.35-1+deb12u4",
+      "status": "installed",
+      "version": "1.1.35-1+deb12u4"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libxt-dev:arm64",
+      "source": "libxt",
+      "source_version": "1:1.2.1-1.1",
+      "status": "installed",
+      "version": "1:1.2.1-1.1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libxt6:arm64",
+      "source": "libxt",
+      "source_version": "1:1.2.1-1.1",
+      "status": "installed",
+      "version": "1:1.2.1-1.1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libxxhash0:arm64",
+      "source": "xxhash",
+      "source_version": "0.8.1-1",
+      "status": "installed",
+      "version": "0.8.1-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libyaml-0-2:arm64",
+      "source": "libyaml",
+      "source_version": "0.2.5-1",
+      "status": "installed",
+      "version": "0.2.5-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libyaml-dev:arm64",
+      "source": "libyaml",
+      "source_version": "0.2.5-1",
+      "status": "installed",
+      "version": "0.2.5-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libzstd-dev:arm64",
+      "source": "libzstd",
+      "source_version": "1.5.4+dfsg2-5",
+      "status": "installed",
+      "version": "1.5.4+dfsg2-5"
+    },
+    {
+      "architecture": "arm64",
+      "package": "libzstd1:arm64",
+      "source": "libzstd",
+      "source_version": "1.5.4+dfsg2-5",
+      "status": "installed",
+      "version": "1.5.4+dfsg2-5"
+    },
+    {
+      "architecture": "arm64",
+      "package": "linux-libc-dev:arm64",
+      "source": "linux",
+      "source_version": "6.1.174-1",
+      "status": "installed",
+      "version": "6.1.174-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "login",
+      "source": "shadow",
+      "source_version": "1:4.13+dfsg1-1+deb12u2",
+      "status": "installed",
+      "version": "1:4.13+dfsg1-1+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "logsave",
+      "source": "e2fsprogs",
+      "source_version": "1.47.0-2",
+      "status": "installed",
+      "version": "1.47.0-2+b2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "m4",
+      "source": "m4",
+      "source_version": "1.4.19-3",
+      "status": "installed",
+      "version": "1.4.19-3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "make",
+      "source": "make-dfsg",
+      "source_version": "4.3-4.1",
+      "status": "installed",
+      "version": "4.3-4.1"
+    },
+    {
+      "architecture": "all",
+      "package": "mariadb-common",
+      "source": "mariadb",
+      "source_version": "1:10.11.14-0+deb12u2",
+      "status": "installed",
+      "version": "1:10.11.14-0+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "mawk",
+      "source": "mawk",
+      "source_version": "1.3.4.20200120-3.1",
+      "status": "installed",
+      "version": "1.3.4.20200120-3.1"
+    },
+    {
+      "architecture": "all",
+      "package": "media-types",
+      "source": "media-types",
+      "source_version": "10.0.0",
+      "status": "installed",
+      "version": "10.0.0"
+    },
+    {
+      "architecture": "arm64",
+      "package": "mercurial",
+      "source": "mercurial",
+      "source_version": "6.3.2-1+deb12u1",
+      "status": "installed",
+      "version": "6.3.2-1+deb12u1"
+    },
+    {
+      "architecture": "all",
+      "package": "mercurial-common",
+      "source": "mercurial",
+      "source_version": "6.3.2-1+deb12u1",
+      "status": "installed",
+      "version": "6.3.2-1+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "mount",
+      "source": "util-linux",
+      "source_version": "2.38.1-5+deb12u3",
+      "status": "installed",
+      "version": "2.38.1-5+deb12u3"
+    },
+    {
+      "architecture": "all",
+      "package": "mysql-common",
+      "source": "mysql-defaults",
+      "source_version": "1.1.0",
+      "status": "installed",
+      "version": "5.8+1.1.0"
+    },
+    {
+      "architecture": "all",
+      "package": "ncurses-base",
+      "source": "ncurses",
+      "source_version": "6.4-4",
+      "status": "installed",
+      "version": "6.4-4"
+    },
+    {
+      "architecture": "arm64",
+      "package": "ncurses-bin",
+      "source": "ncurses",
+      "source_version": "6.4-4",
+      "status": "installed",
+      "version": "6.4-4"
+    },
+    {
+      "architecture": "all",
+      "package": "netbase",
+      "source": "netbase",
+      "source_version": "6.4",
+      "status": "installed",
+      "version": "6.4"
+    },
+    {
+      "architecture": "arm64",
+      "package": "openssh-client",
+      "source": "openssh",
+      "source_version": "1:9.2p1-2+deb12u10",
+      "status": "installed",
+      "version": "1:9.2p1-2+deb12u10"
+    },
+    {
+      "architecture": "arm64",
+      "package": "openssl",
+      "source": "openssl",
+      "source_version": "3.0.20-1~deb12u2",
+      "status": "installed",
+      "version": "3.0.20-1~deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "passwd",
+      "source": "shadow",
+      "source_version": "1:4.13+dfsg1-1+deb12u2",
+      "status": "installed",
+      "version": "1:4.13+dfsg1-1+deb12u2"
+    },
+    {
+      "architecture": "arm64",
+      "package": "patch",
+      "source": "patch",
+      "source_version": "2.7.6-7",
+      "status": "installed",
+      "version": "2.7.6-7"
+    },
+    {
+      "architecture": "arm64",
+      "package": "perl",
+      "source": "perl",
+      "source_version": "5.36.0-7+deb12u3",
+      "status": "installed",
+      "version": "5.36.0-7+deb12u3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "perl-base",
+      "source": "perl",
+      "source_version": "5.36.0-7+deb12u3",
+      "status": "installed",
+      "version": "5.36.0-7+deb12u3"
+    },
+    {
+      "architecture": "all",
+      "package": "perl-modules-5.36",
+      "source": "perl",
+      "source_version": "5.36.0-7+deb12u3",
+      "status": "installed",
+      "version": "5.36.0-7+deb12u3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "pinentry-curses",
+      "source": "pinentry",
+      "source_version": "1.2.1-1",
+      "status": "installed",
+      "version": "1.2.1-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "pkg-config:arm64",
+      "source": "pkgconf",
+      "source_version": "1.8.1-1",
+      "status": "installed",
+      "version": "1.8.1-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "pkgconf-bin",
+      "source": "pkgconf",
+      "source_version": "1.8.1-1",
+      "status": "installed",
+      "version": "1.8.1-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "pkgconf:arm64",
+      "source": "pkgconf",
+      "source_version": "1.8.1-1",
+      "status": "installed",
+      "version": "1.8.1-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "procps",
+      "source": "procps",
+      "source_version": "2:4.0.2-3",
+      "status": "installed",
+      "version": "2:4.0.2-3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "python3",
+      "source": "python3-defaults",
+      "source_version": "3.11.2-1",
+      "status": "installed",
+      "version": "3.11.2-1+b1"
+    },
+    {
+      "architecture": "all",
+      "package": "python3-distutils",
+      "source": "python3-stdlib-extensions",
+      "source_version": "3.11.2-3",
+      "status": "installed",
+      "version": "3.11.2-3"
+    },
+    {
+      "architecture": "all",
+      "package": "python3-lib2to3",
+      "source": "python3-stdlib-extensions",
+      "source_version": "3.11.2-3",
+      "status": "installed",
+      "version": "3.11.2-3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "python3-minimal",
+      "source": "python3-defaults",
+      "source_version": "3.11.2-1",
+      "status": "installed",
+      "version": "3.11.2-1+b1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "python3.11",
+      "source": "python3.11",
+      "source_version": "3.11.2-6+deb12u7",
+      "status": "installed",
+      "version": "3.11.2-6+deb12u7"
+    },
+    {
+      "architecture": "arm64",
+      "package": "python3.11-minimal",
+      "source": "python3.11",
+      "source_version": "3.11.2-6+deb12u7",
+      "status": "installed",
+      "version": "3.11.2-6+deb12u7"
+    },
+    {
+      "architecture": "all",
+      "package": "readline-common",
+      "source": "readline",
+      "source_version": "8.2-1.3",
+      "status": "installed",
+      "version": "8.2-1.3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "rpcsvc-proto",
+      "source": "rpcsvc-proto",
+      "source_version": "1.4.3-1",
+      "status": "installed",
+      "version": "1.4.3-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "sed",
+      "source": "sed",
+      "source_version": "4.9-1+deb12u1",
+      "status": "installed",
+      "version": "4.9-1+deb12u1"
+    },
+    {
+      "architecture": "all",
+      "package": "sensible-utils",
+      "source": "sensible-utils",
+      "source_version": "0.0.17+nmu1",
+      "status": "installed",
+      "version": "0.0.17+nmu1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "shared-mime-info",
+      "source": "shared-mime-info",
+      "source_version": "2.2-1",
+      "status": "installed",
+      "version": "2.2-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "sq",
+      "source": "rust-sequoia-sq",
+      "source_version": "0.27.0-2",
+      "status": "installed",
+      "version": "0.27.0-2+b1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "subversion",
+      "source": "subversion",
+      "source_version": "1.14.2-4+deb12u1",
+      "status": "installed",
+      "version": "1.14.2-4+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "sysvinit-utils",
+      "source": "sysvinit",
+      "source_version": "3.06-4",
+      "status": "installed",
+      "version": "3.06-4"
+    },
+    {
+      "architecture": "arm64",
+      "package": "tar",
+      "source": "tar",
+      "source_version": "1.34+dfsg-1.2+deb12u1",
+      "status": "installed",
+      "version": "1.34+dfsg-1.2+deb12u1"
+    },
+    {
+      "architecture": "all",
+      "package": "tzdata",
+      "source": "tzdata",
+      "source_version": "2026b-0+deb12u1",
+      "status": "installed",
+      "version": "2026b-0+deb12u1"
+    },
+    {
+      "architecture": "all",
+      "package": "ucf",
+      "source": "ucf",
+      "source_version": "3.0043+nmu1+deb12u1",
+      "status": "installed",
+      "version": "3.0043+nmu1+deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "unzip",
+      "source": "unzip",
+      "source_version": "6.0-28",
+      "status": "installed",
+      "version": "6.0-28"
+    },
+    {
+      "architecture": "all",
+      "package": "usr-is-merged",
+      "source": "usrmerge",
+      "source_version": "37~deb12u1",
+      "status": "installed",
+      "version": "37~deb12u1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "util-linux",
+      "source": "util-linux",
+      "source_version": "2.38.1-5+deb12u3",
+      "status": "installed",
+      "version": "2.38.1-5+deb12u3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "util-linux-extra",
+      "source": "util-linux",
+      "source_version": "2.38.1-5+deb12u3",
+      "status": "installed",
+      "version": "2.38.1-5+deb12u3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "uuid-dev:arm64",
+      "source": "util-linux",
+      "source_version": "2.38.1-5+deb12u3",
+      "status": "installed",
+      "version": "2.38.1-5+deb12u3"
+    },
+    {
+      "architecture": "arm64",
+      "package": "wget",
+      "source": "wget",
+      "source_version": "1.21.3-1+deb12u1",
+      "status": "installed",
+      "version": "1.21.3-1+deb12u1"
+    },
+    {
+      "architecture": "all",
+      "package": "x11-common",
+      "source": "xorg",
+      "source_version": "1:7.7+23",
+      "status": "installed",
+      "version": "1:7.7+23"
+    },
+    {
+      "architecture": "all",
+      "package": "x11proto-core-dev",
+      "source": "xorgproto",
+      "source_version": "2022.1-1",
+      "status": "installed",
+      "version": "2022.1-1"
+    },
+    {
+      "architecture": "all",
+      "package": "x11proto-dev",
+      "source": "xorgproto",
+      "source_version": "2022.1-1",
+      "status": "installed",
+      "version": "2022.1-1"
+    },
+    {
+      "architecture": "all",
+      "package": "xorg-sgml-doctools",
+      "source": "xorg-sgml-doctools",
+      "source_version": "1:1.11-1.1",
+      "status": "installed",
+      "version": "1:1.11-1.1"
+    },
+    {
+      "architecture": "all",
+      "package": "xtrans-dev",
+      "source": "xtrans",
+      "source_version": "1.4.0-1",
+      "status": "installed",
+      "version": "1.4.0-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "xz-utils",
+      "source": "xz-utils",
+      "source_version": "5.4.1-1",
+      "status": "installed",
+      "version": "5.4.1-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "zlib1g-dev:arm64",
+      "source": "zlib",
+      "source_version": "1:1.2.13.dfsg-1",
+      "status": "installed",
+      "version": "1:1.2.13.dfsg-1"
+    },
+    {
+      "architecture": "arm64",
+      "package": "zlib1g:arm64",
+      "source": "zlib",
+      "source_version": "1:1.2.13.dfsg-1",
+      "status": "installed",
+      "version": "1:1.2.13.dfsg-1"
+    }
+  ],
+  "tools": [
+    {
+      "invocation_file": {
+        "raw_sha256": "sha256:f5918390c5b15392ad8835e8368a79c1ee9937fbb19f2349cccf5d4524183299",
+        "resolved_path": "/usr/bin/bash"
+      },
+      "invocation_path": "/usr/bin/bash",
+      "name": "bash",
+      "status": "observed",
+      "version_probe": {
+        "exit_code": "0",
+        "stderr": "",
+        "stdout": "GNU bash, version 5.2.15(1)-release (aarch64-unknown-linux-gnu)\nCopyright (C) 2022 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\n\nThis is free software; you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n"
+      }
+    },
+    {
+      "name": "bc",
+      "status": "missing"
+    },
+    {
+      "name": "bison",
+      "status": "missing"
+    },
+    {
+      "invocation_file": {
+        "raw_sha256": "sha256:9732d6c5e2a098d3521fca8145d826ae0aaa067ef2385ead08e6feac88fa5792",
+        "resolved_path": "/usr/local/cargo/bin/rustup"
+      },
+      "invocation_path": "/usr/local/cargo/bin/cargo",
+      "name": "cargo",
+      "selected_binary": {
+        "raw_sha256": "sha256:45ca815482af36fff0a57bd34360f35aa6cd41dc17c18ca7c11d28231bcc60e4",
+        "resolved_path": "/usr/local/rustup/toolchains/1.96.1-aarch64-unknown-linux-gnu/bin/cargo",
+        "status": "observed"
+      },
+      "status": "observed",
+      "version_probe": {
+        "exit_code": "0",
+        "stderr": "",
+        "stdout": "cargo 1.96.1 (356927216 2026-06-26)\n"
+      }
+    },
+    {
+      "name": "flex",
+      "status": "missing"
+    },
+    {
+      "invocation_file": {
+        "raw_sha256": "sha256:dc53dbc5a583d03ae8ed6272ca9afc0f58873f9f9b86dd7d448b17fb3f88a8d0",
+        "resolved_path": "/usr/bin/aarch64-linux-gnu-gcc-12"
+      },
+      "invocation_path": "/usr/bin/gcc",
+      "name": "gcc",
+      "status": "observed",
+      "version_probe": {
+        "exit_code": "0",
+        "stderr": "",
+        "stdout": "gcc (Debian 12.2.0-14+deb12u1) 12.2.0\nCopyright (C) 2022 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+      }
+    },
+    {
+      "name": "go",
+      "status": "missing"
+    },
+    {
+      "invocation_file": {
+        "raw_sha256": "sha256:c3f988abfbf4a51ec36e90437045c1ea45464aadc691a2f78f81c41a31587075",
+        "resolved_path": "/usr/bin/gpg"
+      },
+      "invocation_path": "/usr/bin/gpg",
+      "name": "gpg",
+      "status": "observed",
+      "version_probe": {
+        "exit_code": "0",
+        "stderr": "",
+        "stdout": "gpg (GnuPG) 2.2.40\nlibgcrypt 1.10.1\nCopyright (C) 2022 g10 Code GmbH\nLicense GNU GPL-3.0-or-later <https://gnu.org/licenses/gpl.html>\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n\nHome: /nonexistent/.gnupg\nSupported algorithms:\nPubkey: RSA, ELG, DSA, ECDH, ECDSA, EDDSA\nCipher: IDEA, 3DES, CAST5, BLOWFISH, AES, AES192, AES256, TWOFISH,\n        CAMELLIA128, CAMELLIA192, CAMELLIA256\nHash: SHA1, RIPEMD160, SHA256, SHA384, SHA512, SHA224\nCompression: Uncompressed, ZIP, ZLIB, BZIP2\n"
+      }
+    },
+    {
+      "invocation_file": {
+        "raw_sha256": "sha256:6d5b4ab9086f723980eb4feceeb4ba6399729c0f61aaf6cf6c4edf9339c98b19",
+        "resolved_path": "/usr/bin/aarch64-linux-gnu-ld.bfd"
+      },
+      "invocation_path": "/usr/bin/ld",
+      "name": "ld",
+      "status": "observed",
+      "version_probe": {
+        "exit_code": "0",
+        "stderr": "",
+        "stdout": "GNU ld (GNU Binutils for Debian) 2.40\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) a later version.\nThis program has absolutely no warranty.\n"
+      }
+    },
+    {
+      "invocation_file": {
+        "raw_sha256": "sha256:78f2a508b7c1864869d618fc746cb775f3cbce92cd636ae976f4c68d0eec64d1",
+        "resolved_path": "/usr/bin/make"
+      },
+      "invocation_path": "/usr/bin/make",
+      "name": "make",
+      "status": "observed",
+      "version_probe": {
+        "exit_code": "0",
+        "stderr": "",
+        "stdout": "GNU Make 4.3\nBuilt for aarch64-unknown-linux-gnu\nCopyright (C) 1988-2020 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n"
+      }
+    },
+    {
+      "invocation_file": {
+        "raw_sha256": "sha256:a87e4138d1e33d240bd31be3dd5ec59017f729b7aa9bd6b3dc012dfcab85d69b",
+        "resolved_path": "/usr/bin/perl"
+      },
+      "invocation_path": "/usr/bin/perl",
+      "name": "perl",
+      "status": "observed",
+      "version_probe": {
+        "exit_code": "0",
+        "stderr": "",
+        "stdout": "v5.36.0"
+      }
+    },
+    {
+      "invocation_file": {
+        "raw_sha256": "sha256:d2bfea8e3e8e7aa88f88c8f6990c9961d64775b1817ba738c07a14bc7c0944bb",
+        "resolved_path": "/usr/bin/pkgconf"
+      },
+      "invocation_path": "/usr/bin/pkg-config",
+      "name": "pkg-config",
+      "status": "observed",
+      "version_probe": {
+        "exit_code": "0",
+        "stderr": "",
+        "stdout": "1.8.1\n"
+      }
+    },
+    {
+      "invocation_file": {
+        "raw_sha256": "sha256:ef8ea6cdde1ed5696b130d90a07026a3088e0c767166a3a627233da845a9fae9",
+        "resolved_path": "/usr/bin/python3.11"
+      },
+      "invocation_path": "/usr/bin/python3",
+      "name": "python3",
+      "status": "observed",
+      "version_probe": {
+        "exit_code": "0",
+        "stderr": "",
+        "stdout": "Python 3.11.2\n"
+      }
+    },
+    {
+      "invocation_file": {
+        "raw_sha256": "sha256:9732d6c5e2a098d3521fca8145d826ae0aaa067ef2385ead08e6feac88fa5792",
+        "resolved_path": "/usr/local/cargo/bin/rustup"
+      },
+      "invocation_path": "/usr/local/cargo/bin/rustc",
+      "name": "rustc",
+      "selected_binary": {
+        "raw_sha256": "sha256:6d4e18f1fa6662db8ab0ae1708c776c0dbbd6ca87202d5521e4dcada82a9611e",
+        "resolved_path": "/usr/local/rustup/toolchains/1.96.1-aarch64-unknown-linux-gnu/bin/rustc",
+        "status": "observed"
+      },
+      "status": "observed",
+      "version_probe": {
+        "exit_code": "0",
+        "stderr": "",
+        "stdout": "rustc 1.96.1 (31fca3adb 2026-06-26)\nbinary: rustc\ncommit-hash: 31fca3adb283cc9dfd56b49cdee9a96eb9c96ffd\ncommit-date: 2026-06-26\nhost: aarch64-unknown-linux-gnu\nrelease: 1.96.1\nLLVM version: 22.1.2\n"
+      }
+    },
+    {
+      "invocation_file": {
+        "raw_sha256": "sha256:fa2df5eddc2295398bf869b103818b45184cfaa99ec66ae1af7ed3bdf4c94423",
+        "resolved_path": "/usr/bin/tar"
+      },
+      "invocation_path": "/usr/bin/tar",
+      "name": "tar",
+      "status": "observed",
+      "version_probe": {
+        "exit_code": "0",
+        "stderr": "",
+        "stdout": "tar (GNU tar) 1.34\nCopyright (C) 2021 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n\nWritten by John Gilmore and Jay Fenlason.\n"
+      }
+    },
+    {
+      "invocation_file": {
+        "raw_sha256": "sha256:26c98f8bc8f57e82b65b015cb699088ea1da2fc29557f4bc97bbce4fc0069cc8",
+        "resolved_path": "/usr/bin/xz"
+      },
+      "invocation_path": "/usr/bin/xz",
+      "name": "xz",
+      "status": "observed",
+      "version_probe": {
+        "exit_code": "0",
+        "stderr": "",
+        "stdout": "xz (XZ Utils) 5.4.1\nliblzma 5.4.1\n"
+      }
+    }
+  ]
+}

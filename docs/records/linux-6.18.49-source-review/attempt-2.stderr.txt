@@ -1,0 +1,16 @@
+gpg: keybox '/tmp/gnupg/pubring.kbx' created
+gpg: key 38DBBDC86092693E: 22 signatures not checked due to missing keys
+gpg: /tmp/gnupg/trustdb.gpg: trustdb created
+gpg: key 38DBBDC86092693E: 22 signatures not checked due to missing keys
+gpg: key 38DBBDC86092693E: public key "Greg Kroah-Hartman (Linux kernel stable release signing key) <greg@kroah.com>" imported
+gpg: Total number processed: 1
+gpg:               imported: 1
+gpg: no ultimately trusted keys found
+gpg: Signature made Wed Sep  2 12:32:30 2026 UTC
+gpg:                using RSA key 647F28654894E3BD457199BE38DBBDC86092693E
+gpg: Good signature from "Greg Kroah-Hartman (Linux kernel stable release signing key) <greg@kroah.com>" [unknown]
+gpg:                 aka "Greg Kroah-Hartman <gregkh@kernel.org>" [unknown]
+gpg:                 aka "Greg Kroah-Hartman <gregkh@linuxfoundation.org>" [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: 647F 2865 4894 E3BD 4571  99BE 38DB BDC8 6092 693E

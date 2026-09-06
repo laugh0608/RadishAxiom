@@ -33,7 +33,7 @@
 Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收，见下文记录；普通 `dev` push 仍不自动触发 CI。下一顺位为：
 
 1. **审阅资源 ADR 草案并闭合维护投入。** 项目所有者已确认另立虚拟执行 profile 的起草方向：[ADR 0015（Proposed）](../adr/0015-virtualized-checker-resource-profile.md)明确 guest 128 MiB 硬限、宿主总内存无等价硬保证、排他选择与迁移闭包。草案尚未替代 Accepted ADR，不能原地重解释 v0.1。[产品化依赖审阅](../checker-runtime-productization-dependency-review.md)中的维护负责人、预算和具体来源仍待确认或验收。
-2. **确定 Linux 构建环境并验收来源。** [来源与构建审阅](../checker-runtime-guest-source-build-review.md)已形成 kernel 固定入口 / 发布者摘要、builder 库存要求和 Linux checker 交接范围；尚无实际字节验签或完整 source lock。init 因 Go child API 的 seccomp 安装缺口，建议优先论证 Rust 路径，Linux std / 链接来源仍待验收。下一步先确定隔离 Linux 环境及精确工具，再分别授权取得与验收材料；ADR 正式接受后提出公共迁移和可留存合成装置。真实负载按 cold 矩阵另行授权。
+2. **补齐构建来源并审阅 archive 检查入口版本化。** [实际核验记录](../records/linux-6.18.49-source-review/README.md)已盘点固定 Debian 12 arm64 镜像的 413 个包条目，取得 Linux `6.18.49` 源包并完成压缩摘要匹配、未压缩 tar 的固定完整指纹签名核验；首次公钥缺 UID 导致的失败也已保留。镜像缺少 `flex` / `bison` / `bc`，Rust 为 `1.96.1`，尚不能作为候选 `1.97.1` init builder。下一步形成精确缺失依赖及来源清单，审阅 archive 检查入口版本化（旧入口摘要已绑定历史 acceptance），再完成源码文件 / 许可证库存与工具来源验收；当前不是完整 source lock。[来源与构建审阅](../checker-runtime-guest-source-build-review.md)继续约束 Rust init 建议与 Linux checker 交接。ADR 正式接受后提出公共迁移和可留存合成装置；构建、真实负载与 cold 矩阵另行授权。
 
 [AX-B01 首切片依赖审阅](../axiom-pipeline-first-slice-dependency-review.md)已列出 P0–P9 前置；cvc5 / Node 自身的来源与外层硬限制仍需独立闭合。纯设计无需等待产品安装 / 激活，生产实现遵守 ADR 0007 全部入口或正式替代决策。
 
