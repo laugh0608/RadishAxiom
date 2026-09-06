@@ -57,7 +57,7 @@ git rev-list --left-right --count origin/master...dev
 
 ### CI 与 required context
 
-远程 Ruleset 只绑定稳定 context `Candidate Quality`。当前它聚合无第三方依赖的 `Repo Hygiene`；实现技术栈冻结后，编译、测试、静态分析、语义兼容、Evidence 独立检查和供应链检查作为组件加入聚合 job，而不频繁更换远程 required context。
+远程 Ruleset 只绑定稳定 context `Candidate Quality`。`Repo Hygiene`、编译、测试、静态分析、语义兼容、Evidence 独立检查和供应链检查随真实实现作为组件加入聚合 job，而不频繁更换远程 required context。现有组件和执行契约以[仓库治理](../governance/repository-governance.md#ci-契约)为准，验收进度以[当前状态](../status/current.md)为准。
 
 Conventional Commits 由仓库检查器对 PR commit range 执行，不在 Ruleset 中添加提交信息正则，避免与 GitHub 自动生成的 merge commit 冲突。
 

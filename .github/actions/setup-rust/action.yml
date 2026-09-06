@@ -1,0 +1,60 @@
+name: Set up accepted Rust toolchain
+description: Prepare the registered macOS arm64 Rust components and locked Cargo dependencies.
+
+runs:
+  using: composite
+  steps:
+    - name: Check runner and prepare isolated toolchain directory
+      shell: bash
+      run: |
+        test "$(uname -s)" = Darwin
+        test "$(uname -m)" = arm64
+        sw_vers
+        echo "Runner image: ${ImageOS} ${ImageVersion}"
+        rustup --version
+        ci_rustup_home="$(mktemp -d "${RUNNER_TEMP}/radishaxiom-rustup.XXXXXX")"
+        echo "RUSTUP_HOME=${ci_rustup_home}" >> "${GITHUB_ENV}"
+
+    - name: Install registered Rust components
+      shell: bash
+      env:
+        RUSTUP_DIST_SERVER: https://static.rust-lang.org
+      run: |
+        manifest="${RUSTUP_HOME}/channel-rust-1.97.1.toml"
+        curl --fail --silent --show-error --proto '=https' --tlsv1.2 \
+          --connect-timeout 30 --max-time 120 \
+          https://static.rust-lang.org/dist/channel-rust-1.97.1.toml \
+          --output "${manifest}"
+        python3 - "${manifest}" <<'PY'
+        import hashlib
+        import json
+        import pathlib
+        import sys
+
+        registry = json.loads(pathlib.Path("contracts/toolchain-adapters-v0.1/registry.json").read_text())
+        rust = next(tool for tool in registry["tools"] if tool["id"] == "rust-toolchain")
+        expected = rust["rustup_distribution"]["manifest"]["raw_sha256"]
+        actual = "sha256:" + hashlib.sha256(pathlib.Path(sys.argv[1]).read_bytes()).hexdigest()
+        if actual != expected:
+            raise SystemExit(f"Rust channel manifest mismatch: {actual} != {expected}")
+        PY
+        rustup toolchain install 1.97.1-aarch64-apple-darwin \
+          --profile minimal --component rustfmt --component clippy --no-self-update
+
+    - name: Verify actual toolchain identity
+      shell: bash
+      run: |
+        rustc_identity="$(rustc +1.97.1-aarch64-apple-darwin --version --verbose)"
+        echo "${rustc_identity}"
+        echo "${rustc_identity}" | grep -Fx 'release: 1.97.1'
+        echo "${rustc_identity}" | grep -Fx 'host: aarch64-apple-darwin'
+        cargo_identity="$(cargo +1.97.1-aarch64-apple-darwin --version)"
+        echo "${cargo_identity}"
+        [[ "${cargo_identity}" == 'cargo 1.97.1 ('* ]]
+        cargo +1.97.1-aarch64-apple-darwin fmt --version
+        cargo +1.97.1-aarch64-apple-darwin clippy --version
+        rustup component list --toolchain 1.97.1-aarch64-apple-darwin --installed
+
+    - name: Fetch locked Cargo dependencies
+      shell: bash
+      run: cargo +1.97.1-aarch64-apple-darwin fetch --locked --target aarch64-apple-darwin

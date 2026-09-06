@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-09-05
+更新日期：2026-09-06
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。历史事实按需进入[截至 2026-09-03 的归档](../records/status-through-2026-09-03.md)。
 
@@ -30,7 +30,7 @@
 
 ## 近期顺位
 
-1. **补齐工程门禁。** 下一实施任务优先将 Rust 格式、Clippy 与测试接入 `Candidate Quality`，明确 Darwin 平台、工具来源与失败聚合。本次未改 workflow；普通 `dev` push 不自动触发 CI。
+1. **完成工程门禁远程验收。** Rust 格式 / Clippy 与测试已分别接入 workflow 的 macOS arm64 job，`Candidate Quality` 只接受三个组件全部成功；本地验证与故障注入已通过，GitHub 上的实际工具准备、Darwin 测试及失败传播尚待验收。下一步在精确提交上另行授权推送 / 调度，保留真实成功和 Rust 失败阻断记录；不能仅凭 workflow 配置或本地聚合检查宣布工程里程碑完成。普通 `dev` push 不自动触发 CI。
 2. **完成隔离产品化与核心闭环依赖审阅。** 保留 ADR 0013 的既定候选，先做不执行 checker、不改公共字节的设计切片：明确 kernel / init / VMM / transport 来源、可重现构建、更新与许可证、最低系统 / 硬件、container 基线、TCB 维护预算；提出排他的 virtualized spawn plan 和 host / runner / guest 身份，解决 `128 MiB` guest 上界与整个 host footprint 的兼容问题。同一审阅列出 AX-B01 真实 P0–P9 的必要前置，避免把无关包装工作扩大为所有语义工作的前置。
 3. **按前置证据推进真实负载与核心管线。** 设计通过后，分别提出 Linux arm64 checker source → artifact acceptance、代表性 / 上限 bundle 的容量与 cold deadline 矩阵，以及 cvc5 / Node 验收和真实 AX-B01 切片。执行各自仍须满足 ADR 0007、0011–0014 与授权边界；先形成真实路径，再扩展到四题与完整失败矩阵。具体切片顺序由依赖审阅结果更新本页，不以计划预先解除门禁。
 
@@ -44,7 +44,7 @@ Checker 语义线先核实目标归因，再验收同域泛化、独立证明链
 - 合成 guest 已验证的只是单主机可行性；原 probe source / binary 未保留，不能凭摘要宣称可独立复现。后续实验应先落实可留存输入与重跑入口。
 - kernel / certificate 支持集合仍为空；attestation、结构验证、内容摘要、动态测试和独立 proof 分别报告。前置条件非空性、新义务与新实验指标是待设计项，不进入当前正式状态或评分规则。
 - 首域语义、IR、Evidence、既有 ADR 和实验注册的摘要绑定原文不因阶段措辞而改写；语义 / 公共格式迁移单独审阅，Evidence v0.2 保留 ADR 0009 要求。
-- 产品发布版本、公开 CLI / SDK、表面语法、安装路径、最低支持矩阵及 v1 后兼容承诺仍未冻结。不创建占位编译器骨架、自动发布或装饰性治理入口；已有真实 Rust 实现的 CI 属于需补齐的工程工作。
+- 产品发布版本、公开 CLI / SDK、表面语法、安装路径、最低支持矩阵及 v1 后兼容承诺仍未冻结。不创建占位编译器骨架、自动发布或装饰性治理入口；已有 Rust 实现的工程门禁以实际 CI 验收为准。
 
 ## 验证入口与本次审阅
 
@@ -64,7 +64,7 @@ cargo +1.97.1-aarch64-apple-darwin test --workspace --all-targets --locked --off
 
 命令以工具和依赖已验收安装为前提，不授权下载；其他平台先确认精确工具与执行范围。
 
-2026-09-05 审阅通过 Rust 格式 / Clippy、58 项 core 与 3 项 Darwin 测试；本批文档修改后仓库门禁通过 968 个文件，diff 卫生通过。未执行真实 checker、cvc5、Node、Hypervisor 或模型实验。CI 尚未覆盖 Rust。
+2026-09-06 本地通过 Rust 格式 / Clippy、58 项 core 与 3 项 Darwin 测试；workflow 与 composite action 的 YAML / shell 检查、聚合状态矩阵和隔离副本中的真实 Rust 测试失败阻断检查通过。仓库门禁通过 969 个文件，diff 卫生通过。尚未执行 CI 中的工具下载 / 安装或 GitHub 调度，不将本地结果外推为 hosted runner 验收；未执行真实 checker、cvc5、Node、Hypervisor 或模型实验。工程门禁的来源、命令与覆盖边界见[仓库治理](../governance/repository-governance.md#rust-工程门禁)。
 
 ## 按需阅读
 

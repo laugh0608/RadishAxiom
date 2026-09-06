@@ -84,7 +84,7 @@
 
 ## CI 契约
 
-`Candidate Quality` 是 Ruleset 唯一绑定的稳定聚合 job。当前组件只有 `Repo Hygiene`，覆盖：
+`Candidate Quality` 是 Ruleset 唯一绑定的稳定聚合 job。仓库 workflow 定义三个组件：`Repo Hygiene`、`Rust Quality (macOS arm64)` 和 `Rust Tests (macOS arm64)`；真实远程运行的验收进度见[当前状态](../status/current.md)。其中 `Repo Hygiene` 覆盖：
 
 - 必需治理文件是否存在；
 - UTF-8、BOM、LF、末尾换行与尾随空格；
@@ -97,17 +97,19 @@
 
 该 job 还通过仓库检查器运行基准、机器契约、摘要链、指定态 bundle、实验注册和 Python launcher 一致性检查。它不运行 Cargo，也不执行真实 checker、cvc5、Node 或 Hypervisor。普通 `dev` push 不自动触发 CI；当前 workflow 由面向 `dev` / `master` 的 PR 或手动调度触发。
 
-### 已有 Rust 实现的待补门禁
+### Rust 工程门禁
 
-Rust workspace 已有真实实现，格式、Clippy 与测试应作为下一工程切片接入 `Candidate Quality`。这是待实现的目标，不能从本文推断 workflow 已覆盖 Rust。接入时应：
+两个 Rust job 独立执行：`Rust Quality` 运行格式检查和 Clippy（warnings 为错误），`Rust Tests` 运行 workspace 全 target 测试，包含 Darwin store 和真实合成进程测试。聚合使用 `if: always()` 等待三个组件，只有三个结果全部为 `success` 才通过；失败、取消、跳过或缺失结果均不接受。required context 与普通 `dev` push 不触发 CI 的策略保持不变。
 
-- 使用仓库精确工具链，显式核对实际身份并处理环境 override；工具与 runner 来源按已有供应链要求审阅，不隐式升级或写动 lockfile；
-- 按职责分离格式 / 静态检查与测试，聚合必须依赖实际结果，不能把 skipped、cancelled 或失败当成功；
-- 为 Darwin 文件系统原语与真实进程测试选择匹配的平台；Linux 上未编译或未运行的 Darwin 代码不得计入原生验证；
-- 验证一个真实 Rust 故障会使聚合失败，并保留平台、命令与限制；不启动真实 checker、服务或 VM 来扩大 CI 授权范围；
-- 保持 required context 名称和现有分支流程，修改 workflow 与检查器契约时同步复核本专题；远程 Ruleset 或设置变更仍单独授权。
+平台与工具准备由仓库内的 [Rust setup composite action](../../.github/actions/setup-rust/action.yml) 复用：
 
-接入前，Rust 变更必须附实际本地格式、Clippy、测试及平台证据；绿色 `Candidate Quality` 只说明当前聚合覆盖的内容通过，不替代这些验证。当前命令与覆盖缺口由[当前状态](../status/current.md)维护。
+- 使用 GitHub-hosted `macos-15`，执行前核对 `Darwin` / `arm64`，记录 OS、runner image 和 rustup 版本；每个 Rust job 上限 20 分钟。选择依据为 [GitHub runner 平台表](https://docs.github.com/en/actions/reference/runners/github-hosted-runners) 与 [runner image 来源](https://github.com/actions/runner-images)。标签固定 OS 大版本，但 image 会更新；实际版本以运行日志为准，不表示最低支持矩阵或生产宿主已验收。
+- 使用 image 已有 rustup，在 `RUNNER_TEMP` 新建独立 `RUSTUP_HOME`，不复用 image 预装的 Rust toolchain。先从 Rust 官方 HTTPS dist 读取精确 channel manifest 并与现有登记摘要核对，再由 rustup 安装 `1.97.1-aarch64-apple-darwin` 的 `minimal`、`rustfmt`、`clippy`，禁止 rustup 自更新。沿用已审阅的 [Rust component 来源与许可证边界](../checker-runtime-rust-first-slice-review.md)，不新增第三方 setup action。
+- Cargo / rustc 命令显式指定完整 toolchain，避免环境中的 `RUSTUP_TOOLCHAIN` 覆盖 pin；核对实际 rustc release / host 与 Cargo version，并记录 quality component 身份。channel 摘要检查与 rustup 的下载校验仍信任 runner image、rustup 和官方分发服务，不构成工具源码可复现构建或产品供应链 qualification。
+- 准备阶段以 `cargo fetch --locked --target aarch64-apple-darwin` 获取现有 lockfile 的依赖，后续 Clippy 和测试使用 `--locked --offline`。现有唯一 registry crate 的来源、checksum、许可证及 build script 边界见 [Darwin store 切片审阅](../checker-runtime-darwin-store-slice-review.md)。不升级依赖或改写 lockfile；临时 toolchain 和 Cargo 缓存随 hosted job 销毁，不产生发布制品。
+- 仓库基线检查固定 job、平台、命令、聚合依赖与结果绑定，防止接入后静默退回仅文本检查。修改门禁时应复验一个真实 Rust 故障能阻断聚合，同时核对取消 / 跳过结果；本地执行聚合 shell 不能替代 GitHub 的实际调度和失败传播验收。
+
+这些 job 只检查仓库已有实现，不运行真实 checker、cvc5、Node 或 Hypervisor。首次远程运行前仍需按具体目标授权推送 / 调度；远程 Ruleset 或设置修改单独授权。本地命令与未完成的远程验收由[当前状态](../status/current.md)维护。
 
 后续按真实能力与风险把以下组件逐步加入聚合，而不是把所有逻辑堆进一个难定位的 job：
 

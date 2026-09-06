@@ -28,6 +28,7 @@ REQUIRED_FILES = (
     ".github/rulesets/README.md",
     ".github/rulesets/master-protection.json",
     ".github/workflows/pr-check.yml",
+    ".github/actions/setup-rust/action.yml",
     "AGENTS.md",
     "CLAUDE.md",
     "CODE_OF_CONDUCT.md",
@@ -386,6 +387,7 @@ def check_workflow_contract(errors: list[str]) -> None:
     text = path.read_text(encoding="utf-8")
     required_fragments = (
         "pull_request:",
+        "workflow_dispatch:",
         "      - dev",
         "      - master",
         "name: Repo Hygiene",
@@ -395,6 +397,75 @@ def check_workflow_contract(errors: list[str]) -> None:
     for fragment in required_fragments:
         if fragment not in text:
             errors.append(f"PR workflow is missing contract fragment: {fragment.strip()}")
+
+    # This is a check of our fixed workflow layout, not a general YAML parser.
+    jobs = dict(re.findall(r"^  ([a-z-]+):\n(.*?)(?=^  [a-z-]+:|\Z)", text, re.M | re.S))
+    rust_commands = {
+        "rust-quality": (
+            "cargo +1.97.1-aarch64-apple-darwin fmt --all --check",
+            "cargo +1.97.1-aarch64-apple-darwin clippy --workspace --all-targets --all-features --locked --offline -- -D warnings",
+        ),
+        "rust-tests": (
+            "cargo +1.97.1-aarch64-apple-darwin test --workspace --all-targets --locked --offline",
+        ),
+    }
+    for job, commands in rust_commands.items():
+        body = jobs.get(job, "")
+        for fragment in (
+            "    runs-on: macos-15\n",
+            "    timeout-minutes: 20\n",
+            "        uses: ./.github/actions/setup-rust\n",
+            "          ref: ${{ github.event.pull_request.head.sha || github.sha }}\n",
+            *(f"        run: {command}\n" for command in commands),
+        ):
+            if fragment not in body:
+                errors.append(f"{job} is missing contract fragment: {fragment.strip()}")
+        if re.search(r"^\s+(if|continue-on-error|needs):", body, re.M):
+            errors.append(f"{job} must run independently without skip or failure suppression")
+
+    aggregate = jobs.get("candidate-quality", "")
+    for fragment in (
+        "    if: always()\n",
+        "    needs:\n      - repo-hygiene\n      - rust-quality\n      - rust-tests\n",
+        '          if [[ "${REPO_HYGIENE_RESULT}" != "success" ||\n'
+        '                "${RUST_QUALITY_RESULT}" != "success" ||\n'
+        '                "${RUST_TESTS_RESULT}" != "success" ]]; then\n',
+        "            exit 1\n",
+    ):
+        if fragment not in aggregate:
+            errors.append(f"Candidate Quality is missing contract fragment: {fragment.strip()}")
+    for job, variable in (
+        ("repo-hygiene", "REPO_HYGIENE_RESULT"),
+        ("rust-quality", "RUST_QUALITY_RESULT"),
+        ("rust-tests", "RUST_TESTS_RESULT"),
+    ):
+        if f"          {variable}: ${{{{ needs.{job}.result }}}}\n" not in aggregate:
+            errors.append(f"Candidate Quality must consume the actual {job} result")
+    if "continue-on-error:" in text or re.search(r"^\s+push:", text, re.M):
+        errors.append("PR workflow must not suppress failures or run on ordinary push")
+
+    setup = REPO_ROOT / ".github/actions/setup-rust/action.yml"
+    if setup.is_file():
+        setup_text = setup.read_text(encoding="utf-8")
+        for fragment in (
+            'test "$(uname -s)" = Darwin',
+            'test "$(uname -m)" = arm64',
+            "RUSTUP_DIST_SERVER: https://static.rust-lang.org",
+            "https://static.rust-lang.org/dist/channel-rust-1.97.1.toml",
+            'rust["rustup_distribution"]["manifest"]["raw_sha256"]',
+            "rustup toolchain install 1.97.1-aarch64-apple-darwin",
+            "--profile minimal --component rustfmt --component clippy --no-self-update",
+            "grep -Fx 'release: 1.97.1'",
+            "grep -Fx 'host: aarch64-apple-darwin'",
+            "cargo +1.97.1-aarch64-apple-darwin fetch --locked --target aarch64-apple-darwin",
+        ):
+            if fragment not in setup_text:
+                errors.append(f"Rust setup is missing contract fragment: {fragment}")
+    toolchain = REPO_ROOT / "rust-toolchain.toml"
+    if toolchain.is_file() and toolchain.read_text(encoding="utf-8") != (
+        '[toolchain]\nchannel = "1.97.1"\ncomponents = ["clippy", "rustfmt"]\nprofile = "minimal"\n'
+    ):
+        errors.append("Rust toolchain pin must match the reviewed macOS arm64 CI commands")
 
 
 def check_benchmark_corpus(errors: list[str]) -> None:
