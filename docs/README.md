@@ -37,6 +37,7 @@
 | 独立 checker 与 Evidence 迁移 | [ADR 0008](adr/0008-independent-checker-isolation-and-artifact-exchange.md)、[0009](adr/0009-axiom-evidence-v0-drift-and-migration.md) |
 | payload 发布、launcher、产品宿主 | [ADR 0010](adr/0010-checker-runtime-payload-durable-registration.md)、[0011](adr/0011-checker-runtime-launcher-installation-and-activation.md)、[0012](adr/0012-product-checker-runtime-host-and-persistence-interface.md) |
 | Darwin 强隔离与 container 状态 | [ADR 0013](adr/0013-darwin-checker-hard-isolation.md)、[0014](adr/0014-darwin-app-sandbox-container-state.md) |
+| 虚拟 checker 资源保证与迁移草案 | [ADR 0015（Proposed）](adr/0015-virtualized-checker-resource-profile.md) |
 
 ADR 定义决策和重评条件，不表示相关生产能力已完成；实现进度由当前状态维护。
 
@@ -63,6 +64,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 | store 与 Darwin 文件系统 | [最小事务](checker-runtime-rust-store-slice-review.md)、[原语审阅](checker-runtime-darwin-filesystem-review.md)、[Darwin store](checker-runtime-darwin-store-slice-review.md) |
 | qualification / attempt、result、manifest、spawn plan | [证据持久化](checker-runtime-evidence-store-slice-review.md)、[result consumer](checker-runtime-result-consumer-slice-review.md)、[manifest parser](checker-runtime-manifest-parser-slice-review.md)、[spawn plan](checker-runtime-spawn-plan-slice-review.md) |
 | process 与隔离可行性 | [native process](checker-runtime-darwin-process-isolation-review.md)、[强隔离与 synthetic Linux 观察](checker-runtime-darwin-hard-isolation-review.md) |
+| 隔离产品化与核心闭环依赖 | [产品化设计审阅](checker-runtime-productization-dependency-review.md)、[AX-B01 首切片依赖](axiom-pipeline-first-slice-dependency-review.md) |
 | 早期状态、完整批次身份与实施流水 | [截至 2026-09-03 的原状态归档](records/status-through-2026-09-03.md) |
 
 架构 probe 的历史观察与可重跑材料分别判断；强隔离审阅单已注明原 probe 源码未留存的复现缺口。

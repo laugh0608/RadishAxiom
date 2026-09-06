@@ -1,6 +1,6 @@
 # 架构决策记录
 
-`docs/adr/` 保存已经接受或明确废弃的长期技术与治理决策。ADR 记录“为什么这样决定”和稳定后果，不承载每日进度、临时任务清单或命令流水。
+`docs/adr/` 保存拟议、已接受、已替代或已拒绝的长期技术与治理决策。ADR 记录“为什么这样决定”和稳定后果，不承载每日进度、临时任务清单或命令流水。
 
 ## 状态
 
@@ -25,3 +25,4 @@
 - [ADR 0012：产品侧 checker runtime 宿主与持久化接口](0012-product-checker-runtime-host-and-persistence-interface.md)
 - [ADR 0013：Darwin checker 强隔离宿主与虚拟执行边界](0013-darwin-checker-hard-isolation.md)
 - [ADR 0014：Darwin App Sandbox container 与 runner 无状态边界](0014-darwin-app-sandbox-container-state.md)
+- [ADR 0015：虚拟 checker 资源 profile 与宿主保证边界（Proposed）](0015-virtualized-checker-resource-profile.md)
