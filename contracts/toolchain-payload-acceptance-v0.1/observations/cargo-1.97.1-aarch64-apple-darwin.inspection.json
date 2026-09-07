@@ -1,0 +1,169 @@
+{
+  "archive": {
+    "compression": "xz",
+    "duplicate_path_validation": "passed",
+    "gid_values": [
+      "0"
+    ],
+    "gname_values": [
+      ""
+    ],
+    "link_inventory": {
+      "count": "0",
+      "jcs_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "link_target_validation": "passed",
+    "max_regular_file": {
+      "bytes": "31867672",
+      "path": "cargo-1.97.1-aarch64-apple-darwin/cargo/bin/cargo"
+    },
+    "member_count": "68",
+    "member_inventory": {
+      "count": "68",
+      "jcs_sha256": "sha256:98d89c727664d915b982feacaa8cc7f9e1856c6080d1eb52b7d33458f94b8245"
+    },
+    "mode_values": [
+      "0644",
+      "0755"
+    ],
+    "mtime": {
+      "maximum": "1784041988",
+      "minimum": "1153704088",
+      "unique_count": "2"
+    },
+    "path_validation": "passed",
+    "permission_validation": "passed",
+    "special_file_validation": "passed",
+    "top_level": "cargo-1.97.1-aarch64-apple-darwin",
+    "total_regular_bytes": "32496408",
+    "type_counts": {
+      "directory": "12",
+      "file": "56",
+      "hardlink": "0",
+      "symlink": "0"
+    },
+    "uid_values": [
+      "0"
+    ],
+    "uname_values": [
+      ""
+    ]
+  },
+  "artifact": {
+    "bytes": "8876992",
+    "filename": "cargo-1.97.1-aarch64-apple-darwin.tar.xz",
+    "raw_sha256": "sha256:2d84a74e9558192a7de674aca6aa3ab7464bed2df97e0377156ddb7e09a0fd7a"
+  },
+  "format": "radishaxiom-toolchain-tar-inspection",
+  "format_version": "0.1",
+  "inspection_profile": "rust-1.97.1-cargo-aarch64-apple-darwin",
+  "layout_assertions": [
+    {
+      "expectation": "present",
+      "path": "cargo-1.97.1-aarch64-apple-darwin/cargo/bin/cargo"
+    }
+  ],
+  "layout_validation": "passed",
+  "license_inventory": {
+    "count": "3",
+    "files": [
+      {
+        "bytes": "10860",
+        "path": "cargo-1.97.1-aarch64-apple-darwin/LICENSE-APACHE",
+        "raw_sha256": "sha256:8ada45cd9f843acf64e4722ae262c622a2b3b3007c7310ef36ac1061a30f6adb"
+      },
+      {
+        "bytes": "1023",
+        "path": "cargo-1.97.1-aarch64-apple-darwin/LICENSE-MIT",
+        "raw_sha256": "sha256:23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+      },
+      {
+        "bytes": "68430",
+        "path": "cargo-1.97.1-aarch64-apple-darwin/LICENSE-THIRD-PARTY",
+        "raw_sha256": "sha256:cbc759b1f17a2ac38fe3eb9e9563b1a08ba0f900611c49faaf68b46907b6d898"
+      }
+    ],
+    "jcs_sha256": "sha256:afb53053d6d49dfdf7569bc7ae2464ca3cafef70d6eaede271a553f5af6d479a"
+  },
+  "required_files": [
+    {
+      "bytes": "10860",
+      "path": "cargo-1.97.1-aarch64-apple-darwin/LICENSE-APACHE",
+      "raw_sha256": "sha256:8ada45cd9f843acf64e4722ae262c622a2b3b3007c7310ef36ac1061a30f6adb"
+    },
+    {
+      "bytes": "1023",
+      "path": "cargo-1.97.1-aarch64-apple-darwin/LICENSE-MIT",
+      "raw_sha256": "sha256:23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    {
+      "bytes": "68430",
+      "path": "cargo-1.97.1-aarch64-apple-darwin/LICENSE-THIRD-PARTY",
+      "raw_sha256": "sha256:cbc759b1f17a2ac38fe3eb9e9563b1a08ba0f900611c49faaf68b46907b6d898"
+    },
+    {
+      "bytes": "1532",
+      "path": "cargo-1.97.1-aarch64-apple-darwin/cargo/manifest.in",
+      "raw_sha256": "sha256:5b2160ec3635b8c8f3129f12cbeee078d55d882f9362313e56e9fd484febe8ba"
+    },
+    {
+      "bytes": "6",
+      "path": "cargo-1.97.1-aarch64-apple-darwin/components",
+      "raw_sha256": "sha256:7bb89d54b70dc6110f7bc980b181b6fd9316b7779bba2fd928521e1c5009cc59",
+      "utf8_text": "cargo\n"
+    },
+    {
+      "bytes": "40",
+      "path": "cargo-1.97.1-aarch64-apple-darwin/git-commit-hash",
+      "raw_sha256": "sha256:c60a41fd857ed7cc29207d7733c9816bedd227259cbd2751cf8efc825fa62280",
+      "utf8_text": "8bab26f4f68e0e26f0bb7960be334d5b520ea452"
+    },
+    {
+      "bytes": "62",
+      "path": "cargo-1.97.1-aarch64-apple-darwin/git-commit-info",
+      "raw_sha256": "sha256:a0320549c5e0882ad131eb23c9cd01915005edbb9bb87c03c8d3dc18a6dce645",
+      "utf8_text": "8bab26f4f68e0e26f0bb7960be334d5b520ea452\n8bab26f4f\n2026-07-14\n"
+    },
+    {
+      "bytes": "2",
+      "path": "cargo-1.97.1-aarch64-apple-darwin/rust-installer-version",
+      "raw_sha256": "sha256:1121cfccd5913f0a63fec40a6ffd44ea64f9dc135c66634ba001d10bcf4302a2",
+      "utf8_text": "3\n"
+    },
+    {
+      "bytes": "29",
+      "path": "cargo-1.97.1-aarch64-apple-darwin/version",
+      "raw_sha256": "sha256:aec84b6fcc51c59c98514cf0b4805002d0d38d9c56b64f513d0390402381baa4",
+      "utf8_text": "0.98.0 (c980f4866 2026-06-30)"
+    }
+  ],
+  "rust_inventory": {
+    "cargo_lock_count": "0",
+    "cargo_manifest_count": "0",
+    "component": "cargo",
+    "component_manifest_count": "1",
+    "component_manifest_entries": {
+      "count": "44",
+      "jcs_sha256": "sha256:1d713b39c7223b149e0085fe09d1a52fb30f9b994527744221de38f4029138bd"
+    },
+    "component_manifests": [
+      {
+        "bytes": "1532",
+        "path": "cargo-1.97.1-aarch64-apple-darwin/cargo/manifest.in",
+        "raw_sha256": "sha256:5b2160ec3635b8c8f3129f12cbeee078d55d882f9362313e56e9fd484febe8ba"
+      }
+    ],
+    "license_metadata_spdx": {
+      "expressions": [],
+      "jcs_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "occurrence_count": "0",
+      "unique_count": "0"
+    },
+    "reuse_spdx": {
+      "expressions": [],
+      "jcs_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "occurrence_count": "0",
+      "unique_count": "0"
+    }
+  }
+}

@@ -1,0 +1,294 @@
+{
+  "$defs": {
+    "digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "obligation": {
+      "additionalProperties": false,
+      "properties": {
+        "definition": {
+          "additionalProperties": false,
+          "properties": {
+            "expectation": {
+              "enum": [
+                "check",
+                "prove",
+                "trust"
+              ]
+            },
+            "kind": {
+              "enum": [
+                "contract-guarantee",
+                "effect-empty",
+                "field-origin",
+                "group-conservation",
+                "host-conformance",
+                "input-conformance",
+                "ir-structure",
+                "key-cardinality",
+                "noninterference",
+                "numeric-range",
+                "output-conformance",
+                "row-coverage",
+                "totality",
+                "trust-boundary"
+              ]
+            },
+            "subject": {
+              "$ref": "#/$defs/subject"
+            }
+          },
+          "required": [
+            "expectation",
+            "kind",
+            "subject"
+          ],
+          "type": "object"
+        },
+        "id": {
+          "$ref": "#/$defs/digest"
+        }
+      },
+      "required": [
+        "definition",
+        "id"
+      ],
+      "type": "object"
+    },
+    "semantics": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "const": "keyed-finite-table-semantics"
+        },
+        "sha256": {
+          "const": "6b18d65eefa439956db8eebe1f4ce90e08b4def4abf7c718c2605e7528598d0d"
+        }
+      },
+      "required": [
+        "name",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "subject": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "ir_document_digest": {
+              "$ref": "#/$defs/digest"
+            },
+            "kind": {
+              "enum": [
+                "document",
+                "program"
+              ]
+            }
+          },
+          "required": [
+            "ir_document_digest",
+            "kind"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/digest"
+            },
+            "kind": {
+              "enum": [
+                "contract",
+                "node"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "kind"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/digest"
+            },
+            "kind": {
+              "enum": [
+                "contract-path",
+                "node-path"
+              ]
+            },
+            "path": {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "id",
+            "kind",
+            "path"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "direction": {
+              "enum": [
+                "input",
+                "output"
+              ]
+            },
+            "kind": {
+              "const": "interface"
+            },
+            "name": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "direction",
+            "kind",
+            "name"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "direction": {
+              "enum": [
+                "input",
+                "output"
+              ]
+            },
+            "interface": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "kind": {
+              "const": "field"
+            },
+            "name": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "direction",
+            "interface",
+            "kind",
+            "name"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "artifact": {
+              "$ref": "#/$defs/digest"
+            },
+            "kind": {
+              "const": "artifact"
+            }
+          },
+          "required": [
+            "artifact",
+            "kind"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "category": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "kind": {
+              "const": "trust"
+            },
+            "scope": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "category",
+            "kind",
+            "scope"
+          ],
+          "type": "object"
+        }
+      ]
+    }
+  },
+  "$id": "https://radishaxiom.dev/schema/pipeline-artifacts/axiom-obligation-set/0.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "axiom-obligation-set"
+    },
+    "format_version": {
+      "const": "0.1"
+    },
+    "ir_artifact": {
+      "$ref": "#/$defs/digest"
+    },
+    "ir_document_digest": {
+      "$ref": "#/$defs/digest"
+    },
+    "obligation_profile": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "enum": [
+            "keyed-finite-table-benchmark",
+            "keyed-finite-table-verification"
+          ]
+        },
+        "version": {
+          "const": "0.1"
+        }
+      },
+      "required": [
+        "name",
+        "version"
+      ],
+      "type": "object"
+    },
+    "obligations": {
+      "items": {
+        "$ref": "#/$defs/obligation"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "semantics": {
+      "$ref": "#/$defs/semantics"
+    }
+  },
+  "required": [
+    "format",
+    "format_version",
+    "ir_artifact",
+    "ir_document_digest",
+    "obligation_profile",
+    "obligations",
+    "semantics"
+  ],
+  "title": "Axiom obligation set v0.1",
+  "type": "object"
+}

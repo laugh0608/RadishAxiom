@@ -26,14 +26,18 @@ RadishAxiom 是 Radish 家族中面向 AI Agent 的语言与可信语义项目�
 
 ## 当前状态
 
-项目处于设计阶段。生产 `raxc` 已选择 Rust；验证后端、目标运行时、首版编译管线和独立 checker 仍未冻结。在这些入口条件完成前，不进入编译器实现。
+项目处于设计到受控实现阶段。首域为有键有限表的确定性纯转换，语义、IR / Evidence 与机器契约已形成；分仓 Go checker 已有受限 profile 的离线复核和 CLI，主仓 Rust 已实现 checker runtime 的身份、归档、存储与结果消费组件。
 
-当前阶段、已确定事项与近期安排见[当前状态](docs/status/current.md)。
+完整 `raxc` 生产管线、产品 checker runtime 和 Agent 收益尚未验收，active runtime 为 0。Darwin 强隔离采用 ADR 0013 / 0014 的逐次 Hypervisor runner 方向；已有合成 Linux guest 观察，真实 checker 负载、产品化与公共身份迁移仍待完成。
+
+现有材料可用于规范审阅与组件回归，尚无面向用户的完整编译运行入口。当前能力、近期顺位和停止线见[当前状态](docs/status/current.md)；核心闭环、运行能力和实验的完成标准见[开发目标与验收计划](docs/development-plan.md)。
 
 ## 文档
 
 - [文档入口](docs/README.md)
-- [产品定义](docs/product-definition.md)
+- [机器契约入口](contracts/README.md)
+- [产品定义与首批工作流](docs/product-definition.md)
+- [开发目标与验收计划](docs/development-plan.md)
 - [许可证与生态策略](docs/licensing-strategy.md)
 - [仓库治理](docs/governance/repository-governance.md)
 - [参与贡献](CONTRIBUTING.md)
@@ -41,6 +45,18 @@ RadishAxiom 是 Radish 家族中面向 AI Agent 的语言与可信语义项目�
 - [安全策略](SECURITY.md)
 
 ## 仓库检查
+
+Rust production workspace（工具链与依赖已验收并安装后）：
+
+```bash
+cargo fmt --all --check
+cargo clippy --workspace --all-targets --all-features --locked --offline -- -D warnings
+cargo test --workspace --all-targets --locked --offline
+```
+
+先核对实际工具链是否为 `rust-toolchain.toml` 的精确版本；环境 override 会影响选择。当前 macOS arm64 主机的显式命令见[验证入口](docs/status/current.md#验证入口与本次审阅)。命令不授权自动安装工具链或依赖。
+
+仓库级契约与文本门禁：
 
 macOS、Linux 或 Git Bash：
 
@@ -54,6 +70,8 @@ Windows PowerShell：
 pwsh ./scripts/check-repo.ps1
 ```
 
+`Candidate Quality` 聚合 `Repo Hygiene`、Rust 格式 / Clippy 和 Rust 测试，只有三者全部成功才通过。Rust job 在 `macos-26` arm64 上使用精确工具链；普通 `dev` push 不自动触发 CI。执行契约见[仓库治理](docs/governance/repository-governance.md#rust-工程门禁)，实际验收与未覆盖范围见[当前状态](docs/status/current.md#验证入口与本次审阅)。
+
 ## 许可证
 
-本项目采用 [Apache License 2.0](LICENSE)。第三方组件仍遵循其各自的许可证；项目名称与标识不因本许可证而获得商标授权。
+本项目采用 [Apache License 2.0](LICENSE)。第三方组件及精确依赖记录见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)，仍遵循其各自许可证；项目名称与标识不因本许可证而获得商标授权。

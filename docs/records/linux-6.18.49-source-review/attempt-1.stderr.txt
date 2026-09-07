@@ -1,0 +1,11 @@
+gpg: keybox '/tmp/gnupg/pubring.kbx' created
+gpg: /tmp/gnupg/trustdb.gpg: trustdb created
+gpg: key 38DBBDC86092693E: new key but contains no user ID - skipped
+gpg: Total number processed: 1
+gpg:           w/o user IDs: 1
+gpg: key DEA66FF797772CDC: new key but contains no user ID - skipped
+gpg: Total number processed: 1
+gpg:           w/o user IDs: 1
+gpg: Signature made Wed Sep  2 12:32:30 2026 UTC
+gpg:                using RSA key 647F28654894E3BD457199BE38DBBDC86092693E
+gpg: Can't check signature: No public key

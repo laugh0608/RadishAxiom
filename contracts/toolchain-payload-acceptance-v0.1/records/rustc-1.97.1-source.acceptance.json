@@ -1,0 +1,285 @@
+{
+  "acceptance": {
+    "accepted_scope": [
+      "archive-layout-and-metadata",
+      "archive-license-and-component-inventory",
+      "payload-byte-identity",
+      "registered-future-isolated-build-input"
+    ],
+    "decision": "accepted-for-controlled-build-input",
+    "excluded_scope": [
+      "artifact-execution",
+      "artifact-installation",
+      "binary-source-reproducibility",
+      "checker-implementation-correctness",
+      "cross-platform-equivalence",
+      "legal-compliance-for-any-specific-distribution",
+      "publisher-signature-verification"
+    ],
+    "review_date": "2026-08-30"
+  },
+  "artifact": {
+    "bytes": "242787896",
+    "filename": "rustc-1.97.1-src.tar.xz",
+    "platform": "source",
+    "tool": "rust-toolchain",
+    "version": "1.97.1"
+  },
+  "dependency_inventory": {
+    "cargo_lock_count": "1977",
+    "cargo_manifest_count": "4613",
+    "component": "rust-source",
+    "component_manifest_count": "0",
+    "component_manifest_entries": {
+      "count": "0",
+      "jcs_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "component_manifests": [],
+    "scope": "archive-contained-rust-static-metadata",
+    "status": "inventoried-not-executed"
+  },
+  "digest_domain": "radishaxiom.toolchain-payload-acceptance-record.v0.1",
+  "format": "radishaxiom-toolchain-payload-acceptance-record",
+  "format_version": "0.1",
+  "id": "rustc-1.97.1-source-2026-08-30",
+  "inspection": {
+    "archive": {
+      "compression": "xz",
+      "duplicate_path_validation": "passed",
+      "gid_values": [
+        "0"
+      ],
+      "gname_values": [
+        ""
+      ],
+      "link_inventory": {
+        "count": "148",
+        "jcs_sha256": "sha256:8aab3c45eecb013f3c2e18d51ed4cfd7e1f176a0c0dde7ab6b325f97a1ce6170"
+      },
+      "link_target_validation": "passed",
+      "max_regular_file": {
+        "bytes": "25784677",
+        "path": "rustc-1.97.1-src/src/llvm-project/clang-tools-extra/clangd/quality/model/forest.json"
+      },
+      "member_count": "323914",
+      "member_inventory": {
+        "count": "323914",
+        "jcs_sha256": "sha256:0814b0fbd4da65b86bb3362e76b8e9c9f24a0566b2d071e1dc9be7b4c4cedcac"
+      },
+      "mode_values": [
+        "0644",
+        "0755"
+      ],
+      "mtime": {
+        "maximum": "1784041988",
+        "minimum": "1153704088",
+        "unique_count": "2"
+      },
+      "path_validation": "passed",
+      "permission_validation": "passed",
+      "special_file_validation": "passed",
+      "top_level": "rustc-1.97.1-src",
+      "total_regular_bytes": "3487143731",
+      "type_counts": {
+        "directory": "42427",
+        "file": "281339",
+        "hardlink": "0",
+        "symlink": "148"
+      },
+      "uid_values": [
+        "0"
+      ],
+      "uname_values": [
+        ""
+      ]
+    },
+    "layout_assertions": [
+      {
+        "expectation": "present",
+        "path": "rustc-1.97.1-src/Cargo.lock"
+      },
+      {
+        "expectation": "present",
+        "path": "rustc-1.97.1-src/Cargo.toml"
+      },
+      {
+        "expectation": "present",
+        "path": "rustc-1.97.1-src/compiler/rustc/Cargo.toml"
+      },
+      {
+        "expectation": "present",
+        "path": "rustc-1.97.1-src/library/std/Cargo.toml"
+      },
+      {
+        "expectation": "present",
+        "path": "rustc-1.97.1-src/src/tools/cargo/Cargo.toml"
+      },
+      {
+        "expectation": "present",
+        "path": "rustc-1.97.1-src/src/tools/clippy/Cargo.toml"
+      },
+      {
+        "expectation": "present",
+        "path": "rustc-1.97.1-src/src/tools/rustfmt/Cargo.toml"
+      }
+    ],
+    "method": {
+      "path": "scripts/inspect-toolchain-tar.py",
+      "raw_sha256": "sha256:423f2d163e16364a1bb8158b6157c5dc2b153de59cd6a4ebbaf6fe06662aaa73"
+    },
+    "observation": {
+      "path": "contracts/toolchain-payload-acceptance-v0.1/observations/rustc-1.97.1-source.inspection.json",
+      "raw_sha256": "sha256:0608bc439daea995cf9dd88d9ab648f85ff3ad573f9ef69789f7caa888ffaf56"
+    },
+    "profile": "rust-1.97.1-source",
+    "result": "passed"
+  },
+  "license_review": {
+    "bundled_inventory_status": "recorded-not-a-legal-conclusion",
+    "inventory_count": "17",
+    "inventory_jcs_sha256": "sha256:7e218cd47b4dea984b9457dcf8087e726d0cfb9dfd15371f6dc27e675d7f72d1",
+    "license_metadata_spdx": {
+      "expressions": [
+        {
+          "expression": "Apache-2.0 OR CC-BY-SA-4.0 OR MIT",
+          "occurrences": "1"
+        },
+        {
+          "expression": "Apache-2.0 OR MIT",
+          "occurrences": "7"
+        },
+        {
+          "expression": "Apache-2.0 WITH LLVM-exception AND (Apache-2.0 OR MIT)",
+          "occurrences": "1"
+        },
+        {
+          "expression": "Apache-2.0 WITH LLVM-exception AND NCSA",
+          "occurrences": "1"
+        },
+        {
+          "expression": "BSD-2-Clause AND (Apache-2.0 OR MIT)",
+          "occurrences": "1"
+        },
+        {
+          "expression": "GCC-exception-3.1",
+          "occurrences": "1"
+        },
+        {
+          "expression": "GPL-2.0-only",
+          "occurrences": "2"
+        },
+        {
+          "expression": "GPL-3.0-or-later",
+          "occurrences": "1"
+        },
+        {
+          "expression": "ISC",
+          "occurrences": "1"
+        },
+        {
+          "expression": "MIT",
+          "occurrences": "2"
+        },
+        {
+          "expression": "OFL-1.1",
+          "occurrences": "3"
+        },
+        {
+          "expression": "Unicode-3.0",
+          "occurrences": "1"
+        }
+      ],
+      "jcs_sha256": "sha256:0f9629ad80450125d2b32c2ba5b7d0a84a83dd369c452ed3a9c66f5f958c919c",
+      "occurrence_count": "22",
+      "unique_count": "12"
+    },
+    "main_expression": "MIT OR Apache-2.0",
+    "main_license_files": [
+      {
+        "bytes": "9723",
+        "path": "rustc-1.97.1-src/LICENSE-APACHE",
+        "raw_sha256": "sha256:62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+      },
+      {
+        "bytes": "1068",
+        "path": "rustc-1.97.1-src/LICENSE-MIT",
+        "raw_sha256": "sha256:b71bd43a069ca0641a9ecfe585ca7b3c53b5cc1608f8b68321168698e28b5ea1"
+      }
+    ],
+    "reuse_spdx": {
+      "expressions": [
+        {
+          "expression": "Apache-2.0 WITH LLVM-exception AND (Apache-2.0 OR MIT)",
+          "occurrences": "1"
+        },
+        {
+          "expression": "BSD-2-Clause AND (MIT OR Apache-2.0)",
+          "occurrences": "1"
+        },
+        {
+          "expression": "GCC-exception-3.1",
+          "occurrences": "1"
+        },
+        {
+          "expression": "GPL-2.0-only",
+          "occurrences": "1"
+        },
+        {
+          "expression": "GPL-3.0-or-later",
+          "occurrences": "1"
+        },
+        {
+          "expression": "ISC",
+          "occurrences": "1"
+        },
+        {
+          "expression": "MIT",
+          "occurrences": "3"
+        },
+        {
+          "expression": "MIT OR Apache-2.0",
+          "occurrences": "5"
+        },
+        {
+          "expression": "MIT OR Apache-2.0 OR CC-BY-SA-4.0",
+          "occurrences": "1"
+        },
+        {
+          "expression": "NCSA AND Apache-2.0 WITH LLVM-exception",
+          "occurrences": "1"
+        },
+        {
+          "expression": "OFL-1.1",
+          "occurrences": "3"
+        },
+        {
+          "expression": "Unicode-3.0",
+          "occurrences": "1"
+        }
+      ],
+      "jcs_sha256": "sha256:70f943dbbfc6fd6c8e2a9ec04a85c7f61980c518bbcd66ef26ddc5287e83137e",
+      "occurrence_count": "20",
+      "unique_count": "12"
+    },
+    "scope": "selected-root-license-files-and-publisher-license-metadata",
+    "status": "archive-inventory-recorded"
+  },
+  "provenance": {
+    "download_method": "https-curl-official-range-reassembly",
+    "download_url": "https://static.rust-lang.org/dist/rustc-1.97.1-src.tar.xz",
+    "project_recomputation": {
+      "raw_sha256": "sha256:0ed06fdaffd4722a7702e0b4eebfafc897ab8f513e8e1b247cdd7e5c6df6ded2",
+      "result": "matched"
+    },
+    "publisher_digest": {
+      "kind": "publisher-recorded",
+      "raw_sha256": "sha256:0ed06fdaffd4722a7702e0b4eebfafc897ab8f513e8e1b247cdd7e5c6df6ded2",
+      "source": "rust-dist-1.97.1"
+    },
+    "signature": {
+      "reason": "no detached-signature input is recorded for this artifact in registry v0.1",
+      "status": "not-verified-no-signature-input"
+    }
+  },
+  "record_digest": "sha256:5fd930254b9b2c9d1df1104ae149715e50261263a663df40ac801778971bad05"
+}

@@ -1,0 +1,531 @@
+{
+  "$defs": {
+    "artifactRef": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact": {
+          "$ref": "#/$defs/digest"
+        },
+        "role": {
+          "pattern": "^[A-Za-z][A-Za-z0-9._-]*$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact",
+        "role"
+      ],
+      "type": "object"
+    },
+    "attempt": {
+      "additionalProperties": false,
+      "properties": {
+        "definition": {
+          "additionalProperties": false,
+          "properties": {
+            "adapter_profile": {
+              "oneOf": [
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "const": "not-applicable"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "const": "profile"
+                    },
+                    "value": {
+                      "enum": [
+                        "cvc5-1.3.4-qf-uflia-v0.1",
+                        "node-24-esm-invocation-v0.1",
+                        "node-24-esm-keyed-finite-table-v0.1"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "value"
+                  ],
+                  "type": "object"
+                }
+              ]
+            },
+            "cache": {
+              "additionalProperties": false,
+              "properties": {
+                "key": {
+                  "$ref": "#/$defs/digest"
+                },
+                "kind": {
+                  "enum": [
+                    "hit",
+                    "miss"
+                  ]
+                }
+              },
+              "required": [
+                "key",
+                "kind"
+              ],
+              "type": "object"
+            },
+            "inputs": {
+              "items": {
+                "$ref": "#/$defs/artifactRef"
+              },
+              "type": "array"
+            },
+            "limits": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "name": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "unit": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "value": {
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "unit",
+                  "value"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "options": {
+              "$ref": "#/$defs/digest"
+            },
+            "ordinal": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            },
+            "outputs": {
+              "items": {
+                "$ref": "#/$defs/artifactRef"
+              },
+              "type": "array"
+            },
+            "result": {
+              "$ref": "#/$defs/result"
+            },
+            "tool": {
+              "$ref": "#/$defs/digest"
+            }
+          },
+          "required": [
+            "adapter_profile",
+            "cache",
+            "inputs",
+            "limits",
+            "options",
+            "ordinal",
+            "outputs",
+            "result",
+            "tool"
+          ],
+          "type": "object"
+        },
+        "id": {
+          "$ref": "#/$defs/digest"
+        }
+      },
+      "required": [
+        "definition",
+        "id"
+      ],
+      "type": "object"
+    },
+    "digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "result": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "completed"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "code": {
+              "pattern": "^[A-Za-z][A-Za-z0-9._-]*$",
+              "type": "string"
+            },
+            "kind": {
+              "enum": [
+                "error",
+                "invalid",
+                "resource-exhausted",
+                "timeout",
+                "unavailable",
+                "unsupported"
+              ]
+            }
+          },
+          "required": [
+            "code",
+            "kind"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "blocked_by": {
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "kind": {
+                  "enum": [
+                    "gate",
+                    "stage"
+                  ]
+                }
+              },
+              "required": [
+                "id",
+                "kind"
+              ],
+              "type": "object"
+            },
+            "kind": {
+              "const": "not-run"
+            }
+          },
+          "required": [
+            "blocked_by",
+            "kind"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "semantics": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "const": "keyed-finite-table-semantics"
+        },
+        "sha256": {
+          "const": "6b18d65eefa439956db8eebe1f4ce90e08b4def4abf7c718c2605e7528598d0d"
+        }
+      },
+      "required": [
+        "name",
+        "sha256"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://radishaxiom.dev/schema/pipeline-artifacts/axiom-pipeline-receipt/0.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifacts": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "byte_length": {
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "type": "string"
+          },
+          "content_digest": {
+            "$ref": "#/$defs/digest"
+          },
+          "format": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "format_version": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "byte_length",
+          "content_digest",
+          "format",
+          "format_version"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "assurance_policy": {
+      "$ref": "#/$defs/digest"
+    },
+    "evidence_version": {
+      "const": "0.1"
+    },
+    "format": {
+      "const": "axiom-pipeline-receipt"
+    },
+    "format_version": {
+      "const": "0.1"
+    },
+    "ir_version": {
+      "const": "0.1"
+    },
+    "mode": {
+      "enum": [
+        "benchmark-node24",
+        "verification"
+      ]
+    },
+    "outcome": {
+      "enum": [
+        "blocked",
+        "completed",
+        "error",
+        "partial"
+      ]
+    },
+    "pipeline_profile": {
+      "const": "raxc-keyed-finite-table-pipeline-v0.1"
+    },
+    "semantics": {
+      "$ref": "#/$defs/semantics"
+    },
+    "stages": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "attempts": {
+            "items": {
+              "$ref": "#/$defs/attempt"
+            },
+            "type": "array"
+          },
+          "dependencies": {
+            "items": {
+              "enum": [
+                "P0",
+                "P1",
+                "P2",
+                "P3",
+                "P4",
+                "P5",
+                "P6",
+                "P7",
+                "P8",
+                "P9"
+              ]
+            },
+            "type": "array"
+          },
+          "id": {
+            "enum": [
+              "P0",
+              "P1",
+              "P2",
+              "P3",
+              "P4",
+              "P5",
+              "P6",
+              "P7",
+              "P8",
+              "P9"
+            ]
+          },
+          "kind": {
+            "enum": [
+              "capture-preflight",
+              "normalize",
+              "generate-obligations",
+              "encode-query",
+              "prove",
+              "check-fixture",
+              "generate-target",
+              "execute-host",
+              "compare-output",
+              "assemble-results"
+            ]
+          },
+          "result": {
+            "$ref": "#/$defs/result"
+          }
+        },
+        "required": [
+          "attempts",
+          "dependencies",
+          "id",
+          "kind",
+          "result"
+        ],
+        "type": "object"
+      },
+      "maxItems": 10,
+      "minItems": 10,
+      "type": "array"
+    },
+    "tools": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "definition": {
+            "additionalProperties": false,
+            "properties": {
+              "artifact": {
+                "$ref": "#/$defs/digest"
+              },
+              "name": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "roles": {
+                "items": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "version": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "artifact",
+              "name",
+              "roles",
+              "version"
+            ],
+            "type": "object"
+          },
+          "id": {
+            "$ref": "#/$defs/digest"
+          }
+        },
+        "required": [
+          "definition",
+          "id"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "verification_gate": {
+      "additionalProperties": false,
+      "properties": {
+        "decision": {
+          "enum": [
+            "closed",
+            "opened"
+          ]
+        },
+        "id": {
+          "const": "verification-gate"
+        },
+        "requirements": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "enum": [
+                  "all-prove-proved",
+                  "all-trust-declared",
+                  "assurance-policy-accepted",
+                  "input-checked",
+                  "ir-accepted"
+                ]
+              },
+              "refs": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "enum": [
+                        "artifact",
+                        "attempt",
+                        "obligation"
+                      ]
+                    },
+                    "value": {
+                      "$ref": "#/$defs/digest"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "value"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "status": {
+                "enum": [
+                  "satisfied",
+                  "unsatisfied"
+                ]
+              }
+            },
+            "required": [
+              "kind",
+              "refs",
+              "status"
+            ],
+            "type": "object"
+          },
+          "maxItems": 5,
+          "minItems": 5,
+          "type": "array"
+        }
+      },
+      "required": [
+        "decision",
+        "id",
+        "requirements"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "artifacts",
+    "assurance_policy",
+    "evidence_version",
+    "format",
+    "format_version",
+    "ir_version",
+    "mode",
+    "outcome",
+    "pipeline_profile",
+    "semantics",
+    "stages",
+    "tools",
+    "verification_gate"
+  ],
+  "title": "Axiom pipeline receipt v0.1",
+  "type": "object"
+}

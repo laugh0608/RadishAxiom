@@ -1,0 +1,98 @@
+{
+  "kind": "diagnostic-observation",
+  "date": "2026-09-06",
+  "repository_base_commit": "dc4de70",
+  "acceptance": "incomplete-not-a-public-payload-acceptance",
+  "container": {
+    "context": "orbstack",
+    "image_id": "sha256:a339861ae23e9abb272cea45dfafde21760d2ce6577a70f8a926153677902663",
+    "repo_digest": "rust@sha256:a339861ae23e9abb272cea45dfafde21760d2ce6577a70f8a926153677902663",
+    "client_version": "29.4.0",
+    "server_version": "29.4.0",
+    "platform": "linux/arm64",
+    "trust": "existing local image; full package provenance and licenses not accepted"
+  },
+  "source": {
+    "url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.49.tar.xz",
+    "bytes": 154627808,
+    "sha256": "ae826f33111fea6f1d279dde7299d7463c8dfd204aeb75a8fb5432bc60a28191",
+    "retained_location": ".tmp/linux-6.18.49-source-review-dc4de70/linux-6.18.49.tar.xz",
+    "compressed_hash_matches_publisher": true,
+    "uncompressed_signature_check": "passed with pinned Greg KH fingerprint using inventoried GnuPG; not complete source acceptance"
+  },
+  "signature_url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.49.tar.sign",
+  "keys": {
+    "fingerprint_reference": "https://www.kernel.org/signature.html",
+    "attempt_1_urls": [
+      "https://keys.openpgp.org/vks/v1/by-fingerprint/647F28654894E3BD457199BE38DBBDC86092693E",
+      "https://keys.openpgp.org/vks/v1/by-fingerprint/E27E5D8A3403A2EF66873BBCDEA66FF797772CDC"
+    ],
+    "attempt_2_url": "https://kernel.googlesource.com/pub/scm/docs/kernel/pgpkeys/+/0bc27a82ce26ce0df7a44286120427554b10e2e1/keys/38DBBDC86092693E.asc?format=TEXT",
+    "attempt_2_transport": "base64; decoded bytes retained as gregkh-full.asc",
+    "primary_fingerprint": "647F28654894E3BD457199BE38DBBDC86092693E"
+  },
+  "attempts": [
+    {
+      "number": 1,
+      "exit_code": 2,
+      "result": "key imports skipped due to missing user IDs; No public key; signature not checked",
+      "limitation": "original set -e pipeline exited before copying GnuPG status from tmpfs; stderr retained"
+    },
+    {
+      "number": 2,
+      "exit_code": 0,
+      "result": "VALIDSIG with pinned full fingerprint; trustdb remains TRUST_UNDEFINED"
+    }
+  ],
+  "files": {
+    "attempt-1-gregkh.asc": {
+      "bytes": 3113,
+      "sha256": "abd27810314816128f5a246f111bed8b016e0dc32be35beebd307afe49c746d2"
+    },
+    "attempt-1-sashal.asc": {
+      "bytes": 2341,
+      "sha256": "66f5d6f02a9818f5115cfd1cc51689b35a36b7611982cfdfa4adbe5333306a0d"
+    },
+    "attempt-1.stderr.txt": {
+      "bytes": 518,
+      "sha256": "d6ea40921434141132d8d5e243bb35a8b5eb78e6114b68646ba81628de357136"
+    },
+    "attempt-1.stdout.txt": {
+      "bytes": 169,
+      "sha256": "8599058a6a80484ee2b2ac7a59c8f2f5f28dc5ac8ee87b8a8d230a375886652f"
+    },
+    "attempt-2.stderr.txt": {
+      "bytes": 1083,
+      "sha256": "e24c8f62afed5552bc2f77a5f003e7369ad0d4d06e9e2d216bd349d91b62b02c"
+    },
+    "attempt-2.stdout.txt": {
+      "bytes": 693,
+      "sha256": "ed4d9ad92f478dc09ff0b1872cb5e5b4f2ad87446c8ca456d2853101168bd0c8"
+    },
+    "builder-inventory.json": {
+      "bytes": 94723,
+      "sha256": "3a457a8937904b0578d735ced711575595a0993035ec776adc048a88af7e58a2"
+    },
+    "gregkh-full.asc": {
+      "bytes": 21269,
+      "sha256": "4163d0d69dc895c7a5967b83d115aa2f6a2d5010d428ef6cfab151bbf31f9178"
+    },
+    "linux-6.18.49.tar.sign": {
+      "bytes": 991,
+      "sha256": "34fb01a38f44469d287efabe49ab739c893ba64252c33cd895af9ba88f4b0ea6"
+    },
+    "verify-attempt-1.sh": {
+      "bytes": 1524,
+      "sha256": "79fd6206cf27704c023ee6e75e3d95471cef203dd6a57c9b3dd57dda878d6bcd"
+    },
+    "verify.sh": {
+      "bytes": 1443,
+      "sha256": "1ecd30a1f704602c36ecdb22f4097206ed6f4753a0d4617eb9febb0b546a7d6e"
+    }
+  },
+  "collector": {
+    "path": "scripts/inspect-linux-builder.py",
+    "bytes": 6043,
+    "sha256": "f48fb19ee38d8def1b66fc1cd11ff0ddfd8623428fef219e3bdfa7a626aca666"
+  }
+}

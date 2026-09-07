@@ -1,0 +1,365 @@
+{
+  "$defs": {
+    "digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "$id": "urn:radishaxiom:schema:axiom-independent-check-result:0.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "checker": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact": {
+          "$ref": "#/$defs/digest"
+        },
+        "name": {
+          "const": "radishaxiom-independent-checker-go"
+        },
+        "source": {
+          "$ref": "#/$defs/digest"
+        },
+        "toolchain": {
+          "const": "go1.26.7"
+        },
+        "version": {
+          "minLength": 1,
+          "not": {
+            "const": "latest"
+          },
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact",
+        "name",
+        "source",
+        "toolchain",
+        "version"
+      ],
+      "type": "object"
+    },
+    "checks": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "definition": {
+            "additionalProperties": false,
+            "properties": {
+              "codes": {
+                "items": {
+                  "pattern": "^[a-z][a-z0-9-]*$",
+                  "type": "string"
+                },
+                "minItems": 1,
+                "type": "array",
+                "uniqueItems": true
+              },
+              "kind": {
+                "enum": [
+                  "conclusion-recompute",
+                  "concrete-check-replay",
+                  "counterexample-replay",
+                  "identity",
+                  "isolation-report",
+                  "obligation-reconstruction",
+                  "proof-support",
+                  "state-support",
+                  "strict-parse",
+                  "subject"
+                ]
+              },
+              "outcome": {
+                "enum": [
+                  "incomplete",
+                  "passed",
+                  "rejected",
+                  "trusted"
+                ]
+              },
+              "refs": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "enum": [
+                        "artifact",
+                        "check",
+                        "evidence-entry",
+                        "obligation",
+                        "request",
+                        "tool",
+                        "trust"
+                      ]
+                    },
+                    "ref": {
+                      "$ref": "#/$defs/digest"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "ref"
+                  ],
+                  "type": "object"
+                },
+                "type": "array",
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "codes",
+              "kind",
+              "outcome",
+              "refs"
+            ],
+            "type": "object"
+          },
+          "id": {
+            "$ref": "#/$defs/digest"
+          }
+        },
+        "required": [
+          "definition",
+          "id"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "content_digest": {
+          "$ref": "#/$defs/digest"
+        },
+        "document_digest": {
+          "oneOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "const": "available"
+                },
+                "value": {
+                  "$ref": "#/$defs/digest"
+                }
+              },
+              "required": [
+                "kind",
+                "value"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "const": "unavailable"
+                }
+              },
+              "required": [
+                "kind"
+              ],
+              "type": "object"
+            }
+          ]
+        }
+      },
+      "required": [
+        "content_digest",
+        "document_digest"
+      ],
+      "type": "object"
+    },
+    "missing_artifacts": {
+      "items": {
+        "$ref": "#/$defs/digest"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "remaining_trust": {
+      "items": {
+        "$ref": "#/$defs/digest"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "request": {
+      "additionalProperties": false,
+      "properties": {
+        "content_digest": {
+          "$ref": "#/$defs/digest"
+        },
+        "document_digest": {
+          "oneOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "const": "available"
+                },
+                "value": {
+                  "$ref": "#/$defs/digest"
+                }
+              },
+              "required": [
+                "kind",
+                "value"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "const": "unavailable"
+                }
+              },
+              "required": [
+                "kind"
+              ],
+              "type": "object"
+            }
+          ]
+        }
+      },
+      "required": [
+        "content_digest",
+        "document_digest"
+      ],
+      "type": "object"
+    },
+    "result": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "accepted"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "accepted-with-trust"
+            },
+            "refs": {
+              "items": {
+                "$ref": "#/$defs/digest"
+              },
+              "minItems": 1,
+              "type": "array",
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "kind",
+            "refs"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "incomplete"
+            },
+            "refs": {
+              "items": {
+                "$ref": "#/$defs/digest"
+              },
+              "minItems": 1,
+              "type": "array",
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "kind",
+            "refs"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "rejected"
+            },
+            "refs": {
+              "items": {
+                "$ref": "#/$defs/digest"
+              },
+              "minItems": 1,
+              "type": "array",
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "kind",
+            "refs"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "result_version": {
+      "const": "0.1"
+    },
+    "tcb": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "artifact": {
+            "$ref": "#/$defs/digest"
+          },
+          "category": {
+            "enum": [
+              "canonicalization",
+              "certificate-checker",
+              "checker-core",
+              "cryptographic-primitive",
+              "rule-interpreter"
+            ]
+          },
+          "version": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "artifact",
+          "category",
+          "version"
+        ],
+        "type": "object"
+      },
+      "minItems": 4,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "checker",
+    "checks",
+    "evidence",
+    "missing_artifacts",
+    "remaining_trust",
+    "request",
+    "result",
+    "result_version",
+    "tcb"
+  ],
+  "title": "Axiom Independent Check Result v0.1",
+  "type": "object"
+}

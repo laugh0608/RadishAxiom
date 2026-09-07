@@ -1,0 +1,163 @@
+{
+  "archive": {
+    "compression": "xz",
+    "duplicate_path_validation": "passed",
+    "gid_values": [
+      "0"
+    ],
+    "gname_values": [
+      ""
+    ],
+    "link_inventory": {
+      "count": "0",
+      "jcs_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "link_target_validation": "passed",
+    "max_regular_file": {
+      "bytes": "15071424",
+      "path": "clippy-1.97.1-aarch64-apple-darwin/clippy-preview/bin/clippy-driver"
+    },
+    "member_count": "22",
+    "member_inventory": {
+      "count": "22",
+      "jcs_sha256": "sha256:b5dadfc53ccd1c5ea3eaea6d6aa95da85f55e30ead9319e237168015a68ff2fe"
+    },
+    "mode_values": [
+      "0644",
+      "0755"
+    ],
+    "mtime": {
+      "maximum": "1784041988",
+      "minimum": "1153704088",
+      "unique_count": "2"
+    },
+    "path_validation": "passed",
+    "permission_validation": "passed",
+    "special_file_validation": "passed",
+    "top_level": "clippy-1.97.1-aarch64-apple-darwin",
+    "total_regular_bytes": "16282904",
+    "type_counts": {
+      "directory": "6",
+      "file": "16",
+      "hardlink": "0",
+      "symlink": "0"
+    },
+    "uid_values": [
+      "0"
+    ],
+    "uname_values": [
+      ""
+    ]
+  },
+  "artifact": {
+    "bytes": "3171216",
+    "filename": "clippy-1.97.1-aarch64-apple-darwin.tar.xz",
+    "raw_sha256": "sha256:5e44c0ac5ca9b6f14a3c9031a61f583348b902f908f46e95717aef1dbd2807db"
+  },
+  "format": "radishaxiom-toolchain-tar-inspection",
+  "format_version": "0.1",
+  "inspection_profile": "rust-1.97.1-clippy-aarch64-apple-darwin",
+  "layout_assertions": [
+    {
+      "expectation": "present",
+      "path": "clippy-1.97.1-aarch64-apple-darwin/clippy-preview/bin/cargo-clippy"
+    },
+    {
+      "expectation": "present",
+      "path": "clippy-1.97.1-aarch64-apple-darwin/clippy-preview/bin/clippy-driver"
+    }
+  ],
+  "layout_validation": "passed",
+  "license_inventory": {
+    "count": "2",
+    "files": [
+      {
+        "bytes": "10848",
+        "path": "clippy-1.97.1-aarch64-apple-darwin/LICENSE-APACHE",
+        "raw_sha256": "sha256:d8b56cd45661bfc7ccf4ce5722388cab275f9dabb9e471c922cc80e36bbf9caa"
+      },
+      {
+        "bytes": "1081",
+        "path": "clippy-1.97.1-aarch64-apple-darwin/LICENSE-MIT",
+        "raw_sha256": "sha256:8d07f0c9c9966be0aaec4196d7863b56ade114e9714dbc31ebba576c0446d2fc"
+      }
+    ],
+    "jcs_sha256": "sha256:fdfd57325f7fadcd8fcf5bd19cea0f6937e1a4ec5e5c7841a8e2a58d4825d1b4"
+  },
+  "required_files": [
+    {
+      "bytes": "10848",
+      "path": "clippy-1.97.1-aarch64-apple-darwin/LICENSE-APACHE",
+      "raw_sha256": "sha256:d8b56cd45661bfc7ccf4ce5722388cab275f9dabb9e471c922cc80e36bbf9caa"
+    },
+    {
+      "bytes": "1081",
+      "path": "clippy-1.97.1-aarch64-apple-darwin/LICENSE-MIT",
+      "raw_sha256": "sha256:8d07f0c9c9966be0aaec4196d7863b56ade114e9714dbc31ebba576c0446d2fc"
+    },
+    {
+      "bytes": "148",
+      "path": "clippy-1.97.1-aarch64-apple-darwin/clippy-preview/manifest.in",
+      "raw_sha256": "sha256:266e3ebcb2cfa74930e774ac54d80e089f3d1ac299b085c7800114fc653502b9"
+    },
+    {
+      "bytes": "15",
+      "path": "clippy-1.97.1-aarch64-apple-darwin/components",
+      "raw_sha256": "sha256:20b359b2916427ac788e560df017fbd822af45c718bf01174b5cc6819344b6cd",
+      "utf8_text": "clippy-preview\n"
+    },
+    {
+      "bytes": "40",
+      "path": "clippy-1.97.1-aarch64-apple-darwin/git-commit-hash",
+      "raw_sha256": "sha256:c60a41fd857ed7cc29207d7733c9816bedd227259cbd2751cf8efc825fa62280",
+      "utf8_text": "8bab26f4f68e0e26f0bb7960be334d5b520ea452"
+    },
+    {
+      "bytes": "62",
+      "path": "clippy-1.97.1-aarch64-apple-darwin/git-commit-info",
+      "raw_sha256": "sha256:a0320549c5e0882ad131eb23c9cd01915005edbb9bb87c03c8d3dc18a6dce645",
+      "utf8_text": "8bab26f4f68e0e26f0bb7960be334d5b520ea452\n8bab26f4f\n2026-07-14\n"
+    },
+    {
+      "bytes": "2",
+      "path": "clippy-1.97.1-aarch64-apple-darwin/rust-installer-version",
+      "raw_sha256": "sha256:1121cfccd5913f0a63fec40a6ffd44ea64f9dc135c66634ba001d10bcf4302a2",
+      "utf8_text": "3\n"
+    },
+    {
+      "bytes": "6",
+      "path": "clippy-1.97.1-aarch64-apple-darwin/version",
+      "raw_sha256": "sha256:9a9ad5182beb80247d31a34fc3302b9dbdf8576271bf514e3fd9b201e02b6d31",
+      "utf8_text": "0.1.97"
+    }
+  ],
+  "rust_inventory": {
+    "cargo_lock_count": "0",
+    "cargo_manifest_count": "0",
+    "component": "clippy-preview",
+    "component_manifest_count": "1",
+    "component_manifest_entries": {
+      "count": "5",
+      "jcs_sha256": "sha256:9dbe98df3a92dc82e1a3d71776b1664f542c4c6aa0fd13835681a4b1852bac90"
+    },
+    "component_manifests": [
+      {
+        "bytes": "148",
+        "path": "clippy-1.97.1-aarch64-apple-darwin/clippy-preview/manifest.in",
+        "raw_sha256": "sha256:266e3ebcb2cfa74930e774ac54d80e089f3d1ac299b085c7800114fc653502b9"
+      }
+    ],
+    "license_metadata_spdx": {
+      "expressions": [],
+      "jcs_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "occurrence_count": "0",
+      "unique_count": "0"
+    },
+    "reuse_spdx": {
+      "expressions": [],
+      "jcs_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "occurrence_count": "0",
+      "unique_count": "0"
+    }
+  }
+}

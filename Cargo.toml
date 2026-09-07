@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "crates/checker-runtime",
+    "crates/checker-runtime-darwin-store",
+]
+resolver = "3"

@@ -1,0 +1,150 @@
+{
+  "cases": [
+    {
+      "case_id": "manifest-duplicate-artifact",
+      "expected_code": "duplicate-artifact",
+      "expected_result": "rejected",
+      "path": "fixtures/negative/manifest-duplicate-artifact.invalid.jcs",
+      "raw_sha256": "sha256:5893432d3a0144e48e4e9e14855c5b3173497ad7c6c37f23130b490d576dbfa5",
+      "target": "bundle-manifest"
+    },
+    {
+      "case_id": "manifest-two-evidence",
+      "expected_code": "evidence-cardinality",
+      "expected_result": "rejected",
+      "path": "fixtures/negative/manifest-two-evidence.invalid.jcs",
+      "raw_sha256": "sha256:f218412eba3b1402457b023031177b6f63fb1bd49da67b16c43230f1f62f6be7",
+      "target": "bundle-manifest"
+    },
+    {
+      "case_id": "manifest-unknown-role",
+      "expected_code": "unknown-tag",
+      "expected_result": "rejected",
+      "path": "fixtures/negative/manifest-unknown-role.invalid.jcs",
+      "raw_sha256": "sha256:8cab275cea04bb47f0bf931f647db7f6c762b593d734fed58eacea581dd797a3",
+      "target": "bundle-manifest"
+    },
+    {
+      "case_id": "manifest-unsorted-artifacts",
+      "expected_code": "noncanonical-order",
+      "expected_result": "rejected",
+      "path": "fixtures/negative/manifest-unsorted-artifacts.invalid.jcs",
+      "raw_sha256": "sha256:fb144f3e59a6197025beadd6e4656fc723f526546da4032f779fdc6b5718b20d",
+      "target": "bundle-manifest"
+    },
+    {
+      "case_id": "request-duplicate-member",
+      "expected_code": "duplicate-member",
+      "expected_result": "rejected",
+      "path": "fixtures/negative/request-duplicate-member.invalid.jcs",
+      "raw_sha256": "sha256:2aeca3debecfa45b2f4982b0e2d9e307a9d81bf5a6775aed5758ee89b7320108",
+      "target": "request"
+    },
+    {
+      "case_id": "request-missing-limit",
+      "expected_code": "limit-set-mismatch",
+      "expected_result": "rejected",
+      "path": "fixtures/negative/request-missing-limit.invalid.jcs",
+      "raw_sha256": "sha256:19f6f3e466e15a54bafad88228ec8fe5cb7b07545482a9616ef72e473a510c8f",
+      "target": "request"
+    },
+    {
+      "case_id": "request-noncanonical-whitespace",
+      "expected_code": "noncanonical-json",
+      "expected_result": "rejected",
+      "path": "fixtures/negative/request-noncanonical-whitespace.invalid.jcs",
+      "raw_sha256": "sha256:1b888b78fa90e0c0f91ab0653381aeb4da542eb29cba4eb7d621f6a174c2811d",
+      "target": "request"
+    },
+    {
+      "case_id": "request-unknown-member",
+      "expected_code": "unknown-member",
+      "expected_result": "rejected",
+      "path": "fixtures/negative/request-unknown-member.invalid.jcs",
+      "raw_sha256": "sha256:1c34a41f828917fbdd70b8bcac1000bc04f487d8e3aec9bea27886b7db641b63",
+      "target": "request"
+    },
+    {
+      "case_id": "request-unknown-proof-support",
+      "expected_code": "unknown-tag",
+      "expected_result": "rejected",
+      "path": "fixtures/negative/request-unknown-proof-support.invalid.jcs",
+      "raw_sha256": "sha256:57dd235f73ba78634a0b92ed708b9ba8de5db37690a107e85b2f4d3c9cc52eb0",
+      "target": "request"
+    },
+    {
+      "case_id": "request-unknown-version",
+      "expected_code": "unsupported-version",
+      "expected_result": "rejected",
+      "path": "fixtures/negative/request-unknown-version.invalid.jcs",
+      "raw_sha256": "sha256:0e4bce55b368538d8f4194b0dcd00331082610954acb42da215f0c9cf1f34d5c",
+      "target": "request"
+    },
+    {
+      "case_id": "request-unsorted-trust",
+      "expected_code": "noncanonical-order",
+      "expected_result": "rejected",
+      "path": "fixtures/negative/request-unsorted-trust.invalid.jcs",
+      "raw_sha256": "sha256:1371f764f429b96f433da5f227253cc7777637ab32b0795ceafa350b12a79730",
+      "target": "request"
+    },
+    {
+      "case_id": "result-accepted-unavailable-document",
+      "expected_code": "result-aggregation",
+      "expected_result": "rejected",
+      "path": "fixtures/negative/result-accepted-unavailable-document.invalid.jcs",
+      "raw_sha256": "sha256:97241cda53e7d94efa82b8ab7ffcadfd255a8ae23bee5ee5ccdc4188cd62b0ca",
+      "target": "result"
+    },
+    {
+      "case_id": "result-accepted-with-trust",
+      "expected_code": "result-aggregation",
+      "expected_result": "rejected",
+      "path": "fixtures/negative/result-accepted-with-trust.invalid.jcs",
+      "raw_sha256": "sha256:d88b9dce694477ddcee7127d978e9a548ff9ca0bcc339e78c4eca38aa9f74ebf",
+      "target": "result"
+    },
+    {
+      "case_id": "result-check-id-mismatch",
+      "expected_code": "check-id-mismatch",
+      "expected_result": "rejected",
+      "path": "fixtures/negative/result-check-id-mismatch.invalid.jcs",
+      "raw_sha256": "sha256:7c26e9431cba3fa831ec2fa11301a73a5d82667cc8015321e14d60a8948db230",
+      "target": "result"
+    },
+    {
+      "case_id": "result-incomplete-without-refs",
+      "expected_code": "result-aggregation",
+      "expected_result": "rejected",
+      "path": "fixtures/negative/result-incomplete-without-refs.invalid.jcs",
+      "raw_sha256": "sha256:9cd4a655d78825f390bcf96080333f3392d397df1274f73b0b5a76e79a448524",
+      "target": "result"
+    },
+    {
+      "case_id": "result-production-checker-name",
+      "expected_code": "checker-identity",
+      "expected_result": "rejected",
+      "path": "fixtures/negative/result-production-checker-name.invalid.jcs",
+      "raw_sha256": "sha256:d752007e97d62cec53d91ba920a61113ea237be5479fd80babd5779510ab3d29",
+      "target": "result"
+    },
+    {
+      "case_id": "result-trusted-without-trust",
+      "expected_code": "result-aggregation",
+      "expected_result": "rejected",
+      "path": "fixtures/negative/result-trusted-without-trust.invalid.jcs",
+      "raw_sha256": "sha256:3c62f5080a023088921dca98695e8a9104fb85e5ea0c566c42500789d40e7ac8",
+      "target": "result"
+    },
+    {
+      "case_id": "result-unsorted-tcb",
+      "expected_code": "noncanonical-order",
+      "expected_result": "rejected",
+      "path": "fixtures/negative/result-unsorted-tcb.invalid.jcs",
+      "raw_sha256": "sha256:b5b6062094b1f42e6f40ae7edf24211c29a095eb843e0f9389e07c3816ababd2",
+      "target": "result"
+    }
+  ],
+  "fixture_set_version": "0.1",
+  "format": "axiom-independent-check-negative-fixtures"
+}

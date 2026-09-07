@@ -1,0 +1,408 @@
+{
+  "archive": {
+    "compression": "gzip",
+    "duplicate_path_validation": "passed",
+    "gid_values": [
+      "0"
+    ],
+    "gname_values": [
+      ""
+    ],
+    "link_inventory": {
+      "count": "0",
+      "jcs_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "link_target_validation": "passed",
+    "max_regular_file": {
+      "bytes": "24625360",
+      "path": "go/pkg/tool/darwin_arm64/compile"
+    },
+    "member_count": "16701",
+    "member_inventory": {
+      "count": "16701",
+      "jcs_sha256": "sha256:5317fd31b65787471be3b270ad73986767edb01063377ac041a98261e4dcdd00"
+    },
+    "mode_values": [
+      "0644",
+      "0755"
+    ],
+    "mtime": {
+      "maximum": "1787089461",
+      "minimum": "1787089461",
+      "unique_count": "1"
+    },
+    "path_validation": "passed",
+    "permission_validation": "passed",
+    "special_file_validation": "passed",
+    "top_level": "go",
+    "total_regular_bytes": "228748173",
+    "type_counts": {
+      "directory": "1667",
+      "file": "15034",
+      "hardlink": "0",
+      "symlink": "0"
+    },
+    "uid_values": [
+      "0"
+    ],
+    "uname_values": [
+      ""
+    ]
+  },
+  "artifact": {
+    "bytes": "64772572",
+    "filename": "go1.26.7.darwin-arm64.tar.gz",
+    "raw_sha256": "sha256:020a1e8224811be75163e920bc77e0926a1390a6aeea19bdcf23f74b9d749f6d"
+  },
+  "format": "radishaxiom-toolchain-tar-inspection",
+  "format_version": "0.1",
+  "inspection_profile": "go1.26.7-darwin-arm64-host",
+  "layout_assertions": [
+    {
+      "expectation": "present",
+      "path": "go/LICENSE"
+    },
+    {
+      "expectation": "present",
+      "path": "go/PATENTS"
+    },
+    {
+      "expectation": "present",
+      "path": "go/VERSION"
+    },
+    {
+      "expectation": "present",
+      "path": "go/bin/go"
+    },
+    {
+      "expectation": "present",
+      "path": "go/bin/gofmt"
+    },
+    {
+      "expectation": "present",
+      "path": "go/pkg/tool/darwin_arm64/compile"
+    },
+    {
+      "expectation": "present",
+      "path": "go/pkg/tool/darwin_arm64/link"
+    },
+    {
+      "expectation": "present",
+      "path": "go/src/make.bash"
+    }
+  ],
+  "layout_validation": "passed",
+  "license_inventory": {
+    "count": "36",
+    "files": [
+      {
+        "bytes": "1453",
+        "path": "go/LICENSE",
+        "raw_sha256": "sha256:911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+      },
+      {
+        "bytes": "1303",
+        "path": "go/PATENTS",
+        "raw_sha256": "sha256:96f408bfae65bf137fc2525d3ecb030271c50c1e90799f87abf8846d8dd505cc"
+      },
+      {
+        "bytes": "1453",
+        "path": "go/src/cmd/compile/internal/ssa/_gen/vendor/golang.org/x/tools/LICENSE",
+        "raw_sha256": "sha256:911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+      },
+      {
+        "bytes": "1303",
+        "path": "go/src/cmd/compile/internal/ssa/_gen/vendor/golang.org/x/tools/PATENTS",
+        "raw_sha256": "sha256:96f408bfae65bf137fc2525d3ecb030271c50c1e90799f87abf8846d8dd505cc"
+      },
+      {
+        "bytes": "11358",
+        "path": "go/src/cmd/vendor/github.com/google/pprof/LICENSE",
+        "raw_sha256": "sha256:cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+      },
+      {
+        "bytes": "1754",
+        "path": "go/src/cmd/vendor/github.com/google/pprof/third_party/svgpan/LICENSE",
+        "raw_sha256": "sha256:154c946c17de61ca71d28e13673d76a5798e6e25995a7397fbae157afc8f62b4"
+      },
+      {
+        "bytes": "1479",
+        "path": "go/src/cmd/vendor/github.com/ianlancetaylor/demangle/LICENSE",
+        "raw_sha256": "sha256:b73277f7730993ef8e7f80aed83e5309762fed4d77eced982abb2c00657c074d"
+      },
+      {
+        "bytes": "1453",
+        "path": "go/src/cmd/vendor/golang.org/x/arch/LICENSE",
+        "raw_sha256": "sha256:8cda009bd927676a95ee7ce2dae921442ac4d9584d041b56ecfcba6839032f0b"
+      },
+      {
+        "bytes": "1303",
+        "path": "go/src/cmd/vendor/golang.org/x/arch/PATENTS",
+        "raw_sha256": "sha256:96f408bfae65bf137fc2525d3ecb030271c50c1e90799f87abf8846d8dd505cc"
+      },
+      {
+        "bytes": "1453",
+        "path": "go/src/cmd/vendor/golang.org/x/build/LICENSE",
+        "raw_sha256": "sha256:911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+      },
+      {
+        "bytes": "1303",
+        "path": "go/src/cmd/vendor/golang.org/x/build/PATENTS",
+        "raw_sha256": "sha256:96f408bfae65bf137fc2525d3ecb030271c50c1e90799f87abf8846d8dd505cc"
+      },
+      {
+        "bytes": "1453",
+        "path": "go/src/cmd/vendor/golang.org/x/mod/LICENSE",
+        "raw_sha256": "sha256:911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+      },
+      {
+        "bytes": "1303",
+        "path": "go/src/cmd/vendor/golang.org/x/mod/PATENTS",
+        "raw_sha256": "sha256:96f408bfae65bf137fc2525d3ecb030271c50c1e90799f87abf8846d8dd505cc"
+      },
+      {
+        "bytes": "1453",
+        "path": "go/src/cmd/vendor/golang.org/x/sync/LICENSE",
+        "raw_sha256": "sha256:911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+      },
+      {
+        "bytes": "1303",
+        "path": "go/src/cmd/vendor/golang.org/x/sync/PATENTS",
+        "raw_sha256": "sha256:96f408bfae65bf137fc2525d3ecb030271c50c1e90799f87abf8846d8dd505cc"
+      },
+      {
+        "bytes": "1453",
+        "path": "go/src/cmd/vendor/golang.org/x/sys/LICENSE",
+        "raw_sha256": "sha256:911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+      },
+      {
+        "bytes": "1303",
+        "path": "go/src/cmd/vendor/golang.org/x/sys/PATENTS",
+        "raw_sha256": "sha256:96f408bfae65bf137fc2525d3ecb030271c50c1e90799f87abf8846d8dd505cc"
+      },
+      {
+        "bytes": "1453",
+        "path": "go/src/cmd/vendor/golang.org/x/telemetry/LICENSE",
+        "raw_sha256": "sha256:911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+      },
+      {
+        "bytes": "1303",
+        "path": "go/src/cmd/vendor/golang.org/x/telemetry/PATENTS",
+        "raw_sha256": "sha256:96f408bfae65bf137fc2525d3ecb030271c50c1e90799f87abf8846d8dd505cc"
+      },
+      {
+        "bytes": "1453",
+        "path": "go/src/cmd/vendor/golang.org/x/term/LICENSE",
+        "raw_sha256": "sha256:911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+      },
+      {
+        "bytes": "1303",
+        "path": "go/src/cmd/vendor/golang.org/x/term/PATENTS",
+        "raw_sha256": "sha256:96f408bfae65bf137fc2525d3ecb030271c50c1e90799f87abf8846d8dd505cc"
+      },
+      {
+        "bytes": "1453",
+        "path": "go/src/cmd/vendor/golang.org/x/text/LICENSE",
+        "raw_sha256": "sha256:911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+      },
+      {
+        "bytes": "1303",
+        "path": "go/src/cmd/vendor/golang.org/x/text/PATENTS",
+        "raw_sha256": "sha256:96f408bfae65bf137fc2525d3ecb030271c50c1e90799f87abf8846d8dd505cc"
+      },
+      {
+        "bytes": "1453",
+        "path": "go/src/cmd/vendor/golang.org/x/tools/LICENSE",
+        "raw_sha256": "sha256:911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+      },
+      {
+        "bytes": "1303",
+        "path": "go/src/cmd/vendor/golang.org/x/tools/PATENTS",
+        "raw_sha256": "sha256:96f408bfae65bf137fc2525d3ecb030271c50c1e90799f87abf8846d8dd505cc"
+      },
+      {
+        "bytes": "1479",
+        "path": "go/src/cmd/vendor/rsc.io/markdown/LICENSE",
+        "raw_sha256": "sha256:2d36597f7117c38b006835ae7f537487207d8ec407aa9d9980794b2030cbc067"
+      },
+      {
+        "bytes": "9714",
+        "path": "go/src/crypto/internal/boring/LICENSE",
+        "raw_sha256": "sha256:56210f826b8f0fbac3160dfe55c97f4019eb6cdda3963b5a0eab8a8bdb62360e"
+      },
+      {
+        "bytes": "1138",
+        "path": "go/src/runtime/testdata/testgoroutineleakprofile/goker/LICENSE",
+        "raw_sha256": "sha256:f99df8ae6da6de047ed002d9dbe8682d9a19c88e9a7473abdadf3ac206621a85"
+      },
+      {
+        "bytes": "1453",
+        "path": "go/src/vendor/golang.org/x/crypto/LICENSE",
+        "raw_sha256": "sha256:911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+      },
+      {
+        "bytes": "1303",
+        "path": "go/src/vendor/golang.org/x/crypto/PATENTS",
+        "raw_sha256": "sha256:96f408bfae65bf137fc2525d3ecb030271c50c1e90799f87abf8846d8dd505cc"
+      },
+      {
+        "bytes": "1453",
+        "path": "go/src/vendor/golang.org/x/net/LICENSE",
+        "raw_sha256": "sha256:911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+      },
+      {
+        "bytes": "1303",
+        "path": "go/src/vendor/golang.org/x/net/PATENTS",
+        "raw_sha256": "sha256:96f408bfae65bf137fc2525d3ecb030271c50c1e90799f87abf8846d8dd505cc"
+      },
+      {
+        "bytes": "1453",
+        "path": "go/src/vendor/golang.org/x/sys/LICENSE",
+        "raw_sha256": "sha256:911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+      },
+      {
+        "bytes": "1303",
+        "path": "go/src/vendor/golang.org/x/sys/PATENTS",
+        "raw_sha256": "sha256:96f408bfae65bf137fc2525d3ecb030271c50c1e90799f87abf8846d8dd505cc"
+      },
+      {
+        "bytes": "1453",
+        "path": "go/src/vendor/golang.org/x/text/LICENSE",
+        "raw_sha256": "sha256:911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+      },
+      {
+        "bytes": "1303",
+        "path": "go/src/vendor/golang.org/x/text/PATENTS",
+        "raw_sha256": "sha256:96f408bfae65bf137fc2525d3ecb030271c50c1e90799f87abf8846d8dd505cc"
+      }
+    ],
+    "jcs_sha256": "sha256:2b26f058980c9055b05aba3f2095556640a0702da7cf3dad9cb7521835c8f5cc"
+  },
+  "required_files": [
+    {
+      "bytes": "1453",
+      "path": "go/LICENSE",
+      "raw_sha256": "sha256:911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+    },
+    {
+      "bytes": "1303",
+      "path": "go/PATENTS",
+      "raw_sha256": "sha256:96f408bfae65bf137fc2525d3ecb030271c50c1e90799f87abf8846d8dd505cc"
+    },
+    {
+      "bytes": "35",
+      "path": "go/VERSION",
+      "raw_sha256": "sha256:89f723ad27054a2ccc7c22f2a974886f3077f64623a231297fcea2e74a73a782",
+      "utf8_text": "go1.26.7\ntime 2026-08-18T21:44:21Z\n"
+    }
+  ],
+  "vendor_inventory": {
+    "manifest_count": "3",
+    "manifests": [
+      {
+        "bytes": "86",
+        "path": "go/src/cmd/compile/internal/ssa/_gen/vendor/modules.txt",
+        "raw_sha256": "sha256:a4fd613f5489e75daebc987afd1019ff9bbb2d67e008c4dc850a2f41041cbe13"
+      },
+      {
+        "bytes": "5955",
+        "path": "go/src/cmd/vendor/modules.txt",
+        "raw_sha256": "sha256:9a5563348644d584def106a66119801a70afadca479e4c830835e9c4658ad69d"
+      },
+      {
+        "bytes": "807",
+        "path": "go/src/vendor/modules.txt",
+        "raw_sha256": "sha256:1bfe5d0b8f7a98496c079c194fbf1b25d20a71639fa21f47c7a3a20698b55fb0"
+      }
+    ],
+    "module_count": "17",
+    "modules": [
+      {
+        "manifest": "go/src/cmd/compile/internal/ssa/_gen/vendor/modules.txt",
+        "module": "golang.org/x/tools",
+        "version": "v0.27.0"
+      },
+      {
+        "manifest": "go/src/cmd/vendor/modules.txt",
+        "module": "github.com/google/pprof",
+        "version": "v0.0.0-20251114195745-4902fdda35c8"
+      },
+      {
+        "manifest": "go/src/cmd/vendor/modules.txt",
+        "module": "github.com/ianlancetaylor/demangle",
+        "version": "v0.0.0-20250417193237-f615e6bd150b"
+      },
+      {
+        "manifest": "go/src/cmd/vendor/modules.txt",
+        "module": "golang.org/x/arch",
+        "version": "v0.23.0"
+      },
+      {
+        "manifest": "go/src/cmd/vendor/modules.txt",
+        "module": "golang.org/x/build",
+        "version": "v0.0.0-20251128064159-b9bfd88b30e8"
+      },
+      {
+        "manifest": "go/src/cmd/vendor/modules.txt",
+        "module": "golang.org/x/mod",
+        "version": "v0.30.1-0.20260813213631-9239cba97fbe"
+      },
+      {
+        "manifest": "go/src/cmd/vendor/modules.txt",
+        "module": "golang.org/x/sync",
+        "version": "v0.19.0"
+      },
+      {
+        "manifest": "go/src/cmd/vendor/modules.txt",
+        "module": "golang.org/x/sys",
+        "version": "v0.39.0"
+      },
+      {
+        "manifest": "go/src/cmd/vendor/modules.txt",
+        "module": "golang.org/x/telemetry",
+        "version": "v0.0.0-20251128220624-abf20d0e57ec"
+      },
+      {
+        "manifest": "go/src/cmd/vendor/modules.txt",
+        "module": "golang.org/x/term",
+        "version": "v0.38.0"
+      },
+      {
+        "manifest": "go/src/cmd/vendor/modules.txt",
+        "module": "golang.org/x/text",
+        "version": "v0.32.0"
+      },
+      {
+        "manifest": "go/src/cmd/vendor/modules.txt",
+        "module": "golang.org/x/tools",
+        "version": "v0.39.1-0.20260527181557-0f52e3809b35"
+      },
+      {
+        "manifest": "go/src/cmd/vendor/modules.txt",
+        "module": "rsc.io/markdown",
+        "version": "v0.0.0-20240306144322-0bf8f97ee8ef"
+      },
+      {
+        "manifest": "go/src/vendor/modules.txt",
+        "module": "golang.org/x/crypto",
+        "version": "v0.46.1-0.20251210140736-7dacc380ba00"
+      },
+      {
+        "manifest": "go/src/vendor/modules.txt",
+        "module": "golang.org/x/net",
+        "version": "v0.47.1-0.20260731170545-cb1d721f7fb3"
+      },
+      {
+        "manifest": "go/src/vendor/modules.txt",
+        "module": "golang.org/x/sys",
+        "version": "v0.39.0"
+      },
+      {
+        "manifest": "go/src/vendor/modules.txt",
+        "module": "golang.org/x/text",
+        "version": "v0.32.0"
+      }
+    ],
+    "modules_jcs_sha256": "sha256:bec815965e1e511d65b21d2488867fd7fa027e2358585bbbab945d8f1941e6ff"
+  }
+}

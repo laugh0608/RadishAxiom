@@ -1,0 +1,5 @@
+const axiomTargetProfile = "node-24-esm-keyed-finite-table-v0.1";
+const hidden = process.env.SECRET;
+if (axiomTargetProfile !== "node-24-esm-keyed-finite-table-v0.1") {
+  throw new Error("AXIOM_TARGET_PROFILE");
+}

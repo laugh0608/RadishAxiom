@@ -1,0 +1,34 @@
+{
+  "fixtures": [
+    {
+      "file": "recomputed-digest-mismatch.invalid.json",
+      "reason": "project digest differs from observation"
+    },
+    {
+      "file": "signature-overclaim.invalid.json",
+      "reason": "signature verification is overclaimed"
+    },
+    {
+      "file": "failed-inspection-accepted.invalid.json",
+      "reason": "failed inspection cannot be accepted"
+    },
+    {
+      "file": "execution-exclusion-missing.invalid.json",
+      "reason": "execution limitation is missing"
+    },
+    {
+      "file": "license-inventory-drift.invalid.json",
+      "reason": "license inventory digest differs from observation"
+    },
+    {
+      "file": "vendor-module-count-drift.invalid.json",
+      "reason": "vendor module count differs from observation"
+    },
+    {
+      "file": "unknown-member.invalid.json",
+      "reason": "closed record rejects unknown member"
+    }
+  ],
+  "format": "radishaxiom-toolchain-payload-acceptance-negative-set",
+  "format_version": "0.1"
+}

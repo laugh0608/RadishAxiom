@@ -1,0 +1,235 @@
+{
+  "$defs": {
+    "digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "$id": "urn:radishaxiom:schema:axiom-check-request:0.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "assurance_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_trust_categories": {
+          "items": {
+            "enum": [
+              "cryptographic-primitive",
+              "decoder-normalizer",
+              "host-runtime",
+              "input-origin",
+              "production-generator",
+              "proof-backend",
+              "sensitivity-classification",
+              "specification-intent"
+            ]
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "proof_support": {
+          "enum": [
+            "attestation-allowed",
+            "certificate-required"
+          ]
+        }
+      },
+      "required": [
+        "allowed_trust_categories",
+        "proof_support"
+      ],
+      "type": "object"
+    },
+    "bundle_manifest": {
+      "$ref": "#/$defs/digest"
+    },
+    "checker_profile": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "const": "keyed-finite-table-independent-check"
+        },
+        "version": {
+          "const": "0.1"
+        }
+      },
+      "required": [
+        "name",
+        "version"
+      ],
+      "type": "object"
+    },
+    "evidence": {
+      "$ref": "#/$defs/digest"
+    },
+    "limits": {
+      "items": false,
+      "maxItems": 7,
+      "minItems": 7,
+      "prefixItems": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "const": "artifact-bytes"
+            },
+            "unit": {
+              "const": "byte"
+            },
+            "value": {
+              "pattern": "^[1-9][0-9]*$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "unit",
+            "value"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "const": "bundle-bytes"
+            },
+            "unit": {
+              "const": "byte"
+            },
+            "value": {
+              "pattern": "^[1-9][0-9]*$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "unit",
+            "value"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "const": "collection-items"
+            },
+            "unit": {
+              "const": "item"
+            },
+            "value": {
+              "pattern": "^[1-9][0-9]*$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "unit",
+            "value"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "const": "json-depth"
+            },
+            "unit": {
+              "const": "level"
+            },
+            "value": {
+              "pattern": "^[1-9][0-9]*$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "unit",
+            "value"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "const": "semantic-steps"
+            },
+            "unit": {
+              "const": "step"
+            },
+            "value": {
+              "pattern": "^[1-9][0-9]*$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "unit",
+            "value"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "const": "wall-clock"
+            },
+            "unit": {
+              "const": "millisecond"
+            },
+            "value": {
+              "pattern": "^[1-9][0-9]*$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "unit",
+            "value"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "const": "working-memory"
+            },
+            "unit": {
+              "const": "byte"
+            },
+            "value": {
+              "pattern": "^[1-9][0-9]*$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "unit",
+            "value"
+          ],
+          "type": "object"
+        }
+      ],
+      "type": "array"
+    },
+    "request_version": {
+      "const": "0.1"
+    }
+  },
+  "required": [
+    "assurance_policy",
+    "bundle_manifest",
+    "checker_profile",
+    "evidence",
+    "limits",
+    "request_version"
+  ],
+  "title": "Axiom Check Request v0.1",
+  "type": "object"
+}

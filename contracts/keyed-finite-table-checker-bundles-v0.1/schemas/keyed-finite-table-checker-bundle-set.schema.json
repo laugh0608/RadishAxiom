@@ -1,0 +1,277 @@
+{
+  "$id": "urn:radishaxiom:schema:keyed-finite-table-checker-bundle-set:0.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "bindings": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "path": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "sha256": {
+            "pattern": "^sha256:[0-9a-f]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "path",
+          "sha256"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "counts": {
+      "additionalProperties": false,
+      "properties": {
+        "benchmark": {
+          "pattern": "^[1-9][0-9]*$",
+          "type": "string"
+        },
+        "cross_contract": {
+          "pattern": "^[1-9][0-9]*$",
+          "type": "string"
+        },
+        "negative": {
+          "pattern": "^[1-9][0-9]*$",
+          "type": "string"
+        },
+        "total": {
+          "pattern": "^[1-9][0-9]*$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "benchmark",
+        "cross_contract",
+        "negative",
+        "total"
+      ],
+      "type": "object"
+    },
+    "format": {
+      "const": "keyed-finite-table-checker-bundle-set"
+    },
+    "format_version": {
+      "const": "0.1"
+    },
+    "level": {
+      "const": "specified"
+    },
+    "platforms": {
+      "items": {
+        "enum": [
+          "linux-amd64",
+          "linux-arm64",
+          "macos-amd64",
+          "macos-arm64",
+          "windows-amd64",
+          "windows-arm64"
+        ]
+      },
+      "maxItems": 6,
+      "minItems": 6,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "profile": {
+      "const": "keyed-finite-table-checker-bundles-v0.1"
+    },
+    "scenarios": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "bundle": {
+            "additionalProperties": false,
+            "properties": {
+              "manifest_content_digest": {
+                "pattern": "^sha256:[0-9a-f]{64}$",
+                "type": "string"
+              },
+              "manifest_document_digest": {
+                "pattern": "^sha256:[0-9a-f]{64}$",
+                "type": "string"
+              },
+              "materialization": {
+                "enum": [
+                  "complete",
+                  "missing",
+                  "omitted-obligation",
+                  "tampered"
+                ]
+              },
+              "path": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "manifest_content_digest",
+              "manifest_document_digest",
+              "materialization",
+              "path"
+            ],
+            "type": "object"
+          },
+          "evidence": {
+            "additionalProperties": false,
+            "properties": {
+              "conclusion": {
+                "enum": [
+                  "implementation_inconsistent",
+                  "inconclusive",
+                  "input_rejected",
+                  "satisfied",
+                  "violated"
+                ]
+              },
+              "content_digest": {
+                "pattern": "^sha256:[0-9a-f]{64}$",
+                "type": "string"
+              },
+              "document_digest": {
+                "pattern": "^sha256:[0-9a-f]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conclusion",
+              "content_digest",
+              "document_digest"
+            ],
+            "type": "object"
+          },
+          "expected": {
+            "additionalProperties": false,
+            "properties": {
+              "check_id": {
+                "pattern": "^sha256:[0-9a-f]{64}$",
+                "type": "string"
+              },
+              "codes": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array",
+                "uniqueItems": true
+              },
+              "content_digest": {
+                "pattern": "^sha256:[0-9a-f]{64}$",
+                "type": "string"
+              },
+              "document_digest": {
+                "pattern": "^sha256:[0-9a-f]{64}$",
+                "type": "string"
+              },
+              "kind": {
+                "enum": [
+                  "independent-result",
+                  "process-failure"
+                ]
+              },
+              "outcome": {
+                "enum": [
+                  "accepted",
+                  "accepted-with-trust",
+                  "incomplete",
+                  "not-produced",
+                  "rejected"
+                ]
+              },
+              "process": {
+                "enum": [
+                  "completed",
+                  "failed"
+                ]
+              },
+              "process_codes": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array",
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "codes",
+              "content_digest",
+              "document_digest",
+              "kind",
+              "outcome",
+              "process",
+              "process_codes"
+            ],
+            "type": "object"
+          },
+          "kind": {
+            "enum": [
+              "benchmark",
+              "cross-contract",
+              "independent-check"
+            ]
+          },
+          "level": {
+            "const": "specified"
+          },
+          "readiness_scenario_id": {
+            "pattern": "^[A-Z0-9-]+$",
+            "type": "string"
+          },
+          "request": {
+            "additionalProperties": false,
+            "properties": {
+              "content_digest": {
+                "pattern": "^sha256:[0-9a-f]{64}$",
+                "type": "string"
+              },
+              "document_digest": {
+                "pattern": "^sha256:[0-9a-f]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "content_digest",
+              "document_digest"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "bundle",
+          "evidence",
+          "expected",
+          "kind",
+          "level",
+          "readiness_scenario_id",
+          "request"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "bindings",
+    "counts",
+    "format",
+    "format_version",
+    "level",
+    "platforms",
+    "profile",
+    "scenarios"
+  ],
+  "title": "Keyed Finite Table Checker Bundle Set v0.1",
+  "type": "object"
+}

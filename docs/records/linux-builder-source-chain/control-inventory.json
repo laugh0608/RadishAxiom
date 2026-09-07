@@ -1,0 +1,122 @@
+{
+  "acceptance": "not-assessed",
+  "kind": "diagnostic-control-file-review",
+  "method_sha256": "40f142c4d407c8a2fc85c469ba70735cee5671e204e359e44b9f7ad9af36fda3",
+  "packages": [
+    {
+      "control_files": [
+        {
+          "bytes": 1037,
+          "path": "control",
+          "sha256": "a0d0624c49b8906582a0c1e528cba9166f25b862b91de4162e6d6f53e3ee403a"
+        },
+        {
+          "bytes": 6535,
+          "path": "md5sums",
+          "sha256": "58605d20b023b958beb1ef921701346551017a2976c52339d304776bcf392fc6"
+        },
+        {
+          "bytes": 7731,
+          "path": "postinst",
+          "sha256": "dc08a492c5eb6f61cdbf0c2e12c3b35fa283b179f9515e306d2bfa6071762fc6"
+        },
+        {
+          "bytes": 3928,
+          "path": "prerm",
+          "sha256": "e34f0fdbfa443ecc8e988b7b8c6f6260e32b12ae8c5289076912471202fe8a87"
+        }
+      ],
+      "fields": {
+        "architecture": "arm64",
+        "conflicts": "flex-old",
+        "depends": "libc6 (>= 2.34), m4",
+        "package": "flex",
+        "pre-depends": "debconf | debconf-2.0",
+        "recommends": "gcc | c-compiler, libfl-dev",
+        "replaces": "flex-old",
+        "source": null,
+        "version": "2.6.4-8.2"
+      },
+      "package": "flex"
+    },
+    {
+      "control_files": [
+        {
+          "bytes": 945,
+          "path": "control",
+          "sha256": "2d4b4fca12de7746873b9acb8a7fd353e5e74f3cd2e87ed2e4cc2a0fac1dc946"
+        },
+        {
+          "bytes": 15851,
+          "path": "md5sums",
+          "sha256": "82a5b2bba8e32ffa072a9c5f8fee122b86b2ba588b2a284bec657dadc2f07090"
+        },
+        {
+          "bytes": 447,
+          "path": "postinst",
+          "sha256": "749e7d93dc87f5fc8553a48399ee4802bd0c4326a2d5b74059e503fd79c393b4"
+        },
+        {
+          "bytes": 113,
+          "path": "preinst",
+          "sha256": "528fc10302dfdcb0a75daefcc14619a59263cad8631a3843e93951f673e39175"
+        },
+        {
+          "bytes": 219,
+          "path": "prerm",
+          "sha256": "e92170068bdf5a3805b3488b552f49aeaa71b43c1ea55b8291e5ce01840631f3"
+        }
+      ],
+      "fields": {
+        "architecture": "arm64",
+        "conflicts": null,
+        "depends": "m4, libc6 (>= 2.34)",
+        "package": "bison",
+        "pre-depends": null,
+        "recommends": null,
+        "replaces": null,
+        "source": "bison (2:3.8.2+dfsg-1)",
+        "version": "2:3.8.2+dfsg-1+b1"
+      },
+      "package": "bison"
+    },
+    {
+      "control_files": [
+        {
+          "bytes": 607,
+          "path": "control",
+          "sha256": "622a83db698047700514c6ada38bc0b07bd645221d989359995ce7a586ce9bef"
+        },
+        {
+          "bytes": 979,
+          "path": "md5sums",
+          "sha256": "13340a2ea7555e445b721e4fafb8c073c3d5cff3536b5a27e95fe7973c6204f2"
+        },
+        {
+          "bytes": 185,
+          "path": "postinst",
+          "sha256": "00f9d7d35ceb280cc35a6284fbf7aa59962358d2559ab25f504adec281a92b9a"
+        },
+        {
+          "bytes": 160,
+          "path": "postrm",
+          "sha256": "38e7723859aace141a5238576e9e2ac028bd0def48d093c7ab7bcf35bcfe2399"
+        }
+      ],
+      "fields": {
+        "architecture": "arm64",
+        "conflicts": null,
+        "depends": "libc6 (>= 2.17), libreadline8 (>= 6.0)",
+        "package": "bc",
+        "pre-depends": null,
+        "recommends": null,
+        "replaces": null,
+        "source": null,
+        "version": "1.07.1-3"
+      },
+      "package": "bc"
+    }
+  ],
+  "parser_sha256": "c6f18880b4f347467ad949ccf25b1960c7bef141e5b48f610ae93ab22479da2a",
+  "source_chain_sha256": "d7f85c4e189c4d9f4835c436aa0ad61023d3e87dc959da5984033c34ce719750"
+}

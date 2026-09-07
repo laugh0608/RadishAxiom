@@ -1,0 +1,174 @@
+{
+  "acceptance": {
+    "accepted_scope": [
+      "archive-layout-and-metadata",
+      "archive-license-and-component-inventory",
+      "payload-byte-identity",
+      "registered-future-isolated-build-input"
+    ],
+    "decision": "accepted-for-controlled-build-input",
+    "excluded_scope": [
+      "artifact-execution",
+      "artifact-installation",
+      "binary-source-reproducibility",
+      "checker-implementation-correctness",
+      "cross-platform-equivalence",
+      "legal-compliance-for-any-specific-distribution",
+      "publisher-signature-verification"
+    ],
+    "review_date": "2026-08-30"
+  },
+  "artifact": {
+    "bytes": "3171216",
+    "component": "clippy-preview",
+    "filename": "clippy-1.97.1-aarch64-apple-darwin.tar.xz",
+    "platform": "macos-arm64",
+    "tool": "rust-toolchain",
+    "version": "1.97.1"
+  },
+  "dependency_inventory": {
+    "cargo_lock_count": "0",
+    "cargo_manifest_count": "0",
+    "component": "clippy-preview",
+    "component_manifest_count": "1",
+    "component_manifest_entries": {
+      "count": "5",
+      "jcs_sha256": "sha256:9dbe98df3a92dc82e1a3d71776b1664f542c4c6aa0fd13835681a4b1852bac90"
+    },
+    "component_manifests": [
+      {
+        "bytes": "148",
+        "path": "clippy-1.97.1-aarch64-apple-darwin/clippy-preview/manifest.in",
+        "raw_sha256": "sha256:266e3ebcb2cfa74930e774ac54d80e089f3d1ac299b085c7800114fc653502b9"
+      }
+    ],
+    "scope": "archive-contained-rust-static-metadata",
+    "status": "inventoried-not-executed"
+  },
+  "digest_domain": "radishaxiom.toolchain-payload-acceptance-record.v0.1",
+  "format": "radishaxiom-toolchain-payload-acceptance-record",
+  "format_version": "0.1",
+  "id": "clippy-1.97.1-aarch64-apple-darwin-2026-08-30",
+  "inspection": {
+    "archive": {
+      "compression": "xz",
+      "duplicate_path_validation": "passed",
+      "gid_values": [
+        "0"
+      ],
+      "gname_values": [
+        ""
+      ],
+      "link_inventory": {
+        "count": "0",
+        "jcs_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "link_target_validation": "passed",
+      "max_regular_file": {
+        "bytes": "15071424",
+        "path": "clippy-1.97.1-aarch64-apple-darwin/clippy-preview/bin/clippy-driver"
+      },
+      "member_count": "22",
+      "member_inventory": {
+        "count": "22",
+        "jcs_sha256": "sha256:b5dadfc53ccd1c5ea3eaea6d6aa95da85f55e30ead9319e237168015a68ff2fe"
+      },
+      "mode_values": [
+        "0644",
+        "0755"
+      ],
+      "mtime": {
+        "maximum": "1784041988",
+        "minimum": "1153704088",
+        "unique_count": "2"
+      },
+      "path_validation": "passed",
+      "permission_validation": "passed",
+      "special_file_validation": "passed",
+      "top_level": "clippy-1.97.1-aarch64-apple-darwin",
+      "total_regular_bytes": "16282904",
+      "type_counts": {
+        "directory": "6",
+        "file": "16",
+        "hardlink": "0",
+        "symlink": "0"
+      },
+      "uid_values": [
+        "0"
+      ],
+      "uname_values": [
+        ""
+      ]
+    },
+    "layout_assertions": [
+      {
+        "expectation": "present",
+        "path": "clippy-1.97.1-aarch64-apple-darwin/clippy-preview/bin/cargo-clippy"
+      },
+      {
+        "expectation": "present",
+        "path": "clippy-1.97.1-aarch64-apple-darwin/clippy-preview/bin/clippy-driver"
+      }
+    ],
+    "method": {
+      "path": "scripts/inspect-toolchain-tar.py",
+      "raw_sha256": "sha256:423f2d163e16364a1bb8158b6157c5dc2b153de59cd6a4ebbaf6fe06662aaa73"
+    },
+    "observation": {
+      "path": "contracts/toolchain-payload-acceptance-v0.1/observations/clippy-1.97.1-aarch64-apple-darwin.inspection.json",
+      "raw_sha256": "sha256:a47b3a2edee8350bd4a0da19eadf65db9fb553ba6d41552bfe0a98cb5b3a292b"
+    },
+    "profile": "rust-1.97.1-clippy-aarch64-apple-darwin",
+    "result": "passed"
+  },
+  "license_review": {
+    "bundled_inventory_status": "recorded-not-a-legal-conclusion",
+    "inventory_count": "2",
+    "inventory_jcs_sha256": "sha256:fdfd57325f7fadcd8fcf5bd19cea0f6937e1a4ec5e5c7841a8e2a58d4825d1b4",
+    "license_metadata_spdx": {
+      "expressions": [],
+      "jcs_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "occurrence_count": "0",
+      "unique_count": "0"
+    },
+    "main_expression": "MIT OR Apache-2.0",
+    "main_license_files": [
+      {
+        "bytes": "10848",
+        "path": "clippy-1.97.1-aarch64-apple-darwin/LICENSE-APACHE",
+        "raw_sha256": "sha256:d8b56cd45661bfc7ccf4ce5722388cab275f9dabb9e471c922cc80e36bbf9caa"
+      },
+      {
+        "bytes": "1081",
+        "path": "clippy-1.97.1-aarch64-apple-darwin/LICENSE-MIT",
+        "raw_sha256": "sha256:8d07f0c9c9966be0aaec4196d7863b56ade114e9714dbc31ebba576c0446d2fc"
+      }
+    ],
+    "reuse_spdx": {
+      "expressions": [],
+      "jcs_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "occurrence_count": "0",
+      "unique_count": "0"
+    },
+    "scope": "selected-root-license-files-and-publisher-license-metadata",
+    "status": "archive-inventory-recorded"
+  },
+  "provenance": {
+    "download_method": "https-curl-official-range-reassembly",
+    "download_url": "https://static.rust-lang.org/dist/2026-07-16/clippy-1.97.1-aarch64-apple-darwin.tar.xz",
+    "project_recomputation": {
+      "raw_sha256": "sha256:5e44c0ac5ca9b6f14a3c9031a61f583348b902f908f46e95717aef1dbd2807db",
+      "result": "matched"
+    },
+    "publisher_digest": {
+      "kind": "publisher-recorded",
+      "raw_sha256": "sha256:5e44c0ac5ca9b6f14a3c9031a61f583348b902f908f46e95717aef1dbd2807db",
+      "source": "rust-channel-1.97.1"
+    },
+    "signature": {
+      "reason": "no detached-signature input is recorded for this artifact in registry v0.1",
+      "status": "not-verified-no-signature-input"
+    }
+  },
+  "record_digest": "sha256:92c4edb8669447358ad3a393cb10e3061730d8269a806a82fbb7ed1bb0b5a8e5"
+}

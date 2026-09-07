@@ -1,6 +1,6 @@
 # ADR 0001：分支、PR 与 Ruleset 治理
 
-日期：2026-08-18
+日期：2026-08-29
 
 状态：Accepted
 
@@ -26,9 +26,9 @@ RadishAxiom 是语言、Axiom IR、验证器与 Axiom Evidence 的公共基础�
 
 ### 开发与合并拓扑
 
-普通变更以 `topic -> dev -> master -> dev` 形成闭环：
+普通变更以 `dev -> master -> dev` 形成闭环；确有隔离或评审需要时，在前面增加 `topic -> dev`：
 
-1. 主题分支默认向 `dev` 发起 PR；单人连续开发可直接进入 `dev`，但仍须执行本地验证。
+1. 串行推进的普通开发直接在 `dev` 完成，并执行风险匹配的本地验证；项目所有者明确要求、外部贡献、并行写入、风险隔离或明确评审需求才使用主题分支 PR。Agent 不自动创建 `codex/*` 分支或额外 worktree。
 2. 阶段性语义、工具链或治理基线稳定后，从 `dev` 向 `master` 发起 PR。
 3. `dev -> master` 优先使用 merge commit，以保留阶段边界和可快进回流的祖先关系。
 4. 仓库允许 rebase merge，但使用后必须接受提交 SHA 改变，并以普通 merge 把 `master` 回流到 `dev`。
@@ -57,7 +57,7 @@ git rev-list --left-right --count origin/master...dev
 
 ### CI 与 required context
 
-远程 Ruleset 只绑定稳定 context `Candidate Quality`。当前它聚合无第三方依赖的 `Repo Hygiene`；实现技术栈冻结后，编译、测试、静态分析、语义兼容、Evidence 独立检查和供应链检查作为组件加入聚合 job，而不频繁更换远程 required context。
+远程 Ruleset 只绑定稳定 context `Candidate Quality`。`Repo Hygiene`、编译、测试、静态分析、语义兼容、Evidence 独立检查和供应链检查随真实实现作为组件加入聚合 job，而不频繁更换远程 required context。现有组件和执行契约以[仓库治理](../governance/repository-governance.md#ci-契约)为准，验收进度以[当前状态](../status/current.md)为准。
 
 Conventional Commits 由仓库检查器对 PR commit range 执行，不在 Ruleset 中添加提交信息正则，避免与 GitHub 自动生成的 merge commit 冲突。
 

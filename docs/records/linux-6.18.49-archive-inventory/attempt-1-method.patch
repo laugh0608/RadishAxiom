@@ -1,0 +1,47 @@
+--- inspect-source-tar-v1.py
++++ inspect-attempt-1.py
+@@ -211,8 +211,6 @@
+                 raise ValueError("unaligned tar padding")
+             break
+         member = tarfile.TarInfo.frombuf(header, "utf-8", "strict")
+-        if header[257:265] != b"ustar\x0000":
+-            raise ValueError("source profile requires POSIX USTAR/PAX headers")
+         if member.size < 0:
+             raise ValueError("negative member size")
+         if member.type in {tarfile.XHDTYPE, tarfile.XGLTYPE}:
+@@ -238,24 +236,14 @@
+                 tarfile.SYMTYPE: "symlink", tarfile.LNKTYPE: "hardlink"}.get(member.type)
+         if kind is None:
+             raise ValueError(f"unsupported tar member type: {member.type!r}")
+-        # TarInfo normalizes directory suffixes. Validate the physical spelling
+-        # first so repeated trailing slashes do not disappear before rejection.
+-        raw_name = header[:100].split(b"\0", 1)[0].decode("utf-8")
+-        prefix = header[345:500].split(b"\0", 1)[0].decode("utf-8")
+-        if prefix:
+-            raw_name = prefix + "/" + raw_name
+-        name = local_pax.get("path", raw_name)
++        name = local_pax.get("path", member.name)
+         if kind == "directory":
+             name = name.removesuffix("/")
+         name = path_name(name, top)
+         if name in names:
+             raise ValueError(f"duplicate archive path: {name}")
+         names.add(name)
+-        # git archive preserves group-write bits (tar.umask defaults to 0002).
+-        # Record these source modes; this tool never applies them to disk.
+-        allowed_modes = ({0o777} if kind == "symlink" else
+-                         {0o755, 0o775} if kind == "directory" else
+-                         {0o644, 0o664, 0o755, 0o775})
++        allowed_modes = {0o777} if kind == "symlink" else {0o644, 0o755}
+         if member.mode not in allowed_modes or member.uid != 0 or member.gid != 0:
+             raise ValueError(f"unexpected source ownership or permissions: {name}")
+         if kind != "file" and member.size != 0:
+@@ -264,7 +252,7 @@
+             raise ValueError("linkpath on a non-link")
+         row = {"path": name, "kind": kind, "bytes": member.size,
+                "mode": format(member.mode, "04o"), "uid": member.uid, "gid": member.gid,
+-               "uname": member.uname, "gname": member.gname, "mtime": member.mtime}
++               "mtime": member.mtime}
+         if kind in {"symlink", "hardlink"}:
+             row["target"] = local_pax.get("linkpath", member.linkname)
+         elif member.linkname:

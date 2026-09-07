@@ -1,0 +1,128 @@
+{
+  "$defs": {
+    "digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "option": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "none"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "some"
+            },
+            "value": {
+              "$ref": "#/$defs/value"
+            }
+          },
+          "required": [
+            "kind",
+            "value"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "row": {
+      "additionalProperties": {
+        "$ref": "#/$defs/value"
+      },
+      "minProperties": 1,
+      "type": "object"
+    },
+    "semantics": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "const": "keyed-finite-table-semantics"
+        },
+        "sha256": {
+          "const": "6b18d65eefa439956db8eebe1f4ce90e08b4def4abf7c718c2605e7528598d0d"
+        }
+      },
+      "required": [
+        "name",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "value": {
+      "oneOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "$ref": "#/$defs/option"
+        }
+      ]
+    }
+  },
+  "$id": "https://radishaxiom.dev/schema/pipeline-artifacts/axiom-host-data/0.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "axiom-host-data"
+    },
+    "format_version": {
+      "const": "0.1"
+    },
+    "ir_document_digest": {
+      "$ref": "#/$defs/digest"
+    },
+    "role": {
+      "enum": [
+        "input",
+        "output"
+      ]
+    },
+    "tables": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "rows": {
+            "items": {
+              "$ref": "#/$defs/row"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "name",
+          "rows"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "format",
+    "format_version",
+    "ir_document_digest",
+    "role",
+    "tables"
+  ],
+  "title": "Axiom host data v0.1",
+  "type": "object"
+}

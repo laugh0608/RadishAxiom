@@ -48,12 +48,16 @@ jobs:
     if: always()
     needs:
       - repo-hygiene
+      - rust-quality
+      - rust-tests
 
     steps:
       - name: Summarize candidate quality
         shell: bash
         env:
           REPO_HYGIENE_RESULT: ${{ needs.repo-hygiene.result }}
+          RUST_QUALITY_RESULT: ${{ needs.rust-quality.result }}
+          RUST_TESTS_RESULT: ${{ needs.rust-tests.result }}
         run: |
           {
             echo "## Candidate Quality"
@@ -61,11 +65,55 @@ jobs:
             echo "| Check | Result |"
             echo "| --- | --- |"
             echo "| Repo Hygiene | ${REPO_HYGIENE_RESULT} |"
+            echo "| Rust Quality (macOS arm64) | ${RUST_QUALITY_RESULT} |"
+            echo "| Rust Tests (macOS arm64) | ${RUST_TESTS_RESULT} |"
           } >> "${GITHUB_STEP_SUMMARY}"
 
-          if [[ "${REPO_HYGIENE_RESULT}" != "success" ]]; then
-            echo "Repository hygiene did not succeed." >&2
+          if [[ "${REPO_HYGIENE_RESULT}" != "success" ||
+                "${RUST_QUALITY_RESULT}" != "success" ||
+                "${RUST_TESTS_RESULT}" != "success" ]]; then
+            echo "One or more candidate quality components did not succeed." >&2
             exit 1
           fi
 
           echo "All candidate quality components succeeded."
+
+  rust-quality:
+    name: Rust Quality (macOS arm64)
+    runs-on: macos-26
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up accepted Rust toolchain
+        uses: ./.github/actions/setup-rust
+
+      - name: Check Rust formatting
+        shell: bash
+        run: cargo +1.97.1-aarch64-apple-darwin fmt --all --check
+
+      - name: Check Rust with Clippy
+        shell: bash
+        run: cargo +1.97.1-aarch64-apple-darwin clippy --workspace --all-targets --all-features --locked --offline -- -D warnings
+
+  rust-tests:
+    name: Rust Tests (macOS arm64)
+    runs-on: macos-26
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up accepted Rust toolchain
+        uses: ./.github/actions/setup-rust
+
+      - name: Test Rust workspace including Darwin store
+        shell: bash
+        run: cargo +1.97.1-aarch64-apple-darwin test --workspace --all-targets --locked --offline

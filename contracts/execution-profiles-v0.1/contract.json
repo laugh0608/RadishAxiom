@@ -1,0 +1,255 @@
+{
+  "contract_version": "0.1",
+  "files": [
+    {
+      "byte_length": "14944",
+      "path": "fixtures/negative/attestation-upgraded.invalid.jcs",
+      "sha256": "sha256:1d47db70152380d78c3f57a82aad96e6d5cd72d30b5198f98916af4e7f707e0e"
+    },
+    {
+      "byte_length": "14976",
+      "path": "fixtures/negative/certificate-profile-unaccepted.invalid.jcs",
+      "sha256": "sha256:57032bb139c34c81161b9d66bfd4cd40afc1ebe1b4a1190f5b9634324912c0fb"
+    },
+    {
+      "byte_length": "14952",
+      "path": "fixtures/negative/checker-counter-order.invalid.jcs",
+      "sha256": "sha256:ba80215f616093219ed664df3d720ae7cabf0463fcf26c867dbb91487d1bbb7d"
+    },
+    {
+      "byte_length": "14862",
+      "path": "fixtures/negative/checker-limit-missing.invalid.jcs",
+      "sha256": "sha256:d0deb66debe927d85341afc8918c9b11de53a4aba8a97a2aec09bba026798a8b"
+    },
+    {
+      "byte_length": "14950",
+      "path": "fixtures/negative/checker-process-as-result.invalid.jcs",
+      "sha256": "sha256:cb5dd9318c1e0b71f2c80bcbfe8ef48a3f0223f847ba20630bbcd5c637b4e589"
+    },
+    {
+      "byte_length": "14927",
+      "path": "fixtures/negative/coverage-drift.invalid.jcs",
+      "sha256": "sha256:1c5a1bbbd0b5952833cab4881ed8035a9a92bce2c5419e3489fc5c5fb57f7e66"
+    },
+    {
+      "byte_length": "14952",
+      "path": "fixtures/negative/cvc5-environment-inheritance.invalid.jcs",
+      "sha256": "sha256:9eec332351b4fe7e34a9e573690eb761db70eb51482608b6d80b500f90d8cb3e"
+    },
+    {
+      "byte_length": "14906",
+      "path": "fixtures/negative/cvc5-missing-strict-parsing.invalid.jcs",
+      "sha256": "sha256:8f03141fea5180496c14c1d4f6d95be804b74cf8175742f44a1cb04c6763446c"
+    },
+    {
+      "byte_length": "14992",
+      "path": "fixtures/negative/cvc5-path-input.invalid.jcs",
+      "sha256": "sha256:14124f959aac632b9f02fe50f98d353f36984eaca80b52f5268f1e8054dc6be1"
+    },
+    {
+      "byte_length": "14997",
+      "path": "fixtures/negative/cvc5-random-seed.invalid.jcs",
+      "sha256": "sha256:9e1d2e179640d6e1acfdd78e9551581259b4a72a92ed5ef8bad240675b36aac4"
+    },
+    {
+      "byte_length": "14989",
+      "path": "fixtures/negative/cvc5-unknown-option.invalid.jcs",
+      "sha256": "sha256:0697d5dc585135d48113dad5f6e1a1b2e1b5738f409d3d786f21380a8950dd54"
+    },
+    {
+      "byte_length": "15042",
+      "path": "fixtures/negative/duplicate-limit.invalid.jcs",
+      "sha256": "sha256:32b8c711506eb9c09a5145363d4eea738eaf7a4a8a9a7bdfff5d5488caff9ed1"
+    },
+    {
+      "byte_length": "14997",
+      "path": "fixtures/negative/duplicate-member.invalid.jcs",
+      "sha256": "sha256:9d30fb5fc2e303c477058d28fdc8e6d01114426e00f2b8d5097c4014bdabb1e0"
+    },
+    {
+      "byte_length": "16995",
+      "path": "fixtures/negative/duplicate-profile.invalid.jcs",
+      "sha256": "sha256:0e89077270f29d52e09b151388282fe643d8ead6c286d57481ac2e28c1d7b4d1"
+    },
+    {
+      "byte_length": "2978",
+      "path": "fixtures/negative/expected.json",
+      "sha256": "sha256:4fd8ccec61cb0e2c0a70cd52b24009a00c4fd20bde0563522dd594619e8d14f9"
+    },
+    {
+      "byte_length": "14694",
+      "path": "fixtures/negative/missing-limit-set.invalid.jcs",
+      "sha256": "sha256:c11ee82df637720276629fbac439bd5287b1cbdc767052fbaa404020a54ee5fa"
+    },
+    {
+      "byte_length": "14995",
+      "path": "fixtures/negative/node-environment-inheritance.invalid.jcs",
+      "sha256": "sha256:4b2b07ed7f94bdafc9509bb8943014fc4fbb1310d5233524244bd6a3cb14e38b"
+    },
+    {
+      "byte_length": "14934",
+      "path": "fixtures/negative/node-network-capability.invalid.jcs",
+      "sha256": "sha256:755846cfd86d164746051081a2b4f91a041309e1e1449ea8af5d8443e785d554"
+    },
+    {
+      "byte_length": "14919",
+      "path": "fixtures/negative/node-number-codec.invalid.jcs",
+      "sha256": "sha256:376788f6337e8b80366c0e3564b5e6b9cd1ce045899e038a5c1fc66a924891bb"
+    },
+    {
+      "byte_length": "14860",
+      "path": "fixtures/negative/node-output-limit-missing.invalid.jcs",
+      "sha256": "sha256:31b22ddeac549e95944cd7c46089577c8abd2c1a23548700a64b7a03aab99df8"
+    },
+    {
+      "byte_length": "14991",
+      "path": "fixtures/negative/node-unknown-option.invalid.jcs",
+      "sha256": "sha256:c808f8faee6fcf706b5953f3524b3df2314bd84e291d4d785a03c6dba53b170a"
+    },
+    {
+      "byte_length": "14953",
+      "path": "fixtures/negative/noncanonical-whitespace.invalid.jcs",
+      "sha256": "sha256:ca90c8f20354b36d73b3b329927cf103f1812a74fa21f13a07dc31aef1299312"
+    },
+    {
+      "byte_length": "14952",
+      "path": "fixtures/negative/source-digest-drift.invalid.jcs",
+      "sha256": "sha256:e8ae7de56a25381e7bf2f1705a438dda6277af295f9319c8a32d0a7cc218d620"
+    },
+    {
+      "byte_length": "14960",
+      "path": "fixtures/negative/unknown-format.invalid.jcs",
+      "sha256": "sha256:21a4bee6b0654c9e9d7557f613fc1c82d46cb0309b1ea56bc460b9232d3649ec"
+    },
+    {
+      "byte_length": "14977",
+      "path": "fixtures/negative/unknown-member.invalid.jcs",
+      "sha256": "sha256:f8c07b88fa2ecfd5ad038d7a2be7eebda8d657bd5e1364dea7b3df349410d21c"
+    },
+    {
+      "byte_length": "14952",
+      "path": "fixtures/negative/unknown-version.invalid.jcs",
+      "sha256": "sha256:826eb79a02ce4cf115ec5c5a0f388ed1ade6d0fb569baa88faf1d0806a1357a6"
+    },
+    {
+      "byte_length": "14952",
+      "path": "fixtures/negative/unsorted-profiles.invalid.jcs",
+      "sha256": "sha256:c9eb45fee92e3c2d1b98ba2478dde596608abbfd1cad7cce02aebf36047afd2f"
+    },
+    {
+      "byte_length": "14946",
+      "path": "fixtures/negative/zero-limit.invalid.jcs",
+      "sha256": "sha256:9eec480e470cf3aca25081a872672a6c7c7e8773fa6c34375ae019716e9a2bf4"
+    },
+    {
+      "byte_length": "702",
+      "path": "fixtures/positive/certificate-capabilities.jcs",
+      "sha256": "sha256:4169df4b4f68ea7c01b16616d5d7b8c9ac700ea9bfad2befa9e17eafbec2a50b"
+    },
+    {
+      "byte_length": "718",
+      "path": "fixtures/positive/checker-request-limits.jcs",
+      "sha256": "sha256:1a03d3217080eef32e3d67b67f32b0b2fff8d873ec43e6d5b5d8fbfad318e7e0"
+    },
+    {
+      "byte_length": "2042",
+      "path": "fixtures/positive/cvc5-1.3.4-qf-uflia-v0.1.jcs",
+      "sha256": "sha256:68f3b1fdbc987583b0b82b6b7cddb6eb235bb78aed5f537811851af5459742fe"
+    },
+    {
+      "byte_length": "3315",
+      "path": "fixtures/positive/keyed-finite-table-independent-check-v0.1.jcs",
+      "sha256": "sha256:0ab85f99f7bc87e7972974edfa33207f32ce0c5120974b4eb3dcc00ed2cd6c8f"
+    },
+    {
+      "byte_length": "2479",
+      "path": "fixtures/positive/node-24-esm-invocation-v0.1.jcs",
+      "sha256": "sha256:0325b34ad7a97e5dad337f1732d524fde7c0686166d3047de4abd214fbb0332f"
+    },
+    {
+      "byte_length": "14952",
+      "path": "manifest.jcs",
+      "sha256": "sha256:cf331d08d5c97c8edfd283531d22a6d5be4d16d77ee1283cbd82279b5533f054"
+    },
+    {
+      "byte_length": "25773",
+      "path": "schemas/execution-profile-set.schema.json",
+      "sha256": "sha256:3c1ad3b1575e8ecb39630f8649c55eee9d388ebe78fc0faa16724f00a50f312f"
+    }
+  ],
+  "format": "radishaxiom-execution-profile-contract",
+  "generator_sources": [
+    {
+      "path": "scripts/generate-execution-profile-contracts.py",
+      "sha256": "sha256:c03fd8e43f92df8a541a57588c1f223e079ed4e232e3195859fa21f359731bb6"
+    },
+    {
+      "path": "scripts/execution_profile_contracts/__init__.py",
+      "sha256": "sha256:273dc45017c597c37251aa972d0bfe6fde3758457f265b13cc36ee3f17d0ed3b"
+    },
+    {
+      "path": "scripts/execution_profile_contracts/common.py",
+      "sha256": "sha256:df92afd4e0b81c34ab4f8d2995f230fa035175afca8e6659f0b3864d1a437e00"
+    },
+    {
+      "path": "scripts/execution_profile_contracts/model.py",
+      "sha256": "sha256:87f4338ec9dc5f8fffd83304d4b06b05b8e33d7360ffdc13ef3246233499c065"
+    },
+    {
+      "path": "scripts/execution_profile_contracts/schema.py",
+      "sha256": "sha256:1bacdebe02ec580370627b43dd57608e8d601a24d41c618a192fbd9b6ec27350"
+    },
+    {
+      "path": "scripts/execution_profile_contracts/validator.py",
+      "sha256": "sha256:95cf219ca9f41ee219606d4a822fd9ce1240dbf4a2587cea699fc80aca6ea486"
+    },
+    {
+      "path": "scripts/execution_profile_contracts/generator.py",
+      "sha256": "sha256:b7714ad13ce3577c113f30ef9ae0ba660984e82e054591c9bcd8d76ccf8c3e49"
+    }
+  ],
+  "manifest": {
+    "content_digest": "sha256:cf331d08d5c97c8edfd283531d22a6d5be4d16d77ee1283cbd82279b5533f054",
+    "document_digest": "sha256:c34c783aecc8dbfede16d6d26f6499600ecebcd979bc83fde1c25e41a2255fbe",
+    "path": "manifest.jcs"
+  },
+  "negative_fixture_count": "27",
+  "positive_fixture_count": "5",
+  "sources": [
+    {
+      "name": "adr-0005",
+      "path": "docs/adr/0005-first-verification-backend.md",
+      "sha256": "sha256:f243478dced0d1a987ebdc32cf656645b67d71f5f962520f549ba273954cfa71"
+    },
+    {
+      "name": "adr-0006",
+      "path": "docs/adr/0006-first-target-runtime-and-execution-path.md",
+      "sha256": "sha256:c49b8ac5bd9861291d50f08338469ea04aaa0f156a3b290ff227f8b6052ff9ed"
+    },
+    {
+      "name": "adr-0008",
+      "path": "docs/adr/0008-independent-checker-isolation-and-artifact-exchange.md",
+      "sha256": "sha256:d752664635ecbc770a3d07d00fa8035cc1dee52abc239396d70687bdd6b60f1a"
+    },
+    {
+      "name": "implementation-readiness-v0.1",
+      "path": "contracts/implementation-readiness-v0.1/manifest.jcs",
+      "sha256": "sha256:13f6928d6ac76ee878a2e0782a108d2c25f6bb19798dc54d38563e4cf85e5651"
+    },
+    {
+      "name": "independent-check-v0.1",
+      "path": "contracts/independent-check-v0.1/contract.json",
+      "sha256": "sha256:8cd14c2078b6f930150ecfdccaa8dad99c7b926cdf173190d8229d79ac53accf"
+    },
+    {
+      "name": "pipeline-artifacts-v0.1",
+      "path": "contracts/pipeline-artifacts-v0.1/contract.json",
+      "sha256": "sha256:38089967d1cf07fc2f35d8c461cd57d1e0b927c1c88b9ab2172d24697ba11435"
+    },
+    {
+      "name": "toolchain-adapters-v0.1",
+      "path": "contracts/toolchain-adapters-v0.1/registry.json",
+      "sha256": "sha256:b515e255501b61c7fa997509b5ecd31718d284a82ea176736f58199290a9d09a"
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "acceptance": {
+    "accepted_scope": [
+      "archive-layout-and-metadata",
+      "archive-license-and-component-inventory",
+      "payload-byte-identity",
+      "registered-future-isolated-build-input"
+    ],
+    "decision": "accepted-for-controlled-build-input",
+    "excluded_scope": [
+      "artifact-execution",
+      "artifact-installation",
+      "binary-source-reproducibility",
+      "checker-implementation-correctness",
+      "cross-platform-equivalence",
+      "legal-compliance-for-any-specific-distribution",
+      "publisher-signature-verification"
+    ],
+    "review_date": "2026-08-30"
+  },
+  "artifact": {
+    "bytes": "1502516",
+    "component": "rustfmt-preview",
+    "filename": "rustfmt-1.97.1-aarch64-apple-darwin.tar.xz",
+    "platform": "macos-arm64",
+    "tool": "rust-toolchain",
+    "version": "1.97.1"
+  },
+  "dependency_inventory": {
+    "cargo_lock_count": "0",
+    "cargo_manifest_count": "0",
+    "component": "rustfmt-preview",
+    "component_manifest_count": "1",
+    "component_manifest_entries": {
+      "count": "5",
+      "jcs_sha256": "sha256:2b7df6f6c58ca78cb1a516a3c1b88d5ebfd3fdd84f29ad32965cac771bdc87c3"
+    },
+    "component_manifests": [
+      {
+        "bytes": "142",
+        "path": "rustfmt-1.97.1-aarch64-apple-darwin/rustfmt-preview/manifest.in",
+        "raw_sha256": "sha256:f131ba42a6667b5237b9fdca791e2da1fecd7b5cabf522b50efe5113aaaa60d7"
+      }
+    ],
+    "scope": "archive-contained-rust-static-metadata",
+    "status": "inventoried-not-executed"
+  },
+  "digest_domain": "radishaxiom.toolchain-payload-acceptance-record.v0.1",
+  "format": "radishaxiom-toolchain-payload-acceptance-record",
+  "format_version": "0.1",
+  "id": "rustfmt-1.97.1-aarch64-apple-darwin-2026-08-30",
+  "inspection": {
+    "archive": {
+      "compression": "xz",
+      "duplicate_path_validation": "passed",
+      "gid_values": [
+        "0"
+      ],
+      "gname_values": [
+        ""
+      ],
+      "link_inventory": {
+        "count": "0",
+        "jcs_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "link_target_validation": "passed",
+      "max_regular_file": {
+        "bytes": "4452504",
+        "path": "rustfmt-1.97.1-aarch64-apple-darwin/rustfmt-preview/bin/rustfmt"
+      },
+      "member_count": "22",
+      "member_inventory": {
+        "count": "22",
+        "jcs_sha256": "sha256:b375fbbd1ca7685b25daff5bad5523e2179b70e10e9e0f4cbcf8b09430736606"
+      },
+      "mode_values": [
+        "0644",
+        "0755"
+      ],
+      "mtime": {
+        "maximum": "1784041988",
+        "minimum": "1153704088",
+        "unique_count": "2"
+      },
+      "path_validation": "passed",
+      "permission_validation": "passed",
+      "special_file_validation": "passed",
+      "top_level": "rustfmt-1.97.1-aarch64-apple-darwin",
+      "total_regular_bytes": "5795401",
+      "type_counts": {
+        "directory": "6",
+        "file": "16",
+        "hardlink": "0",
+        "symlink": "0"
+      },
+      "uid_values": [
+        "0"
+      ],
+      "uname_values": [
+        ""
+      ]
+    },
+    "layout_assertions": [
+      {
+        "expectation": "present",
+        "path": "rustfmt-1.97.1-aarch64-apple-darwin/rustfmt-preview/bin/cargo-fmt"
+      },
+      {
+        "expectation": "present",
+        "path": "rustfmt-1.97.1-aarch64-apple-darwin/rustfmt-preview/bin/rustfmt"
+      }
+    ],
+    "method": {
+      "path": "scripts/inspect-toolchain-tar.py",
+      "raw_sha256": "sha256:423f2d163e16364a1bb8158b6157c5dc2b153de59cd6a4ebbaf6fe06662aaa73"
+    },
+    "observation": {
+      "path": "contracts/toolchain-payload-acceptance-v0.1/observations/rustfmt-1.97.1-aarch64-apple-darwin.inspection.json",
+      "raw_sha256": "sha256:ba73cdb510e9ece6a5f0f1d16fd281c1f1b61f75b27e7b88e496cc3d5cf345c4"
+    },
+    "profile": "rust-1.97.1-rustfmt-aarch64-apple-darwin",
+    "result": "passed"
+  },
+  "license_review": {
+    "bundled_inventory_status": "recorded-not-a-legal-conclusion",
+    "inventory_count": "2",
+    "inventory_jcs_sha256": "sha256:838a379e1c9b0ac0d0a756c687321e70218bb41a21c9cca923d879609ae60abe",
+    "license_metadata_spdx": {
+      "expressions": [],
+      "jcs_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "occurrence_count": "0",
+      "unique_count": "0"
+    },
+    "main_expression": "MIT OR Apache-2.0",
+    "main_license_files": [
+      {
+        "bytes": "10852",
+        "path": "rustfmt-1.97.1-aarch64-apple-darwin/LICENSE-APACHE",
+        "raw_sha256": "sha256:092c8e82c47fb859d7385253c1b04052dbd65a8bcf0bbd8b6f7dba58a9e8753d"
+      },
+      {
+        "bytes": "1076",
+        "path": "rustfmt-1.97.1-aarch64-apple-darwin/LICENSE-MIT",
+        "raw_sha256": "sha256:ae0f1f791e3b4faccf981c0b530199235a8b8a021c7ef0c3c85c6c676ea4d27f"
+      }
+    ],
+    "reuse_spdx": {
+      "expressions": [],
+      "jcs_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "occurrence_count": "0",
+      "unique_count": "0"
+    },
+    "scope": "selected-root-license-files-and-publisher-license-metadata",
+    "status": "archive-inventory-recorded"
+  },
+  "provenance": {
+    "download_method": "https-curl-official-range-reassembly",
+    "download_url": "https://static.rust-lang.org/dist/2026-07-16/rustfmt-1.97.1-aarch64-apple-darwin.tar.xz",
+    "project_recomputation": {
+      "raw_sha256": "sha256:358bbba5d0c7c37116ec15f67cfd3ac4da5d3c319cddb49389c26d3a0c65747a",
+      "result": "matched"
+    },
+    "publisher_digest": {
+      "kind": "publisher-recorded",
+      "raw_sha256": "sha256:358bbba5d0c7c37116ec15f67cfd3ac4da5d3c319cddb49389c26d3a0c65747a",
+      "source": "rust-channel-1.97.1"
+    },
+    "signature": {
+      "reason": "no detached-signature input is recorded for this artifact in registry v0.1",
+      "status": "not-verified-no-signature-input"
+    }
+  },
+  "record_digest": "sha256:0ae1ae6ab5f3b65b668e47e34b8def69adeb7cec7c7fc669ab7973a0ba1cdb3d"
+}

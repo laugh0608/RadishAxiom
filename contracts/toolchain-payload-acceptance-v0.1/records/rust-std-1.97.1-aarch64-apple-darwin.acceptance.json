@@ -1,0 +1,170 @@
+{
+  "acceptance": {
+    "accepted_scope": [
+      "archive-layout-and-metadata",
+      "archive-license-and-component-inventory",
+      "payload-byte-identity",
+      "registered-future-isolated-build-input"
+    ],
+    "decision": "accepted-for-controlled-build-input",
+    "excluded_scope": [
+      "artifact-execution",
+      "artifact-installation",
+      "binary-source-reproducibility",
+      "checker-implementation-correctness",
+      "cross-platform-equivalence",
+      "legal-compliance-for-any-specific-distribution",
+      "publisher-signature-verification"
+    ],
+    "review_date": "2026-08-30"
+  },
+  "artifact": {
+    "bytes": "29286636",
+    "component": "rust-std",
+    "filename": "rust-std-1.97.1-aarch64-apple-darwin.tar.xz",
+    "platform": "macos-arm64",
+    "tool": "rust-toolchain",
+    "version": "1.97.1"
+  },
+  "dependency_inventory": {
+    "cargo_lock_count": "0",
+    "cargo_manifest_count": "0",
+    "component": "rust-std-aarch64-apple-darwin",
+    "component_manifest_count": "1",
+    "component_manifest_entries": {
+      "count": "59",
+      "jcs_sha256": "sha256:dea1a7b421446dcf433b59137294bdac531198fd20c65ba9f55f083b5ff56a9d"
+    },
+    "component_manifests": [
+      {
+        "bytes": "4624",
+        "path": "rust-std-1.97.1-aarch64-apple-darwin/rust-std-aarch64-apple-darwin/manifest.in",
+        "raw_sha256": "sha256:9d285900106b221fc2cecb3bdb38a5308ce86d9b7fce78b944e89038f02fdc4e"
+      }
+    ],
+    "scope": "archive-contained-rust-static-metadata",
+    "status": "inventoried-not-executed"
+  },
+  "digest_domain": "radishaxiom.toolchain-payload-acceptance-record.v0.1",
+  "format": "radishaxiom-toolchain-payload-acceptance-record",
+  "format_version": "0.1",
+  "id": "rust-std-1.97.1-aarch64-apple-darwin-2026-08-30",
+  "inspection": {
+    "archive": {
+      "compression": "xz",
+      "duplicate_path_validation": "passed",
+      "gid_values": [
+        "0"
+      ],
+      "gname_values": [
+        ""
+      ],
+      "link_inventory": {
+        "count": "0",
+        "jcs_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "link_target_validation": "passed",
+      "max_regular_file": {
+        "bytes": "62154696",
+        "path": "rust-std-1.97.1-aarch64-apple-darwin/rust-std-aarch64-apple-darwin/lib/rustlib/aarch64-apple-darwin/lib/libcore-df38416008f914c9.rmeta"
+      },
+      "member_count": "78",
+      "member_inventory": {
+        "count": "78",
+        "jcs_sha256": "sha256:36fc82c724ae07a134e12a0df9b5edb3e3af9a213443fcfa554413429df7c54d"
+      },
+      "mode_values": [
+        "0644",
+        "0755"
+      ],
+      "mtime": {
+        "maximum": "1784041988",
+        "minimum": "1153704088",
+        "unique_count": "2"
+      },
+      "path_validation": "passed",
+      "permission_validation": "passed",
+      "special_file_validation": "passed",
+      "top_level": "rust-std-1.97.1-aarch64-apple-darwin",
+      "total_regular_bytes": "143434831",
+      "type_counts": {
+        "directory": "7",
+        "file": "71",
+        "hardlink": "0",
+        "symlink": "0"
+      },
+      "uid_values": [
+        "0"
+      ],
+      "uname_values": [
+        ""
+      ]
+    },
+    "layout_assertions": [
+      {
+        "expectation": "present",
+        "path": "rust-std-1.97.1-aarch64-apple-darwin/rust-std-aarch64-apple-darwin/lib/rustlib/aarch64-apple-darwin/lib"
+      }
+    ],
+    "method": {
+      "path": "scripts/inspect-toolchain-tar.py",
+      "raw_sha256": "sha256:423f2d163e16364a1bb8158b6157c5dc2b153de59cd6a4ebbaf6fe06662aaa73"
+    },
+    "observation": {
+      "path": "contracts/toolchain-payload-acceptance-v0.1/observations/rust-std-1.97.1-aarch64-apple-darwin.inspection.json",
+      "raw_sha256": "sha256:d27b110e591c6614446925481de8552e4da9abc866c2b1b84daafa6563723ac6"
+    },
+    "profile": "rust-1.97.1-rust-std-aarch64-apple-darwin",
+    "result": "passed"
+  },
+  "license_review": {
+    "bundled_inventory_status": "recorded-not-a-legal-conclusion",
+    "inventory_count": "3",
+    "inventory_jcs_sha256": "sha256:1adeae8c6932213779cdccdd3c0fbf99e16c2e793b28d02952affce0d3c5c182",
+    "license_metadata_spdx": {
+      "expressions": [],
+      "jcs_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "occurrence_count": "0",
+      "unique_count": "0"
+    },
+    "main_expression": "MIT OR Apache-2.0",
+    "main_license_files": [
+      {
+        "bytes": "9723",
+        "path": "rust-std-1.97.1-aarch64-apple-darwin/LICENSE-APACHE",
+        "raw_sha256": "sha256:62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+      },
+      {
+        "bytes": "1068",
+        "path": "rust-std-1.97.1-aarch64-apple-darwin/LICENSE-MIT",
+        "raw_sha256": "sha256:b71bd43a069ca0641a9ecfe585ca7b3c53b5cc1608f8b68321168698e28b5ea1"
+      }
+    ],
+    "reuse_spdx": {
+      "expressions": [],
+      "jcs_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "occurrence_count": "0",
+      "unique_count": "0"
+    },
+    "scope": "selected-root-license-files-and-publisher-license-metadata",
+    "status": "archive-inventory-recorded"
+  },
+  "provenance": {
+    "download_method": "https-curl-official-range-reassembly",
+    "download_url": "https://static.rust-lang.org/dist/2026-07-16/rust-std-1.97.1-aarch64-apple-darwin.tar.xz",
+    "project_recomputation": {
+      "raw_sha256": "sha256:a4895f5c6995e83cab8687e46b14324592398049def71ce75ca308c981cf200d",
+      "result": "matched"
+    },
+    "publisher_digest": {
+      "kind": "publisher-recorded",
+      "raw_sha256": "sha256:a4895f5c6995e83cab8687e46b14324592398049def71ce75ca308c981cf200d",
+      "source": "rust-channel-1.97.1"
+    },
+    "signature": {
+      "reason": "no detached-signature input is recorded for this artifact in registry v0.1",
+      "status": "not-verified-no-signature-input"
+    }
+  },
+  "record_digest": "sha256:029ba2d9c10119bb71ea873b4d7a9f570fed3b4a524fb5990a9864c77da36364"
+}

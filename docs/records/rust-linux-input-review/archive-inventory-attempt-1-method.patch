@@ -1,0 +1,5 @@
+--- a/inspect-archives.py
++++ b/inspect-archives.py
+@@ -29 +29 @@
+-          "xz_memory": 256 * 1024**2, "path": 4096}
++          "xz_memory": 128 * 1024**2, "path": 4096}

@@ -1,0 +1,110 @@
+[
+  {
+    "code": "certificate-boundary",
+    "path": "fixtures/negative/attestation-upgraded.invalid.jcs"
+  },
+  {
+    "code": "certificate-profile-unaccepted",
+    "path": "fixtures/negative/certificate-profile-unaccepted.invalid.jcs"
+  },
+  {
+    "code": "checker-counter-order",
+    "path": "fixtures/negative/checker-counter-order.invalid.jcs"
+  },
+  {
+    "code": "checker-limit-set-mismatch",
+    "path": "fixtures/negative/checker-limit-missing.invalid.jcs"
+  },
+  {
+    "code": "checker-result-boundary",
+    "path": "fixtures/negative/checker-process-as-result.invalid.jcs"
+  },
+  {
+    "code": "coverage-mismatch",
+    "path": "fixtures/negative/coverage-drift.invalid.jcs"
+  },
+  {
+    "code": "environment-inheritance",
+    "path": "fixtures/negative/cvc5-environment-inheritance.invalid.jcs"
+  },
+  {
+    "code": "required-cvc5-option-missing",
+    "path": "fixtures/negative/cvc5-missing-strict-parsing.invalid.jcs"
+  },
+  {
+    "code": "forbidden-cvc5-path-input",
+    "path": "fixtures/negative/cvc5-path-input.invalid.jcs"
+  },
+  {
+    "code": "forbidden-cvc5-random-seed",
+    "path": "fixtures/negative/cvc5-random-seed.invalid.jcs"
+  },
+  {
+    "code": "cvc5-options-mismatch",
+    "path": "fixtures/negative/cvc5-unknown-option.invalid.jcs"
+  },
+  {
+    "code": "duplicate-limit",
+    "path": "fixtures/negative/duplicate-limit.invalid.jcs"
+  },
+  {
+    "code": "duplicate-member",
+    "path": "fixtures/negative/duplicate-member.invalid.jcs"
+  },
+  {
+    "code": "duplicate-entry",
+    "path": "fixtures/negative/duplicate-profile.invalid.jcs"
+  },
+  {
+    "code": "limit-set-reference",
+    "path": "fixtures/negative/missing-limit-set.invalid.jcs"
+  },
+  {
+    "code": "environment-inheritance",
+    "path": "fixtures/negative/node-environment-inheritance.invalid.jcs"
+  },
+  {
+    "code": "node-capability-mismatch",
+    "path": "fixtures/negative/node-network-capability.invalid.jcs"
+  },
+  {
+    "code": "node-codec-mismatch",
+    "path": "fixtures/negative/node-number-codec.invalid.jcs"
+  },
+  {
+    "code": "limit-set-definition-mismatch",
+    "path": "fixtures/negative/node-output-limit-missing.invalid.jcs"
+  },
+  {
+    "code": "node-options-mismatch",
+    "path": "fixtures/negative/node-unknown-option.invalid.jcs"
+  },
+  {
+    "code": "noncanonical-json",
+    "path": "fixtures/negative/noncanonical-whitespace.invalid.jcs"
+  },
+  {
+    "code": "source-digest-drift",
+    "path": "fixtures/negative/source-digest-drift.invalid.jcs"
+  },
+  {
+    "code": "unknown-format",
+    "path": "fixtures/negative/unknown-format.invalid.jcs"
+  },
+  {
+    "code": "unknown-member",
+    "path": "fixtures/negative/unknown-member.invalid.jcs"
+  },
+  {
+    "code": "unsupported-version",
+    "path": "fixtures/negative/unknown-version.invalid.jcs"
+  },
+  {
+    "code": "noncanonical-order",
+    "path": "fixtures/negative/unsorted-profiles.invalid.jcs"
+  },
+  {
+    "code": "non-positive-limit",
+    "path": "fixtures/negative/zero-limit.invalid.jcs"
+  }
+]

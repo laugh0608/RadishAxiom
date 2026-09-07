@@ -1,0 +1,687 @@
+{
+  "acceptance": "not-assessed",
+  "inputs": [
+    {
+      "file": "rust-1.97.1-aarch64-unknown-linux-gnu.tar.xz",
+      "selected_files": [
+        {
+          "bytes": 1571,
+          "path": "rust-1.97.1-aarch64-unknown-linux-gnu/COPYRIGHT",
+          "sha256": "172020dbfd5b53a226dfde77616190a48dcff519b0bc0e6deb91a8450782c4af"
+        },
+        {
+          "bytes": 2333624,
+          "elf": {
+            "interpreter": "/lib/ld-linux-aarch64.so.1",
+            "machine": 183,
+            "needed": [
+              "librustc_driver-bb2b40829e117684.so",
+              "libdl.so.2",
+              "libpthread.so.0",
+              "libc.so.6"
+            ],
+            "rpath": [],
+            "runpath": [
+              "$ORIGIN/../lib"
+            ]
+          },
+          "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/bin/rustc",
+          "sha256": "a3d4dfcd867ddc1e7dca25f13f7236c72229a56f68aa511437c5bb72eb2dfe78"
+        },
+        {
+          "bytes": 8207608,
+          "elf": {
+            "interpreter": "/lib/ld-linux-aarch64.so.1",
+            "machine": 183,
+            "needed": [
+              "libpthread.so.0",
+              "libz.so.1",
+              "libLLVM.so.22.1-rust-1.97.1-stable",
+              "libm.so.6",
+              "libgcc_s.so.1",
+              "libc.so.6"
+            ],
+            "rpath": [],
+            "runpath": [
+              "$ORIGIN/../../../:$ORIGIN/../lib"
+            ]
+          },
+          "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/rust-lld",
+          "sha256": "533dffee7995258d3de4f995b0c926f18a5245a0aef09896901deee6ef144eb7"
+        },
+        {
+          "bytes": 29286,
+          "path": "rust-1.97.1-aarch64-unknown-linux-gnu/install.sh",
+          "selected_lines": [
+            {
+              "line": 324,
+              "text": "    # First, uninstall from the installation prefix."
+            },
+            {
+              "line": 363,
+              "text": "uninstall_components() {"
+            },
+            {
+              "line": 365,
+              "text": "    local _dest_prefix=\"$2\""
+            },
+            {
+              "line": 366,
+              "text": "    local _components=\"$3\""
+            },
+            {
+              "line": 368,
+              "text": "    # We're going to start by uninstalling existing components. This"
+            },
+            {
+              "line": 396,
+              "text": "        # The only change between version 2 -> 3 is that components are placed"
+            },
+            {
+              "line": 407,
+              "text": "        echo \"The copy of $TEMPLATE_PRODUCT_NAME at $_dest_prefix was installed using an\""
+            },
+            {
+              "line": 416,
+              "text": "    local _installed_components=\"$(cat \"$_md/components\")\""
+            },
+            {
+              "line": 418,
+              "text": "    # Uninstall (our components only) before reinstalling"
+            },
+            {
+              "line": 420,
+              "text": "    for _available_component in $_components; do"
+            },
+            {
+              "line": 422,
+              "text": "        for _installed_component in $_installed_components; do"
+            },
+            {
+              "line": 475,
+              "text": "            local _modified_components=\"$(sed \"/^$_installed_component\\$/d\" \"$_md/components\")\""
+            },
+            {
+              "line": 476,
+              "text": "            write_to_file \"$_modified_components\" \"$_md/components\""
+            },
+            {
+              "line": 482,
+              "text": "    # If there are no remaining components delete the manifest directory,"
+            },
+            {
+              "line": 487,
+              "text": "        local _remaining_components=\"$(cat \"$_md/components\")\""
+            },
+            {
+              "line": 488,
+              "text": "        if [ ! -n \"$_remaining_components\" ]; then"
+            },
+            {
+              "line": 507,
+              "text": "install_components() {"
+            },
+            {
+              "line": 510,
+              "text": "    local _dest_prefix=\"$3\""
+            },
+            {
+              "line": 511,
+              "text": "    local _components=\"$4\""
+            },
+            {
+              "line": 514,
+              "text": "    for _component in $_components; do"
+            },
+            {
+              "line": 537,
+              "text": "    append_to_file \"$_component\" \"$_md/components\""
+            },
+            {
+              "line": 538,
+              "text": "    critical_need_ok \"failed to update components list for $_component\""
+            },
+            {
+              "line": 552,
+              "text": "        local _file_install_path=\"$_dest_prefix/$_file\""
+            },
+            {
+              "line": 665,
+              "text": "    # /etc/ld.so.conf.d/rust-installer-v1 so ldconfig picks it up."
+            },
+            {
+              "line": 679,
+              "text": "    verbose_msg \"running ldconfig\""
+            },
+            {
+              "line": 681,
+              "text": "        ldconfig"
+            },
+            {
+              "line": 683,
+              "text": "        ldconfig 2> /dev/null"
+            },
+            {
+              "line": 687,
+              "text": "            local _warn_s=\"failed to run ldconfig. this may happen when \\"
+            },
+            {
+              "line": 730,
+              "text": "    local _dest_prefix=\"$2\""
+            },
+            {
+              "line": 747,
+              "text": "    local _prefix_dir=\"$(abs_path \"$dest_prefix\")\""
+            },
+            {
+              "line": 748,
+              "text": "    if [ \"$_src_dir\" = \"$_dest_prefix\" -a \"${CFG_UNINSTALL-}\" != 1 ]; then"
+            },
+            {
+              "line": 787,
+              "text": "flag uninstall \"only uninstall from the installation prefix\""
+            },
+            {
+              "line": 788,
+              "text": "valopt destdir \"\" \"set installation root\""
+            },
+            {
+              "line": 789,
+              "text": "valopt prefix \"/usr/local\" \"set installation prefix\""
+            },
+            {
+              "line": 791,
+              "text": "# Avoid prepending an extra / to the prefix path if there's no destdir"
+            },
+            {
+              "line": 801,
+              "text": "valopt without \"\" \"comma-separated list of components to not install\""
+            },
+            {
+              "line": 802,
+              "text": "valopt components \"\" \"comma-separated list of components to install\""
+            },
+            {
+              "line": 803,
+              "text": "flag list-components \"list available components\""
+            },
+            {
+              "line": 810,
+              "text": "# NB See the docdir handling in install_components for an explanation of this"
+            },
+            {
+              "line": 813,
+              "text": "opt ldconfig 1 \"run ldconfig after installation (Linux only)\""
+            },
+            {
+              "line": 851,
+              "text": "# which just means 'uninstall my components'."
+            },
+            {
+              "line": 863,
+              "text": "dest_prefix=\"$CFG_DESTDIR_PREFIX\""
+            },
+            {
+              "line": 865,
+              "text": "# Open the components file to get the list of components to install."
+            },
+            {
+              "line": 866,
+              "text": "# NB: During install this components file is read from the installer's"
+            },
+            {
+              "line": 868,
+              "text": "# and thus contains all installed components."
+            },
+            {
+              "line": 869,
+              "text": "components=`cat \"$src_dir/components\"`"
+            },
+            {
+              "line": 871,
+              "text": "# Sanity check: do we have components?"
+            },
+            {
+              "line": 872,
+              "text": "if [ ! -n \"$components\" ]; then"
+            },
+            {
+              "line": 873,
+              "text": "    err \"unable to find installation components\""
+            },
+            {
+              "line": 879,
+              "text": "    echo \"# Available components\""
+            },
+            {
+              "line": 881,
+              "text": "    for component in $components; do"
+            },
+            {
+              "line": 888,
+              "text": "# If the user specified which components to install/uninstall,"
+            },
+            {
+              "line": 892,
+              "text": "    user_components=\"$(echo \"$CFG_COMPONENTS\" | sed \"s/,/ /g\")\""
+            },
+            {
+              "line": 893,
+              "text": "    for user_component in $user_components; do"
+            },
+            {
+              "line": 895,
+              "text": "    for my_component in $components; do"
+            },
+            {
+              "line": 904,
+              "text": "    components=\"$user_components\""
+            },
+            {
+              "line": 908,
+              "text": "    without_components=\"$(echo \"$CFG_WITHOUT\" | sed \"s/,/ /g\")\""
+            },
+            {
+              "line": 910,
+              "text": "    # This does **not** check that all components in without_components are"
+            },
+            {
+              "line": 911,
+              "text": "    # actually present in the list of available components."
+            },
+            {
+              "line": 915,
+              "text": "    # components) when writing install scripts."
+            },
+            {
+              "line": 917,
+              "text": "    for component in $components; do"
+            },
+            {
+              "line": 919,
+              "text": "        for my_component in $without_components; do"
+            },
+            {
+              "line": 929,
+              "text": "    components=\"$new_comp\""
+            },
+            {
+              "line": 932,
+              "text": "if [ -z \"$components\" ]; then"
+            },
+            {
+              "line": 934,
+              "text": "    err \"no components selected for installation\""
+            },
+            {
+              "line": 936,
+              "text": "    err \"no components selected for uninstallation\""
+            },
+            {
+              "line": 940,
+              "text": "do_preflight_sanity_checks \"$src_dir\" \"$dest_prefix\""
+            },
+            {
+              "line": 957,
+              "text": "uninstall_components \"$abs_libdir\" \"$dest_prefix\" \"$components\""
+            },
+            {
+              "line": 983,
+              "text": "install_components \"$src_dir\" \"$abs_libdir\" \"$dest_prefix\" \"$components\""
+            }
+          ],
+          "sha256": "72807761d932e9ea33ac98208ab00ce7f9cd5eee3dbe86cd911007358ac71b01"
+        },
+        {
+          "attribution_matches": [],
+          "bytes": 279302,
+          "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/share/doc/rust/COPYRIGHT-library.html",
+          "sha256": "0a65bb747c49c7bb816cbc7188319bd6e4e8d08091c1190b8a3c0971c47968ed"
+        },
+        {
+          "bytes": 41448024,
+          "elf": {
+            "interpreter": "/lib/ld-linux-aarch64.so.1",
+            "machine": 183,
+            "needed": [
+              "libdl.so.2",
+              "libgcc_s.so.1",
+              "libpthread.so.0",
+              "libm.so.6",
+              "libc.so.6"
+            ],
+            "rpath": [],
+            "runpath": [
+              "$ORIGIN/../lib"
+            ]
+          },
+          "path": "rust-1.97.1-aarch64-unknown-linux-gnu/cargo/bin/cargo",
+          "sha256": "c5dcff701935f50505c9c5df7ee941a9de4f29d84ab91627c396848accef1808"
+        }
+      ],
+      "sha256": "9a7a2c336b4787f1b72f6bab7c35d5b7af2fd03cbd39b4fc721466a70d402a7d"
+    },
+    {
+      "file": "rust-std-1.97.1-aarch64-unknown-linux-musl.tar.xz",
+      "selected_files": [
+        {
+          "bytes": 1571,
+          "path": "rust-std-1.97.1-aarch64-unknown-linux-musl/COPYRIGHT",
+          "sha256": "172020dbfd5b53a226dfde77616190a48dcff519b0bc0e6deb91a8450782c4af"
+        },
+        {
+          "bytes": 29290,
+          "path": "rust-std-1.97.1-aarch64-unknown-linux-musl/install.sh",
+          "selected_lines": [
+            {
+              "line": 324,
+              "text": "    # First, uninstall from the installation prefix."
+            },
+            {
+              "line": 363,
+              "text": "uninstall_components() {"
+            },
+            {
+              "line": 365,
+              "text": "    local _dest_prefix=\"$2\""
+            },
+            {
+              "line": 366,
+              "text": "    local _components=\"$3\""
+            },
+            {
+              "line": 368,
+              "text": "    # We're going to start by uninstalling existing components. This"
+            },
+            {
+              "line": 396,
+              "text": "        # The only change between version 2 -> 3 is that components are placed"
+            },
+            {
+              "line": 407,
+              "text": "        echo \"The copy of $TEMPLATE_PRODUCT_NAME at $_dest_prefix was installed using an\""
+            },
+            {
+              "line": 416,
+              "text": "    local _installed_components=\"$(cat \"$_md/components\")\""
+            },
+            {
+              "line": 418,
+              "text": "    # Uninstall (our components only) before reinstalling"
+            },
+            {
+              "line": 420,
+              "text": "    for _available_component in $_components; do"
+            },
+            {
+              "line": 422,
+              "text": "        for _installed_component in $_installed_components; do"
+            },
+            {
+              "line": 475,
+              "text": "            local _modified_components=\"$(sed \"/^$_installed_component\\$/d\" \"$_md/components\")\""
+            },
+            {
+              "line": 476,
+              "text": "            write_to_file \"$_modified_components\" \"$_md/components\""
+            },
+            {
+              "line": 482,
+              "text": "    # If there are no remaining components delete the manifest directory,"
+            },
+            {
+              "line": 487,
+              "text": "        local _remaining_components=\"$(cat \"$_md/components\")\""
+            },
+            {
+              "line": 488,
+              "text": "        if [ ! -n \"$_remaining_components\" ]; then"
+            },
+            {
+              "line": 507,
+              "text": "install_components() {"
+            },
+            {
+              "line": 510,
+              "text": "    local _dest_prefix=\"$3\""
+            },
+            {
+              "line": 511,
+              "text": "    local _components=\"$4\""
+            },
+            {
+              "line": 514,
+              "text": "    for _component in $_components; do"
+            },
+            {
+              "line": 537,
+              "text": "    append_to_file \"$_component\" \"$_md/components\""
+            },
+            {
+              "line": 538,
+              "text": "    critical_need_ok \"failed to update components list for $_component\""
+            },
+            {
+              "line": 552,
+              "text": "        local _file_install_path=\"$_dest_prefix/$_file\""
+            },
+            {
+              "line": 665,
+              "text": "    # /etc/ld.so.conf.d/rust-installer-v1 so ldconfig picks it up."
+            },
+            {
+              "line": 679,
+              "text": "    verbose_msg \"running ldconfig\""
+            },
+            {
+              "line": 681,
+              "text": "        ldconfig"
+            },
+            {
+              "line": 683,
+              "text": "        ldconfig 2> /dev/null"
+            },
+            {
+              "line": 687,
+              "text": "            local _warn_s=\"failed to run ldconfig. this may happen when \\"
+            },
+            {
+              "line": 730,
+              "text": "    local _dest_prefix=\"$2\""
+            },
+            {
+              "line": 747,
+              "text": "    local _prefix_dir=\"$(abs_path \"$dest_prefix\")\""
+            },
+            {
+              "line": 748,
+              "text": "    if [ \"$_src_dir\" = \"$_dest_prefix\" -a \"${CFG_UNINSTALL-}\" != 1 ]; then"
+            },
+            {
+              "line": 787,
+              "text": "flag uninstall \"only uninstall from the installation prefix\""
+            },
+            {
+              "line": 788,
+              "text": "valopt destdir \"\" \"set installation root\""
+            },
+            {
+              "line": 789,
+              "text": "valopt prefix \"/usr/local\" \"set installation prefix\""
+            },
+            {
+              "line": 791,
+              "text": "# Avoid prepending an extra / to the prefix path if there's no destdir"
+            },
+            {
+              "line": 801,
+              "text": "valopt without \"\" \"comma-separated list of components to not install\""
+            },
+            {
+              "line": 802,
+              "text": "valopt components \"\" \"comma-separated list of components to install\""
+            },
+            {
+              "line": 803,
+              "text": "flag list-components \"list available components\""
+            },
+            {
+              "line": 810,
+              "text": "# NB See the docdir handling in install_components for an explanation of this"
+            },
+            {
+              "line": 813,
+              "text": "opt ldconfig 1 \"run ldconfig after installation (Linux only)\""
+            },
+            {
+              "line": 851,
+              "text": "# which just means 'uninstall my components'."
+            },
+            {
+              "line": 863,
+              "text": "dest_prefix=\"$CFG_DESTDIR_PREFIX\""
+            },
+            {
+              "line": 865,
+              "text": "# Open the components file to get the list of components to install."
+            },
+            {
+              "line": 866,
+              "text": "# NB: During install this components file is read from the installer's"
+            },
+            {
+              "line": 868,
+              "text": "# and thus contains all installed components."
+            },
+            {
+              "line": 869,
+              "text": "components=`cat \"$src_dir/components\"`"
+            },
+            {
+              "line": 871,
+              "text": "# Sanity check: do we have components?"
+            },
+            {
+              "line": 872,
+              "text": "if [ ! -n \"$components\" ]; then"
+            },
+            {
+              "line": 873,
+              "text": "    err \"unable to find installation components\""
+            },
+            {
+              "line": 879,
+              "text": "    echo \"# Available components\""
+            },
+            {
+              "line": 881,
+              "text": "    for component in $components; do"
+            },
+            {
+              "line": 888,
+              "text": "# If the user specified which components to install/uninstall,"
+            },
+            {
+              "line": 892,
+              "text": "    user_components=\"$(echo \"$CFG_COMPONENTS\" | sed \"s/,/ /g\")\""
+            },
+            {
+              "line": 893,
+              "text": "    for user_component in $user_components; do"
+            },
+            {
+              "line": 895,
+              "text": "    for my_component in $components; do"
+            },
+            {
+              "line": 904,
+              "text": "    components=\"$user_components\""
+            },
+            {
+              "line": 908,
+              "text": "    without_components=\"$(echo \"$CFG_WITHOUT\" | sed \"s/,/ /g\")\""
+            },
+            {
+              "line": 910,
+              "text": "    # This does **not** check that all components in without_components are"
+            },
+            {
+              "line": 911,
+              "text": "    # actually present in the list of available components."
+            },
+            {
+              "line": 915,
+              "text": "    # components) when writing install scripts."
+            },
+            {
+              "line": 917,
+              "text": "    for component in $components; do"
+            },
+            {
+              "line": 919,
+              "text": "        for my_component in $without_components; do"
+            },
+            {
+              "line": 929,
+              "text": "    components=\"$new_comp\""
+            },
+            {
+              "line": 932,
+              "text": "if [ -z \"$components\" ]; then"
+            },
+            {
+              "line": 934,
+              "text": "    err \"no components selected for installation\""
+            },
+            {
+              "line": 936,
+              "text": "    err \"no components selected for uninstallation\""
+            },
+            {
+              "line": 940,
+              "text": "do_preflight_sanity_checks \"$src_dir\" \"$dest_prefix\""
+            },
+            {
+              "line": 957,
+              "text": "uninstall_components \"$abs_libdir\" \"$dest_prefix\" \"$components\""
+            },
+            {
+              "line": 983,
+              "text": "install_components \"$src_dir\" \"$abs_libdir\" \"$dest_prefix\" \"$components\""
+            }
+          ],
+          "sha256": "19c56df4d4a3251396a6a97be14daff33465572e4ecc7e37d776dba77b60a9a8"
+        }
+      ],
+      "sha256": "49ff0879d94e2e8e86d5e85eb15a9215943e8c78b51363d6553443598cab5d31"
+    },
+    {
+      "file": "linux-6.18.49.tar.xz",
+      "selected_files": [
+        {
+          "bytes": 496,
+          "path": "linux-6.18.49/COPYING",
+          "sha256": "fb5a425bd3b3cd6071a3a9aff9909a859e7c1158d54d32e07658398cd67eb6a0"
+        },
+        {
+          "bytes": 18352,
+          "path": "linux-6.18.49/Documentation/process/license-rules.rst",
+          "sha256": "187ec351ff615334fe0374051318b7e6a306ee348f6cc39c2abc15b60cd37031"
+        },
+        {
+          "bytes": 1258,
+          "path": "linux-6.18.49/LICENSES/exceptions/Linux-syscall-note",
+          "sha256": "8e378ab93586eb55135d3bc119cce787f7324f48394777d00c34fa3d0be3303f"
+        },
+        {
+          "bytes": 18600,
+          "path": "linux-6.18.49/LICENSES/preferred/GPL-2.0",
+          "sha256": "8780e78a1a737e127f25a65f6d95269bffd36158dc261114de7859b490bfc5aa"
+        }
+      ],
+      "sha256": "ae826f33111fea6f1d279dde7299d7463c8dfd204aeb75a8fb5432bc60a28191"
+    }
+  ],
+  "kind": "diagnostic-observation",
+  "method_sha256": "8286b3c9f270c77f20ea24c5bcbea3f6a5415e7c013a7ec39aa8c29ebccbb4be"
+}

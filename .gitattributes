@@ -13,6 +13,12 @@
 *.bat text eol=crlf
 *.cmd text eol=crlf
 
+# Contract fixtures are raw-byte artifacts; some negative cases intentionally use CRLF.
+contracts/pipeline-artifacts-v0.1/fixtures/** -text -eol
+contracts/pipeline-artifacts-v0.1/fixtures/negative/query-crlf.invalid.smt2 -diff
+contracts/pipeline-artifacts-v0.1/fixtures/negative/query-extra-final-lf.invalid.smt2 -diff
+contracts/pipeline-artifacts-v0.1/fixtures/negative/target-crlf.mjs.invalid -diff
+
 *.png binary
 *.jpg binary
 *.jpeg binary

@@ -1,0 +1,2 @@
+E: Unable to mkstemp /tmp/deb-file-flex_2.6.4-8.2_arm64.deb.Gdzstf - GetTempFile (30: Read-only file system)
+E: The package lists or status file could not be parsed or opened.

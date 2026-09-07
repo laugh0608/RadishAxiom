@@ -1,63 +1,81 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-08-22
+更新日期：2026-09-06
+
+用途：供日常协作者读取现状、顺位、停止线和验证入口。历史事实按需进入[截至 2026-09-03 的归档](../records/status-through-2026-09-03.md)。
 
 ## 当前阶段
 
-项目处于首域语义、Axiom IR v0.1、Axiom Evidence v0.1、版本身份分层、四题版本化基准语料、Agent 对比实验预注册和 `raxc` 生产实现语言已经形成的设计阶段。当前目标是以已物化语料继续比较验证后端与目标运行时；在验收边界完成前不进入编译器实现或正式模型调用。
+项目处于设计到受控实现阶段。首域为有键有限表的确定性纯转换；语义、Axiom IR / Evidence v0.1、四题基准、Agent 实验预注册及实现架构已有正式定义。主仓已实现 checker runtime 的基础组件，独立 Go checker 已形成受限 profile 的离线复核与 CLI；完整 `raxc` 生产管线、产品 checker runtime 和 Agent 收益尚未验收。
 
-## 已确定
+核心闭环与产品运行分别按[开发计划](../development-plan.md)验收；规划不替代 ADR 或执行授权。
 
-- 项目定位：面向 AI Agent 的验证优先语言与可信语义层。
-- 命名：`.rax`、`raxc`、Axiom IR、Axiom Evidence。
-- 核心原则：约束显式、信任可见、验证状态分层、证据可复核、小可信内核。
-- 首个目标领域：有键有限表的确定性转换；核心纯且无外部副作用，首批基准覆盖净额计算、键连接、守恒聚合和敏感字段非干扰。
-- 首域语义：受界值、闭合记录、公开主键、无序有限表、显式缺失、无回绕算术、恰好一次连接、守恒聚合、关系非干扰和核心效果 `∅`。
-- Axiom IR v0.1：严格版本化的 canonical JSON、内容寻址 DAG、无名称绑定、稳定摘要、无损 pretty 投影、结构化差异和显式迁移；未知字段与版本严格拒绝。
-- Axiom Evidence v0.1：canonical JSON 证据清单、内容寻址义务、五种不可互换状态、可重放反例、显式 trust / uncovered、确定性结论聚合和独立义务重建；生产报告不能自证。
-- 有键有限表基准语料 v0.1：四个任务各有一个正确候选、两个错误候选、基础 / 边界 / 无效输入、黄金输出，以及正确、错误、后端超时和输入拒绝场景的 Expected Evidence 断言；生成结果与摘要可离线重现。
-- Agent 表示与验证反馈对比实验预注册 v0.1：固定 SQL、普通 JSON plan 和 Axiom projection 三种表示，两个模型条件、72 个 trial bundle、配对反馈、确认阈值、预算与停止线；正式调用仍须 execution lock 和单独授权。
-- 版本身份：项目发布采用 `YY.M.RELEASE` CalVer 与 `dev` / `test` / `release` 轨道；语言语义、Axiom IR、Axiom Evidence 和工具实现分别标识，CalVer 不表达兼容性。
-- `raxc` 生产编译器实现语言：Rust 2024 edition 与精确固定的 stable 工具链；该选择不适用于独立 checker，也不冻结表面语法、验证后端或目标运行时。
-- 许可证：Apache License 2.0，并形成开放基础层与商业化边界策略。
-- 仓库治理：`master` 稳定主线、`dev` 日常集成、PR 门禁和合并后回流策略。
-- 当前仓库级验证：`./scripts/check-repo.sh` 或 `pwsh ./scripts/check-repo.ps1`。
+## 能力与证据边界
 
-## 近期事项
+| 领域 | 已形成 | 尚未形成 / 不代表 |
+| --- | --- | --- |
+| 规范与机器契约 | 语义、IR / Evidence、pipeline、execution profile、readiness 与 28 个指定态离线 bundle | 通用语言、完整生产管线、六平台真实执行 |
+| 独立 Go checker | 独立解析、义务重建、状态 / support 检查、有限执行、反例与具体输出重放、结论重算、四态 codec、累计资源与唯一 CLI | 全语义支持、kernel / certificate 真值复核、counterexample minimality |
+| Rust runtime core | policy / registration / selection、严格内外层 USTAR 与业务 manifest、receipt、result consumer、immutable spawn plan 与外层排他状态机 | 完整 installer / launcher；manifest 检查不含 provenance / acceptance 正文语义消费 |
+| Darwin store | descriptor-relative containment、no-replace、full-sync、qualification / attempt 持久化、真实进程并发与 crash recovery | qualification 判定、物理断电保证、产品根安装 |
+| 工具与 payload | Go macOS arm64 host/source、Rust macOS arm64 rustup component/source 局部验收；checker Darwin payload 不可变发布并登记 inactive | Rust standalone、cvc5 / Node、其他平台验收；active runtime 仍为 0 |
+| 隔离 | ADR 0013 / 0014 接受逐次 signed App-Sandboxed Hypervisor runner；单主机 synthetic Linux microguest 可行性有动态观察 | 真实 checker / bundle、production runner / guest TCB、公共身份迁移、生产签名及 qualification |
+| Agent 价值 | SQL / JSON / Axiom 三表示、两模型、四任务、72 个 trial bundle 的预注册 | execution lock、完整装置、正式模型调用与收益结论 |
 
-1. 下一步建议只完成“首个验证后端”的正式比较与决策，不安装依赖、不编写适配器或编译器骨架。
-2. 比较必须以 AX-B01 至 AX-B04 为共同载荷，至少覆盖可信计算基、证明证书或独立重放能力、`unknown` 与超时 / 资源耗尽行为、版本化子进程协议、跨平台分发、许可证、供应链和长期维护成本。
-3. 明确后端适用范围、Evidence 映射、失败关闭边界、依赖政策、重新评估条件和进入原型的验收条件；该决策不自动选择独立 checker、目标运行时或 `.rax` 表面语法。
+分仓、发布与动态事实沿用既有记录，本次未重验；受限 checker profile 仍须遵循 [ADR 0009](../adr/0009-axiom-evidence-v0-drift-and-migration.md) 的 group 义务漂移与 Evidence v0.2 迁移边界。
 
-验证后端决策审阅通过后，再依次比较目标运行时与执行路径、冻结首版编译管线和独立 checker 隔离边界。只有 ADR 0002 与 ADR 0004 的全部入口条件满足后才进入实现；工具链可用后才准备 Agent 实验 execution lock。
+历史锁定场景曾完成 20 个 `failed` 条目的动态检查；213 个 producer `proved` claim 分为 65 个 attestation-only 与 148 个材料不足的 kernel claim，独立证明数为 0。原 25 个结果层场景为 22 个 `accepted-with-trust`、2 个 `incomplete`、1 个 `rejected`，不代表生产证明能力。2026-09-05 静态审阅提出部分反例目标归因的待复现疑点，尚未据此判定历史结果失效；跨仓验收见[开发计划](../development-plan.md#独立-checker-语义验收与跨仓交接)。
 
-首域语义与 Axiom IR 中早于 ADR 0004 的“实现语言尚未冻结”属于其接受时的范围说明；现行实现语言口径以 ADR 0004 为准。首域语义的原始摘要已被基准语料和 Agent 实验注册绑定，Axiom IR 规范的原始摘要也已被实验注册绑定，不能为同步阶段措辞而原地改写。
+精确工具为 Rust `1.97.1` / Rust 2024、Go `go1.26.7`、cvc5 `1.3.4`、Node.js `24.19.0`；逐项来源见[工具登记](../../contracts/toolchain-adapters-v0.1/README.md)和[payload 验收](../../contracts/toolchain-payload-acceptance-v0.1/README.md)。policy 为 `0.3` / `specified-not-implemented`；精确 payload 身份以[登记契约](../../contracts/checker-runtime-payloads-v0.1/README.md)及其 canonical record 为准。
 
-## 尚未冻结
+## 近期顺位
 
-- 表面语法；
-- 独立 checker 的实现语言与具体实现；
-- SMT、证明助手或其他验证后端；
-- 解释执行、代码生成或双路径运行模型；
-- Agent 实验的 execution lock、模型精确 revision、提示材料和 runner；
-- 包管理、IDE、插件和发布载体；
-- 首个具体产品版本、发布载体、发布记录与自动化；
-- v1 后语言语义、Axiom IR、Axiom Evidence 及未来公共包的兼容性承诺。
+Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收；普通 `dev` push 仍不自动触发 CI。2026-09-06 的提交与核对结论见[日终回顾](../records/2026-09-06-closeout.md)。kernel / Debian 来源及 Rust Linux 输入均已有诊断留存，尚未形成完整 source lock、真实安装或构建验收。
 
-在上述决策完成前，不为占位目的引入完整编译器骨架、运行时依赖、自动发布、CODEOWNERS 或技术栈专属 CI。
+### 明日事项（2026-09-07）
+
+1. **收口资源与维护决策。** 审阅 [ADR 0015（Proposed）](../adr/0015-virtualized-checker-resource-profile.md)的 guest 128 MiB 硬限、宿主总内存无等价硬保证及兼容性影响，确认[维护负责人和投入](../checker-runtime-productization-dependency-review.md#许可证与维护责任)。起草方向已确认，正式接受及预算仍待决定；在此之前不迁移 v0.1 或进入真实 checker 执行。
+2. **补齐剩余来源证据。** 从 [Rust Linux 核验记录](../records/rust-linux-input-review/README.md)继续：明确旧 SHA-1 公钥自认证的绑定策略；对应 musl / CRT / unwind 的精确构建配方、源码与许可；核对 driver / LLVM / loader / 系统库完整依赖。kernel tag 元数据已与 tar commit 对应，但原始 tag 签名及最终分发材料仍未验收。保留失败和 trust 缺口，不重复把已取得的 payload 列为待下载，也不把摘要 / GnuPG 成功升级为完整 acceptance。
+3. **形成可批准的隔离安装切片。** 依据[三包模拟](../records/linux-builder-source-chain/README.md)和 Rust 选定 component 清单，固定镜像、新安装前缀、依赖差异、执行命令、时限、日志及容器删除方式；明确安装器会处理旧组件和默认 `ldconfig` 的副作用。来源前置与精确范围收口后再申请安装 / 有限执行，不将模拟当成安装回执。完整 source lock、公共迁移、签名 / VM 和产品运行继续分别验收与授权。
+
+[AX-B01 首切片依赖审阅](../axiom-pipeline-first-slice-dependency-review.md)已列出 P0–P9 前置；cvc5 / Node 自身的来源与外层硬限制仍需独立闭合。纯设计无需等待产品安装 / 激活，生产实现遵守 ADR 0007 全部入口或正式替代决策。
+
+Checker 语义线先核实目标归因，再验收同域泛化、独立证明链和结果解释；不改变上述 runtime 前置。后续补规范负例、资源曲线和装置审计，工具与实现入口通过后锁定并另行授权 Agent 实验；语法、跨域、SDK / IDE、平台与商业扩张后置。
+
+## 当前停止线与待决策
+
+- 当前 Darwin Mach-O payload 保持 `registered-inactive`，`NativeIsolationStatus = RequiredNotProven`。不能重标为 Linux artifact，也不能从现行 native `CheckerSpawnPlan` 静默转为虚拟执行。
+- 真实 fetch / install、payload 执行、产品绝对根、生产签名 / entitlement、qualification、激活、发布与远程写入仍分别验证、分别授权。历史记录中的授权不延续为新任务权限。
+- 不采用 native best-effort、root broker、Virtualization URL 或 warm VM fallback；不自动放宽 memory / deadline。公共身份与资源含义无法闭合时保持阻断，按 ADR 0013 重新决策。
+- 合成 guest 已验证的只是单主机可行性；原 probe source / binary 未保留，不能凭摘要宣称可独立复现。后续实验应先落实可留存输入与重跑入口。
+- kernel / certificate 支持集合仍为空；attestation、结构验证、内容摘要、动态测试和独立 proof 分别报告。前置条件非空性、新义务与新实验指标是待设计项，不进入当前正式状态或评分规则。
+- 首域语义、IR、Evidence、既有 ADR 和实验注册的摘要绑定原文不因阶段措辞而改写；语义 / 公共格式迁移单独审阅，Evidence v0.2 保留 ADR 0009 要求。
+- 产品发布版本、公开 CLI / SDK、表面语法、安装路径、最低支持矩阵及 v1 后兼容承诺仍未冻结。不创建占位编译器骨架、自动发布或装饰性治理入口；已有 Rust 实现的工程门禁以实际 CI 验收为准。
+
+## 验证入口与本次审阅
+
+仓库级契约、生成一致性与文本检查：
+
+```bash
+./scripts/check-repo.sh
+```
+
+当前已验收的 macOS arm64 主机使用显式工具链，避免 `RUSTUP_TOOLCHAIN=1.96.0` 覆盖 pin：
+
+```bash
+cargo +1.97.1-aarch64-apple-darwin fmt --all --check
+cargo +1.97.1-aarch64-apple-darwin clippy --workspace --all-targets --all-features --locked --offline -- -D warnings
+cargo +1.97.1-aarch64-apple-darwin test --workspace --all-targets --locked --offline
+```
+
+命令以工具和依赖已验收安装为前提，不授权下载；其他平台先确认精确工具与执行范围。
+
+2026-09-06 的 Rust 本地 61 项测试与 CI 成功 / 失败传播已经验收；macOS 15 的 `EINVAL` 失败及 macOS 26.6.2 的成功运行均留在[日终记录](../records/2026-09-06-closeout.md#ci-与早前本地验证)。日终仓库门禁通过 1,034 个文件（含 source-tar / Debian 来源链的 27 项合成检查），另行通过库存 6 项与 Rust 输入诊断 8 项检查。日终未重跑 Rust、CI、真实归档核验、安装或产品执行；这些诊断不构成产品 qualification 或独立证明。工程门禁来源与边界见[仓库治理](../governance/repository-governance.md#rust-工程门禁)。
 
 ## 按需阅读
 
-- [产品定义](../product-definition.md)
-- [许可证与生态策略](../licensing-strategy.md)
-- [仓库治理](../governance/repository-governance.md)
-- [ADR 0001：分支、PR 与 Ruleset 治理](../adr/0001-branch-and-pr-governance.md)
-- [ADR 0002：首个目标领域与基准任务](../adr/0002-first-target-domain-and-benchmarks.md)
-- [ADR 0003：版本标识与兼容性分层](../adr/0003-version-identities-and-compatibility-layers.md)
-- [ADR 0004：`raxc` 生产编译器实现语言](../adr/0004-raxc-production-implementation-language.md)
-- [有键有限表转换：首版类型化语义](../semantics/keyed-finite-table-semantics.md)
-- [Axiom IR v0.1：规范化形式与版本策略](../ir/axiom-ir-v0.md)
-- [Axiom Evidence v0.1：证据模型与独立检查边界](../evidence/axiom-evidence-v0.md)
-- [有键有限表基准语料库 v0.1](../benchmarks/keyed-finite-table-corpus-v0.md)
-- [Agent 表示与验证反馈对比实验预注册 v0.1](../experiments/agent-representation-preregistration-v0.md)
-- [面向 Agent 的语言设计：证据与开放问题](../research/agent-oriented-language-design-evidence.md)
+- [产品定义](../product-definition.md)、[开发目标与验收计划](../development-plan.md)
+- [文档索引](../README.md)、[ADR 索引](../adr/README.md)、[机器契约索引](../../contracts/README.md)
+- [协作与执行](../governance/agent-collaboration.md)、[仓库治理](../governance/repository-governance.md)
+- [Darwin 强隔离审阅与历史观察](../checker-runtime-darwin-hard-isolation-review.md)
+- [原状态与实施流水归档](../records/status-through-2026-09-03.md)

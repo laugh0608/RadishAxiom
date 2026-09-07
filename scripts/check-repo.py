@@ -28,18 +28,101 @@ REQUIRED_FILES = (
     ".github/rulesets/README.md",
     ".github/rulesets/master-protection.json",
     ".github/workflows/pr-check.yml",
+    ".github/actions/setup-rust/action.yml",
     "AGENTS.md",
     "CLAUDE.md",
     "CODE_OF_CONDUCT.md",
     "CONTRIBUTING.md",
+    "Cargo.lock",
+    "Cargo.toml",
     "LICENSE",
+    "THIRD_PARTY_NOTICES.md",
     "README.md",
     "SECURITY.md",
+    "crates/checker-runtime/Cargo.toml",
+    "crates/checker-runtime/src/archive.rs",
+    "crates/checker-runtime/src/attempt.rs",
+    "crates/checker-runtime/src/canonical.rs",
+    "crates/checker-runtime/src/lib.rs",
+    "crates/checker-runtime/src/policy.rs",
+    "crates/checker-runtime/src/portable_path.rs",
+    "crates/checker-runtime/src/qualification.rs",
+    "crates/checker-runtime/src/receipt.rs",
+    "crates/checker-runtime/src/registration.rs",
+    "crates/checker-runtime/src/selection.rs",
+    "crates/checker-runtime/src/sha256.rs",
+    "crates/checker-runtime/src/store.rs",
+    "crates/checker-runtime/src/store/evidence.rs",
     "benchmarks/keyed-finite-table-v0.1/README.md",
     "benchmarks/keyed-finite-table-v0.1/corpus.json",
+    "contracts/README.md",
+    "contracts/checker-runtime-payloads-v0.1/README.md",
+    "contracts/checker-runtime-payloads-v0.1/contract.json",
+    "contracts/checker-runtime-payloads-v0.1/fixtures/launcher-negative/expected.json",
+    "contracts/checker-runtime-payloads-v0.1/fixtures/negative/expected.json",
+    "contracts/checker-runtime-payloads-v0.1/launcher-policy.jcs",
+    "contracts/checker-runtime-payloads-v0.1/records/checker-go0.1-dev-darwin-arm64-current-registered-inactive.json",
+    "contracts/checker-runtime-payloads-v0.1/records/checker-go0.1-dev-darwin-arm64-historical.json",
+    "contracts/checker-runtime-payloads-v0.1/schemas/checker-runtime-launcher-policy.schema.json",
+    "contracts/checker-runtime-payloads-v0.1/schemas/checker-runtime-payload-registration.schema.json",
+    "contracts/execution-profiles-v0.1/README.md",
+    "contracts/execution-profiles-v0.1/contract.json",
+    "contracts/execution-profiles-v0.1/fixtures/negative/expected.json",
+    "contracts/execution-profiles-v0.1/manifest.jcs",
+    "contracts/execution-profiles-v0.1/schemas/execution-profile-set.schema.json",
+    "contracts/independent-check-v0.1/README.md",
+    "contracts/independent-check-v0.1/contract.json",
+    "contracts/implementation-readiness-v0.1/README.md",
+    "contracts/implementation-readiness-v0.1/contract.json",
+    "contracts/implementation-readiness-v0.1/fixtures/negative/expected.json",
+    "contracts/implementation-readiness-v0.1/manifest.jcs",
+    "contracts/implementation-readiness-v0.1/schemas/implementation-readiness-manifest.schema.json",
+    "contracts/keyed-finite-table-checker-bundles-v0.1/README.md",
+    "contracts/keyed-finite-table-checker-bundles-v0.1/bundle-set.jcs",
+    "contracts/keyed-finite-table-checker-bundles-v0.1/contract.json",
+    "contracts/keyed-finite-table-checker-bundles-v0.1/schemas/keyed-finite-table-checker-bundle-set.schema.json",
+    "contracts/pipeline-artifacts-v0.1/README.md",
+    "contracts/pipeline-artifacts-v0.1/contract.json",
+    "contracts/pipeline-artifacts-v0.1/fixtures/expected.json",
+    "contracts/pipeline-artifacts-v0.1/schemas/axiom-host-data.schema.json",
+    "contracts/pipeline-artifacts-v0.1/schemas/axiom-obligation-set.schema.json",
+    "contracts/pipeline-artifacts-v0.1/schemas/axiom-pipeline-receipt.schema.json",
+    "contracts/toolchain-adapters-v0.1/README.md",
+    "contracts/toolchain-adapters-v0.1/registry.json",
+    "contracts/toolchain-adapters-v0.1/schemas/toolchain-adapter-identities.schema.json",
+    "contracts/toolchain-payload-acceptance-v0.1/README.md",
+    "contracts/toolchain-payload-acceptance-v0.1/contract.json",
+    "contracts/toolchain-payload-acceptance-v0.1/fixtures/negative/expected.json",
+    "contracts/toolchain-payload-acceptance-v0.1/observations/cargo-1.97.1-aarch64-apple-darwin.inspection.json",
+    "contracts/toolchain-payload-acceptance-v0.1/observations/clippy-1.97.1-aarch64-apple-darwin.inspection.json",
+    "contracts/toolchain-payload-acceptance-v0.1/observations/go1.26.7-darwin-arm64.inspection.json",
+    "contracts/toolchain-payload-acceptance-v0.1/observations/go1.26.7-source.inspection.json",
+    "contracts/toolchain-payload-acceptance-v0.1/observations/rust-std-1.97.1-aarch64-apple-darwin.inspection.json",
+    "contracts/toolchain-payload-acceptance-v0.1/observations/rustc-1.97.1-aarch64-apple-darwin.inspection.json",
+    "contracts/toolchain-payload-acceptance-v0.1/observations/rustc-1.97.1-source.inspection.json",
+    "contracts/toolchain-payload-acceptance-v0.1/observations/rustfmt-1.97.1-aarch64-apple-darwin.inspection.json",
+    "contracts/toolchain-payload-acceptance-v0.1/records/cargo-1.97.1-aarch64-apple-darwin.acceptance.json",
+    "contracts/toolchain-payload-acceptance-v0.1/records/clippy-1.97.1-aarch64-apple-darwin.acceptance.json",
+    "contracts/toolchain-payload-acceptance-v0.1/records/go1.26.7-darwin-arm64.acceptance.json",
+    "contracts/toolchain-payload-acceptance-v0.1/records/go1.26.7-source.acceptance.json",
+    "contracts/toolchain-payload-acceptance-v0.1/records/rust-std-1.97.1-aarch64-apple-darwin.acceptance.json",
+    "contracts/toolchain-payload-acceptance-v0.1/records/rustc-1.97.1-aarch64-apple-darwin.acceptance.json",
+    "contracts/toolchain-payload-acceptance-v0.1/records/rustc-1.97.1-source.acceptance.json",
+    "contracts/toolchain-payload-acceptance-v0.1/records/rustfmt-1.97.1-aarch64-apple-darwin.acceptance.json",
+    "contracts/toolchain-payload-acceptance-v0.1/schemas/toolchain-payload-acceptance-record.schema.json",
+    "contracts/toolchain-payload-acceptance-v0.1/schemas/toolchain-tar-inspection-observation.schema.json",
     "docs/README.md",
     "docs/adr/0001-branch-and-pr-governance.md",
+    "docs/adr/0011-checker-runtime-launcher-installation-and-activation.md",
+    "docs/adr/0012-product-checker-runtime-host-and-persistence-interface.md",
     "docs/benchmarks/keyed-finite-table-corpus-v0.md",
+    "docs/checker-runtime-rust-first-slice-review.md",
+    "docs/checker-runtime-darwin-filesystem-review.md",
+    "docs/checker-runtime-darwin-store-slice-review.md",
+    "docs/checker-runtime-evidence-store-slice-review.md",
+    "docs/checker-runtime-rust-receipt-slice-review.md",
+    "docs/checker-runtime-rust-store-slice-review.md",
+    "docs/checker-runtime-rust-ustar-slice-review.md",
     "docs/experiments/agent-representation-preregistration-v0.md",
     "docs/governance/agent-collaboration.md",
     "docs/governance/repository-governance.md",
@@ -52,7 +135,27 @@ REQUIRED_FILES = (
     "scripts/check-repo.py",
     "scripts/check-repo.ps1",
     "scripts/check-repo.sh",
+    "scripts/check-checker-runtime-launcher.py",
+    "scripts/checker_runtime_launcher/__init__.py",
+    "scripts/checker_runtime_launcher/core.py",
+    "scripts/checker_runtime_launcher/qualification.py",
+    "scripts/checker_runtime_launcher/tests.py",
+    "scripts/checker_runtime_launcher/ustar.py",
     "scripts/generate-benchmark-corpus.py",
+    "scripts/generate-checker-runtime-payloads.py",
+    "scripts/generate-checker-bundle-contracts.py",
+    "scripts/generate-execution-profile-contracts.py",
+    "scripts/generate-independent-check-contracts.py",
+    "scripts/generate-implementation-readiness.py",
+    "scripts/generate-pipeline-artifact-contracts.py",
+    "scripts/generate-toolchain-adapter-identities.py",
+    "scripts/generate-toolchain-payload-acceptance.py",
+    "scripts/inspect-toolchain-tar.py",
+    "scripts/inspect-source-tar-v1.py",
+    "scripts/check-source-tar-inventory.py",
+    "scripts/inspect-debian-source-chain.py",
+    "scripts/check-debian-source-chain.py",
+    "rust-toolchain.toml",
 )
 
 TEXT_SUFFIXES = {
@@ -288,6 +391,7 @@ def check_workflow_contract(errors: list[str]) -> None:
     text = path.read_text(encoding="utf-8")
     required_fragments = (
         "pull_request:",
+        "workflow_dispatch:",
         "      - dev",
         "      - master",
         "name: Repo Hygiene",
@@ -297,6 +401,75 @@ def check_workflow_contract(errors: list[str]) -> None:
     for fragment in required_fragments:
         if fragment not in text:
             errors.append(f"PR workflow is missing contract fragment: {fragment.strip()}")
+
+    # This is a check of our fixed workflow layout, not a general YAML parser.
+    jobs = dict(re.findall(r"^  ([a-z-]+):\n(.*?)(?=^  [a-z-]+:|\Z)", text, re.M | re.S))
+    rust_commands = {
+        "rust-quality": (
+            "cargo +1.97.1-aarch64-apple-darwin fmt --all --check",
+            "cargo +1.97.1-aarch64-apple-darwin clippy --workspace --all-targets --all-features --locked --offline -- -D warnings",
+        ),
+        "rust-tests": (
+            "cargo +1.97.1-aarch64-apple-darwin test --workspace --all-targets --locked --offline",
+        ),
+    }
+    for job, commands in rust_commands.items():
+        body = jobs.get(job, "")
+        for fragment in (
+            "    runs-on: macos-26\n",
+            "    timeout-minutes: 20\n",
+            "        uses: ./.github/actions/setup-rust\n",
+            "          ref: ${{ github.event.pull_request.head.sha || github.sha }}\n",
+            *(f"        run: {command}\n" for command in commands),
+        ):
+            if fragment not in body:
+                errors.append(f"{job} is missing contract fragment: {fragment.strip()}")
+        if re.search(r"^\s+(if|continue-on-error|needs):", body, re.M):
+            errors.append(f"{job} must run independently without skip or failure suppression")
+
+    aggregate = jobs.get("candidate-quality", "")
+    for fragment in (
+        "    if: always()\n",
+        "    needs:\n      - repo-hygiene\n      - rust-quality\n      - rust-tests\n",
+        '          if [[ "${REPO_HYGIENE_RESULT}" != "success" ||\n'
+        '                "${RUST_QUALITY_RESULT}" != "success" ||\n'
+        '                "${RUST_TESTS_RESULT}" != "success" ]]; then\n',
+        "            exit 1\n",
+    ):
+        if fragment not in aggregate:
+            errors.append(f"Candidate Quality is missing contract fragment: {fragment.strip()}")
+    for job, variable in (
+        ("repo-hygiene", "REPO_HYGIENE_RESULT"),
+        ("rust-quality", "RUST_QUALITY_RESULT"),
+        ("rust-tests", "RUST_TESTS_RESULT"),
+    ):
+        if f"          {variable}: ${{{{ needs.{job}.result }}}}\n" not in aggregate:
+            errors.append(f"Candidate Quality must consume the actual {job} result")
+    if "continue-on-error:" in text or re.search(r"^\s+push:", text, re.M):
+        errors.append("PR workflow must not suppress failures or run on ordinary push")
+
+    setup = REPO_ROOT / ".github/actions/setup-rust/action.yml"
+    if setup.is_file():
+        setup_text = setup.read_text(encoding="utf-8")
+        for fragment in (
+            'test "$(uname -s)" = Darwin',
+            'test "$(uname -m)" = arm64',
+            "RUSTUP_DIST_SERVER: https://static.rust-lang.org",
+            "https://static.rust-lang.org/dist/channel-rust-1.97.1.toml",
+            'rust["rustup_distribution"]["manifest"]["raw_sha256"]',
+            "rustup toolchain install 1.97.1-aarch64-apple-darwin",
+            "--profile minimal --component rustfmt --component clippy --no-self-update",
+            "grep -Fx 'release: 1.97.1'",
+            "grep -Fx 'host: aarch64-apple-darwin'",
+            "cargo +1.97.1-aarch64-apple-darwin fetch --locked --target aarch64-apple-darwin",
+        ):
+            if fragment not in setup_text:
+                errors.append(f"Rust setup is missing contract fragment: {fragment}")
+    toolchain = REPO_ROOT / "rust-toolchain.toml"
+    if toolchain.is_file() and toolchain.read_text(encoding="utf-8") != (
+        '[toolchain]\nchannel = "1.97.1"\ncomponents = ["clippy", "rustfmt"]\nprofile = "minimal"\n'
+    ):
+        errors.append("Rust toolchain pin must match the reviewed macOS arm64 CI commands")
 
 
 def check_benchmark_corpus(errors: list[str]) -> None:
@@ -314,6 +487,177 @@ def check_benchmark_corpus(errors: list[str]) -> None:
     if result.returncode != 0:
         detail = (result.stdout + result.stderr).strip()
         errors.append(f"benchmark corpus check failed: {detail}")
+
+
+def check_independent_check_contracts(errors: list[str]) -> None:
+    generator = REPO_ROOT / "scripts/generate-independent-check-contracts.py"
+    if not generator.is_file():
+        return
+
+    result = subprocess.run(
+        [sys.executable, str(generator), "--check"],
+        cwd=REPO_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        detail = (result.stdout + result.stderr).strip()
+        errors.append(f"independent check contracts failed: {detail}")
+
+
+def check_toolchain_adapter_identities(errors: list[str]) -> None:
+    generator = REPO_ROOT / "scripts/generate-toolchain-adapter-identities.py"
+    if not generator.is_file():
+        return
+
+    result = subprocess.run(
+        [sys.executable, str(generator), "--check"],
+        cwd=REPO_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        detail = (result.stdout + result.stderr).strip()
+        errors.append(f"toolchain adapter identities failed: {detail}")
+
+
+def check_toolchain_payload_acceptance(errors: list[str]) -> None:
+    generator = REPO_ROOT / "scripts/generate-toolchain-payload-acceptance.py"
+    if not generator.is_file():
+        return
+
+    result = subprocess.run(
+        [sys.executable, str(generator), "--check"],
+        cwd=REPO_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        detail = (result.stdout + result.stderr).strip()
+        errors.append(f"toolchain payload acceptance failed: {detail}")
+
+
+def check_checker_runtime_payloads(errors: list[str]) -> None:
+    generator = REPO_ROOT / "scripts/generate-checker-runtime-payloads.py"
+    if not generator.is_file():
+        return
+
+    result = subprocess.run(
+        [sys.executable, str(generator), "--check"],
+        cwd=REPO_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        detail = (result.stdout + result.stderr).strip()
+        errors.append(f"checker runtime payload registrations failed: {detail}")
+
+
+def check_checker_runtime_launcher(errors: list[str]) -> None:
+    checker = REPO_ROOT / "scripts/check-checker-runtime-launcher.py"
+    if not checker.is_file():
+        return
+
+    result = subprocess.run(
+        [sys.executable, str(checker)],
+        cwd=REPO_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        detail = (result.stdout + result.stderr).strip()
+        errors.append(f"checker runtime launcher conformance failed: {detail}")
+
+
+def check_source_inventory_tools(errors: list[str]) -> None:
+    for name in ("check-source-tar-inventory.py", "check-debian-source-chain.py"):
+        checker = REPO_ROOT / "scripts" / name
+        if not checker.is_file():
+            continue  # Required-file validation reports the missing entry.
+        try:
+            result = subprocess.run(
+                [sys.executable, str(checker)], cwd=REPO_ROOT, check=False,
+                capture_output=True, text=True, timeout=30,
+            )
+        except subprocess.TimeoutExpired:
+            errors.append(f"{name} synthetic checks timed out")
+            continue
+        if result.returncode != 0:
+            detail = (result.stdout + result.stderr).strip()
+            errors.append(f"{name} synthetic checks failed: {detail}")
+
+
+def check_pipeline_artifact_contracts(errors: list[str]) -> None:
+    generator = REPO_ROOT / "scripts/generate-pipeline-artifact-contracts.py"
+    if not generator.is_file():
+        return
+
+    result = subprocess.run(
+        [sys.executable, str(generator), "--check"],
+        cwd=REPO_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        detail = (result.stdout + result.stderr).strip()
+        errors.append(f"pipeline artifact contracts failed: {detail}")
+
+
+def check_implementation_readiness(errors: list[str]) -> None:
+    generator = REPO_ROOT / "scripts/generate-implementation-readiness.py"
+    if not generator.is_file():
+        return
+
+    result = subprocess.run(
+        [sys.executable, str(generator), "--check"],
+        cwd=REPO_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        detail = (result.stdout + result.stderr).strip()
+        errors.append(f"implementation readiness contract failed: {detail}")
+
+
+def check_execution_profile_contracts(errors: list[str]) -> None:
+    generator = REPO_ROOT / "scripts/generate-execution-profile-contracts.py"
+    if not generator.is_file():
+        return
+
+    result = subprocess.run(
+        [sys.executable, str(generator), "--check"],
+        cwd=REPO_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        detail = (result.stdout + result.stderr).strip()
+        errors.append(f"execution profile contracts failed: {detail}")
+
+
+def check_checker_bundle_contracts(errors: list[str]) -> None:
+    generator = REPO_ROOT / "scripts/generate-checker-bundle-contracts.py"
+    if not generator.is_file():
+        return
+
+    result = subprocess.run(
+        [sys.executable, str(generator), "--check"],
+        cwd=REPO_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        detail = (result.stdout + result.stderr).strip()
+        errors.append(f"checker bundle contract failed: {detail}")
 
 
 def sha256(path: Path) -> str:
@@ -460,6 +804,16 @@ def main() -> int:
     check_ruleset_contract(errors)
     check_workflow_contract(errors)
     check_benchmark_corpus(errors)
+    check_independent_check_contracts(errors)
+    check_toolchain_adapter_identities(errors)
+    check_toolchain_payload_acceptance(errors)
+    check_checker_runtime_payloads(errors)
+    check_checker_runtime_launcher(errors)
+    check_source_inventory_tools(errors)
+    check_pipeline_artifact_contracts(errors)
+    check_implementation_readiness(errors)
+    check_execution_profile_contracts(errors)
+    check_checker_bundle_contracts(errors)
     check_agent_experiment_registration(errors)
     check_diff(args.base_ref, errors)
     check_commit_messages(args.base_ref, errors)
