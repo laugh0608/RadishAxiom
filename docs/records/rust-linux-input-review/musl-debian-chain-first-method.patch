@@ -1,0 +1,29 @@
+--- inspect-musl-debian-auth.py
++++ inspect-musl-debian-auth.py
+@@ -22,2 +21,0 @@
+-SOURCE_NAMES = {'musl_1.2.5-3.1~deb13u1.dsc', 'musl_1.2.5.orig.tar.gz',
+-                'musl_1.2.5.orig.tar.gz.asc', 'musl_1.2.5-3.1~deb13u1.debian.tar.xz'}
+@@ -29,20 +26,0 @@
+-
+-
+-def original_digest(value):
+-    # The historical three-package parser intentionally has a narrower path
+-    # alphabet. Select these four literal names, without widening its policy.
+-    found = {}
+-    original = None
+-    for line in value.splitlines():
+-        if not line:
+-            continue
+-        fields = line.split()
+-        require(len(fields) == 3 and re.fullmatch('[0-9a-f]{64}', fields[0])
+-                and fields[1].isdigit() and fields[2] in SOURCE_NAMES,
+-                'unexpected source checksum row')
+-        require(fields[2] not in found, 'duplicate source checksum row')
+-        found[fields[2]] = fields
+-        if fields[2] == 'musl_1.2.5.orig.tar.gz':
+-            original = line
+-    require(found.keys() == SOURCE_NAMES, 'missing source checksum row')
+-    return chain.checksums(original)['musl_1.2.5.orig.tar.gz']
+@@ -178 +156 @@
+-        expected = original_digest(selected['checksums-sha256'])
++        expected = chain.checksums(selected['checksums-sha256'])['musl_1.2.5.orig.tar.gz']
