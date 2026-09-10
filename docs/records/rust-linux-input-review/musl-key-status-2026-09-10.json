@@ -1,0 +1,97 @@
+{
+  "acceptance": "not-assessed",
+  "announcement": {
+    "archive_armor_sha256_claim_matches": true,
+    "archive_primary_and_signer_present": true,
+    "bytes": 29691,
+    "declared_message_hash": "SHA512",
+    "message_signature_verified": false,
+    "sha256": "5384b92ed7ad6cf8ce31afff8b5edf88fc0e997ef641c7c43bffc0660d92615d",
+    "stable_release_fingerprint_present": false,
+    "third_party_certification_claims_verified": false,
+    "url": "https://lists.debian.org/debian-devel-announce/2025/04/msg00001.html"
+  },
+  "current_revocation_status_verified": false,
+  "historical_execution": {
+    "bytes": 332163,
+    "sha256": "622cb29a2e15ce0adc875d88654605b76c350b23875dbea5fe1adbc7b96b2574"
+  },
+  "historical_observed_at": "2026-09-10T13:08:26.472436+00:00",
+  "keyring_package": {
+    "bytes": 178572,
+    "sha256": "f699e2f88dca05212f2a452b58475f2993cb6993dfbafb1d0205a3291eb8b4b8"
+  },
+  "keys": {
+    "archive": {
+      "armor": {
+        "bytes": 11861,
+        "sha256": "6f1d277429dd7ffedcc6f8688a7ad9a458859b1139ffa026d1eeaadcbffb0da7"
+      },
+      "armor_and_decoded_bytes_match_package": true,
+      "decoded": {
+        "bytes": 8698,
+        "sha256": "8dbd0029697f8c9b009eeb9a153c6536b62ca031fa0a5b4cec74e8d718fccef6"
+      },
+      "expiry_from_historical_observation_only": [
+        {
+          "created_epoch": 1743339029,
+          "expires_at_utc": "2035-03-28T12:50:29+00:00",
+          "expires_epoch": 2058699029,
+          "key_id": "225629DF75B188BD",
+          "kind": "pub"
+        },
+        {
+          "created_epoch": 1743339029,
+          "expires_at_utc": "2035-03-28T12:50:29+00:00",
+          "expires_epoch": 2058699029,
+          "key_id": "78DBA3BC47EF2265",
+          "kind": "sub"
+        }
+      ],
+      "matches_historical_export_sha256": true,
+      "package_armor_path": "etc/apt/trusted.gpg.d/debian-archive-trixie-automatic.asc",
+      "package_binary_path": "usr/share/keyrings/debian-archive-trixie-automatic.gpg",
+      "primary_from_historical_observation": "04B54C3CDCA79751B16BC6B5225629DF75B188BD",
+      "signer_from_historical_observation": "B8E5F13176D2A7A75220028078DBA3BC47EF2265",
+      "url": "https://ftp-master.debian.org/keys/archive-key-13.asc"
+    },
+    "release": {
+      "armor": {
+        "bytes": 1384,
+        "sha256": "4d097bb93f83d731f475c5b92a0c2fcf108cfce1d4932792fca72d00b48d198b"
+      },
+      "armor_and_decoded_bytes_match_package": true,
+      "decoded": {
+        "bytes": 962,
+        "sha256": "abced156a22aa8683b228299ac35c1ea51515eef900cec0e562f56716dfe3915"
+      },
+      "expiry_from_historical_observation_only": [
+        {
+          "created_epoch": 1742842581,
+          "expires_at_utc": "2033-03-22T18:56:21+00:00",
+          "expires_epoch": 1995130581,
+          "key_id": "762F67A0B2C39DE4",
+          "kind": "pub"
+        }
+      ],
+      "matches_historical_export_sha256": true,
+      "package_armor_path": "etc/apt/trusted.gpg.d/debian-archive-trixie-stable.asc",
+      "package_binary_path": "usr/share/keyrings/debian-archive-trixie-stable.gpg",
+      "primary_from_historical_observation": "41587F7DB8C774BCCF131416762F67A0B2C39DE4",
+      "signer_from_historical_observation": "41587F7DB8C774BCCF131416762F67A0B2C39DE4",
+      "url": "https://ftp-master.debian.org/keys/release-13.asc"
+    }
+  },
+  "kind": "diagnostic-musl-key-status-materials",
+  "methods": {
+    "inspect-musl-key-status.py": {
+      "bytes": 6672,
+      "sha256": "18e2dea0fea2f2e2c959116b88aac83841277539e49c84316319f95429c936b2"
+    },
+    "inspect-musl-trust-inputs.py": {
+      "bytes": 7472,
+      "sha256": "cd2cc429a4337b02e513ddbb9385eadccefed1461732a0a92f595ef0bb2b8878"
+    }
+  },
+  "signature_reverified": false
+}
