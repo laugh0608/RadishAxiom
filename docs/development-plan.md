@@ -73,8 +73,8 @@ Checker 语义线按其[开发计划](https://github.com/laugh0608/RadishAxiomCh
 | 问题 | 审查产物与判定依据 |
 | --- | --- |
 | 保护什么、攻击者能做什么 | 列出不可信 bundle / checker、同用户路径替换、宿主与内核等威胁角色；区分强制隔离和 TCB 自身义务 |
-| `128 MiB` 究竟约束什么 | 对照现行 `process-outer`，明确 guest 可寻址上界与整个 host footprint 的差异；兼容结论通过前不重解释为满足 |
-| 新增 TCB 是否可维护 | 分列 runner、VMM、kernel、init、transport 的职责、源码范围、依赖、来源、更新、许可证材料和审阅负责人；提出可接受规模 / 维护预算供决策 |
+| `128 MiB` 究竟约束什么 | 对照现行 `process-outer`，按 ADR 0015 的已接受边界区分 guest 可寻址上界与整个 host footprint；完成公共迁移前不重解释旧 profile 为满足 |
+| 新增 TCB 是否可维护 | 分列 runner、VMM、kernel、init、transport 的职责、源码范围、依赖、来源、更新、许可证材料和审阅负责人；按已确认的规模预警线、维护预算与唯一负责人验收可维护性 |
 | 实际负载能否完成 | 设计真实 checker 加代表性 / 上限 bundle 的冷启动、内存、deadline、输出上限、异常 teardown 和重复运行矩阵；执行须通过前置门槛并单独授权 |
 | 是否能分发并持续复核 | 明确最低 macOS / Apple Silicon、生产签名 / entitlement、host / guest 身份、container 基线和请求增量审计、失效与回滚行为 |
 
@@ -82,7 +82,7 @@ Checker 语义线按其[开发计划](https://github.com/laugh0608/RadishAxiomCh
 
 架构实验按[协作规则](governance/agent-collaboration.md)保留可复现材料。历史 probe 只剩摘要和叙述时，应标为历史观察，不能据此声称第三方已能复现；后续生产实验另建可留存的输入和运行入口。
 
-具体的来源 / 构建 / 维护方案、资源兼容性、身份迁移和真实容量矩阵见[产品化依赖审阅](checker-runtime-productization-dependency-review.md)；P0–P9 的阶段前置与首个纵向验收集合见[AX-B01 首切片依赖审阅](axiom-pipeline-first-slice-dependency-review.md)。两份审阅是待决策设计，不替代 ADR，也不解除工具、公共迁移或执行门槛。
+具体的来源 / 构建 / 维护方案、资源兼容性、身份迁移和真实容量矩阵见[产品化依赖审阅](checker-runtime-productization-dependency-review.md)；P0–P9 的阶段前置与首个纵向验收集合见[AX-B01 首切片依赖审阅](axiom-pipeline-first-slice-dependency-review.md)。两份审阅区分已确认的资源 / 维护决定与其余待验收设计，不替代 ADR，也不解除工具、公共迁移或执行门槛。
 
 虚拟执行的 guest 128 MiB 硬限与宿主总内存保证缺口已由 [ADR 0015](adr/0015-virtualized-checker-resource-profile.md) 于 2026-09-10 正式接受。它仅窄替代 checker 虚拟路径的资源 / 选择边界；公共迁移、来源和实际执行仍分别验收与授权，既有 v0.1 记录不被重解释，cvc5 / Node 不受该决定豁免。维护投入与唯一负责人由[产品化依赖审阅](checker-runtime-productization-dependency-review.md#许可证与维护责任)维护。
 

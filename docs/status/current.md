@@ -30,13 +30,15 @@
 
 ## 近期顺位
 
-Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收；普通 `dev` push 仍不自动触发 CI。2026-09-06 的提交与核对结论见[日终回顾](../records/2026-09-06-closeout.md)。kernel / Debian 来源及 Rust Linux 输入均已有诊断留存，尚未形成完整 source lock、真实安装或构建验收。
+Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收；普通 `dev` push 仍不自动触发 CI。资源与维护决策已收口；kernel / Debian / Rust Linux 来源诊断尚未形成完整 source lock、真实安装或构建验收。当天提交与代码 / 文档核对见 [2026-09-10 日终回顾](../records/2026-09-10-closeout.md)。
 
-### 当前推进事项（2026-09-10）
+[ADR 0015（Accepted）](../adr/0015-virtualized-checker-resource-profile.md)确认 guest 128 MiB 硬限及宿主总内存无等价硬保证；8,000 行预警线、最多 10 人日和每周 4 小时投入已确认，项目所有者统一负责 runtime 与 kernel / init。细节以[维护责任](../checker-runtime-productization-dependency-review.md#许可证与维护责任)为准。
 
-1. **资源与维护决策已收口。** [ADR 0015（Accepted）](../adr/0015-virtualized-checker-resource-profile.md)已确认 guest 128 MiB 硬限及宿主总内存无等价硬保证；8,000 行预警线、最多 10 人日和每周 4 小时投入已确认，项目所有者为 runtime 与 kernel / init 的唯一维护负责人。[详细责任与边界](../checker-runtime-productization-dependency-review.md#许可证与维护责任)已同步；公共迁移、来源及真实执行门禁继续有效。
-2. **补齐剩余来源证据。** Rust / LLVM、固定 musl-cross-make 配方及 [musl 1.2.5 原包](../records/rust-linux-input-review/musl-source-2026-09-10.md)已有诊断，四份 patch 以 `fuzz=0` 应用成功；原包签名与公钥自认证的 SHA-1 仍被严格条件拒绝。Debian trixie 链已诊断通过，项目所有者已[确认仅限该原包的有条件信任方案](../records/rust-linux-input-review/musl-debian-auth-2026-09-10.md#项目所有者确认与执行顺位)。指纹页面、精确 keyring 包及[两份公钥 / archive 公告](../records/rust-linux-input-review/musl-key-status-2026-09-10.md)已取得，公钥与包内字节一致；公告不覆盖 stable release，未验证公告签名。下一步审阅来源明确的最小验证环境，再复核指定时点的签名 / 密钥状态并补持久材料。`acceptance = not-assessed`，不能据此安装。其他六项依赖、发布构建关联、宿主库 / loader / 符号版本、Rust 公钥策略、kernel 原始 tag 与最终链接继续待办。
-3. **补齐安装执行前置。** [隔离安装切片审阅](../checker-runtime-linux-install-slice-review.md)已固定镜像、新前缀、精确三包 / 四 component、命令、权限、时限、日志与清理；要求核对旧 manifest 删除边界、两包间状态，并禁用 `ldconfig`。按分段方案核对实际模拟与两包间文件状态；来源前置满足后再申请安装，有限执行另列。完整 source lock、公共迁移、签名 / VM 和产品运行继续分别验收与授权。
+### 明日事项（2026-09-11）
+
+1. **先审阅最小验证环境的来源。** 以[公钥 / 公告补证](../records/rust-linux-input-review/musl-key-status-2026-09-10.md)为起点，明确验证器、动态库与宿主的精确身份、来源和剩余 trust，再形成包含两必要角色、强摘要、自认证、子钥绑定 / 交叉认证、指定时点过期 / 撤销和失败处理的命令清单。旧镜像 digest 与 GnuPG 结果不能相互自证来源；新下载、工具安装或容器执行另行说明范围并获授权。
+2. **补齐 musl 原包验收与持久材料。** 仅沿[已确认的有条件 Debian 信任方案](../records/rust-linux-input-review/musl-debian-auth-2026-09-10.md#项目所有者确认与执行顺位)推进同一原包。两公钥已留存且与包内字节一致；archive 公告不覆盖 stable release，公告签名及当前密钥状态未重新核验。验证环境前置满足后，再复核完整链并决定 acceptance；不重复下载已有材料，不放宽上游 SHA-1 拒绝。为 Sources、原包、网页与 keyring 包落实可复现的持久存储；Sources 超过单文件上限，不拆分或放宽门禁绕过。当前仍为 `not-assessed`。
+3. **随后收口其余来源与安装前置。** 补查 musl-cross-make 其他六项依赖、发布构建关联、宿主库 / loader / 符号版本和 Rust 公钥策略；kernel 原始 tag 与最终链接继续分别验收。[隔离安装切片](../checker-runtime-linux-install-slice-review.md)已有精确三包 / 四 component、权限、时限和清理设计，仍需按分段方案核对实际模拟及两包间状态；来源前置满足后再申请安装，有限执行另列。公共迁移、签名 / VM 与产品运行继续分别验收和授权。
 
 [AX-B01 首切片依赖审阅](../axiom-pipeline-first-slice-dependency-review.md)已列出 P0–P9 前置；cvc5 / Node 自身的来源与外层硬限制仍需独立闭合。纯设计无需等待产品安装 / 激活，生产实现遵守 ADR 0007 全部入口或正式替代决策。
 
@@ -54,7 +56,7 @@ Checker 语义线先核实目标归因，再验收同域泛化、独立证明链
 
 ## 验证入口与本次审阅
 
-2026-09-10：Rust GNU 14 个 ELF、255 份 Rust 文本、340 份 musl-cross-make 文件及 musl 原包 2,697 文件已有诊断；原包批次 8 项、Debian 链 9 项合成检查通过，签名拒绝及失败流水留存。完整 Sources / 原包链已复算，与留存 JSON 一致。后续两批分别取得页面 / keyring 包、两公钥 / 公告；首轮连接失败和重试 HTTP 200 均留存。两公钥 ASCII 与解码字节匹配包内文件及旧导出摘要，只读镜像身份仍一致；没有完成新密码学验签。公钥原文已留存仓库，Sources、原包、网页及 `.deb` 仍依赖缓存。本批未运行容器、Rust / CI、安装或构建。详见 [Debian 链与信任审阅](../records/rust-linux-input-review/musl-debian-auth-2026-09-10.md)、[页面 / 包补证](../records/rust-linux-input-review/musl-trust-inputs-2026-09-10.md)及[公钥 / 公告补证](../records/rust-linux-input-review/musl-key-status-2026-09-10.md)。
+2026-09-10 日终：仓库检查和 45 项显式来源诊断合成检查通过；逐批实际观察、失败、材料留存缺口及复核命令见[日终记录](../records/2026-09-10-closeout.md#日终验证与交接)。本轮收尾未运行网络下载、容器、Rust / CI、安装或构建，未完成新密码学验签。
 
 仓库级契约、生成一致性与文本检查：
 
@@ -72,7 +74,7 @@ cargo +1.97.1-aarch64-apple-darwin test --workspace --all-targets --locked --off
 
 命令以工具和依赖已验收安装为前提，不授权下载；其他平台先确认精确工具与执行范围。
 
-2026-09-06 的 Rust 本地 61 项测试与 CI 成功 / 失败传播已经验收；macOS 15 的 `EINVAL` 失败及 macOS 26.6.2 的成功运行均留在[日终记录](../records/2026-09-06-closeout.md#ci-与早前本地验证)。日终仓库门禁通过 1,034 个文件（含 source-tar / Debian 来源链的 27 项合成检查），另行通过库存 6 项与 Rust 输入诊断 8 项检查。日终未重跑 Rust、CI、真实归档核验、安装或产品执行；这些诊断不构成产品 qualification 或独立证明。工程门禁来源与边界见[仓库治理](../governance/repository-governance.md#rust-工程门禁)。
+2026-09-06 的 Rust 本地 61 项测试与 CI 成功 / 失败传播属于[历史验收](../records/2026-09-06-closeout.md#ci-与早前本地验证)，本日未重验。工程门禁与独立诊断的范围见[仓库治理](../governance/repository-governance.md#rust-工程门禁)；测试与来源诊断不构成产品 qualification 或独立证明。
 
 ## 按需阅读
 
