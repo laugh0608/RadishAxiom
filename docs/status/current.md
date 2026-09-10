@@ -35,7 +35,7 @@ Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收；�
 ### 当前推进事项（2026-09-10）
 
 1. **资源与维护决策已收口。** [ADR 0015（Accepted）](../adr/0015-virtualized-checker-resource-profile.md)已确认 guest 128 MiB 硬限及宿主总内存无等价硬保证；8,000 行预警线、最多 10 人日和每周 4 小时投入已确认，项目所有者为 runtime 与 kernel / init 的唯一维护负责人。[详细责任与边界](../checker-runtime-productization-dependency-review.md#许可证与维护责任)已同步；公共迁移、来源及真实执行门禁继续有效。
-2. **补齐剩余来源证据。** 已补查选定 GNU component 全部 14 个 ELF 及精确 Rust / LLVM 配方；[固定 musl-cross-make 源码核验](../records/rust-linux-input-review/musl-cross-make-2026-09-10.md)确认实际为 Binutils 2.44 / GCC 9.4.0，列出七项依赖及四份 musl patch，并区分构建工具与 patch / 产物许可。下一步取得 musl 原包与可信来源材料，核对补丁应用、GCC 支持库、发布构建关联、宿主库 / loader / 符号版本。上游依赖 SHA-1 校验、Rust 旧自认证策略、kernel 原始 tag 与最终分发材料仍待闭合；不把配方或摘要升级为完整 acceptance。
+2. **补齐剩余来源证据。** 已核对 Rust / LLVM、固定 musl-cross-make 配方和 [musl 1.2.5 原包](../records/rust-linux-input-review/musl-source-2026-09-10.md)。四份 musl patch 在离线副本中以 `fuzz=0` 应用成功，许可与 libc / CRT 配方已留存；但原包分离签名及公钥自认证均为 SHA-1，严格签名条件明确拒绝。下一步先处理同一源码的强摘要认证与公钥绑定策略，再补其他六项源依赖、发布构建关联、宿主库 / loader / 符号版本、Rust 公钥策略、kernel 原始 tag 与最终链接；不将补丁成功或 GnuPG 退出 0 升级为 acceptance。
 3. **补齐安装执行前置。** [隔离安装切片审阅](../checker-runtime-linux-install-slice-review.md)已固定镜像、新前缀、精确三包 / 四 component、命令、权限、时限、日志与清理；要求核对旧 manifest 删除边界、两包间状态，并禁用 `ldconfig`。按分段方案核对实际模拟与两包间文件状态；来源前置满足后再申请安装，有限执行另列。完整 source lock、公共迁移、签名 / VM 和产品运行继续分别验收与授权。
 
 [AX-B01 首切片依赖审阅](../axiom-pipeline-first-slice-dependency-review.md)已列出 P0–P9 前置；cvc5 / Node 自身的来源与外层硬限制仍需独立闭合。纯设计无需等待产品安装 / 激活，生产实现遵守 ADR 0007 全部入口或正式替代决策。
@@ -54,7 +54,7 @@ Checker 语义线先核实目标归因，再验收同域泛化、独立证明链
 
 ## 验证入口与本次审阅
 
-2026-09-10：已只读补查 Rust GNU 的 14 个 ELF、精确 Rust source 与固定 musl-cross-make 归档；255 份 Rust 文本及 340 份外部源码文件元数据和方法留存。本轮新增外部归档诊断 8 项通过；此前宿主诊断 6 项、来源诊断 6 项和原诊断 8 项已通过。最新仓库检查覆盖 1,048 文件；未重跑 Rust / CI、真实验签、patch 应用、安装或产品执行。方法与输出见 [Rust 补查记录](../records/rust-linux-input-review/README.md)。
+2026-09-10：已补查 Rust GNU 14 个 ELF、255 份 Rust 文本、340 份 musl-cross-make 文件及 musl 原包 2,697 文件；方法、库存与日志留存。本轮新增 8 项合成检查通过，四份 patch 实际应用成功；原包严格签名条件拒绝，离线命令退出 1，首次补丁诊断错误亦保留。最新仓库检查覆盖 1,060 文件；未运行 Rust / CI、安装、构建或产品执行，诊断容器已删除。详见 [musl 来源核验](../records/rust-linux-input-review/musl-source-2026-09-10.md)。
 
 仓库级契约、生成一致性与文本检查：
 

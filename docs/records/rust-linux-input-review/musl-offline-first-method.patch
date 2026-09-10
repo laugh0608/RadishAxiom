@@ -1,0 +1,22 @@
+--- verify-musl-source.py
++++ verify-musl-source.py
+@@ -119 +119 @@
+-            raise ValueError('unexpected patch result path: ' + relative)
++            raise ValueError('unexpected patch result path')
+@@ -128,2 +128 @@
+-              'patch_sha256': sha256(Path('/usr/bin/patch').read_bytes()),
+-              'help': run(['/usr/bin/patch', '--help']), 'steps': []}
++              'patch_sha256': sha256(Path('/usr/bin/patch').read_bytes()), 'steps': []}
+@@ -144,2 +143 @@
+-            args = ['/usr/bin/patch', '--batch', '--forward', '--fuzz=0',
+-                    '--no-backup-if-mismatch', '-p1', '--input', str(patch)]
++            args = ['/usr/bin/patch', '--batch', '--forward', '--fuzz=0', '-p1', '--input', str(patch)]
+@@ -154,0 +153 @@
++            step['after'] = inventory(root)
+@@ -156,6 +154,0 @@
+-            try:
+-                step['after'] = inventory(root)
+-            except ValueError as error:
+-                step['inventory_error'] = str(error)
+-                result['passed'] = False
+-                return result
