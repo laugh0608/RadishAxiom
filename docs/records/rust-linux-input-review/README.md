@@ -145,3 +145,9 @@ python3 docs/records/rust-linux-input-review/check-host-dependencies.py
 输出原样留存，方法、被复用方法、库存与 archive 摘要见 JSON。[6 项合成检查](check-host-dependencies.py)通过，覆盖字节篡改、大小 / 架构错误、动态段越界、传递外部依赖保留及同名歧义不升级为 loader 解析成功；不替代真实装载或密码学验证。它们按本记录显式运行，未加入默认仓库门禁。
 
 同时通过原有 `check-diagnostics.py` 的 8 项检查、`check-repo.sh` 的 1,038 文件仓库检查、安装审阅所有 bash 代码块的 `bash -n` 和 `git diff --check`；保留输出的三个方法摘要与实际文件一致。未重跑 Rust / CI、真实验签、容器安装或产品执行；bash 语法检查不等于安装验证。本轮更改未提交、未推送。
+
+## 2026-09-10：精确源码配方补查
+
+上述首轮更改已提交为 `1262570`；随后 `e849aff` 接受 ADR 0015 并落实维护责任。经本次明确授权，仅重新取得既有 Rust `1.97.1` source 对象，242,787,896 bytes / SHA-256 与历史 source acceptance 一致；未安装或切换 Rust。
+
+[源码配方核验记录](source-recipes-2026-09-10.md)完整扫描 323,914 个逻辑成员，选择 255 份文本并留存方法 / 元数据：5 个 CRT 从 musl 库目录复制，4 个由 LLVM compiler-rt 构建，libunwind 进入源码树内 LLVM 构建路径。已定位 AArch64 musl 对应 Dockerfile、musl-cross-make 精确 commit、musl 版本与两份随包 patch；相关 LLVM 源码和许可原文已取得。配方不等于发布 binary 的构建证明，外部 musl-cross-make / musl 原始材料、宿主库及签名策略仍待闭合；不改写上面的历史观察。

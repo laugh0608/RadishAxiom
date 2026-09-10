@@ -35,7 +35,7 @@ Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收；�
 ### 当前推进事项（2026-09-10）
 
 1. **资源与维护决策已收口。** [ADR 0015（Accepted）](../adr/0015-virtualized-checker-resource-profile.md)已确认 guest 128 MiB 硬限及宿主总内存无等价硬保证；8,000 行预警线、最多 10 人日和每周 4 小时投入已确认，项目所有者为 runtime 与 kernel / init 的唯一维护负责人。[详细责任与边界](../checker-runtime-productization-dependency-review.md#许可证与维护责任)已同步；公共迁移、来源及真实执行门禁继续有效。
-2. **补齐剩余来源证据。** [Rust Linux 核验记录](../records/rust-linux-input-review/README.md#2026-09-10宿主依赖补查与安装前置收敛)已补查选定 GNU component 全部 14 个 ELF，driver / LLVM 的传递依赖与库存摘要一致；系统库实际字节、loader 解析与符号版本仍待核对。旧 SHA-1 公钥自认证绑定策略、musl / CRT / unwind 精确构建配方与源码许可、kernel 原始 tag 签名及最终分发材料仍未闭合。不把同名库、摘要或 GnuPG 成功升级为完整 acceptance。
+2. **补齐剩余来源证据。** 已补查选定 GNU component 全部 14 个 ELF；[精确 Rust source 配方核验](../records/rust-linux-input-review/source-recipes-2026-09-10.md)已区分 musl 的 libc / 5 个 CRT 与 LLVM 的 4 个 CRT / unwind，取得相关 LLVM 源码和许可，定位固定 musl-cross-make commit 与随包 patch。下一步核对该外部 commit 的实际源码 / 依赖 / 许可、发布构建关联、宿主库 / loader / 符号版本；旧 SHA-1 自认证策略、kernel 原始 tag 与最终分发材料仍待闭合。不把配方、摘要或 GnuPG 成功升级为完整 acceptance。
 3. **补齐安装执行前置。** [隔离安装切片审阅](../checker-runtime-linux-install-slice-review.md)已固定镜像、新前缀、精确三包 / 四 component、命令、权限、时限、日志与清理；要求核对旧 manifest 删除边界、两包间状态，并禁用 `ldconfig`。按分段方案核对实际模拟与两包间文件状态；来源前置满足后再申请安装，有限执行另列。完整 source lock、公共迁移、签名 / VM 和产品运行继续分别验收与授权。
 
 [AX-B01 首切片依赖审阅](../axiom-pipeline-first-slice-dependency-review.md)已列出 P0–P9 前置；cvc5 / Node 自身的来源与外层硬限制仍需独立闭合。纯设计无需等待产品安装 / 激活，生产实现遵守 ADR 0007 全部入口或正式替代决策。
@@ -54,7 +54,7 @@ Checker 语义线先核实目标归因，再验收同域泛化、独立证明链
 
 ## 验证入口与本次审阅
 
-2026-09-10：既有 Rust GNU archive 的 14 个 ELF 已实际只读补查；新增诊断 6 项、原诊断 8 项、仓库 1,038 文件检查及安装审阅 bash 语法检查通过。未重跑 Rust / CI、真实验签、安装或产品执行；方法与输出见 [Rust 补查记录](../records/rust-linux-input-review/README.md#2026-09-10宿主依赖补查与安装前置收敛)。
+2026-09-10：Rust GNU 的 14 个 ELF 与精确 source 中的构建配方已实际只读补查；宿主诊断 6 项、来源诊断 6 项和原诊断 8 项均通过，最新仓库检查覆盖 1,043 文件。源码包重取后匹配既有摘要，255 份文本元数据与方法留存；未重跑 Rust / CI、真实验签、安装或产品执行。方法与输出见 [Rust 补查记录](../records/rust-linux-input-review/README.md)。
 
 仓库级契约、生成一致性与文本检查：
 

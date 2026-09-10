@@ -66,6 +66,8 @@
 
 2026-09-10 已对选定 GNU component 的全部 14 个 ELF 补查动态段，并核对压缩流、tar 流及单文件与原库存身份一致；driver / LLVM 的传递依赖包括此前根工具摘要未列出的 `librt.so.1`。实际记录及系统库、符号版本、静态 runtime 的剩余缺口见 [Rust 输入补查](records/rust-linux-input-review/README.md#2026-09-10宿主依赖补查与安装前置收敛)。同名库库存不等于 loader 解析成功。下一次安装的具体范围、命令和中间核对见[隔离安装切片审阅](checker-runtime-linux-install-slice-review.md)，来源前置与安装授权仍未闭合。
 
+同日获准重新取得精确 Rust `1.97.1` 源包，摘要与既有 source acceptance 一致。[配方补查](records/rust-linux-input-review/source-recipes-2026-09-10.md)区分 musl 目录的 libc / 5 个 CRT 与 LLVM compiler-rt 的 4 个 CRT，确认 libunwind 的源码树内构建入口，并定位 musl-cross-make `3635262e4524c991552789af6f36211a335a77b3`、musl `1.2.5` 及随包 patch。对应 LLVM 源码 / 许可已取得；外部构建材料、实际发布构建关联、宿主库和最终链接仍未验收，没有安装或切换工具链。
+
 ### 归档诊断的范围
 
 新入口对物理 USTAR / PAX、压缩 / tar / 文件长度、路径、权限、重复项、链接图和逐文件摘要进行受限检查，首次权限误判与修正均保留在[实际盘点记录](records/linux-6.18.49-archive-inventory/README.md)。源码归档的 group-write 位只作为元数据记录，不应用到宿主文件系统；后续提取策略另行审阅。SPDX 标记扫描与许可证文件清单不等于许可义务验收。
@@ -132,7 +134,7 @@ initramfs 输入先采用固定 `newc` 布局，逐项列路径、类型、mode�
 | --- | --- | --- |
 | 构建环境确定 | 精确环境、工具 / 库库存、版本 / 摘要、隔离与清理范围 | 三包模拟、Rust 选定 component 的 14 个 ELF 静态依赖与隔离安装范围已有；尚未安装，镜像 / 工具 / 系统库和源码许可未完整验收 |
 | Kernel source 验收 | 压缩摘要、未压缩 tar 签名、完整指纹、文件 / 许可证库存、来源记录 | 摘要 / 签名 / 文件库存、tag 元数据对应及许可材料已审阅；原始 tag、实际分发材料与工具来源尚未完整验收 |
-| init 方案收口 | 语言 / target / 依赖决定、child 限制安装顺序、失败矩阵 | Rust 优先建议待设计验收；Linux std / CRT / linker 已盘点，静态 runtime 来源与实际链接未验收 |
+| init 方案收口 | 语言 / target / 依赖决定、child 限制安装顺序、失败矩阵 | Rust 优先建议待设计验收；CRT / unwind 精确配方与 LLVM 源码 / 许可已补查，外部 musl 构建材料、发布构建关联与实际链接未验收 |
 | 可留存合成装置 | 自有 runner / init / transport 源码、输入与重跑入口 | 先满足 ADR、工具、私有 FFI 范围与单独签名 / VM 授权 |
 
 本审阅没有解除来源、资源或真实执行门槛。当前产品能力与下一顺位仍只由[当前状态](status/current.md)统一维护。
