@@ -35,7 +35,7 @@ Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收；�
 ### 当前推进事项（2026-09-10）
 
 1. **资源与维护决策已收口。** [ADR 0015（Accepted）](../adr/0015-virtualized-checker-resource-profile.md)已确认 guest 128 MiB 硬限及宿主总内存无等价硬保证；8,000 行预警线、最多 10 人日和每周 4 小时投入已确认，项目所有者为 runtime 与 kernel / init 的唯一维护负责人。[详细责任与边界](../checker-runtime-productization-dependency-review.md#许可证与维护责任)已同步；公共迁移、来源及真实执行门禁继续有效。
-2. **补齐剩余来源证据。** Rust / LLVM、固定 musl-cross-make 配方及 [musl 1.2.5 原包](../records/rust-linux-input-review/musl-source-2026-09-10.md)已有诊断，四份 patch 以 `fuzz=0` 应用成功；原包签名与公钥自认证的 SHA-1 仍被严格条件拒绝。Debian trixie 两角色、自认证和 Sources → 同一原包绑定已诊断通过；[信任审阅与推荐方案](../records/rust-linux-input-review/musl-debian-auth-2026-09-10.md#仅限该原包的信任审阅待确认)已形成，下一步由项目所有者确认仅限该原包的归档认证路线与公钥初始信任假设，再补身份 / 撤销依据和验证环境来源。现有镜像不能自证可信，`acceptance = not-assessed`、禁止据此安装的边界不变。其他六项源依赖、发布构建关联、宿主库 / loader / 符号版本、Rust 公钥策略、kernel 原始 tag 与最终链接继续待办。
+2. **补齐剩余来源证据。** Rust / LLVM、固定 musl-cross-make 配方及 [musl 1.2.5 原包](../records/rust-linux-input-review/musl-source-2026-09-10.md)已有诊断，四份 patch 以 `fuzz=0` 应用成功；原包签名与公钥自认证的 SHA-1 仍被严格条件拒绝。Debian trixie 两角色、自认证和 Sources → 同一原包绑定已诊断通过；项目所有者已[确认仅限该原包的有条件信任方案](../records/rust-linux-input-review/musl-debian-auth-2026-09-10.md#项目所有者确认与执行顺位)。另行获准取得[指纹页面与精确 keyring 包](../records/rust-linux-input-review/musl-trust-inputs-2026-09-10.md)，两主指纹及包内 keyring 字节相符。下一步补精确公告 / 公钥与密钥状态、验证环境来源和持久留存，新下载另行授权；`acceptance = not-assessed`，不能据此安装。其他六项依赖、发布构建关联、宿主库 / loader / 符号版本、Rust 公钥策略、kernel 原始 tag 与最终链接继续待办。
 3. **补齐安装执行前置。** [隔离安装切片审阅](../checker-runtime-linux-install-slice-review.md)已固定镜像、新前缀、精确三包 / 四 component、命令、权限、时限、日志与清理；要求核对旧 manifest 删除边界、两包间状态，并禁用 `ldconfig`。按分段方案核对实际模拟与两包间文件状态；来源前置满足后再申请安装，有限执行另列。完整 source lock、公共迁移、签名 / VM 和产品运行继续分别验收与授权。
 
 [AX-B01 首切片依赖审阅](../axiom-pipeline-first-slice-dependency-review.md)已列出 P0–P9 前置；cvc5 / Node 自身的来源与外层硬限制仍需独立闭合。纯设计无需等待产品安装 / 激活，生产实现遵守 ADR 0007 全部入口或正式替代决策。
@@ -54,7 +54,7 @@ Checker 语义线先核实目标归因，再验收同域泛化、独立证明链
 
 ## 验证入口与本次审阅
 
-2026-09-10：Rust GNU 14 个 ELF、255 份 Rust 文本、340 份 musl-cross-make 文件及 musl 原包 2,697 文件已有诊断；原包批次 8 项、Debian 链 9 项合成检查通过，签名拒绝、GnuPG 崩溃与路径解析失败均留存。基于 `70b7235` 的本轮信任审阅只读取既有材料，重算完整 Sources / 原包链与留存 JSON 逐字节一致，并在既有 bookworm 索引中找到对应验证工具 / keyring 版本；不等于新验签或包内字节核对。仓库检查通过（1,071 文件）。完整 trixie Sources 超过 10 MiB，仍在任务缓存，持久留存缺口未闭合。本轮无新下载、容器、Rust / CI、安装或构建。详见 [musl 来源核验](../records/rust-linux-input-review/musl-source-2026-09-10.md)及 [Debian 链与信任审阅](../records/rust-linux-input-review/musl-debian-auth-2026-09-10.md)。
+2026-09-10：Rust GNU 14 个 ELF、255 份 Rust 文本、340 份 musl-cross-make 文件及 musl 原包 2,697 文件已有诊断；原包批次 8 项、Debian 链 9 项合成检查通过，签名拒绝、GnuPG 崩溃与路径解析失败均留存。完整 Sources / 原包链已复算，与留存 JSON 逐字节一致。最新获准下载两个信任补证目标，首轮代理连接失败均留存，重试 HTTP 200；包内 55,918 bytes keyring 与旧输入逐字节相同。完整 Sources、原包及新网页 / `.deb` 仍依赖任务缓存，持久留存缺口未闭合。本批未重新验签、运行容器、Rust / CI、安装或构建。详见 [Debian 链与信任审阅](../records/rust-linux-input-review/musl-debian-auth-2026-09-10.md)及[本次补证](../records/rust-linux-input-review/musl-trust-inputs-2026-09-10.md)。
 
 仓库级契约、生成一致性与文本检查：
 

@@ -170,4 +170,4 @@ python3 docs/records/rust-linux-input-review/check-host-dependencies.py
 
 2026-09-10 提交原包诊断后，先完成 [Debian 归档认证路线审阅](musl-authentication-route-2026-09-10.md)，随后获准完成 [强摘要链实际诊断](musl-debian-auth-2026-09-10.md)：trixie 两个必要签名角色、自认证及 Sources → 原包 SHA-256 均通过本批条件；首轮 GnuPG 崩溃和路径解析拒绝也已留存。原包与既有字节一致；不改变 musl 上游严格签名拒绝或正式 acceptance 状态。
 
-基于 `70b7235` 的[后续信任审阅](musl-debian-auth-2026-09-10.md#仅限该原包的信任审阅待确认)推荐有条件采用仅限该原包的 Debian 归档认证路线，公钥初始身份、密钥状态、验证工具来源与持久材料仍待补齐。方案待项目所有者确认；本轮仅复算已有字节及读取旧索引，未下载、运行容器或允许安装。
+基于 `70b7235` 的[后续信任审阅](musl-debian-auth-2026-09-10.md#仅限该原包的信任审阅待确认)推荐有条件采用仅限该原包的 Debian 归档认证路线；该审阅只复算已有字节及读取旧索引。提交 `bbbe083` 后项目所有者已[确认方案](musl-debian-auth-2026-09-10.md#项目所有者确认与执行顺位)，并另行授权完成[指纹页面与精确 keyring 包补证](musl-trust-inputs-2026-09-10.md)：页面两主指纹一致，包摘要匹配，包内完整 keyring 与旧诊断输入逐字节相同。公告 / 公钥链接未访问，密钥状态、验证工具来源与持久材料仍待补齐；正式 acceptance 未通过，未运行容器或安装。

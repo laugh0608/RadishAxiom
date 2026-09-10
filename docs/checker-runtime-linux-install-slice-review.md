@@ -17,7 +17,7 @@
 | 固定输入字节 | 三个 `.deb` 与两个 Rust archive 已取得并匹配各自来源链 | 在同一只读输入上重算长度 / 摘要；Rust 重跑完整归档检查；错误不进入提取 |
 | Rust 签名身份 | 分离签名 SHA-512 的历史 GnuPG 核验通过；旧 key 自认证为 SHA-1 | 先决定并验收 key-binding policy；不得默许弱自认证或仅凭 GnuPG 退出 0 放行 |
 | 镜像与执行工具 | 固定镜像的包 / 工具库存已有；来源未完整验收 | 明确镜像、公钥环、shell、tar / xz、coreutils、apt / dpkg、Python 与动态库的来源、版本及许可材料 |
-| Rust 静态输入 | musl std 中 `libc.a`、`libunwind.a`、9 个 CRT 已盘点；[精确配方与 LLVM 源码 / 许可](records/rust-linux-input-review/source-recipes-2026-09-10.md)已取得 | [musl 原包 / 许可及四份补丁应用](records/rust-linux-input-review/musl-source-2026-09-10.md)已核对，但包签名与 key 自认证均为 SHA-1，严格条件拒绝；[Debian 归档强摘要链](records/rust-linux-input-review/musl-debian-auth-2026-09-10.md)已诊断通过，仍须验收归档信任 / 公钥 bootstrap / 验证工具来源，再补其他六项依赖及 upstream binary 到实际构建输入的关联 |
+| Rust 静态输入 | musl std 中 `libc.a`、`libunwind.a`、9 个 CRT 已盘点；[精确配方与 LLVM 源码 / 许可](records/rust-linux-input-review/source-recipes-2026-09-10.md)已取得 | [musl 原包 / 许可及四份补丁应用](records/rust-linux-input-review/musl-source-2026-09-10.md)已核对，但包签名与 key 自认证均为 SHA-1，严格条件拒绝；Debian 链已诊断通过且[仅限该原包的信任方案已确认](records/rust-linux-input-review/musl-debian-auth-2026-09-10.md#项目所有者确认与执行顺位)，[页面指纹与包内 keyring 对照](records/rust-linux-input-review/musl-trust-inputs-2026-09-10.md)已通过，仍须补公告 / 密钥状态、验证工具来源和持久材料后单独验收；其他六项依赖及 upstream binary 到实际构建输入的关联继续待补，不能据策略确认安装 |
 | Rust 宿主依赖 | 14 个 ELF 的动态段已有只读观察 | 核对实际 loader / 系统库路径、链接目标、包归属、字节、符号版本与来源；同名包不等于已满足 |
 | 授权与环境 | 目前只授权诊断和方案准备 | 以上前置收口后，按本文命令、容器、目录、副作用和清理范围取得当前任务的安装授权；镜像缺失时不 pull |
 

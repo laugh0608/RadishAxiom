@@ -1,0 +1,226 @@
+{
+  "acceptance": "not-assessed",
+  "containers_run": 0,
+  "curl_version": "curl 8.7.1 (x86_64-apple-darwin25.0) libcurl/8.7.1 (SecureTransport) LibreSSL/3.3.6 zlib/1.2.12 nghttp2/1.68.1",
+  "date": "2026-09-10",
+  "fetch_method": {
+    "bytes": 3136,
+    "path": "docs/records/rust-linux-input-review/fetch-musl-trust-inputs.py",
+    "sha256": "af211b69e88d500840cee1d55ad48e2ddaee3628e2f32d397272f14640c2e822"
+  },
+  "inspection": {
+    "argv": [
+      "python3",
+      "docs/records/rust-linux-input-review/inspect-musl-trust-inputs.py",
+      ".tmp/musl-trust-bbbe083-20260910"
+    ],
+    "exit_code": 0,
+    "stderr": {
+      "bytes": 0,
+      "text": ""
+    },
+    "stdout": {
+      "bytes": 10702,
+      "record": "docs/records/rust-linux-input-review/musl-trust-inputs-2026-09-10.json",
+      "sha256": "811b68c4853ba3f0ab177fdeb6f6a8f6270eb674f1dfaa9270877d5f3b3de9a8"
+    }
+  },
+  "invocations": [
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "1048576",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-trust-bbbe083-20260910/keys-attempt-1.html",
+        "--write-out",
+        "%{http_code}\n",
+        "https://ftp-master.debian.org/keys.html"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 0,
+        "file": "keys-attempt-1.html",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 7,
+      "finished_at": "2026-09-10T13:38:56.299826+00:00",
+      "http_code": "000",
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "af211b69e88d500840cee1d55ad48e2ddaee3628e2f32d397272f14640c2e822",
+      "started_at": "2026-09-10T13:38:56.289405+00:00",
+      "stderr": {
+        "bytes": 91,
+        "sha256": "7528e9de26551e1df6d26dcd70afd80588062ceafc5fa6eb5d2f1d9a2b313a60",
+        "text": "curl: (7) Failed to connect to 127.0.0.1 port 10808 after 0 ms: Couldn't connect to server\n"
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "945e4893567554e68f6f28d5652917269341a5f3d295a16b7c708c9bfd95dc5d",
+        "text": "000\n"
+      },
+      "target": "keys",
+      "transport_passed": false,
+      "url": "https://ftp-master.debian.org/keys.html"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "524288",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-trust-bbbe083-20260910/keyring-attempt-1.deb",
+        "--write-out",
+        "%{http_code}\n",
+        "https://deb.debian.org/debian/pool/main/d/debian-archive-keyring/debian-archive-keyring_2023.3+deb12u2_all.deb"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 0,
+        "file": "keyring-attempt-1.deb",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 7,
+      "finished_at": "2026-09-10T13:38:56.300002+00:00",
+      "http_code": "000",
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "af211b69e88d500840cee1d55ad48e2ddaee3628e2f32d397272f14640c2e822",
+      "started_at": "2026-09-10T13:38:56.289420+00:00",
+      "stderr": {
+        "bytes": 91,
+        "sha256": "7528e9de26551e1df6d26dcd70afd80588062ceafc5fa6eb5d2f1d9a2b313a60",
+        "text": "curl: (7) Failed to connect to 127.0.0.1 port 10808 after 0 ms: Couldn't connect to server\n"
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "945e4893567554e68f6f28d5652917269341a5f3d295a16b7c708c9bfd95dc5d",
+        "text": "000\n"
+      },
+      "target": "keyring",
+      "transport_passed": false,
+      "url": "https://deb.debian.org/debian/pool/main/d/debian-archive-keyring/debian-archive-keyring_2023.3+deb12u2_all.deb"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "1048576",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-trust-bbbe083-20260910/keys-attempt-2.html",
+        "--write-out",
+        "%{http_code}\n",
+        "https://ftp-master.debian.org/keys.html"
+      ],
+      "attempt": 2,
+      "body": {
+        "bytes": 10718,
+        "file": "keys-attempt-2.html",
+        "sha256": "b271f4c351a3b54f6a6be9667bb834809d12ee514055b903ccb06839d274e3e0"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 0,
+      "finished_at": "2026-09-10T13:39:28.733646+00:00",
+      "http_code": "200",
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "af211b69e88d500840cee1d55ad48e2ddaee3628e2f32d397272f14640c2e822",
+      "started_at": "2026-09-10T13:39:27.372940+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "keys",
+      "transport_passed": true,
+      "url": "https://ftp-master.debian.org/keys.html"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "524288",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-trust-bbbe083-20260910/keyring-attempt-2.deb",
+        "--write-out",
+        "%{http_code}\n",
+        "https://deb.debian.org/debian/pool/main/d/debian-archive-keyring/debian-archive-keyring_2023.3+deb12u2_all.deb"
+      ],
+      "attempt": 2,
+      "body": {
+        "bytes": 178572,
+        "file": "keyring-attempt-2.deb",
+        "sha256": "f699e2f88dca05212f2a452b58475f2993cb6993dfbafb1d0205a3291eb8b4b8"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 0,
+      "finished_at": "2026-09-10T13:40:13.299934+00:00",
+      "http_code": "200",
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "af211b69e88d500840cee1d55ad48e2ddaee3628e2f32d397272f14640c2e822",
+      "started_at": "2026-09-10T13:40:11.822170+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "keyring",
+      "transport_passed": true,
+      "url": "https://deb.debian.org/debian/pool/main/d/debian-archive-keyring/debian-archive-keyring_2023.3+deb12u2_all.deb"
+    }
+  ],
+  "kind": "diagnostic-musl-trust-input-execution",
+  "links_followed": 0,
+  "new_download_targets": 2,
+  "packages_installed": 0,
+  "raw_web_page_copied_to_git": false,
+  "repository_base_commit": "bbbe083",
+  "retained_cache": ".tmp/musl-trust-bbbe083-20260910",
+  "total_response_body_bytes": 189290
+}
