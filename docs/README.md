@@ -66,6 +66,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 | process 与隔离可行性 | [native process](checker-runtime-darwin-process-isolation-review.md)、[强隔离与 synthetic Linux 观察](checker-runtime-darwin-hard-isolation-review.md) |
 | 隔离产品化与核心闭环依赖 | [产品化设计审阅](checker-runtime-productization-dependency-review.md)、[AX-B01 首切片依赖](axiom-pipeline-first-slice-dependency-review.md) |
 | guest 来源与构建入口 | [kernel / builder / init 与 Linux checker 交接审阅](checker-runtime-guest-source-build-review.md) |
+| Linux builder 隔离安装 | [精确安装范围、命令、中间核对与清理审阅](checker-runtime-linux-install-slice-review.md) |
 | Linux 来源实际核验 | [摘要 / 签名与 builder 库存](records/linux-6.18.49-source-review/README.md)、[归档文件盘点与精确缺失包候选](records/linux-6.18.49-archive-inventory/README.md) |
 | Linux 构建包来源与安装差异 | [Debian 签名摘要链、控制脚本审阅与安装模拟](records/linux-builder-source-chain/README.md) |
 | Rust Linux 与静态目标输入 | [签名 / 归档盘点、安装候选与 kernel 许可审阅](records/rust-linux-input-review/README.md) |

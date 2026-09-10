@@ -1,6 +1,6 @@
 # Checker guest 来源与构建入口审阅
 
-审阅日期：2026-09-06
+审阅日期：2026-09-10
 
 状态：候选环境、kernel / Debian 来源与 Rust Linux 输入已形成诊断；安装、完整 source lock 与构建验收尚未完成。
 
@@ -63,6 +63,8 @@
 后续 [Rust Linux 诊断](records/rust-linux-input-review/README.md)已取得 GNU host 与 musl std 实际归档，均匹配固定 channel manifest 摘要并通过本轮 GnuPG 分离签名核验；逻辑归档、文件 / component 清单和部分 ELF 动态依赖已盘点。公钥旧 SHA-1 自认证、镜像 / 工具来源、实际静态 runtime 来源与动态库闭包仍未完整验收，未回写正式登记。旧镜像的 `1.96.1` 不能代替 `1.97.1`，也不为缩短准备切换 init 语言。
 
 实际 musl 包带有 `libc.a`、`libunwind.a` 和 9 个 CRT 对象；GNU host 的 `rustc` component 提供 `rust-lld`，但后者自身需要 builder 的 loader、LLVM / zlib / libc 等库。下一步对应精确源码 / 许可及宿主库，不再把这些文件列为“尚未取得”。安装候选仅选择 GNU 的 rustc / cargo / std 与 musl std，采用新隔离前缀并禁用 `ldconfig`；安装器会处理旧组件，不能直接复用已有 prefix。尚未实际安装或构建，最终 kernel config 和条件工具仍未冻结。
+
+2026-09-10 已对选定 GNU component 的全部 14 个 ELF 补查动态段，并核对压缩流、tar 流及单文件与原库存身份一致；driver / LLVM 的传递依赖包括此前根工具摘要未列出的 `librt.so.1`。实际记录及系统库、符号版本、静态 runtime 的剩余缺口见 [Rust 输入补查](records/rust-linux-input-review/README.md#2026-09-10宿主依赖补查与安装前置收敛)。同名库库存不等于 loader 解析成功。下一次安装的具体范围、命令和中间核对见[隔离安装切片审阅](checker-runtime-linux-install-slice-review.md)，来源前置与安装授权仍未闭合。
 
 ### 归档诊断的范围
 
@@ -128,7 +130,7 @@ initramfs 输入先采用固定 `newc` 布局，逐项列路径、类型、mode�
 
 | 切片 | 完成交付 | 当前缺口 |
 | --- | --- | --- |
-| 构建环境确定 | 精确环境、工具 / 库库存、版本 / 摘要、隔离与清理范围 | 三包模拟与 Rust 选定 component 清单已有；尚未安装，镜像 / 工具 / 动态库和源码许可未完整验收 |
+| 构建环境确定 | 精确环境、工具 / 库库存、版本 / 摘要、隔离与清理范围 | 三包模拟、Rust 选定 component 的 14 个 ELF 静态依赖与隔离安装范围已有；尚未安装，镜像 / 工具 / 系统库和源码许可未完整验收 |
 | Kernel source 验收 | 压缩摘要、未压缩 tar 签名、完整指纹、文件 / 许可证库存、来源记录 | 摘要 / 签名 / 文件库存、tag 元数据对应及许可材料已审阅；原始 tag、实际分发材料与工具来源尚未完整验收 |
 | init 方案收口 | 语言 / target / 依赖决定、child 限制安装顺序、失败矩阵 | Rust 优先建议待设计验收；Linux std / CRT / linker 已盘点，静态 runtime 来源与实际链接未验收 |
 | 可留存合成装置 | 自有 runner / init / transport 源码、输入与重跑入口 | 先满足 ADR、工具、私有 FFI 范围与单独签名 / VM 授权 |

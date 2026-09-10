@@ -97,3 +97,51 @@ git diff --check
 首次实际选定文件读取使用 `--include-text`，留存在忽略目录；移除每个文件的 `text` 字段后原样留存本目录的 JSON。`selected_lines` 是带原行号的安装器审阅摘录，来源与许可沿用精确 Rust archive 的 COPYRIGHT / 许可文件；不复制完整上游安装脚本或二进制。[8 项合成检查](check-diagnostics.py)覆盖路径、manifest claim、危险成员 / 权限、资源上限、损坏 / 拼接压缩、ELF 动态段与签名状态拒绝；签名状态使用 mock，不能替代上述真实 GnuPG 结果。它们是本记录的复核入口，不宣称已加入默认仓库门禁。
 
 下一步明确公钥绑定策略、静态 runtime 来源及 driver / LLVM / 系统库闭包，再提出精确容器安装 / 有限执行范围。既有三包 apt 模拟与本轮静态清单都不授权真实安装；ADR 0015、维护投入、公共迁移及产品运行继续分别处理，近期顺位见[当前状态](../../status/current.md)。
+
+## 2026-09-10：宿主依赖补查与安装前置收敛
+
+本次基线为 `dev` / `3aa2dbb`，工作区初始干净。使用主机 Python 只读扫描既有 GNU archive，未下载新依赖、启动容器、执行 ELF 或安装器。前述 9 月 6 日的观察与摘要不改写。
+
+[新增方法](inspect-host-dependencies.py)复用已留存的 XZ reader 与 ELF 动态段观察函数，输入为固定摘要的原始 GNU archive 和固定摘要的完整库存。先校验压缩 SHA-256，再完整扫描；扫描过程中重算压缩流和 tar 流身份，并逐项核对选定 ELF 的长度 / 摘要。单个 ELF 的宿主诊断读取上限为 192 MiB，XZ / tar 上限沿用已有方法，不改变产品资源 profile。
+
+[实际输出](host-dependencies-2026-09-10.json)覆盖选定 rustc / cargo / GNU std 三个 component 内的 **全部 14 个 ELF**，包括 driver、LLVM、rustdoc、proc-macro server、linker wrappers、objcopy 和共享 std。每个文件记录实际 `DT_NEEDED`、interpreter、RPATH / RUNPATH；扫描退出 0，全部与原库存绑定一致。
+
+| 项目 | 新取得的字节观察 | 仍不能推出 |
+| --- | --- | --- |
+| driver | `librustc_driver-bb2b40829e117684.so`，114,267,984 bytes；直接依赖精确 LLVM 库以及 libdl / libgcc_s / libpthread / libc | driver 可在候选镜像中实际装载 |
+| LLVM | `libLLVM.so.22.1-rust-1.97.1-stable`，165,558,632 bytes；依赖 librt / libdl / libpthread / libm / libz / libgcc_s / libc | 根工具摘要列出的依赖已经覆盖传递依赖；尤其不能漏掉此次补见的 librt |
+| 外部库名并集 | `libc.so.6`、`libdl.so.2`、`libgcc_s.so.1`、`libm.so.6`、`libpthread.so.0`、`librt.so.1`、`libz.so.1` | 同名库存候选已被 loader 选中，或具备要求的符号版本 |
+| interpreter 并集 | `/lib/ld-linux-aarch64.so.1` | 该路径及其 symlink 目标、实际字节、包归属和来源已复核 |
+
+输出中的 `bundled_name_candidates` 只是同名库存候选；`loader_resolution` 始终为 `not-assessed`，不模拟 ELF loader，也不执行 `ldd`。符号版本、运行时 `dlopen`、子进程工具与系统库自身的递归依赖未覆盖。历史镜像库存中的 `libc6=2.36-9+deb12u14`、`libgcc-s1=12.2.0-14+deb12u1`、`zlib1g=1:1.2.13.dfsg-1` 只能作为下一轮包归属核对入口，不是本轮实际库字节证据。
+
+### 尚待补齐的来源材料
+
+| 项目 | 下一份精确材料 / 判定 | 本次状态 |
+| --- | --- | --- |
+| Rust 公钥绑定 | 在完整指纹及已留存公钥字节下明确身份信任来源、弱自认证处理、撤销 / 过期与密钥更新规则 | 继续保留阻断；没有调整 GnuPG policy 或接受弱算法 |
+| musl libc 与对应 CRT | 对应 Rust `1.97.1` / commit `8bab26f4f68e0e26f0bb7960be334d5b520ea452` 的实际发布构建配方、musl 精确源包 / patch / 配置 / 许可，再映射实际 archive 成员 | target 源码的 musl 版本声明不能替代实际构建配方；本轮未取得新源码材料 |
+| compiler CRT / unwind | 分别确认 9 个 CRT 的来源归属及 `libunwind.a` 构建输入；核对使用的是哪些 LLVM / compiler-rt / 其他上游材料 | 不根据文件名或根部双许可证推断来源；仍未逐对象验收 `.a` |
+| 系统库与 builder | 固定镜像下上述 7 个库名、loader 的实际解析链、文件摘要、包归属、符号版本及包 / source 链；同时核对安装命令所用工具 | 此次补齐 archive 内 14 个 ELF 的静态观察，系统库侧未执行 |
+| kernel tag | 获取原始 annotated tag 对象、记录对象身份并核对签名与 peeled commit | 历史 JSON 对应与 tar 验签继续各自成立，原始 tag 尚未验签 |
+
+公钥策略的审阅建议是先保持当前严格阻断：优先补现代认证材料；若上游材料仍无法满足，须另行审阅“直接固定公钥身份”的窄信任决策，明确它不依赖旧 UID 自认证建立发布者身份。不能只增加允许 SHA-1 的工具选项。本段是候选处理顺序，不接受新信任策略，也不要求安装另一套验签工具。
+
+9 月 10 日只读查询了 [Rust Forge](https://forge.rust-lang.org/infra/other-installation-methods.html)和 [simpleinfra #218](https://github.com/rust-lang/simpleinfra/issues/218)：前者继续给出手工验签入口，后者展示旧自认证被现代策略拒绝的问题。这些网页只作审阅线索，不构成新身份认证材料。通过网页读取工具请求上述精确 Rust commit 的 `src/ci/docker/host-aarch64/dist-aarch64-linux/Dockerfile` 时返回 `Cache miss`；未取得正文，不能据此判定该路径不存在，也未把它计为源码配方已核对。未改用邻近版本代替精确输入。
+
+### 安装切片与复核
+
+已形成[隔离安装切片审阅](../../checker-runtime-linux-install-slice-review.md)：固定镜像、精确三包与四 component、新前缀、容器权限、时限、日志、安装器旧 manifest / ldconfig 副作用，以及提取 / 两包间核对 / 清理要求。它保留来源前置和分段执行核对，不是无人值守安装脚本；未提出“现在安装即可通过”的结论。
+
+本次实际命令（仓库根）：
+
+```bash
+python3 docs/records/rust-linux-input-review/inspect-host-dependencies.py \
+  .tmp/rust-linux-inputs-bb014fd/rust-1.97.1-aarch64-unknown-linux-gnu.tar.xz \
+  > .tmp/rust-linux-inputs-bb014fd/host-dependencies-2026-09-10.json
+python3 docs/records/rust-linux-input-review/check-host-dependencies.py
+```
+
+输出原样留存，方法、被复用方法、库存与 archive 摘要见 JSON。[6 项合成检查](check-host-dependencies.py)通过，覆盖字节篡改、大小 / 架构错误、动态段越界、传递外部依赖保留及同名歧义不升级为 loader 解析成功；不替代真实装载或密码学验证。它们按本记录显式运行，未加入默认仓库门禁。
+
+同时通过原有 `check-diagnostics.py` 的 8 项检查、`check-repo.sh` 的 1,038 文件仓库检查、安装审阅所有 bash 代码块的 `bash -n` 和 `git diff --check`；保留输出的三个方法摘要与实际文件一致。未重跑 Rust / CI、真实验签、容器安装或产品执行；bash 语法检查不等于安装验证。本轮更改未提交、未推送。

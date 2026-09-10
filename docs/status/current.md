@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-09-06
+更新日期：2026-09-10
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。历史事实按需进入[截至 2026-09-03 的归档](../records/status-through-2026-09-03.md)。
 
@@ -32,11 +32,11 @@
 
 Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收；普通 `dev` push 仍不自动触发 CI。2026-09-06 的提交与核对结论见[日终回顾](../records/2026-09-06-closeout.md)。kernel / Debian 来源及 Rust Linux 输入均已有诊断留存，尚未形成完整 source lock、真实安装或构建验收。
 
-### 明日事项（2026-09-07）
+### 当前推进事项（2026-09-10）
 
 1. **收口资源与维护决策。** 审阅 [ADR 0015（Proposed）](../adr/0015-virtualized-checker-resource-profile.md)的 guest 128 MiB 硬限、宿主总内存无等价硬保证及兼容性影响，确认[维护负责人和投入](../checker-runtime-productization-dependency-review.md#许可证与维护责任)。起草方向已确认，正式接受及预算仍待决定；在此之前不迁移 v0.1 或进入真实 checker 执行。
-2. **补齐剩余来源证据。** 从 [Rust Linux 核验记录](../records/rust-linux-input-review/README.md)继续：明确旧 SHA-1 公钥自认证的绑定策略；对应 musl / CRT / unwind 的精确构建配方、源码与许可；核对 driver / LLVM / loader / 系统库完整依赖。kernel tag 元数据已与 tar commit 对应，但原始 tag 签名及最终分发材料仍未验收。保留失败和 trust 缺口，不重复把已取得的 payload 列为待下载，也不把摘要 / GnuPG 成功升级为完整 acceptance。
-3. **形成可批准的隔离安装切片。** 依据[三包模拟](../records/linux-builder-source-chain/README.md)和 Rust 选定 component 清单，固定镜像、新安装前缀、依赖差异、执行命令、时限、日志及容器删除方式；明确安装器会处理旧组件和默认 `ldconfig` 的副作用。来源前置与精确范围收口后再申请安装 / 有限执行，不将模拟当成安装回执。完整 source lock、公共迁移、签名 / VM 和产品运行继续分别验收与授权。
+2. **补齐剩余来源证据。** [Rust Linux 核验记录](../records/rust-linux-input-review/README.md#2026-09-10宿主依赖补查与安装前置收敛)已补查选定 GNU component 全部 14 个 ELF，driver / LLVM 的传递依赖与库存摘要一致；系统库实际字节、loader 解析与符号版本仍待核对。旧 SHA-1 公钥自认证绑定策略、musl / CRT / unwind 精确构建配方与源码许可、kernel 原始 tag 签名及最终分发材料仍未闭合。不把同名库、摘要或 GnuPG 成功升级为完整 acceptance。
+3. **补齐安装执行前置。** [隔离安装切片审阅](../checker-runtime-linux-install-slice-review.md)已固定镜像、新前缀、精确三包 / 四 component、命令、权限、时限、日志与清理；要求核对旧 manifest 删除边界、两包间状态，并禁用 `ldconfig`。按分段方案核对实际模拟与两包间文件状态；来源前置满足后再申请安装，有限执行另列。完整 source lock、公共迁移、签名 / VM 和产品运行继续分别验收与授权。
 
 [AX-B01 首切片依赖审阅](../axiom-pipeline-first-slice-dependency-review.md)已列出 P0–P9 前置；cvc5 / Node 自身的来源与外层硬限制仍需独立闭合。纯设计无需等待产品安装 / 激活，生产实现遵守 ADR 0007 全部入口或正式替代决策。
 
@@ -53,6 +53,8 @@ Checker 语义线先核实目标归因，再验收同域泛化、独立证明链
 - 产品发布版本、公开 CLI / SDK、表面语法、安装路径、最低支持矩阵及 v1 后兼容承诺仍未冻结。不创建占位编译器骨架、自动发布或装饰性治理入口；已有 Rust 实现的工程门禁以实际 CI 验收为准。
 
 ## 验证入口与本次审阅
+
+2026-09-10：既有 Rust GNU archive 的 14 个 ELF 已实际只读补查；新增诊断 6 项、原诊断 8 项、仓库 1,038 文件检查及安装审阅 bash 语法检查通过。未重跑 Rust / CI、真实验签、安装或产品执行；方法与输出见 [Rust 补查记录](../records/rust-linux-input-review/README.md#2026-09-10宿主依赖补查与安装前置收敛)。
 
 仓库级契约、生成一致性与文本检查：
 
