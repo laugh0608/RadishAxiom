@@ -2,6 +2,8 @@
 
 日期：2026-09-10；基线 `0a66901`。按项目所有者对[精确范围](musl-authentication-route-2026-09-10.md)的授权，取得 trixie InRelease 和完整 Sources 索引，在固定镜像内完成离线诊断。本记录不接受新的产品信任策略，不改写 musl 上游签名拒绝，不安装、编译或执行源码。
 
+用途：供来源审阅者追溯该原包的诊断和待决策信任边界，不作为产品 acceptance 或安装授权。下文历史执行保持原样；[基于 `70b7235` 的信任审阅](#仅限该原包的信任审阅待确认)只读取既有材料，推荐方案尚未获项目所有者确认。
+
 ## 实际结论
 
 **Debian trixie 签名快照绑定的 musl 1.2.5 原包，与已有原包的长度和 SHA-256 完全一致。** [链结果](musl-debian-chain-2026-09-10.json)为 `archive_diagnostic_passed = true`、`source_bytes_checked = true`，仍为 `acceptance = not-assessed`。
@@ -81,4 +83,70 @@ git diff --check
 
 9 项合成检查通过，覆盖缺失 / 重复 / 弱算法签名、过期 / 撤销 / 错误指纹、崩溃子命令、错误自认证上下文、cross-certification 缺失以及版本 / 路径漂移。它们不执行密码学验签。实际链结果重算与留存 JSON 逐字节一致；原始日志（含 HTTP CRLF / 进度回车）、两次收集器输出、方法摘要及失败方法差异均已复核。仓库检查通过（1,071 文件），`git diff --check` 通过；不重跑 Rust / CI、patch、安装或构建。
 
-下一步先审阅：是否仅对上述固定原包接受 Debian 归档声明及现有公钥 bootstrap 假设，以及镜像 / 验证工具来源如何闭合。通过与否必须显式记录，不能把本诊断自动写入正式 acceptance。其他六项源依赖、Rust 公钥策略、发布构建关联、宿主库、kernel 原始 tag 与最终链接仍分别待办。
+后续信任审阅见下节；是否采纳仍待确认，不能把本诊断自动写入正式 acceptance。其他六项源依赖、Rust 公钥策略、发布构建关联、宿主库、kernel 原始 tag 与最终链接仍分别待办。
+
+## 仅限该原包的信任审阅（待确认）
+
+审阅日期：2026-09-10；基线 `dev` / `70b7235`，开始时工作区干净、相对本地 `origin/dev` 领先 6 个提交，未查询远端。本节为方案审阅与本地材料复算，没有新网页读取、下载、容器运行、安装或正式信任策略变更。
+
+### 推荐方案与精确范围
+
+**推荐有条件采用 Debian 归档声明作为该固定原包的来源认证路线；先确认策略范围，再补公钥初始信任与验证工具证据，最后单独记录 acceptance。当前不接受现有诊断作为最终来源验收。**
+
+拟采纳范围仅为上表 1,080,786 bytes / SHA-256 `a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4`，通过本记录固定 InRelease、Sources.xz、`musl / 1.2.5-3.1~deb13u1` 和 `pool/main/m/musl/musl_1.2.5.orig.tar.gz` 绑定。批准后允许形成的声明最多是：**在明确接受的 Debian 归档密钥身份及验证环境假设下，该签名快照将此字节串列为 musl 上游原包。**
+
+候选条件如下，均不是本轮已生效的规则：
+
+1. 固定前述 trixie archive 主钥、实际签名 subkey 和 stable release 主钥，两个角色都必须成立；保留 SHA-256 / SHA-384 / SHA-512 签名与自认证条件、cross-certification、时间及撤销检查。不同角色不代表已证明运维、身份渠道或失陷风险互相独立；bookworm 额外签名不替代它们。
+2. 明确承担 Debian 归档维护者将正确原包纳入该快照的信任。归档链不认证 musl 作者的现代签名，不保证代码安全、补丁适用性或 Rust 发布二进制确实由该输入构建。musl 上游 SHA-1 拒绝继续单列。
+3. 公钥初始身份推荐由项目所有者明确选择 Debian 官方 HTTPS 身份资料及 WebPKI 为起点，补齐可留存的完整指纹页面、角色 / 密钥公告和获取时间，并与现有原始 keyring 核对。当前只有既有审阅叙述和未成功取得的公告，尚不足以完成这一步。若要求独立于 Debian 网站 / WebPKI 的身份保证，应另选已有可信密钥的认证链或带外确认；本材料没有这样的起点。
+4. 镜像 / 验证工具优先通过另一个已明确接受来源的最小验证环境复核相同原始输入；其取得路径不能只靠当前镜像输出背书。该环境的精确身份与来源必须另行提出，不能凭“换了工具”视为可信。复核仍须覆盖两角色、自认证、subkey binding、cross-certification 和失败传播，单独再验 InRelease 不足以替代全部条件。
+5. 只处理固定历史快照。无 `Valid-Until`，不能认证其在验收日仍是最新发布；正式验收前需补截至指定核对时间的密钥状态依据，并明确未覆盖此后撤销。重算旧 observation 中的有效期不等于在新日期重新核验。未来更换原包、快照、必要 signer 或信任起点必须重新审阅，不能自动扩展到其他 musl 版本或全部 Debian 包。
+
+本方案不批准 Debian patch、`.dsc` 维护者签名、Rust key policy、其他六项源依赖、整个镜像 / builder 或任何安装。新下载、复验执行和安装各自另行说明精确目标、影响、时限、清理方式并取得授权。确认本方案也不自动把 `acceptance = not-assessed` 改为通过。
+
+### 公钥初始信任：已有依据与循环边界
+
+| 层次 | 现有证据 | 尚不能推出 |
+| --- | --- | --- |
+| 公钥字节身份 | 从旧 [release-verification.json](../linux-builder-source-chain/release-verification.json) 恢复的公开 keyring 为 55,918 bytes，摘要与本批输入一致；两主钥完整指纹在[前置审阅](musl-authentication-route-2026-09-10.md#可复用的本地材料与方法)中与 Debian FTP 页面核对 | 包来自哪个可信发布过程、网页身份已由独立渠道认证 |
+| 密钥内部绑定 | 本批自认证和 subkey binding 诊断通过，保留原始 packet 与强摘要算法；v4 指纹的 SHA-1 标识计算不等于接受 SHA-1 签名 | 自签 UID 是现实 Debian 归档维护者；`sig:!` 不建立 Web of Trust，`TRUST_UNDEFINED` 不作可信身份判定 |
+| 初始身份资料 | 既有记录引用官方 HTTPS 完整指纹页面，也记载页面的信任提醒；公告当时返回 403 | 可复核的公告正文、公告签名的可信认证链、独立带外核对、最新撤销检查已齐备 |
+| 发行版包关联 | 既有 bookworm 索引包含与库存相同版本的 `debian-archive-keyring` | 索引中的 `.deb` 已取得，或包内 keyring 与当前原始 bytes 已对照 |
+
+公钥自签只说明内部绑定；两个 Debian 页面即使都补齐，也仍共享 Debian 发布方和 HTTPS 信任体系。推荐方案须把它们作为明确的初始信任假设及交叉核对材料，不能计为两条独立身份链。密钥公告即使含签名，也需说明公告 signer 的既有信任依据，不能按公告自带 key 再次自举。
+
+同理，用镜像内 keyring 和 GnuPG 验证发行版索引，再用该索引中的同名包证明镜像 / keyring 一定可信，会形成循环。包内字节对照在外部信任起点确定后有价值，但不能凭空创建起点。固定 keyring 未含撤销 packet，也不证明外部没有更新的撤销材料。
+
+### 镜像与 GnuPG：可以复用到哪一步
+
+[历史镜像观察](../linux-6.18.49-source-review/observation.json)同时记录本地 image ID `sha256:a339861ae23e9abb272cea45dfafde21760d2ce6577a70f8a926153677902663` 和 RepoDigest 字符串 `rust@sha256:a339861ae23e9abb272cea45dfafde21760d2ce6577a70f8a926153677902663`。这仅是留存的身份观察；所读材料没有原始 OCI index / manifest / config / layer 字节及相互绑定，也没有可信发布者认证或镜像构建配方到该内容的关联。不能从 `rust@` 名称或两个相同摘要反推官方镜像来源已经验收。
+
+[413 包库存](../linux-6.18.49-source-review/builder-inventory.json)记录 Debian bookworm / arm64，`gpg` 来自 source package `gnupg2`，包版本为 `2.2.40-1.1+deb12u2`；`debian-archive-keyring` 为 `2023.3+deb12u2`，`libgcrypt20` 为 `1.10.1-3+deb12u1`。旧库存 `/usr/bin/gpg` 摘要与本次执行摘要 `c3f988ab…17075` 相同，支持所观察程序的字节连续性。版本输出只显示 GnuPG `2.2.40` / libgcrypt `1.10.1`，不能据此省略 Debian 修订号或认为 `.deb` 到实际执行文件的绑定已完成。
+
+本轮有界读取 Git 内已有 [bookworm Packages.xz](../linux-builder-source-chain/Packages.xz) / [Sources.xz](../linux-builder-source-chain/Sources.xz)，先按 [payload-chain.json](../linux-builder-source-chain/payload-chain.json) 的 `indexes` 重算长度 / SHA-256，再复用 `inspect-debian-source-chain.py` 的 `index_stanzas` 读取。以下版本各只有一个匹配条目，且 source 索引存在同版本 `gnupg2`、`debian-archive-keyring`、`libgcrypt20`；只是复用历史签名观察下的索引读取，没有新验签或取得包：
+
+| binary package | 索引版本 / 架构 | `.deb` bytes / SHA-256 |
+| --- | --- | --- |
+| `gpg` | `2.2.40-1.1+deb12u2` / arm64 | 901,672 / `4ba017857a169efab487e4dd660dacdb4451223fc39a1c5c9046c446cd5702e6` |
+| `debian-archive-keyring` | `2023.3+deb12u2` / all | 178,572 / `f699e2f88dca05212f2a452b58475f2993cb6993dfbafb1d0205a3291eb8b4b8` |
+| `libgcrypt20` | `1.10.1-3+deb12u1` / arm64 | 620,056 / `140af58350c9b15bfa611000d9e0205528bbed2cba39271bf12bd36de2678f2e` |
+
+这些是后续材料选择入口，不是下载清单的批准。`gpg` 条目还声明 `gpgconf`、`libassuan0`、`libbz2-1.0`、`libc6`、`libgpg-error0`、`libreadline8`、`libsqlite3-0`、`zlib1g` 依赖。包依赖声明不等于实际加载库闭包，仍缺实际 loader / 共享库身份与包内字节绑定。Python、收集器、timeout、宿主解析 / XZ / SHA-256 路径、Docker / OrbStack、宿主及时间来源也属于结果可信所依赖的环境；摘要和隔离参数只分别固定内容、限制副作用，不能证明环境输出正确。
+
+若选择继续验收现有镜像，应补原始 OCI 绑定、发布来源、相关包 / 源码 / 许可证和实际执行闭包，或者由项目所有者明确接受其中仍属可信输入的部分；不必为这一个原包先宣称全部 413 包已验收。推荐优先使用来源明确的最小环境复核，原因是现有镜像 provenance 缺口较大且已发生 GnuPG double-free。第二次诊断成功只说明选定检查路径通过，不能推导旧二进制已修复或没有其他缺陷；更换环境也不自动解决首次崩溃根因。来源认证不等于必须从零重建所有工具，但任何采用发行版二进制的信任终点都须显式记录。
+
+### 剩余证据与停止条件
+
+| 缺口 | 建议闭合材料 / 判定 | 目前状态 |
+| --- | --- | --- |
+| 归档替代路线的授权 | 项目所有者确认上述固定原包、两角色、声明上限及不扩大范围 | 待确认；正式策略未变 |
+| 公钥初始身份与时效 | 可留存的官方指纹 / 角色 / 公告原文、获取时间和摘要；明确 HTTPS / WebPKI 或另选带外信任；核对适用时间的撤销 / 过期信息 | 只有历史网页核对叙述与旧 keyring，公告缺失；不能声称最新状态 |
+| keyring 的发行包关联 | 在选定信任起点下，认证精确 `.deb` 并比较其 keyring 与 55,918 bytes 原始材料；差异需解释，不自动替换 key | 索引版本 / 摘要可复用，包内对照未完成；这不替代上一项 |
+| 验证环境来源与复核 | 明确选择现有镜像闭合或另一个可接受环境，固定工具 / 库 / 方法及可信宿主边界；复核全部必要条件，保存成功和失败原文 | 当前仅诊断 TCB；换环境、下载或运行均未授权 |
+| 原始材料持久留存 | 保留固定 InRelease、完整 Sources、原包、公钥、观察及方法的可取回副本；恢复后重算摘要 | Git 内有 InRelease / keyring / 日志 / 方法；完整 trixie Sources 与原包仍依赖忽略缓存，未建立受审阅的持久副本 |
+| 正式验收记录 | 策略确认且证据补齐后，单列适用输入、信任假设、核对时间、工具身份及剩余边界，沿现有验收流程评估 | `acceptance = not-assessed` 保持不变；本记录不是新 acceptance 格式 |
+
+若项目所有者不接受 Debian 归档维护者或所提初始信任，应继续阻断，转回寻找同一字节的上游强摘要签名及可接受 key binding；现有材料不能保证该路线可取得。仅凭 HTTPS 下载摘要、放宽 SHA-1 或将旧镜像直接标为可信均不推荐作为本批捷径。
+
+本轮主机重跑上节 `inspect-musl-debian-auth.py ... --source ...`，退出 0，stdout 与 Git 内链结果逐字节一致；keyring 解码长度 / 摘要相符，完整本地 trixie Sources 和原包参与重算。这是对旧 GnuPG 观察和现有字节的复算，没有重新进行密码学验签，也没有补足上述缺口。文档更新后运行仓库检查与 `git diff --check`；未重跑 Rust / CI、GnuPG、容器、patch、安装、构建或远程操作。
