@@ -8,7 +8,7 @@
 
 读者：runtime、guest、独立 Checker、工具来源与发布维护者。
 
-最初静态审阅读取主仓 `fd0e396` 与官方材料；后续在 `dc4de70` 基线上获准取得 kernel 源包 / 签名 / 公开验证材料，并在任务隔离容器内盘点及验签，见[实际核验记录](records/linux-6.18.49-source-review/README.md)。未安装依赖、修改宿主 keyring、执行源码构建、创建产品 VM、签名产品、跨仓写入、迁移公共契约或接受 ADR 0015；不重验历史验收。
+最初静态审阅读取主仓 `fd0e396` 与官方材料；后续在 `dc4de70` 基线上获准取得 kernel 源包 / 签名 / 公开验证材料，并在任务隔离容器内盘点及验签，见[实际核验记录](records/linux-6.18.49-source-review/README.md)。未安装依赖、修改宿主 keyring、执行源码构建、创建产品 VM、签名产品、跨仓写入、迁移公共契约；上述来源诊断本身不接受 ADR 0015，不重验历史验收。资源 ADR 与维护责任已在 2026-09-10 另行确认，见[产品化依赖审阅](checker-runtime-productization-dependency-review.md#许可证与维护责任)。
 
 ## 结论
 

@@ -34,7 +34,7 @@ Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收；�
 
 ### 当前推进事项（2026-09-10）
 
-1. **收口资源与维护决策。** 审阅 [ADR 0015（Proposed）](../adr/0015-virtualized-checker-resource-profile.md)的 guest 128 MiB 硬限、宿主总内存无等价硬保证及兼容性影响，确认[维护负责人和投入](../checker-runtime-productization-dependency-review.md#许可证与维护责任)。起草方向已确认，正式接受及预算仍待决定；在此之前不迁移 v0.1 或进入真实 checker 执行。
+1. **资源与维护决策已收口。** [ADR 0015（Accepted）](../adr/0015-virtualized-checker-resource-profile.md)已确认 guest 128 MiB 硬限及宿主总内存无等价硬保证；8,000 行预警线、最多 10 人日和每周 4 小时投入已确认，项目所有者为 runtime 与 kernel / init 的唯一维护负责人。[详细责任与边界](../checker-runtime-productization-dependency-review.md#许可证与维护责任)已同步；公共迁移、来源及真实执行门禁继续有效。
 2. **补齐剩余来源证据。** [Rust Linux 核验记录](../records/rust-linux-input-review/README.md#2026-09-10宿主依赖补查与安装前置收敛)已补查选定 GNU component 全部 14 个 ELF，driver / LLVM 的传递依赖与库存摘要一致；系统库实际字节、loader 解析与符号版本仍待核对。旧 SHA-1 公钥自认证绑定策略、musl / CRT / unwind 精确构建配方与源码许可、kernel 原始 tag 签名及最终分发材料仍未闭合。不把同名库、摘要或 GnuPG 成功升级为完整 acceptance。
 3. **补齐安装执行前置。** [隔离安装切片审阅](../checker-runtime-linux-install-slice-review.md)已固定镜像、新前缀、精确三包 / 四 component、命令、权限、时限、日志与清理；要求核对旧 manifest 删除边界、两包间状态，并禁用 `ldconfig`。按分段方案核对实际模拟与两包间文件状态；来源前置满足后再申请安装，有限执行另列。完整 source lock、公共迁移、签名 / VM 和产品运行继续分别验收与授权。
 

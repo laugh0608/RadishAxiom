@@ -1,6 +1,6 @@
 # RadishAxiom 开发目标与验收计划
 
-更新日期：2026-09-06
+更新日期：2026-09-10
 
 状态：开发规划；涉及正式语义、信任、公共格式或架构替代的事项仍需专题决策。
 
@@ -84,7 +84,7 @@ Checker 语义线按其[开发计划](https://github.com/laugh0608/RadishAxiomCh
 
 具体的来源 / 构建 / 维护方案、资源兼容性、身份迁移和真实容量矩阵见[产品化依赖审阅](checker-runtime-productization-dependency-review.md)；P0–P9 的阶段前置与首个纵向验收集合见[AX-B01 首切片依赖审阅](axiom-pipeline-first-slice-dependency-review.md)。两份审阅是待决策设计，不替代 ADR，也不解除工具、公共迁移或执行门槛。
 
-虚拟执行的 guest 128 MiB 硬限与宿主总内存保证缺口，已按确认方向形成 [ADR 0015 草案](adr/0015-virtualized-checker-resource-profile.md)。它仅拟议窄替代 checker 虚拟路径的资源 / 选择边界；在正式接受与公共迁移验收前，现行执行门槛继续有效，cvc5 / Node 不受该草案豁免。
+虚拟执行的 guest 128 MiB 硬限与宿主总内存保证缺口已由 [ADR 0015](adr/0015-virtualized-checker-resource-profile.md) 于 2026-09-10 正式接受。它仅窄替代 checker 虚拟路径的资源 / 选择边界；公共迁移、来源和实际执行仍分别验收与授权，既有 v0.1 记录不被重解释，cvc5 / Node 不受该决定豁免。维护投入与唯一负责人由[产品化依赖审阅](checker-runtime-productization-dependency-review.md#许可证与维护责任)维护。
 
 ## Agent 装置与人类反馈
 
