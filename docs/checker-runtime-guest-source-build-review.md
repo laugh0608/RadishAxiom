@@ -66,7 +66,7 @@
 
 2026-09-10 已对选定 GNU component 的全部 14 个 ELF 补查动态段，并核对压缩流、tar 流及单文件与原库存身份一致；driver / LLVM 的传递依赖包括此前根工具摘要未列出的 `librt.so.1`。实际记录及系统库、符号版本、静态 runtime 的剩余缺口见 [Rust 输入补查](records/rust-linux-input-review/README.md#2026-09-10宿主依赖补查与安装前置收敛)。同名库库存不等于 loader 解析成功。下一次安装的具体范围、命令和中间核对见[隔离安装切片审阅](checker-runtime-linux-install-slice-review.md)，来源前置与安装授权仍未闭合。
 
-同日获准重新取得精确 Rust `1.97.1` 源包，摘要与既有 source acceptance 一致。[配方补查](records/rust-linux-input-review/source-recipes-2026-09-10.md)区分 musl 目录的 libc / 5 个 CRT 与 LLVM compiler-rt 的 4 个 CRT，确认 libunwind 的源码树内构建入口，并定位 musl-cross-make `3635262e4524c991552789af6f36211a335a77b3`、musl `1.2.5` 及随包 patch。对应 LLVM 源码 / 许可已取得；外部构建材料、实际发布构建关联、宿主库和最终链接仍未验收，没有安装或切换工具链。
+同日获准重新取得精确 Rust `1.97.1` 源包，摘要与既有 source acceptance 一致。[配方补查](records/rust-linux-input-review/source-recipes-2026-09-10.md)区分 musl 目录的 libc / 5 个 CRT 与 LLVM compiler-rt 的 4 个 CRT，确认 libunwind 的源码树内构建入口，并定位 musl-cross-make `3635262e4524c991552789af6f36211a335a77b3`、musl `1.2.5` 及随包 patch。对应 LLVM 源码 / 许可已取得；后续[固定 musl-cross-make 补查](records/rust-linux-input-review/musl-cross-make-2026-09-10.md)取得 340 文件库存，确认实际 Binutils 2.44 / GCC 9.4.0、七项源依赖、四份 musl patch 及工具 / patch 许可边界。上游依赖仅使用 SHA-1 校验，原始依赖包、实际发布构建关联、宿主库和最终链接仍未验收；没有安装或切换工具链。
 
 ### 归档诊断的范围
 

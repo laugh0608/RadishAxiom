@@ -1,0 +1,1730 @@
+{
+  "acceptance": "not-assessed",
+  "archive": {
+    "bytes": 213688,
+    "file": "musl-cross-make-3635262.tar.gz",
+    "member_count": 385,
+    "pax_headers": {
+      "comment": "3635262e4524c991552789af6f36211a335a77b3"
+    },
+    "sha256": "60bed670d689d5c2164020960df36b80189dc5617e9763e023672f98a99d567e",
+    "tar_bytes": 1597440,
+    "tar_sha256": "cb051a24ba421cd4768fc41d078f625d8eac52f617a93d60a4a0119a508c537c"
+  },
+  "commit_authentication": "not-assessed",
+  "files": [
+    {
+      "bytes": 122,
+      "path": ".gitignore",
+      "sha256": "96c4d7010e0cd1e3968d39c64f70c8dca00c99b24520d55ba06e4dff04c64c11"
+    },
+    {
+      "bytes": 601,
+      "path": "COPYRIGHT",
+      "sha256": "1e7cf04e318d8dcf00b2cfa3035c7e4e445da7f8851d1dcfebd7d4b5ac257f5a"
+    },
+    {
+      "bytes": 1068,
+      "path": "LICENSE",
+      "sha256": "6512d6cdd05bb1e71491518b8b2ffe14927bdc13c21dd205c653ba65f7b7c72c"
+    },
+    {
+      "bytes": 5721,
+      "path": "Makefile",
+      "sha256": "6ba8e8f0d7d46a32e4644d5de2e537c33c854c8956990b8bd475c1c310ff9a6d"
+    },
+    {
+      "bytes": 5924,
+      "path": "README.md",
+      "sha256": "7b347e17f69704eff6a6fd71468ba11d69efd9458b9909776fd6007945abacd0"
+    },
+    {
+      "bytes": 3151,
+      "path": "config.mak.dist",
+      "sha256": "da6a3261570857f4258a9da4cbec6661494c1ef84557f40dc07703f33010e2b6"
+    },
+    {
+      "bytes": 2297,
+      "path": "cowpatch.sh",
+      "sha256": "9c6b4f9e415746955179e800f95b2db77dedc0a198d2f57322571b529a0a9501"
+    },
+    {
+      "bytes": 66,
+      "path": "hashes/binutils-2.25.1.tar.bz2.sha1",
+      "sha256": "56d05628476d1811be68b3660a6764669a3262670827e6b0b5b7883b82a0bd5d"
+    },
+    {
+      "bytes": 64,
+      "path": "hashes/binutils-2.27.tar.bz2.sha1",
+      "sha256": "7541abdad6a85ad74be88c490844872dd9a1eff5702a375948c02a04f3740866"
+    },
+    {
+      "bytes": 63,
+      "path": "hashes/binutils-2.32.tar.xz.sha1",
+      "sha256": "bd5729e96fd7c21478674b5352ed7578ac15c25d491dda40934f80dbd8fa7973"
+    },
+    {
+      "bytes": 65,
+      "path": "hashes/binutils-2.33.1.tar.xz.sha1",
+      "sha256": "fbc6619887e7d582ed82e97c67ffae51bf44f25ba8e2f1beabb93cb412c74ce3"
+    },
+    {
+      "bytes": 62,
+      "path": "hashes/binutils-2.44.tar.gz.sha1",
+      "sha256": "20fe5a631d9e5bc1fdaa9a4fc97e5cd1a4b65f86aab7453f91f53a79270be831"
+    },
+    {
+      "bytes": 68,
+      "path": "hashes/binutils-397a64b3.tar.bz2.sha1",
+      "sha256": "2724abf9194577ec90d6d4f05da882b00abcf881309dca5e4a34a9157f255e8c"
+    },
+    {
+      "bytes": 53,
+      "path": "hashes/config.sub.3d5db9ebe860.sha1",
+      "sha256": "191d581453c4fdebe96641f1e7217e118f28c8769c84c5bca1dc0798ef6c68e2"
+    },
+    {
+      "bytes": 52,
+      "path": "hashes/config.sub.a2287c3041a3.sha1",
+      "sha256": "f2d5f8c6903d65c2b5e02edd1ce22c0bdedabda3deceeea637e1f37bed5651a6"
+    },
+    {
+      "bytes": 60,
+      "path": "hashes/gcc-10.3.0.tar.xz.sha1",
+      "sha256": "b3462caab5cc92351d94a2671072d481b49d09dac77f8f4646ba02e22d663682"
+    },
+    {
+      "bytes": 60,
+      "path": "hashes/gcc-11.2.0.tar.xz.sha1",
+      "sha256": "4344798930052e337d6587c795f04c06f3fb9f5d1b6aebf7e6db3a24b1e73c1e"
+    },
+    {
+      "bytes": 60,
+      "path": "hashes/gcc-11.5.0.tar.xz.sha1",
+      "sha256": "75768ebca0fd089bbe882ed32f9eaa37374487475081af14261b3aa37984bb82"
+    },
+    {
+      "bytes": 60,
+      "path": "hashes/gcc-12.4.0.tar.xz.sha1",
+      "sha256": "3e82ef6a9d37d00883e5dedf12d4558d1b4f9c3962c68790a5ce8a10455a55a7"
+    },
+    {
+      "bytes": 60,
+      "path": "hashes/gcc-13.3.0.tar.xz.sha1",
+      "sha256": "3220ad4cdf136b7b4b83ddeeb3c7c2ea8cc708e15513f91441aadaa3eedcb957"
+    },
+    {
+      "bytes": 60,
+      "path": "hashes/gcc-14.2.0.tar.xz.sha1",
+      "sha256": "e14f19182589bf85b90fd10771f90448f700f207c5add1a3e1b21dec9954d20c"
+    },
+    {
+      "bytes": 60,
+      "path": "hashes/gcc-14.3.0.tar.xz.sha1",
+      "sha256": "d869ccaa408c368f4dc5165c10d454dd4b70e4f0c84947085331e05f76714f60"
+    },
+    {
+      "bytes": 60,
+      "path": "hashes/gcc-15.1.0.tar.xz.sha1",
+      "sha256": "e59b6f82edf6095a7ace4e357404b1b295b9cd0b5fbb4a5d5cef44c7f1e36c7f"
+    },
+    {
+      "bytes": 60,
+      "path": "hashes/gcc-4.2.1.tar.bz2.sha1",
+      "sha256": "27bbd7326be568bdf04367724a4983716cabff52cb34c22975a1cabdee4db742"
+    },
+    {
+      "bytes": 60,
+      "path": "hashes/gcc-4.7.4.tar.bz2.sha1",
+      "sha256": "42a7bc1549c8f3c5407eef72c4364785ee5c74e0ae54c7ed7fd739d2719af04e"
+    },
+    {
+      "bytes": 60,
+      "path": "hashes/gcc-5.3.0.tar.bz2.sha1",
+      "sha256": "3a8a2bbce1f6d4d8a744b9a87e2c0e1b2dfa5d0cc7e3db3da5bc0442710b0b2f"
+    },
+    {
+      "bytes": 59,
+      "path": "hashes/gcc-6.5.0.tar.xz.sha1",
+      "sha256": "262ff8c3b1fdbd8c8e30c97c62bf8a248889071ac3f5569fd45772c6bf47735d"
+    },
+    {
+      "bytes": 59,
+      "path": "hashes/gcc-7.5.0.tar.xz.sha1",
+      "sha256": "3c277102a80be20f355462c7c771171f305714ea337f62d1244ea116129022e5"
+    },
+    {
+      "bytes": 59,
+      "path": "hashes/gcc-8.5.0.tar.xz.sha1",
+      "sha256": "f7d76a8a879877b2bf6b794069ba6790ab04ce1c82f3929e934e82bd32e0912e"
+    },
+    {
+      "bytes": 59,
+      "path": "hashes/gcc-9.4.0.tar.xz.sha1",
+      "sha256": "45767f89e904ba4539724337848dc37aa0bbdf6f1ba90d36b9400cafc4b3da92"
+    },
+    {
+      "bytes": 60,
+      "path": "hashes/gmp-6.1.0.tar.bz2.sha1",
+      "sha256": "6aa2dd1e60345221bbc255cba8e4a1d829b0dd6af0d8bcbe575ae66541f4470c"
+    },
+    {
+      "bytes": 60,
+      "path": "hashes/gmp-6.1.1.tar.bz2.sha1",
+      "sha256": "e40954df867be5acb6008806b152d7c13a7be8282342a5520b6ca9d2720aa378"
+    },
+    {
+      "bytes": 60,
+      "path": "hashes/gmp-6.1.2.tar.bz2.sha1",
+      "sha256": "f61ae844d144d7f5784461b878d3579c06e5303d01ef5cd265aa31aead8065e3"
+    },
+    {
+      "bytes": 59,
+      "path": "hashes/gmp-6.3.0.tar.xz.sha1",
+      "sha256": "5e53e903b21e25b223f51f4f49ad74c9855574a4bc75dc09f84f6280ba1537e1"
+    },
+    {
+      "bytes": 61,
+      "path": "hashes/isl-0.14.1.tar.bz2.sha1",
+      "sha256": "05a5e1fcb71c288e3fc953a6269f86fc7a2dcb3420801d1a494062348387a4b3"
+    },
+    {
+      "bytes": 59,
+      "path": "hashes/isl-0.15.tar.bz2.sha1",
+      "sha256": "b0cadbb7b0dd10b71fceff9c5b4f2aa0f07ee417d66a6ecf2dbfb93a76b45a37"
+    },
+    {
+      "bytes": 59,
+      "path": "hashes/isl-0.21.tar.bz2.sha1",
+      "sha256": "6281d10551e7fe344d318d0d3fe3729970db93479bf9a88b9e924cd57ba18aba"
+    },
+    {
+      "bytes": 58,
+      "path": "hashes/isl-0.27.tar.xz.sha1",
+      "sha256": "5540ae7abe6ebbbc848d5297f2f2156aa8095d231bf242e601fbf5fea42c8c06"
+    },
+    {
+      "bytes": 63,
+      "path": "hashes/linux-4.19.90.tar.xz.sha1",
+      "sha256": "1192dc8b5ebd82f85e3c325157e2c27aafb1339fb365f6c794b7eb61f16a4d3d"
+    },
+    {
+      "bytes": 61,
+      "path": "hashes/linux-5.8.5.tar.xz.sha1",
+      "sha256": "c511de55c29a3142c8293cf9381796e1fe78a25a32c197a5fdb53592102d727d"
+    },
+    {
+      "bytes": 62,
+      "path": "hashes/linux-6.15.7.tar.xz.sha1",
+      "sha256": "dc87ef3aeca6607db8b72e48dbf69b4c5a082f63f75127ad8b3b9a48030ac3b8"
+    },
+    {
+      "bytes": 73,
+      "path": "hashes/linux-headers-4.19.88-1.tar.xz.sha1",
+      "sha256": "6b24378b9d8460f7e5ef4ff36a4bde236aa35a25bff7e6c6cd81b5b52cb81ba8"
+    },
+    {
+      "bytes": 73,
+      "path": "hashes/linux-headers-4.19.88-2.tar.xz.sha1",
+      "sha256": "3c85da48814b4f7cc28e58b33584b836f5848e83a4b749e9d86192ae5e61e310"
+    },
+    {
+      "bytes": 71,
+      "path": "hashes/linux-headers-4.19.88.tar.xz.sha1",
+      "sha256": "f946ee60c13aecca98a4240c1c534924bd1fcc990e52686fd436464bb634203e"
+    },
+    {
+      "bytes": 59,
+      "path": "hashes/mpc-1.0.3.tar.gz.sha1",
+      "sha256": "f6f8189b06840bd40c7cf88d83a5d412b9ffc6adbed53f425364fde3c834bc9d"
+    },
+    {
+      "bytes": 59,
+      "path": "hashes/mpc-1.1.0.tar.gz.sha1",
+      "sha256": "d5e3253033f945d9f259711139b154fdc5da6be5b40cc6b7b058e504acfaf541"
+    },
+    {
+      "bytes": 59,
+      "path": "hashes/mpc-1.3.1.tar.gz.sha1",
+      "sha256": "2ccbcb0fe3861e1c639ea9c6ceb8a4ea2714ec0edfa1c082c63517cb48417603"
+    },
+    {
+      "bytes": 61,
+      "path": "hashes/mpfr-3.1.4.tar.bz2.sha1",
+      "sha256": "b3b965237b045cc800c300f9d69ce90a2f9cbbc6407643c8eab9832bef0e354b"
+    },
+    {
+      "bytes": 61,
+      "path": "hashes/mpfr-4.0.2.tar.bz2.sha1",
+      "sha256": "d8915b66ab609774ff79613af9ca3896a0841d237225d1264e127accf5f1c1a5"
+    },
+    {
+      "bytes": 60,
+      "path": "hashes/mpfr-4.2.2.tar.xz.sha1",
+      "sha256": "00cca1c469ff62f6a22f78dca97a238ccfb8055c2d99771da79d94a21b80b182"
+    },
+    {
+      "bytes": 61,
+      "path": "hashes/musl-1.1.14.tar.gz.sha1",
+      "sha256": "eedf2af68fb555a54ab9c1f31d01e3adee097658c437d4746a12125542bbbff4"
+    },
+    {
+      "bytes": 61,
+      "path": "hashes/musl-1.1.15.tar.gz.sha1",
+      "sha256": "7216efe14f7949f7a0aa134e5a5b9166c7e5a28b8ad7ac6bd35e38620c076952"
+    },
+    {
+      "bytes": 61,
+      "path": "hashes/musl-1.1.16.tar.gz.sha1",
+      "sha256": "872c05b3b8d4d9872f6fda09f4d541a2d4975998a1c37724d3e99cd32683f5b4"
+    },
+    {
+      "bytes": 61,
+      "path": "hashes/musl-1.1.17.tar.gz.sha1",
+      "sha256": "01412b66a78ca16711173f0fb3788259dd0ef6cf3451239a779e70f03a14a649"
+    },
+    {
+      "bytes": 61,
+      "path": "hashes/musl-1.1.18.tar.gz.sha1",
+      "sha256": "2e769e49d28f57b4c5a6ee2eaaf5b69d8dac3c4c50824d421ec22b2c073f10bf"
+    },
+    {
+      "bytes": 61,
+      "path": "hashes/musl-1.1.19.tar.gz.sha1",
+      "sha256": "ba767bfebce6361b7d27c7de47777ec58041a0cf81c48fc7619b4b31a99a8385"
+    },
+    {
+      "bytes": 61,
+      "path": "hashes/musl-1.1.20.tar.gz.sha1",
+      "sha256": "2eaadca8cc191488f23d33317050c692b34c4bc55dd6001fcd1a5b640840c5c9"
+    },
+    {
+      "bytes": 61,
+      "path": "hashes/musl-1.1.21.tar.gz.sha1",
+      "sha256": "db863d352d37aecd906d2786eba1975410d01fa4e73d87461609f06d69ec2b44"
+    },
+    {
+      "bytes": 61,
+      "path": "hashes/musl-1.1.22.tar.gz.sha1",
+      "sha256": "dec33cda1f4b7096c8105ab01212932a35df72e9d879dafb3227981f8a7b8b01"
+    },
+    {
+      "bytes": 61,
+      "path": "hashes/musl-1.1.23.tar.gz.sha1",
+      "sha256": "ba13e27bb2a68356d1943d2333d61a562c10172053ae075232a4caa3da938829"
+    },
+    {
+      "bytes": 61,
+      "path": "hashes/musl-1.1.24.tar.gz.sha1",
+      "sha256": "4fb45ac8e6e4cb12ef0d21f9a5bb1f2b76c659785b1d5c67000f6a005d82e72d"
+    },
+    {
+      "bytes": 60,
+      "path": "hashes/musl-1.2.0.tar.gz.sha1",
+      "sha256": "e44018ced5e7c5ff77d118f433b36146fe2d94354eeaeefeefa720d4756da5e0"
+    },
+    {
+      "bytes": 60,
+      "path": "hashes/musl-1.2.1.tar.gz.sha1",
+      "sha256": "d7872e4a71171e199c94080ee6c021c0af1cd7d6f3a0bdb497be5de20c39c631"
+    },
+    {
+      "bytes": 60,
+      "path": "hashes/musl-1.2.2.tar.gz.sha1",
+      "sha256": "95d02c7b9f902fbe129827310f7c48992246e45d1590895a9ea585fe2820fda3"
+    },
+    {
+      "bytes": 60,
+      "path": "hashes/musl-1.2.3.tar.gz.sha1",
+      "sha256": "0f02e56e63601575b1ae6673145cbdb00b1fca3dbbf05e27eb3bc5e90412fed4"
+    },
+    {
+      "bytes": 60,
+      "path": "hashes/musl-1.2.4.tar.gz.sha1",
+      "sha256": "271028d84b145880faa20b237795320885c3630c3fa80e7b9deda423cfb5d2fc"
+    },
+    {
+      "bytes": 60,
+      "path": "hashes/musl-1.2.5.tar.gz.sha1",
+      "sha256": "5c5d074634ed2dedef96c21d52040bfdf056e17d8ec0ccae96e7bf0eb86c3026"
+    },
+    {
+      "bytes": 7887,
+      "path": "litecross/Makefile",
+      "sha256": "0d610337a23086e552989888d0e30926387c4e79e52c584a4f0e65e78e6265e1"
+    },
+    {
+      "bytes": 19347,
+      "path": "patches/binutils-2.25.1/0001-staticpie.diff",
+      "sha256": "bc5abbc2fed6b8e18cd7a6dc3bad96fa12870c8ff683f2e7fddbb1bb05ee1ed1"
+    },
+    {
+      "bytes": 50228,
+      "path": "patches/binutils-2.25.1/0002-cas.diff",
+      "sha256": "a7ae615f111c0c4502f24bafc56dc8d0a95448d9fa972092e00069bda5db282c"
+    },
+    {
+      "bytes": 2228,
+      "path": "patches/binutils-2.25.1/0003-shemuls.diff",
+      "sha256": "6a1bcfa7454b5e8b46d86d65ff52b0d86e1c64fc25437eb0ffdb7984f69a0c6e"
+    },
+    {
+      "bytes": 790,
+      "path": "patches/binutils-2.25.1/0004-shfdpicflag.diff",
+      "sha256": "f36e3789643f69075b5be3b641330270499be79fb9a3c7b0a03817f92e1cf018"
+    },
+    {
+      "bytes": 446,
+      "path": "patches/binutils-2.25.1/0005-shfdpicgot.diff",
+      "sha256": "36ac96a5ddc2ccdcdbd3ef37c3575f54060c9746cfd7113fd46859e6cd844389"
+    },
+    {
+      "bytes": 618,
+      "path": "patches/binutils-2.25.1/0006-mbbadsymindx.diff",
+      "sha256": "d41031a6eb1d0d0586ef44e961cc1c41b89c16d3a555cc089fc3de1830f02406"
+    },
+    {
+      "bytes": 800,
+      "path": "patches/binutils-2.25.1/0007-tcarm.diff",
+      "sha256": "8e45450b4dfe1a0287edefef47251085b1530e167ecb0df32584a2da3be93042"
+    },
+    {
+      "bytes": 809,
+      "path": "patches/binutils-2.25.1/0008-mips-pie-tls.diff",
+      "sha256": "ef37d7ad658c369f764d9774ebc1ea233dc87c7c1f5db8bd821eba6c6d83a34c"
+    },
+    {
+      "bytes": 1601,
+      "path": "patches/binutils-2.25.1/0009-arm-pie-tls.diff",
+      "sha256": "30018d0ba1e038211e12e2d2edee5ccc9e1db42cc572ed577f92449c68a3d909"
+    },
+    {
+      "bytes": 461,
+      "path": "patches/binutils-2.25.1/0010-arm-tlsdesc-64bithost.diff",
+      "sha256": "358748d8d53f062a99505caf8ea555d1c21304fa422357a8454e2261f12a5569"
+    },
+    {
+      "bytes": 1418,
+      "path": "patches/binutils-2.25.1/0011-sh-fdpic-pr31619.diff",
+      "sha256": "aeaeace7761824ab126506330e72e2ffdf205440af83d485b04d6fa403f7168d"
+    },
+    {
+      "bytes": 6772,
+      "path": "patches/binutils-2.25.1/0012-configsub-sheb.diff",
+      "sha256": "78b29fe2c238757e5e81f41f809c2fbd77cc567f156d7ca2e0e55c5600eefe97"
+    },
+    {
+      "bytes": 51796,
+      "path": "patches/binutils-2.27/0001-j2.diff",
+      "sha256": "603329ffb401de225d6d496d9be3d55c770e5cd1df3182a79278834bf3e48e0e"
+    },
+    {
+      "bytes": 10728,
+      "path": "patches/binutils-2.27/0002-pr17739-sh-gc-sections-bug.diff",
+      "sha256": "ac5ae52628c8c117dfaff483124903cc0f7431ab807a12f74941e04d96001667"
+    },
+    {
+      "bytes": 401,
+      "path": "patches/binutils-2.27/0003-microblaze-pr21017.diff",
+      "sha256": "0e0aefc44a522d4d1a2a51532253f0768f2e2b3706dc42ddcbb12165ba6609bc"
+    },
+    {
+      "bytes": 826,
+      "path": "patches/binutils-2.27/0004-mips-pie-tls.diff",
+      "sha256": "4692a481ff27a93142c0ce7199e4ec062a898fc09184ac0b948418753d56b16a"
+    },
+    {
+      "bytes": 927,
+      "path": "patches/binutils-2.27/0005-mips-reproducible.patch",
+      "sha256": "5ca562221af312d761157470daf9beaabe801a92182a733672da8540dd9644c5"
+    },
+    {
+      "bytes": 2967,
+      "path": "patches/binutils-2.27/0006-arm-pie-tls.diff",
+      "sha256": "5a3744a2b2a8927c16a092331b43ef2f490ae0080614a036ca162ad76aa5f984"
+    },
+    {
+      "bytes": 461,
+      "path": "patches/binutils-2.27/0007-arm-tlsdesc-64bithost.diff",
+      "sha256": "358748d8d53f062a99505caf8ea555d1c21304fa422357a8454e2261f12a5569"
+    },
+    {
+      "bytes": 1418,
+      "path": "patches/binutils-2.27/0008-sh-fdpic-pr31619.diff",
+      "sha256": "aeaeace7761824ab126506330e72e2ffdf205440af83d485b04d6fa403f7168d"
+    },
+    {
+      "bytes": 51995,
+      "path": "patches/binutils-2.32/0001-j2.diff",
+      "sha256": "aa89459383e68f539076519f1167bc2ec2ed206424cb7ca77e39551bdcd504da"
+    },
+    {
+      "bytes": 2967,
+      "path": "patches/binutils-2.32/0002-arm-pie-tls.diff",
+      "sha256": "5a3744a2b2a8927c16a092331b43ef2f490ae0080614a036ca162ad76aa5f984"
+    },
+    {
+      "bytes": 461,
+      "path": "patches/binutils-2.32/0003-arm-tlsdesc-64bithost.diff",
+      "sha256": "358748d8d53f062a99505caf8ea555d1c21304fa422357a8454e2261f12a5569"
+    },
+    {
+      "bytes": 2399,
+      "path": "patches/binutils-2.32/0004-arm-pr22269.diff",
+      "sha256": "38f8e255f55fcbda32bc11364f936dfa010be68d6af08f2d1b757cba1ef3b267"
+    },
+    {
+      "bytes": 1418,
+      "path": "patches/binutils-2.32/0005-sh-fdpic-pr31619.diff",
+      "sha256": "aeaeace7761824ab126506330e72e2ffdf205440af83d485b04d6fa403f7168d"
+    },
+    {
+      "bytes": 51995,
+      "path": "patches/binutils-2.33.1/0001-j2.diff",
+      "sha256": "aa89459383e68f539076519f1167bc2ec2ed206424cb7ca77e39551bdcd504da"
+    },
+    {
+      "bytes": 7955,
+      "path": "patches/binutils-2.33.1/0002-or1k-32bithost-1.diff",
+      "sha256": "3890857115d7a2d7774f6f0c6e7dc37d0c8b3e0aedf53de59d70b37ba85609c2"
+    },
+    {
+      "bytes": 329871,
+      "path": "patches/binutils-2.33.1/0003-or1k-32bithost-2.diff",
+      "sha256": "27696224272091630bab3877d42bf9b2d57e20da12c9c89680f6db96a2497378"
+    },
+    {
+      "bytes": 2399,
+      "path": "patches/binutils-2.33.1/0004-arm-pr22269.diff",
+      "sha256": "38f8e255f55fcbda32bc11364f936dfa010be68d6af08f2d1b757cba1ef3b267"
+    },
+    {
+      "bytes": 1418,
+      "path": "patches/binutils-2.33.1/0005-sh-fdpic-pr31619.diff",
+      "sha256": "aeaeace7761824ab126506330e72e2ffdf205440af83d485b04d6fa403f7168d"
+    },
+    {
+      "bytes": 50979,
+      "path": "patches/binutils-2.44/0001-j2.diff",
+      "sha256": "cf5d7590bfe6cb9a21bed0515cb28749928f2e6ecab85b227bade2436197bb3e"
+    },
+    {
+      "bytes": 1418,
+      "path": "patches/binutils-2.44/0002-sh-fdpic-pr31619.diff",
+      "sha256": "aeaeace7761824ab126506330e72e2ffdf205440af83d485b04d6fa403f7168d"
+    },
+    {
+      "bytes": 1905,
+      "path": "patches/binutils-2.44/0003-riscv-pie-symbol-binding.diff",
+      "sha256": "2581d2080b98c7d3d94783efb45ac17b3aba29e51c11eed8a0e5eba6877d8560"
+    },
+    {
+      "bytes": 413,
+      "path": "patches/binutils-2.44/0004-s390x-pie-symbol-binding.diff",
+      "sha256": "15f00d52ead1717f9efb1ab8fb3559a81aeb623018576344d3bb3b58747ab420"
+    },
+    {
+      "bytes": 14364,
+      "path": "patches/binutils-397a64b3/0001-staticpie.diff",
+      "sha256": "c40d9c9a593e16a31d38e1703415da97541ba75d994ce1bd63175f52b7d13222"
+    },
+    {
+      "bytes": 625,
+      "path": "patches/binutils-397a64b3/0006-noinfo.diff",
+      "sha256": "6b3ef7fd5131fcf6893057f8b9223bd6fd7543be6d1a885f08b3690458782b28"
+    },
+    {
+      "bytes": 494,
+      "path": "patches/binutils-397a64b3/0007-shpcrel.diff",
+      "sha256": "64d3b23abc2afd1d122a9d0af7ca52ca31ce0419d5c511d8290092af738bb4bc"
+    },
+    {
+      "bytes": 597,
+      "path": "patches/gcc-10.3.0/0001-ssp_nonshared.diff",
+      "sha256": "8d695c026146ba44703a82c4300433d6c5efc567a9a9d69ddf2fc6525f27081f"
+    },
+    {
+      "bytes": 1146,
+      "path": "patches/gcc-10.3.0/0002-posix_memalign.diff",
+      "sha256": "a955eb9fbffddaffd1bb771a5f6dfefceda150d7095021d3c04b4582b1f82ce6"
+    },
+    {
+      "bytes": 13155,
+      "path": "patches/gcc-10.3.0/0003-j2.diff",
+      "sha256": "0b5e531fc9333d01264b80d9dd902e1099e3e502f8961d148c1a0a3872abe3a1"
+    },
+    {
+      "bytes": 3260,
+      "path": "patches/gcc-10.3.0/0004-static-pie.diff",
+      "sha256": "e8c390cc10c6e2e598a23a893e15b557a1ede6fba581c74487b73324751e12ef"
+    },
+    {
+      "bytes": 821,
+      "path": "patches/gcc-10.3.0/0005-libstdc-futex-time64.diff",
+      "sha256": "277708de2a2e145201b5738c5f0ced5c045b31ebf44d1ce52e2f0a7a2f77cdd5"
+    },
+    {
+      "bytes": 703,
+      "path": "patches/gcc-10.3.0/0006-m68k-sqrt.diff",
+      "sha256": "c051c4c22f921dd1b88cc6fc9f065920f016e6a6ded95b2b9c8980625b79a569"
+    },
+    {
+      "bytes": 370,
+      "path": "patches/gcc-10.3.0/0007-fdpic-unwind.diff",
+      "sha256": "8513d5401e8d510ae91912184a3ca591b86c381d2f18cdc0c7ca3bbdd0e52400"
+    },
+    {
+      "bytes": 1771,
+      "path": "patches/gcc-10.3.0/0008-fdpic-crtstuff-pr114158.diff",
+      "sha256": "8ef73373107197b7a0f95902bad90863605fa1b5515784d041154645d144bd70"
+    },
+    {
+      "bytes": 585,
+      "path": "patches/gcc-10.3.0/0009-sh-fdpic-pr114641.diff",
+      "sha256": "29037ce2782f2af2aa0225326a1c645538139f3feaa1c238037699edc12f78f2"
+    },
+    {
+      "bytes": 597,
+      "path": "patches/gcc-11.2.0/0001-ssp_nonshared.diff",
+      "sha256": "c4b3ae3825ad5c2a26e57e736ff4373f420167fb685e9a779a40335a74c0fe2c"
+    },
+    {
+      "bytes": 1146,
+      "path": "patches/gcc-11.2.0/0002-posix_memalign.diff",
+      "sha256": "1cdcd8bac9579da55635e938afed1319f5755516bb2a4f6d6b113400f0185c22"
+    },
+    {
+      "bytes": 13155,
+      "path": "patches/gcc-11.2.0/0003-j2.diff",
+      "sha256": "4ee5bdadf4f1ff7d8a60bb60811df8c4f242f2e72aedfd7296ed41c19447ace9"
+    },
+    {
+      "bytes": 3264,
+      "path": "patches/gcc-11.2.0/0004-static-pie.diff",
+      "sha256": "c19afc0ea8488cb2a5900feb527d2e39797e5db92d13ce285c7f96fc8a1fc6c6"
+    },
+    {
+      "bytes": 703,
+      "path": "patches/gcc-11.2.0/0005-m68k-sqrt.diff",
+      "sha256": "5e91dbd95f26b15409b4bf1c01a6f6fb0b44b915b4b80d29af8257984a55f594"
+    },
+    {
+      "bytes": 370,
+      "path": "patches/gcc-11.2.0/0006-cow-libstdc++v3.diff",
+      "sha256": "6401baa34b291d17e0f12a2f4ffb35cdf783187239dad64ad5aaeb197ea495ac"
+    },
+    {
+      "bytes": 370,
+      "path": "patches/gcc-11.2.0/0007-fdpic-unwind.diff",
+      "sha256": "8513d5401e8d510ae91912184a3ca591b86c381d2f18cdc0c7ca3bbdd0e52400"
+    },
+    {
+      "bytes": 1771,
+      "path": "patches/gcc-11.2.0/0008-fdpic-crtstuff-pr114158.diff",
+      "sha256": "8ef73373107197b7a0f95902bad90863605fa1b5515784d041154645d144bd70"
+    },
+    {
+      "bytes": 585,
+      "path": "patches/gcc-11.2.0/0009-sh-fdpic-pr114641.diff",
+      "sha256": "29037ce2782f2af2aa0225326a1c645538139f3feaa1c238037699edc12f78f2"
+    },
+    {
+      "bytes": 3784,
+      "path": "patches/gcc-11.2.0/0010-poisoned-calloc.diff",
+      "sha256": "4e092a92bd4d7f51ada76ef232b0f23023d6f8374671e4dace1fd349a6f9eb4c"
+    },
+    {
+      "bytes": 597,
+      "path": "patches/gcc-11.5.0/0001-ssp_nonshared.diff",
+      "sha256": "c4b3ae3825ad5c2a26e57e736ff4373f420167fb685e9a779a40335a74c0fe2c"
+    },
+    {
+      "bytes": 1146,
+      "path": "patches/gcc-11.5.0/0002-posix_memalign.diff",
+      "sha256": "1cdcd8bac9579da55635e938afed1319f5755516bb2a4f6d6b113400f0185c22"
+    },
+    {
+      "bytes": 13155,
+      "path": "patches/gcc-11.5.0/0003-j2.diff",
+      "sha256": "4ee5bdadf4f1ff7d8a60bb60811df8c4f242f2e72aedfd7296ed41c19447ace9"
+    },
+    {
+      "bytes": 3264,
+      "path": "patches/gcc-11.5.0/0004-static-pie.diff",
+      "sha256": "c19afc0ea8488cb2a5900feb527d2e39797e5db92d13ce285c7f96fc8a1fc6c6"
+    },
+    {
+      "bytes": 703,
+      "path": "patches/gcc-11.5.0/0005-m68k-sqrt.diff",
+      "sha256": "5e91dbd95f26b15409b4bf1c01a6f6fb0b44b915b4b80d29af8257984a55f594"
+    },
+    {
+      "bytes": 370,
+      "path": "patches/gcc-11.5.0/0006-cow-libstdc++v3.diff",
+      "sha256": "6401baa34b291d17e0f12a2f4ffb35cdf783187239dad64ad5aaeb197ea495ac"
+    },
+    {
+      "bytes": 370,
+      "path": "patches/gcc-11.5.0/0007-fdpic-unwind.diff",
+      "sha256": "8513d5401e8d510ae91912184a3ca591b86c381d2f18cdc0c7ca3bbdd0e52400"
+    },
+    {
+      "bytes": 1771,
+      "path": "patches/gcc-11.5.0/0008-fdpic-crtstuff-pr114158.diff",
+      "sha256": "8ef73373107197b7a0f95902bad90863605fa1b5515784d041154645d144bd70"
+    },
+    {
+      "bytes": 585,
+      "path": "patches/gcc-11.5.0/0009-sh-fdpic-pr114641.diff",
+      "sha256": "29037ce2782f2af2aa0225326a1c645538139f3feaa1c238037699edc12f78f2"
+    },
+    {
+      "bytes": 3787,
+      "path": "patches/gcc-11.5.0/0010-poisoned-calloc.diff",
+      "sha256": "5ffae15d11c8831c72a1ff334ef4859aebcd0823bfd618868aaff31d1581e02a"
+    },
+    {
+      "bytes": 601,
+      "path": "patches/gcc-12.4.0/0001-ssp_nonshared.diff",
+      "sha256": "48166e4e4d54338fdbf183a36e58f60051e7cffb62482c99968146e94618e776"
+    },
+    {
+      "bytes": 1146,
+      "path": "patches/gcc-12.4.0/0002-posix_memalign.diff",
+      "sha256": "1cdcd8bac9579da55635e938afed1319f5755516bb2a4f6d6b113400f0185c22"
+    },
+    {
+      "bytes": 13159,
+      "path": "patches/gcc-12.4.0/0003-j2.diff",
+      "sha256": "f1e493283ba4ec198abb7108714620be3716a29e25ae45dff69ed611ef4a312c"
+    },
+    {
+      "bytes": 3268,
+      "path": "patches/gcc-12.4.0/0004-static-pie.diff",
+      "sha256": "206b1ae6f9f78cceb77d0fe293e20ed38b15207e260a5003929f2c69659bd0d5"
+    },
+    {
+      "bytes": 703,
+      "path": "patches/gcc-12.4.0/0005-m68k-sqrt.diff",
+      "sha256": "5e91dbd95f26b15409b4bf1c01a6f6fb0b44b915b4b80d29af8257984a55f594"
+    },
+    {
+      "bytes": 370,
+      "path": "patches/gcc-12.4.0/0006-cow-libstdc++v3.diff",
+      "sha256": "6401baa34b291d17e0f12a2f4ffb35cdf783187239dad64ad5aaeb197ea495ac"
+    },
+    {
+      "bytes": 370,
+      "path": "patches/gcc-12.4.0/0007-fdpic-unwind.diff",
+      "sha256": "8513d5401e8d510ae91912184a3ca591b86c381d2f18cdc0c7ca3bbdd0e52400"
+    },
+    {
+      "bytes": 1771,
+      "path": "patches/gcc-12.4.0/0008-fdpic-crtstuff-pr114158.diff",
+      "sha256": "8ef73373107197b7a0f95902bad90863605fa1b5515784d041154645d144bd70"
+    },
+    {
+      "bytes": 587,
+      "path": "patches/gcc-12.4.0/0009-sh-fdpic-pr114641.diff",
+      "sha256": "83f72c333131f7eb9ec99bca1e20169f895690ed95f5dde3c802b233be1efbce"
+    },
+    {
+      "bytes": 601,
+      "path": "patches/gcc-13.3.0/0001-ssp_nonshared.diff",
+      "sha256": "48166e4e4d54338fdbf183a36e58f60051e7cffb62482c99968146e94618e776"
+    },
+    {
+      "bytes": 1146,
+      "path": "patches/gcc-13.3.0/0002-posix_memalign.diff",
+      "sha256": "1cdcd8bac9579da55635e938afed1319f5755516bb2a4f6d6b113400f0185c22"
+    },
+    {
+      "bytes": 13159,
+      "path": "patches/gcc-13.3.0/0003-j2.diff",
+      "sha256": "f1e493283ba4ec198abb7108714620be3716a29e25ae45dff69ed611ef4a312c"
+    },
+    {
+      "bytes": 3268,
+      "path": "patches/gcc-13.3.0/0004-static-pie.diff",
+      "sha256": "206b1ae6f9f78cceb77d0fe293e20ed38b15207e260a5003929f2c69659bd0d5"
+    },
+    {
+      "bytes": 703,
+      "path": "patches/gcc-13.3.0/0005-m68k-sqrt.diff",
+      "sha256": "5e91dbd95f26b15409b4bf1c01a6f6fb0b44b915b4b80d29af8257984a55f594"
+    },
+    {
+      "bytes": 370,
+      "path": "patches/gcc-13.3.0/0006-cow-libstdc++v3.diff",
+      "sha256": "6401baa34b291d17e0f12a2f4ffb35cdf783187239dad64ad5aaeb197ea495ac"
+    },
+    {
+      "bytes": 370,
+      "path": "patches/gcc-13.3.0/0007-fdpic-unwind.diff",
+      "sha256": "8513d5401e8d510ae91912184a3ca591b86c381d2f18cdc0c7ca3bbdd0e52400"
+    },
+    {
+      "bytes": 1771,
+      "path": "patches/gcc-13.3.0/0008-fdpic-crtstuff-pr114158.diff",
+      "sha256": "8ef73373107197b7a0f95902bad90863605fa1b5515784d041154645d144bd70"
+    },
+    {
+      "bytes": 587,
+      "path": "patches/gcc-13.3.0/0009-sh-fdpic-pr114641.diff",
+      "sha256": "83f72c333131f7eb9ec99bca1e20169f895690ed95f5dde3c802b233be1efbce"
+    },
+    {
+      "bytes": 601,
+      "path": "patches/gcc-14.2.0/0001-ssp_nonshared.diff",
+      "sha256": "48166e4e4d54338fdbf183a36e58f60051e7cffb62482c99968146e94618e776"
+    },
+    {
+      "bytes": 1146,
+      "path": "patches/gcc-14.2.0/0002-posix_memalign.diff",
+      "sha256": "1cdcd8bac9579da55635e938afed1319f5755516bb2a4f6d6b113400f0185c22"
+    },
+    {
+      "bytes": 13159,
+      "path": "patches/gcc-14.2.0/0003-j2.diff",
+      "sha256": "f1e493283ba4ec198abb7108714620be3716a29e25ae45dff69ed611ef4a312c"
+    },
+    {
+      "bytes": 3268,
+      "path": "patches/gcc-14.2.0/0004-static-pie.diff",
+      "sha256": "206b1ae6f9f78cceb77d0fe293e20ed38b15207e260a5003929f2c69659bd0d5"
+    },
+    {
+      "bytes": 703,
+      "path": "patches/gcc-14.2.0/0005-m68k-sqrt.diff",
+      "sha256": "5e91dbd95f26b15409b4bf1c01a6f6fb0b44b915b4b80d29af8257984a55f594"
+    },
+    {
+      "bytes": 370,
+      "path": "patches/gcc-14.2.0/0006-cow-libstdc++v3.diff",
+      "sha256": "6401baa34b291d17e0f12a2f4ffb35cdf783187239dad64ad5aaeb197ea495ac"
+    },
+    {
+      "bytes": 370,
+      "path": "patches/gcc-14.2.0/0007-fdpic-unwind.diff",
+      "sha256": "8513d5401e8d510ae91912184a3ca591b86c381d2f18cdc0c7ca3bbdd0e52400"
+    },
+    {
+      "bytes": 1771,
+      "path": "patches/gcc-14.2.0/0008-fdpic-crtstuff-pr114158.diff",
+      "sha256": "8ef73373107197b7a0f95902bad90863605fa1b5515784d041154645d144bd70"
+    },
+    {
+      "bytes": 587,
+      "path": "patches/gcc-14.2.0/0009-sh-fdpic-pr114641.diff",
+      "sha256": "83f72c333131f7eb9ec99bca1e20169f895690ed95f5dde3c802b233be1efbce"
+    },
+    {
+      "bytes": 1986,
+      "path": "patches/gcc-14.2.0/0010-ppc64-quadmath-pr116007.diff",
+      "sha256": "34b4c593798b551ec84afdb058720426ab27f49edf60fe233a0bfb7b73782899"
+    },
+    {
+      "bytes": 601,
+      "path": "patches/gcc-14.3.0/0001-ssp_nonshared.diff",
+      "sha256": "48166e4e4d54338fdbf183a36e58f60051e7cffb62482c99968146e94618e776"
+    },
+    {
+      "bytes": 1146,
+      "path": "patches/gcc-14.3.0/0002-posix_memalign.diff",
+      "sha256": "1cdcd8bac9579da55635e938afed1319f5755516bb2a4f6d6b113400f0185c22"
+    },
+    {
+      "bytes": 13159,
+      "path": "patches/gcc-14.3.0/0003-j2.diff",
+      "sha256": "f1e493283ba4ec198abb7108714620be3716a29e25ae45dff69ed611ef4a312c"
+    },
+    {
+      "bytes": 3268,
+      "path": "patches/gcc-14.3.0/0004-static-pie.diff",
+      "sha256": "206b1ae6f9f78cceb77d0fe293e20ed38b15207e260a5003929f2c69659bd0d5"
+    },
+    {
+      "bytes": 703,
+      "path": "patches/gcc-14.3.0/0005-m68k-sqrt.diff",
+      "sha256": "5e91dbd95f26b15409b4bf1c01a6f6fb0b44b915b4b80d29af8257984a55f594"
+    },
+    {
+      "bytes": 370,
+      "path": "patches/gcc-14.3.0/0006-cow-libstdc++v3.diff",
+      "sha256": "6401baa34b291d17e0f12a2f4ffb35cdf783187239dad64ad5aaeb197ea495ac"
+    },
+    {
+      "bytes": 370,
+      "path": "patches/gcc-14.3.0/0007-fdpic-unwind.diff",
+      "sha256": "8513d5401e8d510ae91912184a3ca591b86c381d2f18cdc0c7ca3bbdd0e52400"
+    },
+    {
+      "bytes": 1771,
+      "path": "patches/gcc-14.3.0/0008-fdpic-crtstuff-pr114158.diff",
+      "sha256": "8ef73373107197b7a0f95902bad90863605fa1b5515784d041154645d144bd70"
+    },
+    {
+      "bytes": 587,
+      "path": "patches/gcc-14.3.0/0009-sh-fdpic-pr114641.diff",
+      "sha256": "83f72c333131f7eb9ec99bca1e20169f895690ed95f5dde3c802b233be1efbce"
+    },
+    {
+      "bytes": 601,
+      "path": "patches/gcc-15.1.0/0001-ssp_nonshared.diff",
+      "sha256": "48166e4e4d54338fdbf183a36e58f60051e7cffb62482c99968146e94618e776"
+    },
+    {
+      "bytes": 1146,
+      "path": "patches/gcc-15.1.0/0002-posix_memalign.diff",
+      "sha256": "1cdcd8bac9579da55635e938afed1319f5755516bb2a4f6d6b113400f0185c22"
+    },
+    {
+      "bytes": 13159,
+      "path": "patches/gcc-15.1.0/0003-j2.diff",
+      "sha256": "f1e493283ba4ec198abb7108714620be3716a29e25ae45dff69ed611ef4a312c"
+    },
+    {
+      "bytes": 3268,
+      "path": "patches/gcc-15.1.0/0004-static-pie.diff",
+      "sha256": "206b1ae6f9f78cceb77d0fe293e20ed38b15207e260a5003929f2c69659bd0d5"
+    },
+    {
+      "bytes": 703,
+      "path": "patches/gcc-15.1.0/0005-m68k-sqrt.diff",
+      "sha256": "5e91dbd95f26b15409b4bf1c01a6f6fb0b44b915b4b80d29af8257984a55f594"
+    },
+    {
+      "bytes": 370,
+      "path": "patches/gcc-15.1.0/0006-cow-libstdc++v3.diff",
+      "sha256": "6401baa34b291d17e0f12a2f4ffb35cdf783187239dad64ad5aaeb197ea495ac"
+    },
+    {
+      "bytes": 370,
+      "path": "patches/gcc-15.1.0/0007-fdpic-unwind.diff",
+      "sha256": "8513d5401e8d510ae91912184a3ca591b86c381d2f18cdc0c7ca3bbdd0e52400"
+    },
+    {
+      "bytes": 1771,
+      "path": "patches/gcc-15.1.0/0008-fdpic-crtstuff-pr114158.diff",
+      "sha256": "8ef73373107197b7a0f95902bad90863605fa1b5515784d041154645d144bd70"
+    },
+    {
+      "bytes": 587,
+      "path": "patches/gcc-15.1.0/0009-sh-fdpic-pr114641.diff",
+      "sha256": "83f72c333131f7eb9ec99bca1e20169f895690ed95f5dde3c802b233be1efbce"
+    },
+    {
+      "bytes": 13621,
+      "path": "patches/gcc-4.2.1/0001-musl.diff",
+      "sha256": "e5c09714ee9d42f9b6ac6ac9ab9e896592bdbe6016bf1bd3ae9bc211cfa872f9"
+    },
+    {
+      "bytes": 2522,
+      "path": "patches/gcc-4.2.1/0002-weakbugs.diff",
+      "sha256": "61ce609f43485f610b3fa053e7a63f2dde9f933fb9c5bd1a908c5f6ddbdf46d7"
+    },
+    {
+      "bytes": 2876,
+      "path": "patches/gcc-4.2.1/0003-shbitrot.diff",
+      "sha256": "b9df8ad5efa4bfeca082979044861f6edeaafe72f3c44c31d46bd5114406e9d8"
+    },
+    {
+      "bytes": 1022,
+      "path": "patches/gcc-4.2.1/0005-staticpie.diff",
+      "sha256": "c0e6f904631e12ba38f95683f6198adafeacfb11d409d36c92187b9d7d418ad6"
+    },
+    {
+      "bytes": 1045,
+      "path": "patches/gcc-4.2.1/0006-defaultpie.diff",
+      "sha256": "c0edd536baec2625cb66c3b5d204461da4f18d41affc23a512f918b3eca28636"
+    },
+    {
+      "bytes": 616,
+      "path": "patches/gcc-4.2.1/0008-crossbug.diff",
+      "sha256": "6c671a85f8eb3b318839e3d36c3946d86b2413a32ad098ea39abdfc6af424f36"
+    },
+    {
+      "bytes": 638,
+      "path": "patches/gcc-4.2.1/0009-shdiv.diff",
+      "sha256": "c9e5fd7d35c709b320e19f8653cc4b4137ba743038bc8f6781f0ca63cd8f7ac5"
+    },
+    {
+      "bytes": 1620,
+      "path": "patches/gcc-4.2.1/0010-gnuinline.diff",
+      "sha256": "32bbec4b18fb478a0740f8d6bc8a938d76b87eb0f5c759c49ff78e20c2d849f5"
+    },
+    {
+      "bytes": 1228,
+      "path": "patches/gcc-4.2.1/0011-inhibitlibc.diff",
+      "sha256": "6432fe77ac21a755c1b85d6883179c13a2f41c3db58209d3bf93dfe7cd9793b0"
+    },
+    {
+      "bytes": 396,
+      "path": "patches/gcc-4.2.1/0012-shletls.diff",
+      "sha256": "3e191060c3486e63676dd5a80e8bf6cf2e3973b589deed30d88cf253ac5042f1"
+    },
+    {
+      "bytes": 33689,
+      "path": "patches/gcc-5.3.0/0001-musl.diff",
+      "sha256": "1574d543026b040ecb8f8bef2807efa6a91d891e5cbaac8a85adab87d5dc72db"
+    },
+    {
+      "bytes": 4718,
+      "path": "patches/gcc-5.3.0/0002-pr66609.diff",
+      "sha256": "d935587a5706daccf25f307d7b979c7db44a7453712e766bb0d6d9ed5e6a7eaa"
+    },
+    {
+      "bytes": 1091,
+      "path": "patches/gcc-5.3.0/0003-shbitrot.diff",
+      "sha256": "d9707022b3cc34749562e135d07f292a9cc636784e52a71e535ac129ffdbbfd0"
+    },
+    {
+      "bytes": 13568,
+      "path": "patches/gcc-5.3.0/0004-j2.diff",
+      "sha256": "e343f8d5da3a614c8b8a8c44a9ee2017d7467eecfb6b80e7efee42ac7bc03c9e"
+    },
+    {
+      "bytes": 1021,
+      "path": "patches/gcc-5.3.0/0005-staticpie.diff",
+      "sha256": "678f48f35555d79c9a3ffcccb3166a3855bcb6c662e45660cfc620e8c6773753"
+    },
+    {
+      "bytes": 1134,
+      "path": "patches/gcc-5.3.0/0006-defaultpie.diff",
+      "sha256": "45cc834f05cfe2a53d4b0c2b22119e8015315c26ce10d00e73647f39846e252a"
+    },
+    {
+      "bytes": 64422,
+      "path": "patches/gcc-5.3.0/0007-fdpic.diff",
+      "sha256": "16e81232c71ce1eb0c3313099c48aeae7d40b28b702bf1b5fab9106aff5ac3ca"
+    },
+    {
+      "bytes": 1255,
+      "path": "patches/gcc-5.3.0/0008-shsibcall.diff",
+      "sha256": "179f151bdd3b13c97d5cabc704d94ba08e146b295bdd74d5fd2814d19a99f452"
+    },
+    {
+      "bytes": 458,
+      "path": "patches/gcc-5.3.0/0009-mipsdw.diff",
+      "sha256": "8e658e7b9df9c47748e72c6726b75a1567a2bc1fc9d1d219bb1649d8cdb798d3"
+    },
+    {
+      "bytes": 614,
+      "path": "patches/gcc-5.3.0/0010-cfns-inline-fix.diff",
+      "sha256": "45ed16b484e46fd09d3d0a901aa9ed285c75ee73969355d8eab87166bb8b4fbb"
+    },
+    {
+      "bytes": 1430,
+      "path": "patches/gcc-5.3.0/0011-m68k.diff",
+      "sha256": "32d35e3daf16605fa20ea25507d6a23f6209a56a863f2976016e2bd7b4a77ebd"
+    },
+    {
+      "bytes": 1524,
+      "path": "patches/gcc-5.3.0/0016-invalid_tls_model.diff",
+      "sha256": "daecc5ff6cb104a34ad1457771b56c02eae763196525ed93a4c37a330e9faf18"
+    },
+    {
+      "bytes": 1675,
+      "path": "patches/gcc-5.3.0/0017-fix-gthr-weak-refs-for-libgcc.patch",
+      "sha256": "3cee94397ff90d7f360d16b3fb803a805fcf5c70c765e9567f49f5b87070c137"
+    },
+    {
+      "bytes": 574,
+      "path": "patches/gcc-5.3.0/0018-libstdc++-futex-time64.diff",
+      "sha256": "d8821de7a70a7054e0334da812972ab1a92642d610aaaa023d342568b265b270"
+    },
+    {
+      "bytes": 695,
+      "path": "patches/gcc-5.3.0/0019-m68k-sqrt.diff",
+      "sha256": "dd0662ab722400e36bcc59a8f5b00fe7a8184d8c01858e169c493eb66179eb6e"
+    },
+    {
+      "bytes": 1086,
+      "path": "patches/gcc-5.3.0/0020-powerpcspe-musl-ldsoname.diff",
+      "sha256": "fbcb8cd582b32addf6f72d227d4636077e7c71c15f25567c8c5613c80ba2c1f3"
+    },
+    {
+      "bytes": 585,
+      "path": "patches/gcc-5.3.0/0021-sh-fdpic-pr114641.diff",
+      "sha256": "29037ce2782f2af2aa0225326a1c645538139f3feaa1c238037699edc12f78f2"
+    },
+    {
+      "bytes": 221,
+      "path": "patches/gcc-5.3.0/0022-i386-bool-null.diff",
+      "sha256": "78a386eaf48f1194371a201ec3464785a98391930544a34634ac187d2f5648fe"
+    },
+    {
+      "bytes": 160,
+      "path": "patches/gcc-5.3.0/0023-cow-libcc1.diff",
+      "sha256": "1c697b5dbcf764adebb205da374bdcc4b857876f69370cbbddbaec37dff1fc1b"
+    },
+    {
+      "bytes": 425,
+      "path": "patches/gcc-5.3.0/0024-gcc-reload-spill-bool.diff",
+      "sha256": "81fbe3b6aa3504b81032c1dbaccf3a43ac2a29f0300d4f32ae84f8467dabf97a"
+    },
+    {
+      "bytes": 5351,
+      "path": "patches/gcc-5.3.0/0025-configsub-sheb.diff",
+      "sha256": "92548e615637802cfe1226dd879340f2eed68b2a13bed521feaf4892d35dbb5a"
+    },
+    {
+      "bytes": 398,
+      "path": "patches/gcc-6.5.0/0001-linux_libc_has_function.diff",
+      "sha256": "849e909ee5fa4103e4955f6798dae921db4863cf7182f7f52d3f6e16ec4f3585"
+    },
+    {
+      "bytes": 589,
+      "path": "patches/gcc-6.5.0/0002-ssp_nonshared.diff",
+      "sha256": "99cb93c8602f610e89b91d6f389808beca10aa57b10477c97ff22bd12a71c9fd"
+    },
+    {
+      "bytes": 570,
+      "path": "patches/gcc-6.5.0/0003-mips-unwind.diff",
+      "sha256": "4ba6f1bacfbc73108d4cb4fb3c13f3621571de2fd85c226c655a82242b289a6d"
+    },
+    {
+      "bytes": 1138,
+      "path": "patches/gcc-6.5.0/0004-posix_memalign.diff",
+      "sha256": "f90e401f4be4a2c24b75cbc10bcc95e91f4e7ab666b64a1d9d88b69abf35d10b"
+    },
+    {
+      "bytes": 1755,
+      "path": "patches/gcc-6.5.0/0005-cilkrts.diff",
+      "sha256": "15624f7daa61fcbeba3a7172af38d21e71e756d67fc6a90d746b59e15911ce5b"
+    },
+    {
+      "bytes": 2052,
+      "path": "patches/gcc-6.5.0/0006-libatomic-test-fix.diff",
+      "sha256": "5ccbb1957af1c4e9bef9e0945b9d9d52ad25ecb70db1698c7e719806312b72a9"
+    },
+    {
+      "bytes": 2170,
+      "path": "patches/gcc-6.5.0/0007-libgomp-test-fix.diff",
+      "sha256": "0780999759aede9e4185464587684b474720807190da2787fb84f986049d3f21"
+    },
+    {
+      "bytes": 1998,
+      "path": "patches/gcc-6.5.0/0008-libitm-test-fix.diff",
+      "sha256": "3580ed807dbb48f70f06fbf3790ecd814298b7863f20218af155af14ecfa00bb"
+    },
+    {
+      "bytes": 1998,
+      "path": "patches/gcc-6.5.0/0009-libvtv-test-fix.diff",
+      "sha256": "e5251fe05719d76aec3e24d5f57dad11dd66497da1acc445c60e922c8402331a"
+    },
+    {
+      "bytes": 13588,
+      "path": "patches/gcc-6.5.0/0011-j2.diff",
+      "sha256": "28344c23015f42a7a4e1913dc35677b2626b511d0c6f61645cea4bacda208712"
+    },
+    {
+      "bytes": 520,
+      "path": "patches/gcc-6.5.0/0012-s390x-muslldso.diff",
+      "sha256": "f32849378251de6f52f545d7a4f78896f46bc852d950c884aedb46e6648f0862"
+    },
+    {
+      "bytes": 703,
+      "path": "patches/gcc-6.5.0/0013-microblaze-pr65649.diff",
+      "sha256": "cfc3efb65695d714e87e20076f518c1a771bf356c97e9583dc0b54d4858d45ea"
+    },
+    {
+      "bytes": 1430,
+      "path": "patches/gcc-6.5.0/0014-m68k.diff",
+      "sha256": "32d35e3daf16605fa20ea25507d6a23f6209a56a863f2976016e2bd7b4a77ebd"
+    },
+    {
+      "bytes": 1524,
+      "path": "patches/gcc-6.5.0/0016-invalid_tls_model.diff",
+      "sha256": "daecc5ff6cb104a34ad1457771b56c02eae763196525ed93a4c37a330e9faf18"
+    },
+    {
+      "bytes": 1763,
+      "path": "patches/gcc-6.5.0/0017-c++-abi-break.diff",
+      "sha256": "e088b387aaf8053fc86d0b072a0e08ab0f46fb91ba6d3a1688fc66aa49ec31f6"
+    },
+    {
+      "bytes": 5449,
+      "path": "patches/gcc-6.5.0/0018-Revert-PR-driver-81523-Make-static-override-pie.diff",
+      "sha256": "97d8bc2c32a3bdb44250ef257a3ff6a4307159b539d312864d8ca0f2e220fc4f"
+    },
+    {
+      "bytes": 1946,
+      "path": "patches/gcc-6.5.0/0019-Revert-RS6000-linux-startfile-endfile.diff",
+      "sha256": "c42c0c63bb347886ddff4c14712ed10c5135d29eb74be42480d9b54a426da940"
+    },
+    {
+      "bytes": 1546,
+      "path": "patches/gcc-6.5.0/0020-static-pie-support.diff",
+      "sha256": "10d29fb09c9f87fd6a4290df6259b8cc556b73b0c51b946f0741ae56ac3ec92c"
+    },
+    {
+      "bytes": 1675,
+      "path": "patches/gcc-6.5.0/0021-fix-gthr-weak-refs-for-libgcc.patch",
+      "sha256": "3cee94397ff90d7f360d16b3fb803a805fcf5c70c765e9567f49f5b87070c137"
+    },
+    {
+      "bytes": 574,
+      "path": "patches/gcc-6.5.0/0022-libstdc++-futex-time64.diff",
+      "sha256": "d8821de7a70a7054e0334da812972ab1a92642d610aaaa023d342568b265b270"
+    },
+    {
+      "bytes": 1298,
+      "path": "patches/gcc-6.5.0/0023-pr93402.diff",
+      "sha256": "6581cb4b3457ef11adba0aac3fa59b3dde347a8d3309a1a78d871a264fb69139"
+    },
+    {
+      "bytes": 695,
+      "path": "patches/gcc-6.5.0/0024-m68k-sqrt.diff",
+      "sha256": "dd0662ab722400e36bcc59a8f5b00fe7a8184d8c01858e169c493eb66179eb6e"
+    },
+    {
+      "bytes": 1086,
+      "path": "patches/gcc-6.5.0/0025-powerpcspe-musl-ldsoname.diff",
+      "sha256": "fbcb8cd582b32addf6f72d227d4636077e7c71c15f25567c8c5613c80ba2c1f3"
+    },
+    {
+      "bytes": 585,
+      "path": "patches/gcc-6.5.0/0026-sh-fdpic-pr114641.diff",
+      "sha256": "29037ce2782f2af2aa0225326a1c645538139f3feaa1c238037699edc12f78f2"
+    },
+    {
+      "bytes": 221,
+      "path": "patches/gcc-6.5.0/0027-i386-bool-null.diff",
+      "sha256": "78a386eaf48f1194371a201ec3464785a98391930544a34634ac187d2f5648fe"
+    },
+    {
+      "bytes": 597,
+      "path": "patches/gcc-7.5.0/0001-ssp_nonshared.diff",
+      "sha256": "b2decce75a87ee08978a644e88a9e648c705d406f0f253ef6b18dcdf35865f22"
+    },
+    {
+      "bytes": 1146,
+      "path": "patches/gcc-7.5.0/0002-posix_memalign.diff",
+      "sha256": "12c8be8c8ccac80fd144a8111beeae408403a4e31def3862d6595a7b17afcac5"
+    },
+    {
+      "bytes": 1582,
+      "path": "patches/gcc-7.5.0/0003-cilkrts.diff",
+      "sha256": "51c131da8f0518d7c06b1a709f092deccecd605f8cb0e10426a859b73f3b8795"
+    },
+    {
+      "bytes": 2076,
+      "path": "patches/gcc-7.5.0/0004-libatomic-test-fix.diff",
+      "sha256": "ebde22feb9e5a3aa806ff9f4c1fc00219220d7408a2acd5dbd8b1c264c626f75"
+    },
+    {
+      "bytes": 2194,
+      "path": "patches/gcc-7.5.0/0005-libgomp-test-fix.diff",
+      "sha256": "3e28ee024ce86cc72fc8ed63e39a19be25f37bcf540b3f26e1842aa07aab038a"
+    },
+    {
+      "bytes": 2022,
+      "path": "patches/gcc-7.5.0/0006-libitm-test-fix.diff",
+      "sha256": "9759ba35635924c6700402ead92a22384098092b1d24b5987d37f6a201be12a2"
+    },
+    {
+      "bytes": 2022,
+      "path": "patches/gcc-7.5.0/0007-libvtv-test-fix.diff",
+      "sha256": "b9d127f0a7be18f7a64c470ad8946d2192c60b1748d15fd3ed3d2afafd189457"
+    },
+    {
+      "bytes": 5449,
+      "path": "patches/gcc-7.5.0/0008-Revert-PR-driver-81523-Make-static-override-pie.diff",
+      "sha256": "97d8bc2c32a3bdb44250ef257a3ff6a4307159b539d312864d8ca0f2e220fc4f"
+    },
+    {
+      "bytes": 1946,
+      "path": "patches/gcc-7.5.0/0009-Revert-RS6000-linux-startfile-endfile.diff",
+      "sha256": "c42c0c63bb347886ddff4c14712ed10c5135d29eb74be42480d9b54a426da940"
+    },
+    {
+      "bytes": 2337,
+      "path": "patches/gcc-7.5.0/0010-static-pie-support.diff",
+      "sha256": "cd8e1e648936a41e44c34ff4177d043082d480275215a57c1612ef587de5cc61"
+    },
+    {
+      "bytes": 13145,
+      "path": "patches/gcc-7.5.0/0011-j2.diff",
+      "sha256": "47742064c731d79f3a1f97febbd2433e38e399fb7c005980f7c58cdcfec1f0c4"
+    },
+    {
+      "bytes": 528,
+      "path": "patches/gcc-7.5.0/0012-s390x-muslldso.diff",
+      "sha256": "5f4cb81ab5cdc83503cbe408419354da6f45b9bedcb8b925a7418a3218e44ee0"
+    },
+    {
+      "bytes": 829,
+      "path": "patches/gcc-7.5.0/0013-microblaze-pr65649.diff",
+      "sha256": "3b4362d0508d59a2dbebd222a35c1574cc0259800d3fca18129f0d6726563268"
+    },
+    {
+      "bytes": 1675,
+      "path": "patches/gcc-7.5.0/0014-ldbl128-config.diff",
+      "sha256": "333301dbdda80dfb9baa6d7ff475bf6d24a4de83775ab08d98421cce167b5f29"
+    },
+    {
+      "bytes": 885,
+      "path": "patches/gcc-7.5.0/0015-m68k.diff",
+      "sha256": "d67940f0ee830a96bae8d41026028a4675f60cbfc568f584445bf239576a8b4d"
+    },
+    {
+      "bytes": 1524,
+      "path": "patches/gcc-7.5.0/0016-invalid_tls_model.diff",
+      "sha256": "daecc5ff6cb104a34ad1457771b56c02eae763196525ed93a4c37a330e9faf18"
+    },
+    {
+      "bytes": 1675,
+      "path": "patches/gcc-7.5.0/0017-fix-gthr-weak-refs-for-libgcc.patch",
+      "sha256": "3cee94397ff90d7f360d16b3fb803a805fcf5c70c765e9567f49f5b87070c137"
+    },
+    {
+      "bytes": 481,
+      "path": "patches/gcc-7.5.0/0018-riscv-tls-copy-relocs.diff",
+      "sha256": "f401cdebd3dc85f1ce102ffc34682cdd493696f69d8c63091289af88c88abe4e"
+    },
+    {
+      "bytes": 574,
+      "path": "patches/gcc-7.5.0/0019-libstdc++-futex-time64.diff",
+      "sha256": "d8821de7a70a7054e0334da812972ab1a92642d610aaaa023d342568b265b270"
+    },
+    {
+      "bytes": 1298,
+      "path": "patches/gcc-7.5.0/0020-pr93402.diff",
+      "sha256": "6581cb4b3457ef11adba0aac3fa59b3dde347a8d3309a1a78d871a264fb69139"
+    },
+    {
+      "bytes": 695,
+      "path": "patches/gcc-7.5.0/0021-m68k-sqrt.diff",
+      "sha256": "dd0662ab722400e36bcc59a8f5b00fe7a8184d8c01858e169c493eb66179eb6e"
+    },
+    {
+      "bytes": 1086,
+      "path": "patches/gcc-7.5.0/0022-powerpcspe-musl-ldsoname.diff",
+      "sha256": "fbcb8cd582b32addf6f72d227d4636077e7c71c15f25567c8c5613c80ba2c1f3"
+    },
+    {
+      "bytes": 585,
+      "path": "patches/gcc-7.5.0/0023-sh-fdpic-pr114641.diff",
+      "sha256": "29037ce2782f2af2aa0225326a1c645538139f3feaa1c238037699edc12f78f2"
+    },
+    {
+      "bytes": 221,
+      "path": "patches/gcc-7.5.0/0024-i386-bool-null.diff",
+      "sha256": "78a386eaf48f1194371a201ec3464785a98391930544a34634ac187d2f5648fe"
+    },
+    {
+      "bytes": 597,
+      "path": "patches/gcc-8.5.0/0001-ssp_nonshared.diff",
+      "sha256": "580a81013bcf56034a849e8d22cd5321dc4e340578f45cd64aeeacd0437e455d"
+    },
+    {
+      "bytes": 1146,
+      "path": "patches/gcc-8.5.0/0002-posix_memalign.diff",
+      "sha256": "78a611a2451b6422a6029f5aa6284b0445d2636b3546944a5e753fa5f59d8ac4"
+    },
+    {
+      "bytes": 2076,
+      "path": "patches/gcc-8.5.0/0003-libatomic-test-fix.diff",
+      "sha256": "d284c291905712b4e4453ba3c0eabdbd66a48894dc879dca52fb6a3376cb9718"
+    },
+    {
+      "bytes": 2194,
+      "path": "patches/gcc-8.5.0/0004-libgomp-test-fix.diff",
+      "sha256": "18f110251141b2d2e175d418874cbd5bd0ac2a8368d2b13b147e3b5c6f1e8b1d"
+    },
+    {
+      "bytes": 2022,
+      "path": "patches/gcc-8.5.0/0005-libitm-test-fix.diff",
+      "sha256": "921dcb7e416b623be44ee4f2580f53c9c1544e26783a77707511875b274be372"
+    },
+    {
+      "bytes": 2022,
+      "path": "patches/gcc-8.5.0/0006-libvtv-test-fix.diff",
+      "sha256": "dd21b67c735254044e14db7b26639cab1735905ca3d87acf54b5e29e87739717"
+    },
+    {
+      "bytes": 13155,
+      "path": "patches/gcc-8.5.0/0007-j2.diff",
+      "sha256": "0cacc3fb473dd8fe2ed10e353dabfbf0d58bfe47e0409b87406b9c05d5942f19"
+    },
+    {
+      "bytes": 528,
+      "path": "patches/gcc-8.5.0/0008-s390x-muslldso.diff",
+      "sha256": "252c070ed5ec6a85b44429a001f70ce1aef04ec51a41530477055a0c34926d41"
+    },
+    {
+      "bytes": 829,
+      "path": "patches/gcc-8.5.0/0009-microblaze-pr65649.diff",
+      "sha256": "37ef7c24b84e03aec988613c9c9f096d50f5cdde617d9cb4566f4ed1fc8bdce0"
+    },
+    {
+      "bytes": 1675,
+      "path": "patches/gcc-8.5.0/0010-ldbl128-config.diff",
+      "sha256": "1178ba18ea696d5a7d12c15037872003a5c708094c790a9f0da413f443479235"
+    },
+    {
+      "bytes": 885,
+      "path": "patches/gcc-8.5.0/0011-m68k.diff",
+      "sha256": "7e3ee87c594deabb5f271adb72d564894a3b1b0d77155fabfb6fbd193566cca2"
+    },
+    {
+      "bytes": 4239,
+      "path": "patches/gcc-8.5.0/0012-static-pie.diff",
+      "sha256": "b542cf6c2160930a4e4c45a313083da46f84969595bb72ff527061d3be59948b"
+    },
+    {
+      "bytes": 1524,
+      "path": "patches/gcc-8.5.0/0013-invalid_tls_model.diff",
+      "sha256": "daecc5ff6cb104a34ad1457771b56c02eae763196525ed93a4c37a330e9faf18"
+    },
+    {
+      "bytes": 1675,
+      "path": "patches/gcc-8.5.0/0014-fix-gthr-weak-refs-for-libgcc.patch",
+      "sha256": "3cee94397ff90d7f360d16b3fb803a805fcf5c70c765e9567f49f5b87070c137"
+    },
+    {
+      "bytes": 481,
+      "path": "patches/gcc-8.5.0/0015-riscv-tls-copy-relocs.diff",
+      "sha256": "f401cdebd3dc85f1ce102ffc34682cdd493696f69d8c63091289af88c88abe4e"
+    },
+    {
+      "bytes": 574,
+      "path": "patches/gcc-8.5.0/0016-libstdc++-futex-time64.diff",
+      "sha256": "d8821de7a70a7054e0334da812972ab1a92642d610aaaa023d342568b265b270"
+    },
+    {
+      "bytes": 695,
+      "path": "patches/gcc-8.5.0/0018-m68k-sqrt.diff",
+      "sha256": "dd0662ab722400e36bcc59a8f5b00fe7a8184d8c01858e169c493eb66179eb6e"
+    },
+    {
+      "bytes": 575,
+      "path": "patches/gcc-8.5.0/0020-powerpcspe.diff",
+      "sha256": "aeee26ece6eda34f65cfee9c0b02cc9cc01abacf846b5366e0cb496bf84a59da"
+    },
+    {
+      "bytes": 1086,
+      "path": "patches/gcc-8.5.0/0021-powerpcspe-musl-ldsoname.diff",
+      "sha256": "fbcb8cd582b32addf6f72d227d4636077e7c71c15f25567c8c5613c80ba2c1f3"
+    },
+    {
+      "bytes": 585,
+      "path": "patches/gcc-8.5.0/0022-sh-fdpic-pr114641.diff",
+      "sha256": "29037ce2782f2af2aa0225326a1c645538139f3feaa1c238037699edc12f78f2"
+    },
+    {
+      "bytes": 597,
+      "path": "patches/gcc-9.4.0/0001-ssp_nonshared.diff",
+      "sha256": "151fbaab62688fb06f852ce25214e0fa2ad7489b469d545e1308ecb4e6414f65"
+    },
+    {
+      "bytes": 1146,
+      "path": "patches/gcc-9.4.0/0002-posix_memalign.diff",
+      "sha256": "f06020d013c78e0ea25cd5ada1d939d00bb378fe9010cc55341a4e4f9d3637f6"
+    },
+    {
+      "bytes": 2068,
+      "path": "patches/gcc-9.4.0/0003-libatomic-test-fix.diff",
+      "sha256": "64bc767ac9183c26f3732ad39a397bddd1d4946730adad023c021474d97e47b8"
+    },
+    {
+      "bytes": 2254,
+      "path": "patches/gcc-9.4.0/0004-libgomp-test-fix.diff",
+      "sha256": "93ba376c0161b78d07524ce9f76586f7020b14ddc5512096667897996b4c420f"
+    },
+    {
+      "bytes": 2014,
+      "path": "patches/gcc-9.4.0/0005-libitm-test-fix.diff",
+      "sha256": "339b78ba62588fe537d0e4e115a41c1c92ac25e21eddefc914dde223589a14be"
+    },
+    {
+      "bytes": 2014,
+      "path": "patches/gcc-9.4.0/0006-libvtv-test-fix.diff",
+      "sha256": "67a00cf9a5135dbe742bc154346d6bc7a1d7b51988512832bbc2cf73ca53a00b"
+    },
+    {
+      "bytes": 13155,
+      "path": "patches/gcc-9.4.0/0007-j2.diff",
+      "sha256": "cbd148ea2dc5ee9c93a2566d03aa72a82b189bf1b1f17cd41ad6e24556050f30"
+    },
+    {
+      "bytes": 528,
+      "path": "patches/gcc-9.4.0/0008-s390x-muslldso.diff",
+      "sha256": "e6356702c0500336bb784773c3b16672a2f42626a3f3d9d996a1feca2b4552ef"
+    },
+    {
+      "bytes": 829,
+      "path": "patches/gcc-9.4.0/0009-microblaze-pr65649.diff",
+      "sha256": "74fbb826962f286ad7d7ebef76abba3753d9f0934936c6f1870a3fa94b30b8d4"
+    },
+    {
+      "bytes": 1675,
+      "path": "patches/gcc-9.4.0/0010-ldbl128-config.diff",
+      "sha256": "ff1c9835da41b0cb0b92a8a02f8f88069fdac8895cfdeaa61d20e8481b6b4dc1"
+    },
+    {
+      "bytes": 885,
+      "path": "patches/gcc-9.4.0/0011-m68k.diff",
+      "sha256": "57be14fb92c38a0e5554dcfaa2d8fbbd3757170b7387cd6a0bc12c38df03bcf1"
+    },
+    {
+      "bytes": 3055,
+      "path": "patches/gcc-9.4.0/0012-static-pie.diff",
+      "sha256": "ff631c4442871af7ef126deb0c2fd7071eae1b9418f63f970a11a2f77fcfe200"
+    },
+    {
+      "bytes": 792,
+      "path": "patches/gcc-9.4.0/0013-invalid-tls-model.diff",
+      "sha256": "62c995fd88fc3713938a1e76facc9ba28f05b61e59e0d20ad9685afbef66a0a7"
+    },
+    {
+      "bytes": 1675,
+      "path": "patches/gcc-9.4.0/0014-fix-gthr-weak-refs-for-libgcc.patch",
+      "sha256": "3cee94397ff90d7f360d16b3fb803a805fcf5c70c765e9567f49f5b87070c137"
+    },
+    {
+      "bytes": 481,
+      "path": "patches/gcc-9.4.0/0015-riscv-tls-copy-relocs.diff",
+      "sha256": "f401cdebd3dc85f1ce102ffc34682cdd493696f69d8c63091289af88c88abe4e"
+    },
+    {
+      "bytes": 574,
+      "path": "patches/gcc-9.4.0/0016-libstdc++-futex-time64.diff",
+      "sha256": "d8821de7a70a7054e0334da812972ab1a92642d610aaaa023d342568b265b270"
+    },
+    {
+      "bytes": 695,
+      "path": "patches/gcc-9.4.0/0018-m68k-sqrt.diff",
+      "sha256": "dd0662ab722400e36bcc59a8f5b00fe7a8184d8c01858e169c493eb66179eb6e"
+    },
+    {
+      "bytes": 431,
+      "path": "patches/gcc-9.4.0/0019-broken-builtin-memcmp.diff",
+      "sha256": "1cb2b0e0d2d108348f93951c770260c9b0229dd7949277e888ba3e479ed1aaae"
+    },
+    {
+      "bytes": 585,
+      "path": "patches/gcc-9.4.0/0020-sh-fdpic-pr114641.diff",
+      "sha256": "29037ce2782f2af2aa0225326a1c645538139f3feaa1c238037699edc12f78f2"
+    },
+    {
+      "bytes": 9893,
+      "path": "patches/linux-4.19.90/0001-asound-time64.diff",
+      "sha256": "18d86eae9f6f8d1d5a5753706a7e7231b3c95d530f30258fcc0023e6535c01b5"
+    },
+    {
+      "bytes": 414,
+      "path": "patches/linux-4.19.90/0101-archscripts.diff",
+      "sha256": "0895d5cc5b7d8fa87bd3813a670c6f4d7573cafb4fbf31a63eed453c441346c1"
+    },
+    {
+      "bytes": 698,
+      "path": "patches/linux-5.8.5/0101-archscripts.diff",
+      "sha256": "39370c1eeae0d935257d80a892663c3a6b7729312eedc72cd852447439c56458"
+    },
+    {
+      "bytes": 9905,
+      "path": "patches/linux-headers-4.19.88-1/0001-asound-time64.diff",
+      "sha256": "8e7aef368fbc69cb9c0bff862ab257e2d61d3d6f83687dbf321efcdc7c401745"
+    },
+    {
+      "bytes": 1394,
+      "path": "patches/musl-1.1.14/0001-cve-2025-26519-p1.diff",
+      "sha256": "89ec5af152afb9c0ba8e37ecdca63a7a7fd13b60247f1a2d8024a59baa18e7dc"
+    },
+    {
+      "bytes": 1368,
+      "path": "patches/musl-1.1.14/0002-cve-2025-26519-p2.diff",
+      "sha256": "d5b88fe87f9554238bdd69235694b0d50bb909f38149a7be417a0240a490e813"
+    },
+    {
+      "bytes": 1394,
+      "path": "patches/musl-1.1.15/0001-cve-2025-26519-p1.diff",
+      "sha256": "89ec5af152afb9c0ba8e37ecdca63a7a7fd13b60247f1a2d8024a59baa18e7dc"
+    },
+    {
+      "bytes": 1368,
+      "path": "patches/musl-1.1.15/0002-cve-2025-26519-p2.diff",
+      "sha256": "d5b88fe87f9554238bdd69235694b0d50bb909f38149a7be417a0240a490e813"
+    },
+    {
+      "bytes": 1394,
+      "path": "patches/musl-1.1.16/0001-cve-2025-26519-p1.diff",
+      "sha256": "89ec5af152afb9c0ba8e37ecdca63a7a7fd13b60247f1a2d8024a59baa18e7dc"
+    },
+    {
+      "bytes": 1368,
+      "path": "patches/musl-1.1.16/0002-cve-2025-26519-p2.diff",
+      "sha256": "d5b88fe87f9554238bdd69235694b0d50bb909f38149a7be417a0240a490e813"
+    },
+    {
+      "bytes": 1394,
+      "path": "patches/musl-1.1.17/0001-cve-2025-26519-p1.diff",
+      "sha256": "89ec5af152afb9c0ba8e37ecdca63a7a7fd13b60247f1a2d8024a59baa18e7dc"
+    },
+    {
+      "bytes": 1368,
+      "path": "patches/musl-1.1.17/0002-cve-2025-26519-p2.diff",
+      "sha256": "d5b88fe87f9554238bdd69235694b0d50bb909f38149a7be417a0240a490e813"
+    },
+    {
+      "bytes": 1394,
+      "path": "patches/musl-1.1.18/0001-cve-2025-26519-p1.diff",
+      "sha256": "89ec5af152afb9c0ba8e37ecdca63a7a7fd13b60247f1a2d8024a59baa18e7dc"
+    },
+    {
+      "bytes": 1368,
+      "path": "patches/musl-1.1.18/0002-cve-2025-26519-p2.diff",
+      "sha256": "d5b88fe87f9554238bdd69235694b0d50bb909f38149a7be417a0240a490e813"
+    },
+    {
+      "bytes": 1394,
+      "path": "patches/musl-1.1.19/0001-cve-2025-26519-p1.diff",
+      "sha256": "89ec5af152afb9c0ba8e37ecdca63a7a7fd13b60247f1a2d8024a59baa18e7dc"
+    },
+    {
+      "bytes": 1368,
+      "path": "patches/musl-1.1.19/0002-cve-2025-26519-p2.diff",
+      "sha256": "d5b88fe87f9554238bdd69235694b0d50bb909f38149a7be417a0240a490e813"
+    },
+    {
+      "bytes": 1394,
+      "path": "patches/musl-1.1.20/0001-cve-2025-26519-p1.diff",
+      "sha256": "89ec5af152afb9c0ba8e37ecdca63a7a7fd13b60247f1a2d8024a59baa18e7dc"
+    },
+    {
+      "bytes": 1368,
+      "path": "patches/musl-1.1.20/0002-cve-2025-26519-p2.diff",
+      "sha256": "d5b88fe87f9554238bdd69235694b0d50bb909f38149a7be417a0240a490e813"
+    },
+    {
+      "bytes": 1394,
+      "path": "patches/musl-1.1.21/0001-cve-2025-26519-p1.diff",
+      "sha256": "89ec5af152afb9c0ba8e37ecdca63a7a7fd13b60247f1a2d8024a59baa18e7dc"
+    },
+    {
+      "bytes": 1368,
+      "path": "patches/musl-1.1.21/0002-cve-2025-26519-p2.diff",
+      "sha256": "d5b88fe87f9554238bdd69235694b0d50bb909f38149a7be417a0240a490e813"
+    },
+    {
+      "bytes": 1394,
+      "path": "patches/musl-1.1.22/0001-cve-2025-26519-p1.diff",
+      "sha256": "89ec5af152afb9c0ba8e37ecdca63a7a7fd13b60247f1a2d8024a59baa18e7dc"
+    },
+    {
+      "bytes": 1368,
+      "path": "patches/musl-1.1.22/0002-cve-2025-26519-p2.diff",
+      "sha256": "d5b88fe87f9554238bdd69235694b0d50bb909f38149a7be417a0240a490e813"
+    },
+    {
+      "bytes": 1394,
+      "path": "patches/musl-1.1.23/0001-cve-2025-26519-p1.diff",
+      "sha256": "89ec5af152afb9c0ba8e37ecdca63a7a7fd13b60247f1a2d8024a59baa18e7dc"
+    },
+    {
+      "bytes": 1368,
+      "path": "patches/musl-1.1.23/0002-cve-2025-26519-p2.diff",
+      "sha256": "d5b88fe87f9554238bdd69235694b0d50bb909f38149a7be417a0240a490e813"
+    },
+    {
+      "bytes": 1394,
+      "path": "patches/musl-1.1.24/0001-cve-2025-26519-p1.diff",
+      "sha256": "89ec5af152afb9c0ba8e37ecdca63a7a7fd13b60247f1a2d8024a59baa18e7dc"
+    },
+    {
+      "bytes": 1368,
+      "path": "patches/musl-1.1.24/0002-cve-2025-26519-p2.diff",
+      "sha256": "d5b88fe87f9554238bdd69235694b0d50bb909f38149a7be417a0240a490e813"
+    },
+    {
+      "bytes": 596,
+      "path": "patches/musl-1.2.0/0001-broken_arm_vdso.diff",
+      "sha256": "b58c589e9e9fb4b1390d19e320d49ae10882e501009a9b18886a78cb2e16287e"
+    },
+    {
+      "bytes": 1394,
+      "path": "patches/musl-1.2.0/0002-cve-2025-26519-p1.diff",
+      "sha256": "89ec5af152afb9c0ba8e37ecdca63a7a7fd13b60247f1a2d8024a59baa18e7dc"
+    },
+    {
+      "bytes": 1368,
+      "path": "patches/musl-1.2.0/0003-cve-2025-26519-p2.diff",
+      "sha256": "d5b88fe87f9554238bdd69235694b0d50bb909f38149a7be417a0240a490e813"
+    },
+    {
+      "bytes": 1394,
+      "path": "patches/musl-1.2.1/0001-cve-2025-26519-p1.diff",
+      "sha256": "89ec5af152afb9c0ba8e37ecdca63a7a7fd13b60247f1a2d8024a59baa18e7dc"
+    },
+    {
+      "bytes": 1368,
+      "path": "patches/musl-1.2.1/0002-cve-2025-26519-p2.diff",
+      "sha256": "d5b88fe87f9554238bdd69235694b0d50bb909f38149a7be417a0240a490e813"
+    },
+    {
+      "bytes": 1394,
+      "path": "patches/musl-1.2.2/0001-cve-2025-26519-p1.diff",
+      "sha256": "89ec5af152afb9c0ba8e37ecdca63a7a7fd13b60247f1a2d8024a59baa18e7dc"
+    },
+    {
+      "bytes": 1368,
+      "path": "patches/musl-1.2.2/0002-cve-2025-26519-p2.diff",
+      "sha256": "d5b88fe87f9554238bdd69235694b0d50bb909f38149a7be417a0240a490e813"
+    },
+    {
+      "bytes": 1394,
+      "path": "patches/musl-1.2.3/0001-cve-2025-26519-p1.diff",
+      "sha256": "89ec5af152afb9c0ba8e37ecdca63a7a7fd13b60247f1a2d8024a59baa18e7dc"
+    },
+    {
+      "bytes": 1368,
+      "path": "patches/musl-1.2.3/0002-cve-2025-26519-p2.diff",
+      "sha256": "d5b88fe87f9554238bdd69235694b0d50bb909f38149a7be417a0240a490e813"
+    },
+    {
+      "bytes": 1394,
+      "path": "patches/musl-1.2.4/0001-cve-2025-26519-p1.diff",
+      "sha256": "89ec5af152afb9c0ba8e37ecdca63a7a7fd13b60247f1a2d8024a59baa18e7dc"
+    },
+    {
+      "bytes": 1368,
+      "path": "patches/musl-1.2.4/0002-cve-2025-26519-p2.diff",
+      "sha256": "d5b88fe87f9554238bdd69235694b0d50bb909f38149a7be417a0240a490e813"
+    },
+    {
+      "bytes": 1394,
+      "path": "patches/musl-1.2.5/0001-cve-2025-26519-p1.diff",
+      "sha256": "89ec5af152afb9c0ba8e37ecdca63a7a7fd13b60247f1a2d8024a59baa18e7dc"
+    },
+    {
+      "bytes": 1368,
+      "path": "patches/musl-1.2.5/0002-cve-2025-26519-p2.diff",
+      "sha256": "d5b88fe87f9554238bdd69235694b0d50bb909f38149a7be417a0240a490e813"
+    },
+    {
+      "bytes": 199,
+      "path": "presets/j2-fdpic",
+      "sha256": "93ef72bcd5244518c50d6b118349dd704ed9633b292c41b52410331cd0b9a93c"
+    },
+    {
+      "bytes": 511,
+      "path": "presets/j2-pie-gplv2",
+      "sha256": "8a354d63c6238d6b51781ea59b91d59c49d45ffaf00799f621a0d3d6ffa45c91"
+    }
+  ],
+  "kind": "diagnostic-observation",
+  "limits": {
+    "compressed": 4194304,
+    "member": 8388608,
+    "members": 4096,
+    "tar": 33554432
+  },
+  "methods": {
+    "inspect-archives.py": "e9a417881e4caff2da92441dc19e958d93dba27173b38d3ce4425a9fd7c3b949",
+    "inspect-musl-cross-make.py": "5876728cebff6ab519492d09c42e9d0315f8c5a6922b6cc549007bd995086910"
+  },
+  "python": "3.14.5",
+  "requested_commit": "3635262e4524c991552789af6f36211a335a77b3"
+}

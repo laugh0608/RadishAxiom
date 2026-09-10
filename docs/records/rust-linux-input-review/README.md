@@ -151,3 +151,9 @@ python3 docs/records/rust-linux-input-review/check-host-dependencies.py
 上述首轮更改已提交为 `1262570`；随后 `e849aff` 接受 ADR 0015 并落实维护责任。经本次明确授权，仅重新取得既有 Rust `1.97.1` source 对象，242,787,896 bytes / SHA-256 与历史 source acceptance 一致；未安装或切换 Rust。
 
 [源码配方核验记录](source-recipes-2026-09-10.md)完整扫描 323,914 个逻辑成员，选择 255 份文本并留存方法 / 元数据：5 个 CRT 从 musl 库目录复制，4 个由 LLVM compiler-rt 构建，libunwind 进入源码树内 LLVM 构建路径。已定位 AArch64 musl 对应 Dockerfile、musl-cross-make 精确 commit、musl 版本与两份随包 patch；相关 LLVM 源码和许可原文已取得。配方不等于发布 binary 的构建证明，外部 musl-cross-make / musl 原始材料、宿主库及签名策略仍待闭合；不改写上面的历史观察。
+
+## 2026-09-10：固定 musl-cross-make 源码补查
+
+精确 Rust 配方批次已提交为 `c38a1c1`。本轮获准取得脚本引用的 musl-cross-make 固定 commit，归档 213,688 bytes，完整盘点 340 个文件；[详细记录](musl-cross-make-2026-09-10.md)及其库存 / 下载日志 / 方法已留存。实际 Makefile 使用 Binutils 2.44 / GCC 9.4.0，与 Rust 脚本旧注释不同；七项源依赖和四份 musl patch 已列明，上游依赖使用 SHA-1 校验，构建工具许可不覆盖 patch 与产物。
+
+该批只读诊断没有下载七项依赖、应用 patch、安装或构建；来源真实性、原始依赖许可、发布构建关联与最终链接继续待验收。新增 8 项合成检查和 1,048 文件仓库检查通过；历史验签、Rust / CI 和产品运行未重验，旧记录保持原样。
