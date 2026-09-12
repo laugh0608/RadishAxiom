@@ -1,0 +1,149 @@
+{
+  "acceptance": "not-assessed",
+  "binary_selection_complete": false,
+  "candidate_source_rows": [
+    {
+      "binary": "libbz2-1.0, libbz2-dev, bzip2, bzip2-doc",
+      "checksums-sha256": "\ncd3bfd77254a6b5ef1be144bdc90a0dd374bc8206afd98ba4abf828741b79820 1604 bzip2_1.0.8-6.dsc\nab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269 810029 bzip2_1.0.8.orig.tar.gz\n648ed0dac9a041ba6951e0cca521628aa39947cefee78139f7b934a5dc502095 26991 bzip2_1.0.8-6.debian.tar.bz2",
+      "directory": "pool/main/b/bzip2",
+      "package": "bzip2",
+      "version": "1.0.8-6"
+    },
+    {
+      "binary": "libc-bin, libc-dev-bin, libc-devtools, libc-l10n, glibc-doc, glibc-source, locales, locales-all, nscd, libc6, libc6-dev, libc6-dbg, libc6-udeb, libc6.1, libc6.1-dev, libc6.1-dbg, libc6.1-udeb, libc0.3, libc0.3-dev, libc0.3-dbg, libc0.3-udeb, libc6-i386, libc6-dev-i386, libc6-sparc, libc6-dev-sparc, libc6-sparc64, libc6-dev-sparc64, libc6-s390, libc6-dev-s390, libc6-amd64, libc6-dev-amd64, libc6-powerpc, libc6-dev-powerpc, libc6-ppc64, libc6-dev-ppc64, libc6-mips32, libc6-dev-mips32, libc6-mipsn32, libc6-dev-mipsn32, libc6-mips64, libc6-dev-mips64, libc6-x32, libc6-dev-x32",
+      "checksums-sha256": "\n721e79c087b0b907e7e098a6b84d654891012a7aa2b7626bf73d2485d6976f49 7550 glibc_2.40-5.dsc\n0b89b8c058eaa0f1121a814be6196ce2048235b43d95714ce8278fe72c7cc34a 19517224 glibc_2.40.orig.tar.xz\n05aa4df25ff502a1d8ab4902f800805daa3b86c986627b0fd6d44b5409878862 453708 glibc_2.40-5.debian.tar.xz",
+      "directory": "pool/main/g/glibc",
+      "package": "glibc",
+      "version": "2.40-5"
+    },
+    {
+      "binary": "libc-bin, libc-dev-bin, libc-devtools, libc-l10n, glibc-doc, glibc-source, locales, locales-all, nscd, libc6, libc6-dev, libc6-dbg, libc6-udeb, libc6.1, libc6.1-dev, libc6.1-dbg, libc6.1-udeb, libc0.3, libc0.3-dev, libc0.3-dbg, libc0.3-udeb, libc6-i386, libc6-dev-i386, libc6-sparc, libc6-dev-sparc, libc6-sparc64, libc6-dev-sparc64, libc6-s390, libc6-dev-s390, libc6-amd64, libc6-dev-amd64, libc6-powerpc, libc6-dev-powerpc, libc6-ppc64, libc6-dev-ppc64, libc6-mips32, libc6-dev-mips32, libc6-mipsn32, libc6-dev-mipsn32, libc6-mips64, libc6-dev-mips64, libc6-x32, libc6-dev-x32",
+      "checksums-sha256": "\n07b4bbd9b93343a90e89e64ae1227286884ca6e04b8a40553edc5a1aba158ed0 7544 glibc_2.41-11.dsc\nf24aa441021121a79266f0d75242706cab8843a47901fefe74527491807f1998 20323540 glibc_2.41.orig.tar.xz\n8931fe5a287262e8d0adcbdde28d08cefbe955edf7abf4c32540a5ad7f0e470d 437792 glibc_2.41-11.debian.tar.xz",
+      "directory": "pool/main/g/glibc",
+      "package": "glibc",
+      "version": "2.41-11"
+    },
+    {
+      "binary": "libc-bin, libc-dev-bin, libc-devtools, libc-l10n, glibc-doc, glibc-source, locales, locales-all, nscd, libc6, libc6-dev, libc6-dbg, libc6-udeb, libc6.1, libc6.1-dev, libc6.1-dbg, libc6.1-udeb, libc0.3, libc0.3-dev, libc0.3-dbg, libc0.3-udeb, libc6-i386, libc6-dev-i386, libc6-sparc, libc6-dev-sparc, libc6-sparc64, libc6-dev-sparc64, libc6-s390, libc6-dev-s390, libc6-amd64, libc6-dev-amd64, libc6-powerpc, libc6-dev-powerpc, libc6-ppc64, libc6-dev-ppc64, libc6-mips32, libc6-dev-mips32, libc6-mipsn32, libc6-dev-mipsn32, libc6-mips64, libc6-dev-mips64, libc6-x32, libc6-dev-x32",
+      "checksums-sha256": "\naa1ab10010fcf169454a5c6a123094a3997392922593d86a3a5adc180a07ca40 7576 glibc_2.41-12+deb13u3.dsc\nf24aa441021121a79266f0d75242706cab8843a47901fefe74527491807f1998 20323540 glibc_2.41.orig.tar.xz\nde7d715bf7e559b78baebac4115122641842f65faf0a5080a55954877a55cebe 494644 glibc_2.41-12+deb13u3.debian.tar.xz",
+      "directory": "pool/main/g/glibc",
+      "package": "glibc",
+      "version": "2.41-12+deb13u3"
+    },
+    {
+      "binary": "gpgconf, gnupg-agent, gpg-agent, gpg-wks-server, gpg-wks-client, scdaemon, gpgsm, gpg, gnupg, gnupg2, gpgv, dirmngr, tpm2daemon, gpgv-udeb, gpgv-static, gpgv-win32, gnupg-l10n, gnupg-utils",
+      "checksums-sha256": "\n30a96cd2d26a57f6796507bf8f083825734d4081e3c5f922d2b99bb2bf671212 4933 gnupg2_2.4.7-21+deb13u1.dsc\n7b24706e4da7e0e3b06ca068231027401f238102c41c909631349dcc3b85eb46 8010244 gnupg2_2.4.7.orig.tar.bz2\ncec7da75dab60e3e2f6bf92ed1174126a1e5a1cc5e448f9e004a23be2dd227f6 390 gnupg2_2.4.7.orig.tar.bz2.asc\n3941a8a537e258f6216ad1c1b9ecb255dfc286e5d03eb39805e536de4a448856 131264 gnupg2_2.4.7-21+deb13u1.debian.tar.xz",
+      "directory": "pool/main/g/gnupg2",
+      "package": "gnupg2",
+      "version": "2.4.7-21+deb13u1"
+    },
+    {
+      "binary": "init-system-helpers, init",
+      "checksums-sha256": "\n873082d72727267b6207e38df47e3002aeb0ed554f876db17c7bbfeb26174ee6 2266 init-system-helpers_1.69~deb13u1.dsc\nbbd65c63420b6335b91cbf5daad9a70632a087657eb9078ea000f0a16c2d83da 45852 init-system-helpers_1.69~deb13u1.tar.xz",
+      "directory": "pool/main/i/init-system-helpers",
+      "package": "init-system-helpers",
+      "version": "1.69~deb13u1"
+    },
+    {
+      "binary": "libassuan9, libassuan-dev, libassuan-mingw-w64-dev",
+      "checksums-sha256": "\n4c6b68814cef421d1768628b401a62176c579dc8e1e3026348d7ec159943f0c7 2682 libassuan_3.0.2-2.dsc\nd2931cdad266e633510f9970e1a2f346055e351bb19f9b78912475b8074c36f6 593917 libassuan_3.0.2.orig.tar.bz2\n3799b287fd7d48f750597bd9104621d2cbafd508de83303b1a5f5eef08f06072 228 libassuan_3.0.2.orig.tar.bz2.asc\n05566fa4ac35ad6af7214ce01beeaffcc2ce1c13d20daac4cf86949c5fad25fc 17536 libassuan_3.0.2-2.debian.tar.xz",
+      "directory": "pool/main/liba/libassuan",
+      "package": "libassuan",
+      "version": "3.0.2-2"
+    },
+    {
+      "binary": "libgcrypt20-doc, libgcrypt20-dev, libgcrypt20, libgcrypt20-udeb, libgcrypt-mingw-w64-dev, libgcrypt-bin",
+      "checksums-sha256": "\n275f26ee0b57fe374b8642213f8d5896bdd22f0d687727f8869701d72308b719 2945 libgcrypt20_1.11.0-7.dsc\n09120c9867ce7f2081d6aaa1775386b98c2f2f246135761aae47d81f58685b9c 4180345 libgcrypt20_1.11.0.orig.tar.bz2\n9fedf4f7bb80d5178d4e26ec2f03ba5fc44eddfc72c2e9966d7d619aeee3df2c 228 libgcrypt20_1.11.0.orig.tar.bz2.asc\nc6811619ea9ae05a214256264c21816b3d1cf1d5ae1113f658071efae3ba9355 40452 libgcrypt20_1.11.0-7.debian.tar.xz",
+      "directory": "pool/main/libg/libgcrypt20",
+      "package": "libgcrypt20",
+      "version": "1.11.0-7"
+    },
+    {
+      "binary": "libgcrypt20-doc, libgcrypt20-dev, libgcrypt20, libgcrypt20-udeb, libgcrypt-mingw-w64-dev, libgcrypt-bin",
+      "checksums-sha256": "\n727fae4a95bafe8b2094f75d880d3c63f8066865cb552422492cafd675887c80 3149 libgcrypt20_1.11.0-7+deb13u1.dsc\n09120c9867ce7f2081d6aaa1775386b98c2f2f246135761aae47d81f58685b9c 4180345 libgcrypt20_1.11.0.orig.tar.bz2\n9fedf4f7bb80d5178d4e26ec2f03ba5fc44eddfc72c2e9966d7d619aeee3df2c 228 libgcrypt20_1.11.0.orig.tar.bz2.asc\n08deb210f65066655791c8d2f1b1a40907abce6e0e0e07e6d2942426c5b4f3b8 40944 libgcrypt20_1.11.0-7+deb13u1.debian.tar.xz",
+      "directory": "pool/main/libg/libgcrypt20",
+      "package": "libgcrypt20",
+      "version": "1.11.0-7+deb13u1"
+    },
+    {
+      "binary": "libgpg-error-dev, libgpg-error0, gpgrt-tools, libgpg-error0-udeb, libgpg-error-mingw-w64-dev, libgpg-error-l10n",
+      "checksums-sha256": "\nfecb803e22016cbf46b7c0a0d5c23f8a45a2f70fa10d3b3b67b10be917987410 2956 libgpg-error_1.51-4.dsc\nbe0f1b2db6b93eed55369cdf79f19f72750c8c7c39fc20b577e724545427e6b2 1085510 libgpg-error_1.51.orig.tar.bz2\n5e8c9179635b3105f4c07d09168fda9ce039607e926628aec6a06134908be918 228 libgpg-error_1.51.orig.tar.bz2.asc\n9d1edd110f540c9f7163035f352836dd968ca38977f31adb073b99b9a05f8c4d 22332 libgpg-error_1.51-4.debian.tar.xz",
+      "directory": "pool/main/libg/libgpg-error",
+      "package": "libgpg-error",
+      "version": "1.51-4"
+    },
+    {
+      "binary": "libksba-dev, libksba8, libksba-mingw-w64-dev",
+      "checksums-sha256": "\n47f8b314c6b74fdcfb42390327dc0441c6ba6bfdb4511ca12e2b4478fc452e1c 2482 libksba_1.6.7-2.dsc\ncf72510b8ebb4eb6693eef765749d83677a03c79291a311040a5bfd79baab763 706437 libksba_1.6.7.orig.tar.bz2\ncd704f8100151752b12776fa87dac42a3f99334ed155bcbcbaeda8e786581316 228 libksba_1.6.7.orig.tar.bz2.asc\n28f0ef1f9dd2a7f1cef23e49393d750d50aade01476462d8d5225a23e4ad9929 14872 libksba_1.6.7-2.debian.tar.xz",
+      "directory": "pool/main/libk/libksba",
+      "package": "libksba",
+      "version": "1.6.7-2"
+    },
+    {
+      "binary": "ncurses-base, ncurses-term, libtinfo6, libtinfo6-udeb, libncurses6, libncurses-dev, libncursesw6, libncursesw6-udeb, lib64tinfo6, lib64ncurses6, lib64ncursesw6, lib64ncurses-dev, lib32tinfo6, lib32ncurses6, lib32ncursesw6, lib32ncurses-dev, ncurses-bin, ncurses-examples, ncurses-doc",
+      "checksums-sha256": "\n00539cc2bc6bb84be1b8a8a5decf606682e14b6f39b76b9aa090e65d2c2d4580 3890 ncurses_6.5+20250216-2.dsc\nb37baafa436e7133bb12a185cb8f60e1599b1947e9f0181c76f3190acf28b6eb 3774714 ncurses_6.5+20250216.orig.tar.gz\n64f4d17923322176c44079f18f170e2164a59d551d7e4e9c1a6e4eebedc5dd6f 729 ncurses_6.5+20250216.orig.tar.gz.asc\n546930a8992ae3325d8c38378f290265d969cf6333cfae9648ac6d69e1e8a8a6 50420 ncurses_6.5+20250216-2.debian.tar.xz",
+      "directory": "pool/main/n/ncurses",
+      "package": "ncurses",
+      "version": "6.5+20250216-2"
+    },
+    {
+      "binary": "libnpth0-dev, libnpth0t64, libnpth-mingw-w64-dev",
+      "checksums-sha256": "\n4d447cdfdc0034465181f7285ae7d52f4e1b7ca9a60f4fec4effae556d6d5c46 2188 npth_1.8-3.dsc\n8bd24b4f23a3065d6e5b26e98aba9ce783ea4fd781069c1b35d149694e90ca3e 317739 npth_1.8.orig.tar.bz2\n1a2bd2f85ad832d5166e616cbf336b072c6bdc20335146c5adccd3e2795a24bc 390 npth_1.8.orig.tar.bz2.asc\nb2ec0499de431042120dd56338f9f7ae600b1cbc00dcb71efe39d62d8960cb73 8668 npth_1.8-3.debian.tar.xz",
+      "directory": "pool/main/n/npth",
+      "package": "npth",
+      "version": "1.8-3"
+    },
+    {
+      "binary": "libreadline8t64, libreadline8-udeb, lib64readline8, readline-common, readline-common-udeb, libreadline-dev, lib64readline-dev, rlfe, lib32readline8, lib32readline-dev, readline-doc",
+      "checksums-sha256": "\n6f94c7144d6b6b1ff88aaebd81480e87f8773b7638031782aac12ef93ffd2e71 2810 readline_8.2-6.dsc\n3feb7171f16a84ee82ca18a36d7b9be109a52c04f492a053331d7d1095007c35 3043952 readline_8.2.orig.tar.gz\nd1cf806644dbce298cf929f1cc9b3af5a50cd7db97b6f69db280c1eb2f544376 38396 readline_8.2-6.debian.tar.xz",
+      "directory": "pool/main/r/readline",
+      "package": "readline",
+      "version": "8.2-6"
+    },
+    {
+      "binary": "lemon, sqlite3, sqlite3-doc, libsqlite3-0, libsqlite3-dev, libsqlite3-tcl, libsqlite3-ext-csv, libsqlite3-ext-icu, sqlite3-tools",
+      "checksums-sha256": "\nd96b624e3d5319aec6030e31c1047372f06dd23b7c76e18e312b1a0b355b2b52 2673 sqlite3_3.46.1-7+deb13u1.dsc\n648df41a8e532882b1905df45919aae4bafaf74c455f66bc86f1f52f45c8b8f0 5861820 sqlite3_3.46.1.orig-www.tar.xz\nd0cdd2ece271b29e7ce18095745d892517ee26d0f270065b3a25c2e9eb11639c 8456776 sqlite3_3.46.1.orig.tar.xz\n2f2135b8b9ca37d607422f0f590ab45dc64c17fed71bb019fd1f69894637ce21 35840 sqlite3_3.46.1-7+deb13u1.debian.tar.xz",
+      "directory": "pool/main/s/sqlite3",
+      "package": "sqlite3",
+      "version": "3.46.1-7+deb13u1"
+    },
+    {
+      "binary": "zlib1g, zlib1g-dev, zlib1g-udeb, lib64z1, lib64z1-dev, lib32z1, lib32z1-dev, libn32z1, libn32z1-dev, minizip, libminizip1t64, libminizip-dev",
+      "checksums-sha256": "\nede2791e29c1d3b422f9208bdd7edf040c20445ea1e7453a72037576e64fa197 2637 zlib_1.3.dfsg+really1.3.1-1.dsc\n60dd315c07f616887caa029408308a018ace66e3d142726a97db164b3b8f69fb 1325737 zlib_1.3.dfsg+really1.3.1.orig.tar.gz\n9ed525955ce9fb0c1b39be8ff98f73450dbfc6305a9a27e6149c8972d38a0a9e 16576 zlib_1.3.dfsg+really1.3.1-1.debian.tar.xz",
+      "directory": "pool/main/z/zlib",
+      "package": "zlib",
+      "version": "1:1.3.dfsg+really1.3.1-1"
+    }
+  ],
+  "inrelease": {
+    "bytes": 140416,
+    "sha256": "98b25b5cd185c59d34aa6e4c3e9b5b8f01bbe9d104fe2dcfbcd30dc0a14a59ed"
+  },
+  "kind": "diagnostic-verifier-source-candidates",
+  "methods": {
+    "docs/records/rust-linux-input-review/inspect-musl-verifier-sources.py": "71ed6113217f11abcc3105f0898ddb23c1fc9a5c7822129d8c669b8d5e387d5c",
+    "scripts/inspect-debian-source-chain.py": "c6f18880b4f347467ad949ccf25b1960c7bef141e5b48f610ae93ab22479da2a"
+  },
+  "multiple_source_versions": {
+    "glibc": [
+      "2.40-5",
+      "2.41-11",
+      "2.41-12+deb13u3"
+    ],
+    "libgcrypt20": [
+      "1.11.0-7",
+      "1.11.0-7+deb13u1"
+    ]
+  },
+  "required_binary_index": {
+    "bytes": 9607412,
+    "sha256": "753da751bbc7a679f48bd1b623ffd4479cb6861c426118284c76eb82909e4908",
+    "url": "https://deb.debian.org/debian/dists/trixie/main/binary-arm64/by-hash/SHA256/753da751bbc7a679f48bd1b623ffd4479cb6861c426118284c76eb82909e4908"
+  },
+  "runtime_closure_assessed": false,
+  "signature_reverified": false,
+  "sources": {
+    "bytes": 10527804,
+    "sha256": "e8bbadd8389119e841494630998187f961d7de4d5b1dcbeed4f792a1d423299f"
+  }
+}

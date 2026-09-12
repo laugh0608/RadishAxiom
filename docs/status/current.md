@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-09-10
+更新日期：2026-09-12
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。历史事实按需进入[截至 2026-09-03 的归档](../records/status-through-2026-09-03.md)。
 
@@ -34,9 +34,9 @@ Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收；�
 
 [ADR 0015（Accepted）](../adr/0015-virtualized-checker-resource-profile.md)确认 guest 128 MiB 硬限及宿主总内存无等价硬保证；8,000 行预警线、最多 10 人日和每周 4 小时投入已确认，项目所有者统一负责 runtime 与 kernel / init。细节以[维护责任](../checker-runtime-productization-dependency-review.md#许可证与维护责任)为准。
 
-### 明日事项（2026-09-11）
+### 当前待办（2026-09-12）
 
-1. **先审阅最小验证环境的来源。** 以[公钥 / 公告补证](../records/rust-linux-input-review/musl-key-status-2026-09-10.md)为起点，明确验证器、动态库与宿主的精确身份、来源和剩余 trust，再形成包含两必要角色、强摘要、自认证、子钥绑定 / 交叉认证、指定时点过期 / 撤销和失败处理的命令清单。旧镜像 digest 与 GnuPG 结果不能相互自证来源；新下载、工具安装或容器执行另行说明范围并获授权。
+1. **先锁定最小验证环境的二进制候选。** [9 月 12 日来源审阅](../records/rust-linux-input-review/musl-verifier-environment-2026-09-12.md)已盘点同一 trixie 快照中的 GnuPG 2.4.7 源码候选、宿主文件身份及完整复核步骤；Sources 内库版本不唯一，尚不能锁定 arm64 binary / loader / 库闭包。下一步按该记录的精确范围获授权取得 9,607,412 bytes 的 Packages.xz，再形成包清单。官方 HTTPS 作为工具二进制信任终点仅为建议，尚未确认；旧镜像及新工具验签结果均不能自证其来源。下载、工具取得、信任决定、容器执行分别说明范围和授权。
 2. **补齐 musl 原包验收与持久材料。** 仅沿[已确认的有条件 Debian 信任方案](../records/rust-linux-input-review/musl-debian-auth-2026-09-10.md#项目所有者确认与执行顺位)推进同一原包。两公钥已留存且与包内字节一致；archive 公告不覆盖 stable release，公告签名及当前密钥状态未重新核验。验证环境前置满足后，再复核完整链并决定 acceptance；不重复下载已有材料，不放宽上游 SHA-1 拒绝。为 Sources、原包、网页与 keyring 包落实可复现的持久存储；Sources 超过单文件上限，不拆分或放宽门禁绕过。当前仍为 `not-assessed`。
 3. **随后收口其余来源与安装前置。** 补查 musl-cross-make 其他六项依赖、发布构建关联、宿主库 / loader / 符号版本和 Rust 公钥策略；kernel 原始 tag 与最终链接继续分别验收。[隔离安装切片](../checker-runtime-linux-install-slice-review.md)已有精确三包 / 四 component、权限、时限和清理设计，仍需按分段方案核对实际模拟及两包间状态；来源前置满足后再申请安装，有限执行另列。公共迁移、签名 / VM 与产品运行继续分别验收和授权。
 
@@ -55,6 +55,8 @@ Checker 语义线先核实目标归因，再验收同域泛化、独立证明链
 - 产品发布版本、公开 CLI / SDK、表面语法、安装路径、最低支持矩阵及 v1 后兼容承诺仍未冻结。不创建占位编译器骨架、自动发布或装饰性治理入口；已有 Rust 实现的工程门禁以实际 CI 验收为准。
 
 ## 验证入口与本次审阅
+
+2026-09-12：最小验证环境来源审阅与固定 Sources 候选盘点已形成，未取得新二进制索引或完成来源验收；本地检查及未执行项见[本批交接](../records/rust-linux-input-review/musl-verifier-environment-2026-09-12.md#验证与交接)。
 
 2026-09-10 日终：仓库检查和 45 项显式来源诊断合成检查通过；逐批实际观察、失败、材料留存缺口及复核命令见[日终记录](../records/2026-09-10-closeout.md#日终验证与交接)。本轮收尾未运行网络下载、容器、Rust / CI、安装或构建，未完成新密码学验签。
 
