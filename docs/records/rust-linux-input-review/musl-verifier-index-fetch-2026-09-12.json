@@ -1,0 +1,102 @@
+{
+  "acceptance": "not-assessed",
+  "invocations": [
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "12582912",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-verifier-d04b225-20260912/packages-attempt-1.xz",
+        "--write-out",
+        "%{http_code}\n",
+        "https://deb.debian.org/debian/dists/trixie/main/binary-arm64/by-hash/SHA256/753da751bbc7a679f48bd1b623ffd4479cb6861c426118284c76eb82909e4908"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 0,
+        "file": "packages-attempt-1.xz",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 7,
+      "finished_at": "2026-09-12T11:35:44.868245+00:00",
+      "http_code": "000",
+      "input_digest_matches": false,
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "37225785634c2108d46b8522cc83fc23cddccb10cad70ac7d7ea4168257ddbfe",
+      "started_at": "2026-09-12T11:35:44.856811+00:00",
+      "stderr": {
+        "bytes": 91,
+        "sha256": "7528e9de26551e1df6d26dcd70afd80588062ceafc5fa6eb5d2f1d9a2b313a60",
+        "text": "curl: (7) Failed to connect to 127.0.0.1 port 10808 after 0 ms: Couldn't connect to server\n"
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "945e4893567554e68f6f28d5652917269341a5f3d295a16b7c708c9bfd95dc5d",
+        "text": "000\n"
+      },
+      "target": "packages",
+      "transport_passed": false,
+      "url": "https://deb.debian.org/debian/dists/trixie/main/binary-arm64/by-hash/SHA256/753da751bbc7a679f48bd1b623ffd4479cb6861c426118284c76eb82909e4908"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "12582912",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-verifier-d04b225-20260912/packages-attempt-2.xz",
+        "--write-out",
+        "%{http_code}\n",
+        "https://deb.debian.org/debian/dists/trixie/main/binary-arm64/by-hash/SHA256/753da751bbc7a679f48bd1b623ffd4479cb6861c426118284c76eb82909e4908"
+      ],
+      "attempt": 2,
+      "body": {
+        "bytes": 9607412,
+        "file": "packages-attempt-2.xz",
+        "sha256": "753da751bbc7a679f48bd1b623ffd4479cb6861c426118284c76eb82909e4908"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 0,
+      "finished_at": "2026-09-12T11:36:53.063572+00:00",
+      "http_code": "200",
+      "input_digest_matches": true,
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "37225785634c2108d46b8522cc83fc23cddccb10cad70ac7d7ea4168257ddbfe",
+      "started_at": "2026-09-12T11:36:37.175857+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "packages",
+      "transport_passed": true,
+      "url": "https://deb.debian.org/debian/dists/trixie/main/binary-arm64/by-hash/SHA256/753da751bbc7a679f48bd1b623ffd4479cb6861c426118284c76eb82909e4908"
+    }
+  ],
+  "kind": "diagnostic-verifier-index-fetch"
+}

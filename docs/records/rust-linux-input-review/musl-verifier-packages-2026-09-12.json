@@ -1,0 +1,699 @@
+{
+  "acceptance": "not-assessed",
+  "dependency_edges": [
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "gpg",
+      "operator": "=",
+      "package": "gpgconf",
+      "selected_version": "2.4.7-21+deb13u1+b4",
+      "version": "2.4.7-21+deb13u1+b4"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "gpg",
+      "operator": ">=",
+      "package": "init-system-helpers",
+      "selected_version": "1.69~deb13u1",
+      "version": "1.52"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "gpg",
+      "operator": ">=",
+      "package": "libassuan9",
+      "selected_version": "3.0.2-2",
+      "version": "2.5.1"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "gpg",
+      "operator": null,
+      "package": "libbz2-1.0",
+      "selected_version": "1.0.8-6",
+      "version": null
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "gpg",
+      "operator": ">=",
+      "package": "libc6",
+      "selected_version": "2.41-12+deb13u3",
+      "version": "2.38"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "gpg",
+      "operator": ">=",
+      "package": "libgcrypt20",
+      "selected_version": "1.11.0-7+deb13u1",
+      "version": "1.11.0"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "gpg",
+      "operator": ">=",
+      "package": "libgpg-error0",
+      "selected_version": "1.51-4",
+      "version": "1.49"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "gpg",
+      "operator": ">=",
+      "package": "libksba8",
+      "selected_version": "1.6.7-2+b1",
+      "version": "1.6.3"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "gpg",
+      "operator": ">=",
+      "package": "libnpth0t64",
+      "selected_version": "1.8-3",
+      "version": "1.2"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "gpg",
+      "operator": ">=",
+      "package": "libreadline8t64",
+      "selected_version": "8.2-6",
+      "version": "6.0"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "gpg",
+      "operator": ">=",
+      "package": "libsqlite3-0",
+      "selected_version": "3.46.1-7+deb13u1",
+      "version": "3.14.0"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "gpg",
+      "operator": ">=",
+      "package": "zlib1g",
+      "selected_version": "1:1.3.dfsg+really1.3.1-1+b1",
+      "version": "1:1.1.4"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "gpgconf",
+      "operator": ">=",
+      "package": "libassuan9",
+      "selected_version": "3.0.2-2",
+      "version": "2.5.0"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "gpgconf",
+      "operator": ">=",
+      "package": "libc6",
+      "selected_version": "2.41-12+deb13u3",
+      "version": "2.38"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "gpgconf",
+      "operator": ">=",
+      "package": "libgcrypt20",
+      "selected_version": "1.11.0-7+deb13u1",
+      "version": "1.11.0"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "gpgconf",
+      "operator": ">=",
+      "package": "libgpg-error0",
+      "selected_version": "1.51-4",
+      "version": "1.48"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "gpgconf",
+      "operator": ">=",
+      "package": "libreadline8t64",
+      "selected_version": "8.2-6",
+      "version": "6.0"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "libassuan9",
+      "operator": ">=",
+      "package": "libc6",
+      "selected_version": "2.41-12+deb13u3",
+      "version": "2.38"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "libassuan9",
+      "operator": ">=",
+      "package": "libgpg-error0",
+      "selected_version": "1.51-4",
+      "version": "1.33"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "libbz2-1.0",
+      "operator": ">=",
+      "package": "libc6",
+      "selected_version": "2.41-12+deb13u3",
+      "version": "2.17"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "libc6",
+      "operator": null,
+      "package": "libgcc-s1",
+      "selected_version": "14.2.0-19",
+      "version": null
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "libgcrypt20",
+      "operator": ">=",
+      "package": "libc6",
+      "selected_version": "2.41-12+deb13u3",
+      "version": "2.38"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "libgcrypt20",
+      "operator": ">=",
+      "package": "libgpg-error0",
+      "selected_version": "1.51-4",
+      "version": "1.50"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "libgpg-error0",
+      "operator": ">=",
+      "package": "libc6",
+      "selected_version": "2.41-12+deb13u3",
+      "version": "2.38"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "libksba8",
+      "operator": ">=",
+      "package": "libc6",
+      "selected_version": "2.41-12+deb13u3",
+      "version": "2.38"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "libksba8",
+      "operator": ">=",
+      "package": "libgpg-error0",
+      "selected_version": "1.51-4",
+      "version": "1.46"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "libnpth0t64",
+      "operator": ">=",
+      "package": "libc6",
+      "selected_version": "2.41-12+deb13u3",
+      "version": "2.34"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "libreadline8t64",
+      "operator": null,
+      "package": "readline-common",
+      "selected_version": "8.2-6",
+      "version": null
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "libreadline8t64",
+      "operator": ">=",
+      "package": "libc6",
+      "selected_version": "2.41-12+deb13u3",
+      "version": "2.38"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "libreadline8t64",
+      "operator": ">=",
+      "package": "libtinfo6",
+      "selected_version": "6.5+20250216-2",
+      "version": "6"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "libsqlite3-0",
+      "operator": ">=",
+      "package": "libc6",
+      "selected_version": "2.41-12+deb13u3",
+      "version": "2.38"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "zlib1g",
+      "operator": ">=",
+      "package": "libc6",
+      "selected_version": "2.41-12+deb13u3",
+      "version": "2.17"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "libgcc-s1",
+      "operator": "=",
+      "package": "gcc-14-base",
+      "selected_version": "14.2.0-19",
+      "version": "14.2.0-19"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "libgcc-s1",
+      "operator": ">=",
+      "package": "libc6",
+      "selected_version": "2.41-12+deb13u3",
+      "version": "2.35"
+    },
+    {
+      "constraint_satisfied": true,
+      "field": "depends",
+      "from": "libtinfo6",
+      "operator": ">=",
+      "package": "libc6",
+      "selected_version": "2.41-12+deb13u3",
+      "version": "2.34"
+    }
+  ],
+  "explicit_dependency_constraints_satisfied": true,
+  "inrelease": {
+    "bytes": 140416,
+    "sha256": "98b25b5cd185c59d34aa6e4c3e9b5b8f01bbe9d104fe2dcfbcd30dc0a14a59ed"
+  },
+  "installability_assessed": false,
+  "kind": "diagnostic-verifier-package-candidates",
+  "methods": {
+    "docs/records/rust-linux-input-review/inspect-musl-verifier-packages.py": "f8d04abd5141278b373125f8fe6487502c43fd940c9cad48a2120b03a44ed448",
+    "docs/records/rust-linux-input-review/inspect-musl-verifier-sources.py": "71ed6113217f11abcc3105f0898ddb23c1fc9a5c7822129d8c669b8d5e387d5c",
+    "scripts/inspect-debian-source-chain.py": "c6f18880b4f347467ad949ccf25b1960c7bef141e5b48f610ae93ab22479da2a"
+  },
+  "package_bytes_acquired": false,
+  "package_count": 17,
+  "packages": [
+    {
+      "architecture": "arm64",
+      "bytes": 49444,
+      "declared_relationships": {
+        "breaks": "gnat (<< 7)"
+      },
+      "filename": "pool/main/g/gcc-14/gcc-14-base_14.2.0-19_arm64.deb",
+      "package": "gcc-14-base",
+      "sha256": "34ee90679b018c0e64234747a4c4c0ae6b7f63541115037465a8627c2dfbc594",
+      "source_package": "gcc-14",
+      "source_version": "14.2.0-19",
+      "url": "https://deb.debian.org/debian/pool/main/g/gcc-14/gcc-14-base_14.2.0-19_arm64.deb",
+      "version": "14.2.0-19"
+    },
+    {
+      "architecture": "arm64",
+      "bytes": 578896,
+      "declared_relationships": {
+        "breaks": "gnupg (<< 2.1.21-4), keyboxd (<< 2.4.7-4)",
+        "depends": "gpgconf (= 2.4.7-21+deb13u1+b4), init-system-helpers (>= 1.52), libassuan9 (>= 2.5.1), libbz2-1.0, libc6 (>= 2.38), libgcrypt20 (>= 1.11.0), libgpg-error0 (>= 1.49), libksba8 (>= 1.6.3), libnpth0t64 (>= 1.2), libreadline8t64 (>= 6.0), libsqlite3-0 (>= 3.14.0), zlib1g (>= 1:1.1.4)",
+        "provides": "keyboxd (= 2.4.7-21+deb13u1+b4)",
+        "recommends": "gnupg (= 2.4.7-21+deb13u1)",
+        "replaces": "gnupg (<< 2.1.21-4), keyboxd (<< 2.4.7-4)"
+      },
+      "filename": "pool/main/g/gnupg2/gpg_2.4.7-21+deb13u1+b4_arm64.deb",
+      "package": "gpg",
+      "sha256": "840abc3e9178b9578fbc9c9674ebb2f3b983790f713ffd2b6a0371d8670dc8e7",
+      "source_package": "gnupg2",
+      "source_version": "2.4.7-21+deb13u1",
+      "url": "https://deb.debian.org/debian/pool/main/g/gnupg2/gpg_2.4.7-21+deb13u1+b4_arm64.deb",
+      "version": "2.4.7-21+deb13u1+b4"
+    },
+    {
+      "architecture": "arm64",
+      "bytes": 121684,
+      "declared_relationships": {
+        "breaks": "gnupg (<< 2.1.21-4), gnupg-agent (<< 2.1.21-4)",
+        "depends": "libassuan9 (>= 2.5.0), libc6 (>= 2.38), libgcrypt20 (>= 1.11.0), libgpg-error0 (>= 1.48), libreadline8t64 (>= 6.0)",
+        "replaces": "gnupg (<< 2.1.21-4), gnupg-agent (<< 2.1.21-4)"
+      },
+      "filename": "pool/main/g/gnupg2/gpgconf_2.4.7-21+deb13u1+b4_arm64.deb",
+      "package": "gpgconf",
+      "sha256": "d4b1556e8f13b48cd0061b343cf56beed20fec06a1045631d585ef587d449569",
+      "source_package": "gnupg2",
+      "source_version": "2.4.7-21+deb13u1",
+      "url": "https://deb.debian.org/debian/pool/main/g/gnupg2/gpgconf_2.4.7-21+deb13u1+b4_arm64.deb",
+      "version": "2.4.7-21+deb13u1+b4"
+    },
+    {
+      "architecture": "all",
+      "bytes": 39360,
+      "declared_relationships": {
+        "essential": "yes"
+      },
+      "filename": "pool/main/i/init-system-helpers/init-system-helpers_1.69~deb13u1_all.deb",
+      "package": "init-system-helpers",
+      "sha256": "addf78073e1cbc5a5508937e11d2571055e29835e00ee8fab52a66775649378f",
+      "source_package": "init-system-helpers",
+      "source_version": "1.69~deb13u1",
+      "url": "https://deb.debian.org/debian/pool/main/i/init-system-helpers/init-system-helpers_1.69~deb13u1_all.deb",
+      "version": "1.69~deb13u1"
+    },
+    {
+      "architecture": "arm64",
+      "bytes": 59112,
+      "declared_relationships": {
+        "depends": "libc6 (>= 2.38), libgpg-error0 (>= 1.33)"
+      },
+      "filename": "pool/main/liba/libassuan/libassuan9_3.0.2-2_arm64.deb",
+      "package": "libassuan9",
+      "sha256": "a4c36f4cbc7c09064fa944bf4f5d704ed6e2290b12d07a4d766a5d415b7c120d",
+      "source_package": "libassuan",
+      "source_version": "3.0.2-2",
+      "url": "https://deb.debian.org/debian/pool/main/liba/libassuan/libassuan9_3.0.2-2_arm64.deb",
+      "version": "3.0.2-2"
+    },
+    {
+      "architecture": "arm64",
+      "bytes": 37772,
+      "declared_relationships": {
+        "depends": "libc6 (>= 2.17)"
+      },
+      "filename": "pool/main/b/bzip2/libbz2-1.0_1.0.8-6_arm64.deb",
+      "package": "libbz2-1.0",
+      "sha256": "3537fe4fc577a60c8a9568873cd577db7ebc135eb8bb1825f18caf8972d9d2f2",
+      "source_package": "bzip2",
+      "source_version": "1.0.8-6",
+      "url": "https://deb.debian.org/debian/pool/main/b/bzip2/libbz2-1.0_1.0.8-6_arm64.deb",
+      "version": "1.0.8-6"
+    },
+    {
+      "architecture": "arm64",
+      "bytes": 2489480,
+      "declared_relationships": {
+        "breaks": "base-files (<< 13.3~), chrony (<< 4.2-3~), dhcpcd (<< 1:10.1.0-7~), fakechroot (<< 2.19-3.5), firefox (<< 91~), firefox-esr (<< 91~), gnumach-image-1.8-486 (<< 2:1.8+git20210923~), gnumach-image-1.8-486-dbg (<< 2:1.8+git20210923~), gnumach-image-1.8-xen-486 (<< 2:1.8+git20210923~), gnumach-image-1.8-xen-486-dbg (<< 2:1.8+git20210923~), hurd (<< 1:0.9.git20220301-2), libamdhip64-5 (<< 5.7.1-5+b1), libhiprtc-builtins5 (<< 5.7.1-5+b1), librccl1 (<< 5.4.3-3+b1), libswupdate0.1 (<< 2024.12.1+dfsg-1+b3), locales (<< 2.41), locales-all (<< 2.41), lua-swupdate (<< 2024.12.1+dfsg-1+b3), nscd (<< 2.41), pd-scaf (<< 1:0.14.1+darcs20180201-6+b4), postgresql-15-pllua (<< 1:2.0.12-4), postgresql-17-pllua (<< 1:2.0.12-3+b2), python3-iptables (<< 1.0.0-2), python3-mrgingham (<< 1.25-1), python3-onnxruntime (<< 1.20.1+dfsg-2~), sysvinit (<< 3.09-2~), sysvinit-core (<< 3.09-2~), tinydns (<< 1:1.05-14), uwsgi-plugin-pypy3 (<< 0.0.2+b1), valgrind (<< 1:3.19.0-1~)",
+        "depends": "libgcc-s1",
+        "recommends": "libidn2-0 (>= 2.0.5~)",
+        "suggests": "glibc-doc, debconf | debconf-2.0, libc-l10n, locales, libnss-nis, libnss-nisplus"
+      },
+      "filename": "pool/main/g/glibc/libc6_2.41-12+deb13u3_arm64.deb",
+      "package": "libc6",
+      "sha256": "ff529924782d3286181188fc265a6a92e7fe28975fb3a925dc0e05c0ca66e52f",
+      "source_package": "glibc",
+      "source_version": "2.41-12+deb13u3",
+      "url": "https://deb.debian.org/debian/pool/main/g/glibc/libc6_2.41-12+deb13u3_arm64.deb",
+      "version": "2.41-12+deb13u3"
+    },
+    {
+      "architecture": "arm64",
+      "bytes": 54104,
+      "declared_relationships": {
+        "breaks": "libgcc-7-dev (<< 7.5.0-4), libgcc-8-dev (<< 8.3.0-27), libgcc-9-dev (<< 9.2.1-26)",
+        "depends": "gcc-14-base (= 14.2.0-19), libc6 (>= 2.35)",
+        "provides": "libgcc1 (= 1:14.2.0-19)",
+        "replaces": "libgcc1 (<< 1:10)"
+      },
+      "filename": "pool/main/g/gcc-14/libgcc-s1_14.2.0-19_arm64.deb",
+      "package": "libgcc-s1",
+      "sha256": "1108bc87879833d6d9a145f22a4a15cddb34e065b4b5f4b97bee586adbac2851",
+      "source_package": "gcc-14",
+      "source_version": "14.2.0-19",
+      "url": "https://deb.debian.org/debian/pool/main/g/gcc-14/libgcc-s1_14.2.0-19_arm64.deb",
+      "version": "14.2.0-19"
+    },
+    {
+      "architecture": "arm64",
+      "bytes": 741128,
+      "declared_relationships": {
+        "depends": "libc6 (>= 2.38), libgpg-error0 (>= 1.50)",
+        "suggests": "rng-tools"
+      },
+      "filename": "pool/main/libg/libgcrypt20/libgcrypt20_1.11.0-7+deb13u1_arm64.deb",
+      "package": "libgcrypt20",
+      "sha256": "243a42b879c6675348279a3f9a40e535d57185af00dbfd51b7481e777f163da6",
+      "source_package": "libgcrypt20",
+      "source_version": "1.11.0-7+deb13u1",
+      "url": "https://deb.debian.org/debian/pool/main/libg/libgcrypt20/libgcrypt20_1.11.0-7+deb13u1_arm64.deb",
+      "version": "1.11.0-7+deb13u1"
+    },
+    {
+      "architecture": "arm64",
+      "bytes": 78544,
+      "declared_relationships": {
+        "depends": "libc6 (>= 2.38)",
+        "recommends": "libgpg-error-l10n"
+      },
+      "filename": "pool/main/libg/libgpg-error/libgpg-error0_1.51-4_arm64.deb",
+      "package": "libgpg-error0",
+      "sha256": "f9a8ee3f325360dbbb1c98331c60c7aa454a054a8a4564bc36b3e52fb53e019e",
+      "source_package": "libgpg-error",
+      "source_version": "1.51-4",
+      "url": "https://deb.debian.org/debian/pool/main/libg/libgpg-error/libgpg-error0_1.51-4_arm64.deb",
+      "version": "1.51-4"
+    },
+    {
+      "architecture": "arm64",
+      "bytes": 125004,
+      "declared_relationships": {
+        "depends": "libc6 (>= 2.38), libgpg-error0 (>= 1.46)"
+      },
+      "filename": "pool/main/libk/libksba/libksba8_1.6.7-2+b1_arm64.deb",
+      "package": "libksba8",
+      "sha256": "ee001c93cf2a5e495e1885fac2d7ec1474bd619539f0f33a0b326ac511e04297",
+      "source_package": "libksba",
+      "source_version": "1.6.7-2",
+      "url": "https://deb.debian.org/debian/pool/main/libk/libksba/libksba8_1.6.7-2+b1_arm64.deb",
+      "version": "1.6.7-2+b1"
+    },
+    {
+      "architecture": "arm64",
+      "bytes": 22900,
+      "declared_relationships": {
+        "breaks": "libnpth0 (<< 1.8-3)",
+        "depends": "libc6 (>= 2.34)",
+        "provides": "libnpth0 (= 1.8-3)",
+        "replaces": "libnpth0"
+      },
+      "filename": "pool/main/n/npth/libnpth0t64_1.8-3_arm64.deb",
+      "package": "libnpth0t64",
+      "sha256": "68bca0187b0121e25706fc79cee63233168f4b4acbfa1c3f34f0880be6c16a5c",
+      "source_package": "npth",
+      "source_version": "1.8-3",
+      "url": "https://deb.debian.org/debian/pool/main/n/npth/libnpth0t64_1.8-3_arm64.deb",
+      "version": "1.8-3"
+    },
+    {
+      "architecture": "arm64",
+      "bytes": 159264,
+      "declared_relationships": {
+        "breaks": "libreadline8 (<< 8.2-6)",
+        "depends": "readline-common, libc6 (>= 2.38), libtinfo6 (>= 6)",
+        "provides": "libreadline8 (= 8.2-6)",
+        "replaces": "libreadline8"
+      },
+      "filename": "pool/main/r/readline/libreadline8t64_8.2-6_arm64.deb",
+      "package": "libreadline8t64",
+      "sha256": "f78ff432b2a627bc04f7eef0e6e2696501c9e06feca748a5b741d5e594429033",
+      "source_package": "readline",
+      "source_version": "8.2-6",
+      "url": "https://deb.debian.org/debian/pool/main/r/readline/libreadline8t64_8.2-6_arm64.deb",
+      "version": "8.2-6"
+    },
+    {
+      "architecture": "arm64",
+      "bytes": 853772,
+      "declared_relationships": {
+        "breaks": "crowdsec (<< 1.4), python-migrate (<< 0.11.0-4~), python3-migrate (<< 0.11.0-4~)",
+        "depends": "libc6 (>= 2.38)"
+      },
+      "filename": "pool/main/s/sqlite3/libsqlite3-0_3.46.1-7+deb13u1_arm64.deb",
+      "package": "libsqlite3-0",
+      "sha256": "69dd4b705eca29fe134c17f18aaa4cc9e7ecd01c0250d5e195358801514c76ac",
+      "source_package": "sqlite3",
+      "source_version": "3.46.1-7+deb13u1",
+      "url": "https://deb.debian.org/debian/pool/main/s/sqlite3/libsqlite3-0_3.46.1-7+deb13u1_arm64.deb",
+      "version": "3.46.1-7+deb13u1"
+    },
+    {
+      "architecture": "arm64",
+      "bytes": 341360,
+      "declared_relationships": {
+        "breaks": "tmux (<< 3.3a-4)",
+        "depends": "libc6 (>= 2.34)"
+      },
+      "filename": "pool/main/n/ncurses/libtinfo6_6.5+20250216-2_arm64.deb",
+      "package": "libtinfo6",
+      "sha256": "2a747f7fff3c2347c357387a7133df997410f07ba1b1df1a1461a97bd7fbc2fc",
+      "source_package": "ncurses",
+      "source_version": "6.5+20250216-2",
+      "url": "https://deb.debian.org/debian/pool/main/n/ncurses/libtinfo6_6.5+20250216-2_arm64.deb",
+      "version": "6.5+20250216-2"
+    },
+    {
+      "architecture": "all",
+      "bytes": 69360,
+      "declared_relationships": {
+        "conflicts": "libreadline-common, libreadline5 (<< 5.0-11)",
+        "replaces": "libreadline-common, libreadline4 (<< 4.3-16), libreadline5 (<< 5.0-11)",
+        "suggests": "readline-doc"
+      },
+      "filename": "pool/main/r/readline/readline-common_8.2-6_all.deb",
+      "package": "readline-common",
+      "sha256": "f77e8aa0bf0de618f11cb0b21658a4ed60f177d63b3cf26d7fc3706b6d0eaaa9",
+      "source_package": "readline",
+      "source_version": "8.2-6",
+      "url": "https://deb.debian.org/debian/pool/main/r/readline/readline-common_8.2-6_all.deb",
+      "version": "8.2-6"
+    },
+    {
+      "architecture": "arm64",
+      "bytes": 85116,
+      "declared_relationships": {
+        "breaks": "libxml2 (<< 2.7.6.dfsg-2), texlive-binaries (<< 2023.20230311.66589-8)",
+        "conflicts": "zlib1 (<= 1:1.0.4-7)",
+        "depends": "libc6 (>= 2.17)",
+        "provides": "libz1"
+      },
+      "filename": "pool/main/z/zlib/zlib1g_1.3.dfsg+really1.3.1-1+b1_arm64.deb",
+      "package": "zlib1g",
+      "sha256": "209aa5cf671e97b9eb0410844fa6df4cae2e75b0c72e7802ab6c8ece13e6ddef",
+      "source_package": "zlib",
+      "source_version": "1:1.3.dfsg+really1.3.1-1",
+      "url": "https://deb.debian.org/debian/pool/main/z/zlib/zlib1g_1.3.dfsg+really1.3.1-1+b1_arm64.deb",
+      "version": "1:1.3.dfsg+really1.3.1-1+b1"
+    }
+  ],
+  "packages_index": {
+    "bytes": 9607412,
+    "sha256": "753da751bbc7a679f48bd1b623ffd4479cb6861c426118284c76eb82909e4908"
+  },
+  "root": "gpg",
+  "runtime_closure_assessed": false,
+  "signature_reverified": false,
+  "source_rows": [
+    {
+      "checksums-sha256": "\ncd3bfd77254a6b5ef1be144bdc90a0dd374bc8206afd98ba4abf828741b79820 1604 bzip2_1.0.8-6.dsc\nab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269 810029 bzip2_1.0.8.orig.tar.gz\n648ed0dac9a041ba6951e0cca521628aa39947cefee78139f7b934a5dc502095 26991 bzip2_1.0.8-6.debian.tar.bz2",
+      "directory": "pool/main/b/bzip2",
+      "package": "bzip2",
+      "version": "1.0.8-6"
+    },
+    {
+      "checksums-sha256": "\n7db1e202cce66617e9134a662c877a3a773de5b612fd52179815877e0ecfb847 47347 gcc-14_14.2.0-19.dsc\ne162a5ef3f0077ecae598c6556908d2ab80841532df3398072a96a6df6e6aa29 94299633 gcc-14_14.2.0.orig.tar.gz\n31cbab4bafa48aa1c540497bd8098cbcf98e673778f927651ed944709f687781 2577016 gcc-14_14.2.0-19.debian.tar.xz",
+      "directory": "pool/main/g/gcc-14",
+      "package": "gcc-14",
+      "version": "14.2.0-19"
+    },
+    {
+      "checksums-sha256": "\naa1ab10010fcf169454a5c6a123094a3997392922593d86a3a5adc180a07ca40 7576 glibc_2.41-12+deb13u3.dsc\nf24aa441021121a79266f0d75242706cab8843a47901fefe74527491807f1998 20323540 glibc_2.41.orig.tar.xz\nde7d715bf7e559b78baebac4115122641842f65faf0a5080a55954877a55cebe 494644 glibc_2.41-12+deb13u3.debian.tar.xz",
+      "directory": "pool/main/g/glibc",
+      "package": "glibc",
+      "version": "2.41-12+deb13u3"
+    },
+    {
+      "checksums-sha256": "\n30a96cd2d26a57f6796507bf8f083825734d4081e3c5f922d2b99bb2bf671212 4933 gnupg2_2.4.7-21+deb13u1.dsc\n7b24706e4da7e0e3b06ca068231027401f238102c41c909631349dcc3b85eb46 8010244 gnupg2_2.4.7.orig.tar.bz2\ncec7da75dab60e3e2f6bf92ed1174126a1e5a1cc5e448f9e004a23be2dd227f6 390 gnupg2_2.4.7.orig.tar.bz2.asc\n3941a8a537e258f6216ad1c1b9ecb255dfc286e5d03eb39805e536de4a448856 131264 gnupg2_2.4.7-21+deb13u1.debian.tar.xz",
+      "directory": "pool/main/g/gnupg2",
+      "package": "gnupg2",
+      "version": "2.4.7-21+deb13u1"
+    },
+    {
+      "checksums-sha256": "\n873082d72727267b6207e38df47e3002aeb0ed554f876db17c7bbfeb26174ee6 2266 init-system-helpers_1.69~deb13u1.dsc\nbbd65c63420b6335b91cbf5daad9a70632a087657eb9078ea000f0a16c2d83da 45852 init-system-helpers_1.69~deb13u1.tar.xz",
+      "directory": "pool/main/i/init-system-helpers",
+      "package": "init-system-helpers",
+      "version": "1.69~deb13u1"
+    },
+    {
+      "checksums-sha256": "\n4c6b68814cef421d1768628b401a62176c579dc8e1e3026348d7ec159943f0c7 2682 libassuan_3.0.2-2.dsc\nd2931cdad266e633510f9970e1a2f346055e351bb19f9b78912475b8074c36f6 593917 libassuan_3.0.2.orig.tar.bz2\n3799b287fd7d48f750597bd9104621d2cbafd508de83303b1a5f5eef08f06072 228 libassuan_3.0.2.orig.tar.bz2.asc\n05566fa4ac35ad6af7214ce01beeaffcc2ce1c13d20daac4cf86949c5fad25fc 17536 libassuan_3.0.2-2.debian.tar.xz",
+      "directory": "pool/main/liba/libassuan",
+      "package": "libassuan",
+      "version": "3.0.2-2"
+    },
+    {
+      "checksums-sha256": "\n727fae4a95bafe8b2094f75d880d3c63f8066865cb552422492cafd675887c80 3149 libgcrypt20_1.11.0-7+deb13u1.dsc\n09120c9867ce7f2081d6aaa1775386b98c2f2f246135761aae47d81f58685b9c 4180345 libgcrypt20_1.11.0.orig.tar.bz2\n9fedf4f7bb80d5178d4e26ec2f03ba5fc44eddfc72c2e9966d7d619aeee3df2c 228 libgcrypt20_1.11.0.orig.tar.bz2.asc\n08deb210f65066655791c8d2f1b1a40907abce6e0e0e07e6d2942426c5b4f3b8 40944 libgcrypt20_1.11.0-7+deb13u1.debian.tar.xz",
+      "directory": "pool/main/libg/libgcrypt20",
+      "package": "libgcrypt20",
+      "version": "1.11.0-7+deb13u1"
+    },
+    {
+      "checksums-sha256": "\nfecb803e22016cbf46b7c0a0d5c23f8a45a2f70fa10d3b3b67b10be917987410 2956 libgpg-error_1.51-4.dsc\nbe0f1b2db6b93eed55369cdf79f19f72750c8c7c39fc20b577e724545427e6b2 1085510 libgpg-error_1.51.orig.tar.bz2\n5e8c9179635b3105f4c07d09168fda9ce039607e926628aec6a06134908be918 228 libgpg-error_1.51.orig.tar.bz2.asc\n9d1edd110f540c9f7163035f352836dd968ca38977f31adb073b99b9a05f8c4d 22332 libgpg-error_1.51-4.debian.tar.xz",
+      "directory": "pool/main/libg/libgpg-error",
+      "package": "libgpg-error",
+      "version": "1.51-4"
+    },
+    {
+      "checksums-sha256": "\n47f8b314c6b74fdcfb42390327dc0441c6ba6bfdb4511ca12e2b4478fc452e1c 2482 libksba_1.6.7-2.dsc\ncf72510b8ebb4eb6693eef765749d83677a03c79291a311040a5bfd79baab763 706437 libksba_1.6.7.orig.tar.bz2\ncd704f8100151752b12776fa87dac42a3f99334ed155bcbcbaeda8e786581316 228 libksba_1.6.7.orig.tar.bz2.asc\n28f0ef1f9dd2a7f1cef23e49393d750d50aade01476462d8d5225a23e4ad9929 14872 libksba_1.6.7-2.debian.tar.xz",
+      "directory": "pool/main/libk/libksba",
+      "package": "libksba",
+      "version": "1.6.7-2"
+    },
+    {
+      "checksums-sha256": "\n00539cc2bc6bb84be1b8a8a5decf606682e14b6f39b76b9aa090e65d2c2d4580 3890 ncurses_6.5+20250216-2.dsc\nb37baafa436e7133bb12a185cb8f60e1599b1947e9f0181c76f3190acf28b6eb 3774714 ncurses_6.5+20250216.orig.tar.gz\n64f4d17923322176c44079f18f170e2164a59d551d7e4e9c1a6e4eebedc5dd6f 729 ncurses_6.5+20250216.orig.tar.gz.asc\n546930a8992ae3325d8c38378f290265d969cf6333cfae9648ac6d69e1e8a8a6 50420 ncurses_6.5+20250216-2.debian.tar.xz",
+      "directory": "pool/main/n/ncurses",
+      "package": "ncurses",
+      "version": "6.5+20250216-2"
+    },
+    {
+      "checksums-sha256": "\n4d447cdfdc0034465181f7285ae7d52f4e1b7ca9a60f4fec4effae556d6d5c46 2188 npth_1.8-3.dsc\n8bd24b4f23a3065d6e5b26e98aba9ce783ea4fd781069c1b35d149694e90ca3e 317739 npth_1.8.orig.tar.bz2\n1a2bd2f85ad832d5166e616cbf336b072c6bdc20335146c5adccd3e2795a24bc 390 npth_1.8.orig.tar.bz2.asc\nb2ec0499de431042120dd56338f9f7ae600b1cbc00dcb71efe39d62d8960cb73 8668 npth_1.8-3.debian.tar.xz",
+      "directory": "pool/main/n/npth",
+      "package": "npth",
+      "version": "1.8-3"
+    },
+    {
+      "checksums-sha256": "\n6f94c7144d6b6b1ff88aaebd81480e87f8773b7638031782aac12ef93ffd2e71 2810 readline_8.2-6.dsc\n3feb7171f16a84ee82ca18a36d7b9be109a52c04f492a053331d7d1095007c35 3043952 readline_8.2.orig.tar.gz\nd1cf806644dbce298cf929f1cc9b3af5a50cd7db97b6f69db280c1eb2f544376 38396 readline_8.2-6.debian.tar.xz",
+      "directory": "pool/main/r/readline",
+      "package": "readline",
+      "version": "8.2-6"
+    },
+    {
+      "checksums-sha256": "\nd96b624e3d5319aec6030e31c1047372f06dd23b7c76e18e312b1a0b355b2b52 2673 sqlite3_3.46.1-7+deb13u1.dsc\n648df41a8e532882b1905df45919aae4bafaf74c455f66bc86f1f52f45c8b8f0 5861820 sqlite3_3.46.1.orig-www.tar.xz\nd0cdd2ece271b29e7ce18095745d892517ee26d0f270065b3a25c2e9eb11639c 8456776 sqlite3_3.46.1.orig.tar.xz\n2f2135b8b9ca37d607422f0f590ab45dc64c17fed71bb019fd1f69894637ce21 35840 sqlite3_3.46.1-7+deb13u1.debian.tar.xz",
+      "directory": "pool/main/s/sqlite3",
+      "package": "sqlite3",
+      "version": "3.46.1-7+deb13u1"
+    },
+    {
+      "checksums-sha256": "\nede2791e29c1d3b422f9208bdd7edf040c20445ea1e7453a72037576e64fa197 2637 zlib_1.3.dfsg+really1.3.1-1.dsc\n60dd315c07f616887caa029408308a018ace66e3d142726a97db164b3b8f69fb 1325737 zlib_1.3.dfsg+really1.3.1.orig.tar.gz\n9ed525955ce9fb0c1b39be8ff98f73450dbfc6305a9a27e6149c8972d38a0a9e 16576 zlib_1.3.dfsg+really1.3.1-1.debian.tar.xz",
+      "directory": "pool/main/z/zlib",
+      "package": "zlib",
+      "version": "1:1.3.dfsg+really1.3.1-1"
+    }
+  ],
+  "sources_index": {
+    "bytes": 10527804,
+    "sha256": "e8bbadd8389119e841494630998187f961d7de4d5b1dcbeed4f792a1d423299f"
+  },
+  "total_package_bytes": 5906300
+}

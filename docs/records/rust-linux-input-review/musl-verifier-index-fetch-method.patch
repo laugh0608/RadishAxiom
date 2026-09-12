@@ -1,9 +1,6 @@
 --- fetch-musl-trust-inputs.py
 +++ fetch-musl-verifier-index.py
-@@ -7,9 +7,10 @@
- import sys
- 
- TARGETS = {
+@@ -10,3 +10,4 @@
 -    'keys': ('https://ftp-master.debian.org/keys.html', 1048576, 'html'),
 -    'keyring': ('https://deb.debian.org/debian/pool/main/d/debian-archive-keyring/'
 -                'debian-archive-keyring_2023.3+deb12u2_all.deb', 524288, 'deb'),
@@ -11,20 +8,11 @@
 +                 'by-hash/SHA256/'
 +                 '753da751bbc7a679f48bd1b623ffd4479cb6861c426118284c76eb82909e4908',
 +                 12582912, 'xz'),
- }
- 
- 
-@@ -57,9 +58,11 @@
-         'stderr': {'bytes': len(raw_err), 'sha256': digest(raw_err), 'text': raw_err.decode('utf-8')},
-         'transport_passed': result.returncode == 0 and http_code == '200' and len(data) <= limit,
-     }
+@@ -59,0 +61,2 @@
 +    observation['input_digest_matches'] = (len(data) == 9607412 and digest(data) ==
 +        '753da751bbc7a679f48bd1b623ffd4479cb6861c426118284c76eb82909e4908')
-     record.write_text(json.dumps(observation, sort_keys=True, indent=2) + '\n')
+@@ -61,2 +64,2 @@
 -    print(json.dumps({k: observation[k] for k in ('target', 'attempt', 'exit_code', 'http_code', 'body', 'transport_passed')}))
 -    return 0 if observation['transport_passed'] else 1
 +    print(json.dumps({k: observation[k] for k in ('target', 'attempt', 'exit_code', 'http_code', 'body', 'transport_passed', 'input_digest_matches')}))
 +    return 0 if observation['transport_passed'] and observation['input_digest_matches'] else 1
- 
- 
- if __name__ == '__main__':
