@@ -30,15 +30,15 @@
 
 ## 近期顺位
 
-Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收；普通 `dev` push 仍不自动触发 CI。资源与维护决策已收口；kernel / Debian / Rust Linux 来源诊断尚未形成完整 source lock、真实安装或构建验收。当天提交与代码 / 文档核对见 [2026-09-10 日终回顾](../records/2026-09-10-closeout.md)。
+Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收；普通 `dev` push 仍不自动触发 CI。资源与维护决策已收口；kernel / Debian / Rust Linux 来源诊断尚未形成完整 source lock、真实安装或构建验收。日终文档收尾前的 8 笔提交与代码 / 文档核对见 [2026-09-12 日终回顾](../records/2026-09-12-closeout.md)。
 
 [ADR 0015（Accepted）](../adr/0015-virtualized-checker-resource-profile.md)确认 guest 128 MiB 硬限及宿主总内存无等价硬保证；8,000 行预警线、最多 10 人日和每周 4 小时投入已确认，项目所有者统一负责 runtime 与 kernel / init。细节以[维护责任](../checker-runtime-productization-dependency-review.md#许可证与维护责任)为准。
 
-### 当前待办（2026-09-12）
+### 明日事项（2026-09-13）
 
-1. **实现 musl 两角色正式验签的有限执行入口。** 固定工具及当前宿主已被接受为本次诊断可信输入；[四项真实诊断](../records/rust-linux-input-review/musl-verifier-smoke-execution-2026-09-12.md)与正常容器清理已完成，前批已提交 `f3ed1ce`。本批[输入与状态判定准备](../records/rust-linux-input-review/musl-verification-preparation-2026-09-12.md)从独立归档核对六个对象，准备四份只读输入（209,579 bytes），实现精确主钥 / signer 配对、双角色缺一拒绝和调用失败传播，16 项合成检查通过；尚未执行新验签。下一步复用现有镜像，解决逐次 tmpfs home 的生命周期、输入传递及原始 / 过滤公钥分离，接入自签名、撤销、交叉认证与真实采集。入口具体方案可复核后再确认新有限执行范围，不重复下载或导入镜像。完整验签闭包、异常资源行为和 production qualification 均未验收；[本机独立归档](../records/rust-linux-input-review/musl-retention-2026-09-12.md)的异盘位置 / 恢复责任并行落实。
-2. **补齐 musl 原包验收。** 仅沿[已确认的有条件 Debian 信任方案](../records/rust-linux-input-review/musl-debian-auth-2026-09-10.md#项目所有者确认与执行顺位)推进同一原包。两公钥已留存且与包内字节一致；archive 公告不覆盖 stable release，公告签名及当前密钥状态未重新核验。验证环境前置满足后，再复核完整链并决定 acceptance；不重复下载已有材料，不放宽上游 SHA-1 拒绝。Sources、原包、网页与 keyring 包已有可恢复的本机独立副本，异盘保留 / 恢复仍待落实；Sources 未拆分或入 Git，未放宽单文件门禁。当前仍为 `not-assessed`。
-3. **随后收口其余来源与安装前置。** 补查 musl-cross-make 其他六项依赖、发布构建关联、宿主库 / loader / 符号版本和 Rust 公钥策略；kernel 原始 tag 与最终链接继续分别验收。[隔离安装切片](../checker-runtime-linux-install-slice-review.md)已有精确三包 / 四 component、权限、时限和清理设计，仍需按分段方案核对实际模拟及两包间状态；来源前置满足后再申请安装，有限执行另列。公共迁移、签名 / VM 与产品运行继续分别验收和授权。
+1. **先实现 musl 两角色验签的有界执行入口。** [四项真实工具诊断](../records/rust-linux-input-review/musl-verifier-smoke-execution-2026-09-12.md)已完成；[四份输入与严格状态判定器](../records/rust-linux-input-review/musl-verification-preparation-2026-09-12.md)已提交 `51b0714`。复用固定镜像与归档，解决逐次 tmpfs home 生命周期、输入传递及原始 / 过滤公钥分离，再绑定真实命令、输入身份、status、退出码、时限与失败清理。补自签名、撤销、子钥绑定和交叉认证检查；不把合成 status 通过当作已验签。先完成可复核入口与负例，再说明新有限执行的精确目标、影响、时限和清理方式供确认；不重复下载或导入现有镜像。
+2. **入口前置满足后，复核同一 musl 原包并决定 acceptance。** 沿[已确认的有条件 Debian 信任方案](../records/rust-linux-input-review/musl-debian-auth-2026-09-10.md#项目所有者确认与执行顺位)，复核两个必要角色、密钥状态、解出正文与完整 Sources / 原包摘要链。固定工具及宿主是本次诊断可信输入，公钥材料仍限于 2026-09-10 获取时点；公告不覆盖 stable release，公告签名与当前所有渠道撤销状态未重验。当前 `not-assessed`、上游 SHA-1 拒绝不变。[本机独立归档及恢复](../records/rust-linux-input-review/musl-retention-2026-09-12.md)已完成，异盘位置与恢复责任并行落实；不拆分 Sources 或放宽单文件门禁。
+3. **其后再处理其他来源与安装前置。** 补 musl-cross-make 其他六项依赖、发布构建关联、Rust 公钥策略及宿主 loader / 库 / 符号版本。kernel 原始 tag 与最终链接分别验收；[三包 / 四 component 隔离安装切片](../checker-runtime-linux-install-slice-review.md)仍须补实际模拟及两包间核对。来源前置满足后再申请安装，公共迁移、生产签名 / VM 与产品运行继续分别验收。
 
 [AX-B01 首切片依赖审阅](../axiom-pipeline-first-slice-dependency-review.md)已列出 P0–P9 前置；cvc5 / Node 自身的来源与外层硬限制仍需独立闭合。纯设计无需等待产品安装 / 激活，生产实现遵守 ADR 0007 全部入口或正式替代决策。
 
@@ -56,9 +56,7 @@ Checker 语义线先核实目标归因，再验收同域泛化、独立证明链
 
 ## 验证入口与本次审阅
 
-2026-09-12：本批完成四份验签输入的归档读取、暂存和摘要 / 权限读回，以及严格双角色 status 判定器；16 项合成检查通过，归档计划重算一致。Unicode 分行负例曾暴露三项失败，修复与重跑如实留存。未进行新公钥导入、密码学验签或来源 acceptance；下一步实现有界执行入口，见[本批准备记录](../records/rust-linux-input-review/musl-verification-preparation-2026-09-12.md)。此前镜像导入、四项动态诊断、27 项合成检查和失败记录见[前批交接](../records/rust-linux-input-review/musl-verifier-smoke-execution-2026-09-12.md)。
-
-2026-09-10 日终：仓库检查和 45 项显式来源诊断合成检查通过；逐批实际观察、失败、材料留存缺口及复核命令见[日终记录](../records/2026-09-10-closeout.md#日终验证与交接)。本轮收尾未运行网络下载、容器、Rust / CI、安装或构建，未完成新密码学验签。
+2026-09-12 日终：今日 8 组显式诊断合成检查重跑，共 **88 项通过**，覆盖包 / 源码绑定、内容 / 符号 / 许可、归档恢复、rootfs 读回、受控采集与签名状态判定。它们尚未接入默认仓库门禁；真实四项诊断与失败日志按批次记录留存，日终未重跑 Docker / GnuPG、Rust / CI 或产品构建。提交逐笔核对、文档修正、本机材料和完整验证边界见[日终记录](../records/2026-09-12-closeout.md#日终验证与交接)。
 
 仓库级契约、生成一致性与文本检查：
 

@@ -1,6 +1,6 @@
 # Checker guest 来源与构建入口审阅
 
-审阅日期：2026-09-10
+审阅日期：2026-09-12
 
 状态：候选环境、kernel / Debian 来源与 Rust Linux 输入已形成诊断；安装、完整 source lock 与构建验收尚未完成。
 
@@ -66,7 +66,9 @@
 
 2026-09-10 已对选定 GNU component 的全部 14 个 ELF 补查动态段，并核对压缩流、tar 流及单文件与原库存身份一致；driver / LLVM 的传递依赖包括此前根工具摘要未列出的 `librt.so.1`。实际记录及系统库、符号版本、静态 runtime 的剩余缺口见 [Rust 输入补查](records/rust-linux-input-review/README.md#2026-09-10宿主依赖补查与安装前置收敛)。同名库库存不等于 loader 解析成功。下一次安装的具体范围、命令和中间核对见[隔离安装切片审阅](checker-runtime-linux-install-slice-review.md)，来源前置与安装授权仍未闭合。
 
-同日获准重新取得精确 Rust `1.97.1` 源包，摘要与既有 source acceptance 一致。[配方补查](records/rust-linux-input-review/source-recipes-2026-09-10.md)区分 musl 目录的 libc / 5 个 CRT 与 LLVM compiler-rt 的 4 个 CRT，确认 libunwind 的源码树内构建入口，并定位 musl-cross-make `3635262e4524c991552789af6f36211a335a77b3`、musl `1.2.5` 及随包 patch。对应 LLVM 源码 / 许可已取得；后续[固定 musl-cross-make 补查](records/rust-linux-input-review/musl-cross-make-2026-09-10.md)取得 340 文件库存，确认实际 Binutils 2.44 / GCC 9.4.0、七项源依赖、四份 musl patch 及工具 / patch 许可边界。后续 [musl 原包及补丁诊断](records/rust-linux-input-review/musl-source-2026-09-10.md)取得 1.2.5 精确源码 / 许可、完成四份 patch 的零 fuzz 应用，确认 LIBCC 只在已见 libc.so 规则中使用；但包签名与公钥自认证均为 SHA-1，严格验签拒绝。后续 [Debian 强摘要链](records/rust-linux-input-review/musl-debian-auth-2026-09-10.md)已核对 trixie 两个必要签名角色、自认证及 Sources → 同一原包 SHA-256；项目所有者随后已确认仅限该原包的有条件 Debian 归档信任方案，包括以官方 HTTPS / WebPKI 为初始身份来源；[页面、精确 keyring 包及两公钥 / archive 公告](records/rust-linux-input-review/musl-key-status-2026-09-10.md)已补证，字节匹配。公告不覆盖 stable release，未核验公告签名；最小验证环境来源、指定时点的完整签名 / 密钥状态复核和持久材料仍待完成，`acceptance = not-assessed`。其他六项依赖、实际发布构建关联、宿主库和最终链接仍未验收；没有安装或切换工具链。
+同日获准重新取得精确 Rust `1.97.1` 源包，摘要与既有 source acceptance 一致。[配方补查](records/rust-linux-input-review/source-recipes-2026-09-10.md)区分 musl 目录的 libc / 5 个 CRT 与 LLVM compiler-rt 的 4 个 CRT，确认 libunwind 的源码树内构建入口，并定位 musl-cross-make `3635262e4524c991552789af6f36211a335a77b3`、musl `1.2.5` 及随包 patch。对应 LLVM 源码 / 许可已取得；后续[固定 musl-cross-make 补查](records/rust-linux-input-review/musl-cross-make-2026-09-10.md)取得 340 文件库存，确认实际 Binutils 2.44 / GCC 9.4.0、七项源依赖、四份 musl patch 及工具 / patch 许可边界。后续 [musl 原包及补丁诊断](records/rust-linux-input-review/musl-source-2026-09-10.md)取得 1.2.5 精确源码 / 许可、完成四份 patch 的零 fuzz 应用，确认 LIBCC 只在已见 libc.so 规则中使用；但包签名与公钥自认证均为 SHA-1，严格验签拒绝。后续 [Debian 强摘要链](records/rust-linux-input-review/musl-debian-auth-2026-09-10.md)已核对 trixie 两个必要签名角色、自认证及 Sources → 同一原包 SHA-256；项目所有者随后已确认仅限该原包的有条件 Debian 归档信任方案，包括以官方 HTTPS / WebPKI 为初始身份来源；[页面、精确 keyring 包及两公钥 / archive 公告](records/rust-linux-input-review/musl-key-status-2026-09-10.md)已补证，字节匹配。公告不覆盖 stable release，未核验公告签名；指定时点的完整签名 / 密钥状态复核仍待完成，`acceptance = not-assessed`。其他六项依赖、实际发布构建关联、宿主库和最终链接仍未验收；没有安装或切换工具链。
+
+2026-09-12 已完成 [musl 验证环境的包 / 源码关联、内容、静态符号及许可材料盘点](records/2026-09-12-closeout.md#提交回顾)，并从[本机独立归档](records/rust-linux-input-review/musl-retention-2026-09-12.md)恢复重跑。项目所有者已接受固定 Debian 工具二进制与本机宿主为该诊断的可信输入；镜像导入、GnuPG 2.4.7 版本 / 目录和两项 loader 诊断已实际完成，四个容器正常退出并删除。该范围不覆盖 Rust 构建环境或产品隔离。四份验签输入和双角色 status 判定器已有[实现与合成检查](records/rust-linux-input-review/musl-verification-preparation-2026-09-12.md)，实际验签入口、自签名 / 撤销 / 交叉认证及真实密码学负例仍待完成；异盘备份、完整工具来源闭包和分发责任未验收。
 
 ### 归档诊断的范围
 
@@ -128,7 +130,7 @@ initramfs 输入先采用固定 `newc` 布局，逐项列路径、类型、mode�
 
 ## 下一可执行切片
 
-已有 kernel / Debian 诊断、Rust Linux 实际字节 / 签名 / 库存、kernel tag 元数据对应和许可材料审阅。下一步先审阅最小验证环境来源，沿已确认的 musl 窄信任方案补足密码学复核与持久材料；再收口 Rust 公钥绑定策略、其余静态构建输入及 driver / LLVM / 系统库闭包。三包加选定 Rust component 的隔离安装范围已有独立审阅，安装与有限执行仍未获授权。kernel 分发需保留对应源码、patch、配置与构建 / 安装脚本的候选交付已列明，具体产物 / 分发方案尚未接受。镜像、诊断工具和材料库存不等于完整 acceptance；旧摘要绑定入口不改动。分别验收 source、builder、init target 与 Go checker 输入后才写入 source lock。
+已有 kernel / Debian 诊断、Rust Linux 实际字节 / 签名 / 库存、kernel tag 元数据对应和许可材料审阅。下一步先复用已固定的诊断镜像与归档，实现有界验签入口，沿已确认的 musl 窄信任方案补足密码学复核，并落实异盘保留 / 恢复；再收口 Rust 公钥绑定策略、其余静态构建输入及 driver / LLVM / 系统库闭包。三包加选定 Rust component 的隔离安装范围已有独立审阅，安装与有限执行仍未获授权。kernel 分发需保留对应源码、patch、配置与构建 / 安装脚本的候选交付已列明，具体产物 / 分发方案尚未接受。镜像、诊断工具和材料库存不等于完整 acceptance；旧摘要绑定入口不改动。分别验收 source、builder、init target 与 Go checker 输入后才写入 source lock。
 
 | 切片 | 完成交付 | 当前缺口 |
 | --- | --- | --- |
