@@ -1,0 +1,95 @@
+{
+  "archived_inputs": {
+    ".tmp/musl-auth-chain-0a66901/Sources.xz": {
+      "bytes": 10527804,
+      "sha256": "e8bbadd8389119e841494630998187f961d7de4d5b1dcbeed4f792a1d423299f"
+    },
+    ".tmp/musl-source-review-c7f7f60/musl-1.2.5.tar.gz": {
+      "bytes": 1080786,
+      "sha256": "a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4"
+    },
+    ".tmp/musl-trust-bbbe083-20260910/keyring-attempt-2.deb": {
+      "bytes": 178572,
+      "sha256": "f699e2f88dca05212f2a452b58475f2993cb6993dfbafb1d0205a3291eb8b4b8"
+    },
+    "docs/records/rust-linux-input-review/debian-trixie-archive-2026-09-10.asc": {
+      "bytes": 11861,
+      "sha256": "6f1d277429dd7ffedcc6f8688a7ad9a458859b1139ffa026d1eeaadcbffb0da7"
+    },
+    "docs/records/rust-linux-input-review/debian-trixie-release-2026-09-10.asc": {
+      "bytes": 1384,
+      "sha256": "4d097bb93f83d731f475c5b92a0c2fcf108cfce1d4932792fca72d00b48d198b"
+    },
+    "docs/records/rust-linux-input-review/musl-debian-InRelease-2026-09-10": {
+      "bytes": 140416,
+      "sha256": "98b25b5cd185c59d34aa6e4c3e9b5b8f01bbe9d104fe2dcfbcd30dc0a14a59ed"
+    }
+  },
+  "container_input_bytes": 209579,
+  "container_inputs": {
+    "InRelease": {
+      "bytes": 140416,
+      "sha256": "98b25b5cd185c59d34aa6e4c3e9b5b8f01bbe9d104fe2dcfbcd30dc0a14a59ed"
+    },
+    "archive.asc": {
+      "bytes": 11861,
+      "sha256": "6f1d277429dd7ffedcc6f8688a7ad9a458859b1139ffa026d1eeaadcbffb0da7"
+    },
+    "debian-archive-keyring.gpg": {
+      "bytes": 55918,
+      "sha256": "506b815cbb32d9b6066b4a2aa524071e071761e7e7f68c3ac74f3061ba852017"
+    },
+    "release.asc": {
+      "bytes": 1384,
+      "sha256": "4d097bb93f83d731f475c5b92a0c2fcf108cfce1d4932792fca72d00b48d198b"
+    }
+  },
+  "host_only": {
+    "Sources.xz": {
+      "bytes": 10527804,
+      "sha256": "e8bbadd8389119e841494630998187f961d7de4d5b1dcbeed4f792a1d423299f"
+    },
+    "musl-1.2.5.tar.gz": {
+      "bytes": 1080786,
+      "sha256": "a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4"
+    }
+  },
+  "image_id": "sha256:55063921d0e996f717092e07dce8041cb2376cc171a070bf9a0a38a5dd16c777",
+  "kind": "diagnostic-musl-verification-input-plan-v1",
+  "manifest": {
+    "bytes": 31477,
+    "sha256": "3937d4570faa72ec359dbedf8fdc9c62aa5f26942cc08ee29d1a809e03a54ae9"
+  },
+  "methods": {
+    "inspect-debian-source-chain.py": {
+      "bytes": 13032,
+      "sha256": "c6f18880b4f347467ad949ccf25b1960c7bef141e5b48f610ae93ab22479da2a"
+    },
+    "inspect-musl-debian-auth.py": {
+      "bytes": 10653,
+      "sha256": "387ca53db56bc2081f69c2d034ba12f962002709455829bf7e69f2e68e0c1516"
+    },
+    "inspect-musl-trust-inputs.py": {
+      "bytes": 7472,
+      "sha256": "cd2cc429a4337b02e513ddbb9385eadccefed1461732a0a92f595ef0bb2b8878"
+    },
+    "prepare-musl-verification-inputs.py": {
+      "bytes": 5864,
+      "sha256": "3a11a72abb726d415df885c7b839e73fcb0f04453fe4186541b9f60f2725b9ea"
+    },
+    "retain-musl-verifier-inputs.py": {
+      "bytes": 10295,
+      "sha256": "72047818576ab27de02cf8e9620c33299c007b4c64108fb7c11a3c1d23e3ca0a"
+    }
+  },
+  "signature_reverified": false,
+  "source_acceptance": "not-assessed",
+  "source_record": {
+    "directory": "pool/main/m/musl",
+    "package": "musl",
+    "version": "1.2.5-3.1~deb13u1"
+  },
+  "staged": true,
+  "staging_path": ".tmp/musl-verification-f3ed1ce-20260912/inputs",
+  "unsigned_snapshot_bindings_checked": true
+}
