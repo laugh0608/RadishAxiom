@@ -36,7 +36,7 @@ Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收；�
 
 ### 当前待办（2026-09-12）
 
-1. **实现验证环境的有界运行与清理入口。** [资源观察、离线组装与读回](../records/rust-linux-input-review/musl-verifier-preflight-2026-09-12.md)已完成：Docker `29.4.0` 报告资源支持，18 包及配置按确认范围组成 84 项 / 8,407,040 bytes tar，文件内容及元数据与计划相符，系统 tar 路径清单一致。下一步实现已有四项 smoke 草案的有界收集、超时终止、状态检查与精确清理，完成合成检查后再确认镜像导入、工具信任与有限执行；不重复下载或组装。daemon 支持报告不代表限制已生效。官方 HTTPS 作为工具二进制信任终点、实际运行闭包与分发责任仍未验收。[本机独立归档与恢复](../records/rust-linux-input-review/musl-retention-2026-09-12.md)保留 132 个文件 / 87 个原文对象及原缓存，四条恢复检查与原报告一致；异盘位置 / 恢复责任可并行落实。容器执行与验签仍分别验收和授权。
+1. **准备 musl 两角色正式验签的有限执行切片。** 项目所有者已接受固定工具及当前宿主为本次诊断可信输入；[真实四项诊断](../records/rust-linux-input-review/musl-verifier-smoke-execution-2026-09-12.md)全部通过，四个容器已正常退出并删除，镜像与日志保留。CLI 字段映射和可选键读取问题已修复，前序失败与原方法均留存，27 项合成检查通过。下一步复用该镜像及归档原文，准备有界可写 home、输入传递、两角色验签状态解析与失败传播；当前只读 home 不可直接导入公钥。新有限执行范围仍须按具体方案确认，不重复下载、组装或导入镜像。正常 smoke 不证明资源耗尽 / daemon 失联下的限制与清理，也不是 production qualification；完整验签闭包与分发责任未验收。[本机独立归档](../records/rust-linux-input-review/musl-retention-2026-09-12.md)保留 132 个文件 / 87 个对象及原缓存，异盘位置 / 恢复责任并行落实。
 2. **补齐 musl 原包验收。** 仅沿[已确认的有条件 Debian 信任方案](../records/rust-linux-input-review/musl-debian-auth-2026-09-10.md#项目所有者确认与执行顺位)推进同一原包。两公钥已留存且与包内字节一致；archive 公告不覆盖 stable release，公告签名及当前密钥状态未重新核验。验证环境前置满足后，再复核完整链并决定 acceptance；不重复下载已有材料，不放宽上游 SHA-1 拒绝。Sources、原包、网页与 keyring 包已有可恢复的本机独立副本，异盘保留 / 恢复仍待落实；Sources 未拆分或入 Git，未放宽单文件门禁。当前仍为 `not-assessed`。
 3. **随后收口其余来源与安装前置。** 补查 musl-cross-make 其他六项依赖、发布构建关联、宿主库 / loader / 符号版本和 Rust 公钥策略；kernel 原始 tag 与最终链接继续分别验收。[隔离安装切片](../checker-runtime-linux-install-slice-review.md)已有精确三包 / 四 component、权限、时限和清理设计，仍需按分段方案核对实际模拟及两包间状态；来源前置满足后再申请安装，有限执行另列。公共迁移、签名 / VM 与产品运行继续分别验收和授权。
 
@@ -56,7 +56,7 @@ Checker 语义线先核实目标归因，再验收同域泛化、独立证明链
 
 ## 验证入口与本次审阅
 
-2026-09-12：来源原文、18 包静态盘点与本机独立归档恢复已有记录；本批完成 daemon 资源报告、84 项真实 tar 组装 / 读回与 10 项合成检查。未运行容器、GnuPG 或完成来源验收。实际检查与剩余边界见[本批交接](../records/rust-linux-input-review/musl-verifier-preflight-2026-09-12.md#检查与交接)，归档位置见[前批记录](../records/rust-linux-input-review/musl-retention-2026-09-12.md)。
+2026-09-12：来源原文、静态盘点、独立归档恢复与 tar 读回已有记录；本批完成已授权镜像导入、四项 GnuPG / loader 动态诊断与容器清理，27 项合成检查通过。字段映射失败及修复未删改原记录；未进行公钥导入、密码学验签或来源 acceptance。实际检查与剩余边界见[真实执行交接](../records/rust-linux-input-review/musl-verifier-smoke-execution-2026-09-12.md)，组装事实见[前批记录](../records/rust-linux-input-review/musl-verifier-preflight-2026-09-12.md)。
 
 2026-09-10 日终：仓库检查和 45 项显式来源诊断合成检查通过；逐批实际观察、失败、材料留存缺口及复核命令见[日终记录](../records/2026-09-10-closeout.md#日终验证与交接)。本轮收尾未运行网络下载、容器、Rust / CI、安装或构建，未完成新密码学验签。
 

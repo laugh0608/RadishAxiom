@@ -4,6 +4,8 @@
 
 ## 资源能力的实际观察
 
+后续：本批已提交 `dbab49c`；受控运行、失败清理入口及新的待执行范围见[下一批记录](musl-verifier-smoke-entry-2026-09-12.md)。下文保留组装时的事实与当时草案。
+
 [只读采集方法](inspect-musl-verifier-capabilities.py)只允许通过已存在的 Unix socket 对 `/version` 和 `/v1.54/info` 发起 GET，不调用 Docker CLI 或启动应用。API / Linux arm64 平台改变时不继续资源查询。每次 socket I/O timeout 为 5 秒，响应最多读取 256 KiB + 1 字节；它不是整体墙钟硬限或 daemon 资源消耗保证。
 
 第一轮因沙箱 socket 权限返回 `PermissionError / errno 1`；获准沙箱外重试后，两项请求均 HTTP 200，实际成功区间为 `2026-09-12 12:53:26.035568–12:53:26.115029 UTC`。失败与成功记录见[完整白名单观察](musl-verifier-capabilities-2026-09-12.json)。原响应只在内存中处理，保留长度 / 摘要和白名单字段，不保存可能包含代理、凭据或无关 daemon 配置的完整 `/info`。
