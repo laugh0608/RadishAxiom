@@ -1,0 +1,1749 @@
+{
+  "acceptance": "not-assessed",
+  "common_license_entries": [
+    {
+      "bytes": 11358,
+      "gid": 0,
+      "mode": 420,
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/Apache-2.0",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "bytes": 6111,
+      "gid": 0,
+      "mode": 420,
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/Artistic",
+      "sha256": "b7fd9b73ea99602016a326e0b62e6646060d18febdd065ceca8bb482208c3d88",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "bytes": 1499,
+      "gid": 0,
+      "mode": 420,
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/BSD",
+      "sha256": "5d588eb3b157d52112afea935c88a7ff9efddc1e2d95a42c25d3b96ad9055008",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "bytes": 7048,
+      "gid": 0,
+      "mode": 420,
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/CC0-1.0",
+      "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "destination": "usr/share/common-licenses/GFDL-1.3",
+      "gid": 0,
+      "mode": 511,
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/GFDL",
+      "target": "GFDL-1.3",
+      "type": "symlink",
+      "uid": 0
+    },
+    {
+      "bytes": 20394,
+      "gid": 0,
+      "mode": 420,
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/GFDL-1.2",
+      "sha256": "2652c22ba086f92e55ae4a9f9c890ad4766ffd7814a73d318e22a597edf857a4",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "bytes": 22955,
+      "gid": 0,
+      "mode": 420,
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/GFDL-1.3",
+      "sha256": "110535522396708cea37c72a802c5e7e81391139f5f7985631c93ef242b206a4",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "destination": "usr/share/common-licenses/GPL-3",
+      "gid": 0,
+      "mode": 511,
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/GPL",
+      "target": "GPL-3",
+      "type": "symlink",
+      "uid": 0
+    },
+    {
+      "bytes": 12527,
+      "gid": 0,
+      "mode": 420,
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/GPL-1",
+      "sha256": "49c007bafb5ad6dd9f9d4dae4d3ac0461975498150c05d684c551f0914ab486c",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "bytes": 17984,
+      "gid": 0,
+      "mode": 420,
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/GPL-2",
+      "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "bytes": 35149,
+      "gid": 0,
+      "mode": 420,
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/GPL-3",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "destination": "usr/share/common-licenses/LGPL-3",
+      "gid": 0,
+      "mode": 511,
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/LGPL",
+      "target": "LGPL-3",
+      "type": "symlink",
+      "uid": 0
+    },
+    {
+      "bytes": 25270,
+      "gid": 0,
+      "mode": 420,
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/LGPL-2",
+      "sha256": "cc535c21133c895b56b374c8a1dc1eb948d99003ed2b47372069456b62f42b24",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "bytes": 26419,
+      "gid": 0,
+      "mode": 420,
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/LGPL-2.1",
+      "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "bytes": 7652,
+      "gid": 0,
+      "mode": 420,
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/LGPL-3",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "bytes": 25755,
+      "gid": 0,
+      "mode": 420,
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/MPL-1.1",
+      "sha256": "f849fc26a7a99981611a3a370e83078deb617d12a45776d6c4cada4d338be469",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "bytes": 16726,
+      "gid": 0,
+      "mode": 420,
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/MPL-2.0",
+      "sha256": "fab3dd6bdab226f1c08630b1dd917e11fcb4ec5e1e020e2c16f83a0a13863e85",
+      "type": "file",
+      "uid": 0
+    }
+  ],
+  "control": {
+    "expanded_tar": {
+      "bytes": 20480,
+      "sha256": "754db297fe500ff01b3bba516491a187b3308f2637d8b2a761d8cc6f6bf5f24d"
+    },
+    "members": [
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": ".",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "bytes": 114,
+        "gid": 0,
+        "mode": 420,
+        "path": "conffiles",
+        "sha256": "4b3e9e5378d40d8d9e7c508b759513975ad83bf6faeaa3a1b1684c53931b8556",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 734,
+        "gid": 0,
+        "mode": 420,
+        "path": "control",
+        "sha256": "20689b134cd84d5dbff396ba9bd784c3a9004a63b6ec26d75795b198fdc5e32b",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 1971,
+        "gid": 0,
+        "mode": 420,
+        "path": "md5sums",
+        "sha256": "73b19da21c468fdbb53377b3e66e632ad0e4f333c0fc91eeeade1f0150ab923e",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 3846,
+        "gid": 0,
+        "mode": 493,
+        "path": "postinst",
+        "sha256": "40d3b9308c8e180dbb0d8cdf3a2bb4d795b37815807a864e474e84bbc56a2660",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 246,
+        "gid": 0,
+        "mode": 493,
+        "path": "postrm",
+        "sha256": "deaf364d069b1fc79db256d7716c3fa36112b9582c7aaacb0bb03673a663da89",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 1677,
+        "gid": 0,
+        "mode": 493,
+        "path": "preinst",
+        "sha256": "c6619854af6ee14357e5d81a56f6424a23909170251de2380b1f7caeb1cf2fb7",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 175,
+        "gid": 0,
+        "mode": 420,
+        "path": "triggers",
+        "sha256": "4b7dcb53af5130d789f14c79b1461667e820be6623e1f38f87e8bea1e0859657",
+        "type": "file",
+        "uid": 0
+      }
+    ]
+  },
+  "control_fields": {
+    "architecture": "arm64",
+    "breaks": "debian-security-support (<< 2019.04.25), initscripts (<< 2.88dsf-13.3), sendfile (<< 2.1b.20080616-5.2~)",
+    "description": "Debian base system miscellaneous files\nThis package contains the basic filesystem hierarchy of a Debian system, and\nseveral important miscellaneous files, such as /etc/debian_version,\n/etc/host.conf, /etc/issue, /etc/motd, /etc/profile, and others,\nand the text of several common licenses in use on Debian systems.",
+    "essential": "yes",
+    "installed-size": "348",
+    "maintainer": "Santiago Vila <sanvila@debian.org>",
+    "multi-arch": "foreign",
+    "package": "base-files",
+    "pre-depends": "awk",
+    "priority": "required",
+    "provides": "base, usr-is-merged",
+    "replaces": "base, dpkg (<= 1.15.0), miscutils",
+    "section": "admin",
+    "version": "13.8+deb13u6"
+  },
+  "copyright": {
+    "bytes": 1551,
+    "path": "usr/share/doc/base-files/copyright",
+    "sha256": "576859a65409c99cb1632c8b3de4b3deb26910800832beda76aca33d00720134"
+  },
+  "input": {
+    "bytes": 73276,
+    "sha256": "5f5a571ec846d7db05d9f825f0388a37bc033267b33cbf85b4eaa838dffcc41b"
+  },
+  "installation_metadata": {
+    "conffiles": {
+      "bytes": 114,
+      "sha256": "4b3e9e5378d40d8d9e7c508b759513975ad83bf6faeaa3a1b1684c53931b8556"
+    },
+    "postinst": {
+      "bytes": 3846,
+      "sha256": "40d3b9308c8e180dbb0d8cdf3a2bb4d795b37815807a864e474e84bbc56a2660"
+    },
+    "postrm": {
+      "bytes": 246,
+      "sha256": "deaf364d069b1fc79db256d7716c3fa36112b9582c7aaacb0bb03673a663da89"
+    },
+    "preinst": {
+      "bytes": 1677,
+      "sha256": "c6619854af6ee14357e5d81a56f6424a23909170251de2380b1f7caeb1cf2fb7"
+    },
+    "triggers": {
+      "bytes": 175,
+      "sha256": "4b7dcb53af5130d789f14c79b1461667e820be6623e1f38f87e8bea1e0859657"
+    }
+  },
+  "kind": "diagnostic-verifier-license-materials",
+  "license_acceptance_assessed": false,
+  "literal_missing_references": [
+    {
+      "literal_path_repaired": false,
+      "literal_resolution": {
+        "missing_component": "usr/share/common-licenses/GPL-2.0",
+        "path": "usr/share/common-licenses/GPL-2.0",
+        "status": "missing"
+      },
+      "package": "gpg",
+      "reference": "/usr/share/common-licenses/GPL-2.0",
+      "reviewed_text_candidate": {
+        "bytes": 17984,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/GPL-2",
+        "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
+        "status": "found",
+        "type": "file"
+      }
+    },
+    {
+      "literal_path_repaired": false,
+      "literal_resolution": {
+        "missing_component": "usr/share/common-licenses/GPL-2.0",
+        "path": "usr/share/common-licenses/GPL-2.0",
+        "status": "missing"
+      },
+      "package": "gpgconf",
+      "reference": "/usr/share/common-licenses/GPL-2.0",
+      "reviewed_text_candidate": {
+        "bytes": 17984,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/GPL-2",
+        "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
+        "status": "found",
+        "type": "file"
+      }
+    }
+  ],
+  "methods": {
+    "docs/records/rust-linux-input-review/inspect-musl-trust-inputs.py": {
+      "bytes": 7472,
+      "sha256": "cd2cc429a4337b02e513ddbb9385eadccefed1461732a0a92f595ef0bb2b8878"
+    },
+    "docs/records/rust-linux-input-review/inspect-musl-verifier-content.py": {
+      "bytes": 13420,
+      "sha256": "64d8f7356d2a179bd363f77309a39ba0b5af3f7ba2bc78caa778aad95efc30d1"
+    },
+    "docs/records/rust-linux-input-review/inspect-musl-verifier-licenses.py": {
+      "bytes": 7009,
+      "sha256": "bc9d215722b20ae6d099ef70af0e990dc213a660a249f3d8e11932ecf76b8d19"
+    },
+    "docs/records/rust-linux-input-review/inspect-selected-inputs.py": {
+      "bytes": 6633,
+      "sha256": "8286b3c9f270c77f20ea24c5bcbea3f6a5415e7c013a7ec39aa8c29ebccbb4be"
+    },
+    "scripts/inspect-debian-source-chain.py": {
+      "bytes": 13032,
+      "sha256": "c6f18880b4f347467ad949ccf25b1960c7bef141e5b48f610ae93ab22479da2a"
+    }
+  },
+  "payload": {
+    "expanded_tar": {
+      "bytes": 327680,
+      "sha256": "661b05c07d30c1f0ae69eef8aa28f254ed08ab728249dfd910b574af6996ccd7"
+    },
+    "members": [
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": ".",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "boot",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "dev",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "etc",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "bytes": 5,
+        "gid": 0,
+        "mode": 420,
+        "path": "etc/debian_version",
+        "sha256": "0e0936b6bda722af8314d4c385779deab398a7c5004437680860c36e4b659bfc",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "etc/default",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "etc/dpkg",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "etc/dpkg/origins",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "bytes": 83,
+        "gid": 0,
+        "mode": 420,
+        "path": "etc/dpkg/origins/debian",
+        "sha256": "bd81f9756beb90195877d808492a55d66c7155b1017679ced60fb278d378b55a",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 9,
+        "gid": 0,
+        "mode": 420,
+        "path": "etc/host.conf",
+        "sha256": "380f5fe21d755923b44203b58ca3c8b9681c485d152bd5d7e3914f67d821d32a",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 27,
+        "gid": 0,
+        "mode": 420,
+        "path": "etc/issue",
+        "sha256": "3ba7bf07910930e9e943e6131ece3f3182f1d3be607a0a4cbf21ce665e5c43a2",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 20,
+        "gid": 0,
+        "mode": 420,
+        "path": "etc/issue.net",
+        "sha256": "b4cb3e2b1f5988029f7f48824d4d5d530319bee894a0f9380d414a3b42e5499f",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "etc/profile.d",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "etc/skel",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "etc/update-motd.d",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "bytes": 23,
+        "gid": 0,
+        "mode": 493,
+        "path": "etc/update-motd.d/10-uname",
+        "sha256": "1dca09550a75048731bbd17f17e027cc71ae50a86e0d911a8b3813e88d9b5ab6",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "home",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "proc",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 448,
+        "path": "root",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "run",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "sys",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 1023,
+        "path": "tmp",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "usr",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "usr/bin",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "usr/games",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "usr/include",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "usr/lib",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "bytes": 286,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/lib/os-release",
+        "sha256": "14c430da04c2d571793fc68a8f5e17fce3d7a746e316c3f23192590861b18bd7",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "usr/sbin",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "usr/share",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "usr/share/base-files",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "bytes": 607,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/base-files/dot.bashrc",
+        "sha256": "3dee894213fc1183318d254b1b3fcb21f41e7fc879ba81d39252f7996b67f980",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 132,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/base-files/dot.profile",
+        "sha256": "996f60727f48cbe1496fa20bffd5a434a190407db2cafc2c1bfdf54d3bfc0372",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 146,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/base-files/dot.profile.md5sums",
+        "sha256": "70c70cffea32e8a79118d592f94727b24e9cf36c82ed8abca536d59224147b92",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 781,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/base-files/info.dir",
+        "sha256": "c58a258cb9c410c29486aa8fa37f4e5b738bfeedc2b8e97be1cd6cff1df28459",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 286,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/base-files/motd",
+        "sha256": "a378977155fb42bb006496321cbe31f74cbda803c3f6ca590f30e76d1afad921",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 828,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/base-files/profile",
+        "sha256": "8fec28102e0c371e6f2ecb949b95c1ba802260766b18c2445882b082418428b9",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 697,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/base-files/profile.md5sums",
+        "sha256": "c8a3222782665785755e9a58a61468f3aaf6e2bfd62101b7ac80c3b4f8984532",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 772,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/base-files/staff-group-for-usr-local",
+        "sha256": "24f49f765b6363ba8326121b46cabad2ac5c34532cc8322a645d60afe158c4f0",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "usr/share/common-licenses",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "bytes": 11358,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/common-licenses/Apache-2.0",
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 6111,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/common-licenses/Artistic",
+        "sha256": "b7fd9b73ea99602016a326e0b62e6646060d18febdd065ceca8bb482208c3d88",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 1499,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/common-licenses/BSD",
+        "sha256": "5d588eb3b157d52112afea935c88a7ff9efddc1e2d95a42c25d3b96ad9055008",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 7048,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/common-licenses/CC0-1.0",
+        "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 20394,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/common-licenses/GFDL-1.2",
+        "sha256": "2652c22ba086f92e55ae4a9f9c890ad4766ffd7814a73d318e22a597edf857a4",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 22955,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/common-licenses/GFDL-1.3",
+        "sha256": "110535522396708cea37c72a802c5e7e81391139f5f7985631c93ef242b206a4",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 12527,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/common-licenses/GPL-1",
+        "sha256": "49c007bafb5ad6dd9f9d4dae4d3ac0461975498150c05d684c551f0914ab486c",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 17984,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/common-licenses/GPL-2",
+        "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 35149,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/common-licenses/GPL-3",
+        "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 25270,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/common-licenses/LGPL-2",
+        "sha256": "cc535c21133c895b56b374c8a1dc1eb948d99003ed2b47372069456b62f42b24",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 26419,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/common-licenses/LGPL-2.1",
+        "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 7652,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/common-licenses/LGPL-3",
+        "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 25755,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/common-licenses/MPL-1.1",
+        "sha256": "f849fc26a7a99981611a3a370e83078deb617d12a45776d6c4cada4d338be469",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 16726,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/common-licenses/MPL-2.0",
+        "sha256": "fab3dd6bdab226f1c08630b1dd917e11fcb4ec5e1e020e2c16f83a0a13863e85",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "usr/share/dict",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "usr/share/doc",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "usr/share/doc/base-files",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "bytes": 320,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/doc/base-files/NEWS.Debian.gz",
+        "sha256": "2d5dcea919681d92d097ef4f0556224d05fbda98d2ee73e1294121627f367cd8",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 5073,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/doc/base-files/README",
+        "sha256": "95552e3c597929b3c436a2de2225c3685f740484212e3f944726c3c937447aba",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 1153,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/doc/base-files/README.FHS",
+        "sha256": "099e7f4bdeb4ff34ee8d4ef7f158a21adbc59db46a354fd2051f6d1959e70fbc",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 19021,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/doc/base-files/changelog.gz",
+        "sha256": "67c69e318fbb40519ba320c7aee2285464d0a7eab2366d59ebfd479bb4dd704e",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 1551,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/doc/base-files/copyright",
+        "sha256": "576859a65409c99cb1632c8b3de4b3deb26910800832beda76aca33d00720134",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "usr/share/info",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "usr/share/lintian",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "usr/share/lintian/overrides",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "bytes": 1666,
+        "gid": 0,
+        "mode": 420,
+        "path": "usr/share/lintian/overrides/base-files",
+        "sha256": "02120b9c96091120933c60555f951a206cfd75fd70d5aabe388202033eddd2fc",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "usr/share/man",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "usr/share/misc",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "usr/src",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "var",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "var/backups",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "var/cache",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "var/lib",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "var/lib/dpkg",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "var/lib/misc",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "var/local",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 1023,
+        "path": "var/lock",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "var/log",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "var/run",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "path": "var/spool",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 1023,
+        "path": "var/tmp",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "destination": "usr/bin",
+        "gid": 0,
+        "mode": 511,
+        "path": "bin",
+        "target": "usr/bin",
+        "type": "symlink",
+        "uid": 0
+      },
+      {
+        "destination": "usr/lib/os-release",
+        "gid": 0,
+        "mode": 511,
+        "path": "etc/os-release",
+        "target": "../usr/lib/os-release",
+        "type": "symlink",
+        "uid": 0
+      },
+      {
+        "destination": "usr/lib",
+        "gid": 0,
+        "mode": 511,
+        "path": "lib",
+        "target": "usr/lib",
+        "type": "symlink",
+        "uid": 0
+      },
+      {
+        "destination": "usr/sbin",
+        "gid": 0,
+        "mode": 511,
+        "path": "sbin",
+        "target": "usr/sbin",
+        "type": "symlink",
+        "uid": 0
+      },
+      {
+        "destination": "usr/share/common-licenses/GFDL-1.3",
+        "gid": 0,
+        "mode": 511,
+        "path": "usr/share/common-licenses/GFDL",
+        "target": "GFDL-1.3",
+        "type": "symlink",
+        "uid": 0
+      },
+      {
+        "destination": "usr/share/common-licenses/GPL-3",
+        "gid": 0,
+        "mode": 511,
+        "path": "usr/share/common-licenses/GPL",
+        "target": "GPL-3",
+        "type": "symlink",
+        "uid": 0
+      },
+      {
+        "destination": "usr/share/common-licenses/LGPL-3",
+        "gid": 0,
+        "mode": 511,
+        "path": "usr/share/common-licenses/LGPL",
+        "target": "LGPL-3",
+        "type": "symlink",
+        "uid": 0
+      },
+      {
+        "destination": "usr/share/doc/base-files/README",
+        "gid": 0,
+        "mode": 511,
+        "path": "usr/share/doc/base-files/FAQ",
+        "target": "README",
+        "type": "symlink",
+        "uid": 0
+      }
+    ]
+  },
+  "payload_programs_executed": false,
+  "previous_layout_summary": {
+    "bytes": 95281,
+    "sha256": "e7b0c64e4a2e91fbd1a5ba9b8380e6ccd2ff2d7c47572c5ddcf972c7f726512c"
+  },
+  "reference_observations": [
+    {
+      "literal_resolution": {
+        "bytes": 7048,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/CC0-1.0",
+        "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "gpg",
+      "reference": "/usr/share/common-licenses/CC0-1.0"
+    },
+    {
+      "literal_path_repaired": false,
+      "literal_resolution": {
+        "missing_component": "usr/share/common-licenses/GPL-2.0",
+        "path": "usr/share/common-licenses/GPL-2.0",
+        "status": "missing"
+      },
+      "package": "gpg",
+      "reference": "/usr/share/common-licenses/GPL-2.0",
+      "reviewed_text_candidate": {
+        "bytes": 17984,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/GPL-2",
+        "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
+        "status": "found",
+        "type": "file"
+      }
+    },
+    {
+      "literal_resolution": {
+        "bytes": 35149,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/GPL-3",
+        "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "gpg",
+      "reference": "/usr/share/common-licenses/GPL-3"
+    },
+    {
+      "literal_resolution": {
+        "bytes": 26419,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/LGPL-2.1",
+        "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "gpg",
+      "reference": "/usr/share/common-licenses/LGPL-2.1"
+    },
+    {
+      "literal_resolution": {
+        "bytes": 7652,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/LGPL-3",
+        "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "gpg",
+      "reference": "/usr/share/common-licenses/LGPL-3"
+    },
+    {
+      "literal_resolution": {
+        "bytes": 7048,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/CC0-1.0",
+        "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "gpgconf",
+      "reference": "/usr/share/common-licenses/CC0-1.0"
+    },
+    {
+      "literal_path_repaired": false,
+      "literal_resolution": {
+        "missing_component": "usr/share/common-licenses/GPL-2.0",
+        "path": "usr/share/common-licenses/GPL-2.0",
+        "status": "missing"
+      },
+      "package": "gpgconf",
+      "reference": "/usr/share/common-licenses/GPL-2.0",
+      "reviewed_text_candidate": {
+        "bytes": 17984,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/GPL-2",
+        "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
+        "status": "found",
+        "type": "file"
+      }
+    },
+    {
+      "literal_resolution": {
+        "bytes": 35149,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/GPL-3",
+        "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "gpgconf",
+      "reference": "/usr/share/common-licenses/GPL-3"
+    },
+    {
+      "literal_resolution": {
+        "bytes": 26419,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/LGPL-2.1",
+        "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "gpgconf",
+      "reference": "/usr/share/common-licenses/LGPL-2.1"
+    },
+    {
+      "literal_resolution": {
+        "bytes": 7652,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/LGPL-3",
+        "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "gpgconf",
+      "reference": "/usr/share/common-licenses/LGPL-3"
+    },
+    {
+      "literal_resolution": {
+        "bytes": 17984,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/GPL-2",
+        "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "libassuan9",
+      "reference": "/usr/share/common-licenses/GPL-2"
+    },
+    {
+      "literal_resolution": {
+        "bytes": 35149,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/GPL-3",
+        "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "libassuan9",
+      "reference": "/usr/share/common-licenses/GPL-3"
+    },
+    {
+      "literal_resolution": {
+        "bytes": 26419,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/LGPL-2.1",
+        "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "libassuan9",
+      "reference": "/usr/share/common-licenses/LGPL-2.1"
+    },
+    {
+      "literal_resolution": {
+        "bytes": 7652,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/LGPL-3",
+        "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "libassuan9",
+      "reference": "/usr/share/common-licenses/LGPL-3"
+    },
+    {
+      "literal_resolution": {
+        "bytes": 17984,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/GPL-2",
+        "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "libbz2-1.0",
+      "reference": "/usr/share/common-licenses/GPL-2"
+    },
+    {
+      "literal_resolution": {
+        "bytes": 17984,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/GPL-2",
+        "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "libc6",
+      "reference": "/usr/share/common-licenses/GPL-2"
+    },
+    {
+      "literal_resolution": {
+        "bytes": 35149,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/GPL-3",
+        "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "libc6",
+      "reference": "/usr/share/common-licenses/GPL-3"
+    },
+    {
+      "literal_resolution": {
+        "bytes": 25270,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/LGPL-2",
+        "sha256": "cc535c21133c895b56b374c8a1dc1eb948d99003ed2b47372069456b62f42b24",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "libc6",
+      "reference": "/usr/share/common-licenses/LGPL-2"
+    },
+    {
+      "literal_resolution": {
+        "bytes": 26419,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/LGPL-2.1",
+        "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "libc6",
+      "reference": "/usr/share/common-licenses/LGPL-2.1"
+    },
+    {
+      "literal_resolution": {
+        "bytes": 7652,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/LGPL-3",
+        "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "libc6",
+      "reference": "/usr/share/common-licenses/LGPL-3"
+    },
+    {
+      "literal_resolution": {
+        "bytes": 17984,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/GPL-2",
+        "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "libgcrypt20",
+      "reference": "/usr/share/common-licenses/GPL-2"
+    },
+    {
+      "library_declaration_text_candidate": {
+        "bytes": 26419,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/LGPL-2.1",
+        "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+        "status": "found",
+        "type": "file"
+      },
+      "literal_alias_determines_component_license": false,
+      "literal_resolution": {
+        "bytes": 7652,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/LGPL-3",
+        "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "libgcrypt20",
+      "reference": "/usr/share/common-licenses/LGPL"
+    },
+    {
+      "literal_resolution": {
+        "bytes": 35149,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/GPL-3",
+        "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "libgpg-error0",
+      "reference": "/usr/share/common-licenses/GPL-3"
+    },
+    {
+      "literal_resolution": {
+        "bytes": 26419,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/LGPL-2.1",
+        "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "libgpg-error0",
+      "reference": "/usr/share/common-licenses/LGPL-2.1"
+    },
+    {
+      "literal_resolution": {
+        "bytes": 26419,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/LGPL-2.1",
+        "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "libnpth0t64",
+      "reference": "/usr/share/common-licenses/LGPL-2.1"
+    },
+    {
+      "literal_resolution": {
+        "bytes": 22955,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/GFDL-1.3",
+        "sha256": "110535522396708cea37c72a802c5e7e81391139f5f7985631c93ef242b206a4",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "libreadline8t64",
+      "reference": "/usr/share/common-licenses/GFDL"
+    },
+    {
+      "literal_resolution": {
+        "bytes": 17984,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/GPL-2",
+        "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "libreadline8t64",
+      "reference": "/usr/share/common-licenses/GPL-2"
+    },
+    {
+      "literal_resolution": {
+        "bytes": 35149,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/GPL-3",
+        "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "libreadline8t64",
+      "reference": "/usr/share/common-licenses/GPL-3"
+    },
+    {
+      "literal_resolution": {
+        "bytes": 17984,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/GPL-2",
+        "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "libsqlite3-0",
+      "reference": "/usr/share/common-licenses/GPL-2"
+    },
+    {
+      "literal_resolution": {
+        "bytes": 35149,
+        "packages": [
+          "base-files"
+        ],
+        "path": "usr/share/common-licenses/GPL-3",
+        "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+        "status": "found",
+        "type": "file"
+      },
+      "package": "base-files",
+      "reference": "/usr/share/common-licenses/GPL"
+    }
+  ],
+  "root_lib_applied": false,
+  "root_lib_observation": {
+    "destination": "usr/lib",
+    "gid": 0,
+    "mode": 511,
+    "packages": [
+      "base-files"
+    ],
+    "path": "lib",
+    "target": "usr/lib",
+    "type": "symlink",
+    "uid": 0
+  },
+  "rootfs_assembled": false,
+  "signature_reverified": false,
+  "supplemental_layout_entries": [
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "bytes": 7048,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/CC0-1.0",
+      "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "destination": "usr/share/common-licenses/GFDL-1.3",
+      "gid": 0,
+      "mode": 511,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/GFDL",
+      "target": "GFDL-1.3",
+      "type": "symlink",
+      "uid": 0
+    },
+    {
+      "bytes": 22955,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/GFDL-1.3",
+      "sha256": "110535522396708cea37c72a802c5e7e81391139f5f7985631c93ef242b206a4",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "destination": "usr/share/common-licenses/GPL-3",
+      "gid": 0,
+      "mode": 511,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/GPL",
+      "target": "GPL-3",
+      "type": "symlink",
+      "uid": 0
+    },
+    {
+      "bytes": 17984,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/GPL-2",
+      "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "bytes": 35149,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/GPL-3",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "destination": "usr/share/common-licenses/LGPL-3",
+      "gid": 0,
+      "mode": 511,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/LGPL",
+      "target": "LGPL-3",
+      "type": "symlink",
+      "uid": 0
+    },
+    {
+      "bytes": 25270,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/LGPL-2",
+      "sha256": "cc535c21133c895b56b374c8a1dc1eb948d99003ed2b47372069456b62f42b24",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "bytes": 26419,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/LGPL-2.1",
+      "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "bytes": 7652,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/LGPL-3",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/doc/base-files",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "bytes": 1551,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/doc/base-files/copyright",
+      "sha256": "576859a65409c99cb1632c8b3de4b3deb26910800832beda76aca33d00720134",
+      "type": "file",
+      "uid": 0
+    }
+  ]
+}

@@ -36,7 +36,7 @@ Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收；�
 
 ### 当前待办（2026-09-12）
 
-1. **先收口验证环境的静态布局与运行前置。** [17 个原包内容盘点](../records/rust-linux-input-review/musl-verifier-content-2026-09-12.md)已完成下载摘要、control、583 个 payload 成员、290 个 ELF 与 15 个链接检查；gpg / gpgconf 的静态依赖得到 14 个文件候选。根级 `/lib` 缺失，原 interpreter 路径不能直接解析；GNU symbol version、配置 / 数据 / 子进程、许可全文及持久材料仍待补齐。下一步用已有字节定义精确布局与文件集，再提出工具信任终点和受控验签方案；不重复下载 17 包。官方 HTTPS 作为工具二进制信任终点尚未接受；组装、容器执行与验签仍分别验收和授权。
+1. **收口验证环境持久留存、宿主身份与受控运行方案。** [静态布局与符号版本盘点](../records/rust-linux-input-review/musl-verifier-layout-2026-09-12.md)已形成 14 个 ELF 的布局提案；拟生成的 `/lib → usr/lib` 在内存模型中接通 interpreter，67 条版本需求及 1,277 个带版本符号有匹配候选。[许可材料补充](../records/rust-linux-input-review/musl-verifier-licenses-2026-09-12.md)已获授权取得固定 base-files 原包，增补许可文本 / 版权 / 链接 / 目录 13 项，合计 70 项静态材料提案；保留 GPL-2.0 字面引用缺失和 LGPL 别名与声明的区别。下一步完成持久存储 / 恢复检查与宿主运行身份，提出实际文件 / 配置 / 资源 / 清理方案；不重复下载已有 18 个包。实际运行闭包和分发责任尚未验收，官方 HTTPS 作为工具二进制信任终点尚未接受；组装、容器执行与验签仍分别验收和授权。
 2. **补齐 musl 原包验收与持久材料。** 仅沿[已确认的有条件 Debian 信任方案](../records/rust-linux-input-review/musl-debian-auth-2026-09-10.md#项目所有者确认与执行顺位)推进同一原包。两公钥已留存且与包内字节一致；archive 公告不覆盖 stable release，公告签名及当前密钥状态未重新核验。验证环境前置满足后，再复核完整链并决定 acceptance；不重复下载已有材料，不放宽上游 SHA-1 拒绝。为 Sources、原包、网页与 keyring 包落实可复现的持久存储；Sources 超过单文件上限，不拆分或放宽门禁绕过。当前仍为 `not-assessed`。
 3. **随后收口其余来源与安装前置。** 补查 musl-cross-make 其他六项依赖、发布构建关联、宿主库 / loader / 符号版本和 Rust 公钥策略；kernel 原始 tag 与最终链接继续分别验收。[隔离安装切片](../checker-runtime-linux-install-slice-review.md)已有精确三包 / 四 component、权限、时限和清理设计，仍需按分段方案核对实际模拟及两包间状态；来源前置满足后再申请安装，有限执行另列。公共迁移、签名 / VM 与产品运行继续分别验收和授权。
 
@@ -56,7 +56,7 @@ Checker 语义线先核实目标归因，再验收同域泛化、独立证明链
 
 ## 验证入口与本次审阅
 
-2026-09-12：验证环境来源审阅、固定索引和 17 包原文获取、包内只读盘点已形成，未运行 GnuPG 或完成来源验收；本地检查及未执行项见[本批交接](../records/rust-linux-input-review/musl-verifier-content-2026-09-12.md#复核与交接)。
+2026-09-12：验证环境来源审阅、固定索引、17 包原文及 base-files 许可材料、内容 / 静态布局 / GNU 版本盘点已形成，未运行 GnuPG 或完成来源验收；本地检查、缓存位置与本机影响见[本批交接](../records/rust-linux-input-review/musl-verifier-licenses-2026-09-12.md#验证与下一步)。
 
 2026-09-10 日终：仓库检查和 45 项显式来源诊断合成检查通过；逐批实际观察、失败、材料留存缺口及复核命令见[日终记录](../records/2026-09-10-closeout.md#日终验证与交接)。本轮收尾未运行网络下载、容器、Rust / CI、安装或构建，未完成新密码学验签。
 

@@ -1,0 +1,19 @@
+--- fetch-musl-trust-inputs.py
++++ fetch-musl-verifier-licenses.py
+@@ -10,3 +10,4 @@
+-    'keys': ('https://ftp-master.debian.org/keys.html', 1048576, 'html'),
+-    'keyring': ('https://deb.debian.org/debian/pool/main/d/debian-archive-keyring/'
+-                'debian-archive-keyring_2023.3+deb12u2_all.deb', 524288, 'deb'),
++    'base-files': ('https://deb.debian.org/debian/pool/main/b/base-files/base-files_13.8+deb13u6_arm64.deb', 73276, 'deb'),
++}
++EXPECTED = {
++    'base-files': {'package': 'base-files', 'bytes': 73276, 'sha256': '5f5a571ec846d7db05d9f825f0388a37bc033267b33cbf85b4eaa838dffcc41b'},
+@@ -59,0 +61,3 @@
++    observation['expected'] = EXPECTED[name]
++    observation['input_digest_matches'] = (len(data) == EXPECTED[name]['bytes'] and
++                                          digest(data) == EXPECTED[name]['sha256'])
+@@ -61,2 +65,2 @@
+-    print(json.dumps({k: observation[k] for k in ('target', 'attempt', 'exit_code', 'http_code', 'body', 'transport_passed')}))
+-    return 0 if observation['transport_passed'] else 1
++    print(json.dumps({k: observation[k] for k in ('target', 'attempt', 'exit_code', 'http_code', 'body', 'transport_passed', 'input_digest_matches')}))
++    return 0 if observation['transport_passed'] and observation['input_digest_matches'] else 1
