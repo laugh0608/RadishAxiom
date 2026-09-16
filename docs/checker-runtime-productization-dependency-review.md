@@ -198,7 +198,7 @@ P0–P9 逐阶段的输入、解除证据与首个纵向验收集合见[AX-B01 �
 | 顺位 | 输入与具体交付 | 完成 / 停止标准 |
 | --- | --- | --- |
 | 1：资源与维护决策 | [ADR 0015](adr/0015-virtualized-checker-resource-profile.md) 已接受；8,000 行预警线 / 最多 10 人日 / 每周 4 小时投入已确认，项目所有者统一负责 runtime 与 kernel / init | 决策已收口；既有 v0.1、inactive 登记及来源 / 迁移 / 执行门禁继续有效，预算不代表能力验收 |
-| 2：来源与可复现输入锁 | kernel / Debian、Rust 配方及 musl 补证已有诊断；仅限 musl 原包的有条件信任方案已确认，见[guest 来源审阅](checker-runtime-guest-source-build-review.md)。musl 诊断工具的窄信任起点、本机独立归档 / 恢复及四项真实 smoke 已完成；先补有界验签入口、完整签名 / 密钥状态和异盘保留，再补其他静态输入、Rust 公钥绑定与宿主库；[隔离安装范围](checker-runtime-linux-install-slice-review.md)已有，实际安装 / 有限执行仍未验收 | 不把摘要 / GnuPG 成功 / 库存等同完整 acceptance；不沿用默认 Go 或未知 builder；安装 / 构建须精确授权，不导入旧 probe 的虚构源码 |
+| 2：来源与可复现输入锁 | kernel / Debian、Rust 配方及 musl 补证已有诊断，见[guest 来源审阅](checker-runtime-guest-source-build-review.md)。musl 有条件路线、诊断工具窄信任、本机归档 / 恢复与九项真实验签已形成；[来源验收审阅](records/rust-linux-input-review/musl-source-acceptance-review-2026-09-16.md)的限定声明已获确认，该精确原包来源验收通过；异盘保留并行安排。下一步补其余六项依赖、发布构建关联、Rust 公钥绑定与宿主库；[隔离安装范围](checker-runtime-linux-install-slice-review.md)已有，实际安装 / 有限执行仍未验收 | 不把摘要 / GnuPG 成功 / 库存等同完整 acceptance；不沿用默认 Go 或未知 builder；安装 / 构建须精确授权，不导入旧 probe 的虚构源码 |
 | 3：公共迁移与合成装置 | 接受的资源 ADR、source lock、身份 / consumer 闭包；生成新 policy / profile / 外层记录的正负例，再实现可留存合成 runner / guest | 未完成字节迁移和单独签名 / VM 授权前不得运行；不把合成装置算作产品 qualification |
 | 4：真实容量与离线复核 | accepted Linux checker + guest TCB、代表性 / 上限输入和预注册 cold 矩阵 | 分别授权受控执行；失败保留，超预算或不可审计 container 触发重新决策 |
 | 按独立依赖准备：核心管线入口 | cvc5 / Node 来源与各自执行边界、ADR 0007 八项入口核对、AX-B01 P0–P9 切片设计、checker 目标归因交接 | 纯设计不必等待产品安装 / 激活；生产实现仍需全部入口或正式切片例外决策，不跨仓写入 |

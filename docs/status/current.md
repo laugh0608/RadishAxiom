@@ -37,8 +37,8 @@ Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收；�
 ### 当前事项（2026-09-16）
 
 1. **musl 两角色真实验签切片已完成。** [第二次九项诊断](../records/rust-linux-input-review/musl-verification-success-2026-09-16.md)通过：两角色签名、8 个自签名、完整 Sources / 原包绑定，以及正文篡改、两种角色缺失和无效交叉认证四个负例均符合预期；九个容器全部删除。66 条命令与全部原始输出已导出，离线重算一致。[首轮启动前失败和修正](../records/rust-linux-input-review/musl-verification-entry-2026-09-16.md)仍保留。未扩大为资源耗尽或产品 qualification 验收。
-2. **下一步审阅同一 musl 原包的来源 acceptance。** 沿[已确认的有条件 Debian 信任方案](../records/rust-linux-input-review/musl-debian-auth-2026-09-10.md#项目所有者确认与执行顺位)，结合真实验签结果核对验收声明、剩余信任及保留责任。固定工具及宿主仍为诊断可信输入，公钥材料仍限于 2026-09-10 获取时点；公告不覆盖 stable release，公告签名与当前所有渠道撤销状态未重验。当前 `not-assessed`、上游 SHA-1 拒绝不变。[本机独立归档及恢复](../records/rust-linux-input-review/musl-retention-2026-09-12.md)已完成，异盘位置与恢复责任仍需落实；不拆分 Sources 或放宽单文件门禁。
-3. **其后再处理其他来源与安装前置。** 补 musl-cross-make 其他六项依赖、发布构建关联、Rust 公钥策略及宿主 loader / 库 / 符号版本。kernel 原始 tag 与最终链接分别验收；[三包 / 四 component 隔离安装切片](../checker-runtime-linux-install-slice-review.md)仍须补实际模拟及两包间核对。来源前置满足后再申请安装，公共迁移、生产签名 / VM 与产品运行继续分别验收。
+2. **同一 musl 原包的限定来源验收已通过。** 项目所有者于 2026-09-16 确认[限定声明与决定](../records/rust-linux-input-review/musl-source-acceptance-review-2026-09-16.md#决策与下一步)：接受固定工具 / 宿主用于该来源结论，身份材料限于 2026-09-10 获取时点，不声称当前全渠道撤销状态。仅适用该记录绑定的原包、快照及两角色；历史诊断中的 `not-assessed` 和上游 SHA-1 拒绝保留原义，不代表 builder、安装或产品验收通过。本机归档与恢复可用；异盘安排作为保留风险并行落实，不新增为密码学验收门槛。
+3. **下一步处理其他来源与安装前置。** 补 musl-cross-make 其他六项依赖、发布构建关联、Rust 公钥策略及宿主 loader / 库 / 符号版本。kernel 原始 tag 与最终链接分别验收；[三包 / 四 component 隔离安装切片](../checker-runtime-linux-install-slice-review.md)仍须补实际模拟及两包间核对。来源前置满足后再申请安装，公共迁移、生产签名 / VM 与产品运行继续分别验收。
 
 [AX-B01 首切片依赖审阅](../axiom-pipeline-first-slice-dependency-review.md)已列出 P0–P9 前置；cvc5 / Node 自身的来源与外层硬限制仍需独立闭合。纯设计无需等待产品安装 / 激活，生产实现遵守 ADR 0007 全部入口或正式替代决策。
 
@@ -56,7 +56,7 @@ Checker 语义线先核实目标归因，再验收同域泛化、独立证明链
 
 ## 验证入口与本次审阅
 
-2026-09-16：首轮真实批次在启动前失败，修正后四组检查 **90 项通过**（含入口 38 项）；再次获确认后，**九项真实 GnuPG 诊断通过**，全部容器已删除，66 条命令日志已留存并离线重算，三项内存损坏注入被拒绝。失败、修正与实际边界见[入口记录](../records/rust-linux-input-review/musl-verification-entry-2026-09-16.md)和[成功记录](../records/rust-linux-input-review/musl-verification-success-2026-09-16.md)。Rust / CI 与产品构建未运行，来源 acceptance 保持 `not-assessed`。
+2026-09-16：首轮真实批次在启动前失败，修正后四组检查 **90 项通过**（含入口 38 项）；再次获确认后，**九项真实 GnuPG 诊断通过**，全部容器已删除，66 条命令日志已留存并离线重算，三项内存损坏注入被拒绝。失败、修正与实际边界见[入口记录](../records/rust-linux-input-review/musl-verification-entry-2026-09-16.md)和[成功记录](../records/rust-linux-input-review/musl-verification-success-2026-09-16.md)。随后来源审阅重算成功导出逐字节一致，并核对本机归档 132 个恢复路径 / 87 个对象；该轮未重新验签。Rust / CI 与产品构建未运行。随后项目所有者确认限定来源验收，决定单独记录，历史诊断 JSON 未改写。
 
 2026-09-12 日终：今日 8 组显式诊断合成检查重跑，共 **88 项通过**，覆盖包 / 源码绑定、内容 / 符号 / 许可、归档恢复、rootfs 读回、受控采集与签名状态判定。它们尚未接入默认仓库门禁；真实四项诊断与失败日志按批次记录留存，日终未重跑 Docker / GnuPG、Rust / CI 或产品构建。提交逐笔核对、文档修正、本机材料和完整验证边界见[日终记录](../records/2026-09-12-closeout.md#日终验证与交接)。
 
