@@ -1,0 +1,84 @@
+{
+  "archive_bytes": 63357870,
+  "archive_sha256": "db826bd19472363a07b7306763b5ffc262526cd31fff5580e36a316d7f9cea27",
+  "content_bytes": 82857946,
+  "cryptographic_operations_reexecuted": false,
+  "downloads_bytes_rechecked": true,
+  "downloads_path": "/Users/luobo/Downloads/RadishAxiom-musl-source-aa13d7c-20260916.tar.gz",
+  "failures": [
+    {
+      "archive_sha256": "84b91b86d51f86d254fcb3db0967b4d09e2c0bb908584b6ace855957499de0ff",
+      "attempt": "initial",
+      "failure": "second-attempt offline replay rejected input mode drift; packaging normalized local files to 0600"
+    },
+    {
+      "archive_sha256": "625c99072c3152b66390535aa16aeadc5768ce6bc18d5c8c0018f7f35d0698e8",
+      "attempt": "attempt-2/python-data-filter",
+      "failure": "archive retained 0444 but Python data extraction filter added owner-write; replay rejected input mode drift"
+    }
+  ],
+  "kind": "private-musl-backup-transfer-record-v1",
+  "manifest_sha256": "2262ca939a3b3d9d6abc4237e7c21758fcc8399aebe72997d18ca76c0bcb4bca",
+  "methods": {
+    "musl-backup-restore-instructions.md": {
+      "bytes": 3697,
+      "sha256": "73e2604d496f736fc01631a45f9522964c283e4f0fa43afacd4234700733c898"
+    },
+    "package-musl-source-backup.py": {
+      "bytes": 7197,
+      "sha256": "e8937894629ab2916c35fdff347300ce8df022194e3de8294e15ea554f5815c8"
+    }
+  },
+  "off_device_backup_verified": false,
+  "replay_checks": [
+    {
+      "argv": [
+        "python3",
+        "docs/records/rust-linux-input-review/collect-musl-verification-execution.py",
+        "--attempt",
+        "1"
+      ],
+      "exit_code": 0,
+      "output_matches": "musl-verification-execution-2026-09-16.json",
+      "stderr_bytes": 0,
+      "stdout_bytes": 48948,
+      "stdout_sha256": "5fb7d06616c2ca6ba4f5680799c944dab39536005983647aefa049224d8e6f4b"
+    },
+    {
+      "argv": [
+        "python3",
+        "docs/records/rust-linux-input-review/collect-musl-verification-execution.py",
+        "--attempt",
+        "2"
+      ],
+      "exit_code": 0,
+      "output_matches": "musl-verification-success-2026-09-16.json",
+      "stderr_bytes": 0,
+      "stdout_bytes": 1174101,
+      "stdout_sha256": "d5b9566e7c776a5cec1305b02aff33395074bdf02a0b0b756f1f3e1093d5359a"
+    },
+    {
+      "argv": [
+        "python3",
+        "docs/records/rust-linux-input-review/collect-musl-smoke-execution.py"
+      ],
+      "exit_code": 0,
+      "output_matches": "musl-verifier-smoke-execution-2026-09-12.json",
+      "stderr_bytes": 0,
+      "stdout_bytes": 176956,
+      "stdout_sha256": "90a333576331e4f03cb71661b0183ca35c108ad7bf06213b6c413606fb45b2d9"
+    }
+  ],
+  "repository_revision": "aa13d7ce88a39177fa389adc9ddfe2068276fbb3",
+  "restore_command": [
+    "tar",
+    "-xzpf",
+    "RadishAxiom-musl-source-aa13d7c-20260916.tar.gz",
+    "-C",
+    "restore"
+  ],
+  "restore_root": "/Users/luobo/Code/RadishAxiom/.tmp/musl-backup-aa13d7c-20260916/final/restore",
+  "restored_all_file_identities_and_modes_match": true,
+  "restored_files": 1628,
+  "uploaded": false
+}

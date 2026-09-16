@@ -37,8 +37,8 @@ Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收；�
 ### 当前事项（2026-09-16）
 
 1. **musl 两角色真实验签切片已完成。** [第二次九项诊断](../records/rust-linux-input-review/musl-verification-success-2026-09-16.md)通过：两角色签名、8 个自签名、完整 Sources / 原包绑定，以及正文篡改、两种角色缺失和无效交叉认证四个负例均符合预期；九个容器全部删除。66 条命令与全部原始输出已导出，离线重算一致。[首轮启动前失败和修正](../records/rust-linux-input-review/musl-verification-entry-2026-09-16.md)仍保留。未扩大为资源耗尽或产品 qualification 验收。
-2. **同一 musl 原包的限定来源验收已通过。** 项目所有者于 2026-09-16 确认[限定声明与决定](../records/rust-linux-input-review/musl-source-acceptance-review-2026-09-16.md#决策与下一步)：接受固定工具 / 宿主用于该来源结论，身份材料限于 2026-09-10 获取时点，不声称当前全渠道撤销状态。仅适用该记录绑定的原包、快照及两角色；历史诊断中的 `not-assessed` 和上游 SHA-1 拒绝保留原义，不代表 builder、安装或产品验收通过。本机归档与恢复可用；异盘安排作为保留风险并行落实，不新增为密码学验收门槛。
-3. **下一步处理其他来源与安装前置。** 补 musl-cross-make 其他六项依赖、发布构建关联、Rust 公钥策略及宿主 loader / 库 / 符号版本。kernel 原始 tag 与最终链接分别验收；[三包 / 四 component 隔离安装切片](../checker-runtime-linux-install-slice-review.md)仍须补实际模拟及两包间核对。来源前置满足后再申请安装，公共迁移、生产签名 / VM 与产品运行继续分别验收。
+2. **同一 musl 原包的限定来源验收已通过。** 项目所有者于 2026-09-16 确认[限定声明与决定](../records/rust-linux-input-review/musl-source-acceptance-review-2026-09-16.md#决策与下一步)：接受固定工具 / 宿主用于该来源结论，身份材料限于 2026-09-10 获取时点，不声称当前全渠道撤销状态。历史诊断和上游 SHA-1 拒绝保留原义。另已交付 [60.4 MiB 压缩备份](../records/rust-linux-input-review/musl-backup-2026-09-16.md)到 Downloads，1,628 个文件恢复核对及三个离线导出重算通过；由项目所有者后续转移到云端或其他介质，尚不宣称异盘备份完成。
+3. **MPC / MPFR 四份材料已取得，下一步核对公钥身份与真实签名。** [原包核对](../records/rust-linux-input-review/mpc-mpfr-inputs-2026-09-16.md)确认两个原包与完整索引长度 / SHA-256 一致，920 个文件已盘点，18 项合成测试通过；签名仅完成结构解析，来源验收仍为 `not-assessed`。28 个新增材料路径已在本机归档并恢复核对，尚未加入上述 Downloads 备份。其余四项的格式、重打包和缺失边界见[来源路线](../records/rust-linux-input-review/musl-remaining-sources-2026-09-16.md)。随后补其余来源、发布构建关联、Rust 公钥与宿主库、kernel 原始 tag / 最终链接及[隔离安装切片](../checker-runtime-linux-install-slice-review.md)的实际模拟与两包核对；安装和产品运行仍分别授权。
 
 [AX-B01 首切片依赖审阅](../axiom-pipeline-first-slice-dependency-review.md)已列出 P0–P9 前置；cvc5 / Node 自身的来源与外层硬限制仍需独立闭合。纯设计无需等待产品安装 / 激活，生产实现遵守 ADR 0007 全部入口或正式替代决策。
 
