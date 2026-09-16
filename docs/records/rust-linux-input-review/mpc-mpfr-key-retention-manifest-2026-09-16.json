@@ -1,0 +1,220 @@
+{
+  "files": [
+    {
+      "bytes": 0,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpc-fingerprint-page-attempt-1.html",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1656,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpc-fingerprint-page-attempt-1.json",
+      "sha256": "e20917ecbfe7660ef19bc4d8237a5f91aa05d6e0ad79220ef3ef1e6f410be56e"
+    },
+    {
+      "bytes": 257,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpc-fingerprint-page-attempt-1.scope.json",
+      "sha256": "ea57c08d4acd3afc785450ff22eb7443fdca80aa15dcbe51ba30bd2a287a3418"
+    },
+    {
+      "bytes": 96,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpc-fingerprint-page-attempt-1.stderr",
+      "sha256": "eeef0b7b013797b3ab596393f87e9c2d76e179aca9ce8417a888028b73d22628"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpc-fingerprint-page-attempt-1.stdout",
+      "sha256": "945e4893567554e68f6f28d5652917269341a5f3d295a16b7c708c9bfd95dc5d"
+    },
+    {
+      "bytes": 124014,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpc-key-attempt-1.asc",
+      "sha256": "dae0bf8d40b5e3cbb64b3c98fbcf48857f983b8bf811f761a206ebae75f040a8"
+    },
+    {
+      "bytes": 1515,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpc-key-attempt-1.json",
+      "sha256": "5b2f2f45c37f28eff2d968766e657a8adfea856e7f6b07168e8fe5189ae07c0c"
+    },
+    {
+      "bytes": 254,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpc-key-attempt-1.scope.json",
+      "sha256": "d04e4e3b573b71d1477f32bc689df4ae0039ccfd1edd0d3e03ecd87f9e78630e"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpc-key-attempt-1.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpc-key-attempt-1.stdout",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpc-page-attempt-1.html",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1608,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpc-page-attempt-1.json",
+      "sha256": "6b5fc3fb10e9560b73d06f50f2851f1bec4f724766abae495cfb0a714ffcc4d9"
+    },
+    {
+      "bytes": 254,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpc-page-attempt-1.scope.json",
+      "sha256": "83f158c0e2b0d9f9acfb06159dcb92d8dcd74f75006b5008d827d26e6ae969ab"
+    },
+    {
+      "bytes": 91,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpc-page-attempt-1.stderr",
+      "sha256": "7528e9de26551e1df6d26dcd70afd80588062ceafc5fa6eb5d2f1d9a2b313a60"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpc-page-attempt-1.stdout",
+      "sha256": "945e4893567554e68f6f28d5652917269341a5f3d295a16b7c708c9bfd95dc5d"
+    },
+    {
+      "bytes": 8741,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpc-page-attempt-2.html",
+      "sha256": "fa9e8c70c479bd2599515cec7ea17f8fdacc4f5c0cb85c45375cfb3435c6c438"
+    },
+    {
+      "bytes": 1516,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpc-page-attempt-2.json",
+      "sha256": "58406d91ec1dfc3733aa5bbf3a63c930a2cc626d57f674f70a67969907ed8285"
+    },
+    {
+      "bytes": 254,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpc-page-attempt-2.scope.json",
+      "sha256": "83f158c0e2b0d9f9acfb06159dcb92d8dcd74f75006b5008d827d26e6ae969ab"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpc-page-attempt-2.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpc-page-attempt-2.stdout",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 15034,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpfr-key-attempt-1.asc",
+      "sha256": "c534c66170c22555573751da626d0bbef8d032b61d03be9cf8be7571dd07ab07"
+    },
+    {
+      "bytes": 1479,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpfr-key-attempt-1.json",
+      "sha256": "8937c7c461e03ed3ec129f4c4347579f23004ebddb3de33db12b125336785d0f"
+    },
+    {
+      "bytes": 235,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpfr-key-attempt-1.scope.json",
+      "sha256": "69184ca230e7c76ce0674423a56d7250881b2a102b8ff02ee4ce3b3f8ad67aba"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpfr-key-attempt-1.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpfr-key-attempt-1.stdout",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 20721,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpfr-key-page-attempt-1.html",
+      "sha256": "b853f1c176ac3b1180ea2a3532cda567696abad81f77d004c955216f8f781c4a"
+    },
+    {
+      "bytes": 1498,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpfr-key-page-attempt-1.json",
+      "sha256": "125a56ffcea778c3cc4bb550912885ce76db255e23783076e9e3624a8d6108e6"
+    },
+    {
+      "bytes": 237,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpfr-key-page-attempt-1.scope.json",
+      "sha256": "fe5873bd3c108c8b7fa8da40279dd0bd8e165307d352a5313ba64bb848b3a8c4"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpfr-key-page-attempt-1.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpfr-key-page-attempt-1.stdout",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 7752,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpfr-page-attempt-1.html",
+      "sha256": "2bf0316537972ba065f01c1f65c947011ae59e38cb77868469ffd9b6b1bf9bf2"
+    },
+    {
+      "bytes": 1487,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpfr-page-attempt-1.json",
+      "sha256": "4d1c55c84b587d700912c11dc74cc54e69531ae6330810c5da751776f0a7a700"
+    },
+    {
+      "bytes": 238,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpfr-page-attempt-1.scope.json",
+      "sha256": "1a9b1f7db7c4dcfdda370cf484033086a0edeca67fc2196bfe9e5d65e8f44836"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpfr-page-attempt-1.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/mpc-mpfr-keys-ee917c7-20260916/mpfr-page-attempt-1.stdout",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 3949,
+      "path": "docs/records/rust-linux-input-review/check-mpc-mpfr-key-inputs.py",
+      "sha256": "5354aa4b325c6011d13e7a003e874e5d8c1d80535cffde0d542fcdda39369d8d"
+    },
+    {
+      "bytes": 5126,
+      "path": "docs/records/rust-linux-input-review/fetch-mpc-mpfr-inputs.py",
+      "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+    },
+    {
+      "bytes": 3494,
+      "path": "docs/records/rust-linux-input-review/fetch-mpc-mpfr-key-inputs.py",
+      "sha256": "678bdbeb5e5c2d62d38521dfc2de60e6f4ab99dbd5f4d7b24ec63043f3c16cf8"
+    },
+    {
+      "bytes": 9064,
+      "path": "docs/records/rust-linux-input-review/inspect-mpc-mpfr-key-inputs.py",
+      "sha256": "629cccc5fc59a91167fbeddbe73773e94774576ef7a904ae0f16b6aa7b5bdb53"
+    },
+    {
+      "bytes": 11967,
+      "path": "docs/records/rust-linux-input-review/inspect-musl-verification-keys.py",
+      "sha256": "391c7e48b0792330135990e3358f5dad811d745c3010a30aad084c81e6e05ae4"
+    },
+    {
+      "bytes": 7460,
+      "path": "docs/records/rust-linux-input-review/inspect-musl-verification-status.py",
+      "sha256": "b3964b6904c13c82596438af2ec8030455137c0121cfdc35ff3e77a79963e9fc"
+    },
+    {
+      "bytes": 240940,
+      "path": "docs/records/rust-linux-input-review/mpc-mpfr-key-inputs-2026-09-16.json",
+      "sha256": "68e005e6666deab19e1e0b8e2fe4822f45024133e6e8a37b089470d7bcc25187"
+    },
+    {
+      "bytes": 10295,
+      "path": "docs/records/rust-linux-input-review/retain-musl-verifier-inputs.py",
+      "sha256": "72047818576ab27de02cf8e9620c33299c007b4c64108fb7c11a3c1d23e3ca0a"
+    }
+  ],
+  "kind": "diagnostic-musl-retention-manifest-v1"
+}

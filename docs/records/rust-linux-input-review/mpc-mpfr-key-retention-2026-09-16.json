@@ -1,0 +1,28 @@
+{
+  "downloads_backup_updated": false,
+  "kind": "diagnostic-mpc-mpfr-key-retention-v1",
+  "pack": {
+    "file_count": 43,
+    "manifest": {
+      "bytes": 8588,
+      "sha256": "9e3f4aba665533924ba58a77dd501c68a82aa9eaa81d5733dfc263b65c6dfbeb"
+    },
+    "object_bytes": 480986,
+    "object_count": 31,
+    "off_device_backup_verified": false,
+    "source_acceptance": "not-assessed"
+  },
+  "repository_and_prior_source_stores_required": true,
+  "restore": {
+    "file_count": 43,
+    "manifest": {
+      "bytes": 8588,
+      "sha256": "9e3f4aba665533924ba58a77dd501c68a82aa9eaa81d5733dfc263b65c6dfbeb"
+    },
+    "object_count": 31,
+    "off_device_backup_verified": false,
+    "restored_bytes_match": true,
+    "source_acceptance": "not-assessed"
+  },
+  "store": "artifacts/source-inputs/mpc-mpfr-keys-ee917c7-20260916"
+}
