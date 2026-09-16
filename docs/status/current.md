@@ -30,15 +30,20 @@
 
 ## 近期顺位
 
-Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收；普通 `dev` push 仍不自动触发 CI。资源与维护决策已收口；kernel / Debian / Rust Linux 来源诊断尚未形成完整 source lock、真实安装或构建验收。日终文档收尾前的 8 笔提交与代码 / 文档核对见 [2026-09-12 日终回顾](../records/2026-09-12-closeout.md)。
+Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收；普通 `dev` push 仍不自动触发 CI。资源与维护决策已收口；kernel / Debian / Rust Linux 来源诊断尚未形成完整 source lock、真实安装或构建验收。今日收尾前四笔提交及文档收尾、代码 / 文档核对与验证边界见 [2026-09-16 日终回顾](../records/2026-09-16-closeout.md)。
 
 [ADR 0015（Accepted）](../adr/0015-virtualized-checker-resource-profile.md)确认 guest 128 MiB 硬限及宿主总内存无等价硬保证；8,000 行预警线、最多 10 人日和每周 4 小时投入已确认，项目所有者统一负责 runtime 与 kernel / init。细节以[维护责任](../checker-runtime-productization-dependency-review.md#许可证与维护责任)为准。
 
-### 当前事项（2026-09-16）
+### 明日事项（2026-09-17）
 
-1. **musl 两角色真实验签切片已完成。** [第二次九项诊断](../records/rust-linux-input-review/musl-verification-success-2026-09-16.md)通过：两角色签名、8 个自签名、完整 Sources / 原包绑定，以及正文篡改、两种角色缺失和无效交叉认证四个负例均符合预期；九个容器全部删除。66 条命令与全部原始输出已导出，离线重算一致。[首轮启动前失败和修正](../records/rust-linux-input-review/musl-verification-entry-2026-09-16.md)仍保留。未扩大为资源耗尽或产品 qualification 验收。
-2. **同一 musl 原包的限定来源验收已通过。** 项目所有者于 2026-09-16 确认[限定声明与决定](../records/rust-linux-input-review/musl-source-acceptance-review-2026-09-16.md#决策与下一步)：接受固定工具 / 宿主用于该来源结论，身份材料限于 2026-09-10 获取时点，不声称当前全渠道撤销状态。历史诊断和上游 SHA-1 拒绝保留原义。另已交付 [60.4 MiB 压缩备份](../records/rust-linux-input-review/musl-backup-2026-09-16.md)到 Downloads，1,628 个文件恢复核对及三个离线导出重算通过；由项目所有者后续转移到云端或其他介质，尚不宣称异盘备份完成。
-3. **MPC / MPFR 原包与公钥已取得，下一步准备 MPFR 离线验签并处理 MPC 到期材料。** [原包核对](../records/rust-linux-input-review/mpc-mpfr-inputs-2026-09-16.md)完成索引摘要对应、920 文件盘点及 18 项测试；[公钥审阅](../records/rust-linux-input-review/mpc-mpfr-key-inputs-2026-09-16.md)完成 9 项结构测试，区分 MPFR 当前 EdDSA 钥与旧 DSA 钥。MPC 官方材料最新 UID 自签候选声明到期为 2024-07-04，不能直接判为当前有效。尚未真实验签或接受身份，两者来源验收仍为 `not-assessed`；新增本机归档未加入 Downloads 备份。其余四项边界见[来源路线](../records/rust-linux-input-review/musl-remaining-sources-2026-09-16.md)。随后补发布构建关联、Rust 公钥与宿主库、kernel 原始 tag / 最终链接及[隔离安装切片](../checker-runtime-linux-install-slice-review.md)；安装和产品运行仍分别授权。
+今日已完成 musl 两角色真实验签及[固定原包的限定来源验收](../records/rust-linux-input-review/musl-source-acceptance-review-2026-09-16.md)，范围限于已确认工具 / 宿主与公钥材料时点。MPC / MPFR 原包、签名及公钥已取得并结构盘点，仍未真实验签或接受来源；详细事实见[原包核对](../records/rust-linux-input-review/mpc-mpfr-inputs-2026-09-16.md)和[公钥审阅](../records/rust-linux-input-review/mpc-mpfr-key-inputs-2026-09-16.md)。
+
+1. **先准备 MPFR 当前主钥的离线验签切片。** 完成多 UID / 原始自认证与导入材料对应、固定原包正例及正文篡改、错误 / 缺失主钥负例；沿用已固定诊断环境的采集和清理边界。先补方法与合成检查，再说明精确执行范围取得授权；不直接套用 musl 单 UID / 两角色判定器。
+2. **单独处理 MPC 公钥到期材料。** 官方包最新 UID 自签候选声明到期为 2024-07-04，尚未数学核验；先补同指纹更新认证与指纹页留存。历史验签或 Debian 路线另行审阅，不倒拨时间、忽略过期或继承 musl 的验收结论。
+3. **继续来源与安装前置。** 依照[六项路线](../records/rust-linux-input-review/musl-remaining-sources-2026-09-16.md)补 Binutils / GCC / GMP / headers，不混淆压缩格式、重打包或版本；随后补发布构建关联、Rust 公钥与宿主库、kernel 原始 tag / 最终链接，再收口[隔离安装切片](../checker-runtime-linux-install-slice-review.md)。来源、安装及产品运行分别验收。
+4. **并行核对备份转移与增量。** 今日交付的 60.4 MiB 固定快照包不含后续两批 MPC / MPFR 材料；它们已有独立本机归档。日终 Downloads 三个交付文件已不在原路径，项目内最终包摘要仍一致；待核实目标副本，再补后续增量，不据此声称异盘恢复已完成。详见[日终材料状态](../records/2026-09-16-closeout.md#本机材料与外部影响)。备份转移不新增为本地来源审阅的密码学门槛。
+
+这些是下一次工作的顺位，不是自动任务或新的下载、执行、安装授权；今晚只完成文档收尾。
 
 [AX-B01 首切片依赖审阅](../axiom-pipeline-first-slice-dependency-review.md)已列出 P0–P9 前置；cvc5 / Node 自身的来源与外层硬限制仍需独立闭合。纯设计无需等待产品安装 / 激活，生产实现遵守 ADR 0007 全部入口或正式替代决策。
 
@@ -56,9 +61,7 @@ Checker 语义线先核实目标归因，再验收同域泛化、独立证明链
 
 ## 验证入口与本次审阅
 
-2026-09-16：首轮真实批次在启动前失败，修正后四组检查 **90 项通过**（含入口 38 项）；再次获确认后，**九项真实 GnuPG 诊断通过**，全部容器已删除，66 条命令日志已留存并离线重算，三项内存损坏注入被拒绝。失败、修正与实际边界见[入口记录](../records/rust-linux-input-review/musl-verification-entry-2026-09-16.md)和[成功记录](../records/rust-linux-input-review/musl-verification-success-2026-09-16.md)。随后来源审阅重算成功导出逐字节一致，并核对本机归档 132 个恢复路径 / 87 个对象；该轮未重新验签。Rust / CI 与产品构建未运行。随后项目所有者确认限定来源验收，决定单独记录，历史诊断 JSON 未改写。
-
-2026-09-12 日终：今日 8 组显式诊断合成检查重跑，共 **88 项通过**，覆盖包 / 源码绑定、内容 / 符号 / 许可、归档恢复、rootfs 读回、受控采集与签名状态判定。它们尚未接入默认仓库门禁；真实四项诊断与失败日志按批次记录留存，日终未重跑 Docker / GnuPG、Rust / CI 或产品构建。提交逐笔核对、文档修正、本机材料和完整验证边界见[日终记录](../records/2026-09-12-closeout.md#日终验证与交接)。
+2026-09-16 日终：今天新增入口的三组合成检查 **65 项通过**，四份诊断导出逐字节重算一致；项目内最终备份包长度 / SHA-256 一致。今日九项真实 GnuPG 诊断及全部容器删除属于此前执行批次，日终没有重跑密码学、Docker、Rust / CI 或产品构建。历史失败、限定验收与备份去向边界见[日终记录](../records/2026-09-16-closeout.md#日终验证与交接)；这些诊断尚未接入默认仓库门禁。
 
 仓库级契约、生成一致性与文本检查：
 

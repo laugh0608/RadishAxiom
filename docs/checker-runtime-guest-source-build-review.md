@@ -1,6 +1,6 @@
 # Checker guest 来源与构建入口审阅
 
-审阅日期：2026-09-12
+审阅日期：2026-09-16
 
 状态：候选环境、kernel / Debian 来源与 Rust Linux 输入已形成诊断；安装、完整 source lock 与构建验收尚未完成。
 
@@ -130,13 +130,13 @@ initramfs 输入先采用固定 `newc` 布局，逐项列路径、类型、mode�
 
 ## 下一可执行切片
 
-已有 kernel / Debian 诊断、Rust Linux 实际字节 / 签名 / 库存、kernel tag 元数据对应和许可材料审阅。musl 有界验签与[同一原包的限定来源验收](records/rust-linux-input-review/musl-source-acceptance-review-2026-09-16.md#决策与下一步)已完成；下一步处理 musl-cross-make 其余六项依赖及发布构建关联，再收口 Rust 公钥绑定策略与 driver / LLVM / 系统库闭包。异盘保留 / 恢复并行安排。三包加选定 Rust component 的隔离安装范围已有独立审阅，安装与有限执行仍未获授权。kernel 分发需保留对应源码、patch、配置与构建 / 安装脚本的候选交付已列明，具体产物 / 分发方案尚未接受。镜像、诊断工具和材料库存不等于完整 acceptance；旧摘要绑定入口不改动。分别验收 source、builder、init target 与 Go checker 输入后才写入 source lock。
+已有 kernel / Debian 诊断、Rust Linux 实际字节 / 签名 / 库存、kernel tag 元数据对应和许可材料审阅。musl 有界验签与[同一原包的限定来源验收](records/rust-linux-input-review/musl-source-acceptance-review-2026-09-16.md#决策与下一步)已完成；其余六项已完成[来源路线盘点](records/rust-linux-input-review/musl-remaining-sources-2026-09-16.md)；MPC / MPFR 原包与公钥已取得，来源验收仍未通过，近期顺位以当前状态为准。发布构建关联、Rust 公钥绑定策略与 driver / LLVM / 系统库闭包继续待补。备份交付与日终位置观察见[日终记录](records/2026-09-16-closeout.md#本机材料与外部影响)，不将本机归档称为异盘恢复。三包加选定 Rust component 的隔离安装范围已有独立审阅，安装与有限执行仍未获授权。kernel 分发需保留对应源码、patch、配置与构建 / 安装脚本的候选交付已列明，具体产物 / 分发方案尚未接受。镜像、诊断工具和材料库存不等于完整 acceptance；旧摘要绑定入口不改动。分别验收 source、builder、init target 与 Go checker 输入后才写入 source lock。
 
 | 切片 | 完成交付 | 当前缺口 |
 | --- | --- | --- |
 | 构建环境确定 | 精确环境、工具 / 库库存、版本 / 摘要、隔离与清理范围 | 三包模拟、Rust 选定 component 的 14 个 ELF 静态依赖与隔离安装范围已有；尚未安装，镜像 / 工具 / 系统库和源码许可未完整验收 |
 | Kernel source 验收 | 压缩摘要、未压缩 tar 签名、完整指纹、文件 / 许可证库存、来源记录 | 摘要 / 签名 / 文件库存、tag 元数据对应及许可材料已审阅；原始 tag、实际分发材料与工具来源尚未完整验收 |
-| init 方案收口 | 语言 / target / 依赖决定、child 限制安装顺序、失败矩阵 | Rust 优先建议待设计验收；CRT / unwind 精确配方与 LLVM 源码 / 许可已补查，musl 原包、补丁及 Debian 补证已诊断，验证环境与剩余外部构建输入、发布构建关联及实际链接未验收 |
+| init 方案收口 | 语言 / target / 依赖决定、child 限制安装顺序、失败矩阵 | Rust 优先建议待设计验收；CRT / unwind 精确配方与 LLVM 源码 / 许可已补查，固定 musl 原包限定来源验收通过，MPC / MPFR 原包与公钥已盘点；验证环境仅获该 musl 诊断 / 来源结论的窄信任，剩余输入、发布构建关联与实际链接未验收 |
 | 可留存合成装置 | 自有 runner / init / transport 源码、输入与重跑入口 | 先满足 ADR、工具、私有 FFI 范围与单独签名 / VM 授权 |
 
 本审阅没有解除来源、资源或真实执行门槛。当前产品能力与下一顺位仍只由[当前状态](status/current.md)统一维护。
