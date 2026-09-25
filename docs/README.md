@@ -70,6 +70,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 | Linux 来源实际核验 | [摘要 / 签名与 builder 库存](records/linux-6.18.49-source-review/README.md)、[归档文件盘点与精确缺失包候选](records/linux-6.18.49-archive-inventory/README.md) |
 | Linux 构建包来源与安装差异 | [Debian 签名摘要链、控制脚本审阅与安装模拟](records/linux-builder-source-chain/README.md) |
 | Rust Linux 与静态目标输入 | [签名 / 归档盘点、安装候选与 kernel 许可审阅](records/rust-linux-input-review/README.md) |
+| 2026-09-25 日终回顾 | [MPFR / MPC 接受、剩余来源材料及 GMP 失败诊断的提交与文档复核](records/2026-09-25-closeout.md) |
 | 2026-09-16 日终回顾 | [musl 限定验收、备份及 MPC / MPFR 材料提交与文档复核](records/2026-09-16-closeout.md) |
 | 2026-09-12 日终回顾 | [musl 验证环境提交、文档复核与日终验证](records/2026-09-12-closeout.md) |
 | 2026-09-10 日终回顾 | [来源诊断提交、文档修正与日终验证](records/2026-09-10-closeout.md) |
