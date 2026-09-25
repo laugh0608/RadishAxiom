@@ -1,0 +1,229 @@
+{
+  "arm64_header_count": 866,
+  "arm64_projections_equal": true,
+  "comparison": {
+    "comparison_does_not_authenticate_source": true,
+    "complete_tar_bytes_equal": false,
+    "content_link_or_type_differences": [],
+    "mode_differences": 1257,
+    "normalized_all_members_equal": false,
+    "only_in_candidate": [
+      "UPDATE.sh",
+      "create-dist.sh",
+      "test.sh"
+    ],
+    "only_in_mirror": [],
+    "owner_or_mtime_differences": 1343
+  },
+  "inputs": {
+    "candidate": {
+      "bytes": 1415704,
+      "sha256": "e875ffc69332bb4a8776e29ba15659be3e27785762fc8c769d9d2f4cf002ff87"
+    },
+    "headers": {
+      "bytes": 1052880,
+      "sha256": "d3f3acf6d16bdb005d3f2589ade1df8eff2e1c537f92e6cd9222218ead882feb"
+    },
+    "tags": {
+      "bytes": 9809,
+      "sha256": "188e3bc305d86b6d42db63ba0d2da1aa43b78f43494a40e0e5c01ece76b636bd"
+    }
+  },
+  "inventories": {
+    "candidate": {
+      "license_named_paths": [],
+      "member_count": 1346,
+      "selected_review_files": [
+        "Makefile",
+        "README.md",
+        "UPDATE.sh",
+        "arm64/include/asm/unistd.h",
+        "create-dist.sh",
+        "generic/include/linux/libc-compat.h",
+        "generic/include/linux/version.h",
+        "patches/0001-fix-3-do-not-wrap-linux-stat.h-in-ifdef-KERNEL.patch",
+        "patches/0002-remove-inclusion-of-sysinfo.h-in-kernel.h.patch",
+        "patches/0003-fix-redefinition-of-struct-tcphdr.patch",
+        "patches/0004-fix-linux-time.h.patch",
+        "patches/0005-prevent-TCP_NLA_-definition-when-netinet-tcp.h-is-in.patch",
+        "test.sh",
+        "tools/install.sh"
+      ],
+      "spdx_literal_counts_not_license_coverage": {
+        "SPDX-License-Identifier: ((GPL-2.0 WITH Linux-syscall-note) AND MIT)": 1,
+        "SPDX-License-Identifier: ((GPL-2.0 WITH Linux-syscall-note) OR BSD-2-Clause)": 5,
+        "SPDX-License-Identifier: ((GPL-2.0 WITH Linux-syscall-note) OR BSD-3-Clause)": 16,
+        "SPDX-License-Identifier: ((GPL-2.0 WITH Linux-syscall-note) OR Linux-OpenIB)": 18,
+        "SPDX-License-Identifier: ((GPL-2.0 WITH Linux-syscall-note) OR MIT)": 3,
+        "SPDX-License-Identifier: ((GPL-2.0+ WITH Linux-syscall-note) OR BSD-3-Clause)": 5,
+        "SPDX-License-Identifier: (GPL-2.0 OR CDDL-1.0)": 2,
+        "SPDX-License-Identifier: (GPL-2.0 WITH Linux-syscall-note)": 1,
+        "SPDX-License-Identifier: BSD-3-Clause": 1,
+        "SPDX-License-Identifier: GPL-1.0+ WITH Linux-syscall-note": 14,
+        "SPDX-License-Identifier: GPL-2.0": 9,
+        "SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note": 707,
+        "SPDX-License-Identifier: GPL-2.0+": 1,
+        "SPDX-License-Identifier: GPL-2.0+ WITH Linux-syscall-note": 137,
+        "SPDX-License-Identifier: LGPL-2.0+ WITH Linux-syscall-note": 4,
+        "SPDX-License-Identifier: LGPL-2.1 WITH Linux-syscall-note": 3,
+        "SPDX-License-Identifier: LGPL-2.1+ WITH Linux-syscall-note": 15,
+        "SPDX-License-Identifier: MIT": 2
+      },
+      "tar": {
+        "bytes": 6266880,
+        "sha256": "74527d5e6fffe9be7ce74e007a61cc49771a46de888b613fd6a57cf0d1d899d5"
+      },
+      "type_counts": {
+        "directory": 69,
+        "file": 1191,
+        "symlink": 86
+      }
+    },
+    "headers": {
+      "license_named_paths": [],
+      "member_count": 1343,
+      "selected_review_files": [
+        "Makefile",
+        "README.md",
+        "arm64/include/asm/unistd.h",
+        "generic/include/linux/libc-compat.h",
+        "generic/include/linux/version.h",
+        "patches/0001-fix-3-do-not-wrap-linux-stat.h-in-ifdef-KERNEL.patch",
+        "patches/0002-remove-inclusion-of-sysinfo.h-in-kernel.h.patch",
+        "patches/0003-fix-redefinition-of-struct-tcphdr.patch",
+        "patches/0004-fix-linux-time.h.patch",
+        "patches/0005-prevent-TCP_NLA_-definition-when-netinet-tcp.h-is-in.patch",
+        "tools/install.sh"
+      ],
+      "spdx_literal_counts_not_license_coverage": {
+        "SPDX-License-Identifier: ((GPL-2.0 WITH Linux-syscall-note) AND MIT)": 1,
+        "SPDX-License-Identifier: ((GPL-2.0 WITH Linux-syscall-note) OR BSD-2-Clause)": 5,
+        "SPDX-License-Identifier: ((GPL-2.0 WITH Linux-syscall-note) OR BSD-3-Clause)": 16,
+        "SPDX-License-Identifier: ((GPL-2.0 WITH Linux-syscall-note) OR Linux-OpenIB)": 18,
+        "SPDX-License-Identifier: ((GPL-2.0 WITH Linux-syscall-note) OR MIT)": 3,
+        "SPDX-License-Identifier: ((GPL-2.0+ WITH Linux-syscall-note) OR BSD-3-Clause)": 5,
+        "SPDX-License-Identifier: (GPL-2.0 OR CDDL-1.0)": 2,
+        "SPDX-License-Identifier: (GPL-2.0 WITH Linux-syscall-note)": 1,
+        "SPDX-License-Identifier: BSD-3-Clause": 1,
+        "SPDX-License-Identifier: GPL-1.0+ WITH Linux-syscall-note": 14,
+        "SPDX-License-Identifier: GPL-2.0": 9,
+        "SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note": 707,
+        "SPDX-License-Identifier: GPL-2.0+": 1,
+        "SPDX-License-Identifier: GPL-2.0+ WITH Linux-syscall-note": 137,
+        "SPDX-License-Identifier: LGPL-2.0+ WITH Linux-syscall-note": 4,
+        "SPDX-License-Identifier: LGPL-2.1 WITH Linux-syscall-note": 3,
+        "SPDX-License-Identifier: LGPL-2.1+ WITH Linux-syscall-note": 15,
+        "SPDX-License-Identifier: MIT": 2
+      },
+      "tar": {
+        "bytes": 6260736,
+        "sha256": "768a1078918618287f2b836480ac6e7d39fda2f38b8b95e4bbe644097f00880a"
+      },
+      "type_counts": {
+        "directory": 69,
+        "file": 1188,
+        "symlink": 86
+      }
+    }
+  },
+  "kind": "diagnostic-linux-headers-summary-v1",
+  "license_review_complete": false,
+  "methods": {
+    "fetch-linux-headers-candidate.py": {
+      "bytes": 1966,
+      "sha256": "98f42dd15e894c4da95ac70c67105a9cd00efce47db9c86ba2a7251e9304911e"
+    },
+    "fetch-linux-headers-inputs.py": {
+      "bytes": 1910,
+      "sha256": "268e1eee90ca3f7543d6332b77dc0389caafffb3a2d901dc11e4e6bcffbcb2ee"
+    },
+    "fetch-mpc-mpfr-inputs.py": {
+      "bytes": 5126,
+      "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+    },
+    "inspect-archives.py": {
+      "bytes": 10104,
+      "sha256": "e9a417881e4caff2da92441dc19e958d93dba27173b38d3ce4425a9fd7c3b949"
+    },
+    "inspect-linux-headers-content.py": {
+      "bytes": 7645,
+      "sha256": "c9c2ee0f976e169b3b8577ccfef4888ca58699439405bed22d025c5b30212d53"
+    },
+    "inspect-linux-headers-inputs.py": {
+      "bytes": 11231,
+      "sha256": "28d44d857644a6e4d4536763b76fbe5ccca7184ea68d1662270aecfa8cecee2e"
+    },
+    "inspect-mpc-mpfr-inputs.py": {
+      "bytes": 8833,
+      "sha256": "da04e90b29504c102798d9a29a558d4d6c77e5956734b8a8cab4d1cbaf8d8e98"
+    },
+    "inspect-musl-cross-make.py": {
+      "bytes": 3769,
+      "sha256": "5876728cebff6ab519492d09c42e9d0315f8c5a6922b6cc549007bd995086910"
+    },
+    "inspect-musl-remaining-sources.py": {
+      "bytes": 4194,
+      "sha256": "37a1c7dcb6a3a817581f7d0c533625e9154a84f8a7089c10aab383dc7e718b8e"
+    },
+    "inspect-musl-verification-keys.py": {
+      "bytes": 11967,
+      "sha256": "391c7e48b0792330135990e3358f5dad811d745c3010a30aad084c81e6e05ae4"
+    },
+    "inspect-musl-verification-status.py": {
+      "bytes": 7460,
+      "sha256": "b3964b6904c13c82596438af2ec8030455137c0121cfdc35ff3e77a79963e9fc"
+    },
+    "retain-musl-verifier-inputs.py": {
+      "bytes": 10295,
+      "sha256": "72047818576ab27de02cf8e9620c33299c007b4c64108fb7c11a3c1d23e3ca0a"
+    }
+  },
+  "recipe_context": {
+    "aarch64_to_arm64_mapping_observed": true,
+    "actual_published_build_verified": false,
+    "musl_cross_make_archive": {
+      "bytes": 213688,
+      "file": "musl-cross-make-3635262.tar.gz",
+      "member_count": 385,
+      "pax_headers": {
+        "comment": "3635262e4524c991552789af6f36211a335a77b3"
+      },
+      "sha256": "60bed670d689d5c2164020960df36b80189dc5617e9763e023672f98a99d567e",
+      "tar_bytes": 1597440,
+      "tar_sha256": "cb051a24ba421cd4768fc41d078f625d8eac52f617a93d60a4a0119a508c537c"
+    },
+    "recipe_sha1_statement": "de12b9c8ae2de9e85056a36be9f0fcc0a1e4abe9",
+    "rust_script": {
+      "bytes": 2668,
+      "sha256": "faae0de27e4ca1661a030ce3623e4959f34f5d1b6f795ea9b5b84c10c2086b2e"
+    },
+    "rust_script_origin": "previously bound source-recipes-2026-09-10.json",
+    "rust_source_rescanned_this_batch": false,
+    "selected_recipe_files": [
+      {
+        "bytes": 5721,
+        "path": "Makefile",
+        "sha256": "6ba8e8f0d7d46a32e4644d5de2e537c33c854c8956990b8bd475c1c310ff9a6d"
+      },
+      {
+        "bytes": 71,
+        "path": "hashes/linux-headers-4.19.88.tar.xz.sha1",
+        "sha256": "f946ee60c13aecca98a4240c1c534924bd1fcc990e52686fd436464bb634203e"
+      },
+      {
+        "bytes": 7887,
+        "path": "litecross/Makefile",
+        "sha256": "0d610337a23086e552989888d0e30926387c4e79e52c584a4f0e65e78e6265e1"
+      }
+    ]
+  },
+  "source_acceptance": "not-assessed",
+  "tag_declaration": {
+    "commit": "fefadd9e4e093f776cd14ee3685a80eb4ca000f4",
+    "entire_tag_history_inspected": false,
+    "observed_page_count": 19,
+    "selected_tag": "v4.19.88",
+    "tag_signature_verified": false
+  },
+  "upstream_programs_executed": false
+}

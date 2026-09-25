@@ -30,22 +30,24 @@
 
 ## 近期顺位
 
-Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收；普通 `dev` push 仍不自动触发 CI。资源与维护决策已收口；kernel / Debian / Rust Linux 来源诊断尚未形成完整 source lock、真实安装或构建验收。此前批次交接见 [2026-09-16 日终回顾](../records/2026-09-16-closeout.md)；本批完成 [MPFR 六项真实离线验签](../records/rust-linux-input-review/mpfr-verification-entry-2026-09-25.md#本次授权与真实执行结果)，所有正负例符合预期，六个容器已清理；[固定原包来源审阅](../records/rust-linux-input-review/mpfr-source-acceptance-review-2026-09-25.md)已完成，项目所有者已确认限定声明，该精确原包的限定来源接受通过。
+Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收；普通 `dev` push 仍不自动触发 CI。kernel / Debian / Rust Linux 来源诊断尚未形成完整 source lock、真实安装或构建验收。
 
-[ADR 0015（Accepted）](../adr/0015-virtualized-checker-resource-profile.md)确认 guest 128 MiB 硬限及宿主总内存无等价硬保证；8,000 行预警线、最多 10 人日和每周 4 小时投入已确认，项目所有者统一负责 runtime 与 kernel / init。细节以[维护责任](../checker-runtime-productization-dependency-review.md#许可证与维护责任)为准。
+[ADR 0015（Accepted）](../adr/0015-virtualized-checker-resource-profile.md)确认 guest 128 MiB 硬限及宿主总内存无等价硬保证；8,000 行预警线、最多 10 人日和每周 4 小时投入已确认，项目所有者负责 runtime 与 kernel / init，详见[维护责任](../checker-runtime-productization-dependency-review.md#许可证与维护责任)。
 
 ### 下一步
 
-musl 两角色真实验签及[固定原包的限定来源验收](../records/rust-linux-input-review/musl-source-acceptance-review-2026-09-16.md)已完成，范围限于已确认工具 / 宿主与公钥材料时点。MPC / MPFR 原包、签名及公钥已取得并结构盘点；MPFR 已完成六项真实验签与限定来源接受；MPC 的[限定归档来源声明](../records/rust-linux-input-review/mpc-source-acceptance-review-2026-09-25.md)已获确认，上游作者签名仍未验证。早前材料事实见[原包核对](../records/rust-linux-input-review/mpc-mpfr-inputs-2026-09-16.md)和[公钥审阅](../records/rust-linux-input-review/mpc-mpfr-key-inputs-2026-09-16.md)。
+已接受的限定范围：[musl 固定来源](../records/rust-linux-input-review/musl-source-acceptance-review-2026-09-16.md)、[MPFR 固定来源](../records/rust-linux-input-review/mpfr-source-acceptance-review-2026-09-25.md)、[MPC 限定 Debian 归档来源](../records/rust-linux-input-review/mpc-source-acceptance-review-2026-09-25.md)。MPFR 六项真实验签已完成；MPC 上游作者签名仍未验证。限定声明不转移给其他输入。
 
-1. **推进 headers 来源与 GMP 验证方案，保留来源缺口。** Binutils 2.44 的[GNU 钥环](../records/rust-linux-input-review/binutils-key-refresh-2026-09-25.md)与[其他取钥 / Debian 候选](../records/rust-linux-input-review/binutils-source-routes-2026-09-25.md)未补足强自认证；固定 Debian `.xz` 与配方 `.gz` 的完整 tar 及部分文件不同，不能给现有整包背书。[GCC 9.4.0 精确原包](../records/rust-linux-input-review/gcc-inputs-2026-09-25.md)已匹配官方 SHA-512 / 固定配方 SHA-1；[本批公钥与内容盘点](../records/rust-linux-input-review/gcc-key-content-review-2026-09-25.md)完成 94,646 个逻辑成员及选定许可文本核对。官方签名指纹实际是子钥；GNU / Ubuntu 材料中的目标子钥绑定及反向认证均声明 SHA-1，尚未验签或接受 GCC 来源。两者均不启用弱摘要兼容，不以替换格式、版本或忽略认证包绕过缺口。[GMP 6.3.0 原包、公钥及内容](../records/rust-linux-input-review/gmp-inputs-2026-09-25.md)已取得并盘点：配方摘要对应，原包签名声明 SHA-512，新增 SHA-256 自认证，但最新 UID 自认证仍声明主钥于 2025 年到期，尚未验签或接受来源。下一步按[剩余路线](../records/rust-linux-input-review/musl-remaining-sources-2026-09-16.md)核对 headers 重打包来源，并为 GMP 明确时点、撤销 / 最新性与受限验签方案；之后补发布构建关联、Rust 公钥与宿主库、kernel 原始 tag / 最终链接。其他材料可独立推进，完整 source lock 与[隔离安装切片](../checker-runtime-linux-install-slice-review.md)仍不得越过 GCC / Binutils 缺口；改变信任规则或验收对象须单独审阅确认。
-2. **并行核对备份转移与增量。** 9 月 16 日交付的 60.4 MiB 固定快照包不含后续 MPC / MPFR 原包、公钥及本次 MPC 刷新材料；这些增量及后续 Binutils / GCC / GMP 材料已有独立本机留存。该日日终 Downloads 三个交付文件已不在原路径，项目内最终包摘要仍一致；待核实目标副本，再补后续增量，不据此声称异盘恢复已完成。详见[日终材料状态](../records/2026-09-16-closeout.md#本机材料与外部影响)。备份转移不新增为本地来源审阅的密码学门槛。
+1. **整理 GMP 受限验签方案。** [GMP 原包与公钥](../records/rust-linux-input-review/gmp-inputs-2026-09-25.md)已取得：配方摘要对应，分离签名声明 SHA-512，新增 SHA-256 自认证，但最新 UID 自认证仍声明主钥于 2025 年到期。下一步明确签署 / 核验时点、撤销与材料最新性、身份及工具 / 宿主假设，再准备具体执行切片；尚未验签或接受来源，不自动忽略到期或沿用 MPC 的归档接受。
+2. **补 headers 认证、制作过程与许可。** [本批 headers 核对](../records/rust-linux-input-review/linux-headers-inputs-2026-09-25.md)已取得固定 Rust 镜像包和上游 tag 所指 commit 归档：1,343 个成员 / 86 个符号链接，共有文件内容与链接目标一致；候选多三个根脚本，模式 / owner / mtime 不同。AArch64 866 项路径投影一致，但没有实际安装、tag / commit 验签、原始 kernel 到重打包过程证明或完整许可材料；不得升级为来源接受。
+3. **保留 GCC / Binutils 阻断并补其他独立材料。** [GCC](../records/rust-linux-input-review/gcc-key-content-review-2026-09-25.md)目标子钥绑定及反向认证仍声明 SHA-1；[Binutils](../records/rust-linux-input-review/binutils-source-routes-2026-09-25.md)未取得强自认证，Debian 候选与精确配方整包不等价。均不启用弱摘要兼容、不替换版本 / 格式或忽略认证包。后续按[剩余路线](../records/rust-linux-input-review/musl-remaining-sources-2026-09-16.md)补发布构建关联、Rust 公钥 / 宿主库、kernel 原始 tag / 最终链接；完整 source lock 与[隔离安装](../checker-runtime-linux-install-slice-review.md)不得越过未闭合来源，改变信任规则或验收对象须单独审阅确认。
+4. **核对备份转移与后续增量。** 9 月 16 日的 60.4 MiB 快照不含后续 MPC / MPFR / GCC / Binutils / GMP / headers 增量，后续各批已有独立本机留存。Downloads 原三个交付文件已不在原路径，项目内最终包摘要仍一致；待核实目标副本并补增量，不声称异盘恢复已完成。见[日终材料状态](../records/2026-09-16-closeout.md#本机材料与外部影响)；备份转移不新增为密码学门槛。
 
-这些是后续顺位，不是自动任务或新的下载、执行、安装授权。MPC 三项公开材料、Binutils 原包批三项、后续公告 / 公钥批三项、GNU 刷新两项、公开钥服务器两项、Debian 候选一项、GCC 四对象 / 单次恢复请求、GCC 身份页 / 完整指纹取钥两项及本批 GMP 五项均已分别确认并完成，不延续为新取钥或密码学执行授权。9 月 25 日本次六项执行授权已完成，不延续为重复运行、安装或 MPC 的执行授权；MPFR 限定来源决定另见上述已确认审阅。
+以上是顺位，不是新下载、验签、安装或自动任务授权。本批 headers 两项初始请求及一个固定 commit 归档请求已分别获准并完成；此前请求 / 执行授权也均已结束，精确事实留在各批记录，不延续为重复运行或新目标权限。
 
-[AX-B01 首切片依赖审阅](../axiom-pipeline-first-slice-dependency-review.md)已列出 P0–P9 前置；cvc5 / Node 自身的来源与外层硬限制仍需独立闭合。纯设计无需等待产品安装 / 激活，生产实现遵守 ADR 0007 全部入口或正式替代决策。
+[AX-B01 首切片依赖审阅](../axiom-pipeline-first-slice-dependency-review.md)已列 P0–P9 前置；cvc5 / Node 来源与外层硬限制仍需独立闭合。纯设计不必等待产品安装 / 激活，生产实现遵守 ADR 0007 全部入口或正式替代决策。
 
-Checker 语义线先核实目标归因，再验收同域泛化、独立证明链和结果解释；不改变上述 runtime 前置。后续补规范负例、资源曲线和装置审计，工具与实现入口通过后锁定并另行授权 Agent 实验；语法、跨域、SDK / IDE、平台与商业扩张后置。
+Checker 语义线先核实目标归因，再验收同域泛化、独立证明链和结果解释；不改变上述 runtime 前置。后续补规范负例、资源曲线和装置审计，入口通过后锁定并另行授权 Agent 实验；语法、跨域、SDK / IDE、平台与商业扩张后置。
 
 ## 当前停止线与待决策
 
@@ -59,7 +61,7 @@ Checker 语义线先核实目标归因，再验收同域泛化、独立证明链
 
 ## 验证入口与本次审阅
 
-2026-09-25：本批 GMP 五项请求均 HTTP 200；固定配方摘要、2,343 成员 / 2,156 文件、公钥结构与选定文本核对完成。50 路径留存恢复及完整导出重算一致；新增 7 项与复用 44 项，共 **51 项检查通过**，仓库级检查通过。尚未执行 GnuPG、Rust / CI、产品构建或原包程序，诊断未接入默认门禁。详情见 [GMP 本批记录](../records/rust-linux-input-review/gmp-inputs-2026-09-25.md)；此前分别见 [MPFR 真实验签](../records/rust-linux-input-review/mpfr-verification-entry-2026-09-25.md#本次授权与真实执行结果)、[MPC 来源审阅](../records/rust-linux-input-review/mpc-source-acceptance-review-2026-09-25.md)、[Binutils 候选路线](../records/rust-linux-input-review/binutils-source-routes-2026-09-25.md)、[GCC 公钥 / 内容](../records/rust-linux-input-review/gcc-key-content-review-2026-09-25.md)及[9 月 16 日日终记录](../records/2026-09-16-closeout.md#日终验证与交接)。
+2026-09-25：[headers 本批](../records/rust-linux-input-review/linux-headers-inputs-2026-09-25.md)三项请求均成功，固定配方、符号链接、共有内容及 AArch64 路径投影核对完成；38 路径恢复后完整导出 / 摘要 / 选定文本重算一致。新增 19 项与复用 33 项，共 **52 项检查通过**，仓库级检查通过。未运行密码学工具、Rust / CI、上游程序、安装或产品构建；诊断未接入默认门禁。历史验证按各批记录读取，早前 musl 与备份边界见[9 月 16 日日终记录](../records/2026-09-16-closeout.md#日终验证与交接)。
 
 仓库级契约、生成一致性与文本检查：
 
