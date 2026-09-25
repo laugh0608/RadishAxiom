@@ -1,0 +1,250 @@
+{
+  "complete_project_source_lock": false,
+  "external_required_inputs": [
+    {
+      "bytes": 72411232,
+      "path": "artifacts/source-inputs/gcc-inputs-dac0405-20260925/files/.tmp/gcc-inputs-dac0405-20260925/gcc-attempt-2.tar.xz",
+      "sha256": "c95da32f440378d7751dd95533186f7fc05ceb4fb65eb5b85234e6299eb9838e"
+    }
+  ],
+  "files": [
+    {
+      "bytes": 3687794,
+      "path": ".tmp/binutils-key-refresh-383b570-20260925/gnu-keyring-attempt-1.gpg",
+      "role": "prior-gnu-keyring-input",
+      "sha256": "b136fbe57ade4ee5270ca66c402cae7b50349fd07646b5b3de7962d58d4df608"
+    },
+    {
+      "bytes": 1516,
+      "path": ".tmp/binutils-key-refresh-383b570-20260925/gnu-keyring-attempt-1.json",
+      "role": "prior-gnu-keyring-input",
+      "sha256": "f7374c39385776d80151f43ce42f2625871f01cd29353b02a14d0d112b0ec6fd"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/binutils-key-refresh-383b570-20260925/gnu-keyring-attempt-1.stderr",
+      "role": "prior-gnu-keyring-input",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/binutils-key-refresh-383b570-20260925/gnu-keyring-attempt-1.stdout",
+      "role": "prior-gnu-keyring-input",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 310,
+      "path": ".tmp/gcc-inputs-dac0405-20260925/signature-attempt-1.sig",
+      "role": "prior-detached-signature",
+      "sha256": "764f191a8679cf7269dd73a5b313d5597b28424dd7c74a82d43570ba5da0eced"
+    },
+    {
+      "bytes": 746,
+      "path": ".tmp/gcc-key-content-50ef87c-20260925/fetch-plan.json",
+      "role": "reviewed-fetch-scope",
+      "sha256": "6b1911c6eea58eaa4ac83462d2e83be81cf76b5160df38d231f5587debac849a"
+    },
+    {
+      "bytes": 5173,
+      "path": ".tmp/gcc-key-content-50ef87c-20260925/identity-attempt-1.html",
+      "role": "original-fetch-input",
+      "sha256": "7235342adb022666828ad687490b18008a9206ad024a01b88e20807c22d6425b"
+    },
+    {
+      "bytes": 1486,
+      "path": ".tmp/gcc-key-content-50ef87c-20260925/identity-attempt-1.json",
+      "role": "original-fetch-input",
+      "sha256": "b8f085d290e17881471b10e27c0d766dc0b3271eee562e2841a8a50a56f3108b"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/gcc-key-content-50ef87c-20260925/identity-attempt-1.stderr",
+      "role": "original-fetch-input",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/gcc-key-content-50ef87c-20260925/identity-attempt-1.stdout",
+      "role": "original-fetch-input",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 23601,
+      "path": ".tmp/gcc-key-content-50ef87c-20260925/public-key-attempt-1.asc",
+      "role": "original-fetch-input",
+      "sha256": "4862f6aac833d841e2af4eb875919940133965888a00e18fbd175e752fb71b6b"
+    },
+    {
+      "bytes": 1619,
+      "path": ".tmp/gcc-key-content-50ef87c-20260925/public-key-attempt-1.json",
+      "role": "original-fetch-input",
+      "sha256": "b3d319352e6ac7ffddde84878f9f91f6951351f739067e90ef2230fd32a5a232"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/gcc-key-content-50ef87c-20260925/public-key-attempt-1.stderr",
+      "role": "original-fetch-input",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/gcc-key-content-50ef87c-20260925/public-key-attempt-1.stdout",
+      "role": "original-fetch-input",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 295593,
+      "path": ".tmp/gcc-key-content-50ef87c-20260925/selected-texts.json",
+      "role": "derived-selected-review-texts",
+      "sha256": "f42a083eb7ca2d04e354387a666480e5e0682a2288290a28042eebfea4647a81"
+    },
+    {
+      "bytes": 12010,
+      "path": "docs/records/rust-linux-input-review/binutils-key-refresh-2026-09-25.json",
+      "role": "reviewed-report-or-prior-retention-reference",
+      "sha256": "c01f7ab997b00cf4ca5bdfc2de8385103fec129de0fb69eb709e359612e479e0"
+    },
+    {
+      "bytes": 5195,
+      "path": "docs/records/rust-linux-input-review/binutils-key-refresh-retention-manifest-2026-09-25.json",
+      "role": "reviewed-report-or-prior-retention-reference",
+      "sha256": "45d966e0785e716ba4a0fe51b8fff5e6b64a3ac9a367229e5e84100218514d6e"
+    },
+    {
+      "bytes": 4070,
+      "path": "docs/records/rust-linux-input-review/check-binutils-key-refresh.py",
+      "role": "replay-method",
+      "sha256": "785753e607f3a24811ab24e877c83ef5dc26b6f5a49fcf21e65a6140dfc59be0"
+    },
+    {
+      "bytes": 4868,
+      "path": "docs/records/rust-linux-input-review/check-gcc-content.py",
+      "role": "replay-method",
+      "sha256": "23351d5b8d20731694104f223eafb0c1b8e83f4e7e75d1290c74968b627d1de0"
+    },
+    {
+      "bytes": 4083,
+      "path": "docs/records/rust-linux-input-review/check-gcc-key-inputs.py",
+      "role": "replay-method",
+      "sha256": "2b751ff868778b15abbd73c5ed651c960d16f605198b96bb51e4ae3b81cf11cf"
+    },
+    {
+      "bytes": 3949,
+      "path": "docs/records/rust-linux-input-review/check-mpc-mpfr-key-inputs.py",
+      "role": "replay-method",
+      "sha256": "5354aa4b325c6011d13e7a003e874e5d8c1d80535cffde0d542fcdda39369d8d"
+    },
+    {
+      "bytes": 4164,
+      "path": "docs/records/rust-linux-input-review/check-musl-retention.py",
+      "role": "replay-method",
+      "sha256": "b983a8f088a9b2a0fa721886c1951f2436ab6ce916ab0d803f3e147038e0c6f1"
+    },
+    {
+      "bytes": 1661,
+      "path": "docs/records/rust-linux-input-review/fetch-gcc-key-inputs.py",
+      "role": "replay-method",
+      "sha256": "24b866e59d6e35c1b13d5f003ce8c87adbee2f2438d9b6e74094569382fbfb40"
+    },
+    {
+      "bytes": 5126,
+      "path": "docs/records/rust-linux-input-review/fetch-mpc-mpfr-inputs.py",
+      "role": "replay-method",
+      "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+    },
+    {
+      "bytes": 3494,
+      "path": "docs/records/rust-linux-input-review/fetch-mpc-mpfr-key-inputs.py",
+      "role": "replay-method",
+      "sha256": "678bdbeb5e5c2d62d38521dfc2de60e6f4ab99dbd5f4d7b24ec63043f3c16cf8"
+    },
+    {
+      "bytes": 4465410,
+      "path": "docs/records/rust-linux-input-review/gcc-content-2026-09-25.json.gz",
+      "role": "reviewed-report-or-prior-retention-reference",
+      "sha256": "3dd1e9a7e194f47addeedbd63afc30a850ddb1e30006007f09f9743c3be259f3"
+    },
+    {
+      "bytes": 7908,
+      "path": "docs/records/rust-linux-input-review/gcc-content-summary-2026-09-25.json",
+      "role": "reviewed-report-or-prior-retention-reference",
+      "sha256": "25f437ee7937706182746ae7a266aa33679f9e19388af871ec34a71f8f24b2fc"
+    },
+    {
+      "bytes": 12515,
+      "path": "docs/records/rust-linux-input-review/gcc-inputs-2026-09-25.json",
+      "role": "reviewed-report-or-prior-retention-reference",
+      "sha256": "d605cdcc7930a18d4a8d84257d67ccc4971b6f64e6c002e168cfcf22304faa17"
+    },
+    {
+      "bytes": 122190,
+      "path": "docs/records/rust-linux-input-review/gcc-key-inputs-2026-09-25.json",
+      "role": "reviewed-report-or-prior-retention-reference",
+      "sha256": "fa8aa4f65084fa194bfb4b5793df850295e76c1c342923b59dcbfbbbb555786e"
+    },
+    {
+      "bytes": 8407,
+      "path": "docs/records/rust-linux-input-review/gcc-retention-manifest-2026-09-25.json",
+      "role": "reviewed-report-or-prior-retention-reference",
+      "sha256": "2b69dcb0632f2dfb893fec55fc280e21b2b514b73f6bc22ba6fbcfada9b78185"
+    },
+    {
+      "bytes": 10104,
+      "path": "docs/records/rust-linux-input-review/inspect-archives.py",
+      "role": "replay-method",
+      "sha256": "e9a417881e4caff2da92441dc19e958d93dba27173b38d3ce4425a9fd7c3b949"
+    },
+    {
+      "bytes": 5172,
+      "path": "docs/records/rust-linux-input-review/inspect-binutils-key-inputs.py",
+      "role": "replay-method",
+      "sha256": "90ea112e7d003a4d3acd448b71ca2f46aef6ebbf59eaf2c6983bc304327c9810"
+    },
+    {
+      "bytes": 7717,
+      "path": "docs/records/rust-linux-input-review/inspect-binutils-key-refresh.py",
+      "role": "replay-method",
+      "sha256": "240902dabd77bd1215d0bcb4ddc1da688a8ae2457478fcb7a376d1027ab792e7"
+    },
+    {
+      "bytes": 6933,
+      "path": "docs/records/rust-linux-input-review/inspect-gcc-content.py",
+      "role": "replay-method",
+      "sha256": "882e992d6089cffe7049a88a53715cf35dc79ba05b0f5919256146a0de121106"
+    },
+    {
+      "bytes": 10217,
+      "path": "docs/records/rust-linux-input-review/inspect-gcc-key-inputs.py",
+      "role": "replay-method",
+      "sha256": "b5f7c4bbd3f455715fadbe491fb99b254726127a1735fdaa841522790df3f90e"
+    },
+    {
+      "bytes": 9064,
+      "path": "docs/records/rust-linux-input-review/inspect-mpc-mpfr-key-inputs.py",
+      "role": "replay-method",
+      "sha256": "629cccc5fc59a91167fbeddbe73773e94774576ef7a904ae0f16b6aa7b5bdb53"
+    },
+    {
+      "bytes": 11967,
+      "path": "docs/records/rust-linux-input-review/inspect-musl-verification-keys.py",
+      "role": "replay-method",
+      "sha256": "391c7e48b0792330135990e3358f5dad811d745c3010a30aad084c81e6e05ae4"
+    },
+    {
+      "bytes": 7460,
+      "path": "docs/records/rust-linux-input-review/inspect-musl-verification-status.py",
+      "role": "replay-method",
+      "sha256": "b3964b6904c13c82596438af2ec8030455137c0121cfdc35ff3e77a79963e9fc"
+    },
+    {
+      "bytes": 10295,
+      "path": "docs/records/rust-linux-input-review/retain-musl-verifier-inputs.py",
+      "role": "replay-method",
+      "sha256": "72047818576ab27de02cf8e9620c33299c007b4c64108fb7c11a3c1d23e3ca0a"
+    }
+  ],
+  "kind": "diagnostic-musl-retention-manifest-v1",
+  "repository_base": "50ef87c",
+  "scope": "GCC public identity/key requests, GNU keyring, content diagnostics and replay methods; large archive remains in prior retention",
+  "source_acceptance": "not-assessed"
+}

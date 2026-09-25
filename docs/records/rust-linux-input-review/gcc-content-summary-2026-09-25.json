@@ -1,0 +1,285 @@
+{
+  "archive": {
+    "bytes": 72411232,
+    "sha256": "c95da32f440378d7751dd95533186f7fc05ceb4fb65eb5b85234e6299eb9838e"
+  },
+  "implicit_directories": [],
+  "kind": "diagnostic-gcc-content-v1",
+  "license_named_files_not_exhaustive": [
+    "gcc-9.4.0/COPYING",
+    "gcc-9.4.0/COPYING.LIB",
+    "gcc-9.4.0/COPYING.RUNTIME",
+    "gcc-9.4.0/COPYING3",
+    "gcc-9.4.0/COPYING3.LIB",
+    "gcc-9.4.0/contrib/update-copyright.py",
+    "gcc-9.4.0/gcc/COPYING",
+    "gcc-9.4.0/gcc/COPYING.LIB",
+    "gcc-9.4.0/gcc/COPYING3",
+    "gcc-9.4.0/gcc/COPYING3.LIB",
+    "gcc-9.4.0/gcc/ada/doc/share/copyright.tex",
+    "gcc-9.4.0/gcc/ada/doc/share/gnu_free_documentation_license.rst",
+    "gcc-9.4.0/gcc/d/dmd/boostlicense.txt",
+    "gcc-9.4.0/gcc/go/gofrontend/LICENSE",
+    "gcc-9.4.0/gcc/testsuite/gcc.dg/params/LICENSE",
+    "gcc-9.4.0/include/COPYING",
+    "gcc-9.4.0/include/COPYING3",
+    "gcc-9.4.0/libffi/LICENSE",
+    "gcc-9.4.0/libgo/LICENSE",
+    "gcc-9.4.0/libgo/go/golang.org/x/tools/LICENSE",
+    "gcc-9.4.0/libiberty/COPYING.LIB",
+    "gcc-9.4.0/libiberty/copying-lib.texi",
+    "gcc-9.4.0/libphobos/libdruntime/LICENSE",
+    "gcc-9.4.0/libphobos/src/LICENSE_1_0.txt",
+    "gcc-9.4.0/libquadmath/COPYING.LIB",
+    "gcc-9.4.0/libsanitizer/LICENSE.TXT",
+    "gcc-9.4.0/libstdc++-v3/doc/html/manual/license.html",
+    "gcc-9.4.0/libstdc++-v3/include/pstl/LICENSE.txt",
+    "gcc-9.4.0/zlib/contrib/dotzlib/LICENSE_1_0.txt"
+  ],
+  "license_review_complete": false,
+  "limits": {
+    "compressed": 100663296,
+    "member": 33554432,
+    "members": 200000,
+    "path": 4096,
+    "tar": 1073741824,
+    "text": 2097152,
+    "xz_memory": 268435456
+  },
+  "max_file_bytes": 7056957,
+  "member_count": 94646,
+  "methods": {
+    "inspect-archives.py": {
+      "bytes": 10104,
+      "sha256": "e9a417881e4caff2da92441dc19e958d93dba27173b38d3ce4425a9fd7c3b949"
+    },
+    "inspect-gcc-content.py": {
+      "bytes": 6933,
+      "sha256": "882e992d6089cffe7049a88a53715cf35dc79ba05b0f5919256146a0de121106"
+    },
+    "retain-musl-verifier-inputs.py": {
+      "bytes": 10295,
+      "sha256": "72047818576ab27de02cf8e9620c33299c007b4c64108fb7c11a3c1d23e3ca0a"
+    }
+  },
+  "physical_tar_profile_verified": false,
+  "selected_file_identities": [
+    {
+      "bytes": 18002,
+      "gid": 100,
+      "kind": "file",
+      "mode": 420,
+      "path": "gcc-9.4.0/COPYING",
+      "sha256": "231f7edcc7352d7734a96eef0b8030f77982678c516876fcb81e25b32d68564c",
+      "uid": 1000
+    },
+    {
+      "bytes": 26527,
+      "gid": 100,
+      "kind": "file",
+      "mode": 420,
+      "path": "gcc-9.4.0/COPYING.LIB",
+      "sha256": "a9bdde5616ecdd1e980b44f360600ee8783b1f99b8cc83a2beb163a0a390e861",
+      "uid": 1000
+    },
+    {
+      "bytes": 3324,
+      "gid": 100,
+      "kind": "file",
+      "mode": 420,
+      "path": "gcc-9.4.0/COPYING.RUNTIME",
+      "sha256": "9d6b43ce4d8de0c878bf16b54d8e7a10d9bd42b75178153e3af6a815bdc90f74",
+      "uid": 1000
+    },
+    {
+      "bytes": 35147,
+      "gid": 100,
+      "kind": "file",
+      "mode": 420,
+      "path": "gcc-9.4.0/COPYING3",
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+      "uid": 1000
+    },
+    {
+      "bytes": 7639,
+      "gid": 100,
+      "kind": "file",
+      "mode": 420,
+      "path": "gcc-9.4.0/COPYING3.LIB",
+      "sha256": "a853c2ffec17057872340eee242ae4d96cbf2b520ae27d903e1b2fef1a5f9d1c",
+      "uid": 1000
+    },
+    {
+      "bytes": 1026,
+      "gid": 100,
+      "kind": "file",
+      "mode": 420,
+      "path": "gcc-9.4.0/README",
+      "sha256": "49306c701a64d02dc25de7c89eac5643a3e73c159b4aa9438b47f6b9d86ba0df",
+      "uid": 1000
+    },
+    {
+      "bytes": 7848,
+      "gid": 100,
+      "kind": "file",
+      "mode": 493,
+      "path": "gcc-9.4.0/contrib/download_prerequisites",
+      "sha256": "6a9cc83ac79cb7916408483c88fdae1da9f6c54466e54258a9bd114ec397c8c3",
+      "uid": 1000
+    },
+    {
+      "bytes": 6,
+      "gid": 100,
+      "kind": "file",
+      "mode": 420,
+      "path": "gcc-9.4.0/gcc/BASE-VER",
+      "sha256": "b138deb2a4876d4dddab7e07791bd6ece9652557672bd576fb25dfef1d0c5c5a",
+      "uid": 1000
+    },
+    {
+      "bytes": 9,
+      "gid": 100,
+      "kind": "file",
+      "mode": 420,
+      "path": "gcc-9.4.0/gcc/DATESTAMP",
+      "sha256": "86835481c62a8a02cb252e8d0d63cc9bba04d4676911901437bff83156eb490b",
+      "uid": 1000
+    },
+    {
+      "bytes": 0,
+      "gid": 100,
+      "kind": "file",
+      "mode": 420,
+      "path": "gcc-9.4.0/gcc/DEV-PHASE",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uid": 1000
+    },
+    {
+      "bytes": 1397,
+      "gid": 100,
+      "kind": "file",
+      "mode": 420,
+      "path": "gcc-9.4.0/gcc/version.c",
+      "sha256": "a922618a6be107f5080b07677c073de7584f66ad58e579372155176d6dbea16d",
+      "uid": 1000
+    },
+    {
+      "bytes": 9631,
+      "gid": 100,
+      "kind": "file",
+      "mode": 420,
+      "path": "gcc-9.4.0/libatomic/libatomic_i.h",
+      "sha256": "8afd63834ed984348f40c1ba08dc777c38e1982f9681e28a233db4257639e12a",
+      "uid": 1000
+    },
+    {
+      "bytes": 39601,
+      "gid": 100,
+      "kind": "file",
+      "mode": 420,
+      "path": "gcc-9.4.0/libgcc/Makefile.in",
+      "sha256": "d98fdcb5673cf6dc22978cd62635f0fc070b92bdbe10b588cf97ec368654b061",
+      "uid": 1000
+    },
+    {
+      "bytes": 52744,
+      "gid": 100,
+      "kind": "file",
+      "mode": 420,
+      "path": "gcc-9.4.0/libgcc/libgcc2.c",
+      "sha256": "60fe3340b20435eec3aec388397a022df050862183e6a3ba3b9d2ab0ee6693d8",
+      "uid": 1000
+    },
+    {
+      "bytes": 1479,
+      "gid": 100,
+      "kind": "file",
+      "mode": 420,
+      "path": "gcc-9.4.0/libgo/LICENSE",
+      "sha256": "2d36597f7117c38b006835ae7f537487207d8ec407aa9d9980794b2030cbc067",
+      "uid": 1000
+    },
+    {
+      "bytes": 40930,
+      "gid": 100,
+      "kind": "file",
+      "mode": 420,
+      "path": "gcc-9.4.0/libgomp/libgomp.h",
+      "sha256": "7e253e2c47d49310755cc61ea34d89d6ca542f6150c63a2d70a60afdb37d35b8",
+      "uid": 1000
+    },
+    {
+      "bytes": 26440,
+      "gid": 100,
+      "kind": "file",
+      "mode": 420,
+      "path": "gcc-9.4.0/libquadmath/COPYING.LIB",
+      "sha256": "32434afcc8666ba060e111d715bfdb6c2d5dd8a35fa4d3ab8ad67d8f850d2f2b",
+      "uid": 1000
+    },
+    {
+      "bytes": 4506,
+      "gid": 100,
+      "kind": "file",
+      "mode": 420,
+      "path": "gcc-9.4.0/libsanitizer/LICENSE.TXT",
+      "sha256": "74c2b24539a53c34abddb559266d89cb653b0198cd2faf9c04763d3223db7f6d",
+      "uid": 1000
+    },
+    {
+      "bytes": 233,
+      "gid": 100,
+      "kind": "file",
+      "mode": 420,
+      "path": "gcc-9.4.0/libstdc++-v3/README",
+      "sha256": "28ccfda26b0f50642bb79c2e2ea2ec0d8a8a5fd9199ea573b28309a92f673607",
+      "uid": 1000
+    },
+    {
+      "bytes": 8010,
+      "gid": 100,
+      "kind": "file",
+      "mode": 420,
+      "path": "gcc-9.4.0/libstdc++-v3/libsupc++/new",
+      "sha256": "5fc834ad7625aacb91d438e348edcc258d581c8b3328ba68590c775f0fce42a6",
+      "uid": 1000
+    }
+  ],
+  "selected_review_files": [
+    "COPYING",
+    "COPYING.LIB",
+    "COPYING.RUNTIME",
+    "COPYING3",
+    "COPYING3.LIB",
+    "README",
+    "contrib/download_prerequisites",
+    "gcc/BASE-VER",
+    "gcc/DATESTAMP",
+    "gcc/DEV-PHASE",
+    "gcc/version.c",
+    "libatomic/libatomic_i.h",
+    "libgcc/Makefile.in",
+    "libgcc/libgcc2.c",
+    "libgo/LICENSE",
+    "libgomp/libgomp.h",
+    "libquadmath/COPYING.LIB",
+    "libsanitizer/LICENSE.TXT",
+    "libstdc++-v3/README",
+    "libstdc++-v3/libsupc++/new"
+  ],
+  "source_acceptance": "not-assessed",
+  "tar": {
+    "bytes": 716871680,
+    "sha256": "b71fea8421126610b2bd211b9b732220c62e91debf768704bad86a9802013ce2"
+  },
+  "type_counts": {
+    "directory": 4806,
+    "file": 89840
+  },
+  "upstream_programs_executed": false,
+  "version_declarations": {
+    "gcc/BASE-VER": "9.4.0\n",
+    "gcc/DATESTAMP": "20210601\n",
+    "gcc/DEV-PHASE": ""
+  }
+}
