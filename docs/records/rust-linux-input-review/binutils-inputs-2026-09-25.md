@@ -61,3 +61,5 @@ python3 docs/records/rust-linux-input-review/inspect-binutils-inputs.py \
 这批没有解压或检查原包内部内容，`archive_content_inspected` 与 `license_review_complete` 均为 `false`；未安装、构建、运行真实验签、Rust / CI 或产品测试，没有新增后台进程。公钥 / 许可证及来源接受分别补齐，不能把本批摘要一致或结构解析称为 `proved`。
 
 `./scripts/check-repo.sh` 通过（1,192 个文件），`git diff --check` 通过。收尾仍为 `dev`，相对本地 `origin/dev` ahead 3，未刷新或推送远端。本次 MPC 决定同步与 Binutils 材料切片共 11 个文件留在工作区，未提交；原获取目录、同步副本、留存目录和实际恢复目录均保留。
+
+后续批次已取得上述 GNU 附件，并完成[公钥与有界内容盘点](binutils-key-content-review-2026-09-25.md)。完整指纹一致，但自认证声明 SHA-1；真实验签与来源接受仍待补。本记录及其原始导出保留获取阶段事实。

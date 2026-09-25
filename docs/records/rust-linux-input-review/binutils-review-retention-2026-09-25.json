@@ -1,0 +1,35 @@
+{
+  "content_replay_from_prior_archive_store_equal": true,
+  "content_summary_recomputed_equal": true,
+  "cryptography_executed": false,
+  "key_diagnostic_replay_equal": true,
+  "kind": "diagnostic-binutils-review-retention-v1",
+  "off_device_backup_verified": false,
+  "pack": {
+    "file_count": 38,
+    "manifest": {
+      "bytes": 9327,
+      "sha256": "6f4b6366c71b07fc9e082fc05d8047935f7acfd0f6e6381e711b7c63d995be90"
+    },
+    "object_bytes": 1523012,
+    "object_count": 32,
+    "off_device_backup_verified": false,
+    "source_acceptance": "not-assessed"
+  },
+  "prior_archive_store": "artifacts/source-inputs/binutils-inputs-8a610c7-20260925",
+  "replay_methods_match_retained_manifest": true,
+  "restoration": {
+    "file_count": 38,
+    "manifest": {
+      "bytes": 9327,
+      "sha256": "6f4b6366c71b07fc9e082fc05d8047935f7acfd0f6e6381e711b7c63d995be90"
+    },
+    "object_count": 32,
+    "off_device_backup_verified": false,
+    "restored_bytes_match": true,
+    "source_acceptance": "not-assessed"
+  },
+  "restore": ".tmp/binutils-review-restore-20260925",
+  "source_acceptance": "not-assessed",
+  "store": "artifacts/source-inputs/binutils-review-e854595-20260925"
+}

@@ -38,10 +38,10 @@ Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收；�
 
 musl 两角色真实验签及[固定原包的限定来源验收](../records/rust-linux-input-review/musl-source-acceptance-review-2026-09-16.md)已完成，范围限于已确认工具 / 宿主与公钥材料时点。MPC / MPFR 原包、签名及公钥已取得并结构盘点；MPFR 已完成六项真实验签与限定来源接受；MPC 的[限定归档来源声明](../records/rust-linux-input-review/mpc-source-acceptance-review-2026-09-25.md)已获确认，上游作者签名仍未验证。早前材料事实见[原包核对](../records/rust-linux-input-review/mpc-mpfr-inputs-2026-09-16.md)和[公钥审阅](../records/rust-linux-input-review/mpc-mpfr-key-inputs-2026-09-16.md)。
 
-1. **补齐 Binutils 公钥、内容与验签前置。** [固定 2.44 原包材料](../records/rust-linux-input-review/binutils-inputs-2026-09-25.md)已取得并留存，公告 SHA-256 与配方字节对应一致；签名结构已盘点，尚未认证。下一步补完整指纹的身份 / 自认证材料及有界内容 / 许可盘点，再形成真实验签切片；不把公告摘要当作已验签，不替换 `.gz`、`with-gold` 或相邻版本。随后依照[剩余路线](../records/rust-linux-input-review/musl-remaining-sources-2026-09-16.md)补 GCC / GMP / headers、发布构建关联、Rust 公钥与宿主库、kernel 原始 tag / 最终链接，再收口[隔离安装切片](../checker-runtime-linux-install-slice-review.md)。
-2. **并行核对备份转移与增量。** 9 月 16 日交付的 60.4 MiB 固定快照包不含后续 MPC / MPFR 原包、公钥及本次 MPC 刷新材料；这些增量及本次 Binutils 材料已有独立本机留存。该日日终 Downloads 三个交付文件已不在原路径，项目内最终包摘要仍一致；待核实目标副本，再补后续增量，不据此声称异盘恢复已完成。详见[日终材料状态](../records/2026-09-16-closeout.md#本机材料与外部影响)。备份转移不新增为本地来源审阅的密码学门槛。
+1. **补齐 Binutils 强摘要自认证前置。** [固定 2.44 原包](../records/rust-linux-input-review/binutils-inputs-2026-09-25.md)及[公钥 / 内容盘点](../records/rust-linux-input-review/binutils-key-content-review-2026-09-25.md)已留存并离线重放：28,449 个文件完成逻辑库存，许可只完成选读；公钥完整指纹匹配签名声明，但 UID 自认证和子钥绑定均声明 SHA-1，尚未满足既有强摘要规则。下一步寻找同指纹更新材料及发布者绑定，再形成真实验签切片；没有运行 Binutils GnuPG 或接受其来源，不启用弱摘要兼容，不替换 `.gz`、`with-gold` 或相邻版本。随后依照[剩余路线](../records/rust-linux-input-review/musl-remaining-sources-2026-09-16.md)补 GCC / GMP / headers、发布构建关联、Rust 公钥与宿主库、kernel 原始 tag / 最终链接，再收口[隔离安装切片](../checker-runtime-linux-install-slice-review.md)。
+2. **并行核对备份转移与增量。** 9 月 16 日交付的 60.4 MiB 固定快照包不含后续 MPC / MPFR 原包、公钥及本次 MPC 刷新材料；这些增量及本次 Binutils 原包、公钥与内容盘点已有独立本机留存。该日日终 Downloads 三个交付文件已不在原路径，项目内最终包摘要仍一致；待核实目标副本，再补后续增量，不据此声称异盘恢复已完成。详见[日终材料状态](../records/2026-09-16-closeout.md#本机材料与外部影响)。备份转移不新增为本地来源审阅的密码学门槛。
 
-这些是后续顺位，不是自动任务或新的下载、执行、安装授权。MPC 三项公开材料及后续 Binutils 三项获取均已分别确认并完成，不延续为新取钥或密码学执行授权。9 月 25 日本次六项执行授权已完成，不延续为重复运行、安装或 MPC 的执行授权；MPFR 限定来源决定另见上述已确认审阅。
+这些是后续顺位，不是自动任务或新的下载、执行、安装授权。MPC 三项公开材料、Binutils 原包批三项及后续公告 / 公钥批三项获取均已分别确认并完成，不延续为新取钥或密码学执行授权。9 月 25 日本次六项执行授权已完成，不延续为重复运行、安装或 MPC 的执行授权；MPFR 限定来源决定另见上述已确认审阅。
 
 [AX-B01 首切片依赖审阅](../axiom-pipeline-first-slice-dependency-review.md)已列出 P0–P9 前置；cvc5 / Node 自身的来源与外层硬限制仍需独立闭合。纯设计无需等待产品安装 / 激活，生产实现遵守 ADR 0007 全部入口或正式替代决策。
 
@@ -59,7 +59,7 @@ Checker 语义线先核实目标归因，再验收同域泛化、独立证明链
 
 ## 验证入口与本次审阅
 
-2026-09-25：准备阶段 **103 项**合成 / 回归检查通过；随后六项真实 GnuPG 诊断符合预期，六个容器均已删除，45 条命令及六项判定离线重放一致。新增导出方法 **7 项**合成检查通过；执行方法未修改，未重跑此前 103 项、Rust / CI 或产品构建。来源审阅轮另行重算导出与三份归档，身份页面指纹 / 链接匹配，没有重新执行密码学。另完成 MPC 三项有界 HTTPS 获取、18 路径增量恢复与既有 Debian 九项 / 66 条命令离线复核；公钥解析 9 项合成回归与仓库 1,187 文件检查通过，没有重跑 GnuPG。本次确认 MPC 限定来源，并完成 Binutils 三对象获取、原包摘要对应及从留存目录恢复复核，新增 5 项与复用 18 项回归及仓库 1,192 文件检查通过。详情见[MPFR 记录](../records/rust-linux-input-review/mpfr-verification-entry-2026-09-25.md#本次授权与真实执行结果)；诊断尚未接入默认仓库门禁。此前 musl 限定验收与备份边界见[9 月 16 日日终记录](../records/2026-09-16-closeout.md#日终验证与交接)。
+2026-09-25：准备阶段 **103 项**合成 / 回归检查通过；随后六项真实 GnuPG 诊断符合预期，六个容器均已删除，45 条命令及六项判定离线重放一致。新增导出方法 **7 项**合成检查通过；执行方法未修改，未重跑此前 103 项、Rust / CI 或产品构建。来源审阅轮另行重算导出与三份归档，身份页面指纹 / 链接匹配，没有重新执行密码学。另完成 MPC 三项有界 HTTPS 获取、18 路径增量恢复与既有 Debian 九项 / 66 条命令离线复核；公钥解析 9 项合成回归与仓库 1,187 文件检查通过，没有重跑 GnuPG。本次确认 MPC 限定来源，并完成 Binutils 三对象获取、原包摘要对应及从留存目录恢复复核，新增 5 项与复用 18 项回归及仓库 1,192 文件检查通过。后续 Binutils 公钥 / 内容批完成三项获取、38 路径增量恢复、库存及导出重放，26 项合成 / 回归及仓库 1,202 文件检查通过，未运行密码学。详情见[MPFR 记录](../records/rust-linux-input-review/mpfr-verification-entry-2026-09-25.md#本次授权与真实执行结果)；诊断尚未接入默认仓库门禁。此前 musl 限定验收与备份边界见[9 月 16 日日终记录](../records/2026-09-16-closeout.md#日终验证与交接)。
 
 仓库级契约、生成一致性与文本检查：
 

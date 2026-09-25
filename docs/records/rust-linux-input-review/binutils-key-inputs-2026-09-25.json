@@ -1,0 +1,296 @@
+{
+  "attachment_link_checked": true,
+  "cryptography_executed": false,
+  "fetches": [
+    {
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "262144",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/binutils-key-inputs-20260925/release-243-attempt-1.html",
+        "--write-out",
+        "%{http_code}\n",
+        "https://lists.gnu.org/archive/html/info-gnu/2024-08/msg00001.html"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 8635,
+        "file": "release-243-attempt-1.html",
+        "sha256": "b1616e492295e19766a513db72c70161dc5824242f97520c8f7c02225163c1c1"
+      },
+      "curl": {
+        "bytes": 829680,
+        "sha256": "625cd93eb0043214d5f74974d34f0b4d748977473e236a2e7f4704ecc2b95950"
+      },
+      "exit_code": 0,
+      "finished_at": "2026-09-25T07:12:24.395341+00:00",
+      "http_code": "200",
+      "index_and_recipe_bytes_match": null,
+      "kind": "diagnostic-mpc-mpfr-fetch-v1",
+      "method": {
+        "bytes": 5126,
+        "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+      },
+      "parent_timeout": false,
+      "passed": true,
+      "source_acceptance": "not-assessed",
+      "started_at": "2026-09-25T07:12:22.227377+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "release-243",
+      "transport_passed": true,
+      "url": "https://lists.gnu.org/archive/html/info-gnu/2024-08/msg00001.html"
+    },
+    {
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "262144",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/binutils-key-inputs-20260925/release-244-attempt-1.html",
+        "--write-out",
+        "%{http_code}\n",
+        "https://lists.gnu.org/archive/html/info-gnu/2025-02/msg00001.html"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 8097,
+        "file": "release-244-attempt-1.html",
+        "sha256": "0b57fae29d7dc924d40a584fc42a3ed05658ffd6b8402761512282490c936af5"
+      },
+      "curl": {
+        "bytes": 829680,
+        "sha256": "625cd93eb0043214d5f74974d34f0b4d748977473e236a2e7f4704ecc2b95950"
+      },
+      "exit_code": 0,
+      "finished_at": "2026-09-25T07:12:26.460651+00:00",
+      "http_code": "200",
+      "index_and_recipe_bytes_match": null,
+      "kind": "diagnostic-mpc-mpfr-fetch-v1",
+      "method": {
+        "bytes": 5126,
+        "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+      },
+      "parent_timeout": false,
+      "passed": true,
+      "source_acceptance": "not-assessed",
+      "started_at": "2026-09-25T07:12:24.396932+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "release-244",
+      "transport_passed": true,
+      "url": "https://lists.gnu.org/archive/html/info-gnu/2025-02/msg00001.html"
+    },
+    {
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "262144",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/binutils-key-inputs-20260925/public-key-attempt-1.asc",
+        "--write-out",
+        "%{http_code}\n",
+        "https://lists.gnu.org/archive/html/info-gnu/2024-08/binqltbMeQqcS.bin"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 3106,
+        "file": "public-key-attempt-1.asc",
+        "sha256": "2cad260c1b933559858ef82943b72049af96426138a99c299f63fabda2a305b4"
+      },
+      "curl": {
+        "bytes": 829680,
+        "sha256": "625cd93eb0043214d5f74974d34f0b4d748977473e236a2e7f4704ecc2b95950"
+      },
+      "exit_code": 0,
+      "finished_at": "2026-09-25T07:12:28.309537+00:00",
+      "http_code": "200",
+      "index_and_recipe_bytes_match": null,
+      "kind": "diagnostic-mpc-mpfr-fetch-v1",
+      "method": {
+        "bytes": 5126,
+        "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+      },
+      "parent_timeout": false,
+      "passed": true,
+      "source_acceptance": "not-assessed",
+      "started_at": "2026-09-25T07:12:26.464940+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "public-key",
+      "transport_passed": true,
+      "url": "https://lists.gnu.org/archive/html/info-gnu/2024-08/binqltbMeQqcS.bin"
+    }
+  ],
+  "inventory": {
+    "blocks": [
+      {
+        "declared_self_digest_counts": {
+          "2": 2
+        },
+        "keys": [
+          {
+            "algorithm": 1,
+            "created_epoch": 1505745349,
+            "fingerprint": "3A24BC1E8FB409FA9F14371813FCEF89DD9E3C4F",
+            "packet": {
+              "bytes": 525,
+              "sha256": "080424baf09c98ccacc067664db837da77625602d0b3cfabd18714e7ce2fec78"
+            },
+            "primary": true
+          },
+          {
+            "algorithm": 1,
+            "created_epoch": 1505745349,
+            "fingerprint": "DB07E960FE6E5D284CE41E4C141E0FE3342C4914",
+            "packet": {
+              "bytes": 525,
+              "sha256": "2a20dc24fb9a0d8e4c63e4fda5fc1e82f9d3a9d622006ac10c32b236d11b2490"
+            },
+            "primary": false
+          }
+        ],
+        "latest_uid_expiry_hints": [
+          {
+            "declared_key_expiry_utc": null,
+            "effective_validity_verified": false,
+            "latest_declared_created_epoch": 1505745349,
+            "subject": "uid:24c68e316204a361cfe47652e8900a41346faec4dda173825841242c451feb2c"
+          }
+        ],
+        "packet_count": 5,
+        "primary": "3A24BC1E8FB409FA9F14371813FCEF89DD9E3C4F",
+        "revocation_packet_classes": [],
+        "selected": true,
+        "signatures": [
+          {
+            "class": 19,
+            "cryptography_executed": false,
+            "declared_hashed_times": {
+              "created_epoch": 1505745349,
+              "key_expiry_seconds": null,
+              "signature_expiry_seconds": null
+            },
+            "declared_issuers": [
+              "13FCEF89DD9E3C4F"
+            ],
+            "declared_self_signature": true,
+            "digest_algorithm": 2,
+            "public_key_algorithm": 1,
+            "signature_body": {
+              "bytes": 568,
+              "sha256": "d4d9e4b0a1e54296cb3e62943a54890d6dc0c8e868672b9383afbad39ec67396"
+            },
+            "subject": "uid:24c68e316204a361cfe47652e8900a41346faec4dda173825841242c451feb2c"
+          },
+          {
+            "class": 24,
+            "cryptography_executed": false,
+            "declared_hashed_times": {
+              "created_epoch": 1505745349,
+              "key_expiry_seconds": null,
+              "signature_expiry_seconds": null
+            },
+            "declared_issuers": [
+              "13FCEF89DD9E3C4F"
+            ],
+            "declared_self_signature": true,
+            "digest_algorithm": 2,
+            "public_key_algorithm": 1,
+            "signature_body": {
+              "bytes": 543,
+              "sha256": "7f6ef54dcb294923b232869d00d85951163b064b5701fa48bca873d63f91de46"
+            },
+            "subject": "subkey:DB07E960FE6E5D284CE41E4C141E0FE3342C4914"
+          }
+        ],
+        "uid_count": 1
+      }
+    ],
+    "cryptography_executed": false,
+    "decoded": {
+      "bytes": 2234,
+      "sha256": "e58bd2ef610ee2c039562ba23cb8cb00d930c5372639e54eb431b495c0224b46"
+    },
+    "original": {
+      "bytes": 3106,
+      "sha256": "2cad260c1b933559858ef82943b72049af96426138a99c299f63fabda2a305b4"
+    },
+    "public_key_identity_accepted": false,
+    "selected_primary": "3A24BC1E8FB409FA9F14371813FCEF89DD9E3C4F",
+    "source_acceptance": "not-assessed"
+  },
+  "kind": "diagnostic-binutils-key-inputs-v1",
+  "methods": {
+    "inspect-binutils-key-inputs.py": {
+      "bytes": 5172,
+      "sha256": "90ea112e7d003a4d3acd448b71ca2f46aef6ebbf59eaf2c6983bc304327c9810"
+    },
+    "inspect-mpc-mpfr-key-inputs.py": {
+      "bytes": 9064,
+      "sha256": "629cccc5fc59a91167fbeddbe73773e94774576ef7a904ae0f16b6aa7b5bdb53"
+    },
+    "inspect-musl-verification-keys.py": {
+      "bytes": 11967,
+      "sha256": "391c7e48b0792330135990e3358f5dad811d745c3010a30aad084c81e6e05ae4"
+    },
+    "retain-musl-verifier-inputs.py": {
+      "bytes": 10295,
+      "sha256": "72047818576ab27de02cf8e9620c33299c007b4c64108fb7c11a3c1d23e3ca0a"
+    }
+  },
+  "public_key_identity_accepted": false,
+  "source_acceptance": "not-assessed",
+  "uid_text_unverified": [
+    "Nick Clifton (Chief Binutils Maintainer) <nickc@redhat.com>"
+  ]
+}
