@@ -1,0 +1,582 @@
+{
+  "cryptography_reexecuted": false,
+  "fetches": {
+    "debian-xz": {
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "27504768",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/binutils-content-chain-b1de5c8-20260925/debian-xz-attempt-1.tar.xz",
+        "--write-out",
+        "%{http_code}\n",
+        "https://deb.debian.org/debian/pool/main/b/binutils/binutils_2.44.orig.tar.xz"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 27504768,
+        "file": "debian-xz-attempt-1.tar.xz",
+        "sha256": "c41a0272424f41bb01bf828e7ffef1b2d59d1788064fd6b5f1d971717e9320b8"
+      },
+      "curl": {
+        "bytes": 829680,
+        "sha256": "625cd93eb0043214d5f74974d34f0b4d748977473e236a2e7f4704ecc2b95950"
+      },
+      "exit_code": 0,
+      "finished_at": "2026-09-25T07:45:34.864275+00:00",
+      "http_code": "200",
+      "index_and_recipe_bytes_match": null,
+      "kind": "diagnostic-mpc-mpfr-fetch-v1",
+      "method": {
+        "bytes": 5126,
+        "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+      },
+      "parent_timeout": false,
+      "passed": true,
+      "source_acceptance": "not-assessed",
+      "started_at": "2026-09-25T07:45:27.915548+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "debian-xz",
+      "transport_passed": true,
+      "url": "https://deb.debian.org/debian/pool/main/b/binutils/binutils_2.44.orig.tar.xz"
+    },
+    "openpgp": {
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "262144",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/binutils-keyservers-b1de5c8-20260925/openpgp-attempt-1.asc",
+        "--write-out",
+        "%{http_code}\n",
+        "https://keys.openpgp.org/vks/v1/by-fingerprint/3A24BC1E8FB409FA9F14371813FCEF89DD9E3C4F"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 69,
+        "file": "openpgp-attempt-1.asc",
+        "sha256": "1bcb3d1df4237a58c2ad59e2adde0b3615b70a8b4981779021e97fdcf5f4237b"
+      },
+      "curl": {
+        "bytes": 829680,
+        "sha256": "625cd93eb0043214d5f74974d34f0b4d748977473e236a2e7f4704ecc2b95950"
+      },
+      "exit_code": 0,
+      "finished_at": "2026-09-25T07:37:16.529767+00:00",
+      "http_code": "404",
+      "index_and_recipe_bytes_match": null,
+      "kind": "diagnostic-mpc-mpfr-fetch-v1",
+      "method": {
+        "bytes": 5126,
+        "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+      },
+      "parent_timeout": false,
+      "passed": false,
+      "source_acceptance": "not-assessed",
+      "started_at": "2026-09-25T07:37:14.730701+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "f8bf41177a5f5e808a7ccb648b51080b031f15ca8018d91a576263d6cc626eb6",
+        "text": "404\n"
+      },
+      "target": "openpgp",
+      "transport_passed": false,
+      "url": "https://keys.openpgp.org/vks/v1/by-fingerprint/3A24BC1E8FB409FA9F14371813FCEF89DD9E3C4F"
+    },
+    "ubuntu": {
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "262144",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/binutils-keyservers-b1de5c8-20260925/ubuntu-attempt-1.asc",
+        "--write-out",
+        "%{http_code}\n",
+        "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3A24BC1E8FB409FA9F14371813FCEF89DD9E3C4F"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 5726,
+        "file": "ubuntu-attempt-1.asc",
+        "sha256": "2ce8ad1dd1bf31ea10f213e3bf88d23994184124c68691f8a69c6010c3e0aab7"
+      },
+      "curl": {
+        "bytes": 829680,
+        "sha256": "625cd93eb0043214d5f74974d34f0b4d748977473e236a2e7f4704ecc2b95950"
+      },
+      "exit_code": 0,
+      "finished_at": "2026-09-25T07:37:14.728745+00:00",
+      "http_code": "200",
+      "index_and_recipe_bytes_match": null,
+      "kind": "diagnostic-mpc-mpfr-fetch-v1",
+      "method": {
+        "bytes": 5126,
+        "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+      },
+      "parent_timeout": false,
+      "passed": true,
+      "source_acceptance": "not-assessed",
+      "started_at": "2026-09-25T07:37:13.206917+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "ubuntu",
+      "transport_passed": true,
+      "url": "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3A24BC1E8FB409FA9F14371813FCEF89DD9E3C4F"
+    }
+  },
+  "historical_debian_execution": {
+    "bytes": 1174101,
+    "sha256": "d5b9566e7c776a5cec1305b02aff33395074bdf02a0b0b756f1f3e1093d5359a"
+  },
+  "historical_execution_replay_equal": true,
+  "index_candidate": {
+    "directory": "pool/main/b/binutils",
+    "originals": {
+      "binutils_2.44.orig.tar.xz": {
+        "bytes": 27504768,
+        "sha256": "c41a0272424f41bb01bf828e7ffef1b2d59d1788064fd6b5f1d971717e9320b8"
+      }
+    },
+    "package": "binutils",
+    "version": "2.44-3"
+  },
+  "key_comparison": {
+    "same_declared_self_signature_bodies": true,
+    "same_key_packets": true,
+    "third_party_certifications_accepted": false,
+    "third_party_declared_digest_counts": {
+      "10": 1,
+      "8": 5
+    }
+  },
+  "keyserver_inventory": {
+    "blocks": [
+      {
+        "declared_self_digest_counts": {
+          "2": 2
+        },
+        "keys": [
+          {
+            "algorithm": 1,
+            "created_epoch": 1505745349,
+            "fingerprint": "3A24BC1E8FB409FA9F14371813FCEF89DD9E3C4F",
+            "packet": {
+              "bytes": 525,
+              "sha256": "080424baf09c98ccacc067664db837da77625602d0b3cfabd18714e7ce2fec78"
+            },
+            "primary": true
+          },
+          {
+            "algorithm": 1,
+            "created_epoch": 1505745349,
+            "fingerprint": "DB07E960FE6E5D284CE41E4C141E0FE3342C4914",
+            "packet": {
+              "bytes": 525,
+              "sha256": "2a20dc24fb9a0d8e4c63e4fda5fc1e82f9d3a9d622006ac10c32b236d11b2490"
+            },
+            "primary": false
+          }
+        ],
+        "latest_uid_expiry_hints": [
+          {
+            "declared_key_expiry_utc": null,
+            "effective_validity_verified": false,
+            "latest_declared_created_epoch": 1505745349,
+            "subject": "uid:24c68e316204a361cfe47652e8900a41346faec4dda173825841242c451feb2c"
+          }
+        ],
+        "packet_count": 11,
+        "primary": "3A24BC1E8FB409FA9F14371813FCEF89DD9E3C4F",
+        "revocation_packet_classes": [],
+        "selected": true,
+        "signatures": [
+          {
+            "class": 19,
+            "cryptography_executed": false,
+            "declared_hashed_times": {
+              "created_epoch": 1505745349,
+              "key_expiry_seconds": null,
+              "signature_expiry_seconds": null
+            },
+            "declared_issuers": [
+              "13FCEF89DD9E3C4F"
+            ],
+            "declared_self_signature": true,
+            "digest_algorithm": 2,
+            "public_key_algorithm": 1,
+            "signature_body": {
+              "bytes": 568,
+              "sha256": "d4d9e4b0a1e54296cb3e62943a54890d6dc0c8e868672b9383afbad39ec67396"
+            },
+            "subject": "uid:24c68e316204a361cfe47652e8900a41346faec4dda173825841242c451feb2c"
+          },
+          {
+            "class": 16,
+            "cryptography_executed": false,
+            "declared_hashed_times": {
+              "created_epoch": 1526304709,
+              "key_expiry_seconds": null,
+              "signature_expiry_seconds": null
+            },
+            "declared_issuers": [
+              "F67E7D6E800F240E83EBC867FF6AC9A6464DF09C",
+              "FF6AC9A6464DF09C"
+            ],
+            "declared_self_signature": false,
+            "digest_algorithm": 8,
+            "public_key_algorithm": 1,
+            "signature_body": {
+              "bytes": 307,
+              "sha256": "50c99ddada17aeb069e9f4a20df71e240e137a60de17eddcd3309226a070e948"
+            },
+            "subject": "uid:24c68e316204a361cfe47652e8900a41346faec4dda173825841242c451feb2c"
+          },
+          {
+            "class": 16,
+            "cryptography_executed": false,
+            "declared_hashed_times": {
+              "created_epoch": 1534113068,
+              "key_expiry_seconds": null,
+              "signature_expiry_seconds": null
+            },
+            "declared_issuers": [
+              "1FE6348EDEA825A22970E5C48DD3040F123CC3F4",
+              "8DD3040F123CC3F4"
+            ],
+            "declared_self_signature": false,
+            "digest_algorithm": 8,
+            "public_key_algorithm": 1,
+            "signature_body": {
+              "bytes": 307,
+              "sha256": "28001f73e57fe6b886bc7d3b39ab84633bd578e2a1e4dbf88e3c72e290dc8957"
+            },
+            "subject": "uid:24c68e316204a361cfe47652e8900a41346faec4dda173825841242c451feb2c"
+          },
+          {
+            "class": 16,
+            "cryptography_executed": false,
+            "declared_hashed_times": {
+              "created_epoch": 1534614013,
+              "key_expiry_seconds": null,
+              "signature_expiry_seconds": null
+            },
+            "declared_issuers": [
+              "6CC051D3C1D9A4AF9E260C58D3E394AC744E2EBB",
+              "D3E394AC744E2EBB"
+            ],
+            "declared_self_signature": false,
+            "digest_algorithm": 8,
+            "public_key_algorithm": 1,
+            "signature_body": {
+              "bytes": 307,
+              "sha256": "887cbaaacb99c2214ab5b5a3a866849ef2c9f2a8a86572a5425d5d59ce72fb4f"
+            },
+            "subject": "uid:24c68e316204a361cfe47652e8900a41346faec4dda173825841242c451feb2c"
+          },
+          {
+            "class": 18,
+            "cryptography_executed": false,
+            "declared_hashed_times": {
+              "created_epoch": 1543056793,
+              "key_expiry_seconds": null,
+              "signature_expiry_seconds": null
+            },
+            "declared_issuers": [
+              "23451B107AA03941"
+            ],
+            "declared_self_signature": false,
+            "digest_algorithm": 8,
+            "public_key_algorithm": 1,
+            "signature_body": {
+              "bytes": 284,
+              "sha256": "38250d506f6da081a29d43b7cf232162802943999d54b7d00afd1343598eb512"
+            },
+            "subject": "uid:24c68e316204a361cfe47652e8900a41346faec4dda173825841242c451feb2c"
+          },
+          {
+            "class": 16,
+            "cryptography_executed": false,
+            "declared_hashed_times": {
+              "created_epoch": 1594020280,
+              "key_expiry_seconds": null,
+              "signature_expiry_seconds": null
+            },
+            "declared_issuers": [
+              "1AFFCCCA29F9EF4F131BAA8850FAB7A7AEAB6392",
+              "50FAB7A7AEAB6392"
+            ],
+            "declared_self_signature": false,
+            "digest_algorithm": 8,
+            "public_key_algorithm": 1,
+            "signature_body": {
+              "bytes": 563,
+              "sha256": "f5f4bbec5748e483bd52c7770960b48033f131ad0e0d6069c6cc52188f7fcf0e"
+            },
+            "subject": "uid:24c68e316204a361cfe47652e8900a41346faec4dda173825841242c451feb2c"
+          },
+          {
+            "class": 18,
+            "cryptography_executed": false,
+            "declared_hashed_times": {
+              "created_epoch": 1704175204,
+              "key_expiry_seconds": null,
+              "signature_expiry_seconds": null
+            },
+            "declared_issuers": [
+              "8710F3DE9E5D2E61DB388BEE119AB8F0E61D939C",
+              "119AB8F0E61D939C"
+            ],
+            "declared_self_signature": false,
+            "digest_algorithm": 10,
+            "public_key_algorithm": 22,
+            "signature_body": {
+              "bytes": 117,
+              "sha256": "61f6d5c58ecfd0ae73756a5b170a10e31e3d78a4cafe1298ba4356b5ae51153e"
+            },
+            "subject": "uid:24c68e316204a361cfe47652e8900a41346faec4dda173825841242c451feb2c"
+          },
+          {
+            "class": 24,
+            "cryptography_executed": false,
+            "declared_hashed_times": {
+              "created_epoch": 1505745349,
+              "key_expiry_seconds": null,
+              "signature_expiry_seconds": null
+            },
+            "declared_issuers": [
+              "13FCEF89DD9E3C4F"
+            ],
+            "declared_self_signature": true,
+            "digest_algorithm": 2,
+            "public_key_algorithm": 1,
+            "signature_body": {
+              "bytes": 543,
+              "sha256": "7f6ef54dcb294923b232869d00d85951163b064b5701fa48bca873d63f91de46"
+            },
+            "subject": "subkey:DB07E960FE6E5D284CE41E4C141E0FE3342C4914"
+          }
+        ],
+        "uid_count": 1
+      }
+    ],
+    "cryptography_executed": false,
+    "decoded": {
+      "bytes": 4136,
+      "sha256": "85dee4ec3bfca15eb38627f7959518cecd8fbc6b58fc4b3e15307ba6a8d141d5"
+    },
+    "original": {
+      "bytes": 5726,
+      "sha256": "2ce8ad1dd1bf31ea10f213e3bf88d23994184124c68691f8a69c6010c3e0aab7"
+    },
+    "public_key_identity_accepted": false,
+    "selected_primary": "3A24BC1E8FB409FA9F14371813FCEF89DD9E3C4F",
+    "source_acceptance": "not-assessed"
+  },
+  "kind": "diagnostic-binutils-source-routes-v1",
+  "member_comparison": {
+    "changed_content_files": [
+      {
+        "gzip": {
+          "bytes": 10482,
+          "gid": 0,
+          "kind": "file",
+          "mode": 420,
+          "path": "binutils-2.44/bfd/doc/bfd.texi",
+          "sha256": "fd177f407b14bbe66f1fe2de1ca640cfea572016c55f56182a6efc19c9c90aea",
+          "uid": 0
+        },
+        "path": "binutils-2.44/bfd/doc/bfd.texi",
+        "xz": {
+          "bytes": 988,
+          "gid": 1000,
+          "kind": "file",
+          "mode": 420,
+          "path": "binutils-2.44/bfd/doc/bfd.texi",
+          "sha256": "6fdb52a8b7cd19bfc8bf10f804f326c4750eb8842fc72926be3cd60cc9108b32",
+          "uid": 1000
+        }
+      },
+      {
+        "gzip": {
+          "bytes": 80184,
+          "gid": 0,
+          "kind": "file",
+          "mode": 420,
+          "path": "binutils-2.44/bfd/doc/bfdint.texi",
+          "sha256": "aebc3c46550ec83dd4a910eac05900252a46c64b2be6a669d74f14a20297df23",
+          "uid": 0
+        },
+        "path": "binutils-2.44/bfd/doc/bfdint.texi",
+        "xz": {
+          "bytes": 997,
+          "gid": 1000,
+          "kind": "file",
+          "mode": 420,
+          "path": "binutils-2.44/bfd/doc/bfdint.texi",
+          "sha256": "9fe4932069ac41f6f22e610990d424074544e79b593e801e406022ee7ef58002",
+          "uid": 1000
+        }
+      },
+      {
+        "gzip": {
+          "bytes": 32356,
+          "gid": 0,
+          "kind": "file",
+          "mode": 420,
+          "path": "binutils-2.44/ld/ldint.texi",
+          "sha256": "37f4c081bf746693394d12c66e296d65cf67b636c93cb7b2869bbed5674b90e6",
+          "uid": 0
+        },
+        "path": "binutils-2.44/ld/ldint.texi",
+        "xz": {
+          "bytes": 994,
+          "gid": 1000,
+          "kind": "file",
+          "mode": 420,
+          "path": "binutils-2.44/ld/ldint.texi",
+          "sha256": "1663ec0ecd10c99057bda4873f2ff4ebbd687f14b643a57c6781a9b8afd60c41",
+          "uid": 1000
+        }
+      }
+    ],
+    "changed_field_counts": {
+      "bytes": 3,
+      "gid": 28447,
+      "sha256": 3,
+      "uid": 28447
+    },
+    "compared_file_fields": [
+      "path",
+      "kind",
+      "bytes",
+      "sha256",
+      "mode",
+      "uid",
+      "gid"
+    ],
+    "gzip_file_count": 28449,
+    "gzip_file_owners": [
+      [
+        0,
+        0
+      ]
+    ],
+    "matching_file_count": 0,
+    "matching_file_payload_count": 28444,
+    "only_in_gzip": [
+      "binutils-2.44/bfd/doc/bfd.info",
+      "binutils-2.44/zlib/contrib/dotzlib/DotZLib.chm"
+    ],
+    "only_in_xz": [],
+    "source_acceptance": "not-assessed",
+    "tar_header_order_timestamps_and_directory_metadata_equal": "not-assessed",
+    "xz_explicit_directory_count": 314,
+    "xz_file_count": 28447,
+    "xz_file_owners": [
+      [
+        1000,
+        1000
+      ]
+    ]
+  },
+  "methods": {
+    "collect-musl-verification-execution.py": {
+      "bytes": 8807,
+      "sha256": "d668699ccb3308a046b3a8db4affc9e7e219a35dac2e725a59161deb94923f04"
+    },
+    "compare-binutils-streams.py": {
+      "bytes": 6536,
+      "sha256": "b368f1ebce66199c8a7d853947a3b0f8d4b615f573931eb0344b4e81502c9458"
+    },
+    "inspect-binutils-content.py": {
+      "bytes": 6752,
+      "sha256": "4de00eb67ccae4cadeb554a9fc5ca62c9585a972418f511df719cbdd20e71e86"
+    },
+    "inspect-binutils-source-routes.py": {
+      "bytes": 7188,
+      "sha256": "96d776e9519068bf7b633daa5353be1538e1865c539d7bc524c3f1a61130bea4"
+    },
+    "inspect-mpc-mpfr-key-inputs.py": {
+      "bytes": 9064,
+      "sha256": "629cccc5fc59a91167fbeddbe73773e94774576ef7a904ae0f16b6aa7b5bdb53"
+    },
+    "inspect-musl-remaining-sources.py": {
+      "bytes": 4194,
+      "sha256": "37a1c7dcb6a3a817581f7d0c533625e9154a84f8a7089c10aab383dc7e718b8e"
+    }
+  },
+  "source_acceptance": "not-assessed",
+  "sources": {
+    "bytes": 10527804,
+    "sha256": "e8bbadd8389119e841494630998187f961d7de4d5b1dcbeed4f792a1d423299f"
+  },
+  "stream_comparison": {
+    "all_expanded_bytes_equal": false,
+    "archive_programs_executed": false,
+    "compressed_bytes_equal": false,
+    "first_differing_offset": 14,
+    "gzip": {
+      "bytes": 51342242,
+      "sha256": "0cdd76777a0dfd3dd3a63f215f030208ddb91c2361d2bcc02acec0f1c16b6a2e"
+    },
+    "gzip_expanded": {
+      "bytes": 317317120,
+      "sha256": "9628a14839e0f16a0aa63bdf0d53b1b28d67b54bbab3e81f6e615be552a18ed1"
+    },
+    "source_acceptance": "not-assessed",
+    "xz": {
+      "bytes": 27504768,
+      "sha256": "c41a0272424f41bb01bf828e7ffef1b2d59d1788064fd6b5f1d971717e9320b8"
+    },
+    "xz_expanded": {
+      "bytes": 316579840,
+      "sha256": "65731125a1bf2ef7ebdd8f396baa0eb666d4cf5cd7c14ca78d4904dbfc604c29"
+    }
+  }
+}

@@ -1,0 +1,214 @@
+{
+  "files": [
+    {
+      "bytes": 1594,
+      "path": ".tmp/binutils-content-chain-b1de5c8-20260925/debian-xz-attempt-1.json",
+      "read_limit": 16777216,
+      "sha256": "db41adc9bdd04d671cad6a05d0c2fa743850c100967174ec3a4eb34640e4d56a"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/binutils-content-chain-b1de5c8-20260925/debian-xz-attempt-1.stderr",
+      "read_limit": 16777216,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/binutils-content-chain-b1de5c8-20260925/debian-xz-attempt-1.stdout",
+      "read_limit": 16777216,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 27504768,
+      "path": ".tmp/binutils-content-chain-b1de5c8-20260925/debian-xz-attempt-1.tar.xz",
+      "read_limit": 27504768,
+      "sha256": "c41a0272424f41bb01bf828e7ffef1b2d59d1788064fd6b5f1d971717e9320b8"
+    },
+    {
+      "bytes": 982,
+      "path": ".tmp/binutils-content-chain-b1de5c8-20260925/fetch-plan.json",
+      "read_limit": 16777216,
+      "sha256": "ae87f25ad2c7de0c5ecc94ef40c84caa80200b6cdfa9307d65830b9dc29c958d"
+    },
+    {
+      "bytes": 806,
+      "path": ".tmp/binutils-keyservers-b1de5c8-20260925/fetch-plan.json",
+      "read_limit": 16777216,
+      "sha256": "4139aac7bc39b64df07dd490c540f755fde204911e505c9d934429067cd3635d"
+    },
+    {
+      "bytes": 69,
+      "path": ".tmp/binutils-keyservers-b1de5c8-20260925/openpgp-attempt-1.asc",
+      "read_limit": 16777216,
+      "sha256": "1bcb3d1df4237a58c2ad59e2adde0b3615b70a8b4981779021e97fdcf5f4237b"
+    },
+    {
+      "bytes": 1595,
+      "path": ".tmp/binutils-keyservers-b1de5c8-20260925/openpgp-attempt-1.json",
+      "read_limit": 16777216,
+      "sha256": "c47a0ac5755b602510b0f4941ce224ee160cbe3ec62de7c216733eccb795ca1f"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/binutils-keyservers-b1de5c8-20260925/openpgp-attempt-1.stderr",
+      "read_limit": 16777216,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/binutils-keyservers-b1de5c8-20260925/openpgp-attempt-1.stdout",
+      "read_limit": 16777216,
+      "sha256": "f8bf41177a5f5e808a7ccb648b51080b031f15ca8018d91a576263d6cc626eb6"
+    },
+    {
+      "bytes": 5726,
+      "path": ".tmp/binutils-keyservers-b1de5c8-20260925/ubuntu-attempt-1.asc",
+      "read_limit": 16777216,
+      "sha256": "2ce8ad1dd1bf31ea10f213e3bf88d23994184124c68691f8a69c6010c3e0aab7"
+    },
+    {
+      "bytes": 1610,
+      "path": ".tmp/binutils-keyservers-b1de5c8-20260925/ubuntu-attempt-1.json",
+      "read_limit": 16777216,
+      "sha256": "d8e16b52bbefc5cc19f6b0d45a8e29cd4739c1fd471161ac5745646e03632033"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/binutils-keyservers-b1de5c8-20260925/ubuntu-attempt-1.stderr",
+      "read_limit": 16777216,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/binutils-keyservers-b1de5c8-20260925/ubuntu-attempt-1.stdout",
+      "read_limit": 16777216,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 9591,
+      "path": "docs/records/rust-linux-input-review/binutils-key-inputs-2026-09-25.json",
+      "read_limit": 16777216,
+      "sha256": "79454b59031570275f6a2a1befda26bdf5aca2f74ba29d1b20a5a371931d0266"
+    },
+    {
+      "bytes": 19039,
+      "path": "docs/records/rust-linux-input-review/binutils-source-routes-2026-09-25.json",
+      "read_limit": 16777216,
+      "sha256": "b7f6a3f8cee2c73082550ea2d492d4174df3f05006a59362527f877ae7911723"
+    },
+    {
+      "bytes": 4897,
+      "path": "docs/records/rust-linux-input-review/check-binutils-content.py",
+      "read_limit": 16777216,
+      "sha256": "562e4e5261c65e0d3d656ce37ee2c2d4e6c80d4a44852cc5aee52055446e6792"
+    },
+    {
+      "bytes": 4916,
+      "path": "docs/records/rust-linux-input-review/check-binutils-streams.py",
+      "read_limit": 16777216,
+      "sha256": "72ad6d1e92b86a10662a2b0d25f6fa48edfb2f524532b31a6113ace4036eb7af"
+    },
+    {
+      "bytes": 3949,
+      "path": "docs/records/rust-linux-input-review/check-mpc-mpfr-key-inputs.py",
+      "read_limit": 16777216,
+      "sha256": "5354aa4b325c6011d13e7a003e874e5d8c1d80535cffde0d542fcdda39369d8d"
+    },
+    {
+      "bytes": 8807,
+      "path": "docs/records/rust-linux-input-review/collect-musl-verification-execution.py",
+      "read_limit": 16777216,
+      "sha256": "d668699ccb3308a046b3a8db4affc9e7e219a35dac2e725a59161deb94923f04"
+    },
+    {
+      "bytes": 6536,
+      "path": "docs/records/rust-linux-input-review/compare-binutils-streams.py",
+      "read_limit": 16777216,
+      "sha256": "b368f1ebce66199c8a7d853947a3b0f8d4b615f573931eb0344b4e81502c9458"
+    },
+    {
+      "bytes": 5126,
+      "path": "docs/records/rust-linux-input-review/fetch-mpc-mpfr-inputs.py",
+      "read_limit": 16777216,
+      "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+    },
+    {
+      "bytes": 3494,
+      "path": "docs/records/rust-linux-input-review/fetch-mpc-mpfr-key-inputs.py",
+      "read_limit": 16777216,
+      "sha256": "678bdbeb5e5c2d62d38521dfc2de60e6f4ab99dbd5f4d7b24ec63043f3c16cf8"
+    },
+    {
+      "bytes": 10104,
+      "path": "docs/records/rust-linux-input-review/inspect-archives.py",
+      "read_limit": 16777216,
+      "sha256": "e9a417881e4caff2da92441dc19e958d93dba27173b38d3ce4425a9fd7c3b949"
+    },
+    {
+      "bytes": 6752,
+      "path": "docs/records/rust-linux-input-review/inspect-binutils-content.py",
+      "read_limit": 16777216,
+      "sha256": "4de00eb67ccae4cadeb554a9fc5ca62c9585a972418f511df719cbdd20e71e86"
+    },
+    {
+      "bytes": 6252,
+      "path": "docs/records/rust-linux-input-review/inspect-binutils-inputs.py",
+      "read_limit": 16777216,
+      "sha256": "03e5fc51a99b6b2e082adacdc1fdfc39f3976b81fb3a1c86985f5769debfde4c"
+    },
+    {
+      "bytes": 5172,
+      "path": "docs/records/rust-linux-input-review/inspect-binutils-key-inputs.py",
+      "read_limit": 16777216,
+      "sha256": "90ea112e7d003a4d3acd448b71ca2f46aef6ebbf59eaf2c6983bc304327c9810"
+    },
+    {
+      "bytes": 7188,
+      "path": "docs/records/rust-linux-input-review/inspect-binutils-source-routes.py",
+      "read_limit": 16777216,
+      "sha256": "96d776e9519068bf7b633daa5353be1538e1865c539d7bc524c3f1a61130bea4"
+    },
+    {
+      "bytes": 8833,
+      "path": "docs/records/rust-linux-input-review/inspect-mpc-mpfr-inputs.py",
+      "read_limit": 16777216,
+      "sha256": "da04e90b29504c102798d9a29a558d4d6c77e5956734b8a8cab4d1cbaf8d8e98"
+    },
+    {
+      "bytes": 9064,
+      "path": "docs/records/rust-linux-input-review/inspect-mpc-mpfr-key-inputs.py",
+      "read_limit": 16777216,
+      "sha256": "629cccc5fc59a91167fbeddbe73773e94774576ef7a904ae0f16b6aa7b5bdb53"
+    },
+    {
+      "bytes": 4194,
+      "path": "docs/records/rust-linux-input-review/inspect-musl-remaining-sources.py",
+      "read_limit": 16777216,
+      "sha256": "37a1c7dcb6a3a817581f7d0c533625e9154a84f8a7089c10aab383dc7e718b8e"
+    },
+    {
+      "bytes": 11967,
+      "path": "docs/records/rust-linux-input-review/inspect-musl-verification-keys.py",
+      "read_limit": 16777216,
+      "sha256": "391c7e48b0792330135990e3358f5dad811d745c3010a30aad084c81e6e05ae4"
+    },
+    {
+      "bytes": 7460,
+      "path": "docs/records/rust-linux-input-review/inspect-musl-verification-status.py",
+      "read_limit": 16777216,
+      "sha256": "b3964b6904c13c82596438af2ec8030455137c0121cfdc35ff3e77a79963e9fc"
+    },
+    {
+      "bytes": 10295,
+      "path": "docs/records/rust-linux-input-review/retain-musl-verifier-inputs.py",
+      "read_limit": 16777216,
+      "sha256": "72047818576ab27de02cf8e9620c33299c007b4c64108fb7c11a3c1d23e3ca0a"
+    }
+  ],
+  "kind": "diagnostic-binutils-source-route-retention-manifest-v1",
+  "layout": "files/<original-repository-relative-path>",
+  "off_device_backup_verified": false,
+  "repository_base": "b1de5c8",
+  "scope": "keyserver observations, Debian XZ candidate, new comparisons and selected replay methods; prior gzip and Debian verification stores remain separate dependencies",
+  "source_acceptance": "not-assessed"
+}

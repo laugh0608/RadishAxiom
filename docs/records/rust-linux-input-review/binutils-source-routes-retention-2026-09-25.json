@@ -1,0 +1,18 @@
+{
+  "all_restored_bytes_match": true,
+  "all_retained_bytes_match": true,
+  "diagnostic_replay_equal": true,
+  "existing_debian_execution_and_source_stores_required": true,
+  "file_bytes": 27670798,
+  "file_count": 34,
+  "kind": "diagnostic-binutils-source-route-retention-v1",
+  "manifest": {
+    "bytes": 8269,
+    "sha256": "489f6a46151312da20b09f59b5c4cc8ac5542b2c33209a51b9865747f9622a07"
+  },
+  "off_device_backup_verified": false,
+  "prior_gzip_store": "artifacts/source-inputs/binutils-inputs-8a610c7-20260925",
+  "restore": ".tmp/binutils-source-routes-restore-20260925",
+  "source_acceptance": "not-assessed",
+  "store": "artifacts/source-inputs/binutils-source-routes-b1de5c8-20260925"
+}
