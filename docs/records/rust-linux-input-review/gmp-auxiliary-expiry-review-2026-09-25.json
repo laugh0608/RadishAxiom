@@ -1,0 +1,146 @@
+{
+  "actions_executed": false,
+  "assessment_profile": "gmp-auxiliary-expiry-v2",
+  "candidate_filter_assessment": {
+    "auxiliary_status": {
+      "expiry_reported_in_status": true,
+      "primary": "343C2FF0FBEE5EC2EDBEF399F3599FF828C67298",
+      "primary_expiry": 1736961163,
+      "source_acceptance": "not-assessed",
+      "status_records": 2
+    },
+    "current_key_state": "expired",
+    "historical_validity": "not-established",
+    "result": "all-selected-strong-self-material-retained",
+    "self_certifications_checked": false,
+    "source_acceptance": "not-assessed"
+  },
+  "detached_signature_checked": false,
+  "historical_bundle": {
+    "bytes": 6034533,
+    "sha256": "480c6889fd21a595a0f5981c700c86439a4d71c50d0e71a39d3ea4c4de4cf336"
+  },
+  "historical_failure": "unexpected auxiliary status: KEYEXPIRED",
+  "historical_result": {
+    "bytes": 56153,
+    "sha256": "c0ccd560880bccaaa7a565677a4ec11ef6555c1061fcbce9d33ac065b5c6d158"
+  },
+  "historical_reviewer": {
+    "bytes": 7562,
+    "sha256": "f93c079c14db5aa54b9cafc5f7f6eb67443a25e9d87724c0346834cfd8296e27"
+  },
+  "kind": "diagnostic-gmp-auxiliary-expiry-review-v2",
+  "methods": {
+    "docs/records/rust-linux-input-review/fetch-gmp-inputs.py": {
+      "bytes": 2073,
+      "sha256": "c91fd85af426655b795fa588094a2a6094da63dcd3e4c57cc6c495d4e48acc19"
+    },
+    "docs/records/rust-linux-input-review/fetch-mpc-mpfr-inputs.py": {
+      "bytes": 5126,
+      "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+    },
+    "docs/records/rust-linux-input-review/fetch-mpc-mpfr-key-inputs.py": {
+      "bytes": 3494,
+      "sha256": "678bdbeb5e5c2d62d38521dfc2de60e6f4ab99dbd5f4d7b24ec63043f3c16cf8"
+    },
+    "docs/records/rust-linux-input-review/inspect-archives.py": {
+      "bytes": 10104,
+      "sha256": "e9a417881e4caff2da92441dc19e958d93dba27173b38d3ce4425a9fd7c3b949"
+    },
+    "docs/records/rust-linux-input-review/inspect-binutils-key-inputs.py": {
+      "bytes": 5172,
+      "sha256": "90ea112e7d003a4d3acd448b71ca2f46aef6ebbf59eaf2c6983bc304327c9810"
+    },
+    "docs/records/rust-linux-input-review/inspect-binutils-key-refresh.py": {
+      "bytes": 7717,
+      "sha256": "240902dabd77bd1215d0bcb4ddc1da688a8ae2457478fcb7a376d1027ab792e7"
+    },
+    "docs/records/rust-linux-input-review/inspect-gmp-inputs.py": {
+      "bytes": 8595,
+      "sha256": "bbdacb054fe9f58ec511f6994472d615df6e3d320ab6d461c3a24b6c046c88eb"
+    },
+    "docs/records/rust-linux-input-review/inspect-gmp-verification.py": {
+      "bytes": 13581,
+      "sha256": "25de76ded656d66cb405fcdd5f3cf99e736314443ffe2702683058b75f5f00f2"
+    },
+    "docs/records/rust-linux-input-review/inspect-mpc-mpfr-inputs.py": {
+      "bytes": 8833,
+      "sha256": "da04e90b29504c102798d9a29a558d4d6c77e5956734b8a8cab4d1cbaf8d8e98"
+    },
+    "docs/records/rust-linux-input-review/inspect-mpc-mpfr-key-inputs.py": {
+      "bytes": 9064,
+      "sha256": "629cccc5fc59a91167fbeddbe73773e94774576ef7a904ae0f16b6aa7b5bdb53"
+    },
+    "docs/records/rust-linux-input-review/inspect-mpfr-verification.py": {
+      "bytes": 12021,
+      "sha256": "be2e07e0682a94a1e858431dd42de3d1f9a9a395c5fa459e1acc4b0abe772452"
+    },
+    "docs/records/rust-linux-input-review/inspect-musl-debian-auth.py": {
+      "bytes": 10653,
+      "sha256": "387ca53db56bc2081f69c2d034ba12f962002709455829bf7e69f2e68e0c1516"
+    },
+    "docs/records/rust-linux-input-review/inspect-musl-key-status.py": {
+      "bytes": 6672,
+      "sha256": "18e2dea0fea2f2e2c959116b88aac83841277539e49c84316319f95429c936b2"
+    },
+    "docs/records/rust-linux-input-review/inspect-musl-remaining-sources.py": {
+      "bytes": 4194,
+      "sha256": "37a1c7dcb6a3a817581f7d0c533625e9154a84f8a7089c10aab383dc7e718b8e"
+    },
+    "docs/records/rust-linux-input-review/inspect-musl-trust-inputs.py": {
+      "bytes": 7472,
+      "sha256": "cd2cc429a4337b02e513ddbb9385eadccefed1461732a0a92f595ef0bb2b8878"
+    },
+    "docs/records/rust-linux-input-review/inspect-musl-verification-keys.py": {
+      "bytes": 11967,
+      "sha256": "391c7e48b0792330135990e3358f5dad811d745c3010a30aad084c81e6e05ae4"
+    },
+    "docs/records/rust-linux-input-review/inspect-musl-verification-status.py": {
+      "bytes": 7460,
+      "sha256": "b3964b6904c13c82596438af2ec8030455137c0121cfdc35ff3e77a79963e9fc"
+    },
+    "docs/records/rust-linux-input-review/inspect-musl-verifier-rootfs.py": {
+      "bytes": 4093,
+      "sha256": "45a4e6c05d03b142a339240128d6e304bb78b14e76764f61601617f9f845214c"
+    },
+    "docs/records/rust-linux-input-review/prepare-gmp-verification.py": {
+      "bytes": 4816,
+      "sha256": "d9970068523e693a70de39cd409a0a8cebb15c6cb4d58a0aa0a88b909163bf11"
+    },
+    "docs/records/rust-linux-input-review/prepare-mpfr-verification.py": {
+      "bytes": 6198,
+      "sha256": "427b2d14b7f7c8c553d48f172a2239804e4b2822c40840141e33cafb701c8610"
+    },
+    "docs/records/rust-linux-input-review/prepare-musl-verification-inputs.py": {
+      "bytes": 5864,
+      "sha256": "3a11a72abb726d415df885c7b839e73fcb0f04453fe4186541b9f60f2725b9ea"
+    },
+    "docs/records/rust-linux-input-review/retain-musl-verifier-inputs.py": {
+      "bytes": 10295,
+      "sha256": "72047818576ab27de02cf8e9620c33299c007b4c64108fb7c11a3c1d23e3ca0a"
+    },
+    "docs/records/rust-linux-input-review/run-gmp-verification-v2.py": {
+      "bytes": 9498,
+      "sha256": "14082c5d9869146f410a9071b16490ea79ced93c0fe9fbfe49673d06146414b2"
+    },
+    "docs/records/rust-linux-input-review/run-gmp-verification.py": {
+      "bytes": 12176,
+      "sha256": "a2230a7b5c33bf1d706b2c6ed1328a3fdd3a876dcb747d557d67ca4d9fa3b999"
+    },
+    "docs/records/rust-linux-input-review/run-musl-verification.py": {
+      "bytes": 21944,
+      "sha256": "79749087f7853b81bad27b4d561610402a73a466b10cc01666c73455e55edf13"
+    },
+    "docs/records/rust-linux-input-review/run-musl-verifier-smoke.py": {
+      "bytes": 23815,
+      "sha256": "4b0151dfbe00b7772697c06afb447521e0cf66fe2011ca1e4adb84f4029c016c"
+    },
+    "scripts/inspect-debian-source-chain.py": {
+      "bytes": 13032,
+      "sha256": "c6f18880b4f347467ad949ccf25b1960c7bef141e5b48f610ae93ab22479da2a"
+    }
+  },
+  "new_cryptography_executed": false,
+  "self_certifications_checked": false,
+  "source_acceptance": "not-assessed"
+}

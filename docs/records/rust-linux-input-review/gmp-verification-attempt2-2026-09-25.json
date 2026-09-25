@@ -1,0 +1,108 @@
+{
+  "bundle": {
+    "bytes": 6101428,
+    "sha256": "495ce3fb361747d09626f1eb0c55f0386a4a0e08f53a6901ecdd08d410e794a7"
+  },
+  "cases": [
+    {
+      "assessment": {
+        "auxiliary_status": {
+          "expiry_reported_in_status": true,
+          "primary": "343C2FF0FBEE5EC2EDBEF399F3599FF828C67298",
+          "primary_expiry": 1736961163,
+          "source_acceptance": "not-assessed",
+          "status_records": 2
+        },
+        "current_key_state": "expired",
+        "historical_validity": "not-established",
+        "result": "all-selected-strong-self-material-retained",
+        "self_certifications_checked": false,
+        "source_acceptance": "not-assessed"
+      },
+      "cleanup": {
+        "container_id": "bc1b746b5c9b4172502870247f99928ecd4c315fb19183bf99de03a0ab4be055",
+        "removed": true,
+        "state_before_remove": {
+          "State.Dead": false,
+          "State.Error": "",
+          "State.ExitCode": 0,
+          "State.OOMKilled": false,
+          "State.Paused": false,
+          "State.Restarting": false,
+          "State.Running": false,
+          "State.Status": "exited"
+        }
+      },
+      "gpg_returncode": 0,
+      "status_text": "[GNUPG:] KEYEXPIRED 1736961163\n[GNUPG:] IMPORT_RES 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0\n",
+      "stderr_text": "gpg: keybox '/work/full/pubring.kbx' created\ngpg: Total number processed: 1\n",
+      "stdout": {
+        "bytes": 1501,
+        "sha256": "928ac84aa0e2134bbb335cd439110dc3f9b967eb04caff4a44dd5d04a3f13474"
+      },
+      "step": "filter"
+    },
+    {
+      "assessment": {
+        "binding_declared_subkey_expiry": 1736961679,
+        "complete_certification_assessment_passed": false,
+        "detached_signature_checked": false,
+        "expiry_difference_seconds": 516,
+        "expiry_listing_semantics": "requires-separate-tool-semantics-review",
+        "historical_validity": "not-established",
+        "key_expiry_status_records": 3,
+        "listed_subkey_expiry": 1736961163,
+        "profile_failure_reproduced": "fixed certification status mismatch",
+        "separate_colon_failure_reproduced": "expected explicit expired key and exact expiry",
+        "source_acceptance": "not-assessed",
+        "tool_sig_bang_records_observed": 2
+      },
+      "cleanup": {
+        "container_id": "7812d7b1c3e2806f0ed088338774e531b2519a9408e05bbcd409ff8f6bffd24e",
+        "removed": true,
+        "state_before_remove": {
+          "State.Dead": false,
+          "State.Error": "",
+          "State.ExitCode": 0,
+          "State.OOMKilled": false,
+          "State.Paused": false,
+          "State.Restarting": false,
+          "State.Running": false,
+          "State.Status": "exited"
+        }
+      },
+      "gpg_returncode": 0,
+      "status_text": "[GNUPG:] KEYEXPIRED 1736961163\n[GNUPG:] KEY_CONSIDERED 343C2FF0FBEE5EC2EDBEF399F3599FF828C67298 0\n[GNUPG:] KEYEXPIRED 1736961163\n[GNUPG:] KEYEXPIRED 1736961163\n",
+      "stderr_text": "gpg: /work/full/trustdb.gpg: trustdb created\n",
+      "stdout": {
+        "bytes": 637,
+        "sha256": "d4e992f3a8094ad5cad2bfb06cbe6c4635336e9e9c53591fa912ce339b53f9ea"
+      },
+      "step": "certifications"
+    }
+  ],
+  "command_logs_replayed": 17,
+  "containers_started": 2,
+  "finished_at": "2026-09-25T12:36:57.576962+00:00",
+  "historical_validity": "not-established",
+  "kind": "diagnostic-gmp-certification-attempt-review-v1",
+  "new_cryptography_executed_by_review": false,
+  "not_executed": [
+    "verify",
+    "tampered-body",
+    "wrong-primary",
+    "missing-primary"
+  ],
+  "result": {
+    "bytes": 62201,
+    "sha256": "1e3a403d764bd5390d31d1fb8d1370de62c73c4f14c047b2daf7f8a28d74c92a"
+  },
+  "review_method": {
+    "bytes": 10509,
+    "sha256": "1c8c44059e948f2fe1c2603ff9aedaf19dc916a8094e74fbdd224745c374943a"
+  },
+  "run_id": "627fd8f45b1340208c92719bc7d86157",
+  "runtime_qualification": false,
+  "source_acceptance": "not-assessed",
+  "started_at": "2026-09-25T12:36:56.635955+00:00"
+}

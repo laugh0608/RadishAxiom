@@ -1,0 +1,39 @@
+{
+  "complete_project_source_lock": false,
+  "files": [
+    {
+      "bytes": 6034533,
+      "path": ".tmp/gmp-verification-execution-20260925.json",
+      "role": "gmp-first-attempt-failure-and-offline-review",
+      "sha256": "480c6889fd21a595a0f5981c700c86439a4d71c50d0e71a39d3ea4c4de4cf336"
+    },
+    {
+      "bytes": 7562,
+      "path": "docs/records/rust-linux-input-review/inspect-gmp-filter-attempt.py",
+      "role": "gmp-first-attempt-failure-and-offline-review",
+      "sha256": "f93c079c14db5aa54b9cafc5f7f6eb67443a25e9d87724c0346834cfd8296e27"
+    },
+    {
+      "bytes": 3241,
+      "path": "docs/records/rust-linux-input-review/check-gmp-filter-attempt.py",
+      "role": "gmp-first-attempt-failure-and-offline-review",
+      "sha256": "199762aa97293d28762fc02f04987e9c7ab90b5fe657b27fa5d937e4017f618c"
+    },
+    {
+      "bytes": 1942,
+      "path": "docs/records/rust-linux-input-review/gmp-verification-attempt-2026-09-25.json",
+      "role": "gmp-first-attempt-failure-and-offline-review",
+      "sha256": "335234c0e0a893c3a6cd1ddb88fb8c08405e76a617b373a1483e9254fbf3b70e"
+    },
+    {
+      "bytes": 13650,
+      "path": "docs/records/rust-linux-input-review/collect-gmp-verification-execution.py",
+      "role": "gmp-first-attempt-failure-and-offline-review",
+      "sha256": "02d310f658583d42b1bb25e953e67c2f07496719a5e806a478156750dfb0135e"
+    }
+  ],
+  "kind": "diagnostic-musl-retention-manifest-v1",
+  "repository_base": "6852a43",
+  "scope": "GMP first filter attempt, complete execution bundle, offline failure review; no signature acceptance",
+  "source_acceptance": "not-assessed"
+}
