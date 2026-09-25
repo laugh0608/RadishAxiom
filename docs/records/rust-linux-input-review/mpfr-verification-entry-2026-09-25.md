@@ -117,3 +117,5 @@ git diff --check
 正例保留 `TRUST_UNDEFINED 0 pgp` 与 GnuPG 关于尚未认证钥匙所有者的提示。它不否定此次数学验签结果，也不证明公钥属于所声明维护者；没有使用 ownertrust、第三方弱认证或默认信任来消除提示。固定 GnuPG、Python、宿主、Docker / OrbStack 和此前身份页面仍分别承担已有信任角色。公钥材料时点为 2026-09-16，未获取所有渠道的最新撤销状态。
 
 因此本次保持 `source_acceptance = not-assessed`、`runtime_qualification = false`。下一步审阅固定 MPFR 原包的身份依据、工具 / 宿主信任及来源接受范围；许可证审阅、构建关联、安装、激活仍分别验收与授权。此次未执行 MPC、下载、安装、产品构建、Rust / CI 或远程写入。后续新增导出方法、结果与状态更新留在工作区，未再次提交。
+
+本次执行记录随后提交为 `8d803cb`；[来源接受审阅](mpfr-source-acceptance-review-2026-09-25.md)已完成，项目所有者随后确认完整限定声明，该精确原包限定来源接受通过。该后续决定不修改本文诊断结果或原始 JSON。

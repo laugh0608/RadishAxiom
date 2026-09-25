@@ -30,20 +30,19 @@
 
 ## 近期顺位
 
-Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收；普通 `dev` push 仍不自动触发 CI。资源与维护决策已收口；kernel / Debian / Rust Linux 来源诊断尚未形成完整 source lock、真实安装或构建验收。此前批次交接见 [2026-09-16 日终回顾](../records/2026-09-16-closeout.md)；本批完成 [MPFR 六项真实离线验签](../records/rust-linux-input-review/mpfr-verification-entry-2026-09-25.md#本次授权与真实执行结果)，所有正负例符合预期，六个容器已清理；MPFR 来源接受仍待独立审阅。
+Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收；普通 `dev` push 仍不自动触发 CI。资源与维护决策已收口；kernel / Debian / Rust Linux 来源诊断尚未形成完整 source lock、真实安装或构建验收。此前批次交接见 [2026-09-16 日终回顾](../records/2026-09-16-closeout.md)；本批完成 [MPFR 六项真实离线验签](../records/rust-linux-input-review/mpfr-verification-entry-2026-09-25.md#本次授权与真实执行结果)，所有正负例符合预期，六个容器已清理；[固定原包来源审阅](../records/rust-linux-input-review/mpfr-source-acceptance-review-2026-09-25.md)已完成，项目所有者已确认限定声明，该精确原包的限定来源接受通过。
 
 [ADR 0015（Accepted）](../adr/0015-virtualized-checker-resource-profile.md)确认 guest 128 MiB 硬限及宿主总内存无等价硬保证；8,000 行预警线、最多 10 人日和每周 4 小时投入已确认，项目所有者统一负责 runtime 与 kernel / init。细节以[维护责任](../checker-runtime-productization-dependency-review.md#许可证与维护责任)为准。
 
 ### 下一步
 
-musl 两角色真实验签及[固定原包的限定来源验收](../records/rust-linux-input-review/musl-source-acceptance-review-2026-09-16.md)已完成，范围限于已确认工具 / 宿主与公钥材料时点。MPC / MPFR 原包、签名及公钥已取得并结构盘点；MPFR 已完成六项真实验签，MPC 尚未真实验签，两者来源接受仍待完成。早前材料事实见[原包核对](../records/rust-linux-input-review/mpc-mpfr-inputs-2026-09-16.md)和[公钥审阅](../records/rust-linux-input-review/mpc-mpfr-key-inputs-2026-09-16.md)。
+musl 两角色真实验签及[固定原包的限定来源验收](../records/rust-linux-input-review/musl-source-acceptance-review-2026-09-16.md)已完成，范围限于已确认工具 / 宿主与公钥材料时点。MPC / MPFR 原包、签名及公钥已取得并结构盘点；MPFR 已完成六项真实验签与限定来源接受；MPC 上游签名尚未验证，来源接受待确认。早前材料事实见[原包核对](../records/rust-linux-input-review/mpc-mpfr-inputs-2026-09-16.md)和[公钥审阅](../records/rust-linux-input-review/mpc-mpfr-key-inputs-2026-09-16.md)。
 
-1. **审阅固定 MPFR 原包的来源接受范围。** 已按本次授权完成六项真实诊断，三 UID / 四份自认证与原包签名通过，正文篡改、错误 / 缺失主钥正确拒绝；45 条命令日志离线重放一致。根据[实际结果与剩余信任](../records/rust-linux-input-review/mpfr-verification-entry-2026-09-25.md#剩余信任与下一步)审阅身份页面、固定工具 / 宿主及公钥材料时点，再确认限定来源接受声明；当前仍为 `not-assessed`。三份旧钥 SHA-1 认证不参与本轮认证依据，不沿用 musl 验收结论。
-2. **单独处理 MPC 公钥到期材料。** 官方包最新 UID 自签候选声明到期为 2024-07-04，尚未数学核验；先补同指纹更新认证与指纹页留存。历史验签或 Debian 路线另行审阅，不倒拨时间、忽略过期或继承 musl 的验收结论。
-3. **继续来源与安装前置。** 依照[六项路线](../records/rust-linux-input-review/musl-remaining-sources-2026-09-16.md)补 Binutils / GCC / GMP / headers，不混淆压缩格式、重打包或版本；随后补发布构建关联、Rust 公钥与宿主库、kernel 原始 tag / 最终链接，再收口[隔离安装切片](../checker-runtime-linux-install-slice-review.md)。来源、安装及产品运行分别验收。
-4. **并行核对备份转移与增量。** 9 月 16 日交付的 60.4 MiB 固定快照包不含后续两批 MPC / MPFR 材料；它们已有独立本机归档。该日日终 Downloads 三个交付文件已不在原路径，项目内最终包摘要仍一致；待核实目标副本，再补后续增量，不据此声称异盘恢复已完成。详见[日终材料状态](../records/2026-09-16-closeout.md#本机材料与外部影响)。备份转移不新增为本地来源审阅的密码学门槛。
+1. **确认固定 MPC 原包的限定来源声明。** [9 月 25 日审阅](../records/rust-linux-input-review/mpc-source-acceptance-review-2026-09-25.md)已刷新官方三份材料，补齐指纹页；公钥与旧材料完全相同，未取得更新认证。已有 Debian 两角色执行记录、完整 Sources 及同一原包字节已离线重算一致，建议仅接受固定快照对该原包的归档声明，完整限定声明待确认；不继承 musl 决定，也不将 MPC 上游签名标为通过。
+2. **继续来源与安装前置。** 依照[六项路线](../records/rust-linux-input-review/musl-remaining-sources-2026-09-16.md)补 Binutils / GCC / GMP / headers，不混淆压缩格式、重打包或版本；随后补发布构建关联、Rust 公钥与宿主库、kernel 原始 tag / 最终链接，再收口[隔离安装切片](../checker-runtime-linux-install-slice-review.md)。来源、安装及产品运行分别验收。
+3. **并行核对备份转移与增量。** 9 月 16 日交付的 60.4 MiB 固定快照包不含后续 MPC / MPFR 原包、公钥及本次 MPC 刷新材料；这些增量已有独立本机归档。该日日终 Downloads 三个交付文件已不在原路径，项目内最终包摘要仍一致；待核实目标副本，再补后续增量，不据此声称异盘恢复已完成。详见[日终材料状态](../records/2026-09-16-closeout.md#本机材料与外部影响)。备份转移不新增为本地来源审阅的密码学门槛。
 
-这些是后续顺位，不是自动任务或新的下载、执行、安装授权。9 月 25 日本次六项执行授权已完成，不延续为重复运行、来源接受、安装或 MPC 的执行授权。
+这些是后续顺位，不是自动任务或新的下载、执行、安装授权。本轮三项 MPC 公开材料获取已另行确认并完成，不延续为取钥重试或密码学执行授权。9 月 25 日本次六项执行授权已完成，不延续为重复运行、安装或 MPC 的执行授权；MPFR 限定来源决定另见上述已确认审阅。
 
 [AX-B01 首切片依赖审阅](../axiom-pipeline-first-slice-dependency-review.md)已列出 P0–P9 前置；cvc5 / Node 自身的来源与外层硬限制仍需独立闭合。纯设计无需等待产品安装 / 激活，生产实现遵守 ADR 0007 全部入口或正式替代决策。
 
@@ -61,7 +60,7 @@ Checker 语义线先核实目标归因，再验收同域泛化、独立证明链
 
 ## 验证入口与本次审阅
 
-2026-09-25：准备阶段 **103 项**合成 / 回归检查通过；随后六项真实 GnuPG 诊断符合预期，六个容器均已删除，45 条命令及六项判定离线重放一致。新增导出方法 **7 项**合成检查通过；执行方法未修改，未重跑此前 103 项、Rust / CI 或产品构建。详情见[本批记录](../records/rust-linux-input-review/mpfr-verification-entry-2026-09-25.md#本次授权与真实执行结果)；诊断尚未接入默认仓库门禁。此前 musl 限定验收与备份边界见[9 月 16 日日终记录](../records/2026-09-16-closeout.md#日终验证与交接)。
+2026-09-25：准备阶段 **103 项**合成 / 回归检查通过；随后六项真实 GnuPG 诊断符合预期，六个容器均已删除，45 条命令及六项判定离线重放一致。新增导出方法 **7 项**合成检查通过；执行方法未修改，未重跑此前 103 项、Rust / CI 或产品构建。来源审阅轮另行重算导出与三份归档，身份页面指纹 / 链接匹配，没有重新执行密码学。另完成 MPC 三项有界 HTTPS 获取、18 路径增量恢复与既有 Debian 九项 / 66 条命令离线复核；公钥解析 9 项合成回归与仓库 1,187 文件检查通过，没有重跑 GnuPG。详情见[本批记录](../records/rust-linux-input-review/mpfr-verification-entry-2026-09-25.md#本次授权与真实执行结果)；诊断尚未接入默认仓库门禁。此前 musl 限定验收与备份边界见[9 月 16 日日终记录](../records/2026-09-16-closeout.md#日终验证与交接)。
 
 仓库级契约、生成一致性与文本检查：
 

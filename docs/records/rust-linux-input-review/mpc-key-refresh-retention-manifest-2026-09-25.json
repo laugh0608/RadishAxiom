@@ -1,0 +1,117 @@
+{
+  "complete_project_source_lock": false,
+  "files": [
+    {
+      "bytes": 339,
+      "path": ".tmp/mpc-key-refresh-20260925/baseline-readback.json",
+      "role": "refresh-input-log-or-review-method",
+      "sha256": "1477e618cf6a382cc191cc3a5407c116b450925adcd175e958ff031dc3002ab9"
+    },
+    {
+      "bytes": 751,
+      "path": ".tmp/mpc-key-refresh-20260925/fetch-plan.json",
+      "role": "refresh-input-log-or-review-method",
+      "sha256": "f184e7c47b87409bf08d047e83045072e664f04b5c79732a2a3da5d31129013f"
+    },
+    {
+      "bytes": 8272,
+      "path": ".tmp/mpc-key-refresh-20260925/mpc-fingerprint-page-attempt-1.html",
+      "role": "refresh-input-log-or-review-method",
+      "sha256": "dd742d48f2898cbaeecf9d8a28b052a448a9d4c6676866f0d7fb84708967e0de"
+    },
+    {
+      "bytes": 1552,
+      "path": ".tmp/mpc-key-refresh-20260925/mpc-fingerprint-page-attempt-1.json",
+      "role": "refresh-input-log-or-review-method",
+      "sha256": "0fafc5d55aa8367b3354ff3ed388e89fa6e12c1d7158f7fb2e3e453fe1393a77"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/mpc-key-refresh-20260925/mpc-fingerprint-page-attempt-1.stderr",
+      "role": "refresh-input-log-or-review-method",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/mpc-key-refresh-20260925/mpc-fingerprint-page-attempt-1.stdout",
+      "role": "refresh-input-log-or-review-method",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 124014,
+      "path": ".tmp/mpc-key-refresh-20260925/mpc-key-attempt-1.asc",
+      "role": "refresh-input-log-or-review-method",
+      "sha256": "dae0bf8d40b5e3cbb64b3c98fbcf48857f983b8bf811f761a206ebae75f040a8"
+    },
+    {
+      "bytes": 1509,
+      "path": ".tmp/mpc-key-refresh-20260925/mpc-key-attempt-1.json",
+      "role": "refresh-input-log-or-review-method",
+      "sha256": "324bffdcb9779407caa28b3c46e125c7fbd8587e8ff313d945b725209eea5688"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/mpc-key-refresh-20260925/mpc-key-attempt-1.stderr",
+      "role": "refresh-input-log-or-review-method",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/mpc-key-refresh-20260925/mpc-key-attempt-1.stdout",
+      "role": "refresh-input-log-or-review-method",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 8741,
+      "path": ".tmp/mpc-key-refresh-20260925/mpc-page-attempt-1.html",
+      "role": "refresh-input-log-or-review-method",
+      "sha256": "fa9e8c70c479bd2599515cec7ea17f8fdacc4f5c0cb85c45375cfb3435c6c438"
+    },
+    {
+      "bytes": 1510,
+      "path": ".tmp/mpc-key-refresh-20260925/mpc-page-attempt-1.json",
+      "role": "refresh-input-log-or-review-method",
+      "sha256": "71719b2563bfe5e0f13d055d263194ae0c919138c745416c2bc58a692dbce73c"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/mpc-key-refresh-20260925/mpc-page-attempt-1.stderr",
+      "role": "refresh-input-log-or-review-method",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/mpc-key-refresh-20260925/mpc-page-attempt-1.stdout",
+      "role": "refresh-input-log-or-review-method",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 7347,
+      "path": ".tmp/mpc-key-refresh-20260925/review-observations.json",
+      "role": "refresh-input-log-or-review-method",
+      "sha256": "50c8dea305a734dadbbe1ddda5179055ab193a255e7f33fe923ce23ff7e1f045"
+    },
+    {
+      "bytes": 5126,
+      "path": "docs/records/rust-linux-input-review/fetch-mpc-mpfr-inputs.py",
+      "role": "refresh-input-log-or-review-method",
+      "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+    },
+    {
+      "bytes": 9064,
+      "path": "docs/records/rust-linux-input-review/inspect-mpc-mpfr-key-inputs.py",
+      "role": "refresh-input-log-or-review-method",
+      "sha256": "629cccc5fc59a91167fbeddbe73773e94774576ef7a904ae0f16b6aa7b5bdb53"
+    },
+    {
+      "bytes": 10295,
+      "path": "docs/records/rust-linux-input-review/retain-musl-verifier-inputs.py",
+      "role": "refresh-input-log-or-review-method",
+      "sha256": "72047818576ab27de02cf8e9620c33299c007b4c64108fb7c11a3c1d23e3ca0a"
+    }
+  ],
+  "kind": "diagnostic-musl-retention-manifest-v1",
+  "repository_base": "8d803cb",
+  "scope": "MPC official key/page refresh and local review observations; prior archives and repository methods required",
+  "source_acceptance": "not-assessed"
+}

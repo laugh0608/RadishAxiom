@@ -1,0 +1,28 @@
+{
+  "downloads_backup_updated": false,
+  "kind": "diagnostic-mpc-key-refresh-retention-v1",
+  "pack": {
+    "file_count": 18,
+    "manifest": {
+      "bytes": 4691,
+      "sha256": "852c0419383df540b5b97f8394fa8b2c7dc8d34bf72a6ece2686085d63c6030c"
+    },
+    "object_bytes": 178524,
+    "object_count": 14,
+    "off_device_backup_verified": false,
+    "source_acceptance": "not-assessed"
+  },
+  "repository_and_prior_source_stores_required": true,
+  "restore": {
+    "file_count": 18,
+    "manifest": {
+      "bytes": 4691,
+      "sha256": "852c0419383df540b5b97f8394fa8b2c7dc8d34bf72a6ece2686085d63c6030c"
+    },
+    "object_count": 14,
+    "off_device_backup_verified": false,
+    "restored_bytes_match": true,
+    "source_acceptance": "not-assessed"
+  },
+  "store": "artifacts/source-inputs/mpc-key-refresh-8d803cb-20260925"
+}
