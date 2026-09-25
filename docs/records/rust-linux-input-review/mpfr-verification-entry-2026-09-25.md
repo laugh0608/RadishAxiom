@@ -1,6 +1,6 @@
 # MPFR 当前主钥离线验签切片（2026-09-25）
 
-用途：向维护者交接已实现的方法、合成检查和待授权真实执行范围。不包含 MPFR 来源接受、许可证接受、安装或产品 qualification。
+用途：向维护者交接已实现的方法、合成检查和真实执行结果。不包含 MPFR 来源接受、许可证接受、安装或产品 qualification。前文保留准备阶段的事实与授权边界，本次已授权运行见文末。
 
 ## 本批结果与输入
 
@@ -56,7 +56,7 @@ python3 docs/records/rust-linux-input-review/run-mpfr-verification.py --execute-
 
 标志只记录授权，不自行授予权限。依据[当前停止线](../../status/current.md#当前停止线与待决策)和[协作规则](../../governance/agent-collaboration.md#授权进程与环境)，真实执行需要本次精确范围授权；此前“开始”用于完成本批本地方法与检查，没有自动覆盖未说明的容器执行范围。
 
-## 实际验证与未验收项
+## 准备阶段验证与未验收项
 
 新入口 38 项合成检查通过；既有调用编排 38 项、采集 / 生命周期 27 项回归通过，共 **103 项**。新测试全部使用合成公钥、签名状态、临时输入或假 daemon；继承采集器测试运行的是宿主 Python 合成子进程。没有生成真实签名或运行 GnuPG。
 
@@ -75,3 +75,45 @@ git diff --check
 输入导出与重新生成结果逐字节一致；正文负例与原包等长且恰好相差一个字节；默认计划预览通过。`./scripts/check-repo.sh` 通过（1,180 个文件），`git diff --check` 通过。不新增默认 CI 门禁；真实 GnuPG、多 UID 导入行为、容器挂载与资源限制尚待动态验证。未重跑 Rust / CI、产品构建、来源接受或安装，没有新下载、提交、push、后台服务或本批容器。
 
 本批 6 个新文件与 4 个文档更新留在工作区，未暂存、未提交；其中两份历史记录只修复指向当前顺位的锚点，不改批次事实。测试临时目录由测试自行清理，Python import 缓存处于既有忽略规则内；真实执行目录尚未创建。
+
+## 本次授权与真实执行结果
+
+项目所有者随后要求“提交工作区更改，授权该方案”。先将上述 10 个文件精确暂存并提交为 `9fd5893`（`chore(runtime): 准备 MPFR 有界离线验签切片`）；提交后工作区干净，相对本地 `origin/dev` ahead 1，未 push。随后按上文原命令、原镜像与原目录执行一次，没有重试、修改方法、放宽检查或变更资源范围。
+
+执行时间为 **2026-09-25 13:40:00.956–13:40:04.684（Asia/Shanghai）**，实际约 3.73 秒，入口退出 **0**。六项均符合原预期：
+
+| 步骤 | GnuPG 退出码 | 实际结果 |
+| --- | --- | --- |
+| self-only 导出 | 0 | 派生公钥 803 bytes；三 UID、加密子钥和四份原始自认证保持对应，三份旧钥认证被排除 |
+| 自认证检查 | 0 | 三份 UID class `13` 与子钥 class `18` 均为 `sig:!`，算法 22 / digest 8、上下文与日期匹配 |
+| 固定原包 | 0 | 唯一指定主钥 `GOODSIG` / `VALIDSIG`，EdDSA / SHA-256、class `00`，签名时间与原始 packet 声明匹配 |
+| 正文单字节篡改 | 1 | 指定 signer 的 `BADSIG`，没有成功状态 |
+| 错误主钥 | 2 | 指定 signer 的 `ERRSIG` 原因 9 与 `NO_PUBKEY` |
+| 缺失主钥 | 2 | 同上；没有将 IO、超时或资源失败当成预期拒绝 |
+
+派生公钥 SHA-256 为 `3fe00f68bbf3888ae185b950d4db0f708dd01b6159cb03dec77296f9045b6372`。全部六个容器正常结束、未 OOM，逐项 ownership 复核后删除；六次 `container rm` 退出 0。没有遗留本批容器、后台进程或新增镜像。已有镜像、rootfs、输入归档以及本次任务目录的日志与公开材料保留。
+
+固定 CLI、daemon 版本 / 能力、image、逐次 mount / 隔离参数及前后输入身份检查通过。本次只观察了这些参数与正常 / 错误签名路径，没有进行内存耗尽、宿主失联或异常 teardown 压力实验，不扩展为产品隔离或 qualification 声明。
+
+### 结果留存与离线重放
+
+[导出方法](collect-mpfr-verification-execution.py)绑定本次 `result.json` 的 37,352 bytes / SHA-256 `601bd0d92811382c378eb6e3c8f51c05c93d90aa0636ce79b69332b161b2d129`，核对全部 20 个执行方法身份、固定输入归档和 **45 条命令日志**。[执行导出](mpfr-verification-execution-2026-09-25.json)包含原始报告、所有命令的 stdout / stderr、六份 status 及重算判定；二进制 stdout 使用 base64 无损保存，不用文本解码丢弃字节。
+
+离线重放消费固定命令响应，重新检查 preflight、image、逐项 command / capture limit、容器前后状态及 cleanup，再重算原始 / 派生自认证关系和六项结果。该重放不连接 Docker、不运行 GnuPG、不再次写入派生输入；复用同一判定逻辑，因此是记录一致性复核，不是第二套独立密码学证明。复算仍需仓库方法、已留存输入归档和本机任务目录；导出保留核心运行日志，但不是完整环境备份或异盘恢复声明。
+
+新增 [7 项合成导出检查](check-mpfr-execution-record.py)通过，覆盖命令目标 / 顺序、socket / config、采集限额、日志耗尽、失败保留和二进制 / Unicode 往返。执行方法没有变化，准备阶段 103 项检查作为此前证据保留，本轮未重复运行它们。
+
+执行导出重新生成后逐字节一致：303,335 bytes，SHA-256 `014b34ef48dc1607e7a80f742b4c6e2bc9b93f64d82ccb28b43e6baaa12fa037`。本轮仓库检查通过（1,183 个文件），`git diff --check` 通过。
+
+```bash
+python3 docs/records/rust-linux-input-review/collect-mpfr-verification-execution.py
+python3 docs/records/rust-linux-input-review/check-mpfr-execution-record.py
+./scripts/check-repo.sh
+git diff --check
+```
+
+### 剩余信任与下一步
+
+正例保留 `TRUST_UNDEFINED 0 pgp` 与 GnuPG 关于尚未认证钥匙所有者的提示。它不否定此次数学验签结果，也不证明公钥属于所声明维护者；没有使用 ownertrust、第三方弱认证或默认信任来消除提示。固定 GnuPG、Python、宿主、Docker / OrbStack 和此前身份页面仍分别承担已有信任角色。公钥材料时点为 2026-09-16，未获取所有渠道的最新撤销状态。
+
+因此本次保持 `source_acceptance = not-assessed`、`runtime_qualification = false`。下一步审阅固定 MPFR 原包的身份依据、工具 / 宿主信任及来源接受范围；许可证审阅、构建关联、安装、激活仍分别验收与授权。此次未执行 MPC、下载、安装、产品构建、Rust / CI 或远程写入。后续新增导出方法、结果与状态更新留在工作区，未再次提交。
