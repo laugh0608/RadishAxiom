@@ -1,0 +1,1388 @@
+{
+  "cryptography_executed": false,
+  "historical_validity": "not-established",
+  "inputs": {
+    "empty.gpg": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "gmp.original.asc": {
+      "bytes": 32347,
+      "sha256": "50561c50f40cd9746af214c995fb219bbe7f3b9c5f038b918f5df543bb3f846f"
+    },
+    "gmp.raw.gpg": {
+      "bytes": 23795,
+      "sha256": "15ecfb1b30d3adb33da5f2bb83cc2c19808d8a2e05db31403e3c4e4892bfe46e"
+    },
+    "gmp.strong.gpg": {
+      "bytes": 1501,
+      "sha256": "fee8194e5cde8f7b023639e929cae3c8773f8b9e7e3a561ee9335bbae5381fdf"
+    },
+    "gmp.tampered.xz": {
+      "bytes": 2094196,
+      "sha256": "a88830f8e101d277bbe2a399336ac9b8a583b40e284f38d1f902b65e3612b7eb"
+    },
+    "gmp.tar.xz": {
+      "bytes": 2094196,
+      "sha256": "a3c2b80201b89e68616f4ad30bc66aee4927c3ce50e33929ca819d5c43538898"
+    },
+    "gmp.tar.xz.asc": {
+      "bytes": 374,
+      "sha256": "94def8c1a731854de684689126046ec93589147abd4cd0025f12d741d323aa82"
+    },
+    "wrong.gpg": {
+      "bytes": 2234,
+      "sha256": "0c20cd3d5695a7c70f9de37e5b0694261d364dd317cdce3732ee2212ba53eea1"
+    }
+  },
+  "key_material_as_of": "2026-09-25",
+  "kind": "diagnostic-gmp-verification-inputs-v1",
+  "off_device_backup_verified": false,
+  "official_pages": {
+    "announcement": {
+      "exact_links_checked": true,
+      "input": {
+        "bytes": 5708,
+        "sha256": "03831f223ac1a7a5a9d6f81c0259bd0e95669de29de6d983bf016f0a05fd9d1c"
+      }
+    },
+    "identity": {
+      "exact_links_checked": true,
+      "input": {
+        "bytes": 20743,
+        "sha256": "3e743143ae362de50a972cdd0103ff17d484fc3c3e9275f222a2b73601d40b83"
+      }
+    }
+  },
+  "projection": {
+    "all_channel_freshness": "unknown",
+    "excluded": [
+      {
+        "class": 19,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1357586787,
+          "key_expiry_seconds": 315360000,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "F3599FF828C67298"
+        ],
+        "digest_algorithm": 2,
+        "disposition": "excluded-old-sha1-self",
+        "packet_index": 3,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 382,
+          "sha256": "a34a26478c80ce7f471bf490c09e58ccd51db753a22795e0daf42054ae1c3758"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1357887547,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "915ACC45A8F4C2FD"
+        ],
+        "digest_algorithm": 2,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 4,
+        "public_key_algorithm": 17,
+        "signature_body": {
+          "bytes": 70,
+          "sha256": "03485e2e9c6f60b0256491ba0af54f4ca776823227848bcd532a3ec059210eae"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391360676,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "7482655E307E3452"
+        ],
+        "digest_algorithm": 10,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 5,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "1c04d9c9c9286a0b992fa9d2b2ef63d5fb219b4ba7173a94825b8e6a56ad9918"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391377088,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "3209AAD690D39AD1"
+        ],
+        "digest_algorithm": 8,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 6,
+        "public_key_algorithm": 17,
+        "signature_body": {
+          "bytes": 94,
+          "sha256": "7302b0b2b78c1481932d6bfe41a4eb3d42883ee88dadf1d0d487aa2e56ea0b73"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391377885,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "317EA6C6981C4E48"
+        ],
+        "digest_algorithm": 2,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 7,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 284,
+          "sha256": "813e5dd76326ce50ad8ddfc379ed3c27e94d411aa3578ec7f5ee1ad8741148c6"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391384242,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "8BE879B028731E1C"
+        ],
+        "digest_algorithm": 8,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 8,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "f9933126fd45d7a055960b185d780f04ad46324184c375a8c3da411614391213"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391418020,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "025AB0106B17EA1E"
+        ],
+        "digest_algorithm": 8,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 9,
+        "public_key_algorithm": 17,
+        "signature_body": {
+          "bytes": 94,
+          "sha256": "69b362be62db4918585e9bf881f80f4cff5d1ef7cba255765e06b326a629dfa0"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391436145,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "598F95AAF6C99C5F"
+        ],
+        "digest_algorithm": 8,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 10,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 924,
+          "sha256": "32e1f271032a7ff3644880026688e2cde735588fb616ec08992218ec6678ce4d"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391436186,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "78910CC453BCA10E"
+        ],
+        "digest_algorithm": 2,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 11,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "234c4bbbde02cb9fa570acc87ad57bb3e9a1e1f4061de9668f8fc2d59ebe57c4"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391437122,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "813FE83A74974824"
+        ],
+        "digest_algorithm": 8,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 12,
+        "public_key_algorithm": 17,
+        "signature_body": {
+          "bytes": 70,
+          "sha256": "c576f605ada94ea96fd172ef5ebfff5a06b2f28860dd77afc118fb20331d9540"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391437629,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "387706A26998E5C4"
+        ],
+        "digest_algorithm": 8,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 13,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "da19540d61680ac99a387cb7f20d39fb4d6b5cc3988865932d51696335e99093"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 19,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391448299,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "A9C86C8DD3AE8D3A"
+        ],
+        "digest_algorithm": 10,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 14,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "b4af39cc159ff77dcac3f335be3fb1d99e5155959b265ca9852eeacdc9dff48e"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391465272,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "0604F490CA4055BC"
+        ],
+        "digest_algorithm": 10,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 15,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "2febb74e82d504e01eb20ec4503ebe3c4917dd4d9a1fe640d31a3071fe7b247a"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 48,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391471467,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "598F95AAF6C99C5F"
+        ],
+        "digest_algorithm": 8,
+        "disposition": "unverified-third-party-certification-revocation",
+        "packet_index": 16,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 956,
+          "sha256": "f10200d9f5fd7bca0ac077164da53094bb785fb24fb49ec42b1768836f4701bb"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 18,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391471486,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "598F95AAF6C99C5F"
+        ],
+        "digest_algorithm": 8,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 17,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 924,
+          "sha256": "5ea9794b1d745a84ba2853ae5ee8cc6a65cdfec67a40c75a83dfac65cadeded6"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391473578,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "7D2ACDAF4653CF28"
+        ],
+        "digest_algorithm": 8,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 18,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "68fb0c88f2c43d9f17846b666ae97dd59b90c05ec31ac2842d32ca451345e211"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391500678,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "DB3E76B7A88A5E2F"
+        ],
+        "digest_algorithm": 2,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 19,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "67a3fe0176d239c7fb90345a7c51da0ccd8830bd287a3678322799857b8511fe"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391602835,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "6A6CD5B765632D3A"
+        ],
+        "digest_algorithm": 8,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 20,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "728b71f7fba3b0d23f994b212c46058eb67e5a12665120bd21738e12d2207388"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391620000,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "41FAD1D521B94AB9"
+        ],
+        "digest_algorithm": 2,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 21,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 284,
+          "sha256": "42ea7b55fbac524b3d2b10fb88b75a34ad1fd87e9bf897bd30299e45a057cd43"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 18,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391702642,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "4825C90A45758A21"
+        ],
+        "digest_algorithm": 10,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 22,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "57b528d8eb7b88127f23dca33d7cba2a6c4cc08223359d9fc5349f141a5dc4c1"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391716158,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "F6881E9088A91FA3"
+        ],
+        "digest_algorithm": 2,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 23,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "63b43f6012d3d6d8cdca2747f4574b36e35748c1715a20d8ef32e2f8bed171c8"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391725892,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "C9F0B6979DE37ED4"
+        ],
+        "digest_algorithm": 8,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 24,
+        "public_key_algorithm": 17,
+        "signature_body": {
+          "bytes": 94,
+          "sha256": "ff4cf5fe24166f60fc6dfb6273798f1e739a5d2b49c2a040772986666e810ee6"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 19,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391779256,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "A5E4998FA6CC85FB"
+        ],
+        "digest_algorithm": 8,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 25,
+        "public_key_algorithm": 17,
+        "signature_body": {
+          "bytes": 70,
+          "sha256": "bf956dc7726a608eb8e47880e70dc3a6026261084e577546e85ce53a59167ec7"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391788617,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "ABA1CB30E997A3AF"
+        ],
+        "digest_algorithm": 2,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 26,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "85b5973a0e8a4baecddfa3c6fc102cc670ad14f235fbf8eacc2a188e67ec3fe3"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 18,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391871654,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": 31536000
+        },
+        "declared_issuers": [
+          "25BF484F08AB4849"
+        ],
+        "digest_algorithm": 8,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 27,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 718,
+          "sha256": "6df212d642797a2583c68e8d7a8f0cf80b5bf0d1381f1f45c95c312972364349"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 18,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391957421,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "5B9EA1616690CF94"
+        ],
+        "digest_algorithm": 2,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 28,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "da4337fe946547035d1fa98e0c13648d4ac0bcf6aecf284e54a9387260a12025"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 18,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391971527,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "DFD27FF7F6A0F312"
+        ],
+        "digest_algorithm": 10,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 29,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 284,
+          "sha256": "83a0c0cb4cb6bbbce81f849193db7892f22c42277f16a14d3fa328a76401b2b5"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1392476439,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "E66E676C09494C14"
+        ],
+        "digest_algorithm": 2,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 30,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "3b4ae3bdb87f2f8d37cc3efbd1a2d25a097b150b9398d8652ccd5e27cb4cbbc5"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1392496105,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "C96E8B39444A7EC7"
+        ],
+        "digest_algorithm": 2,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 31,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "78ca1e10f0452c92e92c3836f86a9efeb75b0c9a1d73ed89a3119a36a9febd61"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 19,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1392568315,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "B475E207BAB58229"
+        ],
+        "digest_algorithm": 10,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 32,
+        "public_key_algorithm": 17,
+        "signature_body": {
+          "bytes": 101,
+          "sha256": "96254e7866abcbd21595cc4b53283bc01b43c88e59ce15f30114695f243741d9"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 19,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1392568326,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "948FD6A0E10F502E"
+        ],
+        "digest_algorithm": 10,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 33,
+        "public_key_algorithm": 17,
+        "signature_body": {
+          "bytes": 101,
+          "sha256": "edff0cedf12f72b9f964330fef7d618bf2085294d21d1a56efd86c736969e731"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 19,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1392568329,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "7A0685421E899042"
+        ],
+        "digest_algorithm": 10,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 34,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 571,
+          "sha256": "4cf61a569f449541d2b6cb169b7393092615585d81cdcb029ab3c06b1d77a391"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1393195786,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "099651EE653A300A"
+        ],
+        "digest_algorithm": 2,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 35,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "356882caad760528666c299ff21918b53459da59afa090438baa52d21635e362"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1393267255,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "82D5247B81BFDC70"
+        ],
+        "digest_algorithm": 2,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 36,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "a9744dcfa0956d7c405e462c7cf6da4e8a2f76d427a7e67c973692748ec40063"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1394509957,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "39278DA8109E6244"
+        ],
+        "digest_algorithm": 10,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 37,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "6778aa03b80fd5009e4002eec6bba62e0c6245a662520a74ed86c56f73ab6f74"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 18,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1394716422,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "D0B0F5E31ADB819A"
+        ],
+        "digest_algorithm": 2,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 38,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "50286777ead45af048c7fb36ea17339cbf786c1a6d9239efc4e5207b2aca3500"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 18,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1394990434,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "91815D6702982A4A"
+        ],
+        "digest_algorithm": 8,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 39,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "d3aadd34a44af585b7e56e1071743d41b938ad5a950f82df7db975c1a53c1fbc"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 18,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1395575378,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "FD4A91FE818EB1F1"
+        ],
+        "digest_algorithm": 2,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 40,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 1052,
+          "sha256": "39e8ecf67fb8762f234ae80e84cdf01a090459aa871160e1c631c7ea3cdca198"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1399295782,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "8B5880AFAC0218C7"
+        ],
+        "digest_algorithm": 2,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 41,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "0e8ca8daa97872ef5afa1f4440aeeb96698110d3ce99d240585cb462a7b4239e"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1399295797,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "4804B4BC3F55EEFB"
+        ],
+        "digest_algorithm": 2,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 42,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "b376f57f5f5d38b78856919250bf109c352a0f1a1b3d75c76b22c1a75ed575be"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1400656650,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "1145934AE07AC5B5"
+        ],
+        "digest_algorithm": 10,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 43,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "9d183cf09cb2d02545f806fef0832b69db93ef2b1a34885a6be53695f4d893a7"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1401553433,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "43004D09665FD573"
+        ],
+        "digest_algorithm": 2,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 44,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "94ba4b7cb93e57a0b60f119c0f32e8ddf89784e2cfdc75b989c757255febd550"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 17,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1402187810,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "60BCBB4F5CD7F9EF"
+        ],
+        "digest_algorithm": 2,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 45,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "be9a021f58e2db1cdf72d622782ac687b3d229edd1e9d28b17a5c036cb048187"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1465687961,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "F04B6376087A5EC1"
+        ],
+        "digest_algorithm": 2,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 46,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 288,
+          "sha256": "99fbef56848ae96846c53c029b176954a8598989ab4745367260cba81a0bbe71"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1475313055,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "71D8F1FF368C6677"
+        ],
+        "digest_algorithm": 2,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 47,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 284,
+          "sha256": "a317567108794ac38badd7cfa01ce9f7660c6beb8e7aa0186e65db3c94bfaefb"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1512535487,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "20DD78634C1BEBA3"
+        ],
+        "digest_algorithm": 8,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 48,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 540,
+          "sha256": "abdc12a28b691f18d01952bfb961cfdbd583b17060b1079cbecb609efafae479"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 16,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1646253600,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "F1D2591AA199D7C608D7559C1CD4F328E61B61CA",
+          "1CD4F328E61B61CA"
+        ],
+        "digest_algorithm": 8,
+        "disposition": "unused-foreign-certification",
+        "packet_index": 49,
+        "public_key_algorithm": 22,
+        "signature_body": {
+          "bytes": 117,
+          "sha256": "a59628cf387a9ae9117406aa290d473175ef5597d5724308bfd910dfd07ecc8e"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      },
+      {
+        "class": 24,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1357586787,
+          "key_expiry_seconds": 315360000,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "F3599FF828C67298"
+        ],
+        "digest_algorithm": 2,
+        "disposition": "excluded-old-sha1-self",
+        "packet_index": 52,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 357,
+          "sha256": "15eafe9f5aa5de66967996c5b37c0eb5016435dca7b99ceb76043216697ebf49"
+        },
+        "subject": [
+          "sub",
+          "48C9DE74746361F8617018347520153007F35B23"
+        ]
+      }
+    ],
+    "original": {
+      "bytes": 23795,
+      "sha256": "15ecfb1b30d3adb33da5f2bb83cc2c19808d8a2e05db31403e3c4e4892bfe46e"
+    },
+    "projection": {
+      "bytes": 1501,
+      "sha256": "fee8194e5cde8f7b023639e929cae3c8773f8b9e7e3a561ee9335bbae5381fdf"
+    },
+    "revocation_authentication": "not-performed",
+    "revocations": [
+      {
+        "class": 48,
+        "cryptography_executed": false,
+        "declared_hashed_times": {
+          "created_epoch": 1391471467,
+          "key_expiry_seconds": null,
+          "signature_expiry_seconds": null
+        },
+        "declared_issuers": [
+          "598F95AAF6C99C5F"
+        ],
+        "digest_algorithm": 8,
+        "disposition": "unverified-third-party-certification-revocation",
+        "packet_index": 16,
+        "public_key_algorithm": 1,
+        "signature_body": {
+          "bytes": 956,
+          "sha256": "f10200d9f5fd7bca0ac077164da53094bb785fb24fb49ec42b1768836f4701bb"
+        },
+        "subject": [
+          "uid",
+          "4e69656c73204dc3b66c6c6572203c6e69737365406c797361746f722e6c69752e73653e"
+        ]
+      }
+    ],
+    "source_acceptance": "not-assessed"
+  },
+  "signature": {
+    "armored": false,
+    "class": 0,
+    "cryptography_executed": false,
+    "declared_created_at": "2023-07-30T12:18:33+00:00",
+    "declared_digest_algorithm": 10,
+    "declared_issuer": "343C2FF0FBEE5EC2EDBEF399F3599FF828C67298",
+    "declared_public_key_algorithm": 1,
+    "decoded": {
+      "bytes": 374,
+      "sha256": "94def8c1a731854de684689126046ec93589147abd4cd0025f12d741d323aa82"
+    },
+    "issuer_fingerprint_in_hashed_area": true,
+    "public_key_identity_accepted": false,
+    "signature_mpis_verified": false,
+    "source_acceptance": "not-assessed",
+    "version": 4
+  },
+  "signature_time_is_signer_claim_not_independent_timestamp": true,
+  "source_acceptance": "not-assessed",
+  "store": {
+    "files_checked": 50,
+    "manifest": {
+      "bytes": 12053,
+      "sha256": "7d2d36dfe650ca3bd9c3aa678023fdb8001fd000f95c84847310be8793f337ab"
+    },
+    "objects_checked": 40,
+    "store": "gmp-inputs-50ef87c-20260925"
+  },
+  "wrong_key_selection": {
+    "packet_counts": {
+      "12": 13144,
+      "13": 1149,
+      "14": 778,
+      "17": 13,
+      "2": 11370,
+      "6": 612
+    },
+    "primary_count": 612,
+    "selected_packets": [
+      {
+        "bytes": 528,
+        "excluded_local_trust": false,
+        "offset": 2350221,
+        "packet": {
+          "bytes": 528,
+          "sha256": "11773807a5937eb1baa927e6ca2957978be237c4d91c3776d0e78287e0509b40"
+        },
+        "tag": 6
+      },
+      {
+        "bytes": 14,
+        "excluded_local_trust": true,
+        "offset": 2350749,
+        "packet": {
+          "bytes": 14,
+          "sha256": "3bcebe2d5106dc0402c537113a2d100048be1a208fc8b49fa6f0ec0797148bd8"
+        },
+        "tag": 12
+      },
+      {
+        "bytes": 61,
+        "excluded_local_trust": false,
+        "offset": 2350763,
+        "packet": {
+          "bytes": 61,
+          "sha256": "6584176261bd253fe3e7d494c75d6b8a24dfa6c21ea9aa5e54ddb612873c89dc"
+        },
+        "tag": 13
+      },
+      {
+        "bytes": 14,
+        "excluded_local_trust": true,
+        "offset": 2350824,
+        "packet": {
+          "bytes": 14,
+          "sha256": "acf34631294623a9908754d7e04f9f6a5df2a9ed43685aad2c813253d8b2fd19"
+        },
+        "tag": 12
+      },
+      {
+        "bytes": 571,
+        "excluded_local_trust": false,
+        "offset": 2350838,
+        "packet": {
+          "bytes": 571,
+          "sha256": "cf19d1340424354babc458ac6e9adc12ec8a078ac1f2cda32fb65f35372df5e6"
+        },
+        "tag": 2
+      },
+      {
+        "bytes": 8,
+        "excluded_local_trust": true,
+        "offset": 2351409,
+        "packet": {
+          "bytes": 8,
+          "sha256": "ad0ca359e60adf7353c0a8961eb0545e89b84d5ee07069e1fe24a606b413cacb"
+        },
+        "tag": 12
+      },
+      {
+        "bytes": 528,
+        "excluded_local_trust": false,
+        "offset": 2351417,
+        "packet": {
+          "bytes": 528,
+          "sha256": "2bebed7f78ba37b9998bb90246f92c7753f17d7e7989b7f89a6e9da916afaa51"
+        },
+        "tag": 14
+      },
+      {
+        "bytes": 546,
+        "excluded_local_trust": false,
+        "offset": 2351945,
+        "packet": {
+          "bytes": 546,
+          "sha256": "f6c49f1440851258e0d28e1661091f431e842565a133debcd47cfb52df533e4e"
+        },
+        "tag": 2
+      },
+      {
+        "bytes": 8,
+        "excluded_local_trust": true,
+        "offset": 2352491,
+        "packet": {
+          "bytes": 8,
+          "sha256": "ad0ca359e60adf7353c0a8961eb0545e89b84d5ee07069e1fe24a606b413cacb"
+        },
+        "tag": 12
+      }
+    ],
+    "selected_public": {
+      "bytes": 2234,
+      "sha256": "0c20cd3d5695a7c70f9de37e5b0694261d364dd317cdce3732ee2212ba53eea1"
+    },
+    "unrelated_key_semantics_checked": false
+  }
+}
