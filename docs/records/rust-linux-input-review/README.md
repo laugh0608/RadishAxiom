@@ -213,3 +213,7 @@ python3 docs/records/rust-linux-input-review/check-host-dependencies.py
 提交 `383b570` 后完成[GNU 官方钥环刷新核对](binutils-key-refresh-2026-09-25.md)：Savannah 发布钥接口 404；GNU 钥环取得并定位唯一完整指纹，五个公钥材料包体与旧附件完全相同，包头编码不同，未发现新增强自认证。24 路径已留存恢复，19 项检查与诊断重放通过；Binutils 来源接受仍未通过，未运行 GnuPG。
 
 提交 `b1de5c8` 后完成[其他取钥与 Debian 候选核对](binutils-source-routes-2026-09-25.md)：Ubuntu 材料仅新增第三方认证，自认证仍为 SHA-1；keys.openpgp.org 返回 404。精确 Debian `.xz` 已匹配完整索引，但与配方 `.gz` 少两个文件、三个文件内容不同，不能作为整包等价来源路线。31 项检查、历史执行 / 完整索引重放及 34 文件留存恢复通过；Binutils 保持未接受，后续先推进 GCC 独立材料。
+
+### 2026-09-25 GCC 9.4.0 原包材料
+
+提交 `dac0405` 后完成[GCC 精确原包、SHA-512 清单与签名获取](gcc-inputs-2026-09-25.md)。首次原包 curl 28 超时，失败字节保留；单独授权延长单次时限后完整取得 72,411,232 bytes，与官方 SHA-512 / 固定配方 SHA-1 对应，签名自身也匹配清单摘要。RSA / SHA-256 与完整 issuer 仅为声明；公钥、内容 / 许可及真实验签待补。27 项检查与 36 文件留存恢复重放通过，未安装或构建。

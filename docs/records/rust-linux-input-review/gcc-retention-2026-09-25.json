@@ -1,0 +1,16 @@
+{
+  "all_restored_bytes_match": true,
+  "all_retained_bytes_match": true,
+  "diagnostic_replay_equal": true,
+  "file_bytes": 129607458,
+  "file_count": 36,
+  "kind": "diagnostic-gcc-retention-v1",
+  "manifest": {
+    "bytes": 8407,
+    "sha256": "2b69dcb0632f2dfb893fec55fc280e21b2b514b73f6bc22ba6fbcfada9b78185"
+  },
+  "off_device_backup_verified": false,
+  "restore": ".tmp/gcc-inputs-restore-20260925",
+  "source_acceptance": "not-assessed",
+  "store": "artifacts/source-inputs/gcc-inputs-dac0405-20260925"
+}
