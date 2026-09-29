@@ -1,0 +1,182 @@
+{
+  "contracts": [],
+  "digest_algorithm": "sha-256",
+  "effects": [],
+  "enum_types": [
+    {
+      "definition": {
+        "name": "阶段/\"\\ ",
+        "members": [
+          "z",
+          "a",
+          "é",
+          "é",
+          "😀"
+        ]
+      },
+      "id": "sha256:f59c766c6fa18a5f65ce2874d6e4a5d08f558779057bab294c0347eb29e0c8ca"
+    },
+    {
+      "definition": {
+        "name": "另一阶段",
+        "members": [
+          "z",
+          "a",
+          "é",
+          "é",
+          "😀"
+        ]
+      },
+      "id": "sha256:be090ac7d51dbdd91a4c2e1de1c8a9650c6abe9a38577edbff889a4ca5ec5a0c"
+    }
+  ],
+  "format": "axiom-ir",
+  "ir_version": "0.1",
+  "nodes": [],
+  "outputs": [],
+  "record_types": [
+    {
+      "definition": {
+        "fields": [
+          {
+            "name": "amount",
+            "type": {
+              "kind": "int",
+              "lower": "-99999999999999999999999999999999999999999999999999999999999999999999999999999999",
+              "upper": "99999999999999999999999999999999999999999999999999999999999999999999999999999999"
+            },
+            "label": "public"
+          },
+          {
+            "name": "fixed",
+            "type": {
+              "kind": "fixed",
+              "lower": "-10",
+              "upper": "0",
+              "scale": "9999999999999999999999999999999999999999"
+            },
+            "label": "public"
+          },
+          {
+            "name": "flag",
+            "type": {
+              "kind": "bool"
+            },
+            "label": "public"
+          },
+          {
+            "name": "key",
+            "type": {
+              "kind": "text"
+            },
+            "label": "public"
+          },
+          {
+            "name": "nested",
+            "type": {
+              "kind": "record",
+              "record_type": "sha256:ff2645c9a2f2b8540d16ea6444300b334874df7b2525e5e7e96dc695d649c4f7"
+            },
+            "label": "public"
+          },
+          {
+            "name": "optional",
+            "type": {
+              "kind": "option",
+              "inner": {
+                "kind": "option",
+                "inner": {
+                  "kind": "record",
+                  "record_type": "sha256:ff2645c9a2f2b8540d16ea6444300b334874df7b2525e5e7e96dc695d649c4f7"
+                }
+              }
+            },
+            "label": "sensitive"
+          },
+          {
+            "name": "state",
+            "type": {
+              "kind": "enum",
+              "enum_type": "sha256:f59c766c6fa18a5f65ce2874d6e4a5d08f558779057bab294c0347eb29e0c8ca"
+            },
+            "label": "public"
+          }
+        ]
+      },
+      "id": "sha256:c7a71e8577f103ae7de796edf6967238b9f55eac59855812c763bf29cdd8c45d"
+    },
+    {
+      "definition": {
+        "fields": [
+          {
+            "name": "é",
+            "type": {
+              "kind": "text"
+            },
+            "label": "public"
+          },
+          {
+            "name": "é",
+            "type": {
+              "kind": "text"
+            },
+            "label": "public"
+          },
+          {
+            "name": "",
+            "type": {
+              "kind": "text"
+            },
+            "label": "public"
+          },
+          {
+            "name": "𐀀",
+            "type": {
+              "kind": "text"
+            },
+            "label": "public"
+          }
+        ]
+      },
+      "id": "sha256:ff2645c9a2f2b8540d16ea6444300b334874df7b2525e5e7e96dc695d649c4f7"
+    }
+  ],
+  "semantics": {
+    "name": "keyed-finite-table-semantics",
+    "sha256": "6b18d65eefa439956db8eebe1f4ce90e08b4def4abf7c718c2605e7528598d0d"
+  },
+  "table_types": [
+    {
+      "definition": {
+        "capacity": "100000000000000000000000",
+        "primary_key": [
+          "𐀀",
+          ""
+        ],
+        "record_type": "sha256:ff2645c9a2f2b8540d16ea6444300b334874df7b2525e5e7e96dc695d649c4f7"
+      },
+      "id": "sha256:585020198818c9d06171bb2028d643ff62f1524e078a660d06808e699956941d"
+    },
+    {
+      "definition": {
+        "capacity": "100000000000000000000000",
+        "primary_key": [
+          "",
+          "𐀀"
+        ],
+        "record_type": "sha256:ff2645c9a2f2b8540d16ea6444300b334874df7b2525e5e7e96dc695d649c4f7"
+      },
+      "id": "sha256:431f9afa364e28f7ab685397562e792dcd41f5aeeca906284fb0eea8f811a9b5"
+    },
+    {
+      "definition": {
+        "capacity": "0",
+        "primary_key": [
+          "key"
+        ],
+        "record_type": "sha256:c7a71e8577f103ae7de796edf6967238b9f55eac59855812c763bf29cdd8c45d"
+      },
+      "id": "sha256:91a913e3fa0d96ce17bde8ea9011a6f0ccc02afe425fcf1c533bf31fcfa6d8d7"
+    }
+  ]
+}

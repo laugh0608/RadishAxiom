@@ -1,0 +1,182 @@
+{
+    "table_types": [
+        {
+            "id": "sha256:91a913e3fa0d96ce17bde8ea9011a6f0ccc02afe425fcf1c533bf31fcfa6d8d7",
+            "definition": {
+                "record_type": "sha256:c7a71e8577f103ae7de796edf6967238b9f55eac59855812c763bf29cdd8c45d",
+                "primary_key": [
+                    "key"
+                ],
+                "capacity": "0"
+            }
+        },
+        {
+            "id": "sha256:431f9afa364e28f7ab685397562e792dcd41f5aeeca906284fb0eea8f811a9b5",
+            "definition": {
+                "record_type": "sha256:ff2645c9a2f2b8540d16ea6444300b334874df7b2525e5e7e96dc695d649c4f7",
+                "primary_key": [
+                    "\ue000",
+                    "\ud800\udc00"
+                ],
+                "capacity": "100000000000000000000000"
+            }
+        },
+        {
+            "id": "sha256:585020198818c9d06171bb2028d643ff62f1524e078a660d06808e699956941d",
+            "definition": {
+                "record_type": "sha256:ff2645c9a2f2b8540d16ea6444300b334874df7b2525e5e7e96dc695d649c4f7",
+                "primary_key": [
+                    "\ud800\udc00",
+                    "\ue000"
+                ],
+                "capacity": "100000000000000000000000"
+            }
+        }
+    ],
+    "semantics": {
+        "sha256": "6b18d65eefa439956db8eebe1f4ce90e08b4def4abf7c718c2605e7528598d0d",
+        "name": "keyed-finite-table-semantics"
+    },
+    "record_types": [
+        {
+            "id": "sha256:ff2645c9a2f2b8540d16ea6444300b334874df7b2525e5e7e96dc695d649c4f7",
+            "definition": {
+                "fields": [
+                    {
+                        "label": "public",
+                        "type": {
+                            "kind": "text"
+                        },
+                        "name": "\ud800\udc00"
+                    },
+                    {
+                        "label": "public",
+                        "type": {
+                            "kind": "text"
+                        },
+                        "name": "\ue000"
+                    },
+                    {
+                        "label": "public",
+                        "type": {
+                            "kind": "text"
+                        },
+                        "name": "\u00e9"
+                    },
+                    {
+                        "label": "public",
+                        "type": {
+                            "kind": "text"
+                        },
+                        "name": "e\u0301"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "sha256:c7a71e8577f103ae7de796edf6967238b9f55eac59855812c763bf29cdd8c45d",
+            "definition": {
+                "fields": [
+                    {
+                        "label": "public",
+                        "type": {
+                            "enum_type": "sha256:f59c766c6fa18a5f65ce2874d6e4a5d08f558779057bab294c0347eb29e0c8ca",
+                            "kind": "enum"
+                        },
+                        "name": "state"
+                    },
+                    {
+                        "label": "sensitive",
+                        "type": {
+                            "inner": {
+                                "inner": {
+                                    "record_type": "sha256:ff2645c9a2f2b8540d16ea6444300b334874df7b2525e5e7e96dc695d649c4f7",
+                                    "kind": "record"
+                                },
+                                "kind": "option"
+                            },
+                            "kind": "option"
+                        },
+                        "name": "optional"
+                    },
+                    {
+                        "label": "public",
+                        "type": {
+                            "record_type": "sha256:ff2645c9a2f2b8540d16ea6444300b334874df7b2525e5e7e96dc695d649c4f7",
+                            "kind": "record"
+                        },
+                        "name": "nested"
+                    },
+                    {
+                        "label": "public",
+                        "type": {
+                            "kind": "text"
+                        },
+                        "name": "key"
+                    },
+                    {
+                        "label": "public",
+                        "type": {
+                            "kind": "bool"
+                        },
+                        "name": "flag"
+                    },
+                    {
+                        "label": "public",
+                        "type": {
+                            "scale": "9999999999999999999999999999999999999999",
+                            "upper": "0",
+                            "lower": "-10",
+                            "kind": "fixed"
+                        },
+                        "name": "fixed"
+                    },
+                    {
+                        "label": "public",
+                        "type": {
+                            "upper": "99999999999999999999999999999999999999999999999999999999999999999999999999999999",
+                            "lower": "-99999999999999999999999999999999999999999999999999999999999999999999999999999999",
+                            "kind": "int"
+                        },
+                        "name": "amount"
+                    }
+                ]
+            }
+        }
+    ],
+    "outputs": [],
+    "nodes": [],
+    "ir_version": "0.1",
+    "format": "axiom-ir",
+    "enum_types": [
+        {
+            "id": "sha256:be090ac7d51dbdd91a4c2e1de1c8a9650c6abe9a38577edbff889a4ca5ec5a0c",
+            "definition": {
+                "members": [
+                    "z",
+                    "a",
+                    "\u00e9",
+                    "e\u0301",
+                    "\ud83d\ude00"
+                ],
+                "name": "\u53e6\u4e00\u9636\u6bb5"
+            }
+        },
+        {
+            "id": "sha256:f59c766c6fa18a5f65ce2874d6e4a5d08f558779057bab294c0347eb29e0c8ca",
+            "definition": {
+                "members": [
+                    "z",
+                    "a",
+                    "\u00e9",
+                    "e\u0301",
+                    "\ud83d\ude00"
+                ],
+                "name": "\u9636\u6bb5/\"\\\u2028"
+            }
+        }
+    ],
+    "effects": [],
+    "digest_algorithm": "sha-256",
+    "contracts": []
+}

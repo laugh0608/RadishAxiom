@@ -13,7 +13,7 @@
 | 已形成 | 尚未形成 / 不代表 |
 | --- | --- |
 | 首域语义、IR / Evidence、pipeline / readiness 契约、28 个指定态 bundle | 真实生产管线、六平台执行 |
-| P1 内部组件：有界 Unicode JSON、版本绑定、类型声明解码、数学整数比较、类型引用与主键检查 | 内容 ID 重算、表达式 / 节点类型与效果、转换 DAG、契约与输出；P1 尚未完成 |
+| P1 内部组件：有界 Unicode JSON、版本绑定、类型声明解码、数学整数比较、类型引用与主键检查；声明规范化 / ID 核对已通过 workspace 验证 | 节点 / 契约 / 文档身份、表达式 / 节点类型与效果、转换 DAG、契约与输出；P1 尚未完成 |
 | 独立 Go checker 的受限解析、义务重建、重放、结论与 CLI | 全语义、反例最小性；kernel / certificate 真值复核支持集合仍为空 |
 | Rust runtime 的身份 / 选择、归档 / manifest、receipt、结果消费和 spawn plan；Darwin store 持久化与恢复 | 完整 installer / launcher、qualification、产品根安装、物理断电保证 |
 | Darwin Go / Rust 部分工具验收，checker payload 不可变发布并登记 inactive | cvc5 / Node、完整 Linux 工具链及其他平台验收；active runtime 为 0 |
@@ -32,7 +32,7 @@
 
 | 顺位 | 交付 | 完成或停止条件 |
 | --- | --- | --- |
-| 1：P1 真实语义组件 | [ADR 0016 已接受](../adr/0016-core-semantic-slice-entry.md)；JSON 与类型声明解码已实现。下一步规范化声明并重算内容 ID，再推进表达式 / 节点、转换 DAG、契约与输出接口 | 声明解码返回身份未核验的数据，不构成 IR 验收；四题及同域新输入、语义负例与独立期望通过后才能称 P1 完成 |
+| 1：P1 真实语义组件 | [ADR 0016 已接受](../adr/0016-core-semantic-slice-entry.md)；声明规范化与内容 ID 核对已实现。共享 SHA-256 本地包已登记并通过 workspace 回归，下一步推进表达式 / 节点、转换 DAG、契约与输出接口 | 声明验收只覆盖类型声明，不构成完整 IR 验收；四题及同域新输入、语义负例与独立期望通过后才能称 P1 完成 |
 | 2：P2 真实义务生成 | 先闭合 ADR 0009 的生产义务 profile / 版本入口，再从 IR 生成完整义务及 ID | group 覆盖与守恒不得歧义；不读 expected outcome 驱动实现；版本阻断只作用于 P2 |
 | 3：query 与纵向闭环 | P1–P2 后审阅 P3；明确 P4 / P7 / P9 与独立复核各自必要前置 | 沿用 AX-B01 正确、两个 wrong、invalid、timeout 和篡改验收；外部执行仍须独立授权 |
 
@@ -54,7 +54,7 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 
 ## 当前停止线与待决策
 
-- ADR 0016 已接受，仅放行有明确范围的内部组件；JSON 编码或类型声明解码成功不能标记为 IR 验收成功。完整 P1、P2 的义务版本入口及完整管线门禁继续保留。
+- ADR 0016 已接受，仅放行有明确范围的内部组件；JSON 编码、声明解码或声明身份核对成功不能标记为完整 IR 验收成功。完整 P1、P2 的义务版本入口及完整管线门禁继续保留。
 - Darwin payload 保持 `registered-inactive`、`NativeIsolationStatus = RequiredNotProven`。不能重标为 Linux，也不能静默将 native spawn 转为虚拟执行。
 - 产品隔离继续遵循 ADR 0013–0015；不启用 native best-effort、root broker、URL boot 或 warm VM fallback，不自动放宽 memory / deadline。
 - 来源接受、fetch / install、payload 执行、公共迁移、生产签名、qualification、激活和远程写入仍分别处理；历史授权不延续。
@@ -63,11 +63,9 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 
 ## 验证入口与本次审阅
 
-2026-09-29，规划整理已提交为 `c69d44e`，随后项目所有者要求按计划继续，ADR 0016 转为 Accepted。[axiom-ir JSON 组件](../../crates/axiom-ir/README.md)已提交为 `3ee063f`；本轮继续实现类型声明解码与整数比较，保持标准库与禁止 unsafe 的边界。旧 runtime、规范、契约和基准机器字节未改。先前阶段调整依据见[整理记录](../records/2026-09-29-core-realignment.md)。
+2026-09-29，规划整理 `c69d44e`、JSON 组件 `3ee063f` 与声明解码 `231a0ed` 已提交；ADR 0016 已接受。本轮新增[声明规范化与内容身份核对](../../crates/axiom-ir/README.md)，复用提取后的自有 SHA-256。公共规范、契约和基准字节未改；阶段调整依据见[整理记录](../records/2026-09-29-core-realignment.md)。
 
-实际宿主核对：已安装 `1.97.1-aarch64-apple-darwin`，`rustc 1.97.1 (8bab26f4f 2026-07-14)`、`cargo 1.97.1 (c980f4866 2026-06-30)`；沿用[既有宿主验收](../checker-runtime-rust-first-slice-review.md)，未重新下载、安装或接受工具来源。IR 组件覆盖全部 Unicode 标量、四题 12 个候选、声明结构 / 引用负例、超机器范围整数及 5,000 层记录依赖；这不是完整 IR 或跨平台验收。
-
-最近来源批次 `f7ef948` 的[headers 取证](../records/rust-linux-input-review/linux-headers-git-metadata-2026-09-29.md)已完成 25 项检查、26 路径 / 19 对象恢复及报告重放；仍未接受来源。其他已完成材料沿[阶段记录](../records/2026-09-29-core-realignment.md#保留资产与阻断)追溯；不重复执行历史请求。
+已验收宿主为 `1.97.1-aarch64-apple-darwin`，实际工具身份沿用[宿主验收](../checker-runtime-rust-first-slice-review.md)。本轮直接编译通过 9 项声明规范化测试和共享摘要的 2 项原有测试：覆盖四题 12 个候选、Unicode scalar 排序、类型域 / NUL、内容篡改、错误 ID 与预算拒绝。新增期望由 Python 标准库独立生成，生成一致性进入仓库检查；未借此宣称完整 IR、独立证明或跨平台验收。
 
 仓库级契约、生成一致性与文本检查：
 
@@ -85,7 +83,7 @@ cargo +1.97.1-aarch64-apple-darwin test --workspace --all-targets --locked --off
 
 命令以工具和依赖已验收安装为前提，不授权下载；其他平台先确认精确工具与执行范围。
 
-项目所有者已授权内部 crate 登记；Cargo.lock 仅新增 `radishaxiom-ir 0.0.0`，无第三方依赖变化。声明增量已通过 workspace 格式、Clippy 与 85 项测试（runtime 58、Darwin store 3、IR 24），仓库级检查通过。CI 未触发，其他平台未执行。后续实现按[工程门禁](../governance/repository-governance.md#rust-工程门禁)验证；契约检查不能替代 Rust 测试。
+项目所有者要求提交本轮更改并继续推进，已完成先前说明的共享包登记；Cargo.lock 仅增加自有包和本地依赖关系。本轮 workspace 格式、Clippy、94 项测试（runtime 56、Darwin store 3、digest 2、IR 33）及仓库检查通过。CI 未触发，其他平台未执行。后续实现按[工程门禁](../governance/repository-governance.md#rust-工程门禁)验证；契约检查不能替代 Rust 测试。
 
 ## 按需阅读
 

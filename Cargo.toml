@@ -3,5 +3,6 @@ members = [
     "crates/axiom-ir",
     "crates/checker-runtime",
     "crates/checker-runtime-darwin-store",
+    "crates/digest",
 ]
 resolver = "3"

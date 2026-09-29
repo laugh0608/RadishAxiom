@@ -35,6 +35,12 @@ pub enum DeclarationErrorKind {
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum DeclarationError {
     Json(JsonError),
+    /// 两个 ID 都是规范词法；只报告差异，不自动替换或修复输入。
+    ContentIdMismatch {
+        path: String,
+        supplied: String,
+        computed: String,
+    },
     /// path 使用 JSON Pointer；空字符串指向根。索引指向原输入数组，不先排序。
     Structure {
         kind: DeclarationErrorKind,
@@ -46,6 +52,16 @@ impl fmt::Display for DeclarationError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
             Self::Json(error) => error.fmt(f),
+            Self::ContentIdMismatch {
+                path,
+                supplied,
+                computed,
+            } => {
+                write!(
+                    f,
+                    "IR declaration content ID mismatch at {path:?}: supplied {supplied}, computed {computed}"
+                )
+            }
             Self::Structure { kind, path } => write!(f, "IR declaration {kind:?} at {path:?}"),
         }
     }

@@ -317,7 +317,7 @@ impl Parser<'_> {
     }
 }
 
-fn encode(value: &Value, output: &mut Vec<u8>) {
+pub(crate) fn encode(value: &Value, output: &mut Vec<u8>) {
     match value {
         Value::String(text) => encode_string(text, output),
         Value::Bool(true) => output.extend_from_slice(b"true"),

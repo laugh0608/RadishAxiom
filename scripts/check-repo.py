@@ -51,6 +51,9 @@ REQUIRED_FILES = (
     "crates/checker-runtime/src/registration.rs",
     "crates/checker-runtime/src/selection.rs",
     "crates/checker-runtime/src/sha256.rs",
+    "crates/digest/Cargo.toml",
+    "crates/digest/src/lib.rs",
+    "scripts/generate-ir-type-vectors.py",
     "crates/checker-runtime/src/store.rs",
     "crates/checker-runtime/src/store/evidence.rs",
     "benchmarks/keyed-finite-table-v0.1/README.md",
@@ -489,6 +492,19 @@ def check_benchmark_corpus(errors: list[str]) -> None:
         errors.append(f"benchmark corpus check failed: {detail}")
 
 
+def check_ir_type_vectors(errors: list[str]) -> None:
+    result = subprocess.run(
+        [sys.executable, str(REPO_ROOT / "scripts/generate-ir-type-vectors.py"), "--check"],
+        cwd=REPO_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        detail = (result.stdout + result.stderr).strip()
+        errors.append(f"IR type identity vectors check failed: {detail}")
+
+
 def check_independent_check_contracts(errors: list[str]) -> None:
     generator = REPO_ROOT / "scripts/generate-independent-check-contracts.py"
     if not generator.is_file():
@@ -804,6 +820,7 @@ def main() -> int:
     check_ruleset_contract(errors)
     check_workflow_contract(errors)
     check_benchmark_corpus(errors)
+    check_ir_type_vectors(errors)
     check_independent_check_contracts(errors)
     check_toolchain_adapter_identities(errors)
     check_toolchain_payload_acceptance(errors)
