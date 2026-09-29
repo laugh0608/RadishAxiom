@@ -13,6 +13,7 @@
 | 已形成 | 尚未形成 / 不代表 |
 | --- | --- |
 | 首域语义、IR / Evidence、pipeline / readiness 契约、28 个指定态 bundle | 真实生产管线、六平台执行 |
+| P1 内部 JSON 字节组件：严格 Unicode、重复键拒绝、UTF-16 排序与有界规范编码 | 完整 IR 解析、类型 / 效果、DAG、内容身份；P1 尚未完成 |
 | 独立 Go checker 的受限解析、义务重建、重放、结论与 CLI | 全语义、反例最小性；kernel / certificate 真值复核支持集合仍为空 |
 | Rust runtime 的身份 / 选择、归档 / manifest、receipt、结果消费和 spawn plan；Darwin store 持久化与恢复 | 完整 installer / launcher、qualification、产品根安装、物理断电保证 |
 | Darwin Go / Rust 部分工具验收，checker payload 不可变发布并登记 inactive | cvc5 / Node、完整 Linux 工具链及其他平台验收；active runtime 为 0 |
@@ -31,10 +32,9 @@
 
 | 顺位 | 交付 | 完成或停止条件 |
 | --- | --- | --- |
-| 1：核心切片入口 | 审阅 [ADR 0016（Proposed）](../adr/0016-core-semantic-slice-entry.md)，明确 ADR 0007 八项入口在组件阶段的处理 | 未接受前不开始生产语义组件；本次已完成草案与规划整理，不继续新增供应链取证 |
-| 2：P1 真实语义组件 | ADR 接受后核对实际使用的宿主 Rust / 最小依赖，实现严格 IR、规范化、类型 / 效果与内容身份 | 四题及同域新输入、Unicode / 数学整数 / DAG 负例和独立期望通过；不宣称完整管线、证明或跨平台验收 |
-| 3：P2 真实义务生成 | 先闭合 ADR 0009 的生产义务 profile / 版本入口，再从 IR 生成完整义务及 ID | group 覆盖与守恒不得歧义；不读 expected outcome 驱动实现；版本阻断只作用于 P2 |
-| 4：query 与纵向闭环 | P1–P2 后审阅 P3；明确 P4 / P7 / P9 与独立复核各自必要前置 | 沿用 AX-B01 正确、两个 wrong、invalid、timeout 和篡改验收；外部执行仍须独立授权 |
+| 1：P1 真实语义组件 | [ADR 0016 已接受](../adr/0016-core-semantic-slice-entry.md)，宿主 Rust 已核对；JSON 字节组件已实现。接着实现 IR 精确成员 / 版本绑定、名称与数学整数，再收口类型 / 效果、引用 / DAG、规范排序和内容身份 | 当前 JSON 层不构成 IR 验收；四题及同域新输入、语义负例与独立期望通过后才能称 P1 完成 |
+| 2：P2 真实义务生成 | 先闭合 ADR 0009 的生产义务 profile / 版本入口，再从 IR 生成完整义务及 ID | group 覆盖与守恒不得歧义；不读 expected outcome 驱动实现；版本阻断只作用于 P2 |
+| 3：query 与纵向闭环 | P1–P2 后审阅 P3；明确 P4 / P7 / P9 与独立复核各自必要前置 | 沿用 AX-B01 正确、两个 wrong、invalid、timeout 和篡改验收；外部执行仍须独立授权 |
 
 近期验收看真实输入能否产生规范输出与可定位拒绝，区分实现、指定态 fixture、独立复核与证明；不以提交数、测试数或来源包数量替代里程碑。每个切片结束复核下一项是否直接服务上述交付；新增前置必须解释具体依赖和停止条件。
 
@@ -54,7 +54,7 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 
 ## 当前停止线与待决策
 
-- ADR 0016 为 Proposed；近期顺位已调整，ADR 0007 的正式实施入口尚未替代。未接受前不创建生产语义组件或占位骨架。
+- ADR 0016 已接受，仅放行有明确范围的内部组件；JSON 编码成功不能标记为 IR 验收成功。完整 P1、P2 的义务版本入口及完整管线门禁继续保留。
 - Darwin payload 保持 `registered-inactive`、`NativeIsolationStatus = RequiredNotProven`。不能重标为 Linux，也不能静默将 native spawn 转为虚拟执行。
 - 产品隔离继续遵循 ADR 0013–0015；不启用 native best-effort、root broker、URL boot 或 warm VM fallback，不自动放宽 memory / deadline。
 - 来源接受、fetch / install、payload 执行、公共迁移、生产签名、qualification、激活和远程写入仍分别处理；历史授权不延续。
@@ -63,7 +63,9 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 
 ## 验证入口与本次审阅
 
-2026-09-29 阶段整理：重排近期顺位、明确暂缓 / 恢复条件，并形成 ADR 0016 草案。未新增来源接受、工具执行、生产实现或公共机器字节变化；详细依据见[整理记录](../records/2026-09-29-core-realignment.md)。
+2026-09-29，规划整理已提交为 `c69d44e`，随后项目所有者要求按计划继续，ADR 0016 转为 Accepted。新增 [axiom-ir JSON 组件](../../crates/axiom-ir/README.md)，只使用标准库，禁止 unsafe；旧 runtime、规范、契约和基准机器字节未改。先前阶段调整依据见[整理记录](../records/2026-09-29-core-realignment.md)。
+
+实际宿主核对：已安装 `1.97.1-aarch64-apple-darwin`，`rustc 1.97.1 (8bab26f4f 2026-07-14)`、`cargo 1.97.1 (c980f4866 2026-06-30)`；沿用[既有宿主验收](../checker-runtime-rust-first-slice-review.md)，未重新下载、安装或接受工具来源。JSON 组件直接用该 rustc 编译后通过 10 项测试，覆盖全部 Unicode 标量的转义对应、四题 12 个候选、非法输入、截断和资源拒绝；这不是完整 IR 或跨平台验收。
 
 最近来源批次 `f7ef948` 的[headers 取证](../records/rust-linux-input-review/linux-headers-git-metadata-2026-09-29.md)已完成 25 项检查、26 路径 / 19 对象恢复及报告重放；仍未接受来源。其他已完成材料沿[阶段记录](../records/2026-09-29-core-realignment.md#保留资产与阻断)追溯；不重复执行历史请求。
 
@@ -83,7 +85,7 @@ cargo +1.97.1-aarch64-apple-darwin test --workspace --all-targets --locked --off
 
 命令以工具和依赖已验收安装为前提，不授权下载；其他平台先确认精确工具与执行范围。
 
-Rust / CI 结果沿用[历史验收](../records/2026-09-06-closeout.md#ci-与早前本地验证)，本轮未重跑。后续实现按[工程门禁](../governance/repository-governance.md#rust-工程门禁)验证；契约检查不能替代 Rust 测试。
+项目所有者已授权内部 crate 登记；Cargo.lock 仅新增 `radishaxiom-ir 0.0.0`，无第三方依赖变化。上述 workspace 格式、Clippy 与 71 项测试已通过，仓库级检查通过；CI 未触发，其他平台未执行。后续实现按[工程门禁](../governance/repository-governance.md#rust-工程门禁)验证；契约检查不能替代 Rust 测试。
 
 ## 按需阅读
 

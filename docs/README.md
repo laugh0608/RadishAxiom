@@ -38,7 +38,7 @@
 | payload 发布、launcher、产品宿主 | [ADR 0010](adr/0010-checker-runtime-payload-durable-registration.md)、[0011](adr/0011-checker-runtime-launcher-installation-and-activation.md)、[0012](adr/0012-product-checker-runtime-host-and-persistence-interface.md) |
 | Darwin 强隔离与 container 状态 | [ADR 0013](adr/0013-darwin-checker-hard-isolation.md)、[0014](adr/0014-darwin-app-sandbox-container-state.md) |
 | 虚拟 checker 资源保证与迁移边界 | [ADR 0015（Accepted）](adr/0015-virtualized-checker-resource-profile.md) |
-| 核心语义组件的分阶段实施入口 | [ADR 0016（Proposed）](adr/0016-core-semantic-slice-entry.md) |
+| 核心语义组件的分阶段实施入口 | [ADR 0016（Accepted）](adr/0016-core-semantic-slice-entry.md) |
 
 ADR 定义决策和重评条件，不表示相关生产能力已完成；实现进度由当前状态维护。
 
