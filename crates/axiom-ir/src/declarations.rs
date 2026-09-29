@@ -200,20 +200,20 @@ pub fn decode_type_declarations(
     Ok(result)
 }
 
-type Members = [(String, Value, usize)];
+pub(crate) type Members = [(String, Value, usize)];
 
-fn error(kind: DeclarationErrorKind, path: &str) -> DeclarationError {
+pub(crate) fn error(kind: DeclarationErrorKind, path: &str) -> DeclarationError {
     DeclarationError::Structure {
         kind,
         path: path.to_owned(),
     }
 }
 
-fn child(path: &str, key: &str) -> String {
+pub(crate) fn child(path: &str, key: &str) -> String {
     format!("{path}/{}", key.replace('~', "~0").replace('/', "~1"))
 }
 
-fn object<'a>(
+pub(crate) fn object<'a>(
     value: &'a Value,
     path: &str,
     keys: &[&str],
@@ -240,7 +240,7 @@ fn object<'a>(
     Ok(members)
 }
 
-fn member<'a>(members: &'a Members, key: &str) -> &'a Value {
+pub(crate) fn member<'a>(members: &'a Members, key: &str) -> &'a Value {
     &members
         .iter()
         .find(|(found, _, _)| found == key)
@@ -248,14 +248,14 @@ fn member<'a>(members: &'a Members, key: &str) -> &'a Value {
         .1
 }
 
-fn array<'a>(value: &'a Value, path: &str) -> Result<&'a [Value], DeclarationError> {
+pub(crate) fn array<'a>(value: &'a Value, path: &str) -> Result<&'a [Value], DeclarationError> {
     match value {
         Value::Array(values) => Ok(values),
         _ => Err(error(DeclarationErrorKind::ExpectedArray, path)),
     }
 }
 
-fn string<'a>(value: &'a Value, path: &str) -> Result<&'a str, DeclarationError> {
+pub(crate) fn string<'a>(value: &'a Value, path: &str) -> Result<&'a str, DeclarationError> {
     match value {
         Value::String(text) => Ok(text),
         _ => Err(error(DeclarationErrorKind::ExpectedString, path)),
@@ -270,7 +270,7 @@ fn exact(members: &Members, key: &str, path: &str, expected: &str) -> Result<(),
     Ok(())
 }
 
-fn name(value: &Value, path: &str) -> Result<String, DeclarationError> {
+pub(crate) fn name(value: &Value, path: &str) -> Result<String, DeclarationError> {
     let text = string(value, path)?;
     if text.is_empty()
         || text
@@ -282,7 +282,7 @@ fn name(value: &Value, path: &str) -> Result<String, DeclarationError> {
     Ok(text.to_owned())
 }
 
-fn id(value: &Value, path: &str) -> Result<String, DeclarationError> {
+pub(crate) fn id(value: &Value, path: &str) -> Result<String, DeclarationError> {
     let text = string(value, path)?;
     let valid = text.strip_prefix("sha256:").is_some_and(|hex| {
         hex.len() == 64
@@ -296,7 +296,11 @@ fn id(value: &Value, path: &str) -> Result<String, DeclarationError> {
     Ok(text.to_owned())
 }
 
-fn integer(value: &Value, path: &str, nonnegative: bool) -> Result<Integer, DeclarationError> {
+pub(crate) fn integer(
+    value: &Value,
+    path: &str,
+    nonnegative: bool,
+) -> Result<Integer, DeclarationError> {
     let integer = Integer::parse(string(value, path)?)
         .ok_or_else(|| error(DeclarationErrorKind::InvalidInteger, path))?;
     if nonnegative && integer.is_negative() {
@@ -395,7 +399,7 @@ fn table_type(value: &Value, path: &str) -> Result<TableType, DeclarationError> 
     })
 }
 
-fn value_type(value: &Value, path: &str) -> Result<ValueType, DeclarationError> {
+pub(crate) fn value_type(value: &Value, path: &str) -> Result<ValueType, DeclarationError> {
     let Value::Object(members) = value else {
         return Err(error(DeclarationErrorKind::ExpectedObject, path));
     };

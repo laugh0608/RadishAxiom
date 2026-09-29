@@ -1,6 +1,6 @@
 # Axiom IR 内部组件
 
-本 crate 承载 [ADR 0016](../../docs/adr/0016-core-semantic-slice-entry.md) 的 P1 实施。当前实现 [IR v0.1](../../docs/ir/axiom-ir-v0.md) 的 JSON 字节边界、类型声明解码及声明规范化 / 内容身份核对；没有完整 IR 成功入口，也不提供 CLI。
+本 crate 承载 [ADR 0016](../../docs/adr/0016-core-semantic-slice-entry.md) 的 P1 实施。当前实现 [IR v0.1](../../docs/ir/axiom-ir-v0.md) 的 JSON 字节边界、类型声明解码 / 身份核对和受限逐行表达式类型检查；没有完整 IR 成功入口，也不提供 CLI。
 
 ## 输入与输出
 
@@ -21,6 +21,18 @@
 
 成功返回只读的 `NormalizedTypeDeclarations`，分别保留规范类型化定义、规范 definition 字节与已核对的 ID。它只覆盖类型声明，不包含规范完整文档、文档摘要、节点 / 契约身份或完整 P1 成功信号；未检查范围与声明解码相同。这里没有 strict canonical 完整文档模式；可安全重排的数组、空白及转义差异仍可接受。
 
+`expressions::RowTypeChecker` 只从 `NormalizedTypeDeclarations` 构造，`infer(expression_bytes, limits, scope)` 推导一个既有逐行表达式的 `ValueType`。`RowScope` 为无绑定、单行或双行；记录 ID 须解析到已核验声明，双行初始顺序为 `[left_row, right_row]`，`match_option.some` 在索引 0 插入内部值。此内部 API 不定义新文件格式，也不接受调用方缓存的推导类型或标签。
+
+支持字面 bool / int / fixed / text / enum、`none` / `some`、`bound` / `field`、布尔组合、受限相等与数值比较、加减、`if` 和 `match_option`。检查闭合成员、数学字面值范围、绑定边界、声明引用、操作数 / 分支类型和 fixed scale；两个分支、全部布尔操作数均须检查，不按常量结果跳过。`Int` 加减要求两操作数类型相同，`Fixed` 加减要求操作数与结果 scale 相同，允许显式声明独立结果范围。**即使 `1 + 1` 的结果类型写为 `Int[0,0]`，本层也只推导该类型；不能代替后续范围义务。**
+
+失败区分 JSON / 结构错误、明确的类型错误、调用上下文缺少记录，以及 `Unsupported`。本轮支持边界如下，未修改冻结规范或添加猜测格式：
+
+- `forall_rows` / `exists_rows` / `lookup` / `count_where` / `sum_where` 是契约专用操作，逐行上下文明确拒绝。
+- `record.fields` 的元素机器结构、`is_some` 的机器形式仍需精确规范确认，返回 `UnspecifiedForm`。
+- 记录及可选记录的相等不在本组件支持范围内；不同范围的 `Int` 数值比较暂返回 `MixedIntComparison`，保留类型兼容性审阅，不将未支持直接标为非法 IR。相等仍要求完全相同类型；同 scale 的 fixed 数值比较已支持。
+
+类型成功不代表总性、算术范围、敏感性 / 控制依赖或非干扰成立。本层不求值、不做表达式规范化 / 摘要、不验证节点图、键保持、容量关系或契约接口；完整 P1 仍须收口上述支持边界及后续节点、契约与文档身份。
+
 ## 资源与诊断
 
 调用方必须显式提供 `JsonLimits`，没有无限预算的默认入口：
@@ -37,6 +49,8 @@
 
 规范化继续使用同一输入预算，逐项编码 definition 和域分离摘要，不递归展开引用。结果保留类型化定义和规范字节，内存会高于仅解码；总量受原输入规模约束，但不把 `max_input_bytes` 解释为硬内存配额。
 
+表达式复用有界 JSON 解析，按运算职责拆分递归局部状态，并以 128 层 JSON 对象（127 层 Option）、最深算术 / 布尔 / 分支路径回归栈边界；未提高测试线程栈。绑定整数先校验规范词法，超过机器索引范围时必然也超过有限绑定环境，报告绑定越界。声明查询使用有序 ID / 字段索引，枚举成员集合索引在 checker 构造时生成一次。输入预算不包含已装入的声明和索引所占内存；仍不提供 OS 硬配额或可恢复分配失败保证。
+
 ## 实现与验收边界
 
 Rust 2024，`publish = false`，仅自有代码与标准库、禁止 unsafe，无第三方依赖、build script、过程宏或 native / FFI。唯一直接依赖为本地 `radishaxiom-digest 0.0.0`，其 [SHA-256 实现](../digest/README.md)由既有 runtime 提取，共享算法而不依赖 runtime 的产品能力。与 runtime 的 ASCII 闭合文档 parser 分开；不改变旧 runtime 协议，不让独立 Go checker 复用生产实现。
@@ -44,6 +58,8 @@ Rust 2024，`publish = false`，仅自有代码与标准库、禁止 unsafe，�
 测试期望来自人工推导的规范向量、Unicode 标量与转义的数学对应关系，以及仓库既有的四题 12 个 candidate；不调用生产 helper 生成期望。`correct` / `wrong` 候选同样参与 JSON / 声明层回归，不据标签判定算法。负例覆盖语法、无效 UTF-8、代理对、解码重名、截断、规模、版本、声明闭合结构、数值范围、引用和键约束。数学整数比较还与小范围机器整数逐对对照，并使用人工排列的大整数检验精度边界；5,000 层合成记录引用分别验证无环和成环路径。声明测试中的合成 ID 仅满足词法，明确不当作真实内容摘要。
 
 规范化测试另外使用 [Python 独立身份向量](tests/fixtures/type-identities/README.md)，逐字节比较 definition 和 ID；改变对象 / 声明 / 字段排序与转义仍得到同一结果，改变有语义的顺序或内容则拒绝旧 ID。遗漏域名、遗漏 NUL、错误域名、末尾换行与把 ID 包进摘要均有独立负例；仓库检查会重算生成一致性。SHA-256 的通用已知向量在共享包保留，不能把共享生产摘要实现当作独立 checker。
+
+表达式测试包含人工构造的类型期望、深度 / 字面值 / 分支 / 绑定 / 未支持负例，以及四题 12 个候选中的全部 31 个逐行表达式；其期望来自既有输出字段声明和 filter 的 Bool 要求。用于提取表达式与上下文的 fixture 代码仅在测试中存在，不是生产节点解析器，不能把 31 个表达式通过外推为节点图通过。错误算法候选的表达式同样可以类型正确。
 
 已安装并验收的宿主工具可按仓库约定离线执行：
 
