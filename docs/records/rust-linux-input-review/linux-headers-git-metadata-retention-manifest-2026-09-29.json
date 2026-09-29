@@ -1,0 +1,165 @@
+{
+  "complete_project_source_lock": false,
+  "files": [
+    {
+      "bytes": 1751,
+      "path": ".tmp/linux-headers-git-metadata-84bd6f8-20260929/commit-attempt-1.json",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "f83660a88be83b87e289f55e98b82b3256220a50920d935e632138ba610739df"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/linux-headers-git-metadata-84bd6f8-20260929/commit-attempt-1.json.body",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 91,
+      "path": ".tmp/linux-headers-git-metadata-84bd6f8-20260929/commit-attempt-1.stderr",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "7528e9de26551e1df6d26dcd70afd80588062ceafc5fa6eb5d2f1d9a2b313a60"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/linux-headers-git-metadata-84bd6f8-20260929/commit-attempt-1.stdout",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "945e4893567554e68f6f28d5652917269341a5f3d295a16b7c708c9bfd95dc5d"
+    },
+    {
+      "bytes": 1659,
+      "path": ".tmp/linux-headers-git-metadata-84bd6f8-20260929/commit-attempt-2.json",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "70c45ba7cf6a004c6bebb02ea1fdd82a7ae251ae6faa63fa231a9c67e904e76b"
+    },
+    {
+      "bytes": 1346,
+      "path": ".tmp/linux-headers-git-metadata-84bd6f8-20260929/commit-attempt-2.json.body",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "7618b00fef4319d0b3fbff278352109c98a4fb0f6d64e0e3bc461bd42a5960ff"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/linux-headers-git-metadata-84bd6f8-20260929/commit-attempt-2.stderr",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/linux-headers-git-metadata-84bd6f8-20260929/commit-attempt-2.stdout",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 1331,
+      "path": ".tmp/linux-headers-git-metadata-84bd6f8-20260929/fetch-plan.json",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "d5748231caec0f62fdd3e3dd0eb220a413dbcf6378e7033d4126bba37c26d6d9"
+    },
+    {
+      "bytes": 1691,
+      "path": ".tmp/linux-headers-git-metadata-84bd6f8-20260929/tag-ref-attempt-1.json",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "9114315201b3dafa8bc888d325e5c3c82f0c813334c381895731c7f801aab3a5"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/linux-headers-git-metadata-84bd6f8-20260929/tag-ref-attempt-1.json.body",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 91,
+      "path": ".tmp/linux-headers-git-metadata-84bd6f8-20260929/tag-ref-attempt-1.stderr",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "7528e9de26551e1df6d26dcd70afd80588062ceafc5fa6eb5d2f1d9a2b313a60"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/linux-headers-git-metadata-84bd6f8-20260929/tag-ref-attempt-1.stdout",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "945e4893567554e68f6f28d5652917269341a5f3d295a16b7c708c9bfd95dc5d"
+    },
+    {
+      "bytes": 1598,
+      "path": ".tmp/linux-headers-git-metadata-84bd6f8-20260929/tag-ref-attempt-2.json",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "3d4265a287ca8a8eaf8551a8874015e550b788d96a5858eb1dfa34dd3e0ad48a"
+    },
+    {
+      "bytes": 410,
+      "path": ".tmp/linux-headers-git-metadata-84bd6f8-20260929/tag-ref-attempt-2.json.body",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "e03c1e27b167f7756eee46934dbd44fced50b8e9a078a1ea0cf1c1fd08a4950a"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/linux-headers-git-metadata-84bd6f8-20260929/tag-ref-attempt-2.stderr",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/linux-headers-git-metadata-84bd6f8-20260929/tag-ref-attempt-2.stdout",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 3892,
+      "path": "docs/records/rust-linux-input-review/check-linux-headers-git-metadata.py",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "48adc2464b29f92673c06fc3d2c09d36c72064ed4d2b7591937ab81057f447e6"
+    },
+    {
+      "bytes": 1966,
+      "path": "docs/records/rust-linux-input-review/fetch-linux-headers-candidate.py",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "98f42dd15e894c4da95ac70c67105a9cd00efce47db9c86ba2a7251e9304911e"
+    },
+    {
+      "bytes": 2290,
+      "path": "docs/records/rust-linux-input-review/fetch-linux-headers-git-metadata.py",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "3c2dafe242d3b50afea4b6a61401585e2a396c3c7861c90dd8baa581048b0777"
+    },
+    {
+      "bytes": 1910,
+      "path": "docs/records/rust-linux-input-review/fetch-linux-headers-inputs.py",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "268e1eee90ca3f7543d6332b77dc0389caafffb3a2d901dc11e4e6bcffbcb2ee"
+    },
+    {
+      "bytes": 5126,
+      "path": "docs/records/rust-linux-input-review/fetch-mpc-mpfr-inputs.py",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+    },
+    {
+      "bytes": 5317,
+      "path": "docs/records/rust-linux-input-review/inspect-linux-headers-git-metadata.py",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "1510d7f0a2330517f8edf6104256a046a58c5a7b52700dbad86eb47cf6e4c2c1"
+    },
+    {
+      "bytes": 10144,
+      "path": "docs/records/rust-linux-input-review/linux-headers-git-metadata-2026-09-29.json",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "5e84e29c34ee527a5d503239ef68ae044569034d4ee465981cfe765728715308"
+    },
+    {
+      "bytes": 1331,
+      "path": "docs/records/rust-linux-input-review/linux-headers-git-metadata-plan-2026-09-29.json",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "d5748231caec0f62fdd3e3dd0eb220a413dbcf6378e7033d4126bba37c26d6d9"
+    },
+    {
+      "bytes": 10295,
+      "path": "docs/records/rust-linux-input-review/retain-musl-verifier-inputs.py",
+      "role": "request-input-log-or-replay-method",
+      "sha256": "72047818576ab27de02cf8e9620c33299c007b4c64108fb7c11a3c1d23e3ca0a"
+    }
+  ],
+  "kind": "diagnostic-musl-retention-manifest-v1",
+  "repository_base": "72103e1",
+  "scope": "Two fixed headers Git metadata requests including sandbox failures, explicitly approved retries, and offline replay methods",
+  "source_acceptance": "not-assessed"
+}

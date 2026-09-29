@@ -79,7 +79,7 @@
 | Binutils 2.44 | 固定 `.gz`、公告摘要、分离签名、公钥与完整逻辑内容库存；GNU 钥环 / 两个公钥服务及 Debian `.xz` 候选已核对 | [取钥与候选比较](records/rust-linux-input-review/binutils-source-routes-2026-09-25.md)未取得强摘要自认证；候选缺两文件、三个共同文件内容不同，不能为配方整包背书 |
 | GCC 9.4.0 | 精确原包及配方 / 发布摘要对应，94,646 个成员与选定许可文本盘点；[主钥 / signer 子钥区分](records/rust-linux-input-review/gcc-key-content-review-2026-09-25.md)已留存 | 签名子钥绑定与嵌入反向认证仍声明 SHA-1，未真实验签或接受来源；非 v4 签名语义未检查 |
 | GMP 6.3.0 | [第三次六步真实诊断](records/rust-linux-input-review/gmp-verification-attempt3-2026-09-29.md)及 45 条日志重放通过；原包签名关系匹配且明确报告钥匙到期，三个负例均拒绝；旧失败保留 | [限定官方分发来源声明](records/rust-linux-input-review/gmp-source-acceptance-review-2026-09-29.md)已获项目所有者确认，仅覆盖固定字节的官方 HTTPS 分发来源与有限签名关系；历史有效性、全渠道撤销 / 最新性未建立 |
-| Linux headers 4.19.88 | [固定镜像 / 候选核对](records/rust-linux-input-review/linux-headers-inputs-2026-09-25.md)共有内容 / 链接与 AArch64 866 项投影一致；[全文与制作过程审阅](records/rust-linux-input-review/linux-headers-review-2026-09-29.md)定位 97 项无 SPDX、11 项声明无 syscall 例外字样，以及额外 kernel tree / 未固定 tag / 补丁链缺口 | 两项 ref / commit 请求已准备但未授权执行；内容盘点不等于许可分类，无来源认证、完整制作链、实际安装或完整许可验收 |
+| Linux headers 4.19.88 | [固定镜像 / 候选核对](records/rust-linux-input-review/linux-headers-inputs-2026-09-25.md)共有内容 / 链接与 AArch64 866 项投影一致；[全文与制作过程审阅](records/rust-linux-input-review/linux-headers-review-2026-09-29.md)定位声明与制作链缺口；[两项 Git 元数据取证](records/rust-linux-input-review/linux-headers-git-metadata-2026-09-29.md)已完成，GitHub ref 指向原 commit，报告 unsigned / 无签名载荷 | 未取得独立验签材料；内容盘点不等于许可分类，无来源认证、完整制作链、实际安装或完整许可验收 |
 
 这些是来源诊断脚本和记录，未改变生产 runtime、工具 pin 或公共 acceptance。GCC / Binutils 继续阻断完整 source lock 与安装；GMP 当前到期不能直接推出 2023 年签名无效，headers 内容相同也不能替代身份认证。发布二进制到实际构建输入的关联、Rust 公钥绑定与宿主库闭包仍须独立验收。所有既有下载 / 执行授权均以批次结束，不因本表同步而延续。
 
