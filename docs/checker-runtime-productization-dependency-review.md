@@ -2,7 +2,7 @@
 
 审阅日期：2026-09-16；来源状态同步：2026-09-29
 
-状态：ADR 0015 与维护预算于 2026-09-10 获确认，项目所有者为唯一维护负责人；公共迁移与实施仍未接受。
+状态：ADR 0015 与维护预算已确认，公共迁移与实施仍未接受。2026-09-29 阶段整理后，本专题保留产品运行线内部依赖；全项目顺位以当前状态为准。
 
 用途：把 ADR 0013 / 0014 的隔离候选收敛成可验收的来源、身份、资源、维护与实施切片，并识别首个真实 AX-B01 闭环的必要依赖。
 
@@ -195,16 +195,21 @@ P0–P9 逐阶段的输入、解除证据与首个纵向验收集合见[AX-B01 �
 
 ## 下一切片与停止条件
 
-| 顺位 | 输入与具体交付 | 完成 / 停止标准 |
-| --- | --- | --- |
-| 1：资源与维护决策 | [ADR 0015](adr/0015-virtualized-checker-resource-profile.md) 已接受；8,000 行预警线 / 最多 10 人日 / 每周 4 小时投入已确认，项目所有者统一负责 runtime 与 kernel / init | 决策已收口；既有 v0.1、inactive 登记及来源 / 迁移 / 执行门禁继续有效，预算不代表能力验收 |
-| 2：来源与可复现输入锁 | kernel / Debian、Rust 配方及 musl 补证已有诊断，见[guest 来源审阅](checker-runtime-guest-source-build-review.md)。musl 有条件路线、诊断工具窄信任、本机归档 / 恢复与九项真实验签已形成；[来源验收审阅](records/rust-linux-input-review/musl-source-acceptance-review-2026-09-16.md)的限定声明已获确认，该精确原包来源验收通过；异盘保留并行安排。其余六项已盘点来源路线，MPC / MPFR 原包与公钥已取得；MPFR 六项真实验签通过，[限定来源声明](records/rust-linux-input-review/mpfr-source-acceptance-review-2026-09-25.md)已获项目所有者确认，该精确原包限定来源接受通过；MPC 上游签名尚未验证，[固定 Debian 路线审阅](records/rust-linux-input-review/mpc-source-acceptance-review-2026-09-25.md)限定声明已获项目所有者确认，该精确原包限定归档来源接受通过；其余四项已补原包 / 公钥 / 内容材料，见[分项状态](checker-runtime-guest-source-build-review.md#rust-配方剩余输入状态)，GMP 六步真实诊断已完成，限定官方分发来源声明已获项目所有者确认，钥匙到期与历史有效性未建立的边界保留；GCC / Binutils 认证阻断与 headers 未认证不解除；继续补发布构建关联、Rust 公钥绑定与宿主库；[隔离安装范围](checker-runtime-linux-install-slice-review.md)已有，实际安装 / 有限执行仍未验收 | 不把摘要 / GnuPG 成功 / 库存等同完整 acceptance；不沿用默认 Go 或未知 builder；安装 / 构建须精确授权，不导入旧 probe 的虚构源码 |
-| 3：公共迁移与合成装置 | 接受的资源 ADR、source lock、身份 / consumer 闭包；生成新 policy / profile / 外层记录的正负例，再实现可留存合成 runner / guest | 未完成字节迁移和单独签名 / VM 授权前不得运行；不把合成装置算作产品 qualification |
-| 4：真实容量与离线复核 | accepted Linux checker + guest TCB、代表性 / 上限输入和预注册 cold 矩阵 | 分别授权受控执行；失败保留，超预算或不可审计 container 触发重新决策 |
-| 按独立依赖准备：核心管线入口 | cvc5 / Node 来源与各自执行边界、ADR 0007 八项入口核对、AX-B01 P0–P9 切片设计、checker 目标归因交接 | 纯设计不必等待产品安装 / 激活；生产实现仍需全部入口或正式切片例外决策，不跨仓写入 |
+本节只说明产品运行线恢复后的内部依赖，不再用作全项目串行顺位。当前核心语义优先，新增来源取证与 guest / runner 实施暂缓，见[当前状态](status/current.md)；[ADR 0016 草案](adr/0016-core-semantic-slice-entry.md)单独处理核心组件入口，不授予任何产品运行能力。
 
-真实产品 fetch / install、生产签名、三条 qualification 和 active 转换最后按各自门槛闭合。以上顺位不授权分仓写入、外部消息、远程发布、全局工具或系统配置变更。
+恢复本线前，先列出确切目标制品、要解除的阻断、已有材料、仍缺的最小材料、批次投入上限、责任人及成功 / 失败后的决定。已用工时与剩余估算未知时直接记为未知，先核对投入，不把 10 人日原预算当作每次重启自动获得的新额度；8,000 行仅统计自有新增生产 TCB，测试、生成绑定和第三方库存另列。
+
+| 产品线内部环节 | 输入与交付 | 完成 / 停止标准 |
+| --- | --- | --- |
+| 成本与边界复核 | 已接受的资源 / 维护决定、实际投入、目标制品与负载、最小批次范围 | 无法承担维护或给出有限范围时重新评估架构，不自动扩大预算 |
+| 来源与构建输入 | 复用[guest 来源状态表](checker-runtime-guest-source-build-review.md#rust-配方剩余输入状态)的已有材料，只补该目标直接需要的阻断；安装范围见[独立切片](checker-runtime-linux-install-slice-review.md) | musl / MPFR / MPC / GMP 的限定决定保留；GCC / Binutils / headers、构建关联与宿主库缺口不豁免。失败后结束批次并决定下一步，不自动串接其他公钥服务或源码链 |
+| 公共迁移与合成装置 | 接受的资源 ADR、source lock、身份 / consumer 闭包，新 policy / profile / 外层记录正负例与可留存装置 | 未完成迁移及精确签名 / VM 授权前不得运行；不把合成结果算作产品 qualification |
+| 真实容量与离线复核 | accepted Linux checker + guest TCB、代表性 / 上限输入和 cold 矩阵 | 受控执行分别授权；失败、超预算或无法审计的 container 触发重新决策 |
+
+公共身份、工具来源、许可、三条 qualification 和 active 转换仍分别闭合；这里的暂停不等于接受候选。cvc5 / Node 的执行边界须独立审阅，不能在恢复 checker 产品化时顺带放行。以上内部依赖不授权分仓写入、外部消息、远程发布、全局工具或系统配置变更。
 
 ## 本次验证与保留事项
 
 本稿通过只读契约 / 实现核对、官方资料检索、bundle 静态大小核算及仓库文档检查形成。没有新跑源码构建、性能、Hypervisor、签名、container 审计或 checker / cvc5 / Node；旧运行结果只按其精确来源引用。正式语义、IR / Evidence、ADR 0008 / 0011 / 0013 原文与 `contracts/` 字节保持不变；2026-09-10 仅将已确认的 ADR 0015 从 Proposed 转为 Accepted，并落实维护投入与责任。2026-09-12 按[日终代码 / 文档复核](records/2026-09-12-closeout.md)同步 musl 诊断前置进展；当天真实工具运行属于单独授权的来源诊断，不是本产品化方案的执行验收。2026-09-16 按[日终复核](records/2026-09-16-closeout.md)同步限定 musl 来源验收与剩余材料状态，未扩大为 builder 或产品验收。2026-09-25 按[日终复核](records/2026-09-25-closeout.md)同步 MPFR / MPC 限定接受及四项剩余输入材料，未形成完整 source lock 或安装验收。2026-09-29 同步 GMP 第三次真实诊断及项目所有者已确认的限定官方分发来源决定，历史有效性未建立及安装前置继续保留。当前顺位由[当前状态](status/current.md)维护。
+
+2026-09-29 阶段整理仅调整本专题的任务路由与恢复条件；现有来源决定、资源保证、维护承诺和实际能力均未升级。旧批次事实继续由各自记录追溯。

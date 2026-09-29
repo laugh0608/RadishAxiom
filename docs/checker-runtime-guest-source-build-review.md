@@ -4,6 +4,8 @@
 
 状态：候选环境、kernel / Debian 来源与 Rust Linux 输入已形成诊断；安装、完整 source lock 与构建验收尚未完成。
 
+2026-09-29 阶段整理：本专题保留来源事实和恢复产品构建时的前置，新增取证暂缓，当前核心语义顺位见[当前状态](status/current.md)。下文“下一次安装 / 下一步”描述本工作线恢复后的条件，不作为全项目默认任务；[恢复范围与投入门槛](checker-runtime-productization-dependency-review.md#下一切片与停止条件)须先满足。
+
 用途：把 kernel / init / runner / transport 与 Linux checker 的来源前置落实为可核对输入、构建职责和验收交付，支撑[产品化依赖审阅](checker-runtime-productization-dependency-review.md)的来源切片。
 
 读者：runtime、guest、独立 Checker、工具来源与发布维护者。
