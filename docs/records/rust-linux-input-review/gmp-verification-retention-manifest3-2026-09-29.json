@@ -1,0 +1,51 @@
+{
+  "complete_project_source_lock": false,
+  "files": [
+    {
+      "bytes": 6480599,
+      "path": ".tmp/gmp-verification-execution-20260929-attempt3.json",
+      "role": "gmp-third-execution-and-offline-replay",
+      "sha256": "2b097ea44fcb792b03ec185e5edc604b3bb7221f6b30b9452cdcd225e5ca31d1"
+    },
+    {
+      "bytes": 17733,
+      "path": "docs/records/rust-linux-input-review/check-gmp-verification-v3.py",
+      "role": "gmp-third-execution-and-offline-replay",
+      "sha256": "fe34bd5ed408363bc7bb8b19d0e91dbfd7bc5c04fbff7c6f3b45a07e3e08bdcd"
+    },
+    {
+      "bytes": 13814,
+      "path": "docs/records/rust-linux-input-review/collect-gmp-verification-v3.py",
+      "role": "gmp-third-execution-and-offline-replay",
+      "sha256": "0aa37f3f81ee76c7a33b144e97e99e951d3b927dc29a228772c880e88c09dc9f"
+    },
+    {
+      "bytes": 2932,
+      "path": "docs/records/rust-linux-input-review/gmp-verification-replay3-2026-09-29.json",
+      "role": "gmp-third-execution-and-offline-replay",
+      "sha256": "407f58edf48e0ed721b408b950a1fbedb6de9fc58d2d4b13b6fa830110875c6f"
+    },
+    {
+      "bytes": 8343,
+      "path": "docs/records/rust-linux-input-review/gmp-verification-v3-entry-2026-09-29.md",
+      "role": "gmp-third-execution-and-offline-replay",
+      "sha256": "6f36938863e5f5193d2ac2e943a059ded24cd702a3110b37dc37ed833e152558"
+    },
+    {
+      "bytes": 5069,
+      "path": "docs/records/rust-linux-input-review/gmp-verification-v3-plan-2026-09-29.json",
+      "role": "gmp-third-execution-and-offline-replay",
+      "sha256": "bf0882139705da1ff55357bd3865a265650c094671a17927095963400e7b2186"
+    },
+    {
+      "bytes": 7214,
+      "path": "docs/records/rust-linux-input-review/run-gmp-verification-v3.py",
+      "role": "gmp-third-execution-and-offline-replay",
+      "sha256": "c782da769b6f042d01dc18c2e34d6b4d7914597321fa32122592c690419549f0"
+    }
+  ],
+  "kind": "diagnostic-musl-retention-manifest-v1",
+  "repository_base": "f3811cb",
+  "scope": "GMP v3 third execution, fixed methods and inputs, six-step logs and offline replay; no source acceptance",
+  "source_acceptance": "not-assessed"
+}

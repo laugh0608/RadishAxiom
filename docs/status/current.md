@@ -36,16 +36,16 @@ Rust 工程门禁已完成本地与真实 CI 的成功 / 失败传播验收；�
 
 ### 下一步
 
-以下承接 9 月 25 日日终顺位；9 月 29 日已完成 GMP 工具源码材料获取、语义审阅与 v3 离线候选，见[本次审阅](../records/rust-linux-input-review/gmp-tool-source-review-2026-09-29.md)。此前提交与复核见[日终记录](../records/2026-09-25-closeout.md)。
+以下承接 9 月 25 日日终顺位；9 月 29 日已完成 GMP 工具源码审阅、v3 编排及已授权的六步真实诊断，见[第三次实际记录](../records/rust-linux-input-review/gmp-verification-attempt3-2026-09-29.md)。此前提交与复核见[日终记录](../records/2026-09-25-closeout.md)。
 
 已接受的限定范围：[musl 固定来源](../records/rust-linux-input-review/musl-source-acceptance-review-2026-09-16.md)、[MPFR 固定来源](../records/rust-linux-input-review/mpfr-source-acceptance-review-2026-09-25.md)、[MPC 限定 Debian 归档来源](../records/rust-linux-input-review/mpc-source-acceptance-review-2026-09-25.md)。MPFR 六项真实验签已完成；MPC 上游作者签名仍未验证。限定声明不转移给其他输入。
 
-1. **准备 GMP v3 执行编排与完整回归，再审阅真实诊断范围。** [9 月 29 日源码审阅](../records/rust-linux-input-review/gmp-tool-source-review-2026-09-29.md)取得四个固定 GnuPG 源码对象，核对 61 项 Debian 补丁及两处差异的实现依据：主钥已到期时裁剪更晚子钥到期；签名元数据检查可重复发出到期通知。精确四行序列只作为固定材料的已观察 profile，不外推为协议保证。v3 离线候选将原始声明、有效到期及完整自认证输出联合判定，旧输出与候选匹配；旧方法与两次失败保持不变。候选尚未接入执行 / 导出编排；下一步补六步生命周期与失败留存回归，再提出一次新诊断的精确授权范围。原包验签与负例未执行，来源未接受，不自动第三次重试。
+1. **审阅 GMP 固定原包的限定来源声明与剩余信任。** [第三次真实诊断](../records/rust-linux-input-review/gmp-verification-attempt3-2026-09-29.md)六步符合预期：两份强自认证通过固定联合判定，原包为明确到期钥的 `EXPKEYSIG` / `VALIDSIG`，篡改正文 / 错误主钥 / 缺失主钥均拒绝。六个容器清理确认，45 条日志离线重放及 7 对象留存恢复通过。旧方法与两次失败不变。来源仍未接受、历史有效性未建立；下一步明确现有 HTTPS 身份起点、有限快照、第三方认证撤销与过期钥边界能支持的声明，必要时再列精确补充材料。不将签名内时间当可信时间戳，不自动刷新材料或再次执行。
 2. **补 headers 认证、制作过程与许可。** [本批 headers 核对](../records/rust-linux-input-review/linux-headers-inputs-2026-09-25.md)已取得固定 Rust 镜像包和上游 tag 所指 commit 归档：1,343 个成员 / 86 个符号链接，共有文件内容与链接目标一致；候选多三个根脚本，模式 / owner / mtime 不同。AArch64 866 项路径投影一致，但没有实际安装、tag / commit 验签、原始 kernel 到重打包过程证明或完整许可材料；不得升级为来源接受。
 3. **保留 GCC / Binutils 阻断并补其他独立材料。** [GCC](../records/rust-linux-input-review/gcc-key-content-review-2026-09-25.md)目标子钥绑定及反向认证仍声明 SHA-1；[Binutils](../records/rust-linux-input-review/binutils-source-routes-2026-09-25.md)未取得强自认证，Debian 候选与精确配方整包不等价。均不启用弱摘要兼容、不替换版本 / 格式或忽略认证包。后续按[剩余路线](../records/rust-linux-input-review/musl-remaining-sources-2026-09-16.md)补发布构建关联、Rust 公钥 / 宿主库、kernel 原始 tag / 最终链接；完整 source lock 与[隔离安装](../checker-runtime-linux-install-slice-review.md)不得越过未闭合来源，改变信任规则或验收对象须单独审阅确认。
 4. **核对备份转移与后续增量。** 9 月 16 日的 60.4 MiB 快照不含后续 MPC / MPFR / GCC / Binutils / GMP / headers 增量，后续各批已有独立本机留存。9 月 16 日日终检查时 Downloads 原三个交付文件不在原路径，项目内最终包摘要一致；9 月 29 日未重查位置，待核实目标副本并补增量，不声称异盘恢复已完成。见[日终材料状态](../records/2026-09-16-closeout.md#本机材料与外部影响)；备份转移不新增为密码学门槛。
 
-以上是顺位，不是新下载、验签、安装或自动任务授权。历史各批请求 / 执行授权均已结束，精确事实留在各批记录；9 月 29 日四项获取已执行完毕，不延续为重复请求或第三次 GMP 验签权限。
+以上是顺位，不是新下载、验签、安装或自动任务授权。历史各批请求 / 执行授权均已结束，精确事实留在各批记录；9 月 29 日四项获取与另行确认的第三次 GMP 诊断均已执行完毕，不延续为重复请求或新的运行权限。
 
 [AX-B01 首切片依赖审阅](../axiom-pipeline-first-slice-dependency-review.md)已列 P0–P9 前置；cvc5 / Node 来源与外层硬限制仍需独立闭合。纯设计不必等待产品安装 / 激活，生产实现遵守 ADR 0007 全部入口或正式替代决策。
 
@@ -63,7 +63,7 @@ Checker 语义线先核实目标归因，再验收同域泛化、独立证明链
 
 ## 验证入口与本次审阅
 
-2026-09-29：四项已授权 HTTPS 获取长度 / SHA-256 全部匹配，1,241 + 158 成员源码盘点、61 项补丁目标核对和 v3 离线候选完成；98 项相关检查通过。38 路径 / 28 对象留存恢复、源码盘点 / 候选 / 两次历史失败导出重算一致；仓库检查与 `git diff --check` 通过。未运行 Docker / GnuPG、Rust / CI 或产品构建，未改变来源状态或历史方法。详见[源码审阅与候选边界](../records/rust-linux-input-review/gmp-tool-source-review-2026-09-29.md)。
+2026-09-29：四项获取、源码 / 61 项补丁审阅及 v3 候选已提交为 `f3811cb`。v3 准备阶段 113 项检查通过，历史失败 / 候选报告重算一致；随后按另行授权完成六步真实 GnuPG 诊断、45 条日志重放和 7 对象留存恢复，v3 的 15 项检查复跑通过。仓库检查与 `git diff --check` 通过。未运行 Rust / CI 或产品构建，来源状态不变；详见[真实结果与边界](../records/rust-linux-input-review/gmp-verification-attempt3-2026-09-29.md)。
 
 2026-09-25 日终：工作区诊断与失败重放已提交为 `14d12a8`。本轮对照今日代码同步来源 / 安装 / 产品化文档，MPFR 六步及 GMP 两次失败的离线导出重算均逐字节一致；各批实际测试与日终检查分别见[收尾记录](../records/2026-09-25-closeout.md#日终验证与交接)。今日 GMP 最新批次的 7 项合成检查、17 条日志重放及 8 对象留存恢复已通过，真实整批仍为失败；原包验签 / 负例未执行，来源未接受，headers 仍未认证。今晚仅文档收尾，无新增下载、容器、验签、安装或推送。
 
