@@ -54,7 +54,7 @@ impl fmt::Display for JsonError {
 impl std::error::Error for JsonError {}
 
 #[derive(Debug)]
-enum Value {
+pub(crate) enum Value {
     String(String),
     Bool(bool),
     Array(Vec<Value>),
@@ -65,6 +65,13 @@ enum Value {
 /// 返回无 BOM / 空白 / 末尾换行的规范 UTF-8。数组与字符串内容保持原样。
 /// 这不是通用 JCS 实现，也不是完整 IR validator；不生成 digest 或 Evidence。
 pub fn canonicalize_json(input: &[u8], limits: JsonLimits) -> Result<Vec<u8>, JsonError> {
+    let value = parse(input, limits)?;
+    let mut output = Vec::with_capacity(input.len());
+    encode(&value, &mut output);
+    Ok(output)
+}
+
+pub(crate) fn parse(input: &[u8], limits: JsonLimits) -> Result<Value, JsonError> {
     if input.len() > limits.max_input_bytes {
         return Err(JsonError {
             kind: JsonErrorKind::ResourceLimit(ResourceLimit::InputBytes),
@@ -86,9 +93,7 @@ pub fn canonicalize_json(input: &[u8], limits: JsonLimits) -> Result<Vec<u8>, Js
     if parser.offset != input.len() {
         return Err(parser.error(JsonErrorKind::TrailingData));
     }
-    let mut output = Vec::with_capacity(input.len());
-    encode(&value, &mut output);
-    Ok(output)
+    Ok(value)
 }
 
 struct Parser<'a> {
