@@ -95,7 +95,7 @@
 - Ruleset、PR workflow 与 required context 契约；
 - PR diff 空白和 Conventional Commits。
 
-该 job 还通过仓库检查器运行基准、机器契约、摘要链、指定态 bundle、实验注册和 Python launcher 一致性检查，以及 source-tar / Debian source-chain 的合成拒绝检查。两个来源检查分别由 `check-source-tar-inventory.py` / `check-debian-source-chain.py` 运行，各限 30 秒，超时或非零退出使仓库门禁失败。这里不下载实际归档、不验签、不盘点容器或模拟安装；来源记录中的独立命令及其合成测试也不会因文件位于仓库内而自动进入默认门禁。
+该 job 还通过仓库检查器运行基准、机器契约、摘要链、指定态 bundle、实验注册和 Python launcher 一致性检查，以及 IR 类型声明身份独立向量的生成一致性、source-tar / Debian source-chain 的合成拒绝检查。IR 向量由 `scripts/generate-ir-type-vectors.py --check` 使用 Python 标准库重算，不调用 Rust 生产实现，不替代 Rust 类型 / 表达式测试。两个来源检查分别由 `check-source-tar-inventory.py` / `check-debian-source-chain.py` 运行，各限 30 秒，超时或非零退出使仓库门禁失败。这里不下载实际归档、不验签、不盘点容器或模拟安装；来源记录中的独立命令及其合成测试也不会因文件位于仓库内而自动进入默认门禁。
 
 `Repo Hygiene` 不运行 Cargo，也不执行真实 checker、cvc5、Node 或 Hypervisor。普通 `dev` push 不自动触发 CI；当前 workflow 由面向 `dev` / `master` 的 PR 或手动调度触发。
 

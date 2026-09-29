@@ -42,6 +42,11 @@
 
 ADR 定义决策和重评条件，不表示相关生产能力已完成；实现进度由当前状态维护。
 
+## 内部实现入口
+
+- [Axiom IR 组件](../crates/axiom-ir/README.md)：JSON、类型声明身份和受限逐行表达式类型推导；不代表完整 P1。
+- [共享 SHA-256](../crates/digest/README.md)：runtime / IR 共用的自有摘要实现与独立复核边界。
+
 ## 机器契约
 
 [契约总入口](../contracts/README.md)说明生成入口、指定态材料与实现证据的区别。
@@ -71,6 +76,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 | Linux 来源实际核验 | [摘要 / 签名与 builder 库存](records/linux-6.18.49-source-review/README.md)、[归档文件盘点与精确缺失包候选](records/linux-6.18.49-archive-inventory/README.md) |
 | Linux 构建包来源与安装差异 | [Debian 签名摘要链、控制脚本审阅与安装模拟](records/linux-builder-source-chain/README.md) |
 | Rust Linux 与静态目标输入 | [签名 / 归档盘点、安装候选与 kernel 许可审阅](records/rust-linux-input-review/README.md) |
+| 2026-09-29 日终回顾 | [全天提交、代码与文档核对及明日交接](records/2026-09-29-closeout.md) |
 | 2026-09-29 阶段整理 | [投入审阅、核心语义顺位调整与保留资产](records/2026-09-29-core-realignment.md) |
 | 2026-09-25 日终回顾 | [MPFR / MPC 接受、剩余来源材料及 GMP 失败诊断的提交与文档复核](records/2026-09-25-closeout.md) |
 | 2026-09-16 日终回顾 | [musl 限定验收、备份及 MPC / MPFR 材料提交与文档复核](records/2026-09-16-closeout.md) |
