@@ -1,0 +1,24 @@
+{
+  "pack": {
+    "file_count": 38,
+    "manifest": {
+      "bytes": 10023,
+      "sha256": "3cf105428bedab18ba2852fd93c8e212fc811b23a7f57c433ff55777e0cfaeab"
+    },
+    "object_bytes": 9835238,
+    "object_count": 28,
+    "off_device_backup_verified": false,
+    "source_acceptance": "not-assessed"
+  },
+  "restore": {
+    "file_count": 38,
+    "manifest": {
+      "bytes": 10023,
+      "sha256": "3cf105428bedab18ba2852fd93c8e212fc811b23a7f57c433ff55777e0cfaeab"
+    },
+    "object_count": 28,
+    "off_device_backup_verified": false,
+    "restored_bytes_match": true,
+    "source_acceptance": "not-assessed"
+  }
+}
