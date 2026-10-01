@@ -1,0 +1,231 @@
+{
+  "acceptance": "not-assessed",
+  "common_options": [
+    "-q",
+    "--fail",
+    "--location",
+    "--proto",
+    "=https",
+    "--proto-redir",
+    "=https",
+    "--tlsv1.2",
+    "--connect-timeout",
+    "20"
+  ],
+  "curl_version": "curl 8.7.1 (x86_64-apple-darwin25.0) libcurl/8.7.1 (SecureTransport) LibreSSL/3.3.6 zlib/1.2.12 nghttp2/1.68.1\nRelease-Date: 2024-03-27\nProtocols: dict file ftp ftps gopher gophers http https imap imaps ipfs ipns ldap ldaps mqtt pop3 pop3s rtsp smb smbs smtp smtps telnet tftp\nFeatures: alt-svc AsynchDNS GSS-API HSTS HTTP2 HTTPS-proxy IPv6 Kerberos Largefile libz MultiSSL NTLM SPNEGO SSL threadsafe UnixSockets\n",
+  "date": "2026-09-10",
+  "files": [
+    {
+      "attempts": [
+        {
+          "attempt": 1,
+          "execution": "sandbox",
+          "exit_code": 7,
+          "headers": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "text": ""
+          },
+          "stderr": {
+            "bytes": 408,
+            "sha256": "5916eea888cfee959325433e72f47e61c6d3f4190db80e3c9c46b106e1362c5a",
+            "text": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\ncurl: (7) Failed to connect to 127.0.0.1 port 10808 after 0 ms: Couldn't connect to server\n"
+          },
+          "stdout": {
+            "bytes": 113,
+            "sha256": "20819d35b12bde1570320e1ac01937c73698c4ea9780580e27c182efa1cafca9",
+            "text": "http_code=000\nsize_download=0\nurl_effective=https://musl.libc.org/releases/musl-1.2.5.tar.gz\ntime_total=0.000608\n"
+          }
+        },
+        {
+          "attempt": 2,
+          "execution": "authorized-outside-sandbox",
+          "exit_code": 0,
+          "headers": {
+            "bytes": 462,
+            "sha256": "a6a66c9777f69fbc09e1040f6e808d68e12484d49093b696c22a511c9c243aa7",
+            "text": "HTTP/1.1 200 Connection established\r\n\r\nHTTP/2 200 \r\ndate: Thu, 10 Sep 2026 12:36:07 GMT\r\naccept-ranges: bytes\r\ncache-control: private\r\ncontent-security-policy: default-src 'self'; style-src 'self' 'unsafe-inline';\r\nreferrer-policy: same-origin\r\nserver: tipidee/0.0.7.1\r\nvary: Accept-Encoding\r\nx-content-type-options: nosniff\r\nx-frame-options: DENY\r\nlast-modified: Fri, 01 Mar 2024 02:08:13 GMT\r\ncontent-type: application/octet-stream\r\ncontent-length: 1080786\r\n\r\n"
+          },
+          "stderr": {
+            "bytes": 1186,
+            "sha256": "b9b3ccaef79d85242330cf44ab79119ed496483e3e11f90ace05c99a9fc6d9c8",
+            "text": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:06 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:08 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:09 --:--:--     0\r  2 1055k    2 31173    0     0   3159      0  0:05:42  0:00:09  0:05:33  6438\r100 1055k  100 1055k    0     0  99950      0  0:00:10  0:00:10 --:--:--  210k\r100 1055k  100 1055k    0     0  99945      0  0:00:10  0:00:10 --:--:--  263k\n"
+          },
+          "stdout": {
+            "bytes": 120,
+            "sha256": "5d0cbad01bb176615dea026add7f41a89b3422efd86308bdc677fbda686fde51",
+            "text": "http_code=200\nsize_download=1080786\nurl_effective=https://musl.libc.org/releases/musl-1.2.5.tar.gz\ntime_total=10.813747\n"
+          }
+        }
+      ],
+      "bytes": 1080786,
+      "file": "musl-1.2.5.tar.gz",
+      "max_bytes": 4194304,
+      "max_seconds": 60,
+      "sha256": "a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4",
+      "url": "https://musl.libc.org/releases/musl-1.2.5.tar.gz"
+    },
+    {
+      "attempts": [
+        {
+          "attempt": 1,
+          "execution": "sandbox",
+          "exit_code": 7,
+          "headers": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "text": ""
+          },
+          "stderr": {
+            "bytes": 408,
+            "sha256": "5916eea888cfee959325433e72f47e61c6d3f4190db80e3c9c46b106e1362c5a",
+            "text": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\ncurl: (7) Failed to connect to 127.0.0.1 port 10808 after 0 ms: Couldn't connect to server\n"
+          },
+          "stdout": {
+            "bytes": 117,
+            "sha256": "b6b0d5a317e9fa2c29f4dd8119a6b0e3f487b220d07e059d55613c4de7f1894a",
+            "text": "http_code=000\nsize_download=0\nurl_effective=https://musl.libc.org/releases/musl-1.2.5.tar.gz.asc\ntime_total=0.000427\n"
+          }
+        },
+        {
+          "attempt": 2,
+          "execution": "authorized-outside-sandbox",
+          "exit_code": 0,
+          "headers": {
+            "bytes": 458,
+            "sha256": "00fd28cfe89c50dc5ea854a57cfc3b1eec7f961932642c67ef411b11f31a3dd5",
+            "text": "HTTP/1.1 200 Connection established\r\n\r\nHTTP/2 200 \r\ndate: Thu, 10 Sep 2026 12:36:52 GMT\r\naccept-ranges: bytes\r\ncache-control: private\r\ncontent-security-policy: default-src 'self'; style-src 'self' 'unsafe-inline';\r\nreferrer-policy: same-origin\r\nserver: tipidee/0.0.7.1\r\nvary: Accept-Encoding\r\nx-content-type-options: nosniff\r\nx-frame-options: DENY\r\nlast-modified: Fri, 01 Mar 2024 02:08:29 GMT\r\ncontent-type: application/octet-stream\r\ncontent-length: 490\r\n\r\n"
+          },
+          "stderr": {
+            "bytes": 1186,
+            "sha256": "1bae997eb99eb233e73f16d06b824412c81e16a9b6789590d04af21f874a6acd",
+            "text": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:06 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:06 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:07 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:08 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:09 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:10 --:--:--     0\r100   490  100   490    0     0     45      0  0:00:10  0:00:10 --:--:--   121\n"
+          },
+          "stdout": {
+            "bytes": 120,
+            "sha256": "eb4173456950a77450dbf90d0e6ddc2c5c5422c71425c3a84fc8888c3cdd09c6",
+            "text": "http_code=200\nsize_download=490\nurl_effective=https://musl.libc.org/releases/musl-1.2.5.tar.gz.asc\ntime_total=10.744168\n"
+          }
+        }
+      ],
+      "bytes": 490,
+      "file": "musl-1.2.5.tar.gz.asc",
+      "max_bytes": 65536,
+      "max_seconds": 30,
+      "sha256": "d9030116fd03e4acfa0b665a13a5de46110296b4e30bb8e67be1f08af29f6306",
+      "url": "https://musl.libc.org/releases/musl-1.2.5.tar.gz.asc"
+    },
+    {
+      "attempts": [
+        {
+          "attempt": 1,
+          "execution": "sandbox",
+          "exit_code": 7,
+          "headers": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "text": ""
+          },
+          "stderr": {
+            "bytes": 408,
+            "sha256": "5916eea888cfee959325433e72f47e61c6d3f4190db80e3c9c46b106e1362c5a",
+            "text": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\ncurl: (7) Failed to connect to 127.0.0.1 port 10808 after 0 ms: Couldn't connect to server\n"
+          },
+          "stdout": {
+            "bytes": 100,
+            "sha256": "adf6173dc0a04071cfe88ab197f3537f1add5a4ff86e336e16a570f56d13c5ee",
+            "text": "http_code=000\nsize_download=0\nurl_effective=https://musl.libc.org/releases.html\ntime_total=0.000417\n"
+          }
+        },
+        {
+          "attempt": 2,
+          "execution": "authorized-outside-sandbox",
+          "exit_code": 0,
+          "headers": {
+            "bytes": 459,
+            "sha256": "cc84110b0eb40693bf33b5ba449b130435d7c40bfa6ee6af84bab2a3439e9f37",
+            "text": "HTTP/1.1 200 Connection established\r\n\r\nHTTP/2 200 \r\ndate: Thu, 10 Sep 2026 12:37:03 GMT\r\naccept-ranges: bytes\r\ncache-control: private\r\ncontent-security-policy: default-src 'self'; style-src 'self' 'unsafe-inline';\r\nreferrer-policy: same-origin\r\nserver: tipidee/0.0.7.1\r\nvary: Accept-Encoding\r\nx-content-type-options: nosniff\r\nx-frame-options: DENY\r\nlast-modified: Fri, 10 Apr 2026 15:19:51 GMT\r\ncontent-type: text/html;charset=utf-8\r\ncontent-length: 61597\r\n\r\n"
+          },
+          "stderr": {
+            "bytes": 1186,
+            "sha256": "02d2fa86b4fa8a87c5f5c6dc95ae2077daed63cf092f877f56f21e82aac2ec73",
+            "text": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:06 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:07 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:08 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:09 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:10 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:10 --:--:--     0\r100 61597  100 61597    0     0   5715      0  0:00:10  0:00:10 --:--:-- 16321\n"
+          },
+          "stdout": {
+            "bytes": 105,
+            "sha256": "4b3920484a8fc011d43585bae980c82166285f577ef961b8c3d0575de65790ef",
+            "text": "http_code=200\nsize_download=61597\nurl_effective=https://musl.libc.org/releases.html\ntime_total=10.777360\n"
+          }
+        }
+      ],
+      "bytes": 61597,
+      "file": "releases.html",
+      "max_bytes": 262144,
+      "max_seconds": 30,
+      "sha256": "5153be19d53ad2ae418993a15a8ba005400ba8e16b6781a533e2c8a0658a8a30",
+      "url": "https://musl.libc.org/releases.html"
+    },
+    {
+      "attempts": [
+        {
+          "attempt": 1,
+          "execution": "sandbox",
+          "exit_code": 7,
+          "headers": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "text": ""
+          },
+          "stderr": {
+            "bytes": 408,
+            "sha256": "5916eea888cfee959325433e72f47e61c6d3f4190db80e3c9c46b106e1362c5a",
+            "text": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\ncurl: (7) Failed to connect to 127.0.0.1 port 10808 after 0 ms: Couldn't connect to server\n"
+          },
+          "stdout": {
+            "bytes": 95,
+            "sha256": "c3cfb69938f72a7b33e93facad042f5cae0a33c9fc9b822a58448cd3b3315af1",
+            "text": "http_code=000\nsize_download=0\nurl_effective=https://musl.libc.org/musl.pub\ntime_total=0.000453\n"
+          }
+        },
+        {
+          "attempt": 2,
+          "execution": "authorized-outside-sandbox",
+          "exit_code": 0,
+          "headers": {
+            "bytes": 459,
+            "sha256": "4efd4a85c623e9e26b007ea94a0afa71c0143e9fb3b92e548dc3a182fb436385",
+            "text": "HTTP/1.1 200 Connection established\r\n\r\nHTTP/2 200 \r\ndate: Thu, 10 Sep 2026 12:37:51 GMT\r\naccept-ranges: bytes\r\ncache-control: private\r\ncontent-security-policy: default-src 'self'; style-src 'self' 'unsafe-inline';\r\nreferrer-policy: same-origin\r\nserver: tipidee/0.0.7.1\r\nvary: Accept-Encoding\r\nx-content-type-options: nosniff\r\nx-frame-options: DENY\r\nlast-modified: Fri, 07 Feb 2020 00:03:10 GMT\r\ncontent-type: application/octet-stream\r\ncontent-length: 1707\r\n\r\n"
+          },
+          "stderr": {
+            "bytes": 633,
+            "sha256": "522453803bba3f978a8cce645075a754bf036d9937826d6179b787b9211df7fc",
+            "text": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0\r100  1707  100  1707    0     0    416      0  0:00:04  0:00:04 --:--:--   416\n"
+          },
+          "stdout": {
+            "bytes": 98,
+            "sha256": "2cf0392515adc2e85f8b6ddc9b860939581ad90ade8640a9fe06ce0c2748d1f6",
+            "text": "http_code=200\nsize_download=1707\nurl_effective=https://musl.libc.org/musl.pub\ntime_total=4.103054\n"
+          }
+        }
+      ],
+      "bytes": 1707,
+      "file": "musl.pub",
+      "max_bytes": 65536,
+      "max_seconds": 30,
+      "sha256": "bf6baaa63c2c4958636850a24bb9d2d514c8b6a1b3ab9c08f3b75910fb6f57be",
+      "url": "https://musl.libc.org/musl.pub"
+    }
+  ],
+  "key_discovery": {
+    "lines": [
+      69,
+      70
+    ],
+    "link_href": "musl.pub",
+    "page": "https://musl.libc.org/releases.html",
+    "page_sha256": "5153be19d53ad2ae418993a15a8ba005400ba8e16b6781a533e2c8a0658a8a30",
+    "published_fingerprint": "836489290BB6B70F99FFDA0556BCDB593020450F",
+    "trust_scope": "official HTTPS page observation, not independent identity certification"
+  },
+  "kind": "diagnostic-observation"
+}

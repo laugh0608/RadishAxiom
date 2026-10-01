@@ -1,0 +1,29 @@
+{
+  "full_report_replay_equal": true,
+  "kind": "diagnostic-linux-headers-retention-v1",
+  "off_device_backup_verified": false,
+  "packed": {
+    "file_count": 38,
+    "manifest": {
+      "bytes": 9393,
+      "sha256": "961ba896f42f9324e8349def7c50663efbbca325fe764f20eb734169b9aca8b3"
+    },
+    "object_bytes": 3619821,
+    "object_count": 34,
+    "off_device_backup_verified": false,
+    "source_acceptance": "not-assessed"
+  },
+  "restored": {
+    "file_count": 38,
+    "manifest": {
+      "bytes": 9393,
+      "sha256": "961ba896f42f9324e8349def7c50663efbbca325fe764f20eb734169b9aca8b3"
+    },
+    "object_count": 34,
+    "off_device_backup_verified": false,
+    "restored_bytes_match": true,
+    "source_acceptance": "not-assessed"
+  },
+  "selected_texts_replay_equal": true,
+  "summary_replay_equal": true
+}

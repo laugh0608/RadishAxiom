@@ -1,0 +1,31 @@
+{
+  "cryptography_executed": false,
+  "diagnostic_replay_equal": true,
+  "kind": "diagnostic-binutils-key-refresh-retention-v1",
+  "off_device_backup_verified": false,
+  "pack": {
+    "file_count": 24,
+    "manifest": {
+      "bytes": 5195,
+      "sha256": "45d966e0785e716ba4a0fe51b8fff5e6b64a3ac9a367229e5e84100218514d6e"
+    },
+    "object_bytes": 3789938,
+    "object_count": 22,
+    "off_device_backup_verified": false,
+    "source_acceptance": "not-assessed"
+  },
+  "restoration": {
+    "file_count": 24,
+    "manifest": {
+      "bytes": 5195,
+      "sha256": "45d966e0785e716ba4a0fe51b8fff5e6b64a3ac9a367229e5e84100218514d6e"
+    },
+    "object_count": 22,
+    "off_device_backup_verified": false,
+    "restored_bytes_match": true,
+    "source_acceptance": "not-assessed"
+  },
+  "restore": ".tmp/binutils-key-refresh-restore-20260925",
+  "source_acceptance": "not-assessed",
+  "store": "artifacts/source-inputs/binutils-key-refresh-383b570-20260925"
+}

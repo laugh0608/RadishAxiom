@@ -1,6 +1,6 @@
 # RadishAxiom 开发目标与验收计划
 
-更新日期：2026-09-06
+更新日期：2026-09-29
 
 状态：开发规划；涉及正式语义、信任、公共格式或架构替代的事项仍需专题决策。
 
@@ -16,7 +16,22 @@
 
 每个切片在实施前写明：要解除的具体不确定性、输入与输出、依赖的已有证据、完成标准、剩余信任和停止条件。只因工作先后发生而形成的依赖应重新审阅；规范、工具供应链、隔离和授权要求则必须保留。可独立准备的设计、合成测试和装置审计不必等待其他线全部结束，但这不授权并行写入、分仓修改或真实工具执行。
 
-ADR 0007 的实现入口、ADR 0011–0014 的 launcher / isolation 边界仍然有效。若现行要求阻断核心能力验收，应提出精确的替代决策和影响分析，不增加 native、warm VM、未登记工具或降级信任的旁路。
+ADR 0007 的完整管线入口与 ADR 0011–0014 的 launcher / isolation 边界仍然有效；核心组件仅适用下述 ADR 0016 例外。若现行要求阻断核心能力验收，应提出精确的替代决策和影响分析，不增加 native、warm VM、未登记工具或降级信任的旁路。
+
+核心组件按自身依赖组织交付，产品运行工作按目标制品组织验收。来源取证须说明它要解除哪个具体构建 / 执行阻断、投入上限以及成功或失败后的决定，不能自动把新发现的每个传递依赖都升级为全项目下一步。实际顺位仍只由当前状态维护。
+
+### 核心组件的分阶段入口
+
+[ADR 0016（Accepted）](adr/0016-core-semantic-slice-entry.md)已接受 P1–P2 的窄入口例外，仅替代 ADR 0007 的组件实施先后要求。先交付真实 P1 IR / 类型检查组件，再在义务版本入口闭合后交付 P2；P3 单独审阅，完整 P0–P9 与产品运行仍按原标准验收。
+
+| 中间交付 | 必须展示的实际结果 | 不得外推的能力 |
+| --- | --- | --- |
+| P1 组件 | candidate bytes 到 canonical IR / 内容身份或可定位诊断；四题与同域新输入、Unicode / 数学整数 / 图结构负例及独立期望 | 验证义务成立、完整 Evidence、生产 invocation / receipt、六平台已通过 |
+| P2 组件 | 从 IR 与明确义务 profile 生成完整义务定义及稳定 ID；遗漏、多余、错配与 group 区分例 | solver 已执行、独立 checker 已接受、形式证明 |
+
+P2 进入编码前必须处理 ADR 0009 的生产义务版本边界，不能把 checker 的受限 v0.1 profile 自动外推到新生产生成器；这一阻断不反向作用于 P1。两项组件都是中间里程碑，最终首域仍覆盖四题，不为单题建立硬编码路径。
+
+每次交接分别报告：新增的实际能力、规范与独立期望、未覆盖范围、解除或保留的阻断，以及下一切片的直接依赖。检查数量、文档数量和取证成功数只说明各自验证范围，不能作为产品完成度。
 
 ## 里程碑与完成标准
 
@@ -30,7 +45,7 @@ ADR 0007 的实现入口、ADR 0011–0014 的 launcher / isolation 边界仍然
 | 产品 checker runtime | 来源验收、精确 payload、身份迁移、真实安装、相同 launcher 边界下的三条 qualification、结果持久化和授权激活连续闭合 | immutable Release、inactive 登记、合成 guest、单一 store / consumer 测试 |
 | Agent 价值验证 | 装置审计、完整 execution lock、预注册正式运行和保留失败的分析；分别回答 H1 与 H4 | 单次演示、公开样例、模型自述、临时修改阈值 |
 
-首个任务只是中间验收；不得因此删除 ADR 0002 的四题范围，或绕过 ADR 0007 的跨平台规范字节及其他实现入口要求。完整动态矩阵沿用现有 readiness ID，不在本计划另造一套成功码。
+首个任务只是中间验收；不得因此删除 ADR 0002 的四题范围。ADR 0016 仅调整组件实施顺序，跨平台规范字节和完整管线其他入口仍须最终验收。完整动态矩阵沿用现有 readiness ID，不在本计划另造一套成功码。
 
 ## 真实管线与证明覆盖
 
@@ -73,8 +88,8 @@ Checker 语义线按其[开发计划](https://github.com/laugh0608/RadishAxiomCh
 | 问题 | 审查产物与判定依据 |
 | --- | --- |
 | 保护什么、攻击者能做什么 | 列出不可信 bundle / checker、同用户路径替换、宿主与内核等威胁角色；区分强制隔离和 TCB 自身义务 |
-| `128 MiB` 究竟约束什么 | 对照现行 `process-outer`，明确 guest 可寻址上界与整个 host footprint 的差异；兼容结论通过前不重解释为满足 |
-| 新增 TCB 是否可维护 | 分列 runner、VMM、kernel、init、transport 的职责、源码范围、依赖、来源、更新、许可证材料和审阅负责人；提出可接受规模 / 维护预算供决策 |
+| `128 MiB` 究竟约束什么 | 对照现行 `process-outer`，按 ADR 0015 的已接受边界区分 guest 可寻址上界与整个 host footprint；完成公共迁移前不重解释旧 profile 为满足 |
+| 新增 TCB 是否可维护 | 分列 runner、VMM、kernel、init、transport 的职责、源码范围、依赖、来源、更新、许可证材料和审阅负责人；按已确认的规模预警线、维护预算与唯一负责人验收可维护性 |
 | 实际负载能否完成 | 设计真实 checker 加代表性 / 上限 bundle 的冷启动、内存、deadline、输出上限、异常 teardown 和重复运行矩阵；执行须通过前置门槛并单独授权 |
 | 是否能分发并持续复核 | 明确最低 macOS / Apple Silicon、生产签名 / entitlement、host / guest 身份、container 基线和请求增量审计、失效与回滚行为 |
 
@@ -82,9 +97,9 @@ Checker 语义线按其[开发计划](https://github.com/laugh0608/RadishAxiomCh
 
 架构实验按[协作规则](governance/agent-collaboration.md)保留可复现材料。历史 probe 只剩摘要和叙述时，应标为历史观察，不能据此声称第三方已能复现；后续生产实验另建可留存的输入和运行入口。
 
-具体的来源 / 构建 / 维护方案、资源兼容性、身份迁移和真实容量矩阵见[产品化依赖审阅](checker-runtime-productization-dependency-review.md)；P0–P9 的阶段前置与首个纵向验收集合见[AX-B01 首切片依赖审阅](axiom-pipeline-first-slice-dependency-review.md)。两份审阅是待决策设计，不替代 ADR，也不解除工具、公共迁移或执行门槛。
+具体的来源 / 构建 / 维护方案、资源兼容性、身份迁移和真实容量矩阵见[产品化依赖审阅](checker-runtime-productization-dependency-review.md)；P0–P9 的阶段前置与首个纵向验收集合见[AX-B01 首切片依赖审阅](axiom-pipeline-first-slice-dependency-review.md)。两份审阅区分已确认的资源 / 维护决定与其余待验收设计，不替代 ADR，也不解除工具、公共迁移或执行门槛。
 
-虚拟执行的 guest 128 MiB 硬限与宿主总内存保证缺口，已按确认方向形成 [ADR 0015 草案](adr/0015-virtualized-checker-resource-profile.md)。它仅拟议窄替代 checker 虚拟路径的资源 / 选择边界；在正式接受与公共迁移验收前，现行执行门槛继续有效，cvc5 / Node 不受该草案豁免。
+虚拟执行的 guest 128 MiB 硬限与宿主总内存保证缺口已由 [ADR 0015](adr/0015-virtualized-checker-resource-profile.md) 于 2026-09-10 正式接受。它仅窄替代 checker 虚拟路径的资源 / 选择边界；公共迁移、来源和实际执行仍分别验收与授权，既有 v0.1 记录不被重解释，cvc5 / Node 不受该决定豁免。维护投入与唯一负责人由[产品化依赖审阅](checker-runtime-productization-dependency-review.md#许可证与维护责任)维护。
 
 ## Agent 装置与人类反馈
 

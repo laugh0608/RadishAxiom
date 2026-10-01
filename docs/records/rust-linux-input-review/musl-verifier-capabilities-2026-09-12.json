@@ -1,0 +1,93 @@
+[
+  {
+    "applications_started": false,
+    "containers_started": false,
+    "failure": {
+      "errno": 1,
+      "type": "PermissionError"
+    },
+    "finished_at": "2026-09-12T12:52:53.057707+00:00",
+    "kind": "diagnostic-verifier-daemon-capabilities",
+    "method": {
+      "bytes": 4654,
+      "sha256": "90d5f26fa84ecb90c479aa5f438344e8595c23765af25ac99246a9eaad92c87e"
+    },
+    "raw_response_policy": "hash only; whitelist fields retained",
+    "runtime_limits_verified": false,
+    "socket": "/Users/luobo/.orbstack/run/docker.sock",
+    "started_at": "2026-09-12T12:52:53.056946+00:00",
+    "tool_trust_accepted": false
+  },
+  {
+    "applications_started": false,
+    "containers_started": false,
+    "finished_at": "2026-09-12T12:53:26.115029+00:00",
+    "kind": "diagnostic-verifier-daemon-capabilities",
+    "method": {
+      "bytes": 4654,
+      "sha256": "90d5f26fa84ecb90c479aa5f438344e8595c23765af25ac99246a9eaad92c87e"
+    },
+    "raw_response_policy": "hash only; whitelist fields retained",
+    "requests": [
+      {
+        "absent_fields": [],
+        "method": "GET",
+        "path": "/version",
+        "raw_response_retained": false,
+        "response_identity_only": {
+          "bytes": 970,
+          "sha256": "d22e1b2931787bbfa7510f7288a33a87df4bf86f63151242feb88879eb2de8a8"
+        },
+        "selected_fields": {
+          "ApiVersion": "1.54",
+          "Arch": "arm64",
+          "GitCommit": "daa0cb7f",
+          "GoVersion": "go1.26.1",
+          "KernelVersion": "7.0.11-orbstack-00360-gc9bc4d96ac70",
+          "MinAPIVersion": "1.40",
+          "Os": "linux",
+          "Version": "29.4.0"
+        },
+        "status": 200
+      },
+      {
+        "absent_fields": [],
+        "method": "GET",
+        "path": "/v1.54/info",
+        "raw_response_retained": false,
+        "response_identity_only": {
+          "bytes": 11183,
+          "sha256": "d8aba2e437be43359561507a824288bc73fce92b395c6b5b82b9633dca541b4d"
+        },
+        "selected_fields": {
+          "Architecture": "aarch64",
+          "CPUSet": true,
+          "CPUShares": true,
+          "CgroupDriver": "cgroupfs",
+          "CgroupVersion": "2",
+          "CpuCfsPeriod": true,
+          "CpuCfsQuota": true,
+          "Driver": "overlayfs",
+          "KernelVersion": "7.0.11-orbstack-00360-gc9bc4d96ac70",
+          "MemTotal": 16820461568,
+          "MemoryLimit": true,
+          "NCPU": 10,
+          "OSType": "linux",
+          "PidsLimit": true,
+          "SecurityOptions": [
+            "name=seccomp,profile=builtin",
+            "name=cgroupns"
+          ],
+          "ServerVersion": "29.4.0",
+          "SwapLimit": true
+        },
+        "status": 200
+      }
+    ],
+    "resource_query_skipped": null,
+    "runtime_limits_verified": false,
+    "socket": "/Users/luobo/.orbstack/run/docker.sock",
+    "started_at": "2026-09-12T12:53:26.035568+00:00",
+    "tool_trust_accepted": false
+  }
+]

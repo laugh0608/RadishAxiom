@@ -26,7 +26,7 @@ RadishAxiom 是 Radish 家族中面向 AI Agent 的语言与可信语义项目�
 
 ## 当前状态
 
-项目处于设计到受控实现阶段。首域为有键有限表的确定性纯转换，语义、IR / Evidence 与机器契约已形成；分仓 Go checker 已有受限 profile 的离线复核和 CLI，主仓 Rust 已实现 checker runtime 的身份、归档、存储与结果消费组件。
+项目处于设计到受控实现阶段。首域为有键有限表的确定性纯转换，语义、IR / Evidence 与机器契约已形成；分仓 Go checker 已有受限 profile 的离线复核和 CLI，主仓 Rust 已实现 checker runtime 的身份、归档、存储与结果消费组件，以及 [Axiom IR 内部组件](crates/axiom-ir/README.md)的有界 Unicode JSON、类型声明解码 / 内容身份核对和受限逐行表达式类型推导。完整 P1 IR 验收仍未完成。
 
 完整 `raxc` 生产管线、产品 checker runtime 和 Agent 收益尚未验收，active runtime 为 0。Darwin 强隔离采用 ADR 0013 / 0014 的逐次 Hypervisor runner 方向；已有合成 Linux guest 观察，真实 checker 负载、产品化与公共身份迁移仍待完成。
 

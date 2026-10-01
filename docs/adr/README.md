@@ -25,4 +25,5 @@
 - [ADR 0012：产品侧 checker runtime 宿主与持久化接口](0012-product-checker-runtime-host-and-persistence-interface.md)
 - [ADR 0013：Darwin checker 强隔离宿主与虚拟执行边界](0013-darwin-checker-hard-isolation.md)
 - [ADR 0014：Darwin App Sandbox container 与 runner 无状态边界](0014-darwin-app-sandbox-container-state.md)
-- [ADR 0015：虚拟 checker 资源 profile 与宿主保证边界（Proposed）](0015-virtualized-checker-resource-profile.md)
+- [ADR 0015：虚拟 checker 资源 profile 与宿主保证边界（Accepted）](0015-virtualized-checker-resource-profile.md)
+- [ADR 0016：核心语义切片的分阶段实施入口（Accepted）](0016-core-semantic-slice-entry.md)

@@ -1,0 +1,76 @@
+{
+  "acceptance": "not-assessed",
+  "archive": {
+    "bytes": 213688,
+    "file": "musl-cross-make-3635262.tar.gz",
+    "member_count": 385,
+    "pax_headers": {
+      "comment": "3635262e4524c991552789af6f36211a335a77b3"
+    },
+    "sha256": "60bed670d689d5c2164020960df36b80189dc5617e9763e023672f98a99d567e",
+    "tar_bytes": 1597440,
+    "tar_sha256": "cb051a24ba421cd4768fc41d078f625d8eac52f617a93d60a4a0119a508c537c"
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "execution": "sandbox",
+      "exit_code": 7,
+      "headers": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stderr": {
+        "bytes": 408,
+        "sha256": "5916eea888cfee959325433e72f47e61c6d3f4190db80e3c9c46b106e1362c5a",
+        "text": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\ncurl: (7) Failed to connect to 127.0.0.1 port 10808 after 0 ms: Couldn't connect to server\n"
+      },
+      "stdout": {
+        "bytes": 167,
+        "sha256": "8f43c1498bd38e60c0bf6dfc74f3ef0788c36b8897c8b44a3b471664ecede9fa",
+        "text": "http_code=000\nsize_download=0\nurl_effective=https://codeload.github.com/richfelker/musl-cross-make/tar.gz/3635262e4524c991552789af6f36211a335a77b3\ntime_total=0.000510\n"
+      }
+    },
+    {
+      "attempt": 2,
+      "execution": "authorized-outside-sandbox",
+      "exit_code": 0,
+      "headers": {
+        "bytes": 758,
+        "sha256": "2abee3d976e4e99339acd2a8324a9a4367763edc3006ce00a35cf56d5c084e2d",
+        "text": "HTTP/1.1 200 Connection established\r\n\r\nHTTP/2 200 \r\naccess-control-allow-origin: https://render.githubusercontent.com\r\ncontent-disposition: attachment; filename=musl-cross-make-3635262e4524c991552789af6f36211a335a77b3.tar.gz\r\ncontent-security-policy: default-src 'none'; style-src 'unsafe-inline'; sandbox\r\ncontent-type: application/x-gzip\r\ncross-origin-resource-policy: cross-origin\r\netag: \"538d1ab51c2e1e7ac87d0e365f6efa62070f6ce3c8962aa3a83704493a6fa850\"\r\nstrict-transport-security: max-age=31536000\r\nvary: Authorization,Accept-Encoding\r\nx-content-type-options: nosniff\r\nx-frame-options: deny\r\nx-xss-protection: 1; mode=block\r\ndate: Thu, 10 Sep 2026 12:16:30 GMT\r\nx-github-request-id: E6F8:107A5B:2AFFE:220763:6AA29F9D\r\nx-github-edge-region: japaneast\r\n\r\n"
+      },
+      "stderr": {
+        "bytes": 475,
+        "sha256": "7a6d6e81942c77ec099b0e1063614d8e668ac69dc93003e7ccbe3febc3e38080",
+        "text": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r100  3428    0  3428    0     0   3221      0 --:--:--  0:00:01 --:--:--  3221\r100  208k    0  208k    0     0   158k      0 --:--:--  0:00:01 --:--:--  158k\n"
+      },
+      "stdout": {
+        "bytes": 172,
+        "sha256": "ba61738fe32d141ba0a1a85056b439d00549e202e72fa9b56d3cc43aa76f73e1",
+        "text": "http_code=200\nsize_download=213688\nurl_effective=https://codeload.github.com/richfelker/musl-cross-make/tar.gz/3635262e4524c991552789af6f36211a335a77b3\ntime_total=1.318636\n"
+      }
+    }
+  ],
+  "curl_version": "curl 8.7.1 (x86_64-apple-darwin25.0) libcurl/8.7.1 (SecureTransport) LibreSSL/3.3.6 zlib/1.2.12 nghttp2/1.68.1\nRelease-Date: 2024-03-27\nProtocols: dict file ftp ftps gopher gophers http https imap imaps ipfs ipns ldap ldaps mqtt pop3 pop3s rtsp smb smbs smtp smtps telnet tftp\nFeatures: alt-svc AsynchDNS GSS-API HSTS HTTP2 HTTPS-proxy IPv6 Kerberos Largefile libz MultiSSL NTLM SPNEGO SSL threadsafe UnixSockets\n",
+  "date": "2026-09-10",
+  "kind": "diagnostic-observation",
+  "options": [
+    "-q",
+    "--fail",
+    "--location",
+    "--proto",
+    "=https",
+    "--proto-redir",
+    "=https",
+    "--tlsv1.2",
+    "--connect-timeout",
+    "20",
+    "--max-time",
+    "60",
+    "--max-filesize",
+    "4194304"
+  ],
+  "requested_url": "https://codeload.github.com/richfelker/musl-cross-make/tar.gz/3635262e4524c991552789af6f36211a335a77b3"
+}

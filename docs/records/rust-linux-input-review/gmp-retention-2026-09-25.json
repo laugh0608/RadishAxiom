@@ -1,0 +1,28 @@
+{
+  "full_report_replay_equal": true,
+  "kind": "diagnostic-gmp-retention-v1",
+  "off_device_backup_verified": false,
+  "packed": {
+    "file_count": 50,
+    "manifest": {
+      "bytes": 12053,
+      "sha256": "7d2d36dfe650ca3bd9c3aa678023fdb8001fd000f95c84847310be8793f337ab"
+    },
+    "object_bytes": 6984962,
+    "object_count": 40,
+    "off_device_backup_verified": false,
+    "source_acceptance": "not-assessed"
+  },
+  "restored": {
+    "file_count": 50,
+    "manifest": {
+      "bytes": 12053,
+      "sha256": "7d2d36dfe650ca3bd9c3aa678023fdb8001fd000f95c84847310be8793f337ab"
+    },
+    "object_count": 40,
+    "off_device_backup_verified": false,
+    "restored_bytes_match": true,
+    "source_acceptance": "not-assessed"
+  },
+  "selected_texts_replay_equal": true
+}

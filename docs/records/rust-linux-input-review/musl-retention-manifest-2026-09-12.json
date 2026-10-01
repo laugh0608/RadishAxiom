@@ -1,0 +1,801 @@
+{
+  "complete_project_source_lock": false,
+  "files": [
+    {
+      "bytes": 10527804,
+      "path": ".tmp/musl-auth-chain-0a66901/Sources.xz",
+      "role": "original-source-index",
+      "sha256": "e8bbadd8389119e841494630998187f961d7de4d5b1dcbeed4f792a1d423299f"
+    },
+    {
+      "bytes": 29691,
+      "path": ".tmp/musl-key-status-ef02b43-20260910/announcement-attempt-2.html",
+      "role": "original-debian-identity-input",
+      "sha256": "5384b92ed7ad6cf8ce31afff8b5edf88fc0e997ef641c7c43bffc0660d92615d"
+    },
+    {
+      "bytes": 11861,
+      "path": ".tmp/musl-key-status-ef02b43-20260910/archive-attempt-2.asc",
+      "role": "original-debian-identity-input",
+      "sha256": "6f1d277429dd7ffedcc6f8688a7ad9a458859b1139ffa026d1eeaadcbffb0da7"
+    },
+    {
+      "bytes": 1384,
+      "path": ".tmp/musl-key-status-ef02b43-20260910/release-attempt-2.asc",
+      "role": "original-debian-identity-input",
+      "sha256": "4d097bb93f83d731f475c5b92a0c2fcf108cfce1d4932792fca72d00b48d198b"
+    },
+    {
+      "bytes": 1080786,
+      "path": ".tmp/musl-source-review-c7f7f60/musl-1.2.5.tar.gz",
+      "role": "original-musl-input",
+      "sha256": "a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4"
+    },
+    {
+      "bytes": 490,
+      "path": ".tmp/musl-source-review-c7f7f60/musl-1.2.5.tar.gz.asc",
+      "role": "original-musl-input",
+      "sha256": "d9030116fd03e4acfa0b665a13a5de46110296b4e30bb8e67be1f08af29f6306"
+    },
+    {
+      "bytes": 1707,
+      "path": ".tmp/musl-source-review-c7f7f60/musl.pub",
+      "role": "original-musl-input",
+      "sha256": "bf6baaa63c2c4958636850a24bb9d2d514c8b6a1b3ab9c08f3b75910fb6f57be"
+    },
+    {
+      "bytes": 61597,
+      "path": ".tmp/musl-source-review-c7f7f60/releases.html",
+      "role": "original-musl-input",
+      "sha256": "5153be19d53ad2ae418993a15a8ba005400ba8e16b6781a533e2c8a0658a8a30"
+    },
+    {
+      "bytes": 178572,
+      "path": ".tmp/musl-trust-bbbe083-20260910/keyring-attempt-2.deb",
+      "role": "original-debian-identity-input",
+      "sha256": "f699e2f88dca05212f2a452b58475f2993cb6993dfbafb1d0205a3291eb8b4b8"
+    },
+    {
+      "bytes": 10718,
+      "path": ".tmp/musl-trust-bbbe083-20260910/keys-attempt-2.html",
+      "role": "original-debian-identity-input",
+      "sha256": "b271f4c351a3b54f6a6be9667bb834809d12ee514055b903ccb06839d274e3e0"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-verifier-d04b225-20260912/base-files-attempt-1.deb",
+      "role": "original-fetch-bytes",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1712,
+      "path": ".tmp/musl-verifier-d04b225-20260912/base-files-attempt-1.json",
+      "role": "original-fetch-log",
+      "sha256": "6d0de542f32c9422cbf8d56e2d6e02e12af1bbcd085c1cbecb9d6e4cd6c1a119"
+    },
+    {
+      "bytes": 91,
+      "path": ".tmp/musl-verifier-d04b225-20260912/base-files-attempt-1.stderr",
+      "role": "original-fetch-bytes",
+      "sha256": "7528e9de26551e1df6d26dcd70afd80588062ceafc5fa6eb5d2f1d9a2b313a60"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-verifier-d04b225-20260912/base-files-attempt-1.stdout",
+      "role": "original-fetch-bytes",
+      "sha256": "945e4893567554e68f6f28d5652917269341a5f3d295a16b7c708c9bfd95dc5d"
+    },
+    {
+      "bytes": 73276,
+      "path": ".tmp/musl-verifier-d04b225-20260912/base-files-attempt-2.deb",
+      "role": "original-fetch-bytes",
+      "sha256": "5f5a571ec846d7db05d9f825f0388a37bc033267b33cbf85b4eaa838dffcc41b"
+    },
+    {
+      "bytes": 1621,
+      "path": ".tmp/musl-verifier-d04b225-20260912/base-files-attempt-2.json",
+      "role": "original-fetch-log",
+      "sha256": "f5643b9a4bed2ffce47e8b5b44efcdfd556f2a08bebd93e606a4bd81fd09f346"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-verifier-d04b225-20260912/base-files-attempt-2.stderr",
+      "role": "original-fetch-bytes",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-verifier-d04b225-20260912/base-files-attempt-2.stdout",
+      "role": "original-fetch-bytes",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 3356,
+      "path": ".tmp/musl-verifier-d04b225-20260912/fetch-musl-verifier-index.py",
+      "role": "original-fetch-method",
+      "sha256": "37225785634c2108d46b8522cc83fc23cddccb10cad70ac7d7ea4168257ddbfe"
+    },
+    {
+      "bytes": 3452,
+      "path": ".tmp/musl-verifier-d04b225-20260912/fetch-musl-verifier-licenses.py",
+      "role": "original-fetch-method",
+      "sha256": "a0c1963741a5663a05bc6744ac8ff13fd8e3696b0d20d7ff162efe476f63a3b1"
+    },
+    {
+      "bytes": 7657,
+      "path": ".tmp/musl-verifier-d04b225-20260912/fetch-musl-verifier-packages.py",
+      "role": "original-fetch-method",
+      "sha256": "fa17118d61750dcefa91977e5fee960cc4aeb41c9075c68c605aa9b1beea5cb8"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-verifier-d04b225-20260912/gcc-14-base-attempt-1.deb",
+      "role": "original-fetch-bytes",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1704,
+      "path": ".tmp/musl-verifier-d04b225-20260912/gcc-14-base-attempt-1.json",
+      "role": "original-fetch-log",
+      "sha256": "8e4e0f548587cbe76426ce1468cdc2e32576a08793dd4e89b929dc890f88651e"
+    },
+    {
+      "bytes": 91,
+      "path": ".tmp/musl-verifier-d04b225-20260912/gcc-14-base-attempt-1.stderr",
+      "role": "original-fetch-bytes",
+      "sha256": "7528e9de26551e1df6d26dcd70afd80588062ceafc5fa6eb5d2f1d9a2b313a60"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-verifier-d04b225-20260912/gcc-14-base-attempt-1.stdout",
+      "role": "original-fetch-bytes",
+      "sha256": "945e4893567554e68f6f28d5652917269341a5f3d295a16b7c708c9bfd95dc5d"
+    },
+    {
+      "bytes": 49444,
+      "path": ".tmp/musl-verifier-d04b225-20260912/gcc-14-base-attempt-2.deb",
+      "role": "original-fetch-bytes",
+      "sha256": "34ee90679b018c0e64234747a4c4c0ae6b7f63541115037465a8627c2dfbc594"
+    },
+    {
+      "bytes": 1613,
+      "path": ".tmp/musl-verifier-d04b225-20260912/gcc-14-base-attempt-2.json",
+      "role": "original-fetch-log",
+      "sha256": "7563133113231c5ddd6035c2a5679b6e9dc71a858a1e6deccf3bf4be38dce489"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-verifier-d04b225-20260912/gcc-14-base-attempt-2.stderr",
+      "role": "original-fetch-bytes",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-verifier-d04b225-20260912/gcc-14-base-attempt-2.stdout",
+      "role": "original-fetch-bytes",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 578896,
+      "path": ".tmp/musl-verifier-d04b225-20260912/gpg-attempt-1.deb",
+      "role": "original-fetch-bytes",
+      "sha256": "840abc3e9178b9578fbc9c9674ebb2f3b983790f713ffd2b6a0371d8670dc8e7"
+    },
+    {
+      "bytes": 1588,
+      "path": ".tmp/musl-verifier-d04b225-20260912/gpg-attempt-1.json",
+      "role": "original-fetch-log",
+      "sha256": "59191aad49c696f4cf08920eeec91ea9f4de43f793dab60dc0cbc0d52888e712"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-verifier-d04b225-20260912/gpg-attempt-1.stderr",
+      "role": "original-fetch-bytes",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-verifier-d04b225-20260912/gpg-attempt-1.stdout",
+      "role": "original-fetch-bytes",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 121684,
+      "path": ".tmp/musl-verifier-d04b225-20260912/gpgconf-attempt-1.deb",
+      "role": "original-fetch-bytes",
+      "sha256": "d4b1556e8f13b48cd0061b343cf56beed20fec06a1045631d585ef587d449569"
+    },
+    {
+      "bytes": 1612,
+      "path": ".tmp/musl-verifier-d04b225-20260912/gpgconf-attempt-1.json",
+      "role": "original-fetch-log",
+      "sha256": "9a7e016018a6faaa6e1a9c6605f4a1eb2c401c6d02b734ec38fd214535fc25ae"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-verifier-d04b225-20260912/gpgconf-attempt-1.stderr",
+      "role": "original-fetch-bytes",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-verifier-d04b225-20260912/gpgconf-attempt-1.stdout",
+      "role": "original-fetch-bytes",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 39360,
+      "path": ".tmp/musl-verifier-d04b225-20260912/init-system-helpers-attempt-1.deb",
+      "role": "original-fetch-bytes",
+      "sha256": "addf78073e1cbc5a5508937e11d2571055e29835e00ee8fab52a66775649378f"
+    },
+    {
+      "bytes": 1689,
+      "path": ".tmp/musl-verifier-d04b225-20260912/init-system-helpers-attempt-1.json",
+      "role": "original-fetch-log",
+      "sha256": "4a1236a23509b4734acbc009c42fa194181590525f53c30187e3537e2ff1fd31"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-verifier-d04b225-20260912/init-system-helpers-attempt-1.stderr",
+      "role": "original-fetch-bytes",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-verifier-d04b225-20260912/init-system-helpers-attempt-1.stdout",
+      "role": "original-fetch-bytes",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 59112,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libassuan9-attempt-1.deb",
+      "role": "original-fetch-bytes",
+      "sha256": "a4c36f4cbc7c09064fa944bf4f5d704ed6e2290b12d07a4d766a5d415b7c120d"
+    },
+    {
+      "bytes": 1615,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libassuan9-attempt-1.json",
+      "role": "original-fetch-log",
+      "sha256": "5f025a047d8e578c9fc555abb4c332125a949fa493474d7cbe33733b70da0be7"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libassuan9-attempt-1.stderr",
+      "role": "original-fetch-bytes",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libassuan9-attempt-1.stdout",
+      "role": "original-fetch-bytes",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 37772,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libbz2-1_0-attempt-1.deb",
+      "role": "original-fetch-bytes",
+      "sha256": "3537fe4fc577a60c8a9568873cd577db7ebc135eb8bb1825f18caf8972d9d2f2"
+    },
+    {
+      "bytes": 1601,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libbz2-1_0-attempt-1.json",
+      "role": "original-fetch-log",
+      "sha256": "069be17f7c980c45cdfbe321a868c27131a0e1d1a3be5779eac96214b81fc8bd"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libbz2-1_0-attempt-1.stderr",
+      "role": "original-fetch-bytes",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libbz2-1_0-attempt-1.stdout",
+      "role": "original-fetch-bytes",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 2489480,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libc6-attempt-1.deb",
+      "role": "original-fetch-bytes",
+      "sha256": "ff529924782d3286181188fc265a6a92e7fe28975fb3a925dc0e05c0ca66e52f"
+    },
+    {
+      "bytes": 1593,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libc6-attempt-1.json",
+      "role": "original-fetch-log",
+      "sha256": "663cd8764d08b14f35d99d8137d786b8dd3cffe5f6d86d36f9b0355e740a0d4a"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libc6-attempt-1.stderr",
+      "role": "original-fetch-bytes",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libc6-attempt-1.stdout",
+      "role": "original-fetch-bytes",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 54104,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libgcc-s1-attempt-1.deb",
+      "role": "original-fetch-bytes",
+      "sha256": "1108bc87879833d6d9a145f22a4a15cddb34e065b4b5f4b97bee586adbac2851"
+    },
+    {
+      "bytes": 1601,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libgcc-s1-attempt-1.json",
+      "role": "original-fetch-log",
+      "sha256": "abc8703955cf6f91352ccd5c1c14415995bdb1da160d6c63324d960c5caac176"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libgcc-s1-attempt-1.stderr",
+      "role": "original-fetch-bytes",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libgcc-s1-attempt-1.stdout",
+      "role": "original-fetch-bytes",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 741128,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libgcrypt20-attempt-1.deb",
+      "role": "original-fetch-bytes",
+      "sha256": "243a42b879c6675348279a3f9a40e535d57185af00dbfd51b7481e777f163da6"
+    },
+    {
+      "bytes": 1646,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libgcrypt20-attempt-1.json",
+      "role": "original-fetch-log",
+      "sha256": "42e228659fbaee5b5ae795a2a17677fe2c265419fa29ab6f0745778124ff6fc0"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libgcrypt20-attempt-1.stderr",
+      "role": "original-fetch-bytes",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libgcrypt20-attempt-1.stdout",
+      "role": "original-fetch-bytes",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 78544,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libgpg-error0-attempt-1.deb",
+      "role": "original-fetch-bytes",
+      "sha256": "f9a8ee3f325360dbbb1c98331c60c7aa454a054a8a4564bc36b3e52fb53e019e"
+    },
+    {
+      "bytes": 1637,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libgpg-error0-attempt-1.json",
+      "role": "original-fetch-log",
+      "sha256": "881a41532eb18803a916ad6333566f4476efe7b705a8f8315b387fc1cc6a5413"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libgpg-error0-attempt-1.stderr",
+      "role": "original-fetch-bytes",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libgpg-error0-attempt-1.stdout",
+      "role": "original-fetch-bytes",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 125004,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libksba8-attempt-1.deb",
+      "role": "original-fetch-bytes",
+      "sha256": "ee001c93cf2a5e495e1885fac2d7ec1474bd619539f0f33a0b326ac511e04297"
+    },
+    {
+      "bytes": 1608,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libksba8-attempt-1.json",
+      "role": "original-fetch-log",
+      "sha256": "d3dbe16d43e63a845a65f1fa6e1e7db9857a7f2cdc4eb0d61bfe6aa5706abdf0"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libksba8-attempt-1.stderr",
+      "role": "original-fetch-bytes",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libksba8-attempt-1.stdout",
+      "role": "original-fetch-bytes",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 22900,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libnpth0t64-attempt-1.deb",
+      "role": "original-fetch-bytes",
+      "sha256": "68bca0187b0121e25706fc79cee63233168f4b4acbfa1c3f34f0880be6c16a5c"
+    },
+    {
+      "bytes": 1601,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libnpth0t64-attempt-1.json",
+      "role": "original-fetch-log",
+      "sha256": "7966d34e2237b7861514a4f1e18857b2054fe69d508b04b3c5fb7dcb16afff81"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libnpth0t64-attempt-1.stderr",
+      "role": "original-fetch-bytes",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libnpth0t64-attempt-1.stdout",
+      "role": "original-fetch-bytes",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 159264,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libreadline8t64-attempt-1.deb",
+      "role": "original-fetch-bytes",
+      "sha256": "f78ff432b2a627bc04f7eef0e6e2696501c9e06feca748a5b741d5e594429033"
+    },
+    {
+      "bytes": 1636,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libreadline8t64-attempt-1.json",
+      "role": "original-fetch-log",
+      "sha256": "10316b1fda4be0575b1af9fea3daa49564f20d488189bbb2c2ac429f8ffe4437"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libreadline8t64-attempt-1.stderr",
+      "role": "original-fetch-bytes",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libreadline8t64-attempt-1.stdout",
+      "role": "original-fetch-bytes",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 853772,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libsqlite3-0-attempt-1.deb",
+      "role": "original-fetch-bytes",
+      "sha256": "69dd4b705eca29fe134c17f18aaa4cc9e7ecd01c0250d5e195358801514c76ac"
+    },
+    {
+      "bytes": 1638,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libsqlite3-0-attempt-1.json",
+      "role": "original-fetch-log",
+      "sha256": "ea110cab739524eeeb8c3926e48ff0067066996812d7b3c518c5e94a35d717ad"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libsqlite3-0-attempt-1.stderr",
+      "role": "original-fetch-bytes",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libsqlite3-0-attempt-1.stdout",
+      "role": "original-fetch-bytes",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 341360,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libtinfo6-attempt-1.deb",
+      "role": "original-fetch-bytes",
+      "sha256": "2a747f7fff3c2347c357387a7133df997410f07ba1b1df1a1461a97bd7fbc2fc"
+    },
+    {
+      "bytes": 1616,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libtinfo6-attempt-1.json",
+      "role": "original-fetch-log",
+      "sha256": "4d39913340fc287f9a3a08491847f1f7e5c9709b188f8e0d7cb3b79bd0b952e7"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libtinfo6-attempt-1.stderr",
+      "role": "original-fetch-bytes",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-verifier-d04b225-20260912/libtinfo6-attempt-1.stdout",
+      "role": "original-fetch-bytes",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 1664,
+      "path": ".tmp/musl-verifier-d04b225-20260912/packages-attempt-1.json",
+      "role": "original-fetch-log",
+      "sha256": "4954ddc9afb2fb541053d92545d252ff86d2653df4e1da4287d080c564f1098f"
+    },
+    {
+      "bytes": 91,
+      "path": ".tmp/musl-verifier-d04b225-20260912/packages-attempt-1.stderr",
+      "role": "original-fetch-bytes",
+      "sha256": "7528e9de26551e1df6d26dcd70afd80588062ceafc5fa6eb5d2f1d9a2b313a60"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-verifier-d04b225-20260912/packages-attempt-1.stdout",
+      "role": "original-fetch-bytes",
+      "sha256": "945e4893567554e68f6f28d5652917269341a5f3d295a16b7c708c9bfd95dc5d"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-verifier-d04b225-20260912/packages-attempt-1.xz",
+      "role": "original-fetch-bytes",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1575,
+      "path": ".tmp/musl-verifier-d04b225-20260912/packages-attempt-2.json",
+      "role": "original-fetch-log",
+      "sha256": "b6c7991ff097ce6a05fef5a1b6ca5f16a6458efa4f8f1e0e387b6ad867684919"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-verifier-d04b225-20260912/packages-attempt-2.stderr",
+      "role": "original-fetch-bytes",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-verifier-d04b225-20260912/packages-attempt-2.stdout",
+      "role": "original-fetch-bytes",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 9607412,
+      "path": ".tmp/musl-verifier-d04b225-20260912/packages-attempt-2.xz",
+      "role": "original-fetch-bytes",
+      "sha256": "753da751bbc7a679f48bd1b623ffd4479cb6861c426118284c76eb82909e4908"
+    },
+    {
+      "bytes": 69360,
+      "path": ".tmp/musl-verifier-d04b225-20260912/readline-common-attempt-1.deb",
+      "role": "original-fetch-bytes",
+      "sha256": "f77e8aa0bf0de618f11cb0b21658a4ed60f177d63b3cf26d7fc3706b6d0eaaa9"
+    },
+    {
+      "bytes": 1629,
+      "path": ".tmp/musl-verifier-d04b225-20260912/readline-common-attempt-1.json",
+      "role": "original-fetch-log",
+      "sha256": "6794950f77fab89952e6fa3d1cc1b242629817e6de5e1045cbab805d32f192ef"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-verifier-d04b225-20260912/readline-common-attempt-1.stderr",
+      "role": "original-fetch-bytes",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-verifier-d04b225-20260912/readline-common-attempt-1.stdout",
+      "role": "original-fetch-bytes",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 85116,
+      "path": ".tmp/musl-verifier-d04b225-20260912/zlib1g-attempt-1.deb",
+      "role": "original-fetch-bytes",
+      "sha256": "209aa5cf671e97b9eb0410844fa6df4cae2e75b0c72e7802ab6c8ece13e6ddef"
+    },
+    {
+      "bytes": 1611,
+      "path": ".tmp/musl-verifier-d04b225-20260912/zlib1g-attempt-1.json",
+      "role": "original-fetch-log",
+      "sha256": "2e786c30f122f60839a75376fd199a41441decf4ed0bd3c9a559cdca8c921553"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-verifier-d04b225-20260912/zlib1g-attempt-1.stderr",
+      "role": "original-fetch-bytes",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-verifier-d04b225-20260912/zlib1g-attempt-1.stdout",
+      "role": "original-fetch-bytes",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 4164,
+      "path": "docs/records/rust-linux-input-review/check-musl-retention.py",
+      "role": "replay-method-or-record",
+      "sha256": "b983a8f088a9b2a0fa721886c1951f2436ab6ce916ab0d803f3e147038e0c6f1"
+    },
+    {
+      "bytes": 4308,
+      "path": "docs/records/rust-linux-input-review/check-musl-verifier-content.py",
+      "role": "replay-method-or-record",
+      "sha256": "1da93c88d95b79d865bee5441f428afb05ee2e97a109d2577beaa1c75fe656db"
+    },
+    {
+      "bytes": 4665,
+      "path": "docs/records/rust-linux-input-review/check-musl-verifier-layout.py",
+      "role": "replay-method-or-record",
+      "sha256": "246f2b672f2a2a3f8a4305a2fa88fd7bd097a7fdf8f62650ec20b62cbddfc780"
+    },
+    {
+      "bytes": 3206,
+      "path": "docs/records/rust-linux-input-review/check-musl-verifier-licenses.py",
+      "role": "replay-method-or-record",
+      "sha256": "251bbc2932ff25ba8dfc2e46448c8b698c6be7699d0477d94087c4879606f296"
+    },
+    {
+      "bytes": 11861,
+      "path": "docs/records/rust-linux-input-review/debian-trixie-archive-2026-09-10.asc",
+      "role": "replay-method-or-record",
+      "sha256": "6f1d277429dd7ffedcc6f8688a7ad9a458859b1139ffa026d1eeaadcbffb0da7"
+    },
+    {
+      "bytes": 1384,
+      "path": "docs/records/rust-linux-input-review/debian-trixie-release-2026-09-10.asc",
+      "role": "replay-method-or-record",
+      "sha256": "4d097bb93f83d731f475c5b92a0c2fcf108cfce1d4932792fca72d00b48d198b"
+    },
+    {
+      "bytes": 6672,
+      "path": "docs/records/rust-linux-input-review/inspect-musl-key-status.py",
+      "role": "replay-method-or-record",
+      "sha256": "18e2dea0fea2f2e2c959116b88aac83841277539e49c84316319f95429c936b2"
+    },
+    {
+      "bytes": 7472,
+      "path": "docs/records/rust-linux-input-review/inspect-musl-trust-inputs.py",
+      "role": "replay-method-or-record",
+      "sha256": "cd2cc429a4337b02e513ddbb9385eadccefed1461732a0a92f595ef0bb2b8878"
+    },
+    {
+      "bytes": 13420,
+      "path": "docs/records/rust-linux-input-review/inspect-musl-verifier-content.py",
+      "role": "replay-method-or-record",
+      "sha256": "64d8f7356d2a179bd363f77309a39ba0b5af3f7ba2bc78caa778aad95efc30d1"
+    },
+    {
+      "bytes": 14863,
+      "path": "docs/records/rust-linux-input-review/inspect-musl-verifier-layout.py",
+      "role": "replay-method-or-record",
+      "sha256": "ede71d6b4e058c287e00b0767ca6115437e721216a2e3a0379a3b38529f28fe1"
+    },
+    {
+      "bytes": 7009,
+      "path": "docs/records/rust-linux-input-review/inspect-musl-verifier-licenses.py",
+      "role": "replay-method-or-record",
+      "sha256": "bc9d215722b20ae6d099ef70af0e990dc213a660a249f3d8e11932ecf76b8d19"
+    },
+    {
+      "bytes": 7576,
+      "path": "docs/records/rust-linux-input-review/inspect-musl-verifier-packages.py",
+      "role": "replay-method-or-record",
+      "sha256": "f8d04abd5141278b373125f8fe6487502c43fd940c9cad48a2120b03a44ed448"
+    },
+    {
+      "bytes": 3546,
+      "path": "docs/records/rust-linux-input-review/inspect-musl-verifier-sources.py",
+      "role": "replay-method-or-record",
+      "sha256": "71ed6113217f11abcc3105f0898ddb23c1fc9a5c7822129d8c669b8d5e387d5c"
+    },
+    {
+      "bytes": 6633,
+      "path": "docs/records/rust-linux-input-review/inspect-selected-inputs.py",
+      "role": "replay-method-or-record",
+      "sha256": "8286b3c9f270c77f20ea24c5bcbea3f6a5415e7c013a7ec39aa8c29ebccbb4be"
+    },
+    {
+      "bytes": 140416,
+      "path": "docs/records/rust-linux-input-review/musl-debian-InRelease-2026-09-10",
+      "role": "replay-method-or-record",
+      "sha256": "98b25b5cd185c59d34aa6e4c3e9b5b8f01bbe9d104fe2dcfbcd30dc0a14a59ed"
+    },
+    {
+      "bytes": 332163,
+      "path": "docs/records/rust-linux-input-review/musl-debian-execution-2026-09-10.json",
+      "role": "replay-method-or-record",
+      "sha256": "622cb29a2e15ce0adc875d88654605b76c350b23875dbea5fe1adbc7b96b2574"
+    },
+    {
+      "bytes": 9897,
+      "path": "docs/records/rust-linux-input-review/musl-debian-fetch-2026-09-10.json",
+      "role": "replay-method-or-record",
+      "sha256": "96bca9f813405d137b2e2239655caf570cf266122e13c37a7bf10f973a360a8d"
+    },
+    {
+      "bytes": 3717,
+      "path": "docs/records/rust-linux-input-review/musl-key-status-2026-09-10.json",
+      "role": "replay-method-or-record",
+      "sha256": "36ff9680d37b4ec13367d7bbd1692120873d7be150b35cadfac41c93ae7f21bf"
+    },
+    {
+      "bytes": 12663,
+      "path": "docs/records/rust-linux-input-review/musl-key-status-execution-2026-09-10.json",
+      "role": "replay-method-or-record",
+      "sha256": "87fdeb5c8eaa018ae43145d63ea84e25b8b5e4e08696934c51286f545ed9eba7"
+    },
+    {
+      "bytes": 16144,
+      "path": "docs/records/rust-linux-input-review/musl-source-fetch-2026-09-10.json",
+      "role": "replay-method-or-record",
+      "sha256": "d8aad7e1d8c1c4317c941ec08d1bbd8711f11d9042ee389101ee45fa6fba7343"
+    },
+    {
+      "bytes": 54938,
+      "path": "docs/records/rust-linux-input-review/musl-verifier-content-2026-09-12.json.gz",
+      "role": "replay-method-or-record",
+      "sha256": "ea7c33f8b26cd0f4ff879230712b61a85df67eb7a37c0a47a505113d26fffebe"
+    },
+    {
+      "bytes": 28548,
+      "path": "docs/records/rust-linux-input-review/musl-verifier-content-summary-2026-09-12.json",
+      "role": "replay-method-or-record",
+      "sha256": "da75bd655f2fcac281a27f72a6027707a5602e981c8c92e0f20f223e18b62db6"
+    },
+    {
+      "bytes": 3728,
+      "path": "docs/records/rust-linux-input-review/musl-verifier-index-fetch-2026-09-12.json",
+      "role": "replay-method-or-record",
+      "sha256": "acfaef0aa670eaeffb057c50a659848c34faf67bdc4dd56c6c8a3444b9bb8a1f"
+    },
+    {
+      "bytes": 198415,
+      "path": "docs/records/rust-linux-input-review/musl-verifier-layout-2026-09-12.json.gz",
+      "role": "replay-method-or-record",
+      "sha256": "4559d99ac6f6e09a1ba8a41dd393fb39e5c883b82e3c7818434fe4ca3dc4c617"
+    },
+    {
+      "bytes": 95281,
+      "path": "docs/records/rust-linux-input-review/musl-verifier-layout-summary-2026-09-12.json",
+      "role": "replay-method-or-record",
+      "sha256": "e7b0c64e4a2e91fbd1a5ba9b8380e6ccd2ff2d7c47572c5ddcf972c7f726512c"
+    },
+    {
+      "bytes": 45354,
+      "path": "docs/records/rust-linux-input-review/musl-verifier-licenses-2026-09-12.json",
+      "role": "replay-method-or-record",
+      "sha256": "4137405ca1d7f4e9dbefe86e982730dba2e77e910a4f8667fcde15d7ada527c0"
+    },
+    {
+      "bytes": 3550,
+      "path": "docs/records/rust-linux-input-review/musl-verifier-licenses-fetch-2026-09-12.json",
+      "role": "replay-method-or-record",
+      "sha256": "284c2459d0087fcb02de2a431fddbf7de68b766aefc9a44b894409199634b6ae"
+    },
+    {
+      "bytes": 33177,
+      "path": "docs/records/rust-linux-input-review/musl-verifier-package-fetch-2026-09-12.json",
+      "role": "replay-method-or-record",
+      "sha256": "eb4438f2b69befbf6c2a9c4d00b6c33e42422dcfe293deada89dde1558b512a8"
+    },
+    {
+      "bytes": 28236,
+      "path": "docs/records/rust-linux-input-review/musl-verifier-packages-2026-09-12.json",
+      "role": "replay-method-or-record",
+      "sha256": "a67e2c07302b945d4d5add12851e5714418614aaba9a28254bef1662bd8b4861"
+    },
+    {
+      "bytes": 10295,
+      "path": "docs/records/rust-linux-input-review/retain-musl-verifier-inputs.py",
+      "role": "replay-method-or-record",
+      "sha256": "72047818576ab27de02cf8e9620c33299c007b4c64108fb7c11a3c1d23e3ca0a"
+    },
+    {
+      "bytes": 13032,
+      "path": "scripts/inspect-debian-source-chain.py",
+      "role": "replay-method-or-record",
+      "sha256": "c6f18880b4f347467ad949ccf25b1960c7bef141e5b48f610ae93ab22479da2a"
+    }
+  ],
+  "kind": "diagnostic-musl-retention-manifest-v1",
+  "repository_base": "2fb2e70",
+  "scope": "musl source/identity inputs, 18 verifier/license packages, and static replay dependencies",
+  "source_acceptance": "not-assessed"
+}

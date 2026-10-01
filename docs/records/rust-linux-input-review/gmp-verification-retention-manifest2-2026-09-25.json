@@ -1,0 +1,57 @@
+{
+  "complete_project_source_lock": false,
+  "files": [
+    {
+      "bytes": 6101428,
+      "path": ".tmp/gmp-verification-execution-20260925-attempt2.json",
+      "role": "gmp-second-attempt-failure-and-offline-review",
+      "sha256": "495ce3fb361747d09626f1eb0c55f0386a4a0e08f53a6901ecdd08d410e794a7"
+    },
+    {
+      "bytes": 13168,
+      "path": "docs/records/rust-linux-input-review/collect-gmp-verification-v2.py",
+      "role": "gmp-second-attempt-failure-and-offline-review",
+      "sha256": "31ba029869bb589062631caee29ce5a1c545384033923f0708372822f7016011"
+    },
+    {
+      "bytes": 9498,
+      "path": "docs/records/rust-linux-input-review/run-gmp-verification-v2.py",
+      "role": "gmp-second-attempt-failure-and-offline-review",
+      "sha256": "14082c5d9869146f410a9071b16490ea79ced93c0fe9fbfe49673d06146414b2"
+    },
+    {
+      "bytes": 10525,
+      "path": "docs/records/rust-linux-input-review/gmp-auxiliary-expiry-review-2026-09-25.md",
+      "role": "gmp-second-attempt-failure-and-offline-review",
+      "sha256": "9085c5c81bf26e7c5feba3f8854411f48cddb676086ac775db72d8e726a70af5"
+    },
+    {
+      "bytes": 24330,
+      "path": "docs/records/rust-linux-input-review/check-gmp-verification-v2.py",
+      "role": "gmp-second-attempt-failure-and-offline-review",
+      "sha256": "a202c5d02172f05ae55ce88a842b0cd73965252513bb063b82b949b371268ab1"
+    },
+    {
+      "bytes": 10509,
+      "path": "docs/records/rust-linux-input-review/inspect-gmp-certification-attempt.py",
+      "role": "gmp-second-attempt-failure-and-offline-review",
+      "sha256": "1c8c44059e948f2fe1c2603ff9aedaf19dc916a8094e74fbdd224745c374943a"
+    },
+    {
+      "bytes": 4041,
+      "path": "docs/records/rust-linux-input-review/check-gmp-certification-attempt.py",
+      "role": "gmp-second-attempt-failure-and-offline-review",
+      "sha256": "284cc8bdf1805d7ca78dc8415a5d9ee9f962e20223c8e5c71b7cf3d940f9e03b"
+    },
+    {
+      "bytes": 3958,
+      "path": "docs/records/rust-linux-input-review/gmp-verification-attempt2-2026-09-25.json",
+      "role": "gmp-second-attempt-failure-and-offline-review",
+      "sha256": "6f9b596679851605f5cc804302b37baad5306de69f7a42313ff0252a6eb449c4"
+    }
+  ],
+  "kind": "diagnostic-musl-retention-manifest-v1",
+  "repository_base": "6852a43",
+  "scope": "GMP v2 filter/certification attempt, original execution methods and partial logs, offline rejection replay; no source acceptance",
+  "source_acceptance": "not-assessed"
+}

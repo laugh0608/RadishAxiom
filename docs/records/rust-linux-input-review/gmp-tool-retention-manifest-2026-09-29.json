@@ -1,0 +1,237 @@
+{
+  "complete_project_source_lock": false,
+  "files": [
+    {
+      "bytes": 3809,
+      "path": ".tmp/gmp-tool-semantics-3e28608-20260929/fetch-gmp-tool-materials.py",
+      "role": "original-input-log-or-selected-text",
+      "sha256": "ea04986f9d2153dd1899f08d48325e5746c73d4c78a459f35f5d8eb974b6aa48"
+    },
+    {
+      "bytes": 5126,
+      "path": ".tmp/gmp-tool-semantics-3e28608-20260929/fetch-mpc-mpfr-inputs.py",
+      "role": "original-input-log-or-selected-text",
+      "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+    },
+    {
+      "bytes": 1970,
+      "path": ".tmp/gmp-tool-semantics-3e28608-20260929/fetch-plan.json",
+      "role": "original-input-log-or-selected-text",
+      "sha256": "151208e42d38210c0a2aed8f1c044b7557a9f3f3577b72145aa72c73f6dcd137"
+    },
+    {
+      "bytes": 10411,
+      "path": ".tmp/gmp-tool-semantics-3e28608-20260929/fetch-result.json",
+      "role": "original-input-log-or-selected-text",
+      "sha256": "1a39f3e57d645eb940f26b3839b7542c4828c4668d9cf2629625c45b2e0f3980"
+    },
+    {
+      "bytes": 131264,
+      "path": ".tmp/gmp-tool-semantics-3e28608-20260929/gnupg2_2.4.7-21+deb13u1.debian.tar.xz-attempt-1.body",
+      "role": "original-input-log-or-selected-text",
+      "sha256": "3941a8a537e258f6216ad1c1b9ecb255dfc286e5d03eb39805e536de4a448856"
+    },
+    {
+      "bytes": 1686,
+      "path": ".tmp/gmp-tool-semantics-3e28608-20260929/gnupg2_2.4.7-21+deb13u1.debian.tar.xz-attempt-1.json",
+      "role": "original-input-log-or-selected-text",
+      "sha256": "141429eebb8b679e41c88ced2f8240094a18ce0f84e1049d028565c27ab82d78"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/gmp-tool-semantics-3e28608-20260929/gnupg2_2.4.7-21+deb13u1.debian.tar.xz-attempt-1.stderr",
+      "role": "original-input-log-or-selected-text",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/gmp-tool-semantics-3e28608-20260929/gnupg2_2.4.7-21+deb13u1.debian.tar.xz-attempt-1.stdout",
+      "role": "original-input-log-or-selected-text",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 4933,
+      "path": ".tmp/gmp-tool-semantics-3e28608-20260929/gnupg2_2.4.7-21+deb13u1.dsc-attempt-1.body",
+      "role": "original-input-log-or-selected-text",
+      "sha256": "30a96cd2d26a57f6796507bf8f083825734d4081e3c5f922d2b99bb2bf671212"
+    },
+    {
+      "bytes": 1632,
+      "path": ".tmp/gmp-tool-semantics-3e28608-20260929/gnupg2_2.4.7-21+deb13u1.dsc-attempt-1.json",
+      "role": "original-input-log-or-selected-text",
+      "sha256": "e5652792bbf6314e945cc705014200d8da90100e9b7a429f89e70de7cc37e005"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/gmp-tool-semantics-3e28608-20260929/gnupg2_2.4.7-21+deb13u1.dsc-attempt-1.stderr",
+      "role": "original-input-log-or-selected-text",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/gmp-tool-semantics-3e28608-20260929/gnupg2_2.4.7-21+deb13u1.dsc-attempt-1.stdout",
+      "role": "original-input-log-or-selected-text",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 8010244,
+      "path": ".tmp/gmp-tool-semantics-3e28608-20260929/gnupg2_2.4.7.orig.tar.bz2-attempt-1.body",
+      "role": "original-input-log-or-selected-text",
+      "sha256": "7b24706e4da7e0e3b06ca068231027401f238102c41c909631349dcc3b85eb46"
+    },
+    {
+      "bytes": 1628,
+      "path": ".tmp/gmp-tool-semantics-3e28608-20260929/gnupg2_2.4.7.orig.tar.bz2-attempt-1.json",
+      "role": "original-input-log-or-selected-text",
+      "sha256": "38b112688620eeaa4756da06d4418ead9d55b79152ee5830d9a71c79f0b63286"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/gmp-tool-semantics-3e28608-20260929/gnupg2_2.4.7.orig.tar.bz2-attempt-1.stderr",
+      "role": "original-input-log-or-selected-text",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/gmp-tool-semantics-3e28608-20260929/gnupg2_2.4.7.orig.tar.bz2-attempt-1.stdout",
+      "role": "original-input-log-or-selected-text",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 390,
+      "path": ".tmp/gmp-tool-semantics-3e28608-20260929/gnupg2_2.4.7.orig.tar.bz2.asc-attempt-1.body",
+      "role": "original-input-log-or-selected-text",
+      "sha256": "cec7da75dab60e3e2f6bf92ed1174126a1e5a1cc5e448f9e004a23be2dd227f6"
+    },
+    {
+      "bytes": 1640,
+      "path": ".tmp/gmp-tool-semantics-3e28608-20260929/gnupg2_2.4.7.orig.tar.bz2.asc-attempt-1.json",
+      "role": "original-input-log-or-selected-text",
+      "sha256": "649306ae45fa020a056197eeb0cc4536e08430615bd1b3892dd5f57c7af76421"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/gmp-tool-semantics-3e28608-20260929/gnupg2_2.4.7.orig.tar.bz2.asc-attempt-1.stderr",
+      "role": "original-input-log-or-selected-text",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/gmp-tool-semantics-3e28608-20260929/gnupg2_2.4.7.orig.tar.bz2.asc-attempt-1.stdout",
+      "role": "original-input-log-or-selected-text",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 7835,
+      "path": ".tmp/gmp-tool-semantics-3e28608-20260929/inspect-source-attempt1.py",
+      "role": "original-input-log-or-selected-text",
+      "sha256": "52dcc8aa19504db1eb2ace38b9179555d602f25d709d851cee4d15796fa281c0"
+    },
+    {
+      "bytes": 281,
+      "path": ".tmp/gmp-tool-semantics-3e28608-20260929/inspection-attempt1.json",
+      "role": "original-input-log-or-selected-text",
+      "sha256": "9367086ce8f85e5e8a42ec4b6eafb7f318e0b67da69d8e90fcba8c0eae6b9404"
+    },
+    {
+      "bytes": 1495840,
+      "path": ".tmp/gmp-tool-semantics-3e28608-20260929/review-texts-final.json",
+      "role": "original-input-log-or-selected-text",
+      "sha256": "247fde1393366fbe6fa35838087abf36cd3996db085fb414eb8790788d5dd021"
+    },
+    {
+      "bytes": 81938,
+      "path": ".tmp/gmp-tool-semantics-3e28608-20260929/source-review-final.json.gz",
+      "role": "original-input-log-or-selected-text",
+      "sha256": "4353f860d766b28fc353020672a40c6869df4a4142d48b837eef57e189ca3cf9"
+    },
+    {
+      "bytes": 6577,
+      "path": "docs/records/rust-linux-input-review/check-gmp-certification-v3.py",
+      "role": "method-test-or-report",
+      "sha256": "a16b73dafe7bf69967d7f37156eceec119532802602486912d4e9bdcb129061e"
+    },
+    {
+      "bytes": 5089,
+      "path": "docs/records/rust-linux-input-review/check-gmp-tool-source.py",
+      "role": "method-test-or-report",
+      "sha256": "36a0dab877ba44bbfc9e2b47c855e7cd4e9e5a62b1e140c502cf21bb3db69ad9"
+    },
+    {
+      "bytes": 3809,
+      "path": "docs/records/rust-linux-input-review/fetch-gmp-tool-materials.py",
+      "role": "method-test-or-report",
+      "sha256": "ea04986f9d2153dd1899f08d48325e5746c73d4c78a459f35f5d8eb974b6aa48"
+    },
+    {
+      "bytes": 5126,
+      "path": "docs/records/rust-linux-input-review/fetch-mpc-mpfr-inputs.py",
+      "role": "method-test-or-report",
+      "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+    },
+    {
+      "bytes": 2247,
+      "path": "docs/records/rust-linux-input-review/gmp-certification-v3-review-2026-09-29.json",
+      "role": "method-test-or-report",
+      "sha256": "6deb894146ec128524ad4a1bb7cc2bebe00f4d1809214425f0b996047b1fd8a3"
+    },
+    {
+      "bytes": 10411,
+      "path": "docs/records/rust-linux-input-review/gmp-tool-fetch-2026-09-29.json",
+      "role": "method-test-or-report",
+      "sha256": "1a39f3e57d645eb940f26b3839b7542c4828c4668d9cf2629625c45b2e0f3980"
+    },
+    {
+      "bytes": 5636,
+      "path": "docs/records/rust-linux-input-review/gmp-tool-semantics-review-2026-09-29.json",
+      "role": "method-test-or-report",
+      "sha256": "c61683dbcd4e040c6634dd28f0733c3f7b68ea0e88779ad596ca10421e59b44e"
+    },
+    {
+      "bytes": 81938,
+      "path": "docs/records/rust-linux-input-review/gmp-tool-source-2026-09-29.json.gz",
+      "role": "method-test-or-report",
+      "sha256": "4353f860d766b28fc353020672a40c6869df4a4142d48b837eef57e189ca3cf9"
+    },
+    {
+      "bytes": 10104,
+      "path": "docs/records/rust-linux-input-review/inspect-archives.py",
+      "role": "method-test-or-report",
+      "sha256": "e9a417881e4caff2da92441dc19e958d93dba27173b38d3ce4425a9fd7c3b949"
+    },
+    {
+      "bytes": 6859,
+      "path": "docs/records/rust-linux-input-review/inspect-gmp-certification-v3.py",
+      "role": "method-test-or-report",
+      "sha256": "8cd4b68930e3f692a53c7a494412394d818f6a37412b8aee565b3de8eb889c1f"
+    },
+    {
+      "bytes": 5830,
+      "path": "docs/records/rust-linux-input-review/inspect-gmp-tool-materials.py",
+      "role": "method-test-or-report",
+      "sha256": "50faa21fbdba5e3919891ca40f76904cd54110a3fc0c3463325c56d3587438f5"
+    },
+    {
+      "bytes": 8938,
+      "path": "docs/records/rust-linux-input-review/inspect-gmp-tool-source.py",
+      "role": "method-test-or-report",
+      "sha256": "aaa987b849f2152dd0cfe46858e241c2f970ff7350eb29efeff181e99c49b231"
+    },
+    {
+      "bytes": 10295,
+      "path": "docs/records/rust-linux-input-review/retain-musl-verifier-inputs.py",
+      "role": "method-test-or-report",
+      "sha256": "72047818576ab27de02cf8e9620c33299c007b4c64108fb7c11a3c1d23e3ca0a"
+    },
+    {
+      "bytes": 13032,
+      "path": "scripts/inspect-debian-source-chain.py",
+      "role": "method",
+      "sha256": "c6f18880b4f347467ad949ccf25b1960c7bef141e5b48f610ae93ab22479da2a"
+    }
+  ],
+  "kind": "diagnostic-musl-retention-manifest-v1",
+  "repository_base": "3e28608",
+  "scope": "GMP tool semantics source supplement; existing GMP/tool stores and repository baseline remain required",
+  "source_acceptance": "not-assessed"
+}

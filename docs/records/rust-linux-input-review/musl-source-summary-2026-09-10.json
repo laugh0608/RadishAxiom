@@ -1,0 +1,87 @@
+{
+  "acceptance": "not-assessed",
+  "archive": {
+    "bytes": 1080786,
+    "file": "musl-1.2.5.tar.gz",
+    "member_count": 2933,
+    "pax_headers": {
+      "comment": "0784374d561435f7c787a555aeab8ede699ed298"
+    },
+    "recipe_sha1": "36210d3423172a40ddcf83c762207c5f760b60a6",
+    "sha256": "a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4",
+    "tar_bytes": 5775360,
+    "tar_sha256": "1efeecf639b04eae538fb20a3d185105488bf5901668ec4cfe411f5973a222cb"
+  },
+  "date": "2026-09-10",
+  "files_with_license_search_terms": 135,
+  "inventory": {
+    "bytes": 191749,
+    "file": "musl-source-inventory-2026-09-10.json.gz",
+    "files": 2697,
+    "json_bytes": 694166,
+    "json_sha256": "66ae160ca0d6fcce3cf48c2795a613031d32fd5e7dc495c0d503cc0ab7e1d70f",
+    "sha256": "b8bb57a4f826a5c3da4239119049c81efe4a5b9e06f2cc3f084f4021a906e8ff"
+  },
+  "kind": "diagnostic-observation",
+  "methods": {
+    "inspect-archives.py": "e9a417881e4caff2da92441dc19e958d93dba27173b38d3ce4425a9fd7c3b949",
+    "inspect-musl-patches.py": "44058cc2dfcc8459fb14f53b4f05ea12f7691f26be676d259454428362a9f866",
+    "inspect-musl-source.py": "d4ba03b731b0a983348a45c0ab370f32d93fb1b3828e785a70046575f2893350",
+    "verify-musl-source.py": "ce216882a3ae38dc767b081071f192c6bd3358067e396e29b94707214c3aa1c5"
+  },
+  "patches": {
+    "base_files": {
+      "src/locale/iconv.c": {
+        "bytes": 14837,
+        "git_blob_sha1": "175def1c63f1a4a257f64e8e0728eac9c833fc65",
+        "sha256": "2aadd020959004608625bb6b7759d81daa5abf347643399ba887f5d11277b4c1"
+      },
+      "src/stdlib/qsort.c": {
+        "bytes": 5131,
+        "git_blob_sha1": "314ddc29da1db7d236044683c264b1a9367b69c1",
+        "sha256": "3a838cc7f83f4746df6063f567be1ebb2f7d204243342122acd43f44d2434ec6"
+      }
+    },
+    "derived_complete_content_manifest": {
+      "bytes": 248611,
+      "construction": "base inventory path -> sha256, replace or add final_files; json.dumps(sort_keys=True,separators=(comma,colon)) plus LF; no full patched tree or tar constructed",
+      "files": 2698,
+      "sha256": "f8fe4e7d754047068cd583a172b54ecdd5590b6a875bb196c59bf3d040777af4"
+    },
+    "file_diffs": 7,
+    "files": 4,
+    "final_files": {
+      "src/locale/gb18030utf.h": {
+        "bytes": 3172,
+        "git_blob_sha1": "322a2440824652f5f3bfb328e241cf4c3216e667",
+        "sha256": "94b51d272a81a1164a035918253004ab71cc21e29f11100dcf9bd3dc22757c28"
+      },
+      "src/locale/iconv.c": {
+        "bytes": 15479,
+        "git_blob_sha1": "a732022779656be6e286780cd6bca22b8f5fba6c",
+        "sha256": "9a1fc56619fccf8daab368411e1b48955e8bff933cd00f71d995e71aefc47897"
+      },
+      "src/stdlib/qsort.c": {
+        "bytes": 5574,
+        "git_blob_sha1": "67db36d2386a61dfddd7ad0c7ea0d0e5a7bdfc5d",
+        "sha256": "b40e91d98930b6fa929a42d9129821de5b73ce2fdc3f2a94023143d82408a7f2"
+      }
+    },
+    "fuzz": 0,
+    "hunks": 14,
+    "observed_offsets": [
+      -7
+    ],
+    "passed": true
+  },
+  "signature": {
+    "digest_algorithm": 2,
+    "digest_name": "SHA-1",
+    "fingerprint": "836489290BB6B70F99FFDA0556BCDB593020450F",
+    "gpg_exit_code": 0,
+    "pinned_signature_passed": false,
+    "subkey_binding_digest_algorithm": 2,
+    "uid_self_certification_digest_algorithm": 2
+  },
+  "source_version": "1.2.5"
+}

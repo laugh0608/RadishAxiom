@@ -1,0 +1,691 @@
+{
+  "collector_methods": {
+    "collect-musl-smoke-execution.py": {
+      "bytes": 2900,
+      "sha256": "426ac17b9d7b55da81cd1e5ec362ec366073cd40229af89a9aba222438e805e6"
+    },
+    "collect-musl-verification-execution.py": {
+      "bytes": 3193,
+      "sha256": "ebe01ccdbb10e528219b4161bf93168d2a84cd0cfa448feb948a0398a7293cd6"
+    }
+  },
+  "commands": [
+    {
+      "record": {
+        "argv": [
+          "/usr/local/bin/docker",
+          "--host",
+          "unix:///Users/luobo/.orbstack/run/docker.sock",
+          "--config",
+          "/Users/luobo/Code/RadishAxiom/.tmp/musl-verification-20260916/docker-config",
+          "version",
+          "--format",
+          "{\"Server.Version\":{{json .Server.Version}},\"Server.ApiVersion\":{{json .Server.APIVersion}},\"Server.Os\":{{json .Server.Os}},\"Server.Arch\":{{json .Server.Arch}}}"
+        ],
+        "bytes_limit": 262144,
+        "failure": null,
+        "finished_at": "2026-09-16T12:41:32.237690+00:00",
+        "returncode": 0,
+        "seconds": 0.0863656669998818,
+        "seconds_limit": 10,
+        "started_at": "2026-09-16T12:41:32.151293+00:00",
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout": {
+          "bytes": 97,
+          "sha256": "ab7dd616f462523f8950efbdd4c7f71e92b4430919dd262cc7cb6974f99a2321"
+        }
+      },
+      "record_identity": {
+        "bytes": 877,
+        "sha256": "e11f5cf79cf89ebbdcc4ffcad0ed24993b01a0a4d9b35d524bdc31f86c35d83e"
+      },
+      "stderr": "",
+      "stdout": "{\"Server.Version\":\"29.4.0\",\"Server.ApiVersion\":\"1.54\",\"Server.Os\":\"linux\",\"Server.Arch\":\"arm64\"}\n"
+    },
+    {
+      "record": {
+        "argv": [
+          "/usr/local/bin/docker",
+          "--host",
+          "unix:///Users/luobo/.orbstack/run/docker.sock",
+          "--config",
+          "/Users/luobo/Code/RadishAxiom/.tmp/musl-verification-20260916/docker-config",
+          "info",
+          "--format",
+          "{\"MemoryLimit\":{{json .MemoryLimit}},\"SwapLimit\":{{json .SwapLimit}},\"PidsLimit\":{{json .PidsLimit}},\"CpuCfsPeriod\":{{json .CPUCfsPeriod}},\"CpuCfsQuota\":{{json .CPUCfsQuota}},\"CgroupVersion\":{{json .CgroupVersion}},\"SecurityOptions\":{{json .SecurityOptions}}}"
+        ],
+        "bytes_limit": 262144,
+        "failure": null,
+        "finished_at": "2026-09-16T12:41:32.262697+00:00",
+        "returncode": 0,
+        "seconds": 0.02448016700009248,
+        "seconds_limit": 10,
+        "started_at": "2026-09-16T12:41:32.238191+00:00",
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout": {
+          "bytes": 181,
+          "sha256": "fd2367e66ca424b1550285b033f90931fd6a0b2394f45c0d862206f69091db8c"
+        }
+      },
+      "record_identity": {
+        "bytes": 982,
+        "sha256": "87e0b20635f3ddc9ce9dbc06f16c950560d75173b4dc0b83dca850920e0e40a7"
+      },
+      "stderr": "",
+      "stdout": "{\"MemoryLimit\":true,\"SwapLimit\":true,\"PidsLimit\":true,\"CpuCfsPeriod\":true,\"CpuCfsQuota\":true,\"CgroupVersion\":\"2\",\"SecurityOptions\":[\"name=seccomp,profile=builtin\",\"name=cgroupns\"]}\n"
+    },
+    {
+      "record": {
+        "argv": [
+          "/usr/local/bin/docker",
+          "--host",
+          "unix:///Users/luobo/.orbstack/run/docker.sock",
+          "--config",
+          "/Users/luobo/Code/RadishAxiom/.tmp/musl-verification-20260916/docker-config",
+          "image",
+          "inspect",
+          "--format",
+          "{\"Id\":{{json (index . \"Id\")}},\"Os\":{{json (index . \"Os\")}},\"Architecture\":{{json (index . \"Architecture\")}},\"Config.Labels\":{{json (index . \"Config\" \"Labels\")}},\"Config.Env\":{{json (index . \"Config\" \"Env\")}},\"Config.Entrypoint\":{{json (index . \"Config\" \"Entrypoint\")}},\"Config.Cmd\":{{json (index . \"Config\" \"Cmd\")}},\"Config.Volumes\":{{json (index . \"Config\" \"Volumes\")}},\"Config.OnBuild\":{{json (index . \"Config\" \"OnBuild\")}},\"Config.Healthcheck\":{{json (index . \"Config\" \"Healthcheck\")}},\"Config.User\":{{json (index . \"Config\" \"User\")}}}",
+          "sha256:55063921d0e996f717092e07dce8041cb2376cc171a070bf9a0a38a5dd16c777"
+        ],
+        "bytes_limit": 262144,
+        "failure": null,
+        "finished_at": "2026-09-16T12:41:32.288886+00:00",
+        "returncode": 0,
+        "seconds": 0.02567991699970662,
+        "seconds_limit": 10,
+        "started_at": "2026-09-16T12:41:32.263178+00:00",
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout": {
+          "bytes": 389,
+          "sha256": "520086458c382938b7f0f904cf614b4471fc730b2c8ce2d2107d24d9e561fa1e"
+        }
+      },
+      "record_identity": {
+        "bytes": 1402,
+        "sha256": "c0304caa32be2ec8722ad1d71043e442758922f865f1f04b390274a409edf47e"
+      },
+      "stderr": "",
+      "stdout": "{\"Id\":\"sha256:55063921d0e996f717092e07dce8041cb2376cc171a070bf9a0a38a5dd16c777\",\"Os\":\"linux\",\"Architecture\":\"arm64\",\"Config.Labels\":{\"org.radishaxiom.musl-rootfs-sha256\":\"f1ac49bc29d33182a9c9a070b70509c739d857369876afbe307b9e9898d6b8b3\"},\"Config.Env\":null,\"Config.Entrypoint\":null,\"Config.Cmd\":null,\"Config.Volumes\":null,\"Config.OnBuild\":null,\"Config.Healthcheck\":null,\"Config.User\":null}\n"
+    },
+    {
+      "record": {
+        "argv": [
+          "/usr/local/bin/docker",
+          "--host",
+          "unix:///Users/luobo/.orbstack/run/docker.sock",
+          "--config",
+          "/Users/luobo/Code/RadishAxiom/.tmp/musl-verification-20260916/docker-config",
+          "container",
+          "create",
+          "--tmpfs",
+          "/work/full:rw,noexec,nosuid,nodev,size=16777216,mode=0700,uid=1000,gid=1000",
+          "--ulimit",
+          "fsize=1048576:1048576",
+          "--mount",
+          "type=bind,source=/Users/luobo/Code/RadishAxiom/.tmp/musl-verification-20260916/inputs,target=/inputs,bind-propagation=rprivate,readonly",
+          "--mount",
+          "type=bind,source=/Users/luobo/Code/RadishAxiom/.tmp/musl-verification-20260916/archive-filter.status,target=/work/status,bind-propagation=rprivate",
+          "--name",
+          "rax-musl-verify-323cfa18cd764502865dddb7e8cc7b73-archive-filter",
+          "--label",
+          "org.radishaxiom.musl-smoke-run=323cfa18cd764502865dddb7e8cc7b73",
+          "--platform",
+          "linux/arm64",
+          "--pull",
+          "never",
+          "--user",
+          "1000:1000",
+          "--workdir",
+          "/work",
+          "--attach",
+          "stdout",
+          "--attach",
+          "stderr",
+          "--read-only",
+          "--network",
+          "none",
+          "--cap-drop",
+          "ALL",
+          "--security-opt",
+          "no-new-privileges=true",
+          "--cgroupns",
+          "private",
+          "--ipc",
+          "none",
+          "--runtime",
+          "runc",
+          "--memory",
+          "128m",
+          "--memory-swap",
+          "128m",
+          "--cpus",
+          "1",
+          "--pids-limit",
+          "32",
+          "--ulimit",
+          "core=0:0",
+          "--log-driver",
+          "none",
+          "--restart",
+          "no",
+          "--no-healthcheck",
+          "--tmpfs",
+          "/tmp:rw,noexec,nosuid,nodev,size=16777216,mode=1777",
+          "--env",
+          "PATH=/usr/bin",
+          "--env",
+          "HOME=/work",
+          "--env",
+          "LC_ALL=C",
+          "--env",
+          "TZ=UTC0",
+          "--entrypoint",
+          "/usr/bin/gpg",
+          "sha256:55063921d0e996f717092e07dce8041cb2376cc171a070bf9a0a38a5dd16c777",
+          "--batch",
+          "--no-tty",
+          "--no-options",
+          "--homedir",
+          "/work/full",
+          "--no-autostart",
+          "--disable-dirmngr",
+          "--no-auto-key-retrieve",
+          "--auto-key-locate",
+          "clear",
+          "--no-auto-check-trustdb",
+          "--no-sig-cache",
+          "--lock-never",
+          "--require-cross-certification",
+          "--status-file",
+          "/work/status",
+          "--exit-on-status-write-error",
+          "--import-options",
+          "import-export,self-sigs-only",
+          "--output",
+          "-",
+          "--import",
+          "/inputs/archive.raw.gpg"
+        ],
+        "bytes_limit": 262144,
+        "failure": null,
+        "finished_at": "2026-09-16T12:41:32.354894+00:00",
+        "returncode": 0,
+        "seconds": 0.06425804099990273,
+        "seconds_limit": 10,
+        "started_at": "2026-09-16T12:41:32.290609+00:00",
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout": {
+          "bytes": 65,
+          "sha256": "dccaff49d1a9412021feed2acd19e8288c079912668e7920f8570663719fa738"
+        }
+      },
+      "record_identity": {
+        "bytes": 2809,
+        "sha256": "6745d6f46f81691877ec961b970597d2026684bc6ce144be3e1c7bbb153cda5f"
+      },
+      "stderr": "",
+      "stdout": "34f956c252d19cfd8e768211af3bc8ee3b08930b98c818af2106923f4a965528\n"
+    },
+    {
+      "record": {
+        "argv": [
+          "/usr/local/bin/docker",
+          "--host",
+          "unix:///Users/luobo/.orbstack/run/docker.sock",
+          "--config",
+          "/Users/luobo/Code/RadishAxiom/.tmp/musl-verification-20260916/docker-config",
+          "container",
+          "inspect",
+          "--format",
+          "{\"Id\":{{json (index . \"Id\")}},\"Name\":{{json (index . \"Name\")}},\"Image\":{{json (index . \"Image\")}},\"Path\":{{json (index . \"Path\")}},\"Args\":{{json (index . \"Args\")}},\"Config.User\":{{json (index . \"Config\" \"User\")}},\"Config.Env\":{{json (index . \"Config\" \"Env\")}},\"Config.Labels\":{{json (index . \"Config\" \"Labels\")}},\"Config.WorkingDir\":{{json (index . \"Config\" \"WorkingDir\")}},\"Config.Entrypoint\":{{json (index . \"Config\" \"Entrypoint\")}},\"Config.Cmd\":{{json (index . \"Config\" \"Cmd\")}},\"Config.Tty\":{{json (index . \"Config\" \"Tty\")}},\"Config.OpenStdin\":{{json (index . \"Config\" \"OpenStdin\")}},\"Config.AttachStdout\":{{json (index . \"Config\" \"AttachStdout\")}},\"Config.AttachStderr\":{{json (index . \"Config\" \"AttachStderr\")}},\"Config.AttachStdin\":{{json (index . \"Config\" \"AttachStdin\")}},\"Config.Volumes\":{{json (index . \"Config\" \"Volumes\")}},\"Config.Healthcheck\":{{json (index . \"Config\" \"Healthcheck\")}},\"HostConfig.ReadonlyRootfs\":{{json (index . \"HostConfig\" \"ReadonlyRootfs\")}},\"HostConfig.Privileged\":{{json (index . \"HostConfig\" \"Privileged\")}},\"HostConfig.NetworkMode\":{{json (index . \"HostConfig\" \"NetworkMode\")}},\"HostConfig.PortBindings\":{{json (index . \"HostConfig\" \"PortBindings\")}},\"HostConfig.PublishAllPorts\":{{json (index . \"HostConfig\" \"PublishAllPorts\")}},\"HostConfig.Binds\":{{json (index . \"HostConfig\" \"Binds\")}},\"HostConfig.Mounts\":{{json (index . \"HostConfig\" \"Mounts\")}},\"HostConfig.VolumesFrom\":{{json (index . \"HostConfig\" \"VolumesFrom\")}},\"HostConfig.Devices\":{{json (index . \"HostConfig\" \"Devices\")}},\"HostConfig.DeviceRequests\":{{json (index . \"HostConfig\" \"DeviceRequests\")}},\"HostConfig.CapAdd\":{{json (index . \"HostConfig\" \"CapAdd\")}},\"HostConfig.CapDrop\":{{json (index . \"HostConfig\" \"CapDrop\")}},\"HostConfig.SecurityOpt\":{{json (index . \"HostConfig\" \"SecurityOpt\")}},\"HostConfig.CgroupnsMode\":{{json (index . \"HostConfig\" \"CgroupnsMode\")}},\"HostConfig.PidMode\":{{json (index . \"HostConfig\" \"PidMode\")}},\"HostConfig.IpcMode\":{{json (index . \"HostConfig\" \"IpcMode\")}},\"HostConfig.UTSMode\":{{json (index . \"HostConfig\" \"UTSMode\")}},\"HostConfig.UsernsMode\":{{json (index . \"HostConfig\" \"UsernsMode\")}},\"HostConfig.Memory\":{{json (index . \"HostConfig\" \"Memory\")}},\"HostConfig.MemorySwap\":{{json (index . \"HostConfig\" \"MemorySwap\")}},\"HostConfig.NanoCpus\":{{json (index . \"HostConfig\" \"NanoCpus\")}},\"HostConfig.PidsLimit\":{{json (index . \"HostConfig\" \"PidsLimit\")}},\"HostConfig.Tmpfs\":{{json (index . \"HostConfig\" \"Tmpfs\")}},\"HostConfig.LogConfig\":{{json (index . \"HostConfig\" \"LogConfig\")}},\"HostConfig.RestartPolicy\":{{json (index . \"HostConfig\" \"RestartPolicy\")}},\"HostConfig.AutoRemove\":{{json (index . \"HostConfig\" \"AutoRemove\")}},\"HostConfig.Ulimits\":{{json (index . \"HostConfig\" \"Ulimits\")}},\"HostConfig.Runtime\":{{json (index . \"HostConfig\" \"Runtime\")}},\"Mounts\":{{json (index . \"Mounts\")}},\"State.Status\":{{json (index . \"State\" \"Status\")}},\"State.Running\":{{json (index . \"State\" \"Running\")}},\"State.Paused\":{{json (index . \"State\" \"Paused\")}},\"State.Restarting\":{{json (index . \"State\" \"Restarting\")}},\"State.Dead\":{{json (index . \"State\" \"Dead\")}},\"State.OOMKilled\":{{json (index . \"State\" \"OOMKilled\")}},\"State.ExitCode\":{{json (index . \"State\" \"ExitCode\")}},\"State.Error\":{{json (index . \"State\" \"Error\")}}}",
+          "34f956c252d19cfd8e768211af3bc8ee3b08930b98c818af2106923f4a965528"
+        ],
+        "bytes_limit": 262144,
+        "failure": null,
+        "finished_at": "2026-09-16T12:41:32.377596+00:00",
+        "returncode": 0,
+        "seconds": 0.02206245899969872,
+        "seconds_limit": 10,
+        "started_at": "2026-09-16T12:41:32.355510+00:00",
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout": {
+          "bytes": 3593,
+          "sha256": "34410f7fe8934979382820512afa44d851833f6cd7acd43a2891ae76680004ba"
+        }
+      },
+      "record_identity": {
+        "bytes": 4362,
+        "sha256": "4affe554f4e5d7d1c5f250e358c446d6823c920ed626bdf3539b6d90204d585a"
+      },
+      "stderr": "",
+      "stdout": "{\"Id\":\"34f956c252d19cfd8e768211af3bc8ee3b08930b98c818af2106923f4a965528\",\"Name\":\"/rax-musl-verify-323cfa18cd764502865dddb7e8cc7b73-archive-filter\",\"Image\":\"sha256:55063921d0e996f717092e07dce8041cb2376cc171a070bf9a0a38a5dd16c777\",\"Path\":\"/usr/bin/gpg\",\"Args\":[\"--batch\",\"--no-tty\",\"--no-options\",\"--homedir\",\"/work/full\",\"--no-autostart\",\"--disable-dirmngr\",\"--no-auto-key-retrieve\",\"--auto-key-locate\",\"clear\",\"--no-auto-check-trustdb\",\"--no-sig-cache\",\"--lock-never\",\"--require-cross-certification\",\"--status-file\",\"/work/status\",\"--exit-on-status-write-error\",\"--import-options\",\"import-export,self-sigs-only\",\"--output\",\"-\",\"--import\",\"/inputs/archive.raw.gpg\"],\"Config.User\":\"1000:1000\",\"Config.Env\":[\"PATH=/usr/bin\",\"HOME=/work\",\"LC_ALL=C\",\"TZ=UTC0\"],\"Config.Labels\":{\"org.radishaxiom.musl-rootfs-sha256\":\"f1ac49bc29d33182a9c9a070b70509c739d857369876afbe307b9e9898d6b8b3\",\"org.radishaxiom.musl-smoke-run\":\"323cfa18cd764502865dddb7e8cc7b73\"},\"Config.WorkingDir\":\"/work\",\"Config.Entrypoint\":[\"/usr/bin/gpg\"],\"Config.Cmd\":[\"--batch\",\"--no-tty\",\"--no-options\",\"--homedir\",\"/work/full\",\"--no-autostart\",\"--disable-dirmngr\",\"--no-auto-key-retrieve\",\"--auto-key-locate\",\"clear\",\"--no-auto-check-trustdb\",\"--no-sig-cache\",\"--lock-never\",\"--require-cross-certification\",\"--status-file\",\"/work/status\",\"--exit-on-status-write-error\",\"--import-options\",\"import-export,self-sigs-only\",\"--output\",\"-\",\"--import\",\"/inputs/archive.raw.gpg\"],\"Config.Tty\":false,\"Config.OpenStdin\":false,\"Config.AttachStdout\":true,\"Config.AttachStderr\":true,\"Config.AttachStdin\":false,\"Config.Volumes\":null,\"Config.Healthcheck\":{\"Test\":[\"NONE\"]},\"HostConfig.ReadonlyRootfs\":true,\"HostConfig.Privileged\":false,\"HostConfig.NetworkMode\":\"none\",\"HostConfig.PortBindings\":{},\"HostConfig.PublishAllPorts\":false,\"HostConfig.Binds\":null,\"HostConfig.Mounts\":[{\"BindOptions\":{\"Propagation\":\"rprivate\"},\"ReadOnly\":true,\"Source\":\"/Users/luobo/Code/RadishAxiom/.tmp/musl-verification-20260916/inputs\",\"Target\":\"/inputs\",\"Type\":\"bind\"},{\"BindOptions\":{\"Propagation\":\"rprivate\"},\"Source\":\"/Users/luobo/Code/RadishAxiom/.tmp/musl-verification-20260916/archive-filter.status\",\"Target\":\"/work/status\",\"Type\":\"bind\"}],\"HostConfig.VolumesFrom\":null,\"HostConfig.Devices\":[],\"HostConfig.DeviceRequests\":null,\"HostConfig.CapAdd\":null,\"HostConfig.CapDrop\":[\"ALL\"],\"HostConfig.SecurityOpt\":[\"no-new-privileges=true\"],\"HostConfig.CgroupnsMode\":\"private\",\"HostConfig.PidMode\":\"\",\"HostConfig.IpcMode\":\"none\",\"HostConfig.UTSMode\":\"\",\"HostConfig.UsernsMode\":\"\",\"HostConfig.Memory\":134217728,\"HostConfig.MemorySwap\":134217728,\"HostConfig.NanoCpus\":1000000000,\"HostConfig.PidsLimit\":32,\"HostConfig.Tmpfs\":{\"/tmp\":\"rw,noexec,nosuid,nodev,size=16777216,mode=1777\",\"/work/full\":\"rw,noexec,nosuid,nodev,size=16777216,mode=0700,uid=1000,gid=1000\"},\"HostConfig.LogConfig\":{\"Config\":{},\"Type\":\"none\"},\"HostConfig.RestartPolicy\":{\"MaximumRetryCount\":0,\"Name\":\"no\"},\"HostConfig.AutoRemove\":false,\"HostConfig.Ulimits\":[{\"Hard\":0,\"Name\":\"core\",\"Soft\":0},{\"Hard\":1048576,\"Name\":\"fsize\",\"Soft\":1048576}],\"HostConfig.Runtime\":\"runc\",\"Mounts\":[{\"Destination\":\"/inputs\",\"Mode\":\"\",\"Propagation\":\"rprivate\",\"RW\":false,\"Source\":\"/Users/luobo/Code/RadishAxiom/.tmp/musl-verification-20260916/inputs\",\"Type\":\"bind\"},{\"Destination\":\"/work/status\",\"Mode\":\"\",\"Propagation\":\"rprivate\",\"RW\":true,\"Source\":\"/Users/luobo/Code/RadishAxiom/.tmp/musl-verification-20260916/archive-filter.status\",\"Type\":\"bind\"}],\"State.Status\":\"created\",\"State.Running\":false,\"State.Paused\":false,\"State.Restarting\":false,\"State.Dead\":false,\"State.OOMKilled\":false,\"State.ExitCode\":0,\"State.Error\":\"\"}\n"
+    },
+    {
+      "record": {
+        "argv": [
+          "/usr/local/bin/docker",
+          "--host",
+          "unix:///Users/luobo/.orbstack/run/docker.sock",
+          "--config",
+          "/Users/luobo/Code/RadishAxiom/.tmp/musl-verification-20260916/docker-config",
+          "container",
+          "inspect",
+          "--format",
+          "{\"Id\":{{json (index . \"Id\")}},\"Name\":{{json (index . \"Name\")}},\"Image\":{{json (index . \"Image\")}},\"Path\":{{json (index . \"Path\")}},\"Args\":{{json (index . \"Args\")}},\"Config.User\":{{json (index . \"Config\" \"User\")}},\"Config.Env\":{{json (index . \"Config\" \"Env\")}},\"Config.Labels\":{{json (index . \"Config\" \"Labels\")}},\"Config.WorkingDir\":{{json (index . \"Config\" \"WorkingDir\")}},\"Config.Entrypoint\":{{json (index . \"Config\" \"Entrypoint\")}},\"Config.Cmd\":{{json (index . \"Config\" \"Cmd\")}},\"Config.Tty\":{{json (index . \"Config\" \"Tty\")}},\"Config.OpenStdin\":{{json (index . \"Config\" \"OpenStdin\")}},\"Config.AttachStdout\":{{json (index . \"Config\" \"AttachStdout\")}},\"Config.AttachStderr\":{{json (index . \"Config\" \"AttachStderr\")}},\"Config.AttachStdin\":{{json (index . \"Config\" \"AttachStdin\")}},\"Config.Volumes\":{{json (index . \"Config\" \"Volumes\")}},\"Config.Healthcheck\":{{json (index . \"Config\" \"Healthcheck\")}},\"HostConfig.ReadonlyRootfs\":{{json (index . \"HostConfig\" \"ReadonlyRootfs\")}},\"HostConfig.Privileged\":{{json (index . \"HostConfig\" \"Privileged\")}},\"HostConfig.NetworkMode\":{{json (index . \"HostConfig\" \"NetworkMode\")}},\"HostConfig.PortBindings\":{{json (index . \"HostConfig\" \"PortBindings\")}},\"HostConfig.PublishAllPorts\":{{json (index . \"HostConfig\" \"PublishAllPorts\")}},\"HostConfig.Binds\":{{json (index . \"HostConfig\" \"Binds\")}},\"HostConfig.Mounts\":{{json (index . \"HostConfig\" \"Mounts\")}},\"HostConfig.VolumesFrom\":{{json (index . \"HostConfig\" \"VolumesFrom\")}},\"HostConfig.Devices\":{{json (index . \"HostConfig\" \"Devices\")}},\"HostConfig.DeviceRequests\":{{json (index . \"HostConfig\" \"DeviceRequests\")}},\"HostConfig.CapAdd\":{{json (index . \"HostConfig\" \"CapAdd\")}},\"HostConfig.CapDrop\":{{json (index . \"HostConfig\" \"CapDrop\")}},\"HostConfig.SecurityOpt\":{{json (index . \"HostConfig\" \"SecurityOpt\")}},\"HostConfig.CgroupnsMode\":{{json (index . \"HostConfig\" \"CgroupnsMode\")}},\"HostConfig.PidMode\":{{json (index . \"HostConfig\" \"PidMode\")}},\"HostConfig.IpcMode\":{{json (index . \"HostConfig\" \"IpcMode\")}},\"HostConfig.UTSMode\":{{json (index . \"HostConfig\" \"UTSMode\")}},\"HostConfig.UsernsMode\":{{json (index . \"HostConfig\" \"UsernsMode\")}},\"HostConfig.Memory\":{{json (index . \"HostConfig\" \"Memory\")}},\"HostConfig.MemorySwap\":{{json (index . \"HostConfig\" \"MemorySwap\")}},\"HostConfig.NanoCpus\":{{json (index . \"HostConfig\" \"NanoCpus\")}},\"HostConfig.PidsLimit\":{{json (index . \"HostConfig\" \"PidsLimit\")}},\"HostConfig.Tmpfs\":{{json (index . \"HostConfig\" \"Tmpfs\")}},\"HostConfig.LogConfig\":{{json (index . \"HostConfig\" \"LogConfig\")}},\"HostConfig.RestartPolicy\":{{json (index . \"HostConfig\" \"RestartPolicy\")}},\"HostConfig.AutoRemove\":{{json (index . \"HostConfig\" \"AutoRemove\")}},\"HostConfig.Ulimits\":{{json (index . \"HostConfig\" \"Ulimits\")}},\"HostConfig.Runtime\":{{json (index . \"HostConfig\" \"Runtime\")}},\"Mounts\":{{json (index . \"Mounts\")}},\"State.Status\":{{json (index . \"State\" \"Status\")}},\"State.Running\":{{json (index . \"State\" \"Running\")}},\"State.Paused\":{{json (index . \"State\" \"Paused\")}},\"State.Restarting\":{{json (index . \"State\" \"Restarting\")}},\"State.Dead\":{{json (index . \"State\" \"Dead\")}},\"State.OOMKilled\":{{json (index . \"State\" \"OOMKilled\")}},\"State.ExitCode\":{{json (index . \"State\" \"ExitCode\")}},\"State.Error\":{{json (index . \"State\" \"Error\")}}}",
+          "34f956c252d19cfd8e768211af3bc8ee3b08930b98c818af2106923f4a965528"
+        ],
+        "bytes_limit": 262144,
+        "failure": null,
+        "finished_at": "2026-09-16T12:41:32.399411+00:00",
+        "returncode": 0,
+        "seconds": 0.021133415999884164,
+        "seconds_limit": 10,
+        "started_at": "2026-09-16T12:41:32.378254+00:00",
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout": {
+          "bytes": 3593,
+          "sha256": "34410f7fe8934979382820512afa44d851833f6cd7acd43a2891ae76680004ba"
+        }
+      },
+      "record_identity": {
+        "bytes": 4363,
+        "sha256": "8f6eecd294fe3c6dee750bff33b4c5307e48e0e98eff2a44671ba7db370ec9cd"
+      },
+      "stderr": "",
+      "stdout": "{\"Id\":\"34f956c252d19cfd8e768211af3bc8ee3b08930b98c818af2106923f4a965528\",\"Name\":\"/rax-musl-verify-323cfa18cd764502865dddb7e8cc7b73-archive-filter\",\"Image\":\"sha256:55063921d0e996f717092e07dce8041cb2376cc171a070bf9a0a38a5dd16c777\",\"Path\":\"/usr/bin/gpg\",\"Args\":[\"--batch\",\"--no-tty\",\"--no-options\",\"--homedir\",\"/work/full\",\"--no-autostart\",\"--disable-dirmngr\",\"--no-auto-key-retrieve\",\"--auto-key-locate\",\"clear\",\"--no-auto-check-trustdb\",\"--no-sig-cache\",\"--lock-never\",\"--require-cross-certification\",\"--status-file\",\"/work/status\",\"--exit-on-status-write-error\",\"--import-options\",\"import-export,self-sigs-only\",\"--output\",\"-\",\"--import\",\"/inputs/archive.raw.gpg\"],\"Config.User\":\"1000:1000\",\"Config.Env\":[\"PATH=/usr/bin\",\"HOME=/work\",\"LC_ALL=C\",\"TZ=UTC0\"],\"Config.Labels\":{\"org.radishaxiom.musl-rootfs-sha256\":\"f1ac49bc29d33182a9c9a070b70509c739d857369876afbe307b9e9898d6b8b3\",\"org.radishaxiom.musl-smoke-run\":\"323cfa18cd764502865dddb7e8cc7b73\"},\"Config.WorkingDir\":\"/work\",\"Config.Entrypoint\":[\"/usr/bin/gpg\"],\"Config.Cmd\":[\"--batch\",\"--no-tty\",\"--no-options\",\"--homedir\",\"/work/full\",\"--no-autostart\",\"--disable-dirmngr\",\"--no-auto-key-retrieve\",\"--auto-key-locate\",\"clear\",\"--no-auto-check-trustdb\",\"--no-sig-cache\",\"--lock-never\",\"--require-cross-certification\",\"--status-file\",\"/work/status\",\"--exit-on-status-write-error\",\"--import-options\",\"import-export,self-sigs-only\",\"--output\",\"-\",\"--import\",\"/inputs/archive.raw.gpg\"],\"Config.Tty\":false,\"Config.OpenStdin\":false,\"Config.AttachStdout\":true,\"Config.AttachStderr\":true,\"Config.AttachStdin\":false,\"Config.Volumes\":null,\"Config.Healthcheck\":{\"Test\":[\"NONE\"]},\"HostConfig.ReadonlyRootfs\":true,\"HostConfig.Privileged\":false,\"HostConfig.NetworkMode\":\"none\",\"HostConfig.PortBindings\":{},\"HostConfig.PublishAllPorts\":false,\"HostConfig.Binds\":null,\"HostConfig.Mounts\":[{\"BindOptions\":{\"Propagation\":\"rprivate\"},\"ReadOnly\":true,\"Source\":\"/Users/luobo/Code/RadishAxiom/.tmp/musl-verification-20260916/inputs\",\"Target\":\"/inputs\",\"Type\":\"bind\"},{\"BindOptions\":{\"Propagation\":\"rprivate\"},\"Source\":\"/Users/luobo/Code/RadishAxiom/.tmp/musl-verification-20260916/archive-filter.status\",\"Target\":\"/work/status\",\"Type\":\"bind\"}],\"HostConfig.VolumesFrom\":null,\"HostConfig.Devices\":[],\"HostConfig.DeviceRequests\":null,\"HostConfig.CapAdd\":null,\"HostConfig.CapDrop\":[\"ALL\"],\"HostConfig.SecurityOpt\":[\"no-new-privileges=true\"],\"HostConfig.CgroupnsMode\":\"private\",\"HostConfig.PidMode\":\"\",\"HostConfig.IpcMode\":\"none\",\"HostConfig.UTSMode\":\"\",\"HostConfig.UsernsMode\":\"\",\"HostConfig.Memory\":134217728,\"HostConfig.MemorySwap\":134217728,\"HostConfig.NanoCpus\":1000000000,\"HostConfig.PidsLimit\":32,\"HostConfig.Tmpfs\":{\"/tmp\":\"rw,noexec,nosuid,nodev,size=16777216,mode=1777\",\"/work/full\":\"rw,noexec,nosuid,nodev,size=16777216,mode=0700,uid=1000,gid=1000\"},\"HostConfig.LogConfig\":{\"Config\":{},\"Type\":\"none\"},\"HostConfig.RestartPolicy\":{\"MaximumRetryCount\":0,\"Name\":\"no\"},\"HostConfig.AutoRemove\":false,\"HostConfig.Ulimits\":[{\"Hard\":0,\"Name\":\"core\",\"Soft\":0},{\"Hard\":1048576,\"Name\":\"fsize\",\"Soft\":1048576}],\"HostConfig.Runtime\":\"runc\",\"Mounts\":[{\"Destination\":\"/inputs\",\"Mode\":\"\",\"Propagation\":\"rprivate\",\"RW\":false,\"Source\":\"/Users/luobo/Code/RadishAxiom/.tmp/musl-verification-20260916/inputs\",\"Type\":\"bind\"},{\"Destination\":\"/work/status\",\"Mode\":\"\",\"Propagation\":\"rprivate\",\"RW\":true,\"Source\":\"/Users/luobo/Code/RadishAxiom/.tmp/musl-verification-20260916/archive-filter.status\",\"Type\":\"bind\"}],\"State.Status\":\"created\",\"State.Running\":false,\"State.Paused\":false,\"State.Restarting\":false,\"State.Dead\":false,\"State.OOMKilled\":false,\"State.ExitCode\":0,\"State.Error\":\"\"}\n"
+    },
+    {
+      "record": {
+        "argv": [
+          "/usr/local/bin/docker",
+          "--host",
+          "unix:///Users/luobo/.orbstack/run/docker.sock",
+          "--config",
+          "/Users/luobo/Code/RadishAxiom/.tmp/musl-verification-20260916/docker-config",
+          "container",
+          "inspect",
+          "--format",
+          "{\"Id\":{{json (index . \"Id\")}},\"Name\":{{json (index . \"Name\")}},\"Image\":{{json (index . \"Image\")}},\"Path\":{{json (index . \"Path\")}},\"Args\":{{json (index . \"Args\")}},\"Config.User\":{{json (index . \"Config\" \"User\")}},\"Config.Env\":{{json (index . \"Config\" \"Env\")}},\"Config.Labels\":{{json (index . \"Config\" \"Labels\")}},\"Config.WorkingDir\":{{json (index . \"Config\" \"WorkingDir\")}},\"Config.Entrypoint\":{{json (index . \"Config\" \"Entrypoint\")}},\"Config.Cmd\":{{json (index . \"Config\" \"Cmd\")}},\"Config.Tty\":{{json (index . \"Config\" \"Tty\")}},\"Config.OpenStdin\":{{json (index . \"Config\" \"OpenStdin\")}},\"Config.AttachStdout\":{{json (index . \"Config\" \"AttachStdout\")}},\"Config.AttachStderr\":{{json (index . \"Config\" \"AttachStderr\")}},\"Config.AttachStdin\":{{json (index . \"Config\" \"AttachStdin\")}},\"Config.Volumes\":{{json (index . \"Config\" \"Volumes\")}},\"Config.Healthcheck\":{{json (index . \"Config\" \"Healthcheck\")}},\"HostConfig.ReadonlyRootfs\":{{json (index . \"HostConfig\" \"ReadonlyRootfs\")}},\"HostConfig.Privileged\":{{json (index . \"HostConfig\" \"Privileged\")}},\"HostConfig.NetworkMode\":{{json (index . \"HostConfig\" \"NetworkMode\")}},\"HostConfig.PortBindings\":{{json (index . \"HostConfig\" \"PortBindings\")}},\"HostConfig.PublishAllPorts\":{{json (index . \"HostConfig\" \"PublishAllPorts\")}},\"HostConfig.Binds\":{{json (index . \"HostConfig\" \"Binds\")}},\"HostConfig.Mounts\":{{json (index . \"HostConfig\" \"Mounts\")}},\"HostConfig.VolumesFrom\":{{json (index . \"HostConfig\" \"VolumesFrom\")}},\"HostConfig.Devices\":{{json (index . \"HostConfig\" \"Devices\")}},\"HostConfig.DeviceRequests\":{{json (index . \"HostConfig\" \"DeviceRequests\")}},\"HostConfig.CapAdd\":{{json (index . \"HostConfig\" \"CapAdd\")}},\"HostConfig.CapDrop\":{{json (index . \"HostConfig\" \"CapDrop\")}},\"HostConfig.SecurityOpt\":{{json (index . \"HostConfig\" \"SecurityOpt\")}},\"HostConfig.CgroupnsMode\":{{json (index . \"HostConfig\" \"CgroupnsMode\")}},\"HostConfig.PidMode\":{{json (index . \"HostConfig\" \"PidMode\")}},\"HostConfig.IpcMode\":{{json (index . \"HostConfig\" \"IpcMode\")}},\"HostConfig.UTSMode\":{{json (index . \"HostConfig\" \"UTSMode\")}},\"HostConfig.UsernsMode\":{{json (index . \"HostConfig\" \"UsernsMode\")}},\"HostConfig.Memory\":{{json (index . \"HostConfig\" \"Memory\")}},\"HostConfig.MemorySwap\":{{json (index . \"HostConfig\" \"MemorySwap\")}},\"HostConfig.NanoCpus\":{{json (index . \"HostConfig\" \"NanoCpus\")}},\"HostConfig.PidsLimit\":{{json (index . \"HostConfig\" \"PidsLimit\")}},\"HostConfig.Tmpfs\":{{json (index . \"HostConfig\" \"Tmpfs\")}},\"HostConfig.LogConfig\":{{json (index . \"HostConfig\" \"LogConfig\")}},\"HostConfig.RestartPolicy\":{{json (index . \"HostConfig\" \"RestartPolicy\")}},\"HostConfig.AutoRemove\":{{json (index . \"HostConfig\" \"AutoRemove\")}},\"HostConfig.Ulimits\":{{json (index . \"HostConfig\" \"Ulimits\")}},\"HostConfig.Runtime\":{{json (index . \"HostConfig\" \"Runtime\")}},\"Mounts\":{{json (index . \"Mounts\")}},\"State.Status\":{{json (index . \"State\" \"Status\")}},\"State.Running\":{{json (index . \"State\" \"Running\")}},\"State.Paused\":{{json (index . \"State\" \"Paused\")}},\"State.Restarting\":{{json (index . \"State\" \"Restarting\")}},\"State.Dead\":{{json (index . \"State\" \"Dead\")}},\"State.OOMKilled\":{{json (index . \"State\" \"OOMKilled\")}},\"State.ExitCode\":{{json (index . \"State\" \"ExitCode\")}},\"State.Error\":{{json (index . \"State\" \"Error\")}}}",
+          "34f956c252d19cfd8e768211af3bc8ee3b08930b98c818af2106923f4a965528"
+        ],
+        "bytes_limit": 262144,
+        "failure": null,
+        "finished_at": "2026-09-16T12:41:32.419853+00:00",
+        "returncode": 0,
+        "seconds": 0.01980837499968402,
+        "seconds_limit": 10,
+        "started_at": "2026-09-16T12:41:32.400018+00:00",
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout": {
+          "bytes": 3593,
+          "sha256": "687dc6bf8bab665747e53370f0507ea6226edc913a0addecda540a1be53f065f"
+        }
+      },
+      "record_identity": {
+        "bytes": 4362,
+        "sha256": "35dad1b9192f851881ae1abd10f5153fadf126e62ab82c556edf09ecf91d9788"
+      },
+      "stderr": "",
+      "stdout": "{\"Id\":\"34f956c252d19cfd8e768211af3bc8ee3b08930b98c818af2106923f4a965528\",\"Name\":\"/rax-musl-verify-323cfa18cd764502865dddb7e8cc7b73-archive-filter\",\"Image\":\"sha256:55063921d0e996f717092e07dce8041cb2376cc171a070bf9a0a38a5dd16c777\",\"Path\":\"/usr/bin/gpg\",\"Args\":[\"--batch\",\"--no-tty\",\"--no-options\",\"--homedir\",\"/work/full\",\"--no-autostart\",\"--disable-dirmngr\",\"--no-auto-key-retrieve\",\"--auto-key-locate\",\"clear\",\"--no-auto-check-trustdb\",\"--no-sig-cache\",\"--lock-never\",\"--require-cross-certification\",\"--status-file\",\"/work/status\",\"--exit-on-status-write-error\",\"--import-options\",\"import-export,self-sigs-only\",\"--output\",\"-\",\"--import\",\"/inputs/archive.raw.gpg\"],\"Config.User\":\"1000:1000\",\"Config.Env\":[\"PATH=/usr/bin\",\"HOME=/work\",\"LC_ALL=C\",\"TZ=UTC0\"],\"Config.Labels\":{\"org.radishaxiom.musl-rootfs-sha256\":\"f1ac49bc29d33182a9c9a070b70509c739d857369876afbe307b9e9898d6b8b3\",\"org.radishaxiom.musl-smoke-run\":\"323cfa18cd764502865dddb7e8cc7b73\"},\"Config.WorkingDir\":\"/work\",\"Config.Entrypoint\":[\"/usr/bin/gpg\"],\"Config.Cmd\":[\"--batch\",\"--no-tty\",\"--no-options\",\"--homedir\",\"/work/full\",\"--no-autostart\",\"--disable-dirmngr\",\"--no-auto-key-retrieve\",\"--auto-key-locate\",\"clear\",\"--no-auto-check-trustdb\",\"--no-sig-cache\",\"--lock-never\",\"--require-cross-certification\",\"--status-file\",\"/work/status\",\"--exit-on-status-write-error\",\"--import-options\",\"import-export,self-sigs-only\",\"--output\",\"-\",\"--import\",\"/inputs/archive.raw.gpg\"],\"Config.Tty\":false,\"Config.OpenStdin\":false,\"Config.AttachStdout\":true,\"Config.AttachStderr\":true,\"Config.AttachStdin\":false,\"Config.Volumes\":null,\"Config.Healthcheck\":{\"Test\":[\"NONE\"]},\"HostConfig.ReadonlyRootfs\":true,\"HostConfig.Privileged\":false,\"HostConfig.NetworkMode\":\"none\",\"HostConfig.PortBindings\":{},\"HostConfig.PublishAllPorts\":false,\"HostConfig.Binds\":null,\"HostConfig.Mounts\":[{\"BindOptions\":{\"Propagation\":\"rprivate\"},\"ReadOnly\":true,\"Source\":\"/Users/luobo/Code/RadishAxiom/.tmp/musl-verification-20260916/inputs\",\"Target\":\"/inputs\",\"Type\":\"bind\"},{\"BindOptions\":{\"Propagation\":\"rprivate\"},\"Source\":\"/Users/luobo/Code/RadishAxiom/.tmp/musl-verification-20260916/archive-filter.status\",\"Target\":\"/work/status\",\"Type\":\"bind\"}],\"HostConfig.VolumesFrom\":null,\"HostConfig.Devices\":[],\"HostConfig.DeviceRequests\":null,\"HostConfig.CapAdd\":null,\"HostConfig.CapDrop\":[\"ALL\"],\"HostConfig.SecurityOpt\":[\"no-new-privileges=true\"],\"HostConfig.CgroupnsMode\":\"private\",\"HostConfig.PidMode\":\"\",\"HostConfig.IpcMode\":\"none\",\"HostConfig.UTSMode\":\"\",\"HostConfig.UsernsMode\":\"\",\"HostConfig.Memory\":134217728,\"HostConfig.MemorySwap\":134217728,\"HostConfig.NanoCpus\":1000000000,\"HostConfig.PidsLimit\":32,\"HostConfig.Tmpfs\":{\"/tmp\":\"rw,noexec,nosuid,nodev,size=16777216,mode=1777\",\"/work/full\":\"rw,noexec,nosuid,nodev,size=16777216,mode=0700,uid=1000,gid=1000\"},\"HostConfig.LogConfig\":{\"Config\":{},\"Type\":\"none\"},\"HostConfig.RestartPolicy\":{\"MaximumRetryCount\":0,\"Name\":\"no\"},\"HostConfig.AutoRemove\":false,\"HostConfig.Ulimits\":[{\"Hard\":0,\"Name\":\"core\",\"Soft\":0},{\"Hard\":1048576,\"Name\":\"fsize\",\"Soft\":1048576}],\"HostConfig.Runtime\":\"runc\",\"Mounts\":[{\"Destination\":\"/work/status\",\"Mode\":\"\",\"Propagation\":\"rprivate\",\"RW\":true,\"Source\":\"/Users/luobo/Code/RadishAxiom/.tmp/musl-verification-20260916/archive-filter.status\",\"Type\":\"bind\"},{\"Destination\":\"/inputs\",\"Mode\":\"\",\"Propagation\":\"rprivate\",\"RW\":false,\"Source\":\"/Users/luobo/Code/RadishAxiom/.tmp/musl-verification-20260916/inputs\",\"Type\":\"bind\"}],\"State.Status\":\"created\",\"State.Running\":false,\"State.Paused\":false,\"State.Restarting\":false,\"State.Dead\":false,\"State.OOMKilled\":false,\"State.ExitCode\":0,\"State.Error\":\"\"}\n"
+    },
+    {
+      "record": {
+        "argv": [
+          "/usr/local/bin/docker",
+          "--host",
+          "unix:///Users/luobo/.orbstack/run/docker.sock",
+          "--config",
+          "/Users/luobo/Code/RadishAxiom/.tmp/musl-verification-20260916/docker-config",
+          "container",
+          "rm",
+          "34f956c252d19cfd8e768211af3bc8ee3b08930b98c818af2106923f4a965528"
+        ],
+        "bytes_limit": 262144,
+        "failure": null,
+        "finished_at": "2026-09-16T12:41:32.459500+00:00",
+        "returncode": 0,
+        "seconds": 0.0391082500000266,
+        "seconds_limit": 10,
+        "started_at": "2026-09-16T12:41:32.420369+00:00",
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout": {
+          "bytes": 65,
+          "sha256": "dccaff49d1a9412021feed2acd19e8288c079912668e7920f8570663719fa738"
+        }
+      },
+      "record_identity": {
+        "bytes": 770,
+        "sha256": "c5d84ee0557dbfd867ff520e9f06d141e842a4ee539efb0fae8211558e594648"
+      },
+      "stderr": "",
+      "stdout": "34f956c252d19cfd8e768211af3bc8ee3b08930b98c818af2106923f4a965528\n"
+    }
+  ],
+  "kind": "diagnostic-musl-verification-execution-record-v1",
+  "original_method_paths": {
+    "inspect-debian-source-chain.py": "scripts/inspect-debian-source-chain.py",
+    "inspect-musl-debian-auth.py": "docs/records/rust-linux-input-review/inspect-musl-debian-auth.py",
+    "inspect-musl-key-status.py": "docs/records/rust-linux-input-review/inspect-musl-key-status.py",
+    "inspect-musl-trust-inputs.py": "docs/records/rust-linux-input-review/inspect-musl-trust-inputs.py",
+    "inspect-musl-verification-keys.py": "docs/records/rust-linux-input-review/inspect-musl-verification-keys.py",
+    "inspect-musl-verification-status.py": "docs/records/rust-linux-input-review/inspect-musl-verification-status.py",
+    "inspect-musl-verifier-content.py": "docs/records/rust-linux-input-review/inspect-musl-verifier-content.py",
+    "inspect-musl-verifier-rootfs.py": "docs/records/rust-linux-input-review/inspect-musl-verifier-rootfs.py",
+    "inspect-selected-inputs.py": "docs/records/rust-linux-input-review/inspect-selected-inputs.py",
+    "prepare-musl-verification-inputs.py": "docs/records/rust-linux-input-review/prepare-musl-verification-inputs.py",
+    "retain-musl-verifier-inputs.py": "docs/records/rust-linux-input-review/retain-musl-verifier-inputs.py",
+    "run-musl-verification.py": "docs/records/rust-linux-input-review/musl-verification-method-initial-2026-09-16.py",
+    "run-musl-verifier-smoke.py": "docs/records/rust-linux-input-review/run-musl-verifier-smoke.py"
+  },
+  "result": {
+    "cases": [
+      {
+        "cleanup": {
+          "container_id": "34f956c252d19cfd8e768211af3bc8ee3b08930b98c818af2106923f4a965528",
+          "removed": true,
+          "state_before_remove": {
+            "State.Dead": false,
+            "State.Error": "",
+            "State.ExitCode": 0,
+            "State.OOMKilled": false,
+            "State.Paused": false,
+            "State.Restarting": false,
+            "State.Running": false,
+            "State.Status": "created"
+          }
+        },
+        "command": [
+          "/usr/bin/gpg",
+          "--batch",
+          "--no-tty",
+          "--no-options",
+          "--homedir",
+          "/work/full",
+          "--no-autostart",
+          "--disable-dirmngr",
+          "--no-auto-key-retrieve",
+          "--auto-key-locate",
+          "clear",
+          "--no-auto-check-trustdb",
+          "--no-sig-cache",
+          "--lock-never",
+          "--require-cross-certification",
+          "--status-file",
+          "/work/status",
+          "--exit-on-status-write-error",
+          "--import-options",
+          "import-export,self-sigs-only",
+          "--output",
+          "-",
+          "--import",
+          "/inputs/archive.raw.gpg"
+        ],
+        "container_id": "34f956c252d19cfd8e768211af3bc8ee3b08930b98c818af2106923f4a965528",
+        "expected_inputs": {
+          "InRelease": {
+            "bytes": 140416,
+            "sha256": "98b25b5cd185c59d34aa6e4c3e9b5b8f01bbe9d104fe2dcfbcd30dc0a14a59ed"
+          },
+          "InRelease.tampered": {
+            "bytes": 140416,
+            "sha256": "e6c7f89a4e2d73e807e04b3e7e03bc1aa0fb8dbfa7a3df29262635c4b46752ab"
+          },
+          "archive.asc": {
+            "bytes": 11861,
+            "sha256": "6f1d277429dd7ffedcc6f8688a7ad9a458859b1139ffa026d1eeaadcbffb0da7"
+          },
+          "archive.raw.gpg": {
+            "bytes": 8698,
+            "sha256": "8dbd0029697f8c9b009eeb9a153c6536b62ca031fa0a5b4cec74e8d718fccef6"
+          },
+          "debian-archive-keyring.gpg": {
+            "bytes": 55918,
+            "sha256": "506b815cbb32d9b6066b4a2aa524071e071761e7e7f68c3ac74f3061ba852017"
+          },
+          "keyring.bad-cross.gpg": {
+            "bytes": 55918,
+            "sha256": "c3f9bbf8aca35d78b64d0a86b18e70b7e8487a64625a9b5b6757e7717ced101a"
+          },
+          "release.asc": {
+            "bytes": 1384,
+            "sha256": "4d097bb93f83d731f475c5b92a0c2fcf108cfce1d4932792fca72d00b48d198b"
+          },
+          "release.raw.gpg": {
+            "bytes": 962,
+            "sha256": "abced156a22aa8683b228299ac35c1ea51515eef900cec0e562f56716dfe3915"
+          }
+        },
+        "failure": "verification bind specification drift",
+        "inputs": {
+          "InRelease": {
+            "bytes": 140416,
+            "sha256": "98b25b5cd185c59d34aa6e4c3e9b5b8f01bbe9d104fe2dcfbcd30dc0a14a59ed"
+          },
+          "InRelease.tampered": {
+            "bytes": 140416,
+            "sha256": "e6c7f89a4e2d73e807e04b3e7e03bc1aa0fb8dbfa7a3df29262635c4b46752ab"
+          },
+          "archive.asc": {
+            "bytes": 11861,
+            "sha256": "6f1d277429dd7ffedcc6f8688a7ad9a458859b1139ffa026d1eeaadcbffb0da7"
+          },
+          "archive.raw.gpg": {
+            "bytes": 8698,
+            "sha256": "8dbd0029697f8c9b009eeb9a153c6536b62ca031fa0a5b4cec74e8d718fccef6"
+          },
+          "debian-archive-keyring.gpg": {
+            "bytes": 55918,
+            "sha256": "506b815cbb32d9b6066b4a2aa524071e071761e7e7f68c3ac74f3061ba852017"
+          },
+          "keyring.bad-cross.gpg": {
+            "bytes": 55918,
+            "sha256": "c3f9bbf8aca35d78b64d0a86b18e70b7e8487a64625a9b5b6757e7717ced101a"
+          },
+          "release.asc": {
+            "bytes": 1384,
+            "sha256": "4d097bb93f83d731f475c5b92a0c2fcf108cfce1d4932792fca72d00b48d198b"
+          },
+          "release.raw.gpg": {
+            "bytes": 962,
+            "sha256": "abced156a22aa8683b228299ac35c1ea51515eef900cec0e562f56716dfe3915"
+          }
+        },
+        "name": "rax-musl-verify-323cfa18cd764502865dddb7e8cc7b73-archive-filter",
+        "passed": false,
+        "status": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "status_after_confirmed_cleanup": true,
+        "status_file": "archive-filter.status",
+        "step": "archive-filter"
+      }
+    ],
+    "current_all_channel_revocation_checked": false,
+    "docker_cli": {
+      "path": "/usr/local/bin/docker",
+      "sha256": "c93921f27c941f7661e5478e8af4042e546b66e69707a2b43f31a86cfe9c85d2"
+    },
+    "docker_socket": "/Users/luobo/.orbstack/run/docker.sock",
+    "failure": "execution or cleanup failed: archive-filter",
+    "finished_at": "2026-09-16T12:41:32.460044+00:00",
+    "image_id": "sha256:55063921d0e996f717092e07dce8041cb2376cc171a070bf9a0a38a5dd16c777",
+    "key_material_as_of": "2026-09-10",
+    "kind": "diagnostic-musl-verification-run-v1",
+    "methods": {
+      "inspect-musl-key-status.py": {
+        "bytes": 6672,
+        "sha256": "18e2dea0fea2f2e2c959116b88aac83841277539e49c84316319f95429c936b2"
+      },
+      "inspect-musl-verification-keys.py": {
+        "bytes": 11967,
+        "sha256": "391c7e48b0792330135990e3358f5dad811d745c3010a30aad084c81e6e05ae4"
+      },
+      "inspect-musl-verification-status.py": {
+        "bytes": 7460,
+        "sha256": "b3964b6904c13c82596438af2ec8030455137c0121cfdc35ff3e77a79963e9fc"
+      },
+      "inspect-musl-verifier-content.py": {
+        "bytes": 13420,
+        "sha256": "64d8f7356d2a179bd363f77309a39ba0b5af3f7ba2bc78caa778aad95efc30d1"
+      },
+      "inspect-musl-verifier-rootfs.py": {
+        "bytes": 4093,
+        "sha256": "45a4e6c05d03b142a339240128d6e304bb78b14e76764f61601617f9f845214c"
+      },
+      "inspect-selected-inputs.py": {
+        "bytes": 6633,
+        "sha256": "8286b3c9f270c77f20ea24c5bcbea3f6a5415e7c013a7ec39aa8c29ebccbb4be"
+      },
+      "run-musl-verification.py": {
+        "bytes": 21347,
+        "sha256": "df5d658e120b95e47cbaa8f82afcee3f86820fdf040ad32e8cef17885c7c0941"
+      },
+      "run-musl-verifier-smoke.py": {
+        "bytes": 23815,
+        "sha256": "4b0151dfbe00b7772697c06afb447521e0cf66fe2011ca1e4adb84f4029c016c"
+      }
+    },
+    "passed": false,
+    "prepared_inputs": {
+      "archived_inputs": {
+        ".tmp/musl-auth-chain-0a66901/Sources.xz": {
+          "bytes": 10527804,
+          "sha256": "e8bbadd8389119e841494630998187f961d7de4d5b1dcbeed4f792a1d423299f"
+        },
+        ".tmp/musl-source-review-c7f7f60/musl-1.2.5.tar.gz": {
+          "bytes": 1080786,
+          "sha256": "a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4"
+        },
+        ".tmp/musl-trust-bbbe083-20260910/keyring-attempt-2.deb": {
+          "bytes": 178572,
+          "sha256": "f699e2f88dca05212f2a452b58475f2993cb6993dfbafb1d0205a3291eb8b4b8"
+        },
+        "docs/records/rust-linux-input-review/debian-trixie-archive-2026-09-10.asc": {
+          "bytes": 11861,
+          "sha256": "6f1d277429dd7ffedcc6f8688a7ad9a458859b1139ffa026d1eeaadcbffb0da7"
+        },
+        "docs/records/rust-linux-input-review/debian-trixie-release-2026-09-10.asc": {
+          "bytes": 1384,
+          "sha256": "4d097bb93f83d731f475c5b92a0c2fcf108cfce1d4932792fca72d00b48d198b"
+        },
+        "docs/records/rust-linux-input-review/musl-debian-InRelease-2026-09-10": {
+          "bytes": 140416,
+          "sha256": "98b25b5cd185c59d34aa6e4c3e9b5b8f01bbe9d104fe2dcfbcd30dc0a14a59ed"
+        }
+      },
+      "container_input_bytes": 209579,
+      "container_inputs": {
+        "InRelease": {
+          "bytes": 140416,
+          "sha256": "98b25b5cd185c59d34aa6e4c3e9b5b8f01bbe9d104fe2dcfbcd30dc0a14a59ed"
+        },
+        "archive.asc": {
+          "bytes": 11861,
+          "sha256": "6f1d277429dd7ffedcc6f8688a7ad9a458859b1139ffa026d1eeaadcbffb0da7"
+        },
+        "debian-archive-keyring.gpg": {
+          "bytes": 55918,
+          "sha256": "506b815cbb32d9b6066b4a2aa524071e071761e7e7f68c3ac74f3061ba852017"
+        },
+        "release.asc": {
+          "bytes": 1384,
+          "sha256": "4d097bb93f83d731f475c5b92a0c2fcf108cfce1d4932792fca72d00b48d198b"
+        }
+      },
+      "host_only": {
+        "Sources.xz": {
+          "bytes": 10527804,
+          "sha256": "e8bbadd8389119e841494630998187f961d7de4d5b1dcbeed4f792a1d423299f"
+        },
+        "musl-1.2.5.tar.gz": {
+          "bytes": 1080786,
+          "sha256": "a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4"
+        }
+      },
+      "image_id": "sha256:55063921d0e996f717092e07dce8041cb2376cc171a070bf9a0a38a5dd16c777",
+      "kind": "diagnostic-musl-verification-input-plan-v1",
+      "manifest": {
+        "bytes": 31477,
+        "sha256": "3937d4570faa72ec359dbedf8fdc9c62aa5f26942cc08ee29d1a809e03a54ae9"
+      },
+      "methods": {
+        "inspect-debian-source-chain.py": {
+          "bytes": 13032,
+          "sha256": "c6f18880b4f347467ad949ccf25b1960c7bef141e5b48f610ae93ab22479da2a"
+        },
+        "inspect-musl-debian-auth.py": {
+          "bytes": 10653,
+          "sha256": "387ca53db56bc2081f69c2d034ba12f962002709455829bf7e69f2e68e0c1516"
+        },
+        "inspect-musl-trust-inputs.py": {
+          "bytes": 7472,
+          "sha256": "cd2cc429a4337b02e513ddbb9385eadccefed1461732a0a92f595ef0bb2b8878"
+        },
+        "prepare-musl-verification-inputs.py": {
+          "bytes": 5864,
+          "sha256": "3a11a72abb726d415df885c7b839e73fcb0f04453fe4186541b9f60f2725b9ea"
+        },
+        "retain-musl-verifier-inputs.py": {
+          "bytes": 10295,
+          "sha256": "72047818576ab27de02cf8e9620c33299c007b4c64108fb7c11a3c1d23e3ca0a"
+        }
+      },
+      "signature_reverified": false,
+      "source_acceptance": "not-assessed",
+      "source_record": {
+        "directory": "pool/main/m/musl",
+        "package": "musl",
+        "version": "1.2.5-3.1~deb13u1"
+      },
+      "staged": false,
+      "unsigned_snapshot_bindings_checked": true
+    },
+    "python": {
+      "bytes": 18053472,
+      "executable": "/Users/luobo/.local/share/mise/installs/python/latest/bin/python3",
+      "sha256": "c015ab131972822e27ed108cf353582af6ca2fd7daf6296789576c7e7d1ad61a",
+      "version": "3.14.5 (main, May 10 2026, 19:20:57) [Clang 22.1.3 ]"
+    },
+    "rootfs": {
+      "bytes": 8407040,
+      "sha256": "f1ac49bc29d33182a9c9a070b70509c739d857369876afbe307b9e9898d6b8b3"
+    },
+    "run_id": "323cfa18cd764502865dddb7e8cc7b73",
+    "runtime_qualification": false,
+    "source_acceptance": "not-assessed",
+    "started_at": "2026-09-16T12:41:31.168807+00:00"
+  },
+  "result_identity": {
+    "bytes": 10076,
+    "sha256": "d9e2c7913a115bd8dc4af1b3a45ca3662fb64b318a0704b4ba55511c7b61492c"
+  },
+  "runtime_qualification": false,
+  "source_acceptance": "not-assessed",
+  "status_text": ""
+}

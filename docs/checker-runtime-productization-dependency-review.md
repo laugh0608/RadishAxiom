@@ -1,8 +1,8 @@
 # Checker runtime 产品化与 AX-B01 依赖审阅
 
-审阅日期：2026-09-06
+审阅日期：2026-09-16；来源状态同步：2026-09-29
 
-状态：设计审阅完成；资源方向已获确认并形成 ADR 0015 草案，维护预算待决策，未接受公共迁移或实施。
+状态：ADR 0015 与维护预算已确认，公共迁移与实施仍未接受。2026-09-29 阶段整理后，本专题保留产品运行线内部依赖；全项目顺位以当前状态为准。
 
 用途：把 ADR 0013 / 0014 的隔离候选收敛成可验收的来源、身份、资源、维护与实施切片，并识别首个真实 AX-B01 闭环的必要依赖。
 
@@ -13,7 +13,7 @@
 ## 审阅结论
 
 1. 保留 [ADR 0013](adr/0013-darwin-checker-hard-isolation.md) 的逐次 signed App-Sandboxed Hypervisor runner。现有 native plan 和 Mach-O payload 保持不可执行；合成 Linux 观察只支持继续设计，不是生产 runner 或可重跑回归。
-2. **现行 memory 契约不能直接由 guest mapping 满足。** `process-outer / launcher-os-hard-limit` 与 guest 可寻址 RAM 不是同一计量域。已按项目所有者确认方向形成 [ADR 0015 草案](adr/0015-virtualized-checker-resource-profile.md)，为虚拟执行单独定义资源 profile，显式承认宿主总 footprint 没有现行等价硬限制；正式接受与迁移验收前不执行真实 checker。若调用方必须保留整个宿主 128 MiB 硬限，则新候选也必须拒绝选择。
+2. **现行 memory 契约不能直接由 guest mapping 满足。** `process-outer / launcher-os-hard-limit` 与 guest 可寻址 RAM 不是同一计量域。[ADR 0015](adr/0015-virtualized-checker-resource-profile.md) 已于 2026-09-10 正式接受，为虚拟执行单独定义资源 profile，显式承认宿主总 footprint 没有现行等价硬限制；公共迁移、来源及执行前置验收前不执行真实 checker。若调用方必须保留整个宿主 128 MiB 硬限，则新候选也必须拒绝选择。
 3. kernel / init / VMM / transport 的新来源链、可复现材料和更新责任是具体前置。先用源码和配置闭合最小 Linux 装置，不能把已删除 probe 的摘要当源码，不能直接提升 Alpine 实验 kernel 或旧 Go probe 的验收等级。
 4. 生产 P0–P9、checker 离线复核、产品安装激活是三条分别验收的链。cvc5 / Node 的来源及执行限制、ADR 0007 的跨平台字节入口、checker 目标归因等是核心闭环依赖；产品 UI、自动更新、最终安装路径和正式 Agent 实验不是纯语义设计前置。现行 ADR 对真实实现和执行的门槛仍有效。
 
@@ -73,9 +73,9 @@ Linux builder 尚无已接受环境：候选是无运行时联网的独立 Linux
 
 [Linux licensing rules](https://docs.kernel.org/process/license-rules.html) 明确 kernel 整体为 GPL-2.0-only，并说明 syscall / UAPI 例外。具体分发仍须审阅文件级 SPDX、配置启用的代码、补丁、源码提供与归属材料；不将 Linux 源码并入 Apache-2.0 自有源码许可声明，也不把 kernel 许可证外推到所有用户程序。用户态 init、checker、runner 和生成给用户的 Node module 分别核对嵌入材料。未下载新材料，本次不修改 `THIRD_PARTY_NOTICES.md` 或声明已完成分发合规。
 
-维护预算建议供项目所有者批准：首轮自有新增生产 TCB 以 **8,000 行可审阅源码**为预警线（包括 FFI / framing；生成绑定、测试和第三方库存另列，不能隐藏规模），先投入最多 **10 人日**重建可留存的合成装置。它不是整个产品交付工期，也不意味着数百万行 Linux 已被本项目逐行审阅。
+2026-09-10 项目所有者确认以下维护预算：首轮自有新增生产 TCB 以 **8,000 行可审阅源码**为预警线（包括 FFI / framing；生成绑定、测试和第三方库存另列，不能隐藏规模），先投入最多 **10 人日**重建可留存的合成装置。它不是整个产品交付工期，也不意味着数百万行 Linux 已被本项目逐行审阅。
 
-常态预留每周 **4 小时**用于 Linux stable / Apple 安全更新评估、依赖差异与回归；严重上游事件建议一个工作日内完成影响分级，无法确认影响时停止推进受影响候选或新激活。这是人员与响应预算提案，不是已承诺 SLA。项目所有者必须明确产品 runtime 与 kernel / init 的维护负责人；目前不假定存在第二位审阅者。预算或审阅规模不可承担时触发 ADR 0013 的重新选型条件。
+常态预留每周 **4 小时**用于 Linux stable / Apple 安全更新评估、依赖差异与回归；严重上游事件建议一个工作日内完成影响分级，无法确认影响时停止推进受影响候选或新激活。这是已确认的投入与内部响应目标，不是对外 SLA。项目所有者（萝卜SAMA）已明确自己是本仓库唯一负责人，统一承担产品 runtime 与 kernel / init 的维护责任；没有第二位维护者或独立审阅者的配置承诺。Agent 协助不替代该责任，也不能计为额外独立人力。预算或审阅规模不可承担时触发 ADR 0013 的重新选型条件。
 
 更新以新的 source / artifact / execution-environment 身份及离线重新验收进行，保留旧失败；不覆盖 immutable slot，不自动回滚到旧 kernel 或 native adapter。安全撤销先阻止新 invocation，如何处置正在运行的请求在正式迁移中显式规定。
 
@@ -94,14 +94,14 @@ Linux builder 尚无已接受环境：候选是无运行时联网的独立 Linux
 
 [Hypervisor memory management](https://developer.apple.com/documentation/hypervisor/memory-management) 提供 guest 映射原语；本次没有取得可对普通签名 runner 强制施加整个 host physical-footprint 硬上限的新证据。guest 内增加 [cgroup `memory.max`](https://docs.kernel.org/admin-guide/cgroup-v2.html) 也只能约束 guest 内计量域，不能修复宿主边界，且会扩大 init / kernel 配置面。
 
-### 资源选择与草案交接
+### 资源选择与迁移交接
 
-项目所有者已确认下表第二项作为起草方向；拟议长期边界见 [ADR 0015](adr/0015-virtualized-checker-resource-profile.md)，当前为 Proposed。此确认不包括具体缓冲预算、维护投入、公共版本分配或真实执行。
+项目所有者已正式接受下表第二项；长期边界见 [ADR 0015](adr/0015-virtualized-checker-resource-profile.md)，状态为 Accepted。维护投入单独按上节确认；8 MiB 控制缓冲仍为候选预算，公共版本分配、字节迁移与真实执行未获本次授权。
 
 | 选择 | 可宣称的能力 | 后果 |
 | --- | --- | --- |
 | 保留整个宿主 128 MiB 硬上限 | 继续保持现行要求 | 当前 Hypervisor 候选没有满足证据，真实 checker 继续不可用；只做来源 / 纯设计，或以新 ADR 重选宿主 |
-| **已确认起草方向：给虚拟执行定义不同的资源 profile** | guest 128 MiB 是硬映射上界；宿主控制内存按固定预算审阅，总 footprint 单独观察并明确没有等价硬保证 | 这是新的公开能力 / 信任边界，不是对 v0.1 的兼容解释；先正式接受替代 ADR，再另行迁移 policy / profile / 外层记录和消费者 |
+| **已接受：给虚拟执行定义不同的资源 profile** | guest 128 MiB 是硬映射上界；宿主控制内存按固定预算审阅，总 footprint 单独观察并明确没有等价硬保证 | 这是新的公开能力 / 信任边界，不是对 v0.1 的兼容解释；替代 ADR 已接受，另行验收并授权迁移 policy / profile / 外层记录和消费者 |
 
 建议方案仍须禁止按 guest 声明长度进行无界 host allocation。自有控制缓冲可先按 **8 MiB 候选审阅预算**设计，列明每项固定容量、最大并发数与分配失败路径；这个数既不是已测量峰值，也不是把整个宿主限制改成 136 MiB。Hypervisor / OS 隐含开销无法被该预算硬约束，必须直接报告该缺口。总宿主内存硬限是调用方必需能力时，新的 profile 也必须被拒绝选择。
 
@@ -195,16 +195,21 @@ P0–P9 逐阶段的输入、解除证据与首个纵向验收集合见[AX-B01 �
 
 ## 下一切片与停止条件
 
-| 顺位 | 输入与具体交付 | 完成 / 停止标准 |
-| --- | --- | --- |
-| 1：资源与维护决策 | [ADR 0015 草案](adr/0015-virtualized-checker-resource-profile.md)与兼容性清单已形成；维护负责人及 8,000 行 / 10 人日 / 每周 4 小时预算仍待确认 | 正式接受前维持 v0.1 与不可执行状态；接受起草方向不自动批准维护预算或公共字节迁移 |
-| 2：来源与可复现输入锁 | kernel / Debian 来源诊断、Rust Linux 实际字节 / 签名 / 库存、tag 元数据与许可材料已有留存；下一步 Rust 公钥绑定、静态 runtime / 宿主动态库来源与精确容器安装 / 有限执行范围，再完成 source lock | 不把摘要 / GnuPG 成功 / 库存等同完整 acceptance；不沿用默认 Go 或未知 builder；安装 / 构建须精确授权，不导入旧 probe 的虚构源码 |
-| 3：公共迁移与合成装置 | 接受的资源 ADR、source lock、身份 / consumer 闭包；生成新 policy / profile / 外层记录的正负例，再实现可留存合成 runner / guest | 未完成字节迁移和单独签名 / VM 授权前不得运行；不把合成装置算作产品 qualification |
-| 4：真实容量与离线复核 | accepted Linux checker + guest TCB、代表性 / 上限输入和预注册 cold 矩阵 | 分别授权受控执行；失败保留，超预算或不可审计 container 触发重新决策 |
-| 按独立依赖准备：核心管线入口 | cvc5 / Node 来源与各自执行边界、ADR 0007 八项入口核对、AX-B01 P0–P9 切片设计、checker 目标归因交接 | 纯设计不必等待产品安装 / 激活；生产实现仍需全部入口或正式切片例外决策，不跨仓写入 |
+本节只说明产品运行线恢复后的内部依赖，不再用作全项目串行顺位。当前核心语义优先，新增来源取证与 guest / runner 实施暂缓，见[当前状态](status/current.md)；[ADR 0016](adr/0016-core-semantic-slice-entry.md)单独处理核心组件入口，不授予任何产品运行能力。
 
-真实产品 fetch / install、生产签名、三条 qualification 和 active 转换最后按各自门槛闭合。以上顺位不授权分仓写入、外部消息、远程发布、全局工具或系统配置变更。
+恢复本线前，先列出确切目标制品、要解除的阻断、已有材料、仍缺的最小材料、批次投入上限、责任人及成功 / 失败后的决定。已用工时与剩余估算未知时直接记为未知，先核对投入，不把 10 人日原预算当作每次重启自动获得的新额度；8,000 行仅统计自有新增生产 TCB，测试、生成绑定和第三方库存另列。
+
+| 产品线内部环节 | 输入与交付 | 完成 / 停止标准 |
+| --- | --- | --- |
+| 成本与边界复核 | 已接受的资源 / 维护决定、实际投入、目标制品与负载、最小批次范围 | 无法承担维护或给出有限范围时重新评估架构，不自动扩大预算 |
+| 来源与构建输入 | 复用[guest 来源状态表](checker-runtime-guest-source-build-review.md#rust-配方剩余输入状态)的已有材料，只补该目标直接需要的阻断；安装范围见[独立切片](checker-runtime-linux-install-slice-review.md) | musl / MPFR / MPC / GMP 的限定决定保留；GCC / Binutils / headers、构建关联与宿主库缺口不豁免。失败后结束批次并决定下一步，不自动串接其他公钥服务或源码链 |
+| 公共迁移与合成装置 | 接受的资源 ADR、source lock、身份 / consumer 闭包，新 policy / profile / 外层记录正负例与可留存装置 | 未完成迁移及精确签名 / VM 授权前不得运行；不把合成结果算作产品 qualification |
+| 真实容量与离线复核 | accepted Linux checker + guest TCB、代表性 / 上限输入和 cold 矩阵 | 受控执行分别授权；失败、超预算或无法审计的 container 触发重新决策 |
+
+公共身份、工具来源、许可、三条 qualification 和 active 转换仍分别闭合；这里的暂停不等于接受候选。cvc5 / Node 的执行边界须独立审阅，不能在恢复 checker 产品化时顺带放行。以上内部依赖不授权分仓写入、外部消息、远程发布、全局工具或系统配置变更。
 
 ## 本次验证与保留事项
 
-本稿通过只读契约 / 实现核对、官方资料检索、bundle 静态大小核算及仓库文档检查形成。没有新跑源码构建、性能、Hypervisor、签名、container 审计或 checker / cvc5 / Node；旧运行结果只按其精确来源引用。正式语义、IR / Evidence、已有 Accepted ADR 原文与 `contracts/` 字节保持不变；新增 ADR 0015 仅为草案。当前顺位由[当前状态](status/current.md)维护。
+本稿通过只读契约 / 实现核对、官方资料检索、bundle 静态大小核算及仓库文档检查形成。没有新跑源码构建、性能、Hypervisor、签名、container 审计或 checker / cvc5 / Node；旧运行结果只按其精确来源引用。正式语义、IR / Evidence、ADR 0008 / 0011 / 0013 原文与 `contracts/` 字节保持不变；2026-09-10 仅将已确认的 ADR 0015 从 Proposed 转为 Accepted，并落实维护投入与责任。2026-09-12 按[日终代码 / 文档复核](records/2026-09-12-closeout.md)同步 musl 诊断前置进展；当天真实工具运行属于单独授权的来源诊断，不是本产品化方案的执行验收。2026-09-16 按[日终复核](records/2026-09-16-closeout.md)同步限定 musl 来源验收与剩余材料状态，未扩大为 builder 或产品验收。2026-09-25 按[日终复核](records/2026-09-25-closeout.md)同步 MPFR / MPC 限定接受及四项剩余输入材料，未形成完整 source lock 或安装验收。2026-09-29 同步 GMP 第三次真实诊断及项目所有者已确认的限定官方分发来源决定，历史有效性未建立及安装前置继续保留。当前顺位由[当前状态](status/current.md)维护。
+
+2026-09-29 阶段整理仅调整本专题的任务路由与恢复条件；现有来源决定、资源保证、维护承诺和实际能力均未升级。旧批次事实继续由各自记录追溯。

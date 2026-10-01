@@ -1,0 +1,1134 @@
+{
+  "entries": [
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "gcc-14-base"
+      ],
+      "path": ".",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "generated-config",
+      "packages": [],
+      "path": "dev",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "generated-config",
+      "packages": [],
+      "path": "etc",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "generated-config",
+      "packages": [],
+      "path": "etc/gnupg",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "bytes": 17,
+      "gid": 0,
+      "mode": 420,
+      "origin": "generated-config",
+      "packages": [],
+      "path": "etc/group",
+      "sha256": "6ec3a3d4d161870ebb287beb2c0c1f89e4888355f7fc72638e209528b99cc65b",
+      "text": "verifier:x:1000:\n",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "bytes": 40,
+      "gid": 0,
+      "mode": 420,
+      "origin": "generated-config",
+      "packages": [],
+      "path": "etc/nsswitch.conf",
+      "sha256": "616c92fe38aee6d2c529e6e44c58f35e400f26e92860e626fc054cc4345b6d40",
+      "text": "passwd: files\ngroup: files\nhosts: files\n",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "bytes": 49,
+      "gid": 0,
+      "mode": 420,
+      "origin": "generated-config",
+      "packages": [],
+      "path": "etc/passwd",
+      "sha256": "2f6649823afa289a24d284b116393195144548f58f9cae34f190745e63774005",
+      "text": "verifier:x:1000:1000:Verifier:/work:/nonexistent\n",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "destination": "usr/lib",
+      "gid": 0,
+      "mode": 511,
+      "origin": "proposed-generated",
+      "packages": [],
+      "path": "lib",
+      "target": "usr/lib",
+      "type": "symlink",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "generated-config",
+      "packages": [],
+      "path": "proc",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "generated-config",
+      "packages": [],
+      "path": "sys",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "generated-config",
+      "packages": [],
+      "path": "tmp",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "gcc-14-base"
+      ],
+      "path": "usr",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "gpg"
+      ],
+      "path": "usr/bin",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "bytes": 1266832,
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "gpg"
+      ],
+      "path": "usr/bin/gpg",
+      "sha256": "8abfa53f25b7e338fcef742ac0f900bd87dbdcd9c0d0cb2c7c89accdd1299192",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "bytes": 204184,
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "gpgconf"
+      ],
+      "path": "usr/bin/gpgconf",
+      "sha256": "cf92e711c3bb7ebdb57dcc627a740da6c77348fa12257e2c842c4059bbd13ae4",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "gpg"
+      ],
+      "path": "usr/lib",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "libassuan9"
+      ],
+      "path": "usr/lib/aarch64-linux-gnu",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "bytes": 201344,
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "libc6"
+      ],
+      "path": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+      "sha256": "1d8b77f28b7cec0329dca107a28fb0a850193b1dcce59be68fa0b06b514548cc",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "destination": "usr/lib/aarch64-linux-gnu/libassuan.so.9.0.2",
+      "gid": 0,
+      "mode": 511,
+      "origin": "package",
+      "packages": [
+        "libassuan9"
+      ],
+      "path": "usr/lib/aarch64-linux-gnu/libassuan.so.9",
+      "target": "libassuan.so.9.0.2",
+      "type": "symlink",
+      "uid": 0
+    },
+    {
+      "bytes": 133272,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "libassuan9"
+      ],
+      "path": "usr/lib/aarch64-linux-gnu/libassuan.so.9.0.2",
+      "sha256": "b541835f89c9f238e2d8802b96c0a07e2612fb4fd4f33f70cfb9549ea72b5ffc",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "destination": "usr/lib/aarch64-linux-gnu/libbz2.so.1.0.4",
+      "gid": 0,
+      "mode": 511,
+      "origin": "package",
+      "packages": [
+        "libbz2-1.0"
+      ],
+      "path": "usr/lib/aarch64-linux-gnu/libbz2.so.1",
+      "target": "libbz2.so.1.0.4",
+      "type": "symlink",
+      "uid": 0
+    },
+    {
+      "destination": "usr/lib/aarch64-linux-gnu/libbz2.so.1.0.4",
+      "gid": 0,
+      "mode": 511,
+      "origin": "package",
+      "packages": [
+        "libbz2-1.0"
+      ],
+      "path": "usr/lib/aarch64-linux-gnu/libbz2.so.1.0",
+      "target": "libbz2.so.1.0.4",
+      "type": "symlink",
+      "uid": 0
+    },
+    {
+      "bytes": 70584,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "libbz2-1.0"
+      ],
+      "path": "usr/lib/aarch64-linux-gnu/libbz2.so.1.0.4",
+      "sha256": "810fa9b02adc39be4a7542bde79f1da0575e9bbdf8fc3c27deeb1ee97f59fe46",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "bytes": 1716616,
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "libc6"
+      ],
+      "path": "usr/lib/aarch64-linux-gnu/libc.so.6",
+      "sha256": "9a325944115b36e74077786b29531963d96cd55cd6c82f11750a352cdb58fab0",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "destination": "usr/lib/aarch64-linux-gnu/libgcrypt.so.20.5.0",
+      "gid": 0,
+      "mode": 511,
+      "origin": "package",
+      "packages": [
+        "libgcrypt20"
+      ],
+      "path": "usr/lib/aarch64-linux-gnu/libgcrypt.so.20",
+      "target": "libgcrypt.so.20.5.0",
+      "type": "symlink",
+      "uid": 0
+    },
+    {
+      "bytes": 1201792,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "libgcrypt20"
+      ],
+      "path": "usr/lib/aarch64-linux-gnu/libgcrypt.so.20.5.0",
+      "sha256": "4f66771a0799fd111c30e163a41b6d1dc8a6b0377e3e51a8175320890ee60c6e",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "destination": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0.38.0",
+      "gid": 0,
+      "mode": 511,
+      "origin": "package",
+      "packages": [
+        "libgpg-error0"
+      ],
+      "path": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0",
+      "target": "libgpg-error.so.0.38.0",
+      "type": "symlink",
+      "uid": 0
+    },
+    {
+      "bytes": 198736,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "libgpg-error0"
+      ],
+      "path": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0.38.0",
+      "sha256": "6178cac881010e5c37defc08476cd6acced7c13531f3bde72715fcfe801d287a",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "bytes": 591960,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "libc6"
+      ],
+      "path": "usr/lib/aarch64-linux-gnu/libm.so.6",
+      "sha256": "a8afb2d1f4a0c5e14c0fc82f794ec839eafe29738907aa92895410f57630bbe2",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "destination": "usr/lib/aarch64-linux-gnu/libnpth.so.0.3.0",
+      "gid": 0,
+      "mode": 511,
+      "origin": "package",
+      "packages": [
+        "libnpth0t64"
+      ],
+      "path": "usr/lib/aarch64-linux-gnu/libnpth.so.0",
+      "target": "libnpth.so.0.3.0",
+      "type": "symlink",
+      "uid": 0
+    },
+    {
+      "bytes": 67992,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "libnpth0t64"
+      ],
+      "path": "usr/lib/aarch64-linux-gnu/libnpth.so.0.3.0",
+      "sha256": "00e69f7071b5699895e15214929e5154bbc6ffc1383d9b025902ad5f24ec392e",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "destination": "usr/lib/aarch64-linux-gnu/libreadline.so.8.2",
+      "gid": 0,
+      "mode": 511,
+      "origin": "package",
+      "packages": [
+        "libreadline8t64"
+      ],
+      "path": "usr/lib/aarch64-linux-gnu/libreadline.so.8",
+      "target": "libreadline.so.8.2",
+      "type": "symlink",
+      "uid": 0
+    },
+    {
+      "bytes": 420224,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "libreadline8t64"
+      ],
+      "path": "usr/lib/aarch64-linux-gnu/libreadline.so.8.2",
+      "sha256": "41eaf42757798c29d7dd13f519f76a91cd06847a068ed29a7912b343b60c48b3",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "destination": "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6",
+      "gid": 0,
+      "mode": 511,
+      "origin": "package",
+      "packages": [
+        "libsqlite3-0"
+      ],
+      "path": "usr/lib/aarch64-linux-gnu/libsqlite3.so.0",
+      "target": "libsqlite3.so.0.8.6",
+      "type": "symlink",
+      "uid": 0
+    },
+    {
+      "bytes": 1592144,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "libsqlite3-0"
+      ],
+      "path": "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6",
+      "sha256": "9865b5990181843284595a2c290e5aa9e1df1b3ee438ce7fc6cdc2ec1c411985",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "destination": "usr/lib/aarch64-linux-gnu/libtinfo.so.6.5",
+      "gid": 0,
+      "mode": 511,
+      "origin": "package",
+      "packages": [
+        "libtinfo6"
+      ],
+      "path": "usr/lib/aarch64-linux-gnu/libtinfo.so.6",
+      "target": "libtinfo.so.6.5",
+      "type": "symlink",
+      "uid": 0
+    },
+    {
+      "bytes": 265504,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "libtinfo6"
+      ],
+      "path": "usr/lib/aarch64-linux-gnu/libtinfo.so.6.5",
+      "sha256": "57cda9469aa613f8ab25b21af56867d5a01d19c0a91fda6965aa6501ea98cfcf",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "destination": "usr/lib/aarch64-linux-gnu/libz.so.1.3.1",
+      "gid": 0,
+      "mode": 511,
+      "origin": "package",
+      "packages": [
+        "zlib1g"
+      ],
+      "path": "usr/lib/aarch64-linux-gnu/libz.so.1",
+      "target": "libz.so.1.3.1",
+      "type": "symlink",
+      "uid": 0
+    },
+    {
+      "bytes": 133600,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "zlib1g"
+      ],
+      "path": "usr/lib/aarch64-linux-gnu/libz.so.1.3.1",
+      "sha256": "6fe00acadf8119ff245855e5dcc7f26c6c0ffaf4bfa2baa88feab58f23727d65",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "destination": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+      "gid": 0,
+      "mode": 511,
+      "origin": "package",
+      "packages": [
+        "libc6"
+      ],
+      "path": "usr/lib/ld-linux-aarch64.so.1",
+      "target": "aarch64-linux-gnu/ld-linux-aarch64.so.1",
+      "type": "symlink",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "gcc-14-base"
+      ],
+      "path": "usr/share",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "bytes": 7048,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/CC0-1.0",
+      "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "destination": "usr/share/common-licenses/GFDL-1.3",
+      "gid": 0,
+      "mode": 511,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/GFDL",
+      "target": "GFDL-1.3",
+      "type": "symlink",
+      "uid": 0
+    },
+    {
+      "bytes": 22955,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/GFDL-1.3",
+      "sha256": "110535522396708cea37c72a802c5e7e81391139f5f7985631c93ef242b206a4",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "destination": "usr/share/common-licenses/GPL-3",
+      "gid": 0,
+      "mode": 511,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/GPL",
+      "target": "GPL-3",
+      "type": "symlink",
+      "uid": 0
+    },
+    {
+      "bytes": 17984,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/GPL-2",
+      "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "bytes": 35149,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/GPL-3",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "destination": "usr/share/common-licenses/LGPL-3",
+      "gid": 0,
+      "mode": 511,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/LGPL",
+      "target": "LGPL-3",
+      "type": "symlink",
+      "uid": 0
+    },
+    {
+      "bytes": 25270,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/LGPL-2",
+      "sha256": "cc535c21133c895b56b374c8a1dc1eb948d99003ed2b47372069456b62f42b24",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "bytes": 26419,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/LGPL-2.1",
+      "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "bytes": 7652,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/common-licenses/LGPL-3",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "gcc-14-base"
+      ],
+      "path": "usr/share/doc",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/doc/base-files",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "bytes": 1551,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "base-files"
+      ],
+      "path": "usr/share/doc/base-files/copyright",
+      "sha256": "576859a65409c99cb1632c8b3de4b3deb26910800832beda76aca33d00720134",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "gpg"
+      ],
+      "path": "usr/share/doc/gpg",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "bytes": 13143,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "gpg"
+      ],
+      "path": "usr/share/doc/gpg/copyright",
+      "sha256": "c19276de1952e4d3926c293ac598065e2abcb5b9543600cf941d53fb3c6e41a8",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "gpgconf"
+      ],
+      "path": "usr/share/doc/gpgconf",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "bytes": 13143,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "gpgconf"
+      ],
+      "path": "usr/share/doc/gpgconf/copyright",
+      "sha256": "c19276de1952e4d3926c293ac598065e2abcb5b9543600cf941d53fb3c6e41a8",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "libassuan9"
+      ],
+      "path": "usr/share/doc/libassuan9",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "bytes": 12055,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "libassuan9"
+      ],
+      "path": "usr/share/doc/libassuan9/copyright",
+      "sha256": "77098ae4bd20a17039c27a742aaec873c0317793a2867332b3083509c16cfb9a",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "libbz2-1.0"
+      ],
+      "path": "usr/share/doc/libbz2-1.0",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "bytes": 2228,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "libbz2-1.0"
+      ],
+      "path": "usr/share/doc/libbz2-1.0/copyright",
+      "sha256": "832ed535ff3c3d025a8d2348eb1b697b89addcf2eaadbc17650262040b9145e2",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "libc6"
+      ],
+      "path": "usr/share/doc/libc6",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "bytes": 51200,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "libc6"
+      ],
+      "path": "usr/share/doc/libc6/copyright",
+      "sha256": "f5788886720a2605a946e81d571e6c8162b09f58d2e2ceb8d36e5768fccd850d",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "libgcrypt20"
+      ],
+      "path": "usr/share/doc/libgcrypt20",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "bytes": 26983,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "libgcrypt20"
+      ],
+      "path": "usr/share/doc/libgcrypt20/copyright",
+      "sha256": "4feae258cab1ad4743fb569a77e0b2a5b7a0199520bdbc0a613916291b9aa8a8",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "libgpg-error0"
+      ],
+      "path": "usr/share/doc/libgpg-error0",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "bytes": 5301,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "libgpg-error0"
+      ],
+      "path": "usr/share/doc/libgpg-error0/copyright",
+      "sha256": "1edb3be55cf9371e8e7a71e53fadc2a3d33b44d7d7f15c78a7669c92ce0fade2",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "libnpth0t64"
+      ],
+      "path": "usr/share/doc/libnpth0t64",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "bytes": 1164,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "libnpth0t64"
+      ],
+      "path": "usr/share/doc/libnpth0t64/copyright",
+      "sha256": "df6909abb38f4e84d237d8617e948bdbb391b2004ecf573863011d54a88ccf22",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "libreadline8t64"
+      ],
+      "path": "usr/share/doc/libreadline8t64",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "bytes": 4314,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "libreadline8t64"
+      ],
+      "path": "usr/share/doc/libreadline8t64/copyright",
+      "sha256": "854c6f5f249a109a913e1e58528445c4fec96f063ae8ba496bfb2b460bcc6866",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "libsqlite3-0"
+      ],
+      "path": "usr/share/doc/libsqlite3-0",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "bytes": 1770,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "libsqlite3-0"
+      ],
+      "path": "usr/share/doc/libsqlite3-0/copyright",
+      "sha256": "7b1679aaa97e6e49ec12460eefa85a82b432053bc468dd89dbdb50f2326589f3",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "libtinfo6"
+      ],
+      "path": "usr/share/doc/libtinfo6",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "bytes": 4670,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "libtinfo6"
+      ],
+      "path": "usr/share/doc/libtinfo6/copyright",
+      "sha256": "f838d6048fbc59356b7e56c207a7cb32dc6bf4adea95514a002596bde8f6e1e7",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "gid": 0,
+      "mode": 493,
+      "origin": "package",
+      "packages": [
+        "zlib1g"
+      ],
+      "path": "usr/share/doc/zlib1g",
+      "type": "directory",
+      "uid": 0
+    },
+    {
+      "bytes": 2927,
+      "gid": 0,
+      "mode": 420,
+      "origin": "package",
+      "packages": [
+        "zlib1g"
+      ],
+      "path": "usr/share/doc/zlib1g/copyright",
+      "sha256": "9e5b96d63773a5d177ba264254390f792be07e41748ebd94730981c6cac31cc6",
+      "type": "file",
+      "uid": 0
+    },
+    {
+      "gid": 1000,
+      "mode": 448,
+      "origin": "generated-config",
+      "packages": [],
+      "path": "work",
+      "type": "directory",
+      "uid": 1000
+    },
+    {
+      "gid": 1000,
+      "mode": 448,
+      "origin": "generated-config",
+      "packages": [],
+      "path": "work/full",
+      "type": "directory",
+      "uid": 1000
+    },
+    {
+      "bytes": 0,
+      "gid": 1000,
+      "mode": 384,
+      "origin": "generated-config",
+      "packages": [],
+      "path": "work/full/common.conf",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "type": "file",
+      "uid": 1000
+    },
+    {
+      "gid": 1000,
+      "mode": 448,
+      "origin": "generated-config",
+      "packages": [],
+      "path": "work/self",
+      "type": "directory",
+      "uid": 1000
+    },
+    {
+      "bytes": 0,
+      "gid": 1000,
+      "mode": 384,
+      "origin": "generated-config",
+      "packages": [],
+      "path": "work/self/common.conf",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "type": "file",
+      "uid": 1000
+    }
+  ],
+  "entry_count": 84,
+  "file_bytes": 8347816,
+  "inputs": {
+    ".tmp/musl-verifier-d04b225-20260912/base-files-attempt-2.deb": {
+      "bytes": 73276,
+      "sha256": "5f5a571ec846d7db05d9f825f0388a37bc033267b33cbf85b4eaa838dffcc41b"
+    },
+    ".tmp/musl-verifier-d04b225-20260912/gcc-14-base-attempt-2.deb": {
+      "bytes": 49444,
+      "sha256": "34ee90679b018c0e64234747a4c4c0ae6b7f63541115037465a8627c2dfbc594"
+    },
+    ".tmp/musl-verifier-d04b225-20260912/gpg-attempt-1.deb": {
+      "bytes": 578896,
+      "sha256": "840abc3e9178b9578fbc9c9674ebb2f3b983790f713ffd2b6a0371d8670dc8e7"
+    },
+    ".tmp/musl-verifier-d04b225-20260912/gpgconf-attempt-1.deb": {
+      "bytes": 121684,
+      "sha256": "d4b1556e8f13b48cd0061b343cf56beed20fec06a1045631d585ef587d449569"
+    },
+    ".tmp/musl-verifier-d04b225-20260912/init-system-helpers-attempt-1.deb": {
+      "bytes": 39360,
+      "sha256": "addf78073e1cbc5a5508937e11d2571055e29835e00ee8fab52a66775649378f"
+    },
+    ".tmp/musl-verifier-d04b225-20260912/libassuan9-attempt-1.deb": {
+      "bytes": 59112,
+      "sha256": "a4c36f4cbc7c09064fa944bf4f5d704ed6e2290b12d07a4d766a5d415b7c120d"
+    },
+    ".tmp/musl-verifier-d04b225-20260912/libbz2-1_0-attempt-1.deb": {
+      "bytes": 37772,
+      "sha256": "3537fe4fc577a60c8a9568873cd577db7ebc135eb8bb1825f18caf8972d9d2f2"
+    },
+    ".tmp/musl-verifier-d04b225-20260912/libc6-attempt-1.deb": {
+      "bytes": 2489480,
+      "sha256": "ff529924782d3286181188fc265a6a92e7fe28975fb3a925dc0e05c0ca66e52f"
+    },
+    ".tmp/musl-verifier-d04b225-20260912/libgcc-s1-attempt-1.deb": {
+      "bytes": 54104,
+      "sha256": "1108bc87879833d6d9a145f22a4a15cddb34e065b4b5f4b97bee586adbac2851"
+    },
+    ".tmp/musl-verifier-d04b225-20260912/libgcrypt20-attempt-1.deb": {
+      "bytes": 741128,
+      "sha256": "243a42b879c6675348279a3f9a40e535d57185af00dbfd51b7481e777f163da6"
+    },
+    ".tmp/musl-verifier-d04b225-20260912/libgpg-error0-attempt-1.deb": {
+      "bytes": 78544,
+      "sha256": "f9a8ee3f325360dbbb1c98331c60c7aa454a054a8a4564bc36b3e52fb53e019e"
+    },
+    ".tmp/musl-verifier-d04b225-20260912/libksba8-attempt-1.deb": {
+      "bytes": 125004,
+      "sha256": "ee001c93cf2a5e495e1885fac2d7ec1474bd619539f0f33a0b326ac511e04297"
+    },
+    ".tmp/musl-verifier-d04b225-20260912/libnpth0t64-attempt-1.deb": {
+      "bytes": 22900,
+      "sha256": "68bca0187b0121e25706fc79cee63233168f4b4acbfa1c3f34f0880be6c16a5c"
+    },
+    ".tmp/musl-verifier-d04b225-20260912/libreadline8t64-attempt-1.deb": {
+      "bytes": 159264,
+      "sha256": "f78ff432b2a627bc04f7eef0e6e2696501c9e06feca748a5b741d5e594429033"
+    },
+    ".tmp/musl-verifier-d04b225-20260912/libsqlite3-0-attempt-1.deb": {
+      "bytes": 853772,
+      "sha256": "69dd4b705eca29fe134c17f18aaa4cc9e7ecd01c0250d5e195358801514c76ac"
+    },
+    ".tmp/musl-verifier-d04b225-20260912/libtinfo6-attempt-1.deb": {
+      "bytes": 341360,
+      "sha256": "2a747f7fff3c2347c357387a7133df997410f07ba1b1df1a1461a97bd7fbc2fc"
+    },
+    ".tmp/musl-verifier-d04b225-20260912/readline-common-attempt-1.deb": {
+      "bytes": 69360,
+      "sha256": "f77e8aa0bf0de618f11cb0b21658a4ed60f177d63b3cf26d7fc3706b6d0eaaa9"
+    },
+    ".tmp/musl-verifier-d04b225-20260912/zlib1g-attempt-1.deb": {
+      "bytes": 85116,
+      "sha256": "209aa5cf671e97b9eb0410844fa6df4cae2e75b0c72e7802ab6c8ece13e6ddef"
+    },
+    "docs/records/rust-linux-input-review/musl-verifier-layout-summary-2026-09-12.json": {
+      "bytes": 95281,
+      "sha256": "e7b0c64e4a2e91fbd1a5ba9b8380e6ccd2ff2d7c47572c5ddcf972c7f726512c"
+    },
+    "docs/records/rust-linux-input-review/musl-verifier-licenses-2026-09-12.json": {
+      "bytes": 45354,
+      "sha256": "4137405ca1d7f4e9dbefe86e982730dba2e77e910a4f8667fcde15d7ada527c0"
+    },
+    "docs/records/rust-linux-input-review/musl-verifier-packages-2026-09-12.json": {
+      "bytes": 28236,
+      "sha256": "a67e2c07302b945d4d5add12851e5714418614aaba9a28254bef1662bd8b4861"
+    }
+  },
+  "kind": "diagnostic-verifier-rootfs-plan-v1",
+  "methods": {
+    "docs/records/rust-linux-input-review/inspect-musl-trust-inputs.py": {
+      "bytes": 7472,
+      "sha256": "cd2cc429a4337b02e513ddbb9385eadccefed1461732a0a92f595ef0bb2b8878"
+    },
+    "docs/records/rust-linux-input-review/inspect-musl-verifier-content.py": {
+      "bytes": 13420,
+      "sha256": "64d8f7356d2a179bd363f77309a39ba0b5af3f7ba2bc78caa778aad95efc30d1"
+    },
+    "docs/records/rust-linux-input-review/inspect-selected-inputs.py": {
+      "bytes": 6633,
+      "sha256": "8286b3c9f270c77f20ea24c5bcbea3f6a5415e7c013a7ec39aa8c29ebccbb4be"
+    },
+    "docs/records/rust-linux-input-review/prepare-musl-verifier-rootfs.py": {
+      "bytes": 7257,
+      "sha256": "c098240041c51f2dcb5793eb726fec58a6ed9b7eed25522de76a0246a3749080"
+    },
+    "docs/records/rust-linux-input-review/retain-musl-verifier-inputs.py": {
+      "bytes": 10295,
+      "sha256": "72047818576ab27de02cf8e9620c33299c007b4c64108fb7c11a3c1d23e3ca0a"
+    },
+    "scripts/inspect-debian-source-chain.py": {
+      "bytes": 13032,
+      "sha256": "c6f18880b4f347467ad949ccf25b1960c7bef141e5b48f610ae93ab22479da2a"
+    }
+  },
+  "programs_executed": false,
+  "retention_manifest": {
+    "bytes": 31477,
+    "sha256": "3937d4570faa72ec359dbedf8fdc9c62aa5f26942cc08ee29d1a809e03a54ae9"
+  },
+  "rootfs_assembled": false,
+  "scope": "read-only version/path/loader smoke; writable key import profile is separate",
+  "source_acceptance": "not-assessed"
+}

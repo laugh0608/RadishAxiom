@@ -1,0 +1,67 @@
+{
+  "applications_started": false,
+  "containers_started": false,
+  "daemon": {
+    "ApiVersion": "1.54",
+    "Arch": "arm64",
+    "BuildTime": "2026-04-07T08:35:43.000000000+00:00",
+    "GitCommit": "daa0cb7f",
+    "GoVersion": "go1.26.1",
+    "KernelVersion": "7.0.11-orbstack-00360-gc9bc4d96ac70",
+    "MinAPIVersion": "1.40",
+    "Os": "linux",
+    "Version": "29.4.0",
+    "components": {
+      "containerd": "v2.2.2",
+      "docker-init": "0.19.0",
+      "runc": "1.4.2"
+    }
+  },
+  "daemon_query": {
+    "http_status": 200,
+    "method": "GET",
+    "path": "/version",
+    "recording": "selected fields transcribed from successful tool output; raw response not retained",
+    "retry": "authorized-outside-sandbox",
+    "sandbox_attempt": "PermissionError: [Errno 1] Operation not permitted",
+    "transport": "AF_UNIX"
+  },
+  "date": "2026-09-12",
+  "existing_socket": "/Users/luobo/.orbstack/run/docker.sock",
+  "host_architecture": "arm64",
+  "host_source_acceptance": "not-assessed",
+  "kind": "diagnostic-verifier-host-identity-observation",
+  "local_tools": {
+    "curl": {
+      "bytes": 551152,
+      "path": "/usr/bin/curl",
+      "sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3"
+    },
+    "docker_entry": {
+      "bytes": 72126112,
+      "path": "/Applications/OrbStack.app/Contents/MacOS/xbin/docker-tools",
+      "sha256": "c93921f27c941f7661e5478e8af4042e546b66e69707a2b43f31a86cfe9c85d2"
+    },
+    "llvm_objdump": {
+      "bytes": 18272848,
+      "path": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/llvm-objdump",
+      "sha256": "3cccdd0dad838d2130d7fc6237aa176c8c13a593a56b79c64fd980ddb89c670c"
+    },
+    "python": {
+      "bytes": 18053472,
+      "path": "/Users/luobo/.local/share/mise/installs/python/3.14.5/bin/python3.14",
+      "sha256": "c015ab131972822e27ed108cf353582af6ca2fd7daf6296789576c7e7d1ad61a"
+    }
+  },
+  "macos_version": "26.6.2",
+  "orbstack_bundle": {
+    "CFBundleIdentifier": "dev.kdrag0n.MacVirt",
+    "CFBundleShortVersionString": "2.2.1",
+    "CFBundleVersion": "20628"
+  },
+  "orbstack_info_plist": {
+    "bytes": 3756,
+    "sha256": "c5ebef152d6f4dcabe129198172887ca2c74f7eac0e1e42d245ce232e2da07e7"
+  },
+  "runtime_resource_capabilities_verified": false
+}

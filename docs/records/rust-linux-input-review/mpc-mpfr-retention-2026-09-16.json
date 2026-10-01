@@ -1,0 +1,28 @@
+{
+  "downloads_backup_updated": false,
+  "kind": "diagnostic-mpc-mpfr-retention-v1",
+  "pack": {
+    "file_count": 28,
+    "manifest": {
+      "bytes": 6875,
+      "sha256": "44b09c5f5f79404286731e7036f3f48c3439f9af4b153906b387a40c2645c11a"
+    },
+    "object_bytes": 2784702,
+    "object_count": 21,
+    "off_device_backup_verified": false,
+    "source_acceptance": "not-assessed"
+  },
+  "requires_prior_musl_store_for_full_replay": true,
+  "restore": {
+    "file_count": 28,
+    "manifest": {
+      "bytes": 6875,
+      "sha256": "44b09c5f5f79404286731e7036f3f48c3439f9af4b153906b387a40c2645c11a"
+    },
+    "object_count": 21,
+    "off_device_backup_verified": false,
+    "restored_bytes_match": true,
+    "source_acceptance": "not-assessed"
+  },
+  "store": "artifacts/source-inputs/mpc-mpfr-aa13d7c-20260916"
+}

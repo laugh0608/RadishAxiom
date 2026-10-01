@@ -1,0 +1,399 @@
+{
+  "comparison": {
+    "ordered_public_packets": [
+      {
+        "body": {
+          "bytes": 525,
+          "sha256": "080424baf09c98ccacc067664db837da77625602d0b3cfabd18714e7ce2fec78"
+        },
+        "tag": 6
+      },
+      {
+        "body": {
+          "bytes": 59,
+          "sha256": "24c68e316204a361cfe47652e8900a41346faec4dda173825841242c451feb2c"
+        },
+        "tag": 13
+      },
+      {
+        "body": {
+          "bytes": 568,
+          "sha256": "d4d9e4b0a1e54296cb3e62943a54890d6dc0c8e868672b9383afbad39ec67396"
+        },
+        "tag": 2
+      },
+      {
+        "body": {
+          "bytes": 525,
+          "sha256": "2a20dc24fb9a0d8e4c63e4fda5fc1e82f9d3a9d622006ac10c32b236d11b2490"
+        },
+        "tag": 14
+      },
+      {
+        "body": {
+          "bytes": 543,
+          "sha256": "7f6ef54dcb294923b232869d00d85951163b064b5701fa48bca873d63f91de46"
+        },
+        "tag": 2
+      }
+    ],
+    "public_packet_bodies_equal_to_previous": true,
+    "public_packet_encoding_equal_to_previous": false
+  },
+  "cryptography_executed": false,
+  "fetches": [
+    {
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "262144",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/binutils-key-refresh-383b570-20260925/savannah-release-attempt-1.asc",
+        "--write-out",
+        "%{http_code}\n",
+        "https://savannah.gnu.org/project/release-gpgkeys.php?group=binutils&download=1"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 7563,
+        "file": "savannah-release-attempt-1.asc",
+        "sha256": "13e67cc21fbd848f0c00c80fa78036b851f6f023e54483437dc75ed63ba1de20"
+      },
+      "curl": {
+        "bytes": 829680,
+        "sha256": "625cd93eb0043214d5f74974d34f0b4d748977473e236a2e7f4704ecc2b95950"
+      },
+      "exit_code": 0,
+      "finished_at": "2026-09-25T07:28:26.404902+00:00",
+      "http_code": "404",
+      "index_and_recipe_bytes_match": null,
+      "kind": "diagnostic-mpc-mpfr-fetch-v1",
+      "method": {
+        "bytes": 5126,
+        "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+      },
+      "parent_timeout": false,
+      "passed": false,
+      "source_acceptance": "not-assessed",
+      "started_at": "2026-09-25T07:28:24.292756+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "f8bf41177a5f5e808a7ccb648b51080b031f15ca8018d91a576263d6cc626eb6",
+        "text": "404\n"
+      },
+      "target": "savannah-release",
+      "transport_passed": false,
+      "url": "https://savannah.gnu.org/project/release-gpgkeys.php?group=binutils&download=1"
+    },
+    {
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "8388608",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/binutils-key-refresh-383b570-20260925/gnu-keyring-attempt-1.gpg",
+        "--write-out",
+        "%{http_code}\n",
+        "https://ftp.gnu.org/gnu/gnu-keyring.gpg"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 3687794,
+        "file": "gnu-keyring-attempt-1.gpg",
+        "sha256": "b136fbe57ade4ee5270ca66c402cae7b50349fd07646b5b3de7962d58d4df608"
+      },
+      "curl": {
+        "bytes": 829680,
+        "sha256": "625cd93eb0043214d5f74974d34f0b4d748977473e236a2e7f4704ecc2b95950"
+      },
+      "exit_code": 0,
+      "finished_at": "2026-09-25T07:28:29.685278+00:00",
+      "http_code": "200",
+      "index_and_recipe_bytes_match": null,
+      "kind": "diagnostic-mpc-mpfr-fetch-v1",
+      "method": {
+        "bytes": 5126,
+        "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+      },
+      "parent_timeout": false,
+      "passed": true,
+      "source_acceptance": "not-assessed",
+      "started_at": "2026-09-25T07:28:26.407799+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "gnu-keyring",
+      "transport_passed": true,
+      "url": "https://ftp.gnu.org/gnu/gnu-keyring.gpg"
+    }
+  ],
+  "kind": "diagnostic-binutils-key-refresh-v1",
+  "methods": {
+    "inspect-binutils-key-inputs.py": {
+      "bytes": 5172,
+      "sha256": "90ea112e7d003a4d3acd448b71ca2f46aef6ebbf59eaf2c6983bc304327c9810"
+    },
+    "inspect-binutils-key-refresh.py": {
+      "bytes": 7717,
+      "sha256": "240902dabd77bd1215d0bcb4ddc1da688a8ae2457478fcb7a376d1027ab792e7"
+    },
+    "inspect-mpc-mpfr-key-inputs.py": {
+      "bytes": 9064,
+      "sha256": "629cccc5fc59a91167fbeddbe73773e94774576ef7a904ae0f16b6aa7b5bdb53"
+    },
+    "inspect-musl-verification-keys.py": {
+      "bytes": 11967,
+      "sha256": "391c7e48b0792330135990e3358f5dad811d745c3010a30aad084c81e6e05ae4"
+    },
+    "inspect-musl-verification-status.py": {
+      "bytes": 7460,
+      "sha256": "b3964b6904c13c82596438af2ec8030455137c0121cfdc35ff3e77a79963e9fc"
+    },
+    "retain-musl-verifier-inputs.py": {
+      "bytes": 10295,
+      "sha256": "72047818576ab27de02cf8e9620c33299c007b4c64108fb7c11a3c1d23e3ca0a"
+    }
+  },
+  "new_strong_self_certification_found": false,
+  "previous_attachment": {
+    "bytes": 3106,
+    "sha256": "2cad260c1b933559858ef82943b72049af96426138a99c299f63fabda2a305b4"
+  },
+  "previous_inventory": {
+    "blocks": [
+      {
+        "declared_self_digest_counts": {
+          "2": 2
+        },
+        "keys": [
+          {
+            "algorithm": 1,
+            "created_epoch": 1505745349,
+            "fingerprint": "3A24BC1E8FB409FA9F14371813FCEF89DD9E3C4F",
+            "packet": {
+              "bytes": 525,
+              "sha256": "080424baf09c98ccacc067664db837da77625602d0b3cfabd18714e7ce2fec78"
+            },
+            "primary": true
+          },
+          {
+            "algorithm": 1,
+            "created_epoch": 1505745349,
+            "fingerprint": "DB07E960FE6E5D284CE41E4C141E0FE3342C4914",
+            "packet": {
+              "bytes": 525,
+              "sha256": "2a20dc24fb9a0d8e4c63e4fda5fc1e82f9d3a9d622006ac10c32b236d11b2490"
+            },
+            "primary": false
+          }
+        ],
+        "latest_uid_expiry_hints": [
+          {
+            "declared_key_expiry_utc": null,
+            "effective_validity_verified": false,
+            "latest_declared_created_epoch": 1505745349,
+            "subject": "uid:24c68e316204a361cfe47652e8900a41346faec4dda173825841242c451feb2c"
+          }
+        ],
+        "packet_count": 5,
+        "primary": "3A24BC1E8FB409FA9F14371813FCEF89DD9E3C4F",
+        "revocation_packet_classes": [],
+        "selected": true,
+        "signatures": [
+          {
+            "class": 19,
+            "cryptography_executed": false,
+            "declared_hashed_times": {
+              "created_epoch": 1505745349,
+              "key_expiry_seconds": null,
+              "signature_expiry_seconds": null
+            },
+            "declared_issuers": [
+              "13FCEF89DD9E3C4F"
+            ],
+            "declared_self_signature": true,
+            "digest_algorithm": 2,
+            "public_key_algorithm": 1,
+            "signature_body": {
+              "bytes": 568,
+              "sha256": "d4d9e4b0a1e54296cb3e62943a54890d6dc0c8e868672b9383afbad39ec67396"
+            },
+            "subject": "uid:24c68e316204a361cfe47652e8900a41346faec4dda173825841242c451feb2c"
+          },
+          {
+            "class": 24,
+            "cryptography_executed": false,
+            "declared_hashed_times": {
+              "created_epoch": 1505745349,
+              "key_expiry_seconds": null,
+              "signature_expiry_seconds": null
+            },
+            "declared_issuers": [
+              "13FCEF89DD9E3C4F"
+            ],
+            "declared_self_signature": true,
+            "digest_algorithm": 2,
+            "public_key_algorithm": 1,
+            "signature_body": {
+              "bytes": 543,
+              "sha256": "7f6ef54dcb294923b232869d00d85951163b064b5701fa48bca873d63f91de46"
+            },
+            "subject": "subkey:DB07E960FE6E5D284CE41E4C141E0FE3342C4914"
+          }
+        ],
+        "uid_count": 1
+      }
+    ],
+    "cryptography_executed": false,
+    "decoded": {
+      "bytes": 2234,
+      "sha256": "e58bd2ef610ee2c039562ba23cb8cb00d930c5372639e54eb431b495c0224b46"
+    },
+    "original": {
+      "bytes": 3106,
+      "sha256": "2cad260c1b933559858ef82943b72049af96426138a99c299f63fabda2a305b4"
+    },
+    "public_key_identity_accepted": false,
+    "selected_primary": "3A24BC1E8FB409FA9F14371813FCEF89DD9E3C4F",
+    "source_acceptance": "not-assessed"
+  },
+  "public_key_identity_accepted": false,
+  "savannah_key_obtained": false,
+  "selection": {
+    "packet_counts": {
+      "12": 13144,
+      "13": 1149,
+      "14": 778,
+      "17": 13,
+      "2": 11370,
+      "6": 612
+    },
+    "primary_count": 612,
+    "selected_packets": [
+      {
+        "bytes": 528,
+        "excluded_local_trust": false,
+        "offset": 2350221,
+        "packet": {
+          "bytes": 528,
+          "sha256": "11773807a5937eb1baa927e6ca2957978be237c4d91c3776d0e78287e0509b40"
+        },
+        "tag": 6
+      },
+      {
+        "bytes": 14,
+        "excluded_local_trust": true,
+        "offset": 2350749,
+        "packet": {
+          "bytes": 14,
+          "sha256": "3bcebe2d5106dc0402c537113a2d100048be1a208fc8b49fa6f0ec0797148bd8"
+        },
+        "tag": 12
+      },
+      {
+        "bytes": 61,
+        "excluded_local_trust": false,
+        "offset": 2350763,
+        "packet": {
+          "bytes": 61,
+          "sha256": "6584176261bd253fe3e7d494c75d6b8a24dfa6c21ea9aa5e54ddb612873c89dc"
+        },
+        "tag": 13
+      },
+      {
+        "bytes": 14,
+        "excluded_local_trust": true,
+        "offset": 2350824,
+        "packet": {
+          "bytes": 14,
+          "sha256": "acf34631294623a9908754d7e04f9f6a5df2a9ed43685aad2c813253d8b2fd19"
+        },
+        "tag": 12
+      },
+      {
+        "bytes": 571,
+        "excluded_local_trust": false,
+        "offset": 2350838,
+        "packet": {
+          "bytes": 571,
+          "sha256": "cf19d1340424354babc458ac6e9adc12ec8a078ac1f2cda32fb65f35372df5e6"
+        },
+        "tag": 2
+      },
+      {
+        "bytes": 8,
+        "excluded_local_trust": true,
+        "offset": 2351409,
+        "packet": {
+          "bytes": 8,
+          "sha256": "ad0ca359e60adf7353c0a8961eb0545e89b84d5ee07069e1fe24a606b413cacb"
+        },
+        "tag": 12
+      },
+      {
+        "bytes": 528,
+        "excluded_local_trust": false,
+        "offset": 2351417,
+        "packet": {
+          "bytes": 528,
+          "sha256": "2bebed7f78ba37b9998bb90246f92c7753f17d7e7989b7f89a6e9da916afaa51"
+        },
+        "tag": 14
+      },
+      {
+        "bytes": 546,
+        "excluded_local_trust": false,
+        "offset": 2351945,
+        "packet": {
+          "bytes": 546,
+          "sha256": "f6c49f1440851258e0d28e1661091f431e842565a133debcd47cfb52df533e4e"
+        },
+        "tag": 2
+      },
+      {
+        "bytes": 8,
+        "excluded_local_trust": true,
+        "offset": 2352491,
+        "packet": {
+          "bytes": 8,
+          "sha256": "ad0ca359e60adf7353c0a8961eb0545e89b84d5ee07069e1fe24a606b413cacb"
+        },
+        "tag": 12
+      }
+    ],
+    "selected_public": {
+      "bytes": 2234,
+      "sha256": "0c20cd3d5695a7c70f9de37e5b0694261d364dd317cdce3732ee2212ba53eea1"
+    },
+    "unrelated_key_semantics_checked": false
+  },
+  "source_acceptance": "not-assessed"
+}

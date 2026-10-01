@@ -1,0 +1,173 @@
+{
+  "files": [
+    {
+      "bytes": 213688,
+      "path": ".tmp/musl-cross-make-review-c38a1c1/musl-cross-make-3635262.tar.gz",
+      "role": "fixed-recipe-input",
+      "sha256": "60bed670d689d5c2164020960df36b80189dc5617e9763e023672f98a99d567e"
+    },
+    {
+      "bytes": 1630,
+      "path": ".tmp/musl-remaining-source-fetch-aa13d7c-20260916/mpc-attempt-1.json",
+      "role": "original-fetch-log",
+      "sha256": "ecc554f3b9d913ae0e299acd77ec3f04c5993cf73119bb1395b9e71b866ba44d"
+    },
+    {
+      "bytes": 91,
+      "path": ".tmp/musl-remaining-source-fetch-aa13d7c-20260916/mpc-attempt-1.stderr",
+      "role": "original-fetch-log",
+      "sha256": "7528e9de26551e1df6d26dcd70afd80588062ceafc5fa6eb5d2f1d9a2b313a60"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-remaining-source-fetch-aa13d7c-20260916/mpc-attempt-1.stdout",
+      "role": "original-fetch-log",
+      "sha256": "945e4893567554e68f6f28d5652917269341a5f3d295a16b7c708c9bfd95dc5d"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-remaining-source-fetch-aa13d7c-20260916/mpc-attempt-1.tar.gz",
+      "role": "original-fetch-body",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1539,
+      "path": ".tmp/musl-remaining-source-fetch-aa13d7c-20260916/mpc-attempt-2.json",
+      "role": "original-fetch-log",
+      "sha256": "3e8bda60bb5bd80544cf573c620354776d5c4c3d5173a7d44d5a464431182511"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-remaining-source-fetch-aa13d7c-20260916/mpc-attempt-2.stderr",
+      "role": "original-fetch-log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-remaining-source-fetch-aa13d7c-20260916/mpc-attempt-2.stdout",
+      "role": "original-fetch-log",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 773573,
+      "path": ".tmp/musl-remaining-source-fetch-aa13d7c-20260916/mpc-attempt-2.tar.gz",
+      "role": "original-fetch-body",
+      "sha256": "ab642492f5cf882b74aa0cb730cd410a81edcdbec895183ce930e706c1c759b8"
+    },
+    {
+      "bytes": 1567,
+      "path": ".tmp/musl-remaining-source-fetch-aa13d7c-20260916/mpc-signature-attempt-1.json",
+      "role": "original-fetch-log",
+      "sha256": "caf81b503ba3cb81ae6ce80c4d9e832ceb10c121018da1e4e4fbe8e656818f95"
+    },
+    {
+      "bytes": 119,
+      "path": ".tmp/musl-remaining-source-fetch-aa13d7c-20260916/mpc-signature-attempt-1.sig",
+      "role": "original-fetch-body",
+      "sha256": "1e34f97870c82ba4ba3e96e3f134906e3d1a43b88ed52061bf1b44f3b6ed1991"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-remaining-source-fetch-aa13d7c-20260916/mpc-signature-attempt-1.stderr",
+      "role": "original-fetch-log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-remaining-source-fetch-aa13d7c-20260916/mpc-signature-attempt-1.stdout",
+      "role": "original-fetch-log",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 1528,
+      "path": ".tmp/musl-remaining-source-fetch-aa13d7c-20260916/mpfr-attempt-1.json",
+      "role": "original-fetch-log",
+      "sha256": "882b5f246ea72e5040f6dcad8bb9ce74c7bc796a52829bbd74fa3aa868ad4cf7"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-remaining-source-fetch-aa13d7c-20260916/mpfr-attempt-1.stderr",
+      "role": "original-fetch-log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-remaining-source-fetch-aa13d7c-20260916/mpfr-attempt-1.stdout",
+      "role": "original-fetch-log",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 1505596,
+      "path": ".tmp/musl-remaining-source-fetch-aa13d7c-20260916/mpfr-attempt-1.tar.xz",
+      "role": "original-fetch-body",
+      "sha256": "b67ba0383ef7e8a8563734e2e889ef5ec3c3b898a01d00fa0a6869ad81c6ce01"
+    },
+    {
+      "bytes": 228,
+      "path": ".tmp/musl-remaining-source-fetch-aa13d7c-20260916/mpfr-signature-attempt-1.asc",
+      "role": "original-fetch-body",
+      "sha256": "c6264c9a3652bc40775205ce90e7c96cea5058629e2e68f9eede5d8213f23ee6"
+    },
+    {
+      "bytes": 1554,
+      "path": ".tmp/musl-remaining-source-fetch-aa13d7c-20260916/mpfr-signature-attempt-1.json",
+      "role": "original-fetch-log",
+      "sha256": "698ae98e7068f48fd9a346c2b8777f49fa9cadbf94a6a49ec557210820540454"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/musl-remaining-source-fetch-aa13d7c-20260916/mpfr-signature-attempt-1.stderr",
+      "role": "original-fetch-log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/musl-remaining-source-fetch-aa13d7c-20260916/mpfr-signature-attempt-1.stdout",
+      "role": "original-fetch-log",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 6298,
+      "path": "docs/records/rust-linux-input-review/check-mpc-mpfr-inputs.py",
+      "role": "method-or-observation",
+      "sha256": "a4cf099233955280a3f75875b7c357f94b71b195133435b578792cefa66930d8"
+    },
+    {
+      "bytes": 5126,
+      "path": "docs/records/rust-linux-input-review/fetch-mpc-mpfr-inputs.py",
+      "role": "method-or-observation",
+      "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+    },
+    {
+      "bytes": 8833,
+      "path": "docs/records/rust-linux-input-review/inspect-mpc-mpfr-inputs.py",
+      "role": "method-or-observation",
+      "sha256": "da04e90b29504c102798d9a29a558d4d6c77e5956734b8a8cab4d1cbaf8d8e98"
+    },
+    {
+      "bytes": 4194,
+      "path": "docs/records/rust-linux-input-review/inspect-musl-remaining-sources.py",
+      "role": "method-or-observation",
+      "sha256": "37a1c7dcb6a3a817581f7d0c533625e9154a84f8a7089c10aab383dc7e718b8e"
+    },
+    {
+      "bytes": 190133,
+      "path": "docs/records/rust-linux-input-review/mpc-mpfr-inputs-2026-09-16.json",
+      "role": "method-or-observation",
+      "sha256": "a1869a7ee435aa05a7f26c568d0219b871cf9aab04839341cadac7e1fb54b9e8"
+    },
+    {
+      "bytes": 60345,
+      "path": "docs/records/rust-linux-input-review/musl-cross-make-inventory-2026-09-10.json",
+      "role": "method-or-observation",
+      "sha256": "ffdafa6f0c253430683ed9b612fb24332179eb6fdb44933d36bf4b914dfea71a"
+    },
+    {
+      "bytes": 8652,
+      "path": "docs/records/rust-linux-input-review/musl-remaining-sources-2026-09-16.json",
+      "role": "method-or-observation",
+      "sha256": "0ac0a7b8742f58e9b2a6abd5281c2e322ceb1697c9a1ccbf10e4d818277c4822"
+    }
+  ],
+  "kind": "diagnostic-musl-retention-manifest-v1"
+}

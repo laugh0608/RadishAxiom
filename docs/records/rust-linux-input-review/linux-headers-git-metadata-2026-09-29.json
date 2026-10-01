@@ -1,0 +1,299 @@
+{
+  "additional_urls_followed": false,
+  "cryptography_executed": false,
+  "declarations": {
+    "annotated_tag_object_supplied": false,
+    "author_date_declaration": "2019-12-13T03:48:06Z",
+    "commit": "fefadd9e4e093f776cd14ee3685a80eb4ca000f4",
+    "committer_date_declaration": "2019-12-13T03:48:06Z",
+    "github_verification_declaration": {
+      "payload": null,
+      "reason": "unsigned",
+      "signature": null,
+      "verified": false,
+      "verified_at": null
+    },
+    "message": "Update version in README",
+    "original_git_objects_reconstructed": false,
+    "parents": [
+      "5cd300037eefe78412a9786097d8f913ea6cfd86"
+    ],
+    "ref": "refs/tags/v4.19.88",
+    "ref_object_type": "commit",
+    "signature_material_available": false,
+    "signature_verified": false,
+    "source_acceptance": "not-assessed",
+    "tree": "5c2c118c724ac90d4bd52d26f34ffa0868dd7cf9"
+  },
+  "invocations": [
+    {
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "65536",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/linux-headers-git-metadata-84bd6f8-20260929/tag-ref-attempt-1.json.body",
+        "--write-out",
+        "%{http_code}\n",
+        "https://api.github.com/repos/sabotage-linux/kernel-headers/git/ref/tags/v4.19.88"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 0,
+        "file": "tag-ref-attempt-1.json.body",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "curl": {
+        "bytes": 829680,
+        "sha256": "625cd93eb0043214d5f74974d34f0b4d748977473e236a2e7f4704ecc2b95950"
+      },
+      "exit_code": 7,
+      "finished_at": "2026-09-29T12:43:02.656430+00:00",
+      "http_code": "000",
+      "index_and_recipe_bytes_match": null,
+      "kind": "diagnostic-mpc-mpfr-fetch-v1",
+      "method": {
+        "bytes": 5126,
+        "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+      },
+      "parent_timeout": false,
+      "passed": false,
+      "source_acceptance": "not-assessed",
+      "started_at": "2026-09-29T12:43:02.635559+00:00",
+      "stderr": {
+        "bytes": 91,
+        "sha256": "7528e9de26551e1df6d26dcd70afd80588062ceafc5fa6eb5d2f1d9a2b313a60",
+        "text": "curl: (7) Failed to connect to 127.0.0.1 port 10808 after 0 ms: Couldn't connect to server\n"
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "945e4893567554e68f6f28d5652917269341a5f3d295a16b7c708c9bfd95dc5d",
+        "text": "000\n"
+      },
+      "target": "tag-ref",
+      "transport_passed": false,
+      "url": "https://api.github.com/repos/sabotage-linux/kernel-headers/git/ref/tags/v4.19.88"
+    },
+    {
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "65536",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/linux-headers-git-metadata-84bd6f8-20260929/tag-ref-attempt-2.json.body",
+        "--write-out",
+        "%{http_code}\n",
+        "https://api.github.com/repos/sabotage-linux/kernel-headers/git/ref/tags/v4.19.88"
+      ],
+      "attempt": 2,
+      "body": {
+        "bytes": 410,
+        "file": "tag-ref-attempt-2.json.body",
+        "sha256": "e03c1e27b167f7756eee46934dbd44fced50b8e9a078a1ea0cf1c1fd08a4950a"
+      },
+      "curl": {
+        "bytes": 829680,
+        "sha256": "625cd93eb0043214d5f74974d34f0b4d748977473e236a2e7f4704ecc2b95950"
+      },
+      "exit_code": 0,
+      "finished_at": "2026-09-29T12:44:30.451656+00:00",
+      "http_code": "200",
+      "index_and_recipe_bytes_match": null,
+      "kind": "diagnostic-mpc-mpfr-fetch-v1",
+      "method": {
+        "bytes": 5126,
+        "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+      },
+      "parent_timeout": false,
+      "passed": true,
+      "source_acceptance": "not-assessed",
+      "started_at": "2026-09-29T12:44:28.562642+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "tag-ref",
+      "transport_passed": true,
+      "url": "https://api.github.com/repos/sabotage-linux/kernel-headers/git/ref/tags/v4.19.88"
+    },
+    {
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "262144",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/linux-headers-git-metadata-84bd6f8-20260929/commit-attempt-1.json.body",
+        "--write-out",
+        "%{http_code}\n",
+        "https://api.github.com/repos/sabotage-linux/kernel-headers/git/commits/fefadd9e4e093f776cd14ee3685a80eb4ca000f4"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 0,
+        "file": "commit-attempt-1.json.body",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "curl": {
+        "bytes": 829680,
+        "sha256": "625cd93eb0043214d5f74974d34f0b4d748977473e236a2e7f4704ecc2b95950"
+      },
+      "exit_code": 7,
+      "finished_at": "2026-09-29T12:43:02.667791+00:00",
+      "http_code": "000",
+      "index_and_recipe_bytes_match": null,
+      "kind": "diagnostic-mpc-mpfr-fetch-v1",
+      "method": {
+        "bytes": 5126,
+        "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+      },
+      "parent_timeout": false,
+      "passed": false,
+      "source_acceptance": "not-assessed",
+      "started_at": "2026-09-29T12:43:02.657258+00:00",
+      "stderr": {
+        "bytes": 91,
+        "sha256": "7528e9de26551e1df6d26dcd70afd80588062ceafc5fa6eb5d2f1d9a2b313a60",
+        "text": "curl: (7) Failed to connect to 127.0.0.1 port 10808 after 0 ms: Couldn't connect to server\n"
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "945e4893567554e68f6f28d5652917269341a5f3d295a16b7c708c9bfd95dc5d",
+        "text": "000\n"
+      },
+      "target": "commit",
+      "transport_passed": false,
+      "url": "https://api.github.com/repos/sabotage-linux/kernel-headers/git/commits/fefadd9e4e093f776cd14ee3685a80eb4ca000f4"
+    },
+    {
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "262144",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/linux-headers-git-metadata-84bd6f8-20260929/commit-attempt-2.json.body",
+        "--write-out",
+        "%{http_code}\n",
+        "https://api.github.com/repos/sabotage-linux/kernel-headers/git/commits/fefadd9e4e093f776cd14ee3685a80eb4ca000f4"
+      ],
+      "attempt": 2,
+      "body": {
+        "bytes": 1346,
+        "file": "commit-attempt-2.json.body",
+        "sha256": "7618b00fef4319d0b3fbff278352109c98a4fb0f6d64e0e3bc461bd42a5960ff"
+      },
+      "curl": {
+        "bytes": 829680,
+        "sha256": "625cd93eb0043214d5f74974d34f0b4d748977473e236a2e7f4704ecc2b95950"
+      },
+      "exit_code": 0,
+      "finished_at": "2026-09-29T12:44:31.918544+00:00",
+      "http_code": "200",
+      "index_and_recipe_bytes_match": null,
+      "kind": "diagnostic-mpc-mpfr-fetch-v1",
+      "method": {
+        "bytes": 5126,
+        "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+      },
+      "parent_timeout": false,
+      "passed": true,
+      "source_acceptance": "not-assessed",
+      "started_at": "2026-09-29T12:44:30.453086+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "commit",
+      "transport_passed": true,
+      "url": "https://api.github.com/repos/sabotage-linux/kernel-headers/git/commits/fefadd9e4e093f776cd14ee3685a80eb4ca000f4"
+    }
+  ],
+  "kind": "diagnostic-linux-headers-git-metadata-v1",
+  "method": {
+    "bytes": 5317,
+    "sha256": "1510d7f0a2330517f8edf6104256a046a58c5a7b52700dbad86eb47cf6e4c2c1"
+  },
+  "plan": {
+    "attempts_per_target": 1,
+    "automatic_retry": false,
+    "commit": "fefadd9e4e093f776cd14ee3685a80eb4ca000f4",
+    "credentials": false,
+    "curl_timeout_seconds": 60,
+    "directory": "/Users/luobo/Code/RadishAxiom/.tmp/linux-headers-git-metadata-84bd6f8-20260929",
+    "executed": false,
+    "kind": "diagnostic-linux-headers-git-metadata-plan-v1",
+    "method": {
+      "bytes": 5126,
+      "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+    },
+    "parent_timeout_seconds_per_request": 65,
+    "previous_tags_input": {
+      "bytes": 9809,
+      "sha256": "188e3bc305d86b6d42db63ba0d2da1aa43b78f43494a40e0e5c01ece76b636bd"
+    },
+    "redirects": false,
+    "requests": 2,
+    "routing_method": {
+      "bytes": 2290,
+      "sha256": "3c2dafe242d3b50afea4b6a61401585e2a396c3c7861c90dd8baa581048b0777"
+    },
+    "scope": "GitHub ref/commit declarations only; returned URLs are never followed; no signature verification",
+    "tag": "v4.19.88",
+    "targets": {
+      "commit": {
+        "limit": 262144,
+        "suffix": "json.body",
+        "url": "https://api.github.com/repos/sabotage-linux/kernel-headers/git/commits/fefadd9e4e093f776cd14ee3685a80eb4ca000f4"
+      },
+      "tag-ref": {
+        "limit": 65536,
+        "suffix": "json.body",
+        "url": "https://api.github.com/repos/sabotage-linux/kernel-headers/git/ref/tags/v4.19.88"
+      }
+    }
+  },
+  "source_acceptance": "not-assessed"
+}

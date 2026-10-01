@@ -1,0 +1,61 @@
+{
+  "candidate_assessment": {
+    "assessment_profile": "gmp-certification-expiry-v3-offline-candidate",
+    "cryptography_executed_by_parser": false,
+    "current_key_state": "expired",
+    "declared_signature_time_in_selected_interval": true,
+    "detached_signature_checked": false,
+    "historical_validity": "not-established",
+    "key_expiry_status_records": 3,
+    "listed_effective_expiry": {
+      "pub": 1736961163,
+      "sub": 1736961163
+    },
+    "packet_declared_expiry": {
+      "pub": 1736961163,
+      "sub": 1736961679,
+      "uid": 1736961163
+    },
+    "primary": "343C2FF0FBEE5EC2EDBEF399F3599FF828C67298",
+    "result": "fixed-certification-output-matches-offline-candidate",
+    "self_certifications": 2,
+    "source_acceptance": "not-assessed",
+    "status_records": 4
+  },
+  "candidate_method": {
+    "bytes": 6859,
+    "sha256": "8cd4b68930e3f692a53c7a494412394d818f6a37412b8aee565b3de8eb889c1f"
+  },
+  "execution_entry_prepared": false,
+  "historical_assessment_passed": false,
+  "historical_bundle": {
+    "bytes": 6101428,
+    "sha256": "495ce3fb361747d09626f1eb0c55f0386a4a0e08f53a6901ecdd08d410e794a7"
+  },
+  "historical_rejections": {
+    "binding_declared_subkey_expiry": 1736961679,
+    "complete_certification_assessment_passed": false,
+    "detached_signature_checked": false,
+    "expiry_difference_seconds": 516,
+    "expiry_listing_semantics": "requires-separate-tool-semantics-review",
+    "historical_validity": "not-established",
+    "key_expiry_status_records": 3,
+    "listed_subkey_expiry": 1736961163,
+    "profile_failure_reproduced": "fixed certification status mismatch",
+    "separate_colon_failure_reproduced": "expected explicit expired key and exact expiry",
+    "source_acceptance": "not-assessed",
+    "tool_sig_bang_records_observed": 2
+  },
+  "historical_result": {
+    "bytes": 62201,
+    "sha256": "1e3a403d764bd5390d31d1fb8d1370de62c73c4f14c047b2daf7f8a28d74c92a"
+  },
+  "historical_validity": "not-established",
+  "kind": "diagnostic-gmp-certification-v3-offline-review",
+  "new_cryptography_executed": false,
+  "source_acceptance": "not-assessed",
+  "tool_source_inventory": {
+    "bytes": 81938,
+    "sha256": "4353f860d766b28fc353020672a40c6869df4a4142d48b837eef57e189ca3cf9"
+  }
+}

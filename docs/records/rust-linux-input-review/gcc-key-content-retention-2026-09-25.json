@@ -1,0 +1,31 @@
+{
+  "content_report_replay_equal": true,
+  "content_summary_replay_equal": true,
+  "key_report_replay_equal": true,
+  "kind": "diagnostic-gcc-key-content-retention-v1",
+  "large_archive_from_previous_restoration": ".tmp/gcc-inputs-restore-20260925/.tmp/gcc-inputs-dac0405-20260925/gcc-attempt-2.tar.xz",
+  "off_device_backup_verified": false,
+  "packed": {
+    "file_count": 39,
+    "manifest": {
+      "bytes": 9968,
+      "sha256": "4a05cfcf6b4a88153b719d08fcdb8ee78555b5b737b204a97dd689ca0e034ff5"
+    },
+    "object_bytes": 8761821,
+    "object_count": 35,
+    "off_device_backup_verified": false,
+    "source_acceptance": "not-assessed"
+  },
+  "restored": {
+    "file_count": 39,
+    "manifest": {
+      "bytes": 9968,
+      "sha256": "4a05cfcf6b4a88153b719d08fcdb8ee78555b5b737b204a97dd689ca0e034ff5"
+    },
+    "object_count": 35,
+    "off_device_backup_verified": false,
+    "restored_bytes_match": true,
+    "source_acceptance": "not-assessed"
+  },
+  "selected_text_replay_equal": true
+}

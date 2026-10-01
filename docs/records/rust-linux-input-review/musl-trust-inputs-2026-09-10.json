@@ -1,0 +1,337 @@
+{
+  "acceptance": "not-assessed",
+  "copyright": {
+    "bytes": 1243,
+    "path": "usr/share/doc/debian-archive-keyring/copyright",
+    "sha256": "b32aecaae84643700a33bc9ee83fa9b36938d35aa7b61b5042092eca77ddb732"
+  },
+  "keyring": {
+    "bytes": 55918,
+    "historical_record": {
+      "bytes": 228352,
+      "sha256": "bd36e788d0f0262dbbfb23dbaa445ff9435a053ee9ccc98264c7b9a26d80c30a"
+    },
+    "matches_historical_bytes": true,
+    "path": "usr/share/keyrings/debian-archive-keyring.gpg",
+    "sha256": "506b815cbb32d9b6066b4a2aa524071e071761e7e7f68c3ac74f3061ba852017"
+  },
+  "kind": "diagnostic-musl-trust-input-review",
+  "methods": {
+    "docs/records/rust-linux-input-review/inspect-musl-trust-inputs.py": {
+      "bytes": 7472,
+      "sha256": "cd2cc429a4337b02e513ddbb9385eadccefed1461732a0a92f595ef0bb2b8878"
+    },
+    "scripts/inspect-debian-source-chain.py": {
+      "bytes": 13032,
+      "sha256": "c6f18880b4f347467ad949ccf25b1960c7bef141e5b48f610ae93ab22479da2a"
+    }
+  },
+  "package": {
+    "ar": {
+      "control.tar.xz": {
+        "bytes": 1736,
+        "sha256": "59fb5787c4aadc068636d302b65033487c4e79052909d23b24d776526b5e994e"
+      },
+      "data.tar.xz": {
+        "bytes": 176644,
+        "sha256": "4310e25564d64efbd08516472856c12a4ec92333fffffee8123a53ce636d6fee"
+      },
+      "debian-binary": {
+        "bytes": 4,
+        "sha256": "d526eb4e878a23ef26ae190031b4efd2d58ed66789ac049ea3dbaf74c9df7402"
+      }
+    },
+    "bytes": 178572,
+    "control": {
+      "architecture": "all",
+      "description": "GnuPG archive keys of the Debian archive\nThe Debian project digitally signs its Release files. This package\ncontains the archive keys used for that.",
+      "installed-size": "293",
+      "maintainer": "Debian Release Team <packages@release.debian.org>",
+      "multi-arch": "foreign",
+      "package": "debian-archive-keyring",
+      "priority": "important",
+      "section": "misc",
+      "version": "2023.3+deb12u2"
+    },
+    "control_inventory": [
+      {
+        "mode": 493,
+        "path": ".",
+        "type": "directory"
+      },
+      {
+        "bytes": 561,
+        "mode": 420,
+        "path": "conffiles",
+        "sha256": "f77c61e84488ef7a515812ba55012286aff19f2e702d082989a514a3b9712d0c",
+        "type": "file"
+      },
+      {
+        "bytes": 374,
+        "mode": 420,
+        "path": "control",
+        "sha256": "c18d9895a0b96e6b653ae7b82cf1917aaf8c6bab59fccb00fc8d9a70ff420f8b",
+        "type": "file"
+      },
+      {
+        "bytes": 1239,
+        "mode": 420,
+        "path": "md5sums",
+        "sha256": "0a3264bd31e27b63c8bfe93f8f9163081c14cb34c3b4db0ea93581ef4cfdee3e",
+        "type": "file"
+      },
+      {
+        "bytes": 3297,
+        "mode": 493,
+        "path": "postinst",
+        "sha256": "bf2c3d594623e16b440d8a80eb4a6badffc085d47b51b8a6b20408dee3de476d",
+        "type": "file"
+      },
+      {
+        "bytes": 2796,
+        "mode": 493,
+        "path": "postrm",
+        "sha256": "c01acc31affa14ddf7f0f7aa6d7150db4488c790135765f5ca64c63923b9e630",
+        "type": "file"
+      },
+      {
+        "bytes": 2680,
+        "mode": 493,
+        "path": "preinst",
+        "sha256": "e1e98cd3f11c0443681ec347f34763582ec16fee9d9f393e4d4f54aad131694b",
+        "type": "file"
+      },
+      {
+        "bytes": 2680,
+        "mode": 493,
+        "path": "prerm",
+        "sha256": "e1e98cd3f11c0443681ec347f34763582ec16fee9d9f393e4d4f54aad131694b",
+        "type": "file"
+      }
+    ],
+    "data_inventory": [
+      {
+        "mode": 493,
+        "path": ".",
+        "type": "directory"
+      },
+      {
+        "mode": 493,
+        "path": "etc",
+        "type": "directory"
+      },
+      {
+        "mode": 493,
+        "path": "etc/apt",
+        "type": "directory"
+      },
+      {
+        "mode": 493,
+        "path": "etc/apt/trusted.gpg.d",
+        "type": "directory"
+      },
+      {
+        "bytes": 11861,
+        "mode": 420,
+        "path": "etc/apt/trusted.gpg.d/debian-archive-bookworm-automatic.asc",
+        "sha256": "c2a9a16fde95e037bafd0fa6b7e31f41b4ff1e85851de5558f19a2a2f0e955e2",
+        "type": "file"
+      },
+      {
+        "bytes": 11873,
+        "mode": 420,
+        "path": "etc/apt/trusted.gpg.d/debian-archive-bookworm-security-automatic.asc",
+        "sha256": "74f81645b4e3156d1e9a88c8dd9259271b89c7099d64af89a2a6996b592faa1f",
+        "type": "file"
+      },
+      {
+        "bytes": 461,
+        "mode": 420,
+        "path": "etc/apt/trusted.gpg.d/debian-archive-bookworm-stable.asc",
+        "sha256": "521e9f6a9f9b92ee8d5ce74345e8cfd04028dae9db6f571259d584b293549824",
+        "type": "file"
+      },
+      {
+        "bytes": 11861,
+        "mode": 420,
+        "path": "etc/apt/trusted.gpg.d/debian-archive-bullseye-automatic.asc",
+        "sha256": "0b7dc94b880f0b63e2093394b113cafd870badb86e020a35614f49b9d83beb1e",
+        "type": "file"
+      },
+      {
+        "bytes": 11873,
+        "mode": 420,
+        "path": "etc/apt/trusted.gpg.d/debian-archive-bullseye-security-automatic.asc",
+        "sha256": "716e79393c724d14ecba8be46e99ecbe1b689f67ceff3cb3cab28f6e69e8b8b8",
+        "type": "file"
+      },
+      {
+        "bytes": 3403,
+        "mode": 420,
+        "path": "etc/apt/trusted.gpg.d/debian-archive-bullseye-stable.asc",
+        "sha256": "fb260ce8521a2faa4937d98a29a5347807e10614b97d510fbabe5480c803bda9",
+        "type": "file"
+      },
+      {
+        "bytes": 11861,
+        "mode": 420,
+        "path": "etc/apt/trusted.gpg.d/debian-archive-trixie-automatic.asc",
+        "sha256": "6f1d277429dd7ffedcc6f8688a7ad9a458859b1139ffa026d1eeaadcbffb0da7",
+        "type": "file"
+      },
+      {
+        "bytes": 11873,
+        "mode": 420,
+        "path": "etc/apt/trusted.gpg.d/debian-archive-trixie-security-automatic.asc",
+        "sha256": "844c07d242db37f283afab9d5531270a0550841e90f9f1a9c3bd599722b808b7",
+        "type": "file"
+      },
+      {
+        "bytes": 1384,
+        "mode": 420,
+        "path": "etc/apt/trusted.gpg.d/debian-archive-trixie-stable.asc",
+        "sha256": "4d097bb93f83d731f475c5b92a0c2fcf108cfce1d4932792fca72d00b48d198b",
+        "type": "file"
+      },
+      {
+        "mode": 493,
+        "path": "usr",
+        "type": "directory"
+      },
+      {
+        "mode": 493,
+        "path": "usr/share",
+        "type": "directory"
+      },
+      {
+        "mode": 493,
+        "path": "usr/share/doc",
+        "type": "directory"
+      },
+      {
+        "mode": 493,
+        "path": "usr/share/doc/debian-archive-keyring",
+        "type": "directory"
+      },
+      {
+        "bytes": 1091,
+        "mode": 420,
+        "path": "usr/share/doc/debian-archive-keyring/README",
+        "sha256": "a697d7e7a51ba3c6d09cd9a4121c3c9dbec16d3f4a989c90c3de8d27c923deb0",
+        "type": "file"
+      },
+      {
+        "bytes": 936,
+        "mode": 420,
+        "path": "usr/share/doc/debian-archive-keyring/changelog.gz",
+        "sha256": "45eb3b3de9e539cc2404939bd612fb1d22b923f4e2202d3647002461b4435c21",
+        "type": "file"
+      },
+      {
+        "bytes": 1243,
+        "mode": 420,
+        "path": "usr/share/doc/debian-archive-keyring/copyright",
+        "sha256": "b32aecaae84643700a33bc9ee83fa9b36938d35aa7b61b5042092eca77ddb732",
+        "type": "file"
+      },
+      {
+        "mode": 493,
+        "path": "usr/share/keyrings",
+        "type": "directory"
+      },
+      {
+        "bytes": 8700,
+        "mode": 420,
+        "path": "usr/share/keyrings/debian-archive-bookworm-automatic.gpg",
+        "sha256": "59dbde1397f8edc4e4aa24829ba36f9583ea5b4480091c34b89dad9e56360a19",
+        "type": "file"
+      },
+      {
+        "bytes": 8709,
+        "mode": 420,
+        "path": "usr/share/keyrings/debian-archive-bookworm-security-automatic.gpg",
+        "sha256": "8bdddebd345030721f22d0f6a7291a4791a2183621bd444cc6a683d7ade73a6e",
+        "type": "file"
+      },
+      {
+        "bytes": 280,
+        "mode": 420,
+        "path": "usr/share/keyrings/debian-archive-bookworm-stable.gpg",
+        "sha256": "1891e84fa2e1ff6db0acfbc0e398824379b415534dd0154ecb1d21e70fe2ac62",
+        "type": "file"
+      },
+      {
+        "bytes": 8700,
+        "mode": 420,
+        "path": "usr/share/keyrings/debian-archive-bullseye-automatic.gpg",
+        "sha256": "9395df01c1c6226584206a77d237c60fdc7039a015ece4e6bd3b1947db6c3b1e",
+        "type": "file"
+      },
+      {
+        "bytes": 8709,
+        "mode": 420,
+        "path": "usr/share/keyrings/debian-archive-bullseye-security-automatic.gpg",
+        "sha256": "e551f90fa954a65b3b6c54160f9d8485bee806318afe7a6998c4d9bece8e0df3",
+        "type": "file"
+      },
+      {
+        "bytes": 2453,
+        "mode": 420,
+        "path": "usr/share/keyrings/debian-archive-bullseye-stable.gpg",
+        "sha256": "0cdd043ff2e04448802488fd4a4e3812c298a1ab5d81374ea9a9693a274cef8c",
+        "type": "file"
+      },
+      {
+        "bytes": 55918,
+        "mode": 420,
+        "path": "usr/share/keyrings/debian-archive-keyring.gpg",
+        "sha256": "506b815cbb32d9b6066b4a2aa524071e071761e7e7f68c3ac74f3061ba852017",
+        "type": "file"
+      },
+      {
+        "bytes": 72636,
+        "mode": 420,
+        "path": "usr/share/keyrings/debian-archive-removed-keys.gpg",
+        "sha256": "0ff45da93c7fd62cc3f10b4c5019985caf49e5959bb3bf992f558d11963870fa",
+        "type": "file"
+      },
+      {
+        "bytes": 8698,
+        "mode": 420,
+        "path": "usr/share/keyrings/debian-archive-trixie-automatic.gpg",
+        "sha256": "8dbd0029697f8c9b009eeb9a153c6536b62ca031fa0a5b4cec74e8d718fccef6",
+        "type": "file"
+      },
+      {
+        "bytes": 8707,
+        "mode": 420,
+        "path": "usr/share/keyrings/debian-archive-trixie-security-automatic.gpg",
+        "sha256": "be1a7981908ab9010352131fcbf101a9556f6a61db76a19a1c146d31ef2d72d8",
+        "type": "file"
+      },
+      {
+        "bytes": 962,
+        "mode": 420,
+        "path": "usr/share/keyrings/debian-archive-trixie-stable.gpg",
+        "sha256": "abced156a22aa8683b228299ac35c1ea51515eef900cec0e562f56716dfe3915",
+        "type": "file"
+      }
+    ],
+    "sha256": "f699e2f88dca05212f2a452b58475f2993cb6993dfbafb1d0205a3291eb8b4b8"
+  },
+  "page": {
+    "bytes": 10718,
+    "linked_but_not_fetched": [
+      "https://ftp-master.debian.org/keys/archive-key-13.asc",
+      "https://ftp-master.debian.org/keys/release-13.asc",
+      "https://lists.debian.org/debian-devel-announce/2025/04/msg00001.html"
+    ],
+    "required_fingerprints_present": [
+      "04B54C3CDCA79751B16BC6B5225629DF75B188BD",
+      "41587F7DB8C774BCCF131416762F67A0B2C39DE4"
+    ],
+    "sha256": "b271f4c351a3b54f6a6be9667bb834809d12ee514055b903ccb06839d274e3e0"
+  },
+  "signature_reverified": false,
+  "tools_provenance_accepted": false
+}

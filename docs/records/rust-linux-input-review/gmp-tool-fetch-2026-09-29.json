@@ -1,0 +1,296 @@
+{
+  "invocations": [
+    {
+      "source_index_bytes_match": true,
+      "transport": {
+        "argv": [
+          "/usr/bin/curl",
+          "--disable",
+          "--silent",
+          "--show-error",
+          "--proto",
+          "=https",
+          "--tlsv1.2",
+          "--max-time",
+          "60",
+          "--max-filesize",
+          "4933",
+          "--output",
+          "/Users/luobo/Code/RadishAxiom/.tmp/gmp-tool-semantics-3e28608-20260929/gnupg2_2.4.7-21+deb13u1.dsc-attempt-1.body",
+          "--write-out",
+          "%{http_code}\n",
+          "https://deb.debian.org/debian/pool/main/g/gnupg2/gnupg2_2.4.7-21+deb13u1.dsc"
+        ],
+        "attempt": 1,
+        "body": {
+          "bytes": 4933,
+          "file": "gnupg2_2.4.7-21+deb13u1.dsc-attempt-1.body",
+          "sha256": "30a96cd2d26a57f6796507bf8f083825734d4081e3c5f922d2b99bb2bf671212"
+        },
+        "curl": {
+          "bytes": 829680,
+          "sha256": "625cd93eb0043214d5f74974d34f0b4d748977473e236a2e7f4704ecc2b95950"
+        },
+        "exit_code": 0,
+        "finished_at": "2026-09-29T11:36:36.731918+00:00",
+        "http_code": "200",
+        "index_and_recipe_bytes_match": null,
+        "kind": "diagnostic-mpc-mpfr-fetch-v1",
+        "method": {
+          "bytes": 5126,
+          "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+        },
+        "parent_timeout": false,
+        "passed": true,
+        "source_acceptance": "not-assessed",
+        "started_at": "2026-09-29T11:36:35.784946+00:00",
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": ""
+        },
+        "stdout": {
+          "bytes": 4,
+          "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+          "text": "200\n"
+        },
+        "target": "gnupg2_2.4.7-21+deb13u1.dsc",
+        "transport_passed": true,
+        "url": "https://deb.debian.org/debian/pool/main/g/gnupg2/gnupg2_2.4.7-21+deb13u1.dsc"
+      }
+    },
+    {
+      "source_index_bytes_match": true,
+      "transport": {
+        "argv": [
+          "/usr/bin/curl",
+          "--disable",
+          "--silent",
+          "--show-error",
+          "--proto",
+          "=https",
+          "--tlsv1.2",
+          "--max-time",
+          "60",
+          "--max-filesize",
+          "8010244",
+          "--output",
+          "/Users/luobo/Code/RadishAxiom/.tmp/gmp-tool-semantics-3e28608-20260929/gnupg2_2.4.7.orig.tar.bz2-attempt-1.body",
+          "--write-out",
+          "%{http_code}\n",
+          "https://deb.debian.org/debian/pool/main/g/gnupg2/gnupg2_2.4.7.orig.tar.bz2"
+        ],
+        "attempt": 1,
+        "body": {
+          "bytes": 8010244,
+          "file": "gnupg2_2.4.7.orig.tar.bz2-attempt-1.body",
+          "sha256": "7b24706e4da7e0e3b06ca068231027401f238102c41c909631349dcc3b85eb46"
+        },
+        "curl": {
+          "bytes": 829680,
+          "sha256": "625cd93eb0043214d5f74974d34f0b4d748977473e236a2e7f4704ecc2b95950"
+        },
+        "exit_code": 0,
+        "finished_at": "2026-09-29T11:36:40.223103+00:00",
+        "http_code": "200",
+        "index_and_recipe_bytes_match": null,
+        "kind": "diagnostic-mpc-mpfr-fetch-v1",
+        "method": {
+          "bytes": 5126,
+          "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+        },
+        "parent_timeout": false,
+        "passed": true,
+        "source_acceptance": "not-assessed",
+        "started_at": "2026-09-29T11:36:36.733957+00:00",
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": ""
+        },
+        "stdout": {
+          "bytes": 4,
+          "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+          "text": "200\n"
+        },
+        "target": "gnupg2_2.4.7.orig.tar.bz2",
+        "transport_passed": true,
+        "url": "https://deb.debian.org/debian/pool/main/g/gnupg2/gnupg2_2.4.7.orig.tar.bz2"
+      }
+    },
+    {
+      "source_index_bytes_match": true,
+      "transport": {
+        "argv": [
+          "/usr/bin/curl",
+          "--disable",
+          "--silent",
+          "--show-error",
+          "--proto",
+          "=https",
+          "--tlsv1.2",
+          "--max-time",
+          "60",
+          "--max-filesize",
+          "390",
+          "--output",
+          "/Users/luobo/Code/RadishAxiom/.tmp/gmp-tool-semantics-3e28608-20260929/gnupg2_2.4.7.orig.tar.bz2.asc-attempt-1.body",
+          "--write-out",
+          "%{http_code}\n",
+          "https://deb.debian.org/debian/pool/main/g/gnupg2/gnupg2_2.4.7.orig.tar.bz2.asc"
+        ],
+        "attempt": 1,
+        "body": {
+          "bytes": 390,
+          "file": "gnupg2_2.4.7.orig.tar.bz2.asc-attempt-1.body",
+          "sha256": "cec7da75dab60e3e2f6bf92ed1174126a1e5a1cc5e448f9e004a23be2dd227f6"
+        },
+        "curl": {
+          "bytes": 829680,
+          "sha256": "625cd93eb0043214d5f74974d34f0b4d748977473e236a2e7f4704ecc2b95950"
+        },
+        "exit_code": 0,
+        "finished_at": "2026-09-29T11:36:42.013613+00:00",
+        "http_code": "200",
+        "index_and_recipe_bytes_match": null,
+        "kind": "diagnostic-mpc-mpfr-fetch-v1",
+        "method": {
+          "bytes": 5126,
+          "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+        },
+        "parent_timeout": false,
+        "passed": true,
+        "source_acceptance": "not-assessed",
+        "started_at": "2026-09-29T11:36:40.233355+00:00",
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": ""
+        },
+        "stdout": {
+          "bytes": 4,
+          "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+          "text": "200\n"
+        },
+        "target": "gnupg2_2.4.7.orig.tar.bz2.asc",
+        "transport_passed": true,
+        "url": "https://deb.debian.org/debian/pool/main/g/gnupg2/gnupg2_2.4.7.orig.tar.bz2.asc"
+      }
+    },
+    {
+      "source_index_bytes_match": true,
+      "transport": {
+        "argv": [
+          "/usr/bin/curl",
+          "--disable",
+          "--silent",
+          "--show-error",
+          "--proto",
+          "=https",
+          "--tlsv1.2",
+          "--max-time",
+          "60",
+          "--max-filesize",
+          "131264",
+          "--output",
+          "/Users/luobo/Code/RadishAxiom/.tmp/gmp-tool-semantics-3e28608-20260929/gnupg2_2.4.7-21+deb13u1.debian.tar.xz-attempt-1.body",
+          "--write-out",
+          "%{http_code}\n",
+          "https://deb.debian.org/debian/pool/main/g/gnupg2/gnupg2_2.4.7-21+deb13u1.debian.tar.xz"
+        ],
+        "attempt": 1,
+        "body": {
+          "bytes": 131264,
+          "file": "gnupg2_2.4.7-21+deb13u1.debian.tar.xz-attempt-1.body",
+          "sha256": "3941a8a537e258f6216ad1c1b9ecb255dfc286e5d03eb39805e536de4a448856"
+        },
+        "curl": {
+          "bytes": 829680,
+          "sha256": "625cd93eb0043214d5f74974d34f0b4d748977473e236a2e7f4704ecc2b95950"
+        },
+        "exit_code": 0,
+        "finished_at": "2026-09-29T11:36:43.907005+00:00",
+        "http_code": "200",
+        "index_and_recipe_bytes_match": null,
+        "kind": "diagnostic-mpc-mpfr-fetch-v1",
+        "method": {
+          "bytes": 5126,
+          "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+        },
+        "parent_timeout": false,
+        "passed": true,
+        "source_acceptance": "not-assessed",
+        "started_at": "2026-09-29T11:36:42.015084+00:00",
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": ""
+        },
+        "stdout": {
+          "bytes": 4,
+          "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+          "text": "200\n"
+        },
+        "target": "gnupg2_2.4.7-21+deb13u1.debian.tar.xz",
+        "transport_passed": true,
+        "url": "https://deb.debian.org/debian/pool/main/g/gnupg2/gnupg2_2.4.7-21+deb13u1.debian.tar.xz"
+      }
+    }
+  ],
+  "kind": "diagnostic-gmp-tool-source-fetch-v1",
+  "passed": true,
+  "plan": {
+    "curl_seconds_each": 60,
+    "directory": "/Users/luobo/Code/RadishAxiom/.tmp/gmp-tool-semantics-3e28608-20260929",
+    "executed": false,
+    "kind": "diagnostic-gmp-tool-source-fetch-plan-v1",
+    "methods": {
+      "fetch-gmp-tool-materials.py": {
+        "bytes": 3809,
+        "sha256": "ea04986f9d2153dd1899f08d48325e5746c73d4c78a459f35f5d8eb974b6aa48"
+      },
+      "fetch-mpc-mpfr-inputs.py": {
+        "bytes": 5126,
+        "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+      }
+    },
+    "parent_seconds_each": 65,
+    "requests_each": 1,
+    "review": {
+      "bytes": 5636,
+      "sha256": "c61683dbcd4e040c6634dd28f0733c3f7b68ea0e88779ad596ca10421e59b44e"
+    },
+    "source_acceptance": "not-assessed",
+    "targets": [
+      {
+        "bytes": 4933,
+        "name": "gnupg2_2.4.7-21+deb13u1.dsc",
+        "object_present_in_checked_store": false,
+        "sha256": "30a96cd2d26a57f6796507bf8f083825734d4081e3c5f922d2b99bb2bf671212",
+        "url": "https://deb.debian.org/debian/pool/main/g/gnupg2/gnupg2_2.4.7-21+deb13u1.dsc"
+      },
+      {
+        "bytes": 8010244,
+        "name": "gnupg2_2.4.7.orig.tar.bz2",
+        "object_present_in_checked_store": false,
+        "sha256": "7b24706e4da7e0e3b06ca068231027401f238102c41c909631349dcc3b85eb46",
+        "url": "https://deb.debian.org/debian/pool/main/g/gnupg2/gnupg2_2.4.7.orig.tar.bz2"
+      },
+      {
+        "bytes": 390,
+        "name": "gnupg2_2.4.7.orig.tar.bz2.asc",
+        "object_present_in_checked_store": false,
+        "sha256": "cec7da75dab60e3e2f6bf92ed1174126a1e5a1cc5e448f9e004a23be2dd227f6",
+        "url": "https://deb.debian.org/debian/pool/main/g/gnupg2/gnupg2_2.4.7.orig.tar.bz2.asc"
+      },
+      {
+        "bytes": 131264,
+        "name": "gnupg2_2.4.7-21+deb13u1.debian.tar.xz",
+        "object_present_in_checked_store": false,
+        "sha256": "3941a8a537e258f6216ad1c1b9ecb255dfc286e5d03eb39805e536de4a448856",
+        "url": "https://deb.debian.org/debian/pool/main/g/gnupg2/gnupg2_2.4.7-21+deb13u1.debian.tar.xz"
+      }
+    ]
+  },
+  "source_acceptance": "not-assessed"
+}

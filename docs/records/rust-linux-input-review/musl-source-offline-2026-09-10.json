@@ -1,0 +1,717 @@
+{
+  "acceptance": "not-assessed",
+  "attempts": [
+    {
+      "attempt": 1,
+      "container_started": false,
+      "exit_code": 1,
+      "stderr": {
+        "bytes": 109,
+        "sha256": "58771393992e2059433a2c07151e1a5826752bf6b8839a08e042e88c7bf222a0",
+        "text": "permission denied while trying to connect to the docker API at unix:///Users/luobo/.orbstack/run/docker.sock\n"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      }
+    },
+    {
+      "attempt": 2,
+      "container_started": true,
+      "exit_code": 1,
+      "stderr": {
+        "bytes": 668,
+        "sha256": "bbeae31dcfd408b8640725880337bf0e3c8de6f799f1fad3247170665900ff0d",
+        "text": "Traceback (most recent call last):\n  File \"/inputs/verify-musl-source.py\", line 189, in <module>\n    sys.exit(main())\n             ^^^^^^\n  File \"/inputs/verify-musl-source.py\", line 179, in main\n    result['patches'] = patch_check(inputs, (inputs / 'musl-1.2.5.tar.gz').read_bytes())\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/inputs/verify-musl-source.py\", line 153, in patch_check\n    step['after'] = inventory(root)\n                    ^^^^^^^^^^^^^^^\n  File \"/inputs/verify-musl-source.py\", line 119, in inventory\n    raise ValueError('unexpected patch result path')\nValueError: unexpected patch result path\n"
+      },
+      "stdout": {
+        "bytes": 7938,
+        "observation": {
+          "acceptance": "not-assessed",
+          "error": {
+            "message": "unexpected patch result path",
+            "type": "ValueError"
+          },
+          "inputs": {
+            "musl-1.2.5.tar.gz": {
+              "bytes": 1080786,
+              "sha256": "a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4"
+            },
+            "musl-1.2.5.tar.gz.asc": {
+              "bytes": 490,
+              "sha256": "d9030116fd03e4acfa0b665a13a5de46110296b4e30bb8e67be1f08af29f6306"
+            },
+            "musl.pub": {
+              "bytes": 1707,
+              "sha256": "bf6baaa63c2c4958636850a24bb9d2d514c8b6a1b3ab9c08f3b75910fb6f57be"
+            }
+          },
+          "kind": "diagnostic-observation",
+          "methods": {
+            "inspect-musl-patches.py": "44058cc2dfcc8459fb14f53b4f05ea12f7691f26be676d259454428362a9f866",
+            "verify-musl-source.py": "fe9c159df0c19eba0dd1c92a6efb7ac7c5bf26fded3d5bdf726e0b965518dd98"
+          },
+          "python": "3.11.2",
+          "signature": {
+            "fingerprint_from_official_page": "836489290BB6B70F99FFDA0556BCDB593020450F",
+            "gpg_sha256": "c3f988abfbf4a51ec36e90437045c1ea45464aadc691a2f78f81c41a31587075",
+            "key_certifications": {
+              "argv": [
+                "/usr/bin/gpg",
+                "--batch",
+                "--no-options",
+                "--homedir",
+                "/tmp/musl-key-nloc7h52",
+                "--no-auto-key-retrieve",
+                "--auto-key-locate",
+                "clear",
+                "--with-colons",
+                "--check-sigs",
+                "836489290BB6B70F99FFDA0556BCDB593020450F"
+              ],
+              "exit_code": 0,
+              "stderr": "",
+              "stdout": "tru::1:1789044159:0:3:1:5\npub:-:2048:1:56BCDB593020450F:1398559681:::-:::scESC::::::23::0:\nfpr:::::::::836489290BB6B70F99FFDA0556BCDB593020450F:\nuid:-::::1398559681::AA5C7FCA0E19FF9C2AD5C74AE2AB0A21F16ED1F1::musl libc <musl@libc.org>::::::::::0:\nsig:!::1:56BCDB593020450F:1398559681::::musl libc <musl@libc.org>:13x:::::2:\nsub:-:2048:1:EBF0A4C285F6E5DA:1398559681::::::e::::::23:\nfpr:::::::::2FE0110EDE78FD7B11048C50EBF0A4C285F6E5DA:\nsig:!::1:56BCDB593020450F:1398559681::::musl libc <musl@libc.org>:18x:::::2:\n"
+            },
+            "key_import": {
+              "argv": [
+                "/usr/bin/gpg",
+                "--batch",
+                "--no-options",
+                "--homedir",
+                "/tmp/musl-key-nloc7h52",
+                "--no-auto-key-retrieve",
+                "--auto-key-locate",
+                "clear",
+                "--import",
+                "/inputs/musl.pub"
+              ],
+              "exit_code": 0,
+              "stderr": "gpg: key 56BCDB593020450F: public key \"musl libc <musl@libc.org>\" imported\ngpg: Total number processed: 1\ngpg:               imported: 1\n",
+              "stdout": ""
+            },
+            "key_packets": {
+              "argv": [
+                "/usr/bin/gpg",
+                "--batch",
+                "--no-options",
+                "--homedir",
+                "/tmp/musl-key-nloc7h52",
+                "--no-auto-key-retrieve",
+                "--auto-key-locate",
+                "clear",
+                "--list-packets",
+                "/inputs/musl.pub"
+              ],
+              "exit_code": 0,
+              "stderr": "",
+              "stdout": "# off=0 ctb=99 tag=6 hlen=3 plen=269\n:public key packet:\n\tversion 4, algo 1, created 1398559681, expires 0\n\tpkey[0]: [2048 bits]\n\tpkey[1]: [17 bits]\n\tkeyid: 56BCDB593020450F\n# off=272 ctb=b4 tag=13 hlen=2 plen=25\n:user ID packet: \"musl libc <musl@libc.org>\"\n# off=299 ctb=89 tag=2 hlen=3 plen=311\n:signature packet: algo 1, keyid 56BCDB593020450F\n\tversion 4, created 1398559681, md5len 0, sigclass 0x13\n\tdigest algo 2, begin of digest 75 17\n\thashed subpkt 2 len 4 (sig created 2014-04-27)\n\thashed subpkt 27 len 1 (key flags: 03)\n\thashed subpkt 11 len 5 (pref-sym-algos: 9 8 7 3 2)\n\thashed subpkt 21 len 5 (pref-hash-algos: 8 2 9 10 11)\n\thashed subpkt 22 len 2 (pref-zip-algos: 2 1)\n\thashed subpkt 30 len 1 (features: 01)\n\thashed subpkt 23 len 1 (keyserver preferences: 80)\n\tsubpkt 16 len 8 (issuer key ID 56BCDB593020450F)\n\tdata: [2048 bits]\n# off=613 ctb=b9 tag=14 hlen=3 plen=269\n:public sub key packet:\n\tversion 4, algo 1, created 1398559681, expires 0\n\tpkey[0]: [2048 bits]\n\tpkey[1]: [17 bits]\n\tkeyid: EBF0A4C285F6E5DA\n# off=885 ctb=89 tag=2 hlen=3 plen=286\n:signature packet: algo 1, keyid 56BCDB593020450F\n\tversion 4, created 1398559681, md5len 0, sigclass 0x18\n\tdigest algo 2, begin of digest cf 9d\n\thashed subpkt 2 len 4 (sig created 2014-04-27)\n\thashed subpkt 27 len 1 (key flags: 0C)\n\tsubpkt 16 len 8 (issuer key ID 56BCDB593020450F)\n\tdata: [2039 bits]\n"
+            },
+            "key_show": {
+              "argv": [
+                "/usr/bin/gpg",
+                "--batch",
+                "--no-options",
+                "--homedir",
+                "/tmp/musl-key-nloc7h52",
+                "--no-auto-key-retrieve",
+                "--auto-key-locate",
+                "clear",
+                "--with-colons",
+                "--import-options",
+                "show-only",
+                "--import",
+                "/inputs/musl.pub"
+              ],
+              "exit_code": 0,
+              "stderr": "gpg: keybox '/tmp/musl-key-nloc7h52/pubring.kbx' created\ngpg: /tmp/musl-key-nloc7h52/trustdb.gpg: trustdb created\n",
+              "stdout": "pub:-:2048:1:56BCDB593020450F:1398559681:::-:::scESC::::::23::0:\nfpr:::::::::836489290BB6B70F99FFDA0556BCDB593020450F:\nuid:-::::1398559681::AA5C7FCA0E19FF9C2AD5C74AE2AB0A21F16ED1F1::musl libc <musl@libc.org>::::::::::0:\nsub:-:2048:1:EBF0A4C285F6E5DA:1398559681::::::e::::::23:\nfpr:::::::::2FE0110EDE78FD7B11048C50EBF0A4C285F6E5DA:\n"
+            },
+            "pinned_signature_passed": false,
+            "publisher_identity_acceptance": "not-assessed",
+            "signature_packets": {
+              "argv": [
+                "/usr/bin/gpg",
+                "--batch",
+                "--no-options",
+                "--homedir",
+                "/tmp/musl-key-nloc7h52",
+                "--no-auto-key-retrieve",
+                "--auto-key-locate",
+                "clear",
+                "--list-packets",
+                "/inputs/musl-1.2.5.tar.gz.asc"
+              ],
+              "exit_code": 0,
+              "stderr": "",
+              "stdout": "# off=0 ctb=89 tag=2 hlen=3 plen=284\n:signature packet: algo 1, keyid 56BCDB593020450F\n\tversion 4, created 1709258930, md5len 0, sigclass 0x00\n\tdigest algo 2, begin of digest 63 d7\n\thashed subpkt 2 len 4 (sig created 2024-03-01)\n\tsubpkt 16 len 8 (issuer key ID 56BCDB593020450F)\n\tdata: [2046 bits]\n"
+            },
+            "verification": {
+              "argv": [
+                "/usr/bin/gpg",
+                "--batch",
+                "--no-options",
+                "--homedir",
+                "/tmp/musl-key-nloc7h52",
+                "--no-auto-key-retrieve",
+                "--auto-key-locate",
+                "clear",
+                "--status-fd",
+                "1",
+                "--verify",
+                "/inputs/musl-1.2.5.tar.gz.asc",
+                "/inputs/musl-1.2.5.tar.gz"
+              ],
+              "exit_code": 0,
+              "stderr": "gpg: Signature made Fri Mar  1 02:08:50 2024 UTC\ngpg:                using RSA key 56BCDB593020450F\ngpg: Good signature from \"musl libc <musl@libc.org>\" [unknown]\ngpg: WARNING: This key is not certified with a trusted signature!\ngpg:          There is no indication that the signature belongs to the owner.\nPrimary key fingerprint: 8364 8929 0BB6 B70F 99FF  DA05 56BC DB59 3020 450F\n",
+              "stdout": "[GNUPG:] NEWSIG\n[GNUPG:] KEY_CONSIDERED 836489290BB6B70F99FFDA0556BCDB593020450F 0\n[GNUPG:] SIG_ID xv7AstRYm0ZMMzhRVmSmDauBtxM 2024-03-01 1709258930\n[GNUPG:] KEY_CONSIDERED 836489290BB6B70F99FFDA0556BCDB593020450F 0\n[GNUPG:] GOODSIG 56BCDB593020450F musl libc <musl@libc.org>\n[GNUPG:] VALIDSIG 836489290BB6B70F99FFDA0556BCDB593020450F 2024-03-01 1709258930 0 4 0 1 2 00 836489290BB6B70F99FFDA0556BCDB593020450F\n[GNUPG:] TRUST_UNDEFINED 0 pgp\n"
+            },
+            "version": {
+              "argv": [
+                "/usr/bin/gpg",
+                "--version"
+              ],
+              "exit_code": 0,
+              "stderr": "",
+              "stdout": "gpg (GnuPG) 2.2.40\nlibgcrypt 1.10.1\nCopyright (C) 2022 g10 Code GmbH\nLicense GNU GPL-3.0-or-later <https://gnu.org/licenses/gpl.html>\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n\nHome: /tmp/.gnupg\nSupported algorithms:\nPubkey: RSA, ELG, DSA, ECDH, ECDSA, EDDSA\nCipher: IDEA, 3DES, CAST5, BLOWFISH, AES, AES192, AES256, TWOFISH,\n        CAMELLIA128, CAMELLIA192, CAMELLIA256\nHash: SHA1, RIPEMD160, SHA256, SHA384, SHA512, SHA224\nCompression: Uncompressed, ZIP, ZLIB, BZIP2\n"
+            }
+          }
+        },
+        "sha256": "772b4516040906519299539e448b054a8de33d15d36fe78d7d89497025c1be07"
+      }
+    },
+    {
+      "attempt": 3,
+      "container_started": true,
+      "exit_code": 1,
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 49405,
+        "observation": {
+          "acceptance": "not-assessed",
+          "inputs": {
+            "musl-1.2.5.tar.gz": {
+              "bytes": 1080786,
+              "sha256": "a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4"
+            },
+            "musl-1.2.5.tar.gz.asc": {
+              "bytes": 490,
+              "sha256": "d9030116fd03e4acfa0b665a13a5de46110296b4e30bb8e67be1f08af29f6306"
+            },
+            "musl.pub": {
+              "bytes": 1707,
+              "sha256": "bf6baaa63c2c4958636850a24bb9d2d514c8b6a1b3ab9c08f3b75910fb6f57be"
+            }
+          },
+          "kind": "diagnostic-observation",
+          "methods": {
+            "inspect-musl-patches.py": "44058cc2dfcc8459fb14f53b4f05ea12f7691f26be676d259454428362a9f866",
+            "verify-musl-source.py": "ce216882a3ae38dc767b081071f192c6bd3358067e396e29b94707214c3aa1c5"
+          },
+          "patches": {
+            "after": {
+              "src/locale/gb18030utf.h": {
+                "bytes": 3172,
+                "git_blob_sha1": "322a2440824652f5f3bfb328e241cf4c3216e667",
+                "sha256": "94b51d272a81a1164a035918253004ab71cc21e29f11100dcf9bd3dc22757c28"
+              },
+              "src/locale/iconv.c": {
+                "bytes": 15479,
+                "git_blob_sha1": "a732022779656be6e286780cd6bca22b8f5fba6c",
+                "sha256": "9a1fc56619fccf8daab368411e1b48955e8bff933cd00f71d995e71aefc47897"
+              },
+              "src/stdlib/qsort.c": {
+                "bytes": 5574,
+                "git_blob_sha1": "67db36d2386a61dfddd7ad0c7ea0d0e5a7bdfc5d",
+                "sha256": "b40e91d98930b6fa929a42d9129821de5b73ce2fdc3f2a94023143d82408a7f2"
+              }
+            },
+            "before": {
+              "src/locale/iconv.c": {
+                "bytes": 14837,
+                "git_blob_sha1": "175def1c63f1a4a257f64e8e0728eac9c833fc65",
+                "sha256": "2aadd020959004608625bb6b7759d81daa5abf347643399ba887f5d11277b4c1"
+              },
+              "src/stdlib/qsort.c": {
+                "bytes": 5131,
+                "git_blob_sha1": "314ddc29da1db7d236044683c264b1a9367b69c1",
+                "sha256": "3a838cc7f83f4746df6063f567be1ebb2f7d204243342122acd43f44d2434ec6"
+              }
+            },
+            "help": {
+              "argv": [
+                "/usr/bin/patch",
+                "--help"
+              ],
+              "exit_code": 0,
+              "stderr": "",
+              "stdout": "Usage: /usr/bin/patch [OPTION]... [ORIGFILE [PATCHFILE]]\n\nInput options:\n\n  -p NUM  --strip=NUM  Strip NUM leading components from file names.\n  -F LINES  --fuzz LINES  Set the fuzz factor to LINES for inexact matching.\n  -l  --ignore-whitespace  Ignore white space changes between patch and input.\n\n  -c  --context  Interpret the patch as a context difference.\n  -e  --ed  Interpret the patch as an ed script.\n  -n  --normal  Interpret the patch as a normal difference.\n  -u  --unified  Interpret the patch as a unified difference.\n\n  -N  --forward  Ignore patches that appear to be reversed or already applied.\n  -R  --reverse  Assume patches were created with old and new files swapped.\n\n  -i PATCHFILE  --input=PATCHFILE  Read patch from PATCHFILE instead of stdin.\n\nOutput options:\n\n  -o FILE  --output=FILE  Output patched files to FILE.\n  -r FILE  --reject-file=FILE  Output rejects to FILE.\n\n  -D NAME  --ifdef=NAME  Make merged if-then-else output using NAME.\n  --merge  Merge using conflict markers instead of creating reject files.\n  -E  --remove-empty-files  Remove output files that are empty after patching.\n\n  -Z  --set-utc  Set times of patched files, assuming diff uses UTC (GMT).\n  -T  --set-time  Likewise, assuming local time.\n\n  --quoting-style=WORD   output file names using quoting style WORD.\n    Valid WORDs are: literal, shell, shell-always, c, escape.\n    Default is taken from QUOTING_STYLE env variable, or 'shell' if unset.\n\nBackup and version control options:\n\n  -b  --backup  Back up the original contents of each file.\n  --backup-if-mismatch  Back up if the patch does not match exactly.\n  --no-backup-if-mismatch  Back up mismatches only if otherwise requested.\n\n  -V STYLE  --version-control=STYLE  Use STYLE version control.\n\tSTYLE is either 'simple', 'numbered', or 'existing'.\n  -B PREFIX  --prefix=PREFIX  Prepend PREFIX to backup file names.\n  -Y PREFIX  --basename-prefix=PREFIX  Prepend PREFIX to backup file basenames.\n  -z SUFFIX  --suffix=SUFFIX  Append SUFFIX to backup file names.\n\n  -g NUM  --get=NUM  Get files from RCS etc. if positive; ask if negative.\n\nMiscellaneous options:\n\n  -t  --batch  Ask no questions; skip bad-Prereq patches; assume reversed.\n  -f  --force  Like -t, but ignore bad-Prereq patches, and assume unreversed.\n  -s  --quiet  --silent  Work silently unless an error occurs.\n  --verbose  Output extra information about the work being done.\n  --dry-run  Do not actually change any files; just print what would happen.\n  --posix  Conform to the POSIX standard.\n\n  -d DIR  --directory=DIR  Change the working directory to DIR first.\n  --reject-format=FORMAT  Create 'context' or 'unified' rejects.\n  --binary  Read and write data in binary mode.\n  --read-only=BEHAVIOR  How to handle read-only input files: 'ignore' that they\n                        are read-only, 'warn' (default), or 'fail'.\n\n  -v  --version  Output version info.\n  --help  Output this help.\n\nReport bugs to <bug-patch@gnu.org>.\n"
+            },
+            "passed": true,
+            "patch_sha256": "f8829b451b6212cca6a94905a007f5d6fa409159cf8eb1ad7114180eadd1dbe5",
+            "steps": [
+              {
+                "after": {
+                  "src/locale/iconv.c": {
+                    "bytes": 14843,
+                    "git_blob_sha1": "25743a20abbe5f0822d2f2162c0e1553c9646403",
+                    "sha256": "1ee1904b76c09dbc33259a5e427c4e49db839bf39d068cdc987d9f4ad7fa0247"
+                  },
+                  "src/stdlib/qsort.c": {
+                    "bytes": 5131,
+                    "git_blob_sha1": "314ddc29da1db7d236044683c264b1a9367b69c1",
+                    "sha256": "3a838cc7f83f4746df6063f567be1ebb2f7d204243342122acd43f44d2434ec6"
+                  }
+                },
+                "apply": {
+                  "argv": [
+                    "/usr/bin/patch",
+                    "--batch",
+                    "--forward",
+                    "--fuzz=0",
+                    "--no-backup-if-mismatch",
+                    "-p1",
+                    "--input",
+                    "/inputs/patches/0001-cve-2025-26519-p1.diff"
+                  ],
+                  "exit_code": 0,
+                  "stderr": "",
+                  "stdout": "patching file src/locale/iconv.c\nHunk #1 succeeded at 495 (offset -7 lines).\n"
+                },
+                "dry_run": {
+                  "argv": [
+                    "/usr/bin/patch",
+                    "--batch",
+                    "--forward",
+                    "--fuzz=0",
+                    "--no-backup-if-mismatch",
+                    "-p1",
+                    "--input",
+                    "/inputs/patches/0001-cve-2025-26519-p1.diff",
+                    "--dry-run"
+                  ],
+                  "exit_code": 0,
+                  "stderr": "",
+                  "stdout": "checking file src/locale/iconv.c\nHunk #1 succeeded at 495 (offset -7 lines).\n"
+                },
+                "file": "0001-cve-2025-26519-p1.diff",
+                "preflight": {
+                  "destinations": [
+                    "src/locale/iconv.c"
+                  ],
+                  "embedded_commit_headers": [
+                    "e5adcd97b5196e29991b524237381a0202a60659"
+                  ],
+                  "file_diffs": 1,
+                  "hunks": 1,
+                  "index_headers": [
+                    {
+                      "after": "008c93f0",
+                      "before": "9605c8e9"
+                    }
+                  ]
+                },
+                "sha256": "89ec5af152afb9c0ba8e37ecdca63a7a7fd13b60247f1a2d8024a59baa18e7dc"
+              },
+              {
+                "after": {
+                  "src/locale/iconv.c": {
+                    "bytes": 15041,
+                    "git_blob_sha1": "3dd9fd902e09d33e25a8826b363bfb1c778b208f",
+                    "sha256": "d04b46b1e88f70e31681c21f7208464306dd4011457bb7ec114fb97f7c44aec2"
+                  },
+                  "src/stdlib/qsort.c": {
+                    "bytes": 5131,
+                    "git_blob_sha1": "314ddc29da1db7d236044683c264b1a9367b69c1",
+                    "sha256": "3a838cc7f83f4746df6063f567be1ebb2f7d204243342122acd43f44d2434ec6"
+                  }
+                },
+                "apply": {
+                  "argv": [
+                    "/usr/bin/patch",
+                    "--batch",
+                    "--forward",
+                    "--fuzz=0",
+                    "--no-backup-if-mismatch",
+                    "-p1",
+                    "--input",
+                    "/inputs/patches/0002-cve-2025-26519-p2.diff"
+                  ],
+                  "exit_code": 0,
+                  "stderr": "",
+                  "stdout": "patching file src/locale/iconv.c\nHunk #1 succeeded at 538 (offset -7 lines).\n"
+                },
+                "dry_run": {
+                  "argv": [
+                    "/usr/bin/patch",
+                    "--batch",
+                    "--forward",
+                    "--fuzz=0",
+                    "--no-backup-if-mismatch",
+                    "-p1",
+                    "--input",
+                    "/inputs/patches/0002-cve-2025-26519-p2.diff",
+                    "--dry-run"
+                  ],
+                  "exit_code": 0,
+                  "stderr": "",
+                  "stdout": "checking file src/locale/iconv.c\nHunk #1 succeeded at 538 (offset -7 lines).\n"
+                },
+                "file": "0002-cve-2025-26519-p2.diff",
+                "preflight": {
+                  "destinations": [
+                    "src/locale/iconv.c"
+                  ],
+                  "embedded_commit_headers": [
+                    "c47ad25ea3b484e10326f933e927c0bc8cded3da"
+                  ],
+                  "file_diffs": 1,
+                  "hunks": 1,
+                  "index_headers": [
+                    {
+                      "after": "52178950",
+                      "before": "008c93f0"
+                    }
+                  ]
+                },
+                "sha256": "d5b88fe87f9554238bdd69235694b0d50bb909f38149a7be417a0240a490e813"
+              },
+              {
+                "after": {
+                  "src/locale/gb18030utf.h": {
+                    "bytes": 3172,
+                    "git_blob_sha1": "322a2440824652f5f3bfb328e241cf4c3216e667",
+                    "sha256": "94b51d272a81a1164a035918253004ab71cc21e29f11100dcf9bd3dc22757c28"
+                  },
+                  "src/locale/iconv.c": {
+                    "bytes": 15479,
+                    "git_blob_sha1": "a732022779656be6e286780cd6bca22b8f5fba6c",
+                    "sha256": "9a1fc56619fccf8daab368411e1b48955e8bff933cd00f71d995e71aefc47897"
+                  },
+                  "src/stdlib/qsort.c": {
+                    "bytes": 5131,
+                    "git_blob_sha1": "314ddc29da1db7d236044683c264b1a9367b69c1",
+                    "sha256": "3a838cc7f83f4746df6063f567be1ebb2f7d204243342122acd43f44d2434ec6"
+                  }
+                },
+                "apply": {
+                  "argv": [
+                    "/usr/bin/patch",
+                    "--batch",
+                    "--forward",
+                    "--fuzz=0",
+                    "--no-backup-if-mismatch",
+                    "-p1",
+                    "--input",
+                    "/inputs/patches/0003-cve-2026-6042.diff"
+                  ],
+                  "exit_code": 0,
+                  "stderr": "",
+                  "stdout": "patching file src/locale/gb18030utf.h\npatching file src/locale/iconv.c\nHunk #3 succeeded at 429 (offset -7 lines).\n"
+                },
+                "dry_run": {
+                  "argv": [
+                    "/usr/bin/patch",
+                    "--batch",
+                    "--forward",
+                    "--fuzz=0",
+                    "--no-backup-if-mismatch",
+                    "-p1",
+                    "--input",
+                    "/inputs/patches/0003-cve-2026-6042.diff",
+                    "--dry-run"
+                  ],
+                  "exit_code": 0,
+                  "stderr": "",
+                  "stdout": "checking file src/locale/gb18030utf.h\nchecking file src/locale/iconv.c\nHunk #3 succeeded at 429 (offset -7 lines).\n"
+                },
+                "file": "0003-cve-2026-6042.diff",
+                "preflight": {
+                  "destinations": [
+                    "src/locale/gb18030utf.h",
+                    "src/locale/iconv.c"
+                  ],
+                  "embedded_commit_headers": [
+                    "67219f0130ec7c876ac0b299046460fad31caabf"
+                  ],
+                  "file_diffs": 2,
+                  "hunks": 4,
+                  "index_headers": [
+                    {
+                      "after": "322a2440",
+                      "before": "00000000"
+                    },
+                    {
+                      "after": "4151411d",
+                      "before": "52178950"
+                    }
+                  ]
+                },
+                "sha256": "444fa70e52ca158fb7d4bad560637790bbf8f72e80b82fff840dd66fa83091e3"
+              },
+              {
+                "after": {
+                  "src/locale/gb18030utf.h": {
+                    "bytes": 3172,
+                    "git_blob_sha1": "322a2440824652f5f3bfb328e241cf4c3216e667",
+                    "sha256": "94b51d272a81a1164a035918253004ab71cc21e29f11100dcf9bd3dc22757c28"
+                  },
+                  "src/locale/iconv.c": {
+                    "bytes": 15479,
+                    "git_blob_sha1": "a732022779656be6e286780cd6bca22b8f5fba6c",
+                    "sha256": "9a1fc56619fccf8daab368411e1b48955e8bff933cd00f71d995e71aefc47897"
+                  },
+                  "src/stdlib/qsort.c": {
+                    "bytes": 5574,
+                    "git_blob_sha1": "67db36d2386a61dfddd7ad0c7ea0d0e5a7bdfc5d",
+                    "sha256": "b40e91d98930b6fa929a42d9129821de5b73ce2fdc3f2a94023143d82408a7f2"
+                  }
+                },
+                "apply": {
+                  "argv": [
+                    "/usr/bin/patch",
+                    "--batch",
+                    "--forward",
+                    "--fuzz=0",
+                    "--no-backup-if-mismatch",
+                    "-p1",
+                    "--input",
+                    "/inputs/patches/0004-cve-2026-40200.diff"
+                  ],
+                  "exit_code": 0,
+                  "stderr": "",
+                  "stdout": "patching file src/stdlib/qsort.c\npatching file src/stdlib/qsort.c\npatching file src/stdlib/qsort.c\n"
+                },
+                "dry_run": {
+                  "argv": [
+                    "/usr/bin/patch",
+                    "--batch",
+                    "--forward",
+                    "--fuzz=0",
+                    "--no-backup-if-mismatch",
+                    "-p1",
+                    "--input",
+                    "/inputs/patches/0004-cve-2026-40200.diff",
+                    "--dry-run"
+                  ],
+                  "exit_code": 0,
+                  "stderr": "",
+                  "stdout": "checking file src/stdlib/qsort.c\nchecking file src/stdlib/qsort.c\nchecking file src/stdlib/qsort.c\n"
+                },
+                "file": "0004-cve-2026-40200.diff",
+                "preflight": {
+                  "destinations": [
+                    "src/stdlib/qsort.c"
+                  ],
+                  "embedded_commit_headers": [
+                    "228da39e38c1cae13cbe637e771412c1984dba5d",
+                    "b3291b9a9f77f1f993d2b4f8c68a26cf09221ae7",
+                    "5122f9f3c99fee366167c5de98b31546312921ab"
+                  ],
+                  "file_diffs": 3,
+                  "hunks": 8,
+                  "index_headers": [
+                    {
+                      "after": "13219ab3",
+                      "before": "ab79dc6f"
+                    },
+                    {
+                      "after": "e4bce9f7",
+                      "before": "13219ab3"
+                    },
+                    {
+                      "after": "28607450",
+                      "before": "e4bce9f7"
+                    }
+                  ]
+                },
+                "sha256": "1ee29f64f9ca8e8ad7c349779d661ff6b52126a27575d3586981357a52c406fb"
+              }
+            ],
+            "version": {
+              "argv": [
+                "/usr/bin/patch",
+                "--version"
+              ],
+              "exit_code": 0,
+              "stderr": "",
+              "stdout": "GNU patch 2.7.6\nCopyright (C) 2003, 2009-2012 Free Software Foundation, Inc.\nCopyright (C) 1988 Larry Wall\n\nLicense GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n\nWritten by Larry Wall and Paul Eggert\n"
+            }
+          },
+          "python": "3.11.2",
+          "signature": {
+            "fingerprint_from_official_page": "836489290BB6B70F99FFDA0556BCDB593020450F",
+            "gpg_sha256": "c3f988abfbf4a51ec36e90437045c1ea45464aadc691a2f78f81c41a31587075",
+            "key_certifications": {
+              "argv": [
+                "/usr/bin/gpg",
+                "--batch",
+                "--no-options",
+                "--homedir",
+                "/tmp/musl-key-jem29ba2",
+                "--no-auto-key-retrieve",
+                "--auto-key-locate",
+                "clear",
+                "--with-colons",
+                "--check-sigs",
+                "836489290BB6B70F99FFDA0556BCDB593020450F"
+              ],
+              "exit_code": 0,
+              "stderr": "",
+              "stdout": "tru::1:1789044302:0:3:1:5\npub:-:2048:1:56BCDB593020450F:1398559681:::-:::scESC::::::23::0:\nfpr:::::::::836489290BB6B70F99FFDA0556BCDB593020450F:\nuid:-::::1398559681::AA5C7FCA0E19FF9C2AD5C74AE2AB0A21F16ED1F1::musl libc <musl@libc.org>::::::::::0:\nsig:!::1:56BCDB593020450F:1398559681::::musl libc <musl@libc.org>:13x:::::2:\nsub:-:2048:1:EBF0A4C285F6E5DA:1398559681::::::e::::::23:\nfpr:::::::::2FE0110EDE78FD7B11048C50EBF0A4C285F6E5DA:\nsig:!::1:56BCDB593020450F:1398559681::::musl libc <musl@libc.org>:18x:::::2:\n"
+            },
+            "key_import": {
+              "argv": [
+                "/usr/bin/gpg",
+                "--batch",
+                "--no-options",
+                "--homedir",
+                "/tmp/musl-key-jem29ba2",
+                "--no-auto-key-retrieve",
+                "--auto-key-locate",
+                "clear",
+                "--import",
+                "/inputs/musl.pub"
+              ],
+              "exit_code": 0,
+              "stderr": "gpg: key 56BCDB593020450F: public key \"musl libc <musl@libc.org>\" imported\ngpg: Total number processed: 1\ngpg:               imported: 1\n",
+              "stdout": ""
+            },
+            "key_packets": {
+              "argv": [
+                "/usr/bin/gpg",
+                "--batch",
+                "--no-options",
+                "--homedir",
+                "/tmp/musl-key-jem29ba2",
+                "--no-auto-key-retrieve",
+                "--auto-key-locate",
+                "clear",
+                "--list-packets",
+                "/inputs/musl.pub"
+              ],
+              "exit_code": 0,
+              "stderr": "",
+              "stdout": "# off=0 ctb=99 tag=6 hlen=3 plen=269\n:public key packet:\n\tversion 4, algo 1, created 1398559681, expires 0\n\tpkey[0]: [2048 bits]\n\tpkey[1]: [17 bits]\n\tkeyid: 56BCDB593020450F\n# off=272 ctb=b4 tag=13 hlen=2 plen=25\n:user ID packet: \"musl libc <musl@libc.org>\"\n# off=299 ctb=89 tag=2 hlen=3 plen=311\n:signature packet: algo 1, keyid 56BCDB593020450F\n\tversion 4, created 1398559681, md5len 0, sigclass 0x13\n\tdigest algo 2, begin of digest 75 17\n\thashed subpkt 2 len 4 (sig created 2014-04-27)\n\thashed subpkt 27 len 1 (key flags: 03)\n\thashed subpkt 11 len 5 (pref-sym-algos: 9 8 7 3 2)\n\thashed subpkt 21 len 5 (pref-hash-algos: 8 2 9 10 11)\n\thashed subpkt 22 len 2 (pref-zip-algos: 2 1)\n\thashed subpkt 30 len 1 (features: 01)\n\thashed subpkt 23 len 1 (keyserver preferences: 80)\n\tsubpkt 16 len 8 (issuer key ID 56BCDB593020450F)\n\tdata: [2048 bits]\n# off=613 ctb=b9 tag=14 hlen=3 plen=269\n:public sub key packet:\n\tversion 4, algo 1, created 1398559681, expires 0\n\tpkey[0]: [2048 bits]\n\tpkey[1]: [17 bits]\n\tkeyid: EBF0A4C285F6E5DA\n# off=885 ctb=89 tag=2 hlen=3 plen=286\n:signature packet: algo 1, keyid 56BCDB593020450F\n\tversion 4, created 1398559681, md5len 0, sigclass 0x18\n\tdigest algo 2, begin of digest cf 9d\n\thashed subpkt 2 len 4 (sig created 2014-04-27)\n\thashed subpkt 27 len 1 (key flags: 0C)\n\tsubpkt 16 len 8 (issuer key ID 56BCDB593020450F)\n\tdata: [2039 bits]\n"
+            },
+            "key_show": {
+              "argv": [
+                "/usr/bin/gpg",
+                "--batch",
+                "--no-options",
+                "--homedir",
+                "/tmp/musl-key-jem29ba2",
+                "--no-auto-key-retrieve",
+                "--auto-key-locate",
+                "clear",
+                "--with-colons",
+                "--import-options",
+                "show-only",
+                "--import",
+                "/inputs/musl.pub"
+              ],
+              "exit_code": 0,
+              "stderr": "gpg: keybox '/tmp/musl-key-jem29ba2/pubring.kbx' created\ngpg: /tmp/musl-key-jem29ba2/trustdb.gpg: trustdb created\n",
+              "stdout": "pub:-:2048:1:56BCDB593020450F:1398559681:::-:::scESC::::::23::0:\nfpr:::::::::836489290BB6B70F99FFDA0556BCDB593020450F:\nuid:-::::1398559681::AA5C7FCA0E19FF9C2AD5C74AE2AB0A21F16ED1F1::musl libc <musl@libc.org>::::::::::0:\nsub:-:2048:1:EBF0A4C285F6E5DA:1398559681::::::e::::::23:\nfpr:::::::::2FE0110EDE78FD7B11048C50EBF0A4C285F6E5DA:\n"
+            },
+            "pinned_signature_passed": false,
+            "publisher_identity_acceptance": "not-assessed",
+            "signature_packets": {
+              "argv": [
+                "/usr/bin/gpg",
+                "--batch",
+                "--no-options",
+                "--homedir",
+                "/tmp/musl-key-jem29ba2",
+                "--no-auto-key-retrieve",
+                "--auto-key-locate",
+                "clear",
+                "--list-packets",
+                "/inputs/musl-1.2.5.tar.gz.asc"
+              ],
+              "exit_code": 0,
+              "stderr": "",
+              "stdout": "# off=0 ctb=89 tag=2 hlen=3 plen=284\n:signature packet: algo 1, keyid 56BCDB593020450F\n\tversion 4, created 1709258930, md5len 0, sigclass 0x00\n\tdigest algo 2, begin of digest 63 d7\n\thashed subpkt 2 len 4 (sig created 2024-03-01)\n\tsubpkt 16 len 8 (issuer key ID 56BCDB593020450F)\n\tdata: [2046 bits]\n"
+            },
+            "verification": {
+              "argv": [
+                "/usr/bin/gpg",
+                "--batch",
+                "--no-options",
+                "--homedir",
+                "/tmp/musl-key-jem29ba2",
+                "--no-auto-key-retrieve",
+                "--auto-key-locate",
+                "clear",
+                "--status-fd",
+                "1",
+                "--verify",
+                "/inputs/musl-1.2.5.tar.gz.asc",
+                "/inputs/musl-1.2.5.tar.gz"
+              ],
+              "exit_code": 0,
+              "stderr": "gpg: Signature made Fri Mar  1 02:08:50 2024 UTC\ngpg:                using RSA key 56BCDB593020450F\ngpg: Good signature from \"musl libc <musl@libc.org>\" [unknown]\ngpg: WARNING: This key is not certified with a trusted signature!\ngpg:          There is no indication that the signature belongs to the owner.\nPrimary key fingerprint: 8364 8929 0BB6 B70F 99FF  DA05 56BC DB59 3020 450F\n",
+              "stdout": "[GNUPG:] NEWSIG\n[GNUPG:] KEY_CONSIDERED 836489290BB6B70F99FFDA0556BCDB593020450F 0\n[GNUPG:] SIG_ID xv7AstRYm0ZMMzhRVmSmDauBtxM 2024-03-01 1709258930\n[GNUPG:] KEY_CONSIDERED 836489290BB6B70F99FFDA0556BCDB593020450F 0\n[GNUPG:] GOODSIG 56BCDB593020450F musl libc <musl@libc.org>\n[GNUPG:] VALIDSIG 836489290BB6B70F99FFDA0556BCDB593020450F 2024-03-01 1709258930 0 4 0 1 2 00 836489290BB6B70F99FFDA0556BCDB593020450F\n[GNUPG:] TRUST_UNDEFINED 0 pgp\n"
+            },
+            "version": {
+              "argv": [
+                "/usr/bin/gpg",
+                "--version"
+              ],
+              "exit_code": 0,
+              "stderr": "",
+              "stdout": "gpg (GnuPG) 2.2.40\nlibgcrypt 1.10.1\nCopyright (C) 2022 g10 Code GmbH\nLicense GNU GPL-3.0-or-later <https://gnu.org/licenses/gpl.html>\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n\nHome: /tmp/.gnupg\nSupported algorithms:\nPubkey: RSA, ELG, DSA, ECDH, ECDSA, EDDSA\nCipher: IDEA, 3DES, CAST5, BLOWFISH, AES, AES192, AES256, TWOFISH,\n        CAMELLIA128, CAMELLIA192, CAMELLIA256\nHash: SHA1, RIPEMD160, SHA256, SHA384, SHA512, SHA224\nCompression: Uncompressed, ZIP, ZLIB, BZIP2\n"
+            }
+          }
+        },
+        "sha256": "2c6f25b055a83484d72faea201b24898f0d9bd56b1acf27485c617f85161627c"
+      }
+    }
+  ],
+  "cleanup": {
+    "container_name": "radishaxiom-musl-diagnostic-c7f7f60",
+    "post_run_listing_empty": true,
+    "remove_on_exit": true,
+    "retained_host_inputs": true,
+    "tmpfs_and_keyring": "removed with container"
+  },
+  "date": "2026-09-10",
+  "docker_context": "orbstack",
+  "image": "sha256:a339861ae23e9abb272cea45dfafde21760d2ce6577a70f8a926153677902663",
+  "kind": "diagnostic-observation",
+  "limits": {
+    "cap_drop": "ALL",
+    "cpus": 1,
+    "memory_bytes": 536870912,
+    "network": "none",
+    "pids": 64,
+    "root": "read-only",
+    "security_opt": "no-new-privileges",
+    "timeout_seconds": 120,
+    "tmpfs_bytes": 67108864,
+    "tmpfs_options": [
+      "rw",
+      "nosuid",
+      "nodev",
+      "noexec",
+      "mode=1777"
+    ],
+    "user": "65534:65534"
+  },
+  "mount": {
+    "container": "/inputs",
+    "host": "/Users/luobo/Code/RadishAxiom/.tmp/musl-source-review-c7f7f60",
+    "readonly": true
+  },
+  "program": [
+    "/usr/bin/timeout",
+    "120s",
+    "/usr/bin/python3",
+    "/inputs/verify-musl-source.py"
+  ]
+}

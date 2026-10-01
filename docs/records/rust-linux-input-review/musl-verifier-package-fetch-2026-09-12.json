@@ -1,0 +1,960 @@
+{
+  "acceptance": "not-assessed",
+  "invocations": [
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "49444",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-verifier-d04b225-20260912/gcc-14-base-attempt-1.deb",
+        "--write-out",
+        "%{http_code}\n",
+        "https://deb.debian.org/debian/pool/main/g/gcc-14/gcc-14-base_14.2.0-19_arm64.deb"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 0,
+        "file": "gcc-14-base-attempt-1.deb",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 7,
+      "expected": {
+        "bytes": 49444,
+        "package": "gcc-14-base",
+        "sha256": "34ee90679b018c0e64234747a4c4c0ae6b7f63541115037465a8627c2dfbc594"
+      },
+      "finished_at": "2026-09-12T11:50:39.344136+00:00",
+      "http_code": "000",
+      "input_digest_matches": false,
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "fa17118d61750dcefa91977e5fee960cc4aeb41c9075c68c605aa9b1beea5cb8",
+      "started_at": "2026-09-12T11:50:39.322521+00:00",
+      "stderr": {
+        "bytes": 91,
+        "sha256": "7528e9de26551e1df6d26dcd70afd80588062ceafc5fa6eb5d2f1d9a2b313a60",
+        "text": "curl: (7) Failed to connect to 127.0.0.1 port 10808 after 0 ms: Couldn't connect to server\n"
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "945e4893567554e68f6f28d5652917269341a5f3d295a16b7c708c9bfd95dc5d",
+        "text": "000\n"
+      },
+      "target": "gcc-14-base",
+      "transport_passed": false,
+      "url": "https://deb.debian.org/debian/pool/main/g/gcc-14/gcc-14-base_14.2.0-19_arm64.deb"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "49444",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-verifier-d04b225-20260912/gcc-14-base-attempt-2.deb",
+        "--write-out",
+        "%{http_code}\n",
+        "https://deb.debian.org/debian/pool/main/g/gcc-14/gcc-14-base_14.2.0-19_arm64.deb"
+      ],
+      "attempt": 2,
+      "body": {
+        "bytes": 49444,
+        "file": "gcc-14-base-attempt-2.deb",
+        "sha256": "34ee90679b018c0e64234747a4c4c0ae6b7f63541115037465a8627c2dfbc594"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 0,
+      "expected": {
+        "bytes": 49444,
+        "package": "gcc-14-base",
+        "sha256": "34ee90679b018c0e64234747a4c4c0ae6b7f63541115037465a8627c2dfbc594"
+      },
+      "finished_at": "2026-09-12T11:53:01.111184+00:00",
+      "http_code": "200",
+      "input_digest_matches": true,
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "fa17118d61750dcefa91977e5fee960cc4aeb41c9075c68c605aa9b1beea5cb8",
+      "started_at": "2026-09-12T11:52:59.806724+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "gcc-14-base",
+      "transport_passed": true,
+      "url": "https://deb.debian.org/debian/pool/main/g/gcc-14/gcc-14-base_14.2.0-19_arm64.deb"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "578896",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-verifier-d04b225-20260912/gpg-attempt-1.deb",
+        "--write-out",
+        "%{http_code}\n",
+        "https://deb.debian.org/debian/pool/main/g/gnupg2/gpg_2.4.7-21+deb13u1+b4_arm64.deb"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 578896,
+        "file": "gpg-attempt-1.deb",
+        "sha256": "840abc3e9178b9578fbc9c9674ebb2f3b983790f713ffd2b6a0371d8670dc8e7"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 0,
+      "expected": {
+        "bytes": 578896,
+        "package": "gpg",
+        "sha256": "840abc3e9178b9578fbc9c9674ebb2f3b983790f713ffd2b6a0371d8670dc8e7"
+      },
+      "finished_at": "2026-09-12T11:53:03.351671+00:00",
+      "http_code": "200",
+      "input_digest_matches": true,
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "fa17118d61750dcefa91977e5fee960cc4aeb41c9075c68c605aa9b1beea5cb8",
+      "started_at": "2026-09-12T11:53:01.149569+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "gpg",
+      "transport_passed": true,
+      "url": "https://deb.debian.org/debian/pool/main/g/gnupg2/gpg_2.4.7-21+deb13u1+b4_arm64.deb"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "121684",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-verifier-d04b225-20260912/gpgconf-attempt-1.deb",
+        "--write-out",
+        "%{http_code}\n",
+        "https://deb.debian.org/debian/pool/main/g/gnupg2/gpgconf_2.4.7-21+deb13u1+b4_arm64.deb"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 121684,
+        "file": "gpgconf-attempt-1.deb",
+        "sha256": "d4b1556e8f13b48cd0061b343cf56beed20fec06a1045631d585ef587d449569"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 0,
+      "expected": {
+        "bytes": 121684,
+        "package": "gpgconf",
+        "sha256": "d4b1556e8f13b48cd0061b343cf56beed20fec06a1045631d585ef587d449569"
+      },
+      "finished_at": "2026-09-12T11:53:04.271311+00:00",
+      "http_code": "200",
+      "input_digest_matches": true,
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "fa17118d61750dcefa91977e5fee960cc4aeb41c9075c68c605aa9b1beea5cb8",
+      "started_at": "2026-09-12T11:53:03.399599+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "gpgconf",
+      "transport_passed": true,
+      "url": "https://deb.debian.org/debian/pool/main/g/gnupg2/gpgconf_2.4.7-21+deb13u1+b4_arm64.deb"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "39360",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-verifier-d04b225-20260912/init-system-helpers-attempt-1.deb",
+        "--write-out",
+        "%{http_code}\n",
+        "https://deb.debian.org/debian/pool/main/i/init-system-helpers/init-system-helpers_1.69~deb13u1_all.deb"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 39360,
+        "file": "init-system-helpers-attempt-1.deb",
+        "sha256": "addf78073e1cbc5a5508937e11d2571055e29835e00ee8fab52a66775649378f"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 0,
+      "expected": {
+        "bytes": 39360,
+        "package": "init-system-helpers",
+        "sha256": "addf78073e1cbc5a5508937e11d2571055e29835e00ee8fab52a66775649378f"
+      },
+      "finished_at": "2026-09-12T11:53:05.184001+00:00",
+      "http_code": "200",
+      "input_digest_matches": true,
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "fa17118d61750dcefa91977e5fee960cc4aeb41c9075c68c605aa9b1beea5cb8",
+      "started_at": "2026-09-12T11:53:04.312195+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "init-system-helpers",
+      "transport_passed": true,
+      "url": "https://deb.debian.org/debian/pool/main/i/init-system-helpers/init-system-helpers_1.69~deb13u1_all.deb"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "59112",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-verifier-d04b225-20260912/libassuan9-attempt-1.deb",
+        "--write-out",
+        "%{http_code}\n",
+        "https://deb.debian.org/debian/pool/main/liba/libassuan/libassuan9_3.0.2-2_arm64.deb"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 59112,
+        "file": "libassuan9-attempt-1.deb",
+        "sha256": "a4c36f4cbc7c09064fa944bf4f5d704ed6e2290b12d07a4d766a5d415b7c120d"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 0,
+      "expected": {
+        "bytes": 59112,
+        "package": "libassuan9",
+        "sha256": "a4c36f4cbc7c09064fa944bf4f5d704ed6e2290b12d07a4d766a5d415b7c120d"
+      },
+      "finished_at": "2026-09-12T11:53:06.977081+00:00",
+      "http_code": "200",
+      "input_digest_matches": true,
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "fa17118d61750dcefa91977e5fee960cc4aeb41c9075c68c605aa9b1beea5cb8",
+      "started_at": "2026-09-12T11:53:05.228244+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "libassuan9",
+      "transport_passed": true,
+      "url": "https://deb.debian.org/debian/pool/main/liba/libassuan/libassuan9_3.0.2-2_arm64.deb"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "37772",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-verifier-d04b225-20260912/libbz2-1_0-attempt-1.deb",
+        "--write-out",
+        "%{http_code}\n",
+        "https://deb.debian.org/debian/pool/main/b/bzip2/libbz2-1.0_1.0.8-6_arm64.deb"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 37772,
+        "file": "libbz2-1_0-attempt-1.deb",
+        "sha256": "3537fe4fc577a60c8a9568873cd577db7ebc135eb8bb1825f18caf8972d9d2f2"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 0,
+      "expected": {
+        "bytes": 37772,
+        "package": "libbz2-1.0",
+        "sha256": "3537fe4fc577a60c8a9568873cd577db7ebc135eb8bb1825f18caf8972d9d2f2"
+      },
+      "finished_at": "2026-09-12T11:53:08.967305+00:00",
+      "http_code": "200",
+      "input_digest_matches": true,
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "fa17118d61750dcefa91977e5fee960cc4aeb41c9075c68c605aa9b1beea5cb8",
+      "started_at": "2026-09-12T11:53:07.024690+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "libbz2-1_0",
+      "transport_passed": true,
+      "url": "https://deb.debian.org/debian/pool/main/b/bzip2/libbz2-1.0_1.0.8-6_arm64.deb"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "2489480",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-verifier-d04b225-20260912/libc6-attempt-1.deb",
+        "--write-out",
+        "%{http_code}\n",
+        "https://deb.debian.org/debian/pool/main/g/glibc/libc6_2.41-12+deb13u3_arm64.deb"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 2489480,
+        "file": "libc6-attempt-1.deb",
+        "sha256": "ff529924782d3286181188fc265a6a92e7fe28975fb3a925dc0e05c0ca66e52f"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 0,
+      "expected": {
+        "bytes": 2489480,
+        "package": "libc6",
+        "sha256": "ff529924782d3286181188fc265a6a92e7fe28975fb3a925dc0e05c0ca66e52f"
+      },
+      "finished_at": "2026-09-12T11:53:11.530797+00:00",
+      "http_code": "200",
+      "input_digest_matches": true,
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "fa17118d61750dcefa91977e5fee960cc4aeb41c9075c68c605aa9b1beea5cb8",
+      "started_at": "2026-09-12T11:53:09.007520+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "libc6",
+      "transport_passed": true,
+      "url": "https://deb.debian.org/debian/pool/main/g/glibc/libc6_2.41-12+deb13u3_arm64.deb"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "54104",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-verifier-d04b225-20260912/libgcc-s1-attempt-1.deb",
+        "--write-out",
+        "%{http_code}\n",
+        "https://deb.debian.org/debian/pool/main/g/gcc-14/libgcc-s1_14.2.0-19_arm64.deb"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 54104,
+        "file": "libgcc-s1-attempt-1.deb",
+        "sha256": "1108bc87879833d6d9a145f22a4a15cddb34e065b4b5f4b97bee586adbac2851"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 0,
+      "expected": {
+        "bytes": 54104,
+        "package": "libgcc-s1",
+        "sha256": "1108bc87879833d6d9a145f22a4a15cddb34e065b4b5f4b97bee586adbac2851"
+      },
+      "finished_at": "2026-09-12T11:53:13.208190+00:00",
+      "http_code": "200",
+      "input_digest_matches": true,
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "fa17118d61750dcefa91977e5fee960cc4aeb41c9075c68c605aa9b1beea5cb8",
+      "started_at": "2026-09-12T11:53:11.582504+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "libgcc-s1",
+      "transport_passed": true,
+      "url": "https://deb.debian.org/debian/pool/main/g/gcc-14/libgcc-s1_14.2.0-19_arm64.deb"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "741128",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-verifier-d04b225-20260912/libgcrypt20-attempt-1.deb",
+        "--write-out",
+        "%{http_code}\n",
+        "https://deb.debian.org/debian/pool/main/libg/libgcrypt20/libgcrypt20_1.11.0-7+deb13u1_arm64.deb"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 741128,
+        "file": "libgcrypt20-attempt-1.deb",
+        "sha256": "243a42b879c6675348279a3f9a40e535d57185af00dbfd51b7481e777f163da6"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 0,
+      "expected": {
+        "bytes": 741128,
+        "package": "libgcrypt20",
+        "sha256": "243a42b879c6675348279a3f9a40e535d57185af00dbfd51b7481e777f163da6"
+      },
+      "finished_at": "2026-09-12T11:53:14.491058+00:00",
+      "http_code": "200",
+      "input_digest_matches": true,
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "fa17118d61750dcefa91977e5fee960cc4aeb41c9075c68c605aa9b1beea5cb8",
+      "started_at": "2026-09-12T11:53:13.251847+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "libgcrypt20",
+      "transport_passed": true,
+      "url": "https://deb.debian.org/debian/pool/main/libg/libgcrypt20/libgcrypt20_1.11.0-7+deb13u1_arm64.deb"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "78544",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-verifier-d04b225-20260912/libgpg-error0-attempt-1.deb",
+        "--write-out",
+        "%{http_code}\n",
+        "https://deb.debian.org/debian/pool/main/libg/libgpg-error/libgpg-error0_1.51-4_arm64.deb"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 78544,
+        "file": "libgpg-error0-attempt-1.deb",
+        "sha256": "f9a8ee3f325360dbbb1c98331c60c7aa454a054a8a4564bc36b3e52fb53e019e"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 0,
+      "expected": {
+        "bytes": 78544,
+        "package": "libgpg-error0",
+        "sha256": "f9a8ee3f325360dbbb1c98331c60c7aa454a054a8a4564bc36b3e52fb53e019e"
+      },
+      "finished_at": "2026-09-12T11:53:15.507244+00:00",
+      "http_code": "200",
+      "input_digest_matches": true,
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "fa17118d61750dcefa91977e5fee960cc4aeb41c9075c68c605aa9b1beea5cb8",
+      "started_at": "2026-09-12T11:53:14.529465+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "libgpg-error0",
+      "transport_passed": true,
+      "url": "https://deb.debian.org/debian/pool/main/libg/libgpg-error/libgpg-error0_1.51-4_arm64.deb"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "125004",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-verifier-d04b225-20260912/libksba8-attempt-1.deb",
+        "--write-out",
+        "%{http_code}\n",
+        "https://deb.debian.org/debian/pool/main/libk/libksba/libksba8_1.6.7-2+b1_arm64.deb"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 125004,
+        "file": "libksba8-attempt-1.deb",
+        "sha256": "ee001c93cf2a5e495e1885fac2d7ec1474bd619539f0f33a0b326ac511e04297"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 0,
+      "expected": {
+        "bytes": 125004,
+        "package": "libksba8",
+        "sha256": "ee001c93cf2a5e495e1885fac2d7ec1474bd619539f0f33a0b326ac511e04297"
+      },
+      "finished_at": "2026-09-12T11:53:16.604399+00:00",
+      "http_code": "200",
+      "input_digest_matches": true,
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "fa17118d61750dcefa91977e5fee960cc4aeb41c9075c68c605aa9b1beea5cb8",
+      "started_at": "2026-09-12T11:53:15.557183+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "libksba8",
+      "transport_passed": true,
+      "url": "https://deb.debian.org/debian/pool/main/libk/libksba/libksba8_1.6.7-2+b1_arm64.deb"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "22900",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-verifier-d04b225-20260912/libnpth0t64-attempt-1.deb",
+        "--write-out",
+        "%{http_code}\n",
+        "https://deb.debian.org/debian/pool/main/n/npth/libnpth0t64_1.8-3_arm64.deb"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 22900,
+        "file": "libnpth0t64-attempt-1.deb",
+        "sha256": "68bca0187b0121e25706fc79cee63233168f4b4acbfa1c3f34f0880be6c16a5c"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 0,
+      "expected": {
+        "bytes": 22900,
+        "package": "libnpth0t64",
+        "sha256": "68bca0187b0121e25706fc79cee63233168f4b4acbfa1c3f34f0880be6c16a5c"
+      },
+      "finished_at": "2026-09-12T11:53:17.414534+00:00",
+      "http_code": "200",
+      "input_digest_matches": true,
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "fa17118d61750dcefa91977e5fee960cc4aeb41c9075c68c605aa9b1beea5cb8",
+      "started_at": "2026-09-12T11:53:16.641308+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "libnpth0t64",
+      "transport_passed": true,
+      "url": "https://deb.debian.org/debian/pool/main/n/npth/libnpth0t64_1.8-3_arm64.deb"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "159264",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-verifier-d04b225-20260912/libreadline8t64-attempt-1.deb",
+        "--write-out",
+        "%{http_code}\n",
+        "https://deb.debian.org/debian/pool/main/r/readline/libreadline8t64_8.2-6_arm64.deb"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 159264,
+        "file": "libreadline8t64-attempt-1.deb",
+        "sha256": "f78ff432b2a627bc04f7eef0e6e2696501c9e06feca748a5b741d5e594429033"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 0,
+      "expected": {
+        "bytes": 159264,
+        "package": "libreadline8t64",
+        "sha256": "f78ff432b2a627bc04f7eef0e6e2696501c9e06feca748a5b741d5e594429033"
+      },
+      "finished_at": "2026-09-12T11:53:18.915919+00:00",
+      "http_code": "200",
+      "input_digest_matches": true,
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "fa17118d61750dcefa91977e5fee960cc4aeb41c9075c68c605aa9b1beea5cb8",
+      "started_at": "2026-09-12T11:53:17.446716+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "libreadline8t64",
+      "transport_passed": true,
+      "url": "https://deb.debian.org/debian/pool/main/r/readline/libreadline8t64_8.2-6_arm64.deb"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "853772",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-verifier-d04b225-20260912/libsqlite3-0-attempt-1.deb",
+        "--write-out",
+        "%{http_code}\n",
+        "https://deb.debian.org/debian/pool/main/s/sqlite3/libsqlite3-0_3.46.1-7+deb13u1_arm64.deb"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 853772,
+        "file": "libsqlite3-0-attempt-1.deb",
+        "sha256": "69dd4b705eca29fe134c17f18aaa4cc9e7ecd01c0250d5e195358801514c76ac"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 0,
+      "expected": {
+        "bytes": 853772,
+        "package": "libsqlite3-0",
+        "sha256": "69dd4b705eca29fe134c17f18aaa4cc9e7ecd01c0250d5e195358801514c76ac"
+      },
+      "finished_at": "2026-09-12T11:53:20.418324+00:00",
+      "http_code": "200",
+      "input_digest_matches": true,
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "fa17118d61750dcefa91977e5fee960cc4aeb41c9075c68c605aa9b1beea5cb8",
+      "started_at": "2026-09-12T11:53:18.961323+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "libsqlite3-0",
+      "transport_passed": true,
+      "url": "https://deb.debian.org/debian/pool/main/s/sqlite3/libsqlite3-0_3.46.1-7+deb13u1_arm64.deb"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "341360",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-verifier-d04b225-20260912/libtinfo6-attempt-1.deb",
+        "--write-out",
+        "%{http_code}\n",
+        "https://deb.debian.org/debian/pool/main/n/ncurses/libtinfo6_6.5+20250216-2_arm64.deb"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 341360,
+        "file": "libtinfo6-attempt-1.deb",
+        "sha256": "2a747f7fff3c2347c357387a7133df997410f07ba1b1df1a1461a97bd7fbc2fc"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 0,
+      "expected": {
+        "bytes": 341360,
+        "package": "libtinfo6",
+        "sha256": "2a747f7fff3c2347c357387a7133df997410f07ba1b1df1a1461a97bd7fbc2fc"
+      },
+      "finished_at": "2026-09-12T11:53:21.818591+00:00",
+      "http_code": "200",
+      "input_digest_matches": true,
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "fa17118d61750dcefa91977e5fee960cc4aeb41c9075c68c605aa9b1beea5cb8",
+      "started_at": "2026-09-12T11:53:20.461450+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "libtinfo6",
+      "transport_passed": true,
+      "url": "https://deb.debian.org/debian/pool/main/n/ncurses/libtinfo6_6.5+20250216-2_arm64.deb"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "69360",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-verifier-d04b225-20260912/readline-common-attempt-1.deb",
+        "--write-out",
+        "%{http_code}\n",
+        "https://deb.debian.org/debian/pool/main/r/readline/readline-common_8.2-6_all.deb"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 69360,
+        "file": "readline-common-attempt-1.deb",
+        "sha256": "f77e8aa0bf0de618f11cb0b21658a4ed60f177d63b3cf26d7fc3706b6d0eaaa9"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 0,
+      "expected": {
+        "bytes": 69360,
+        "package": "readline-common",
+        "sha256": "f77e8aa0bf0de618f11cb0b21658a4ed60f177d63b3cf26d7fc3706b6d0eaaa9"
+      },
+      "finished_at": "2026-09-12T11:53:22.791830+00:00",
+      "http_code": "200",
+      "input_digest_matches": true,
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "fa17118d61750dcefa91977e5fee960cc4aeb41c9075c68c605aa9b1beea5cb8",
+      "started_at": "2026-09-12T11:53:21.860127+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "readline-common",
+      "transport_passed": true,
+      "url": "https://deb.debian.org/debian/pool/main/r/readline/readline-common_8.2-6_all.deb"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "85116",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-verifier-d04b225-20260912/zlib1g-attempt-1.deb",
+        "--write-out",
+        "%{http_code}\n",
+        "https://deb.debian.org/debian/pool/main/z/zlib/zlib1g_1.3.dfsg+really1.3.1-1+b1_arm64.deb"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 85116,
+        "file": "zlib1g-attempt-1.deb",
+        "sha256": "209aa5cf671e97b9eb0410844fa6df4cae2e75b0c72e7802ab6c8ece13e6ddef"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 0,
+      "expected": {
+        "bytes": 85116,
+        "package": "zlib1g",
+        "sha256": "209aa5cf671e97b9eb0410844fa6df4cae2e75b0c72e7802ab6c8ece13e6ddef"
+      },
+      "finished_at": "2026-09-12T11:53:24.140499+00:00",
+      "http_code": "200",
+      "input_digest_matches": true,
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "fa17118d61750dcefa91977e5fee960cc4aeb41c9075c68c605aa9b1beea5cb8",
+      "started_at": "2026-09-12T11:53:22.831286+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "zlib1g",
+      "transport_passed": true,
+      "url": "https://deb.debian.org/debian/pool/main/z/zlib/zlib1g_1.3.dfsg+really1.3.1-1+b1_arm64.deb"
+    }
+  ],
+  "kind": "diagnostic-verifier-package-fetch"
+}

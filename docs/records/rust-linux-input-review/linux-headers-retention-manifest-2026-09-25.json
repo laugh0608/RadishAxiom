@@ -1,0 +1,237 @@
+{
+  "complete_project_source_lock": false,
+  "files": [
+    {
+      "bytes": 1648,
+      "path": ".tmp/linux-headers-inputs-38edae0-20260925/candidate-attempt-1.json",
+      "role": "original-fetch-input",
+      "sha256": "f711912a3f2038d6dc385960e870a3a7dbfa89bb0b857aef84e0dc5bfe276bc2"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/linux-headers-inputs-38edae0-20260925/candidate-attempt-1.stderr",
+      "role": "original-fetch-input",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/linux-headers-inputs-38edae0-20260925/candidate-attempt-1.stdout",
+      "role": "original-fetch-input",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 1415704,
+      "path": ".tmp/linux-headers-inputs-38edae0-20260925/candidate-attempt-1.tar.gz",
+      "role": "original-fetch-input",
+      "sha256": "e875ffc69332bb4a8776e29ba15659be3e27785762fc8c769d9d2f4cf002ff87"
+    },
+    {
+      "bytes": 745,
+      "path": ".tmp/linux-headers-inputs-38edae0-20260925/candidate-plan.json",
+      "role": "scope-or-derived-input",
+      "sha256": "0bbb3a7c94b85a91a28473407346e88c882d4e8835385f2fa728647bc749909f"
+    },
+    {
+      "bytes": 830,
+      "path": ".tmp/linux-headers-inputs-38edae0-20260925/fetch-plan.json",
+      "role": "scope-or-derived-input",
+      "sha256": "601ea87bc2dea121342c1775249bef7efedc6106ee3ea0c3e0af09eb0f4c4687"
+    },
+    {
+      "bytes": 1614,
+      "path": ".tmp/linux-headers-inputs-38edae0-20260925/headers-attempt-1.json",
+      "role": "original-fetch-input",
+      "sha256": "8fb69771b7e5faf68ba9a64ec8f155d607dfc006c46a87cf1d06bd8e031a352f"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/linux-headers-inputs-38edae0-20260925/headers-attempt-1.stderr",
+      "role": "original-fetch-input",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/linux-headers-inputs-38edae0-20260925/headers-attempt-1.stdout",
+      "role": "original-fetch-input",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 1052880,
+      "path": ".tmp/linux-headers-inputs-38edae0-20260925/headers-attempt-1.tar.xz",
+      "role": "original-fetch-input",
+      "sha256": "d3f3acf6d16bdb005d3f2589ade1df8eff2e1c537f92e6cd9222218ead882feb"
+    },
+    {
+      "bytes": 2668,
+      "path": ".tmp/linux-headers-inputs-38edae0-20260925/rust-musl-toolchain.sh",
+      "role": "scope-or-derived-input",
+      "sha256": "faae0de27e4ca1661a030ce3623e4959f34f5d1b6f795ea9b5b84c10c2086b2e"
+    },
+    {
+      "bytes": 41720,
+      "path": ".tmp/linux-headers-inputs-38edae0-20260925/selected-review-texts.json",
+      "role": "scope-or-derived-input",
+      "sha256": "0c71972ec89a7f74bb700fb9373a72288bc43481e297117d322b01cac2bcc7bf"
+    },
+    {
+      "bytes": 1577,
+      "path": ".tmp/linux-headers-inputs-38edae0-20260925/tags-attempt-1.json",
+      "role": "original-fetch-input",
+      "sha256": "2c9ed3f6febfa6f008afd96919b241696ab4b6cc95059c66b5390ba09cd09491"
+    },
+    {
+      "bytes": 9809,
+      "path": ".tmp/linux-headers-inputs-38edae0-20260925/tags-attempt-1.json.body",
+      "role": "original-fetch-input",
+      "sha256": "188e3bc305d86b6d42db63ba0d2da1aa43b78f43494a40e0e5c01ece76b636bd"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/linux-headers-inputs-38edae0-20260925/tags-attempt-1.stderr",
+      "role": "original-fetch-input",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/linux-headers-inputs-38edae0-20260925/tags-attempt-1.stdout",
+      "role": "original-fetch-input",
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 213688,
+      "path": ".tmp/musl-cross-make-review-c38a1c1/musl-cross-make-3635262.tar.gz",
+      "role": "fixed-recipe-archive",
+      "sha256": "60bed670d689d5c2164020960df36b80189dc5617e9763e023672f98a99d567e"
+    },
+    {
+      "bytes": 8061,
+      "path": "docs/records/rust-linux-input-review/check-linux-headers.py",
+      "role": "boundary-test",
+      "sha256": "929396b72beb213fbc643bee781dd836225a5f97eb84c888a3ec6bd04f1b6ee6"
+    },
+    {
+      "bytes": 6298,
+      "path": "docs/records/rust-linux-input-review/check-mpc-mpfr-inputs.py",
+      "role": "boundary-test",
+      "sha256": "a4cf099233955280a3f75875b7c357f94b71b195133435b578792cefa66930d8"
+    },
+    {
+      "bytes": 3094,
+      "path": "docs/records/rust-linux-input-review/check-musl-cross-make.py",
+      "role": "boundary-test",
+      "sha256": "ee97868d7a0b8fa08514636120ee15f5f44eda264ad05cbe715fa88321999b70"
+    },
+    {
+      "bytes": 4164,
+      "path": "docs/records/rust-linux-input-review/check-musl-retention.py",
+      "role": "boundary-test",
+      "sha256": "b983a8f088a9b2a0fa721886c1951f2436ab6ce916ab0d803f3e147038e0c6f1"
+    },
+    {
+      "bytes": 1966,
+      "path": "docs/records/rust-linux-input-review/fetch-linux-headers-candidate.py",
+      "role": "replay-method",
+      "sha256": "98f42dd15e894c4da95ac70c67105a9cd00efce47db9c86ba2a7251e9304911e"
+    },
+    {
+      "bytes": 1910,
+      "path": "docs/records/rust-linux-input-review/fetch-linux-headers-inputs.py",
+      "role": "replay-method",
+      "sha256": "268e1eee90ca3f7543d6332b77dc0389caafffb3a2d901dc11e4e6bcffbcb2ee"
+    },
+    {
+      "bytes": 5126,
+      "path": "docs/records/rust-linux-input-review/fetch-mpc-mpfr-inputs.py",
+      "role": "replay-method",
+      "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+    },
+    {
+      "bytes": 10104,
+      "path": "docs/records/rust-linux-input-review/inspect-archives.py",
+      "role": "replay-method",
+      "sha256": "e9a417881e4caff2da92441dc19e958d93dba27173b38d3ce4425a9fd7c3b949"
+    },
+    {
+      "bytes": 7645,
+      "path": "docs/records/rust-linux-input-review/inspect-linux-headers-content.py",
+      "role": "replay-method",
+      "sha256": "c9c2ee0f976e169b3b8577ccfef4888ca58699439405bed22d025c5b30212d53"
+    },
+    {
+      "bytes": 11231,
+      "path": "docs/records/rust-linux-input-review/inspect-linux-headers-inputs.py",
+      "role": "replay-method",
+      "sha256": "28d44d857644a6e4d4536763b76fbe5ccca7184ea68d1662270aecfa8cecee2e"
+    },
+    {
+      "bytes": 8833,
+      "path": "docs/records/rust-linux-input-review/inspect-mpc-mpfr-inputs.py",
+      "role": "replay-method",
+      "sha256": "da04e90b29504c102798d9a29a558d4d6c77e5956734b8a8cab4d1cbaf8d8e98"
+    },
+    {
+      "bytes": 3769,
+      "path": "docs/records/rust-linux-input-review/inspect-musl-cross-make.py",
+      "role": "replay-method",
+      "sha256": "5876728cebff6ab519492d09c42e9d0315f8c5a6922b6cc549007bd995086910"
+    },
+    {
+      "bytes": 4194,
+      "path": "docs/records/rust-linux-input-review/inspect-musl-remaining-sources.py",
+      "role": "replay-method",
+      "sha256": "37a1c7dcb6a3a817581f7d0c533625e9154a84f8a7089c10aab383dc7e718b8e"
+    },
+    {
+      "bytes": 11967,
+      "path": "docs/records/rust-linux-input-review/inspect-musl-verification-keys.py",
+      "role": "replay-method",
+      "sha256": "391c7e48b0792330135990e3358f5dad811d745c3010a30aad084c81e6e05ae4"
+    },
+    {
+      "bytes": 7460,
+      "path": "docs/records/rust-linux-input-review/inspect-musl-verification-status.py",
+      "role": "replay-method",
+      "sha256": "b3964b6904c13c82596438af2ec8030455137c0121cfdc35ff3e77a79963e9fc"
+    },
+    {
+      "bytes": 237928,
+      "path": "docs/records/rust-linux-input-review/linux-headers-inputs-2026-09-25.json.gz",
+      "role": "report-or-prior-provenance",
+      "sha256": "7364b3cc03bb2f3ab08a2baead665d1d3081ec978b378e2fcb1b78b70369ee37"
+    },
+    {
+      "bytes": 9098,
+      "path": "docs/records/rust-linux-input-review/linux-headers-summary-2026-09-25.json",
+      "role": "report-or-prior-provenance",
+      "sha256": "15e174f8caa010e44a00c1efbc4929c30cad5c56d69abd532a540240fc2a1430"
+    },
+    {
+      "bytes": 4464,
+      "path": "docs/records/rust-linux-input-review/musl-cross-make-fetch-2026-09-10.json",
+      "role": "report-or-prior-provenance",
+      "sha256": "11ffd3e8f8baf2948b5fba7858413f4dc163c70e021af174d35ea36c3548afcd"
+    },
+    {
+      "bytes": 60345,
+      "path": "docs/records/rust-linux-input-review/musl-cross-make-inventory-2026-09-10.json",
+      "role": "report-or-prior-provenance",
+      "sha256": "ffdafa6f0c253430683ed9b612fb24332179eb6fdb44933d36bf4b914dfea71a"
+    },
+    {
+      "bytes": 10295,
+      "path": "docs/records/rust-linux-input-review/retain-musl-verifier-inputs.py",
+      "role": "replay-method",
+      "sha256": "72047818576ab27de02cf8e9620c33299c007b4c64108fb7c11a3c1d23e3ca0a"
+    },
+    {
+      "bytes": 458982,
+      "path": "docs/records/rust-linux-input-review/source-recipes-2026-09-10.json",
+      "role": "report-or-prior-provenance",
+      "sha256": "ddc140b45df7a30c6bc4a1859b1fb295df6757d1a95906fa8541ec64e8a2a7e6"
+    }
+  ],
+  "kind": "diagnostic-musl-retention-manifest-v1",
+  "repository_base": "38edae0",
+  "scope": "Exact headers mirror archive, upstream candidate archive, first tag page, fixed musl-cross-make recipe, previously bound Rust script and local diagnostics; no source acceptance",
+  "source_acceptance": "not-assessed"
+}

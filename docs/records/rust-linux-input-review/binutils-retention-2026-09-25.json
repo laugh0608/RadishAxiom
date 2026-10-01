@@ -1,0 +1,170 @@
+{
+  "copied_and_restored_bytes_match": true,
+  "file_count": 22,
+  "files": [
+    {
+      "bytes": 924,
+      "path": "inputs/fetch-plan.json",
+      "read_limit": 16384,
+      "sha256": "debfe6b7e5f8b226ea0f28d8e480c415d30e001021068b356d75bfbb9740995b",
+      "source": ".tmp/binutils-inputs-20260925/fetch-plan.json"
+    },
+    {
+      "bytes": 1560,
+      "path": "inputs/announcement-attempt-1.json",
+      "read_limit": 65536,
+      "sha256": "9d3e326bb3432204c03bd9b65cd1c0eb73b049bb762db1f0147279ce19bba4c2",
+      "source": ".tmp/binutils-inputs-20260925/announcement-attempt-1.json"
+    },
+    {
+      "bytes": 4,
+      "path": "inputs/announcement-attempt-1.stdout",
+      "read_limit": 65536,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+      "source": ".tmp/binutils-inputs-20260925/announcement-attempt-1.stdout"
+    },
+    {
+      "bytes": 0,
+      "path": "inputs/announcement-attempt-1.stderr",
+      "read_limit": 65536,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": ".tmp/binutils-inputs-20260925/announcement-attempt-1.stderr"
+    },
+    {
+      "bytes": 6813,
+      "path": "inputs/announcement-attempt-1.html",
+      "read_limit": 262144,
+      "sha256": "a982a9527d2373a9d29d5e12bb06fb40f55d0d5219ad45c48c1b01cf3d6dcf9f",
+      "source": ".tmp/binutils-inputs-20260925/announcement-attempt-1.html"
+    },
+    {
+      "bytes": 1551,
+      "path": "inputs/signature-attempt-1.json",
+      "read_limit": 65536,
+      "sha256": "b2065f117016c7ed021193c39def29fed75009b784a2b08b2e115794b17467cd",
+      "source": ".tmp/binutils-inputs-20260925/signature-attempt-1.json"
+    },
+    {
+      "bytes": 4,
+      "path": "inputs/signature-attempt-1.stdout",
+      "read_limit": 65536,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+      "source": ".tmp/binutils-inputs-20260925/signature-attempt-1.stdout"
+    },
+    {
+      "bytes": 0,
+      "path": "inputs/signature-attempt-1.stderr",
+      "read_limit": 65536,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": ".tmp/binutils-inputs-20260925/signature-attempt-1.stderr"
+    },
+    {
+      "bytes": 833,
+      "path": "inputs/signature-attempt-1.sig",
+      "read_limit": 65536,
+      "sha256": "3f30d34757e8ead05682f067e501432ee045cc2fb8083a906e000c4ec49a07dd",
+      "source": ".tmp/binutils-inputs-20260925/signature-attempt-1.sig"
+    },
+    {
+      "bytes": 1554,
+      "path": "inputs/binutils-attempt-1.json",
+      "read_limit": 65536,
+      "sha256": "fa623dfc45dad44105d9bf9e90585790decf99455878dd29999f106dd619cd63",
+      "source": ".tmp/binutils-inputs-20260925/binutils-attempt-1.json"
+    },
+    {
+      "bytes": 4,
+      "path": "inputs/binutils-attempt-1.stdout",
+      "read_limit": 65536,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+      "source": ".tmp/binutils-inputs-20260925/binutils-attempt-1.stdout"
+    },
+    {
+      "bytes": 0,
+      "path": "inputs/binutils-attempt-1.stderr",
+      "read_limit": 65536,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": ".tmp/binutils-inputs-20260925/binutils-attempt-1.stderr"
+    },
+    {
+      "bytes": 51342242,
+      "path": "inputs/binutils-attempt-1.tar.gz",
+      "read_limit": 67108864,
+      "sha256": "0cdd76777a0dfd3dd3a63f215f030208ddb91c2361d2bcc02acec0f1c16b6a2e",
+      "source": ".tmp/binutils-inputs-20260925/binutils-attempt-1.tar.gz"
+    },
+    {
+      "bytes": 7840,
+      "path": "methods/binutils-inputs-2026-09-25.json",
+      "read_limit": 1048576,
+      "sha256": "e0d28a66472c9d290070bc60f9e7d5adfa30678768f51e152ad591e958d1a787",
+      "source": "docs/records/rust-linux-input-review/binutils-inputs-2026-09-25.json"
+    },
+    {
+      "bytes": 2563,
+      "path": "methods/check-binutils-inputs.py",
+      "read_limit": 1048576,
+      "sha256": "4d093293a8b81188ae02f82c13cf3cd05aaa27b493db316b76fd542e12869364",
+      "source": "docs/records/rust-linux-input-review/check-binutils-inputs.py"
+    },
+    {
+      "bytes": 5126,
+      "path": "methods/fetch-mpc-mpfr-inputs.py",
+      "read_limit": 1048576,
+      "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab",
+      "source": "docs/records/rust-linux-input-review/fetch-mpc-mpfr-inputs.py"
+    },
+    {
+      "bytes": 6252,
+      "path": "methods/inspect-binutils-inputs.py",
+      "read_limit": 1048576,
+      "sha256": "03e5fc51a99b6b2e082adacdc1fdfc39f3976b81fb3a1c86985f5769debfde4c",
+      "source": "docs/records/rust-linux-input-review/inspect-binutils-inputs.py"
+    },
+    {
+      "bytes": 8833,
+      "path": "methods/inspect-mpc-mpfr-inputs.py",
+      "read_limit": 1048576,
+      "sha256": "da04e90b29504c102798d9a29a558d4d6c77e5956734b8a8cab4d1cbaf8d8e98",
+      "source": "docs/records/rust-linux-input-review/inspect-mpc-mpfr-inputs.py"
+    },
+    {
+      "bytes": 3769,
+      "path": "methods/inspect-musl-cross-make.py",
+      "read_limit": 1048576,
+      "sha256": "5876728cebff6ab519492d09c42e9d0315f8c5a6922b6cc549007bd995086910",
+      "source": "docs/records/rust-linux-input-review/inspect-musl-cross-make.py"
+    },
+    {
+      "bytes": 11967,
+      "path": "methods/inspect-musl-verification-keys.py",
+      "read_limit": 1048576,
+      "sha256": "391c7e48b0792330135990e3358f5dad811d745c3010a30aad084c81e6e05ae4",
+      "source": "docs/records/rust-linux-input-review/inspect-musl-verification-keys.py"
+    },
+    {
+      "bytes": 7460,
+      "path": "methods/inspect-musl-verification-status.py",
+      "read_limit": 1048576,
+      "sha256": "b3964b6904c13c82596438af2ec8030455137c0121cfdc35ff3e77a79963e9fc",
+      "source": "docs/records/rust-linux-input-review/inspect-musl-verification-status.py"
+    },
+    {
+      "bytes": 10295,
+      "path": "methods/retain-musl-verifier-inputs.py",
+      "read_limit": 1048576,
+      "sha256": "72047818576ab27de02cf8e9620c33299c007b4c64108fb7c11a3c1d23e3ca0a",
+      "source": "docs/records/rust-linux-input-review/retain-musl-verifier-inputs.py"
+    }
+  ],
+  "initial_parallel_copy": ".tmp/binutils-inputs-restore-20260925",
+  "kind": "diagnostic-binutils-local-retention-v1",
+  "off_device_backup_verified": false,
+  "prior_recipe_archive_required": true,
+  "repository_base": "8a610c7",
+  "restored_from_retained_store": true,
+  "restored_to": ".tmp/binutils-inputs-restore-from-store-20260925",
+  "source_acceptance": "not-assessed",
+  "store": "artifacts/source-inputs/binutils-inputs-8a610c7-20260925",
+  "total_bytes": 51419594
+}

@@ -1,0 +1,3145 @@
+{
+  "acceptance": "not-assessed",
+  "candidate_manifest": {
+    "bytes": 28236,
+    "sha256": "a67e2c07302b945d4d5add12851e5714418614aaba9a28254bef1662bd8b4861"
+  },
+  "elf_count": 14,
+  "inventory_gzip": {
+    "bytes": 198415,
+    "sha256": "4559d99ac6f6e09a1ba8a41dd393fb39e5c883b82e3c7818434fe4ca3dc4c617"
+  },
+  "inventory_json": {
+    "bytes": 3302890,
+    "sha256": "9206cc87f19953eb36bfd05653ebbe91101fb55efd9ac665a7e2fc17c3b22b18"
+  },
+  "kind": "diagnostic-verifier-static-layout",
+  "layout": {
+    "common_license_files_present": false,
+    "configuration_and_mounts": "see companion Markdown",
+    "entries": [
+      {
+        "gid": 0,
+        "mode": 493,
+        "origin": "package",
+        "packages": [
+          "gcc-14-base"
+        ],
+        "path": ".",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "destination": "usr/lib",
+        "gid": 0,
+        "mode": 511,
+        "origin": "proposed-generated",
+        "packages": [],
+        "path": "lib",
+        "target": "usr/lib",
+        "type": "symlink",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "origin": "package",
+        "packages": [
+          "gcc-14-base"
+        ],
+        "path": "usr",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "origin": "package",
+        "packages": [
+          "gpg"
+        ],
+        "path": "usr/bin",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "bytes": 1266832,
+        "gid": 0,
+        "mode": 493,
+        "origin": "package",
+        "packages": [
+          "gpg"
+        ],
+        "path": "usr/bin/gpg",
+        "sha256": "8abfa53f25b7e338fcef742ac0f900bd87dbdcd9c0d0cb2c7c89accdd1299192",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 204184,
+        "gid": 0,
+        "mode": 493,
+        "origin": "package",
+        "packages": [
+          "gpgconf"
+        ],
+        "path": "usr/bin/gpgconf",
+        "sha256": "cf92e711c3bb7ebdb57dcc627a740da6c77348fa12257e2c842c4059bbd13ae4",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "origin": "package",
+        "packages": [
+          "gpg"
+        ],
+        "path": "usr/lib",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "origin": "package",
+        "packages": [
+          "libassuan9"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "bytes": 201344,
+        "gid": 0,
+        "mode": 493,
+        "origin": "package",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "sha256": "1d8b77f28b7cec0329dca107a28fb0a850193b1dcce59be68fa0b06b514548cc",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "destination": "usr/lib/aarch64-linux-gnu/libassuan.so.9.0.2",
+        "gid": 0,
+        "mode": 511,
+        "origin": "package",
+        "packages": [
+          "libassuan9"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libassuan.so.9",
+        "target": "libassuan.so.9.0.2",
+        "type": "symlink",
+        "uid": 0
+      },
+      {
+        "bytes": 133272,
+        "gid": 0,
+        "mode": 420,
+        "origin": "package",
+        "packages": [
+          "libassuan9"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libassuan.so.9.0.2",
+        "sha256": "b541835f89c9f238e2d8802b96c0a07e2612fb4fd4f33f70cfb9549ea72b5ffc",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "destination": "usr/lib/aarch64-linux-gnu/libbz2.so.1.0.4",
+        "gid": 0,
+        "mode": 511,
+        "origin": "package",
+        "packages": [
+          "libbz2-1.0"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libbz2.so.1",
+        "target": "libbz2.so.1.0.4",
+        "type": "symlink",
+        "uid": 0
+      },
+      {
+        "destination": "usr/lib/aarch64-linux-gnu/libbz2.so.1.0.4",
+        "gid": 0,
+        "mode": 511,
+        "origin": "package",
+        "packages": [
+          "libbz2-1.0"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libbz2.so.1.0",
+        "target": "libbz2.so.1.0.4",
+        "type": "symlink",
+        "uid": 0
+      },
+      {
+        "bytes": 70584,
+        "gid": 0,
+        "mode": 420,
+        "origin": "package",
+        "packages": [
+          "libbz2-1.0"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libbz2.so.1.0.4",
+        "sha256": "810fa9b02adc39be4a7542bde79f1da0575e9bbdf8fc3c27deeb1ee97f59fe46",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 1716616,
+        "gid": 0,
+        "mode": 493,
+        "origin": "package",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "sha256": "9a325944115b36e74077786b29531963d96cd55cd6c82f11750a352cdb58fab0",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "destination": "usr/lib/aarch64-linux-gnu/libgcrypt.so.20.5.0",
+        "gid": 0,
+        "mode": 511,
+        "origin": "package",
+        "packages": [
+          "libgcrypt20"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libgcrypt.so.20",
+        "target": "libgcrypt.so.20.5.0",
+        "type": "symlink",
+        "uid": 0
+      },
+      {
+        "bytes": 1201792,
+        "gid": 0,
+        "mode": 420,
+        "origin": "package",
+        "packages": [
+          "libgcrypt20"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libgcrypt.so.20.5.0",
+        "sha256": "4f66771a0799fd111c30e163a41b6d1dc8a6b0377e3e51a8175320890ee60c6e",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "destination": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0.38.0",
+        "gid": 0,
+        "mode": 511,
+        "origin": "package",
+        "packages": [
+          "libgpg-error0"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0",
+        "target": "libgpg-error.so.0.38.0",
+        "type": "symlink",
+        "uid": 0
+      },
+      {
+        "bytes": 198736,
+        "gid": 0,
+        "mode": 420,
+        "origin": "package",
+        "packages": [
+          "libgpg-error0"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0.38.0",
+        "sha256": "6178cac881010e5c37defc08476cd6acced7c13531f3bde72715fcfe801d287a",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "bytes": 591960,
+        "gid": 0,
+        "mode": 420,
+        "origin": "package",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libm.so.6",
+        "sha256": "a8afb2d1f4a0c5e14c0fc82f794ec839eafe29738907aa92895410f57630bbe2",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "destination": "usr/lib/aarch64-linux-gnu/libnpth.so.0.3.0",
+        "gid": 0,
+        "mode": 511,
+        "origin": "package",
+        "packages": [
+          "libnpth0t64"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libnpth.so.0",
+        "target": "libnpth.so.0.3.0",
+        "type": "symlink",
+        "uid": 0
+      },
+      {
+        "bytes": 67992,
+        "gid": 0,
+        "mode": 420,
+        "origin": "package",
+        "packages": [
+          "libnpth0t64"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libnpth.so.0.3.0",
+        "sha256": "00e69f7071b5699895e15214929e5154bbc6ffc1383d9b025902ad5f24ec392e",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "destination": "usr/lib/aarch64-linux-gnu/libreadline.so.8.2",
+        "gid": 0,
+        "mode": 511,
+        "origin": "package",
+        "packages": [
+          "libreadline8t64"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libreadline.so.8",
+        "target": "libreadline.so.8.2",
+        "type": "symlink",
+        "uid": 0
+      },
+      {
+        "bytes": 420224,
+        "gid": 0,
+        "mode": 420,
+        "origin": "package",
+        "packages": [
+          "libreadline8t64"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libreadline.so.8.2",
+        "sha256": "41eaf42757798c29d7dd13f519f76a91cd06847a068ed29a7912b343b60c48b3",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "destination": "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6",
+        "gid": 0,
+        "mode": 511,
+        "origin": "package",
+        "packages": [
+          "libsqlite3-0"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libsqlite3.so.0",
+        "target": "libsqlite3.so.0.8.6",
+        "type": "symlink",
+        "uid": 0
+      },
+      {
+        "bytes": 1592144,
+        "gid": 0,
+        "mode": 420,
+        "origin": "package",
+        "packages": [
+          "libsqlite3-0"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6",
+        "sha256": "9865b5990181843284595a2c290e5aa9e1df1b3ee438ce7fc6cdc2ec1c411985",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "destination": "usr/lib/aarch64-linux-gnu/libtinfo.so.6.5",
+        "gid": 0,
+        "mode": 511,
+        "origin": "package",
+        "packages": [
+          "libtinfo6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libtinfo.so.6",
+        "target": "libtinfo.so.6.5",
+        "type": "symlink",
+        "uid": 0
+      },
+      {
+        "bytes": 265504,
+        "gid": 0,
+        "mode": 420,
+        "origin": "package",
+        "packages": [
+          "libtinfo6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libtinfo.so.6.5",
+        "sha256": "57cda9469aa613f8ab25b21af56867d5a01d19c0a91fda6965aa6501ea98cfcf",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "destination": "usr/lib/aarch64-linux-gnu/libz.so.1.3.1",
+        "gid": 0,
+        "mode": 511,
+        "origin": "package",
+        "packages": [
+          "zlib1g"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libz.so.1",
+        "target": "libz.so.1.3.1",
+        "type": "symlink",
+        "uid": 0
+      },
+      {
+        "bytes": 133600,
+        "gid": 0,
+        "mode": 420,
+        "origin": "package",
+        "packages": [
+          "zlib1g"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libz.so.1.3.1",
+        "sha256": "6fe00acadf8119ff245855e5dcc7f26c6c0ffaf4bfa2baa88feab58f23727d65",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "destination": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "gid": 0,
+        "mode": 511,
+        "origin": "package",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/ld-linux-aarch64.so.1",
+        "target": "aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "type": "symlink",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "origin": "package",
+        "packages": [
+          "gcc-14-base"
+        ],
+        "path": "usr/share",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "origin": "package",
+        "packages": [
+          "gcc-14-base"
+        ],
+        "path": "usr/share/doc",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "origin": "package",
+        "packages": [
+          "gpg"
+        ],
+        "path": "usr/share/doc/gpg",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "bytes": 13143,
+        "gid": 0,
+        "mode": 420,
+        "origin": "package",
+        "packages": [
+          "gpg"
+        ],
+        "path": "usr/share/doc/gpg/copyright",
+        "sha256": "c19276de1952e4d3926c293ac598065e2abcb5b9543600cf941d53fb3c6e41a8",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "origin": "package",
+        "packages": [
+          "gpgconf"
+        ],
+        "path": "usr/share/doc/gpgconf",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "bytes": 13143,
+        "gid": 0,
+        "mode": 420,
+        "origin": "package",
+        "packages": [
+          "gpgconf"
+        ],
+        "path": "usr/share/doc/gpgconf/copyright",
+        "sha256": "c19276de1952e4d3926c293ac598065e2abcb5b9543600cf941d53fb3c6e41a8",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "origin": "package",
+        "packages": [
+          "libassuan9"
+        ],
+        "path": "usr/share/doc/libassuan9",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "bytes": 12055,
+        "gid": 0,
+        "mode": 420,
+        "origin": "package",
+        "packages": [
+          "libassuan9"
+        ],
+        "path": "usr/share/doc/libassuan9/copyright",
+        "sha256": "77098ae4bd20a17039c27a742aaec873c0317793a2867332b3083509c16cfb9a",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "origin": "package",
+        "packages": [
+          "libbz2-1.0"
+        ],
+        "path": "usr/share/doc/libbz2-1.0",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "bytes": 2228,
+        "gid": 0,
+        "mode": 420,
+        "origin": "package",
+        "packages": [
+          "libbz2-1.0"
+        ],
+        "path": "usr/share/doc/libbz2-1.0/copyright",
+        "sha256": "832ed535ff3c3d025a8d2348eb1b697b89addcf2eaadbc17650262040b9145e2",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "origin": "package",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/share/doc/libc6",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "bytes": 51200,
+        "gid": 0,
+        "mode": 420,
+        "origin": "package",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/share/doc/libc6/copyright",
+        "sha256": "f5788886720a2605a946e81d571e6c8162b09f58d2e2ceb8d36e5768fccd850d",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "origin": "package",
+        "packages": [
+          "libgcrypt20"
+        ],
+        "path": "usr/share/doc/libgcrypt20",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "bytes": 26983,
+        "gid": 0,
+        "mode": 420,
+        "origin": "package",
+        "packages": [
+          "libgcrypt20"
+        ],
+        "path": "usr/share/doc/libgcrypt20/copyright",
+        "sha256": "4feae258cab1ad4743fb569a77e0b2a5b7a0199520bdbc0a613916291b9aa8a8",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "origin": "package",
+        "packages": [
+          "libgpg-error0"
+        ],
+        "path": "usr/share/doc/libgpg-error0",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "bytes": 5301,
+        "gid": 0,
+        "mode": 420,
+        "origin": "package",
+        "packages": [
+          "libgpg-error0"
+        ],
+        "path": "usr/share/doc/libgpg-error0/copyright",
+        "sha256": "1edb3be55cf9371e8e7a71e53fadc2a3d33b44d7d7f15c78a7669c92ce0fade2",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "origin": "package",
+        "packages": [
+          "libnpth0t64"
+        ],
+        "path": "usr/share/doc/libnpth0t64",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "bytes": 1164,
+        "gid": 0,
+        "mode": 420,
+        "origin": "package",
+        "packages": [
+          "libnpth0t64"
+        ],
+        "path": "usr/share/doc/libnpth0t64/copyright",
+        "sha256": "df6909abb38f4e84d237d8617e948bdbb391b2004ecf573863011d54a88ccf22",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "origin": "package",
+        "packages": [
+          "libreadline8t64"
+        ],
+        "path": "usr/share/doc/libreadline8t64",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "bytes": 4314,
+        "gid": 0,
+        "mode": 420,
+        "origin": "package",
+        "packages": [
+          "libreadline8t64"
+        ],
+        "path": "usr/share/doc/libreadline8t64/copyright",
+        "sha256": "854c6f5f249a109a913e1e58528445c4fec96f063ae8ba496bfb2b460bcc6866",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "origin": "package",
+        "packages": [
+          "libsqlite3-0"
+        ],
+        "path": "usr/share/doc/libsqlite3-0",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "bytes": 1770,
+        "gid": 0,
+        "mode": 420,
+        "origin": "package",
+        "packages": [
+          "libsqlite3-0"
+        ],
+        "path": "usr/share/doc/libsqlite3-0/copyright",
+        "sha256": "7b1679aaa97e6e49ec12460eefa85a82b432053bc468dd89dbdb50f2326589f3",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "origin": "package",
+        "packages": [
+          "libtinfo6"
+        ],
+        "path": "usr/share/doc/libtinfo6",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "bytes": 4670,
+        "gid": 0,
+        "mode": 420,
+        "origin": "package",
+        "packages": [
+          "libtinfo6"
+        ],
+        "path": "usr/share/doc/libtinfo6/copyright",
+        "sha256": "f838d6048fbc59356b7e56c207a7cb32dc6bf4adea95514a002596bde8f6e1e7",
+        "type": "file",
+        "uid": 0
+      },
+      {
+        "gid": 0,
+        "mode": 493,
+        "origin": "package",
+        "packages": [
+          "zlib1g"
+        ],
+        "path": "usr/share/doc/zlib1g",
+        "type": "directory",
+        "uid": 0
+      },
+      {
+        "bytes": 2927,
+        "gid": 0,
+        "mode": 420,
+        "origin": "package",
+        "packages": [
+          "zlib1g"
+        ],
+        "path": "usr/share/doc/zlib1g/copyright",
+        "sha256": "9e5b96d63773a5d177ba264254390f792be07e41748ebd94730981c6cac31cc6",
+        "type": "file",
+        "uid": 0
+      }
+    ],
+    "kind": "static-layout-proposal-not-assembled",
+    "licenses": [
+      {
+        "common_license_references": [
+          "/usr/share/common-licenses/CC0-1.0",
+          "/usr/share/common-licenses/GPL-2.0",
+          "/usr/share/common-licenses/GPL-3",
+          "/usr/share/common-licenses/LGPL-2.1",
+          "/usr/share/common-licenses/LGPL-3"
+        ],
+        "copyright": "usr/share/doc/gpg/copyright",
+        "package": "gpg"
+      },
+      {
+        "common_license_references": [
+          "/usr/share/common-licenses/CC0-1.0",
+          "/usr/share/common-licenses/GPL-2.0",
+          "/usr/share/common-licenses/GPL-3",
+          "/usr/share/common-licenses/LGPL-2.1",
+          "/usr/share/common-licenses/LGPL-3"
+        ],
+        "copyright": "usr/share/doc/gpgconf/copyright",
+        "package": "gpgconf"
+      },
+      {
+        "common_license_references": [
+          "/usr/share/common-licenses/GPL-2",
+          "/usr/share/common-licenses/GPL-3",
+          "/usr/share/common-licenses/LGPL-2.1",
+          "/usr/share/common-licenses/LGPL-3"
+        ],
+        "copyright": "usr/share/doc/libassuan9/copyright",
+        "package": "libassuan9"
+      },
+      {
+        "common_license_references": [
+          "/usr/share/common-licenses/GPL-2"
+        ],
+        "copyright": "usr/share/doc/libbz2-1.0/copyright",
+        "package": "libbz2-1.0"
+      },
+      {
+        "common_license_references": [
+          "/usr/share/common-licenses/GPL-2",
+          "/usr/share/common-licenses/GPL-3",
+          "/usr/share/common-licenses/LGPL-2",
+          "/usr/share/common-licenses/LGPL-2.1",
+          "/usr/share/common-licenses/LGPL-3"
+        ],
+        "copyright": "usr/share/doc/libc6/copyright",
+        "package": "libc6"
+      },
+      {
+        "common_license_references": [
+          "/usr/share/common-licenses/GPL-2",
+          "/usr/share/common-licenses/LGPL"
+        ],
+        "copyright": "usr/share/doc/libgcrypt20/copyright",
+        "package": "libgcrypt20"
+      },
+      {
+        "common_license_references": [
+          "/usr/share/common-licenses/GPL-3",
+          "/usr/share/common-licenses/LGPL-2.1"
+        ],
+        "copyright": "usr/share/doc/libgpg-error0/copyright",
+        "package": "libgpg-error0"
+      },
+      {
+        "common_license_references": [
+          "/usr/share/common-licenses/LGPL-2.1"
+        ],
+        "copyright": "usr/share/doc/libnpth0t64/copyright",
+        "package": "libnpth0t64"
+      },
+      {
+        "common_license_references": [
+          "/usr/share/common-licenses/GFDL",
+          "/usr/share/common-licenses/GPL-2",
+          "/usr/share/common-licenses/GPL-3"
+        ],
+        "copyright": "usr/share/doc/libreadline8t64/copyright",
+        "package": "libreadline8t64"
+      },
+      {
+        "common_license_references": [
+          "/usr/share/common-licenses/GPL-2"
+        ],
+        "copyright": "usr/share/doc/libsqlite3-0/copyright",
+        "package": "libsqlite3-0"
+      },
+      {
+        "common_license_references": [],
+        "copyright": "usr/share/doc/libtinfo6/copyright",
+        "package": "libtinfo6"
+      },
+      {
+        "common_license_references": [],
+        "copyright": "usr/share/doc/zlib1g/copyright",
+        "package": "zlib1g"
+      }
+    ],
+    "resolutions": [
+      {
+        "bytes": 133600,
+        "from": "usr/bin/gpg",
+        "kind": "needed-candidate",
+        "packages": [
+          "zlib1g"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libz.so.1.3.1",
+        "requested": "usr/lib/aarch64-linux-gnu/libz.so.1",
+        "sha256": "6fe00acadf8119ff245855e5dcc7f26c6c0ffaf4bfa2baa88feab58f23727d65",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 70584,
+        "from": "usr/bin/gpg",
+        "kind": "needed-candidate",
+        "packages": [
+          "libbz2-1.0"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libbz2.so.1.0.4",
+        "requested": "usr/lib/aarch64-linux-gnu/libbz2.so.1.0",
+        "sha256": "810fa9b02adc39be4a7542bde79f1da0575e9bbdf8fc3c27deeb1ee97f59fe46",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 1592144,
+        "from": "usr/bin/gpg",
+        "kind": "needed-candidate",
+        "packages": [
+          "libsqlite3-0"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6",
+        "requested": "usr/lib/aarch64-linux-gnu/libsqlite3.so.0",
+        "sha256": "9865b5990181843284595a2c290e5aa9e1df1b3ee438ce7fc6cdc2ec1c411985",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 1201792,
+        "from": "usr/bin/gpg",
+        "kind": "needed-candidate",
+        "packages": [
+          "libgcrypt20"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libgcrypt.so.20.5.0",
+        "requested": "usr/lib/aarch64-linux-gnu/libgcrypt.so.20",
+        "sha256": "4f66771a0799fd111c30e163a41b6d1dc8a6b0377e3e51a8175320890ee60c6e",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 420224,
+        "from": "usr/bin/gpg",
+        "kind": "needed-candidate",
+        "packages": [
+          "libreadline8t64"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libreadline.so.8.2",
+        "requested": "usr/lib/aarch64-linux-gnu/libreadline.so.8",
+        "sha256": "41eaf42757798c29d7dd13f519f76a91cd06847a068ed29a7912b343b60c48b3",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 133272,
+        "from": "usr/bin/gpg",
+        "kind": "needed-candidate",
+        "packages": [
+          "libassuan9"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libassuan.so.9.0.2",
+        "requested": "usr/lib/aarch64-linux-gnu/libassuan.so.9",
+        "sha256": "b541835f89c9f238e2d8802b96c0a07e2612fb4fd4f33f70cfb9549ea72b5ffc",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 67992,
+        "from": "usr/bin/gpg",
+        "kind": "needed-candidate",
+        "packages": [
+          "libnpth0t64"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libnpth.so.0.3.0",
+        "requested": "usr/lib/aarch64-linux-gnu/libnpth.so.0",
+        "sha256": "00e69f7071b5699895e15214929e5154bbc6ffc1383d9b025902ad5f24ec392e",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 198736,
+        "from": "usr/bin/gpg",
+        "kind": "needed-candidate",
+        "packages": [
+          "libgpg-error0"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0.38.0",
+        "requested": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0",
+        "sha256": "6178cac881010e5c37defc08476cd6acced7c13531f3bde72715fcfe801d287a",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 1716616,
+        "from": "usr/bin/gpg",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "requested": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "sha256": "9a325944115b36e74077786b29531963d96cd55cd6c82f11750a352cdb58fab0",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 201344,
+        "from": "usr/bin/gpg",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "requested": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "sha256": "1d8b77f28b7cec0329dca107a28fb0a850193b1dcce59be68fa0b06b514548cc",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 201344,
+        "from": "usr/bin/gpg",
+        "kind": "interpreter",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "requested": "/lib/ld-linux-aarch64.so.1",
+        "sha256": "1d8b77f28b7cec0329dca107a28fb0a850193b1dcce59be68fa0b06b514548cc",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 1201792,
+        "from": "usr/bin/gpgconf",
+        "kind": "needed-candidate",
+        "packages": [
+          "libgcrypt20"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libgcrypt.so.20.5.0",
+        "requested": "usr/lib/aarch64-linux-gnu/libgcrypt.so.20",
+        "sha256": "4f66771a0799fd111c30e163a41b6d1dc8a6b0377e3e51a8175320890ee60c6e",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 198736,
+        "from": "usr/bin/gpgconf",
+        "kind": "needed-candidate",
+        "packages": [
+          "libgpg-error0"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0.38.0",
+        "requested": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0",
+        "sha256": "6178cac881010e5c37defc08476cd6acced7c13531f3bde72715fcfe801d287a",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 1716616,
+        "from": "usr/bin/gpgconf",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "requested": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "sha256": "9a325944115b36e74077786b29531963d96cd55cd6c82f11750a352cdb58fab0",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 201344,
+        "from": "usr/bin/gpgconf",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "requested": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "sha256": "1d8b77f28b7cec0329dca107a28fb0a850193b1dcce59be68fa0b06b514548cc",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 201344,
+        "from": "usr/bin/gpgconf",
+        "kind": "interpreter",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "requested": "/lib/ld-linux-aarch64.so.1",
+        "sha256": "1d8b77f28b7cec0329dca107a28fb0a850193b1dcce59be68fa0b06b514548cc",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 198736,
+        "from": "usr/lib/aarch64-linux-gnu/libassuan.so.9.0.2",
+        "kind": "needed-candidate",
+        "packages": [
+          "libgpg-error0"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0.38.0",
+        "requested": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0",
+        "sha256": "6178cac881010e5c37defc08476cd6acced7c13531f3bde72715fcfe801d287a",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 1716616,
+        "from": "usr/lib/aarch64-linux-gnu/libassuan.so.9.0.2",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "requested": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "sha256": "9a325944115b36e74077786b29531963d96cd55cd6c82f11750a352cdb58fab0",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 201344,
+        "from": "usr/lib/aarch64-linux-gnu/libassuan.so.9.0.2",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "requested": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "sha256": "1d8b77f28b7cec0329dca107a28fb0a850193b1dcce59be68fa0b06b514548cc",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 1716616,
+        "from": "usr/lib/aarch64-linux-gnu/libbz2.so.1.0.4",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "requested": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "sha256": "9a325944115b36e74077786b29531963d96cd55cd6c82f11750a352cdb58fab0",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 201344,
+        "from": "usr/lib/aarch64-linux-gnu/libbz2.so.1.0.4",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "requested": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "sha256": "1d8b77f28b7cec0329dca107a28fb0a850193b1dcce59be68fa0b06b514548cc",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 201344,
+        "from": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "requested": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "sha256": "1d8b77f28b7cec0329dca107a28fb0a850193b1dcce59be68fa0b06b514548cc",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 201344,
+        "from": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "kind": "interpreter",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "requested": "/lib/ld-linux-aarch64.so.1",
+        "sha256": "1d8b77f28b7cec0329dca107a28fb0a850193b1dcce59be68fa0b06b514548cc",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 198736,
+        "from": "usr/lib/aarch64-linux-gnu/libgcrypt.so.20.5.0",
+        "kind": "needed-candidate",
+        "packages": [
+          "libgpg-error0"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0.38.0",
+        "requested": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0",
+        "sha256": "6178cac881010e5c37defc08476cd6acced7c13531f3bde72715fcfe801d287a",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 1716616,
+        "from": "usr/lib/aarch64-linux-gnu/libgcrypt.so.20.5.0",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "requested": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "sha256": "9a325944115b36e74077786b29531963d96cd55cd6c82f11750a352cdb58fab0",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 201344,
+        "from": "usr/lib/aarch64-linux-gnu/libgcrypt.so.20.5.0",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "requested": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "sha256": "1d8b77f28b7cec0329dca107a28fb0a850193b1dcce59be68fa0b06b514548cc",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 1716616,
+        "from": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0.38.0",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "requested": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "sha256": "9a325944115b36e74077786b29531963d96cd55cd6c82f11750a352cdb58fab0",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 201344,
+        "from": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0.38.0",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "requested": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "sha256": "1d8b77f28b7cec0329dca107a28fb0a850193b1dcce59be68fa0b06b514548cc",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 1716616,
+        "from": "usr/lib/aarch64-linux-gnu/libm.so.6",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "requested": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "sha256": "9a325944115b36e74077786b29531963d96cd55cd6c82f11750a352cdb58fab0",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 201344,
+        "from": "usr/lib/aarch64-linux-gnu/libm.so.6",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "requested": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "sha256": "1d8b77f28b7cec0329dca107a28fb0a850193b1dcce59be68fa0b06b514548cc",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 1716616,
+        "from": "usr/lib/aarch64-linux-gnu/libnpth.so.0.3.0",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "requested": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "sha256": "9a325944115b36e74077786b29531963d96cd55cd6c82f11750a352cdb58fab0",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 201344,
+        "from": "usr/lib/aarch64-linux-gnu/libnpth.so.0.3.0",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "requested": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "sha256": "1d8b77f28b7cec0329dca107a28fb0a850193b1dcce59be68fa0b06b514548cc",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 265504,
+        "from": "usr/lib/aarch64-linux-gnu/libreadline.so.8.2",
+        "kind": "needed-candidate",
+        "packages": [
+          "libtinfo6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libtinfo.so.6.5",
+        "requested": "usr/lib/aarch64-linux-gnu/libtinfo.so.6",
+        "sha256": "57cda9469aa613f8ab25b21af56867d5a01d19c0a91fda6965aa6501ea98cfcf",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 1716616,
+        "from": "usr/lib/aarch64-linux-gnu/libreadline.so.8.2",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "requested": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "sha256": "9a325944115b36e74077786b29531963d96cd55cd6c82f11750a352cdb58fab0",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 201344,
+        "from": "usr/lib/aarch64-linux-gnu/libreadline.so.8.2",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "requested": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "sha256": "1d8b77f28b7cec0329dca107a28fb0a850193b1dcce59be68fa0b06b514548cc",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 591960,
+        "from": "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libm.so.6",
+        "requested": "usr/lib/aarch64-linux-gnu/libm.so.6",
+        "sha256": "a8afb2d1f4a0c5e14c0fc82f794ec839eafe29738907aa92895410f57630bbe2",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 1716616,
+        "from": "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "requested": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "sha256": "9a325944115b36e74077786b29531963d96cd55cd6c82f11750a352cdb58fab0",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 201344,
+        "from": "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "requested": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "sha256": "1d8b77f28b7cec0329dca107a28fb0a850193b1dcce59be68fa0b06b514548cc",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 1716616,
+        "from": "usr/lib/aarch64-linux-gnu/libtinfo.so.6.5",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "requested": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "sha256": "9a325944115b36e74077786b29531963d96cd55cd6c82f11750a352cdb58fab0",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 201344,
+        "from": "usr/lib/aarch64-linux-gnu/libtinfo.so.6.5",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "requested": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "sha256": "1d8b77f28b7cec0329dca107a28fb0a850193b1dcce59be68fa0b06b514548cc",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 1716616,
+        "from": "usr/lib/aarch64-linux-gnu/libz.so.1.3.1",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "requested": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "sha256": "9a325944115b36e74077786b29531963d96cd55cd6c82f11750a352cdb58fab0",
+        "status": "found",
+        "type": "file"
+      },
+      {
+        "bytes": 201344,
+        "from": "usr/lib/aarch64-linux-gnu/libz.so.1.3.1",
+        "kind": "needed-candidate",
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "requested": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "sha256": "1d8b77f28b7cec0329dca107a28fb0a850193b1dcce59be68fa0b06b514548cc",
+        "status": "found",
+        "type": "file"
+      }
+    ],
+    "runtime_complete": false
+  },
+  "manuals": [
+    {
+      "input": {
+        "bytes": 56529,
+        "sha256": "34b0572086e2688a2f887153ca61244bfc5b21642c27689bdcd133726e38ee91"
+      },
+      "path": "usr/share/man/man1/gpg.1.gz",
+      "uncompressed": {
+        "bytes": 181578,
+        "sha256": "1c3f57387f18152a63d383a4c289a055c679666fc5d7acfef36067ac990ace29"
+      }
+    },
+    {
+      "input": {
+        "bytes": 9196,
+        "sha256": "a7dc2123074330dcd61a3c7dba6321081723eda65c6df6c6a1d560595d35b3b8"
+      },
+      "path": "usr/share/man/man1/gpgconf.1.gz",
+      "uncompressed": {
+        "bytes": 29404,
+        "sha256": "5f162460f10598aba9c4cc8f0bb52b466054ef1314ef1260cf744be6f86bd321"
+      }
+    }
+  ],
+  "methods": {
+    "docs/records/rust-linux-input-review/inspect-musl-trust-inputs.py": {
+      "bytes": 7472,
+      "sha256": "cd2cc429a4337b02e513ddbb9385eadccefed1461732a0a92f595ef0bb2b8878"
+    },
+    "docs/records/rust-linux-input-review/inspect-musl-verifier-content.py": {
+      "bytes": 13420,
+      "sha256": "64d8f7356d2a179bd363f77309a39ba0b5af3f7ba2bc78caa778aad95efc30d1"
+    },
+    "docs/records/rust-linux-input-review/inspect-musl-verifier-layout.py": {
+      "bytes": 14863,
+      "sha256": "ede71d6b4e058c287e00b0767ca6115437e721216a2e3a0379a3b38529f28fe1"
+    },
+    "docs/records/rust-linux-input-review/inspect-selected-inputs.py": {
+      "bytes": 6633,
+      "sha256": "8286b3c9f270c77f20ea24c5bcbea3f6a5415e7c013a7ec39aa8c29ebccbb4be"
+    },
+    "scripts/inspect-debian-source-chain.py": {
+      "bytes": 13032,
+      "sha256": "c6f18880b4f347467ad949ccf25b1960c7bef141e5b48f610ae93ab22479da2a"
+    }
+  },
+  "payload_programs_executed": false,
+  "pending_common_license_source_candidate": {
+    "bytes": 73276,
+    "license_content_inspected": false,
+    "methods": {
+      "docs/records/rust-linux-input-review/inspect-musl-verifier-packages.py": {
+        "bytes": 7576,
+        "sha256": "f8d04abd5141278b373125f8fe6487502c43fd940c9cad48a2120b03a44ed448"
+      },
+      "docs/records/rust-linux-input-review/inspect-musl-verifier-sources.py": {
+        "bytes": 3546,
+        "sha256": "71ed6113217f11abcc3105f0898ddb23c1fc9a5c7822129d8c669b8d5e387d5c"
+      }
+    },
+    "package_acquired": false,
+    "package_row": {
+      "architecture": "arm64",
+      "breaks": "debian-security-support (<< 2019.04.25), initscripts (<< 2.88dsf-13.3), sendfile (<< 2.1b.20080616-5.2~)",
+      "description": "Debian base system miscellaneous files",
+      "description-md5": "6d16337f57b84c4747f56438355b2395",
+      "essential": "yes",
+      "filename": "pool/main/b/base-files/base-files_13.8+deb13u6_arm64.deb",
+      "installed-size": "348",
+      "maintainer": "Santiago Vila <sanvila@debian.org>",
+      "md5sum": "368a48d4de9186911eeaa1d8453b0cff",
+      "multi-arch": "foreign",
+      "package": "base-files",
+      "pre-depends": "awk",
+      "priority": "required",
+      "provides": "base, usr-is-merged",
+      "replaces": "base, dpkg (<= 1.15.0), miscutils",
+      "section": "admin",
+      "sha256": "5f5a571ec846d7db05d9f825f0388a37bc033267b33cbf85b4eaa838dffcc41b",
+      "size": "73276",
+      "tag": "admin::configuring, admin::filesystem, admin::install, admin::login,\nrole::app-data, suite::debian",
+      "version": "13.8+deb13u6"
+    },
+    "packages_index": {
+      "bytes": 9607412,
+      "sha256": "753da751bbc7a679f48bd1b623ffd4479cb6861c426118284c76eb82909e4908"
+    },
+    "sha256": "5f5a571ec846d7db05d9f825f0388a37bc033267b33cbf85b4eaa838dffcc41b",
+    "source_row": {
+      "architecture": "any",
+      "binary": "base-files",
+      "build-depends": "debhelper-compat (= 13), debhelper (>= 13.10~)",
+      "checksums-sha256": "\n8e2254627410ebf9424cea290166f717e5ff1fa02758679fd9273e5f41b606c6 1247 base-files_13.8+deb13u6.dsc\n0d8c018d562213aa274a8210042bbc3c4ca985a43a75e0021de4bfa4d9722e34 68672 base-files_13.8+deb13u6.tar.xz",
+      "directory": "pool/main/b/base-files",
+      "files": "\naeb7f3724d9a22efa4cc5178a936f3fb 1247 base-files_13.8+deb13u6.dsc\n5495568132c60a4db5f082acd05994fa 68672 base-files_13.8+deb13u6.tar.xz",
+      "format": "3.0 (native)",
+      "maintainer": "Santiago Vila <sanvila@debian.org>",
+      "package": "base-files",
+      "package-list": "\nbase-files deb admin required arch=any essential=yes",
+      "priority": "source",
+      "section": "admin",
+      "standards-version": "4.7.2",
+      "vcs-browser": "https://salsa.debian.org/sanvila/base-files",
+      "vcs-git": "https://salsa.debian.org/sanvila/base-files.git",
+      "version": "13.8+deb13u6"
+    },
+    "sources_index": {
+      "bytes": 10527804,
+      "sha256": "e8bbadd8389119e841494630998187f961d7de4d5b1dcbeed4f792a1d423299f"
+    },
+    "url": "https://deb.debian.org/debian/pool/main/b/base-files/base-files_13.8+deb13u6_arm64.deb"
+  },
+  "rootfs_assembled": false,
+  "runtime_closure_assessed": false,
+  "signature_reverified": false,
+  "symbol_comparison": {
+    "exact_symbol_provider_binding_assessed": false,
+    "loader_resolution_assessed": false,
+    "relocations_assessed": false,
+    "unmatched_versioned_symbols": [],
+    "unversioned_undefined_symbol_candidates": [
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6"
+        ],
+        "name": "sqlite3_column_text",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6"
+        ],
+        "name": "sqlite3_close",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6"
+        ],
+        "name": "sqlite3_busy_handler",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6"
+        ],
+        "name": "sqlite3_reset",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libreadline.so.8.2"
+        ],
+        "name": "write_history",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libreadline.so.8.2"
+        ],
+        "name": "rl_instream",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libz.so.1.3.1"
+        ],
+        "name": "inflateEnd",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6"
+        ],
+        "name": "sqlite3_bind_int",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [],
+        "name": "__gmon_start__",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libbz2.so.1.0.4"
+        ],
+        "name": "BZ2_bzCompressInit",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libreadline.so.8.2"
+        ],
+        "name": "rl_inhibit_completion",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libreadline.so.8.2"
+        ],
+        "name": "read_history",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libz.so.1.3.1"
+        ],
+        "name": "deflate",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6"
+        ],
+        "name": "sqlite3_exec",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libz.so.1.3.1"
+        ],
+        "name": "deflateInit_",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libreadline.so.8.2"
+        ],
+        "name": "clear_history",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libbz2.so.1.0.4"
+        ],
+        "name": "BZ2_bzCompress",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6"
+        ],
+        "name": "sqlite3_free",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libz.so.1.3.1"
+        ],
+        "name": "inflateInit2_",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [],
+        "name": "_ITM_deregisterTMCloneTable",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libreadline.so.8.2"
+        ],
+        "name": "rl_completion_matches",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libz.so.1.3.1"
+        ],
+        "name": "inflate",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [],
+        "name": "_ITM_registerTMCloneTable",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6"
+        ],
+        "name": "sqlite3_bind_int64",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libz.so.1.3.1"
+        ],
+        "name": "deflateEnd",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6"
+        ],
+        "name": "sqlite3_vmprintf",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libreadline.so.8.2"
+        ],
+        "name": "rl_free_line_state",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libreadline.so.8.2"
+        ],
+        "name": "rl_outstream",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6"
+        ],
+        "name": "sqlite3_finalize",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6"
+        ],
+        "name": "sqlite3_column_type",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libreadline.so.8.2"
+        ],
+        "name": "rl_attempted_completion_function",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libbz2.so.1.0.4"
+        ],
+        "name": "BZ2_bzDecompress",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6"
+        ],
+        "name": "sqlite3_bind_text",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6"
+        ],
+        "name": "sqlite3_malloc",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libreadline.so.8.2"
+        ],
+        "name": "rl_attempted_completion_over",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6"
+        ],
+        "name": "sqlite3_step",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libreadline.so.8.2"
+        ],
+        "name": "stifle_history",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libbz2.so.1.0.4"
+        ],
+        "name": "BZ2_bzDecompressEnd",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libreadline.so.8.2"
+        ],
+        "name": "rl_catch_signals",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libreadline.so.8.2"
+        ],
+        "name": "readline",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6"
+        ],
+        "name": "sqlite3_column_count",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6"
+        ],
+        "name": "sqlite3_db_handle",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6"
+        ],
+        "name": "sqlite3_errstr",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6"
+        ],
+        "name": "sqlite3_errmsg",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libz.so.1.3.1"
+        ],
+        "name": "inflateInit_",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libreadline.so.8.2"
+        ],
+        "name": "rl_cleanup_after_signal",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libz.so.1.3.1"
+        ],
+        "name": "deflateInit2_",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6"
+        ],
+        "name": "sqlite3_column_name",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libreadline.so.8.2"
+        ],
+        "name": "rl_readline_name",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6"
+        ],
+        "name": "sqlite3_prepare_v2",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libreadline.so.8.2"
+        ],
+        "name": "add_history",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6"
+        ],
+        "name": "sqlite3_busy_timeout",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libbz2.so.1.0.4"
+        ],
+        "name": "BZ2_bzDecompressInit",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libreadline.so.8.2"
+        ],
+        "name": "history_truncate_file",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6"
+        ],
+        "name": "sqlite3_bind_blob",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6"
+        ],
+        "name": "sqlite3_bind_parameter_count",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6"
+        ],
+        "name": "sqlite3_open",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libreadline.so.8.2"
+        ],
+        "name": "read_history_range",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpg",
+        "matching_direct_dependency_exports": [
+          "usr/lib/aarch64-linux-gnu/libbz2.so.1.0.4"
+        ],
+        "name": "BZ2_bzCompressEnd",
+        "undefined": true,
+        "version": null,
+        "weak": false
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpgconf",
+        "matching_direct_dependency_exports": [],
+        "name": "_ITM_deregisterTMCloneTable",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpgconf",
+        "matching_direct_dependency_exports": [],
+        "name": "__gmon_start__",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/bin/gpgconf",
+        "matching_direct_dependency_exports": [],
+        "name": "_ITM_registerTMCloneTable",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libassuan.so.9.0.2",
+        "matching_direct_dependency_exports": [],
+        "name": "_ITM_deregisterTMCloneTable",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libassuan.so.9.0.2",
+        "matching_direct_dependency_exports": [],
+        "name": "__gmon_start__",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libassuan.so.9.0.2",
+        "matching_direct_dependency_exports": [],
+        "name": "_ITM_registerTMCloneTable",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libbz2.so.1.0.4",
+        "matching_direct_dependency_exports": [],
+        "name": "_ITM_deregisterTMCloneTable",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libbz2.so.1.0.4",
+        "matching_direct_dependency_exports": [],
+        "name": "__gmon_start__",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libbz2.so.1.0.4",
+        "matching_direct_dependency_exports": [],
+        "name": "_ITM_registerTMCloneTable",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libgcrypt.so.20.5.0",
+        "matching_direct_dependency_exports": [],
+        "name": "_ITM_deregisterTMCloneTable",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libgcrypt.so.20.5.0",
+        "matching_direct_dependency_exports": [],
+        "name": "__gmon_start__",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libgcrypt.so.20.5.0",
+        "matching_direct_dependency_exports": [],
+        "name": "_ITM_registerTMCloneTable",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0.38.0",
+        "matching_direct_dependency_exports": [],
+        "name": "_ITM_deregisterTMCloneTable",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0.38.0",
+        "matching_direct_dependency_exports": [],
+        "name": "__gmon_start__",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0.38.0",
+        "matching_direct_dependency_exports": [],
+        "name": "_ITM_registerTMCloneTable",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libm.so.6",
+        "matching_direct_dependency_exports": [],
+        "name": "_ITM_deregisterTMCloneTable",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libm.so.6",
+        "matching_direct_dependency_exports": [],
+        "name": "__gmon_start__",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libm.so.6",
+        "matching_direct_dependency_exports": [],
+        "name": "_ITM_registerTMCloneTable",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libnpth.so.0.3.0",
+        "matching_direct_dependency_exports": [],
+        "name": "_ITM_deregisterTMCloneTable",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libnpth.so.0.3.0",
+        "matching_direct_dependency_exports": [],
+        "name": "__gmon_start__",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libnpth.so.0.3.0",
+        "matching_direct_dependency_exports": [],
+        "name": "_ITM_registerTMCloneTable",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libreadline.so.8.2",
+        "matching_direct_dependency_exports": [],
+        "name": "_ITM_deregisterTMCloneTable",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libreadline.so.8.2",
+        "matching_direct_dependency_exports": [],
+        "name": "__gmon_start__",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libreadline.so.8.2",
+        "matching_direct_dependency_exports": [],
+        "name": "_ITM_registerTMCloneTable",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6",
+        "matching_direct_dependency_exports": [],
+        "name": "__gmon_start__",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6",
+        "matching_direct_dependency_exports": [],
+        "name": "_ITM_deregisterTMCloneTable",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6",
+        "matching_direct_dependency_exports": [],
+        "name": "_ITM_registerTMCloneTable",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libtinfo.so.6.5",
+        "matching_direct_dependency_exports": [],
+        "name": "_ITM_deregisterTMCloneTable",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libtinfo.so.6.5",
+        "matching_direct_dependency_exports": [],
+        "name": "__gmon_start__",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libtinfo.so.6.5",
+        "matching_direct_dependency_exports": [],
+        "name": "_ITM_registerTMCloneTable",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libz.so.1.3.1",
+        "matching_direct_dependency_exports": [],
+        "name": "_ITM_deregisterTMCloneTable",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libz.so.1.3.1",
+        "matching_direct_dependency_exports": [],
+        "name": "__gmon_start__",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      },
+      {
+        "default_version": true,
+        "exported": false,
+        "from": "usr/lib/aarch64-linux-gnu/libz.so.1.3.1",
+        "matching_direct_dependency_exports": [],
+        "name": "_ITM_registerTMCloneTable",
+        "undefined": true,
+        "version": null,
+        "weak": true
+      }
+    ],
+    "version_requirements": [
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/bin/gpg",
+        "hash": "0x06969197",
+        "library": "ld-linux-aarch64.so.1",
+        "provider": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "version": "GLIBC_2.17"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/bin/gpg",
+        "hash": "0x0b0b1a20",
+        "library": "libgpg-error.so.0",
+        "provider": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0.38.0",
+        "version": "GPG_ERROR_1.0"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/bin/gpg",
+        "hash": "0x069691b4",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.34"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/bin/gpg",
+        "hash": "0x069691b8",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.38"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/bin/gpg",
+        "hash": "0x06969185",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.25"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/bin/gpg",
+        "hash": "0x069691b2",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.32"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/bin/gpg",
+        "hash": "0x069691b3",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.33"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/bin/gpg",
+        "hash": "0x06969197",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.17"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/bin/gpg",
+        "hash": "0x09964dc0",
+        "library": "libassuan.so.9",
+        "provider": "usr/lib/aarch64-linux-gnu/libassuan.so.9.0.2",
+        "version": "LIBASSUAN_2.0"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/bin/gpg",
+        "hash": "0x0e5e9c66",
+        "library": "libgcrypt.so.20",
+        "provider": "usr/lib/aarch64-linux-gnu/libgcrypt.so.20.5.0",
+        "version": "GCRYPT_1.6"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/bin/gpg",
+        "hash": "0x058e2720",
+        "library": "libnpth.so.0",
+        "provider": "usr/lib/aarch64-linux-gnu/libnpth.so.0.3.0",
+        "version": "NPTH_1.0"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/bin/gpgconf",
+        "hash": "0x06969197",
+        "library": "ld-linux-aarch64.so.1",
+        "provider": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "version": "GLIBC_2.17"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/bin/gpgconf",
+        "hash": "0x0b0b1a20",
+        "library": "libgpg-error.so.0",
+        "provider": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0.38.0",
+        "version": "GPG_ERROR_1.0"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/bin/gpgconf",
+        "hash": "0x0e5e9c66",
+        "library": "libgcrypt.so.20",
+        "provider": "usr/lib/aarch64-linux-gnu/libgcrypt.so.20.5.0",
+        "version": "GCRYPT_1.6"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/bin/gpgconf",
+        "hash": "0x069691b2",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.32"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/bin/gpgconf",
+        "hash": "0x06969185",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.25"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/bin/gpgconf",
+        "hash": "0x069691b3",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.33"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/bin/gpgconf",
+        "hash": "0x069691b4",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.34"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/bin/gpgconf",
+        "hash": "0x069691b8",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.38"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/bin/gpgconf",
+        "hash": "0x06969197",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.17"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libassuan.so.9.0.2",
+        "hash": "0x06969197",
+        "library": "ld-linux-aarch64.so.1",
+        "provider": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "version": "GLIBC_2.17"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libassuan.so.9.0.2",
+        "hash": "0x0b0b1a20",
+        "library": "libgpg-error.so.0",
+        "provider": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0.38.0",
+        "version": "GPG_ERROR_1.0"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libassuan.so.9.0.2",
+        "hash": "0x069691b3",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.33"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libassuan.so.9.0.2",
+        "hash": "0x069691b8",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.38"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libassuan.so.9.0.2",
+        "hash": "0x06969197",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.17"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libbz2.so.1.0.4",
+        "hash": "0x06969197",
+        "library": "ld-linux-aarch64.so.1",
+        "provider": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "version": "GLIBC_2.17"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libbz2.so.1.0.4",
+        "hash": "0x06969197",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.17"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "hash": "0x069691b5",
+        "library": "ld-linux-aarch64.so.1",
+        "provider": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "version": "GLIBC_2.35"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "hash": "0x0963cf85",
+        "library": "ld-linux-aarch64.so.1",
+        "provider": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "version": "GLIBC_PRIVATE"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "hash": "0x06969197",
+        "library": "ld-linux-aarch64.so.1",
+        "provider": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "version": "GLIBC_2.17"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libgcrypt.so.20.5.0",
+        "hash": "0x06969197",
+        "library": "ld-linux-aarch64.so.1",
+        "provider": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "version": "GLIBC_2.17"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libgcrypt.so.20.5.0",
+        "hash": "0x0b0b1a20",
+        "library": "libgpg-error.so.0",
+        "provider": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0.38.0",
+        "version": "GPG_ERROR_1.0"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libgcrypt.so.20.5.0",
+        "hash": "0x069691b3",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.33"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libgcrypt.so.20.5.0",
+        "hash": "0x06969185",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.25"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libgcrypt.so.20.5.0",
+        "hash": "0x069691b8",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.38"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libgcrypt.so.20.5.0",
+        "hash": "0x06969197",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.17"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0.38.0",
+        "hash": "0x06969197",
+        "library": "ld-linux-aarch64.so.1",
+        "provider": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "version": "GLIBC_2.17"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0.38.0",
+        "hash": "0x069691b2",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.32"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0.38.0",
+        "hash": "0x069691b4",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.34"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0.38.0",
+        "hash": "0x069691b8",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.38"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0.38.0",
+        "hash": "0x06969197",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.17"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libm.so.6",
+        "hash": "0x06969197",
+        "library": "ld-linux-aarch64.so.1",
+        "provider": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "version": "GLIBC_2.17"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libm.so.6",
+        "hash": "0x00fd0e42",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_ABI_DT_RELR"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libm.so.6",
+        "hash": "0x0963cf85",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_PRIVATE"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libm.so.6",
+        "hash": "0x06969197",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.17"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libnpth.so.0.3.0",
+        "hash": "0x06969197",
+        "library": "ld-linux-aarch64.so.1",
+        "provider": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "version": "GLIBC_2.17"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libnpth.so.0.3.0",
+        "hash": "0x069691b2",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.32"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libnpth.so.0.3.0",
+        "hash": "0x06969197",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.17"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libnpth.so.0.3.0",
+        "hash": "0x069691b4",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.34"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libreadline.so.8.2",
+        "hash": "0x06969197",
+        "library": "ld-linux-aarch64.so.1",
+        "provider": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "version": "GLIBC_2.17"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libreadline.so.8.2",
+        "hash": "0x00574d03",
+        "library": "libtinfo.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libtinfo.so.6.5",
+        "version": "NCURSES6_TINFO_5.0.19991023"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libreadline.so.8.2",
+        "hash": "0x069691b8",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.38"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libreadline.so.8.2",
+        "hash": "0x069691b3",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.33"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libreadline.so.8.2",
+        "hash": "0x06969197",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.17"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6",
+        "hash": "0x06969197",
+        "library": "ld-linux-aarch64.so.1",
+        "provider": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "version": "GLIBC_2.17"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6",
+        "hash": "0x069691b8",
+        "library": "libm.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libm.so.6",
+        "version": "GLIBC_2.38"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6",
+        "hash": "0x06969189",
+        "library": "libm.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libm.so.6",
+        "version": "GLIBC_2.29"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6",
+        "hash": "0x06969197",
+        "library": "libm.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libm.so.6",
+        "version": "GLIBC_2.17"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6",
+        "hash": "0x06969188",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.28"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6",
+        "hash": "0x069691b3",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.33"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6",
+        "hash": "0x069691b4",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.34"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6",
+        "hash": "0x06969197",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.17"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libtinfo.so.6.5",
+        "hash": "0x06969197",
+        "library": "ld-linux-aarch64.so.1",
+        "provider": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "version": "GLIBC_2.17"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libtinfo.so.6.5",
+        "hash": "0x069691b3",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.33"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libtinfo.so.6.5",
+        "hash": "0x06969197",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.17"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libz.so.1.3.1",
+        "hash": "0x06969197",
+        "library": "ld-linux-aarch64.so.1",
+        "provider": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "version": "GLIBC_2.17"
+      },
+      {
+        "definition_matches": true,
+        "flags": "0x00",
+        "from": "usr/lib/aarch64-linux-gnu/libz.so.1.3.1",
+        "hash": "0x06969197",
+        "library": "libc.so.6",
+        "provider": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "version": "GLIBC_2.17"
+      }
+    ],
+    "versioned_undefined_count": 1277
+  },
+  "tool": {
+    "bytes": 18272848,
+    "path": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/llvm-objdump",
+    "sha256": "3cccdd0dad838d2130d7fc6237aa176c8c13a593a56b79c64fd980ddb89c670c",
+    "version": "Apple LLVM version 21.0.0\n  Optimized build.\n\n\n  Registered Targets:\n    aarch64    - AArch64 (little endian)\n    aarch64_32 - AArch64 (little endian ILP32)\n    aarch64_be - AArch64 (big endian)\n    arm        - ARM\n    arm64      - ARM64 (little endian)\n    arm64_32   - ARM64 (little endian ILP32)\n    armeb      - ARM (big endian)\n    thumb      - Thumb\n    thumbeb    - Thumb (big endian)\n    x86        - 32-bit X86: Pentium-Pro and above\n    x86-64     - 64-bit X86: EM64T and AMD64\n"
+  },
+  "unmatched_version_definition_count": 0,
+  "unmatched_versioned_symbol_count": 0,
+  "version_requirement_count": 67
+}

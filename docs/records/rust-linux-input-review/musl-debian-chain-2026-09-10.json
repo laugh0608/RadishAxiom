@@ -1,0 +1,132 @@
+{
+  "acceptance": "not-assessed",
+  "archive_diagnostic_passed": true,
+  "kind": "diagnostic-source-chain",
+  "methods": {
+    "docs/records/rust-linux-input-review/inspect-musl-debian-auth.py": "387ca53db56bc2081f69c2d034ba12f962002709455829bf7e69f2e68e0c1516",
+    "scripts/inspect-debian-source-chain.py": "c6f18880b4f347467ad949ccf25b1960c7bef141e5b48f610ae93ab22479da2a"
+  },
+  "observation_sha256": "84230bff54f66d1454de927a43189a566d698013b699f8e729b12a53387a71e6",
+  "release": {
+    "codename": "trixie",
+    "date": "Sat, 11 Jul 2026 09:02:23 UTC",
+    "origin": "Debian",
+    "suite": "stable",
+    "valid-until": null,
+    "version": "13.6"
+  },
+  "release_signatures": {
+    "04B54C3CDCA79751B16BC6B5225629DF75B188BD": {
+      "digest_algorithm": "8",
+      "signer": "B8E5F13176D2A7A75220028078DBA3BC47EF2265"
+    },
+    "41587F7DB8C774BCCF131416762F67A0B2C39DE4": {
+      "digest_algorithm": "8",
+      "signer": "41587F7DB8C774BCCF131416762F67A0B2C39DE4"
+    },
+    "B8B80B5B623EAB6AD8775C45B7C5D7D6350947F8": {
+      "digest_algorithm": "8",
+      "signer": "4CB50190207B4758A3F73A796ED0E7B82643E131"
+    }
+  },
+  "required_role_bindings": {
+    "04B54C3CDCA79751B16BC6B5225629DF75B188BD": {
+      "embedded_cross_certification_digests": [
+        "10"
+      ],
+      "original_packet_digest_algorithms": [
+        "10"
+      ],
+      "self_certifications": [
+        {
+          "class": "1f",
+          "digest_algorithm": "10",
+          "fingerprint": "04B54C3CDCA79751B16BC6B5225629DF75B188BD",
+          "subject": "pub"
+        },
+        {
+          "class": "1f",
+          "digest_algorithm": "10",
+          "fingerprint": "04B54C3CDCA79751B16BC6B5225629DF75B188BD",
+          "subject": "pub"
+        },
+        {
+          "class": "1f",
+          "digest_algorithm": "10",
+          "fingerprint": "04B54C3CDCA79751B16BC6B5225629DF75B188BD",
+          "subject": "pub"
+        },
+        {
+          "class": "1f",
+          "digest_algorithm": "10",
+          "fingerprint": "04B54C3CDCA79751B16BC6B5225629DF75B188BD",
+          "subject": "pub"
+        },
+        {
+          "class": "1f",
+          "digest_algorithm": "10",
+          "fingerprint": "04B54C3CDCA79751B16BC6B5225629DF75B188BD",
+          "subject": "pub"
+        },
+        {
+          "class": "13",
+          "digest_algorithm": "10",
+          "fingerprint": null,
+          "subject": "uid"
+        },
+        {
+          "class": "18",
+          "digest_algorithm": "10",
+          "fingerprint": "B8E5F13176D2A7A75220028078DBA3BC47EF2265",
+          "subject": "sub"
+        }
+      ]
+    },
+    "41587F7DB8C774BCCF131416762F67A0B2C39DE4": {
+      "embedded_cross_certification_digests": [],
+      "original_packet_digest_algorithms": [
+        "10",
+        "8"
+      ],
+      "self_certifications": [
+        {
+          "class": "13",
+          "digest_algorithm": "8",
+          "fingerprint": null,
+          "subject": "uid"
+        }
+      ]
+    }
+  },
+  "source": {
+    "bytes": 1080786,
+    "sha256": "a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4"
+  },
+  "source_bytes_checked": true,
+  "source_stanza": {
+    "architecture": "arm64 musl-linux-arm64 armel armhf musl-linux-armhf i386 musl-linux-i386 amd64 musl-linux-amd64 loong64 musl-linux-loong64 m68k musl-linux-m68k mips musl-linux-mips mipsel musl-linux-mipsel mips64el musl-linux-mips64el s390x musl-linux-s390x sh4 musl-linux-sh4 ppc64el musl-linux-ppc64el riscv64 musl-linux-riscv64",
+    "binary": "musl, musl-dev, musl-tools",
+    "build-depends": "debhelper-compat (= 13), gcc-aarch64-linux-gnu [arm64], gcc-arm-linux-gnueabi [armel], gcc-arm-linux-gnueabihf [armhf], gcc-i686-linux-gnu [i386], gcc-loongarch64-linux-gnu [loong64], gcc-m68k-linux-gnu [m68k], gcc-mips-linux-gnu [mips], gcc-mips64el-linux-gnuabi64 [mips64el], gcc-mipsel-linux-gnu [mipsel], gcc-powerpc64le-linux-gnu [ppc64el], gcc-riscv64-linux-gnu [riscv64], gcc-s390x-linux-gnu [s390x], gcc-sh4-linux-gnu [sh4], gcc-x86-64-linux-gnu [amd64]",
+    "checksums-sha256": "\n972970614ed9159b04343b7f85bdf16f565b4a903f05d97e57dc730c7b0b8066 3683 musl_1.2.5-3.1~deb13u1.dsc\na9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4 1080786 musl_1.2.5.orig.tar.gz\nd9030116fd03e4acfa0b665a13a5de46110296b4e30bb8e67be1f08af29f6306 490 musl_1.2.5.orig.tar.gz.asc\n46fdfb271edc2f035d8d4063ff2e299734409693e781e69e4b77e0a9a495072e 29056 musl_1.2.5-3.1~deb13u1.debian.tar.xz",
+    "directory": "pool/main/m/musl",
+    "files": "\n2ab8354e8d9ee4c08c56013aadffed14 3683 musl_1.2.5-3.1~deb13u1.dsc\nac5cfde7718d0547e224247ccfe59f18 1080786 musl_1.2.5.orig.tar.gz\n52945accececaefa1fb269f95eb152b2 490 musl_1.2.5.orig.tar.gz.asc\n778daa9b6ea8b1beb482e79477729e45 29056 musl_1.2.5-3.1~deb13u1.debian.tar.xz",
+    "format": "3.0 (quilt)",
+    "homepage": "https://musl.libc.org/",
+    "maintainer": "Reiner Herrmann <reiner@reiner-h.de>",
+    "package": "musl",
+    "package-list": "\nmusl deb libs optional arch=arm64,musl-linux-arm64,armel,armhf,musl-linux-armhf,i386,musl-linux-i386,amd64,musl-linux-amd64,loong64,musl-linux-loong64,m68k,musl-linux-m68k,mips,musl-linux-mips,mipsel,musl-linux-mipsel,mips64el,musl-linux-mips64el,s390x,musl-linux-s390x,sh4,musl-linux-sh4,ppc64el,musl-linux-ppc64el,riscv64,musl-linux-riscv64\nmusl-dev deb libdevel optional arch=arm64,musl-linux-arm64,armel,armhf,musl-linux-armhf,i386,musl-linux-i386,amd64,musl-linux-amd64,loong64,musl-linux-loong64,m68k,musl-linux-m68k,mips,musl-linux-mips,mipsel,musl-linux-mipsel,mips64el,musl-linux-mips64el,s390x,musl-linux-s390x,sh4,musl-linux-sh4,ppc64el,musl-linux-ppc64el,riscv64,musl-linux-riscv64\nmusl-tools deb devel optional arch=amd64,arm64,armel,armhf,i386,loong64,m68k,mips,mips64el,mipsel,ppc64el,riscv64,s390x,sh4",
+    "priority": "optional",
+    "section": "misc",
+    "standards-version": "4.7.2",
+    "testsuite": "autopkgtest",
+    "testsuite-triggers": "binutils, build-essential, file",
+    "vcs-browser": "https://salsa.debian.org/reiner/musl",
+    "vcs-git": "https://salsa.debian.org/reiner/musl.git",
+    "version": "1.2.5-3.1~deb13u1"
+  },
+  "sources_index": {
+    "bytes": 10527804,
+    "sha256": "e8bbadd8389119e841494630998187f961d7de4d5b1dcbeed4f792a1d423299f"
+  },
+  "sources_url": "https://deb.debian.org/debian/dists/trixie/main/source/by-hash/SHA256/e8bbadd8389119e841494630998187f961d7de4d5b1dcbeed4f792a1d423299f"
+}

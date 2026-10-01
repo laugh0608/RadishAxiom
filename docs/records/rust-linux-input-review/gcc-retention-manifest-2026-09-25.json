@@ -1,0 +1,226 @@
+{
+  "files": [
+    {
+      "bytes": 1530,
+      "path": ".tmp/gcc-inputs-dac0405-20260925/checksums-attempt-1.json",
+      "read_limit": 16777216,
+      "sha256": "e725aea1356b74d2c46f0285c4639891f912ed61d4a9bd5b450ea41871189de6"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/gcc-inputs-dac0405-20260925/checksums-attempt-1.stderr",
+      "read_limit": 16777216,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/gcc-inputs-dac0405-20260925/checksums-attempt-1.stdout",
+      "read_limit": 16777216,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 596,
+      "path": ".tmp/gcc-inputs-dac0405-20260925/checksums-attempt-1.txt",
+      "read_limit": 16777216,
+      "sha256": "75253b34f1ba6c41e236a74d82ee257de131f145f53412a2054f56d81dd6eef4"
+    },
+    {
+      "bytes": 1985,
+      "path": ".tmp/gcc-inputs-dac0405-20260925/directory-attempt-1.html",
+      "read_limit": 16777216,
+      "sha256": "e2d6d8617b7503b72c0878aafd1846c3ef071426a8e5ab2af96cd0b23cac993e"
+    },
+    {
+      "bytes": 1514,
+      "path": ".tmp/gcc-inputs-dac0405-20260925/directory-attempt-1.json",
+      "read_limit": 16777216,
+      "sha256": "9ab8f3aee18679c2903f53e1f0e46278e1cb0e8663a1d9a2cc2375a0a7ff8132"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/gcc-inputs-dac0405-20260925/directory-attempt-1.stderr",
+      "read_limit": 16777216,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/gcc-inputs-dac0405-20260925/directory-attempt-1.stdout",
+      "read_limit": 16777216,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 1054,
+      "path": ".tmp/gcc-inputs-dac0405-20260925/fetch-plan.json",
+      "read_limit": 16777216,
+      "sha256": "366282d80069f029063e49c2a55498e56687d2564165d0ce723cfbec53610d8d"
+    },
+    {
+      "bytes": 1646,
+      "path": ".tmp/gcc-inputs-dac0405-20260925/gcc-attempt-1.json",
+      "read_limit": 16777216,
+      "sha256": "3f1cf9a6368e5c644acb071a53ce173f962225836aa10aed778d3d59c241a73a"
+    },
+    {
+      "bytes": 101,
+      "path": ".tmp/gcc-inputs-dac0405-20260925/gcc-attempt-1.stderr",
+      "read_limit": 16777216,
+      "sha256": "81b309d181680e2e5fbbe06f415a2d8f39a9bab994763c468a9920eee95aaa74"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/gcc-inputs-dac0405-20260925/gcc-attempt-1.stdout",
+      "read_limit": 16777216,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 56872510,
+      "path": ".tmp/gcc-inputs-dac0405-20260925/gcc-attempt-1.tar.xz",
+      "read_limit": 100663296,
+      "sha256": "60fb27083ee63e77274a3e45bd649b097344c6b74fe641b97e18b5a33ce68a32"
+    },
+    {
+      "bytes": 1639,
+      "path": ".tmp/gcc-inputs-dac0405-20260925/gcc-attempt-2.json",
+      "read_limit": 16777216,
+      "sha256": "f29e4c0ac7d61872036eab681472057d594afb8f3935423fe451bd54edd46b04"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/gcc-inputs-dac0405-20260925/gcc-attempt-2.stderr",
+      "read_limit": 16777216,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/gcc-inputs-dac0405-20260925/gcc-attempt-2.stdout",
+      "read_limit": 16777216,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 72411232,
+      "path": ".tmp/gcc-inputs-dac0405-20260925/gcc-attempt-2.tar.xz",
+      "read_limit": 100663296,
+      "sha256": "c95da32f440378d7751dd95533186f7fc05ceb4fb65eb5b85234e6299eb9838e"
+    },
+    {
+      "bytes": 300,
+      "path": ".tmp/gcc-inputs-dac0405-20260925/recovery-plan.json",
+      "read_limit": 16777216,
+      "sha256": "2458255a1f1325cfbcc3233a6f41879e60db0c12607c88d588a002ecaa4c46d1"
+    },
+    {
+      "bytes": 1550,
+      "path": ".tmp/gcc-inputs-dac0405-20260925/signature-attempt-1.json",
+      "read_limit": 16777216,
+      "sha256": "ff138f3103aab18cb1bb9449df27762dd9a69a8fb95ba0fdedf476fcb04ca436"
+    },
+    {
+      "bytes": 310,
+      "path": ".tmp/gcc-inputs-dac0405-20260925/signature-attempt-1.sig",
+      "read_limit": 16777216,
+      "sha256": "764f191a8679cf7269dd73a5b313d5597b28424dd7c74a82d43570ba5da0eced"
+    },
+    {
+      "bytes": 0,
+      "path": ".tmp/gcc-inputs-dac0405-20260925/signature-attempt-1.stderr",
+      "read_limit": 16777216,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4,
+      "path": ".tmp/gcc-inputs-dac0405-20260925/signature-attempt-1.stdout",
+      "read_limit": 16777216,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "bytes": 213688,
+      "path": ".tmp/musl-cross-make-review-c38a1c1/musl-cross-make-3635262.tar.gz",
+      "read_limit": 16777216,
+      "sha256": "60bed670d689d5c2164020960df36b80189dc5617e9763e023672f98a99d567e"
+    },
+    {
+      "bytes": 5923,
+      "path": "docs/records/rust-linux-input-review/check-gcc-inputs.py",
+      "read_limit": 16777216,
+      "sha256": "0f429b7ff25f372ecfac343398679d4e896d78123b52cb352d4c11dc85bc7654"
+    },
+    {
+      "bytes": 6298,
+      "path": "docs/records/rust-linux-input-review/check-mpc-mpfr-inputs.py",
+      "read_limit": 16777216,
+      "sha256": "a4cf099233955280a3f75875b7c357f94b71b195133435b578792cefa66930d8"
+    },
+    {
+      "bytes": 3940,
+      "path": "docs/records/rust-linux-input-review/fetch-gcc-archive-recovery.py",
+      "read_limit": 16777216,
+      "sha256": "fa4e57c143b6a71928c4fe78c3e39c79bd86e3765c659dabdae974a3b39d92f3"
+    },
+    {
+      "bytes": 5126,
+      "path": "docs/records/rust-linux-input-review/fetch-mpc-mpfr-inputs.py",
+      "read_limit": 16777216,
+      "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+    },
+    {
+      "bytes": 12515,
+      "path": "docs/records/rust-linux-input-review/gcc-inputs-2026-09-25.json",
+      "read_limit": 16777216,
+      "sha256": "d605cdcc7930a18d4a8d84257d67ccc4971b6f64e6c002e168cfcf22304faa17"
+    },
+    {
+      "bytes": 10104,
+      "path": "docs/records/rust-linux-input-review/inspect-archives.py",
+      "read_limit": 16777216,
+      "sha256": "e9a417881e4caff2da92441dc19e958d93dba27173b38d3ce4425a9fd7c3b949"
+    },
+    {
+      "bytes": 7359,
+      "path": "docs/records/rust-linux-input-review/inspect-gcc-inputs.py",
+      "read_limit": 16777216,
+      "sha256": "be79d675d3f91abc1c01f861d234ad09fb2d3d0e2249e7609f768b9116e36317"
+    },
+    {
+      "bytes": 8833,
+      "path": "docs/records/rust-linux-input-review/inspect-mpc-mpfr-inputs.py",
+      "read_limit": 16777216,
+      "sha256": "da04e90b29504c102798d9a29a558d4d6c77e5956734b8a8cab4d1cbaf8d8e98"
+    },
+    {
+      "bytes": 3769,
+      "path": "docs/records/rust-linux-input-review/inspect-musl-cross-make.py",
+      "read_limit": 16777216,
+      "sha256": "5876728cebff6ab519492d09c42e9d0315f8c5a6922b6cc549007bd995086910"
+    },
+    {
+      "bytes": 4194,
+      "path": "docs/records/rust-linux-input-review/inspect-musl-remaining-sources.py",
+      "read_limit": 16777216,
+      "sha256": "37a1c7dcb6a3a817581f7d0c533625e9154a84f8a7089c10aab383dc7e718b8e"
+    },
+    {
+      "bytes": 11967,
+      "path": "docs/records/rust-linux-input-review/inspect-musl-verification-keys.py",
+      "read_limit": 16777216,
+      "sha256": "391c7e48b0792330135990e3358f5dad811d745c3010a30aad084c81e6e05ae4"
+    },
+    {
+      "bytes": 7460,
+      "path": "docs/records/rust-linux-input-review/inspect-musl-verification-status.py",
+      "read_limit": 16777216,
+      "sha256": "b3964b6904c13c82596438af2ec8030455137c0121cfdc35ff3e77a79963e9fc"
+    },
+    {
+      "bytes": 10295,
+      "path": "docs/records/rust-linux-input-review/retain-musl-verifier-inputs.py",
+      "read_limit": 16777216,
+      "sha256": "72047818576ab27de02cf8e9620c33299c007b4c64108fb7c11a3c1d23e3ca0a"
+    }
+  ],
+  "kind": "diagnostic-gcc-retention-manifest-v1",
+  "layout": "files/<original-repository-relative-path>",
+  "off_device_backup_verified": false,
+  "repository_base": "dac0405",
+  "scope": "GCC 9.4.0 fixed input material, first timeout partial bytes, separately authorized recovery, methods and fixed recipe archive",
+  "source_acceptance": "not-assessed"
+}

@@ -1,0 +1,359 @@
+{
+  "acceptance": "not-assessed",
+  "authorization_scope": "Continue the three exact next-step URLs identified in the preceding record; download and local review only.",
+  "containers_run": 0,
+  "date": "2026-09-10",
+  "fetch_method": {
+    "base": "docs/records/rust-linux-input-review/fetch-musl-trust-inputs.py",
+    "bytes": 3136,
+    "executed_method": {
+      "bytes": 3181,
+      "sha256": "d0fe0109fa78990cac5464379adae7d2d4f7a53c193d2ad548b5308672fb2930"
+    },
+    "patch": "musl-key-status-fetch-method.patch",
+    "sha256": "af211b69e88d500840cee1d55ad48e2ddaee3628e2f32d397272f14640c2e822"
+  },
+  "image_metadata_probe": {
+    "argv": [
+      "docker",
+      "--context",
+      "orbstack",
+      "image",
+      "inspect",
+      "--format",
+      "{{json .Id}} {{json .RepoDigests}} {{json .Os}} {{json .Architecture}} {{json .RootFS}}",
+      "sha256:a339861ae23e9abb272cea45dfafde21760d2ce6577a70f8a926153677902663"
+    ],
+    "attempts": [
+      {
+        "combined_output": "\npermission denied while trying to connect to the docker API at unix:///Users/luobo/.orbstack/run/docker.sock\n",
+        "exit_code": 1
+      },
+      {
+        "combined_output": "\"sha256:a339861ae23e9abb272cea45dfafde21760d2ce6577a70f8a926153677902663\" [\"rust@sha256:a339861ae23e9abb272cea45dfafde21760d2ce6577a70f8a926153677902663\"] \"linux\" \"arm64\" {\"Layers\":[\"sha256:84779591fc57aec53d6ea41b81ecda94b4246d98a671768e35b93d0e59937bb6\",\"sha256:1a300d7ba41c0e1d8cc2cdbe1a2d853b84062a9c3871bb9acec03f2bb6fb66a4\",\"sha256:f28dfcac8971c89facb6efb8523905973b1c3eff2b1fad7f6b294ca9d8a967b2\",\"sha256:483ee8bf286eb9514f4b3439f518c3d7aab294d57cc6ce2c81e5444c04282e72\",\"sha256:f191c9fd06d7da2e7a7197fb28cc0c7f0ff4d1f208c609371e8f48c7b63019d4\"],\"Type\":\"layers\"}\n",
+        "exit_code": 0
+      }
+    ],
+    "capture": "combined outputs returned by exec tool; no container started"
+  },
+  "inspection": {
+    "argv": [
+      "python3",
+      "docs/records/rust-linux-input-review/inspect-musl-key-status.py",
+      ".tmp/musl-key-status-ef02b43-20260910",
+      "--keyring-package",
+      ".tmp/musl-trust-bbbe083-20260910/keyring-attempt-2.deb"
+    ],
+    "exit_code": 0,
+    "stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": ""
+    },
+    "stdout": {
+      "bytes": 3717,
+      "sha256": "36ff9680d37b4ec13367d7bbd1692120873d7be150b35cadfac41c93ae7f21bf"
+    }
+  },
+  "invocations": [
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "524288",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-key-status-ef02b43-20260910/archive-attempt-1.asc",
+        "--write-out",
+        "%{http_code}\n",
+        "https://ftp-master.debian.org/keys/archive-key-13.asc"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 0,
+        "file": "archive-attempt-1.asc",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 7,
+      "finished_at": "2026-09-10T13:50:36.842274+00:00",
+      "http_code": "000",
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "d0fe0109fa78990cac5464379adae7d2d4f7a53c193d2ad548b5308672fb2930",
+      "started_at": "2026-09-10T13:50:36.831680+00:00",
+      "stderr": {
+        "bytes": 91,
+        "sha256": "7528e9de26551e1df6d26dcd70afd80588062ceafc5fa6eb5d2f1d9a2b313a60",
+        "text": "curl: (7) Failed to connect to 127.0.0.1 port 10808 after 0 ms: Couldn't connect to server\n"
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "945e4893567554e68f6f28d5652917269341a5f3d295a16b7c708c9bfd95dc5d",
+        "text": "000\n"
+      },
+      "target": "archive",
+      "transport_passed": false,
+      "url": "https://ftp-master.debian.org/keys/archive-key-13.asc"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "524288",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-key-status-ef02b43-20260910/release-attempt-1.asc",
+        "--write-out",
+        "%{http_code}\n",
+        "https://ftp-master.debian.org/keys/release-13.asc"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 0,
+        "file": "release-attempt-1.asc",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 7,
+      "finished_at": "2026-09-10T13:50:36.842234+00:00",
+      "http_code": "000",
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "d0fe0109fa78990cac5464379adae7d2d4f7a53c193d2ad548b5308672fb2930",
+      "started_at": "2026-09-10T13:50:36.831749+00:00",
+      "stderr": {
+        "bytes": 91,
+        "sha256": "7528e9de26551e1df6d26dcd70afd80588062ceafc5fa6eb5d2f1d9a2b313a60",
+        "text": "curl: (7) Failed to connect to 127.0.0.1 port 10808 after 0 ms: Couldn't connect to server\n"
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "945e4893567554e68f6f28d5652917269341a5f3d295a16b7c708c9bfd95dc5d",
+        "text": "000\n"
+      },
+      "target": "release",
+      "transport_passed": false,
+      "url": "https://ftp-master.debian.org/keys/release-13.asc"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "524288",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-key-status-ef02b43-20260910/announcement-attempt-1.html",
+        "--write-out",
+        "%{http_code}\n",
+        "https://lists.debian.org/debian-devel-announce/2025/04/msg00001.html"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 0,
+        "file": "announcement-attempt-1.html",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 7,
+      "finished_at": "2026-09-10T13:50:36.855532+00:00",
+      "http_code": "000",
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "d0fe0109fa78990cac5464379adae7d2d4f7a53c193d2ad548b5308672fb2930",
+      "started_at": "2026-09-10T13:50:36.845789+00:00",
+      "stderr": {
+        "bytes": 91,
+        "sha256": "7528e9de26551e1df6d26dcd70afd80588062ceafc5fa6eb5d2f1d9a2b313a60",
+        "text": "curl: (7) Failed to connect to 127.0.0.1 port 10808 after 0 ms: Couldn't connect to server\n"
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "945e4893567554e68f6f28d5652917269341a5f3d295a16b7c708c9bfd95dc5d",
+        "text": "000\n"
+      },
+      "target": "announcement",
+      "transport_passed": false,
+      "url": "https://lists.debian.org/debian-devel-announce/2025/04/msg00001.html"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "524288",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-key-status-ef02b43-20260910/archive-attempt-2.asc",
+        "--write-out",
+        "%{http_code}\n",
+        "https://ftp-master.debian.org/keys/archive-key-13.asc"
+      ],
+      "attempt": 2,
+      "body": {
+        "bytes": 11861,
+        "file": "archive-attempt-2.asc",
+        "sha256": "6f1d277429dd7ffedcc6f8688a7ad9a458859b1139ffa026d1eeaadcbffb0da7"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 0,
+      "finished_at": "2026-09-10T13:51:07.444712+00:00",
+      "http_code": "200",
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "d0fe0109fa78990cac5464379adae7d2d4f7a53c193d2ad548b5308672fb2930",
+      "started_at": "2026-09-10T13:51:05.495577+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "archive",
+      "transport_passed": true,
+      "url": "https://ftp-master.debian.org/keys/archive-key-13.asc"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "524288",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-key-status-ef02b43-20260910/release-attempt-2.asc",
+        "--write-out",
+        "%{http_code}\n",
+        "https://ftp-master.debian.org/keys/release-13.asc"
+      ],
+      "attempt": 2,
+      "body": {
+        "bytes": 1384,
+        "file": "release-attempt-2.asc",
+        "sha256": "4d097bb93f83d731f475c5b92a0c2fcf108cfce1d4932792fca72d00b48d198b"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 0,
+      "finished_at": "2026-09-10T13:51:18.787974+00:00",
+      "http_code": "200",
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "d0fe0109fa78990cac5464379adae7d2d4f7a53c193d2ad548b5308672fb2930",
+      "started_at": "2026-09-10T13:51:16.420810+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "release",
+      "transport_passed": true,
+      "url": "https://ftp-master.debian.org/keys/release-13.asc"
+    },
+    {
+      "acceptance": "not-assessed",
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "524288",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/musl-key-status-ef02b43-20260910/announcement-attempt-2.html",
+        "--write-out",
+        "%{http_code}\n",
+        "https://lists.debian.org/debian-devel-announce/2025/04/msg00001.html"
+      ],
+      "attempt": 2,
+      "body": {
+        "bytes": 29691,
+        "file": "announcement-attempt-2.html",
+        "sha256": "5384b92ed7ad6cf8ce31afff8b5edf88fc0e997ef641c7c43bffc0660d92615d"
+      },
+      "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+      "exit_code": 0,
+      "finished_at": "2026-09-10T13:51:31.823836+00:00",
+      "http_code": "200",
+      "kind": "diagnostic-fetch-observation",
+      "method_sha256": "d0fe0109fa78990cac5464379adae7d2d4f7a53c193d2ad548b5308672fb2930",
+      "started_at": "2026-09-10T13:51:29.810352+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "announcement",
+      "transport_passed": true,
+      "url": "https://lists.debian.org/debian-devel-announce/2025/04/msg00001.html"
+    }
+  ],
+  "kind": "diagnostic-musl-key-material-execution",
+  "packages_installed": 0,
+  "path_probe": {
+    "combined_output": "/opt/homebrew/bin/openssl\n",
+    "command": "command -v gpg gpgv sq openssl",
+    "exit_code": 1,
+    "not_found_in_path": [
+      "gpg",
+      "gpgv",
+      "sq"
+    ]
+  },
+  "raw_announcement_copied_to_git": false,
+  "repository_base_commit": "ef02b43",
+  "retained_cache": ".tmp/musl-key-status-ef02b43-20260910",
+  "signature_reverified": false,
+  "total_response_body_bytes": 42936
+}

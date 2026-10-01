@@ -1,0 +1,39 @@
+{
+  "attempts_per_target": 1,
+  "automatic_retry": false,
+  "commit": "fefadd9e4e093f776cd14ee3685a80eb4ca000f4",
+  "credentials": false,
+  "curl_timeout_seconds": 60,
+  "directory": "/Users/luobo/Code/RadishAxiom/.tmp/linux-headers-git-metadata-84bd6f8-20260929",
+  "executed": false,
+  "kind": "diagnostic-linux-headers-git-metadata-plan-v1",
+  "method": {
+    "bytes": 5126,
+    "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+  },
+  "parent_timeout_seconds_per_request": 65,
+  "previous_tags_input": {
+    "bytes": 9809,
+    "sha256": "188e3bc305d86b6d42db63ba0d2da1aa43b78f43494a40e0e5c01ece76b636bd"
+  },
+  "redirects": false,
+  "requests": 2,
+  "routing_method": {
+    "bytes": 2290,
+    "sha256": "3c2dafe242d3b50afea4b6a61401585e2a396c3c7861c90dd8baa581048b0777"
+  },
+  "scope": "GitHub ref/commit declarations only; returned URLs are never followed; no signature verification",
+  "tag": "v4.19.88",
+  "targets": {
+    "commit": {
+      "limit": 262144,
+      "suffix": "json.body",
+      "url": "https://api.github.com/repos/sabotage-linux/kernel-headers/git/commits/fefadd9e4e093f776cd14ee3685a80eb4ca000f4"
+    },
+    "tag-ref": {
+      "limit": 65536,
+      "suffix": "json.body",
+      "url": "https://api.github.com/repos/sabotage-linux/kernel-headers/git/ref/tags/v4.19.88"
+    }
+  }
+}

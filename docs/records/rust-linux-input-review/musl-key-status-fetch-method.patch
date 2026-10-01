@@ -1,0 +1,9 @@
+--- fetch-musl-trust-inputs.py
++++ fetch.py
+@@ -10,3 +10,3 @@
+-    'keys': ('https://ftp-master.debian.org/keys.html', 1048576, 'html'),
+-    'keyring': ('https://deb.debian.org/debian/pool/main/d/debian-archive-keyring/'
+-                'debian-archive-keyring_2023.3+deb12u2_all.deb', 524288, 'deb'),
++    'archive': ('https://ftp-master.debian.org/keys/archive-key-13.asc', 524288, 'asc'),
++    'release': ('https://ftp-master.debian.org/keys/release-13.asc', 524288, 'asc'),
++    'announcement': ('https://lists.debian.org/debian-devel-announce/2025/04/msg00001.html', 524288, 'html'),

@@ -1,0 +1,700 @@
+{
+  "acceptance": "not-assessed",
+  "archive": {
+    "bytes": 175976652,
+    "file": "rust-1.97.1-aarch64-unknown-linux-gnu.tar.xz",
+    "sha256": "9a7a2c336b4787f1b72f6bab7c35d5b7af2fd03cbd39b4fc721466a70d402a7d",
+    "tar_bytes": 1694910464,
+    "tar_sha256": "f7d196a7a2ece5fc80cdae16a635246ea7b7b14e5c1080a5405568c0d15387bc"
+  },
+  "dependencies": {
+    "dlopen_and_subprocess_dependencies": "not-inspected",
+    "edges": [
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/cargo/bin/cargo",
+        "loader_resolution": "not-assessed",
+        "needed": "libdl.so.2"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/cargo/bin/cargo",
+        "loader_resolution": "not-assessed",
+        "needed": "libgcc_s.so.1"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/cargo/bin/cargo",
+        "loader_resolution": "not-assessed",
+        "needed": "libpthread.so.0"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/cargo/bin/cargo",
+        "loader_resolution": "not-assessed",
+        "needed": "libm.so.6"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/cargo/bin/cargo",
+        "loader_resolution": "not-assessed",
+        "needed": "libc.so.6"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rust-std-aarch64-unknown-linux-gnu/lib/rustlib/aarch64-unknown-linux-gnu/lib/libstd-55999f89fc36b51f.so",
+        "loader_resolution": "not-assessed",
+        "needed": "libgcc_s.so.1"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rust-std-aarch64-unknown-linux-gnu/lib/rustlib/aarch64-unknown-linux-gnu/lib/libstd-55999f89fc36b51f.so",
+        "loader_resolution": "not-assessed",
+        "needed": "libpthread.so.0"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rust-std-aarch64-unknown-linux-gnu/lib/rustlib/aarch64-unknown-linux-gnu/lib/libstd-55999f89fc36b51f.so",
+        "loader_resolution": "not-assessed",
+        "needed": "libdl.so.2"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rust-std-aarch64-unknown-linux-gnu/lib/rustlib/aarch64-unknown-linux-gnu/lib/libstd-55999f89fc36b51f.so",
+        "loader_resolution": "not-assessed",
+        "needed": "libc.so.6"
+      },
+      {
+        "bundled_name_candidates": [
+          "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/librustc_driver-bb2b40829e117684.so"
+        ],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/bin/rustc",
+        "loader_resolution": "not-assessed",
+        "needed": "librustc_driver-bb2b40829e117684.so"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/bin/rustc",
+        "loader_resolution": "not-assessed",
+        "needed": "libdl.so.2"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/bin/rustc",
+        "loader_resolution": "not-assessed",
+        "needed": "libpthread.so.0"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/bin/rustc",
+        "loader_resolution": "not-assessed",
+        "needed": "libc.so.6"
+      },
+      {
+        "bundled_name_candidates": [
+          "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/librustc_driver-bb2b40829e117684.so"
+        ],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/bin/rustdoc",
+        "loader_resolution": "not-assessed",
+        "needed": "librustc_driver-bb2b40829e117684.so"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/bin/rustdoc",
+        "loader_resolution": "not-assessed",
+        "needed": "libdl.so.2"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/bin/rustdoc",
+        "loader_resolution": "not-assessed",
+        "needed": "libgcc_s.so.1"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/bin/rustdoc",
+        "loader_resolution": "not-assessed",
+        "needed": "libpthread.so.0"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/bin/rustdoc",
+        "loader_resolution": "not-assessed",
+        "needed": "libc.so.6"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/libLLVM.so.22.1-rust-1.97.1-stable",
+        "loader_resolution": "not-assessed",
+        "needed": "librt.so.1"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/libLLVM.so.22.1-rust-1.97.1-stable",
+        "loader_resolution": "not-assessed",
+        "needed": "libdl.so.2"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/libLLVM.so.22.1-rust-1.97.1-stable",
+        "loader_resolution": "not-assessed",
+        "needed": "libpthread.so.0"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/libLLVM.so.22.1-rust-1.97.1-stable",
+        "loader_resolution": "not-assessed",
+        "needed": "libm.so.6"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/libLLVM.so.22.1-rust-1.97.1-stable",
+        "loader_resolution": "not-assessed",
+        "needed": "libz.so.1"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/libLLVM.so.22.1-rust-1.97.1-stable",
+        "loader_resolution": "not-assessed",
+        "needed": "libgcc_s.so.1"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/libLLVM.so.22.1-rust-1.97.1-stable",
+        "loader_resolution": "not-assessed",
+        "needed": "libc.so.6"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/librustc_driver-bb2b40829e117684.so",
+        "loader_resolution": "not-assessed",
+        "needed": "libdl.so.2"
+      },
+      {
+        "bundled_name_candidates": [
+          "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/libLLVM.so.22.1-rust-1.97.1-stable"
+        ],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/librustc_driver-bb2b40829e117684.so",
+        "loader_resolution": "not-assessed",
+        "needed": "libLLVM.so.22.1-rust-1.97.1-stable"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/librustc_driver-bb2b40829e117684.so",
+        "loader_resolution": "not-assessed",
+        "needed": "libgcc_s.so.1"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/librustc_driver-bb2b40829e117684.so",
+        "loader_resolution": "not-assessed",
+        "needed": "libpthread.so.0"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/librustc_driver-bb2b40829e117684.so",
+        "loader_resolution": "not-assessed",
+        "needed": "libc.so.6"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/gcc-ld/ld.lld",
+        "loader_resolution": "not-assessed",
+        "needed": "libgcc_s.so.1"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/gcc-ld/ld.lld",
+        "loader_resolution": "not-assessed",
+        "needed": "libpthread.so.0"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/gcc-ld/ld.lld",
+        "loader_resolution": "not-assessed",
+        "needed": "libc.so.6"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/gcc-ld/ld64.lld",
+        "loader_resolution": "not-assessed",
+        "needed": "libgcc_s.so.1"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/gcc-ld/ld64.lld",
+        "loader_resolution": "not-assessed",
+        "needed": "libpthread.so.0"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/gcc-ld/ld64.lld",
+        "loader_resolution": "not-assessed",
+        "needed": "libc.so.6"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/gcc-ld/lld-link",
+        "loader_resolution": "not-assessed",
+        "needed": "libgcc_s.so.1"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/gcc-ld/lld-link",
+        "loader_resolution": "not-assessed",
+        "needed": "libpthread.so.0"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/gcc-ld/lld-link",
+        "loader_resolution": "not-assessed",
+        "needed": "libc.so.6"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/gcc-ld/wasm-ld",
+        "loader_resolution": "not-assessed",
+        "needed": "libgcc_s.so.1"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/gcc-ld/wasm-ld",
+        "loader_resolution": "not-assessed",
+        "needed": "libpthread.so.0"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/gcc-ld/wasm-ld",
+        "loader_resolution": "not-assessed",
+        "needed": "libc.so.6"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/rust-lld",
+        "loader_resolution": "not-assessed",
+        "needed": "libpthread.so.0"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/rust-lld",
+        "loader_resolution": "not-assessed",
+        "needed": "libz.so.1"
+      },
+      {
+        "bundled_name_candidates": [
+          "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/libLLVM.so.22.1-rust-1.97.1-stable"
+        ],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/rust-lld",
+        "loader_resolution": "not-assessed",
+        "needed": "libLLVM.so.22.1-rust-1.97.1-stable"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/rust-lld",
+        "loader_resolution": "not-assessed",
+        "needed": "libm.so.6"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/rust-lld",
+        "loader_resolution": "not-assessed",
+        "needed": "libgcc_s.so.1"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/rust-lld",
+        "loader_resolution": "not-assessed",
+        "needed": "libc.so.6"
+      },
+      {
+        "bundled_name_candidates": [
+          "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/libLLVM.so.22.1-rust-1.97.1-stable"
+        ],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/rust-objcopy",
+        "loader_resolution": "not-assessed",
+        "needed": "libLLVM.so.22.1-rust-1.97.1-stable"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/rust-objcopy",
+        "loader_resolution": "not-assessed",
+        "needed": "libpthread.so.0"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/rust-objcopy",
+        "loader_resolution": "not-assessed",
+        "needed": "libm.so.6"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/rust-objcopy",
+        "loader_resolution": "not-assessed",
+        "needed": "libgcc_s.so.1"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/rust-objcopy",
+        "loader_resolution": "not-assessed",
+        "needed": "libc.so.6"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/wasm-component-ld",
+        "loader_resolution": "not-assessed",
+        "needed": "libgcc_s.so.1"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/wasm-component-ld",
+        "loader_resolution": "not-assessed",
+        "needed": "libpthread.so.0"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/wasm-component-ld",
+        "loader_resolution": "not-assessed",
+        "needed": "libdl.so.2"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/wasm-component-ld",
+        "loader_resolution": "not-assessed",
+        "needed": "libc.so.6"
+      },
+      {
+        "bundled_name_candidates": [
+          "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/librustc_driver-bb2b40829e117684.so"
+        ],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/libexec/rust-analyzer-proc-macro-srv",
+        "loader_resolution": "not-assessed",
+        "needed": "librustc_driver-bb2b40829e117684.so"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/libexec/rust-analyzer-proc-macro-srv",
+        "loader_resolution": "not-assessed",
+        "needed": "libdl.so.2"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/libexec/rust-analyzer-proc-macro-srv",
+        "loader_resolution": "not-assessed",
+        "needed": "libgcc_s.so.1"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/libexec/rust-analyzer-proc-macro-srv",
+        "loader_resolution": "not-assessed",
+        "needed": "libpthread.so.0"
+      },
+      {
+        "bundled_name_candidates": [],
+        "from": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/libexec/rust-analyzer-proc-macro-srv",
+        "loader_resolution": "not-assessed",
+        "needed": "libc.so.6"
+      }
+    ],
+    "external_needed_names": [
+      "libc.so.6",
+      "libdl.so.2",
+      "libgcc_s.so.1",
+      "libm.so.6",
+      "libpthread.so.0",
+      "librt.so.1",
+      "libz.so.1"
+    ],
+    "interpreters": [
+      "/lib/ld-linux-aarch64.so.1"
+    ],
+    "symbol_versions": "not-inspected",
+    "system_library_bytes": "not-inspected"
+  },
+  "elf_files": [
+    {
+      "bytes": 41448024,
+      "elf": {
+        "interpreter": "/lib/ld-linux-aarch64.so.1",
+        "machine": 183,
+        "needed": [
+          "libdl.so.2",
+          "libgcc_s.so.1",
+          "libpthread.so.0",
+          "libm.so.6",
+          "libc.so.6"
+        ],
+        "rpath": [],
+        "runpath": [
+          "$ORIGIN/../lib"
+        ]
+      },
+      "path": "rust-1.97.1-aarch64-unknown-linux-gnu/cargo/bin/cargo",
+      "sha256": "c5dcff701935f50505c9c5df7ee941a9de4f29d84ab91627c396848accef1808"
+    },
+    {
+      "bytes": 5697080,
+      "elf": {
+        "interpreter": null,
+        "machine": 183,
+        "needed": [
+          "libgcc_s.so.1",
+          "libpthread.so.0",
+          "libdl.so.2",
+          "libc.so.6"
+        ],
+        "rpath": [],
+        "runpath": [
+          "$ORIGIN/../lib"
+        ]
+      },
+      "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rust-std-aarch64-unknown-linux-gnu/lib/rustlib/aarch64-unknown-linux-gnu/lib/libstd-55999f89fc36b51f.so",
+      "sha256": "11a8be4b55761b7ae41f689d9f50101270555aa2d339b99d6ede31bafae1504f"
+    },
+    {
+      "bytes": 2333624,
+      "elf": {
+        "interpreter": "/lib/ld-linux-aarch64.so.1",
+        "machine": 183,
+        "needed": [
+          "librustc_driver-bb2b40829e117684.so",
+          "libdl.so.2",
+          "libpthread.so.0",
+          "libc.so.6"
+        ],
+        "rpath": [],
+        "runpath": [
+          "$ORIGIN/../lib"
+        ]
+      },
+      "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/bin/rustc",
+      "sha256": "a3d4dfcd867ddc1e7dca25f13f7236c72229a56f68aa511437c5bb72eb2dfe78"
+    },
+    {
+      "bytes": 17109504,
+      "elf": {
+        "interpreter": "/lib/ld-linux-aarch64.so.1",
+        "machine": 183,
+        "needed": [
+          "librustc_driver-bb2b40829e117684.so",
+          "libdl.so.2",
+          "libgcc_s.so.1",
+          "libpthread.so.0",
+          "libc.so.6"
+        ],
+        "rpath": [],
+        "runpath": [
+          "$ORIGIN/../lib"
+        ]
+      },
+      "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/bin/rustdoc",
+      "sha256": "d842260dbdf304c9389ced3c49c6e54a4f4f6f79e08c895e0c2ee00bcedc6598"
+    },
+    {
+      "bytes": 165558632,
+      "elf": {
+        "interpreter": null,
+        "machine": 183,
+        "needed": [
+          "librt.so.1",
+          "libdl.so.2",
+          "libpthread.so.0",
+          "libm.so.6",
+          "libz.so.1",
+          "libgcc_s.so.1",
+          "libc.so.6"
+        ],
+        "rpath": [],
+        "runpath": [
+          "$ORIGIN/../lib"
+        ]
+      },
+      "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/libLLVM.so.22.1-rust-1.97.1-stable",
+      "sha256": "639f2d6b7e64b21decab15bb2851e62be84fac37d08fc2d921886ce72fd1e458"
+    },
+    {
+      "bytes": 114267984,
+      "elf": {
+        "interpreter": null,
+        "machine": 183,
+        "needed": [
+          "libdl.so.2",
+          "libLLVM.so.22.1-rust-1.97.1-stable",
+          "libgcc_s.so.1",
+          "libpthread.so.0",
+          "libc.so.6"
+        ],
+        "rpath": [],
+        "runpath": [
+          "$ORIGIN/../lib"
+        ]
+      },
+      "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/librustc_driver-bb2b40829e117684.so",
+      "sha256": "b75cb062606785c56a4fe2d84f2adbcdd070284cb16445d6bc5f77ae3c081cbb"
+    },
+    {
+      "bytes": 343624,
+      "elf": {
+        "interpreter": "/lib/ld-linux-aarch64.so.1",
+        "machine": 183,
+        "needed": [
+          "libgcc_s.so.1",
+          "libpthread.so.0",
+          "libc.so.6"
+        ],
+        "rpath": [],
+        "runpath": [
+          "$ORIGIN/../lib"
+        ]
+      },
+      "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/gcc-ld/ld.lld",
+      "sha256": "61ec0509c9d489c606b27c5658ead32d86200c83fc342800e72492fc6385fe7b"
+    },
+    {
+      "bytes": 343624,
+      "elf": {
+        "interpreter": "/lib/ld-linux-aarch64.so.1",
+        "machine": 183,
+        "needed": [
+          "libgcc_s.so.1",
+          "libpthread.so.0",
+          "libc.so.6"
+        ],
+        "rpath": [],
+        "runpath": [
+          "$ORIGIN/../lib"
+        ]
+      },
+      "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/gcc-ld/ld64.lld",
+      "sha256": "61ec0509c9d489c606b27c5658ead32d86200c83fc342800e72492fc6385fe7b"
+    },
+    {
+      "bytes": 343624,
+      "elf": {
+        "interpreter": "/lib/ld-linux-aarch64.so.1",
+        "machine": 183,
+        "needed": [
+          "libgcc_s.so.1",
+          "libpthread.so.0",
+          "libc.so.6"
+        ],
+        "rpath": [],
+        "runpath": [
+          "$ORIGIN/../lib"
+        ]
+      },
+      "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/gcc-ld/lld-link",
+      "sha256": "61ec0509c9d489c606b27c5658ead32d86200c83fc342800e72492fc6385fe7b"
+    },
+    {
+      "bytes": 343624,
+      "elf": {
+        "interpreter": "/lib/ld-linux-aarch64.so.1",
+        "machine": 183,
+        "needed": [
+          "libgcc_s.so.1",
+          "libpthread.so.0",
+          "libc.so.6"
+        ],
+        "rpath": [],
+        "runpath": [
+          "$ORIGIN/../lib"
+        ]
+      },
+      "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/gcc-ld/wasm-ld",
+      "sha256": "61ec0509c9d489c606b27c5658ead32d86200c83fc342800e72492fc6385fe7b"
+    },
+    {
+      "bytes": 8207608,
+      "elf": {
+        "interpreter": "/lib/ld-linux-aarch64.so.1",
+        "machine": 183,
+        "needed": [
+          "libpthread.so.0",
+          "libz.so.1",
+          "libLLVM.so.22.1-rust-1.97.1-stable",
+          "libm.so.6",
+          "libgcc_s.so.1",
+          "libc.so.6"
+        ],
+        "rpath": [],
+        "runpath": [
+          "$ORIGIN/../../../:$ORIGIN/../lib"
+        ]
+      },
+      "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/rust-lld",
+      "sha256": "533dffee7995258d3de4f995b0c926f18a5245a0aef09896901deee6ef144eb7"
+    },
+    {
+      "bytes": 207008,
+      "elf": {
+        "interpreter": "/lib/ld-linux-aarch64.so.1",
+        "machine": 183,
+        "needed": [
+          "libLLVM.so.22.1-rust-1.97.1-stable",
+          "libpthread.so.0",
+          "libm.so.6",
+          "libgcc_s.so.1",
+          "libc.so.6"
+        ],
+        "rpath": [],
+        "runpath": [
+          "$ORIGIN/../lib"
+        ]
+      },
+      "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/rust-objcopy",
+      "sha256": "58fb87b9f75db83a078c1ef6c6efc885f2227298be145247261fac941b459f8a"
+    },
+    {
+      "bytes": 4588232,
+      "elf": {
+        "interpreter": "/lib/ld-linux-aarch64.so.1",
+        "machine": 183,
+        "needed": [
+          "libgcc_s.so.1",
+          "libpthread.so.0",
+          "libdl.so.2",
+          "libc.so.6"
+        ],
+        "rpath": [],
+        "runpath": [
+          "$ORIGIN/../lib"
+        ]
+      },
+      "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/lib/rustlib/aarch64-unknown-linux-gnu/bin/wasm-component-ld",
+      "sha256": "78044ae149d26047b0c9caaf25deac6fce359b0364edfd617246533b06d0663e"
+    },
+    {
+      "bytes": 1632616,
+      "elf": {
+        "interpreter": "/lib/ld-linux-aarch64.so.1",
+        "machine": 183,
+        "needed": [
+          "librustc_driver-bb2b40829e117684.so",
+          "libdl.so.2",
+          "libgcc_s.so.1",
+          "libpthread.so.0",
+          "libc.so.6"
+        ],
+        "rpath": [],
+        "runpath": [
+          "$ORIGIN/../lib"
+        ]
+      },
+      "path": "rust-1.97.1-aarch64-unknown-linux-gnu/rustc/libexec/rust-analyzer-proc-macro-srv",
+      "sha256": "3fc4e36232edf61b5b535a04b1b082bcc97f15bcb40c27e6de7f148c34362688"
+    }
+  ],
+  "inventory_sha256": "53ab99369b0cc344bd732feb749873d0c2d1b2ec59a591ece983bc67f41f2a7f",
+  "kind": "diagnostic-observation",
+  "methods": {
+    "inspect-archives.py": "e9a417881e4caff2da92441dc19e958d93dba27173b38d3ce4425a9fd7c3b949",
+    "inspect-host-dependencies.py": "d9e83fa690476a5c5701b92e259d94fddae819aa92e4a06d013bdb66c1235c31",
+    "inspect-selected-inputs.py": "8286b3c9f270c77f20ea24c5bcbea3f6a5415e7c013a7ec39aa8c29ebccbb4be"
+  },
+  "python": "3.14.5",
+  "selected_components": [
+    "cargo",
+    "rust-std-aarch64-unknown-linux-gnu",
+    "rustc"
+  ]
+}

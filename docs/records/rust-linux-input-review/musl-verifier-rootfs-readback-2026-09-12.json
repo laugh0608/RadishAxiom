@@ -1,0 +1,81 @@
+{
+  "artifact_path": ".tmp/musl-preflight-80768b6-20260912/rootfs.tar",
+  "entry_count": 84,
+  "entry_types": {
+    "directory": 30,
+    "file": 39,
+    "symlink": 15
+  },
+  "execution": {
+    "assembly": {
+      "command": [
+        "python3",
+        "docs/records/rust-linux-input-review/prepare-musl-verifier-rootfs.py",
+        "--store",
+        "artifacts/source-inputs/musl-verifier-2fb2e70-20260912",
+        "--assemble",
+        ".tmp/musl-preflight-80768b6-20260912/rootfs.tar"
+      ],
+      "finished_at": "2026-09-12T13:04:19.861553+00:00",
+      "returncode": 0,
+      "started_at": "2026-09-12T13:04:19.568709+00:00"
+    },
+    "readback": [
+      {
+        "command": [
+          "python3",
+          "docs/records/rust-linux-input-review/inspect-musl-verifier-rootfs.py",
+          "--plan",
+          "docs/records/rust-linux-input-review/musl-verifier-rootfs-plan-2026-09-12.json",
+          "--tar",
+          ".tmp/musl-preflight-80768b6-20260912/rootfs.tar"
+        ],
+        "finished_at": "2026-09-12T13:05:45.419685+00:00",
+        "returncode": 0,
+        "started_at": "2026-09-12T13:05:45.380243+00:00"
+      },
+      {
+        "command": [
+          "/usr/bin/tar",
+          "-tf",
+          ".tmp/musl-preflight-80768b6-20260912/rootfs.tar"
+        ],
+        "finished_at": "2026-09-12T13:05:45.425941+00:00",
+        "returncode": 0,
+        "started_at": "2026-09-12T13:05:45.419702+00:00"
+      }
+    ]
+  },
+  "file_bytes": 8347816,
+  "kind": "diagnostic-verifier-rootfs-readback-v1",
+  "method": {
+    "bytes": 4093,
+    "sha256": "45a4e6c05d03b142a339240128d6e304bb78b14e76764f61601617f9f845214c"
+  },
+  "plan": {
+    "bytes": 28522,
+    "sha256": "bb17cb1a11e8209fadc37d1d2c40bf96197162b623d1f80a95e0ab3a7f82c14b"
+  },
+  "programs_executed": false,
+  "result": "matched-reviewed-plan",
+  "source_acceptance": "not-assessed",
+  "stderr_bytes": {
+    "rootfs-assembly.stderr": 0,
+    "rootfs-readback.stderr": 0,
+    "rootfs-system-tar.stderr": 0
+  },
+  "system_tar": {
+    "entry_count": 84,
+    "listing": {
+      "bytes": 2342,
+      "sha256": "f8082e94f0d48507f111dfe41068ce8e2a2def0289ab0c7b6fedcdb48617d4f8"
+    },
+    "path": "/usr/bin/tar",
+    "paths_matched_plan": true,
+    "version": "bsdtar 3.5.3 - libarchive 3.7.4 zlib/1.2.12 liblzma/5.4.3 bz2lib/1.0.8"
+  },
+  "tar": {
+    "bytes": 8407040,
+    "sha256": "f1ac49bc29d33182a9c9a070b70509c739d857369876afbe307b9e9898d6b8b3"
+  }
+}

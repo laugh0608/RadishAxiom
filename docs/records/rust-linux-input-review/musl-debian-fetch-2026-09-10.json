@@ -1,0 +1,203 @@
+{
+  "acceptance": "not-assessed",
+  "kind": "diagnostic-fetch-observation",
+  "scope": "musl-authentication-route-2026-09-10.md",
+  "transfers": [
+    {
+      "attempts": [
+        {
+          "argv": [
+            "curl",
+            "--proto",
+            "=https",
+            "--proto-redir",
+            "=https",
+            "--tlsv1.2",
+            "--fail",
+            "--location",
+            "--max-filesize",
+            "524288",
+            "--max-time",
+            "60",
+            "--dump-header",
+            ".tmp/musl-auth-chain-0a66901/inrelease-attempt-1.headers",
+            "--output",
+            ".tmp/musl-auth-chain-0a66901/InRelease",
+            "--write-out",
+            "%{http_code}\\n%{size_download}\\n%{time_total}\\n",
+            "https://deb.debian.org/debian/dists/trixie/InRelease"
+          ],
+          "curl_exit_code": 7,
+          "logs": {
+            "headers": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            "stderr": {
+              "bytes": 408,
+              "sha256": "5916eea888cfee959325433e72f47e61c6d3f4190db80e3c9c46b106e1362c5a",
+              "text": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\ncurl: (7) Failed to connect to 127.0.0.1 port 10808 after 0 ms: Couldn't connect to server\n"
+            },
+            "stdout": {
+              "bytes": 15,
+              "sha256": "377c30e370272a1a0910b1f71e94bd42213356d89c91e5dc55c2a7f55c3afcb6",
+              "text": "000\n0\n0.000445\n"
+            }
+          },
+          "number": 1,
+          "outside_sandbox": false
+        },
+        {
+          "argv": [
+            "curl",
+            "--proto",
+            "=https",
+            "--proto-redir",
+            "=https",
+            "--tlsv1.2",
+            "--fail",
+            "--location",
+            "--max-filesize",
+            "524288",
+            "--max-time",
+            "60",
+            "--dump-header",
+            ".tmp/musl-auth-chain-0a66901/inrelease-attempt-2.headers",
+            "--output",
+            ".tmp/musl-auth-chain-0a66901/InRelease",
+            "--write-out",
+            "%{http_code}\\n%{size_download}\\n%{time_total}\\n",
+            "https://deb.debian.org/debian/dists/trixie/InRelease"
+          ],
+          "curl_exit_code": 0,
+          "logs": {
+            "headers": {
+              "bytes": 724,
+              "sha256": "21dae478bec7fd3074f805accb3cc4af9b0b43d981e092c24626ff8f2e3372dd",
+              "text": "HTTP/1.1 200 Connection established\r\n\r\nHTTP/2 200 \r\nserver: Apache\r\nx-content-type-options: nosniff\r\nx-frame-options: sameorigin\r\nreferrer-policy: no-referrer\r\nx-xss-protection: 1\r\npermissions-policy: interest-cohort=()\r\nlast-modified: Sat, 11 Jul 2026 09:06:56 GMT\r\netag: \"22480-656522dd3534e\"\r\nx-clacks-overhead: GNU Terry Pratchett\r\ncache-control: public, max-age=120\r\nbackend: 4qpvL1tJyeV1P6Tmf0Lj8g--F_conova_debian_backend_mirrors_debian_org\r\nvia: 1.1 varnish, 1.1 varnish\r\naccept-ranges: bytes\r\ndate: Thu, 10 Sep 2026 13:04:27 GMT\r\nage: 0\r\nx-served-by: cache-ams-eham8680050-AMS, cache-nrt-rjtt7900088-NRT\r\nx-cache: HIT, HIT\r\nx-cache-hits: 1603071, 1\r\nx-timer: S1789045468.590695,VS0,VE217\r\ncontent-length: 140416\r\n\r\n"
+            },
+            "stderr": {
+              "bytes": 475,
+              "sha256": "53e3af5e9c17d70cc6bb332d66e4fd9b27216ec6dcf8365e9a15069b85cdad7a",
+              "text": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0\r100  137k  100  137k    0     0  62998      0  0:00:02  0:00:02 --:--:-- 63023\n"
+            },
+            "stdout": {
+              "bytes": 20,
+              "sha256": "1cc79d1984d42356156d59349628a5dfbaa0f0f3cd30641b2d68a3292f1dc92e",
+              "text": "200\n140416\n2.228869\n"
+            }
+          },
+          "number": 2,
+          "outside_sandbox": true
+        }
+      ],
+      "file": "InRelease",
+      "final": {
+        "bytes": 140416,
+        "sha256": "98b25b5cd185c59d34aa6e4c3e9b5b8f01bbe9d104fe2dcfbcd30dc0a14a59ed"
+      },
+      "limit_bytes": 524288,
+      "max_time_seconds": 60,
+      "url": "https://deb.debian.org/debian/dists/trixie/InRelease"
+    },
+    {
+      "attempts": [
+        {
+          "argv": [
+            "curl",
+            "--proto",
+            "=https",
+            "--proto-redir",
+            "=https",
+            "--tlsv1.2",
+            "--fail",
+            "--location",
+            "--max-filesize",
+            "16777216",
+            "--max-time",
+            "120",
+            "--dump-header",
+            ".tmp/musl-auth-chain-0a66901/sources-attempt-1.headers",
+            "--output",
+            ".tmp/musl-auth-chain-0a66901/Sources.xz",
+            "--write-out",
+            "%{http_code}\\n%{size_download}\\n%{time_total}\\n",
+            "https://deb.debian.org/debian/dists/trixie/main/source/by-hash/SHA256/e8bbadd8389119e841494630998187f961d7de4d5b1dcbeed4f792a1d423299f"
+          ],
+          "curl_exit_code": 7,
+          "logs": {
+            "headers": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            "stderr": {
+              "bytes": 408,
+              "sha256": "5916eea888cfee959325433e72f47e61c6d3f4190db80e3c9c46b106e1362c5a",
+              "text": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\ncurl: (7) Failed to connect to 127.0.0.1 port 10808 after 0 ms: Couldn't connect to server\n"
+            },
+            "stdout": {
+              "bytes": 15,
+              "sha256": "c3af4b45efb3ec084b1c5f87b16ecf193ba4bf790b6395d62cb5d095f2a5b360",
+              "text": "000\n0\n0.000479\n"
+            }
+          },
+          "number": 1,
+          "outside_sandbox": false
+        },
+        {
+          "argv": [
+            "curl",
+            "--proto",
+            "=https",
+            "--proto-redir",
+            "=https",
+            "--tlsv1.2",
+            "--fail",
+            "--location",
+            "--max-filesize",
+            "16777216",
+            "--max-time",
+            "120",
+            "--dump-header",
+            ".tmp/musl-auth-chain-0a66901/sources-attempt-2.headers",
+            "--output",
+            ".tmp/musl-auth-chain-0a66901/Sources.xz",
+            "--write-out",
+            "%{http_code}\\n%{size_download}\\n%{time_total}\\n",
+            "https://deb.debian.org/debian/dists/trixie/main/source/by-hash/SHA256/e8bbadd8389119e841494630998187f961d7de4d5b1dcbeed4f792a1d423299f"
+          ],
+          "curl_exit_code": 0,
+          "logs": {
+            "headers": {
+              "bytes": 729,
+              "sha256": "87c173575a9839644cc3db0d6cade84d7c4c990cb7d8abba37dbac8497900c3b",
+              "text": "HTTP/1.1 200 Connection established\r\n\r\nHTTP/2 200 \r\nserver: Apache\r\nx-content-type-options: nosniff\r\nx-frame-options: sameorigin\r\nreferrer-policy: no-referrer\r\nx-xss-protection: 1\r\npermissions-policy: interest-cohort=()\r\nlast-modified: Sat, 11 Jul 2026 08:37:56 GMT\r\netag: \"a0a43c-65651c622ed45\"\r\nx-clacks-overhead: GNU Terry Pratchett\r\ncache-control: public, max-age=2592000\r\nbackend: 4qpvL1tJyeV1P6Tmf0Lj8g--F_accum_debian_backend_mirrors_debian_org\r\nvia: 1.1 varnish, 1.1 varnish\r\naccept-ranges: bytes\r\ndate: Thu, 10 Sep 2026 13:11:22 GMT\r\nage: 261272\r\nx-served-by: cache-ams-eham8680075-AMS, cache-nrt-rjtt7900073-NRT\r\nx-cache: HIT, HIT\r\nx-cache-hits: 42, 1\r\nx-timer: S1789045882.457515,VS0,VE29\r\ncontent-length: 10527804\r\n\r\n"
+            },
+            "stderr": {
+              "bytes": 475,
+              "sha256": "26dfcbc230d79974aa88ef62e9a19a55b2f92950614f39649ca78f785c7d1d18",
+              "text": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r  9 10.0M    9 1011k    0     0   677k      0  0:00:15  0:00:01  0:00:14  677k\r100 10.0M  100 10.0M    0     0  4171k      0  0:00:02  0:00:02 --:--:-- 4172k\n"
+            },
+            "stdout": {
+              "bytes": 22,
+              "sha256": "ee18ba763603546304993d1cd34fb7327b83b456daf2ea45daa7936d1b0adc0b",
+              "text": "200\n10527804\n2.464548\n"
+            }
+          },
+          "number": 2,
+          "outside_sandbox": true
+        }
+      ],
+      "file": "Sources.xz",
+      "final": {
+        "bytes": 10527804,
+        "sha256": "e8bbadd8389119e841494630998187f961d7de4d5b1dcbeed4f792a1d423299f"
+      },
+      "limit_bytes": 16777216,
+      "max_time_seconds": 120,
+      "url": "https://deb.debian.org/debian/dists/trixie/main/source/by-hash/SHA256/e8bbadd8389119e841494630998187f961d7de4d5b1dcbeed4f792a1d423299f"
+    }
+  ]
+}

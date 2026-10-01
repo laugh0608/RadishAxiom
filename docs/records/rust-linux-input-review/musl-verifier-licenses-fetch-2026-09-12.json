@@ -1,0 +1,108 @@
+[
+  {
+    "acceptance": "not-assessed",
+    "argv": [
+      "/usr/bin/curl",
+      "--disable",
+      "--silent",
+      "--show-error",
+      "--proto",
+      "=https",
+      "--tlsv1.2",
+      "--max-time",
+      "60",
+      "--max-filesize",
+      "73276",
+      "--output",
+      "/Users/luobo/Code/RadishAxiom/.tmp/musl-verifier-d04b225-20260912/base-files-attempt-1.deb",
+      "--write-out",
+      "%{http_code}\n",
+      "https://deb.debian.org/debian/pool/main/b/base-files/base-files_13.8+deb13u6_arm64.deb"
+    ],
+    "attempt": 1,
+    "body": {
+      "bytes": 0,
+      "file": "base-files-attempt-1.deb",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+    "exit_code": 7,
+    "expected": {
+      "bytes": 73276,
+      "package": "base-files",
+      "sha256": "5f5a571ec846d7db05d9f825f0388a37bc033267b33cbf85b4eaa838dffcc41b"
+    },
+    "finished_at": "2026-09-12T12:22:41.347814+00:00",
+    "http_code": "000",
+    "input_digest_matches": false,
+    "kind": "diagnostic-fetch-observation",
+    "method_sha256": "a0c1963741a5663a05bc6744ac8ff13fd8e3696b0d20d7ff162efe476f63a3b1",
+    "started_at": "2026-09-12T12:22:41.326553+00:00",
+    "stderr": {
+      "bytes": 91,
+      "sha256": "7528e9de26551e1df6d26dcd70afd80588062ceafc5fa6eb5d2f1d9a2b313a60",
+      "text": "curl: (7) Failed to connect to 127.0.0.1 port 10808 after 0 ms: Couldn't connect to server\n"
+    },
+    "stdout": {
+      "bytes": 4,
+      "sha256": "945e4893567554e68f6f28d5652917269341a5f3d295a16b7c708c9bfd95dc5d",
+      "text": "000\n"
+    },
+    "target": "base-files",
+    "transport_passed": false,
+    "url": "https://deb.debian.org/debian/pool/main/b/base-files/base-files_13.8+deb13u6_arm64.deb"
+  },
+  {
+    "acceptance": "not-assessed",
+    "argv": [
+      "/usr/bin/curl",
+      "--disable",
+      "--silent",
+      "--show-error",
+      "--proto",
+      "=https",
+      "--tlsv1.2",
+      "--max-time",
+      "60",
+      "--max-filesize",
+      "73276",
+      "--output",
+      "/Users/luobo/Code/RadishAxiom/.tmp/musl-verifier-d04b225-20260912/base-files-attempt-2.deb",
+      "--write-out",
+      "%{http_code}\n",
+      "https://deb.debian.org/debian/pool/main/b/base-files/base-files_13.8+deb13u6_arm64.deb"
+    ],
+    "attempt": 2,
+    "body": {
+      "bytes": 73276,
+      "file": "base-files-attempt-2.deb",
+      "sha256": "5f5a571ec846d7db05d9f825f0388a37bc033267b33cbf85b4eaa838dffcc41b"
+    },
+    "curl_sha256": "b636262803922ee1dd0fbf614818473ffa53c811e44fd3278c2270d3af4759d3",
+    "exit_code": 0,
+    "expected": {
+      "bytes": 73276,
+      "package": "base-files",
+      "sha256": "5f5a571ec846d7db05d9f825f0388a37bc033267b33cbf85b4eaa838dffcc41b"
+    },
+    "finished_at": "2026-09-12T12:22:52.615271+00:00",
+    "http_code": "200",
+    "input_digest_matches": true,
+    "kind": "diagnostic-fetch-observation",
+    "method_sha256": "a0c1963741a5663a05bc6744ac8ff13fd8e3696b0d20d7ff162efe476f63a3b1",
+    "started_at": "2026-09-12T12:22:51.737866+00:00",
+    "stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": ""
+    },
+    "stdout": {
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+      "text": "200\n"
+    },
+    "target": "base-files",
+    "transport_passed": true,
+    "url": "https://deb.debian.org/debian/pool/main/b/base-files/base-files_13.8+deb13u6_arm64.deb"
+  }
+]

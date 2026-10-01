@@ -1,0 +1,68 @@
+{
+  "archive": {
+    "bytes": 51342242,
+    "sha256": "0cdd76777a0dfd3dd3a63f215f030208ddb91c2361d2bcc02acec0f1c16b6a2e"
+  },
+  "implicit_directory_count": 314,
+  "inventory": {
+    "bytes": 1378903,
+    "sha256": "0fc3ea4031b22c15f9f293ee7eba1018c0e8d619825a627932b3cb26a1e8e0ee"
+  },
+  "kind": "diagnostic-binutils-content-v1",
+  "license_review_complete": false,
+  "limits": {
+    "compressed": 67108864,
+    "member": 33554432,
+    "members": 100000,
+    "tar": 536870912,
+    "text": 2097152
+  },
+  "member_count": 28449,
+  "methods": {
+    "inspect-archives.py": {
+      "bytes": 10104,
+      "sha256": "e9a417881e4caff2da92441dc19e958d93dba27173b38d3ce4425a9fd7c3b949"
+    },
+    "inspect-binutils-content.py": {
+      "bytes": 6752,
+      "sha256": "4de00eb67ccae4cadeb554a9fc5ca62c9585a972418f511df719cbdd20e71e86"
+    },
+    "inspect-binutils-inputs.py": {
+      "bytes": 6252,
+      "sha256": "03e5fc51a99b6b2e082adacdc1fdfc39f3976b81fb3a1c86985f5769debfde4c"
+    }
+  },
+  "modes": [
+    420,
+    493
+  ],
+  "owners": [
+    [
+      0,
+      0
+    ]
+  ],
+  "physical_tar_profile_verified": false,
+  "selected_review_files": [
+    "COPYING",
+    "COPYING.LIB",
+    "COPYING3",
+    "COPYING3.LIB",
+    "README",
+    "bfd/version.m4",
+    "binutils/doc/binutils.texi",
+    "gas/doc/as.texi",
+    "include/ansidecl.h",
+    "ld/ld.texi",
+    "libiberty/COPYING.LIB"
+  ],
+  "source_acceptance": "not-assessed",
+  "tar": {
+    "bytes": 317317120,
+    "sha256": "9628a14839e0f16a0aa63bdf0d53b1b28d67b54bbab3e81f6e615be552a18ed1"
+  },
+  "type_counts": {
+    "file": 28449
+  },
+  "upstream_programs_executed": false
+}

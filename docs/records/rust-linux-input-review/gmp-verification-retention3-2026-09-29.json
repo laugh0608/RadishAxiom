@@ -1,0 +1,26 @@
+{
+  "pack": {
+    "file_count": 7,
+    "manifest": {
+      "bytes": 2123,
+      "sha256": "234474ae5af4af0d71fae3b0e41d0bc29bc8a357516f78da8c4636c51ca2d4df"
+    },
+    "object_bytes": 6535704,
+    "object_count": 7,
+    "off_device_backup_verified": false,
+    "source_acceptance": "not-assessed"
+  },
+  "restore": {
+    "file_count": 7,
+    "manifest": {
+      "bytes": 2123,
+      "sha256": "234474ae5af4af0d71fae3b0e41d0bc29bc8a357516f78da8c4636c51ca2d4df"
+    },
+    "object_count": 7,
+    "off_device_backup_verified": false,
+    "restored_bytes_match": true,
+    "source_acceptance": "not-assessed"
+  },
+  "restore_directory": ".tmp/gmp-verification-v3-restore-20260929",
+  "store": "artifacts/source-inputs/gmp-verification-f3811cb-20260929-attempt3"
+}

@@ -1,0 +1,51 @@
+--- fetch-musl-trust-inputs.py
++++ fetch-musl-verifier-packages.py
+@@ -10,3 +10,36 @@
+-    'keys': ('https://ftp-master.debian.org/keys.html', 1048576, 'html'),
+-    'keyring': ('https://deb.debian.org/debian/pool/main/d/debian-archive-keyring/'
+-                'debian-archive-keyring_2023.3+deb12u2_all.deb', 524288, 'deb'),
++    'gcc-14-base': ('https://deb.debian.org/debian/pool/main/g/gcc-14/gcc-14-base_14.2.0-19_arm64.deb', 49444, 'deb'),
++    'gpg': ('https://deb.debian.org/debian/pool/main/g/gnupg2/gpg_2.4.7-21+deb13u1+b4_arm64.deb', 578896, 'deb'),
++    'gpgconf': ('https://deb.debian.org/debian/pool/main/g/gnupg2/gpgconf_2.4.7-21+deb13u1+b4_arm64.deb', 121684, 'deb'),
++    'init-system-helpers': ('https://deb.debian.org/debian/pool/main/i/init-system-helpers/init-system-helpers_1.69~deb13u1_all.deb', 39360, 'deb'),
++    'libassuan9': ('https://deb.debian.org/debian/pool/main/liba/libassuan/libassuan9_3.0.2-2_arm64.deb', 59112, 'deb'),
++    'libbz2-1_0': ('https://deb.debian.org/debian/pool/main/b/bzip2/libbz2-1.0_1.0.8-6_arm64.deb', 37772, 'deb'),
++    'libc6': ('https://deb.debian.org/debian/pool/main/g/glibc/libc6_2.41-12+deb13u3_arm64.deb', 2489480, 'deb'),
++    'libgcc-s1': ('https://deb.debian.org/debian/pool/main/g/gcc-14/libgcc-s1_14.2.0-19_arm64.deb', 54104, 'deb'),
++    'libgcrypt20': ('https://deb.debian.org/debian/pool/main/libg/libgcrypt20/libgcrypt20_1.11.0-7+deb13u1_arm64.deb', 741128, 'deb'),
++    'libgpg-error0': ('https://deb.debian.org/debian/pool/main/libg/libgpg-error/libgpg-error0_1.51-4_arm64.deb', 78544, 'deb'),
++    'libksba8': ('https://deb.debian.org/debian/pool/main/libk/libksba/libksba8_1.6.7-2+b1_arm64.deb', 125004, 'deb'),
++    'libnpth0t64': ('https://deb.debian.org/debian/pool/main/n/npth/libnpth0t64_1.8-3_arm64.deb', 22900, 'deb'),
++    'libreadline8t64': ('https://deb.debian.org/debian/pool/main/r/readline/libreadline8t64_8.2-6_arm64.deb', 159264, 'deb'),
++    'libsqlite3-0': ('https://deb.debian.org/debian/pool/main/s/sqlite3/libsqlite3-0_3.46.1-7+deb13u1_arm64.deb', 853772, 'deb'),
++    'libtinfo6': ('https://deb.debian.org/debian/pool/main/n/ncurses/libtinfo6_6.5+20250216-2_arm64.deb', 341360, 'deb'),
++    'readline-common': ('https://deb.debian.org/debian/pool/main/r/readline/readline-common_8.2-6_all.deb', 69360, 'deb'),
++    'zlib1g': ('https://deb.debian.org/debian/pool/main/z/zlib/zlib1g_1.3.dfsg+really1.3.1-1+b1_arm64.deb', 85116, 'deb'),
++}
++EXPECTED = {
++    'gcc-14-base': {'package': 'gcc-14-base', 'bytes': 49444, 'sha256': '34ee90679b018c0e64234747a4c4c0ae6b7f63541115037465a8627c2dfbc594'},
++    'gpg': {'package': 'gpg', 'bytes': 578896, 'sha256': '840abc3e9178b9578fbc9c9674ebb2f3b983790f713ffd2b6a0371d8670dc8e7'},
++    'gpgconf': {'package': 'gpgconf', 'bytes': 121684, 'sha256': 'd4b1556e8f13b48cd0061b343cf56beed20fec06a1045631d585ef587d449569'},
++    'init-system-helpers': {'package': 'init-system-helpers', 'bytes': 39360, 'sha256': 'addf78073e1cbc5a5508937e11d2571055e29835e00ee8fab52a66775649378f'},
++    'libassuan9': {'package': 'libassuan9', 'bytes': 59112, 'sha256': 'a4c36f4cbc7c09064fa944bf4f5d704ed6e2290b12d07a4d766a5d415b7c120d'},
++    'libbz2-1_0': {'package': 'libbz2-1.0', 'bytes': 37772, 'sha256': '3537fe4fc577a60c8a9568873cd577db7ebc135eb8bb1825f18caf8972d9d2f2'},
++    'libc6': {'package': 'libc6', 'bytes': 2489480, 'sha256': 'ff529924782d3286181188fc265a6a92e7fe28975fb3a925dc0e05c0ca66e52f'},
++    'libgcc-s1': {'package': 'libgcc-s1', 'bytes': 54104, 'sha256': '1108bc87879833d6d9a145f22a4a15cddb34e065b4b5f4b97bee586adbac2851'},
++    'libgcrypt20': {'package': 'libgcrypt20', 'bytes': 741128, 'sha256': '243a42b879c6675348279a3f9a40e535d57185af00dbfd51b7481e777f163da6'},
++    'libgpg-error0': {'package': 'libgpg-error0', 'bytes': 78544, 'sha256': 'f9a8ee3f325360dbbb1c98331c60c7aa454a054a8a4564bc36b3e52fb53e019e'},
++    'libksba8': {'package': 'libksba8', 'bytes': 125004, 'sha256': 'ee001c93cf2a5e495e1885fac2d7ec1474bd619539f0f33a0b326ac511e04297'},
++    'libnpth0t64': {'package': 'libnpth0t64', 'bytes': 22900, 'sha256': '68bca0187b0121e25706fc79cee63233168f4b4acbfa1c3f34f0880be6c16a5c'},
++    'libreadline8t64': {'package': 'libreadline8t64', 'bytes': 159264, 'sha256': 'f78ff432b2a627bc04f7eef0e6e2696501c9e06feca748a5b741d5e594429033'},
++    'libsqlite3-0': {'package': 'libsqlite3-0', 'bytes': 853772, 'sha256': '69dd4b705eca29fe134c17f18aaa4cc9e7ecd01c0250d5e195358801514c76ac'},
++    'libtinfo6': {'package': 'libtinfo6', 'bytes': 341360, 'sha256': '2a747f7fff3c2347c357387a7133df997410f07ba1b1df1a1461a97bd7fbc2fc'},
++    'readline-common': {'package': 'readline-common', 'bytes': 69360, 'sha256': 'f77e8aa0bf0de618f11cb0b21658a4ed60f177d63b3cf26d7fc3706b6d0eaaa9'},
++    'zlib1g': {'package': 'zlib1g', 'bytes': 85116, 'sha256': '209aa5cf671e97b9eb0410844fa6df4cae2e75b0c72e7802ab6c8ece13e6ddef'},
+@@ -59,0 +93,3 @@
++    observation['expected'] = EXPECTED[name]
++    observation['input_digest_matches'] = (len(data) == EXPECTED[name]['bytes'] and
++                                          digest(data) == EXPECTED[name]['sha256'])
+@@ -61,2 +97,2 @@
+-    print(json.dumps({k: observation[k] for k in ('target', 'attempt', 'exit_code', 'http_code', 'body', 'transport_passed')}))
+-    return 0 if observation['transport_passed'] else 1
++    print(json.dumps({k: observation[k] for k in ('target', 'attempt', 'exit_code', 'http_code', 'body', 'transport_passed', 'input_digest_matches')}))
++    return 0 if observation['transport_passed'] and observation['input_digest_matches'] else 1

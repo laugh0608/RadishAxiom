@@ -1,0 +1,253 @@
+{
+  "chain_method": {
+    "bytes": 13032,
+    "sha256": "c6f18880b4f347467ad949ccf25b1960c7bef141e5b48f610ae93ab22479da2a"
+  },
+  "cryptography_reexecuted": false,
+  "dependencies": [
+    {
+      "byte_equivalence_checked": false,
+      "dependency": "binutils",
+      "index_candidates": [
+        {
+          "directory": "pool/main/b/binutils",
+          "originals": {
+            "binutils_2.43.1.orig.tar.xz": {
+              "bytes": 28362952,
+              "sha256": "a215b366d075f43ba7ae43585fa66e3a00c604964dc272cf57b2916f4c57796e"
+            }
+          },
+          "package": "binutils",
+          "version": "2.43.1-5"
+        },
+        {
+          "directory": "pool/main/b/binutils",
+          "originals": {
+            "binutils_2.43.50.20241230.orig.tar.xz": {
+              "bytes": 24091128,
+              "sha256": "ae31c3aaf0508178d099348a8d43370e127acebf183c5123df6604387e67bba9"
+            }
+          },
+          "package": "binutils",
+          "version": "2.43.50.20241230-1"
+        },
+        {
+          "directory": "pool/main/b/binutils",
+          "originals": {
+            "binutils_2.44.orig.tar.xz": {
+              "bytes": 27504768,
+              "sha256": "c41a0272424f41bb01bf828e7ffef1b2d59d1788064fd6b5f1d971717e9320b8"
+            }
+          },
+          "package": "binutils",
+          "version": "2.44-3"
+        }
+      ],
+      "index_source_package": "binutils",
+      "recipe_archive": "binutils-2.44.tar.gz",
+      "recipe_sha1_statement_only": "568ba0a286cf79520572c1597a203c1aafd462de",
+      "recipe_statement_file": {
+        "bytes": 62,
+        "path": "hashes/binutils-2.44.tar.gz.sha1",
+        "sha256": "20fe5a631d9e5bc1fdaa9a4fc97e5cd1a4b65f86aab7453f91f53a79270be831"
+      },
+      "review_category": "different-compression",
+      "source_acceptance": "not-assessed",
+      "source_bytes_acquired_this_batch": false
+    },
+    {
+      "byte_equivalence_checked": false,
+      "dependency": "gcc",
+      "index_candidates": [],
+      "index_source_package": "gcc-9",
+      "recipe_archive": "gcc-9.4.0.tar.xz",
+      "recipe_sha1_statement_only": "bf6d6480fb32e5a28dac849449f533a84d4e6547",
+      "recipe_statement_file": {
+        "bytes": 59,
+        "path": "hashes/gcc-9.4.0.tar.xz.sha1",
+        "sha256": "45767f89e904ba4539724337848dc37aa0bbdf6f1ba90d36b9400cafc4b3da92"
+      },
+      "review_category": "version-absent",
+      "source_acceptance": "not-assessed",
+      "source_bytes_acquired_this_batch": false
+    },
+    {
+      "byte_equivalence_checked": false,
+      "dependency": "gmp",
+      "index_candidates": [
+        {
+          "directory": "pool/main/g/gmp",
+          "originals": {
+            "gmp_6.3.0+dfsg.orig.tar.xz": {
+              "bytes": 1870556,
+              "sha256": "bd2966e6d277f79328e894a5a9f3ba3fbf2ed2be81def5f48623e30c23fb1572"
+            }
+          },
+          "package": "gmp",
+          "version": "2:6.3.0+dfsg-3"
+        }
+      ],
+      "index_source_package": "gmp",
+      "recipe_archive": "gmp-6.3.0.tar.xz",
+      "recipe_sha1_statement_only": "b4043dd2964ab1a858109da85c44de224384f352",
+      "recipe_statement_file": {
+        "bytes": 59,
+        "path": "hashes/gmp-6.3.0.tar.xz.sha1",
+        "sha256": "5e53e903b21e25b223f51f4f49ad74c9855574a4bc75dc09f84f6280ba1537e1"
+      },
+      "review_category": "dfsg-repack",
+      "source_acceptance": "not-assessed",
+      "source_bytes_acquired_this_batch": false
+    },
+    {
+      "byte_equivalence_checked": false,
+      "dependency": "mpc",
+      "index_candidates": [
+        {
+          "directory": "pool/main/m/mpclib3",
+          "originals": {
+            "mpclib3_1.3.1.orig.tar.gz": {
+              "bytes": 773573,
+              "sha256": "ab642492f5cf882b74aa0cb730cd410a81edcdbec895183ce930e706c1c759b8"
+            }
+          },
+          "package": "mpclib3",
+          "version": "1.3.1-1"
+        }
+      ],
+      "index_source_package": "mpclib3",
+      "recipe_archive": "mpc-1.3.1.tar.gz",
+      "recipe_sha1_statement_only": "bac1c1fa79f5602df1e29e4684e103ad55714e02",
+      "recipe_statement_file": {
+        "bytes": 59,
+        "path": "hashes/mpc-1.3.1.tar.gz.sha1",
+        "sha256": "2ccbcb0fe3861e1c639ea9c6ceb8a4ea2714ec0edfa1c082c63517cb48417603"
+      },
+      "review_category": "same-version-format-candidate",
+      "source_acceptance": "not-assessed",
+      "source_bytes_acquired_this_batch": false
+    },
+    {
+      "byte_equivalence_checked": false,
+      "dependency": "mpfr",
+      "index_candidates": [
+        {
+          "directory": "pool/main/m/mpfr4",
+          "originals": {
+            "mpfr4_4.2.2.orig.tar.xz": {
+              "bytes": 1505596,
+              "sha256": "b67ba0383ef7e8a8563734e2e889ef5ec3c3b898a01d00fa0a6869ad81c6ce01"
+            }
+          },
+          "package": "mpfr4",
+          "version": "4.2.2-1"
+        }
+      ],
+      "index_source_package": "mpfr4",
+      "recipe_archive": "mpfr-4.2.2.tar.xz",
+      "recipe_sha1_statement_only": "a63a264b273a652e27518443640e69567da498ce",
+      "recipe_statement_file": {
+        "bytes": 60,
+        "path": "hashes/mpfr-4.2.2.tar.xz.sha1",
+        "sha256": "00cca1c469ff62f6a22f78dca97a238ccfb8055c2d99771da79d94a21b80b182"
+      },
+      "review_category": "same-version-format-candidate",
+      "source_acceptance": "not-assessed",
+      "source_bytes_acquired_this_batch": false
+    },
+    {
+      "byte_equivalence_checked": false,
+      "dependency": "linux-headers",
+      "index_candidates": [
+        {
+          "directory": "pool/main/l/linux",
+          "originals": {
+            "linux_6.12.8.orig.tar.xz": {
+              "bytes": 150933284,
+              "sha256": "3f258de1f486f02871255d100e8cdf0b9daec4d14994b9fe46184d984120f254"
+            }
+          },
+          "package": "linux",
+          "version": "6.12.8-1"
+        },
+        {
+          "directory": "pool/main/l/linux",
+          "originals": {
+            "linux_6.12.38.orig.tar.xz": {
+              "bytes": 151129260,
+              "sha256": "8c89ced59bbd40280ddbe51e50114e2cf7b665104e16116949bd205c17371c0d"
+            }
+          },
+          "package": "linux",
+          "version": "6.12.38-1"
+        },
+        {
+          "directory": "pool/main/l/linux",
+          "originals": {
+            "linux_6.12.86.orig.tar.xz": {
+              "bytes": 151247248,
+              "sha256": "74ae12a1a62311e096d05a0b006c8447d9007809b0b7604a643293914871982b"
+            }
+          },
+          "package": "linux",
+          "version": "6.12.86-1"
+        },
+        {
+          "directory": "pool/main/l/linux",
+          "originals": {
+            "linux_6.12.94.orig.tar.xz": {
+              "bytes": 151297764,
+              "sha256": "3eea3dd18f67a103f6f8312e314075f695a27eaddd839e7b6c4641e6616dabba"
+            }
+          },
+          "package": "linux",
+          "version": "6.12.94-1"
+        }
+      ],
+      "index_source_package": "linux",
+      "recipe_archive": "linux-headers-4.19.88.tar.xz",
+      "recipe_sha1_statement_only": "de12b9c8ae2de9e85056a36be9f0fcc0a1e4abe9",
+      "recipe_statement_file": {
+        "bytes": 71,
+        "path": "hashes/linux-headers-4.19.88.tar.xz.sha1",
+        "sha256": "f946ee60c13aecca98a4240c1c534924bd1fcc990e52686fd436464bb634203e"
+      },
+      "review_category": "version-and-artifact-differ",
+      "source_acceptance": "not-assessed",
+      "source_bytes_acquired_this_batch": false
+    }
+  ],
+  "kind": "diagnostic-musl-remaining-source-review-v1",
+  "methods": {
+    "inspect-musl-cross-make.py": {
+      "bytes": 3769,
+      "sha256": "5876728cebff6ab519492d09c42e9d0315f8c5a6922b6cc549007bd995086910"
+    },
+    "inspect-musl-remaining-sources.py": {
+      "bytes": 4194,
+      "sha256": "37a1c7dcb6a3a817581f7d0c533625e9154a84f8a7089c10aab383dc7e718b8e"
+    },
+    "prepare-musl-verification-inputs.py": {
+      "bytes": 5864,
+      "sha256": "3a11a72abb726d415df885c7b839e73fcb0f04453fe4186541b9f60f2725b9ea"
+    }
+  },
+  "musl_acceptance_does_not_transfer": true,
+  "recipe_archive": {
+    "bytes": 213688,
+    "file": "musl-cross-make-3635262.tar.gz",
+    "member_count": 385,
+    "pax_headers": {
+      "comment": "3635262e4524c991552789af6f36211a335a77b3"
+    },
+    "sha256": "60bed670d689d5c2164020960df36b80189dc5617e9763e023672f98a99d567e",
+    "tar_bytes": 1597440,
+    "tar_sha256": "cb051a24ba421cd4768fc41d078f625d8eac52f617a93d60a4a0119a508c537c"
+  },
+  "recipe_commit": "3635262e4524c991552789af6f36211a335a77b3",
+  "review_categories_are_manual": true,
+  "sources": {
+    "bytes": 10527804,
+    "sha256": "e8bbadd8389119e841494630998187f961d7de4d5b1dcbeed4f792a1d423299f"
+  }
+}

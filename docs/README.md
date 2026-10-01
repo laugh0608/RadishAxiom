@@ -37,9 +37,15 @@
 | 独立 checker 与 Evidence 迁移 | [ADR 0008](adr/0008-independent-checker-isolation-and-artifact-exchange.md)、[0009](adr/0009-axiom-evidence-v0-drift-and-migration.md) |
 | payload 发布、launcher、产品宿主 | [ADR 0010](adr/0010-checker-runtime-payload-durable-registration.md)、[0011](adr/0011-checker-runtime-launcher-installation-and-activation.md)、[0012](adr/0012-product-checker-runtime-host-and-persistence-interface.md) |
 | Darwin 强隔离与 container 状态 | [ADR 0013](adr/0013-darwin-checker-hard-isolation.md)、[0014](adr/0014-darwin-app-sandbox-container-state.md) |
-| 虚拟 checker 资源保证与迁移草案 | [ADR 0015（Proposed）](adr/0015-virtualized-checker-resource-profile.md) |
+| 虚拟 checker 资源保证与迁移边界 | [ADR 0015（Accepted）](adr/0015-virtualized-checker-resource-profile.md) |
+| 核心语义组件的分阶段实施入口 | [ADR 0016（Accepted）](adr/0016-core-semantic-slice-entry.md) |
 
 ADR 定义决策和重评条件，不表示相关生产能力已完成；实现进度由当前状态维护。
+
+## 内部实现入口
+
+- [Axiom IR 组件](../crates/axiom-ir/README.md)：JSON、类型声明身份和受限逐行表达式类型推导；不代表完整 P1。
+- [共享 SHA-256](../crates/digest/README.md)：runtime / IR 共用的自有摘要实现与独立复核边界。
 
 ## 机器契约
 
@@ -66,9 +72,16 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 | process 与隔离可行性 | [native process](checker-runtime-darwin-process-isolation-review.md)、[强隔离与 synthetic Linux 观察](checker-runtime-darwin-hard-isolation-review.md) |
 | 隔离产品化与核心闭环依赖 | [产品化设计审阅](checker-runtime-productization-dependency-review.md)、[AX-B01 首切片依赖](axiom-pipeline-first-slice-dependency-review.md) |
 | guest 来源与构建入口 | [kernel / builder / init 与 Linux checker 交接审阅](checker-runtime-guest-source-build-review.md) |
+| Linux builder 隔离安装 | [精确安装范围、命令、中间核对与清理审阅](checker-runtime-linux-install-slice-review.md) |
 | Linux 来源实际核验 | [摘要 / 签名与 builder 库存](records/linux-6.18.49-source-review/README.md)、[归档文件盘点与精确缺失包候选](records/linux-6.18.49-archive-inventory/README.md) |
 | Linux 构建包来源与安装差异 | [Debian 签名摘要链、控制脚本审阅与安装模拟](records/linux-builder-source-chain/README.md) |
 | Rust Linux 与静态目标输入 | [签名 / 归档盘点、安装候选与 kernel 许可审阅](records/rust-linux-input-review/README.md) |
+| 2026-09-29 日终回顾 | [全天提交、代码与文档核对及明日交接](records/2026-09-29-closeout.md) |
+| 2026-09-29 阶段整理 | [投入审阅、核心语义顺位调整与保留资产](records/2026-09-29-core-realignment.md) |
+| 2026-09-25 日终回顾 | [MPFR / MPC 接受、剩余来源材料及 GMP 失败诊断的提交与文档复核](records/2026-09-25-closeout.md) |
+| 2026-09-16 日终回顾 | [musl 限定验收、备份及 MPC / MPFR 材料提交与文档复核](records/2026-09-16-closeout.md) |
+| 2026-09-12 日终回顾 | [musl 验证环境提交、文档复核与日终验证](records/2026-09-12-closeout.md) |
+| 2026-09-10 日终回顾 | [来源诊断提交、文档修正与日终验证](records/2026-09-10-closeout.md) |
 | 2026-09-06 日终回顾 | [提交、代码 / 文档核对与验证边界](records/2026-09-06-closeout.md) |
 | 早期状态、完整批次身份与实施流水 | [截至 2026-09-03 的原状态归档](records/status-through-2026-09-03.md) |
 

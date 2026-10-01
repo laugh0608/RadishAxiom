@@ -1,0 +1,891 @@
+{
+  "acceptance": "not-assessed",
+  "candidate_manifest": {
+    "bytes": 28236,
+    "sha256": "a67e2c07302b945d4d5add12851e5714418614aaba9a28254bef1662bd8b4861"
+  },
+  "elf_count": 290,
+  "expanded_tar_bytes": 33157120,
+  "fetch_record": {
+    "bytes": 33177,
+    "sha256": "eb4438f2b69befbf6c2a9c4d00b6c33e42422dcfe293deada89dde1558b512a8"
+  },
+  "interpreter_observations": [
+    {
+      "interpreter": "/lib/ld-linux-aarch64.so.1",
+      "interpreter_in_package_tree": {
+        "missing_component": "lib",
+        "path": "lib/ld-linux-aarch64.so.1",
+        "status": "missing"
+      },
+      "path": "usr/bin/gpg"
+    },
+    {
+      "interpreter": "/lib/ld-linux-aarch64.so.1",
+      "interpreter_in_package_tree": {
+        "missing_component": "lib",
+        "path": "lib/ld-linux-aarch64.so.1",
+        "status": "missing"
+      },
+      "path": "usr/bin/gpg-connect-agent"
+    },
+    {
+      "interpreter": "/lib/ld-linux-aarch64.so.1",
+      "interpreter_in_package_tree": {
+        "missing_component": "lib",
+        "path": "lib/ld-linux-aarch64.so.1",
+        "status": "missing"
+      },
+      "path": "usr/bin/gpgconf"
+    },
+    {
+      "interpreter": "/lib/ld-linux-aarch64.so.1",
+      "interpreter_in_package_tree": {
+        "missing_component": "lib",
+        "path": "lib/ld-linux-aarch64.so.1",
+        "status": "missing"
+      },
+      "path": "usr/lib/aarch64-linux-gnu/libc.so.6"
+    },
+    {
+      "interpreter": "/lib/ld-linux-aarch64.so.1",
+      "interpreter_in_package_tree": {
+        "missing_component": "lib",
+        "path": "lib/ld-linux-aarch64.so.1",
+        "status": "missing"
+      },
+      "path": "usr/lib/gnupg/keyboxd"
+    }
+  ],
+  "inventory_gzip": {
+    "bytes": 54938,
+    "sha256": "ea7c33f8b26cd0f4ff879230712b61a85df67eb7a37c0a47a505113d26fffebe"
+  },
+  "inventory_json": {
+    "bytes": 585961,
+    "sha256": "fa69b4701c144ba1731418c6d34ce62f7d9ef1f118edf0bc2bd5c54003916380"
+  },
+  "kind": "diagnostic-verifier-package-content",
+  "link_count": 15,
+  "methods": {
+    "docs/records/rust-linux-input-review/inspect-musl-trust-inputs.py": {
+      "bytes": 7472,
+      "sha256": "cd2cc429a4337b02e513ddbb9385eadccefed1461732a0a92f595ef0bb2b8878"
+    },
+    "docs/records/rust-linux-input-review/inspect-musl-verifier-content.py": {
+      "bytes": 13420,
+      "sha256": "64d8f7356d2a179bd363f77309a39ba0b5af3f7ba2bc78caa778aad95efc30d1"
+    },
+    "docs/records/rust-linux-input-review/inspect-selected-inputs.py": {
+      "bytes": 6633,
+      "sha256": "8286b3c9f270c77f20ea24c5bcbea3f6a5415e7c013a7ec39aa8c29ebccbb4be"
+    },
+    "scripts/inspect-debian-source-chain.py": {
+      "bytes": 13032,
+      "sha256": "c6f18880b4f347467ad949ccf25b1960c7bef141e5b48f610ae93ab22479da2a"
+    }
+  },
+  "package_copyrights": [
+    {
+      "bytes": 69004,
+      "common_license_path_candidates": {
+        "/usr/share/common-licenses/Artistic": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/Artistic",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/GFDL-1.2": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GFDL-1.2",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/GPL": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GPL",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/GPL-3": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GPL-3",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/LGPL": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/LGPL",
+          "status": "missing"
+        }
+      },
+      "common_license_references": [
+        "/usr/share/common-licenses/Artistic",
+        "/usr/share/common-licenses/GFDL-1.2",
+        "/usr/share/common-licenses/GPL",
+        "/usr/share/common-licenses/GPL-3",
+        "/usr/share/common-licenses/LGPL"
+      ],
+      "license_fields": [],
+      "package": "gcc-14-base",
+      "packages": [
+        "gcc-14-base"
+      ],
+      "path": "usr/share/doc/gcc-14-base/copyright",
+      "requested_path": "usr/share/doc/gcc-14-base/copyright",
+      "sha256": "20390f8a6f3b1e4d7cb45dd8652dabb259bbef688cbad839bcdb0b9ba7252f79",
+      "status": "found",
+      "type": "file"
+    },
+    {
+      "bytes": 13143,
+      "common_license_path_candidates": {
+        "/usr/share/common-licenses/CC0-1.0": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/CC0-1.0",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/GPL-2.0": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GPL-2.0",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/GPL-3": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GPL-3",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/LGPL-2.1": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/LGPL-2.1",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/LGPL-3": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/LGPL-3",
+          "status": "missing"
+        }
+      },
+      "common_license_references": [
+        "/usr/share/common-licenses/CC0-1.0",
+        "/usr/share/common-licenses/GPL-2.0",
+        "/usr/share/common-licenses/GPL-3",
+        "/usr/share/common-licenses/LGPL-2.1",
+        "/usr/share/common-licenses/LGPL-3"
+      ],
+      "license_fields": [
+        "BSD-3-clause",
+        "CC0-1.0",
+        "Expat",
+        "GPL-2+",
+        "GPL-3+",
+        "GPL-3+ or BSD-3-clause",
+        "LGPL-2.1+",
+        "LGPL-3+",
+        "LGPL-3+ or GPL-2+",
+        "RFC-Reference",
+        "TinySCHEME",
+        "permissive"
+      ],
+      "package": "gpg",
+      "packages": [
+        "gpg"
+      ],
+      "path": "usr/share/doc/gpg/copyright",
+      "requested_path": "usr/share/doc/gpg/copyright",
+      "sha256": "c19276de1952e4d3926c293ac598065e2abcb5b9543600cf941d53fb3c6e41a8",
+      "status": "found",
+      "type": "file"
+    },
+    {
+      "bytes": 13143,
+      "common_license_path_candidates": {
+        "/usr/share/common-licenses/CC0-1.0": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/CC0-1.0",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/GPL-2.0": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GPL-2.0",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/GPL-3": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GPL-3",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/LGPL-2.1": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/LGPL-2.1",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/LGPL-3": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/LGPL-3",
+          "status": "missing"
+        }
+      },
+      "common_license_references": [
+        "/usr/share/common-licenses/CC0-1.0",
+        "/usr/share/common-licenses/GPL-2.0",
+        "/usr/share/common-licenses/GPL-3",
+        "/usr/share/common-licenses/LGPL-2.1",
+        "/usr/share/common-licenses/LGPL-3"
+      ],
+      "license_fields": [
+        "BSD-3-clause",
+        "CC0-1.0",
+        "Expat",
+        "GPL-2+",
+        "GPL-3+",
+        "GPL-3+ or BSD-3-clause",
+        "LGPL-2.1+",
+        "LGPL-3+",
+        "LGPL-3+ or GPL-2+",
+        "RFC-Reference",
+        "TinySCHEME",
+        "permissive"
+      ],
+      "package": "gpgconf",
+      "packages": [
+        "gpgconf"
+      ],
+      "path": "usr/share/doc/gpgconf/copyright",
+      "requested_path": "usr/share/doc/gpgconf/copyright",
+      "sha256": "c19276de1952e4d3926c293ac598065e2abcb5b9543600cf941d53fb3c6e41a8",
+      "status": "found",
+      "type": "file"
+    },
+    {
+      "bytes": 3133,
+      "common_license_path_candidates": {
+        "/usr/share/common-licenses/GPL-2": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GPL-2",
+          "status": "missing"
+        }
+      },
+      "common_license_references": [
+        "/usr/share/common-licenses/GPL-2"
+      ],
+      "license_fields": [
+        "BSD-3-clause",
+        "GPL-2+"
+      ],
+      "package": "init-system-helpers",
+      "packages": [
+        "init-system-helpers"
+      ],
+      "path": "usr/share/doc/init-system-helpers/copyright",
+      "requested_path": "usr/share/doc/init-system-helpers/copyright",
+      "sha256": "7534601cc4fa513804d16490359f5831e7b6a1212da3bbf948bebdd4c8799783",
+      "status": "found",
+      "type": "file"
+    },
+    {
+      "bytes": 12055,
+      "common_license_path_candidates": {
+        "/usr/share/common-licenses/GPL-2": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GPL-2",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/GPL-3": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GPL-3",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/LGPL-2.1": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/LGPL-2.1",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/LGPL-3": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/LGPL-3",
+          "status": "missing"
+        }
+      },
+      "common_license_references": [
+        "/usr/share/common-licenses/GPL-2",
+        "/usr/share/common-licenses/GPL-3",
+        "/usr/share/common-licenses/LGPL-2.1",
+        "/usr/share/common-licenses/LGPL-3"
+      ],
+      "license_fields": [
+        "FSFULLR",
+        "FSFULLRWD",
+        "GPL-2+ with Autoconf-data exception",
+        "GPL-2+ with Libtool exception",
+        "GPL-2.with.nonstandard.Autoconf-data.exception",
+        "GPL-3+",
+        "GPL-3+ with Autoconf-2.0~Archive exception",
+        "GPL-3+ with Autoconf-data exception",
+        "LGPL-2.1",
+        "LGPL-2.1+",
+        "LGPL-3+",
+        "X11"
+      ],
+      "package": "libassuan9",
+      "packages": [
+        "libassuan9"
+      ],
+      "path": "usr/share/doc/libassuan9/copyright",
+      "requested_path": "usr/share/doc/libassuan9/copyright",
+      "sha256": "77098ae4bd20a17039c27a742aaec873c0317793a2867332b3083509c16cfb9a",
+      "status": "found",
+      "type": "file"
+    },
+    {
+      "bytes": 2228,
+      "common_license_path_candidates": {
+        "/usr/share/common-licenses/GPL-2": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GPL-2",
+          "status": "missing"
+        }
+      },
+      "common_license_references": [
+        "/usr/share/common-licenses/GPL-2"
+      ],
+      "license_fields": [
+        "BSD-variant",
+        "GPL-2"
+      ],
+      "package": "libbz2-1.0",
+      "packages": [
+        "libbz2-1.0"
+      ],
+      "path": "usr/share/doc/libbz2-1.0/copyright",
+      "requested_path": "usr/share/doc/libbz2-1.0/copyright",
+      "sha256": "832ed535ff3c3d025a8d2348eb1b697b89addcf2eaadbc17650262040b9145e2",
+      "status": "found",
+      "type": "file"
+    },
+    {
+      "bytes": 51200,
+      "common_license_path_candidates": {
+        "/usr/share/common-licenses/GPL-2": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GPL-2",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/GPL-3": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GPL-3",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/LGPL-2": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/LGPL-2",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/LGPL-2.1": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/LGPL-2.1",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/LGPL-3": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/LGPL-3",
+          "status": "missing"
+        }
+      },
+      "common_license_references": [
+        "/usr/share/common-licenses/GPL-2",
+        "/usr/share/common-licenses/GPL-3",
+        "/usr/share/common-licenses/LGPL-2",
+        "/usr/share/common-licenses/LGPL-2.1",
+        "/usr/share/common-licenses/LGPL-3"
+      ],
+      "license_fields": [
+        "BSD-2-clause",
+        "BSD-2-clause or GPL-2",
+        "BSD-3-clause-Berkeley",
+        "BSD-3-clause-Berkeley and BSD-3-clause-WIDE",
+        "BSD-3-clause-Berkeley and DEC",
+        "BSD-3-clause-Berkeley and DEC and IBM and ISC",
+        "BSD-3-clause-Berkeley and DEC and ISC",
+        "BSD-3-clause-Berkeley and DEC and ISC and LGPL-2.1+",
+        "BSD-3-clause-Berkeley and DEC and LGPL-2.1+",
+        "BSD-3-clause-Berkeley and ISC",
+        "BSD-3-clause-Berkeley and LGPL-2.1+",
+        "BSD-3-clause-Berkeley and LGPL-2.1+ and Univ-Coimbra",
+        "BSD-3-clause-Carnegie",
+        "BSD-3-clause-Oracle",
+        "BSD-3-clause-WIDE",
+        "BSD-like-Spencer",
+        "BSL-1.0",
+        "CORE-MATH",
+        "Carnegie",
+        "Carnegie and LGPL-2.1+",
+        "DEC",
+        "FSFAP",
+        "GPL-2",
+        "GPL-2+",
+        "GPL-2+-with-link-exception",
+        "GPL-3+",
+        "IBM",
+        "IBM and ISC",
+        "ISC",
+        "ISC and LGPL-2.1+",
+        "Inner-Net",
+        "Inner-Net and LGPL-2.1+",
+        "LGPL-2+",
+        "LGPL-2.1+",
+        "LGPL-2.1+ and GPL-2",
+        "LGPL-2.1+ and SunPro",
+        "LGPL-2.1+-with-link-exception",
+        "LGPL-3+",
+        "MIT-like-Lord",
+        "PCRE",
+        "SunPro",
+        "Unicode-DFS-2016",
+        "Univ-Coimbra",
+        "public-domain"
+      ],
+      "package": "libc6",
+      "packages": [
+        "libc6"
+      ],
+      "path": "usr/share/doc/libc6/copyright",
+      "requested_path": "usr/share/doc/libc6/copyright",
+      "sha256": "f5788886720a2605a946e81d571e6c8162b09f58d2e2ceb8d36e5768fccd850d",
+      "status": "found",
+      "type": "file"
+    },
+    {
+      "bytes": 69004,
+      "common_license_path_candidates": {
+        "/usr/share/common-licenses/Artistic": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/Artistic",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/GFDL-1.2": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GFDL-1.2",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/GPL": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GPL",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/GPL-3": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GPL-3",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/LGPL": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/LGPL",
+          "status": "missing"
+        }
+      },
+      "common_license_references": [
+        "/usr/share/common-licenses/Artistic",
+        "/usr/share/common-licenses/GFDL-1.2",
+        "/usr/share/common-licenses/GPL",
+        "/usr/share/common-licenses/GPL-3",
+        "/usr/share/common-licenses/LGPL"
+      ],
+      "license_fields": [],
+      "package": "libgcc-s1",
+      "packages": [
+        "gcc-14-base"
+      ],
+      "path": "usr/share/doc/gcc-14-base/copyright",
+      "requested_path": "usr/share/doc/libgcc-s1/copyright",
+      "sha256": "20390f8a6f3b1e4d7cb45dd8652dabb259bbef688cbad839bcdb0b9ba7252f79",
+      "status": "found",
+      "type": "file"
+    },
+    {
+      "bytes": 26983,
+      "common_license_path_candidates": {
+        "/usr/share/common-licenses/GPL-2": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GPL-2",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/LGPL": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/LGPL",
+          "status": "missing"
+        }
+      },
+      "common_license_references": [
+        "/usr/share/common-licenses/GPL-2",
+        "/usr/share/common-licenses/LGPL"
+      ],
+      "license_fields": [],
+      "package": "libgcrypt20",
+      "packages": [
+        "libgcrypt20"
+      ],
+      "path": "usr/share/doc/libgcrypt20/copyright",
+      "requested_path": "usr/share/doc/libgcrypt20/copyright",
+      "sha256": "4feae258cab1ad4743fb569a77e0b2a5b7a0199520bdbc0a613916291b9aa8a8",
+      "status": "found",
+      "type": "file"
+    },
+    {
+      "bytes": 5301,
+      "common_license_path_candidates": {
+        "/usr/share/common-licenses/GPL-3": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GPL-3",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/LGPL-2.1": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/LGPL-2.1",
+          "status": "missing"
+        }
+      },
+      "common_license_references": [
+        "/usr/share/common-licenses/GPL-3",
+        "/usr/share/common-licenses/LGPL-2.1"
+      ],
+      "license_fields": [
+        "BSD-3-clause",
+        "GPL-3+",
+        "LGPL-2.1+",
+        "LGPL-2.1+ or BSD-3-clause",
+        "g10-permissive"
+      ],
+      "package": "libgpg-error0",
+      "packages": [
+        "libgpg-error0"
+      ],
+      "path": "usr/share/doc/libgpg-error0/copyright",
+      "requested_path": "usr/share/doc/libgpg-error0/copyright",
+      "sha256": "1edb3be55cf9371e8e7a71e53fadc2a3d33b44d7d7f15c78a7669c92ce0fade2",
+      "status": "found",
+      "type": "file"
+    },
+    {
+      "bytes": 4718,
+      "common_license_path_candidates": {
+        "/usr/share/common-licenses/GPL-3": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GPL-3",
+          "status": "missing"
+        }
+      },
+      "common_license_references": [
+        "/usr/share/common-licenses/GPL-3"
+      ],
+      "license_fields": [
+        "FSFUL",
+        "LGPL-2.1-or-later"
+      ],
+      "package": "libksba8",
+      "packages": [
+        "libksba8"
+      ],
+      "path": "usr/share/doc/libksba8/copyright",
+      "requested_path": "usr/share/doc/libksba8/copyright",
+      "sha256": "62f4bbaeb37f9e2c0795dd3ea7b1bfcf34fc9fef7a680bd863ee50fae0b4cf12",
+      "status": "found",
+      "type": "file"
+    },
+    {
+      "bytes": 1164,
+      "common_license_path_candidates": {
+        "/usr/share/common-licenses/LGPL-2.1": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/LGPL-2.1",
+          "status": "missing"
+        }
+      },
+      "common_license_references": [
+        "/usr/share/common-licenses/LGPL-2.1"
+      ],
+      "license_fields": [
+        "LGPL-2.1+"
+      ],
+      "package": "libnpth0t64",
+      "packages": [
+        "libnpth0t64"
+      ],
+      "path": "usr/share/doc/libnpth0t64/copyright",
+      "requested_path": "usr/share/doc/libnpth0t64/copyright",
+      "sha256": "df6909abb38f4e84d237d8617e948bdbb391b2004ecf573863011d54a88ccf22",
+      "status": "found",
+      "type": "file"
+    },
+    {
+      "bytes": 4314,
+      "common_license_path_candidates": {
+        "/usr/share/common-licenses/GFDL": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GFDL",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/GPL-2": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GPL-2",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/GPL-3": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GPL-3",
+          "status": "missing"
+        }
+      },
+      "common_license_references": [
+        "/usr/share/common-licenses/GFDL",
+        "/usr/share/common-licenses/GPL-2",
+        "/usr/share/common-licenses/GPL-3"
+      ],
+      "license_fields": [
+        "GFDL-NIV-1.3+",
+        "GPL-2+",
+        "GPL-3",
+        "GPL-3+",
+        "ISC-no-attribution"
+      ],
+      "package": "libreadline8t64",
+      "packages": [
+        "libreadline8t64"
+      ],
+      "path": "usr/share/doc/libreadline8t64/copyright",
+      "requested_path": "usr/share/doc/libreadline8t64/copyright",
+      "sha256": "854c6f5f249a109a913e1e58528445c4fec96f063ae8ba496bfb2b460bcc6866",
+      "status": "found",
+      "type": "file"
+    },
+    {
+      "bytes": 1770,
+      "common_license_path_candidates": {
+        "/usr/share/common-licenses/GPL-2": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GPL-2",
+          "status": "missing"
+        }
+      },
+      "common_license_references": [
+        "/usr/share/common-licenses/GPL-2"
+      ],
+      "license_fields": [
+        "GPL-2+",
+        "public-domain"
+      ],
+      "package": "libsqlite3-0",
+      "packages": [
+        "libsqlite3-0"
+      ],
+      "path": "usr/share/doc/libsqlite3-0/copyright",
+      "requested_path": "usr/share/doc/libsqlite3-0/copyright",
+      "sha256": "7b1679aaa97e6e49ec12460eefa85a82b432053bc468dd89dbdb50f2326589f3",
+      "status": "found",
+      "type": "file"
+    },
+    {
+      "bytes": 4670,
+      "common_license_path_candidates": {},
+      "common_license_references": [],
+      "license_fields": [
+        "BSD-3-clause",
+        "MIT/X11",
+        "X11"
+      ],
+      "package": "libtinfo6",
+      "packages": [
+        "libtinfo6"
+      ],
+      "path": "usr/share/doc/libtinfo6/copyright",
+      "requested_path": "usr/share/doc/libtinfo6/copyright",
+      "sha256": "f838d6048fbc59356b7e56c207a7cb32dc6bf4adea95514a002596bde8f6e1e7",
+      "status": "found",
+      "type": "file"
+    },
+    {
+      "bytes": 4314,
+      "common_license_path_candidates": {
+        "/usr/share/common-licenses/GFDL": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GFDL",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/GPL-2": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GPL-2",
+          "status": "missing"
+        },
+        "/usr/share/common-licenses/GPL-3": {
+          "missing_component": "usr/share/common-licenses",
+          "path": "usr/share/common-licenses/GPL-3",
+          "status": "missing"
+        }
+      },
+      "common_license_references": [
+        "/usr/share/common-licenses/GFDL",
+        "/usr/share/common-licenses/GPL-2",
+        "/usr/share/common-licenses/GPL-3"
+      ],
+      "license_fields": [
+        "GFDL-NIV-1.3+",
+        "GPL-2+",
+        "GPL-3",
+        "GPL-3+",
+        "ISC-no-attribution"
+      ],
+      "package": "readline-common",
+      "packages": [
+        "readline-common"
+      ],
+      "path": "usr/share/doc/readline-common/copyright",
+      "requested_path": "usr/share/doc/readline-common/copyright",
+      "sha256": "854c6f5f249a109a913e1e58528445c4fec96f063ae8ba496bfb2b460bcc6866",
+      "status": "found",
+      "type": "file"
+    },
+    {
+      "bytes": 2927,
+      "common_license_path_candidates": {},
+      "common_license_references": [],
+      "license_fields": [
+        "Zlib"
+      ],
+      "package": "zlib1g",
+      "packages": [
+        "zlib1g"
+      ],
+      "path": "usr/share/doc/zlib1g/copyright",
+      "requested_path": "usr/share/doc/zlib1g/copyright",
+      "sha256": "9e5b96d63773a5d177ba264254390f792be07e41748ebd94730981c6cac31cc6",
+      "status": "found",
+      "type": "file"
+    }
+  ],
+  "package_count": 17,
+  "programs_executed": false,
+  "root_static_candidates": {
+    "file_bytes": 8064784,
+    "file_count": 14,
+    "files": [
+      {
+        "bytes": 1266832,
+        "packages": [
+          "gpg"
+        ],
+        "path": "usr/bin/gpg",
+        "sha256": "8abfa53f25b7e338fcef742ac0f900bd87dbdcd9c0d0cb2c7c89accdd1299192"
+      },
+      {
+        "bytes": 204184,
+        "packages": [
+          "gpgconf"
+        ],
+        "path": "usr/bin/gpgconf",
+        "sha256": "cf92e711c3bb7ebdb57dcc627a740da6c77348fa12257e2c842c4059bbd13ae4"
+      },
+      {
+        "bytes": 201344,
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+        "sha256": "1d8b77f28b7cec0329dca107a28fb0a850193b1dcce59be68fa0b06b514548cc"
+      },
+      {
+        "bytes": 133272,
+        "packages": [
+          "libassuan9"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libassuan.so.9.0.2",
+        "sha256": "b541835f89c9f238e2d8802b96c0a07e2612fb4fd4f33f70cfb9549ea72b5ffc"
+      },
+      {
+        "bytes": 70584,
+        "packages": [
+          "libbz2-1.0"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libbz2.so.1.0.4",
+        "sha256": "810fa9b02adc39be4a7542bde79f1da0575e9bbdf8fc3c27deeb1ee97f59fe46"
+      },
+      {
+        "bytes": 1716616,
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libc.so.6",
+        "sha256": "9a325944115b36e74077786b29531963d96cd55cd6c82f11750a352cdb58fab0"
+      },
+      {
+        "bytes": 1201792,
+        "packages": [
+          "libgcrypt20"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libgcrypt.so.20.5.0",
+        "sha256": "4f66771a0799fd111c30e163a41b6d1dc8a6b0377e3e51a8175320890ee60c6e"
+      },
+      {
+        "bytes": 198736,
+        "packages": [
+          "libgpg-error0"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libgpg-error.so.0.38.0",
+        "sha256": "6178cac881010e5c37defc08476cd6acced7c13531f3bde72715fcfe801d287a"
+      },
+      {
+        "bytes": 591960,
+        "packages": [
+          "libc6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libm.so.6",
+        "sha256": "a8afb2d1f4a0c5e14c0fc82f794ec839eafe29738907aa92895410f57630bbe2"
+      },
+      {
+        "bytes": 67992,
+        "packages": [
+          "libnpth0t64"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libnpth.so.0.3.0",
+        "sha256": "00e69f7071b5699895e15214929e5154bbc6ffc1383d9b025902ad5f24ec392e"
+      },
+      {
+        "bytes": 420224,
+        "packages": [
+          "libreadline8t64"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libreadline.so.8.2",
+        "sha256": "41eaf42757798c29d7dd13f519f76a91cd06847a068ed29a7912b343b60c48b3"
+      },
+      {
+        "bytes": 1592144,
+        "packages": [
+          "libsqlite3-0"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6",
+        "sha256": "9865b5990181843284595a2c290e5aa9e1df1b3ee438ce7fc6cdc2ec1c411985"
+      },
+      {
+        "bytes": 265504,
+        "packages": [
+          "libtinfo6"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libtinfo.so.6.5",
+        "sha256": "57cda9469aa613f8ab25b21af56867d5a01d19c0a91fda6965aa6501ea98cfcf"
+      },
+      {
+        "bytes": 133600,
+        "packages": [
+          "zlib1g"
+        ],
+        "path": "usr/lib/aarch64-linux-gnu/libz.so.1.3.1",
+        "sha256": "6fe00acadf8119ff245855e5dcc7f26c6c0ffaf4bfa2baa88feab58f23727d65"
+      }
+    ],
+    "loader_resolution_assessed": false,
+    "roots": [
+      "usr/bin/gpg",
+      "usr/bin/gpgconf"
+    ],
+    "unresolved_needed": []
+  },
+  "runtime_closure_assessed": false,
+  "signature_reverified": false,
+  "symbol_versions_inspected": false,
+  "total_payload_members": 583
+}

@@ -1,0 +1,111 @@
+{
+  "file_count": 132,
+  "kind": "diagnostic-musl-local-retention-observation",
+  "manifest": {
+    "bytes": 31477,
+    "sha256": "3937d4570faa72ec359dbedf8fdc9c62aa5f26942cc08ee29d1a809e03a54ae9"
+  },
+  "methods": {
+    "check-musl-retention.py": {
+      "bytes": 4164,
+      "sha256": "b983a8f088a9b2a0fa721886c1951f2436ab6ce916ab0d803f3e147038e0c6f1"
+    },
+    "retain-musl-verifier-inputs.py": {
+      "bytes": 10295,
+      "sha256": "72047818576ab27de02cf8e9620c33299c007b4c64108fb7c11a3c1d23e3ca0a"
+    }
+  },
+  "object_bytes": 28655060,
+  "object_count": 87,
+  "off_device_backup_verified": false,
+  "original_cache_deleted": false,
+  "payload_programs_executed": false,
+  "replays": [
+    {
+      "argv": [
+        "/Users/luobo/.local/share/mise/installs/python/latest/bin/python3",
+        "-B",
+        "docs/records/rust-linux-input-review/inspect-musl-verifier-content.py",
+        ".tmp/musl-verifier-d04b225-20260912",
+        "--summary"
+      ],
+      "cwd": "/Users/luobo/Code/RadishAxiom/.tmp/musl-retention-2fb2e70-20260912/restore",
+      "exit_code": 0,
+      "expected": "docs/records/rust-linux-input-review/musl-verifier-content-summary-2026-09-12.json",
+      "matches_retained_output": true,
+      "name": "content",
+      "stderr_bytes": 0,
+      "stdout": {
+        "bytes": 28548,
+        "sha256": "da75bd655f2fcac281a27f72a6027707a5602e981c8c92e0f20f223e18b62db6"
+      }
+    },
+    {
+      "argv": [
+        "/Users/luobo/.local/share/mise/installs/python/latest/bin/python3",
+        "-B",
+        "docs/records/rust-linux-input-review/inspect-musl-verifier-licenses.py",
+        ".tmp/musl-verifier-d04b225-20260912",
+        "--attempt",
+        "2"
+      ],
+      "cwd": "/Users/luobo/Code/RadishAxiom/.tmp/musl-retention-2fb2e70-20260912/restore",
+      "exit_code": 0,
+      "expected": "docs/records/rust-linux-input-review/musl-verifier-licenses-2026-09-12.json",
+      "matches_retained_output": true,
+      "name": "licenses",
+      "stderr_bytes": 0,
+      "stdout": {
+        "bytes": 45354,
+        "sha256": "4137405ca1d7f4e9dbefe86e982730dba2e77e910a4f8667fcde15d7ada527c0"
+      }
+    },
+    {
+      "argv": [
+        "/Users/luobo/.local/share/mise/installs/python/latest/bin/python3",
+        "-B",
+        "docs/records/rust-linux-input-review/inspect-musl-key-status.py",
+        ".tmp/musl-key-status-ef02b43-20260910",
+        "--keyring-package",
+        ".tmp/musl-trust-bbbe083-20260910/keyring-attempt-2.deb"
+      ],
+      "cwd": "/Users/luobo/Code/RadishAxiom/.tmp/musl-retention-2fb2e70-20260912/restore",
+      "exit_code": 0,
+      "expected": "docs/records/rust-linux-input-review/musl-key-status-2026-09-10.json",
+      "matches_retained_output": true,
+      "name": "keys",
+      "stderr_bytes": 0,
+      "stdout": {
+        "bytes": 3717,
+        "sha256": "36ff9680d37b4ec13367d7bbd1692120873d7be150b35cadfac41c93ae7f21bf"
+      }
+    },
+    {
+      "argv": [
+        "/Users/luobo/.local/share/mise/installs/python/latest/bin/python3",
+        "-B",
+        "docs/records/rust-linux-input-review/inspect-musl-verifier-layout.py",
+        ".tmp/musl-verifier-d04b225-20260912",
+        "--objdump",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/objdump",
+        "--sources",
+        ".tmp/musl-auth-chain-0a66901/Sources.xz",
+        "--summary"
+      ],
+      "cwd": "/Users/luobo/Code/RadishAxiom/.tmp/musl-retention-2fb2e70-20260912/restore",
+      "exit_code": 0,
+      "expected": "docs/records/rust-linux-input-review/musl-verifier-layout-summary-2026-09-12.json",
+      "matches_retained_output": true,
+      "name": "layout",
+      "stderr_bytes": 0,
+      "stdout": {
+        "bytes": 95281,
+        "sha256": "e7b0c64e4a2e91fbd1a5ba9b8380e6ccd2ff2d7c47572c5ddcf972c7f726512c"
+      }
+    }
+  ],
+  "repository_base": "2fb2e70",
+  "restored_directory": ".tmp/musl-retention-2fb2e70-20260912/restore",
+  "retained_directory": "artifacts/source-inputs/musl-verifier-2fb2e70-20260912",
+  "source_acceptance": "not-assessed"
+}

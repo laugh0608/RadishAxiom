@@ -1,0 +1,146 @@
+{
+  "absence_scope": "checked-retention-store-and-fixed-gpg-payload-only",
+  "assessment_revision_prepared": false,
+  "control_identity": {
+    "architecture": "arm64",
+    "package": "gpg",
+    "source": "gnupg2 (2.4.7-21+deb13u1)",
+    "version": "2.4.7-21+deb13u1+b4"
+  },
+  "effective_subkey_expiry_semantics": "not-established-from-reviewed-local-material",
+  "expected_response_bytes_total": 8146831,
+  "gpg_package": {
+    "bytes": 578896,
+    "sha256": "840abc3e9178b9578fbc9c9674ebb2f3b983790f713ffd2b6a0371d8670dc8e7"
+  },
+  "gpg_payload_regular_files": [
+    "usr/bin/gpg",
+    "usr/lib/gnupg/keyboxd",
+    "usr/lib/systemd/user/keyboxd.service",
+    "usr/lib/systemd/user/keyboxd.socket",
+    "usr/share/doc/gpg/NEWS.Debian.gz",
+    "usr/share/doc/gpg/README.Debian",
+    "usr/share/doc/gpg/changelog.Debian.arm64.gz",
+    "usr/share/doc/gpg/changelog.Debian.gz",
+    "usr/share/doc/gpg/changelog.gz",
+    "usr/share/doc/gpg/copyright",
+    "usr/share/lintian/overrides/gpg",
+    "usr/share/man/man1/gpg.1.gz",
+    "usr/share/man/man1/keyboxd.1.gz"
+  ],
+  "historical_validity": "not-established",
+  "kind": "diagnostic-gmp-tool-materials-review-v1",
+  "manual": {
+    "bytes": 181578,
+    "details_reference_lines": [
+      73,
+      2967,
+      3357,
+      3703,
+      3993
+    ],
+    "key_considered_literal_present": false,
+    "keyexpired_literal_present": false,
+    "path_in_package": "usr/share/man/man1/gpg.1.gz",
+    "reviewed_line_ranges": [
+      [
+        324,
+        338
+      ],
+      [
+        2962,
+        2968
+      ],
+      [
+        3355,
+        3362
+      ]
+    ],
+    "sha256": "1c3f57387f18152a63d383a4c289a055c679666fc5d7acfef36067ac990ace29"
+  },
+  "methods": {
+    "docs/records/rust-linux-input-review/inspect-gmp-tool-materials.py": {
+      "bytes": 5830,
+      "sha256": "50faa21fbdba5e3919891ca40f76904cd54110a3fc0c3463325c56d3587438f5"
+    },
+    "docs/records/rust-linux-input-review/inspect-musl-trust-inputs.py": {
+      "bytes": 7472,
+      "sha256": "cd2cc429a4337b02e513ddbb9385eadccefed1461732a0a92f595ef0bb2b8878"
+    },
+    "docs/records/rust-linux-input-review/inspect-musl-verifier-content.py": {
+      "bytes": 13420,
+      "sha256": "64d8f7356d2a179bd363f77309a39ba0b5af3f7ba2bc78caa778aad95efc30d1"
+    },
+    "docs/records/rust-linux-input-review/inspect-musl-verifier-sources.py": {
+      "bytes": 3546,
+      "sha256": "71ed6113217f11abcc3105f0898ddb23c1fc9a5c7822129d8c669b8d5e387d5c"
+    },
+    "docs/records/rust-linux-input-review/prepare-mpfr-verification.py": {
+      "bytes": 6198,
+      "sha256": "427b2d14b7f7c8c553d48f172a2239804e4b2822c40840141e33cafb701c8610"
+    },
+    "docs/records/rust-linux-input-review/retain-musl-verifier-inputs.py": {
+      "bytes": 10295,
+      "sha256": "72047818576ab27de02cf8e9620c33299c007b4c64108fb7c11a3c1d23e3ca0a"
+    },
+    "scripts/inspect-debian-source-chain.py": {
+      "bytes": 13032,
+      "sha256": "c6f18880b4f347467ad949ccf25b1960c7bef141e5b48f610ae93ab22479da2a"
+    }
+  },
+  "network_requests_executed": false,
+  "new_cryptography_executed": false,
+  "request_count": 4,
+  "retention": {
+    "files_checked": 132,
+    "manifest": {
+      "bytes": 31477,
+      "sha256": "3937d4570faa72ec359dbedf8fdc9c62aa5f26942cc08ee29d1a809e03a54ae9"
+    },
+    "objects_checked": 87,
+    "store": "musl-verifier-2fb2e70-20260912"
+  },
+  "source_acceptance": "not-assessed",
+  "source_index": {
+    "bytes": 10527804,
+    "sha256": "e8bbadd8389119e841494630998187f961d7de4d5b1dcbeed4f792a1d423299f"
+  },
+  "source_row": {
+    "binary": "gpgconf, gnupg-agent, gpg-agent, gpg-wks-server, gpg-wks-client, scdaemon, gpgsm, gpg, gnupg, gnupg2, gpgv, dirmngr, tpm2daemon, gpgv-udeb, gpgv-static, gpgv-win32, gnupg-l10n, gnupg-utils",
+    "checksums-sha256": "\n30a96cd2d26a57f6796507bf8f083825734d4081e3c5f922d2b99bb2bf671212 4933 gnupg2_2.4.7-21+deb13u1.dsc\n7b24706e4da7e0e3b06ca068231027401f238102c41c909631349dcc3b85eb46 8010244 gnupg2_2.4.7.orig.tar.bz2\ncec7da75dab60e3e2f6bf92ed1174126a1e5a1cc5e448f9e004a23be2dd227f6 390 gnupg2_2.4.7.orig.tar.bz2.asc\n3941a8a537e258f6216ad1c1b9ecb255dfc286e5d03eb39805e536de4a448856 131264 gnupg2_2.4.7-21+deb13u1.debian.tar.xz",
+    "directory": "pool/main/g/gnupg2",
+    "package": "gnupg2",
+    "version": "2.4.7-21+deb13u1"
+  },
+  "status_repetition_semantics": "not-established-from-reviewed-local-material",
+  "supplemental_material_targets": [
+    {
+      "bytes": 131264,
+      "name": "gnupg2_2.4.7-21+deb13u1.debian.tar.xz",
+      "object_present_in_checked_store": false,
+      "sha256": "3941a8a537e258f6216ad1c1b9ecb255dfc286e5d03eb39805e536de4a448856",
+      "url": "https://deb.debian.org/debian/pool/main/g/gnupg2/gnupg2_2.4.7-21+deb13u1.debian.tar.xz"
+    },
+    {
+      "bytes": 4933,
+      "name": "gnupg2_2.4.7-21+deb13u1.dsc",
+      "object_present_in_checked_store": false,
+      "sha256": "30a96cd2d26a57f6796507bf8f083825734d4081e3c5f922d2b99bb2bf671212",
+      "url": "https://deb.debian.org/debian/pool/main/g/gnupg2/gnupg2_2.4.7-21+deb13u1.dsc"
+    },
+    {
+      "bytes": 8010244,
+      "name": "gnupg2_2.4.7.orig.tar.bz2",
+      "object_present_in_checked_store": false,
+      "sha256": "7b24706e4da7e0e3b06ca068231027401f238102c41c909631349dcc3b85eb46",
+      "url": "https://deb.debian.org/debian/pool/main/g/gnupg2/gnupg2_2.4.7.orig.tar.bz2"
+    },
+    {
+      "bytes": 390,
+      "name": "gnupg2_2.4.7.orig.tar.bz2.asc",
+      "object_present_in_checked_store": false,
+      "sha256": "cec7da75dab60e3e2f6bf92ed1174126a1e5a1cc5e448f9e004a23be2dd227f6",
+      "url": "https://deb.debian.org/debian/pool/main/g/gnupg2/gnupg2_2.4.7.orig.tar.bz2.asc"
+    }
+  ]
+}

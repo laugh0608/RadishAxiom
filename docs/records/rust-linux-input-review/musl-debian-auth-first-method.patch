@@ -1,0 +1,20 @@
+--- collect-musl-debian-auth.py
++++ collect-musl-debian-auth.py
+@@ -48,8 +47,0 @@
+-        # Only self-certification is assessed here. Keep the full imported keyring
+-        # for InRelease verification and original packet observations below.
+-        self_home = home / 'self-certifications'
+-        self_home.mkdir(mode=0o700)
+-        self_args = args.copy()
+-        self_args[self_args.index('--homedir') + 1] = str(self_home)
+-        result['self_key_import'] = run(self_args + ['--import-options', 'self-sigs-only',
+-                                                    '--import', str(inputs / 'debian-archive-keyring.gpg')])
+@@ -59 +51 @@
+-            key['certifications'] = run(self_args + ['--with-colons', '--fixed-list-mode',
++            key['certifications'] = run(args + ['--with-colons', '--fixed-list-mode',
+@@ -71,4 +63 @@
+-    commands = [result['key_import'], result['self_key_import'], result['verification']]
+-    commands += [key[name] for key in result['keys'].values()
+-                 for name in ('certifications', 'export', 'packets')]
+-    return 0 if all(command['exit_code'] == 0 for command in commands) else 1
++    return result['verification']['exit_code']

@@ -1,8 +1,8 @@
 # ADR 0015：虚拟 checker 资源 profile 与宿主保证边界
 
-日期：2026-09-06
+提案日期：2026-09-06；接受日期：2026-09-10
 
-状态：Proposed
+状态：Accepted
 
 用途：为 Darwin 上逐次 Hypervisor checker 定义独立资源保证，明确 guest 硬上限、宿主总内存保证缺口、排他选择和公共迁移范围。
 
@@ -10,7 +10,7 @@
 
 不包含：接受具体 kernel / init / builder、批准维护预算、分配格式版本、修改公共机器字节、实现或执行 runner / checker、签名、qualification、激活、提交或远程动作。
 
-项目所有者已确认“guest 保留 128 MiB 硬上限，宿主总占用没有等价硬保证”的起草方向。本文件是可审阅草案，尚未替代任何 Accepted ADR，也不是实现依据。来源、投入与验证顺位由[产品化依赖审阅](../checker-runtime-productization-dependency-review.md)及[当前状态](../status/current.md)维护。
+项目所有者于 2026-09-10 正式接受“guest 保留 128 MiB 硬上限，宿主总占用没有等价硬保证”的资源边界及下述窄替代范围。该决定可作为后续版本化设计的依据；公共字节迁移和实际执行仍未验收或授权，现有 v0.1 消费者、inactive 登记及执行门禁不因此改变。来源、投入与验证顺位由[产品化依赖审阅](../checker-runtime-productization-dependency-review.md)及[当前状态](../status/current.md)维护。
 
 ## 背景与选择
 
@@ -21,21 +21,21 @@
 | 方案 | 可承诺的资源边界 | 取舍 |
 | --- | --- | --- |
 | 保持整个宿主 128 MiB 硬限 | 继续要求现行能力 | 当前候选没有满足证据，真实 checker 继续阻断；仍可审来源或重选宿主 |
-| 为虚拟执行另立 profile | guest 128 MiB 硬限；明确不承诺宿主总内存硬限 | **本草案选择**；调用方必须能识别较弱的宿主保证，且不得隐式降级 |
+| 为虚拟执行另立 profile | guest 128 MiB 硬限；明确不承诺宿主总内存硬限 | **本决定选择**；调用方必须能识别较弱的宿主保证，且不得隐式降级 |
 | 原地重解释旧 profile、以 RSS polling 或 guest cgroup 代替宿主硬限 | 名称相同但能力不同 | 拒绝；破坏既有调用方的资源要求与兼容性 |
 
 选择第二项意味着接受**整个宿主内存耗尽风险未被该 profile 的硬限消除**。恶意请求即使不能扩展 guest RAM，仍可能通过被信任的 runner / framework 开销影响宿主；降低该风险需要有界实现和验收，但不能声称具有 OS 强制的总量保证。
 
-## 拟议决策及替代范围
+## 决策及替代范围
 
-本 ADR 若被接受，只对 **Darwin execution host + signed Hypervisor runner + Linux arm64 checker guest** 引入新的资源能力组合：
+本 ADR 只对 **Darwin execution host + signed Hypervisor runner + Linux arm64 checker guest** 引入新的资源能力组合：
 
 - 窄替代 ADR 0008 / 0011 中要求该虚拟路径继续满足旧外层进程 memory profile、以及把 host target 与 checker target 合并选择的部分；
 - 窄替代 ADR 0013 中“保留全部现行 hard boundary”和将 guest mapping 对应旧 working-memory 保证的部分，明确这里改变了宿主内存保证；
 - 保留 ADR 0013 的逐次 runner / VM、签名、descriptor 字节装载、网络与设备限制、后代 containment、deadline、失败关闭和无 fallback；保留 ADR 0014 的全部 container / TCB 边界；
 - 不替代其他 native 平台的硬限，不改变 cvc5 / Node 的资源要求，也不解除 ADR 0007 的生产管线入口。
 
-当前 Accepted ADR 原文及已绑定摘要不在草案阶段改写。接受后应在迁移清单中标明上述窄替代关系；旧决策的其余条款继续适用，不能把 ADR 0008、0011 或 0013 整体标记为失效。
+本次不改写 ADR 0008、0011、0013 的原文及已绑定摘要；上述窄替代关系由本 ADR 承载，并必须进入后续迁移清单。旧决策的其余条款继续适用，不能将它们整体标记为失效。迁移验收前仍按旧版本的完整契约校验既有记录，不将新资源保证原地套入 v0.1。
 
 ### 三个资源计量域
 
@@ -61,7 +61,7 @@ watchdog 必须预留收束时间；具体预留量由 cold 矩阵验收。无�
 
 ## 排他选择与身份
 
-新 profile 必须以可区分的版本化身份表达 guest 硬限及宿主硬限缺失；本草案不提前发明 canonical 字段名或版本号。调用方的资源要求来自可信配置 / policy，不能由不可信 bundle 声明。只有明确允许该能力组合、全部来源 / 身份 / capability 均通过且对应 runtime 状态合格，才能构造虚拟 plan。
+新 profile 必须以可区分的版本化身份表达 guest 硬限及宿主硬限缺失；本 ADR 不分配 canonical 字段名或版本号。调用方的资源要求来自可信配置 / policy，不能由不可信 bundle 声明。只有明确允许该能力组合、全部来源 / 身份 / capability 均通过且对应 runtime 状态合格，才能构造虚拟 plan。
 
 | 调用方要求或输入 | 选择结果 |
 | --- | --- |
@@ -93,7 +93,7 @@ qualification 与业务调用共用同一 plan 和结果消费者，但用途门
 
 ## 后续验收与停止条件
 
-机器迁移必须包含下列可执行验收材料；本草案只定义要求，不声称测试已运行：
+机器迁移必须包含下列可执行验收材料；本 ADR 只定义要求，不声称测试已运行：
 
 | 类别 | 必备材料与判定 |
 | --- | --- |

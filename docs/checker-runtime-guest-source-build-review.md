@@ -1,14 +1,16 @@
 # Checker guest 来源与构建入口审阅
 
-审阅日期：2026-09-06
+审阅日期：2026-09-16；来源状态同步：2026-09-29
 
 状态：候选环境、kernel / Debian 来源与 Rust Linux 输入已形成诊断；安装、完整 source lock 与构建验收尚未完成。
+
+2026-09-29 阶段整理：本专题保留来源事实和恢复产品构建时的前置，新增取证暂缓，当前核心语义顺位见[当前状态](status/current.md)。下文“下一次安装 / 下一步”描述本工作线恢复后的条件，不作为全项目默认任务；[恢复范围与投入门槛](checker-runtime-productization-dependency-review.md#下一切片与停止条件)须先满足。
 
 用途：把 kernel / init / runner / transport 与 Linux checker 的来源前置落实为可核对输入、构建职责和验收交付，支撑[产品化依赖审阅](checker-runtime-productization-dependency-review.md)的来源切片。
 
 读者：runtime、guest、独立 Checker、工具来源与发布维护者。
 
-最初静态审阅读取主仓 `fd0e396` 与官方材料；后续在 `dc4de70` 基线上获准取得 kernel 源包 / 签名 / 公开验证材料，并在任务隔离容器内盘点及验签，见[实际核验记录](records/linux-6.18.49-source-review/README.md)。未安装依赖、修改宿主 keyring、执行源码构建、创建产品 VM、签名产品、跨仓写入、迁移公共契约或接受 ADR 0015；不重验历史验收。
+最初静态审阅读取主仓 `fd0e396` 与官方材料；后续在 `dc4de70` 基线上获准取得 kernel 源包 / 签名 / 公开验证材料，并在任务隔离容器内盘点及验签，见[实际核验记录](records/linux-6.18.49-source-review/README.md)。未安装依赖、修改宿主 keyring、执行源码构建、创建产品 VM、签名产品、跨仓写入、迁移公共契约；上述来源诊断本身不接受 ADR 0015，不重验历史验收。资源 ADR 与维护责任已在 2026-09-10 另行确认，见[产品化依赖审阅](checker-runtime-productization-dependency-review.md#许可证与维护责任)。
 
 ## 结论
 
@@ -63,6 +65,25 @@
 后续 [Rust Linux 诊断](records/rust-linux-input-review/README.md)已取得 GNU host 与 musl std 实际归档，均匹配固定 channel manifest 摘要并通过本轮 GnuPG 分离签名核验；逻辑归档、文件 / component 清单和部分 ELF 动态依赖已盘点。公钥旧 SHA-1 自认证、镜像 / 工具来源、实际静态 runtime 来源与动态库闭包仍未完整验收，未回写正式登记。旧镜像的 `1.96.1` 不能代替 `1.97.1`，也不为缩短准备切换 init 语言。
 
 实际 musl 包带有 `libc.a`、`libunwind.a` 和 9 个 CRT 对象；GNU host 的 `rustc` component 提供 `rust-lld`，但后者自身需要 builder 的 loader、LLVM / zlib / libc 等库。下一步对应精确源码 / 许可及宿主库，不再把这些文件列为“尚未取得”。安装候选仅选择 GNU 的 rustc / cargo / std 与 musl std，采用新隔离前缀并禁用 `ldconfig`；安装器会处理旧组件，不能直接复用已有 prefix。尚未实际安装或构建，最终 kernel config 和条件工具仍未冻结。
+
+2026-09-10 已对选定 GNU component 的全部 14 个 ELF 补查动态段，并核对压缩流、tar 流及单文件与原库存身份一致；driver / LLVM 的传递依赖包括此前根工具摘要未列出的 `librt.so.1`。实际记录及系统库、符号版本、静态 runtime 的剩余缺口见 [Rust 输入补查](records/rust-linux-input-review/README.md#2026-09-10宿主依赖补查与安装前置收敛)。同名库库存不等于 loader 解析成功。下一次安装的具体范围、命令和中间核对见[隔离安装切片审阅](checker-runtime-linux-install-slice-review.md)，来源前置与安装授权仍未闭合。
+
+同日获准重新取得精确 Rust `1.97.1` 源包，摘要与既有 source acceptance 一致。[配方补查](records/rust-linux-input-review/source-recipes-2026-09-10.md)区分 musl 目录的 libc / 5 个 CRT 与 LLVM compiler-rt 的 4 个 CRT，确认 libunwind 的源码树内构建入口，并定位 musl-cross-make `3635262e4524c991552789af6f36211a335a77b3`、musl `1.2.5` 及随包 patch。对应 LLVM 源码 / 许可已取得；后续[固定 musl-cross-make 补查](records/rust-linux-input-review/musl-cross-make-2026-09-10.md)取得 340 文件库存，确认实际 Binutils 2.44 / GCC 9.4.0、七项源依赖、四份 musl patch 及工具 / patch 许可边界。后续 [musl 原包及补丁诊断](records/rust-linux-input-review/musl-source-2026-09-10.md)取得 1.2.5 精确源码 / 许可、完成四份 patch 的零 fuzz 应用，确认 LIBCC 只在已见 libc.so 规则中使用；但包签名与公钥自认证均为 SHA-1，严格验签拒绝。后续 [Debian 强摘要链](records/rust-linux-input-review/musl-debian-auth-2026-09-10.md)已核对 trixie 两个必要签名角色、自认证及 Sources → 同一原包 SHA-256；项目所有者随后已确认仅限该原包的有条件 Debian 归档信任方案，包括以官方 HTTPS / WebPKI 为初始身份来源；[页面、精确 keyring 包及两公钥 / archive 公告](records/rust-linux-input-review/musl-key-status-2026-09-10.md)已补证，字节匹配。公告不覆盖 stable release，未核验公告签名；后续指定材料的真实验签与限定来源验收决定见下文。其他六项依赖、实际发布构建关联、宿主库和最终链接仍未验收；没有安装或切换工具链。
+
+2026-09-12 已完成 [musl 验证环境的包 / 源码关联、内容、静态符号及许可材料盘点](records/2026-09-12-closeout.md#提交回顾)，并从[本机独立归档](records/rust-linux-input-review/musl-retention-2026-09-12.md)恢复重跑。项目所有者已接受固定 Debian 工具二进制与本机宿主为该诊断的可信输入；镜像导入、GnuPG 2.4.7 版本 / 目录和两项 loader 诊断已实际完成，四个容器正常退出并删除。该范围不覆盖 Rust 构建环境或产品隔离。2026-09-16 已补齐有界入口并完成[九项真实验签](records/rust-linux-input-review/musl-verification-success-2026-09-16.md)，覆盖两角色、自认证、交叉认证拒绝与完整来源链；原始公钥材料时点为 9 月 10 日，不代表当前全渠道撤销状态。[来源验收审阅](records/rust-linux-input-review/musl-source-acceptance-review-2026-09-16.md)已获项目所有者确认，该精确原包在固定工具 / 宿主与材料时点条件下的限定来源验收通过；异盘备份作为恢复风险并行安排，完整工具来源闭包和分发责任未验收。
+
+### Rust 配方剩余输入状态
+
+9 月 25 日基线见[提交回顾](records/2026-09-25-closeout.md)，GMP 于 9 月 29 日按下表增量同步。musl、MPFR 与 MPC 的限定接受各有独立对象和假设，不转移给以下四项：
+
+| 输入 | 已形成的材料 / 诊断 | 未闭合边界 |
+| --- | --- | --- |
+| Binutils 2.44 | 固定 `.gz`、公告摘要、分离签名、公钥与完整逻辑内容库存；GNU 钥环 / 两个公钥服务及 Debian `.xz` 候选已核对 | [取钥与候选比较](records/rust-linux-input-review/binutils-source-routes-2026-09-25.md)未取得强摘要自认证；候选缺两文件、三个共同文件内容不同，不能为配方整包背书 |
+| GCC 9.4.0 | 精确原包及配方 / 发布摘要对应，94,646 个成员与选定许可文本盘点；[主钥 / signer 子钥区分](records/rust-linux-input-review/gcc-key-content-review-2026-09-25.md)已留存 | 签名子钥绑定与嵌入反向认证仍声明 SHA-1，未真实验签或接受来源；非 v4 签名语义未检查 |
+| GMP 6.3.0 | [第三次六步真实诊断](records/rust-linux-input-review/gmp-verification-attempt3-2026-09-29.md)及 45 条日志重放通过；原包签名关系匹配且明确报告钥匙到期，三个负例均拒绝；旧失败保留 | [限定官方分发来源声明](records/rust-linux-input-review/gmp-source-acceptance-review-2026-09-29.md)已获项目所有者确认，仅覆盖固定字节的官方 HTTPS 分发来源与有限签名关系；历史有效性、全渠道撤销 / 最新性未建立 |
+| Linux headers 4.19.88 | [固定镜像 / 候选核对](records/rust-linux-input-review/linux-headers-inputs-2026-09-25.md)共有内容 / 链接与 AArch64 866 项投影一致；[全文与制作过程审阅](records/rust-linux-input-review/linux-headers-review-2026-09-29.md)定位声明与制作链缺口；[两项 Git 元数据取证](records/rust-linux-input-review/linux-headers-git-metadata-2026-09-29.md)已完成，GitHub ref 指向原 commit，报告 unsigned / 无签名载荷 | 未取得独立验签材料；内容盘点不等于许可分类，无来源认证、完整制作链、实际安装或完整许可验收 |
+
+这些是来源诊断脚本和记录，未改变生产 runtime、工具 pin 或公共 acceptance。GCC / Binutils 继续阻断完整 source lock 与安装；GMP 当前到期不能直接推出 2023 年签名无效，headers 内容相同也不能替代身份认证。发布二进制到实际构建输入的关联、Rust 公钥绑定与宿主库闭包仍须独立验收。所有既有下载 / 执行授权均以批次结束，不因本表同步而延续。
 
 ### 归档诊断的范围
 
@@ -124,13 +145,13 @@ initramfs 输入先采用固定 `newc` 布局，逐项列路径、类型、mode�
 
 ## 下一可执行切片
 
-已有 kernel / Debian 诊断、Rust Linux 实际字节 / 签名 / 库存、kernel tag 元数据对应和许可材料审阅。下一步收口 Rust 公钥绑定策略、musl / CRT / unwind 精确来源、driver / LLVM / 系统库闭包，以及三包加选定 Rust component 的隔离安装 / 有限执行范围。kernel 分发需保留对应源码、patch、配置与构建 / 安装脚本的候选交付已列明，具体产物 / 分发方案尚未接受。镜像、诊断工具和材料库存不等于完整 acceptance；旧摘要绑定入口不改动。分别验收 source、builder、init target 与 Go checker 输入后才写入 source lock。
+已有 kernel / Debian 诊断、Rust Linux 实际字节 / 签名 / 库存、kernel tag 元数据对应和许可材料审阅。musl 有界验签与[同一原包的限定来源验收](records/rust-linux-input-review/musl-source-acceptance-review-2026-09-16.md#决策与下一步)已完成；其余六项已完成[来源路线盘点](records/rust-linux-input-review/musl-remaining-sources-2026-09-16.md)；MPC / MPFR 原包与公钥已取得，MPFR 六项真实验签通过，[限定来源声明](records/rust-linux-input-review/mpfr-source-acceptance-review-2026-09-25.md)已获项目所有者确认，该精确原包限定来源接受通过；MPC 上游签名尚未验证，[固定 Debian 路线审阅](records/rust-linux-input-review/mpc-source-acceptance-review-2026-09-25.md)限定声明已获项目所有者确认，该精确原包限定归档来源接受通过；GMP 六步真实诊断完成，[限定官方分发来源声明](records/rust-linux-input-review/gmp-source-acceptance-review-2026-09-29.md)已获确认，钥匙到期与历史有效性未建立的边界保留。近期顺位以当前状态为准。发布构建关联、Rust 公钥绑定策略与 driver / LLVM / 系统库闭包继续待补。备份交付与日终位置观察见[日终记录](records/2026-09-16-closeout.md#本机材料与外部影响)，不将本机归档称为异盘恢复。三包加选定 Rust component 的隔离安装范围已有独立审阅，安装与有限执行仍未获授权。kernel 分发需保留对应源码、patch、配置与构建 / 安装脚本的候选交付已列明，具体产物 / 分发方案尚未接受。镜像、诊断工具和材料库存不等于完整 acceptance；旧摘要绑定入口不改动。分别验收 source、builder、init target 与 Go checker 输入后才写入 source lock。
 
 | 切片 | 完成交付 | 当前缺口 |
 | --- | --- | --- |
-| 构建环境确定 | 精确环境、工具 / 库库存、版本 / 摘要、隔离与清理范围 | 三包模拟与 Rust 选定 component 清单已有；尚未安装，镜像 / 工具 / 动态库和源码许可未完整验收 |
+| 构建环境确定 | 精确环境、工具 / 库库存、版本 / 摘要、隔离与清理范围 | 三包模拟、Rust 选定 component 的 14 个 ELF 静态依赖与隔离安装范围已有；尚未安装，镜像 / 工具 / 系统库和源码许可未完整验收 |
 | Kernel source 验收 | 压缩摘要、未压缩 tar 签名、完整指纹、文件 / 许可证库存、来源记录 | 摘要 / 签名 / 文件库存、tag 元数据对应及许可材料已审阅；原始 tag、实际分发材料与工具来源尚未完整验收 |
-| init 方案收口 | 语言 / target / 依赖决定、child 限制安装顺序、失败矩阵 | Rust 优先建议待设计验收；Linux std / CRT / linker 已盘点，静态 runtime 来源与实际链接未验收 |
+| init 方案收口 | 语言 / target / 依赖决定、child 限制安装顺序、失败矩阵 | Rust 优先建议待设计验收；CRT / unwind 精确配方与 LLVM 源码 / 许可已补查，固定 musl 原包限定来源验收通过，MPFR / MPC 限定来源接受通过，GMP 精确原包限定官方分发来源接受通过；其余三项材料与阻断见上表，固定诊断工具信任不外推为 builder，发布构建关联与实际链接未验收 |
 | 可留存合成装置 | 自有 runner / init / transport 源码、输入与重跑入口 | 先满足 ADR、工具、私有 FFI 范围与单独签名 / VM 授权 |
 
 本审阅没有解除来源、资源或真实执行门槛。当前产品能力与下一顺位仍只由[当前状态](status/current.md)统一维护。

@@ -1,0 +1,59 @@
+{
+  "bundle": {
+    "bytes": 6034533,
+    "sha256": "480c6889fd21a595a0f5981c700c86439a4d71c50d0e71a39d3ea4c4de4cf336"
+  },
+  "cleanup": {
+    "container_id": "bbbc68d8bad9b12584ccf4bd872c571bb60150d7789a90350119d3ef951a4bde",
+    "removed": true,
+    "state_before_remove": {
+      "State.Dead": false,
+      "State.Error": "",
+      "State.ExitCode": 0,
+      "State.OOMKilled": false,
+      "State.Paused": false,
+      "State.Restarting": false,
+      "State.Running": false,
+      "State.Status": "exited"
+    }
+  },
+  "command_logs_replayed": 10,
+  "containers_started": 1,
+  "diagnosis": {
+    "detached_signature_checked": false,
+    "key_expiry_report_preserved": 1736961163,
+    "original_profile_failure_reproduced": "unexpected auxiliary status: KEYEXPIRED",
+    "packet_encoding_equal": false,
+    "public_and_self_signature_bodies_equal": true,
+    "self_certifications_checked": false,
+    "source_acceptance": "not-assessed"
+  },
+  "finished_at": "2026-09-25T12:16:00.212163+00:00",
+  "gpg_returncode": 0,
+  "kind": "diagnostic-gmp-filter-attempt-review-v1",
+  "not_executed": [
+    "certifications",
+    "verify",
+    "tampered-body",
+    "wrong-primary",
+    "missing-primary"
+  ],
+  "result": {
+    "bytes": 56153,
+    "sha256": "c0ccd560880bccaaa7a565677a4ec11ef6555c1061fcbce9d33ac065b5c6d158"
+  },
+  "review_method": {
+    "bytes": 7562,
+    "sha256": "f93c079c14db5aa54b9cafc5f7f6eb67443a25e9d87724c0346834cfd8296e27"
+  },
+  "run_id": "ae1dbb295ede405e8013095eed181b22",
+  "runtime_qualification": false,
+  "source_acceptance": "not-assessed",
+  "started_at": "2026-09-25T12:15:59.686084+00:00",
+  "status_text": "[GNUPG:] KEYEXPIRED 1736961163\n[GNUPG:] IMPORT_RES 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0\n",
+  "stderr_text": "gpg: keybox '/work/full/pubring.kbx' created\ngpg: Total number processed: 1\n",
+  "stdout": {
+    "bytes": 1501,
+    "sha256": "928ac84aa0e2134bbb335cd439110dc3f9b967eb04caff4a44dd5d04a3f13474"
+  }
+}

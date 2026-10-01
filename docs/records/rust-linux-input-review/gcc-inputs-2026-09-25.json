@@ -1,0 +1,367 @@
+{
+  "archive_content_inspected": false,
+  "bindings": {
+    "archive": {
+      "bytes": 72411232,
+      "sha256": "c95da32f440378d7751dd95533186f7fc05ceb4fb65eb5b85234e6299eb9838e"
+    },
+    "archive_sha512": "dfd3500bf21784b8351a522d53463cf362ede66b0bc302edf350bb44e94418497a8b4b797b6af8ca9b2eeb746b3b115d9c3698381b989546e9151b4496415624",
+    "checksum_entries": {
+      "gcc-9.4.0.tar.gz": "82fc88f1280f49b6bc6d90a27977592c39e60622e140214821e6e2fd67ac3505b6f00667bea85e29412b5512a65eec3db43bea878b7ec2e444a52cdc6773a60b",
+      "gcc-9.4.0.tar.gz.sig": "6a802518b20b4a5a2d3be3ac878ab2f0a79a225a2eb10c06b3b6f7c0eb1e5fb1dd328a6aced98c3b837debd072be695db714140de99a902124c7a2b197a5b299",
+      "gcc-9.4.0.tar.xz": "dfd3500bf21784b8351a522d53463cf362ede66b0bc302edf350bb44e94418497a8b4b797b6af8ca9b2eeb746b3b115d9c3698381b989546e9151b4496415624",
+      "gcc-9.4.0.tar.xz.sig": "714d6aec5d2019ecb12311bd400caa21848a29310279d673482e0b622fb27b36548f636e7c6dc876bff9b9e869e84ba71d6ce50350cbb47c1b042015ebaf45ee"
+    },
+    "recipe_sha1_matches_not_authentication": true,
+    "signature_sha512": "714d6aec5d2019ecb12311bd400caa21848a29310279d673482e0b622fb27b36548f636e7c6dc876bff9b9e869e84ba71d6ce50350cbb47c1b042015ebaf45ee"
+  },
+  "cryptography_executed": false,
+  "exact_directory_links_checked": true,
+  "fetches": [
+    {
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "262144",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/gcc-inputs-dac0405-20260925/directory-attempt-1.html",
+        "--write-out",
+        "%{http_code}\n",
+        "https://gcc.gnu.org/pub/gcc/releases/gcc-9.4.0/"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 1985,
+        "file": "directory-attempt-1.html",
+        "sha256": "e2d6d8617b7503b72c0878aafd1846c3ef071426a8e5ab2af96cd0b23cac993e"
+      },
+      "curl": {
+        "bytes": 829680,
+        "sha256": "625cd93eb0043214d5f74974d34f0b4d748977473e236a2e7f4704ecc2b95950"
+      },
+      "exit_code": 0,
+      "finished_at": "2026-09-25T07:59:55.756788+00:00",
+      "http_code": "200",
+      "index_and_recipe_bytes_match": null,
+      "kind": "diagnostic-mpc-mpfr-fetch-v1",
+      "method": {
+        "bytes": 5126,
+        "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+      },
+      "parent_timeout": false,
+      "passed": true,
+      "source_acceptance": "not-assessed",
+      "started_at": "2026-09-25T07:59:54.225793+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "directory",
+      "transport_passed": true,
+      "url": "https://gcc.gnu.org/pub/gcc/releases/gcc-9.4.0/"
+    },
+    {
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "65536",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/gcc-inputs-dac0405-20260925/checksums-attempt-1.txt",
+        "--write-out",
+        "%{http_code}\n",
+        "https://gcc.gnu.org/pub/gcc/releases/gcc-9.4.0/sha512.sum"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 596,
+        "file": "checksums-attempt-1.txt",
+        "sha256": "75253b34f1ba6c41e236a74d82ee257de131f145f53412a2054f56d81dd6eef4"
+      },
+      "curl": {
+        "bytes": 829680,
+        "sha256": "625cd93eb0043214d5f74974d34f0b4d748977473e236a2e7f4704ecc2b95950"
+      },
+      "exit_code": 0,
+      "finished_at": "2026-09-25T07:59:57.551015+00:00",
+      "http_code": "200",
+      "index_and_recipe_bytes_match": null,
+      "kind": "diagnostic-mpc-mpfr-fetch-v1",
+      "method": {
+        "bytes": 5126,
+        "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+      },
+      "parent_timeout": false,
+      "passed": true,
+      "source_acceptance": "not-assessed",
+      "started_at": "2026-09-25T07:59:55.758714+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "checksums",
+      "transport_passed": true,
+      "url": "https://gcc.gnu.org/pub/gcc/releases/gcc-9.4.0/sha512.sum"
+    },
+    {
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "65536",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/gcc-inputs-dac0405-20260925/signature-attempt-1.sig",
+        "--write-out",
+        "%{http_code}\n",
+        "https://gcc.gnu.org/pub/gcc/releases/gcc-9.4.0/gcc-9.4.0.tar.xz.sig"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 310,
+        "file": "signature-attempt-1.sig",
+        "sha256": "764f191a8679cf7269dd73a5b313d5597b28424dd7c74a82d43570ba5da0eced"
+      },
+      "curl": {
+        "bytes": 829680,
+        "sha256": "625cd93eb0043214d5f74974d34f0b4d748977473e236a2e7f4704ecc2b95950"
+      },
+      "exit_code": 0,
+      "finished_at": "2026-09-25T07:59:59.349517+00:00",
+      "http_code": "200",
+      "index_and_recipe_bytes_match": null,
+      "kind": "diagnostic-mpc-mpfr-fetch-v1",
+      "method": {
+        "bytes": 5126,
+        "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+      },
+      "parent_timeout": false,
+      "passed": true,
+      "source_acceptance": "not-assessed",
+      "started_at": "2026-09-25T07:59:57.552830+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "signature",
+      "transport_passed": true,
+      "url": "https://gcc.gnu.org/pub/gcc/releases/gcc-9.4.0/gcc-9.4.0.tar.xz.sig"
+    },
+    {
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "60",
+        "--max-filesize",
+        "100663296",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/gcc-inputs-dac0405-20260925/gcc-attempt-1.tar.xz",
+        "--write-out",
+        "%{http_code}\n",
+        "https://gcc.gnu.org/pub/gcc/releases/gcc-9.4.0/gcc-9.4.0.tar.xz"
+      ],
+      "attempt": 1,
+      "body": {
+        "bytes": 56872510,
+        "file": "gcc-attempt-1.tar.xz",
+        "sha256": "60fb27083ee63e77274a3e45bd649b097344c6b74fe641b97e18b5a33ce68a32"
+      },
+      "curl": {
+        "bytes": 829680,
+        "sha256": "625cd93eb0043214d5f74974d34f0b4d748977473e236a2e7f4704ecc2b95950"
+      },
+      "exit_code": 28,
+      "finished_at": "2026-09-25T08:00:59.387896+00:00",
+      "http_code": "200",
+      "index_and_recipe_bytes_match": null,
+      "kind": "diagnostic-mpc-mpfr-fetch-v1",
+      "method": {
+        "bytes": 5126,
+        "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+      },
+      "parent_timeout": false,
+      "passed": false,
+      "source_acceptance": "not-assessed",
+      "started_at": "2026-09-25T07:59:59.352168+00:00",
+      "stderr": {
+        "bytes": 101,
+        "sha256": "81b309d181680e2e5fbbe06f415a2d8f39a9bab994763c468a9920eee95aaa74",
+        "text": "curl: (28) Operation timed out after 60001 milliseconds with 56872510 out of 72411232 bytes received\n"
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "gcc",
+      "transport_passed": false,
+      "url": "https://gcc.gnu.org/pub/gcc/releases/gcc-9.4.0/gcc-9.4.0.tar.xz"
+    },
+    {
+      "argv": [
+        "/usr/bin/curl",
+        "--disable",
+        "--silent",
+        "--show-error",
+        "--proto",
+        "=https",
+        "--tlsv1.2",
+        "--max-time",
+        "180",
+        "--max-filesize",
+        "100663296",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/gcc-inputs-dac0405-20260925/gcc-attempt-2.tar.xz",
+        "--write-out",
+        "%{http_code}\n",
+        "https://gcc.gnu.org/pub/gcc/releases/gcc-9.4.0/gcc-9.4.0.tar.xz"
+      ],
+      "attempt": 2,
+      "body": {
+        "bytes": 72411232,
+        "file": "gcc-attempt-2.tar.xz",
+        "sha256": "c95da32f440378d7751dd95533186f7fc05ceb4fb65eb5b85234e6299eb9838e"
+      },
+      "curl": {
+        "bytes": 829680,
+        "sha256": "625cd93eb0043214d5f74974d34f0b4d748977473e236a2e7f4704ecc2b95950"
+      },
+      "exit_code": 0,
+      "finished_at": "2026-09-25T08:03:37.447595+00:00",
+      "first_timeout_record": {
+        "bytes": 1646,
+        "sha256": "3f1cf9a6368e5c644acb071a53ce173f962225836aa10aed778d3d59c241a73a"
+      },
+      "http_code": "200",
+      "kind": "diagnostic-gcc-archive-recovery-v1",
+      "method": {
+        "bytes": 3940,
+        "sha256": "fa4e57c143b6a71928c4fe78c3e39c79bd86e3765c659dabdae974a3b39d92f3"
+      },
+      "parent_timeout": false,
+      "passed": true,
+      "source_acceptance": "not-assessed",
+      "started_at": "2026-09-25T08:02:28.017416+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "stdout": {
+        "bytes": 4,
+        "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f",
+        "text": "200\n"
+      },
+      "target": "gcc",
+      "transport_passed": true,
+      "url": "https://gcc.gnu.org/pub/gcc/releases/gcc-9.4.0/gcc-9.4.0.tar.xz"
+    }
+  ],
+  "kind": "diagnostic-gcc-inputs-v1",
+  "license_review_complete": false,
+  "methods": {
+    "fetch-gcc-archive-recovery.py": {
+      "bytes": 3940,
+      "sha256": "fa4e57c143b6a71928c4fe78c3e39c79bd86e3765c659dabdae974a3b39d92f3"
+    },
+    "fetch-mpc-mpfr-inputs.py": {
+      "bytes": 5126,
+      "sha256": "2feb632c6422198255c1f3d46b1be18be8914e2c22e67635ce6a106bb01beeab"
+    },
+    "inspect-gcc-inputs.py": {
+      "bytes": 7359,
+      "sha256": "be79d675d3f91abc1c01f861d234ad09fb2d3d0e2249e7609f768b9116e36317"
+    },
+    "inspect-mpc-mpfr-inputs.py": {
+      "bytes": 8833,
+      "sha256": "da04e90b29504c102798d9a29a558d4d6c77e5956734b8a8cab4d1cbaf8d8e98"
+    },
+    "inspect-musl-cross-make.py": {
+      "bytes": 3769,
+      "sha256": "5876728cebff6ab519492d09c42e9d0315f8c5a6922b6cc549007bd995086910"
+    },
+    "inspect-musl-verification-keys.py": {
+      "bytes": 11967,
+      "sha256": "391c7e48b0792330135990e3358f5dad811d745c3010a30aad084c81e6e05ae4"
+    },
+    "retain-musl-verifier-inputs.py": {
+      "bytes": 10295,
+      "sha256": "72047818576ab27de02cf8e9620c33299c007b4c64108fb7c11a3c1d23e3ca0a"
+    }
+  },
+  "recipe_archive": {
+    "bytes": 213688,
+    "file": "musl-cross-make-3635262.tar.gz",
+    "member_count": 385,
+    "pax_headers": {
+      "comment": "3635262e4524c991552789af6f36211a335a77b3"
+    },
+    "sha256": "60bed670d689d5c2164020960df36b80189dc5617e9763e023672f98a99d567e",
+    "tar_bytes": 1597440,
+    "tar_sha256": "cb051a24ba421cd4768fc41d078f625d8eac52f617a93d60a4a0119a508c537c"
+  },
+  "signature": {
+    "armored": false,
+    "class": 0,
+    "cryptography_executed": false,
+    "declared_created_at": "2021-06-01T08:18:34+00:00",
+    "declared_digest_algorithm": 8,
+    "declared_issuer": "7F74F97C103468EE5D750B583AB00996FC26A641",
+    "declared_public_key_algorithm": 1,
+    "decoded": {
+      "bytes": 310,
+      "sha256": "764f191a8679cf7269dd73a5b313d5597b28424dd7c74a82d43570ba5da0eced"
+    },
+    "issuer_fingerprint_in_hashed_area": true,
+    "public_key_identity_accepted": false,
+    "signature_mpis_verified": false,
+    "source_acceptance": "not-assessed",
+    "version": 4
+  },
+  "source_acceptance": "not-assessed"
+}

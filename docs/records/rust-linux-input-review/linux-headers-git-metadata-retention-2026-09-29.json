@@ -1,0 +1,27 @@
+{
+  "full_report_replay_equal": true,
+  "kind": "diagnostic-linux-headers-git-metadata-retention-v1",
+  "off_device_backup_verified": false,
+  "packed": {
+    "file_count": 26,
+    "manifest": {
+      "bytes": 7028,
+      "sha256": "e1183f5f142568242038e7eb435b2b949477ab4e8757b9a4589560462a8c382a"
+    },
+    "object_bytes": 50825,
+    "object_count": 19,
+    "off_device_backup_verified": false,
+    "source_acceptance": "not-assessed"
+  },
+  "restored": {
+    "file_count": 26,
+    "manifest": {
+      "bytes": 7028,
+      "sha256": "e1183f5f142568242038e7eb435b2b949477ab4e8757b9a4589560462a8c382a"
+    },
+    "object_count": 19,
+    "off_device_backup_verified": false,
+    "restored_bytes_match": true,
+    "source_acceptance": "not-assessed"
+  }
+}
