@@ -28,3 +28,4 @@
 - [ADR 0015：虚拟 checker 资源 profile 与宿主保证边界（Accepted）](0015-virtualized-checker-resource-profile.md)
 - [ADR 0016：核心语义切片的分阶段实施入口（Accepted）](0016-core-semantic-slice-entry.md)
 - [ADR 0017：IR v0.2 支持边界与显式迁移（Accepted）](0017-ir-v0.2-support-boundaries-and-migration.md)
+- [ADR 0018：IR 派生义务 profile 与 P2 内部组件（Accepted）](0018-ir-derived-obligation-profile.md)

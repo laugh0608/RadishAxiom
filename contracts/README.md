@@ -4,6 +4,8 @@
 
 当前契约：
 
+- [IR 派生义务 v0.2](ir-derived-obligations-v0.2/README.md)：ADR 0018 的限定 P2 集合、26 份独立正例和 29 份拒绝材料；不启用完整 Evidence v0.2。
+
 - [Independent Check Contract v0.1](independent-check-v0.1/README.md)：ADR 0008 的 request、bundle manifest、独立 result、摘要和结构拒绝样例。
 - [Execution Profile Contract v0.1](execution-profiles-v0.1/README.md)：cvc5 / Node / Go checker 的允许 invocation、职责分离 limits、进程结果边界和空 certificate 能力矩阵。
 - [Toolchain & Adapter Identity Registry v0.1](toolchain-adapters-v0.1/README.md)：ADR 0004–0008 的精确工具版本、六平台候选制品、官方元数据、供应链停止线与 profile 身份。

@@ -1,0 +1,72 @@
+[
+  {
+    "compatible": true,
+    "execution_kind": "normalize",
+    "roles": [
+      "ir-normalizer"
+    ]
+  },
+  {
+    "compatible": true,
+    "execution_kind": "generate-obligations",
+    "roles": [
+      "obligation-generator"
+    ]
+  },
+  {
+    "compatible": true,
+    "execution_kind": "prove",
+    "roles": [
+      "prover"
+    ]
+  },
+  {
+    "compatible": true,
+    "execution_kind": "check-certificate",
+    "roles": [
+      "certificate-checker"
+    ]
+  },
+  {
+    "compatible": true,
+    "execution_kind": "check-fixture",
+    "roles": [
+      "fixture-checker"
+    ]
+  },
+  {
+    "compatible": true,
+    "execution_kind": "execute-host",
+    "roles": [
+      "host-executor"
+    ]
+  },
+  {
+    "compatible": true,
+    "execution_kind": "compare-output",
+    "roles": [
+      "output-comparator"
+    ]
+  },
+  {
+    "compatible": true,
+    "execution_kind": "replay-counterexample",
+    "roles": [
+      "counterexample-replayer"
+    ]
+  },
+  {
+    "compatible": false,
+    "execution_kind": "replay-counterexample",
+    "roles": [
+      "fixture-checker"
+    ]
+  },
+  {
+    "compatible": false,
+    "execution_kind": "prove",
+    "roles": [
+      "evidence-producer"
+    ]
+  }
+]

@@ -1,6 +1,6 @@
-# Axiom IR 内部组件
+# Axiom IR 与 IR 派生义务内部组件
 
-本 crate 承载 [ADR 0016](../../docs/adr/0016-core-semantic-slice-entry.md) 与 [ADR 0017](../../docs/adr/0017-ir-v0.2-support-boundaries-and-migration.md) 的 P1 内部组件。精确读取 [IR v0.1](../../docs/ir/axiom-ir-v0.md) 的既有支持子集与 [IR v0.2](../../docs/ir/axiom-ir-v0.2.md)：检查 JSON、类型、图、契约及内容身份，重建保守标签，生成完整规范文档和 strict 结果，并显式迁移共同子集。v0.2 的四项支持边界已经闭合；本机组件验收与完整 P1 生产阶段、独立 checker、跨平台和证明分别报告，不提供 CLI、Evidence 或执行门控。
+本 crate 承载 [ADR 0018](../../docs/adr/0018-ir-derived-obligation-profile.md) 的 P2 IR 派生义务组件，以及 [ADR 0016](../../docs/adr/0016-core-semantic-slice-entry.md) 与 [ADR 0017](../../docs/adr/0017-ir-v0.2-support-boundaries-and-migration.md) 的 P1 内部组件。精确读取 [IR v0.1](../../docs/ir/axiom-ir-v0.md) 的既有支持子集与 [IR v0.2](../../docs/ir/axiom-ir-v0.2.md)：检查 JSON、类型、图、契约及内容身份，重建保守标签，生成完整规范文档和 strict 结果，并显式迁移共同子集。v0.2 的四项支持边界已经闭合；本机组件验收与完整 P1 生产阶段、独立 checker、跨平台和证明分别报告，不提供 CLI、Evidence 或执行门控。
 
 ## 输入与输出
 
@@ -122,6 +122,24 @@
 契约规范化在同一已检查树上进行，不再次解析图或向表达式分配独立预算；沿用节点 / 表达式规范器，额外保存契约 definition 字节与身份。61 层嵌套布尔组合及 10,000 个重复操作数的契约回归确认先约束原始深宽，再执行去重；规范结果较小不绕过资源拒绝。
 
 文档组合沿用整份输入预算，输出只由已规范 definition 与已检查的其余成员组成，规范字节量不增长；完整输出、文档摘要输入和组件分析会同时占用内存，仍不是硬内存配额。strict 比较按字节扫描，不把 Unicode 字符位置当作字节偏移。122 层量词和 10,000 个重复契约操作数经完整入口回归，较小预算仍先拒绝原始深宽。
+
+## P2：IR 派生义务
+
+[正式规则](../../docs/evidence/ir-derived-obligations-v0.2.md)固定 `keyed-finite-table-verification` / `0.2`、`scope: ir-derived` 和整份 IR 文档绑定。内部入口：
+
+- `obligations::generate_obligations(&CanonicalDocument, ObligationProfile::VerificationV0_2, ObligationLimits)` 只接受 P1 已核验的 IR v0.2，不隐式迁移 v0.1。生成十类全部适用位置、definition、域分离 ID、按 ID 排序的规范集合及 raw artifact digest。
+- `obligations::check_obligation_set(bytes, &CanonicalDocument, profile, limits, candidate_limits)` 从 IR 重建全集，检查闭合 header、条目成员、ID、唯一性、顺序、完整性与原始规范字节。返回同一种只读集合，不修复输入。它属于生产组件内部核对，不是独立 Evidence checker。
+- `ObligationSet` / `Obligation` 的字段私有，只读访问规范字节、定义、ID、kind、绑定与固定 scope / profile；没有 execution、trust、result、conclusion、receipt 或 target gate。
+
+生成器一次性有界解析文档的规范字节，沿规范 definition 构造 path；不使用原输入数组位置。六种算术 / 表聚合表达式覆盖 node、assume、guarantee 和 record.fields。每个 group 单独保留 coverage、conservation 和各聚合字段的 numeric-range；空聚合也有 conservation。每个命名输出按顶层字段生成来源义务，不按共享节点去重或拆成复合叶字段。常量分支、零容量、Pre 为 false、标签 public 与 wrong 候选都不会省略结构位置或产生结果。
+
+`ObligationLimits` 显式限制规范 IR 的 JSON、义务数量、累计 definition 字节、累计 path JSON 数组字节和完整输出字节；strict 候选另有 `JsonLimits`。编码的计数 / 输出使用同一路径及现有 JCS 字符串编码，先核对累计长度再分配 definition，最终集合预分配前核对总量。加法溢出视为资源错误。图 / 类型不递归展开，表达式遍历受 128 层 JSON 上限约束；路径暂存借用规范树，整数索引仅生成有界机器十进制文本。多份树、定义及集合同时占用内存，这不是 OS 硬配额。
+
+`GenerationError` 分开报告 UnsupportedIrVersion、JSON 错误、带义务生成序号的 ResourceLimit、DuplicateDefinition 与内部不变量错误；不会返回部分集合。`SetError` 保留生成 / JSON 原因，并定位 header、条目、身份、顺序、遗漏 / 多余或首个非规范字节差异。generation 序号是内部生成顺序，不是最终按 ID 排序的集合位置；这些均不是公共 pipeline status。
+
+[独立材料](../../contracts/ir-derived-obligations-v0.2/README.md)有 26 份 IR、482 项定义及完整集合 / 摘要、29 份导出负例。12 项 Rust 回归实际消费材料，另覆盖表示变换、Pre / Unicode 身份、group 分离、同源输出、累计预算的精确边界与差一拒绝、严格 JSON、5,000 层图和 257 字段 × 16 输出。Python 独立期望不调用生产 P2；旧 pipeline 的拒绝另由旧验证入口重跑。有限 group 区分例只说明目标的区别，不是真实求解或反例重放。
+
+本机组件完成不等于完整 P2 生产阶段。实际 trust / benchmark checks、query 编码、完整 Evidence v0.2、迁移演练、独立 Go checker 与跨平台继续后置；旧 Evidence 结果不能随新 ID 沿用。
 
 ## 实现与验收边界
 

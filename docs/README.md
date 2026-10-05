@@ -38,7 +38,7 @@
 | payload 发布、launcher、产品宿主 | [ADR 0010](adr/0010-checker-runtime-payload-durable-registration.md)、[0011](adr/0011-checker-runtime-launcher-installation-and-activation.md)、[0012](adr/0012-product-checker-runtime-host-and-persistence-interface.md) |
 | Darwin 强隔离与 container 状态 | [ADR 0013](adr/0013-darwin-checker-hard-isolation.md)、[0014](adr/0014-darwin-app-sandbox-container-state.md) |
 | 虚拟 checker 资源保证与迁移边界 | [ADR 0015（Accepted）](adr/0015-virtualized-checker-resource-profile.md) |
-| 核心语义组件与 IR 版本范围 | [ADR 0016（Accepted）](adr/0016-core-semantic-slice-entry.md)、[0017（Accepted）](adr/0017-ir-v0.2-support-boundaries-and-migration.md) |
+| 核心语义组件、IR 与义务版本范围 | [ADR 0016（Accepted）](adr/0016-core-semantic-slice-entry.md)、[0017（Accepted）](adr/0017-ir-v0.2-support-boundaries-and-migration.md)、[0018（Accepted）](adr/0018-ir-derived-obligation-profile.md) |
 
 ADR 定义决策和重评条件，不表示相关生产能力已完成；实现进度由当前状态维护。
 
@@ -46,6 +46,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 
 - [Axiom IR 组件](../crates/axiom-ir/README.md)：JSON、类型 / 图 / 契约分析与身份、完整文档规范化、strict 检查及显式 v0.1 → v0.2 迁移。
 - [P1 支持边界与验收矩阵审阅](ir/p1-support-boundary-review.md)：初次缺口审阅、已接受决定与版本化矩阵对照；不替代规范。
+- [IR 派生义务 profile v0.2](evidence/ir-derived-obligations-v0.2.md)：已接受的 P2 范围、版本 / 身份、group 目标和 strict 完整性；[审阅](evidence/p2-obligation-profile-review.md)与[正负例](../contracts/ir-derived-obligations-v0.2/README.md)保留来源和兼容边界。
 - [共享 SHA-256](../crates/digest/README.md)：runtime / IR 共用的自有摘要实现与独立复核边界。
 
 ## 机器契约

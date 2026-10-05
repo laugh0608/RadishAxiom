@@ -63,6 +63,14 @@ REQUIRED_FILES = (
     "docs/ir/ir-v0.1-to-v0.2-migration.md",
     "docs/semantics/keyed-finite-table-semantics-v0.2.md",
     "crates/axiom-ir/tests/fixtures/v0.2/README.md",
+    "scripts/generate-p2-profile-review.py",
+    "docs/evidence/p2-obligation-profile-review.md",
+    "docs/evidence/p2-profile-review/README.md",
+    "docs/adr/0018-ir-derived-obligation-profile.md",
+    "docs/evidence/ir-derived-obligations-v0.2.md",
+    "contracts/ir-derived-obligations-v0.2/README.md",
+    "crates/axiom-ir/src/obligations.rs",
+    "crates/axiom-ir/tests/obligations.rs",
     "crates/checker-runtime/src/store.rs",
     "crates/checker-runtime/src/store/evidence.rs",
     "benchmarks/keyed-finite-table-v0.1/README.md",
@@ -515,6 +523,19 @@ def check_ir_vectors(errors: list[str]) -> None:
             errors.append(f"IR {kind} identity vectors check failed: {detail}")
 
 
+def check_p2_profile_review(errors: list[str]) -> None:
+    result = subprocess.run(
+        [sys.executable, str(REPO_ROOT / "scripts/generate-p2-profile-review.py"), "--check"],
+        cwd=REPO_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        detail = (result.stdout + result.stderr).strip()
+        errors.append(f"P2 independent materials check failed: {detail}")
+
+
 def check_independent_check_contracts(errors: list[str]) -> None:
     generator = REPO_ROOT / "scripts/generate-independent-check-contracts.py"
     if not generator.is_file():
@@ -831,6 +852,7 @@ def main() -> int:
     check_workflow_contract(errors)
     check_benchmark_corpus(errors)
     check_ir_vectors(errors)
+    check_p2_profile_review(errors)
     check_independent_check_contracts(errors)
     check_toolchain_adapter_identities(errors)
     check_toolchain_payload_acceptance(errors)

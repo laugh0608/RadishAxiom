@@ -1,0 +1,341 @@
+{
+  "cases": [
+    {
+      "by_kind": {
+        "contract-guarantee": "1",
+        "effect-empty": "1",
+        "field-origin": "2",
+        "ir-structure": "1",
+        "key-cardinality": "2",
+        "numeric-range": "2",
+        "row-coverage": "2",
+        "totality": "2"
+      },
+      "count": "13",
+      "ir_artifact": "sha256:9a62d3b9397f2db664786d64ad77b848a53c46e62186edc29d2c31f665db9f2a",
+      "ir_document_digest": "sha256:90d876b9fdd533944e09f4274ba4aaa313d179454427e60eca81575707054f0b",
+      "ir_path": "crates/axiom-ir/tests/fixtures/v0.2/migrated/ax-b01-correct.jcs",
+      "name": "ax-b01-correct"
+    },
+    {
+      "by_kind": {
+        "contract-guarantee": "1",
+        "effect-empty": "1",
+        "field-origin": "2",
+        "ir-structure": "1",
+        "key-cardinality": "2",
+        "numeric-range": "2",
+        "row-coverage": "2",
+        "totality": "2"
+      },
+      "count": "13",
+      "ir_artifact": "sha256:10e99922b4fe1c1490703b6e61dcc13e810b6dbfd5ffa1a444314a7d201fc970",
+      "ir_document_digest": "sha256:d79e3052c7c50c6fea9b17fc76d0a3ac56729bbd458f0c09e55668b7ad0dff3f",
+      "ir_path": "crates/axiom-ir/tests/fixtures/v0.2/migrated/ax-b01-wrong-add.jcs",
+      "name": "ax-b01-wrong-add"
+    },
+    {
+      "by_kind": {
+        "contract-guarantee": "1",
+        "effect-empty": "1",
+        "field-origin": "2",
+        "ir-structure": "1",
+        "key-cardinality": "2",
+        "numeric-range": "2",
+        "row-coverage": "2",
+        "totality": "2"
+      },
+      "count": "13",
+      "ir_artifact": "sha256:445cb216e2b5d2a7dc4f4ddf630da757b725312f2a25fef5bb5d947f0eb6ca30",
+      "ir_document_digest": "sha256:dfe7423b861b6281c4707c0d0e9ef828b3f521ef9a07ab706f3a6b7e96731eb4",
+      "ir_path": "crates/axiom-ir/tests/fixtures/v0.2/migrated/ax-b01-wrong-drop-zero.jcs",
+      "name": "ax-b01-wrong-drop-zero"
+    },
+    {
+      "by_kind": {
+        "contract-guarantee": "1",
+        "effect-empty": "1",
+        "field-origin": "2",
+        "ir-structure": "1",
+        "key-cardinality": "1",
+        "row-coverage": "1",
+        "totality": "1"
+      },
+      "count": "8",
+      "ir_artifact": "sha256:bcd84b4f18419055f06a639540ceaaeb26095e17169747cc13c7730289d0ab28",
+      "ir_document_digest": "sha256:0c78750cde6e9b00938478494200208b9e269baebfeeff2081d4224f96b9554a",
+      "ir_path": "crates/axiom-ir/tests/fixtures/v0.2/migrated/ax-b02-correct.jcs",
+      "name": "ax-b02-correct"
+    },
+    {
+      "by_kind": {
+        "contract-guarantee": "1",
+        "effect-empty": "1",
+        "field-origin": "2",
+        "ir-structure": "1",
+        "key-cardinality": "1",
+        "row-coverage": "1",
+        "totality": "1"
+      },
+      "count": "8",
+      "ir_artifact": "sha256:a5db5a3aab850a4a760aee4b8b504af2e93b96f92d32cb72d05b92ac28428cef",
+      "ir_document_digest": "sha256:5c1bca4359bbd1a26df13ad70d1db9fe0179301c5333500a5a057c0e0178715e",
+      "ir_path": "crates/axiom-ir/tests/fixtures/v0.2/migrated/ax-b02-wrong-constant-tier.jcs",
+      "name": "ax-b02-wrong-constant-tier"
+    },
+    {
+      "by_kind": {
+        "contract-guarantee": "1",
+        "effect-empty": "1",
+        "field-origin": "2",
+        "ir-structure": "1",
+        "key-cardinality": "1",
+        "row-coverage": "1",
+        "totality": "1"
+      },
+      "count": "8",
+      "ir_artifact": "sha256:b9330e8d9000c11dc5c4a02397b08d13fc640636487aeb219b3ca6c5deee05bb",
+      "ir_document_digest": "sha256:8bc01e63b1ecae534ef83e63f73c02c577b08d324a2ffb4b7064c05e340c67fe",
+      "ir_path": "crates/axiom-ir/tests/fixtures/v0.2/migrated/ax-b02-wrong-region-join.jcs",
+      "name": "ax-b02-wrong-region-join"
+    },
+    {
+      "by_kind": {
+        "contract-guarantee": "1",
+        "effect-empty": "1",
+        "field-origin": "3",
+        "group-conservation": "1",
+        "ir-structure": "1",
+        "key-cardinality": "1",
+        "numeric-range": "4",
+        "row-coverage": "1",
+        "totality": "1"
+      },
+      "count": "14",
+      "ir_artifact": "sha256:dd7c95e3b1ba9126366ff2828ad9c40dfd37b16e784a03ac14574a93ef71189a",
+      "ir_document_digest": "sha256:1ef9446471f85b12c1ac70ff6e4ae6b7a0f26d7830988cdf1b2499a90b5823e3",
+      "ir_path": "crates/axiom-ir/tests/fixtures/v0.2/migrated/ax-b03-correct.jcs",
+      "name": "ax-b03-correct"
+    },
+    {
+      "by_kind": {
+        "contract-guarantee": "1",
+        "effect-empty": "1",
+        "field-origin": "3",
+        "group-conservation": "1",
+        "ir-structure": "1",
+        "key-cardinality": "2",
+        "numeric-range": "4",
+        "row-coverage": "2",
+        "totality": "2"
+      },
+      "count": "17",
+      "ir_artifact": "sha256:12f6a2b66e5e7bd260a2510de3aa367ff3746d9dc2bee192d4117c571a81083f",
+      "ir_document_digest": "sha256:94454e142e954ddd330d7ac32d635dcfa6f92c260a1362c371823b40b1e48edb",
+      "ir_path": "crates/axiom-ir/tests/fixtures/v0.2/migrated/ax-b03-wrong-single-group.jcs",
+      "name": "ax-b03-wrong-single-group"
+    },
+    {
+      "by_kind": {
+        "contract-guarantee": "1",
+        "effect-empty": "1",
+        "field-origin": "3",
+        "group-conservation": "1",
+        "ir-structure": "1",
+        "key-cardinality": "2",
+        "numeric-range": "4",
+        "row-coverage": "2",
+        "totality": "2"
+      },
+      "count": "17",
+      "ir_artifact": "sha256:f466e41029f3b4d36db109a39b6a9398940d8dc3e52679848e4b2856f9071452",
+      "ir_document_digest": "sha256:2551c248d172de2b3f35f91c041e7799c3d4d85a7a0ed432056e683859d57120",
+      "ir_path": "crates/axiom-ir/tests/fixtures/v0.2/migrated/ax-b03-wrong-unit-sum.jcs",
+      "name": "ax-b03-wrong-unit-sum"
+    },
+    {
+      "by_kind": {
+        "contract-guarantee": "1",
+        "effect-empty": "1",
+        "field-origin": "3",
+        "ir-structure": "1",
+        "key-cardinality": "1",
+        "noninterference": "1",
+        "row-coverage": "1",
+        "totality": "1"
+      },
+      "count": "10",
+      "ir_artifact": "sha256:ed2d245a23c4a1fdc8b44bba16200c56b738a1f82a02066ed0e2566a9d67d5c1",
+      "ir_document_digest": "sha256:2a534e86f7db392dcb0a936365515cd73601d7f73c38268f34913aba49471e51",
+      "ir_path": "crates/axiom-ir/tests/fixtures/v0.2/migrated/ax-b04-correct.jcs",
+      "name": "ax-b04-correct"
+    },
+    {
+      "by_kind": {
+        "contract-guarantee": "1",
+        "effect-empty": "1",
+        "field-origin": "3",
+        "ir-structure": "1",
+        "key-cardinality": "2",
+        "noninterference": "1",
+        "row-coverage": "2",
+        "totality": "2"
+      },
+      "count": "13",
+      "ir_artifact": "sha256:02d039ef31e8026a4c6e5059bb51546b86fa27bcdcdc6ff2a5de3da2b626ef5c",
+      "ir_document_digest": "sha256:e63c1e06fd42feab80401528dd8c8dc2272757c5e800cb1603c4227f198ef38b",
+      "ir_path": "crates/axiom-ir/tests/fixtures/v0.2/migrated/ax-b04-wrong-sensitive-filter.jcs",
+      "name": "ax-b04-wrong-sensitive-filter"
+    },
+    {
+      "by_kind": {
+        "contract-guarantee": "1",
+        "effect-empty": "1",
+        "field-origin": "3",
+        "ir-structure": "1",
+        "key-cardinality": "1",
+        "noninterference": "1",
+        "row-coverage": "1",
+        "totality": "1"
+      },
+      "count": "10",
+      "ir_artifact": "sha256:282604938afd465611ac1684db3490c2dfcaf137d418d48c7395eeec60c11cfb",
+      "ir_document_digest": "sha256:010175a4ffb4c7f0e84a17512f943710ffd1a47f362098e8b3c48442ccd8a4ea",
+      "ir_path": "crates/axiom-ir/tests/fixtures/v0.2/migrated/ax-b04-wrong-sensitive-priority.jcs",
+      "name": "ax-b04-wrong-sensitive-priority"
+    },
+    {
+      "by_kind": {
+        "effect-empty": "1",
+        "field-origin": "4",
+        "group-conservation": "1",
+        "ir-structure": "1",
+        "key-cardinality": "4",
+        "numeric-range": "2",
+        "row-coverage": "4",
+        "totality": "4"
+      },
+      "count": "21",
+      "ir_artifact": "sha256:43e9463dd7aadbf2d2a8e1d96376788e3b981befcc7897fca9140b764c285894",
+      "ir_document_digest": "sha256:aa5ded3cc1035b20a9a5595658ddfe389be078326e24de6d40bd5215bc0bb2f2",
+      "ir_path": "crates/axiom-ir/tests/fixtures/v0.2/migrated/node.jcs",
+      "name": "node"
+    },
+    {
+      "by_kind": {
+        "contract-guarantee": "8",
+        "effect-empty": "1",
+        "field-origin": "25",
+        "ir-structure": "1",
+        "key-cardinality": "1",
+        "noninterference": "1",
+        "numeric-range": "6",
+        "row-coverage": "1",
+        "totality": "1"
+      },
+      "count": "45",
+      "ir_artifact": "sha256:0a760f195e35bfa47e187494576d997b0f433bc6cabf3847e5459c05b07aeb2b",
+      "ir_document_digest": "sha256:94fa4434bd9960a82fe9fdfc3bbc7df9201437aa7a7901eb1a4b0698106a7454",
+      "ir_path": "crates/axiom-ir/tests/fixtures/v0.2/migrated/contract.jcs",
+      "name": "contract"
+    },
+    {
+      "by_kind": {
+        "effect-empty": "1",
+        "field-origin": "15",
+        "ir-structure": "1"
+      },
+      "count": "17",
+      "ir_artifact": "sha256:bd330ef96287c882a8ddd510666d72a3ba2941af38bbee16fa076b5a59b1f62d",
+      "ir_document_digest": "sha256:bee886b6093b46d939559a99d5fbcf70ef8537b24a6fb06c31994ccd592868a2",
+      "ir_path": "crates/axiom-ir/tests/fixtures/v0.2/migrated/type.jcs",
+      "name": "type"
+    },
+    {
+      "by_kind": {
+        "effect-empty": "1",
+        "field-origin": "15",
+        "ir-structure": "1"
+      },
+      "count": "17",
+      "ir_artifact": "sha256:eee23b134d6c4b198b46da0250b9532d4016c736dc19b77a451930af8c61d6d3",
+      "ir_document_digest": "sha256:e7f3c0486072dd8b5a50ea4da0b261f3722cba1115f74f89ebc0aad5699a069c",
+      "ir_path": "crates/axiom-ir/tests/fixtures/v0.2/migrated/deep-binders.jcs",
+      "name": "deep-binders"
+    },
+    {
+      "by_kind": {
+        "contract-guarantee": "1",
+        "effect-empty": "1",
+        "field-origin": "3",
+        "ir-structure": "1",
+        "key-cardinality": "1",
+        "row-coverage": "1",
+        "totality": "1"
+      },
+      "count": "9",
+      "ir_artifact": "sha256:4492a3ad8852f734bb7a190a02cce0e6f6b6c5dca2fa1d7a653afc7f0ac99b8e",
+      "ir_document_digest": "sha256:1012e5625a10e873ad7f3b877b1e27530b7f974928651b2a98049699189e6b0f",
+      "ir_path": "crates/axiom-ir/tests/fixtures/v0.2/migrated/mixed-int-ranges.jcs",
+      "name": "mixed-int-ranges"
+    },
+    {
+      "by_kind": {
+        "effect-empty": "1",
+        "field-origin": "15",
+        "ir-structure": "1"
+      },
+      "count": "17",
+      "ir_artifact": "sha256:1bec7c53e8f89a60ebc0b46c7d7452792911237ad6e06c2dae812764e97bbc19",
+      "ir_document_digest": "sha256:67386b2b07293e6eb954a8ec0419c38a554840c9a74abd09caa9290c76d1c2c5",
+      "ir_path": "crates/axiom-ir/tests/fixtures/v0.2/migrated/unicode-nfc.jcs",
+      "name": "unicode-nfc"
+    },
+    {
+      "by_kind": {
+        "effect-empty": "1",
+        "field-origin": "15",
+        "ir-structure": "1"
+      },
+      "count": "17",
+      "ir_artifact": "sha256:4ec6dcc68b8202edc53fc328a103ea4539f47bced340155875111fc507330e85",
+      "ir_document_digest": "sha256:4de71cac5c228258331939bb395067499c3f62b01ccff4eba96933ff6b9c4ab9",
+      "ir_path": "crates/axiom-ir/tests/fixtures/v0.2/migrated/unicode-nfd.jcs",
+      "name": "unicode-nfd"
+    },
+    {
+      "by_kind": {
+        "contract-guarantee": "1",
+        "effect-empty": "1",
+        "field-origin": "15",
+        "ir-structure": "1"
+      },
+      "count": "18",
+      "ir_artifact": "sha256:9acc8353b42e2c993e09879fd203c679cabacf55aa1e13cbe8d14cb3165b34e6",
+      "ir_document_digest": "sha256:3d931a283cebf3442fd91a72ce93eb74f1ec642aec72f06cc76554672c81bbe8",
+      "ir_path": "crates/axiom-ir/tests/fixtures/v0.2/migrated/references.jcs",
+      "name": "references"
+    },
+    {
+      "by_kind": {
+        "contract-guarantee": "1",
+        "effect-empty": "1",
+        "field-origin": "4",
+        "ir-structure": "1",
+        "key-cardinality": "1",
+        "row-coverage": "1",
+        "totality": "1"
+      },
+      "count": "10",
+      "ir_artifact": "sha256:f9dbe5ab48a0c34ec95776ee25b2f5b906a42b151b923bc200a38b8a14caa7ff",
+      "ir_document_digest": "sha256:35698da212785dcaac4691334c549c6062a5659eec1d9c0a32da6c8aed32468a",
+      "ir_path": "crates/axiom-ir/tests/fixtures/v0.2/records.jcs",
+      "name": "records"
+    }
+  ],
+  "generator_sha256": "sha256:2b04e78210a4a31425fa299adb9be10b561af1043b609b56797a60f5d31dd131",
+  "obligation_domain": "axiom-evidence-v0.2:obligation",
+  "proposal_sha256": "sha256:fd2450addb96c456def8aeba8f4ffe116a3bb663143b299f9a7e966064e60684",
+  "scope": "ir-derived",
+  "status": "accepted-ir-derived-only"
+}

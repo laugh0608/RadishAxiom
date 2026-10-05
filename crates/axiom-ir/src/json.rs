@@ -348,23 +348,28 @@ pub(crate) fn encode(value: &Value, output: &mut Vec<u8>) {
 }
 
 pub(crate) fn encode_string(text: &str, output: &mut Vec<u8>) {
-    output.push(b'"');
+    emit_string(text, &mut |bytes| output.extend_from_slice(bytes));
+}
+
+/// 相同转义规则供有界制品先计数、后分配，避免建立第二套 JCS 字符串编码器。
+pub(crate) fn emit_string(text: &str, output: &mut impl FnMut(&[u8])) {
+    output(b"\"");
     for byte in text.bytes() {
         match byte {
-            b'"' => output.extend_from_slice(b"\\\""),
-            b'\\' => output.extend_from_slice(b"\\\\"),
-            8 => output.extend_from_slice(b"\\b"),
-            9 => output.extend_from_slice(b"\\t"),
-            10 => output.extend_from_slice(b"\\n"),
-            12 => output.extend_from_slice(b"\\f"),
-            13 => output.extend_from_slice(b"\\r"),
+            b'"' => output(b"\\\""),
+            b'\\' => output(b"\\\\"),
+            8 => output(b"\\b"),
+            9 => output(b"\\t"),
+            10 => output(b"\\n"),
+            12 => output(b"\\f"),
+            13 => output(b"\\r"),
             0..=31 => {
-                output.extend_from_slice(b"\\u00");
-                output.push(b"0123456789abcdef"[usize::from(byte >> 4)]);
-                output.push(b"0123456789abcdef"[usize::from(byte & 15)]);
+                output(b"\\u00");
+                output(&[b"0123456789abcdef"[usize::from(byte >> 4)]]);
+                output(&[b"0123456789abcdef"[usize::from(byte & 15)]]);
             }
-            _ => output.push(byte),
+            _ => output(&[byte]),
         }
     }
-    output.push(b'"');
+    output(b"\"");
 }
