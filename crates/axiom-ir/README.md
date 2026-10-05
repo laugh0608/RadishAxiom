@@ -1,6 +1,6 @@
 # Axiom IR 内部组件
 
-本 crate 承载 [ADR 0016](../../docs/adr/0016-core-semantic-slice-entry.md) 的 P1 实施。当前实现 [IR v0.1](../../docs/ir/axiom-ir-v0.md) 的 JSON 字节边界、类型声明身份、受限逐行表达式类型 / 规范化、节点图分析及内容身份；没有完整 IR 成功入口，也不提供 CLI。
+本 crate 承载 [ADR 0016](../../docs/adr/0016-core-semantic-slice-entry.md) 的 P1 实施。当前实现 [IR v0.1](../../docs/ir/axiom-ir-v0.md) 的 JSON 字节边界、类型声明身份、受限逐行表达式类型 / 规范化、节点图分析及内容身份，并重建保守字段 / 控制标签；没有完整 IR 成功入口，也不提供 CLI。
 
 ## 输入与输出
 
@@ -35,6 +35,8 @@
 
 `RowTypeChecker::normalize(expression_bytes, limits, scope)` 先复用上述类型检查，保留对原始所有分支 / 操作数的拒绝，再对已支持表达式执行 IR 明确要求的规范化：递归展平同类 and / or，按子表达式 JCS 字节排序 / 去重，单项折叠；排序 eq 两侧以及二元 int_add / fixed_add 的操作数。加法不去重或重结合，比较 / 减法 / 分支 / 绑定顺序保持不变，不做常量求值、不扩大结果范围。成功返回只读 `NormalizedRowExpression` 的类型与规范字节；没有独立表达式摘要，也不处理契约表达式。支持集合与 `infer` 相同，规范化不能抹去非法或未支持的子式。
 
+`RowTypeChecker::analyze_labels(expression_bytes, limits, scope)` 先完成相同的类型 / 支持范围检查，再返回只读 `RowLabelAnalysis` 的类型与保守标签。字面值与 none 不读取字段；字段访问累计父值的选择依赖和字段声明标签；布尔、算术、比较、分支和 Option 操作合并全部已读依赖。`match_option.some` 的绑定移位与类型检查一致，不能因条件恒定、两分支相同或 `x - x` 而删去依赖。直接读取行的公开字段不包含敏感兄弟字段；整体记录值、条件产生的复合值会使用内容摘要，允许比最小语义依赖更保守。
+
 `nodes::analyze_node_graph(bytes, limits)` 从完整 candidate bytes 复用同一次有界 JSON 解析、声明规范化 / 身份核对和 `RowTypeChecker`，检查：
 
 - input / filter / map / lookup_join / group 的闭合节点结构、节点 ID 词法与唯一性、已核验表类型、全部前驱引用，以及 input port 和 output 名称唯一性。至少一个输入与命名输出；输出只能引用节点。
@@ -44,11 +46,19 @@
 - group keys 按输出主键顺序解析，源字段必须公开、非可选、可作为键，且与输出字段同类型。键与 aggregate 名称不冲突、共同恰好覆盖输出记录；count 遵循现行语义的 `Int[0, N]` 声明类型，sum 只接受非可选 Int 或同 scale Fixed，允许独立结果范围。容量不得大于源表，实际计数、求和与输出容量能否满足仍留给后续义务。
 - 迭代检查 DAG 与可达性：拒绝循环及不能到达命名输出的非 input 死节点，允许未使用的 input、共享前驱与多个命名输出引用同一节点。环错误定位真实成环边，不把环的下游误报为环边。
 
-成功返回只读 `NodeGraphAnalysis`，包含已核验声明、原输入顺序的节点分析摘要、输出引用及拓扑索引。索引始终指向原 `nodes` 数组，join 前驱顺序保留 `[left, right]`；它不返回 canonical 节点 definition。**该分析入口不重算节点内容 ID，契约仍只检查数组形状**；表达式规范化 / 节点身份另由下述入口处理，标签 / 控制依赖、完整效果、契约及文档身份仍未验收，不能据此开放完整 IR 成功入口。
+成功返回只读 `NodeGraphAnalysis`，包含已核验声明、原输入顺序的节点分析摘要、输出引用及拓扑索引。索引始终指向原 `nodes` 数组，join 前驱顺序保留 `[left, right]`；它不返回 canonical 节点 definition。**该分析入口不重算节点内容 ID，契约仍只检查数组形状**；表达式规范化 / 节点身份另由下述入口处理，保守标签摘要见下文；完整效果、契约及文档身份仍未验收，不能据此开放完整 IR 成功入口。
 
 `nodes::normalize_node_graph(bytes, limits)` 在同一次解析中先完成全部节点图分析，然后按拓扑顺序规范逐行表达式、map / join 的 fields、join 的 pairs 和 group 的 aggregates；group keys 保留有语义的顺序。按 `axiom-ir-v0.1:node`、NUL、definition JCS 字节重算各节点 ID，错误返回 `NodeError::ContentIdMismatch`，携带原数组位置、输入 ID 与重算 ID；不改写错误 ID 或下游引用，不静默共享重复节点或删除死节点。结构非法 / 类型错误 / 未支持仍在规范化前按原位置报告。
 
-成功返回 `NormalizedNodeGraph`，`nodes()` 按 ID 排列并只读提供已核对 ID 和规范 definition 字节；`analysis()` 保留原输入顺序的图分析，索引不指向前者的规范数组。此入口完成现有表达式支持范围内的节点内容身份，**不返回完整规范文档 / 文档摘要，不验收契约、标签 / 控制依赖或完整效果**。复杂键投影仍受原分析入口的支持限制；表达式支持边界及完整 P1 仍待收口。
+成功返回 `NormalizedNodeGraph`，`nodes()` 按 ID 排列并只读提供已核对 ID 和规范 definition 字节；`analysis()` 保留原输入顺序的图分析，索引不指向前者的规范数组。此入口完成现有表达式支持范围内的节点内容身份，**不返回完整规范文档 / 文档摘要，不验收契约、非干扰或完整效果**。复杂键投影仍受原分析入口的支持限制；表达式支持边界及完整 P1 仍待收口。
+
+两个节点入口都在全部结构 / 类型检查后按拓扑顺序重建 `NodeGraphAnalysis::node_flows()`，结果与原 `nodes` 数组一一对应：
+
+- `row_control()` 表示决定行存在性 / 成员集合的保守标签。input 行存在性按首版模型为 public；filter 合并谓词标签，map 保留前驱控制标签，join 合并两侧控制及 pairs 字段标签，group 继承源控制并计入分组键依赖。
+- `field_labels()` 按 Unicode scalar 字段序给出声明与推导标签的上确界。map 从表达式重算，join 额外计入匹配依赖；group 的 count 包含成员控制，sum 还包含源字段标签。声明为 public 不能抹去上游推导的 sensitive，声明为 sensitive 也不会因表达式是常量而被降密。filter 只改变控制摘要，保留字段值摘要。
+- `label_gaps()` 给出输出声明低于推导标签的字段及原输入 JSON Pointer。它是后续义务的分析提示，不是正式义务、反例或 `failed`；不会据此把 AX-B04 wrong 候选改判为结构非法。filter 导致的敏感行存在性可以没有字段标签缺口，调用方必须同时查看控制摘要。
+
+复合字段跨节点取整体内容摘要，join 匹配控制保守影响全部投影字段；因此可能产生待后续验证消解的额外依赖。标签为 public 或缺口为空均不能证明非干扰：契约选择的输入 / 输出、前置条件、故障与正常结束的可观察性、总性和范围义务尚未接入。本层不执行外部能力、不生成证明，也不扩大现有表达式支持范围或新增公共 IR 字段。
 
 ## 资源与诊断
 
@@ -72,6 +82,8 @@
 
 表达式规范化沿已受 128 层 JSON 上限约束的树递归，不沿节点引用递归；排序使用规范字节作比较键，布尔展平移动子项。规范化不增加表达式的规范字节量，但排序临时字节、规范 definition 与输入树会共同占用内存；预算耗尽必须在去重 / 折叠前报告，不能靠结果较小绕过原输入限制。
 
+标签分析复用原始有界表达式树，先完整检查再推导，不在规范化后跳过原分支。记录内容标签通过反向引用队列迭代汇总，不递归展开类型 DAG；Option 形状递归仍受声明 / 表达式 JSON 深度约束。input 共享同一记录声明的不可变字段摘要，filter 与源节点共享字段摘要，只独立保存控制标签；map / join / group 的字段数由显式定义约束。摘要、绑定栈和原树的内存仍在解析预算之外累计，不提供硬资源隔离。
+
 ## 实现与验收边界
 
 Rust 2024，`publish = false`，仅自有代码与标准库、禁止 unsafe，无第三方依赖、build script、过程宏或 native / FFI。唯一直接依赖为本地 `radishaxiom-digest 0.0.0`，其 [SHA-256 实现](../digest/README.md)由既有 runtime 提取，共享算法而不依赖 runtime 的产品能力。与 runtime 的 ASCII 闭合文档 parser 分开；不改变旧 runtime 协议，不让独立 Go checker 复用生产实现。
@@ -85,6 +97,8 @@ Rust 2024，`publish = false`，仅自有代码与标准库、禁止 unsafe，�
 节点测试通过真实 `analyze_node_graph` 入口回归四题 12 个候选的 pretty / JCS 输入，不读取 expected outcome。新增同域合成输入的名称、类型、错误类别和定位期望由规范人工推导，覆盖改名、乱序、投影错配、引用 / 环 / 死节点、连接、分组、容量、预算和未支持传播；5,000 层链验证无环 / 成环行为，448 个小图组合以独立布尔传递闭包核对生产图算法。测试 builder 的摘要 helper 仅为合成输入构造类型 ID，不产生测试期望；声明身份正确性仍由独立 Python 向量验收。合成节点 ID 仅满足词法，明确不作为内容身份或完整 P1 通过证据。
 
 [表达式 / 节点独立向量](tests/fixtures/node-identities/README.md) 逐例指定规范表达式结构，并以 Python `json` / `hashlib` 生成节点 definition 与身份期望，纳入仓库生成一致性检查。测试覆盖五类节点、JCS 字节顺序与 Unicode scalar 数组顺序、布尔规范化及幂等性、错误摘要域 / NUL / 换行 / wrapper、原位置诊断、深宽边界与不允许的重写；四题 12 个候选另通过真实节点规范化核对现有 ID，不以类型通过或重新生成 fixture 替代身份核对。
+
+标签切片新增 11 项人工期望回归，覆盖所有已支持运算类别、常量 / 相同分支仍保留读取依赖、Option 绑定移位、嵌套记录、声明不足的跨节点传播、两侧 join 匹配控制、filter → map → group 的 count / sum、分组键的上游依赖，以及 5,000 层记录引用。最深表达式回归也执行标签分析；现有四题 12 个候选继续经过节点入口，AX-B04 三个候选另外核对控制摘要、priority 字段和原位置缺口。这里只验收保守分析，没有运行非干扰求解或独立 checker。
 
 已安装并验收的宿主工具可按仓库约定离线执行：
 

@@ -106,6 +106,16 @@ pub enum Label {
     Sensitive,
 }
 
+impl Label {
+    pub(crate) fn join(self, other: Self) -> Self {
+        if self == Self::Sensitive || other == Self::Sensitive {
+            Self::Sensitive
+        } else {
+            Self::Public
+        }
+    }
+}
+
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Field {
     pub name: String,

@@ -6,6 +6,9 @@ use crate::json::{JsonErrorKind, ResourceLimit};
 #[path = "typing_tests.rs"]
 mod typing_tests;
 
+#[path = "flow_tests.rs"]
+mod flow_tests;
+
 const TEXT: &str = r#"{"kind":"text"}"#;
 const BOOL: &str = r#"{"kind":"bool"}"#;
 const INT: &str = r#"{"kind":"int","lower":"0","upper":"10"}"#;

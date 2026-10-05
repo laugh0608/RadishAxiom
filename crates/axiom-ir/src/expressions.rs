@@ -1,13 +1,32 @@
-//! 逐行表达式的局部类型推导与受限规范化。不求值、不证明算术范围或信息流。
+//! 逐行表达式的局部类型、保守标签推导与受限规范化。不求值、不证明算术范围或非干扰。
 
 use std::collections::BTreeSet;
 use std::fmt;
 
-use crate::declarations::{self as decode, DeclarationError, DeclarationErrorKind, ValueType};
+use crate::declarations::{
+    self as decode, DeclarationError, DeclarationErrorKind, Label, ValueType,
+};
 use crate::json::{self, JsonLimits, Value};
 use crate::normalization::{NormalizedDeclaration, NormalizedTypeDeclarations};
 
+pub(crate) mod labels;
 pub(crate) mod normalization;
+
+/// 保守字段依赖标签；不是非干扰、总性或运行时安全结论。
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct RowLabelAnalysis {
+    value_type: ValueType,
+    label: Label,
+}
+
+impl RowLabelAnalysis {
+    pub fn value_type(&self) -> &ValueType {
+        &self.value_type
+    }
+    pub fn label(&self) -> Label {
+        self.label
+    }
+}
 
 /// 已检查支持范围和类型的逐行表达式；不含独立表达式摘要或证明结论。
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -150,6 +169,36 @@ impl<'a> RowTypeChecker<'a> {
     ) -> Result<ValueType, ExpressionError> {
         let value = json::parse(input, limits).map_err(DeclarationError::Json)?;
         self.infer_parsed(&value, "", scope)
+    }
+
+    /// 检查原始全部分支和操作数后，从声明重建保守标签；不接受标签缓存。
+    pub fn analyze_labels(
+        &self,
+        input: &[u8],
+        limits: JsonLimits,
+        scope: RowScope<'_>,
+    ) -> Result<RowLabelAnalysis, ExpressionError> {
+        let value = json::parse(input, limits).map_err(DeclarationError::Json)?;
+        let value_type = self.infer_parsed(&value, "", scope)?;
+        let records = match scope {
+            RowScope::Closed => vec![],
+            RowScope::Single { record_type } => vec![record_type],
+            RowScope::Join {
+                left_record_type,
+                right_record_type,
+            } => {
+                vec![left_record_type, right_record_type]
+            }
+        };
+        let scopes: Vec<_> = records
+            .into_iter()
+            .map(|record_type| labels::RecordScope {
+                record_type,
+                fields: None,
+            })
+            .collect();
+        let label = labels::LabelAnalyzer::new(self.types).analyze_checked(&value, &scopes);
+        Ok(RowLabelAnalysis { value_type, label })
     }
 
     /// 先检查原输入全部表达式，再执行 IR 明确允许的结构规范化。

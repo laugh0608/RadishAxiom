@@ -707,6 +707,14 @@ fn deepest_recursive_operator_paths_fit_the_json_nesting_budget() {
                 expected,
                 "{op}, {deep_first}"
             );
+            let analysis = checker
+                .analyze_labels(expression.as_bytes(), limits(), RowScope::Closed)
+                .unwrap();
+            assert_eq!(analysis.value_type(), &expected);
+            assert_eq!(
+                analysis.label(),
+                radishaxiom_ir::declarations::Label::Public
+            );
         }
     }
 }

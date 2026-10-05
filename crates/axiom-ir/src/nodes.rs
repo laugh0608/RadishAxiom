@@ -1,6 +1,6 @@
 //! 节点结构、局部类型、图分析及内容身份。
 //! analyze_node_graph 只检查 ID 词法和引用；normalize_node_graph 另核对规范内容。
-//! 不检查契约或信息流，不提供完整 IR / P1 成功入口。
+//! 重建保守字段 / 控制标签，不检查契约或证明非干扰，不提供完整 IR / P1 成功入口。
 
 use std::collections::{BTreeMap, BTreeSet, VecDeque};
 use std::fmt;
@@ -10,9 +10,11 @@ use crate::expressions::{ExpressionError, RowTypeChecker};
 use crate::json::{self, JsonLimits, Value};
 use crate::normalization::{NormalizedTypeDeclarations, normalize_decoded_declarations};
 
+mod flow;
 mod normalization;
 mod typing;
 
+pub use flow::{FieldLabelGap, NodeFlowAnalysis};
 pub use normalization::{NormalizedNode, NormalizedNodeGraph, normalize_node_graph};
 
 #[cfg(test)]
@@ -156,6 +158,7 @@ pub struct NodeGraphAnalysis {
     nodes: Vec<NodeAnalysis>,
     outputs: Vec<OutputReference>,
     topological_order: Vec<usize>,
+    node_flows: Vec<NodeFlowAnalysis>,
 }
 
 impl NodeGraphAnalysis {
@@ -170,6 +173,10 @@ impl NodeGraphAnalysis {
     }
     pub fn topological_order(&self) -> &[usize] {
         &self.topological_order
+    }
+    /// 与原 nodes 数组一一对应；保守分析提示不是 proved / failed 判定。
+    pub fn node_flows(&self) -> &[NodeFlowAnalysis] {
+        &self.node_flows
     }
 }
 
@@ -220,12 +227,14 @@ fn analyze_parsed(value: &Value) -> Result<NodeGraphAnalysis, NodeError> {
     for &index in &topological_order {
         typing::check_node(&nodes, index, &types, &checker)?;
     }
+    let node_flows = flow::analyze_checked(&nodes, &topological_order, &types);
     let nodes = nodes.into_iter().map(|node| node.analysis).collect();
     Ok(NodeGraphAnalysis {
         types,
         nodes,
         outputs,
         topological_order,
+        node_flows,
     })
 }
 
