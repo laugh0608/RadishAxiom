@@ -18,8 +18,8 @@
 
 ## 正式规范与实验
 
-- [首域类型化语义](semantics/keyed-finite-table-semantics.md)：值、表、转换、契约、效果和信任边界。
-- [Axiom IR v0.1](ir/axiom-ir-v0.md)：canonical JSON、内容身份、DAG、投影与迁移。
+- [IR v0.2 语义快照](semantics/keyed-finite-table-semantics-v0.2.md)：值、表、转换、契约及四项闭合边界；[旧语义](semantics/keyed-finite-table-semantics.md)保留原字节与历史绑定。
+- [Axiom IR v0.2](ir/axiom-ir-v0.2.md)、[显式迁移规则](ir/ir-v0.1-to-v0.2-migration.md)：canonical JSON、版本化身份、记录构造与兼容边界；[v0.1](ir/axiom-ir-v0.md)继续供旧制品读取。
 - [Axiom Evidence v0.1](evidence/axiom-evidence-v0.md)：义务、五态、反例、trust 与结论。
 - [Evidence 验证说明](evidence/axiom-evidence-v0-validation.md)：现有规范验证与检查边界。
 - [四题基准语料](benchmarks/keyed-finite-table-corpus-v0.md)：任务、候选、合成数据和预期断言。
@@ -38,13 +38,14 @@
 | payload 发布、launcher、产品宿主 | [ADR 0010](adr/0010-checker-runtime-payload-durable-registration.md)、[0011](adr/0011-checker-runtime-launcher-installation-and-activation.md)、[0012](adr/0012-product-checker-runtime-host-and-persistence-interface.md) |
 | Darwin 强隔离与 container 状态 | [ADR 0013](adr/0013-darwin-checker-hard-isolation.md)、[0014](adr/0014-darwin-app-sandbox-container-state.md) |
 | 虚拟 checker 资源保证与迁移边界 | [ADR 0015（Accepted）](adr/0015-virtualized-checker-resource-profile.md) |
-| 核心语义组件的分阶段实施入口 | [ADR 0016（Accepted）](adr/0016-core-semantic-slice-entry.md) |
+| 核心语义组件与 IR 版本范围 | [ADR 0016（Accepted）](adr/0016-core-semantic-slice-entry.md)、[0017（Accepted）](adr/0017-ir-v0.2-support-boundaries-and-migration.md) |
 
 ADR 定义决策和重评条件，不表示相关生产能力已完成；实现进度由当前状态维护。
 
 ## 内部实现入口
 
-- [Axiom IR 组件](../crates/axiom-ir/README.md)：JSON、类型声明身份和受限逐行表达式类型推导；不代表完整 P1。
+- [Axiom IR 组件](../crates/axiom-ir/README.md)：JSON、类型 / 图 / 契约分析与身份、完整文档规范化、strict 检查及显式 v0.1 → v0.2 迁移。
+- [P1 支持边界与验收矩阵审阅](ir/p1-support-boundary-review.md)：初次缺口审阅、已接受决定与版本化矩阵对照；不替代规范。
 - [共享 SHA-256](../crates/digest/README.md)：runtime / IR 共用的自有摘要实现与独立复核边界。
 
 ## 机器契约

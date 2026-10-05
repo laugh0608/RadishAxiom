@@ -8,9 +8,11 @@ use crate::declarations::{
 };
 use crate::json::{self, JsonLimits, Value};
 use crate::normalization::{NormalizedDeclaration, NormalizedTypeDeclarations};
+use crate::version::IrVersion;
 
 pub(crate) mod labels;
 pub(crate) mod normalization;
+mod record;
 pub(crate) mod tables;
 
 use tables::{ContractScope, InterfaceReference, Interfaces, TypingContext};
@@ -80,16 +82,16 @@ pub enum TypeErrorKind {
     UnknownInterfaceKind,
     UnknownInterface,
     OutputInAssumption,
+    IncompleteFields,
+    NonEquatableType,
 }
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum UnsupportedTyping {
-    /// IR 的 record.fields 元素结构和 is_some 机器 tag 尚待精确规范确认。
+    /// v0.1 的 record.fields 元素结构和 is_some 机器 tag 未定义完整。
     UnspecifiedForm,
     /// 记录（含可选记录）的相等规则未纳入本组件的支持范围。
     RecordEquality,
-    /// 不同范围的 Int 比较需确认类型兼容规则，不能自行添加隐式转换。
-    MixedIntComparison,
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -355,7 +357,8 @@ impl<'a> RowTypeChecker<'a> {
                     _ => &["op", "predicate", "result_type", "table", "value"],
                 }
             }
-            "record" | "is_some" => {
+            "record" if self.types.version() == IrVersion::V0_2 => &["fields", "op", "record_type"],
+            "record" | "is_some" if self.types.version() == IrVersion::V0_1 => {
                 return Err(unsupported(UnsupportedTyping::UnspecifiedForm, &op_path));
             }
             _ => return Err(type_error(TypeErrorKind::UnknownOperator, &op_path)),
@@ -367,6 +370,7 @@ impl<'a> RowTypeChecker<'a> {
                 self.infer_literal(op, members, path)
             }
             "none" | "some" | "bound" | "field" => self.infer_access(op, members, path, context),
+            "record" => self.infer_record(members, path, context),
             "not" | "and" | "or" => self.infer_boolean(op, members, path, context),
             "eq" | "lt" | "le" | "gt" | "ge" => self.infer_comparison(op, members, path, context),
             "int_add" | "int_sub" | "fixed_add" | "fixed_sub" => {
@@ -534,23 +538,17 @@ impl<'a> RowTypeChecker<'a> {
                 let right = self.infer_value(get("right"), &at("right"), context)?;
                 if op == "eq" {
                     require_same(&right, &left, &at("right"))?;
-                    let mut ty = &left;
-                    while let ValueType::Option { inner } = ty {
-                        ty = inner;
-                    }
-                    if matches!(ty, ValueType::Record { .. }) {
+                    if !left.supports_value_equality() {
+                        if self.types.version() == IrVersion::V0_2 {
+                            return Err(type_error(TypeErrorKind::NonEquatableType, path));
+                        }
                         return Err(unsupported(UnsupportedTyping::RecordEquality, path));
                     }
                 } else {
                     match (&left, &right) {
-                        (ValueType::Int { .. }, ValueType::Int { .. }) => {
-                            if left != right {
-                                return Err(unsupported(
-                                    UnsupportedTyping::MixedIntComparison,
-                                    path,
-                                ));
-                            }
-                        }
+                        // 现行语义对有序比较采用数学整数顺序；只有 eq / Int 加减
+                        // 要求完全同型。此处不转换操作数、不合并或扩大声明范围。
+                        (ValueType::Int { .. }, ValueType::Int { .. }) => {}
                         (
                             ValueType::Fixed { scale: left, .. },
                             ValueType::Fixed { scale: right, .. },

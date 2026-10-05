@@ -1,4 +1,5 @@
 //! 仅处理已通过逐行类型检查的树。记录引用摘要迭代计算，不递归展开类型 DAG。
+use std::borrow::Cow;
 use std::collections::{BTreeMap, VecDeque};
 
 use crate::declarations::{self as decode, Label, Members, RecordType, ValueType};
@@ -19,7 +20,7 @@ enum FlowValue<'a> {
         id: String,
         label: Label,
         declared: bool,
-        fields: Option<&'a BTreeMap<String, Label>>,
+        fields: Option<Cow<'a, BTreeMap<String, Label>>>,
     },
     Option {
         label: Label,
@@ -142,7 +143,7 @@ impl<'a> LabelAnalyzer<'a> {
                 id: record.record_type.to_owned(),
                 label: Label::Public,
                 declared: true,
-                fields: record.fields,
+                fields: record.fields.map(Cow::Borrowed),
             })
             .collect();
         self.summary(&self.walk(value, &mut bindings))
@@ -164,6 +165,29 @@ impl<'a> LabelAnalyzer<'a> {
                 label: Label::Public,
                 inner: Box::new(self.walk(get("value"), bindings)),
             },
+            "record" => {
+                let id = string(get("record_type"));
+                let declared = &self.record(id).fields;
+                let fields = array(get("fields"))
+                    .iter()
+                    .map(|field| {
+                        let field = self::members(field);
+                        let name = string(decode::member(field, "name"));
+                        let index = declared
+                            .binary_search_by(|field| field.name.as_str().cmp(name))
+                            .expect("checked field");
+                        let dependency =
+                            self.summary(&self.walk(decode::member(field, "expression"), bindings));
+                        (name.to_owned(), declared[index].label.join(dependency))
+                    })
+                    .collect();
+                FlowValue::Record {
+                    id: id.to_owned(),
+                    label: Label::Public,
+                    declared: true,
+                    fields: Some(Cow::Owned(fields)),
+                }
+            }
             "bound" => {
                 let index: usize = string(get("index"))
                     .parse()

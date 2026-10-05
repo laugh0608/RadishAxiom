@@ -5,8 +5,10 @@
 - `node.jcs` / `contract.jcs`：分别组合既有节点 / 契约独立向量的规范 definition，再按 IR 规则排列顶层数组。原始输入继续使用相邻组件目录，不复制第二份。
 - `type-input.json` / `type.jcs`：给类型独立向量补上真实 input / output，覆盖名义枚举、嵌套记录 / Option、大整数、复合主键顺序、字段及输出排序，以及引号、反斜线、U+2028、Unicode scalar / UTF-16 的区别。
 - `renamed-output.jcs` / `reordered-key.jcs`：同域语义变化，分别改变输出名称、一个输入使用的主键顺序；声明内容身份与节点引用按变化更新。
+- `unicode-nfc.jcs` / `unicode-nfd.jcs`：仅一个输出名分别为 `é` / `é`，规范字节和文档身份不同；不合并视觉相同的 Unicode scalar 序列。
 - `deep-binders.jcs`：含 122 层量词的完整文档，验证同一 JSON 深度预算下的解析、类型、规范编码与身份路径，不按表容量展开公式。
-- `identities.tsv`：六个完整文档的文档域 ID 与文件原始 SHA-256，两者明确区分。
+- `mixed-int-ranges-input.json` / `mixed-int-ranges.jcs`：不同范围 Int 在 filter 与契约四种有序比较中的类型、规范化与身份，包含敏感控制依赖。结构合法不代表公式可满足或得到证明。
+- `identities.tsv`：九个完整文档的文档域 ID 与文件原始 SHA-256，两者明确区分。
 - `wrong-hashes.tsv`：遗漏文档域 / NUL、错误域、额外换行和误对 pretty 字节计算的对照。
 - `candidates.tsv`：从四题 `task.json` 精确提取 12 个候选的规范路径、既有文档摘要与文件摘要；不读取 expected outcome，不重新生成候选。
 

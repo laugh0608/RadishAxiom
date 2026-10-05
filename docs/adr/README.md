@@ -27,3 +27,4 @@
 - [ADR 0014：Darwin App Sandbox container 与 runner 无状态边界](0014-darwin-app-sandbox-container-state.md)
 - [ADR 0015：虚拟 checker 资源 profile 与宿主保证边界（Accepted）](0015-virtualized-checker-resource-profile.md)
 - [ADR 0016：核心语义切片的分阶段实施入口（Accepted）](0016-core-semantic-slice-entry.md)
+- [ADR 0017：IR v0.2 支持边界与显式迁移（Accepted）](0017-ir-v0.2-support-boundaries-and-migration.md)

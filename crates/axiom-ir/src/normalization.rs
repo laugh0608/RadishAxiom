@@ -5,6 +5,7 @@ use crate::declarations::{
     UnverifiedTypeDeclarations, ValueType, decode_type_declarations,
 };
 use crate::json::{self, JsonLimits, Value};
+use crate::version::{ContentKind, IrVersion};
 
 /// 私有字段保证规范 definition、内容 ID 和类型化数据无法被独立修改。
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -29,12 +30,16 @@ impl<T> NormalizedDeclaration<T> {
 /// 三类声明各自按 ID 排序。此类型不代表完整 IR，也不能作为 target gate 的凭证。
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct NormalizedTypeDeclarations {
+    version: IrVersion,
     enum_types: Vec<NormalizedDeclaration<EnumType>>,
     record_types: Vec<NormalizedDeclaration<RecordType>>,
     table_types: Vec<NormalizedDeclaration<TableType>>,
 }
 
 impl NormalizedTypeDeclarations {
+    pub fn version(&self) -> IrVersion {
+        self.version
+    }
     pub fn enum_types(&self) -> &[NormalizedDeclaration<EnumType>] {
         &self.enum_types
     }
@@ -61,22 +66,23 @@ pub(crate) fn normalize_decoded_declarations(
     decoded: UnverifiedTypeDeclarations,
 ) -> Result<NormalizedTypeDeclarations, DeclarationError> {
     Ok(NormalizedTypeDeclarations {
+        version: decoded.version,
         enum_types: normalize(
             decoded.enum_types,
             "enum_types",
-            "axiom-ir-v0.1:enum-type",
+            &decoded.version.domain(ContentKind::EnumType),
             enum_definition,
         )?,
         record_types: normalize(
             decoded.record_types,
             "record_types",
-            "axiom-ir-v0.1:record-type",
+            &decoded.version.domain(ContentKind::RecordType),
             record_definition,
         )?,
         table_types: normalize(
             decoded.table_types,
             "table_types",
-            "axiom-ir-v0.1:table-type",
+            &decoded.version.domain(ContentKind::TableType),
             table_definition,
         )?,
     })

@@ -57,6 +57,12 @@ REQUIRED_FILES = (
     "scripts/generate-ir-node-vectors.py",
     "scripts/generate-ir-contract-vectors.py",
     "scripts/generate-ir-document-vectors.py",
+    "scripts/generate-ir-v02-vectors.py",
+    "docs/adr/0017-ir-v0.2-support-boundaries-and-migration.md",
+    "docs/ir/axiom-ir-v0.2.md",
+    "docs/ir/ir-v0.1-to-v0.2-migration.md",
+    "docs/semantics/keyed-finite-table-semantics-v0.2.md",
+    "crates/axiom-ir/tests/fixtures/v0.2/README.md",
     "crates/checker-runtime/src/store.rs",
     "crates/checker-runtime/src/store/evidence.rs",
     "benchmarks/keyed-finite-table-v0.1/README.md",
@@ -496,7 +502,7 @@ def check_benchmark_corpus(errors: list[str]) -> None:
 
 
 def check_ir_vectors(errors: list[str]) -> None:
-    for kind in ["type", "node", "contract", "document"]:
+    for kind in ["type", "node", "contract", "document", "v02"]:
         result = subprocess.run(
             [sys.executable, str(REPO_ROOT / f"scripts/generate-ir-{kind}-vectors.py"), "--check"],
             cwd=REPO_ROOT,

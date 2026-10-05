@@ -1,0 +1,506 @@
+{
+  "outputs": [
+    {
+      "node": "sha256:a47617ed5c85d4bcaf586711ed5d390c5a4d6f3b255ffe115d4153dc47954efb",
+      "name": "result"
+    }
+  ],
+  "contracts": [
+    {
+      "definition": {
+        "expression": {
+          "body": {
+            "result_type": {
+              "kind": "bool"
+            },
+            "some": {
+              "record": {
+                "fields": [
+                  {
+                    "expression": {
+                      "values": [
+                        {
+                          "record": {
+                            "index": "1",
+                            "op": "bound"
+                          },
+                          "field": "flag",
+                          "op": "field"
+                        },
+                        {
+                          "record": {
+                            "index": "1",
+                            "op": "bound"
+                          },
+                          "field": "flag",
+                          "op": "field"
+                        }
+                      ],
+                      "op": "and"
+                    },
+                    "name": "visible"
+                  },
+                  {
+                    "expression": {
+                      "record": {
+                        "index": "0",
+                        "op": "bound"
+                      },
+                      "field": "secret",
+                      "op": "field"
+                    },
+                    "name": "secret"
+                  }
+                ],
+                "record_type": "sha256:d08a952ad41af431407122c8395f3d74651ee52ed5834c3f4c69b36dfba35c3f",
+                "op": "record"
+              },
+              "field": "visible",
+              "op": "field"
+            },
+            "none": {
+              "value": false,
+              "op": "literal_bool"
+            },
+            "subject": {
+              "value": {
+                "index": "0",
+                "op": "bound"
+              },
+              "op": "some"
+            },
+            "op": "match_option"
+          },
+          "table": {
+            "name": "source",
+            "kind": "input"
+          },
+          "op": "forall_rows"
+        },
+        "role": "guarantee",
+        "kind": "formula"
+      },
+      "id": "sha256:8ccc484ef2bea5b36b7f8ec7cbed168bce08a9cfbdac69b467f6152c4a2ca231"
+    }
+  ],
+  "nodes": [
+    {
+      "definition": {
+        "fields": [
+          {
+            "expression": {
+              "fields": [
+                {
+                  "expression": {
+                    "record": {
+                      "index": "0",
+                      "op": "bound"
+                    },
+                    "field": "secret",
+                    "op": "field"
+                  },
+                  "name": "secret"
+                },
+                {
+                  "expression": {
+                    "values": [
+                      {
+                        "values": [
+                          {
+                            "record": {
+                              "index": "0",
+                              "op": "bound"
+                            },
+                            "field": "flag",
+                            "op": "field"
+                          },
+                          {
+                            "record": {
+                              "index": "0",
+                              "op": "bound"
+                            },
+                            "field": "flag",
+                            "op": "field"
+                          }
+                        ],
+                        "op": "and"
+                      },
+                      {
+                        "values": [
+                          {
+                            "record": {
+                              "index": "0",
+                              "op": "bound"
+                            },
+                            "field": "flag",
+                            "op": "field"
+                          },
+                          {
+                            "record": {
+                              "index": "0",
+                              "op": "bound"
+                            },
+                            "field": "flag",
+                            "op": "field"
+                          }
+                        ],
+                        "op": "and"
+                      }
+                    ],
+                    "op": "and"
+                  },
+                  "name": "visible"
+                }
+              ],
+              "record_type": "sha256:d08a952ad41af431407122c8395f3d74651ee52ed5834c3f4c69b36dfba35c3f",
+              "op": "record"
+            },
+            "name": "built"
+          },
+          {
+            "expression": {
+              "record": {
+                "index": "0",
+                "op": "bound"
+              },
+              "field": "key",
+              "op": "field"
+            },
+            "name": "key"
+          },
+          {
+            "expression": {
+              "fields": [
+                {
+                  "expression": {
+                    "value": "嵌套/😀",
+                    "op": "literal_text"
+                  },
+                  "name": "tag"
+                },
+                {
+                  "expression": {
+                    "value": {
+                      "fields": [
+                        {
+                          "expression": {
+                            "values": [
+                              {
+                                "result_type": {
+                                  "kind": "bool"
+                                },
+                                "some": {
+                                  "index": "0",
+                                  "op": "bound"
+                                },
+                                "none": {
+                                  "value": false,
+                                  "op": "literal_bool"
+                                },
+                                "subject": {
+                                  "record": {
+                                    "index": "0",
+                                    "op": "bound"
+                                  },
+                                  "field": "optional",
+                                  "op": "field"
+                                },
+                                "op": "match_option"
+                              },
+                              {
+                                "result_type": {
+                                  "kind": "bool"
+                                },
+                                "some": {
+                                  "index": "0",
+                                  "op": "bound"
+                                },
+                                "none": {
+                                  "value": false,
+                                  "op": "literal_bool"
+                                },
+                                "subject": {
+                                  "record": {
+                                    "index": "0",
+                                    "op": "bound"
+                                  },
+                                  "field": "optional",
+                                  "op": "field"
+                                },
+                                "op": "match_option"
+                              }
+                            ],
+                            "op": "and"
+                          },
+                          "name": "visible"
+                        },
+                        {
+                          "expression": {
+                            "record": {
+                              "index": "0",
+                              "op": "bound"
+                            },
+                            "field": "secret",
+                            "op": "field"
+                          },
+                          "name": "secret"
+                        }
+                      ],
+                      "record_type": "sha256:d08a952ad41af431407122c8395f3d74651ee52ed5834c3f4c69b36dfba35c3f",
+                      "op": "record"
+                    },
+                    "op": "some"
+                  },
+                  "name": "inner"
+                }
+              ],
+              "record_type": "sha256:2af7fd0cda886ed744dc078e84e3e96c2294b72a8edee16ef5147b16119e7345",
+              "op": "record"
+            },
+            "name": "maybe"
+          },
+          {
+            "expression": {
+              "record": {
+                "fields": [
+                  {
+                    "expression": {
+                      "record": {
+                        "index": "0",
+                        "op": "bound"
+                      },
+                      "field": "secret",
+                      "op": "field"
+                    },
+                    "name": "secret"
+                  },
+                  {
+                    "expression": {
+                      "values": [
+                        {
+                          "values": [
+                            {
+                              "record": {
+                                "index": "0",
+                                "op": "bound"
+                              },
+                              "field": "flag",
+                              "op": "field"
+                            },
+                            {
+                              "record": {
+                                "index": "0",
+                                "op": "bound"
+                              },
+                              "field": "flag",
+                              "op": "field"
+                            }
+                          ],
+                          "op": "and"
+                        },
+                        {
+                          "values": [
+                            {
+                              "record": {
+                                "index": "0",
+                                "op": "bound"
+                              },
+                              "field": "flag",
+                              "op": "field"
+                            },
+                            {
+                              "record": {
+                                "index": "0",
+                                "op": "bound"
+                              },
+                              "field": "flag",
+                              "op": "field"
+                            }
+                          ],
+                          "op": "and"
+                        }
+                      ],
+                      "op": "and"
+                    },
+                    "name": "visible"
+                  }
+                ],
+                "record_type": "sha256:d08a952ad41af431407122c8395f3d74651ee52ed5834c3f4c69b36dfba35c3f",
+                "op": "record"
+              },
+              "field": "visible",
+              "op": "field"
+            },
+            "name": "public"
+          }
+        ],
+        "table_type": "sha256:276c2b942924424eba710ad15abf6914639f7db7ae7dd6a240089c8eab7930ad",
+        "source": "sha256:97ee387489d2e05f257249e0ead1ab49aae4b622d36e087445250ebd7ec1cc6e",
+        "kind": "map"
+      },
+      "id": "sha256:a47617ed5c85d4bcaf586711ed5d390c5a4d6f3b255ffe115d4153dc47954efb"
+    },
+    {
+      "definition": {
+        "table_type": "sha256:696bb6bc58bbbeb5f89a69d5db160587fcfd946b2199fb95cbdce30437c2240c",
+        "port": "source",
+        "kind": "input"
+      },
+      "id": "sha256:97ee387489d2e05f257249e0ead1ab49aae4b622d36e087445250ebd7ec1cc6e"
+    }
+  ],
+  "table_types": [
+    {
+      "definition": {
+        "record_type": "sha256:e43b3dc56d9f2d803a9fd7d3d12f112111fd6dd9f75646de91df419325fdb398",
+        "primary_key": [
+          "key"
+        ],
+        "capacity": "3"
+      },
+      "id": "sha256:696bb6bc58bbbeb5f89a69d5db160587fcfd946b2199fb95cbdce30437c2240c"
+    },
+    {
+      "definition": {
+        "record_type": "sha256:92b22c032c0471ad87623355ccff6f6e50ba574e168e4e506aa3aee898586c19",
+        "primary_key": [
+          "key"
+        ],
+        "capacity": "3"
+      },
+      "id": "sha256:276c2b942924424eba710ad15abf6914639f7db7ae7dd6a240089c8eab7930ad"
+    }
+  ],
+  "record_types": [
+    {
+      "definition": {
+        "fields": [
+          {
+            "label": "public",
+            "type": {
+              "kind": "bool"
+            },
+            "name": "flag"
+          },
+          {
+            "label": "public",
+            "type": {
+              "kind": "text"
+            },
+            "name": "key"
+          },
+          {
+            "label": "public",
+            "type": {
+              "inner": {
+                "kind": "bool"
+              },
+              "kind": "option"
+            },
+            "name": "optional"
+          },
+          {
+            "label": "sensitive",
+            "type": {
+              "kind": "bool"
+            },
+            "name": "secret"
+          }
+        ]
+      },
+      "id": "sha256:e43b3dc56d9f2d803a9fd7d3d12f112111fd6dd9f75646de91df419325fdb398"
+    },
+    {
+      "definition": {
+        "fields": [
+          {
+            "label": "sensitive",
+            "type": {
+              "kind": "bool"
+            },
+            "name": "secret"
+          },
+          {
+            "label": "public",
+            "type": {
+              "kind": "bool"
+            },
+            "name": "visible"
+          }
+        ]
+      },
+      "id": "sha256:d08a952ad41af431407122c8395f3d74651ee52ed5834c3f4c69b36dfba35c3f"
+    },
+    {
+      "definition": {
+        "fields": [
+          {
+            "label": "public",
+            "type": {
+              "record_type": "sha256:d08a952ad41af431407122c8395f3d74651ee52ed5834c3f4c69b36dfba35c3f",
+              "kind": "record"
+            },
+            "name": "built"
+          },
+          {
+            "label": "public",
+            "type": {
+              "kind": "text"
+            },
+            "name": "key"
+          },
+          {
+            "label": "public",
+            "type": {
+              "record_type": "sha256:2af7fd0cda886ed744dc078e84e3e96c2294b72a8edee16ef5147b16119e7345",
+              "kind": "record"
+            },
+            "name": "maybe"
+          },
+          {
+            "label": "public",
+            "type": {
+              "kind": "bool"
+            },
+            "name": "public"
+          }
+        ]
+      },
+      "id": "sha256:92b22c032c0471ad87623355ccff6f6e50ba574e168e4e506aa3aee898586c19"
+    },
+    {
+      "definition": {
+        "fields": [
+          {
+            "label": "public",
+            "type": {
+              "inner": {
+                "record_type": "sha256:d08a952ad41af431407122c8395f3d74651ee52ed5834c3f4c69b36dfba35c3f",
+                "kind": "record"
+              },
+              "kind": "option"
+            },
+            "name": "inner"
+          },
+          {
+            "label": "public",
+            "type": {
+              "kind": "text"
+            },
+            "name": "tag"
+          }
+        ]
+      },
+      "id": "sha256:2af7fd0cda886ed744dc078e84e3e96c2294b72a8edee16ef5147b16119e7345"
+    }
+  ],
+  "enum_types": [],
+  "effects": [],
+  "semantics": {
+    "sha256": "a40ec7c4eecfde23a340fb61b67727b5393f01b7288d151a34168ec88a87dac7",
+    "name": "keyed-finite-table-semantics"
+  },
+  "digest_algorithm": "sha-256",
+  "ir_version": "0.2",
+  "format": "axiom-ir"
+}

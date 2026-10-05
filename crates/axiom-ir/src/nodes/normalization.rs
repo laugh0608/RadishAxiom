@@ -5,6 +5,7 @@ use crate::declarations::{self as decode, DeclarationError, member_mut};
 use crate::expressions::normalization::normalize_checked;
 use crate::json::{self, JsonLimits, Value};
 use crate::normalization::content_id;
+use crate::version::ContentKind;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct NormalizedNode {
@@ -71,7 +72,10 @@ pub(crate) fn normalize_checked_graph(
         normalize_definition(definition, info.kind());
         let mut canonical_definition = Vec::new();
         json::encode(definition, &mut canonical_definition);
-        let computed = content_id("axiom-ir-v0.1:node", &canonical_definition);
+        let computed = content_id(
+            &analysis.types().version().domain(ContentKind::Node),
+            &canonical_definition,
+        );
         if computed != info.supplied_id() {
             return Err(NodeError::ContentIdMismatch {
                 path: format!("/nodes/{index}/id"),
@@ -88,7 +92,7 @@ pub(crate) fn normalize_checked_graph(
     Ok(nodes)
 }
 
-fn normalize_definition(value: &mut Value, kind: NodeKind) {
+pub(crate) fn normalize_definition(value: &mut Value, kind: NodeKind) {
     let Value::Object(members) = value else {
         unreachable!("checked definition")
     };

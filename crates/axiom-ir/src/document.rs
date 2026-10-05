@@ -7,6 +7,7 @@ use crate::contracts::{ContractError, NormalizedContracts, normalization::normal
 use crate::declarations::{self as decode, DeclarationError, member_mut};
 use crate::json::{self, JsonLimits, Value};
 use crate::normalization::content_id;
+use crate::version::{ContentKind, IrVersion};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum DocumentError {
@@ -49,13 +50,16 @@ pub struct CanonicalDocument {
 }
 
 impl CanonicalDocument {
+    pub fn version(&self) -> IrVersion {
+        self.components.analysis().graph().types().version()
+    }
     pub fn components(&self) -> &NormalizedContracts {
         &self.components
     }
     pub fn canonical_bytes(&self) -> &[u8] {
         &self.canonical_bytes
     }
-    /// axiom-ir-v0.1:document + NUL + canonical_bytes 的 SHA-256 内容 ID，
+    /// 按精确 IR 版本的 document 域 + NUL + canonical_bytes 计算的 SHA-256 ID，
     /// 不是文件原始 SHA-256，也不写入 IR 文档自身。
     pub fn document_id(&self) -> &str {
         &self.document_id
@@ -132,7 +136,10 @@ pub fn normalize_document(
         }
     }
     canonical_bytes.push(b'}');
-    let document_id = content_id("axiom-ir-v0.1:document", &canonical_bytes);
+    let document_id = content_id(
+        &types.version().domain(ContentKind::Document),
+        &canonical_bytes,
+    );
     Ok(CanonicalDocument {
         components,
         canonical_bytes,

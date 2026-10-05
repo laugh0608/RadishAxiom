@@ -26,6 +26,38 @@ def ordered_document(document):
     return document
 
 
+def mixed_int_ranges(base):
+    entry = GENERATORS["type"]["entry"]
+    field = GENERATORS["type"]["field"]
+    read = GENERATORS["contract"]["read_field"]
+    record = entry("record", {"fields": [field("key", {"kind": "text"}),
+        field("low", {"kind": "int", "lower": "0", "upper": "1"}),
+        field("high", {"kind": "int", "lower": "0", "upper": "100"}, "sensitive")]})
+    table = entry("table", {"capacity": "3", "primary_key": ["key"], "record_type": record["id"]})
+    source = identified("node", {"kind": "input", "port": "source", "table_type": table["id"]})
+    # 相同 left/right 下，ge、gt、le、lt 为规范 JCS 顺序；不求值这些公式。
+    predicate = {"op": "and", "values": [{"op": op, "left": read("low"), "right": read("high")}
+                                           for op in ["ge", "gt", "le", "lt"]]}
+    filtered = identified("node", {"kind": "filter", "source": source["id"],
+                                   "table_type": table["id"], "predicate": predicate})
+    literal = {"op": "literal_int", "value": "-1", "type": {"kind": "int", "lower": "-100", "upper": "-1"}}
+    body = {"op": "and", "values": [{"op": op, "left": read("low"), "right": literal}
+                                      for op in ["ge", "gt", "le", "lt"]]}
+    contract = identified("contract", {"kind": "formula", "role": "guarantee", "expression": {
+        "op": "forall_rows", "table": {"kind": "input", "name": "source"}, "body": body}})
+    expected = ordered_document({**base, "enum_types": [], "record_types": [record], "table_types": [table],
+                                  "nodes": [source, filtered], "outputs": [{"name": "result", "node": filtered["id"]}],
+                                  "contracts": [contract]})
+    raw = copy.deepcopy(expected)
+    for node in raw["nodes"]:
+        if node["definition"]["kind"] == "filter":
+            values = node["definition"]["predicate"]["values"]
+            values.reverse()
+            values.append(copy.deepcopy(values[0]))
+    raw["contracts"][0]["definition"]["expression"]["body"]["values"].reverse()
+    return expected, raw
+
+
 def artifacts():
     upstream = {kind: generator["artifacts"]() for kind, generator in GENERATORS.items()}
     documents = {kind: ordered_document(json.loads(upstream[kind]["normalized-input.json"]))
@@ -46,6 +78,10 @@ def artifacts():
     renamed = copy.deepcopy(types)
     renamed["outputs"][0]["name"] = "renamed"
     documents["renamed-output"] = ordered_document(renamed)
+    for name, output_name in [("unicode-nfc", "é"), ("unicode-nfd", "e\u0301")]:
+        variant = copy.deepcopy(types)
+        variant["outputs"][0]["name"] = output_name
+        documents[name] = ordered_document(variant)
     # 两个表仅主键顺序不同；替换一个 input 的类型，按内容身份更新它和唯一引用。
     changed_key = copy.deepcopy(types)
     changed_node = identified("node", {**nodes[0]["definition"], "table_type": types["table_types"][1]["id"]})
@@ -59,8 +95,10 @@ def artifacts():
         body = {"op": "forall_rows", "table": {"kind": "input", "name": names[0]}, "body": body}
     deep["contracts"] = [identified("contract", {"kind": "formula", "role": "assume", "expression": body})]
     documents["deep-binders"] = ordered_document(deep)
+    documents["mixed-int-ranges"], raw_mixed = mixed_int_ranges(types)
 
     result = {f"{name}.jcs": canonical(document) for name, document in documents.items()}
+    result["mixed-int-ranges-input.json"] = json.dumps(raw_mixed, ensure_ascii=False, indent=2) + "\n"
     result["type-input.json"] = json.dumps(GENERATORS["type"]["reverse_objects"](raw_types), ensure_ascii=True, indent=2) + "\n"
     result["identities.tsv"] = "".join(
         f"{name}\t{identified('document', document)['id']}\tsha256:{hashlib.sha256(canonical(document).encode()).hexdigest()}\n"

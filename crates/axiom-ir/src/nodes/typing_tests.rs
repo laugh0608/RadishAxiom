@@ -314,6 +314,86 @@ fn join_pairs_are_nonempty_unique_closed_and_type_compatible() {
     );
 }
 
+fn join_with_pair_type(mut doc: Value, pair_type: &str) -> Value {
+    let table = schema(
+        &mut doc,
+        &[("id", TEXT, "public"), ("payload", pair_type, "public")],
+        &["id"],
+        "4",
+    );
+    input(&mut doc, 0, &table, "left");
+    input(&mut doc, 1, &table, "right");
+    node(
+        &mut doc,
+        2,
+        object([
+            ("kind", text("lookup_join")),
+            ("left", text(&node_id(0))),
+            ("right", text(&node_id(1))),
+            ("pairs", parsed(r#"[{"left":"payload","right":"payload"}]"#)),
+            ("table_type", text(&table)),
+            (
+                "fields",
+                Value::Array(vec![
+                    projection("id", field("0", "id")),
+                    projection("payload", field("0", "payload")),
+                ]),
+            ),
+        ]),
+    );
+    output(&mut doc, "out", 2);
+    doc
+}
+
+#[test]
+fn join_cannot_bypass_unsupported_record_equality() {
+    let mut declarations = document();
+    let record = declaration(
+        &mut declarations,
+        "record_types",
+        "record-type",
+        parsed(r#"{"fields":[{"name":"flag","type":{"kind":"bool"},"label":"public"}]}"#),
+    );
+    let mut pair_type = format!(r#"{{"kind":"record","record_type":"{record}"}}"#);
+    for _ in 0..3 {
+        let doc = join_with_pair_type(copy(&declarations), &pair_type);
+        let expected = NodeError::UnsupportedRecordComparison {
+            path: "/nodes/2/definition/pairs/0".to_owned(),
+        };
+        assert_eq!(analyze(&doc).unwrap_err(), expected);
+        let input = bytes(&doc);
+        assert_eq!(
+            normalize_node_graph(&input, limits()).unwrap_err(),
+            expected
+        );
+        let expected_contract = crate::contracts::ContractError::Node(expected);
+        assert_eq!(
+            crate::contracts::normalize_contracts(&input, limits()).unwrap_err(),
+            expected_contract
+        );
+        let expected_document = crate::document::DocumentError::Ir(expected_contract);
+        for check in [
+            crate::document::normalize_document,
+            crate::document::check_canonical_document,
+        ] {
+            assert_eq!(check(&input, limits()).unwrap_err(), expected_document);
+        }
+        pair_type = format!(r#"{{"kind":"option","inner":{pair_type}}}"#);
+    }
+}
+
+#[test]
+fn join_retains_scalar_and_optional_scalar_equality() {
+    for scalar in [TEXT, BOOL, INT, FIXED] {
+        let mut pair_type = scalar.to_owned();
+        for _ in 0..3 {
+            let doc = join_with_pair_type(document(), &pair_type);
+            assert!(analyze(&doc).is_ok(), "{pair_type}");
+            pair_type = format!(r#"{{"kind":"option","inner":{pair_type}}}"#);
+        }
+    }
+}
+
 #[test]
 fn shared_predecessors_and_repeated_join_edges_have_correct_degrees() {
     let (mut doc, table) = base("4");

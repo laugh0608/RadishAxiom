@@ -47,8 +47,22 @@ fn normalize_operator(value: &mut Value) {
             };
             values.sort_by_cached_key(encoded);
         }
+        "record" => {
+            let index = position(members, "fields");
+            let Value::Array(fields) = &mut members[index].1 else {
+                unreachable!("checked record fields")
+            };
+            fields.sort_by(|left, right| field_name(left).cmp(field_name(right)));
+        }
         _ => {}
     }
+}
+
+fn field_name(value: &Value) -> &str {
+    let Value::Object(members) = value else {
+        unreachable!("checked record field")
+    };
+    decode::string(decode::member(members, "name"), "").expect("checked field name")
 }
 
 fn normalize_boolean(value: &mut Value) {

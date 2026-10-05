@@ -6,9 +6,9 @@ use std::fmt;
 
 use crate::integer::Integer;
 use crate::json::{self, JsonError, JsonLimits, Value};
+use crate::version::IrVersion;
 
-pub const SEMANTICS_SHA256: &str =
-    "6b18d65eefa439956db8eebe1f4ce90e08b4def4abf7c718c2605e7528598d0d";
+pub use crate::version::V0_1_SEMANTICS_SHA256 as SEMANTICS_SHA256;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum DeclarationErrorKind {
@@ -100,6 +100,17 @@ pub enum ValueType {
     },
 }
 
+impl ValueType {
+    /// 当前相等支持集合；记录及其任意 Option 包装尚无通用相等语义。
+    pub(crate) fn supports_value_equality(&self) -> bool {
+        let mut ty = self;
+        while let Self::Option { inner } = ty {
+            ty = inner;
+        }
+        !matches!(ty, Self::Record { .. })
+    }
+}
+
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum Label {
     Public,
@@ -152,6 +163,7 @@ pub struct UnverifiedDeclaration<T> {
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct UnverifiedTypeDeclarations {
+    pub version: IrVersion,
     pub enum_types: Vec<UnverifiedDeclaration<EnumType>>,
     pub record_types: Vec<UnverifiedDeclaration<RecordType>>,
     pub table_types: Vec<UnverifiedDeclaration<TableType>>,
@@ -192,7 +204,8 @@ pub(crate) fn decode_type_declarations_value(
         ],
     )?;
     exact(root, "format", "", "axiom-ir")?;
-    exact(root, "ir_version", "", "0.1")?;
+    let version = IrVersion::parse(string(member(root, "ir_version"), "/ir_version")?)
+        .ok_or_else(|| error(DeclarationErrorKind::UnsupportedValue, "/ir_version"))?;
     exact(root, "digest_algorithm", "", "sha-256")?;
     let semantics = object(member(root, "semantics"), "/semantics", &["name", "sha256"])?;
     exact(
@@ -201,7 +214,12 @@ pub(crate) fn decode_type_declarations_value(
         "/semantics",
         "keyed-finite-table-semantics",
     )?;
-    exact(semantics, "sha256", "/semantics", SEMANTICS_SHA256)?;
+    exact(
+        semantics,
+        "sha256",
+        "/semantics",
+        version.semantics_sha256(),
+    )?;
     if !array(member(root, "effects"), "/effects")?.is_empty() {
         return Err(error(DeclarationErrorKind::NonEmptyEffects, "/effects"));
     }
@@ -209,6 +227,7 @@ pub(crate) fn decode_type_declarations_value(
         array(member(root, key), &child("", key))?;
     }
     let result = UnverifiedTypeDeclarations {
+        version,
         enum_types: declarations(member(root, "enum_types"), "/enum_types", enum_type)?,
         record_types: declarations(member(root, "record_types"), "/record_types", record_type)?,
         table_types: declarations(member(root, "table_types"), "/table_types", table_type)?,

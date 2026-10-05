@@ -6,6 +6,7 @@ use crate::expressions::normalization::normalize_checked;
 use crate::json::{self, JsonLimits, Value};
 use crate::nodes::{NormalizedNode, normalization::normalize_checked_graph};
 use crate::normalization::content_id;
+use crate::version::ContentKind;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct NormalizedContract {
@@ -90,7 +91,14 @@ pub(crate) fn normalize_parsed(value: &mut Value) -> Result<NormalizedContracts,
         }
         let mut canonical_definition = Vec::new();
         json::encode(definition, &mut canonical_definition);
-        let computed = content_id("axiom-ir-v0.1:contract", &canonical_definition);
+        let computed = content_id(
+            &analysis
+                .graph()
+                .types()
+                .version()
+                .domain(ContentKind::Contract),
+            &canonical_definition,
+        );
         if computed != info.supplied_id() {
             return Err(ContractError::ContentIdMismatch {
                 path: format!("/contracts/{index}/id"),

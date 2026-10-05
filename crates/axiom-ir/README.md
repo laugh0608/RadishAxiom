@@ -1,6 +1,6 @@
 # Axiom IR 内部组件
 
-本 crate 承载 [ADR 0016](../../docs/adr/0016-core-semantic-slice-entry.md) 的 P1 实施。当前实现 [IR v0.1](../../docs/ir/axiom-ir-v0.md) 的 JSON 字节边界、类型声明身份、受限表达式类型 / 规范化、节点与契约分析及内容身份，并重建保守字段 / 控制标签；已组合现有支持范围内的完整 IR 规范字节、strict canonical 检查和文档身份。表达式支持尚未收口，P1 尚未完成；不提供 CLI、Evidence 或执行门控。
+本 crate 承载 [ADR 0016](../../docs/adr/0016-core-semantic-slice-entry.md) 与 [ADR 0017](../../docs/adr/0017-ir-v0.2-support-boundaries-and-migration.md) 的 P1 内部组件。精确读取 [IR v0.1](../../docs/ir/axiom-ir-v0.md) 的既有支持子集与 [IR v0.2](../../docs/ir/axiom-ir-v0.2.md)：检查 JSON、类型、图、契约及内容身份，重建保守标签，生成完整规范文档和 strict 结果，并显式迁移共同子集。v0.2 的四项支持边界已经闭合；本机组件验收与完整 P1 生产阶段、独立 checker、跨平台和证明分别报告，不提供 CLI、Evidence 或执行门控。
 
 ## 输入与输出
 
@@ -10,30 +10,30 @@
 
 `declarations::decode_type_declarations(bytes, limits)` 从同一 candidate 输入解码类型声明，检查：
 
-- 顶层精确成员、IR `0.1`、语义名称 / 摘要、`sha-256`、空效果及顶层数组形状。
+- 顶层精确成员、IR `0.1` / `0.2` 各自对应的语义名称 / 摘要、`sha-256`、空效果及顶层数组形状。
 - enum / record / table 声明与全部七种内联值类型的闭合结构、标签，以及字段 / 枚举成员 / 主键名称唯一性。名称按规范拒绝空串、C0 `U+0000..001F` 和 C1 `U+0080..009F`，不扩展为其他 Unicode 类别过滤。
 - 整数规范词法、非负 scale / capacity 和 `lower <= upper`。`integer::Integer` 保留完整十进制文本并精确比较，不转换为固定宽度整数或浮点数；尚不提供算术运算。
 - ID 的词法与同类声明重复 ID、按类别解析引用、包括 `Option` 内部引用的记录无环性，以及存在、公开、非可选标量主键。
 
 返回 `UnverifiedTypeDeclarations`：**尚未重算内容 ID，也不验收整个 IR**。`nodes` / `contracts` / `outputs` 只检查数组形状，不检查元素、基数、引用或语义；无 input / output 的材料也可能完成声明解码。其后须经过下述声明规范化 / 身份核对，并继续完成表达式 / 节点类型与效果、转换 DAG / 可达性、契约与输出接口检查。所有解码数组暂保留原序；enum 成员和主键顺序始终有语义，不能排序或去重。没有第二种声明文件格式或独立成功码。
 
-`normalization::normalize_type_declarations(bytes, limits)` 复用声明解码，继续规范记录字段的 Unicode scalar 顺序，为每项 definition 生成 JCS 字节，按 IR v0.1 的对应类型域、NUL、definition 重算 SHA-256，并核对输入 ID。错误 ID 会返回 `ContentIdMismatch`，带原数组位置、输入 ID 和重算 ID；不会替换错误 ID、重写引用或静默去重。枚举成员和主键保留有语义的顺序，三类声明最终各自按 ID 排列。
+`normalization::normalize_type_declarations(bytes, limits)` 复用声明解码，继续规范记录字段的 Unicode scalar 顺序，为每项 definition 生成 JCS 字节，按精确 IR 版本的对应类型域、NUL、definition 重算 SHA-256，并核对输入 ID。错误 ID 会返回 `ContentIdMismatch`，带原数组位置、输入 ID 和重算 ID；不会替换错误 ID、重写引用或静默去重。枚举成员和主键保留有语义的顺序，三类声明最终各自按 ID 排列。
 
 成功返回只读的 `NormalizedTypeDeclarations`，分别保留规范类型化定义、规范 definition 字节与已核对的 ID。它只覆盖类型声明，不包含规范完整文档、文档摘要、节点 / 契约身份或完整 P1 成功信号；未检查范围与声明解码相同。这里没有 strict canonical 完整文档模式；可安全重排的数组、空白及转义差异仍可接受。
 
 `expressions::RowTypeChecker` 只从 `NormalizedTypeDeclarations` 构造，`infer(expression_bytes, limits, scope)` 推导一个既有逐行表达式的 `ValueType`。`RowScope` 为无绑定、单行或双行；记录 ID 须解析到已核验声明，双行初始顺序为 `[left_row, right_row]`，`match_option.some` 在索引 0 插入内部值。此内部 API 不定义新文件格式，也不接受调用方缓存的推导类型或标签。
 
-支持字面 bool / int / fixed / text / enum、`none` / `some`、`bound` / `field`、布尔组合、受限相等与数值比较、加减、`if` 和 `match_option`。检查闭合成员、数学字面值范围、绑定边界、声明引用、操作数 / 分支类型和 fixed scale；两个分支、全部布尔操作数均须检查，不按常量结果跳过。`Int` 加减要求两操作数类型相同，`Fixed` 加减要求操作数与结果 scale 相同，允许显式声明独立结果范围。**即使 `1 + 1` 的结果类型写为 `Int[0,0]`，本层也只推导该类型；不能代替后续范围义务。**
+支持字面 bool / int / fixed / text / enum、`none` / `some`、`bound` / `field`、布尔组合、受限相等与数值比较、加减、`if` 和 `match_option`。检查闭合成员、数学字面值范围、绑定边界、声明引用、操作数 / 分支类型和 fixed scale；两个分支、全部布尔操作数均须检查，不按常量结果跳过。`Int` 有序比较允许不同上下界，保留各自类型和左右顺序，不引入转换或范围合并；相等和 `Int` 加减仍要求两操作数类型相同。`Fixed` 有序比较要求同 scale，加减还要求结果 scale 相同，允许显式声明独立结果范围。**即使 `1 + 1` 的结果类型写为 `Int[0,0]`，本层也只推导该类型；不能代替后续范围义务。**
 
-失败区分 JSON / 结构错误、明确的类型错误、调用上下文缺少记录，以及 `Unsupported`。本轮支持边界如下，未修改冻结规范或添加猜测格式：
+失败区分 JSON / 结构错误、明确的类型错误、调用上下文缺少记录，以及 `Unsupported`。版本由已核验声明的 `version()` 决定：
 
 - `forall_rows` / `exists_rows` / `lookup` / `count_where` / `sum_where` 是契约专用操作，逐行上下文明确拒绝。
-- `record.fields` 的元素机器结构、`is_some` 的机器形式仍需精确规范确认，返回 `UnspecifiedForm`。
-- 记录及可选记录的相等不在本组件支持范围内；不同范围的 `Int` 数值比较暂返回 `MixedIntComparison`，保留类型兼容性审阅，不将未支持直接标为非法 IR。相等仍要求完全相同类型；同 scale 的 fixed 数值比较已支持。
+- v0.1 的 `record` / `is_some` 继续返回 `UnspecifiedForm`。v0.2 的 record 每项闭合为 name / expression，完整、唯一、完全同型；所有字段共用外层环境且全部检查。v0.2 的 is_some 为 `UnknownOperator`，存在性须显式写成 match_option。
+- 记录及任意 Option 包装记录的相等，在 v0.1 仍为 Unsupported，在 v0.2 为 `NonEquatableType`。标量与递归 Option 标量的完全同型相等可接受。
 
 类型成功不代表总性、算术范围、敏感性 / 控制依赖或非干扰成立。`infer` 不求值、不做表达式规范化 / 摘要、不验证节点图、键保持、容量关系或契约接口。
 
-`RowTypeChecker::normalize(expression_bytes, limits, scope)` 先复用上述类型检查，保留对原始所有分支 / 操作数的拒绝，再对已支持表达式执行 IR 明确要求的规范化：递归展平同类 and / or，按子表达式 JCS 字节排序 / 去重，单项折叠；排序 eq 两侧以及二元 int_add / fixed_add 的操作数。加法不去重或重结合，比较 / 减法 / 分支 / 绑定顺序保持不变，不做常量求值、不扩大结果范围。成功返回只读 `NormalizedRowExpression` 的类型与规范字节；没有独立表达式摘要，也不处理契约表达式。支持集合与 `infer` 相同，规范化不能抹去非法或未支持的子式。
+`RowTypeChecker::normalize(expression_bytes, limits, scope)` 先复用上述类型检查，保留对原始所有分支 / 操作数的拒绝，再对已支持表达式执行 IR 明确要求的规范化：递归展平同类 and / or，按子表达式 JCS 字节排序 / 去重，单项折叠；排序 eq 两侧以及二元 int_add / fixed_add 的操作数；v0.2 记录构造按 Unicode scalar 名称排序字段。加法不去重或重结合，比较 / 减法 / 分支 / 绑定顺序保持不变，不做常量求值、不扩大结果范围。成功返回只读 `NormalizedRowExpression` 的类型与规范字节；没有独立表达式摘要，也不处理契约表达式。支持集合与 `infer` 相同，规范化不能抹去非法或未支持的子式。
 
 `RowTypeChecker::analyze_labels(expression_bytes, limits, scope)` 先完成相同的类型 / 支持范围检查，再返回只读 `RowLabelAnalysis` 的类型与保守标签。字面值与 none 不读取字段；字段访问累计父值的选择依赖和字段声明标签；布尔、算术、比较、分支和 Option 操作合并全部已读依赖。`match_option.some` 的绑定移位与类型检查一致，不能因条件恒定、两分支相同或 `x - x` 而删去依赖。直接读取行的公开字段不包含敏感兄弟字段；整体记录值、条件产生的复合值会使用内容摘要，允许比最小语义依赖更保守。
 
@@ -41,16 +41,16 @@
 
 - input / filter / map / lookup_join / group 的闭合节点结构、节点 ID 词法与唯一性、已核验表类型、全部前驱引用，以及 input port 和 output 名称唯一性。至少一个输入与命名输出；输出只能引用节点。
 - filter 谓词为 Bool，输出记录与主键不变、容量不增；map / lookup_join 投影恰好覆盖输出字段，逐项推导类型与输出声明完全一致。map 单行环境为 `[source_row]`，join 为 `[left_row, right_row]`，容量等于源表 / 左表容量。
-- map / join 主键投影支持直接读取源行 / 左行键字段的保留与一一重命名，拒绝非键、右行键和重复 / 遗漏源键。复杂键表达式返回 `UnsupportedKeyExpression`，不推测其逐值保持性；这一支持范围仍须在完整 P1 前收口。
-- join pairs 非空、闭合、无重复，字段存在且类型完全相同；不要求连接字段是右主键，不宣称恰好一次匹配。
+- map / join 主键投影支持直接读取源行 / 左行键字段的保留与一一重命名，拒绝非键、右行键和重复 / 遗漏源键。复杂键表达式在 v0.1 返回 `UnsupportedKeyExpression`，在 v0.2 返回 `InvalidKeyProjection`；即使条件两支均读取同一键，也不作直接读取。
+- join pairs 非空、闭合、无重复，字段存在且类型完全相同；与表达式 `eq` 共用支持集合，记录及任意 Option 包装记录在 v0.1 返回 `UnsupportedRecordComparison`、v0.2 返回 `NonEquatablePair`。不要求连接字段是右主键，不宣称恰好一次匹配。
 - group keys 按输出主键顺序解析，源字段必须公开、非可选、可作为键，且与输出字段同类型。键与 aggregate 名称不冲突、共同恰好覆盖输出记录；count 遵循现行语义的 `Int[0, N]` 声明类型，sum 只接受非可选 Int 或同 scale Fixed，允许独立结果范围。容量不得大于源表，实际计数、求和与输出容量能否满足仍留给后续义务。
 - 迭代检查 DAG 与可达性：拒绝循环及不能到达命名输出的非 input 死节点，允许未使用的 input、共享前驱与多个命名输出引用同一节点。环错误定位真实成环边，不把环的下游误报为环边。
 
 成功返回只读 `NodeGraphAnalysis`，包含已核验声明、原输入顺序的节点分析摘要、输出引用及拓扑索引。索引始终指向原 `nodes` 数组，join 前驱顺序保留 `[left, right]`；它不返回 canonical 节点 definition。**该分析入口不重算节点内容 ID，契约仍只检查数组形状**；表达式规范化 / 节点身份另由下述入口处理，保守标签摘要见下文；完整效果、契约及文档身份仍未验收，不能据此开放完整 IR 成功入口。
 
-`nodes::normalize_node_graph(bytes, limits)` 在同一次解析中先完成全部节点图分析，然后按拓扑顺序规范逐行表达式、map / join 的 fields、join 的 pairs 和 group 的 aggregates；group keys 保留有语义的顺序。按 `axiom-ir-v0.1:node`、NUL、definition JCS 字节重算各节点 ID，错误返回 `NodeError::ContentIdMismatch`，携带原数组位置、输入 ID 与重算 ID；不改写错误 ID 或下游引用，不静默共享重复节点或删除死节点。结构非法 / 类型错误 / 未支持仍在规范化前按原位置报告。
+`nodes::normalize_node_graph(bytes, limits)` 在同一次解析中先完成全部节点图分析，然后按拓扑顺序规范逐行表达式、map / join 的 fields、join 的 pairs 和 group 的 aggregates；group keys 保留有语义的顺序。按当前版本的 `axiom-ir-v0.1:node` 或 `axiom-ir-v0.2:node`、NUL、definition JCS 字节重算各节点 ID，错误返回 `NodeError::ContentIdMismatch`，携带原数组位置、输入 ID 与重算 ID；不改写错误 ID 或下游引用，不静默共享重复节点或删除死节点。结构非法 / 类型错误 / 未支持仍在规范化前按原位置报告。
 
-成功返回 `NormalizedNodeGraph`，`nodes()` 按 ID 排列并只读提供已核对 ID 和规范 definition 字节；`analysis()` 保留原输入顺序的图分析，索引不指向前者的规范数组。此入口完成现有表达式支持范围内的节点内容身份，**不返回完整规范文档 / 文档摘要，不验收契约、非干扰或完整效果**。复杂键投影仍受原分析入口的支持限制；表达式支持边界及完整 P1 仍待收口。
+成功返回 `NormalizedNodeGraph`，`nodes()` 按 ID 排列并只读提供已核对 ID 和规范 definition 字节；`analysis()` 保留原输入顺序的图分析，索引不指向前者的规范数组。此入口完成现有表达式支持范围内的节点内容身份，**不返回完整规范文档 / 文档摘要，不验收契约、非干扰或完整效果**。版本化拒绝边界与原分析入口相同。
 
 两个节点入口都在全部结构 / 类型检查后按拓扑顺序重建 `NodeGraphAnalysis::node_flows()`，结果与原 `nodes` 数组一一对应：
 
@@ -73,15 +73,25 @@
 
 `ContractError` 分开保存 JSON / 声明、节点、表达式、契约结构和契约内容 ID 错误，保留原字节位置或 JSON Pointer。空契约数组与恒为 false 的 Bool 公式可以结构合法；分析不判断契约可满足性、公式真值或非干扰，不求值、不生成义务、不输出 canonical 契约 / 文档，也不核验契约内容 ID。
 
-`contracts::normalize_contracts(bytes, limits)` 在同一次有界解析中先完成全部原始节点与契约分析，再复用节点规范化 / 身份路径，并规范契约 definition、按 `axiom-ir-v0.1:contract` 域、NUL 和 JCS 字节重算 ID。formula 递归复用现有布尔 / 相等 / 加法规范重写；量词、查找键顺序、绑定索引、分支位置、结果类型与角色均保留。noninterference 的 inputs / outputs 分别按 Unicode scalar 名称序排列。原始坏成员、越界 / 不可见子式与 Unsupported 必须先拒绝，不能被布尔去重隐藏；重复契约 ID / 接口名也不会静默去重。
+`contracts::normalize_contracts(bytes, limits)` 在同一次有界解析中先完成全部原始节点与契约分析，再复用节点规范化 / 身份路径，并规范契约 definition、按当前版本的 `axiom-ir-v0.1:contract` 或 `axiom-ir-v0.2:contract` 域、NUL 和 JCS 字节重算 ID。formula 递归复用现有布尔 / 相等 / 加法规范重写；量词、查找键顺序、绑定索引、分支位置、结果类型与角色均保留。noninterference 的 inputs / outputs 分别按 Unicode scalar 名称序排列。原始坏成员、越界 / 不可见子式与 Unsupported 必须先拒绝，不能被布尔去重隐藏；重复契约 ID / 接口名也不会静默去重。
 
 成功返回只读 `NormalizedContracts`：`analysis()` 保留原节点 / 契约数组索引，`nodes()` 与 `contracts()` 各按已核对的 ID 排序、包含规范 definition 字节，声明身份可从分析图读取。内容 ID 不匹配报告原 `/contracts/<index>/id`、输入 ID 与重算 ID，不改 ID、不重写引用、不合并仅逻辑等价的公式。节点身份错误同样拒绝，空契约数组也不绕过节点身份核对。该局部入口不生成完整 canonical IR、strict canonical 检查或文档摘要；文档组合由下一入口完成，现有表达式未支持边界继续适用。
 
-`document::normalize_document(bytes, limits)` 在同一次有界解析中执行全部现有组件检查与身份核对，然后直接组合已核对的类型、节点和契约 definition 字节。五类内容数组各按 ID 排序，outputs 按 Unicode scalar 名称排序；对象 / 字符串复用同一个 JCS 编码器。没有第二套 definition 序列化规则，也不重新解析组件字节。成功返回只读 `CanonicalDocument`，包含 `canonical_bytes()`、`document_id()` 与 `components()`；分析索引仍指向原始输入，不随规范数组重排。原输入表示不同可以得到同样规范字节，但原位置分析不必相等。
+`document::normalize_document(bytes, limits)` 在同一次有界解析中执行全部现有组件检查与身份核对，然后直接组合已核对的类型、节点和契约 definition 字节。五类内容数组各按 ID 排序，outputs 按 Unicode scalar 名称排序；对象 / 字符串复用同一个 JCS 编码器。没有第二套 definition 序列化规则，也不重新解析组件字节。成功返回只读 `CanonicalDocument`，包含 `version()`、`canonical_bytes()`、`document_id()` 与 `components()`；分析索引仍指向原始输入，不随规范数组重排。原输入表示不同可以得到同样规范字节，但原位置分析不必相等。
 
-文档 ID 对 `axiom-ir-v0.1:document`、NUL 与完整规范字节计算，区别于文件原始 SHA-256，不内嵌到 IR 自身。规范机器字节无 BOM、额外空白或末尾换行。`document::check_canonical_document(bytes, limits)` 完成相同检查后严格比较原输入；有表示差异时返回 `DocumentError::NonCanonical { offset }`，定位首个不同 UTF-8 字节或共同前缀结束处。JSON、结构、身份、Unsupported 和资源错误保留为 `DocumentError::Ir` 内的原组件诊断，优先于格式差异；严格模式不会把修复后的字节作为成功结果返回。
+文档 ID 对当前版本的 `axiom-ir-v0.1:document` 或 `axiom-ir-v0.2:document`、NUL 与完整规范字节计算，区别于文件原始 SHA-256，不内嵌到 IR 自身。规范机器字节无 BOM、额外空白或末尾换行。`document::check_canonical_document(bytes, limits)` 完成相同检查后严格比较原输入；有表示差异时返回 `DocumentError::NonCanonical { offset }`，定位首个不同 UTF-8 字节或共同前缀结束处。JSON、结构、身份、Unsupported 和资源错误保留为 `DocumentError::Ir` 内的原组件诊断，优先于格式差异；严格模式不会把修复后的字节作为成功结果返回。
 
-两个文档入口只处理已有支持范围，所有未支持项继续明确拒绝，不产生文档成功结果。恒 false 契约、wrong 候选或范围未证明仍可能结构合法；规范字节与摘要不证明公式、非干扰、任务意图或安全执行。尚未接受的机器形式 / 类型兼容性与未支持的记录相等 / 复杂键投影须在完整 P1 验收前收口；没有凭这些函数绕过后续义务生成、证明或 target gate 的入口。
+两个文档入口只处理已有支持范围，所有未支持项继续明确拒绝，不产生文档成功结果。恒 false 契约、wrong 候选或范围未证明仍可能结构合法；规范字节与摘要不证明公式、非干扰、任务意图或安全执行。v0.1 的历史未支持项仍明确拒绝，v0.2 按新规范区分合法构造与确定的类型 / 结构错误；没有凭这些函数绕过后续义务生成、证明或 target gate 的入口。
+
+## 版本与显式迁移
+
+`version::IrVersion` 只列 `V0_1` / `V0_2`，每项绑定唯一语义摘要与六类内容身份域。`0.3`、`1.0`、错配语义或只换 header 而保留旧 ID 均拒绝。旧 `declarations::SEMANTICS_SHA256` 名称仅保留为 v0.1 常量别名，不代表默认或当前版本。
+
+`migration::migrate_v0_1_to_v0_2(bytes, limits)` 先 strict 检查精确 v0.1 源，再按依赖顺序重算全部类型 / 节点 / 契约身份、仅重绑结构化引用，并重新规范化表达式；输出再次经过真实目标 normalizer 与 strict 检查。规则不接受 pretty 源、旧版 Unsupported 或 v0.2 源，不猜字段、不提供降级或默认成功。名称与 Text 值即使同拼写于 ID，也不替换。
+
+返回 `MigratedDocument` 的只读 `target()` 和 `record()`；记录保留工具 / 规则名称与版本、两端版本和文档 ID、五类 definition 映射，语义摘要可由版本查询。规则为 `axiom-ir-0.1-to-0.2` / `1`；工具 crate 版本为 `0.0.0`，不能唯一标识开发构建，实际留存仍须附构建 / 仓库修订和源字节。`MigrationError` 区分 Source、WrongSourceVersion、Target，不转移 Evidence、证明、缓存或执行能力；细则见[迁移规范](../../docs/ir/ir-v0.1-to-v0.2-migration.md)。
+
+记录构造标签逐字段合并声明与表达式依赖，读取公开字段不自动包含敏感兄弟字段；嵌套 / 整体记录仍保守汇总。全部字段均先检查，坏兄弟表达式不能被投影隐藏；故障与总性的可观察性仍是后续义务。
 
 ## 资源与诊断
 
@@ -133,7 +143,11 @@ Rust 2024，`publish = false`，仅自有代码与标准库、禁止 unsafe，�
 
 契约身份切片另增 9 项回归：[11 项独立契约向量](tests/fixtures/contract-identities/README.md) 逐字节核对 definition 与 ID，覆盖五类表操作中的规范化、绑定 / 键 / 角色保留、Unicode 名称、幂等性和摘要域负例。四题 12 个候选的 21 条契约通过真实身份入口，并确认同题候选的实现变化不改变接口契约 ID。坏子式、重复成员 / ID / 接口、节点身份错误与资源失败仍定位到原输入。身份正确与恒 false 公式、未证明范围或错误算法并不矛盾，这些测试不生成证明或完整 IR 凭证。
 
-文档切片另增 10 项回归：[六个独立完整文档向量](tests/fixtures/document-identities/README.md) 核对类型 / 节点 / 契约组合、顶层排序、规范字节及文档身份。四题 12 个候选逐字节匹配已有 `.ir.jcs`，摘要匹配既有 `task.json` 的文档域摘要，pretty 输入通过规范化而被 strict 拒绝。覆盖仅 JSON 规范化仍不满足 IR 规范、转义 / 空白 / 换行、首个字节差异、输出名称 / 主键顺序变化、禁止内嵌文档摘要、原数组分析位置、结构 / 身份 / 未支持错误，以及原始字节 / 深宽预算。不同范围 Int 的 eq 类型错误与有序比较 Unsupported 分别断言，不扩大现有支持范围。
+文档切片最初新增 10 项回归：[完整文档独立向量](tests/fixtures/document-identities/README.md) 核对类型 / 节点 / 契约组合、顶层排序、规范字节及文档身份。四题 12 个候选逐字节匹配已有 `.ir.jcs`，摘要匹配既有 `task.json` 的文档域摘要，pretty 输入通过规范化而被 strict 拒绝。覆盖仅 JSON 规范化仍不满足 IR 规范、转义 / 空白 / 换行、首个字节差异、输出名称 / 主键顺序变化、禁止内嵌文档摘要、原数组分析位置、结构 / 身份 / 未支持错误，以及原始字节 / 深宽预算。
+
+支持边界审阅再增五项回归，独立完整文档向量由六个增至九个：不同范围 Int 的四种有序比较经过表达式、节点、契约、标签与文档身份路径，eq / 加法错型继续拒绝；记录 / Option<Record> 连接与表达式统一保持未支持，标量 / Option 标量连接继续通过；视觉相同的 NFC / NFD 输出名保持不同字节与文档身份。当时的两个文档入口和声明入口还拒绝未接受的 `0.2` / `1.0`；ADR 0017 实施后版本负例改为未知 `0.3` / `1.0` 并增加两版本摘要混搭。实现修复先由失败回归复现；支持问题、失败处理及完整矩阵对照见 [P1 审阅](../../docs/ir/p1-support-boundary-review.md)。
+
+v0.2 切片新增 12 项回归，见[兼容材料](tests/fixtures/v0.2/README.md)：20 份迁移源逐字节 / 逐 ID 核对独立期望，18 份导出负例精确核对类别和路径，记录构造经过类型、规范化、标签、契约与文档入口；另覆盖旧版诊断、42 层记录构造及 5,000 层记录 / 节点引用迁移。源、目标共用明确资源限制，声明 / 节点依赖迁移不递归展开调用栈。
 
 已安装并验收的宿主工具可按仓库约定离线执行：
 

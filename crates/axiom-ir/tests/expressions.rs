@@ -484,6 +484,81 @@ fn arithmetic_checks_type_and_scale_but_does_not_discharge_range_obligations() {
 }
 
 #[test]
+fn int_ordering_accepts_distinct_bounds_without_conversion_or_rewriting() {
+    let types = types();
+    let checker = RowTypeChecker::new(&types);
+    let large = "99999999999999999999999999999999999999999999999999";
+    let cases = [
+        int("0", "1", "0"),
+        int("0", "100", "1"),
+        int("-100", "-1", "-1"),
+        int("0", "0", "0"),
+        int(large, large, large),
+        int(&format!("-{large}"), "-1", "-1"),
+    ];
+    for op in ["lt", "le", "gt", "ge"] {
+        for left in &cases {
+            for right in &cases {
+                let expression = binary(op, left, right);
+                assert_eq!(closed(&checker, &expression).unwrap(), ValueType::Bool);
+                let expected = format!(r#"{{"left":{left},"op":"{op}","right":{right}}}"#);
+                assert_eq!(
+                    checker
+                        .normalize(expression.as_bytes(), limits(), RowScope::Closed)
+                        .unwrap()
+                        .canonical_bytes(),
+                    expected.as_bytes()
+                );
+                assert_eq!(
+                    checker
+                        .analyze_labels(expression.as_bytes(), limits(), RowScope::Closed)
+                        .unwrap()
+                        .label(),
+                    radishaxiom_ir::declarations::Label::Public
+                );
+            }
+        }
+        rejects(
+            &checker,
+            &binary(op, &cases[0], &fixed("0", "0", "1", "0")),
+            Kind::TypeMismatch,
+            "/right",
+        );
+        rejects(
+            &checker,
+            &binary(op, &cases[0], BOOL),
+            Kind::TypeMismatch,
+            "/right",
+        );
+        rejects(
+            &checker,
+            &binary(op, &some(&cases[0]), &some(&cases[1])),
+            Kind::ExpectedNumeric,
+            "/left",
+        );
+        rejects(
+            &checker,
+            &binary(op, &int("0", "1", "2"), &cases[1]),
+            Kind::LiteralOutOfRange,
+            "/left/value",
+        );
+    }
+    rejects(
+        &checker,
+        &binary("eq", &cases[0], &cases[1]),
+        Kind::TypeMismatch,
+        "/right",
+    );
+    let sum = format!(
+        r#"{{"op":"int_add","values":[{},{}],"result_type":{}}}"#,
+        cases[0],
+        cases[1],
+        int_json("0", "101")
+    );
+    rejects(&checker, &sum, Kind::TypeMismatch, "/values/1");
+}
+
+#[test]
 fn equality_is_nominal_and_ordering_is_numeric() {
     let types = types();
     let checker = RowTypeChecker::new(&types);
@@ -535,11 +610,8 @@ fn equality_is_nominal_and_ordering_is_numeric() {
         "/right",
     );
     assert_eq!(
-        closed(&checker, &binary("lt", &zero, &int("0", "2", "0"))).unwrap_err(),
-        ExpressionError::Unsupported {
-            reason: UnsupportedTyping::MixedIntComparison,
-            path: "".to_owned()
-        }
+        closed(&checker, &binary("lt", &zero, &int("0", "2", "0"))).unwrap(),
+        ValueType::Bool
     );
     let scope = RowScope::Single {
         record_type: types.record_types()[0].id(),

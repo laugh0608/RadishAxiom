@@ -27,8 +27,11 @@ fn golden(name: &str) -> &'static [u8] {
         "contract" => include_bytes!("fixtures/document-identities/contract.jcs"),
         "type" => include_bytes!("fixtures/document-identities/type.jcs"),
         "renamed-output" => include_bytes!("fixtures/document-identities/renamed-output.jcs"),
+        "unicode-nfc" => include_bytes!("fixtures/document-identities/unicode-nfc.jcs"),
+        "unicode-nfd" => include_bytes!("fixtures/document-identities/unicode-nfd.jcs"),
         "reordered-key" => include_bytes!("fixtures/document-identities/reordered-key.jcs"),
         "deep-binders" => include_bytes!("fixtures/document-identities/deep-binders.jcs"),
+        "mixed-int-ranges" => include_bytes!("fixtures/document-identities/mixed-int-ranges.jcs"),
         _ => panic!("unknown test vector"),
     }
 }
@@ -49,6 +52,43 @@ fn contract_document(expression: &str, id: &str) -> String {
         r#"{{"definition":{{"expression":{expression},"kind":"formula","role":"guarantee"}},"id":"{id}"}}"#
     );
     BASE.replace(r#""contracts": []"#, &format!(r#""contracts": [{entry}]"#))
+}
+
+#[test]
+fn mixed_int_ranges_work_in_nodes_contracts_labels_and_document_identity() {
+    let input = include_bytes!("fixtures/document-identities/mixed-int-ranges-input.json");
+    let result = normalize_document(input, limits()).unwrap();
+    assert_eq!(result.canonical_bytes(), golden("mixed-int-ranges"));
+    assert_eq!(
+        check_canonical_document(result.canonical_bytes(), limits())
+            .unwrap()
+            .document_id(),
+        result.document_id()
+    );
+    let graph = result.components().analysis().graph();
+    let output = graph.outputs()[0].node;
+    assert_eq!(
+        graph.node_flows()[output].row_control(),
+        radishaxiom_ir::declarations::Label::Sensitive
+    );
+    assert_eq!(
+        result.components().analysis().contracts()[0].interfaces()[0].name,
+        "source"
+    );
+    // 类型比较不会隐式成为相等、数字转换、范围证明或规范化求值。
+    let old = std::str::from_utf8(input).unwrap();
+    let changed = old.replace("\"op\": \"lt\"", "\"op\": \"eq\"");
+    for check in [normalize_document, check_canonical_document] {
+        assert!(matches!(
+            check(changed.as_bytes(), limits()).unwrap_err(),
+            DocumentError::Ir(ContractError::Node(NodeError::Expression(
+                ExpressionError::Type {
+                    kind: TypeErrorKind::TypeMismatch,
+                    ..
+                }
+            )))
+        ));
+    }
 }
 
 #[test]
@@ -224,7 +264,62 @@ fn interface_names_and_ordered_keys_change_document_identity_while_original_anal
 }
 
 #[test]
+fn visually_equal_unicode_names_keep_distinct_document_identities() {
+    let nfc = check_canonical_document(golden("unicode-nfc"), limits()).unwrap();
+    let nfd = check_canonical_document(golden("unicode-nfd"), limits()).unwrap();
+    assert_eq!(nfc.components().nodes(), nfd.components().nodes());
+    assert_ne!(nfc.document_id(), nfd.document_id());
+    let left = std::str::from_utf8(nfc.canonical_bytes()).unwrap();
+    let right = std::str::from_utf8(nfd.canonical_bytes()).unwrap();
+    assert_eq!(
+        left.replace(r#""outputs":[{"name":"é""#, r#""outputs":[{"name":"é""#),
+        right
+    );
+    for (input, expected) in [
+        (
+            left.replace(
+                r#""outputs":[{"name":"é""#,
+                r#""outputs":[{"name":"\u00e9""#,
+            ),
+            &nfc,
+        ),
+        (
+            right.replace(
+                r#""outputs":[{"name":"é""#,
+                r#""outputs":[{"name":"e\u0301""#,
+            ),
+            &nfd,
+        ),
+    ] {
+        assert_eq!(
+            normalize_document(input.as_bytes(), limits())
+                .unwrap()
+                .document_id(),
+            expected.document_id()
+        );
+        assert!(matches!(
+            check_canonical_document(input.as_bytes(), limits()).unwrap_err(),
+            DocumentError::NonCanonical { .. }
+        ));
+    }
+}
+
+#[test]
 fn structural_and_identity_errors_are_not_hidden_as_strict_format_differences() {
+    for version in ["0.3", "1.0"] {
+        both_reject(
+            &BASE.replace(
+                r#""ir_version": "0.1""#,
+                &format!(r#""ir_version": "{version}""#),
+            ),
+            DocumentError::Ir(ContractError::Node(NodeError::Input(
+                DeclarationError::Structure {
+                    kind: DeclarationErrorKind::UnsupportedValue,
+                    path: "/ir_version".to_owned(),
+                },
+            ))),
+        );
+    }
     let unknown = BASE.replacen('{', "{\"metadata\":true,", 1);
     both_reject(
         &unknown,
@@ -290,7 +385,7 @@ fn unsupported_expression_boundaries_survive_both_full_document_entries() {
         );
     }
     let mixed_int = r#"{"op":"lt","left":{"op":"literal_int","value":"0","type":{"kind":"int","lower":"0","upper":"1"}},"right":{"op":"literal_int","value":"0","type":{"kind":"int","lower":"0","upper":"2"}}}"#;
-    // eq 明确要求同型；尚待确认的是不同范围 Int 的有序比较，不把二者混为 Unsupported。
+    // eq 仍明确要求同型，不能因有序比较允许不同范围而放宽。
     both_reject(
         &contract_document(&mixed_int.replace("\"lt\"", "\"eq\""), LEXICAL_ID),
         DocumentError::Ir(ContractError::Expression(ExpressionError::Type {
@@ -299,17 +394,6 @@ fn unsupported_expression_boundaries_survive_both_full_document_entries() {
         })),
     );
     for check in [normalize_document, check_canonical_document] {
-        assert!(matches!(
-            check(
-                contract_document(mixed_int, LEXICAL_ID).as_bytes(),
-                limits()
-            )
-            .unwrap_err(),
-            DocumentError::Ir(ContractError::Expression(ExpressionError::Unsupported {
-                reason: UnsupportedTyping::MixedIntComparison,
-                ..
-            }))
-        ));
         let records = r#"{"op":"forall_rows","table":{"kind":"input","name":"source"},"body":{"op":"eq","left":{"op":"bound","index":"0"},"right":{"op":"bound","index":"0"}}}"#;
         assert!(matches!(
             check(contract_document(records, LEXICAL_ID).as_bytes(), limits()).unwrap_err(),

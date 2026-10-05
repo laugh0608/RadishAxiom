@@ -29,6 +29,8 @@ ADR 0007 的完整管线入口与 ADR 0011–0014 的 launcher / isolation 边�
 | P1 组件 | candidate bytes 到 canonical IR / 内容身份或可定位诊断；四题与同域新输入、Unicode / 数学整数 / 图结构负例及独立期望 | 验证义务成立、完整 Evidence、生产 invocation / receipt、六平台已通过 |
 | P2 组件 | 从 IR 与明确义务 profile 生成完整义务定义及稳定 ID；遗漏、多余、错配与 group 区分例 | solver 已执行、独立 checker 已接受、形式证明 |
 
+[ADR 0017](adr/0017-ir-v0.2-support-boundaries-and-migration.md)扩展 P1 的精确输入范围为 v0.1 既有支持子集与 v0.2，闭合四项边界并增加显式迁移；它不接受新 Evidence profile，也不改变组件与完整生产阶段的区分。
+
 P2 进入编码前必须处理 ADR 0009 的生产义务版本边界，不能把 checker 的受限 v0.1 profile 自动外推到新生产生成器；这一阻断不反向作用于 P1。两项组件都是中间里程碑，最终首域仍覆盖四题，不为单题建立硬编码路径。
 
 每次交接分别报告：新增的实际能力、规范与独立期望、未覆盖范围、解除或保留的阻断，以及下一切片的直接依赖。检查数量、文档数量和取证成功数只说明各自验证范围，不能作为产品完成度。

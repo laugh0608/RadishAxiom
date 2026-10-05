@@ -8,5 +8,7 @@ pub mod document;
 pub mod expressions;
 pub mod integer;
 pub mod json;
+pub mod migration;
 pub mod nodes;
 pub mod normalization;
+pub mod version;

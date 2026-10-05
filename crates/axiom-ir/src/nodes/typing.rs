@@ -7,6 +7,7 @@ use crate::declarations::{self as decode, Field, Label, RecordType, TableType, V
 use crate::expressions::{RowScope, RowTypeChecker};
 use crate::json::Value;
 use crate::normalization::NormalizedTypeDeclarations;
+use crate::version::IrVersion;
 
 pub(super) fn check_node(
     nodes: &[ParsedNode<'_>],
@@ -49,6 +50,7 @@ pub(super) fn check_node(
                 node,
                 record(types, &source.record_type),
                 record(types, &right.record_type),
+                types.version(),
             )?;
             check_fields(
                 node,
@@ -128,6 +130,9 @@ fn check_fields(
     for key in &node.table.primary_key {
         let (expression, expression_path) = &fields[key];
         let Some((slot, source_field)) = direct_field(expression) else {
+            if types.version() == IrVersion::V0_2 {
+                return Err(error(Kind::InvalidKeyProjection, expression_path));
+            }
             return Err(NodeError::UnsupportedKeyExpression {
                 path: expression_path.clone(),
             });
@@ -169,6 +174,7 @@ fn check_pairs(
     node: &ParsedNode<'_>,
     left: &RecordType,
     right: &RecordType,
+    version: IrVersion,
 ) -> Result<(), NodeError> {
     let path = decode::child(&node.path, "pairs");
     let pairs = decode::array(decode::member(node.definition, "pairs"), &path)?;
@@ -186,6 +192,12 @@ fn check_pairs(
         let left = field(left, &left_name, &left_path)?;
         let right = field(right, &right_name, &right_path)?;
         same_type(&left.value_type, &right.value_type, &path)?;
+        if !left.value_type.supports_value_equality() {
+            if version == IrVersion::V0_2 {
+                return Err(error(Kind::NonEquatablePair, &path));
+            }
+            return Err(NodeError::UnsupportedRecordComparison { path });
+        }
         if !seen.insert((left_name, right_name)) {
             return Err(error(Kind::DuplicatePair, &path));
         }

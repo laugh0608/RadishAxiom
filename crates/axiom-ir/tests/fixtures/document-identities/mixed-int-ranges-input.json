@@ -1,0 +1,282 @@
+{
+  "contracts": [
+    {
+      "id": "sha256:e8b9ede609a6f08bb08657a722ddd6e3065ef036170654b1469bc67d5d2e31f4",
+      "definition": {
+        "kind": "formula",
+        "role": "guarantee",
+        "expression": {
+          "op": "forall_rows",
+          "table": {
+            "kind": "input",
+            "name": "source"
+          },
+          "body": {
+            "op": "and",
+            "values": [
+              {
+                "op": "lt",
+                "left": {
+                  "op": "field",
+                  "field": "low",
+                  "record": {
+                    "op": "bound",
+                    "index": "0"
+                  }
+                },
+                "right": {
+                  "op": "literal_int",
+                  "value": "-1",
+                  "type": {
+                    "kind": "int",
+                    "lower": "-100",
+                    "upper": "-1"
+                  }
+                }
+              },
+              {
+                "op": "le",
+                "left": {
+                  "op": "field",
+                  "field": "low",
+                  "record": {
+                    "op": "bound",
+                    "index": "0"
+                  }
+                },
+                "right": {
+                  "op": "literal_int",
+                  "value": "-1",
+                  "type": {
+                    "kind": "int",
+                    "lower": "-100",
+                    "upper": "-1"
+                  }
+                }
+              },
+              {
+                "op": "gt",
+                "left": {
+                  "op": "field",
+                  "field": "low",
+                  "record": {
+                    "op": "bound",
+                    "index": "0"
+                  }
+                },
+                "right": {
+                  "op": "literal_int",
+                  "value": "-1",
+                  "type": {
+                    "kind": "int",
+                    "lower": "-100",
+                    "upper": "-1"
+                  }
+                }
+              },
+              {
+                "op": "ge",
+                "left": {
+                  "op": "field",
+                  "field": "low",
+                  "record": {
+                    "op": "bound",
+                    "index": "0"
+                  }
+                },
+                "right": {
+                  "op": "literal_int",
+                  "value": "-1",
+                  "type": {
+                    "kind": "int",
+                    "lower": "-100",
+                    "upper": "-1"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "digest_algorithm": "sha-256",
+  "effects": [],
+  "enum_types": [],
+  "format": "axiom-ir",
+  "ir_version": "0.1",
+  "nodes": [
+    {
+      "id": "sha256:1fd62a8794cc9913906ec02f7c179d2c4bd61f767213dacaf160d2143c274512",
+      "definition": {
+        "kind": "input",
+        "port": "source",
+        "table_type": "sha256:0b553a89c44a7ae037dacc3e9fd7e7286f6dfc3b0e64f24473af50b128ed851b"
+      }
+    },
+    {
+      "id": "sha256:5582be180f3b89a485a1faa75b15d4a2c1e663969b842472dc654499bc83eeaf",
+      "definition": {
+        "kind": "filter",
+        "source": "sha256:1fd62a8794cc9913906ec02f7c179d2c4bd61f767213dacaf160d2143c274512",
+        "table_type": "sha256:0b553a89c44a7ae037dacc3e9fd7e7286f6dfc3b0e64f24473af50b128ed851b",
+        "predicate": {
+          "op": "and",
+          "values": [
+            {
+              "op": "lt",
+              "left": {
+                "op": "field",
+                "field": "low",
+                "record": {
+                  "op": "bound",
+                  "index": "0"
+                }
+              },
+              "right": {
+                "op": "field",
+                "field": "high",
+                "record": {
+                  "op": "bound",
+                  "index": "0"
+                }
+              }
+            },
+            {
+              "op": "le",
+              "left": {
+                "op": "field",
+                "field": "low",
+                "record": {
+                  "op": "bound",
+                  "index": "0"
+                }
+              },
+              "right": {
+                "op": "field",
+                "field": "high",
+                "record": {
+                  "op": "bound",
+                  "index": "0"
+                }
+              }
+            },
+            {
+              "op": "gt",
+              "left": {
+                "op": "field",
+                "field": "low",
+                "record": {
+                  "op": "bound",
+                  "index": "0"
+                }
+              },
+              "right": {
+                "op": "field",
+                "field": "high",
+                "record": {
+                  "op": "bound",
+                  "index": "0"
+                }
+              }
+            },
+            {
+              "op": "ge",
+              "left": {
+                "op": "field",
+                "field": "low",
+                "record": {
+                  "op": "bound",
+                  "index": "0"
+                }
+              },
+              "right": {
+                "op": "field",
+                "field": "high",
+                "record": {
+                  "op": "bound",
+                  "index": "0"
+                }
+              }
+            },
+            {
+              "op": "lt",
+              "left": {
+                "op": "field",
+                "field": "low",
+                "record": {
+                  "op": "bound",
+                  "index": "0"
+                }
+              },
+              "right": {
+                "op": "field",
+                "field": "high",
+                "record": {
+                  "op": "bound",
+                  "index": "0"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "name": "result",
+      "node": "sha256:5582be180f3b89a485a1faa75b15d4a2c1e663969b842472dc654499bc83eeaf"
+    }
+  ],
+  "record_types": [
+    {
+      "definition": {
+        "fields": [
+          {
+            "name": "high",
+            "type": {
+              "kind": "int",
+              "lower": "0",
+              "upper": "100"
+            },
+            "label": "sensitive"
+          },
+          {
+            "name": "key",
+            "type": {
+              "kind": "text"
+            },
+            "label": "public"
+          },
+          {
+            "name": "low",
+            "type": {
+              "kind": "int",
+              "lower": "0",
+              "upper": "1"
+            },
+            "label": "public"
+          }
+        ]
+      },
+      "id": "sha256:542d35c60c63c5b5f637423843a47fa57c56f62271adadf5b4cdbb8cc1bc6b5c"
+    }
+  ],
+  "semantics": {
+    "name": "keyed-finite-table-semantics",
+    "sha256": "6b18d65eefa439956db8eebe1f4ce90e08b4def4abf7c718c2605e7528598d0d"
+  },
+  "table_types": [
+    {
+      "definition": {
+        "capacity": "3",
+        "primary_key": [
+          "key"
+        ],
+        "record_type": "sha256:542d35c60c63c5b5f637423843a47fa57c56f62271adadf5b4cdbb8cc1bc6b5c"
+      },
+      "id": "sha256:0b553a89c44a7ae037dacc3e9fd7e7286f6dfc3b0e64f24473af50b128ed851b"
+    }
+  ]
+}

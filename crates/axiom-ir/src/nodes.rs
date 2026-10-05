@@ -49,6 +49,7 @@ pub enum NodeErrorKind {
     InvalidGroupKey,
     InvalidAggregate,
     InvalidKeyProjection,
+    NonEquatablePair,
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -66,6 +67,10 @@ pub enum NodeError {
     },
     /// 首批只识别直接读取源键的投影；复杂表达式不被误判为规范非法。
     UnsupportedKeyExpression {
+        path: String,
+    },
+    /// 连接字段对不能绕过表达式的记录相等支持边界。
+    UnsupportedRecordComparison {
         path: String,
     },
 }
@@ -88,6 +93,9 @@ impl fmt::Display for NodeError {
             Self::Structure { kind, path } => write!(f, "IR node {kind:?} at {path:?}"),
             Self::UnsupportedKeyExpression { path } => {
                 write!(f, "unsupported key projection expression at {path:?}")
+            }
+            Self::UnsupportedRecordComparison { path } => {
+                write!(f, "unsupported record comparison in join pair at {path:?}")
             }
         }
     }
