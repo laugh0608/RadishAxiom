@@ -1,6 +1,6 @@
 # Axiom IR 内部组件
 
-本 crate 承载 [ADR 0016](../../docs/adr/0016-core-semantic-slice-entry.md) 的 P1 实施。当前实现 [IR v0.1](../../docs/ir/axiom-ir-v0.md) 的 JSON 字节边界、类型声明身份、受限逐行表达式类型 / 规范化、节点图分析及内容身份，并重建保守字段 / 控制标签、检查契约类型与接口、规范契约及核对其内容身份；没有完整 IR 成功入口，也不提供 CLI。
+本 crate 承载 [ADR 0016](../../docs/adr/0016-core-semantic-slice-entry.md) 的 P1 实施。当前实现 [IR v0.1](../../docs/ir/axiom-ir-v0.md) 的 JSON 字节边界、类型声明身份、受限表达式类型 / 规范化、节点与契约分析及内容身份，并重建保守字段 / 控制标签；已组合现有支持范围内的完整 IR 规范字节、strict canonical 检查和文档身份。表达式支持尚未收口，P1 尚未完成；不提供 CLI、Evidence 或执行门控。
 
 ## 输入与输出
 
@@ -75,7 +75,13 @@
 
 `contracts::normalize_contracts(bytes, limits)` 在同一次有界解析中先完成全部原始节点与契约分析，再复用节点规范化 / 身份路径，并规范契约 definition、按 `axiom-ir-v0.1:contract` 域、NUL 和 JCS 字节重算 ID。formula 递归复用现有布尔 / 相等 / 加法规范重写；量词、查找键顺序、绑定索引、分支位置、结果类型与角色均保留。noninterference 的 inputs / outputs 分别按 Unicode scalar 名称序排列。原始坏成员、越界 / 不可见子式与 Unsupported 必须先拒绝，不能被布尔去重隐藏；重复契约 ID / 接口名也不会静默去重。
 
-成功返回只读 `NormalizedContracts`：`analysis()` 保留原节点 / 契约数组索引，`nodes()` 与 `contracts()` 各按已核对的 ID 排序、包含规范 definition 字节，声明身份可从分析图读取。内容 ID 不匹配报告原 `/contracts/<index>/id`、输入 ID 与重算 ID，不改 ID、不重写引用、不合并仅逻辑等价的公式。节点身份错误同样拒绝，空契约数组也不绕过节点身份核对。该入口尚不生成完整 canonical IR、strict canonical 检查或文档摘要；现有表达式未支持边界及完整文档入口须在 P1 完成前收口。
+成功返回只读 `NormalizedContracts`：`analysis()` 保留原节点 / 契约数组索引，`nodes()` 与 `contracts()` 各按已核对的 ID 排序、包含规范 definition 字节，声明身份可从分析图读取。内容 ID 不匹配报告原 `/contracts/<index>/id`、输入 ID 与重算 ID，不改 ID、不重写引用、不合并仅逻辑等价的公式。节点身份错误同样拒绝，空契约数组也不绕过节点身份核对。该局部入口不生成完整 canonical IR、strict canonical 检查或文档摘要；文档组合由下一入口完成，现有表达式未支持边界继续适用。
+
+`document::normalize_document(bytes, limits)` 在同一次有界解析中执行全部现有组件检查与身份核对，然后直接组合已核对的类型、节点和契约 definition 字节。五类内容数组各按 ID 排序，outputs 按 Unicode scalar 名称排序；对象 / 字符串复用同一个 JCS 编码器。没有第二套 definition 序列化规则，也不重新解析组件字节。成功返回只读 `CanonicalDocument`，包含 `canonical_bytes()`、`document_id()` 与 `components()`；分析索引仍指向原始输入，不随规范数组重排。原输入表示不同可以得到同样规范字节，但原位置分析不必相等。
+
+文档 ID 对 `axiom-ir-v0.1:document`、NUL 与完整规范字节计算，区别于文件原始 SHA-256，不内嵌到 IR 自身。规范机器字节无 BOM、额外空白或末尾换行。`document::check_canonical_document(bytes, limits)` 完成相同检查后严格比较原输入；有表示差异时返回 `DocumentError::NonCanonical { offset }`，定位首个不同 UTF-8 字节或共同前缀结束处。JSON、结构、身份、Unsupported 和资源错误保留为 `DocumentError::Ir` 内的原组件诊断，优先于格式差异；严格模式不会把修复后的字节作为成功结果返回。
+
+两个文档入口只处理已有支持范围，所有未支持项继续明确拒绝，不产生文档成功结果。恒 false 契约、wrong 候选或范围未证明仍可能结构合法；规范字节与摘要不证明公式、非干扰、任务意图或安全执行。尚未接受的机器形式 / 类型兼容性与未支持的记录相等 / 复杂键投影须在完整 P1 验收前收口；没有凭这些函数绕过后续义务生成、证明或 target gate 的入口。
 
 ## 资源与诊断
 
@@ -105,6 +111,8 @@
 
 契约规范化在同一已检查树上进行，不再次解析图或向表达式分配独立预算；沿用节点 / 表达式规范器，额外保存契约 definition 字节与身份。61 层嵌套布尔组合及 10,000 个重复操作数的契约回归确认先约束原始深宽，再执行去重；规范结果较小不绕过资源拒绝。
 
+文档组合沿用整份输入预算，输出只由已规范 definition 与已检查的其余成员组成，规范字节量不增长；完整输出、文档摘要输入和组件分析会同时占用内存，仍不是硬内存配额。strict 比较按字节扫描，不把 Unicode 字符位置当作字节偏移。122 层量词和 10,000 个重复契约操作数经完整入口回归，较小预算仍先拒绝原始深宽。
+
 ## 实现与验收边界
 
 Rust 2024，`publish = false`，仅自有代码与标准库、禁止 unsafe，无第三方依赖、build script、过程宏或 native / FFI。唯一直接依赖为本地 `radishaxiom-digest 0.0.0`，其 [SHA-256 实现](../digest/README.md)由既有 runtime 提取，共享算法而不依赖 runtime 的产品能力。与 runtime 的 ASCII 闭合文档 parser 分开；不改变旧 runtime 协议，不让独立 Go checker 复用生产实现。
@@ -124,6 +132,8 @@ Rust 2024，`publish = false`，仅自有代码与标准库、禁止 unsafe，�
 契约切片新增 17 项人工期望回归：四题 12 个候选的 21 条契约均经实际入口检查，pretty / JCS 得到相同分析；同域材料覆盖接口可见性、Unicode 名称与原数组索引、复合主键顺序、嵌套绑定及其恢复、聚合类型 / scale、零容量表和不含零的结果范围、闭合成员、外部操作拒绝、未支持与资源错误。字段、类型和错误路径期望不由生产推导器生成；这些测试不代表公式成立、非干扰证明或契约身份验收。
 
 契约身份切片另增 9 项回归：[11 项独立契约向量](tests/fixtures/contract-identities/README.md) 逐字节核对 definition 与 ID，覆盖五类表操作中的规范化、绑定 / 键 / 角色保留、Unicode 名称、幂等性和摘要域负例。四题 12 个候选的 21 条契约通过真实身份入口，并确认同题候选的实现变化不改变接口契约 ID。坏子式、重复成员 / ID / 接口、节点身份错误与资源失败仍定位到原输入。身份正确与恒 false 公式、未证明范围或错误算法并不矛盾，这些测试不生成证明或完整 IR 凭证。
+
+文档切片另增 10 项回归：[六个独立完整文档向量](tests/fixtures/document-identities/README.md) 核对类型 / 节点 / 契约组合、顶层排序、规范字节及文档身份。四题 12 个候选逐字节匹配已有 `.ir.jcs`，摘要匹配既有 `task.json` 的文档域摘要，pretty 输入通过规范化而被 strict 拒绝。覆盖仅 JSON 规范化仍不满足 IR 规范、转义 / 空白 / 换行、首个字节差异、输出名称 / 主键顺序变化、禁止内嵌文档摘要、原数组分析位置、结构 / 身份 / 未支持错误，以及原始字节 / 深宽预算。不同范围 Int 的 eq 类型错误与有序比较 Unsupported 分别断言，不扩大现有支持范围。
 
 已安装并验收的宿主工具可按仓库约定离线执行：
 

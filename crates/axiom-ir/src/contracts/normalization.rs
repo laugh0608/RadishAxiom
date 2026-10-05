@@ -50,9 +50,14 @@ pub fn normalize_contracts(
     limits: JsonLimits,
 ) -> Result<NormalizedContracts, ContractError> {
     let mut value = json::parse(input, limits).map_err(DeclarationError::Json)?;
-    let analysis = analyze_parsed(&value)?;
-    let nodes = normalize_checked_graph(&mut value, analysis.graph())?;
-    let Value::Object(root) = &mut value else {
+    normalize_parsed(&mut value)
+}
+
+/// 保留同一次有界解析的树，供文档组合使用；不接受 caller 提供的分析缓存。
+pub(crate) fn normalize_parsed(value: &mut Value) -> Result<NormalizedContracts, ContractError> {
+    let analysis = analyze_parsed(value)?;
+    let nodes = normalize_checked_graph(value, analysis.graph())?;
+    let Value::Object(root) = value else {
         unreachable!("checked root")
     };
     let Value::Array(entries) = member_mut(root, "contracts") else {

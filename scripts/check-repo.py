@@ -56,6 +56,7 @@ REQUIRED_FILES = (
     "scripts/generate-ir-type-vectors.py",
     "scripts/generate-ir-node-vectors.py",
     "scripts/generate-ir-contract-vectors.py",
+    "scripts/generate-ir-document-vectors.py",
     "crates/checker-runtime/src/store.rs",
     "crates/checker-runtime/src/store/evidence.rs",
     "benchmarks/keyed-finite-table-v0.1/README.md",
@@ -495,7 +496,7 @@ def check_benchmark_corpus(errors: list[str]) -> None:
 
 
 def check_ir_vectors(errors: list[str]) -> None:
-    for kind in ["type", "node", "contract"]:
+    for kind in ["type", "node", "contract", "document"]:
         result = subprocess.run(
             [sys.executable, str(REPO_ROOT / f"scripts/generate-ir-{kind}-vectors.py"), "--check"],
             cwd=REPO_ROOT,

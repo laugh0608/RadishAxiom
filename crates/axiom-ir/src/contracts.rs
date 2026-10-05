@@ -9,7 +9,7 @@ use crate::nodes::{self, NodeError, NodeGraphAnalysis};
 
 pub use crate::expressions::tables::{InterfaceKind, InterfaceReference};
 
-mod normalization;
+pub(crate) mod normalization;
 pub use normalization::{NormalizedContract, NormalizedContracts, normalize_contracts};
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]

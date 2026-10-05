@@ -347,7 +347,7 @@ pub(crate) fn encode(value: &Value, output: &mut Vec<u8>) {
     }
 }
 
-fn encode_string(text: &str, output: &mut Vec<u8>) {
+pub(crate) fn encode_string(text: &str, output: &mut Vec<u8>) {
     output.push(b'"');
     for byte in text.bytes() {
         match byte {
