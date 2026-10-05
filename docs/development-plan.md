@@ -28,6 +28,7 @@ ADR 0007 的完整管线入口与 ADR 0011–0014 的 launcher / isolation 边�
 | --- | --- | --- |
 | P1 组件 | candidate bytes 到 canonical IR / 内容身份或可定位诊断；四题与同域新输入、Unicode / 数学整数 / 图结构负例及独立期望 | 验证义务成立、完整 Evidence、生产 invocation / receipt、六平台已通过 |
 | P2 组件 | 从 IR 与明确义务 profile 生成完整义务定义及稳定 ID；遗漏、多余、错配与 group 区分例 | solver 已执行、独立 checker 已接受、形式证明 |
+| P3-A 组件 | 从严格匹配的 IR / P2 集合生成 map / filter 的 numeric-range / contract-guarantee 查询；规范字节、完整绑定、资源 / 未支持拒绝及独立有限求值比较 | 完整 P3、真实 solver / 模型 / proof、新 Evidence 或独立 checker 集成 |
 
 [ADR 0017](adr/0017-ir-v0.2-support-boundaries-and-migration.md)扩展 P1 的精确输入范围为 v0.1 既有支持子集与 v0.2，闭合四项边界并增加显式迁移；它不接受新 Evidence profile，也不改变组件与完整生产阶段的区分。
 

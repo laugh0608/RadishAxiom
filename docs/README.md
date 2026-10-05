@@ -39,6 +39,7 @@
 | Darwin 强隔离与 container 状态 | [ADR 0013](adr/0013-darwin-checker-hard-isolation.md)、[0014](adr/0014-darwin-app-sandbox-container-state.md) |
 | 虚拟 checker 资源保证与迁移边界 | [ADR 0015（Accepted）](adr/0015-virtualized-checker-resource-profile.md) |
 | 核心语义组件、IR 与义务版本范围 | [ADR 0016（Accepted）](adr/0016-core-semantic-slice-entry.md)、[0017（Accepted）](adr/0017-ir-v0.2-support-boundaries-and-migration.md)、[0018（Accepted）](adr/0018-ir-derived-obligation-profile.md) |
+| map / filter 限定查询编码 | [ADR 0019（Accepted）](adr/0019-map-filter-query-encoding.md) |
 
 ADR 定义决策和重评条件，不表示相关生产能力已完成；实现进度由当前状态维护。
 
@@ -79,6 +80,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 | Linux 来源实际核验 | [摘要 / 签名与 builder 库存](records/linux-6.18.49-source-review/README.md)、[归档文件盘点与精确缺失包候选](records/linux-6.18.49-archive-inventory/README.md) |
 | Linux 构建包来源与安装差异 | [Debian 签名摘要链、控制脚本审阅与安装模拟](records/linux-builder-source-chain/README.md) |
 | Rust Linux 与静态目标输入 | [签名 / 归档盘点、安装候选与 kernel 许可审阅](records/rust-linux-input-review/README.md) |
+| 2026-10-05 日终回顾 | [P1 / P2 / P3-A 全天提交、代码与文档核对及明日交接](records/2026-10-05-closeout.md) |
 | 2026-09-29 日终回顾 | [全天提交、代码与文档核对及明日交接](records/2026-09-29-closeout.md) |
 | 2026-09-29 阶段整理 | [投入审阅、核心语义顺位调整与保留资产](records/2026-09-29-core-realignment.md) |
 | 2026-09-25 日终回顾 | [MPFR / MPC 接受、剩余来源材料及 GMP 失败诊断的提交与文档复核](records/2026-09-25-closeout.md) |

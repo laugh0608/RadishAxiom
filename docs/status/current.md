@@ -40,15 +40,17 @@
 
 近期验收看真实输入能否产生规范输出与可定位拒绝，区分实现、指定态 fixture、独立复核与证明；不以提交数、测试数或来源包数量替代里程碑。每个切片结束复核下一项是否直接服务上述交付；新增前置必须解释具体依赖和停止条件。
 
-### 当前切片与下一步（2026-10-05）
+### 日终交接（2026-10-05）
 
-P1 已提交为 `ed39e3b`，P2 已提交为 `5142d70`，均完成本机内部组件验收。P1 迁移 / 支持矩阵见 [IR 组件](../../crates/axiom-ir/README.md)；P2 [独立材料](../../contracts/ir-derived-obligations-v0.2/README.md)含 26 份 IR、482 项定义与 29 份负例。旧绑定保留，完整生产阶段仍未验收。
+P1 `ed39e3b`、P2 `5142d70` 与 P3-A `2f4510c` 已提交并完成本机内部组件验收。P3-A 只支持 map / filter 的 numeric-range / contract-guarantee，不产生五态、证明或执行许可。全天提交、覆盖数字与代码 / 文档核对见[日终记录](../records/2026-10-05-closeout.md)；精确 API 与支持边界见 [IR 组件](../../crates/axiom-ir/README.md)。今晚到此收工。
 
-项目所有者在 P3 精确审阅后回复“确认，继续推进”。[ADR 0019](../adr/0019-map-filter-query-encoding.md) / [编码规则](../query/map-filter-query-v0.1.md)接受 map / filter、核心表达式 / forall_rows / lookup，以及 numeric-range / contract-guarantee。Rust `encode_query` / `check_query` 已实现只读查询、完整来源绑定、严格字节核对和六类预算；不产生五态、证明或执行许可。
+### 明日事项（2026-10-06）
 
-[P3 独立材料](../../contracts/map-filter-query-v0.1/README.md)覆盖 40 个文档、26 个支持 op、68 条实际 SMT 查询和 2,394 个赋值；具体 IR 与实际 SMT 文本分别解释并比较，另有手算字节与三项篡改拒绝。AX-B01 保持原容量，两个 wrong 的业务反例在有限世界中区分。深层类型 / 图、展开乘积、预算精确上限 / 差一、Pre / Reach / 故障与 None / Unicode 均有回归。
+1. 先核对工作区与本页，从现有 P2 全集审阅 map / filter 的剩余目标：effect-empty、totality、key-cardinality、row-coverage、field-origin。它们是候选审阅范围，不预先承诺同批实现，也不改写既有义务定义。
+2. 区分能由结构检查支持的目标与需要查询的目标，明确各自 Pre、故障、目标归因和拒绝边界；审查如何复用 P3-A 的类型化 SMT、槽位与资源预算，避免第二套编码入口。field-origin 的保守标签不等于业务意图或双世界非干扰证明。
+3. 交付下一切片的精确范围、独立正负例 / 区分例设计、兼容性影响和验收标准；范围接受后再实施。既有完整义务清单和未支持拒绝继续保留，不能用已生成子集声称完整 P3。
 
-既有 482 项 P2 位置未删减：测试预算下生成 115 条 query，1 项静态候选因超大容量拒绝，56 项被文档功能阻断，284 项属于其他 prove 类型，26 项为 check。完整 Evidence v0.2 仍须补实际 trust / concrete checks、迁移与独立验收；下一步先审阅 map / filter 剩余目标，不把 P3-A 当作完整 P3 或真实 solver 验收。
+join / group、聚合契约、双世界非干扰与 P4 / P7 / P9 分别审阅；真实 solver、跨仓 checker、新 Evidence 集成及外部执行继续保留各自门禁。明日建议不自动授权安装、启动、远程写入或正式实验。
 
 ### 暂缓工作与恢复条件
 
@@ -95,7 +97,7 @@ cargo +1.97.1-aarch64-apple-darwin test --workspace --all-targets --locked --off
 
 命令以工具和依赖已验收安装为前提，不授权下载；其他平台先确认精确工具与执行范围。
 
-本轮 P3 审阅 / 动态期望生成一致性、仓库检查与 `git diff --check` 已通过；保留全部既有契约 / IR / P2 材料及旧入口隔离。CI 未触发，其他平台及真实 checker / cvc5 / Node 未执行。后续按[工程门禁](../governance/repository-governance.md#rust-工程门禁)验证，契约检查不能替代 Rust 测试。
+P3 实现验证与日终文档检查分别记录于[日终记录](../records/2026-10-05-closeout.md)；保留全部既有契约 / IR / P2 材料及旧入口隔离。CI 未触发，其他平台及真实 checker / cvc5 / Node 未执行。后续按[工程门禁](../governance/repository-governance.md#rust-工程门禁)验证，契约检查不能替代 Rust 测试。
 
 ## 按需阅读
 
