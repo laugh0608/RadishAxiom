@@ -47,6 +47,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 - [Axiom IR 组件](../crates/axiom-ir/README.md)：JSON、类型 / 图 / 契约分析与身份、完整文档规范化、strict 检查及显式 v0.1 → v0.2 迁移。
 - [P1 支持边界与验收矩阵审阅](ir/p1-support-boundary-review.md)：初次缺口审阅、已接受决定与版本化矩阵对照；不替代规范。
 - [IR 派生义务 profile v0.2](evidence/ir-derived-obligations-v0.2.md)：已接受的 P2 范围、版本 / 身份、group 目标和 strict 完整性；[审阅](evidence/p2-obligation-profile-review.md)与[正负例](../contracts/ir-derived-obligations-v0.2/README.md)保留来源和兼容边界。
+- [map / filter 查询编码](query/map-filter-query-v0.1.md)：[ADR 0019](adr/0019-map-filter-query-encoding.md)接受的 P3-A 内部范围、故障 / 资源与字节规则；[独立验收](../contracts/map-filter-query-v0.1/README.md)和[初始审阅](query/p3-query-encoding-review.md)分别保留动态材料与决策来源。
 - [共享 SHA-256](../crates/digest/README.md)：runtime / IR 共用的自有摘要实现与独立复核边界。
 
 ## 机器契约

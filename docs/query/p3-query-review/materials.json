@@ -1,0 +1,3162 @@
+{
+  "status": "accepted-scope-static-review-only",
+  "generator_raw": "sha256:f3f4c6bbc33facfe454f4f2380f00b366e840eaefa4507d75988b78f3dd18d7b",
+  "review_raw": "sha256:79f9384a9044fd3b8e8776b49a58592182c40df263d27d7df950c23186987d4a",
+  "inventory_raw": "sha256:0d02785e7718a55c94eb8119d6cc698ef0b1e73a506d7b2d5758e6f40bf240bb",
+  "limits": "Shape inventory and scalar distinctions only; no IR execution, SMT, solver or Evidence.",
+  "counts": {
+    "unsupported-kind": 284,
+    "candidate-by-shape-only": 116,
+    "not-prove": 26,
+    "unsupported-document-feature": 56
+  },
+  "coverage": [
+    {
+      "name": "ax-b01-correct",
+      "ir": "crates/axiom-ir/tests/fixtures/v0.2/migrated/ax-b01-correct.jcs",
+      "ir_raw": "sha256:9a62d3b9397f2db664786d64ad77b848a53c46e62186edc29d2c31f665db9f2a",
+      "ir_document_digest": "sha256:90d876b9fdd533944e09f4274ba4aaa313d179454427e60eca81575707054f0b",
+      "obligation_set_raw": "sha256:5edf309363ddb36f219a317e2cb714ba0673669c26f1b376368f22c9d327356f",
+      "blockers": [],
+      "obligations": [
+        {
+          "id": "sha256:1dcc3305a589ba2161b387d07e4425a6e1a7034c69243f1746e1222c96bd16e1",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:34666d2deebb7e41afbddac07401ca9a5fdbdaca16e90269bec3e161f607a782",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:4b054af797c1b1120822d43785d28047b9983cbde862d3cbcea13580ac7ffaba",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:4f97f098d0782f88070ab89ced9749d603fe316f79c826f828b3561ce51711f5",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:64bd44f0489b89d0912ce46e659f393de494341a5c960cf23f9efb7698308a70",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:75e9b6af0c3b16aa52e86368827296be09f8cf62a7ce5f591e678537d7fc268a",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:8a608c25a3ced58efe17ffb31da0530567f983433216e35d36e2d59018b89139",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:a00fdcf35d10acef443b7eb69e523c18c58a01eabd51276149a76836b4e73c43",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:b0f12d6e03c05cac501416db5ca46057516deac9424b67e0fc6daebdee7a37b2",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:b4ad73cf180f6a36803686d8b04f1449131f8650314d0d8fb23f0362cb94c759",
+          "kind": "contract-guarantee",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:b804c9369a2c23dec3b1459599f8ef81561d47ee8655cb19e002bfc87a70c61c",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        },
+        {
+          "id": "sha256:c088c2a05d5c0930521fcacf0815478872eba324a619b57402e15e2f36a923f1",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:e4b0331b7d9caf004b695af957e6e2751bed2d666515634d7295e4f72847671a",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        }
+      ]
+    },
+    {
+      "name": "ax-b01-wrong-add",
+      "ir": "crates/axiom-ir/tests/fixtures/v0.2/migrated/ax-b01-wrong-add.jcs",
+      "ir_raw": "sha256:10e99922b4fe1c1490703b6e61dcc13e810b6dbfd5ffa1a444314a7d201fc970",
+      "ir_document_digest": "sha256:d79e3052c7c50c6fea9b17fc76d0a3ac56729bbd458f0c09e55668b7ad0dff3f",
+      "obligation_set_raw": "sha256:5aef69443654457bacfd8eadcf7daf0b7fee4d9379cd829c6c64d0bfa796e28a",
+      "blockers": [],
+      "obligations": [
+        {
+          "id": "sha256:185132f9c947ff0d3853c24e969713337df0282232e16eb30200492726e7a7ac",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:2c450f6d3ad69780e06d504e16c2ed57824810ad8f35925d99c329926fd7b959",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:3836f159cfe90778c107c0d885f8178d2f09eb73fdb3d745adcff46bede852fb",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:41d19d4e978d7288edd877ef233a69cbeac82fd76fc0ca128d23fcfdca5ef55f",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:476a70897cc31f830393c06e9c6eabb9e94e892bd3aca3b3b8b5421576a9a6ca",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:4916b2ef17b43cab21bff8ae87433922c60fbf86fb72fc52972e06964584476e",
+          "kind": "contract-guarantee",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:5820644700738103e0396fc9c2d52cc27b33f5472194765cfea0c4000f14df59",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        },
+        {
+          "id": "sha256:64c36594d0f0a544cfefa101ed54db08818fcfcc658b72547fe8a1103186e4ef",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:86601492eaf8a3e5514334f08dcb93117020e9a90085ff58a738670fea3215fc",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:ec715795bc52da1da50bd505a3e0df83e0ab5c97a473d4e7447dd56f67bd38e7",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:f40e7e62ff1e8a91a36644cc85c2c1b7bd991d26959b18de3106986fbf0b25bc",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:f6f2ecbc24e2ee91f8bf16e44bea4cb0d8ca3ed7d465a923e39573a8bec13765",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:fc62468f12482e2cb9a3646cd9487d9a5cecbfadf490efc4c88465310d9586a3",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        }
+      ]
+    },
+    {
+      "name": "ax-b01-wrong-drop-zero",
+      "ir": "crates/axiom-ir/tests/fixtures/v0.2/migrated/ax-b01-wrong-drop-zero.jcs",
+      "ir_raw": "sha256:445cb216e2b5d2a7dc4f4ddf630da757b725312f2a25fef5bb5d947f0eb6ca30",
+      "ir_document_digest": "sha256:dfe7423b861b6281c4707c0d0e9ef828b3f521ef9a07ab706f3a6b7e96731eb4",
+      "obligation_set_raw": "sha256:0ef732728c21aaee13f32796496d895437284b82254ef5c676a6e2ea5362e50b",
+      "blockers": [],
+      "obligations": [
+        {
+          "id": "sha256:2cde7cc5adf7eb3e1807479ac232a449103f9f2e6e2e4df69b4f1eba6c1f4c50",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:45a2792543bcdc7c78a5d43dfc9dd54135bb7c264b2979d2aec1da21eb3b592a",
+          "kind": "contract-guarantee",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:58fdd9af617ecfbf6bf7b23764b7c27a8c6cbd7b7002077db8a522e0a1fcd3d3",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        },
+        {
+          "id": "sha256:61e7b6a1c568583e92b5e9b5881ab4c47abcf991fb12f149e7f901a481aee1c6",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:6b3fe1f5acc38a0c94fa84316320cb8cb00527b14a7620849a635830345102e3",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:6d406f2b1b8f0bac26f0865b42a9688f17aff6f3e829f619b139a05f723821c8",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:777d4dbee0f36ac66dbaf27c5bf3813819a53a7c14120c08414f2e4c3f5c81b6",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:8880f34c196a163dc5d4ade14191a11dd5101747b03154dbaa82e121459d4e0d",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:a2b12cdc6776736026ed9f959d818464d0258c3b8b12aebf14a72a1f44478a65",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:a355bbdec043563ff27fd7639d94cacf7981e6a5d53a20a558868b72529d2630",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:c47eba25d29b4b2c9711d19fb8164d27a7f6b02b3af7162a43fb91772dad5a7a",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:cc4ad57947f66a2c58e98697e278e53aa645ccc541e49688552c7ba3accdec2e",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:cf314bdef9d9f92943382f02ed62502d711dc4730117f186870f0763ca737bde",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        }
+      ]
+    },
+    {
+      "name": "ax-b02-correct",
+      "ir": "crates/axiom-ir/tests/fixtures/v0.2/migrated/ax-b02-correct.jcs",
+      "ir_raw": "sha256:bcd84b4f18419055f06a639540ceaaeb26095e17169747cc13c7730289d0ab28",
+      "ir_document_digest": "sha256:0c78750cde6e9b00938478494200208b9e269baebfeeff2081d4224f96b9554a",
+      "obligation_set_raw": "sha256:4defb7e39e678e5a39b13ddcd579ea3beabe43bac3720b9fd0696ee8c4519a20",
+      "blockers": [
+        "node:lookup_join"
+      ],
+      "obligations": [
+        {
+          "id": "sha256:5576fb8399283fa8ecbdbe3a97baba1e33da2d39db72c8216166fc8433533cef",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:5970af13eae202eb39b86f79479f8159ac42f3dfd7b37f5add8166033bbe388b",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:8819396077d036f87b0563aed0aada1e6e95a08f5767fc49c9761dfafa0b071e",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:a26aa9f09917ed725423ddf18cdf7a813bab85ce8f1ca95528e7be7d6e284eda",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:ad668830ce22f63b399e2618daeff7f61dd2ff8146eafb7f9665bf73a7c92926",
+          "kind": "contract-guarantee",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:b0820761140e058ff3ce347c57f9c21ad653fed07eafd6bf503aad8bc28ca114",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:df40af8bf5ba8873df6584cbb1de11be15ba531a2a8e30a89de8d4a4b013f775",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:e27aadb4c3f76d15f3320a12622cb4088d2337a7423ee87792c7bbe8916b9e53",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        }
+      ]
+    },
+    {
+      "name": "ax-b02-wrong-constant-tier",
+      "ir": "crates/axiom-ir/tests/fixtures/v0.2/migrated/ax-b02-wrong-constant-tier.jcs",
+      "ir_raw": "sha256:a5db5a3aab850a4a760aee4b8b504af2e93b96f92d32cb72d05b92ac28428cef",
+      "ir_document_digest": "sha256:5c1bca4359bbd1a26df13ad70d1db9fe0179301c5333500a5a057c0e0178715e",
+      "obligation_set_raw": "sha256:1744630063a91da31ad4e5ba2343c8c2a180f6aea17796eaeddb10d2d4c364d2",
+      "blockers": [
+        "node:lookup_join"
+      ],
+      "obligations": [
+        {
+          "id": "sha256:2d848aa980acfca441d4d2068efbc6826fc28dc3cdf18a2afa58a569528a482f",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:30c017753030de56f4dc7d660943ae45111fcafb701546ac4c92c02c5dd6780c",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:3387a67ccaed2bb31ba91745709be4f20b1e8fc85b56541b5692586dce6e59a1",
+          "kind": "contract-guarantee",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:6c06ac557267fbd629916e1723cde1ad8f122b67615a9e9ee35163e12ecd662e",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:6f4c25f81c888bc7280b54ab704617d8873194b75f9cbd92a8b3de4497ee5a4b",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        },
+        {
+          "id": "sha256:adf93a95db12970abb715151209a3d3c692aa355c4fc868133f570a31da48a4b",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:ca5487f7689aa38b0985c5d48f9697d4b15ac3f222934c34e1fb3f8737f3716e",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:fa856a22657d972ff43bbb70243adfa8519a0cc94aaee28ebe17a6005bc5ce85",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        }
+      ]
+    },
+    {
+      "name": "ax-b02-wrong-region-join",
+      "ir": "crates/axiom-ir/tests/fixtures/v0.2/migrated/ax-b02-wrong-region-join.jcs",
+      "ir_raw": "sha256:b9330e8d9000c11dc5c4a02397b08d13fc640636487aeb219b3ca6c5deee05bb",
+      "ir_document_digest": "sha256:8bc01e63b1ecae534ef83e63f73c02c577b08d324a2ffb4b7064c05e340c67fe",
+      "obligation_set_raw": "sha256:48a20e11397029a1fddee7f3f03a398453bdddd97ae67e4231959321260a4e7c",
+      "blockers": [
+        "node:lookup_join"
+      ],
+      "obligations": [
+        {
+          "id": "sha256:329728e8d54ec839abefd98d411e4844932dcb4ae2fd0b2e79e9a399b83092ce",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:6f8efbda8bfe76779b7faedf6771d429a451744b9f000068e5be78d9cf335696",
+          "kind": "contract-guarantee",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:80e6e33ec132ff8b8b9290d3df951c0f57f47c4e4ed1b68234accfc40f9955d7",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:8b8df7868ef97a70410cbb3bafc7bb06dbb02df4972f67b453dbb2ee162c6110",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:c8d2f8f542213b530e9bf1d02c71cb94aa6c51c4769a84da453137b59ebfb2e9",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:cbc60732182da1e46a8974a70925c8a04230bf2771c1a907a0d636b64b944533",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:cdc3cc70c2e0c21cf142fefcdee7e261e3fe7e954548e50a30888b0f1e3e2d80",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        },
+        {
+          "id": "sha256:e3cec1c49c76d9dbb3328ff9d1d046a37d728235ec79d18f126ec7bc7b493ca5",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        }
+      ]
+    },
+    {
+      "name": "ax-b03-correct",
+      "ir": "crates/axiom-ir/tests/fixtures/v0.2/migrated/ax-b03-correct.jcs",
+      "ir_raw": "sha256:dd7c95e3b1ba9126366ff2828ad9c40dfd37b16e784a03ac14574a93ef71189a",
+      "ir_document_digest": "sha256:1ef9446471f85b12c1ac70ff6e4ae6b7a0f26d7830988cdf1b2499a90b5823e3",
+      "obligation_set_raw": "sha256:d8da55ae20b208cd7ae75b36af633294931ae6b783b554a6e87da7921f4d0910",
+      "blockers": [
+        "node:group",
+        "op:count_where",
+        "op:sum_where"
+      ],
+      "obligations": [
+        {
+          "id": "sha256:1843b3402e66f1e29db500edf12747e1b7b69a0902baf0baa3228dacc290d674",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:3a5cf79d76c5d02fe981a0daae447db515e92fa0a7666b09e1417f973d35c52c",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:40958429fc7f2c2537c611d5b8f4281f0a5f433cd7129906c125c854a571b603",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:42b663a02cdfb74210723f6c93a195677b8034b077d6e04cebf6b15dc2499127",
+          "kind": "group-conservation",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:52a6a97c8d76a4ee4522244a7f485a01b059f78022e720ede5e73f18321daa04",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:5d3edd0e3b5aa54a6a8131b7eefc81a0e7180234a38495424ab2bda04a7f9c72",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:6c331b23e67823cd4619e9c5801b4cc0f27414b79b9496fa955ab9902e92bcd3",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:98bb7c7fd27be234e35f199f835da43634837ddf5ff01c35eab70b1f3b9097ff",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:b85925ee3af58fdb61559febd804137806a3bf11dd753700ebbe84bf7e03daee",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        },
+        {
+          "id": "sha256:b9a11597304d7aed7c3b968a9fe9775e46fbff18ca6e457ab0c944ad74efe6ae",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:d40235001e87045ac0056b676b4ea379af384babffa8ed206fd0de91ed2ab144",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:db261a17fac23c54e7d85dba5167c19afc290b8d957233473bef7af9ed704834",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:f3fa67fc11f22e5bb2c71ef830ebf77ee08828aad6bab7c7f3f338e8e695bb0b",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:ff7a2353f94b01c39126a0816d0619283e809b16dc757e44d3a2f7f09780afb5",
+          "kind": "contract-guarantee",
+          "classification": "unsupported-document-feature"
+        }
+      ]
+    },
+    {
+      "name": "ax-b03-wrong-single-group",
+      "ir": "crates/axiom-ir/tests/fixtures/v0.2/migrated/ax-b03-wrong-single-group.jcs",
+      "ir_raw": "sha256:12f6a2b66e5e7bd260a2510de3aa367ff3746d9dc2bee192d4117c571a81083f",
+      "ir_document_digest": "sha256:94454e142e954ddd330d7ac32d635dcfa6f92c260a1362c371823b40b1e48edb",
+      "obligation_set_raw": "sha256:f3f6a43233d3cad31964df40deaad57b3b5d47493499482566359e02ed63c4cb",
+      "blockers": [
+        "node:group",
+        "op:count_where",
+        "op:sum_where"
+      ],
+      "obligations": [
+        {
+          "id": "sha256:0bb841b78affb9b0ef7cd7249d6ed58b70f52e61d3510029cedb7d0a27fb4427",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:0def59e4a5189dc0a0c684035b1ad82adbe15cd9380025dc4dfb49a44b38aeda",
+          "kind": "contract-guarantee",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:21e66da0d40bdcb32318b7e1d1373a022215b65e6ce83dc555b726defd2121cc",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:295c073ec19730db1352c2b8f625feb7a0afe72e26c2c46a485e1fdf3135a80f",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:2ddec105e17dd72929a4cffd10e0e657d7644ed43fdf8a801091f6610e8bc034",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:3f47d27b1a7474f1562b1f9966990e54097d9fc885315c555acd3f1479059e72",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:43497bd46609fd589cbb2e86d78290558a1cc98d132527cfe94a95d26d933ff9",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:5c816716b7f11b4a01153efc7c4d0551d7786480b8e7c58f6e56f1a4d8b5be8a",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:78f14d4a260a682833a046d33b6daef70ca947dba33067760d532b6e9b59b38c",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:93c1378647d8c25da4b43ddef90ed54d1cea0eb700377c15f7b3e3bab1e18a20",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:9960c5832183a4d22188fa15e16db4eeeb77b5df5996ff933cb1fd0468f9a6b8",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        },
+        {
+          "id": "sha256:ac6bfa3bbbb349d8f76cb8f5ff21c3ec55f3b5129848682377a3b8ca95051da6",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:aefd634ccc260792244f774b570de5aa296b7fa4ea66cbab32609a4fd85bc3bb",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:d40501d572ef724880da11920de7df30812d31ea031025df86f37554431b8b35",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:ddce9c6a4d7f1fc2b73344b4c27d6307b2aa0968bb9741ea6c934a0c17b749b4",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:eac612135cc9334098269aaf62b091b2e9d9ad43c8dc94a91047665319e52e81",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:fddc387ae23bdb59693267d8b3eef609f48ad82c74937cd5dc269030951e26a6",
+          "kind": "group-conservation",
+          "classification": "unsupported-kind"
+        }
+      ]
+    },
+    {
+      "name": "ax-b03-wrong-unit-sum",
+      "ir": "crates/axiom-ir/tests/fixtures/v0.2/migrated/ax-b03-wrong-unit-sum.jcs",
+      "ir_raw": "sha256:f466e41029f3b4d36db109a39b6a9398940d8dc3e52679848e4b2856f9071452",
+      "ir_document_digest": "sha256:2551c248d172de2b3f35f91c041e7799c3d4d85a7a0ed432056e683859d57120",
+      "obligation_set_raw": "sha256:42ffaefd557ae54e98b77091980b894fb807c0f8cc153318d4d7714ad5ef5a5a",
+      "blockers": [
+        "node:group",
+        "op:count_where",
+        "op:sum_where"
+      ],
+      "obligations": [
+        {
+          "id": "sha256:0093225a9b51caa07bf73bee42a0bf4aeec1b7c94dd23855b4549043e5be82c3",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:11d92031d625deefab0ecc2b594fdc2d18fb095a5054b24e618fab3542957f0a",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:17acbe8043f023811b76124ba14a8b547e308de6c3cfdd2165b9e4ae55c58097",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:21b2384f3da6fd4a0ca9c48eab5d697ace8ea0399aac8d9705453219a6aa82c0",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:33e2ff19a058b8ea54eb539c7b104744d29bc3eba4a9c2a80ab9cb3c35e2be1f",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:346cfc1492816c1b24e4dd21a3fadf4b772ff55ae10564c2848a9df1bf2479a3",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:4663982b29e5510b8b5867becc28284821a3b81fd1917c03b974d0312483146e",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:63817ef5a0497dcbfb9c57e7dec7fef034a020d102e37d0bc58e975cbc89be21",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:68eaf44c6b424d13a7bb53d5c8597eb268602e96e6087e3acff22f3f35960e7c",
+          "kind": "contract-guarantee",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:a2468d1d0849bb6550d6d38feba50fb0db74f3aa882dc53021dc3d8192efd97f",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:adc2c14ca94b7a80e98eaec58d0fcc93f5d30962ae69e2ecb8b06684914f1dda",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:d3ec8caf6c0ea7f910b879c9203ad1da369537c13f116657f72289a22f13c895",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:d6828dab0ebeb9103708e0308f3a416f73fe9927b0b5fc6c9634878a624520aa",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        },
+        {
+          "id": "sha256:d7ed61b49146925ead43076787ceb7ee8b098be724b4574e3d8c9f4e3088342c",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:db6c286b9a8e460297b385cc111986d4554a3b79262692d63f4f7695cc392179",
+          "kind": "group-conservation",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:e54c170677b8aa6232c858e59b1b5c605c81ac24e90c86eb779158a4f02fa4d6",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:e6c4dc387f2880b6df3d2126a076227f1a6cfcacdb4004daea48fd547d348730",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        }
+      ]
+    },
+    {
+      "name": "ax-b04-correct",
+      "ir": "crates/axiom-ir/tests/fixtures/v0.2/migrated/ax-b04-correct.jcs",
+      "ir_raw": "sha256:ed2d245a23c4a1fdc8b44bba16200c56b738a1f82a02066ed0e2566a9d67d5c1",
+      "ir_document_digest": "sha256:2a534e86f7db392dcb0a936365515cd73601d7f73c38268f34913aba49471e51",
+      "obligation_set_raw": "sha256:0939b1a66c134a07fdb5948c055aaf8c7fa0e437e04d3044223ab921937c5e5e",
+      "blockers": [],
+      "obligations": [
+        {
+          "id": "sha256:07ee6f952daaf52db4e354a022843c8386dfb8fb88ad988f81a590d96ad1f6d4",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:1e9c67cc0f3f9ded5936d0af3be3324d6f93e4158875bf3a405d3e805f06166c",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:4b6427ff1622d7185907998cea09a9585354a245172b1cd242c479f34b7af3f2",
+          "kind": "noninterference",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:5e195b46d5dfc3cadf38e77be44e53022230f6eed6cc5e723692499e476b78c9",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:6375731d3a97f84e4a3d2973ea37d600f7fe14734c3b9ed7be9af97e11a1856d",
+          "kind": "contract-guarantee",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:7c2ae47ad52d5c13535f2ae09a791d04b22bac1a2b71093e1de08992e5666f89",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:957b0dd8dd681e993285e286420e9d167ff378d996f5f9f1cc183b4c7505cbdb",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:c894f6fd957249b570a25d32a75cd6dc6c49d42ff145efe3ad870c70b7fbe435",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        },
+        {
+          "id": "sha256:da78bfae8398269fd340032ecc342166d29c82a61705828eca2b3fe38d1afe06",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:f0afbdcd880bce2bb18e8146c2f46da10a362360f39e2c0243759ad2dfde8d7f",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        }
+      ]
+    },
+    {
+      "name": "ax-b04-wrong-sensitive-filter",
+      "ir": "crates/axiom-ir/tests/fixtures/v0.2/migrated/ax-b04-wrong-sensitive-filter.jcs",
+      "ir_raw": "sha256:02d039ef31e8026a4c6e5059bb51546b86fa27bcdcdc6ff2a5de3da2b626ef5c",
+      "ir_document_digest": "sha256:e63c1e06fd42feab80401528dd8c8dc2272757c5e800cb1603c4227f198ef38b",
+      "obligation_set_raw": "sha256:52ca8f2673bb926681f26fc1c2a7abc2a756b6c1299512defe91c5b61c64caf2",
+      "blockers": [],
+      "obligations": [
+        {
+          "id": "sha256:0ebfe9c852cea90c3290f3fd09680cc456fe129cbc1e56bdec73c43edc1561ff",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:3380b97e723c6979bb93fa61fe9495a1d5f9a5e3b7cacdcb3059fa87984b278f",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:5962ab75c48e0b02eec40db6acf60fbc959aedf60f54c464cf5692f8f549d434",
+          "kind": "noninterference",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:59761080395d8d6dc06b9aac6fd01e82df61c7ccb932ddfb7d4fff50580a4b92",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:5cd8bfea9185e39f3e639b757f694d8f8dd3a2551c7b01c75f215d6f69e6a108",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:70b503421ccf534caab6f1d18f64d8a64f4dd098bb96cf3ee40a736f0e8eb935",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:9431ac475a2337a68c96d9a076f36f72b1d4372aad76db1a76ec87b8ae6507e9",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:94ddccc9a95f7ba9b67aa1622918c93f10f68b6876fa6b41364837c6e1565720",
+          "kind": "contract-guarantee",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:a40aa1bef070872bdd85c80b9f65877e99bb227421dc14526b1466b33a9b4693",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:c2f87bdcaf2e2f1f2826a7cdc8ddcadc89782d59e0a734eadc7fffd5be68b082",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:cffa94d14bf6fa446c317fa3022da83ba5ed2d24b238c9669ef9c031458fe8ab",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:df58c1739fed004ffdb4e0622cf24b1487f2273c61d52fd54fc9a8bea9268260",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:f5899d6a637604f4b83a8a71daec8707b45bd7cf949ac55bb9e2c6971ad946df",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        }
+      ]
+    },
+    {
+      "name": "ax-b04-wrong-sensitive-priority",
+      "ir": "crates/axiom-ir/tests/fixtures/v0.2/migrated/ax-b04-wrong-sensitive-priority.jcs",
+      "ir_raw": "sha256:282604938afd465611ac1684db3490c2dfcaf137d418d48c7395eeec60c11cfb",
+      "ir_document_digest": "sha256:010175a4ffb4c7f0e84a17512f943710ffd1a47f362098e8b3c48442ccd8a4ea",
+      "obligation_set_raw": "sha256:47eb687e0b91de991b5acb0418e6b9b37b10306c5e8251fa08fe86d307e85a8c",
+      "blockers": [],
+      "obligations": [
+        {
+          "id": "sha256:15ddebe826b602332cab840298a4460f76bb75637404a746b2a1f418515a5621",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:1df2da9a8a8b1d4d0f18093115ef5c4f743f2bfd052fbc514faaa7477a7e245e",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:2453a8e625dc84e59f81a2bdc2d59b6e1a2107d98a99c9a74d4da28c610dc7ab",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:44d6c377c7af474400831ae604b364257c7dae63890989424d5745fc588444fd",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:c394cfd1a6057da043bcb2eca3585602d279ed3f5a44c209e6ce0b4ff4b37386",
+          "kind": "noninterference",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:c4e468297b52b00c6fbfae132ed3d59a52cee898879591696bb45eb139add704",
+          "kind": "contract-guarantee",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:cafc3cd35f0eac6c93e10fb1890eca338e260ac8f4f19d7bb5a27abaf0823b5b",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:d22879581deef5e6f287bcf178380c26803e1d4b707d6c128fd966d557f8059f",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:e958898f2bd34007943c3119b2f21ab754f00814a0dc35be781415b9b8f333b3",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:f3bab762baa1730b296dfcf336b22dbf0447663da5b2bd78c0088ce225a9fe0d",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        }
+      ]
+    },
+    {
+      "name": "node",
+      "ir": "crates/axiom-ir/tests/fixtures/v0.2/migrated/node.jcs",
+      "ir_raw": "sha256:43e9463dd7aadbf2d2a8e1d96376788e3b981befcc7897fca9140b764c285894",
+      "ir_document_digest": "sha256:aa5ded3cc1035b20a9a5595658ddfe389be078326e24de6d40bd5215bc0bb2f2",
+      "obligation_set_raw": "sha256:07cd20b4819ff564605ab0b00e60f5fb3881425ea7203561cb1d07f19a0c1395",
+      "blockers": [
+        "node:group",
+        "node:lookup_join"
+      ],
+      "obligations": [
+        {
+          "id": "sha256:004c83a04bfda00e038327baa42c12054d8fe7f002fc437f985685ad1de82c06",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        },
+        {
+          "id": "sha256:05efb28b8371f79470d351683952c1c672530bc1577bbd6c14ae491c00d16333",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:0a71afaf903afb0a08de71d1967333c78521a61635ea799854f4d8dfe1399f6e",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:0dfe2af48e1dc4ce8f0dad49e5692cc4c59a017902c2bd251ad7ce54f508b136",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:196d5233ffe0140e369b421c62f09800bb195648383ebd4a531d0a59213b0868",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:32bac35bb06a5b27155a6f7d6272bff739242423a28e9bd72ac4056d7e943074",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:459a36dba36f09291d9d02769dae471959abb00b15abf9485bc1d96b55e19949",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:48f1599bc05f07fc844dec2a1dd11d0f3ddc52172b98d7153ecfb074440d062b",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:5e4beb31d6c7c5c9f72021caea0f13a27176cde1d22bd3d7bc0baa460254eab6",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:7a1c99ce1b92a33c15ec46d466e3678b1032b42519c8a1973f02321e2b6276a8",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:7dcb0f2266830cf26affbb97d8fecc33b915c8c6be794a2a75c02419144c2fee",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:87bc7d7babafb008cc8d853ae07fcc15807d631e594f4e71746bd1d9c88abc2d",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:8b78a478eb09c07be3f319d71b4756700957560ab2dd09e8f2e75c21b48a2a3d",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:9536074da9c6a0a51866a8831df17f4703516cff7d1435cfcfe88943692e940d",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:a0615b77b9d7fd3765e45aad1c8e24cb3961d54605d6357b4351bff802da52d7",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:a1c49908c01b397de62cb5bb0f10fe4e858e0851ab3cee4028445da48ce78d5b",
+          "kind": "group-conservation",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:b54d523233f8f0e0550b859ad6234a049f70c1189df8a5492d432b8aa4f62bc2",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:d2d798b241d37ce1604b3eb6ada6bdb4ecf40d862f6e8937868c055a02da8f6d",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:d67cd53094447463957616e972d8f06c249b306eab1fe5e11a6b36105deb5dca",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:e3da323706d8d11471b8ec228eba629e8b1edbd193684ea710c5c02dd7b8946e",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:e678f854a4d4e5e0b20308cb1af68028e5495c1c0c65e0c06f1fd9cbe4e012e5",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        }
+      ]
+    },
+    {
+      "name": "contract",
+      "ir": "crates/axiom-ir/tests/fixtures/v0.2/migrated/contract.jcs",
+      "ir_raw": "sha256:0a760f195e35bfa47e187494576d997b0f433bc6cabf3847e5459c05b07aeb2b",
+      "ir_document_digest": "sha256:94fa4434bd9960a82fe9fdfc3bbc7df9201437aa7a7901eb1a4b0698106a7454",
+      "obligation_set_raw": "sha256:fdcd0439e896c785b3d9fa3913823011c8bf05d697b4e95b91fd0463b62a786e",
+      "blockers": [
+        "op:count_where",
+        "op:exists_rows",
+        "op:sum_where"
+      ],
+      "obligations": [
+        {
+          "id": "sha256:0ee20623517336ff845a2d95000fc79cf3e28ebb3bb910ef5762cfa35f262082",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:1081860180450e011fbaca3be378695df7a3cdc8669935d3d8aaa8bbefbb7f1d",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:1429bec529918e00fc0912e4732a568521c9c8ff28feff1af6d576ddd73aa679",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:1c44d9767215d5f958e7a3e4161cb8f42827669fbfecf6dd0e2801bae0ad2116",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:212c37e7e974b086cfb05e2afa1fb1a8f46665a36f8add273bdfcc11c695845a",
+          "kind": "contract-guarantee",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:28006250a1495da7874b8fe25c750cbfae2f82682ceae10f3a5440e8328790ec",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:291f66d3c660104d83e4724c778a1f29e9cfaae9f7f0d5a5772e8014002f8df4",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:2eb53136945e660eeb6a768ce8a486866cd48e67e3f8df7d95f38ecb4ce6a970",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:2f799df7a370654142bc579083635d2fbb10d9c6c830d070cd674f5a442c5516",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:3130fed4e5b1596480ae1d45cfeb94da7ee05d0250ca64d6e1d699e77f5c174c",
+          "kind": "contract-guarantee",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:314685c6f87bb59ff95f3888d583e672cb783bb1d38ef1e27b2ef2ad78329bfe",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:3a676c88e6a8f5b76870f52603463413ab10528cb8ffb41adc237422f92d8513",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:3b56e84f505edbf2a5110f0972ebaf79c2435f6339b81f5663e77eb11e14c347",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:4a43335a616917f998f8c9eb2a2472ae3822552d8c1b7bab5481a92779643705",
+          "kind": "contract-guarantee",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:4b9587d042d72f3b0582d0c4474c7dfc61c03333a4f3380258dcc8a7bc69a103",
+          "kind": "noninterference",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:55b5dc5bdde9109c4d70116b5ead89528942cb697e09628f7412e8e844281375",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:574aa61f2ee1ab10958b3c8229e3da3745697d09acd1269465ba94b89b38d3fb",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:5c53006b6a3344f82629f49d110c185fd5d972f7e8abe5ff952be529a9ee1cf1",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:64652a074023e3a0288b1669a0e2605cc1d9c0802ac06aa1f75d89cd36a2c3a1",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:692038d523563ec75f2c13646f31ef6b3edeb3d086e5a8b2555301932e2d5fd3",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:86af03512cd8c2f661556bd51a002083400c209bbcc5bf582f5e9a931f4b776b",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:910a08cdcd6994018813f0e75f765686a9755b7a9ac2c3566e775700d705911c",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:94921b972824defe4ea51c60b1e369858dedacfaef1b7546c9a2f73e4181dff3",
+          "kind": "contract-guarantee",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:9ddfbda4ee974b0bb731a35b97f1c05e611d408e9d159400f82de73d324e6bda",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:a04eb48e6dbf592f2079039d3e2236f751b2ae3ed11b725175e648712df04142",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:a608b0d189533dba11812ece485908db8fea505d8b2549cc2b552e765561880f",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:aba216b0dd85df16aabbc60d61a3e545b94b64a556ef77f9d4756112bb905006",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:ac81367a36f6225db10f54f7ff477ccce259e1b79311e9fc1ee0ea0847a5740b",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:b3960d0bbb63595aaa80b65b08c9c83f3d4ea41381c9b1206361861ac255f293",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:b76d7c966c9ac8823c547241c697c5be00d940264566896ba164d9f1059e4a03",
+          "kind": "contract-guarantee",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:ba81da247c90d79648f8378fbbfbcebecca661ddfaea7e8f80dddce78507030f",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:ba93c242c7e65b7a719bba1c2b35427c905512368f9195552779190ba6d4a845",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:bb235f0777b90a7efcef485f840d30e8c40c8ebad014f1c5f4ffc6452f9c1f79",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:bcb9ba68fe346f15d3f5ec40bb5bf651e47a4fafedb7a88fe27829f3e62ab6c4",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:bfbc474bfe3da48ab290dad03a4af47dc57f189a383e732d760c61ebeb7fe5c1",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        },
+        {
+          "id": "sha256:c18487104ad0cd2e7bf00b8a7f37ecb8a974632c062c569a291cdfe093846acb",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:c6dd7fdfa044a6341688d09f46cae6d1d0e6fca21595c07715a0bd1f32174491",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:cd215f575e1d9267559631b3008b242da8513dc112ef4f8bdb8364389224c65d",
+          "kind": "contract-guarantee",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:ce4c990bd34522f118070cb899ec8652851c0a8401c95a76c6edfc5cfedca241",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:d22be8384221a50576ccdad453a1b9a2fea5a6e862f6328b557f9097a5b0e8b4",
+          "kind": "contract-guarantee",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:da8809250310cdac25125067f12953cfbbf45cb92356a0d904ebf22251de82ec",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:ddeb16f9cc9f601757974c71e152f9aaf29d8cf3501f027f0ba798e3d4dfc1cc",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:de2e9e5598d1d903add6a0419dfc7d8c5aa5cf0bdf5c5ba8e855091f7cd326ba",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:f367ad1bccff9430785b76672aad457684a8690f66b0bd0a68e8352cc40b2e04",
+          "kind": "contract-guarantee",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:fd2b1f17705f569c9490b0b745ff44694af25abb73d93de91a4e4a3c441df780",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        }
+      ]
+    },
+    {
+      "name": "type",
+      "ir": "crates/axiom-ir/tests/fixtures/v0.2/migrated/type.jcs",
+      "ir_raw": "sha256:bd330ef96287c882a8ddd510666d72a3ba2941af38bbee16fa076b5a59b1f62d",
+      "ir_document_digest": "sha256:bee886b6093b46d939559a99d5fbcf70ef8537b24a6fb06c31994ccd592868a2",
+      "obligation_set_raw": "sha256:272cbf30518fa881f285b0fd4acc38289ce3f095d42c2b29ba1da990e18aea80",
+      "blockers": [],
+      "obligations": [
+        {
+          "id": "sha256:14a63b72a7af2fe4cccd6c9cfc468bbce0316026e775d7bf716582f8b3578f9f",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:1ba5ccc061f01aa19e54ffcb987f473e2c4bd3e2269a2cbbae0d797a85f7cbfa",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:215bbfa195146f7f4d58350324a6e381e7cfba65a4c99541f0958b2e9c8069d0",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:244fe557ed6ee003c0e8342f9f9a43488114a2abb39b961065ac4ceb8d29c139",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:29e40bf23cfb76fc23b774c8562ae33ddaf8ae7bdae65ee6da242b240e2cd933",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:3bf93dda7ac62b8da6c1e214f0539a0bb8dbbbdb8ba2e65c96684b2b7ab50adb",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        },
+        {
+          "id": "sha256:4cf2736a02503d407d8ccc623c2347d1db3d4ad980d086c76bc5da3e10d268f0",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:6ae2bfc2e137d96ea29dd1b213e02fdab3ca762fb4e0294f43c5d9a25841fa82",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:764d650b761b5e2747011d873e1b6e093c7d1e7e72c14cb7e749b35324efa551",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:7ca2fe6ea5a1646b2d1d4e13d453c1f267ceddccf2a8408913d700ec7a704a7f",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:82e315c83e514a7791e34ad3fdb24e60d0ae46872acac8a25bfe7fc6b5708ec6",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:8e77e12e5217af1777d5a37d5073a219505a99583e6f0e5c1302802bb373f96a",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:957f73f002b26835542c3bc5575fb3fb97e7df216a9b61f8d514125f7dc6ee76",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:a718c850d4a9d942547e2edfd344fa93eb485449ad8c6228761992cde64bd06d",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:c2bf725a6895fdaa36005c1b5c66da6e2d09937264c648aa3bcba0c8e1f388f8",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:eefeb65da233a2581e2e65e9b9d3a6968ecc5f4becfc91c9d8622e21931060cc",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:fc0280a2516b1c86e30d845c78cb46165b3c4af8a7d4369fcf179e8319df7894",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        }
+      ]
+    },
+    {
+      "name": "deep-binders",
+      "ir": "crates/axiom-ir/tests/fixtures/v0.2/migrated/deep-binders.jcs",
+      "ir_raw": "sha256:eee23b134d6c4b198b46da0250b9532d4016c736dc19b77a451930af8c61d6d3",
+      "ir_document_digest": "sha256:e7f3c0486072dd8b5a50ea4da0b261f3722cba1115f74f89ebc0aad5699a069c",
+      "obligation_set_raw": "sha256:eae34ae51fd4ed5488d306a78190dacce4c534f1c791d23b9bd5060287c348c1",
+      "blockers": [],
+      "obligations": [
+        {
+          "id": "sha256:0d8cc264442c0672249c122e9970c7746ddb8ef36ec81babcfae89e66f1bdab8",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:205f028579d6116805f7a17757fbfb36a43d64c0fd30a50fe1f70d562d70fe97",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:260c95644548cbd6f2bb336cd271a240ab26ae23b267f22c327aa18165e02b84",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:2dfc2392aa158952481301034d87f1d605c60d2bbcadc8085ed22e2b7c1c8287",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:2f5740083062958ea5ef9473bbc9558401b309b68d650ca4ba3ff937bab9ea16",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:367470c7e80940a430c66e47d0f31b2bb838a6520a062e2e8d2fd903e4e99c77",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:4e8ebf1614eee5fccd37670d7a54fefc2c9c242dd39cbdeb6c806f6e3afd9a0c",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:653e9e05f77e666a79477859d2c4747db91ed19010a5297fc64c6bc42e78b1bf",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:71c92093e72c6d02b7259a7af0a134754e18e2c9b8166ad1767c0eb7bbc187bd",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:921595bcefb458c85ae913e197dc9494c2aa1ae6014b480d2a16ac7857185691",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:a3d12c737039fb361f9c5b2413532c0c50161f733f9532b6c79e2b871319cce1",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:af7ff85eb90dcf2670031d0ecb93a03f14d9b956eb3af82ef186878d438ae51f",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:b8388b875a9d5851fbae0f87631e3ada4305f2f18c76826ae503beed8353e17e",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        },
+        {
+          "id": "sha256:bd0cf044bb82d5b006b0701e629ca0e346b62717f05518384010f7f919732798",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:c9360b17af67d6d97a76b897be1d2316172adb912cd2e1498fc621567702d406",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:f38a83edf26227d3d4f660e99317728475fa39ff50513bcfe2c6e20ef62a594f",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:fdd398fd2401e5d8b820c37cb27ddb82629015059b71b5e8ee61419a1ca7b74c",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        }
+      ]
+    },
+    {
+      "name": "mixed-int-ranges",
+      "ir": "crates/axiom-ir/tests/fixtures/v0.2/migrated/mixed-int-ranges.jcs",
+      "ir_raw": "sha256:4492a3ad8852f734bb7a190a02cce0e6f6b6c5dca2fa1d7a653afc7f0ac99b8e",
+      "ir_document_digest": "sha256:1012e5625a10e873ad7f3b877b1e27530b7f974928651b2a98049699189e6b0f",
+      "obligation_set_raw": "sha256:276f45461c6f725302b242f3f21969bf826e67568801b598c50f076dd5ba0fcc",
+      "blockers": [],
+      "obligations": [
+        {
+          "id": "sha256:00391d97aadec639c26f2d5903a2d6d5603aa64f975bd1f597e9b69525712a8b",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:36080fec83b63d67a03d21d1463551f895ad58aae33113961979f5f3ce7cc395",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:46a275e3852cd7b9486a4636be567d18c792a8865fa91eb553c0c1a8730b6a50",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:46c0f9091c7e8e70fe1f552b8e66b1e3fb0d60996ffd966c8cec5d609b3808fe",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:4f09d066568b86ad6fbe26acae06c88b9136631ab1c00082b1c315459552818e",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:a3e7c22503f70cd6e4c2a523fbb35164a81ad5d85b8376506a9254968f6fc66f",
+          "kind": "contract-guarantee",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:bcd722d0360f8d7a8630cd83c95ce11c325e9ab6f972e081a862cfe83a1ed922",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        },
+        {
+          "id": "sha256:c58279c32e5d26f1e3eb534d0be9bd938f1070e636062aba1349af34600f49c5",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:d8d3293b8be792545f005e963ab95a2cfc3b2961a438f92ac4fb8e5e1618bde6",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        }
+      ]
+    },
+    {
+      "name": "unicode-nfc",
+      "ir": "crates/axiom-ir/tests/fixtures/v0.2/migrated/unicode-nfc.jcs",
+      "ir_raw": "sha256:1bec7c53e8f89a60ebc0b46c7d7452792911237ad6e06c2dae812764e97bbc19",
+      "ir_document_digest": "sha256:67386b2b07293e6eb954a8ec0419c38a554840c9a74abd09caa9290c76d1c2c5",
+      "obligation_set_raw": "sha256:40ec7b463e9d36ae4f1cb1e16cf49f34c85b33e1a38d7b974ceb25fd3d3253de",
+      "blockers": [],
+      "obligations": [
+        {
+          "id": "sha256:09a95fd54000cabd546c80352d65eaa9fcfd56014868ab4884a67cc1f2e5fa86",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:3b4e45cd39174c4415eaf503ec091e5a74831b78ad7bc7bb5c26e1ff2eb63054",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:7bd01dd693d9c4a60ac6463b8f57d357096c6ca05ae229be0970d32a762b7022",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:9201d095a8b5ffbd884449c55afe9401f38397298055e52bb18516c17456052e",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:95d0f43401a40c6e7cc7103243a6bc9c5a7cbfd8bbc079b75d7f42e0353cbe72",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:98ff3e855877d8d765d7bd8c46589e112870a537e9ded5a0a8e1ce53dedfed0e",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:af3a0e26fc73d84edf51e59cb7b472ca089f00a054b7ad7840e38b54be0f9b03",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:b3743527867f6b60306f64ca1967c85f4794ee168d348b2aa5afd5ffe362564f",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:be9f6ebde91cfddba07c4ba8b5646e1b99d01415ffa0eedabdc61f1554df114d",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:d1660c88a59f8fe18dd2ca696b142cd2a4f140801dd388d7cb2bd612c6567f0c",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        },
+        {
+          "id": "sha256:d47b3d705106f61b30ce87e1c255b77875d0166b42e84b1ff8f6342f9b3ac2fb",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:d4e435209cacd51d23527aa3fa595138c8c2b6eb5d2b594e94c5d8c75a3b8a52",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:d6b8fa6ab5df18434b66b40f77b15e4ccbae4d7d7d3554ba2332bdc7144c3b38",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:ed208f11ac5a43b70062d8ab7059ee925824493df515a2b29c55b2a3e89e62ae",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:f27343a3c7ce2a877c49b6d51314e63a6368f4eeacea97111c459a80e35b68c9",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:fb6446ea314871dc9f5b1de50cb283ee32dfa8ba4c1977b02a97fdc663bc922d",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:ff647bf1aedf8f083d9d9811d5bfa634928b048397ed7113cbcdccf2deea4da5",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        }
+      ]
+    },
+    {
+      "name": "unicode-nfd",
+      "ir": "crates/axiom-ir/tests/fixtures/v0.2/migrated/unicode-nfd.jcs",
+      "ir_raw": "sha256:4ec6dcc68b8202edc53fc328a103ea4539f47bced340155875111fc507330e85",
+      "ir_document_digest": "sha256:4de71cac5c228258331939bb395067499c3f62b01ccff4eba96933ff6b9c4ab9",
+      "obligation_set_raw": "sha256:7b3be33366fe72bc525ed9aef8dbbbfb27f8147525e81440a067f9ead1f29782",
+      "blockers": [],
+      "obligations": [
+        {
+          "id": "sha256:0cd7761445dea5cf0cd57f0d57734f0e0cf1a49304c9e0df1b7682efff97c075",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:293c7483aaf02fc17defec0cd0897517d90c6a9b2a6da3d84167a840fcebb3d0",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:2d1fd0fb936c432aaaa055a7b4d51012a7859fbdb7d7f30da23a5c426baf2dda",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:30e404ea89fe9a755389bbcef60f38a4a3f666ab313946b7fd87c3d69287fb0f",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:3f855e4186c3962e605768f8667c134752282d29bad7ae33b4569e0b6560b539",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:5eaaf1f9b41da0c265561554c85ca618425bd34e65768d4211966a573aca003b",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:64c9e5b4298e9fa78615e05c2f2b7833c9082cde7094fb67333dd6e36ec8d943",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:7254a0e13ac966db7e3f6067c6e1426e268ed67db85f4be104f0a6242ab08105",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:77e02af7a44f09e65534cb780e905a7f43eaae7f88e5e4d20598eee45799ee3f",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:8fc4477022a6a02facd5230729ed9c8646d63a2d9a15b020813886e86b992c55",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:9f1c8023aa3eaee7266899aae5529491cd699f644ce0d515c8b9ce092109d3bb",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:a0bacb2139a35221b1f1058ebf6f6449d7bb1fdd3f25c80c42b7ac5f6836daa5",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:b1f50face4d3fa8c8f0211e3274c243d744240a50a945740a82df006c4f87e0d",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:cb23c3a58a6887b5a445cad8a7ece3075d82529c80151faaf39b4bd2af71c910",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        },
+        {
+          "id": "sha256:cbcdb1431c77818e40a67d046319e842d2093453155130c0fc1c6685c60c963e",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:f3f4ba158db1a7b1aaf014e78055a6faa6ddb4b4b109fd585a540d94fcdb8a25",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:f577a2064c8b01fc1f0d5190d97a1ab74d28a06e9ebe4fb51e16f122792b4de4",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        }
+      ]
+    },
+    {
+      "name": "references",
+      "ir": "crates/axiom-ir/tests/fixtures/v0.2/migrated/references.jcs",
+      "ir_raw": "sha256:9acc8353b42e2c993e09879fd203c679cabacf55aa1e13cbe8d14cb3165b34e6",
+      "ir_document_digest": "sha256:3d931a283cebf3442fd91a72ce93eb74f1ec642aec72f06cc76554672c81bbe8",
+      "obligation_set_raw": "sha256:7b0fbee5a4070f75a73d9431dc691c9788b0c1d29f6b6bb731f02c6eb811ab2b",
+      "blockers": [],
+      "obligations": [
+        {
+          "id": "sha256:0f37f3427a168b6ece6862fae16f9f3fc769701389204e9a3fa562425197aed8",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:3ab9f0c1c41a1676887db85c4ff2592cd1c0fa90467c84e9e610f1b913f4a0c2",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:4f840d2f781aa9ba3da44064cd9d0733dbb972e04c54bc8517c4e04559ceac0d",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:55ec43a011d4e22dbb66014864bf803ed048100ecacb6a6fb0f2ab1516c4c373",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:572f936b6d1747660b5599f4f41b33d060ecd94172b56ea76b200e15852b59de",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:5d04e498ae9b48184e0b7c39ba59bc31e55e67622b7f8eb217abc778b245f20d",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:72a559e7c15aaa11afb585f2553dee5b13ad9b73bb7ea665a9609e870c6a41f4",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:76ba5541d44d13d241a8e8342dd49998b12e19d6b92e0cbc1dca735c94a248f6",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:97c3b47adafdadff6abf1b044651137180485e81a38464b4b129ea1bdfe15b2c",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:a7043539e2a5de41398183bbcddfcfd4013f16d63ba688eba45fb7d68ecedf72",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:ae1adc7ba302610402db2bdbdfc0b3e6812eab94d8ea5490c581d0a43b426371",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:c50b61836b70a67d3b97bbb031456fe4488e0624ece2c07c547e509efd064608",
+          "kind": "contract-guarantee",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:d298b6c1f40ea29c5d020d53e2634a7a8c274d4ecad17292637252486e5dbed5",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:d580c8ba3677688c19452386f8c4d21db1890e3c03928d76546eb4326f8ef0af",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        },
+        {
+          "id": "sha256:dd0791a9ada48ffae7fcec7e83d03c72e92a6f4ffafeb8417bc90c916c70bb0a",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:f10a733df306746437e2027f0d93559b8f830825bbfcd6ab03411a1e6e5ebbc5",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:f1d79b739535dbce06d565a9592dbb6a629e2efab6d1f7612567c55114082355",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:f7d0a9f282ec9de44d9aacd079f05ff93023c2855671778b90117f33a7b67080",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        }
+      ]
+    },
+    {
+      "name": "records",
+      "ir": "crates/axiom-ir/tests/fixtures/v0.2/records.jcs",
+      "ir_raw": "sha256:f9dbe5ab48a0c34ec95776ee25b2f5b906a42b151b923bc200a38b8a14caa7ff",
+      "ir_document_digest": "sha256:35698da212785dcaac4691334c549c6062a5659eec1d9c0a32da6c8aed32468a",
+      "obligation_set_raw": "sha256:778d96dddd3f367208d7095281847f6d172d1081cca36355fd5ebd29563b4339",
+      "blockers": [],
+      "obligations": [
+        {
+          "id": "sha256:1034340c7fef40da7a1490569632e897ec36092b72c5e79938160fec9e8046bc",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:2f6519e4fa64fc3b936a182dac0271f7376d0c8513a21c44ff224214f11356fe",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:3a9904934a0f0d7344cd29505d3513415d5180bdfcda4450f6473adb0103c8bf",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:5c3d4ff0253d61a45fa9716c6067719ec6fda4cd519787534f2ae1fe39f435ef",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:7a2f525b820909133b54b1e0adac8b14609f47b34e65f5fb03bbc54e0d44bf8a",
+          "kind": "contract-guarantee",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:9bb66d3fec6aeb8a360cebbfba70dcc088c7d2aeb8e7c4e628bd334c1c055ccc",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:ca1a8f7de394ea83df4e389c82c1109a6242665e90fd7f033c3331c8080ebe1a",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:d49e715f8faf12170f5e40ac0940020c932ae60d20131920a3a95d4f668b3f06",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:e264d03ad068145c6e9dde93e75f5d578a04a295d6facb62e3ada22fbfa9bbec",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        },
+        {
+          "id": "sha256:e73b50038505683f54cf29383dca5b6a1850c3d9147b5469a6caba70fa6cfa44",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        }
+      ]
+    },
+    {
+      "name": "all-numeric-positions",
+      "ir": "contracts/ir-derived-obligations-v0.2/inputs/all-numeric-positions.jcs",
+      "ir_raw": "sha256:17548fdc8108cba783b281c6d6251e27a53bf048c66c4be44eda58d71c5b80eb",
+      "ir_document_digest": "sha256:13c6a1a12d79438c08f69418ca37b92fcbc96687deb8ed98724aca17fb99bb41",
+      "obligation_set_raw": "sha256:4c5471f7b8f3850e813aef79da9e756948340bac73bfdfb5ae7b7171e08b8e56",
+      "blockers": [
+        "op:count_where",
+        "op:sum_where"
+      ],
+      "obligations": [
+        {
+          "id": "sha256:0a77c24d8ccf9b54ee239a714b4082109be9d47196d99bf19b902fbed8a271f7",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:0ea6af4efd1952fa07c483973c1a8cfe40c6edf2630b687f01d9042049a72a9e",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:23451760739670f9d59d74266d81dc66f866ea9b208b1b7c14f63cc09aac226f",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        },
+        {
+          "id": "sha256:24307652f51e1a21cd850eb69cb4283d1e53fb529001c9955523075a6a948ce9",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:26e585162d2dc00ff28237aeffe13005a89b3595e1a22d194cf135f4068cffea",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:35477dbf7efe55e11779f64bdd78ec6614ca64df17d3e26debc678e64f9e72cd",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:3855ecc7b1fc1871b2aa65f770cfc57699451fc42422ea4a686d8d2e7262cc95",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:3b0ada31729bc5a85d9cfbc718c18b2ed3a53fe3f9e85dc108fd01c4d7954d3c",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:4abb293126489893bd178d44b865e5c280ca6e9fc4a0633d963507534437075f",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:55ea10baba6981487aa0abc7db38230f894e93f00fe641fe3dcfac966ae2fdbe",
+          "kind": "contract-guarantee",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:6f1fb1d743109fcdcca195c010edf0b505ec3b24aa14bea3d07c849ba221bca5",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:74f7296b755ef44c542cecceb54c2b6df9d2e773d1be88da12c4a059406ac296",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:75db69196cb0f81152eb41ceadbcaaa346a8c501e96f9a1effdf7402f629bb36",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:95bbb3a564f0a4b3e5e6c9dcdcb17e86b8140bb49b64361b905a6cbd27697475",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:99099d3cc14147b7d45f986cae8708877dc04f09d1f27cb7a97e092729f753fc",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:aba3066a5ca2401973dd4cce48caab95f11828b8ecba9b1466bba3bbbe6f00c3",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:afa5e878d4e283ff713e4dd817b844e2eff63e0ac6917f47bbec98b70956516a",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:b5333be9cbdb1f1d3a3ad9d7e9195e7834aeb9d3bf403661020eb1f946d392e9",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:c60153722f1e890a3e6e7b43499f04e7eebc88906158051372b86e7437c03bfd",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:e409f55738490d19fe8d0a33da115e880a3768dac0917bd55f5df2299108f140",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:e5a59f4029f7a14a8d4563b85b533da46661310a9c47634ba94551b3746f3e68",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:f78189a0226865a0885d9ef17cc3ccad7d90f2ee3552c1ecbc0d22b944678f19",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:f854653f76f84cd4435b774800566911cdac8054acc3db42507698b681a32d1e",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:fae94ddcc2874defca76c0320448746f6e613e98a1d0692e2265115034d17f0d",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        }
+      ]
+    },
+    {
+      "name": "changed-pre",
+      "ir": "contracts/ir-derived-obligations-v0.2/inputs/changed-pre.jcs",
+      "ir_raw": "sha256:fc992e7e9d569c7be281beadc809b073d31ba3fde4cdee5485656e397cd66e75",
+      "ir_document_digest": "sha256:d1d6665d687429a14c7a0b5bdbe123fa22e22674997a5b6ad16b25d1eddc91fc",
+      "obligation_set_raw": "sha256:0750606044ed441e3cea6128b3c32b062a800cf5925101c4c7fe1d7a1953233c",
+      "blockers": [
+        "op:count_where",
+        "op:sum_where"
+      ],
+      "obligations": [
+        {
+          "id": "sha256:260cfb67f9613933c760d603bc23d84579f6efb6f86d79ee44d78756c1dc6962",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:2cdce363671c08f2a148c1ae9ed251eb1ba4210b257a1ce465c4e0d11454c4b6",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:2e1062b40d2594ff1a982ad38f45ba0a81f72aa3631482bf33ea635edcff43dc",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:3b9d082c2754a029efe64bb652ea50abbd72628625923a5af72c21ed96f8e150",
+          "kind": "contract-guarantee",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:42f6bfd64134c785a251f32f88eea33f94c6e9561f5089cbbf2c47d13245663a",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:46689123c3d923da088d03ce1ae47fd42ef16a96b3399bdc5d74193919480d12",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:47777e1caf0fa88990bf342142e5e6325e243ef6033d0672f151be08eee0fcaa",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:47d5f5596bb84f75364dd85175849b07e29b098632259b40c3040106108686b9",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:4848e797eeb5b3b13575ac2aeaf4ffce93686afbec1462b69ec3f0972409bcef",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:4a4505270f72596a5d46b319147a6a7956bc5c85b348357179b34d62d4b3ba11",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:4b927e9dab6ec2eff5c50f59cb6c86b5757a08d9a9e01fc125359c6850c6db68",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:551b2bbbb791fcaad826b9f856029a0faf0f0b3a51cee13b2e2d8fe997a2106e",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:5881c07a0265a14521202a3256deb49f7f75874b6fc9443b35055fe3eb8b01be",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:5df448a00979afdb870ad7e33faf0f1788d96a8bd7c0acc43d91182a426ecc81",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:5e3201d77adecfdb74d86a2491ffa2e14541c0b5b680a5385c5d7640d65de684",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:614d983db36d2b2d4f9189e18525e620ea477f0469388dcc36918ca5f8e56ac9",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:6f540067dc4ccf93ad0dce84145c3e83dd847c2eb8edd420586e7bad6892fdca",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:b708875d4a8c93f009e4304ff5134f6507bec8ee30a37d14b4a26d8d0660c9b1",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:cbe33e4346f05852f9780f7c2854b0c354918ae62aac6c902ca253d2e848f766",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:f116b3db2dfac561ae81a4b2325c8a69e52d97affad715902461d07fa180a6ea",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:f456376ebcb213f289ad053fbe82e3bf010f30d40dd1957f03c88d5c06636354",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:f5809989b5d95f0d0b4dc41b30695e3c2cff223305bad091f90878fc5a9f9b85",
+          "kind": "numeric-range",
+          "classification": "unsupported-document-feature"
+        },
+        {
+          "id": "sha256:fd0e59fadaceaa89b231658c979fb526356fbe2498b82f10258a96c3606fcca2",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        },
+        {
+          "id": "sha256:fea577b6b792766c862ce4295912d7f6c49918e2a1259742b02ed6d0dc37923d",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        }
+      ]
+    },
+    {
+      "name": "empty-group-no-aggregates",
+      "ir": "contracts/ir-derived-obligations-v0.2/inputs/empty-group-no-aggregates.jcs",
+      "ir_raw": "sha256:1888e9decfba63fd36bd2658ca4d1364c6355245832cb7ec706e21d75b120fa6",
+      "ir_document_digest": "sha256:233a0a53656ae7eba250ff18841422376f3eee8452b92605fa4148af6eb5fdd3",
+      "obligation_set_raw": "sha256:b6d1cdeee98c2b00206c57add56e6f6b5ac46fe814023fa1addff7031d0f933e",
+      "blockers": [
+        "node:group"
+      ],
+      "obligations": [
+        {
+          "id": "sha256:46d9259dd64116df01b31f8d691908bb7dbbe6728d650d795c8b2f8ae962a506",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:4aa69a000c95dae7e353feed0960a8a28103b8fa54f0c123a10622e9111a47e1",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:565da8cac5a0a93197afef579d94ccc29d858c065b6683fcd40b1d8cd438a60a",
+          "kind": "group-conservation",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:8829fa472b7a368cc78e74951e5292d0da564f1eae421f5fffad0ba1b38f3afb",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        },
+        {
+          "id": "sha256:a707ffa33827f586cfff78a54094f9cbd951c3e169902692a32792b0feb587fb",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:c1ecd868cff156431a1053fb2c432afa955809b8213d1eafa6dc54f3c698cc3d",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:d7f5f0089cb3fd4cec8226380ab685578da0812a9204288d29eb87f06808d10d",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        }
+      ]
+    },
+    {
+      "name": "same-node-two-outputs",
+      "ir": "contracts/ir-derived-obligations-v0.2/inputs/same-node-two-outputs.jcs",
+      "ir_raw": "sha256:f17bf26b584f5313303cd6216a0de946a49255794e1ae0ea94e48b43f22659f5",
+      "ir_document_digest": "sha256:9013caf7e78f3a6a014024bfd27baf37ae18f1993339f1319bb857980d3cad54",
+      "obligation_set_raw": "sha256:ed4ff2f5e5a14681e122b4fc91128f3974e3ff3cda24bde0dd18441a983c4cd5",
+      "blockers": [
+        "node:group"
+      ],
+      "obligations": [
+        {
+          "id": "sha256:1968647bbec711f1a830219fd3865661b6b1fa020c2333c1913188f9b5e2f9fd",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:6fd665fb8eb16b1a3b6ddddfaddcc842490819c7f3c58773a7da45c152253dd1",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:723e845f0286a5d3948fc5f6ca3e958bf3884093ab93176a117d1b5ddc95568d",
+          "kind": "row-coverage",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:85cfaa97417c2ca5d4530b50a2fb4230247e0c584c1652a7c1ea01e8b717b023",
+          "kind": "totality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:a9c2f0c1dbf48f3364426bc26e53eb83715d2cfab757478f9edb8e614bb732f1",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:db31f3c186cc5d67c24dbef5c45a1807432439904ad2bdb3d7cbcdff14c9524d",
+          "kind": "key-cardinality",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:ef2b8bbeec80b6dc0bcf8488647b4b664f59399bba693bcb42b50f92e0ec8bf3",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        },
+        {
+          "id": "sha256:feb62832a64979f1828ff23eab784b7c9be43d2bb35f1ea43294fd322b832070",
+          "kind": "group-conservation",
+          "classification": "unsupported-kind"
+        }
+      ]
+    },
+    {
+      "name": "deep-numeric",
+      "ir": "contracts/ir-derived-obligations-v0.2/inputs/deep-numeric.jcs",
+      "ir_raw": "sha256:c17203eb4afa24d9565eed53b08aee14da5bdea12fe039dcde4a0841aa512b6e",
+      "ir_document_digest": "sha256:fbaf17d72a373da169465fcad798c60e4d6d4fe2115b7e4542a92759945c0b47",
+      "obligation_set_raw": "sha256:d785bfa9ae715759210d3f918286519f2d17f6587da54262c2ec247594dad845",
+      "blockers": [],
+      "obligations": [
+        {
+          "id": "sha256:06e0ec72ccd49fad7c77a37a93257026a20df59e043f70175c761d2ef90aceeb",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:0737dff762fdd989d1e6a1275b714fd7a368ac0113a52b1a94e230f939683a32",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:0b29d20d9a13d35b9da93a73a0943fbf33ac47c21a2b5e555876a97386d18009",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:0befaa18963ebea14def3bf8728cb2925efa80122b72c273c7da6738debe39a9",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:0c14598f10fb699724f3b1d7636d9bfcb8360ad77301d3b3fd8aca2169e89765",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:0f4b260f0138c335bc1e8e557b38b765ff5fc515b6b5a85fec59fa417e78c65b",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:13116f12327e8015c590e4a0680eda045fdbd77ea47a0abb20513b7cb3d3f9f7",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:13e5ed9cf139448d3c2c5c21f8d39b16b7f9ec961e1e0e6e898ada25d80583c6",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:1765606994ba57c54dc41b4810408ac2860c85d20ab8c9a224fda07153c95f2b",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:1b0268b0c5181ff9d83df68c353d40e8a27b13224b9a48009d64c88df5f326f1",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:1f511e8525ad6eb883f7cd554e351d73f33c98e6d82d87d937d11da98a98722a",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:1f57b6cf1ee7f603c9c7721f9014e632061be532f0426419826035b32b3ada75",
+          "kind": "field-origin",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:201dc1166cdc3387f1fbe9f0ae72f8bd3926d565dfc34b71f0d334f061525eba",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:242acbc7eae6169be37efa9daf402eae5edbe22c5b30dcf544d856ccd7230be2",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:270f333e00ca5e2826ceb84ddfc0d0a5c9f6537f8e46cc161f282a88ce8d1895",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:2abcd47370f0f00b9cf4217c20c4594cd6e3ea302abcecf8199574976706b26e",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:2ac4c976b73aca2074582b3287e886ea33f6e995065a52e6c85168f01907be80",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:302f0a8380d871c63dec9f6dd188561cd42bd9a89eb7ba431478a5027401297c",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:310d62c58d752f688bc99e06107d91fd011fccdc93f66819c1d55d4656e7534e",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:3229e56c91e6b8186b025fa5b4599425742da90eb9dd5ccc653d93afe7066895",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:3338306a84ce81061dfca3cc09a2cdc738a20914a57b6c52917fdc74830b1c94",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:346179783d21dd4263113c92ca43bbcc4fa0e4ca0b594779f357cf7d9c7e48e2",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:34c72325e791c06bec68529b6d3a16cc33b03b1b421fc45d2353246369774a6e",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:36697f095cb42ee8fc80932f18c09a5b0394ade67e02bfb04994bb8bb257d55c",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:36e326358428de8a35dbdd0826ea05adc205c6a73d62697f3a3762a54682c33e",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:386ebbec30b9599fc880a43806e0371f0fa1cbad28cb6662b68d24817e30d745",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:3ae6cc4c39a296e70ec4b5748e9fb514c563de06694ee6ea57f0f58f8027dd25",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:3c0bc43bdd7cb94f75e68ae8bdcefa2a6b665c16d22ecfb11bdab099bdf61396",
+          "kind": "ir-structure",
+          "classification": "not-prove"
+        },
+        {
+          "id": "sha256:3c7c84b1df8d01dc37fd41fd531a02bfd2e10a8b8c9f00463ad63b2f546e1fe3",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:3d8a4b5137288904f39b064b388593f056cef115e0f59e871b8dea71fdedf52c",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:436e3c8ce8426ef7cf51e40d58eb470073e441d641afac54a1bf8f5de5b3b2bb",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:46cb6b4f1bc7dbfd7c7044dbcc8dc0a9f395e8167f2b5a41e2c4a09fc3598e6d",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:47d3f965a44565ac881e38778e55bdfd8b07676694695608c1509d9886b5f33e",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:4c7ffed545d637a2c70c8e7114b5bfb8c227ce50a9a4ecefc821e2d64b7e3a7b",
+          "kind": "effect-empty",
+          "classification": "unsupported-kind"
+        },
+        {
+          "id": "sha256:4dc2f95d24eb0f5e0f2f62d32b5c42ec6d1efcce1cbeefa3c9e71acb9804dd06",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:513c337ca9da1aac95c685bba86e54bdabb43541c17bdc8fc71982313586f821",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:5159834d17f6cc7a58b6b7d1a9bc99b24f09e81dc8d382b11593f6b5fb3b80db",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:56f993dce2f6b6999552d87871d2d06e1a016e3b5926973403456f9d2e399851",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:5b1d62d83f5ca1e4ad55d238495bd189683646bd09537e20dbdd0d6ea1db25cf",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:5f48b11ffe5ed497f2d4e62371344b19e2c81635316ab78ec946e26e95784010",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:5fee8a2c63a88d5126caeafd777bf22279aa957792eee8c0431d867f060f7cf6",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:61d048f869cd607a06aa4af72672d655d15ff1fb20b26e0f439aaafe930057c2",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:6280abbb1efc36d6d63ac029a8c672fb60d2f1679dad7a2c02b253ede22eb232",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:64af2793601fb0009f0d293b6d85f533a88352dc61172f3b5e452c8a28ff64e2",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:6597af75f55cce608f6e2918f6cb4137500ba4fc043dabff6f1aa51899f274f5",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:69c4bbe50d2e9ae161c426a4de37dd0809d732bff9a9a1031124843ff9427f43",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:6a2b42d813ddd00ffa56eb6f419024c1631637e8f963e6dd6501aab97eadfa12",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:6c571ce887b51c7d8bc34b7407f219e664dffba072c60c9e408aace7c6cecdcf",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:7086c44b1bd4e9b64367954464f7d01e935344f9c710408785b6847b65fd3ee0",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:72d57693dc99e4e39070b794379bc6687bdb22adeea9c9bf5870cfd09f03a686",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:744af0313504340cba3b420729dacd1a54bbde8fb5c0abf96958ae13fe3e0eae",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:7484f0cf1c80ddb7ecfa2f58854ffb7cdd1268dc665cf4ec0118b68c904c7df9",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:76da12c8e2fae829ac551c58342851fa71762360db75d52a0672f9761e8b3ee5",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:778549ecac36fd46301b5bb69d9cbd9043815209ae13efb633d7b6660cefa961",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:77d0ee40dbea9861a2e6cb0b72a240d2b8ca07b64d4174cfa375c961f58be419",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:7ee8a660d65a5ddf1d14d6ec6136e6944a893230ec7bace202cacfc348bd9960",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:80090e817478261de025642fd2d8d37b605e6ccf4fe07c3ffec15b05496febbe",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:80f2989f3c2d470e1e248f86c430418dc0adc9ccd6b2845d6038e006a541ac9c",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:8aee1f547b973c03b55bcece0921ec4ce664d331bc433c1837c868985197e0fd",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:8d129cb84da5a4e3a0b55bc847af937482bb439f21b2cb6b0b60c6d4ac21bd59",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:8d3ba9eb7041e73b669c5b752c4ed0f61144d558d2303113ca4fc1c9c9cce467",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:8de53af3c658956427c46ef1a84b28e4c31fb4722143a2791aa29c4936aa63f9",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:912cef145d4aca1af38645d78a24d39f906730ecfae458e727e0ec8ffbc76885",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:916f6e289e922f1dab43d5df4d01fc34e0a821f9f8f25a3d7c0b9f25aa09ac53",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:9808b1c5935f84e491a383cfa9b176ba0a872a664d5b8febd8ebcb36f45e7ae9",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:99abdf5b26ae9f222e3ea11fcc771ceaea95b34883634440229497adbb8c559d",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:9e58d99b67eaaea669c1eabc87069081db1cf2af3700a9f8c3954991a0743b94",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:a22085b1039dd69f1b36cfbae0c6e9622a391db5798fd1bf47fa84db1b8f6ca5",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:a6d074001fd2b04bf8df8c6431e6ad547449ab78b0d73a31cfd8bdd56c6b7945",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:a8db6e204ccb735f0af30bf5d4a858c37c4bc25d8ef10cf3321173c7dd5a7a46",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:aeefe0041ece38afac6289bc19fca0af7df152210232268fdc972a179f0b0648",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:b052fdb284b0e1064976ed22fee7f60f0ee60e7c0e28b0c2d14c2fc2dd87afe0",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:b0a041b8b0f6602fd3b82ccfde148d2cac69803ab7574aa097c6dff207c2036a",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:b513cc6fd03377011d6bd37a45bac7b978f5a872a86abcdb8309a9a5060295ec",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:b7ed7dfb551a7e7fa6b9802e859811a9d000a27e3cc27b85661d24ae1e9e7695",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:b8a47bc0b236f3fa45c3ebcb76bfe09f9523e8fcd50099c7515bd71c28c375a3",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:bb937cc8adbe8196c30e241436e910a10333b37da655445d00b23fc08a15b114",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:bc264511eea1a600769e28ad5569befe61e3268eb1e08a6e8809e8ce83d08f12",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:c02a20df588e95f2400dda786c7755297859b39c56a10fdf9da002078ceb4e58",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:c1e487ac1289d1d8975863b682931afcc882b193c8f60dd2f24b510b74c48d9b",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:c56da6db4fb03b41896a5c733afcc3170d448153515336e944cbe0a63ff01d46",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:c767f22eb818b3fc23fdc6fd144f6bfa6f5b12f39aa6c2197e1a5d227a9802ac",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:caad6f667825881ea6228540deed09192a35bfb489b77239965622e169bd31a6",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:cce99e95dba49ccb03adefadeab7993406c826d2e5155061f069147769390685",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:d024a3966bf2c36c6b17fb126644b6f7580ed338c0f7df4244ffbdaa679e8d39",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:d5cc42e40d228ca74987e1d2ac6d96e9ed955bbdf822b26780e2ed1fe8b0a407",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:d71a89d06067fa2e163defbf7a582415fcf72a375b91d0eb57e560ee5ab8d86c",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:d7cb51182bdc24abdc8519a8b3bee8867fb5f90532ce8bc5729c519764a5c4f8",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:d7d14dec0feaaab2f9bcde2b05272b730629addc58fc6c0dfb8113a8dbd7a65b",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:dc3a6fd89d5c926faecb4d00db6044b21cf7515b3e72c952f6c2bbeecbe627dc",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:dd57a5be1ef08cf1d9911ec83d244eef04ac09b5c011128acee4580c85ad1c98",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:def0740b106edb53bd794af2ebf823c8d0c0e67ef84e18a523f6ec855b984543",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:e1aabba89cec64c6300542bc523bcb8e3ba88d9a25a51e35c9864d29cc5a7e29",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:e300455e0a093533e258835a7ed5c1fc727c4c8bff1bb02a3266bc44f13c1edf",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:e6011c25399d6ca093b4339498124915f427c9639136539ad82b9aa681bb3d50",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:e6935f7ba3262a8c9fbb573195d14d9beedcc86e3aec9a8878e14aeaa642dfa3",
+          "kind": "contract-guarantee",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:e6995cd2752f04ac8640f2dd09d1bcaf2f07857781b164c7b9fefdcbc7e2504c",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:ea2b324c9e8833dbfefcaac58e3c89dc11dbe1ead0a84066cd6892b83be150dd",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:f0674b9fbd94e49322a32995f466e7a13380fb67c8b36ff248399189ad7a1af0",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:f327735ad7835e6ff49aa3b1e5fcefba46c3e173fd2334e8d7a5743b1d070855",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:f5c30412a3b85e5d49905c6fbfedc8a93489b4be45fd637b604d224ef197aab5",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:f60a2bda6ad9a2584eb93b69813bb214a973be77e33f30f67ea25260105dcad9",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:f6ea6343509f50f8526063a5db05c6972e0580c303d8de0628a00526bb1277ac",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        },
+        {
+          "id": "sha256:fb9379c50a631d0bd274a7cbd69a4714edeeaced300569435eaa82f6d3824fbc",
+          "kind": "numeric-range",
+          "classification": "candidate-by-shape-only"
+        }
+      ]
+    }
+  ],
+  "scalar_distinctions": [
+    {
+      "name": "live-overflow",
+      "inputs": {
+        "WF": true,
+        "PreOK": true,
+        "PreValue": true,
+        "Reach": true,
+        "operandsOK": true,
+        "value": 11,
+        "lower": 0,
+        "upper": 10
+      },
+      "value": true,
+      "expected": true
+    },
+    {
+      "name": "circular-own-range-guard",
+      "inputs": {
+        "violation": true,
+        "Within": false
+      },
+      "value": false,
+      "expected": false
+    },
+    {
+      "name": "circular-program-ok-guard",
+      "inputs": {
+        "violation": true,
+        "ProgramOK": false
+      },
+      "value": false,
+      "expected": false
+    },
+    {
+      "name": "at-upper-bound",
+      "inputs": {
+        "WF": true,
+        "PreOK": true,
+        "PreValue": true,
+        "Reach": true,
+        "operandsOK": true,
+        "value": 10,
+        "lower": 0,
+        "upper": 10
+      },
+      "value": false,
+      "expected": false
+    },
+    {
+      "name": "dead-branch",
+      "inputs": {
+        "WF": true,
+        "PreOK": true,
+        "PreValue": true,
+        "Reach": false,
+        "operandsOK": true,
+        "value": 11,
+        "lower": 0,
+        "upper": 10
+      },
+      "value": false,
+      "expected": false
+    },
+    {
+      "name": "empty-or-filtered-row",
+      "inputs": {
+        "WF": true,
+        "PreOK": true,
+        "PreValue": true,
+        "Reach": false,
+        "operandsOK": true,
+        "value": 11,
+        "lower": 0,
+        "upper": 10
+      },
+      "value": false,
+      "expected": false
+    },
+    {
+      "name": "invalid-input",
+      "inputs": {
+        "WF": false,
+        "PreOK": true,
+        "PreValue": true,
+        "Reach": true,
+        "operandsOK": true,
+        "value": 11,
+        "lower": 0,
+        "upper": 10
+      },
+      "value": false,
+      "expected": false
+    },
+    {
+      "name": "pre-false",
+      "inputs": {
+        "WF": true,
+        "PreOK": true,
+        "PreValue": false,
+        "Reach": true,
+        "operandsOK": true,
+        "value": 11,
+        "lower": 0,
+        "upper": 10
+      },
+      "value": false,
+      "expected": false
+    },
+    {
+      "name": "pre-fault",
+      "inputs": {
+        "WF": true,
+        "PreOK": false,
+        "PreValue": true,
+        "Reach": true,
+        "operandsOK": true,
+        "value": 11,
+        "lower": 0,
+        "upper": 10
+      },
+      "value": false,
+      "expected": false
+    },
+    {
+      "name": "operand-fault",
+      "inputs": {
+        "WF": true,
+        "PreOK": true,
+        "PreValue": true,
+        "Reach": true,
+        "operandsOK": false,
+        "value": 11,
+        "lower": 0,
+        "upper": 10
+      },
+      "value": false,
+      "expected": false
+    },
+    {
+      "name": "guarantee-true",
+      "inputs": {
+        "ProgramOK": true,
+        "formulaOK": true,
+        "formulaValue": true
+      },
+      "value": false,
+      "expected": false
+    },
+    {
+      "name": "guarantee-false",
+      "inputs": {
+        "ProgramOK": true,
+        "formulaOK": true,
+        "formulaValue": false
+      },
+      "value": true,
+      "expected": true
+    },
+    {
+      "name": "guarantee-fault",
+      "inputs": {
+        "ProgramOK": true,
+        "formulaOK": false,
+        "formulaValue": true
+      },
+      "value": true,
+      "expected": true
+    },
+    {
+      "name": "program-fault",
+      "inputs": {
+        "ProgramOK": false,
+        "formulaOK": true,
+        "formulaValue": true
+      },
+      "value": true,
+      "expected": true
+    },
+    {
+      "name": "strict-or-true-with-fault",
+      "inputs": {
+        "ProgramOK": true,
+        "formulaOK": false,
+        "formulaValue": true
+      },
+      "value": true,
+      "expected": true
+    },
+    {
+      "name": "record-unread-sibling-fault",
+      "inputs": {
+        "ProgramOK": true,
+        "formulaOK": false,
+        "formulaValue": true
+      },
+      "value": true,
+      "expected": true
+    },
+    {
+      "name": "inactive-payload-not-wf-constrained",
+      "inputs": {
+        "active": false,
+        "payload": -1,
+        "lower": 0
+      },
+      "value": true,
+      "expected": true
+    },
+    {
+      "name": "lookup-none-not-zero-record",
+      "inputs": {
+        "matched_rows": 0
+      },
+      "value": {
+        "is_some": false
+      },
+      "expected": {
+        "is_some": false
+      }
+    },
+    {
+      "name": "empty-forall",
+      "inputs": {
+        "bodies": []
+      },
+      "value": true,
+      "expected": true
+    },
+    {
+      "name": "text-nfc-nfd-distinct",
+      "inputs": {
+        "left": "é",
+        "right": "é"
+      },
+      "value": false,
+      "expected": false
+    },
+    {
+      "name": "ax-b01-wrong-add-schematic",
+      "inputs": {
+        "subtotal": 1,
+        "discount": 1,
+        "settled": true
+      },
+      "value": {
+        "expected_net": 0,
+        "actual_net": 2
+      },
+      "expected": {
+        "expected_net": 0,
+        "actual_net": 2
+      }
+    },
+    {
+      "name": "ax-b01-wrong-drop-zero-schematic",
+      "inputs": {
+        "subtotal": 1,
+        "discount": 1,
+        "settled": true
+      },
+      "value": {
+        "expected_present": true,
+        "actual_present": false
+      },
+      "expected": {
+        "expected_present": true,
+        "actual_present": false
+      }
+    }
+  ],
+  "resource_distinctions": [
+    {
+      "name": "zero-capacity",
+      "factors": [
+        "0"
+      ],
+      "budget": "0",
+      "fits": true
+    },
+    {
+      "name": "exact-budget",
+      "factors": [
+        "3"
+      ],
+      "budget": "3",
+      "fits": true
+    },
+    {
+      "name": "one-below",
+      "factors": [
+        "3"
+      ],
+      "budget": "2",
+      "fits": false
+    },
+    {
+      "name": "huge-before-host-conversion",
+      "factors": [
+        "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+      ],
+      "budget": "10000",
+      "fits": false
+    },
+    {
+      "name": "nested-bindings",
+      "factors": [
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10",
+        "10"
+      ],
+      "budget": "10000",
+      "fits": false
+    },
+    {
+      "name": "source-extent-not-output-capacity",
+      "factors": [
+        "3"
+      ],
+      "budget": "2",
+      "fits": false
+    }
+  ]
+}

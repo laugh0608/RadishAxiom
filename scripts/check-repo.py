@@ -64,6 +64,19 @@ REQUIRED_FILES = (
     "docs/semantics/keyed-finite-table-semantics-v0.2.md",
     "crates/axiom-ir/tests/fixtures/v0.2/README.md",
     "scripts/generate-p2-profile-review.py",
+    "scripts/generate-p3-query-review.py",
+    "docs/query/p3-query-encoding-review.md",
+    "docs/query/p3-query-review/README.md",
+    "docs/query/p3-query-review/materials.json",
+    "docs/adr/0019-map-filter-query-encoding.md",
+    "docs/query/map-filter-query-v0.1.md",
+    "contracts/map-filter-query-v0.1/README.md",
+    "contracts/map-filter-query-v0.1/cases.json",
+    "scripts/generate-p3-query-vectors.py",
+    "scripts/p3_query_semantics.py",
+    "scripts/check-p3-query-semantics.py",
+    "crates/axiom-ir/src/query.rs",
+    "crates/axiom-ir/tests/query.rs",
     "docs/evidence/p2-obligation-profile-review.md",
     "docs/evidence/p2-profile-review/README.md",
     "docs/adr/0018-ir-derived-obligation-profile.md",
@@ -536,6 +549,20 @@ def check_p2_profile_review(errors: list[str]) -> None:
         errors.append(f"P2 independent materials check failed: {detail}")
 
 
+def check_p3_query_materials(errors: list[str]) -> None:
+    for script in ["generate-p3-query-review.py", "generate-p3-query-vectors.py"]:
+        result = subprocess.run(
+            [sys.executable, str(REPO_ROOT / "scripts" / script), "--check"],
+            cwd=REPO_ROOT,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        if result.returncode != 0:
+            detail = (result.stdout + result.stderr).strip()
+            errors.append(f"P3 materials check failed ({script}): {detail}")
+
+
 def check_independent_check_contracts(errors: list[str]) -> None:
     generator = REPO_ROOT / "scripts/generate-independent-check-contracts.py"
     if not generator.is_file():
@@ -853,6 +880,7 @@ def main() -> int:
     check_benchmark_corpus(errors)
     check_ir_vectors(errors)
     check_p2_profile_review(errors)
+    check_p3_query_materials(errors)
     check_independent_check_contracts(errors)
     check_toolchain_adapter_identities(errors)
     check_toolchain_payload_acceptance(errors)

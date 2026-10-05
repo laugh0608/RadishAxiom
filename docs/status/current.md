@@ -15,6 +15,7 @@
 | 首域语义、IR / Evidence、pipeline / readiness 契约、28 个指定态 bundle | 真实生产管线、六平台执行 |
 | P1 内部组件：v0.2 闭合结构 / 类型 / 图 / 契约、保守标签、完整规范文档 / strict / 身份；v0.1 既有子集及显式迁移，本机组件验收 | 完整 P1 生产阶段、Evidence / 管线集成、真实独立 checker 与六平台验收 |
 | P2 内部组件：IR v0.2 的 ir-derived 全集、definition / ID / 规范字节、strict 完整性核对与预算拒绝，本机组件验收 | 完整 P2 生产阶段、实际 trust / concrete checks、Evidence v0.2 / query / 独立 checker 集成 |
+| P3-A 内部组件：map / filter 的 numeric-range / contract-guarantee 真实查询、绑定 / strict / 预算拒绝，本机组件验收 | 其他义务与图操作、完整 P3、真实 solver / 模型 / proof、Evidence 与独立 checker 集成 |
 | 独立 Go checker 的受限解析、义务重建、重放、结论与 CLI | 全语义、反例最小性；kernel / certificate 真值复核支持集合仍为空 |
 | Rust runtime 的身份 / 选择、归档 / manifest、receipt、结果消费和 spawn plan；Darwin store 持久化与恢复 | 完整 installer / launcher、qualification、产品根安装、物理断电保证 |
 | Darwin Go / Rust 部分工具验收，checker payload 不可变发布并登记 inactive | cvc5 / Node、完整 Linux 工具链及其他平台验收；active runtime 为 0 |
@@ -35,19 +36,19 @@
 | --- | --- | --- |
 | 1：P1 真实语义组件 | [ADR 0016](../adr/0016-core-semantic-slice-entry.md) / [0017](../adr/0017-ir-v0.2-support-boundaries-and-migration.md)范围内已完成本机组件验收；[17 项矩阵](../ir/p1-support-boundary-review.md#必需验证矩阵对照)闭合结构、规范字节、身份与迁移回归 | 保留旧版未支持边界；不外推完整生产阶段、证明或跨平台验收 |
 | 2：P2 真实义务生成 | [ADR 0018](../adr/0018-ir-derived-obligation-profile.md) / [规则](../evidence/ir-derived-obligations-v0.2.md)已接受并完成本机内部组件验收；26 份 IR / 482 项定义与 29 份负例实际核对 | 只交付显式 ir-derived 全集；group 覆盖 / 守恒分开；保留完整 Evidence 门禁 |
-| 3：query 与纵向闭环（下一步） | P1–P2 后审阅 P3 的目标、可达性 / Pre / 故障编码、资源与独立期望；明确 P4 / P7 / P9 各自必要前置 | 沿用 AX-B01 正确、两个 wrong、invalid、timeout 和篡改验收；外部执行仍须独立授权 |
+| 3：query 与纵向闭环（下一步） | [ADR 0019](../adr/0019-map-filter-query-encoding.md) 的 P3-A 已完成本机组件验收；下一步审阅 map / filter 剩余义务目标，再分别扩展图 / 双世界与 P4 / P7 / P9 | 完整 P3 未实现；保留 AX-B01 正确、两个 wrong、invalid、timeout 和篡改标准，外部执行独立授权 |
 
 近期验收看真实输入能否产生规范输出与可定位拒绝，区分实现、指定态 fixture、独立复核与证明；不以提交数、测试数或来源包数量替代里程碑。每个切片结束复核下一项是否直接服务上述交付；新增前置必须解释具体依赖和停止条件。
 
 ### 当前切片与下一步（2026-10-05）
 
-P1 的 v0.2 边界与显式迁移已提交为 `ed39e3b`。按 ADR 0016 / 0017 完成本机内部组件验收；规范、接口、20 份迁移对照与 18 份负例见 [IR 组件](../../crates/axiom-ir/README.md)和[矩阵审阅](../ir/p1-support-boundary-review.md)。旧规范、Evidence、候选与绑定字节保留，完整生产阶段与其他平台尚未验收。
+P1 已提交为 `ed39e3b`，P2 已提交为 `5142d70`，均完成本机内部组件验收。P1 迁移 / 支持矩阵见 [IR 组件](../../crates/axiom-ir/README.md)；P2 [独立材料](../../contracts/ir-derived-obligations-v0.2/README.md)含 26 份 IR、482 项定义与 29 份负例。旧绑定保留，完整生产阶段仍未验收。
 
-项目所有者在审阅 P2 精确范围后回复“确认，继续推进”。[ADR 0018](../adr/0018-ir-derived-obligation-profile.md)正式接受 IR v0.2、`scope: ir-derived`、整份 IR 绑定的义务身份、十类位置、group 两项目标及后续角色映射。正式规则与独立正负例已物化，Rust 内部 `generate_obligations` / `check_obligation_set` 已实现。所有结果对象只读，不产生 execution、trust、五态或结论。
+项目所有者在 P3 精确审阅后回复“确认，继续推进”。[ADR 0019](../adr/0019-map-filter-query-encoding.md) / [编码规则](../query/map-filter-query-v0.1.md)接受 map / filter、核心表达式 / forall_rows / lookup，以及 numeric-range / contract-guarantee。Rust `encode_query` / `check_query` 已实现只读查询、完整来源绑定、严格字节核对和六类预算；不产生五态、证明或执行许可。
 
-[26 份独立材料](../../contracts/ir-derived-obligations-v0.2/README.md)含 482 项定义 / ID / 完整集合及 raw 摘要，Rust 逐字节匹配；29 份负例实际被拒绝。额外测试覆盖规范路径、assume / record 内算术、零容量与死分支不省略、同源多输出、Pre / Unicode 身份、四种累计预算的精确上限 / 差一拒绝、5,000 层 DAG 与宽字段。旧 pipeline 对新 scope、删除新成员、再伪装旧版本分别拒绝，未放宽旧验证器。
+[P3 独立材料](../../contracts/map-filter-query-v0.1/README.md)覆盖 40 个文档、26 个支持 op、68 条实际 SMT 查询和 2,394 个赋值；具体 IR 与实际 SMT 文本分别解释并比较，另有手算字节与三项篡改拒绝。AX-B01 保持原容量，两个 wrong 的业务反例在有限世界中区分。深层类型 / 图、展开乘积、预算精确上限 / 差一、Pre / Reach / 故障与 None / Unicode 均有回归。
 
-[审阅材料](../evidence/p2-profile-review/README.md)保留 7 个有限 group 区分例、10 个角色对照和 12 份旧 / 新核心身份预览。预览不复制旧结果，不是完整 Evidence 迁移演练。后续完整 Evidence 必须补齐实际 trust 与具体输入 / 宿主 / 黄金比较，ADR 0009 门禁仍在。下一步是 P3 query 目标编码设计审阅；本轮没有进入 P3 实现、跨仓或外部工具执行。
+既有 482 项 P2 位置未删减：测试预算下生成 115 条 query，1 项静态候选因超大容量拒绝，56 项被文档功能阻断，284 项属于其他 prove 类型，26 项为 check。完整 Evidence v0.2 仍须补实际 trust / concrete checks、迁移与独立验收；下一步先审阅 map / filter 剩余目标，不把 P3-A 当作完整 P3 或真实 solver 验收。
 
 ### 暂缓工作与恢复条件
 
@@ -65,7 +66,7 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 
 ## 当前停止线与待决策
 
-- P1 与限定 P2 内部组件已完成本机验收；完整生产阶段尚未验收。P3 按 ADR 0016 单独审阅；新 IR / P2 清单不能配给旧 Evidence 结果，完整 Evidence v0.2 仍须按 ADR 0009 补齐。
+- P1、限定 P2 与 P3-A 已完成本机组件验收；完整生产阶段尚未验收。P3 进一步扩展须明确目标范围；新 IR / P2 / query 不能配给旧 Evidence 结果，完整 Evidence v0.2 仍须按 ADR 0009 补齐。
 - Darwin payload 保持 `registered-inactive`、`NativeIsolationStatus = RequiredNotProven`。不能重标为 Linux，也不能静默将 native spawn 转为虚拟执行。
 - 产品隔离继续遵循 ADR 0013–0015；不启用 native best-effort、root broker、URL boot 或 warm VM fallback，不自动放宽 memory / deadline。
 - 来源接受、fetch / install、payload 执行、公共迁移、生产签名、qualification、激活和远程写入仍分别处理；历史授权不延续。
@@ -74,9 +75,9 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 
 ## 验证入口与本次审阅
 
-2026-10-05，本轮物化 P2 决定、正式规则与独立材料，在既有 IR crate 实现生成 / strict / 资源拒绝。12 项新增 Rust 回归通过，workspace 共 214 项测试通过（runtime 56、Darwin store 3、digest 2、IR 153），格式与 Clippy 通过。旧规范、候选、锁定 bundle、runtime 与依赖字节保留；没有安装或升级依赖。
+2026-10-05，P3-A 新增 5 项 Rust 回归通过，workspace 共 219 项测试通过（runtime 56、Darwin store 3、digest 2、IR 158）；格式与 Clippy 通过。旧规范、候选、锁定 bundle、runtime 与依赖字节保留，没有安装或升级依赖。
 
-有限 group 数学区分和角色表仍为审阅材料，不能计作已求解义务、实际 role 执行或独立 checker 结果。完整集合字节由 Python 独立期望核对；生产 strict round-trip 仅为额外检查，不能替代外部独立路径。
+P3 具体 IR / SMT 比对属于有限动态检查，不是 solver 结果或形式证明；生产 strict 重建不能替代独立路径。P2 group 区分与角色表仍不是实际 role / checker 执行结果。
 
 仓库级契约、生成一致性与文本检查：
 
@@ -94,7 +95,7 @@ cargo +1.97.1-aarch64-apple-darwin test --workspace --all-targets --locked --off
 
 命令以工具和依赖已验收安装为前提，不授权下载；其他平台先确认精确工具与执行范围。
 
-本轮 P2 独立材料生成一致性、仓库检查与 `git diff --check` 已通过；仓库检查保留全部既有契约 / IR 向量，并核对新 P2 材料及旧入口的版本隔离。CI 未触发，其他平台及真实 checker / cvc5 / Node 未执行。后续按[工程门禁](../governance/repository-governance.md#rust-工程门禁)验证，契约检查不能替代 Rust 测试。
+本轮 P3 审阅 / 动态期望生成一致性、仓库检查与 `git diff --check` 已通过；保留全部既有契约 / IR / P2 材料及旧入口隔离。CI 未触发，其他平台及真实 checker / cvc5 / Node 未执行。后续按[工程门禁](../governance/repository-governance.md#rust-工程门禁)验证，契约检查不能替代 Rust 测试。
 
 ## 按需阅读
 
