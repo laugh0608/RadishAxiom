@@ -157,8 +157,15 @@ pub fn decode_type_declarations(
     limits: JsonLimits,
 ) -> Result<UnverifiedTypeDeclarations, DeclarationError> {
     let value = json::parse(input, limits).map_err(DeclarationError::Json)?;
+    decode_type_declarations_value(&value)
+}
+
+/// 复用同一次有界解析；调用方不能传入未经 JSON parser 检查的外部树。
+pub(crate) fn decode_type_declarations_value(
+    value: &Value,
+) -> Result<UnverifiedTypeDeclarations, DeclarationError> {
     let root = object(
-        &value,
+        value,
         "",
         &[
             "contracts",

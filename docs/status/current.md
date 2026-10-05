@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-09-29
+更新日期：2026-10-05
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。历史事实按需进入[截至 2026-09-03 的归档](../records/status-through-2026-09-03.md)。
 
@@ -13,7 +13,7 @@
 | 已形成 | 尚未形成 / 不代表 |
 | --- | --- |
 | 首域语义、IR / Evidence、pipeline / readiness 契约、28 个指定态 bundle | 真实生产管线、六平台执行 |
-| P1 内部组件：有界 Unicode JSON、类型声明解码 / 规范化 / ID 核对、受限逐行表达式类型推导 | 表达式规范化与支持边界收口、节点类型与效果、转换 DAG、契约 / 输出及完整内容身份；P1 尚未完成 |
+| P1 内部组件：有界 Unicode JSON、类型声明身份、受限逐行表达式类型、节点结构 / 局部类型、转换 DAG 与输出引用 | 表达式规范化与支持边界收口、节点内容身份、标签 / 控制依赖与完整效果、契约接口及完整文档身份；P1 尚未完成 |
 | 独立 Go checker 的受限解析、义务重建、重放、结论与 CLI | 全语义、反例最小性；kernel / certificate 真值复核支持集合仍为空 |
 | Rust runtime 的身份 / 选择、归档 / manifest、receipt、结果消费和 spawn plan；Darwin store 持久化与恢复 | 完整 installer / launcher、qualification、产品根安装、物理断电保证 |
 | Darwin Go / Rust 部分工具验收，checker payload 不可变发布并登记 inactive | cvc5 / Node、完整 Linux 工具链及其他平台验收；active runtime 为 0 |
@@ -32,19 +32,17 @@
 
 | 顺位 | 交付 | 完成或停止条件 |
 | --- | --- | --- |
-| 1：P1 真实语义组件 | [ADR 0016 已接受](../adr/0016-core-semantic-slice-entry.md)；声明身份与受限逐行表达式类型推导已实现；下一步接入节点结构 / 类型、转换 DAG 与输出引用，随后收口表达式规范化、效果和契约接口 | 局部表达式成功不构成节点图或完整 IR 验收；四题及同域新输入、语义负例与独立期望通过后才能称 P1 完成 |
+| 1：P1 真实语义组件 | [ADR 0016 已接受](../adr/0016-core-semantic-slice-entry.md)；节点结构 / 局部类型、DAG 与输出引用已接入；下一步收口表达式支持 / 规范化及节点身份，再接标签 / 控制依赖、效果与契约接口 | 节点图分析不构成完整 IR 验收；四题及同域新输入、语义负例与独立期望通过后才能称 P1 完成 |
 | 2：P2 真实义务生成 | 先闭合 ADR 0009 的生产义务 profile / 版本入口，再从 IR 生成完整义务及 ID | group 覆盖与守恒不得歧义；不读 expected outcome 驱动实现；版本阻断只作用于 P2 |
 | 3：query 与纵向闭环 | P1–P2 后审阅 P3；明确 P4 / P7 / P9 与独立复核各自必要前置 | 沿用 AX-B01 正确、两个 wrong、invalid、timeout 和篡改验收；外部执行仍须独立授权 |
 
 近期验收看真实输入能否产生规范输出与可定位拒绝，区分实现、指定态 fixture、独立复核与证明；不以提交数、测试数或来源包数量替代里程碑。每个切片结束复核下一项是否直接服务上述交付；新增前置必须解释具体依赖和停止条件。
 
-### 明日事项（2026-09-30）
+### 当前切片与下一步（2026-10-05）
 
-1. **接入节点结构、类型与引用。** 从现有 candidate bytes 解码节点，复用已核验声明和 `RowTypeChecker` 检查 filter 谓词、map / lookup_join 投影的上下文及输出类型；按既有规范覆盖 input / group 的结构与引用，未支持项明确报告。
-2. **闭合转换 DAG 与输出引用。** 拒绝重复节点 ID、悬空引用、循环、错误输出目标和不符合规范的可达性；采用有界或迭代图遍历，保留原输入定位。节点内容身份、表达式规范化和完整文档身份未完成前，不开放完整 IR 成功入口。
-3. **以真实材料验收这个切片。** 回归四题 12 个候选，并增加字段改名、节点乱序、缺失引用、循环和投影类型错配的同域合成输入；结构合法的 wrong 候选不因算法标签而被拒绝。按改动运行 Rust 门禁及仓库检查，分别报告实现与剩余 P1 范围。
+本轮已接入 `nodes::analyze_node_graph`：同一次有界解析完成声明身份核对、五类节点结构与局部类型、DAG / 可达性及输出引用检查，诊断保留原输入位置。覆盖 filter、投影与直接主键保留 / 重命名、join 字段对、group 键 / 聚合类型及容量关系；不核对节点内容 ID，不验证契约或证明义务，详见 [IR 组件](../../crates/axiom-ir/README.md)。
 
-表达式未支持形式与兼容性问题见下方停止线；遇到规范歧义只停相应部分，先给出精确问题和影响，不猜测格式。明天仍沿核心语义主线推进，来源取证 / 产品运行工作的恢复条件不变。本清单是仓库交接，不创建定时任务；今晚不继续编码。
+下一切片先收口表达式支持边界，再实施表达式规范化与节点内容身份。`record.fields` / `is_some` 机器形式及 Int 比较兼容性遇到规范歧义时只停相应部分，列明精确问题与影响，不猜测格式；复杂主键投影目前返回 `UnsupportedKeyExpression`，须同时审阅支持范围。随后完成标签 / 控制依赖、完整效果、契约接口与身份，最后才形成 canonical 完整 IR / 文档身份入口。来源取证与产品运行工作的恢复条件不变。
 
 ### 暂缓工作与恢复条件
 
@@ -62,7 +60,7 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 
 ## 当前停止线与待决策
 
-- ADR 0016 仅放行内部组件；JSON、声明身份或局部表达式类型成功不能标记为完整 IR 验收。`record.fields` 元素及 `is_some` 机器形式、不同范围 Int 比较兼容性仍待精确确认；记录相等暂未支持，均返回 `Unsupported`。这些范围须在完整 P1 前收口，不阻断明确的节点结构工作；P2 义务版本与完整管线门禁保留。
+- ADR 0016 仅放行内部组件；节点图分析也不能标记为完整 IR 验收。表达式未支持形式与复杂键投影须在完整 P1 前收口；节点 / 契约身份、规范化和完整效果仍未验收。P2 义务版本与完整管线门禁保留。
 - Darwin payload 保持 `registered-inactive`、`NativeIsolationStatus = RequiredNotProven`。不能重标为 Linux，也不能静默将 native spawn 转为虚拟执行。
 - 产品隔离继续遵循 ADR 0013–0015；不启用 native best-effort、root broker、URL boot 或 warm VM fallback，不自动放宽 memory / deadline。
 - 来源接受、fetch / install、payload 执行、公共迁移、生产签名、qualification、激活和远程写入仍分别处理；历史授权不延续。
@@ -71,7 +69,7 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 
 ## 验证入口与本次审阅
 
-2026-09-29，P1 的 JSON、声明解码、声明身份和局部表达式增量均已提交，最新为 `04a7331`；完整 P1 尚未验收。全天 10 笔提交、代码 / 文档复核、深层递归失败与修复、来源记录及本机留存边界见[日终回顾](../records/2026-09-29-closeout.md)。API 与支持范围见[IR 组件](../../crates/axiom-ir/README.md)，宿主工具身份见[原验收记录](../checker-runtime-rust-first-slice-review.md)。
+2026-10-05，节点切片回归四题 12 个候选的 pretty / JCS 输入，保留结构合法的 wrong 算法；新增 24 项测试覆盖同域改名、节点乱序、引用 / 类型负例、448 个小图的独立传递闭包期望、5,000 层图与嵌入表达式预算。完整 P1 尚未验收。此前提交与本机材料边界见 [9 月 29 日日终回顾](../records/2026-09-29-closeout.md)，API 与未覆盖范围见 [IR 组件](../../crates/axiom-ir/README.md)，宿主工具来源见[原验收记录](../checker-runtime-rust-first-slice-review.md)。本轮实际核对 `rustc` / Cargo 为 `1.97.1`、host 为 `aarch64-apple-darwin`，未下载或改变依赖。
 
 仓库级契约、生成一致性与文本检查：
 
@@ -89,7 +87,7 @@ cargo +1.97.1-aarch64-apple-darwin test --workspace --all-targets --locked --off
 
 命令以工具和依赖已验收安装为前提，不授权下载；其他平台先确认精确工具与执行范围。
 
-今日实现已通过 workspace 格式、Clippy、105 项测试（runtime 56、Darwin store 3、digest 2、IR 44）及仓库检查；日终只更新文档，复查仓库门禁与差异，不重复无改动的 Rust 测试。CI 未触发，其他平台未执行。后续按[工程门禁](../governance/repository-governance.md#rust-工程门禁)验证，契约检查不能替代 Rust 测试。
+本轮实现已通过 workspace 格式、Clippy、129 项测试（runtime 56、Darwin store 3、digest 2、IR 68）及仓库级检查（1,341 个文件）。CI 未触发，其他平台及真实 checker / cvc5 / Node 未执行。后续按[工程门禁](../governance/repository-governance.md#rust-工程门禁)验证，契约检查不能替代 Rust 测试。
 
 ## 按需阅读
 

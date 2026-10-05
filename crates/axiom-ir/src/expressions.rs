@@ -131,6 +131,16 @@ impl<'a> RowTypeChecker<'a> {
         scope: RowScope<'_>,
     ) -> Result<ValueType, ExpressionError> {
         let value = json::parse(input, limits).map_err(DeclarationError::Json)?;
+        self.infer_parsed(&value, "", scope)
+    }
+
+    /// 节点检查复用有界文档树和原始 JSON Pointer，不重新编码 / 解析表达式。
+    pub(crate) fn infer_parsed(
+        &self,
+        value: &Value,
+        path: &str,
+        scope: RowScope<'_>,
+    ) -> Result<ValueType, ExpressionError> {
         let records = match scope {
             RowScope::Closed => Vec::new(),
             RowScope::Single { record_type } => vec![record_type],
@@ -155,7 +165,7 @@ impl<'a> RowTypeChecker<'a> {
                 record_type: id.to_owned(),
             })
             .collect();
-        self.infer_value(&value, "", &mut bindings)
+        self.infer_value(value, path, &mut bindings)
     }
 
     fn annotation(&self, value: &Value, path: &str) -> Result<ValueType, ExpressionError> {

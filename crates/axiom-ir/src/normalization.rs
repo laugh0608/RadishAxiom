@@ -1,8 +1,8 @@
 //! 类型声明的规范数组与内容身份。成功只覆盖声明，不覆盖节点、契约、输出或整个 IR。
 
 use crate::declarations::{
-    DeclarationError, EnumType, Label, RecordType, TableType, UnverifiedDeclaration, ValueType,
-    decode_type_declarations,
+    DeclarationError, EnumType, Label, RecordType, TableType, UnverifiedDeclaration,
+    UnverifiedTypeDeclarations, ValueType, decode_type_declarations,
 };
 use crate::json::{self, JsonLimits, Value};
 
@@ -54,6 +54,12 @@ pub fn normalize_type_declarations(
     limits: JsonLimits,
 ) -> Result<NormalizedTypeDeclarations, DeclarationError> {
     let decoded = decode_type_declarations(input, limits)?;
+    normalize_decoded_declarations(decoded)
+}
+
+pub(crate) fn normalize_decoded_declarations(
+    decoded: UnverifiedTypeDeclarations,
+) -> Result<NormalizedTypeDeclarations, DeclarationError> {
     Ok(NormalizedTypeDeclarations {
         enum_types: normalize(
             decoded.enum_types,
