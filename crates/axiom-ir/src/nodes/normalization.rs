@@ -22,7 +22,7 @@ impl NormalizedNode {
 }
 
 /// 节点按 ID 排序；analysis 的索引仍指向原输入数组，不是此规范数组。
-/// 节点 ID 已核对不代表标签 / 控制依赖、契约、完整文档或 P1 成功。
+/// 节点 ID 已核对不代表非干扰、契约、完整文档或 P1 成功。
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct NormalizedNodeGraph {
     analysis: NodeGraphAnalysis,

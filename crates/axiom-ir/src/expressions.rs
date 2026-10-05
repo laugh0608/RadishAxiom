@@ -1,4 +1,4 @@
-//! 逐行表达式的局部类型、保守标签推导与受限规范化。不求值、不证明算术范围或非干扰。
+//! 逐行与契约共用的类型规则，以及逐行标签推导 / 规范化。不求值、不证明算术范围或非干扰。
 
 use std::collections::BTreeSet;
 use std::fmt;
@@ -11,6 +11,9 @@ use crate::normalization::{NormalizedDeclaration, NormalizedTypeDeclarations};
 
 pub(crate) mod labels;
 pub(crate) mod normalization;
+pub(crate) mod tables;
+
+use tables::{ContractScope, InterfaceReference, Interfaces, TypingContext};
 
 /// 保守字段依赖标签；不是非干扰、总性或运行时安全结论。
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -74,6 +77,9 @@ pub enum TypeErrorKind {
     UnknownEnumMember,
     LiteralOutOfRange,
     ContractOperationInRow,
+    UnknownInterfaceKind,
+    UnknownInterface,
+    OutputInAssumption,
 }
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
@@ -106,10 +112,10 @@ pub enum ExpressionError {
 impl fmt::Display for ExpressionError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            Self::Input(error) => write!(f, "row expression input: {error}"),
-            Self::Type { kind, path } => write!(f, "row expression {kind:?} at {path:?}"),
+            Self::Input(error) => write!(f, "IR expression input: {error}"),
+            Self::Type { kind, path } => write!(f, "IR expression {kind:?} at {path:?}"),
             Self::Unsupported { reason, path } => {
-                write!(f, "row expression unsupported {reason:?} at {path:?}")
+                write!(f, "IR expression unsupported {reason:?} at {path:?}")
             }
             Self::UnknownScopeRecord { slot, id } => {
                 write!(f, "unknown row scope record at slot {slot}: {id}")
@@ -244,14 +250,40 @@ impl<'a> RowTypeChecker<'a> {
             }
         }
         // 栈顶为索引 0；join 初始语义顺序仍是 [left_row, right_row]。
-        let mut bindings = records
+        let bindings = records
             .into_iter()
             .rev()
             .map(|id| ValueType::Record {
                 record_type: id.to_owned(),
             })
             .collect();
-        self.infer_value(value, path, &mut bindings)
+        let mut context = TypingContext {
+            bindings,
+            contract: None,
+            references: BTreeSet::new(),
+        };
+        self.infer_value(value, path, &mut context)
+    }
+
+    /// 契约复用同一标量类型规则；接口只从已检查节点图构造，顶层环境为空。
+    pub(crate) fn infer_contract_parsed(
+        &self,
+        value: &Value,
+        path: &str,
+        interfaces: &Interfaces<'_>,
+        allow_outputs: bool,
+    ) -> Result<Vec<InterfaceReference>, ExpressionError> {
+        let mut context = TypingContext {
+            bindings: vec![],
+            contract: Some(ContractScope {
+                interfaces,
+                allow_outputs,
+            }),
+            references: BTreeSet::new(),
+        };
+        let actual = self.infer_value(value, path, &mut context)?;
+        require_same(&actual, &ValueType::Bool, path)?;
+        Ok(context.references.into_iter().collect())
     }
 
     fn annotation(&self, value: &Value, path: &str) -> Result<ValueType, ExpressionError> {
@@ -287,7 +319,7 @@ impl<'a> RowTypeChecker<'a> {
         &self,
         value: &Value,
         path: &str,
-        bindings: &mut Vec<ValueType>,
+        context: &mut TypingContext<'_>,
     ) -> Result<ValueType, ExpressionError> {
         let Value::Object(members) = value else {
             return Err(decode::error(DeclarationErrorKind::ExpectedObject, path).into());
@@ -313,7 +345,15 @@ impl<'a> RowTypeChecker<'a> {
             "if" => &["condition", "else", "op", "result_type", "then"],
             "match_option" => &["none", "op", "result_type", "some", "subject"],
             "forall_rows" | "exists_rows" | "lookup" | "count_where" | "sum_where" => {
-                return Err(type_error(TypeErrorKind::ContractOperationInRow, &op_path));
+                if context.contract.is_none() {
+                    return Err(type_error(TypeErrorKind::ContractOperationInRow, &op_path));
+                }
+                match op {
+                    "forall_rows" | "exists_rows" => &["body", "op", "table"],
+                    "lookup" => &["keys", "op", "table"],
+                    "count_where" => &["op", "predicate", "result_type", "table"],
+                    _ => &["op", "predicate", "result_type", "table", "value"],
+                }
             }
             "record" | "is_some" => {
                 return Err(unsupported(UnsupportedTyping::UnspecifiedForm, &op_path));
@@ -326,14 +366,17 @@ impl<'a> RowTypeChecker<'a> {
             "literal_bool" | "literal_text" | "literal_int" | "literal_fixed" | "literal_enum" => {
                 self.infer_literal(op, members, path)
             }
-            "none" | "some" | "bound" | "field" => self.infer_access(op, members, path, bindings),
-            "not" | "and" | "or" => self.infer_boolean(op, members, path, bindings),
-            "eq" | "lt" | "le" | "gt" | "ge" => self.infer_comparison(op, members, path, bindings),
+            "none" | "some" | "bound" | "field" => self.infer_access(op, members, path, context),
+            "not" | "and" | "or" => self.infer_boolean(op, members, path, context),
+            "eq" | "lt" | "le" | "gt" | "ge" => self.infer_comparison(op, members, path, context),
             "int_add" | "int_sub" | "fixed_add" | "fixed_sub" => {
-                self.infer_arithmetic(op, members, path, bindings)
+                self.infer_arithmetic(op, members, path, context)
             }
-            "if" => self.infer_conditional(members, path, bindings),
-            "match_option" => self.infer_match_option(members, path, bindings),
+            "if" => self.infer_conditional(members, path, context),
+            "match_option" => self.infer_match_option(members, path, context),
+            "forall_rows" | "exists_rows" | "lookup" | "count_where" | "sum_where" => {
+                self.infer_table(op, members, path, context)
+            }
             _ => unreachable!("operator shape checked"),
         }
     }
@@ -395,7 +438,7 @@ impl<'a> RowTypeChecker<'a> {
         op: &str,
         members: &decode::Members,
         path: &str,
-        bindings: &mut Vec<ValueType>,
+        context: &mut TypingContext<'_>,
     ) -> Result<ValueType, ExpressionError> {
         let get = |key| decode::member(members, key);
         let at = |key| decode::child(path, key);
@@ -408,7 +451,7 @@ impl<'a> RowTypeChecker<'a> {
                 Ok(ty)
             }
             "some" => Ok(ValueType::Option {
-                inner: Box::new(self.infer_value(get("value"), &at("value"), bindings)?),
+                inner: Box::new(self.infer_value(get("value"), &at("value"), context)?),
             }),
             "bound" => {
                 let index = decode::integer(get("index"), &at("index"), true)?;
@@ -417,12 +460,12 @@ impl<'a> RowTypeChecker<'a> {
                     .as_str()
                     .parse::<usize>()
                     .ok()
-                    .filter(|index| *index < bindings.len())
+                    .filter(|index| *index < context.bindings.len())
                     .ok_or_else(|| type_error(TypeErrorKind::BoundOutOfRange, &at("index")))?;
-                Ok(bindings[bindings.len() - 1 - index].clone())
+                Ok(context.bindings[context.bindings.len() - 1 - index].clone())
             }
             "field" => {
-                let record = self.infer_value(get("record"), &at("record"), bindings)?;
+                let record = self.infer_value(get("record"), &at("record"), context)?;
                 let ValueType::Record { record_type } = record else {
                     return Err(type_error(TypeErrorKind::ExpectedRecord, &at("record")));
                 };
@@ -444,14 +487,14 @@ impl<'a> RowTypeChecker<'a> {
         op: &str,
         members: &decode::Members,
         path: &str,
-        bindings: &mut Vec<ValueType>,
+        context: &mut TypingContext<'_>,
     ) -> Result<ValueType, ExpressionError> {
         let get = |key| decode::member(members, key);
         let at = |key| decode::child(path, key);
         match op {
             "not" => {
                 require_same(
-                    &self.infer_value(get("value"), &at("value"), bindings)?,
+                    &self.infer_value(get("value"), &at("value"), context)?,
                     &ValueType::Bool,
                     &at("value"),
                 )?;
@@ -465,7 +508,7 @@ impl<'a> RowTypeChecker<'a> {
                 for (index, value) in values.iter().enumerate() {
                     let path = format!("{}/{}", at("values"), index);
                     require_same(
-                        &self.infer_value(value, &path, bindings)?,
+                        &self.infer_value(value, &path, context)?,
                         &ValueType::Bool,
                         &path,
                     )?;
@@ -481,14 +524,14 @@ impl<'a> RowTypeChecker<'a> {
         op: &str,
         members: &decode::Members,
         path: &str,
-        bindings: &mut Vec<ValueType>,
+        context: &mut TypingContext<'_>,
     ) -> Result<ValueType, ExpressionError> {
         let get = |key| decode::member(members, key);
         let at = |key| decode::child(path, key);
         match op {
             "eq" | "lt" | "le" | "gt" | "ge" => {
-                let left = self.infer_value(get("left"), &at("left"), bindings)?;
-                let right = self.infer_value(get("right"), &at("right"), bindings)?;
+                let left = self.infer_value(get("left"), &at("left"), context)?;
+                let right = self.infer_value(get("right"), &at("right"), context)?;
                 if op == "eq" {
                     require_same(&right, &left, &at("right"))?;
                     let mut ty = &left;
@@ -533,7 +576,7 @@ impl<'a> RowTypeChecker<'a> {
         op: &str,
         members: &decode::Members,
         path: &str,
-        bindings: &mut Vec<ValueType>,
+        context: &mut TypingContext<'_>,
     ) -> Result<ValueType, ExpressionError> {
         let get = |key| decode::member(members, key);
         let at = |key| decode::child(path, key);
@@ -547,14 +590,14 @@ impl<'a> RowTypeChecker<'a> {
                     let left_path = format!("{}/0", at("values"));
                     let right_path = format!("{}/1", at("values"));
                     (
-                        self.infer_value(&values[0], &left_path, bindings)?,
-                        self.infer_value(&values[1], &right_path, bindings)?,
+                        self.infer_value(&values[0], &left_path, context)?,
+                        self.infer_value(&values[1], &right_path, context)?,
                         right_path,
                     )
                 } else {
                     (
-                        self.infer_value(get("left"), &at("left"), bindings)?,
-                        self.infer_value(get("right"), &at("right"), bindings)?,
+                        self.infer_value(get("left"), &at("left"), context)?,
+                        self.infer_value(get("right"), &at("right"), context)?,
                         at("right"),
                     )
                 };
@@ -592,19 +635,19 @@ impl<'a> RowTypeChecker<'a> {
         &self,
         members: &decode::Members,
         path: &str,
-        bindings: &mut Vec<ValueType>,
+        context: &mut TypingContext<'_>,
     ) -> Result<ValueType, ExpressionError> {
         let get = |key| decode::member(members, key);
         let at = |key| decode::child(path, key);
         require_same(
-            &self.infer_value(get("condition"), &at("condition"), bindings)?,
+            &self.infer_value(get("condition"), &at("condition"), context)?,
             &ValueType::Bool,
             &at("condition"),
         )?;
         let result = self.annotation(get("result_type"), &at("result_type"))?;
         for key in ["then", "else"] {
             require_same(
-                &self.infer_value(get(key), &at(key), bindings)?,
+                &self.infer_value(get(key), &at(key), context)?,
                 &result,
                 &at(key),
             )?;
@@ -616,23 +659,23 @@ impl<'a> RowTypeChecker<'a> {
         &self,
         members: &decode::Members,
         path: &str,
-        bindings: &mut Vec<ValueType>,
+        context: &mut TypingContext<'_>,
     ) -> Result<ValueType, ExpressionError> {
         let get = |key| decode::member(members, key);
         let at = |key| decode::child(path, key);
-        let subject = self.infer_value(get("subject"), &at("subject"), bindings)?;
+        let subject = self.infer_value(get("subject"), &at("subject"), context)?;
         let ValueType::Option { inner } = subject else {
             return Err(type_error(TypeErrorKind::ExpectedOption, &at("subject")));
         };
         let result = self.annotation(get("result_type"), &at("result_type"))?;
         require_same(
-            &self.infer_value(get("none"), &at("none"), bindings)?,
+            &self.infer_value(get("none"), &at("none"), context)?,
             &result,
             &at("none"),
         )?;
-        bindings.push(*inner);
-        let some = self.infer_value(get("some"), &at("some"), bindings);
-        bindings.pop();
+        context.bindings.push(*inner);
+        let some = self.infer_value(get("some"), &at("some"), context);
+        context.bindings.pop();
         require_same(&some?, &result, &at("some"))?;
         Ok(result)
     }

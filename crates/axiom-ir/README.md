@@ -1,6 +1,6 @@
 # Axiom IR 内部组件
 
-本 crate 承载 [ADR 0016](../../docs/adr/0016-core-semantic-slice-entry.md) 的 P1 实施。当前实现 [IR v0.1](../../docs/ir/axiom-ir-v0.md) 的 JSON 字节边界、类型声明身份、受限逐行表达式类型 / 规范化、节点图分析及内容身份，并重建保守字段 / 控制标签；没有完整 IR 成功入口，也不提供 CLI。
+本 crate 承载 [ADR 0016](../../docs/adr/0016-core-semantic-slice-entry.md) 的 P1 实施。当前实现 [IR v0.1](../../docs/ir/axiom-ir-v0.md) 的 JSON 字节边界、类型声明身份、受限逐行表达式类型 / 规范化、节点图分析及内容身份，并重建保守字段 / 控制标签、检查契约类型与接口；没有完整 IR 成功入口，也不提供 CLI。
 
 ## 输入与输出
 
@@ -60,6 +60,19 @@
 
 复合字段跨节点取整体内容摘要，join 匹配控制保守影响全部投影字段；因此可能产生待后续验证消解的额外依赖。标签为 public 或缺口为空均不能证明非干扰：契约选择的输入 / 输出、前置条件、故障与正常结束的可观察性、总性和范围义务尚未接入。本层不执行外部能力、不生成证明，也不扩大现有表达式支持范围或新增公共 IR 字段。
 
+`contracts::analyze_contracts(bytes, limits)` 使用同一次有界解析，先完成上述节点结构 / 类型 / 标签分析，再检查全部契约。它不调用节点内容身份入口，节点与契约 ID 仍只核验词法和唯一性；结果不能作为完整 IR 验收凭证。
+
+- formula 只接受 assume / guarantee，顶层公式必须为 Bool、初始绑定为空。assume 只可引用 input，guarantee 可引用 input 与命名 output；不存在内部节点引用语法。接口从已检查图构造，不能由调用方提供缓存或额外隐式表。
+- `forall_rows` / `exists_rows` 为 body 插入目标行，body 必须为 Bool。`lookup` 不插入行，按目标主键顺序和完全相同类型检查全部 keys，返回目标 `Option<Record>`；可继续由 `match_option` 显式处理。查找是否存在不由类型层判定。
+- `count_where` / `sum_where` 在 predicate 与 value 中插入目标行，predicate 必须为 Bool。count 结果须为 Int；sum 的 value 须为非可选 Int / Fixed，结果分别为 Int / 同 scale Fixed。声明范围独立保留，不因容量或空集合扩大范围；计数与数学和（包括零）能否落入声明范围仍是后续义务。
+- 所有标量类型规则与逐行入口共用，嵌套量词 / Option 绑定统一移位并在分支结束后恢复。即使表容量为零、条件恒定或某个布尔操作数已决定结果，也不跳过子式检查。逐行入口继续拒绝这五种契约表操作。
+- noninterference 的 inputs / outputs 必须分别非空、唯一并解析到对应接口。这里只检查策略结构；它不是普通 Bool 公式，不按字段白名单或节点标签判定其成立。
+- 契约 definition、接口引用和表操作均为闭合结构。拒绝重复契约 ID、未知 kind / role / 成员、非空顶层 effects，以及文件、网络、随机或环境等未知操作。支持范围内的图和契约仅包含已定义的纯核心操作；未支持形式继续返回 Unsupported，不能据此外推为完整效果或 P1 验收。
+
+成功返回只读 `ContractAnalysis`，保留 `graph()` 与原 contracts 顺序的 `contracts()`；每项给出 supplied ID、契约种类及按接口类别 / 名称排序、去除重复读取的 `interfaces()`。接口中的 node 索引指向原 nodes 数组。名称按 Unicode scalar 精确比较，不合并 NFC / NFD 或相同拼写的 input / output；接口数组的分析排序不构成契约 definition 规范化。
+
+`ContractError` 分开保存 JSON / 声明、节点、表达式及契约结构错误，保留原字节位置或 JSON Pointer。空契约数组与恒为 false 的 Bool 公式可以结构合法；分析不判断契约可满足性、公式真值或非干扰，不求值、不生成义务、不输出 canonical 契约 / 文档，也不核验契约内容 ID。现有表达式未支持边界继续适用；这些边界与契约规范化 / 身份、完整文档入口均须在 P1 完成前收口。
+
 ## 资源与诊断
 
 调用方必须显式提供 `JsonLimits`，没有无限预算的默认入口：
@@ -84,6 +97,8 @@
 
 标签分析复用原始有界表达式树，先完整检查再推导，不在规范化后跳过原分支。记录内容标签通过反向引用队列迭代汇总，不递归展开类型 DAG；Option 形状递归仍受声明 / 表达式 JSON 深度约束。input 共享同一记录声明的不可变字段摘要，filter 与源节点共享字段摘要，只独立保存控制标签；map / join / group 的字段数由显式定义约束。摘要、绑定栈和原树的内存仍在解析预算之外累计，不提供硬资源隔离。
 
+契约入口不重新解析嵌入公式或放宽其 JSON 预算；接口索引只从同一次分析的图构造一次，量词和 Option 共用有界绑定栈，引用集合按公式实际读取去重。没有按容量遍历表或展开全称公式，超机器范围的数学容量仍作为规范文本保留。新增回归覆盖 122 层量词、120 层 sum 和 40 层 lookup / match 嵌套，以及原始字节 / 值数 / 深度预算拒绝。
+
 ## 实现与验收边界
 
 Rust 2024，`publish = false`，仅自有代码与标准库、禁止 unsafe，无第三方依赖、build script、过程宏或 native / FFI。唯一直接依赖为本地 `radishaxiom-digest 0.0.0`，其 [SHA-256 实现](../digest/README.md)由既有 runtime 提取，共享算法而不依赖 runtime 的产品能力。与 runtime 的 ASCII 闭合文档 parser 分开；不改变旧 runtime 协议，不让独立 Go checker 复用生产实现。
@@ -99,6 +114,8 @@ Rust 2024，`publish = false`，仅自有代码与标准库、禁止 unsafe，�
 [表达式 / 节点独立向量](tests/fixtures/node-identities/README.md) 逐例指定规范表达式结构，并以 Python `json` / `hashlib` 生成节点 definition 与身份期望，纳入仓库生成一致性检查。测试覆盖五类节点、JCS 字节顺序与 Unicode scalar 数组顺序、布尔规范化及幂等性、错误摘要域 / NUL / 换行 / wrapper、原位置诊断、深宽边界与不允许的重写；四题 12 个候选另通过真实节点规范化核对现有 ID，不以类型通过或重新生成 fixture 替代身份核对。
 
 标签切片新增 11 项人工期望回归，覆盖所有已支持运算类别、常量 / 相同分支仍保留读取依赖、Option 绑定移位、嵌套记录、声明不足的跨节点传播、两侧 join 匹配控制、filter → map → group 的 count / sum、分组键的上游依赖，以及 5,000 层记录引用。最深表达式回归也执行标签分析；现有四题 12 个候选继续经过节点入口，AX-B04 三个候选另外核对控制摘要、priority 字段和原位置缺口。这里只验收保守分析，没有运行非干扰求解或独立 checker。
+
+契约切片新增 17 项人工期望回归：四题 12 个候选的 21 条契约均经实际入口检查，pretty / JCS 得到相同分析；同域材料覆盖接口可见性、Unicode 名称与原数组索引、复合主键顺序、嵌套绑定及其恢复、聚合类型 / scale、零容量表和不含零的结果范围、闭合成员、外部操作拒绝、未支持与资源错误。字段、类型和错误路径期望不由生产推导器生成；这些测试不代表公式成立、非干扰证明或契约身份验收。
 
 已安装并验收的宿主工具可按仓库约定离线执行：
 

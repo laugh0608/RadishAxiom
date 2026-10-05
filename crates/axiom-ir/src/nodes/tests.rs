@@ -9,6 +9,9 @@ mod typing_tests;
 #[path = "flow_tests.rs"]
 mod flow_tests;
 
+#[path = "contract_tests.rs"]
+mod contract_tests;
+
 const TEXT: &str = r#"{"kind":"text"}"#;
 const BOOL: &str = r#"{"kind":"bool"}"#;
 const INT: &str = r#"{"kind":"int","lower":"0","upper":"10"}"#;

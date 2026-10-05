@@ -199,7 +199,7 @@ pub fn analyze_node_graph(
     analyze_parsed(&value)
 }
 
-fn analyze_parsed(value: &Value) -> Result<NodeGraphAnalysis, NodeError> {
+pub(crate) fn analyze_parsed(value: &Value) -> Result<NodeGraphAnalysis, NodeError> {
     let types = normalize_decoded_declarations(decode::decode_type_declarations_value(value)?)?;
     let Value::Object(root) = value else {
         unreachable!("declaration decoder checked the root")
