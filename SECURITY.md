@@ -6,7 +6,7 @@ RadishAxiom 仍处于预发布定义阶段，当前没有承诺长期安全支�
 
 请不要为未修复漏洞创建公开 Issue，也不要在报告中附带真实密钥、个人数据或生产凭据。
 
-优先使用 GitHub 仓库 Security 页面中的 Private vulnerability reporting。若该入口不可用，可发送邮件至 `laugh0608@foxmail.com`，主题包含 `[RadishAxiom Security]`。
+优先使用 GitHub 仓库 Security 页面中的 Private vulnerability reporting。若该入口不可用，可发送邮件至 `luobo@radishx.com`，主题包含 `[RadishAxiom Security]`。
 
 报告应尽量包含：
 
