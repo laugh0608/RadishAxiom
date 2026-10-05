@@ -54,6 +54,7 @@ REQUIRED_FILES = (
     "crates/digest/Cargo.toml",
     "crates/digest/src/lib.rs",
     "scripts/generate-ir-type-vectors.py",
+    "scripts/generate-ir-node-vectors.py",
     "crates/checker-runtime/src/store.rs",
     "crates/checker-runtime/src/store/evidence.rs",
     "benchmarks/keyed-finite-table-v0.1/README.md",
@@ -492,17 +493,18 @@ def check_benchmark_corpus(errors: list[str]) -> None:
         errors.append(f"benchmark corpus check failed: {detail}")
 
 
-def check_ir_type_vectors(errors: list[str]) -> None:
-    result = subprocess.run(
-        [sys.executable, str(REPO_ROOT / "scripts/generate-ir-type-vectors.py"), "--check"],
-        cwd=REPO_ROOT,
-        check=False,
-        capture_output=True,
-        text=True,
-    )
-    if result.returncode != 0:
-        detail = (result.stdout + result.stderr).strip()
-        errors.append(f"IR type identity vectors check failed: {detail}")
+def check_ir_vectors(errors: list[str]) -> None:
+    for kind in ["type", "node"]:
+        result = subprocess.run(
+            [sys.executable, str(REPO_ROOT / f"scripts/generate-ir-{kind}-vectors.py"), "--check"],
+            cwd=REPO_ROOT,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        if result.returncode != 0:
+            detail = (result.stdout + result.stderr).strip()
+            errors.append(f"IR {kind} identity vectors check failed: {detail}")
 
 
 def check_independent_check_contracts(errors: list[str]) -> None:
@@ -820,7 +822,7 @@ def main() -> int:
     check_ruleset_contract(errors)
     check_workflow_contract(errors)
     check_benchmark_corpus(errors)
-    check_ir_type_vectors(errors)
+    check_ir_vectors(errors)
     check_independent_check_contracts(errors)
     check_toolchain_adapter_identities(errors)
     check_toolchain_payload_acceptance(errors)

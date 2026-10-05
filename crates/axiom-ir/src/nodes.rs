@@ -1,5 +1,6 @@
-//! 节点结构、局部类型与图分析。节点 ID 只检查词法和引用，尚未核对内容身份。
-//! 不规范化表达式、不检查契约或信息流，不提供完整 IR / P1 成功入口。
+//! 节点结构、局部类型、图分析及内容身份。
+//! analyze_node_graph 只检查 ID 词法和引用；normalize_node_graph 另核对规范内容。
+//! 不检查契约或信息流，不提供完整 IR / P1 成功入口。
 
 use std::collections::{BTreeMap, BTreeSet, VecDeque};
 use std::fmt;
@@ -9,7 +10,10 @@ use crate::expressions::{ExpressionError, RowTypeChecker};
 use crate::json::{self, JsonLimits, Value};
 use crate::normalization::{NormalizedTypeDeclarations, normalize_decoded_declarations};
 
+mod normalization;
 mod typing;
+
+pub use normalization::{NormalizedNode, NormalizedNodeGraph, normalize_node_graph};
 
 #[cfg(test)]
 mod tests;
@@ -49,6 +53,11 @@ pub enum NodeErrorKind {
 pub enum NodeError {
     Input(DeclarationError),
     Expression(ExpressionError),
+    ContentIdMismatch {
+        path: String,
+        supplied: String,
+        computed: String,
+    },
     Structure {
         kind: NodeErrorKind,
         path: String,
@@ -64,6 +73,16 @@ impl fmt::Display for NodeError {
         match self {
             Self::Input(error) => write!(f, "node input: {error}"),
             Self::Expression(error) => error.fmt(f),
+            Self::ContentIdMismatch {
+                path,
+                supplied,
+                computed,
+            } => {
+                write!(
+                    f,
+                    "IR node content ID mismatch at {path:?}: supplied {supplied}, computed {computed}"
+                )
+            }
             Self::Structure { kind, path } => write!(f, "IR node {kind:?} at {path:?}"),
             Self::UnsupportedKeyExpression { path } => {
                 write!(f, "unsupported key projection expression at {path:?}")
@@ -130,7 +149,7 @@ pub struct OutputReference {
     pub node: usize,
 }
 
-/// 声明 ID 已核对，节点 ID 尚未核对。此结果不能作为完整 IR 或执行门控凭证。
+/// 声明 ID 已核对；此类型本身不保证节点 ID 已核对，不能作为完整 IR 或执行门控凭证。
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct NodeGraphAnalysis {
     types: NormalizedTypeDeclarations,
@@ -170,8 +189,12 @@ pub fn analyze_node_graph(
     limits: JsonLimits,
 ) -> Result<NodeGraphAnalysis, NodeError> {
     let value = json::parse(input, limits).map_err(DeclarationError::Json)?;
-    let types = normalize_decoded_declarations(decode::decode_type_declarations_value(&value)?)?;
-    let Value::Object(root) = &value else {
+    analyze_parsed(&value)
+}
+
+fn analyze_parsed(value: &Value) -> Result<NodeGraphAnalysis, NodeError> {
+    let types = normalize_decoded_declarations(decode::decode_type_declarations_value(value)?)?;
+    let Value::Object(root) = value else {
         unreachable!("declaration decoder checked the root")
     };
     let mut nodes = parse_nodes(decode::member(root, "nodes"), &types)?;

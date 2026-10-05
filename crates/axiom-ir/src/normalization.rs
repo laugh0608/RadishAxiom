@@ -94,11 +94,7 @@ fn normalize<T>(
         let value = definition_value(&mut definition);
         let mut canonical_definition = Vec::new();
         json::encode(&value, &mut canonical_definition);
-        let mut hash_input = Vec::with_capacity(domain.len() + 1 + canonical_definition.len());
-        hash_input.extend_from_slice(domain.as_bytes());
-        hash_input.push(0);
-        hash_input.extend_from_slice(&canonical_definition);
-        let computed = format!("sha256:{}", radishaxiom_digest::digest_hex(&hash_input));
+        let computed = content_id(domain, &canonical_definition);
         if entry.supplied_id != computed {
             return Err(DeclarationError::ContentIdMismatch {
                 path: format!("/{collection}/{index}/id"),
@@ -115,6 +111,14 @@ fn normalize<T>(
     // 解码已拒绝同类重复 ID，身份核对后无需默默去重或重映射引用。
     result.sort_by(|left, right| left.id.cmp(&right.id));
     Ok(result)
+}
+
+pub(crate) fn content_id(domain: &str, canonical_definition: &[u8]) -> String {
+    let mut hash_input = Vec::with_capacity(domain.len() + 1 + canonical_definition.len());
+    hash_input.extend_from_slice(domain.as_bytes());
+    hash_input.push(0);
+    hash_input.extend_from_slice(canonical_definition);
+    format!("sha256:{}", radishaxiom_digest::digest_hex(&hash_input))
 }
 
 fn object<const N: usize>(members: [(&str, Value); N]) -> Value {

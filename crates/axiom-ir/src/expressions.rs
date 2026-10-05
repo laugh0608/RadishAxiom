@@ -1,4 +1,4 @@
-//! 逐行表达式的局部类型推导。不求值、不规范化表达式、不证明算术范围或信息流。
+//! 逐行表达式的局部类型推导与受限规范化。不求值、不证明算术范围或信息流。
 
 use std::collections::BTreeSet;
 use std::fmt;
@@ -6,6 +6,24 @@ use std::fmt;
 use crate::declarations::{self as decode, DeclarationError, DeclarationErrorKind, ValueType};
 use crate::json::{self, JsonLimits, Value};
 use crate::normalization::{NormalizedDeclaration, NormalizedTypeDeclarations};
+
+pub(crate) mod normalization;
+
+/// 已检查支持范围和类型的逐行表达式；不含独立表达式摘要或证明结论。
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct NormalizedRowExpression {
+    value_type: ValueType,
+    canonical_bytes: Vec<u8>,
+}
+
+impl NormalizedRowExpression {
+    pub fn value_type(&self) -> &ValueType {
+        &self.value_type
+    }
+    pub fn canonical_bytes(&self) -> &[u8] {
+        &self.canonical_bytes
+    }
+}
 
 /// 仅描述逐行环境，不凭调用方给出的类型或标签缓存推导结果。
 #[derive(Clone, Copy, Debug)]
@@ -132,6 +150,25 @@ impl<'a> RowTypeChecker<'a> {
     ) -> Result<ValueType, ExpressionError> {
         let value = json::parse(input, limits).map_err(DeclarationError::Json)?;
         self.infer_parsed(&value, "", scope)
+    }
+
+    /// 先检查原输入全部表达式，再执行 IR 明确允许的结构规范化。
+    /// 不做常量求值、算术重写、类型扩大或短路删除；未支持范围与 infer 相同。
+    pub fn normalize(
+        &self,
+        input: &[u8],
+        limits: JsonLimits,
+        scope: RowScope<'_>,
+    ) -> Result<NormalizedRowExpression, ExpressionError> {
+        let mut value = json::parse(input, limits).map_err(DeclarationError::Json)?;
+        let value_type = self.infer_parsed(&value, "", scope)?;
+        normalization::normalize_checked(&mut value);
+        let mut canonical_bytes = Vec::new();
+        json::encode(&value, &mut canonical_bytes);
+        Ok(NormalizedRowExpression {
+            value_type,
+            canonical_bytes,
+        })
     }
 
     /// 节点检查复用有界文档树和原始 JSON Pointer，不重新编码 / 解析表达式。
