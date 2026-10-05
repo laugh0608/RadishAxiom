@@ -265,6 +265,14 @@ pub(crate) fn member<'a>(members: &'a Members, key: &str) -> &'a Value {
         .1
 }
 
+pub(crate) fn member_mut<'a>(members: &'a mut Members, key: &str) -> &'a mut Value {
+    &mut members
+        .iter_mut()
+        .find(|(found, _, _)| found == key)
+        .expect("closed members checked")
+        .1
+}
+
 pub(crate) fn array<'a>(value: &'a Value, path: &str) -> Result<&'a [Value], DeclarationError> {
     match value {
         Value::Array(values) => Ok(values),

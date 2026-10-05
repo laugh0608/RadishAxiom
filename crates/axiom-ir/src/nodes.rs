@@ -11,7 +11,7 @@ use crate::json::{self, JsonLimits, Value};
 use crate::normalization::{NormalizedTypeDeclarations, normalize_decoded_declarations};
 
 mod flow;
-mod normalization;
+pub(crate) mod normalization;
 mod typing;
 
 pub use flow::{FieldLabelGap, NodeFlowAnalysis};

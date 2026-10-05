@@ -1,4 +1,4 @@
-//! 契约结构、类型与接口可见性分析。不计算契约 ID，不证明公式或非干扰。
+//! 契约结构、类型、接口分析与内容身份核对。不证明公式或非干扰。
 use std::collections::BTreeSet;
 use std::fmt;
 
@@ -8,6 +8,9 @@ use crate::json::{self, JsonLimits, Value};
 use crate::nodes::{self, NodeError, NodeGraphAnalysis};
 
 pub use crate::expressions::tables::{InterfaceKind, InterfaceReference};
+
+mod normalization;
+pub use normalization::{NormalizedContract, NormalizedContracts, normalize_contracts};
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum FormulaRole {
@@ -40,6 +43,11 @@ pub enum ContractError {
         kind: ContractErrorKind,
         path: String,
     },
+    ContentIdMismatch {
+        path: String,
+        supplied: String,
+        computed: String,
+    },
 }
 
 impl fmt::Display for ContractError {
@@ -49,6 +57,16 @@ impl fmt::Display for ContractError {
             Self::Node(error) => error.fmt(f),
             Self::Expression(error) => error.fmt(f),
             Self::Structure { kind, path } => write!(f, "IR contract {kind:?} at {path:?}"),
+            Self::ContentIdMismatch {
+                path,
+                supplied,
+                computed,
+            } => {
+                write!(
+                    f,
+                    "contract content ID mismatch at {path:?}: supplied {supplied}, computed {computed}"
+                )
+            }
         }
     }
 }
@@ -58,7 +76,7 @@ impl std::error::Error for ContractError {
             Self::Input(error) => Some(error),
             Self::Node(error) => Some(error),
             Self::Expression(error) => Some(error),
-            Self::Structure { .. } => None,
+            Self::Structure { .. } | Self::ContentIdMismatch { .. } => None,
         }
     }
 }
@@ -121,8 +139,12 @@ pub fn analyze_contracts(
     limits: JsonLimits,
 ) -> Result<ContractAnalysis, ContractError> {
     let value = json::parse(input, limits).map_err(DeclarationError::Json)?;
-    let graph = nodes::analyze_parsed(&value)?;
-    let Value::Object(root) = &value else {
+    analyze_parsed(&value)
+}
+
+fn analyze_parsed(value: &Value) -> Result<ContractAnalysis, ContractError> {
+    let graph = nodes::analyze_parsed(value)?;
+    let Value::Object(root) = value else {
         unreachable!("checked root")
     };
     let interfaces = Interfaces::new(&graph);

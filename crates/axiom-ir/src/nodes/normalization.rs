@@ -1,7 +1,7 @@
 //! 已通过图分析的节点 definition 规范化与内容身份；不核准完整文档或契约。
 
 use super::{NodeError, NodeGraphAnalysis, NodeKind, analyze_parsed};
-use crate::declarations::{self as decode, DeclarationError, Members};
+use crate::declarations::{self as decode, DeclarationError, member_mut};
 use crate::expressions::normalization::normalize_checked;
 use crate::json::{self, JsonLimits, Value};
 use crate::normalization::content_id;
@@ -46,7 +46,16 @@ pub fn normalize_node_graph(
 ) -> Result<NormalizedNodeGraph, NodeError> {
     let mut value = json::parse(input, limits).map_err(DeclarationError::Json)?;
     let analysis = analyze_parsed(&value)?;
-    let Value::Object(root) = &mut value else {
+    let nodes = normalize_checked_graph(&mut value, &analysis)?;
+    Ok(NormalizedNodeGraph { analysis, nodes })
+}
+
+/// 仅供同一次解析得到的 Value 与完整图分析使用；不接受外部缓存。
+pub(crate) fn normalize_checked_graph(
+    value: &mut Value,
+    analysis: &NodeGraphAnalysis,
+) -> Result<Vec<NormalizedNode>, NodeError> {
+    let Value::Object(root) = value else {
         unreachable!("checked root")
     };
     let Value::Array(entries) = member_mut(root, "nodes") else {
@@ -76,7 +85,7 @@ pub fn normalize_node_graph(
         });
     }
     nodes.sort_by(|left, right| left.id.cmp(&right.id));
-    Ok(NormalizedNodeGraph { analysis, nodes })
+    Ok(nodes)
 }
 
 fn normalize_definition(value: &mut Value, kind: NodeKind) {
@@ -115,14 +124,6 @@ fn normalize_definition(value: &mut Value, kind: NodeKind) {
             // group.keys 与表主键同序，不可排序。
         }
     }
-}
-
-fn member_mut<'a>(members: &'a mut Members, key: &str) -> &'a mut Value {
-    &mut members
-        .iter_mut()
-        .find(|(name, _, _)| name == key)
-        .expect("checked member")
-        .1
 }
 
 fn name<'a>(value: &'a Value, key: &str) -> &'a str {

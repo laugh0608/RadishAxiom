@@ -1,6 +1,6 @@
 # Axiom IR 内部组件
 
-本 crate 承载 [ADR 0016](../../docs/adr/0016-core-semantic-slice-entry.md) 的 P1 实施。当前实现 [IR v0.1](../../docs/ir/axiom-ir-v0.md) 的 JSON 字节边界、类型声明身份、受限逐行表达式类型 / 规范化、节点图分析及内容身份，并重建保守字段 / 控制标签、检查契约类型与接口；没有完整 IR 成功入口，也不提供 CLI。
+本 crate 承载 [ADR 0016](../../docs/adr/0016-core-semantic-slice-entry.md) 的 P1 实施。当前实现 [IR v0.1](../../docs/ir/axiom-ir-v0.md) 的 JSON 字节边界、类型声明身份、受限逐行表达式类型 / 规范化、节点图分析及内容身份，并重建保守字段 / 控制标签、检查契约类型与接口、规范契约及核对其内容身份；没有完整 IR 成功入口，也不提供 CLI。
 
 ## 输入与输出
 
@@ -71,7 +71,11 @@
 
 成功返回只读 `ContractAnalysis`，保留 `graph()` 与原 contracts 顺序的 `contracts()`；每项给出 supplied ID、契约种类及按接口类别 / 名称排序、去除重复读取的 `interfaces()`。接口中的 node 索引指向原 nodes 数组。名称按 Unicode scalar 精确比较，不合并 NFC / NFD 或相同拼写的 input / output；接口数组的分析排序不构成契约 definition 规范化。
 
-`ContractError` 分开保存 JSON / 声明、节点、表达式及契约结构错误，保留原字节位置或 JSON Pointer。空契约数组与恒为 false 的 Bool 公式可以结构合法；分析不判断契约可满足性、公式真值或非干扰，不求值、不生成义务、不输出 canonical 契约 / 文档，也不核验契约内容 ID。现有表达式未支持边界继续适用；这些边界与契约规范化 / 身份、完整文档入口均须在 P1 完成前收口。
+`ContractError` 分开保存 JSON / 声明、节点、表达式、契约结构和契约内容 ID 错误，保留原字节位置或 JSON Pointer。空契约数组与恒为 false 的 Bool 公式可以结构合法；分析不判断契约可满足性、公式真值或非干扰，不求值、不生成义务、不输出 canonical 契约 / 文档，也不核验契约内容 ID。
+
+`contracts::normalize_contracts(bytes, limits)` 在同一次有界解析中先完成全部原始节点与契约分析，再复用节点规范化 / 身份路径，并规范契约 definition、按 `axiom-ir-v0.1:contract` 域、NUL 和 JCS 字节重算 ID。formula 递归复用现有布尔 / 相等 / 加法规范重写；量词、查找键顺序、绑定索引、分支位置、结果类型与角色均保留。noninterference 的 inputs / outputs 分别按 Unicode scalar 名称序排列。原始坏成员、越界 / 不可见子式与 Unsupported 必须先拒绝，不能被布尔去重隐藏；重复契约 ID / 接口名也不会静默去重。
+
+成功返回只读 `NormalizedContracts`：`analysis()` 保留原节点 / 契约数组索引，`nodes()` 与 `contracts()` 各按已核对的 ID 排序、包含规范 definition 字节，声明身份可从分析图读取。内容 ID 不匹配报告原 `/contracts/<index>/id`、输入 ID 与重算 ID，不改 ID、不重写引用、不合并仅逻辑等价的公式。节点身份错误同样拒绝，空契约数组也不绕过节点身份核对。该入口尚不生成完整 canonical IR、strict canonical 检查或文档摘要；现有表达式未支持边界及完整文档入口须在 P1 完成前收口。
 
 ## 资源与诊断
 
@@ -99,6 +103,8 @@
 
 契约入口不重新解析嵌入公式或放宽其 JSON 预算；接口索引只从同一次分析的图构造一次，量词和 Option 共用有界绑定栈，引用集合按公式实际读取去重。没有按容量遍历表或展开全称公式，超机器范围的数学容量仍作为规范文本保留。新增回归覆盖 122 层量词、120 层 sum 和 40 层 lookup / match 嵌套，以及原始字节 / 值数 / 深度预算拒绝。
 
+契约规范化在同一已检查树上进行，不再次解析图或向表达式分配独立预算；沿用节点 / 表达式规范器，额外保存契约 definition 字节与身份。61 层嵌套布尔组合及 10,000 个重复操作数的契约回归确认先约束原始深宽，再执行去重；规范结果较小不绕过资源拒绝。
+
 ## 实现与验收边界
 
 Rust 2024，`publish = false`，仅自有代码与标准库、禁止 unsafe，无第三方依赖、build script、过程宏或 native / FFI。唯一直接依赖为本地 `radishaxiom-digest 0.0.0`，其 [SHA-256 实现](../digest/README.md)由既有 runtime 提取，共享算法而不依赖 runtime 的产品能力。与 runtime 的 ASCII 闭合文档 parser 分开；不改变旧 runtime 协议，不让独立 Go checker 复用生产实现。
@@ -116,6 +122,8 @@ Rust 2024，`publish = false`，仅自有代码与标准库、禁止 unsafe，�
 标签切片新增 11 项人工期望回归，覆盖所有已支持运算类别、常量 / 相同分支仍保留读取依赖、Option 绑定移位、嵌套记录、声明不足的跨节点传播、两侧 join 匹配控制、filter → map → group 的 count / sum、分组键的上游依赖，以及 5,000 层记录引用。最深表达式回归也执行标签分析；现有四题 12 个候选继续经过节点入口，AX-B04 三个候选另外核对控制摘要、priority 字段和原位置缺口。这里只验收保守分析，没有运行非干扰求解或独立 checker。
 
 契约切片新增 17 项人工期望回归：四题 12 个候选的 21 条契约均经实际入口检查，pretty / JCS 得到相同分析；同域材料覆盖接口可见性、Unicode 名称与原数组索引、复合主键顺序、嵌套绑定及其恢复、聚合类型 / scale、零容量表和不含零的结果范围、闭合成员、外部操作拒绝、未支持与资源错误。字段、类型和错误路径期望不由生产推导器生成；这些测试不代表公式成立、非干扰证明或契约身份验收。
+
+契约身份切片另增 9 项回归：[11 项独立契约向量](tests/fixtures/contract-identities/README.md) 逐字节核对 definition 与 ID，覆盖五类表操作中的规范化、绑定 / 键 / 角色保留、Unicode 名称、幂等性和摘要域负例。四题 12 个候选的 21 条契约通过真实身份入口，并确认同题候选的实现变化不改变接口契约 ID。坏子式、重复成员 / ID / 接口、节点身份错误与资源失败仍定位到原输入。身份正确与恒 false 公式、未证明范围或错误算法并不矛盾，这些测试不生成证明或完整 IR 凭证。
 
 已安装并验收的宿主工具可按仓库约定离线执行：
 

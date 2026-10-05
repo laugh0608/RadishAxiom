@@ -1,4 +1,4 @@
-//! 只对已完成 RowTypeChecker 检查的表达式执行规范重写。
+//! 只对已完成 RowTypeChecker 逐行或契约检查的表达式执行规范重写。
 //! 不接收外部树；JSON 已有界且所有闭合成员 / 操作数均已检查。
 
 use crate::declarations::{self as decode, Members};
