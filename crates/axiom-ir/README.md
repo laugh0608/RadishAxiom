@@ -1,6 +1,6 @@
 # Axiom IR、派生义务、查询与结构推导内部组件
 
-本 crate 承载 [ADR 0023](../../docs/adr/0023-core-empty-effect-derivation.md) 的 P3-E 空效果结构推导、[ADR 0022](../../docs/adr/0022-map-filter-row-coverage.md) 的 P3-D 双向 row-coverage、[ADR 0021](../../docs/adr/0021-map-filter-key-cardinality.md) 的 P3-C 局部 key-cardinality、[ADR 0020](../../docs/adr/0020-map-filter-node-totality.md) 的 P3-B 节点 totality 与显式 query profile、[ADR 0019](../../docs/adr/0019-map-filter-query-encoding.md) 的 P3-A map / filter 限定查询组件、[ADR 0018](../../docs/adr/0018-ir-derived-obligation-profile.md) 的 P2 IR 派生义务组件，以及 [ADR 0016](../../docs/adr/0016-core-semantic-slice-entry.md) 与 [ADR 0017](../../docs/adr/0017-ir-v0.2-support-boundaries-and-migration.md) 的 P1 内部组件。精确读取 [IR v0.1](../../docs/ir/axiom-ir-v0.md) 的既有支持子集与 [IR v0.2](../../docs/ir/axiom-ir-v0.2.md)：检查 JSON、类型、图、契约及内容身份，重建保守标签，生成完整规范文档和 strict 结果，并显式迁移共同子集。v0.2 的四项支持边界已经闭合；本机组件验收与完整 P1 生产阶段、独立 checker、跨平台和证明分别报告，不提供 CLI、Evidence 或执行门控。
+本 crate 承载 [ADR 0024](../../docs/adr/0024-core-field-origin-derivation.md) 的 P3-F 字段来源 / 标签结构推导、[ADR 0023](../../docs/adr/0023-core-empty-effect-derivation.md) 的 P3-E 空效果结构推导、[ADR 0022](../../docs/adr/0022-map-filter-row-coverage.md) 的 P3-D 双向 row-coverage、[ADR 0021](../../docs/adr/0021-map-filter-key-cardinality.md) 的 P3-C 局部 key-cardinality、[ADR 0020](../../docs/adr/0020-map-filter-node-totality.md) 的 P3-B 节点 totality 与显式 query profile、[ADR 0019](../../docs/adr/0019-map-filter-query-encoding.md) 的 P3-A map / filter 限定查询组件、[ADR 0018](../../docs/adr/0018-ir-derived-obligation-profile.md) 的 P2 IR 派生义务组件，以及 [ADR 0016](../../docs/adr/0016-core-semantic-slice-entry.md) 与 [ADR 0017](../../docs/adr/0017-ir-v0.2-support-boundaries-and-migration.md) 的 P1 内部组件。精确读取 [IR v0.1](../../docs/ir/axiom-ir-v0.md) 的既有支持子集与 [IR v0.2](../../docs/ir/axiom-ir-v0.2.md)：检查 JSON、类型、图、契约及内容身份，重建保守标签，生成完整规范文档和 strict 结果，并显式迁移共同子集。v0.2 的四项支持边界已经闭合；本机组件验收与完整 P1 生产阶段、独立 checker、跨平台和证明分别报告，不提供 CLI、Evidence 或执行门控。
 
 ## 输入与输出
 
@@ -200,3 +200,11 @@ cargo +1.97.1-aarch64-apple-darwin test -p radishaxiom-ir --locked --offline
 ```
 
 完整 workspace 验证见[当前状态](../../docs/status/current.md#验证入口与本次审阅)。测试不是形式证明；未运行平台不能据此声称字节一致性已验收。
+
+## P3-F：字段来源与保守标签内部组件
+
+`origins::derive_field_origin` / `check_field_origin` 以显式 `OriginProfile::CoreFieldOriginV0_1`、不可变完整 P1 / P2、原 field-origin 目标、GeneratorIdentity 和 OriginLimits 重建版本化记录。只读 `OriginDerivation` 暴露规范字节、raw 摘要和五项累计用量，不返回五态或证明许可。
+
+[正式规则](../../docs/query/core-field-origin-v0.1.md)区分 value、selection、evaluation、declaration 前提；来源、声明 / 推导 / 传播标签和复合类型摘要可重建，保留目标值 / 行控制 / 求值上下文三根的闭包。全部五种节点和逐行表达式支持，复合字段不增加叶义务；Steps、PremiseEdges、Descriptors、PathBytes、OutputBytes 与 IR JSON 均有显式预算。图与类型共享，不展开表容量或所有来源路径。
+
+[独立材料](../../contracts/core-field-origin-v0.1/README.md)包含 130 份 IR、758 个目标记录、46 个规则、42 个手算区分例与 43 类篡改。82 份记录包含静态缺口；记录核对通过不等于标签规则满足，无缺口也不等于非干扰证明。P1 完整类型 / 身份仍是前提，P1 标签比较只作兼容性回归；独立期望直接从 IR / P2 重建。旧 IR / P2 / query / effect / Evidence 保持，P4 与公共 support 另行审阅。

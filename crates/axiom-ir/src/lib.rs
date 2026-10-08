@@ -13,5 +13,6 @@ pub mod migration;
 pub mod nodes;
 pub mod normalization;
 pub mod obligations;
+pub mod origins;
 pub mod query;
 pub mod version;

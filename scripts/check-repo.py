@@ -108,6 +108,23 @@ REQUIRED_FILES = (
     "scripts/generate-p3-coverage-vectors.py",
     "scripts/p3_coverage_semantics.py",
     "scripts/check-p3-coverage-semantics.py",
+    "crates/axiom-ir/src/origins.rs",
+    "crates/axiom-ir/src/origins/build.rs",
+    "crates/axiom-ir/src/origins/encoding.rs",
+    "crates/axiom-ir/src/origins/expressions.rs",
+    "crates/axiom-ir/src/origins/nodes.rs",
+    "crates/axiom-ir/src/origins/tests.rs",
+    "docs/adr/0024-core-field-origin-derivation.md",
+    "docs/query/core-field-origin-v0.1.md",
+    "docs/query/field-origin-and-p4-interface-review.md",
+    "contracts/core-field-origin-v0.1/README.md",
+    "contracts/core-field-origin-v0.1/cases.tsv",
+    "contracts/core-field-origin-v0.1/hand-checks.json",
+    "contracts/core-field-origin-v0.1/sources.json",
+    "scripts/p3_origin_derivation.py",
+    "scripts/p3_origin_cases.py",
+    "scripts/generate-p3-origin-vectors.py",
+    "scripts/check-p3-origin-derivations.py",
     "crates/axiom-ir/src/effects.rs",
     "crates/axiom-ir/src/effects/rules.rs",
     "crates/axiom-ir/src/effects/encoding.rs",
@@ -594,7 +611,7 @@ def check_p2_profile_review(errors: list[str]) -> None:
 
 
 def check_p3_query_materials(errors: list[str]) -> None:
-    for script in ["generate-p3-query-review.py", "generate-p3-query-vectors.py", "generate-p3-totality-vectors.py", "generate-p3-cardinality-vectors.py", "generate-p3-coverage-vectors.py", "generate-p3-effect-vectors.py"]:
+    for script in ["generate-p3-query-review.py", "generate-p3-query-vectors.py", "generate-p3-totality-vectors.py", "generate-p3-cardinality-vectors.py", "generate-p3-coverage-vectors.py", "generate-p3-effect-vectors.py", "generate-p3-origin-vectors.py"]:
         result = subprocess.run(
             [sys.executable, str(REPO_ROOT / "scripts" / script), "--check"],
             cwd=REPO_ROOT,

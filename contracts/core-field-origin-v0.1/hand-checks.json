@@ -1,0 +1,508 @@
+[
+  {
+    "name": "constant",
+    "ir": "contracts/core-field-origin-v0.1/inputs/constant.jcs",
+    "expected": {
+      "field": "result",
+      "value": "public",
+      "control": "public",
+      "gaps": false,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "direct-secret",
+    "ir": "contracts/core-field-origin-v0.1/inputs/direct-secret.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "same-branches",
+    "ir": "contracts/core-field-origin-v0.1/inputs/same-branches.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "dead-branch",
+    "ir": "contracts/core-field-origin-v0.1/inputs/dead-branch.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "x-minus-x",
+    "ir": "contracts/core-field-origin-v0.1/inputs/x-minus-x.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "strict-and",
+    "ir": "contracts/core-field-origin-v0.1/inputs/strict-and.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "strict-or",
+    "ir": "contracts/core-field-origin-v0.1/inputs/strict-or.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "not-secret",
+    "ir": "contracts/core-field-origin-v0.1/inputs/not-secret.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "compare-eq",
+    "ir": "contracts/core-field-origin-v0.1/inputs/compare-eq.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "compare-lt",
+    "ir": "contracts/core-field-origin-v0.1/inputs/compare-lt.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "compare-le",
+    "ir": "contracts/core-field-origin-v0.1/inputs/compare-le.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "compare-gt",
+    "ir": "contracts/core-field-origin-v0.1/inputs/compare-gt.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "compare-ge",
+    "ir": "contracts/core-field-origin-v0.1/inputs/compare-ge.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "int_add",
+    "ir": "contracts/core-field-origin-v0.1/inputs/int_add.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "fixed_add",
+    "ir": "contracts/core-field-origin-v0.1/inputs/fixed_add.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "fixed_sub",
+    "ir": "contracts/core-field-origin-v0.1/inputs/fixed_sub.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "pre-false",
+    "ir": "contracts/core-field-origin-v0.1/inputs/pre-false.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "zero-capacity",
+    "ir": "contracts/core-field-origin-v0.1/inputs/zero-capacity.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "huge-capacity",
+    "ir": "contracts/core-field-origin-v0.1/inputs/huge-capacity.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "aliases",
+    "ir": "contracts/core-field-origin-v0.1/inputs/aliases.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "constant-after-gap",
+    "ir": "contracts/core-field-origin-v0.1/inputs/constant-after-gap.jcs",
+    "expected": {
+      "field": "result",
+      "value": "public",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "sensitive-relabel-after-gap",
+    "ir": "contracts/core-field-origin-v0.1/inputs/sensitive-relabel-after-gap.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "declared-sensitive-constant",
+    "ir": "contracts/core-field-origin-v0.1/inputs/declared-sensitive-constant.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "unrelated-gap",
+    "ir": "contracts/core-field-origin-v0.1/inputs/unrelated-gap.jcs",
+    "expected": {
+      "field": "result",
+      "value": "public",
+      "control": "public",
+      "gaps": false,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "sensitive-filter",
+    "ir": "contracts/core-field-origin-v0.1/inputs/sensitive-filter.jcs",
+    "expected": {
+      "field": "result",
+      "value": "public",
+      "control": "sensitive",
+      "gaps": false,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "nested-parent-summary",
+    "ir": "contracts/core-field-origin-v0.1/inputs/nested-parent-summary.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "none-record",
+    "ir": "contracts/core-field-origin-v0.1/inputs/none-record.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": false,
+      "inferred": "public",
+      "rules": []
+    }
+  },
+  {
+    "name": "match-none",
+    "ir": "contracts/core-field-origin-v0.1/inputs/match-none.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "shifted-binding",
+    "ir": "contracts/core-field-origin-v0.1/inputs/shifted-binding.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "nested-binding",
+    "ir": "contracts/core-field-origin-v0.1/inputs/nested-binding.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "whole-subject",
+    "ir": "contracts/core-field-origin-v0.1/inputs/whole-subject.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "conditional-record",
+    "ir": "contracts/core-field-origin-v0.1/inputs/conditional-record.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "record-sibling",
+    "ir": "contracts/core-field-origin-v0.1/inputs/record-sibling.jcs",
+    "expected": {
+      "field": "result",
+      "value": "public",
+      "control": "public",
+      "gaps": false,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "record-local-gap",
+    "ir": "contracts/core-field-origin-v0.1/inputs/record-local-gap.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "unread-sibling-fault",
+    "ir": "contracts/core-field-origin-v0.1/inputs/unread-sibling-fault.jcs",
+    "expected": {
+      "field": "result",
+      "value": "public",
+      "control": "public",
+      "gaps": false,
+      "inferred": null,
+      "rules": [
+        "expr.int_add"
+      ]
+    }
+  },
+  {
+    "name": "join-public",
+    "ir": "contracts/core-field-origin-v0.1/inputs/join-public.jcs",
+    "expected": {
+      "field": "result",
+      "value": "public",
+      "control": "public",
+      "gaps": false,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "join-secret-pairs",
+    "ir": "contracts/core-field-origin-v0.1/inputs/join-secret-pairs.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "sensitive",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "join-right-filter",
+    "ir": "contracts/core-field-origin-v0.1/inputs/join-right-filter.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "sensitive",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "group-public",
+    "ir": "contracts/core-field-origin-v0.1/inputs/group-public.jcs",
+    "expected": {
+      "field": "result",
+      "value": "public",
+      "control": "public",
+      "gaps": false,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "group-filtered",
+    "ir": "contracts/core-field-origin-v0.1/inputs/group-filtered.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "sensitive",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "group-key-gap",
+    "ir": "contracts/core-field-origin-v0.1/inputs/group-key-gap.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "sensitive",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  },
+  {
+    "name": "group-sum-gap",
+    "ir": "contracts/core-field-origin-v0.1/inputs/group-sum-gap.jcs",
+    "expected": {
+      "field": "result",
+      "value": "sensitive",
+      "control": "public",
+      "gaps": true,
+      "inferred": null,
+      "rules": []
+    }
+  }
+]

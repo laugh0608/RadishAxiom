@@ -34,3 +34,4 @@
 - [ADR 0021：map / filter 局部键与基数查询（Accepted）](0021-map-filter-key-cardinality.md)
 - [ADR 0022：map / filter 行覆盖关系查询（Accepted）](0022-map-filter-row-coverage.md)
 - [ADR 0023：纯核心空效果结构推导（Accepted）](0023-core-empty-effect-derivation.md)
+- [ADR 0024：字段来源与保守标签结构推导（Accepted）](0024-core-field-origin-derivation.md)

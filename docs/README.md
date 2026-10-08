@@ -55,6 +55,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 - [map / filter 查询 v0.4](query/map-filter-query-v0.4.md)：ADR 0022 接受的 row-coverage、双向行关系及独立观察；[验收材料](../contracts/map-filter-query-v0.4/README.md)和[设计审阅](query/p3-row-coverage-review.md)分别保留复现与决策依据。
 - [纯核心空效果推导 v0.1](query/core-empty-effects-v0.1.md)：ADR 0023 接受的 P3-E 规则记录、预算与兼容边界；[独立材料](../contracts/core-empty-effects-v0.1/README.md)。
 - [剩余结构义务与 P4 接续审阅](query/p3-structural-obligations-and-p4-review.md)：P3-E 范围已接受；field-origin 区分及 P4 单目标 / 完整管线依赖仍待各自审阅。
+- [字段来源推导 v0.1](query/core-field-origin-v0.1.md)：[ADR 0024](adr/0024-core-field-origin-derivation.md) 接受的 P3-F 来源、标签与带角色前提的内部记录；[独立材料](../contracts/core-field-origin-v0.1/README.md)与[接续审阅](query/field-origin-and-p4-interface-review.md)分别提供验收和 P4 待接受接口。
 - [共享 SHA-256](../crates/digest/README.md)：runtime / IR 共用的自有摘要实现与独立复核边界。
 
 ## 机器契约
@@ -87,6 +88,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 | Linux 构建包来源与安装差异 | [Debian 签名摘要链、控制脚本审阅与安装模拟](records/linux-builder-source-chain/README.md) |
 | Rust Linux 与静态目标输入 | [签名 / 归档盘点、安装候选与 kernel 许可审阅](records/rust-linux-input-review/README.md) |
 | 2026-10-08 P3-C | [局部键 / 基数、独立容量前观察与预算兼容验收](records/2026-10-08-p3c-validation.md) |
+| 2026-10-08 P3-F | [字段来源 / 保守标签、独立规则、手算与篡改验收](records/2026-10-08-p3f-validation.md) |
 | 2026-10-08 P3-E | [空效果结构推导、独立规则与预算 / 兼容验收](records/2026-10-08-p3e-validation.md) |
 | 2026-10-08 P3-D | [双向行覆盖、独立中间观察与局部关系变异验收](records/2026-10-08-p3d-validation.md) |
 | 2026-10-08 P3-B | [节点 totality、独立比较、兼容性与失败修复验收](records/2026-10-08-p3b-validation.md) |

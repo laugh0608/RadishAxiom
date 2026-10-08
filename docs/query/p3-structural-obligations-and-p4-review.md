@@ -1,10 +1,10 @@
 # 剩余结构义务与 P4 接续审阅
 
-日期：2026-10-08。状态：P3-E 范围已接受，实施依据为 [ADR 0023](../adr/0023-core-empty-effect-derivation.md)及[正式规则](core-empty-effects-v0.1.md)；field-origin 与 P4 提案仍未接受。以下保留审阅推导，不授权外部工具执行。
+日期：2026-10-08。状态：P3-E 已按 [ADR 0023](../adr/0023-core-empty-effect-derivation.md)及[正式规则](core-empty-effects-v0.1.md)完成本机组件验收并提交为 `47e3ff9`；field-origin 的 P3-F 内部分析范围已按 [ADR 0024](../adr/0024-core-field-origin-derivation.md)接受，P4 仍待单独审阅，具体接续以[字段来源与 P4 接口审阅](field-origin-and-p4-interface-review.md)为准。以下保留 P3-E 实施前的审阅推导，不授权外部工具执行。
 
 用途：供项目所有者和实现者决定 P3-D 之后的切片，明确 effect-empty、field-origin 与真实后端的不同依赖。依据为已提交的 P3-D `a008520`、[P2 规则](../evidence/ir-derived-obligations-v0.2.md)、[IR v0.2](../ir/axiom-ir-v0.2.md)与[语义快照](../semantics/keyed-finite-table-semantics-v0.2.md)。不包含生产实现、完整 Evidence、独立 checker 支持或新的证明结果。
 
-## 建议顺位
+## P3-E 实施前的建议顺位
 
 建议下一实施切片为 **P3-E：纯核心空效果的显式结构推导组件**。它从完整规范 IR 重建逐构造空效果规则，绑定原 P2 effect-empty 目标，导出可核对的内部推导记录。该记录不冒充 SMT、kernel-replay support 或公共 Evidence，不产生五态。只检查 `effects = []` 或复用一个 P1 成功标志，均不满足本切片。
 
