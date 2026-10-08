@@ -383,8 +383,13 @@ fn target_comparison_preflight_checks_zero_pairs_cumulative_cost_and_overflow() 
     for n in [0, 1, 2, 3, 4] {
         budget.usage.slot_comparisons = base;
         plan.extents.insert(anchor, n);
-        plan.output_comparisons(&document, anchor, &mut budget)
-            .unwrap();
+        plan.target_comparisons(
+            &document,
+            anchor,
+            ObligationKind::KeyCardinality,
+            &mut budget,
+        )
+        .unwrap();
         assert_eq!(
             budget.usage.slot_comparisons,
             base + n * n.saturating_sub(1)
@@ -394,7 +399,12 @@ fn target_comparison_preflight_checks_zero_pairs_cumulative_cost_and_overflow() 
     budget.usage.slot_comparisons = 0;
     plan.extents.insert(anchor, usize::MAX);
     assert!(matches!(
-        plan.output_comparisons(&document, anchor, &mut budget),
+        plan.target_comparisons(
+            &document,
+            anchor,
+            ObligationKind::KeyCardinality,
+            &mut budget
+        ),
         Err(QueryError::ResourceLimit {
             resource: QueryResource::SlotComparisons,
             ..
@@ -404,7 +414,12 @@ fn target_comparison_preflight_checks_zero_pairs_cumulative_cost_and_overflow() 
     plan.extents.insert(anchor, 2);
     budget.usage.slot_comparisons = usize::MAX - 1;
     assert!(matches!(
-        plan.output_comparisons(&document, anchor, &mut budget),
+        plan.target_comparisons(
+            &document,
+            anchor,
+            ObligationKind::KeyCardinality,
+            &mut budget
+        ),
         Err(QueryError::ResourceLimit {
             resource: QueryResource::SlotComparisons,
             ..

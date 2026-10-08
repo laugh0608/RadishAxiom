@@ -46,6 +46,7 @@ fn existing_p2_inventory_is_preserved_and_supported_queries_are_generated() {
         (QueryProfile::MapFilterV0_1, (115, 1, 284, 56, 26)),
         (QueryProfile::MapFilterV0_2, (127, 1, 255, 73, 26)),
         (QueryProfile::MapFilterV0_3, (139, 1, 226, 90, 26)),
+        (QueryProfile::MapFilterV0_4, (151, 1, 197, 107, 26)),
     ] {
         let mut generated = 0;
         let mut kinds = 0;
@@ -76,8 +77,12 @@ fn existing_p2_inventory_is_preserved_and_supported_queries_are_generated() {
                                 ObligationKind::NumericRange | ObligationKind::ContractGuarantee
                             ) || (profile != QueryProfile::MapFilterV0_1
                                 && obligation.kind() == ObligationKind::Totality)
-                                || (profile == QueryProfile::MapFilterV0_3
-                                    && obligation.kind() == ObligationKind::KeyCardinality)
+                                || (matches!(
+                                    profile,
+                                    QueryProfile::MapFilterV0_3 | QueryProfile::MapFilterV0_4
+                                ) && obligation.kind() == ObligationKind::KeyCardinality)
+                                || (profile == QueryProfile::MapFilterV0_4
+                                    && obligation.kind() == ObligationKind::RowCoverage)
                         );
                         assert!(query.bytes().is_ascii());
                         assert!(query.bytes().starts_with(b"(set-logic QF_UFLIA)\n"));

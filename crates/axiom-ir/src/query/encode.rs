@@ -45,7 +45,10 @@ pub(super) struct Encoder<'a> {
     pub target_anchor: &'a str,
     pub target_path: Vec<&'a str>,
     pub violations: Vec<Term>,
-    cardinality_target: bool,
+    target_kind: ObligationKind,
+    coverage_violation: Option<Term>,
+    #[cfg(test)]
+    coverage_trace: Option<super::coverage::Trace>,
     cardinality_violation: Option<Term>,
 }
 
@@ -65,8 +68,11 @@ pub(super) fn encode(
     let plan = Plan::new(document, root, &mut budget)?;
     let types = document.components().analysis().graph().types();
     let subject = get(definition, "subject");
-    if kind == ObligationKind::KeyCardinality {
-        plan.output_comparisons(document, text(subject, "id"), &mut budget)?;
+    if matches!(
+        kind,
+        ObligationKind::KeyCardinality | ObligationKind::RowCoverage
+    ) {
+        plan.target_comparisons(document, text(subject, "id"), kind, &mut budget)?;
     }
     let layouts = Layouts::new(types, &mut budget)?;
     let target_path = if kind == ObligationKind::NumericRange {
@@ -98,7 +104,10 @@ pub(super) fn encode(
         target_anchor: text(subject, "id"),
         target_path,
         violations: Vec::new(),
-        cardinality_target: kind == ObligationKind::KeyCardinality,
+        target_kind: kind,
+        coverage_violation: None,
+        #[cfg(test)]
+        coverage_trace: None,
         cardinality_violation: None,
     };
     for &value in &encoder.plan.literals {
@@ -174,6 +183,9 @@ pub(super) fn encode(
         ObligationKind::KeyCardinality => encoder
             .cardinality_violation
             .ok_or(QueryError::Internal("missing key-cardinality target"))?,
+        ObligationKind::RowCoverage => encoder
+            .coverage_violation
+            .ok_or(QueryError::Internal("missing row-coverage target"))?,
         _ => return Err(QueryError::UnsupportedKind(kind)),
     };
     let wf = encoder.arena.and(&wf)?;
@@ -186,6 +198,8 @@ pub(super) fn encode(
         binding,
         symbols,
         usage,
+        #[cfg(test)]
+        coverage_trace: encoder.coverage_trace,
     })
 }
 
@@ -261,6 +275,15 @@ impl Encoder<'_> {
             .charge(QueryResource::ValueCells, source.slots.len())?;
         let mut slots = Vec::with_capacity(source.slots.len());
         let mut success = vec![source.ok];
+        let coverage_target =
+            self.target_kind == ObligationKind::RowCoverage && id == self.target_anchor;
+        let mut selected = Vec::new();
+        if coverage_target {
+            self.arena
+                .budget
+                .charge(QueryResource::ValueCells, source.slots.len())?;
+            selected.reserve_exact(source.slots.len());
+        }
         for slot in &source.slots {
             let reach = self.arena.and(&[source.ok, slot.active])?;
             let mut env = vec![slot.data.clone()];
@@ -273,12 +296,19 @@ impl Encoder<'_> {
                     &mut vec!["predicate".to_owned()],
                 )?;
                 success.push(self.arena.implies(slot.active, predicate.ok)?);
+                if coverage_target {
+                    // 参考选择先于输出构造，不能从输出 active 反推，也不重新求值谓词。
+                    selected.push(self.arena.and(&[slot.active, predicate.scalar()])?);
+                }
                 let active = self.arena.and(&[slot.active, predicate.scalar()])?;
                 slots.push(Slot {
                     active,
                     data: slot.data.clone(),
                 });
             } else {
+                if coverage_target {
+                    selected.push(slot.active);
+                }
                 let len = self.layouts.entries[layout].len;
                 self.arena.budget.charge(QueryResource::ValueCells, len)?;
                 let mut lanes = Vec::with_capacity(len);
@@ -312,7 +342,7 @@ impl Encoder<'_> {
         }
         let capacity = self.arena.integer(ty.capacity.as_str())?;
         let within_capacity = self.arena.app(Op::Le, &[count, capacity])?;
-        if self.cardinality_target && id == self.target_anchor {
+        if self.target_kind == ObligationKind::KeyCardinality && id == self.target_anchor {
             // Ready 不含自身容量；故障行仅为占位值，不能制造局部键反例。
             let ready = self.arena.and(&success)?;
             let unique = output_unique(&slots, &ty.primary_key, &self.layouts, &mut self.arena)?;
@@ -320,6 +350,34 @@ impl Encoder<'_> {
             let not_capacity = self.arena.not(within_capacity)?;
             let failure = self.arena.or(&[not_unique, not_capacity])?;
             self.cardinality_violation = Some(self.arena.and(&[ready, failure])?);
+        }
+        if coverage_target {
+            let ready = self.arena.and(&success)?;
+            let keys = super::coverage::key_fields(node, &ty.primary_key, &mut self.arena.budget)?;
+            let relation = super::coverage::relation(
+                &source.slots,
+                &selected,
+                &slots,
+                &keys,
+                &self.layouts,
+                &mut self.arena,
+            )?;
+            self.coverage_violation = Some(super::coverage::violation(
+                ready,
+                relation,
+                &mut self.arena,
+            )?);
+            #[cfg(test)]
+            {
+                self.coverage_trace = Some(super::coverage::Trace::new(
+                    ready,
+                    &source.slots,
+                    &selected,
+                    &slots,
+                    &keys,
+                    &self.layouts,
+                ));
+            }
         }
         success.push(within_capacity);
         let ok = self.arena.and(&success)?;

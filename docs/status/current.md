@@ -15,7 +15,7 @@
 | 首域语义、IR / Evidence、pipeline / readiness 契约、28 个指定态 bundle | 真实生产管线、六平台执行 |
 | P1 内部组件：v0.2 闭合结构 / 类型 / 图 / 契约、保守标签、完整规范文档 / strict / 身份；v0.1 既有子集及显式迁移，本机组件验收 | 完整 P1 生产阶段、Evidence / 管线集成、真实独立 checker 与六平台验收 |
 | P2 内部组件：IR v0.2 的 ir-derived 全集、definition / ID / 规范字节、strict 完整性核对与预算拒绝，本机组件验收 | 完整 P2 生产阶段、实际 trust / concrete checks、Evidence v0.2 / query / 独立 checker 集成 |
-| P3-A / B / C 内部组件：map / filter 的 numeric-range / contract-guarantee / totality / key-cardinality 真实查询、显式 profile、绑定 / strict / 预算拒绝，本机组件验收 | 其他义务与图操作、完整 P3、真实 solver / 模型 / proof、Evidence 与独立 checker 集成 |
+| P3-A / B / C / D 内部组件：map / filter 的 numeric-range / contract-guarantee / totality / key-cardinality / row-coverage 真实查询、显式 profile、绑定 / strict / 预算拒绝，本机组件验收 | 其他义务与图操作、完整 P3、真实 solver / 模型 / proof、Evidence 与独立 checker 集成 |
 | 独立 Go checker 的受限解析、义务重建、重放、结论与 CLI | 全语义、反例最小性；kernel / certificate 真值复核支持集合仍为空 |
 | Rust runtime 的身份 / 选择、归档 / manifest、receipt、结果消费和 spawn plan；Darwin store 持久化与恢复 | 完整 installer / launcher、qualification、产品根安装、物理断电保证 |
 | Darwin Go / Rust 部分工具验收，checker payload 不可变发布并登记 inactive | cvc5 / Node、完整 Linux 工具链及其他平台验收；active runtime 为 0 |
@@ -36,7 +36,7 @@
 | --- | --- | --- |
 | 1：P1 真实语义组件 | [ADR 0016](../adr/0016-core-semantic-slice-entry.md) / [0017](../adr/0017-ir-v0.2-support-boundaries-and-migration.md)范围内已完成本机组件验收；[17 项矩阵](../ir/p1-support-boundary-review.md#必需验证矩阵对照)闭合结构、规范字节、身份与迁移回归 | 保留旧版未支持边界；不外推完整生产阶段、证明或跨平台验收 |
 | 2：P2 真实义务生成 | [ADR 0018](../adr/0018-ir-derived-obligation-profile.md) / [规则](../evidence/ir-derived-obligations-v0.2.md)已接受并完成本机内部组件验收；26 份 IR / 482 项定义与 29 份负例实际核对 | 只交付显式 ir-derived 全集；group 覆盖 / 守恒分开；保留完整 Evidence 门禁 |
-| 3：query 与纵向闭环（下一步） | [ADR 0019](../adr/0019-map-filter-query-encoding.md) / [0020](../adr/0020-map-filter-node-totality.md) / [0021](../adr/0021-map-filter-key-cardinality.md) 的 P3-A / B / C 已完成本机组件验收；下一项审阅 row-coverage 的操作关系、故障观察与独立路径 | 完整 P3 未实现；保留 AX-B01 正确、两个 wrong、invalid、timeout 和篡改标准，外部执行独立授权 |
+| 3：query 与纵向闭环（下一步） | [ADR 0019](../adr/0019-map-filter-query-encoding.md)–[0022](../adr/0022-map-filter-row-coverage.md) 的 P3-A / B / C / D 已完成本机组件验收；下一步审阅剩余局部义务的结构检查与 P4 纵向切片顺位 | 完整 P3 未实现；保留 AX-B01 正确、两个 wrong、invalid、timeout 和篡改标准，外部执行独立授权 |
 
 近期验收看真实输入能否产生规范输出与可定位拒绝，区分实现、指定态 fixture、独立复核与证明；不以提交数、测试数或来源包数量替代里程碑。每个切片结束复核下一项是否直接服务上述交付；新增前置必须解释具体依赖和停止条件。
 
@@ -46,10 +46,12 @@ P1 `ed39e3b`、P2 `5142d70` 与 P3-A `2f4510c` 已提交并完成本机内部组
 
 ### 当前接续（2026-10-08）
 
-1. P3-B 已提交为 `9f843ea`（未推送），[历史验收](../records/2026-10-08-p3b-validation.md)保留。P3-C 范围已接受，按 [ADR 0021](../adr/0021-map-filter-key-cardinality.md) / [v0.3](../query/map-filter-query-v0.3.md)实现 key-cardinality：Ready 包含来源和活动表达式成功，不含自身容量，目标超限可观察；显式 profile 保留旧三类字节与预算。
+1. P3-C 已提交为 `9b8f71f`，P3-B 为 `9f843ea`（均未推送），[历史验收](../records/2026-10-08-p3b-validation.md)保留。P3-C 范围已接受，按 [ADR 0021](../adr/0021-map-filter-key-cardinality.md) / [v0.3](../query/map-filter-query-v0.3.md)实现 key-cardinality：Ready 包含来源和活动表达式成功，不含自身容量，目标超限可观察；显式 profile 保留旧三类字节与预算。
 2. P3-C 实际有限比较通过：57 文档、243 查询 / 9,021 赋值，10 类程序变异；局部唯一键谓词另有 16 个合成赋值与三类变异。合法 map / filter 不能制造重复键，局部注入不是程序反例。[本批验收](../records/2026-10-08-p3c-validation.md)区分这些证据层级。
 3. 既有 26 份 IR / 482 项义务在 v0.3 下实际生成 139 查询，较 v0.2 新增 12 条 key-cardinality；其余为 1 项容量资源拒绝、226 项 UnsupportedKind、90 项 UnsupportedFeature 和 26 项 check。完整 P2 位置 / ID 不改。
-4. 下一项先审阅 row-coverage 的操作关系、故障观察及独立规则，再决定真实编码或可核对的结构证书路径；不直接填恒假查询。effect-empty / field-origin 仍保留。P3-C 本机组件验收完成；源码、材料与文档随本批实现提交，提交身份以 Git 历史为准。
+4. P3-D 已按接受的 [ADR 0022](../adr/0022-map-filter-row-coverage.md) / [v0.4](../query/map-filter-query-v0.4.md)实现：Ready 守卫容量前 O*，所选直接源行与实际输出作双向恰好一次全键匹配；旧四类字节、符号及六项用量保持。有限比较为 60 文档、336 查询 / 12,553 赋值及 3,016 个中间观察，区分三类观察变异；局部关系另有 648 个合成赋值、12 类变异，不能当作合法程序反例或证明。细节见 [P3-D 验收](../records/2026-10-08-p3d-validation.md)。
+5. v0.4 对既有 26 份 IR / 482 项义务实际生成 151 查询，较 v0.3 增加 12 条 row-coverage；其余为 1 项资源拒绝、197 项 UnsupportedKind、107 项 UnsupportedFeature 与 26 项 check。源码、材料和文档随本批提交，精确身份以 Git 历史为准。
+6. 下一步先审阅 effect-empty / field-origin 的结构检查边界及其与 P4 首个纵向闭环的依赖，避免只按义务列表机械扩展查询。新语义、结构证书及实施范围尚未接受；本批不自动进入后续实现。
 
 join / group、聚合契约、双世界非干扰与 P4 / P7 / P9 分别审阅；真实 solver、跨仓 checker、新 Evidence 集成及外部执行继续保留各自门禁。本批不自动授权安装、启动、远程写入或正式实验。
 
@@ -69,7 +71,7 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 
 ## 当前停止线与待决策
 
-- P1、限定 P2 与 P3-A / B / C 已完成本机组件验收；完整生产阶段尚未验收。P3 进一步扩展须明确目标范围；新 IR / P2 / query 不能配给旧 Evidence 结果，完整 Evidence v0.2 仍须按 ADR 0009 补齐。
+- P1、限定 P2 与 P3-A / B / C / D 已完成本机组件验收；完整生产阶段尚未验收。P3 进一步扩展须明确目标范围；新 IR / P2 / query 不能配给旧 Evidence 结果，完整 Evidence v0.2 仍须按 ADR 0009 补齐。
 - Darwin payload 保持 `registered-inactive`、`NativeIsolationStatus = RequiredNotProven`。不能重标为 Linux，也不能静默将 native spawn 转为虚拟执行。
 - 产品隔离继续遵循 ADR 0013–0015；不启用 native best-effort、root broker、URL boot 或 warm VM fallback，不自动放宽 memory / deadline。
 - 来源接受、fetch / install、payload 执行、公共迁移、生产签名、qualification、激活和远程写入仍分别处理；历史授权不延续。
@@ -78,7 +80,7 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 
 ## 验证入口与本次审阅
 
-2026-10-08，P3-C 新增 6 项 Rust 回归通过，workspace 共 230 项测试通过（runtime 56、Darwin store 3、digest 2、IR 169）；格式、Clippy 与仓库检查通过。旧规范、候选、锁定 bundle、runtime 与依赖字节保留，没有安装或升级依赖。
+2026-10-08，P3-D 新增 6 项 Rust 回归通过，workspace 共 236 项测试通过（runtime 56、Darwin store 3、digest 2、IR 175）；格式、Clippy 与仓库检查通过。旧规范、候选、锁定 bundle、runtime 与依赖字节保留，没有安装或升级依赖。
 
 P3 具体 IR / SMT 比对属于有限动态检查，不是 solver 结果或形式证明；生产 strict 重建不能替代独立路径。P2 group 区分与角色表仍不是实际 role / checker 执行结果。
 
@@ -98,7 +100,7 @@ cargo +1.97.1-aarch64-apple-darwin test --workspace --all-targets --locked --off
 
 命令以工具和依赖已验收安装为前提，不授权下载；其他平台先确认精确工具与执行范围。
 
-P3-C 本机验证见[本批验收](../records/2026-10-08-p3c-validation.md)，P3-B 见[历史验收](../records/2026-10-08-p3b-validation.md)，P3-A 历史见[10 月 5 日记录](../records/2026-10-05-closeout.md)；保留全部既有契约 / IR / P2 材料及旧入口隔离。CI 未触发，其他平台及真实 checker / cvc5 / Node 未执行。后续按[工程门禁](../governance/repository-governance.md#rust-工程门禁)验证，契约检查不能替代 Rust 测试。
+P3-D 本机验证见[本批验收](../records/2026-10-08-p3d-validation.md)，P3-C 见[前批验收](../records/2026-10-08-p3c-validation.md)，P3-B 见[历史验收](../records/2026-10-08-p3b-validation.md)，P3-A 历史见[10 月 5 日记录](../records/2026-10-05-closeout.md)；保留全部既有契约 / IR / P2 材料及旧入口隔离。CI 未触发，其他平台及真实 checker / cvc5 / Node 未执行。后续按[工程门禁](../governance/repository-governance.md#rust-工程门禁)验证，契约检查不能替代 Rust 测试。
 
 ## 按需阅读
 

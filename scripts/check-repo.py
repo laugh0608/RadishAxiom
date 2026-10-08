@@ -97,6 +97,17 @@ REQUIRED_FILES = (
     "scripts/p3_cardinality_semantics.py",
     "scripts/check-p3-cardinality-semantics.py",
     "crates/axiom-ir/src/query/tests/cardinality.rs",
+    "crates/axiom-ir/src/query/coverage.rs",
+    "crates/axiom-ir/src/query/tests/row_coverage.rs",
+    "docs/adr/0022-map-filter-row-coverage.md",
+    "docs/query/map-filter-query-v0.4.md",
+    "docs/query/p3-row-coverage-review.md",
+    "contracts/map-filter-query-v0.4/README.md",
+    "contracts/map-filter-query-v0.4/cases.json",
+    "contracts/map-filter-query-v0.4/v0.3-baseline.tsv",
+    "scripts/generate-p3-coverage-vectors.py",
+    "scripts/p3_coverage_semantics.py",
+    "scripts/check-p3-coverage-semantics.py",
     "docs/evidence/p2-obligation-profile-review.md",
     "docs/evidence/p2-profile-review/README.md",
     "docs/adr/0018-ir-derived-obligation-profile.md",
@@ -570,7 +581,7 @@ def check_p2_profile_review(errors: list[str]) -> None:
 
 
 def check_p3_query_materials(errors: list[str]) -> None:
-    for script in ["generate-p3-query-review.py", "generate-p3-query-vectors.py", "generate-p3-totality-vectors.py", "generate-p3-cardinality-vectors.py"]:
+    for script in ["generate-p3-query-review.py", "generate-p3-query-vectors.py", "generate-p3-totality-vectors.py", "generate-p3-cardinality-vectors.py", "generate-p3-coverage-vectors.py"]:
         result = subprocess.run(
             [sys.executable, str(REPO_ROOT / "scripts" / script), "--check"],
             cwd=REPO_ROOT,

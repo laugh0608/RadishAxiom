@@ -1,6 +1,7 @@
 use super::*;
 
 mod cardinality;
+mod row_coverage;
 mod totality;
 use crate::{
     declarations,
@@ -172,6 +173,8 @@ fn compare_semantics(profile: QueryProfile, version: &str, script: &str) {
                 )
             })
             .collect();
+    let current = row_coverage::legacy_baseline();
+    let mut current_seen = std::collections::BTreeSet::new();
     let mut previous_seen = std::collections::BTreeSet::new();
     let mut query_count = 0;
     let mut legacy_seen = std::collections::BTreeSet::new();
@@ -217,15 +220,45 @@ fn compare_semantics(profile: QueryProfile, version: &str, script: &str) {
                     assert_ne!(old.binding(), query.binding());
                 }
             }
+            if let Some((digest, usage)) = current.get(string(id)) {
+                current_seen.insert(string(id));
+                assert_eq!(query.artifact_digest(), digest, "v0.3 SMT bytes drift");
+                assert_eq!(query.usage(), *usage, "v0.3 budget drift");
+                if profile == QueryProfile::MapFilterV0_4 {
+                    let old = encode_query(
+                        QueryProfile::MapFilterV0_3,
+                        &document,
+                        &set,
+                        string(id),
+                        &identity(),
+                        limits(),
+                    )
+                    .unwrap();
+                    assert_eq!(old.bytes(), query.bytes());
+                    assert_eq!(old.symbols(), query.symbols());
+                    assert_eq!(old.usage(), query.usage());
+                    assert_ne!(old.binding(), query.binding());
+                }
+            }
             let stem = directory.join(format!("{}-{index}", text(case, "name")));
             std::fs::write(stem.with_extension("smt2"), query.bytes()).unwrap();
             std::fs::write(stem.with_extension("json"), symbols(&query)).unwrap();
+            if query.coverage_trace.is_some() {
+                std::fs::write(
+                    stem.with_extension("trace.json"),
+                    row_coverage::trace_bytes(&query),
+                )
+                .unwrap();
+            }
             query_count += 1;
         }
     }
     assert_eq!(legacy_seen, baseline.keys().copied().collect());
     if version != "v0.1" {
         assert_eq!(previous_seen, previous.keys().copied().collect());
+    }
+    if matches!(version, "v0.3" | "v0.4") {
+        assert_eq!(current_seen, current.keys().map(String::as_str).collect());
     }
     let result = std::process::Command::new("python3")
         .arg(root().join("scripts").join(script))

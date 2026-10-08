@@ -39,7 +39,7 @@
 | Darwin 强隔离与 container 状态 | [ADR 0013](adr/0013-darwin-checker-hard-isolation.md)、[0014](adr/0014-darwin-app-sandbox-container-state.md) |
 | 虚拟 checker 资源保证与迁移边界 | [ADR 0015（Accepted）](adr/0015-virtualized-checker-resource-profile.md) |
 | 核心语义组件、IR 与义务版本范围 | [ADR 0016（Accepted）](adr/0016-core-semantic-slice-entry.md)、[0017（Accepted）](adr/0017-ir-v0.2-support-boundaries-and-migration.md)、[0018（Accepted）](adr/0018-ir-derived-obligation-profile.md) |
-| map / filter 限定查询编码 | [ADR 0019（Accepted）](adr/0019-map-filter-query-encoding.md)、[ADR 0020（Accepted）](adr/0020-map-filter-node-totality.md)、[ADR 0021（Accepted）](adr/0021-map-filter-key-cardinality.md) |
+| map / filter 限定查询编码 | [ADR 0019（Accepted）](adr/0019-map-filter-query-encoding.md)、[ADR 0020（Accepted）](adr/0020-map-filter-node-totality.md)、[ADR 0021（Accepted）](adr/0021-map-filter-key-cardinality.md)、[ADR 0022（Accepted）](adr/0022-map-filter-row-coverage.md) |
 
 ADR 定义决策和重评条件，不表示相关生产能力已完成；实现进度由当前状态维护。
 
@@ -51,6 +51,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 - [map / filter 查询编码](query/map-filter-query-v0.1.md)：[ADR 0019](adr/0019-map-filter-query-encoding.md)接受的 P3-A 内部范围、故障 / 资源与字节规则；[独立验收](../contracts/map-filter-query-v0.1/README.md)和[初始审阅](query/p3-query-encoding-review.md)分别保留动态材料与决策来源。
 - [map / filter 查询 v0.2](query/map-filter-query-v0.2.md)：ADR 0020 接受的节点 totality、显式 profile 与旧版兼容；[独立材料](../contracts/map-filter-query-v0.2/README.md)与[剩余义务审阅](query/p3-node-totality-review.md)分别提供验收和决策来源。
 - [map / filter 查询 v0.3](query/map-filter-query-v0.3.md)：ADR 0021 接受的 key-cardinality、Ready 故障归因与目标比较预算；[独立材料](../contracts/map-filter-query-v0.3/README.md)与[设计审阅](query/p3-key-cardinality-review.md)。
+- [map / filter 查询 v0.4](query/map-filter-query-v0.4.md)：ADR 0022 接受的 row-coverage、双向行关系及独立观察；[验收材料](../contracts/map-filter-query-v0.4/README.md)和[设计审阅](query/p3-row-coverage-review.md)分别保留复现与决策依据。
 - [共享 SHA-256](../crates/digest/README.md)：runtime / IR 共用的自有摘要实现与独立复核边界。
 
 ## 机器契约
@@ -83,6 +84,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 | Linux 构建包来源与安装差异 | [Debian 签名摘要链、控制脚本审阅与安装模拟](records/linux-builder-source-chain/README.md) |
 | Rust Linux 与静态目标输入 | [签名 / 归档盘点、安装候选与 kernel 许可审阅](records/rust-linux-input-review/README.md) |
 | 2026-10-08 P3-C | [局部键 / 基数、独立容量前观察与预算兼容验收](records/2026-10-08-p3c-validation.md) |
+| 2026-10-08 P3-D | [双向行覆盖、独立中间观察与局部关系变异验收](records/2026-10-08-p3d-validation.md) |
 | 2026-10-08 P3-B | [节点 totality、独立比较、兼容性与失败修复验收](records/2026-10-08-p3b-validation.md) |
 | 2026-10-05 日终回顾 | [P1 / P2 / P3-A 全天提交、代码与文档核对及明日交接](records/2026-10-05-closeout.md) |
 | 2026-09-29 日终回顾 | [全天提交、代码与文档核对及明日交接](records/2026-09-29-closeout.md) |

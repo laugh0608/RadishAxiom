@@ -1,5 +1,6 @@
-//! ADR 0019 / 0020 / 0021 的 P3-A / B / C 内部组件；不运行 solver，不产生 Evidence 或证明状态。
+//! ADR 0019–0022 的 P3-A / B / C / D 内部组件；不运行 solver，不产生 Evidence 或证明状态。
 
+mod coverage;
 mod encode;
 mod expressions;
 mod layout;
@@ -25,6 +26,7 @@ pub enum QueryProfile {
     MapFilterV0_1,
     MapFilterV0_2,
     MapFilterV0_3,
+    MapFilterV0_4,
 }
 impl QueryProfile {
     pub fn as_str(self) -> &'static str {
@@ -32,6 +34,7 @@ impl QueryProfile {
             Self::MapFilterV0_1 => "axiom-p3-map-filter-query-v0.1",
             Self::MapFilterV0_2 => "axiom-p3-map-filter-query-v0.2",
             Self::MapFilterV0_3 => "axiom-p3-map-filter-query-v0.3",
+            Self::MapFilterV0_4 => "axiom-p3-map-filter-query-v0.4",
         }
     }
     fn supports(self, kind: ObligationKind) -> bool {
@@ -39,7 +42,9 @@ impl QueryProfile {
             kind,
             ObligationKind::NumericRange | ObligationKind::ContractGuarantee
         ) || (self != Self::MapFilterV0_1 && kind == ObligationKind::Totality)
-            || (self == Self::MapFilterV0_3 && kind == ObligationKind::KeyCardinality)
+            || (matches!(self, Self::MapFilterV0_3 | Self::MapFilterV0_4)
+                && kind == ObligationKind::KeyCardinality)
+            || (self == Self::MapFilterV0_4 && kind == ObligationKind::RowCoverage)
     }
 }
 
@@ -203,6 +208,8 @@ pub struct EncodedQuery {
     binding: QueryBinding,
     symbols: Vec<QuerySymbol>,
     usage: QueryUsage,
+    #[cfg(test)]
+    coverage_trace: Option<coverage::Trace>,
 }
 impl EncodedQuery {
     pub fn bytes(&self) -> &[u8] {

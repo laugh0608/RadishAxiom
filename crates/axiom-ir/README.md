@@ -1,6 +1,6 @@
 # Axiom IR、派生义务与限定查询内部组件
 
-本 crate 承载 [ADR 0021](../../docs/adr/0021-map-filter-key-cardinality.md) 的 P3-C 局部 key-cardinality、[ADR 0020](../../docs/adr/0020-map-filter-node-totality.md) 的 P3-B 节点 totality 与显式 query profile、[ADR 0019](../../docs/adr/0019-map-filter-query-encoding.md) 的 P3-A map / filter 限定查询组件、[ADR 0018](../../docs/adr/0018-ir-derived-obligation-profile.md) 的 P2 IR 派生义务组件，以及 [ADR 0016](../../docs/adr/0016-core-semantic-slice-entry.md) 与 [ADR 0017](../../docs/adr/0017-ir-v0.2-support-boundaries-and-migration.md) 的 P1 内部组件。精确读取 [IR v0.1](../../docs/ir/axiom-ir-v0.md) 的既有支持子集与 [IR v0.2](../../docs/ir/axiom-ir-v0.2.md)：检查 JSON、类型、图、契约及内容身份，重建保守标签，生成完整规范文档和 strict 结果，并显式迁移共同子集。v0.2 的四项支持边界已经闭合；本机组件验收与完整 P1 生产阶段、独立 checker、跨平台和证明分别报告，不提供 CLI、Evidence 或执行门控。
+本 crate 承载 [ADR 0022](../../docs/adr/0022-map-filter-row-coverage.md) 的 P3-D 双向 row-coverage、[ADR 0021](../../docs/adr/0021-map-filter-key-cardinality.md) 的 P3-C 局部 key-cardinality、[ADR 0020](../../docs/adr/0020-map-filter-node-totality.md) 的 P3-B 节点 totality 与显式 query profile、[ADR 0019](../../docs/adr/0019-map-filter-query-encoding.md) 的 P3-A map / filter 限定查询组件、[ADR 0018](../../docs/adr/0018-ir-derived-obligation-profile.md) 的 P2 IR 派生义务组件，以及 [ADR 0016](../../docs/adr/0016-core-semantic-slice-entry.md) 与 [ADR 0017](../../docs/adr/0017-ir-v0.2-support-boundaries-and-migration.md) 的 P1 内部组件。精确读取 [IR v0.1](../../docs/ir/axiom-ir-v0.md) 的既有支持子集与 [IR v0.2](../../docs/ir/axiom-ir-v0.2.md)：检查 JSON、类型、图、契约及内容身份，重建保守标签，生成完整规范文档和 strict 结果，并显式迁移共同子集。v0.2 的四项支持边界已经闭合；本机组件验收与完整 P1 生产阶段、独立 checker、跨平台和证明分别报告，不提供 CLI、Evidence 或执行门控。
 
 ## 输入与输出
 
@@ -141,9 +141,9 @@
 
 本机组件完成不等于完整 P2 生产阶段。实际 trust / benchmark checks、完整 query 范围、Evidence v0.2、迁移演练、独立 Go checker 与跨平台继续后置；旧 Evidence 结果不能随新 ID 沿用。
 
-## P3-A / B / C：map / filter 查询
+## P3-A / B / C / D：map / filter 查询
 
-[ADR 0019](../../docs/adr/0019-map-filter-query-encoding.md) / [正式规则](../../docs/query/map-filter-query-v0.1.md)接受 IR v0.2、完整只读 P2 集合及一个目标 ID 的内部 `query::encode_query`。当前调用显式提供 `QueryProfile`、文档、完整集合、目标 ID、生成器身份和资源预算；`check_query` 同样显式选择 profile。整份图只支持 input / filter / map，公式支持核心表达式、forall_rows 与 lookup；v0.1 只编码 numeric-range / contract-guarantee；[ADR 0020 / v0.2](../../docs/query/map-filter-query-v0.2.md)增加 totality；[ADR 0021 / v0.3](../../docs/query/map-filter-query-v0.3.md)增加 key-cardinality。其余义务、join / group / 聚合与双世界目标显式拒绝，不删除 P2 位置或返回 Evidence unknown。
+[ADR 0019](../../docs/adr/0019-map-filter-query-encoding.md) / [正式规则](../../docs/query/map-filter-query-v0.1.md)接受 IR v0.2、完整只读 P2 集合及一个目标 ID 的内部 `query::encode_query`。当前调用显式提供 `QueryProfile`、文档、完整集合、目标 ID、生成器身份和资源预算；`check_query` 同样显式选择 profile。整份图只支持 input / filter / map，公式支持核心表达式、forall_rows 与 lookup；v0.1 只编码 numeric-range / contract-guarantee；[ADR 0020 / v0.2](../../docs/query/map-filter-query-v0.2.md)增加 totality；[ADR 0021 / v0.3](../../docs/query/map-filter-query-v0.3.md)增加 key-cardinality；[ADR 0022 / v0.4](../../docs/query/map-filter-query-v0.4.md)增加 row-coverage。其余义务、join / group / 聚合与双世界目标显式拒绝，不删除 P2 位置或返回 Evidence unknown。
 
 数值与 ok 分开传播；算术范围目标保留可达溢出，契约保证要求实际程序及公式成功。输入容量完整展开，filter 不截断来源槽位；Bool / MathInt / Fixed 系数 / Enum / Text / Option / Record 使用类型化 SMT DAG 和平坦复合值。节点 / 类型引用迭代处理，未活动载荷和 None 内值受守卫，Text 不归一化。
 
@@ -154,6 +154,8 @@
 P3-B 的节点目标为 `WF ∧ Pre ∧ ¬OK(target)`，包含来源、活动表达式与容量故障；无关节点、下游及 guarantee 自身故障不归入目标。[v0.2 独立材料](../../contracts/map-filter-query-v0.2/README.md)包含 50 个文档、143 个查询目标 / 5,185 个赋值和 8 类语义变异。v0.1 保持原支持 / 拒绝，原 68 查询在两个 profile 对照改动前字节摘要；新旧 profile 的原目标 SMT 相同、绑定不同。
 
 P3-C 使用 `WF ∧ Pre ∧ Ready ∧ (¬Unique ∨ ¬Capacity)`，Ready 包含来源及活动局部表达式成功、排除自身容量。只对目标增加完整继承槽位的全键比较，提前累计 N²K 预算；旧三类字节、符号和用量保持。合法 map / filter 不能从 WF 输入制造重复键，合成 O* 的唯一键谓词注入与完整程序有限比较分别验收，见 [v0.3 材料](../../contracts/map-filter-query-v0.3/README.md)。
+
+P3-D 使用 `WF ∧ Pre ∧ Ready ∧ ¬Coverage`，对所选直接来源与实际容量前候选作双向恰好一次全键匹配，允许重命名、键序变化与输出行换序。只为目标预收 Ns × No × K 比较成本，流式累计两方向计数；原四类查询字节、符号和预算保持。测试额外导出已有 term 引用核对选择、期望键与完整活动输出；该诊断不进入生产 API 或制品。局部关系 / 守卫变异与完整程序有限观察分别报告，见 [v0.4 材料](../../contracts/map-filter-query-v0.4/README.md)。
 
 这里没有 solver、模型解码、Evidence 或执行许可；有限解释比较不证明完整域正确，也不完成完整 P3 / P4 / P7 / P9。旧 query / adapter / pipeline / Evidence 字节不变，公共集成继续后置。
 

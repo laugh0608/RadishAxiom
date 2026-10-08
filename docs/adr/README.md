@@ -32,3 +32,4 @@
 - [ADR 0019：map / filter 单世界查询生成（Accepted）](0019-map-filter-query-encoding.md)
 - [ADR 0020：map / filter 节点总定义性查询（Accepted）](0020-map-filter-node-totality.md)
 - [ADR 0021：map / filter 局部键与基数查询（Accepted）](0021-map-filter-key-cardinality.md)
+- [ADR 0022：map / filter 行覆盖关系查询（Accepted）](0022-map-filter-row-coverage.md)

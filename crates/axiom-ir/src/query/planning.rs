@@ -159,10 +159,11 @@ impl<'a> Plan<'a> {
         Ok(result)
     }
     /// 仅新增目标收费；在布局、槽位或两两比较分配之前检查继承表示规模。
-    pub fn output_comparisons(
+    pub fn target_comparisons(
         &self,
         document: &CanonicalDocument,
         target: &str,
+        kind: crate::obligations::ObligationKind,
         budget: &mut Budget,
     ) -> Result<()> {
         let table_id = self.node_tables[target];
@@ -179,7 +180,9 @@ impl<'a> Plan<'a> {
             .primary_key
             .len();
         let n = self.extents[target];
-        let pairs = if n.is_multiple_of(2) {
+        let pairs = if kind == crate::obligations::ObligationKind::RowCoverage {
+            n.checked_mul(n)
+        } else if n.is_multiple_of(2) {
             (n / 2).checked_mul(n.saturating_sub(1))
         } else {
             n.checked_mul((n - 1) / 2)
