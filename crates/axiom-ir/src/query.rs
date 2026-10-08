@@ -1,4 +1,4 @@
-//! ADR 0019 / 0020 的 P3-A / B 内部组件；不运行 solver，不产生 Evidence 或证明状态。
+//! ADR 0019 / 0020 / 0021 的 P3-A / B / C 内部组件；不运行 solver，不产生 Evidence 或证明状态。
 
 mod encode;
 mod expressions;
@@ -24,19 +24,22 @@ pub const SOLVER_DIALECT: &str = "SMT-LIB-2.6/QF_UFLIA";
 pub enum QueryProfile {
     MapFilterV0_1,
     MapFilterV0_2,
+    MapFilterV0_3,
 }
 impl QueryProfile {
     pub fn as_str(self) -> &'static str {
         match self {
             Self::MapFilterV0_1 => "axiom-p3-map-filter-query-v0.1",
             Self::MapFilterV0_2 => "axiom-p3-map-filter-query-v0.2",
+            Self::MapFilterV0_3 => "axiom-p3-map-filter-query-v0.3",
         }
     }
     fn supports(self, kind: ObligationKind) -> bool {
         matches!(
             kind,
             ObligationKind::NumericRange | ObligationKind::ContractGuarantee
-        ) || (self == Self::MapFilterV0_2 && kind == ObligationKind::Totality)
+        ) || (self != Self::MapFilterV0_1 && kind == ObligationKind::Totality)
+            || (self == Self::MapFilterV0_3 && kind == ObligationKind::KeyCardinality)
     }
 }
 

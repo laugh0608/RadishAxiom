@@ -1,5 +1,6 @@
 use super::*;
 
+mod cardinality;
 mod totality;
 use crate::{
     declarations,
@@ -71,9 +72,11 @@ fn obj(fields: Vec<(&str, Value)>) -> Value {
     )
 }
 fn symbols(query: &EncodedQuery) -> Vec<u8> {
+    symbol_list(query.symbols())
+}
+fn symbol_list(symbols: &[QuerySymbol]) -> Vec<u8> {
     let value = Value::Array(
-        query
-            .symbols()
+        symbols
             .iter()
             .map(|symbol| {
                 let origin = match symbol.origin() {
@@ -147,6 +150,29 @@ fn compare_semantics(profile: QueryProfile, version: &str, script: &str) {
     }).unwrap();
     assert!(manifest.status.success());
     let cases = json::parse(&manifest.stdout, json_limits()).unwrap();
+    let previous: std::collections::BTreeMap<_, _> =
+        include_str!("../../../../contracts/map-filter-query-v0.3/v0.2-baseline.tsv")
+            .lines()
+            .map(|line| {
+                let columns: Vec<_> = line.split('\t').collect();
+                let n = |i: usize| columns[i].parse::<usize>().unwrap();
+                (
+                    columns[1],
+                    (
+                        columns[2],
+                        QueryUsage {
+                            input_slots: n(3),
+                            value_cells: n(4),
+                            expression_instances: n(5),
+                            slot_comparisons: n(6),
+                            smt_nodes: n(7),
+                            output_bytes: n(8),
+                        },
+                    ),
+                )
+            })
+            .collect();
+    let mut previous_seen = std::collections::BTreeSet::new();
     let mut query_count = 0;
     let mut legacy_seen = std::collections::BTreeSet::new();
     for case in array(&cases) {
@@ -171,6 +197,26 @@ fn compare_semantics(profile: QueryProfile, version: &str, script: &str) {
                 assert_eq!(query.artifact_digest(), digest, "legacy SMT bytes drift");
                 assert_eq!(query.bytes().len(), bytes);
             }
+            if let Some(&(digest, usage)) = previous.get(string(id)) {
+                previous_seen.insert(string(id));
+                assert_eq!(query.artifact_digest(), digest, "v0.2 SMT bytes drift");
+                assert_eq!(query.usage(), usage, "v0.2 budget drift");
+                if profile == QueryProfile::MapFilterV0_3 {
+                    let old = encode_query(
+                        QueryProfile::MapFilterV0_2,
+                        &document,
+                        &set,
+                        string(id),
+                        &identity(),
+                        limits(),
+                    )
+                    .unwrap();
+                    assert_eq!(old.bytes(), query.bytes());
+                    assert_eq!(old.symbols(), query.symbols());
+                    assert_eq!(old.usage(), query.usage());
+                    assert_ne!(old.binding(), query.binding());
+                }
+            }
             let stem = directory.join(format!("{}-{index}", text(case, "name")));
             std::fs::write(stem.with_extension("smt2"), query.bytes()).unwrap();
             std::fs::write(stem.with_extension("json"), symbols(&query)).unwrap();
@@ -178,6 +224,9 @@ fn compare_semantics(profile: QueryProfile, version: &str, script: &str) {
         }
     }
     assert_eq!(legacy_seen, baseline.keys().copied().collect());
+    if version != "v0.1" {
+        assert_eq!(previous_seen, previous.keys().copied().collect());
+    }
     let result = std::process::Command::new("python3")
         .arg(root().join("scripts").join(script))
         .arg(&directory)

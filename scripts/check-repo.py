@@ -87,6 +87,16 @@ REQUIRED_FILES = (
     "scripts/p3_totality_semantics.py",
     "scripts/check-p3-totality-semantics.py",
     "crates/axiom-ir/src/query/tests/totality.rs",
+    "docs/adr/0021-map-filter-key-cardinality.md",
+    "docs/query/map-filter-query-v0.3.md",
+    "docs/query/p3-key-cardinality-review.md",
+    "contracts/map-filter-query-v0.3/README.md",
+    "contracts/map-filter-query-v0.3/cases.json",
+    "contracts/map-filter-query-v0.3/v0.2-baseline.tsv",
+    "scripts/generate-p3-cardinality-vectors.py",
+    "scripts/p3_cardinality_semantics.py",
+    "scripts/check-p3-cardinality-semantics.py",
+    "crates/axiom-ir/src/query/tests/cardinality.rs",
     "docs/evidence/p2-obligation-profile-review.md",
     "docs/evidence/p2-profile-review/README.md",
     "docs/adr/0018-ir-derived-obligation-profile.md",
@@ -560,7 +570,7 @@ def check_p2_profile_review(errors: list[str]) -> None:
 
 
 def check_p3_query_materials(errors: list[str]) -> None:
-    for script in ["generate-p3-query-review.py", "generate-p3-query-vectors.py", "generate-p3-totality-vectors.py"]:
+    for script in ["generate-p3-query-review.py", "generate-p3-query-vectors.py", "generate-p3-totality-vectors.py", "generate-p3-cardinality-vectors.py"]:
         result = subprocess.run(
             [sys.executable, str(REPO_ROOT / "scripts" / script), "--check"],
             cwd=REPO_ROOT,

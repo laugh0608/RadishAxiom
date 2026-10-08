@@ -45,6 +45,8 @@ pub(super) struct Encoder<'a> {
     pub target_anchor: &'a str,
     pub target_path: Vec<&'a str>,
     pub violations: Vec<Term>,
+    cardinality_target: bool,
+    cardinality_violation: Option<Term>,
 }
 
 pub(super) fn encode(
@@ -62,8 +64,11 @@ pub(super) fn encode(
     };
     let plan = Plan::new(document, root, &mut budget)?;
     let types = document.components().analysis().graph().types();
-    let layouts = Layouts::new(types, &mut budget)?;
     let subject = get(definition, "subject");
+    if kind == ObligationKind::KeyCardinality {
+        plan.output_comparisons(document, text(subject, "id"), &mut budget)?;
+    }
+    let layouts = Layouts::new(types, &mut budget)?;
     let target_path = if kind == ObligationKind::NumericRange {
         array(get(subject, "path")).iter().map(string).collect()
     } else {
@@ -93,6 +98,8 @@ pub(super) fn encode(
         target_anchor: text(subject, "id"),
         target_path,
         violations: Vec::new(),
+        cardinality_target: kind == ObligationKind::KeyCardinality,
+        cardinality_violation: None,
     };
     for &value in &encoder.plan.literals {
         let term = encoder
@@ -164,6 +171,9 @@ pub(super) fn encode(
                 .ok_or(QueryError::Internal("missing totality target"))?;
             encoder.arena.not(target.ok)?
         }
+        ObligationKind::KeyCardinality => encoder
+            .cardinality_violation
+            .ok_or(QueryError::Internal("missing key-cardinality target"))?,
         _ => return Err(QueryError::UnsupportedKind(kind)),
     };
     let wf = encoder.arena.and(&wf)?;
@@ -301,7 +311,17 @@ impl Encoder<'_> {
             count = self.arena.app(Op::Add, &[count, contribution])?;
         }
         let capacity = self.arena.integer(ty.capacity.as_str())?;
-        success.push(self.arena.app(Op::Le, &[count, capacity])?);
+        let within_capacity = self.arena.app(Op::Le, &[count, capacity])?;
+        if self.cardinality_target && id == self.target_anchor {
+            // Ready 不含自身容量；故障行仅为占位值，不能制造局部键反例。
+            let ready = self.arena.and(&success)?;
+            let unique = output_unique(&slots, &ty.primary_key, &self.layouts, &mut self.arena)?;
+            let not_unique = self.arena.not(unique)?;
+            let not_capacity = self.arena.not(within_capacity)?;
+            let failure = self.arena.or(&[not_unique, not_capacity])?;
+            self.cardinality_violation = Some(self.arena.and(&[ready, failure])?);
+        }
+        success.push(within_capacity);
         let ok = self.arena.and(&success)?;
         Ok(Table {
             slots,
@@ -310,4 +330,33 @@ impl Encoder<'_> {
             keys: self.key_names[text(node, "table_type")].clone(),
         })
     }
+}
+
+/// 对真实派生槽位比较全部输出键；调用前已由 Plan 预收 N²K 比较成本。
+pub(super) fn output_unique(
+    slots: &[Slot],
+    keys: &[String],
+    layouts: &Layouts,
+    arena: &mut Arena,
+) -> Result<Term> {
+    let mut distinct = Vec::new();
+    for (i, left) in slots.iter().enumerate() {
+        for right in &slots[..i] {
+            arena.budget.charge(QueryResource::ValueCells, keys.len())?;
+            let mut equal_keys = Vec::with_capacity(keys.len());
+            for key in keys {
+                equal_keys.push(layouts.equal(
+                    &layouts.field(&left.data, key),
+                    &layouts.field(&right.data, key),
+                    arena,
+                )?);
+            }
+            let equal = arena.and(&equal_keys)?;
+            let different = arena.not(equal)?;
+            let both = arena.and(&[left.active, right.active])?;
+            arena.budget.charge(QueryResource::ValueCells, 1)?;
+            distinct.push(arena.implies(both, different)?);
+        }
+    }
+    arena.and(&distinct)
 }

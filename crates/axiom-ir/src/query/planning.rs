@@ -158,6 +158,37 @@ impl<'a> Plan<'a> {
         budget.charge(QueryResource::SlotComparisons, pairs)?;
         Ok(result)
     }
+    /// 仅新增目标收费；在布局、槽位或两两比较分配之前检查继承表示规模。
+    pub fn output_comparisons(
+        &self,
+        document: &CanonicalDocument,
+        target: &str,
+        budget: &mut Budget,
+    ) -> Result<()> {
+        let table_id = self.node_tables[target];
+        let keys = document
+            .components()
+            .analysis()
+            .graph()
+            .types()
+            .table_types()
+            .iter()
+            .find(|t| t.id() == table_id)
+            .ok_or(QueryError::Internal("missing target table"))?
+            .definition()
+            .primary_key
+            .len();
+        let n = self.extents[target];
+        let pairs = if n.is_multiple_of(2) {
+            (n / 2).checked_mul(n.saturating_sub(1))
+        } else {
+            n.checked_mul((n - 1) / 2)
+        };
+        let comparisons = pairs
+            .and_then(|p| p.checked_mul(keys))
+            .ok_or_else(|| budget.error(QueryResource::SlotComparisons))?;
+        budget.charge(QueryResource::SlotComparisons, comparisons)
+    }
     pub fn interface(&self, reference: &Value) -> &'a str {
         self.interfaces[&(text(reference, "kind"), text(reference, "name"))]
     }

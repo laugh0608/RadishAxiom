@@ -22,7 +22,7 @@ ADR 0007 的完整管线入口与 ADR 0011–0014 的 launcher / isolation 边�
 
 ### 核心组件的分阶段入口
 
-[ADR 0016（Accepted）](adr/0016-core-semantic-slice-entry.md)已接受 P1–P2 的窄入口例外，仅替代 ADR 0007 的组件实施先后要求。先交付真实 P1 IR / 类型检查组件，再在义务版本入口闭合后交付 P2；P3 的限定切片已另经 [ADR 0019](adr/0019-map-filter-query-encoding.md) / [ADR 0020](adr/0020-map-filter-node-totality.md) 接受，完整 P0–P9 与产品运行仍按原标准验收。
+[ADR 0016（Accepted）](adr/0016-core-semantic-slice-entry.md)已接受 P1–P2 的窄入口例外，仅替代 ADR 0007 的组件实施先后要求。先交付真实 P1 IR / 类型检查组件，再在义务版本入口闭合后交付 P2；P3 的限定切片已另经 [ADR 0019](adr/0019-map-filter-query-encoding.md) / [ADR 0020](adr/0020-map-filter-node-totality.md) / [ADR 0021](adr/0021-map-filter-key-cardinality.md) 接受，完整 P0–P9 与产品运行仍按原标准验收。
 
 | 中间交付 | 必须展示的实际结果 | 不得外推的能力 |
 | --- | --- | --- |
@@ -30,10 +30,11 @@ ADR 0007 的完整管线入口与 ADR 0011–0014 的 launcher / isolation 边�
 | P2 组件 | 从 IR 与明确义务 profile 生成完整义务定义及稳定 ID；遗漏、多余、错配与 group 区分例 | solver 已执行、独立 checker 已接受、形式证明 |
 | P3-A 组件 | 从严格匹配的 IR / P2 集合生成 map / filter 的 numeric-range / contract-guarantee 查询；规范字节、完整绑定、资源 / 未支持拒绝及独立有限求值比较 | 完整 P3、真实 solver / 模型 / proof、新 Evidence 或独立 checker 集成 |
 | P3-B 组件 | 在显式 v0.2 query profile 中增加指定节点 totality；区分依赖 / 无关 / 契约故障，保持 v0.1 支持及字节，独立有限比较与预算拒绝 | 其他义务、完整 P3、solver / proof / Evidence 或独立 checker 集成 |
+| P3-C 组件 | 在显式 v0.3 query profile 中增加 key-cardinality；Ready 守卫容量前候选，独立有限比较、局部唯一键注入与旧三类字节 / 预算回归 | row-coverage 等其余义务、完整 P3、solver / proof / Evidence 或独立 checker 集成 |
 
 [ADR 0017](adr/0017-ir-v0.2-support-boundaries-and-migration.md)扩展 P1 的精确输入范围为 v0.1 既有支持子集与 v0.2，闭合四项边界并增加显式迁移；它不接受新 Evidence profile，也不改变组件与完整生产阶段的区分。
 
-[ADR 0018](adr/0018-ir-derived-obligation-profile.md) 已按 ADR 0016 的更窄入口接受 P2 的 IR v0.2 / ir-derived profile；完整 Evidence v0.2 仍保留 ADR 0009 的规范、迁移与独立验收门禁，不能把旧 checker 的受限 v0.1 profile 外推到新格式。[P3-A](query/map-filter-query-v0.1.md) 仅编码 map / filter 的 numeric-range 与 contract-guarantee，[P3-B](query/map-filter-query-v0.2.md)在显式新 profile 增加节点 totality，其余义务保留且显式未支持。这些组件都是中间里程碑，最终首域仍覆盖四题，不为单题建立硬编码路径。
+[ADR 0018](adr/0018-ir-derived-obligation-profile.md) 已按 ADR 0016 的更窄入口接受 P2 的 IR v0.2 / ir-derived profile；完整 Evidence v0.2 仍保留 ADR 0009 的规范、迁移与独立验收门禁，不能把旧 checker 的受限 v0.1 profile 外推到新格式。[P3-A](query/map-filter-query-v0.1.md) 仅编码 map / filter 的 numeric-range 与 contract-guarantee，[P3-B](query/map-filter-query-v0.2.md)在显式新 profile 增加节点 totality，[P3-C](query/map-filter-query-v0.3.md)再增加局部 key-cardinality；其余义务保留且显式未支持。这些组件都是中间里程碑，最终首域仍覆盖四题，不为单题建立硬编码路径。
 
 每次交接分别报告：新增的实际能力、规范与独立期望、未覆盖范围、解除或保留的阻断，以及下一切片的直接依赖。检查数量、文档数量和取证成功数只说明各自验证范围，不能作为产品完成度。
 
