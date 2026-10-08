@@ -43,6 +43,6 @@
 
 四题范围、八个 wrong、六平台指定范围和 Evidence v0.2 的 group 修正义务没有因先做 AX-B01 而删除。首条独立证明链不是允许 attestation 的基本产品流程前置，但 `certificate-required` 必须拒绝当前空支持集合，任何 accepted-with-trust 都不能升级为独立 proof。
 
-P3-D 之后的具体缺项和拟议顺位见[剩余结构义务与 P4 接续审阅](query/p3-structural-obligations-and-p4-review.md)。当前 AX-B01 每份 IR 的 13 项 P2 义务中，九项可生成 query；effect-empty、两个 field-origin 与 ir-structure 的实际结果支持仍须分别闭合。单目标后端尝试不以其他义务已完成为技术前提，完整验证仍要求全集；该区分不接受新 adapter、Evidence 或真实工具执行。
+P3-E / F 已分别形成空效果与字段来源的内部结构记录，接续接口见[字段来源与 P4 审阅](query/field-origin-and-p4-interface-review.md)。当前 AX-B01 每份 IR 的 13 项 P2 义务中，九项可生成 query；effect-empty 与两个 field-origin 虽有内部分析记录，其公共结果支持以及 ir-structure 的实际结果支持仍须分别闭合。单目标后端尝试不以其他义务已完成为技术前提，完整验证仍要求全集；该区分不接受新 adapter、Evidence 或真实工具执行。
 
 下一切片只按[当前状态](status/current.md)的全项目顺位推进；[产品化审阅](checker-runtime-productization-dependency-review.md#下一切片与停止条件)描述产品运行线内部依赖，不作为纯语义组件的全项目串行前置。本稿不构成实施或执行授权。

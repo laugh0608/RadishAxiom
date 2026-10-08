@@ -30,6 +30,6 @@ git diff --check
 
 ## 外部状态与留存
 
-未安装 / 升级依赖、启动服务、调用 solver / Node / 跨仓 checker、触发 CI 或修改远程状态。本批未提交；`dev` 仍有四个既有未推送提交，最近一次为 P3-E `47e3ff9`。其他平台未执行。
+未安装 / 升级依赖、启动服务、调用 solver / Node / 跨仓 checker、触发 CI 或修改远程状态。验收结束时本批未提交，`dev` 保留四个既有未推送提交，最近一次为 P3-E `47e3ff9`；随后按项目所有者要求提交为 `e896341`，日终交接见[收尾记录](2026-10-08-closeout.md)。其他平台未执行。
 
 过程与结果日志保留在 `/private/tmp/radishaxiom-p3f-first.log`、`radishaxiom-p3f-expanded.log`、`radishaxiom-p3f-expanded-2.log`、`radishaxiom-p3f-precision.log`、`radishaxiom-p3f-precision-2.log`、`radishaxiom-p3f-clippy.log`、`radishaxiom-p3f-clippy-2.log`、`radishaxiom-p3f-workspace.log` 、`radishaxiom-p3f-clippy-final.log`、`radishaxiom-p3f-repo.log` 与 `radishaxiom-p3f-repo-final.log`，均位于 `/private/tmp`。失败测试的专用临时导出目录保留用于追溯；成功测试清理其自建目录。可重跑源码、输入与期望保存在[版本化材料](../../contracts/core-field-origin-v0.1/README.md)。

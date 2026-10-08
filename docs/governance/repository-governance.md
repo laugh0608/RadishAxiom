@@ -99,10 +99,11 @@
 
 - IR 类型、节点、契约、完整文档和 v0.2 迁移向量：`scripts/generate-ir-{type,node,contract,document,v02}-vectors.py --check`。
 - P2 全集与正负例：`scripts/generate-p2-profile-review.py --check`。
-- P3 支持范围清单与独立有限求值期望：`scripts/generate-p3-query-review.py --check`、`scripts/generate-p3-query-vectors.py --check`。
+- P3 查询支持清单与独立有限求值期望：`scripts/generate-p3-query-review.py --check`、`scripts/generate-p3-query-vectors.py --check`，以及 `scripts/generate-p3-{totality,cardinality,coverage}-vectors.py --check`。
+- P3 空效果与字段来源结构记录：`scripts/generate-p3-{effect,origin}-vectors.py --check`。
 - source-tar / Debian source-chain 的合成拒绝：`check-source-tar-inventory.py` / `check-debian-source-chain.py`，各限 30 秒，超时或非零退出使仓库门禁失败。
 
-上述 IR / P2 / P3 生成器使用 Python 标准库，不调用 Rust 生产实现；`--check` 核对已提交材料的一致性，不替代 Rust 组件测试。P3 对 Rust 实际输出 SMT 文本的独立解释与比较由 Cargo 测试触发，不由材料生成成功推定。来源检查不下载实际归档、不验签、不盘点容器或模拟安装；其他批次独立命令及合成测试也不会因文件位于仓库内而自动进入默认门禁。
+上述 IR / P2 / P3 生成器使用 Python 标准库，不调用 Rust 生产实现；`--check` 核对已提交材料的一致性，不替代 Rust 组件测试。P3 对 Rust 实际输出 SMT 文本的独立解释、对实际结构记录的独立重建及篡改拒绝由 Cargo 测试触发，不由材料生成成功推定；结构记录核对不扩张公共 kernel / certificate 支持集合。来源检查不下载实际归档、不验签、不盘点容器或模拟安装；其他批次独立命令及合成测试也不会因文件位于仓库内而自动进入默认门禁。
 
 `Repo Hygiene` 不运行 Cargo，也不执行真实 checker、cvc5、Node 或 Hypervisor。普通 `dev` push 不自动触发 CI；当前 workflow 由面向 `dev` / `master` 的 PR 或手动调度触发。
 

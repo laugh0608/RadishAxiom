@@ -153,7 +153,7 @@
 
 P3-B 的节点目标为 `WF ∧ Pre ∧ ¬OK(target)`，包含来源、活动表达式与容量故障；无关节点、下游及 guarantee 自身故障不归入目标。[v0.2 独立材料](../../contracts/map-filter-query-v0.2/README.md)包含 50 个文档、143 个查询目标 / 5,185 个赋值和 8 类语义变异。v0.1 保持原支持 / 拒绝，原 68 查询在两个 profile 对照改动前字节摘要；新旧 profile 的原目标 SMT 相同、绑定不同。
 
-P3-C 使用 `WF ∧ Pre ∧ Ready ∧ (¬Unique ∨ ¬Capacity)`，Ready 包含来源及活动局部表达式成功、排除自身容量。只对目标增加完整继承槽位的全键比较，提前累计 N²K 预算；旧三类字节、符号和用量保持。合法 map / filter 不能从 WF 输入制造重复键，合成 O* 的唯一键谓词注入与完整程序有限比较分别验收，见 [v0.3 材料](../../contracts/map-filter-query-v0.3/README.md)。
+P3-C 使用 `WF ∧ Pre ∧ Ready ∧ (¬Unique ∨ ¬Capacity)`，Ready 包含来源及活动局部表达式成功、排除自身容量。只对目标增加完整继承槽位的全键比较，提前累计 N(N−1)/2 × K 比较预算；旧三类字节、符号和用量保持。合法 map / filter 不能从 WF 输入制造重复键，合成 O* 的唯一键谓词注入与完整程序有限比较分别验收，见 [v0.3 材料](../../contracts/map-filter-query-v0.3/README.md)。
 
 P3-D 使用 `WF ∧ Pre ∧ Ready ∧ ¬Coverage`，对所选直接来源与实际容量前候选作双向恰好一次全键匹配，允许重命名、键序变化与输出行换序。只为目标预收 Ns × No × K 比较成本，流式累计两方向计数；原四类查询字节、符号和预算保持。测试额外导出已有 term 引用核对选择、期望键与完整活动输出；该诊断不进入生产 API 或制品。局部关系 / 守卫变异与完整程序有限观察分别报告，见 [v0.4 材料](../../contracts/map-filter-query-v0.4/README.md)。
 
@@ -166,6 +166,14 @@ P3-D 使用 `WF ∧ Pre ∧ Ready ∧ ¬Coverage`，对所选直接来源与实�
 [正式规则](../../docs/query/core-empty-effects-v0.1.md)逐构造记录规范路径与前提，覆盖全部 P1 v0.2 节点和表达式，包括 join / group / 契约量化。输出为独立版本化的 `axiom-core-effect-derivation` / `0.1`，绑定完整 IR / P2 / 目标 / 语义 / 规则 / 生成器。Steps、PremiseEdges、PathBytes、OutputBytes 与 IR JSON 预算显式提供；不展开容量或输入世界。
 
 只读记录提供 `canonical_bytes()`、`artifact_digest()` 与 `usage()`。完整 P1 类型与身份正确性是明确输入前提；独立 Python 重建 88 份完整记录、46 个规则 ID，并与生产路径分别拒绝 28 类记录篡改和七类合成效果坏树，见[材料](../../contracts/core-empty-effects-v0.1/README.md)。没有五态或公共 kernel support，不能从纯性推断业务正确、总性、非干扰或外围进程无副作用。
+
+## P3-F：字段来源与保守标签内部组件
+
+`origins::derive_field_origin` / `check_field_origin` 以显式 `OriginProfile::CoreFieldOriginV0_1`、不可变完整 P1 / P2、原 field-origin 目标、GeneratorIdentity 和 OriginLimits 重建版本化记录。只读 `OriginDerivation` 暴露规范字节、raw 摘要和五项累计用量，不返回五态或证明许可。
+
+[正式规则](../../docs/query/core-field-origin-v0.1.md)区分 value、selection、evaluation、declaration 前提；来源、声明 / 推导 / 传播标签和复合类型摘要可重建，保留目标值 / 行控制 / 求值上下文三根的闭包。全部五种节点和逐行表达式支持，复合字段不增加叶义务；Steps、PremiseEdges、Descriptors、PathBytes、OutputBytes 与 IR JSON 均有显式预算。图与类型共享，不展开表容量或所有来源路径。
+
+[独立材料](../../contracts/core-field-origin-v0.1/README.md)包含 130 份 IR、758 个目标记录、46 个规则、42 个手算区分例与 43 类篡改。82 份记录包含静态缺口；记录核对通过不等于标签规则满足，无缺口也不等于非干扰证明。P1 完整类型 / 身份仍是前提，P1 标签比较只作兼容性回归；独立期望直接从 IR / P2 重建。旧 IR / P2 / query / effect / Evidence 保持，P4 与公共 support 另行审阅。
 
 ## 实现与验收边界
 
@@ -200,11 +208,3 @@ cargo +1.97.1-aarch64-apple-darwin test -p radishaxiom-ir --locked --offline
 ```
 
 完整 workspace 验证见[当前状态](../../docs/status/current.md#验证入口与本次审阅)。测试不是形式证明；未运行平台不能据此声称字节一致性已验收。
-
-## P3-F：字段来源与保守标签内部组件
-
-`origins::derive_field_origin` / `check_field_origin` 以显式 `OriginProfile::CoreFieldOriginV0_1`、不可变完整 P1 / P2、原 field-origin 目标、GeneratorIdentity 和 OriginLimits 重建版本化记录。只读 `OriginDerivation` 暴露规范字节、raw 摘要和五项累计用量，不返回五态或证明许可。
-
-[正式规则](../../docs/query/core-field-origin-v0.1.md)区分 value、selection、evaluation、declaration 前提；来源、声明 / 推导 / 传播标签和复合类型摘要可重建，保留目标值 / 行控制 / 求值上下文三根的闭包。全部五种节点和逐行表达式支持，复合字段不增加叶义务；Steps、PremiseEdges、Descriptors、PathBytes、OutputBytes 与 IR JSON 均有显式预算。图与类型共享，不展开表容量或所有来源路径。
-
-[独立材料](../../contracts/core-field-origin-v0.1/README.md)包含 130 份 IR、758 个目标记录、46 个规则、42 个手算区分例与 43 类篡改。82 份记录包含静态缺口；记录核对通过不等于标签规则满足，无缺口也不等于非干扰证明。P1 完整类型 / 身份仍是前提，P1 标签比较只作兼容性回归；独立期望直接从 IR / P2 重建。旧 IR / P2 / query / effect / Evidence 保持，P4 与公共 support 另行审阅。

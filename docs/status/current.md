@@ -42,20 +42,20 @@
 
 近期验收看真实输入能否产生规范输出与可定位拒绝，区分实现、指定态 fixture、独立复核与证明；不以提交数、测试数或来源包数量替代里程碑。每个切片结束复核下一项是否直接服务上述交付；新增前置必须解释具体依赖和停止条件。
 
-### 日终交接（2026-10-05）
+### 日终交接（2026-10-08）
 
-P1 `ed39e3b`、P2 `5142d70` 与 P3-A `2f4510c` 已提交并完成本机内部组件验收。P3-A 只支持 map / filter 的 numeric-range / contract-guarantee，不产生五态、证明或执行许可。全天提交、覆盖数字与代码 / 文档核对见[日终记录](../records/2026-10-05-closeout.md)；精确 API 与支持边界见 [IR 组件](../../crates/axiom-ir/README.md)。今晚到此收工。
+今日 P3-B–F 五笔实现已提交，最后一笔为 `e896341`；完整提交表、代码 / 文档核对和验收细节见[日终记录](../records/2026-10-08-closeout.md)。文档收尾另作本地提交，不推送；远端状态未刷新，最终提交号与工作区状态由交接消息报告。10 月 5 日记录作为[历史参考](../records/2026-10-05-closeout.md)保留。今晚到此收工。
 
-### 当前接续（2026-10-08）
+v0.4 在既有 26 份 IR / 482 项义务中实际生成 151 查询；其余为 1 资源拒绝、197 UnsupportedKind、107 UnsupportedFeature 与 26 check。AX-B01 每份候选仍只有九项可生成 query。P3-E / F 增加内部结构记录，没有扩大 query 支持或公共 prove support；P3-F 的 758 份记录中 82 份有静态缺口、676 份无缺口，两者均不是证明或具体反例。
 
-1. P3-E 已提交为 `47e3ff9`，P3-D 为 `a008520`，P3-C 为 `9b8f71f`，P3-B 为 `9f843ea`；当前 `dev` 领先 `origin/dev` 四个提交，未推送。P3-D 的双向全键关系与旧 query 兼容结果见[该批验收](../records/2026-10-08-p3d-validation.md)。
-2. v0.4 对既有 26 份 IR / 482 项义务生成 151 查询，另有 1 资源拒绝、197 UnsupportedKind、107 UnsupportedFeature 与 26 check。结构记录不改变该 query 清单，AX-B01 每份候选仍只有九项可生成 query；不能据此声明完整验证。
-3. P3-E 按 [ADR 0023](../adr/0023-core-empty-effect-derivation.md)完成 88 份记录 / 46 个规则与 28 类篡改、七类坏树拒绝，见[本机验收](../records/2026-10-08-p3e-validation.md)。它不提供公共 kernel support 或五态。
-4. P3-F 已按接受的 [ADR 0024](../adr/0024-core-field-origin-derivation.md) / [正式规则](../query/core-field-origin-v0.1.md)实现：覆盖五种节点与逐行表达式，来源 / 标签 / 行控制 / 求值上下文分别推导，导出目标闭包；完整 P1 / P2 绑定、五项预算与 strict。130 份 IR / 758 份记录（含原 161 项 field-origin）覆盖 46 个规则；42 个手算区分例和 43 类篡改核对通过。82 份记录保留静态缺口，676 份无缺口，两者均不是证明或反例。源码、材料与文档未提交；[本批验收](../records/2026-10-08-p3f-validation.md)记录完整本机结果。
-5. 下一步按[接续审阅](../query/field-origin-and-p4-interface-review.md)细化 P4-A 的请求 / 响应文法、模型解码与 world 表示，然后接受精确实施范围；P4-B 再处理五类具体目标重放。旧 cvc5 配置已有 dump-models，优先审阅保留 query 字节的对应关系；没有实际模型材料，不宣称后端已验收。单目标尝试与完整验证分开，两批均未自动获得实施或真实执行授权。
-6. 来源规则不猜业务意图。wrong-drop-zero 忠实执行错误谓词时内建 coverage 可成立，业务保留要求由 guarantee 定位；此前[依赖审阅](../axiom-pipeline-first-slice-dependency-review.md)已校正文档归因，旧规范与锁定材料保持。
+### 明日事项（2026-10-09）
 
-join / group 查询、聚合契约、双世界非干扰与 P4 / P7 / P9 分别审阅；真实 solver、跨仓 checker、新 Evidence 集成及外部执行继续保留各自门禁。本批不自动授权安装、启动、远程写入或正式实验。
+1. **先审阅 P4-A 精确范围。** 从[字段来源与 P4 接口审阅](../query/field-origin-and-p4-interface-review.md)接续，固定请求绑定、响应帧 / 模型文法、确定性 world 表示和解析预算，再提交可接受的 ADR / 正式规则；今晚的记录不自动接受实施。
+2. **优先审阅保留 query 字节的 adapter 对应关系。** 旧 cvc5 配置已有 dump-models，但尚无实际模型材料，且不能直接套给 query0.2。区分合成解析 / 解码测试与真实工具校准，未知语法、缺项、冲突和超限均须明确拒绝，不补默认值或复用错误摘要。
+3. **随后单独确定 P4-B 五类目标重放范围。** 保留 WF / Pre、精确目标归因与“其他目标失败而本目标成立”的区分例。wrong-drop-zero 忠实执行错误谓词时，内建 coverage 可成立，业务保留要求由 guarantee 定位；不得仅凭全局失败或候选名称生成反例结论。
+4. **保持单目标尝试与完整验证分开。** 真实 solver 校准 / 执行另须精确工具验收、adapter、执行宿主、硬资源限制和当前任务授权。join / group 查询、聚合契约、双世界非干扰、公共结构证明支持、完整 Evidence v0.2、跨仓 checker 与 P7 / P9 继续分别审阅。
+
+明日从协议与模型边界审阅开始，不自动启动工具、安装依赖、写入远程或进入正式实验。
 
 ### 暂缓工作与恢复条件
 

@@ -26,7 +26,7 @@ RadishAxiom 是 Radish 家族中面向 AI Agent 的语言与可信语义项目�
 
 ## 当前状态
 
-项目处于设计到受控实现阶段。首域为有键有限表的确定性纯转换，语义、IR / Evidence 与机器契约已形成；分仓 Go checker 已有受限 profile 的离线复核和 CLI，主仓 Rust 已实现 checker runtime 的身份、归档、存储与结果消费组件。[Axiom IR 内部组件](crates/axiom-ir/README.md)已完成 P1 v0.2 的结构 / 类型 / 图 / 契约与规范身份、显式版本迁移，P2 的 IR 派生义务全集，以及 P3-A 的 map / filter 限定查询生成与本机组件验收。完整生产阶段、其他查询目标、真实 solver 与新 Evidence / 独立 checker 集成仍待完成。
+项目处于设计到受控实现阶段。首域为有键有限表的确定性纯转换，语义、IR / Evidence 与机器契约已形成；分仓 Go checker 已有受限 profile 的离线复核和 CLI，主仓 Rust 已实现 checker runtime 的身份、归档、存储与结果消费组件。[Axiom IR 内部组件](crates/axiom-ir/README.md)已完成 P1 v0.2 的结构 / 类型 / 图 / 契约与规范身份、显式版本迁移，P2 的 IR 派生义务全集，以及 P3-A–D 的 map / filter 五类限定查询、P3-E 空效果结构推导与 P3-F 字段来源 / 保守标签分析的本机组件验收。结构记录不提供公共证明支持；完整生产阶段、其余查询范围、真实 solver 与新 Evidence / 独立 checker 集成仍待完成。
 
 完整 `raxc` 生产管线、产品 checker runtime 和 Agent 收益尚未验收，active runtime 为 0。Darwin 强隔离采用 ADR 0013 / 0014 的逐次 Hypervisor runner 方向；已有合成 Linux guest 观察，真实 checker 负载、产品化与公共身份迁移仍待完成。
 

@@ -1,6 +1,6 @@
 # field-origin 静态推导与 P4 接口审阅
 
-日期：2026-10-08。状态：P3-F 已由项目所有者接受并要求实施，依据 [ADR 0024](../adr/0024-core-field-origin-derivation.md)与[正式规则](core-field-origin-v0.1.md)；P4-A / P4-B 仍为 Proposed。以下保留实施前审阅，接续 P3-E `47e3ff9`。
+日期：2026-10-08。状态：P3-F 已按 [ADR 0024](../adr/0024-core-field-origin-derivation.md)与[正式规则](core-field-origin-v0.1.md)完成本机组件验收，提交为 `e896341`，实际结果见[验收记录](../records/2026-10-08-p3f-validation.md)；P4-A / P4-B 仍为 Proposed。以下保留实施前审阅，接续 P3-E `47e3ff9`。
 
 用途：供项目所有者选择下一实施范围，给实现者提供目标、输入输出、拒绝边界与验收矩阵。不定义新的公共 Evidence、证明支持、后端执行权限或完整非干扰算法。前批判断见[接续审阅](p3-structural-obligations-and-p4-review.md)，原义务以 [P2 v0.2](../evidence/ir-derived-obligations-v0.2.md)为准。
 
