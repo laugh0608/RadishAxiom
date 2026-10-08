@@ -1,6 +1,6 @@
 # AX-B01 真实管线首切片依赖审阅
 
-审阅日期：2026-09-06；阶段入口整理：2026-09-29
+审阅日期：2026-09-06；阶段入口整理：2026-09-29；新 P2 目标归因接续：2026-10-08
 
 状态：完整管线依赖已梳理；组件入口按已接受的 ADR 0016，真实工具执行门槛不变。
 
@@ -37,10 +37,12 @@
 沿用 [AX-B01 task](../benchmarks/keyed-finite-table-v0.1/ax-b01/task.json) 与 [readiness manifest](../contracts/implementation-readiness-v0.1/manifest.jcs)，不另造状态或成功码：
 
 - `AX-B01-CORRECT`：base 与 boundary，从 candidate 真实走完 P0–P9，再独立复核；公开 golden 只参与对照，不能驱动生产结果。
-- `AX-B01-WRONG-ADD` / `AX-B01-WRONG-DROP-ZERO`：分别针对 guarantee 与 row coverage 验证所声明目标确实违反；加入“其他义务失败而目标成立”的独立合成区分例。全部必需 attempt 真实产生，P6–P8 不运行。
+- `AX-B01-WRONG-ADD` / `AX-B01-WRONG-DROP-ZERO`：必须按精确版本验证所声明目标确实违反，加入“其他义务失败而目标成立”的独立合成区分例。新 P2 / P3 中，wrong-drop-zero 的错误筛选仍可满足相对于实际谓词的内建 row-coverage，原业务丢行要求应由 contract-guarantee 定位；不能移植旧指定态标签。全部必需 attempt 真实产生，P6–P8 不运行。
 - `AX-B01-INVALID-INPUT` / `AX-B01-BACKEND-TIMEOUT`：分别保留 P5 invalid / P4 timeout，门控关闭，不生成 module 或伪造 host attempt。timeout 要由受控真实执行取得，不以手填 `unknown` 替代。
 - `PIPE-GATE-BYPASS-01`、`PIPE-CACHE-FORGED-HIT-01`、`CHK-DIGEST-01`、`CHK-OBLIGATION-01`：按既有摘要链构造有效到达目标检查的篡改负例；同时保留 P9 装配、恢复与 host mismatch 的既有验收要求。
 
 四题范围、八个 wrong、六平台指定范围和 Evidence v0.2 的 group 修正义务没有因先做 AX-B01 而删除。首条独立证明链不是允许 attestation 的基本产品流程前置，但 `certificate-required` 必须拒绝当前空支持集合，任何 accepted-with-trust 都不能升级为独立 proof。
+
+P3-D 之后的具体缺项和拟议顺位见[剩余结构义务与 P4 接续审阅](query/p3-structural-obligations-and-p4-review.md)。当前 AX-B01 每份 IR 的 13 项 P2 义务中，九项可生成 query；effect-empty、两个 field-origin 与 ir-structure 的实际结果支持仍须分别闭合。单目标后端尝试不以其他义务已完成为技术前提，完整验证仍要求全集；该区分不接受新 adapter、Evidence 或真实工具执行。
 
 下一切片只按[当前状态](status/current.md)的全项目顺位推进；[产品化审阅](checker-runtime-productization-dependency-review.md#下一切片与停止条件)描述产品运行线内部依赖，不作为纯语义组件的全项目串行前置。本稿不构成实施或执行授权。

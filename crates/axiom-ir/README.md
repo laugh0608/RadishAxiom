@@ -1,6 +1,6 @@
-# Axiom IR、派生义务与限定查询内部组件
+# Axiom IR、派生义务、查询与结构推导内部组件
 
-本 crate 承载 [ADR 0022](../../docs/adr/0022-map-filter-row-coverage.md) 的 P3-D 双向 row-coverage、[ADR 0021](../../docs/adr/0021-map-filter-key-cardinality.md) 的 P3-C 局部 key-cardinality、[ADR 0020](../../docs/adr/0020-map-filter-node-totality.md) 的 P3-B 节点 totality 与显式 query profile、[ADR 0019](../../docs/adr/0019-map-filter-query-encoding.md) 的 P3-A map / filter 限定查询组件、[ADR 0018](../../docs/adr/0018-ir-derived-obligation-profile.md) 的 P2 IR 派生义务组件，以及 [ADR 0016](../../docs/adr/0016-core-semantic-slice-entry.md) 与 [ADR 0017](../../docs/adr/0017-ir-v0.2-support-boundaries-and-migration.md) 的 P1 内部组件。精确读取 [IR v0.1](../../docs/ir/axiom-ir-v0.md) 的既有支持子集与 [IR v0.2](../../docs/ir/axiom-ir-v0.2.md)：检查 JSON、类型、图、契约及内容身份，重建保守标签，生成完整规范文档和 strict 结果，并显式迁移共同子集。v0.2 的四项支持边界已经闭合；本机组件验收与完整 P1 生产阶段、独立 checker、跨平台和证明分别报告，不提供 CLI、Evidence 或执行门控。
+本 crate 承载 [ADR 0023](../../docs/adr/0023-core-empty-effect-derivation.md) 的 P3-E 空效果结构推导、[ADR 0022](../../docs/adr/0022-map-filter-row-coverage.md) 的 P3-D 双向 row-coverage、[ADR 0021](../../docs/adr/0021-map-filter-key-cardinality.md) 的 P3-C 局部 key-cardinality、[ADR 0020](../../docs/adr/0020-map-filter-node-totality.md) 的 P3-B 节点 totality 与显式 query profile、[ADR 0019](../../docs/adr/0019-map-filter-query-encoding.md) 的 P3-A map / filter 限定查询组件、[ADR 0018](../../docs/adr/0018-ir-derived-obligation-profile.md) 的 P2 IR 派生义务组件，以及 [ADR 0016](../../docs/adr/0016-core-semantic-slice-entry.md) 与 [ADR 0017](../../docs/adr/0017-ir-v0.2-support-boundaries-and-migration.md) 的 P1 内部组件。精确读取 [IR v0.1](../../docs/ir/axiom-ir-v0.md) 的既有支持子集与 [IR v0.2](../../docs/ir/axiom-ir-v0.2.md)：检查 JSON、类型、图、契约及内容身份，重建保守标签，生成完整规范文档和 strict 结果，并显式迁移共同子集。v0.2 的四项支持边界已经闭合；本机组件验收与完整 P1 生产阶段、独立 checker、跨平台和证明分别报告，不提供 CLI、Evidence 或执行门控。
 
 ## 输入与输出
 
@@ -158,6 +158,14 @@ P3-C 使用 `WF ∧ Pre ∧ Ready ∧ (¬Unique ∨ ¬Capacity)`，Ready 包含�
 P3-D 使用 `WF ∧ Pre ∧ Ready ∧ ¬Coverage`，对所选直接来源与实际容量前候选作双向恰好一次全键匹配，允许重命名、键序变化与输出行换序。只为目标预收 Ns × No × K 比较成本，流式累计两方向计数；原四类查询字节、符号和预算保持。测试额外导出已有 term 引用核对选择、期望键与完整活动输出；该诊断不进入生产 API 或制品。局部关系 / 守卫变异与完整程序有限观察分别报告，见 [v0.4 材料](../../contracts/map-filter-query-v0.4/README.md)。
 
 这里没有 solver、模型解码、Evidence 或执行许可；有限解释比较不证明完整域正确，也不完成完整 P3 / P4 / P7 / P9。旧 query / adapter / pipeline / Evidence 字节不变，公共集成继续后置。
+
+## 空效果结构推导
+
+`effects::derive_empty_effects(profile, document, obligations, obligation_id, generator, limits)` 对唯一 `EffectProfile::CoreV0_1` 生成 `EffectDerivation`；`check_empty_effects` 在相同输入下重建并逐字节核对外来记录。输入复用不可变 P1 / P2 与现有 `query::GeneratorIdentity` 摘要值，不复用 `EncodedQuery` 或运行 solver。仅支持原 effect-empty 目标，旧 IR 先显式迁移。
+
+[正式规则](../../docs/query/core-empty-effects-v0.1.md)逐构造记录规范路径与前提，覆盖全部 P1 v0.2 节点和表达式，包括 join / group / 契约量化。输出为独立版本化的 `axiom-core-effect-derivation` / `0.1`，绑定完整 IR / P2 / 目标 / 语义 / 规则 / 生成器。Steps、PremiseEdges、PathBytes、OutputBytes 与 IR JSON 预算显式提供；不展开容量或输入世界。
+
+只读记录提供 `canonical_bytes()`、`artifact_digest()` 与 `usage()`。完整 P1 类型与身份正确性是明确输入前提；独立 Python 重建 88 份完整记录、46 个规则 ID，并与生产路径分别拒绝 28 类记录篡改和七类合成效果坏树，见[材料](../../contracts/core-empty-effects-v0.1/README.md)。没有五态或公共 kernel support，不能从纯性推断业务正确、总性、非干扰或外围进程无副作用。
 
 ## 实现与验收边界
 
