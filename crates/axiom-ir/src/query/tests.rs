@@ -1,4 +1,6 @@
 use super::*;
+
+mod totality;
 use crate::{
     declarations,
     document::{check_canonical_document, normalize_document},
@@ -109,10 +111,33 @@ fn symbols(query: &EncodedQuery) -> Vec<u8> {
 
 #[test]
 fn actual_smt_text_matches_independent_concrete_semantics() {
-    let vectors = std::fs::read(root().join("contracts/map-filter-query-v0.1/cases.json")).unwrap();
+    compare_semantics(
+        QueryProfile::MapFilterV0_1,
+        "v0.1",
+        "check-p3-query-semantics.py",
+    );
+}
+
+fn compare_semantics(profile: QueryProfile, version: &str, script: &str) {
+    let vectors =
+        std::fs::read(root().join(format!("contracts/map-filter-query-{version}/cases.json")))
+            .unwrap();
+    let baseline: std::collections::BTreeMap<_, _> =
+        include_str!("../../../../contracts/map-filter-query-v0.2/v0.1-baseline.tsv")
+            .lines()
+            .map(|line| {
+                let columns: Vec<_> = line.split('\t').collect();
+                (
+                    columns[1],
+                    (columns[2], columns[3].parse::<usize>().unwrap()),
+                )
+            })
+            .collect();
     // 材料含 number / null，使用 Python 转换为本 crate JSON 子集仅供测试索引。
-    let directory =
-        std::env::temp_dir().join(format!("radishaxiom-p3-semantics-{}", std::process::id()));
+    let directory = std::env::temp_dir().join(format!(
+        "radishaxiom-p3-semantics-{version}-{}",
+        std::process::id()
+    ));
     std::fs::create_dir(&directory).unwrap();
     let manifest = std::process::Command::new("python3").arg("-c").arg(
         "import json,sys; d=json.load(sys.stdin); print(json.dumps([{'name':c['name'],'ir':c['ir'],'ids':[o['id'] for o in c['targets']]} for c in d['cases']]))"
@@ -123,23 +148,38 @@ fn actual_smt_text_matches_independent_concrete_semantics() {
     assert!(manifest.status.success());
     let cases = json::parse(&manifest.stdout, json_limits()).unwrap();
     let mut query_count = 0;
+    let mut legacy_seen = std::collections::BTreeSet::new();
     for case in array(&cases) {
         let document = check_canonical_document(
             &std::fs::read(root().join(text(case, "ir"))).unwrap(),
             json_limits(),
         )
-        .unwrap_or_else(|e| panic!("{}: {e}", text(case, "name")));
+        .unwrap_or_else(|e| {
+            panic!(
+                "{}: {e}; artifacts retained at {}",
+                text(case, "name"),
+                directory.display()
+            )
+        });
         let set = set(&document);
         for (index, id) in array(get(case, "ids")).iter().enumerate() {
-            let query = encode_query(&document, &set, string(id), &identity(), limits()).unwrap();
+            let query =
+                encode_query(profile, &document, &set, string(id), &identity(), limits()).unwrap();
+            assert_eq!(query.binding().encoding_profile(), profile.as_str());
+            if let Some(&(digest, bytes)) = baseline.get(string(id)) {
+                legacy_seen.insert(string(id));
+                assert_eq!(query.artifact_digest(), digest, "legacy SMT bytes drift");
+                assert_eq!(query.bytes().len(), bytes);
+            }
             let stem = directory.join(format!("{}-{index}", text(case, "name")));
             std::fs::write(stem.with_extension("smt2"), query.bytes()).unwrap();
             std::fs::write(stem.with_extension("json"), symbols(&query)).unwrap();
             query_count += 1;
         }
     }
+    assert_eq!(legacy_seen, baseline.keys().copied().collect());
     let result = std::process::Command::new("python3")
-        .arg(root().join("scripts/check-p3-query-semantics.py"))
+        .arg(root().join("scripts").join(script))
         .arg(&directory)
         .output()
         .unwrap();
@@ -165,6 +205,7 @@ fn bindings_tampering_and_deterministic_bytes_are_checked() {
     let minimum = doc("minimal");
     let minimum_set = set(&minimum);
     let minimum_query = encode_query(
+        QueryProfile::MapFilterV0_1,
         &minimum,
         &minimum_set,
         guarantee(&minimum_set),
@@ -181,24 +222,63 @@ fn bindings_tampering_and_deterministic_bytes_are_checked() {
     let set = set(&document);
     let target = guarantee(&set);
     let generator = identity();
-    let query = encode_query(&document, &set, target, &generator, limits()).unwrap();
+    let query = encode_query(
+        QueryProfile::MapFilterV0_1,
+        &document,
+        &set,
+        target,
+        &generator,
+        limits(),
+    )
+    .unwrap();
     assert_eq!(
-        check_query(query.bytes(), &document, &set, target, &generator, limits()).unwrap(),
+        check_query(
+            QueryProfile::MapFilterV0_1,
+            query.bytes(),
+            &document,
+            &set,
+            target,
+            &generator,
+            limits()
+        )
+        .unwrap(),
         query
     );
     let mut bytes = query.bytes().to_vec();
     bytes.push(b'\n');
     assert!(matches!(
-        check_query(&bytes, &document, &set, target, &generator, limits()),
+        check_query(
+            QueryProfile::MapFilterV0_1,
+            &bytes,
+            &document,
+            &set,
+            target,
+            &generator,
+            limits()
+        ),
         Err(QueryError::NonCanonicalQuery { .. })
     ));
     let other = doc("int-sub");
     assert!(matches!(
-        encode_query(&other, &set, target, &generator, limits()),
+        encode_query(
+            QueryProfile::MapFilterV0_1,
+            &other,
+            &set,
+            target,
+            &generator,
+            limits()
+        ),
         Err(QueryError::BindingMismatch)
     ));
     assert!(matches!(
-        encode_query(&document, &set, "missing", &generator, limits()),
+        encode_query(
+            QueryProfile::MapFilterV0_1,
+            &document,
+            &set,
+            "missing",
+            &generator,
+            limits()
+        ),
         Err(QueryError::UnknownObligation(_))
     ));
     assert!(matches!(
@@ -226,11 +306,27 @@ fn bindings_tampering_and_deterministic_bytes_are_checked() {
     json::encode(&reversed, &mut bytes);
     let reversed = normalize_document(&bytes, json_limits()).unwrap();
     assert_eq!(
-        encode_query(&reversed, &set, target, &generator, limits()).unwrap(),
+        encode_query(
+            QueryProfile::MapFilterV0_1,
+            &reversed,
+            &set,
+            target,
+            &generator,
+            limits()
+        )
+        .unwrap(),
         query
     );
     let changed = GeneratorIdentity::new(&format!("sha256:{}", "b".repeat(64))).unwrap();
-    let changed = encode_query(&document, &set, target, &changed, limits()).unwrap();
+    let changed = encode_query(
+        QueryProfile::MapFilterV0_1,
+        &document,
+        &set,
+        target,
+        &changed,
+        limits(),
+    )
+    .unwrap();
     assert_eq!(changed.bytes(), query.bytes());
     assert_ne!(changed.binding(), query.binding());
 }
@@ -240,7 +336,15 @@ fn every_accumulated_budget_accepts_exact_limit_and_rejects_one_less() {
     let document = doc("lookup-identity");
     let set = set(&document);
     let target = guarantee(&set);
-    let query = encode_query(&document, &set, target, &identity(), limits()).unwrap();
+    let query = encode_query(
+        QueryProfile::MapFilterV0_1,
+        &document,
+        &set,
+        target,
+        &identity(),
+        limits(),
+    )
+    .unwrap();
     let used = query.usage();
     let exact = QueryLimits {
         ir_json: json_limits(),
@@ -252,7 +356,15 @@ fn every_accumulated_budget_accepts_exact_limit_and_rejects_one_less() {
         max_output_bytes: used.output_bytes,
     };
     assert_eq!(
-        encode_query(&document, &set, target, &identity(), exact).unwrap(),
+        encode_query(
+            QueryProfile::MapFilterV0_1,
+            &document,
+            &set,
+            target,
+            &identity(),
+            exact
+        )
+        .unwrap(),
         query
     );
     for resource in [
@@ -273,7 +385,7 @@ fn every_accumulated_budget_accepts_exact_limit_and_rejects_one_less() {
             QueryResource::OutputBytes => reduced.max_output_bytes -= 1,
         }
         assert!(
-            matches!(encode_query(&document, &set, target, &identity(), reduced),
+            matches!(encode_query(QueryProfile::MapFilterV0_1, &document, &set, target, &identity(), reduced),
             Err(QueryError::ResourceLimit { resource: actual, .. }) if actual == resource),
             "{resource:?}"
         );
@@ -296,6 +408,7 @@ fn expansion_preflight_and_deep_reference_graphs_are_bounded() {
     let nested_set = set(&nested);
     assert!(matches!(
         encode_query(
+            QueryProfile::MapFilterV0_1,
             &nested,
             &nested_set,
             guarantee(&nested_set),
@@ -310,6 +423,7 @@ fn expansion_preflight_and_deep_reference_graphs_are_bounded() {
     let deep = load("deep-type-and-graph");
     let deep_set = set(&deep);
     let query = encode_query(
+        QueryProfile::MapFilterV0_1,
         &deep,
         &deep_set,
         guarantee(&deep_set),
@@ -331,7 +445,15 @@ fn expansion_preflight_and_deep_reference_graphs_are_bounded() {
     let empty_set = set(&empty);
     let mut zero = limits();
     zero.max_input_slots = 0;
-    let query = encode_query(&empty, &empty_set, guarantee(&empty_set), &identity(), zero).unwrap();
+    let query = encode_query(
+        QueryProfile::MapFilterV0_1,
+        &empty,
+        &empty_set,
+        guarantee(&empty_set),
+        &identity(),
+        zero,
+    )
+    .unwrap();
     assert_eq!(query.usage().input_slots, 0);
     assert!(
         !query
@@ -343,6 +465,7 @@ fn expansion_preflight_and_deep_reference_graphs_are_bounded() {
     low_json.ir_json.max_input_bytes = empty.canonical_bytes().len() - 1;
     assert!(matches!(
         encode_query(
+            QueryProfile::MapFilterV0_1,
             &empty,
             &empty_set,
             guarantee(&empty_set),

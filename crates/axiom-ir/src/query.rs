@@ -1,4 +1,4 @@
-//! ADR 0019 的 P3-A 内部组件；不运行 solver，不产生 Evidence 或证明状态。
+//! ADR 0019 / 0020 的 P3-A / B 内部组件；不运行 solver，不产生 Evidence 或证明状态。
 
 mod encode;
 mod expressions;
@@ -16,9 +16,29 @@ use crate::{
 };
 use std::fmt;
 
-pub const ENCODING_PROFILE: &str = "axiom-p3-map-filter-query-v0.1";
 pub const QUERY_ARTIFACT: &str = "axiom-smtlib2-qf-uflia-query0.2";
 pub const SOLVER_DIALECT: &str = "SMT-LIB-2.6/QF_UFLIA";
+
+/// 显式选择支持集合；旧 profile 不随实现升级而隐式扩张。
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub enum QueryProfile {
+    MapFilterV0_1,
+    MapFilterV0_2,
+}
+impl QueryProfile {
+    pub fn as_str(self) -> &'static str {
+        match self {
+            Self::MapFilterV0_1 => "axiom-p3-map-filter-query-v0.1",
+            Self::MapFilterV0_2 => "axiom-p3-map-filter-query-v0.2",
+        }
+    }
+    fn supports(self, kind: ObligationKind) -> bool {
+        matches!(
+            kind,
+            ObligationKind::NumericRange | ObligationKind::ContractGuarantee
+        ) || (self == Self::MapFilterV0_2 && kind == ObligationKind::Totality)
+    }
+}
 
 #[derive(Clone, Copy, Debug)]
 pub struct QueryLimits {
@@ -107,6 +127,7 @@ impl GeneratorIdentity {
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct QueryBinding {
+    profile: QueryProfile,
     ir_artifact: String,
     ir_document_digest: String,
     obligation_set_artifact: String,
@@ -134,7 +155,7 @@ impl QueryBinding {
         &self.generator
     }
     pub fn encoding_profile(&self) -> &'static str {
-        ENCODING_PROFILE
+        self.profile.as_str()
     }
     pub fn artifact_type(&self) -> &'static str {
         QUERY_ARTIFACT
@@ -199,6 +220,7 @@ impl EncodedQuery {
 }
 
 pub fn encode_query(
+    profile: QueryProfile,
     document: &CanonicalDocument,
     obligations: &ObligationSet,
     obligation_id: &str,
@@ -222,16 +244,14 @@ pub fn encode_query(
     if target.kind().expectation() != "prove" {
         return Err(QueryError::NotProve(obligation_id.to_owned()));
     }
-    if !matches!(
-        target.kind(),
-        ObligationKind::NumericRange | ObligationKind::ContractGuarantee
-    ) {
+    if !profile.supports(target.kind()) {
         return Err(QueryError::UnsupportedKind(target.kind()));
     }
     let root = json::parse(document.canonical_bytes(), limits.ir_json).map_err(QueryError::Json)?;
     let definition =
         json::parse(target.canonical_definition(), limits.ir_json).map_err(QueryError::Json)?;
     let binding = QueryBinding {
+        profile,
         ir_artifact: obligations.ir_artifact().to_owned(),
         ir_document_digest: document.document_id().to_owned(),
         obligation_set_artifact: obligations.artifact_digest().to_owned(),
@@ -244,6 +264,7 @@ pub fn encode_query(
 
 /// 从已验收输入重建并逐字节比较，不把词法检查当成编码正确性或独立证明。
 pub fn check_query(
+    profile: QueryProfile,
     bytes: &[u8],
     document: &CanonicalDocument,
     obligations: &ObligationSet,
@@ -257,7 +278,14 @@ pub fn check_query(
             obligation: obligation_id.to_owned(),
         });
     }
-    let query = encode_query(document, obligations, obligation_id, generator, limits)?;
+    let query = encode_query(
+        profile,
+        document,
+        obligations,
+        obligation_id,
+        generator,
+        limits,
+    )?;
     if bytes != query.bytes {
         let offset = bytes
             .iter()

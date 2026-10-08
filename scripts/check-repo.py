@@ -77,6 +77,16 @@ REQUIRED_FILES = (
     "scripts/check-p3-query-semantics.py",
     "crates/axiom-ir/src/query.rs",
     "crates/axiom-ir/tests/query.rs",
+    "docs/adr/0020-map-filter-node-totality.md",
+    "docs/query/map-filter-query-v0.2.md",
+    "docs/query/p3-node-totality-review.md",
+    "contracts/map-filter-query-v0.2/README.md",
+    "contracts/map-filter-query-v0.2/cases.json",
+    "contracts/map-filter-query-v0.2/v0.1-baseline.tsv",
+    "scripts/generate-p3-totality-vectors.py",
+    "scripts/p3_totality_semantics.py",
+    "scripts/check-p3-totality-semantics.py",
+    "crates/axiom-ir/src/query/tests/totality.rs",
     "docs/evidence/p2-obligation-profile-review.md",
     "docs/evidence/p2-profile-review/README.md",
     "docs/adr/0018-ir-derived-obligation-profile.md",
@@ -550,7 +560,7 @@ def check_p2_profile_review(errors: list[str]) -> None:
 
 
 def check_p3_query_materials(errors: list[str]) -> None:
-    for script in ["generate-p3-query-review.py", "generate-p3-query-vectors.py"]:
+    for script in ["generate-p3-query-review.py", "generate-p3-query-vectors.py", "generate-p3-totality-vectors.py"]:
         result = subprocess.run(
             [sys.executable, str(REPO_ROOT / "scripts" / script), "--check"],
             cwd=REPO_ROOT,

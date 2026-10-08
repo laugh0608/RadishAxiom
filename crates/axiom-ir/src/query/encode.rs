@@ -151,12 +151,20 @@ pub(super) fn encode(
             guarantee = Some(encoder.arena.and(&[program_ok, holds])?);
         }
     }
-    let violation = if kind == ObligationKind::NumericRange {
-        encoder.arena.or(&encoder.violations)?
-    } else {
-        encoder
+    let violation = match kind {
+        ObligationKind::NumericRange => encoder.arena.or(&encoder.violations)?,
+        ObligationKind::ContractGuarantee => encoder
             .arena
-            .not(guarantee.ok_or(QueryError::Internal("missing guarantee target"))?)?
+            .not(guarantee.ok_or(QueryError::Internal("missing guarantee target"))?)?,
+        ObligationKind::Totality => {
+            // 节点无结果包含依赖故障；无关节点与 guarantee 不参与目标。
+            let target = encoder
+                .tables
+                .get(encoder.target_anchor)
+                .ok_or(QueryError::Internal("missing totality target"))?;
+            encoder.arena.not(target.ok)?
+        }
+        _ => return Err(QueryError::UnsupportedKind(kind)),
     };
     let wf = encoder.arena.and(&wf)?;
     let pre = encoder.arena.and(&pre)?;

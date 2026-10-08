@@ -6,6 +6,7 @@
 
 - [IR 派生义务 v0.2](ir-derived-obligations-v0.2/README.md)：ADR 0018 的限定 P2 集合、26 份独立正例和 29 份拒绝材料；不启用完整 Evidence v0.2。
 - [map / filter 查询 v0.1](map-filter-query-v0.1/README.md)：ADR 0019 的 P3-A 合成 IR、具体世界、手算 SMT 字节与独立语义比较；不执行 solver 或生成证明。
+- [map / filter 查询 v0.2](map-filter-query-v0.2/README.md)：ADR 0020 的 P3-B 节点总定义性、独立归因区分、旧版字节回归和 profile / 预算拒绝材料。
 
 - [Independent Check Contract v0.1](independent-check-v0.1/README.md)：ADR 0008 的 request、bundle manifest、独立 result、摘要和结构拒绝样例。
 - [Execution Profile Contract v0.1](execution-profiles-v0.1/README.md)：cvc5 / Node / Go checker 的允许 invocation、职责分离 limits、进程结果边界和空 certificate 能力矩阵。

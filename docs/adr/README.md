@@ -30,3 +30,4 @@
 - [ADR 0017：IR v0.2 支持边界与显式迁移（Accepted）](0017-ir-v0.2-support-boundaries-and-migration.md)
 - [ADR 0018：IR 派生义务 profile 与 P2 内部组件（Accepted）](0018-ir-derived-obligation-profile.md)
 - [ADR 0019：map / filter 单世界查询生成（Accepted）](0019-map-filter-query-encoding.md)
+- [ADR 0020：map / filter 节点总定义性查询（Accepted）](0020-map-filter-node-totality.md)

@@ -39,7 +39,7 @@
 | Darwin 强隔离与 container 状态 | [ADR 0013](adr/0013-darwin-checker-hard-isolation.md)、[0014](adr/0014-darwin-app-sandbox-container-state.md) |
 | 虚拟 checker 资源保证与迁移边界 | [ADR 0015（Accepted）](adr/0015-virtualized-checker-resource-profile.md) |
 | 核心语义组件、IR 与义务版本范围 | [ADR 0016（Accepted）](adr/0016-core-semantic-slice-entry.md)、[0017（Accepted）](adr/0017-ir-v0.2-support-boundaries-and-migration.md)、[0018（Accepted）](adr/0018-ir-derived-obligation-profile.md) |
-| map / filter 限定查询编码 | [ADR 0019（Accepted）](adr/0019-map-filter-query-encoding.md) |
+| map / filter 限定查询编码 | [ADR 0019（Accepted）](adr/0019-map-filter-query-encoding.md)、[ADR 0020（Accepted）](adr/0020-map-filter-node-totality.md) |
 
 ADR 定义决策和重评条件，不表示相关生产能力已完成；实现进度由当前状态维护。
 
@@ -49,6 +49,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 - [P1 支持边界与验收矩阵审阅](ir/p1-support-boundary-review.md)：初次缺口审阅、已接受决定与版本化矩阵对照；不替代规范。
 - [IR 派生义务 profile v0.2](evidence/ir-derived-obligations-v0.2.md)：已接受的 P2 范围、版本 / 身份、group 目标和 strict 完整性；[审阅](evidence/p2-obligation-profile-review.md)与[正负例](../contracts/ir-derived-obligations-v0.2/README.md)保留来源和兼容边界。
 - [map / filter 查询编码](query/map-filter-query-v0.1.md)：[ADR 0019](adr/0019-map-filter-query-encoding.md)接受的 P3-A 内部范围、故障 / 资源与字节规则；[独立验收](../contracts/map-filter-query-v0.1/README.md)和[初始审阅](query/p3-query-encoding-review.md)分别保留动态材料与决策来源。
+- [map / filter 查询 v0.2](query/map-filter-query-v0.2.md)：ADR 0020 接受的节点 totality、显式 profile 与旧版兼容；[独立材料](../contracts/map-filter-query-v0.2/README.md)与[剩余义务审阅](query/p3-node-totality-review.md)分别提供验收和决策来源。
 - [共享 SHA-256](../crates/digest/README.md)：runtime / IR 共用的自有摘要实现与独立复核边界。
 
 ## 机器契约
@@ -80,6 +81,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 | Linux 来源实际核验 | [摘要 / 签名与 builder 库存](records/linux-6.18.49-source-review/README.md)、[归档文件盘点与精确缺失包候选](records/linux-6.18.49-archive-inventory/README.md) |
 | Linux 构建包来源与安装差异 | [Debian 签名摘要链、控制脚本审阅与安装模拟](records/linux-builder-source-chain/README.md) |
 | Rust Linux 与静态目标输入 | [签名 / 归档盘点、安装候选与 kernel 许可审阅](records/rust-linux-input-review/README.md) |
+| 2026-10-08 P3-B | [节点 totality、独立比较、兼容性与失败修复验收](records/2026-10-08-p3b-validation.md) |
 | 2026-10-05 日终回顾 | [P1 / P2 / P3-A 全天提交、代码与文档核对及明日交接](records/2026-10-05-closeout.md) |
 | 2026-09-29 日终回顾 | [全天提交、代码与文档核对及明日交接](records/2026-09-29-closeout.md) |
 | 2026-09-29 阶段整理 | [投入审阅、核心语义顺位调整与保留资产](records/2026-09-29-core-realignment.md) |
