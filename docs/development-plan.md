@@ -1,6 +1,6 @@
 # RadishAxiom 开发目标与验收计划
 
-更新日期：2026-10-08
+更新日期：2026-10-12
 
 状态：开发规划；涉及正式语义、信任、公共格式或架构替代的事项仍需专题决策。
 
@@ -40,6 +40,8 @@ ADR 0007 的完整管线入口与 ADR 0011–0014 的 launcher / isolation 边�
 [ADR 0018](adr/0018-ir-derived-obligation-profile.md) 已按 ADR 0016 的更窄入口接受 P2 的 IR v0.2 / ir-derived profile；完整 Evidence v0.2 仍保留 ADR 0009 的规范、迁移与独立验收门禁，不能把旧 checker 的受限 v0.1 profile 外推到新格式。[P3-A](query/map-filter-query-v0.1.md) 仅编码 map / filter 的 numeric-range 与 contract-guarantee，[P3-B](query/map-filter-query-v0.2.md)在显式新 profile 增加节点 totality，[P3-C](query/map-filter-query-v0.3.md)再增加局部 key-cardinality，[P3-D](query/map-filter-query-v0.4.md)增加双向 row-coverage；[P3-E](query/core-empty-effects-v0.1.md)单独生成空效果结构记录，不扩张 query profile 或填证明状态；[P3-F](query/core-field-origin-v0.1.md)生成来源与标签分析记录，缺口不冒充反例；其余目标保留。这些组件都是中间里程碑，最终首域仍覆盖四题，不为单题建立硬编码路径。
 
 每次交接分别报告：新增的实际能力、规范与独立期望、未覆盖范围、解除或保留的阻断，以及下一切片的直接依赖。检查数量、文档数量和取证成功数只说明各自验证范围，不能作为产品完成度。
+
+P4 接续拆分为请求 / 响应 / 模型解码的 P4-A，与直接解释原 IR 的 WF / Pre / 五类精确目标重放的 P4-B。[ADR 0025（Accepted）](adr/0025-p4-request-response-model-decoding.md)及[规则](query/p4-request-response-model-v0.1.md)接受并实现 P4-A 的内部范围；纯协议 / 世界候选不产生 attempt、反例或 Evidence 五态，范围接受、真实工具校准与完整管线验收分别处理。AX-B01 原容量 query 与保留的 1 MiB stdin 上限有实际尺寸阻断；后续须单独审阅，不能静默增限、缩小容量或改写旧 query 字节。
 
 ## 里程碑与完成标准
 

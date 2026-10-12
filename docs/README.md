@@ -56,6 +56,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 - [纯核心空效果推导 v0.1](query/core-empty-effects-v0.1.md)：ADR 0023 接受的 P3-E 规则记录、预算与兼容边界；[独立材料](../contracts/core-empty-effects-v0.1/README.md)。
 - [剩余结构义务与 P4 接续审阅](query/p3-structural-obligations-and-p4-review.md)：保留 P3-E 实施前的判断；P3-E / F 内部范围现已接受，P4 单目标 / 完整管线依赖接续下项审阅。
 - [字段来源推导 v0.1](query/core-field-origin-v0.1.md)：[ADR 0024](adr/0024-core-field-origin-derivation.md) 接受的 P3-F 来源、标签与带角色前提的内部记录；[独立材料](../contracts/core-field-origin-v0.1/README.md)与[接续审阅](query/field-origin-and-p4-interface-review.md)分别提供验收和 P4 待接受接口。
+- [P4-A 请求 / 响应 / 模型解码](query/p4-request-response-model-v0.1.md)：[ADR 0025（Accepted）](adr/0025-p4-request-response-model-decoding.md) 的精确绑定、模型文法、Text 类、世界候选和预算 / 验收；[内部实现](../crates/axiom-ir/src/solver.rs)与[合成独立材料](../contracts/solver-model-v0.1/README.md)不构成真实工具校准或目标重放。
 - [共享 SHA-256](../crates/digest/README.md)：runtime / IR 共用的自有摘要实现与独立复核边界。
 
 ## 机器契约

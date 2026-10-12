@@ -208,3 +208,11 @@ cargo +1.97.1-aarch64-apple-darwin test -p radishaxiom-ir --locked --offline
 ```
 
 完整 workspace 验证见[当前状态](../../docs/status/current.md#验证入口与本次审阅)。测试不是形式证明；未运行平台不能据此声称字节一致性已验收。
+
+## P4-A 请求与模型解码
+
+[ADR 0025](../../docs/adr/0025-p4-request-response-model-decoding.md)接受的 `solver` 模块提供 `plan_solver_request`、`parse_solver_response`、`decode_model_world`，以及请求 / 候选的严格重建比较入口。它从真实 IR / P2 / query 重建完整绑定与类型布局，以显式预算解析固定模型子集，再物化全部活动输入接口的世界候选；不启动 solver、不认证 stdout 来源、不重放 WF / Pre / 目标或产生 Evidence 状态。
+
+新内部 adapter 为 `planned-not-calibrated`，旧 query 字节和 registry 保留。unknown 附带模型仍不能成为 SatModel；模型缺项、冲突、别名环、未知语法、活动范围 / Enum / 键错误与资源不足均拒绝。Text 只保持本域精确相等语义，None / inactive 载荷不外部化。类型 DAG、深字段路径、物化值与编码工作栈均显式有界；候选可能包含超过 IR 文档 JSON 深度的记录嵌套，严格候选复核通过重建字节，不将现有文档 parser 当作通用 world parser。
+
+[合成材料与独立有限核对](../../contracts/solver-model-v0.1/README.md)区分手算值、协议解析、世界候选和真实反例。AX-B01 原容量查询受既有 1 MiB stdin 上限阻断，不缩小容量或增限。运行 `cargo +1.97.1-aarch64-apple-darwin test -p radishaxiom-ir solver --lib --locked --offline` 可复核本组件；真实执行、P4-B 与完整 Evidence 另行验收。

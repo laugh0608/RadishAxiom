@@ -11,6 +11,7 @@
 - [map / filter 查询 v0.4](map-filter-query-v0.4/README.md)：ADR 0022 的 P3-D 双向行覆盖、中间观察、局部关系变异与旧四类兼容基线。
 - [纯核心空效果推导 v0.1](core-empty-effects-v0.1/README.md)：ADR 0023 的 P3-E 版本化结构记录、独立规则重建与篡改拒绝，不是 SMT 或证明 support。
 - [纯核心字段来源推导 v0.1](core-field-origin-v0.1/README.md)：ADR 0024 的 P3-F 来源 / 标签 / 控制 / 求值上下文记录、独立核对与缺口保留，不是反例或公共证明。
+- [P4-A 请求与模型解码 v0.1](solver-model-v0.1/README.md)：ADR 0025 的合成模型、独立布局 / 世界核对和手算值；不代表真实后端、反例重放或 Evidence。
 
 - [Independent Check Contract v0.1](independent-check-v0.1/README.md)：ADR 0008 的 request、bundle manifest、独立 result、摘要和结构拒绝样例。
 - [Execution Profile Contract v0.1](execution-profiles-v0.1/README.md)：cvc5 / Node / Go checker 的允许 invocation、职责分离 limits、进程结果边界和空 certificate 能力矩阵。

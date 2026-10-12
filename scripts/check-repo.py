@@ -18,6 +18,15 @@ MAX_PATH_LENGTH = 180
 MAX_FILE_BYTES = 10 * 1024 * 1024
 
 REQUIRED_FILES = (
+    "docs/adr/0025-p4-request-response-model-decoding.md",
+    "docs/query/p4-request-response-model-v0.1.md",
+    "contracts/solver-model-v0.1/README.md",
+    "contracts/solver-model-v0.1/inputs/composite.jcs",
+    "contracts/solver-model-v0.1/inputs/deep-type.jcs",
+    "contracts/solver-model-v0.1/hand-cases.json",
+    "scripts/generate-p4a-model-vectors.py",
+    "scripts/check-p4a-model-world.py",
+    "crates/axiom-ir/src/solver.rs",
     ".editorconfig",
     ".gitattributes",
     ".gitignore",
@@ -611,7 +620,7 @@ def check_p2_profile_review(errors: list[str]) -> None:
 
 
 def check_p3_query_materials(errors: list[str]) -> None:
-    for script in ["generate-p3-query-review.py", "generate-p3-query-vectors.py", "generate-p3-totality-vectors.py", "generate-p3-cardinality-vectors.py", "generate-p3-coverage-vectors.py", "generate-p3-effect-vectors.py", "generate-p3-origin-vectors.py"]:
+    for script in ["generate-p3-query-review.py", "generate-p3-query-vectors.py", "generate-p3-totality-vectors.py", "generate-p3-cardinality-vectors.py", "generate-p3-coverage-vectors.py", "generate-p3-effect-vectors.py", "generate-p3-origin-vectors.py", "generate-p4a-model-vectors.py"]:
         result = subprocess.run(
             [sys.executable, str(REPO_ROOT / "scripts" / script), "--check"],
             cwd=REPO_ROOT,

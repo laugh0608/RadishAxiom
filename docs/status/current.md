@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-10-08
+更新日期：2026-10-12
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。历史事实按需进入[截至 2026-09-03 的归档](../records/status-through-2026-09-03.md)。
 
@@ -18,6 +18,7 @@
 | P3-A / B / C / D 内部组件：map / filter 的 numeric-range / contract-guarantee / totality / key-cardinality / row-coverage 真实查询、显式 profile、绑定 / strict / 预算拒绝，本机组件验收 | 其他义务与图操作、完整 P3、真实 solver / 模型 / proof、Evidence 与独立 checker 集成 |
 | P3-E 内部组件：全部 P1 v0.2 纯构造的空效果规则记录、P2 绑定、strict / 预算拒绝与独立有限核对，本机组件验收 | 公共 kernel / certificate support、五态、field-origin、完整 P3 / P4 或独立 checker 证明 |
 | P3-F 内部组件：五种节点 / 逐行表达式的来源、保守标签、控制与求值上下文记录，完整绑定 / strict / 预算及独立有限核对，本机组件验收 | 公共 field-origin prove support、非干扰或具体反例、完整 P3 / P4 与独立 checker 证明 |
+| P4-A 内部组件：真实请求规划、完整绑定 / 布局、合成协议与模型到确定性世界候选，本机组件验收 | 真实 cvc5 校准 / 尝试、完整 WF / Pre / 目标重放、Evidence 与独立 checker；AX-B01 原容量 query 受 stdin 尺寸阻断 |
 | 独立 Go checker 的受限解析、义务重建、重放、结论与 CLI | 全语义、反例最小性；kernel / certificate 真值复核支持集合仍为空 |
 | Rust runtime 的身份 / 选择、归档 / manifest、receipt、结果消费和 spawn plan；Darwin store 持久化与恢复 | 完整 installer / launcher、qualification、产品根安装、物理断电保证 |
 | Darwin Go / Rust 部分工具验收，checker payload 不可变发布并登记 inactive | cvc5 / Node、完整 Linux 工具链及其他平台验收；active runtime 为 0 |
@@ -38,7 +39,7 @@
 | --- | --- | --- |
 | 1：P1 真实语义组件 | [ADR 0016](../adr/0016-core-semantic-slice-entry.md) / [0017](../adr/0017-ir-v0.2-support-boundaries-and-migration.md)范围内已完成本机组件验收；[17 项矩阵](../ir/p1-support-boundary-review.md#必需验证矩阵对照)闭合结构、规范字节、身份与迁移回归 | 保留旧版未支持边界；不外推完整生产阶段、证明或跨平台验收 |
 | 2：P2 真实义务生成 | [ADR 0018](../adr/0018-ir-derived-obligation-profile.md) / [规则](../evidence/ir-derived-obligations-v0.2.md)已接受并完成本机内部组件验收；26 份 IR / 482 项定义与 29 份负例实际核对 | 只交付显式 ir-derived 全集；group 覆盖 / 守恒分开；保留完整 Evidence 门禁 |
-| 3：query 与纵向闭环（下一步） | [ADR 0019](../adr/0019-map-filter-query-encoding.md)–[0022](../adr/0022-map-filter-row-coverage.md) 的 P3-A / B / C / D 已完成本机组件验收；[ADR 0023](../adr/0023-core-empty-effect-derivation.md) 的 P3-E 空效果结构组件也已完成本机验收；[ADR 0024](../adr/0024-core-field-origin-derivation.md) 的 P3-F 字段来源内部分析已实现，下一项审阅 P4-A 精确请求 / 响应 / 模型解码范围 | 完整 P3 未实现；保留 AX-B01 正确、两个 wrong、invalid、timeout 和篡改标准，外部执行独立授权 |
+| 3：query 与纵向闭环（下一步） | [ADR 0019](../adr/0019-map-filter-query-encoding.md)–[0022](../adr/0022-map-filter-row-coverage.md) 的 P3-A / B / C / D 已完成本机组件验收；[ADR 0023](../adr/0023-core-empty-effect-derivation.md) 的 P3-E 空效果结构组件也已完成本机验收；[ADR 0024](../adr/0024-core-field-origin-derivation.md) 的 P3-F 字段来源内部分析已实现；[ADR 0025（Accepted）](../adr/0025-p4-request-response-model-decoding.md) 的 P4-A 请求 / 响应 / 模型解码已完成本机组件验收；下一项单独审阅 P4-B 重放与 AX-B01 尺寸阻断 | 完整 P3 / P4 未实现；保留 AX-B01 正确、两个 wrong、invalid、timeout 和篡改标准，外部执行独立授权 |
 
 近期验收看真实输入能否产生规范输出与可定位拒绝，区分实现、指定态 fixture、独立复核与证明；不以提交数、测试数或来源包数量替代里程碑。每个切片结束复核下一项是否直接服务上述交付；新增前置必须解释具体依赖和停止条件。
 
@@ -48,14 +49,14 @@
 
 v0.4 在既有 26 份 IR / 482 项义务中实际生成 151 查询；其余为 1 资源拒绝、197 UnsupportedKind、107 UnsupportedFeature 与 26 check。AX-B01 每份候选仍只有九项可生成 query。P3-E / F 增加内部结构记录，没有扩大 query 支持或公共 prove support；P3-F 的 758 份记录中 82 份有静态缺口、676 份无缺口，两者均不是证明或具体反例。
 
-### 明日事项（2026-10-09）
+### 当前接续（2026-10-12）
 
-1. **先审阅 P4-A 精确范围。** 从[字段来源与 P4 接口审阅](../query/field-origin-and-p4-interface-review.md)接续，固定请求绑定、响应帧 / 模型文法、确定性 world 表示和解析预算，再提交可接受的 ADR / 正式规则；今晚的记录不自动接受实施。
-2. **优先审阅保留 query 字节的 adapter 对应关系。** 旧 cvc5 配置已有 dump-models，但尚无实际模型材料，且不能直接套给 query0.2。区分合成解析 / 解码测试与真实工具校准，未知语法、缺项、冲突和超限均须明确拒绝，不补默认值或复用错误摘要。
+1. **P4-A 本机组件验收已完成。** [ADR 0025](../adr/0025-p4-request-response-model-decoding.md) / [规则](../query/p4-request-response-model-v0.1.md)的三个纯入口、完整绑定、模型子集、Text 类、世界候选与预算 / 拒绝通过本机验证，见[本批记录](../records/2026-10-12-p4a-validation.md)。纯解析与候选解码不计作目标重放、真实尝试或证明。
+2. **保留 query 字节，审阅实际尺寸阻断。** 新内部 adapter 支持 query0.2，但保持 planned-not-calibrated、原参数 / 资源与旧 registry。AX-B01 三候选 / 四 profile 的 72 份原容量查询均超过保留的 1 MiB stdin 上限，规划全部拒绝；后续须单独审阅查询尺寸与资源范围，不缩小声明容量、原地改字节或自动增限。unknown 可附模型但不解码 world，真实 cvc5 校准仍缺失。
 3. **随后单独确定 P4-B 五类目标重放范围。** 保留 WF / Pre、精确目标归因与“其他目标失败而本目标成立”的区分例。wrong-drop-zero 忠实执行错误谓词时，内建 coverage 可成立，业务保留要求由 guarantee 定位；不得仅凭全局失败或候选名称生成反例结论。
 4. **保持单目标尝试与完整验证分开。** 真实 solver 校准 / 执行另须精确工具验收、adapter、执行宿主、硬资源限制和当前任务授权。join / group 查询、聚合契约、双世界非干扰、公共结构证明支持、完整 Evidence v0.2、跨仓 checker 与 P7 / P9 继续分别审阅。
 
-明日从协议与模型边界审阅开始，不自动启动工具、安装依赖、写入远程或进入正式实验。
+P4-A 完成后接续 P4-B 的具体目标重放范围审阅，并对 AX-B01 尺寸阻断作独立决定；不自动启动 solver、安装依赖、写入远程或进入正式实验。
 
 ### 暂缓工作与恢复条件
 
@@ -74,6 +75,7 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 ## 当前停止线与待决策
 
 - P1、限定 P2 与 P3-A / B / C / D / E / F 已完成本机组件验收；完整生产阶段尚未验收。P3 进一步扩展须明确目标范围；新 IR / P2 / query 不能配给旧 Evidence 结果，完整 Evidence v0.2 仍须按 ADR 0009 补齐。
+- P4-A 按 ADR 0025 已完成本机组件验收；没有真实 cvc5 校准。纯 parser / 世界候选不认证响应来源，不产生 attempt、反例或 Evidence 五态；AX-B01 stdin 尺寸拒绝保持。
 - Darwin payload 保持 `registered-inactive`、`NativeIsolationStatus = RequiredNotProven`。不能重标为 Linux，也不能静默将 native spawn 转为虚拟执行。
 - 产品隔离继续遵循 ADR 0013–0015；不启用 native best-effort、root broker、URL boot 或 warm VM fallback，不自动放宽 memory / deadline。
 - 来源接受、fetch / install、payload 执行、公共迁移、生产签名、qualification、激活和远程写入仍分别处理；历史授权不延续。
@@ -81,6 +83,8 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 - 表面语法、公开 CLI / SDK、安装路径与最低支持矩阵尚未冻结；测试、结构检查、attestation 与独立 proof 分别报告。
 
 ## 验证入口与本次审阅
+
+2026-10-12，P4-A 新增 18 项回归，workspace 共 265 项测试通过（runtime 56、Darwin store 3、digest 2、IR 204）；格式、Clippy、独立合成材料与仓库检查通过，见[本批验收](../records/2026-10-12-p4a-validation.md)。53 份既有合成 IR 的完整空世界与新复合 / 深度材料实际核对；AX-B01 三候选 / 四 profile 的 72 份 query 全部受 stdin 上限拒绝。真实 solver、其他平台、P4-B 与独立 checker 未运行，CI 未触发。
 
 2026-10-08，P3-F 新增 6 项 Rust 回归通过，workspace 共 247 项测试通过（runtime 56、Darwin store 3、digest 2、IR 186）；格式、Clippy 与仓库检查通过。旧规范、候选、锁定 bundle、runtime 与依赖字节保留，没有安装或升级依赖。
 
