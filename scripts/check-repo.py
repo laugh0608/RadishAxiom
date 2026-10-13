@@ -18,6 +18,13 @@ MAX_PATH_LENGTH = 180
 MAX_FILE_BYTES = 10 * 1024 * 1024
 
 REQUIRED_FILES = (
+    "docs/adr/0026-p4-concrete-target-replay.md",
+    "docs/query/p4-concrete-target-replay-v0.1.md",
+    "crates/axiom-ir/src/replay.rs",
+    "scripts/generate-p4b-replay-vectors.py",
+    "scripts/generate-p4b-hand-vectors.py",
+    "scripts/p4b_replay_semantics.py",
+    "scripts/check-p4b-replay.py",
     "docs/adr/0025-p4-request-response-model-decoding.md",
     "docs/query/p4-request-response-model-v0.1.md",
     "contracts/solver-model-v0.1/README.md",

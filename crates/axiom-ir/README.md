@@ -216,3 +216,17 @@ cargo +1.97.1-aarch64-apple-darwin test -p radishaxiom-ir --locked --offline
 新内部 adapter 为 `planned-not-calibrated`，旧 query 字节和 registry 保留。unknown 附带模型仍不能成为 SatModel；模型缺项、冲突、别名环、未知语法、活动范围 / Enum / 键错误与资源不足均拒绝。Text 只保持本域精确相等语义，None / inactive 载荷不外部化。类型 DAG、深字段路径、物化值与编码工作栈均显式有界；候选可能包含超过 IR 文档 JSON 深度的记录嵌套，严格候选复核通过重建字节，不将现有文档 parser 当作通用 world parser。
 
 [合成材料与独立有限核对](../../contracts/solver-model-v0.1/README.md)区分手算值、协议解析、世界候选和真实反例。AX-B01 原容量查询受既有 1 MiB stdin 上限阻断，不缩小容量或增限。运行 `cargo +1.97.1-aarch64-apple-darwin test -p radishaxiom-ir solver --lib --locked --offline` 可复核本组件；真实执行、P4-B 与完整 Evidence 另行验收。
+
+[只读尺寸诊断](examples/inspect_ax_b01_queries.rs)实际生成 AX-B01 三候选 / 四 profile 的 72 份原查询，输出尺寸、DAG 可达项与相同项共享的字节估算；它不输出改写 SMT，不规划请求或运行工具。运行 / 复现与结果见[尺寸审阅](../../docs/query/ax-b01-query-size-review.md)。P4-B 的已接受范围见[规则](../../docs/query/p4-concrete-target-replay-v0.1.md)。
+
+## P4-B 具体目标重放
+
+`replay::replay_target` 接受已核验的 IR v0.2、完整 P2、目标 ID、声明的源码摘要、显式预算及直接 world / 绑定模型候选，返回四种内部观察之一：输入拒绝、Pre 拒绝、当前世界目标违反、当前世界未违反。`check_target_replay` 从同一输入重建规范字节；预算、格式、来源或功能拒绝没有部分成功制品。
+
+实现复用 P1 的类型 / 图及规范表达式、P2 不可变义务对象、现有 `Integer` 比较与 JCS 字符串编码；只有模型来源路径调用 P4-A 候选重建。数学十进制加减、实际值、故障链与目标判定由 replay 模块承担，不调用 query 编码器、SMT 解释器或模型派生输出。world、值、故障链与观察编码采用平坦存储和显式工作栈；表达式递归受 P1 原 JSON 深度约束。容量按数学整数比较，不据声明容量预分配行。
+
+总定义性记录目标自身及依赖失败；键 / 基数与覆盖使用局部 Ready 和容量前完整行；范围观察保存真实 Reach、操作数与数学结果；guarantee 区分程序故障、公式故障和 false。全部 assume 成立前不产生目标违反，其他 guarantee 的失败不会污染所选目标。
+
+运行 `cargo +1.97.1-aarch64-apple-darwin test -p radishaxiom-ir replay --lib --locked --offline` 可重跑合成与本机验收。测试用既有 Python 具体解释器及新增动态位置观察独立核对完整有限见证；局部重复键 / 覆盖注入明确不是完整合法程序反例。费用由生产预算精确边界回归核对，独立 Python 只核对费用上限与输入绑定，不重建 Rust 分配费用。详见[验收记录](../../docs/records/2026-10-13-p4b-validation.md)。
+
+这些观察不填 Evidence 五态、不认证 solver 来源、不构成普遍证明；真实工具、其他平台、完整 Evidence 与跨仓 checker 仍未验收。AX-B01 的查询尺寸阻断不因直接有限世界重放而解除。

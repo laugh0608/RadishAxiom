@@ -43,6 +43,8 @@ ADR 0007 的完整管线入口与 ADR 0011–0014 的 launcher / isolation 边�
 
 P4 接续拆分为请求 / 响应 / 模型解码的 P4-A，与直接解释原 IR 的 WF / Pre / 五类精确目标重放的 P4-B。[ADR 0025（Accepted）](adr/0025-p4-request-response-model-decoding.md)及[规则](query/p4-request-response-model-v0.1.md)接受并实现 P4-A 的内部范围；纯协议 / 世界候选不产生 attempt、反例或 Evidence 五态，范围接受、真实工具校准与完整管线验收分别处理。AX-B01 原容量 query 与保留的 1 MiB stdin 上限有实际尺寸阻断；后续须单独审阅，不能静默增限、缩小容量或改写旧 query 字节。
 
+[P4-B 精确范围](query/p4-concrete-target-replay-v0.1.md)与 [ADR 0026（Accepted）](adr/0026-p4-concrete-target-replay.md)已接受并完成本机内部组件验收，见[验收记录](records/2026-10-13-p4b-validation.md)；[查询尺寸审阅](query/ax-b01-query-size-review.md)保留原容量测量与压缩仍超限的实际结果。先验收具体重放不授权真实 solver 或新资源范围，后续查询表示须单独版本化并验证。
+
 ## 里程碑与完成标准
 
 下表定义完成标准；当前推进位置由当前状态维护。一个中间切片完成不能升级为整个里程碑完成。

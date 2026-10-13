@@ -57,6 +57,8 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 - [剩余结构义务与 P4 接续审阅](query/p3-structural-obligations-and-p4-review.md)：保留 P3-E 实施前的判断；P3-E / F 内部范围现已接受，P4 单目标 / 完整管线依赖接续下项审阅。
 - [字段来源推导 v0.1](query/core-field-origin-v0.1.md)：[ADR 0024](adr/0024-core-field-origin-derivation.md) 接受的 P3-F 来源、标签与带角色前提的内部记录；[独立材料](../contracts/core-field-origin-v0.1/README.md)与[接续审阅](query/field-origin-and-p4-interface-review.md)分别提供验收和 P4 待接受接口。
 - [P4-A 请求 / 响应 / 模型解码](query/p4-request-response-model-v0.1.md)：[ADR 0025（Accepted）](adr/0025-p4-request-response-model-decoding.md) 的精确绑定、模型文法、Text 类、世界候选和预算 / 验收；[内部实现](../crates/axiom-ir/src/solver.rs)与[合成独立材料](../contracts/solver-model-v0.1/README.md)不构成真实工具校准或目标重放。
+- [P4-B 具体目标重放](query/p4-concrete-target-replay-v0.1.md)：[ADR 0026（Accepted）](adr/0026-p4-concrete-target-replay.md) 的原 IR 求值、WF / Pre、五类精确归因与预算；[内部实现](../crates/axiom-ir/src/replay.rs)及[本机验收](records/2026-10-13-p4b-validation.md)只产生有限观察。
+- [AX-B01 查询尺寸审阅](query/ax-b01-query-size-review.md)：原容量 72 份查询的实际尺寸与有界压缩估算，保留 stdin 阻断与可重跑入口。
 - [共享 SHA-256](../crates/digest/README.md)：runtime / IR 共用的自有摘要实现与独立复核边界。
 
 ## 机器契约

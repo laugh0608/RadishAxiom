@@ -15,5 +15,6 @@ pub mod normalization;
 pub mod obligations;
 pub mod origins;
 pub mod query;
+pub mod replay;
 pub mod solver;
 pub mod version;
