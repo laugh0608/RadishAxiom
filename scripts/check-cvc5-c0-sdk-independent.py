@@ -17,7 +17,7 @@ BASE = 'https://snapshot.debian.org/archive/debian/20230612T000000Z/'
 TARGETS = ('Release', 'InRelease', 'main/binary-arm64/Packages.xz', 'main/source/Sources.xz')
 METADATA_LIMIT = 28 * 1024**2
 LINE_LIMIT = 256 * 1024
-# Independently transcribed from the reviewed sixteen role groups. Never import
+# Independently transcribed from the reviewed seventeen role groups. Never import
 # the producer's root table, parser, dependency resolver, or version comparator.
 REVIEWED_ROOT_NAMES = set('''
 gcc-12 g++-12 cpp-12 gcc-12-base
@@ -26,7 +26,7 @@ libgcc-12-dev libstdc++-12-dev libgcc-s1 libstdc++6
 libc6 libc6-dev libc-dev-bin linux-libc-dev libedit-dev libedit2
 libncurses-dev libtinfo6 libbsd-dev libbsd0 libmd-dev libmd0
 cmake cmake-data make python3 python3-minimal python3.11 python3.11-minimal
-libpython3.11-stdlib libpython3.11-minimal pkgconf pkgconf-bin libpkgconf3
+libpython3.11-stdlib libpython3.11-minimal python3-pyparsing m4 pkgconf pkgconf-bin libpkgconf3
 dash bash coreutils sed grep gawk findutils diffutils patch tar gzip bzip2
 xz-utils file libmagic1 libmagic-mgc
 '''.split())
@@ -365,7 +365,7 @@ def audit(record=None):
         require(row['package_status'] == 'not-obtained' and row['license_acceptance'] == 'not-accepted',
                 'package-false-acceptance')
     root_names = {name for group in chosen['root_groups'] for name in group['package_names']}
-    require(len(chosen['root_groups']) == 16, 'root-role-count')
+    require(len(chosen['root_groups']) == 17, 'root-role-count')
     require(root_names == REVIEWED_ROOT_NAMES, 'reviewed-root-set-drift')
     require(root_names <= indexed.keys(), 'required-root-missing')
     require(chosen['essential_runtime_baseline'] == sorted((r['Package'] for r in selected if r.get('Essential') == 'yes')), 'independent-condition-failed')
@@ -455,7 +455,7 @@ def audit(record=None):
                   independent_scope='selected dependency clauses/edges, root+Essential set, architecture/Provides/alternatives, version comparisons, Conflicts/Breaks, Source and exact Built-Using associations, source/binary declared byte sums, raw metadata/hash/Release links, HTTP locator chain',
                   unverified=['signature authentication and historical validity policy', 'binary/source package raw bytes and licenses',
                               'package file contents, maintainer scripts, ELF/dlopen/runtime filesystem',
-                              'full cvc5 generator imports/options, SDK static link closure/map', 'compiler/SDK/tool acceptance'])
+                              'dynamic generator imports/effective options, SDK static link closure/map', 'compiler/SDK/tool acceptance'])
     return result
 
 

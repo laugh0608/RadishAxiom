@@ -1,0 +1,2008 @@
+{
+  "format": "radishaxiom-private-cvc5-production-source-review",
+  "version": "0.1",
+  "generator": "scripts/generate-cvc5-production-source-review.py",
+  "status": "static-reviewed-not-configured-not-accepted",
+  "build_ready": false,
+  "configuration_executed": false,
+  "build_executed": false,
+  "probe_executed": false,
+  "solver_executed": false,
+  "tool_accepted": false,
+  "assurance": "manual static source review; hashes/excerpts are byte bindings, not independent semantic verification",
+  "source_input_record": {
+    "path": "docs/records/solver-cvc5-source-review-2026-10-17/source-inputs.json",
+    "bytes": 8282,
+    "raw_digest": "sha256:b4d9a7813c35626d798f572cafdc63e2e79d367501e5327d231987e96e5152d3"
+  },
+  "source_identities": [
+    {
+      "id": "cvc5",
+      "source_root": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341",
+      "archive": {
+        "path": ".tmp/cvc5-c0-acquisition-2026-10-17/cvc5.source-archive",
+        "bytes": 9279538,
+        "raw_digest": "sha256:cbaa927c4d8085e38e7a097191bb9dd3a6780cc17fcde65cb156c9583e597760"
+      },
+      "tree_inventory": {
+        "path": "docs/records/solver-cvc5-source-review-2026-10-17/cvc5-tree.json",
+        "bytes": 3477550,
+        "raw_digest": "sha256:cc5cdb90edd330ae4b7af7efe66cba383a5a192e50ff8773fe585dacb4f3d415"
+      }
+    },
+    {
+      "id": "cadical",
+      "source_root": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cadical/cadical-rel-2.1.3-elevate",
+      "archive": {
+        "path": ".tmp/cvc5-c0-acquisition-2026-10-17/cadical.source-archive",
+        "bytes": 732469,
+        "raw_digest": "sha256:15e1e82f7f9a9da0e97070cb8ac41d5b32139f65d54f72d2ff84849b0466ef92"
+      },
+      "tree_inventory": {
+        "path": "docs/records/solver-cvc5-source-review-2026-10-17/cadical-tree.json",
+        "bytes": 197566,
+        "raw_digest": "sha256:f0a6b8bcb789c9b2b82d099148622c2360a72479e4c38204a18e243650ce7ccc"
+      }
+    },
+    {
+      "id": "symfpu",
+      "source_root": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/symfpu/symfpu-227a7246b8ce513b393cc2645d6d65d3490ea1de",
+      "archive": {
+        "path": ".tmp/cvc5-c0-acquisition-2026-10-17/symfpu.source-archive",
+        "bytes": 83411,
+        "raw_digest": "sha256:ff22e37dbc133120ada5760878974811737bec65b12a8883f92b1ed9e3f96e99"
+      },
+      "tree_inventory": {
+        "path": "docs/records/solver-cvc5-source-review-2026-10-17/symfpu-tree.json",
+        "bytes": 23172,
+        "raw_digest": "sha256:67582df02a43e8a2ffa52f5007707a5238bbb2a1bbea5fc36a0029895f810613"
+      }
+    },
+    {
+      "id": "libpoly",
+      "source_root": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/libpoly/libpoly-0.2.1",
+      "archive": {
+        "path": ".tmp/cvc5-c0-acquisition-2026-10-17/libpoly.source-archive",
+        "bytes": 629599,
+        "raw_digest": "sha256:f9920afc876f998633348b9cbfcf180757ada48cc872040256c60ad0707b5a0f"
+      },
+      "tree_inventory": {
+        "path": "docs/records/solver-cvc5-source-review-2026-10-17/libpoly-tree.json",
+        "bytes": 109010,
+        "raw_digest": "sha256:027f70dadd6c70d6f5a1ffc0438b53e50007d5f7db9252326b41aa2f05a269bf"
+      }
+    },
+    {
+      "id": "gmp",
+      "source_root": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/gmp/gmp-6.3.0",
+      "archive": {
+        "path": ".tmp/cvc5-c0-acquisition-2026-10-17/gmp.source-archive",
+        "bytes": 2643888,
+        "raw_digest": "sha256:ac28211a7cfb609bae2e2c8d6058d66c8fe96434f740cf6fe2e47b000d1c20cb"
+      },
+      "tree_inventory": {
+        "path": "docs/records/solver-cvc5-source-review-2026-10-17/gmp-tree.json",
+        "bytes": 965860,
+        "raw_digest": "sha256:e29a88eb1fc27742d5787e808132f2291bdd28bad61cce2b737e3b60ec3076dd"
+      }
+    }
+  ],
+  "source_files": {
+    "cvc5/configure.sh": {
+      "bytes": 17332,
+      "raw_digest": "sha256:23bb4a3fe905ca8d29f64754bea999c30cecc0e0bca55fa4621458ed41555039",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/configure.sh",
+      "excerpts": [
+        {
+          "start": 129,
+          "end": 180,
+          "text": "buildtype=default\n\nasan=default\nassertions=default\nauto_download=default\ncln=default\nclang_tidy=default\ncoverage=default\ncryptominisat=default\ndebug_context_mm=default\ndebug_symbols=default\ndocs=default\ndocs_ga=default\nglpk=default\ngpl=default\nkissat=default\npoly=ON\ncocoa=default\nmuzzle=default\nninja=default\nprofiling=default\npython_bindings=default\npython_only_src=default\npyvenv=default\njava_bindings=default\neditline=default\nmpfr=default\nbuild_shared=ON\nsafe_mode=default\nstable_mode=default\nstatic_binary=default\nstatistics=default\ntracing=default\ntsan=default\nubsan=default\nunit_testing=default\nvalgrind=default\nwin64=default\nwin64_native=default\narm64=default\nwerror=default\nipo=default\n\nglpk_dir=default\n\nwasm=default\nwasm_flags=\"\"\nwasm_web=default\n\n#--------------------------------------------------------------------------#\n\nuname_output=$(uname)"
+        },
+        {
+          "start": 322,
+          "end": 324,
+          "text": "    --all-bindings)\n      python_bindings=ON\n      java_bindings=ON;;"
+        },
+        {
+          "start": 420,
+          "end": 518,
+          "text": "if [ $werror != default ]; then\n  export CFLAGS=-Werror\n  export CXXFLAGS=-Werror\n  cmake_opts=\"$cmake_opts -DTREAT_WARNING_AS_ERROR=$werror\"\nfi\n\n[ $buildtype != default ] \\\n  && cmake_opts=\"$cmake_opts -DCMAKE_BUILD_TYPE=$buildtype\"\n\n[ $asan != default ] \\\n  && cmake_opts=\"$cmake_opts -DENABLE_ASAN=$asan\"\n[ $auto_download != default ] \\\n  && cmake_opts=\"$cmake_opts -DENABLE_AUTO_DOWNLOAD=$auto_download\"\n[ $pyvenv != default ] \\\n  && cmake_opts=\"$cmake_opts -DUSE_PYTHON_VENV=$pyvenv\"\n[ $ubsan != default ] \\\n  && cmake_opts=\"$cmake_opts -DENABLE_UBSAN=$ubsan\"\n[ $tsan != default ] \\\n  && cmake_opts=\"$cmake_opts -DENABLE_TSAN=$tsan\"\n[ $ipo != default ] \\\n  && cmake_opts=\"$cmake_opts -DENABLE_IPO=$ipo\"\n[ $assertions != default ] \\\n  && cmake_opts=\"$cmake_opts -DENABLE_ASSERTIONS=$assertions\"\n[ $safe_mode != default ] \\\n  && cmake_opts=\"$cmake_opts -DENABLE_SAFE_MODE=$safe_mode\"\n[ $stable_mode != default ] \\\n  && cmake_opts=\"$cmake_opts -DENABLE_STABLE_MODE=$stable_mode\"\n[ $clang_tidy != default ] \\\n  && cmake_opts=\"$cmake_opts -DENABLE_CLANG_TIDY=$clang_tidy\"\n[ $coverage != default ] \\\n  && cmake_opts=\"$cmake_opts -DENABLE_COVERAGE=$coverage\"\n[ $debug_symbols != default ] \\\n  && cmake_opts=\"$cmake_opts -DENABLE_DEBUG_SYMBOLS=$debug_symbols\"\n[ $debug_context_mm != default ] \\\n  && cmake_opts=\"$cmake_opts -DENABLE_DEBUG_CONTEXT_MM=$debug_context_mm\"\n[ $gpl != default ] \\\n  && cmake_opts=\"$cmake_opts -DENABLE_GPL=$gpl\"\n[ $win64 != default ] \\\n  && cmake_opts=\"$cmake_opts -DCMAKE_TOOLCHAIN_FILE=$(make_abs_path 'cmake/Toolchain-mingw64.cmake')\"\n# Because 'MSYS Makefiles' has a space in it, we set the variable vs. adding to 'cmake_opts'\n[ $win64_native != default ] \\\n  && [ $ninja == default ] && export CMAKE_GENERATOR=\"MSYS Makefiles\"\n[ $arm64 != default ] \\\n  && cmake_opts=\"$cmake_opts -DCMAKE_TOOLCHAIN_FILE=$(make_abs_path 'cmake/Toolchain-aarch64.cmake')\"\n[ $ninja != default ] && cmake_opts=\"$cmake_opts -G Ninja\"\n[ $muzzle != default ] \\\n  && cmake_opts=\"$cmake_opts -DENABLE_MUZZLE=$muzzle\"\n[ $build_shared != default ] \\\n  && cmake_opts=\"$cmake_opts -DBUILD_SHARED_LIBS=$build_shared\"\n[ $static_binary != default ] \\\n  && cmake_opts=\"$cmake_opts -DSTATIC_BINARY=$static_binary\"\n[ $statistics != default ] \\\n  && cmake_opts=\"$cmake_opts -DENABLE_STATISTICS=$statistics\"\n[ $tracing != default ] \\\n  && cmake_opts=\"$cmake_opts -DENABLE_TRACING=$tracing\"\n[ $unit_testing != default ] \\\n  && cmake_opts=\"$cmake_opts -DENABLE_UNIT_TESTING=$unit_testing\"\n[ $docs != default ] \\\n  && cmake_opts=\"$cmake_opts -DBUILD_DOCS=$docs\"\n[ $docs_ga != default ] \\\n  && cmake_opts=\"$cmake_opts -DBUILD_DOCS_GA=$docs_ga\"\n[ $python_bindings != default ] \\\n  && cmake_opts=\"$cmake_opts -DBUILD_BINDINGS_PYTHON=$python_bindings\"\n[ $python_only_src != default ] \\\n  && cmake_opts=\"$cmake_opts -DONLY_PYTHON_EXT_SRC=$python_only_src\"\n[ $java_bindings != default ] \\\n  && cmake_opts=\"$cmake_opts -DBUILD_BINDINGS_JAVA=$java_bindings\"\n[ $valgrind != default ] \\\n  && cmake_opts=\"$cmake_opts -DENABLE_VALGRIND=$valgrind\"\n[ $profiling != default ] \\\n  && cmake_opts=\"$cmake_opts -DENABLE_PROFILING=$profiling\"\n[ $editline != default ] \\\n  && cmake_opts=\"$cmake_opts -DUSE_EDITLINE=$editline\"\n[ $cln != default ] \\\n  && cmake_opts=\"$cmake_opts -DUSE_CLN=$cln\"\n[ $cryptominisat != default ] \\\n  && cmake_opts=\"$cmake_opts -DUSE_CRYPTOMINISAT=$cryptominisat\"\n[ $glpk != default ] \\\n  && cmake_opts=\"$cmake_opts -DUSE_GLPK=$glpk\"\n[ $kissat != default ] \\\n  && cmake_opts=\"$cmake_opts -DUSE_KISSAT=$kissat\"\n[ $poly != default ] \\\n  && cmake_opts=\"$cmake_opts -DUSE_POLY=$poly\"\n[ $cocoa != default ] \\\n  && cmake_opts=\"$cmake_opts -DUSE_COCOA=$cocoa\"\n[ $mpfr != default ] \\\n  && cmake_opts=\"$cmake_opts -DUSE_MPFR=$mpfr\"\n[ \"$glpk_dir\" != default ] \\\n  && cmake_opts=\"$cmake_opts -DGLPK_DIR=$glpk_dir\"\n[ \"$dep_path\" != default ] \\\n  && cmake_opts=\"$cmake_opts -DCMAKE_PREFIX_PATH=$dep_path\"\n[ \"$pythonic_path\" != default ] \\\n  && cmake_opts=\"$cmake_opts -DPYTHONIC_PATH=$pythonic_path\"\n[ \"$install_prefix\" != default ] \\\n  && cmake_opts=\"$cmake_opts -DCMAKE_INSTALL_PREFIX=$install_prefix\"\n[ -n \"$program_prefix\" ] \\\n  && cmake_opts=\"$cmake_opts -DPROGRAM_PREFIX=$program_prefix\"\n[ \"$wasm\" != default ] \\\n  && cmake_opts=\"$cmake_opts -DWASM=$wasm\""
+        }
+      ]
+    },
+    "cvc5/CMakeLists.txt": {
+      "bytes": 32159,
+      "raw_digest": "sha256:84ec0baeec06dcbee56f6d9893e4b53de1ce783c7a49686ca3c0dcf8aa95e410",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/CMakeLists.txt",
+      "excerpts": [
+        {
+          "start": 87,
+          "end": 181,
+          "text": "option(ENABLE_GPL \"Enable GPL dependencies\")\n\n# General build options\n#\n# >> 3-valued: IGNORE ON OFF\n#    > allows to detect if set by user (default: IGNORE)\n#    > only necessary for options set for build types\noption(BUILD_SHARED_LIBS          \"Build shared libraries and binary\")\ncvc5_option(ENABLE_ASAN           \"Enable ASAN build\")\ncvc5_option(ENABLE_UBSAN          \"Enable UBSan build\")\ncvc5_option(ENABLE_TSAN           \"Enable TSan build\")\ncvc5_option(ENABLE_ASSERTIONS     \"Enable assertions\")\ncvc5_option(ENABLE_DEBUG_SYMBOLS  \"Enable debug symbols\")\ncvc5_option(ENABLE_MUZZLE         \"Suppress ALL non-result output\")\ncvc5_option(ENABLE_SAFE_MODE      \"Enable safe mode\")\ncvc5_option(ENABLE_STABLE_MODE    \"Enable stable mode\")\ncvc5_option(ENABLE_STATISTICS     \"Enable statistics\")\ncvc5_option(ENABLE_TRACING        \"Enable tracing\")\ncvc5_option(ENABLE_UNIT_TESTING   \"Enable unit testing\")\ncvc5_option(ENABLE_VALGRIND       \"Enable valgrind instrumentation\")\ncvc5_option(ENABLE_AUTO_DOWNLOAD  \"Enable automatic download of dependencies\")\ncvc5_option(USE_PYTHON_VENV       \"Install Python dependencies in virtual environment\")\ncvc5_option(ENABLE_IPO            \"Enable interprocedural optimization\")\n\ncvc5_set_option(USE_PYTHON_VENV ON)\n\n# >> 2-valued: ON OFF\n#    > for options where we don't need to detect if set by user (default: OFF)\noption(ENABLE_CLANG_TIDY       \"Enable clang-tidy static analysis during build\")\noption(ENABLE_COVERAGE         \"Enable support for gcov coverage testing\")\noption(ENABLE_DEBUG_CONTEXT_MM \"Enable the debug context memory manager\")\noption(ENABLE_PROFILING        \"Enable support for gprof profiling\")\n\noption(TREAT_WARNING_AS_ERROR  \"Treat warnings on building as errors\")\n\n# Ensure cvc5 does not use LibPoly's global context by stripping all related code\noption(NO_GLOBAL_POLY_CTX      \"Remove global context from LibPoly source code\")\n\n# Optional dependencies\n#\n# >> 2-valued: ON OFF\n#    > for options where we don't need to detect if set by user (default: OFF)\noption(USE_CLN           \"Use CLN instead of GMP\")\noption(USE_COCOA         \"Use CoCoALib for further polynomial operations\")\noption(USE_CRYPTOMINISAT \"Use CryptoMiniSat SAT solver\")\noption(USE_EDITLINE      \"Use Editline for better interactive support\")\noption(USE_GLPK          \"Use GLPK simplex solver\")\noption(USE_KISSAT        \"Use Kissat SAT solver\")\noption(USE_MPFR          \"Use MPFR for FP constant folding instead of SymFPU\")\noption(USE_POLY          \"Use LibPoly for polynomial arithmetic\")\n\n# Custom install directories for dependencies\n# If no directory is provided by the user, we first check if the dependency was\n# installed via the corresponding contrib/get-* script and if not found, we\n# check the intalled system version. If the user provides a directory we\n# immediately fail if the dependency was not found at the specified location.\nset(GLPK_DIR          \"\" CACHE STRING \"Set GLPK install directory\")\nset(PYTHONIC_PATH     \"\" CACHE STRING \"Set Pythonic API repository path\")\n\n# Prepend binaries with prefix on make install\nset(PROGRAM_PREFIX    \"\" CACHE STRING \"Program prefix on make install\")\n\n# Supported language bindings based on new C++ API\noption(BUILD_BINDINGS_PYTHON \"Build Python bindings based on new C++ API \")\noption(ONLY_PYTHON_EXT_SRC \"Create only Python bindings source files\")\noption(BUILD_BINDINGS_JAVA \"Build Java bindings based on new C++ API \")\n\n# Api documentation\noption(BUILD_DOCS \"Build Api documentation\")\noption(BUILD_DOCS_GA \"Build API documentation with Google Analytics\")\n\noption(BUILD_GMP \"Build GMP from source\")\noption(BUILD_CLN \"Build CLN from source\")\n\n# Link against static system libraries\ncvc5_option(STATIC_BINARY \"Link against static system libraries \\\n(enabled by default for static builds)\")\n\noption(SKIP_COMPRESS_DEBUG \"Skip compression of debug symbols\")\noption(SKIP_SET_RPATH      \"Skip setting of rpath\")\noption(USE_DEFAULT_LINKER  \"Use default linker\")\n\n# Custom flags for WebAssembly compilation\nset(WASM_FLAGS \"\" CACHE STRING \"Link flags for the WebAssembly binary generation\")\nset(WASM \"OFF\" CACHE STRING \"Use a specific extension for WebAssembly compilation\")\n\n# Make sure no other available value will be assigned to this variable\nif(NOT(WASM STREQUAL \"WASM\" OR WASM STREQUAL \"JS\" OR WASM STREQUAL \"HTML\" OR WASM STREQUAL \"OFF\"))\n  message(FATAL_ERROR \"${WASM} is not a valid wasm flag value.\")\nendif()\n\nif(WASM STREQUAL \"OFF\")\n  set(WASM_FLAGS \"\")\n  set(CONFIGURE_CMD_WRAPPER \"\")\n# If it's a wasm compilation, but isn't using the right flags"
+        },
+        {
+          "start": 253,
+          "end": 349,
+          "text": "include(Config${CMAKE_BUILD_TYPE})\n\n#-----------------------------------------------------------------------------#\n# Compiler flags\n\ncheck_min_compiler_version(\"GNU\" 10)\ncheck_min_compiler_version(\"Clang\" 12)\n\nadd_check_c_cxx_flag(\"-O${OPTIMIZATION_LEVEL}\")\nadd_check_c_cxx_flag(\"-Wall\")\nadd_check_c_cxx_flag(\"-Wextra\")\nadd_check_c_flag(\"-fexceptions\")\nadd_check_cxx_flag(\"-Wsuggest-override\")\nadd_check_cxx_flag(\"-Wnon-virtual-dtor\")\nadd_check_c_cxx_flag(\"-Wimplicit-fallthrough\")\nadd_check_c_cxx_flag(\"-Wshadow\")\nadd_check_c_cxx_flag(\"-Wtype-limits\")\nadd_check_c_cxx_flag(\"-fno-operator-names\")\n\nif(CMAKE_CXX_COMPILER_ID STREQUAL \"GNU\"\n   AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 13\n   AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 14)\n  # GCC 13 introduced -Wdangling-reference, but the\n  # [[gnu::no_dangling]] attribute to suppress it was only\n  # added in GCC 14, so disable the warning for GCC 13.\n  add_cxx_flag(\"-Wno-dangling-reference\")\nendif()\n\n# Assume no dynamic initialization of thread-local variables in non-defining\n# translation units. This option should result in better performance and works\n# around crashing issues with our Windows build.\nif(NOT ENABLE_CLANG_TIDY)\n  add_check_cxx_flag(\"-fno-extern-tls-init\")\nendif()\n\nif (WIN32)\n  set(CMAKE_EXE_LINKER_FLAGS \"${CMAKE_EXE_LINKER_FLAGS} -Wl,--stack,100000000\")\nendif ()\n\n# Keep the default linker on MSYS, as switching it prevents the build system from\n# using the GMP system library if available. For Linux ARM64, the default linker is\n# also required due to a bug in the gold linker specific to ARM64 architectures.\nif (NOT (\"${CMAKE_GENERATOR}\" STREQUAL \"MSYS Makefiles\") AND\n    NOT CMAKE_SYSTEM_PROCESSOR STREQUAL \"aarch64\" AND\n    NOT USE_DEFAULT_LINKER)\n  #-----------------------------------------------------------------------------#\n  # Use ld.mold if available, otherwise use ld.gold if available\n\n  set(USE_EXPLICIT_LINKER_FLAG FALSE)\n  execute_process(COMMAND ${CMAKE_C_COMPILER}\n                  -fuse-ld=mold\n                  -Wl,--version ERROR_QUIET OUTPUT_VARIABLE LD_MOLD_VERSION)\n  if (\"${LD_MOLD_VERSION}\" MATCHES \"mold\")\n    set(USE_EXPLICIT_LINKER_FLAG TRUE)\n    set(EXPLICIT_LINKER_FLAG \" -fuse-ld=mold\")\n    message(STATUS \"Using mold linker.\")\n  else ()\n    execute_process(COMMAND ${CMAKE_C_COMPILER}\n                    -fuse-ld=gold\n                    -Wl,--version ERROR_QUIET OUTPUT_VARIABLE LD_GOLD_VERSION)\n    if (\"${LD_GOLD_VERSION}\" MATCHES \"GNU gold\")\n      set(USE_EXPLICIT_LINKER_FLAG TRUE)\n      set(EXPLICIT_LINKER_FLAG \" -fuse-ld=gold\")\n      message(STATUS \"Using GNU gold linker.\")\n    endif ()\n  endif ()\n  if (USE_EXPLICIT_LINKER_FLAG)\n    string(APPEND CMAKE_EXE_LINKER_FLAGS ${EXPLICIT_LINKER_FLAG})\n    string(APPEND CMAKE_SHARED_LINKER_FLAGS ${EXPLICIT_LINKER_FLAG})\n    string(APPEND CMAKE_MODULE_LINKER_FLAGS ${EXPLICIT_LINKER_FLAG})\n  endif ()\nendif()\n\n#-----------------------------------------------------------------------------#\n# Use interprocedural optimization if requested\n\nif(ENABLE_IPO)\n  check_ipo_supported(RESULT have_ipo_support)\n  if(have_ipo_support)\n    set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)\n  else()\n    message(STATUS \"Interprocedural optimization not supported.\")\n    set(ENABLE_IPO OFF)\n  endif()\nendif()\n\n#-----------------------------------------------------------------------------#\n\n# Only enable unit testing if assertions are enabled. Otherwise, unit tests\n# that expect AssertionException to be thrown will fail.\nif(NOT ENABLE_ASSERTIONS)\n  message(STATUS \"Disabling unit tests since assertions are disabled.\")\n  set(ENABLE_UNIT_TESTING OFF)\nendif()\n\n#-----------------------------------------------------------------------------#\n# Shared/static libraries"
+        },
+        {
+          "start": 496,
+          "end": 674,
+          "text": "\nif(ENABLE_UBSAN)\n  add_required_c_cxx_flag(\"-fsanitize=undefined\")\n  add_definitions(-DCVC5_USE_UBSAN)\nendif()\n\nif(ENABLE_TSAN)\n  # -fsanitize=thread requires CMAKE_REQUIRED_FLAGS to be explicitely set,\n  # otherwise the -fsanitize=thread check will fail while linking.\n  set(CMAKE_REQUIRED_FLAGS -fsanitize=thread)\n  add_required_c_cxx_flag(\"-fsanitize=thread\")\n  unset(CMAKE_REQUIRED_FLAGS)\nendif()\n\nif(ENABLE_ASSERTIONS)\n  add_definitions(-DCVC5_ASSERTIONS)\nelse()\n  add_definitions(-DNDEBUG)\nendif()\n\nif(ENABLE_COVERAGE)\n  include(CodeCoverage)\n  append_coverage_compiler_flags()\n  add_definitions(-DCVC5_COVERAGE)\n  setup_code_coverage_fastcov(\n    NAME coverage\n    PATH \"${PROJECT_SOURCE_DIR}\"\n    EXCLUDE \"${PROJECT_BINARY_DIR}/deps/*\"\n    DEPENDENCIES cvc5-bin\n  )\nendif()\n\nif(ENABLE_DEBUG_CONTEXT_MM)\n  add_definitions(-DCVC5_DEBUG_CONTEXT_MEMORY_MANAGER)\nendif()\n\nif(ENABLE_DEBUG_SYMBOLS)\n  add_check_c_cxx_flag(\"-ggdb3\")\n  if(NOT SKIP_COMPRESS_DEBUG)\n    add_check_c_cxx_flag(\"-gz\")\n  endif()\nendif()\n\nif(ENABLE_MUZZLE)\n  add_definitions(-DCVC5_MUZZLE)\nendif()\n\nif(ENABLE_PROFILING)\n  add_definitions(-DCVC5_PROFILING)\n  add_check_c_cxx_flag(\"-pg\")\nendif()\n\nif(ENABLE_TRACING)\n  add_definitions(-DCVC5_TRACING)\nendif()\n\nif(ENABLE_SAFE_MODE)\n  add_definitions(-DCVC5_SAFE_MODE)\nendif()\n\nif(ENABLE_STABLE_MODE)\n  add_definitions(-DCVC5_STABLE_MODE)\nendif()\n\nif(ENABLE_STATISTICS)\n  add_definitions(-DCVC5_STATISTICS_ON)\nendif()\n\nif(ENABLE_VALGRIND)\n  find_package(Valgrind REQUIRED)\n  add_definitions(-DCVC5_VALGRIND)\nendif()\n\nfind_package(CaDiCaL REQUIRED)\n\nif(USE_CLN)\n  set(GPL_LIBS \"${GPL_LIBS} cln\")\n  find_package(CLN 1.2.2 REQUIRED)\n  set(CVC5_USE_CLN_IMP 1)\n  set(CVC5_USE_GMP_IMP 0)\nelse()\n  set(CVC5_USE_CLN_IMP 0)\n  set(CVC5_USE_GMP_IMP 1)\nendif()\n\nif(USE_CRYPTOMINISAT)\n  # CryptoMiniSat requires pthreads support\n  set(THREADS_PREFER_PTHREAD_FLAG ON)\n  find_package(Threads REQUIRED)\n  find_package(CryptoMiniSat 5.11.2 REQUIRED)\n  add_definitions(-DCVC5_USE_CRYPTOMINISAT)\nendif()\n\nif(USE_GLPK)\n  set(GPL_LIBS \"${GPL_LIBS} glpk\")\n  find_package(GLPK REQUIRED)\n  add_definitions(-DCVC5_USE_GLPK)\nendif()\n\nif(USE_KISSAT)\n  find_package(Kissat REQUIRED)\n  add_definitions(-DCVC5_USE_KISSAT)\nendif()\n\n# disable libraries that cannot be used in safe mode\nif(ENABLE_SAFE_MODE)\n  if(USE_POLY)\n    set(USE_POLY OFF)\n    message(WARNING\n      \"LibPoly disabled due to safe mode\")\n  endif()\n  if(USE_COCOA)\n    set(USE_COCOA OFF)\n    message(WARNING\n      \"Cocoa disabled due to safe mode\")\n  endif()\nendif()\n\nif(USE_POLY)\n  find_package(Poly 0.2.1 REQUIRED)\n  add_definitions(-DCVC5_USE_POLY)\n  set(CVC5_USE_POLY_IMP 1)\nelse()\n  set(CVC5_USE_POLY_IMP 0)\nendif()\n\nif(USE_COCOA)\n  set(GPL_LIBS \"${GPL_LIBS} cocoa\")\n  find_package(CoCoA REQUIRED 0.99711)\n  add_definitions(-DCVC5_USE_COCOA)\nendif()\n\nif(USE_EDITLINE)\n  find_package(Editline REQUIRED)\n  set(HAVE_LIBEDITLINE 1)\nendif()\n\n# SymFPU is always needed for the symbolic FP word blaster in the theory solver.\nfind_package(SymFPU REQUIRED)\n\nif(USE_MPFR)\n  find_package(MPFR REQUIRED)\n  add_definitions(-DCVC5_USE_MPFR)\n  set(CVC5_USE_MPFR TRUE)\nelse()\n  set(CVC5_USE_MPFR FALSE)\nendif()\n\nif(GPL_LIBS)\n  if(NOT ENABLE_GPL)\n    message(FATAL_ERROR\n      \"Bad configuration detected: BSD-licensed code only, but also requested \"\n      \"GPLed libraries: ${GPL_LIBS}. (Configure with --gpl to allow GPLed \"\n      \"libraries.)\")\n  endif()\n  set(CVC5_GPL_DEPS 1)\nendif()\n\n#-----------------------------------------------------------------------------#\n# Provide targets to inspect iwyu suggestions\n\ninclude(IWYU)\ninclude(fuzzing-murxla)\n\n#-----------------------------------------------------------------------------#\n\ninclude(ConfigureCvc5)\nif(BUILD_SHARED_LIBS)\n  set(CVC5_STATIC_BUILD OFF)\nelse()\n  set(CVC5_STATIC_BUILD ON)\n  if(NOT CMAKE_SYSTEM_NAME STREQUAL \"Darwin\")\n    cvc5_set_option(STATIC_BINARY ON)\n  endif()\nendif()\n\n# Re-apply EXPORTED_FUNCTIONS after configure checks complete\nif(NOT \"${WASM_EXPORTED_FUNCTIONS_FLAG}\" STREQUAL \"\")\n  string(APPEND CMAKE_EXE_LINKER_FLAGS \" ${WASM_EXPORTED_FUNCTIONS_FLAG}\")"
+        },
+        {
+          "start": 687,
+          "end": 706,
+          "text": "add_subdirectory(src)\n\nif(BUILD_BINDINGS_PYTHON AND NOT BUILD_SHARED_LIBS)\n  message(STATUS \"Python bindings can only be built in a shared build.\")\n  set(BUILD_BINDINGS_PYTHON OFF)\nendif()\nif(BUILD_BINDINGS_PYTHON)\n  set(BUILD_BINDINGS_PYTHON_VERSION ${Python_VERSION})\n  add_subdirectory(src/api/python)\nendif()\n\nif(BUILD_BINDINGS_JAVA)\n  add_subdirectory(src/api/java)\nendif()\n\nif(BUILD_DOCS)\n  add_subdirectory(docs)\nendif()\n\nadd_subdirectory(test)"
+        }
+      ]
+    },
+    "cvc5/cmake/ConfigProduction.cmake": {
+      "bytes": 913,
+      "raw_digest": "sha256:bd9db1280adfb97e48b414dcc4594058c767b05c99e32fa04fc3b4efff9f6374",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/cmake/ConfigProduction.cmake",
+      "excerpts": [
+        {
+          "start": 12,
+          "end": 26,
+          "text": "set(OPTIMIZATION_LEVEL 3)\n# enable_debug_symbols=no\ncvc5_set_option(ENABLE_DEBUG_SYMBOLS OFF)\n# enable_statistics=yes\ncvc5_set_option(ENABLE_STATISTICS ON)\n# enable_assertions=no\ncvc5_set_option(ENABLE_ASSERTIONS OFF)\n# enable_proof=yes\ncvc5_set_option(ENABLE_PROOFS ON)\n# enable_tracing=no\ncvc5_set_option(ENABLE_TRACING OFF)\n# enable_muzzle=no\ncvc5_set_option(ENABLE_MUZZLE OFF)\n# enable_valgrind=no\ncvc5_set_option(ENABLE_UNIT_TESTING OFF)"
+        }
+      ]
+    },
+    "cvc5/cmake/Helpers.cmake": {
+      "bytes": 11732,
+      "raw_digest": "sha256:2e97c0a1119de3312a3db6e319de1c69eaf5275b1ef60606847ff0535b9fe15c",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/cmake/Helpers.cmake",
+      "excerpts": [
+        {
+          "start": 26,
+          "end": 48,
+          "text": "endif()\n\n# Build triplet used when compiling GMP, CLN, and GLPK to ensure that\n# optimizations using very specific CPU instructions are not enabled.\n# This makes the binary more portable.\nset(BUILD_TRIPLET \"${CMAKE_HOST_SYSTEM_PROCESSOR}\")\nif(CMAKE_HOST_SYSTEM_NAME STREQUAL \"Linux\")\n  if(CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL \"x86_64\")\n    set(BUILD_TRIPLET \"x86_64-linux-gnu\")\n  elseif(CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL \"aarch64\")\n    set(BUILD_TRIPLET \"aarch64-linux-gnu\")\n  endif()\nelseif(CMAKE_HOST_SYSTEM_NAME STREQUAL \"Darwin\")\n  if(CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL \"x86_64\")\n    set(BUILD_TRIPLET \"x86_64-apple-darwin\")\n  elseif(CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL \"arm64\")\n    set(BUILD_TRIPLET \"aarch64-apple-darwin\")\n  endif()\nelseif(CMAKE_HOST_SYSTEM_NAME STREQUAL \"Windows\")\n  if(CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL \"x86_64\")\n    set(BUILD_TRIPLET \"x86_64-w64-mingw32\")\n  elseif(CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL \"aarch64\")\n    set(BUILD_TRIPLET \"aarch64-w64-mingw32\")"
+        },
+        {
+          "start": 180,
+          "end": 197,
+          "text": "# cvc5 Boolean options are three-valued to detect if an option was set by the\n# user. The available values are: IGNORE (default), ON, OFF\n# Default options do not override options that were set by the user, i.e.,\n# cvc5_set_option only sets an option if it's value is still IGNORE.\n# This e.g., allows the user to disable proofs for debug builds (where proofs\n# are enabled by default).\nmacro(cvc5_option var description)\n  set(${var} IGNORE CACHE STRING \"${description}\")\n  # Provide drop down menu options in cmake-gui\n  set_property(CACHE ${var} PROPERTY STRINGS IGNORE ON OFF)\nendmacro()\n\n# Only set option if the user did not set an option.\nmacro(cvc5_set_option var value)\n  if(${var} STREQUAL \"IGNORE\")\n    set(${var} ${value})\n  endif()\nendmacro()"
+        },
+        {
+          "start": 277,
+          "end": 313,
+          "text": "# Check if given Python module is installed and raises a FATAL_ERROR error\n# if the module cannot be found.\nfunction(check_python_module module)\n  execute_process(\n    COMMAND\n    ${Python_EXECUTABLE} -c \"import ${module}\"\n    RESULT_VARIABLE\n      RET_MODULE_TEST\n    ERROR_QUIET\n  )\n  set(module_name ${ARGN})\n  if(NOT module_name)\n    set(module_name ${module})\n  endif()\n\n  if(RET_MODULE_TEST)\n    if(ENABLE_AUTO_DOWNLOAD)\n      message(STATUS \"Installing Python module ${module_name}\")\n      execute_process(\n        COMMAND\n        ${Python_EXECUTABLE} -m pip install ${module_name}\n        RESULT_VARIABLE PYTHON_MODULE_INSTALL_CMD_EXIT_CODE\n      )\n      if(PYTHON_MODULE_INSTALL_CMD_EXIT_CODE)\n        message(FATAL_ERROR \"Could not install Python module ${module_name}\")\n      endif()\n    else()\n      message(FATAL_ERROR\n        \"Could not find module ${module_name} for Python \"\n        \"version ${Python_VERSION_MAJOR}.${Python_VERSION_MINOR}. \"\n        \"Make sure to install ${module_name} for this Python version \"\n        \"via \\n`${Python_EXECUTABLE} -m pip install ${module_name}',\\n\"\n        \"or use --auto-download to let us install it for you.\\n\"\n        \"Note: You need to have pip installed for this Python version.\")\n    endif()\n  endif()\nendfunction()"
+        }
+      ]
+    },
+    "cvc5/cmake/ConfigureCvc5.cmake": {
+      "bytes": 3745,
+      "raw_digest": "sha256:6a6e9ac94b419d98214f71b444c32cb3d076e952a37cf0a5dec261f6ac9d7862",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/cmake/ConfigureCvc5.cmake",
+      "excerpts": [
+        {
+          "start": 22,
+          "end": 109,
+          "text": "# error).  So we have to keep both happy.  Probably the same underlying\n# issue as the hash specialization below, but let's check separately\n# for flexibility.\ncheck_cxx_source_compiles(\n  \"\n  #include <stdint.h>\n  void foo(long) {}\n  void foo(int64_t) {}\n  int main() { return 0; }\n  \"\n  CVC5_NEED_INT64_T_OVERLOADS\n)\nif(NOT CVC5_NEED_INT64_T_OVERLOADS)\n  set(CVC5_NEED_INT64_T_OVERLOADS 0)\nendif()\n\n# Check to see if this version/architecture of GNU C++ explicitly\n# instantiates std::hash<uint64_t> or not.  Some do, some don't.\n# See src/util/hash.h.\ncheck_cxx_source_compiles(\n  \"\n  #include <cstdint>\n  #include <functional>\n  namespace std { template<> struct hash<uint64_t> {}; }\n  int main() { return 0; }\n  \"\n  CVC5_NEED_HASH_UINT64_T_OVERLOAD\n)\nif(CVC5_NEED_HASH_UINT64_T_OVERLOAD)\n  add_definitions(-DCVC5_NEED_HASH_UINT64_T)\nendif()\n\ncheck_include_file(unistd.h HAVE_UNISTD_H)\ncheck_include_file(sys/wait.h HAVE_SYS_WAIT_H)\ncheck_include_file_cxx(ext/stdio_filebuf.h HAVE_EXT_STDIO_FILEBUF_H)\n\n# For Windows builds check if clock_gettime is available via -lpthread\n# (pthread_time.h).\nif(CMAKE_SYSTEM_NAME STREQUAL \"Windows\")\n  set(CMAKE_REQUIRED_FLAGS -pthread)\n  check_symbol_exists(clock_gettime \"time.h\" HAVE_CLOCK_GETTIME)\n  unset(CMAKE_REQUIRED_FLAGS)\n  if(HAVE_CLOCK_GETTIME)\n    add_c_cxx_flag(-pthread)\n  endif()\nelse()\n  check_symbol_exists(clock_gettime \"time.h\" HAVE_CLOCK_GETTIME)\n  if(NOT HAVE_CLOCK_GETTIME)\n    unset(HAVE_CLOCK_GETTIME CACHE)\n    check_library_exists(rt clock_gettime \"time.h\" HAVE_CLOCK_GETTIME)\n    find_library(RT_LIBRARIES NAMES rt)\n  endif()\nendif()\ncheck_symbol_exists(ffs \"strings.h\" HAVE_FFS)\ncheck_symbol_exists(optreset \"getopt.h\" HAVE_DECL_OPTRESET)\ncheck_symbol_exists(sigaltstack \"signal.h\" HAVE_SIGALTSTACK)\ncheck_symbol_exists(strerror_r \"string.h\" HAVE_STRERROR_R)\ncheck_symbol_exists(strtok_r \"string.h\" HAVE_STRTOK_R)\ncheck_symbol_exists(setitimer \"sys/time.h\" HAVE_SETITIMER)\n\n# on non-POSIX systems, time limit is implemented with threads\nif(NOT HAVE_SETITIMER)\n  find_package(Threads REQUIRED)\n  set(CMAKE_EXE_LINKER_FLAGS \"${CMAKE_EXE_LINKER_FLAGS} ${CMAKE_THREAD_LIBS_INIT}\")\nendif()\n\n# Determine if we have the POSIX (int) or GNU (char *) variant of strerror_r.\ncheck_c_source_compiles(\n  \"\n  #include <string.h>\n  int main(void)\n  {\n    char buf[1];\n    char c = *strerror_r(0, buf, 0);\n    return 0;\n  }\n  \"\n  STRERROR_R_CHAR_P\n)\n\n# Defined if using the CLN multi-precision arithmetic library.\nset(CVC5_CLN_IMP ${CVC5_USE_CLN_IMP})\n# Defined if using the GMP multi-precision arithmetic library.\nset(CVC5_GMP_IMP ${CVC5_USE_GMP_IMP})\n# Defined if using the libpoly polynomial library.\nset(CVC5_POLY_IMP ${CVC5_USE_POLY_IMP})\n# Define the full name of this package.\nset(CVC5_PACKAGE_NAME \"${PROJECT_NAME}\")"
+        }
+      ]
+    },
+    "cvc5/cmake/deps-helper.cmake": {
+      "bytes": 5989,
+      "raw_digest": "sha256:36fd3712135e710bc4725118b637ae21d23dcc3b505f8ac6d83bab6612b40d80",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/cmake/deps-helper.cmake",
+      "excerpts": [
+        {
+          "start": 16,
+          "end": 64,
+          "text": "set(DEPS_PREFIX \"${PROJECT_BINARY_DIR}/deps\")\n# base path to installed dependencies\nset(DEPS_BASE \"${PROJECT_BINARY_DIR}/deps\")\n# CMake wants directories specified via INTERFACE_SYSTEM_INCLUDE_DIRECTORIES\n# (and similar) to exist when target property is set.\nfile(MAKE_DIRECTORY \"${DEPS_BASE}/include/\")\n\nset(COMMON_EP_CONFIG\n    PREFIX ${DEPS_PREFIX}\n    LOG_DOWNLOAD ON\n    LOG_UPDATE ON\n    LOG_CONFIGURE ON\n    LOG_BUILD ON\n    LOG_INSTALL ON\n)\nif(CMAKE_VERSION VERSION_GREATER_EQUAL \"3.14\")\n    set(COMMON_EP_CONFIG ${COMMON_EP_CONFIG}\n        LOG_PATCH ON\n        LOG_MERGED_STDOUTERR ON\n        LOG_OUTPUT_ON_FAILURE ON\n    )\nendif()\n\n# On Windows, DLL libraries are runtime artifacts\nif(BUILD_SHARED_LIBS AND WIN32)\n  set(LIB_BUILD_TYPE BIN)\nelse()\n  set(LIB_BUILD_TYPE LIB)\nendif()\n\n# On Windows, we need to have a shell interpreter to call 'configure'\nif(CMAKE_SYSTEM_NAME STREQUAL \"Windows\")\n    find_program (SHELL \"sh\" REQUIRED)\n    message(STATUS \"Found shell interpreter: ${SHELL}\")\nelse()\n    set(SHELL \"\")\nendif()\n\nmacro(force_static_library)\n    if (WIN32)\n        set(CMAKE_FIND_LIBRARY_SUFFIXES .lib .a)\n    else()\n        set(CMAKE_FIND_LIBRARY_SUFFIXES .a)\n    endif()\nendmacro(force_static_library)\n\nmacro(reset_force_static_library)\n    if (WIN32)\n        set(CMAKE_FIND_LIBRARY_SUFFIXES .dll .lib)"
+        },
+        {
+          "start": 92,
+          "end": 105,
+          "text": "macro(check_ep_downloaded name)\n  if(EXISTS \"${DEPS_PREFIX}/src/${name}\")\n    set(${name}_DOWNLOADED TRUE)\n  else()\n    set(${name}_DOWNLOADED FALSE)\n  endif()\nendmacro()\n\nmacro(check_system_version name)\n    # find_package sets this variable when called with a version\n    # https://cmake.org/cmake/help/latest/command/find_package.html#version-selection\n    # we ignore the EXACT option and version ranges here\n    if (${name}_FIND_VERSION)\n        if(${name}_VERSION VERSION_LESS ${name}_FIND_VERSION)"
+        }
+      ]
+    },
+    "cvc5/cmake/FindGMP.cmake": {
+      "bytes": 6999,
+      "raw_digest": "sha256:9ab6c0270e1108eca84907f1b8eae7c7c0aab60c1f5e877e29fb8a4397fa5d68",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/cmake/FindGMP.cmake",
+      "excerpts": [
+        {
+          "start": 104,
+          "end": 166,
+          "text": "\n  # Since makeinfo just builds the documentation for GMP,\n  # it is possible to get around this issue by just disabling it:\n  set(CONFIGURE_ENV ${CONFIGURE_ENV} env \"MAKEINFO=true\")\n\n  if(CMAKE_CROSSCOMPILING OR CMAKE_CROSSCOMPILING_MACOS)\n    set(CONFIGURE_OPTS\n      --host=${TOOLCHAIN_PREFIX}\n      --build=${CMAKE_HOST_SYSTEM_PROCESSOR})\n\n    set(CONFIGURE_ENV ${CONFIGURE_ENV} ${CMAKE_COMMAND} -E\n      env \"CC_FOR_BUILD=cc\")\n    if (CMAKE_CROSSCOMPILING_MACOS)\n      set(CONFIGURE_ENV\n        ${CONFIGURE_ENV}\n        env \"LDFLAGS=-arch ${CMAKE_OSX_ARCHITECTURES}\")\n      set(GMP_CFLAGS \"${GMP_CFLAGS} --target=${TOOLCHAIN_PREFIX}\")\n      set(GMP_CXXFLAGS \"${GMP_CXXFLAGS} --target=${TOOLCHAIN_PREFIX}\")\n    endif()\n  else()\n    set(CONFIGURE_OPTS --build=${BUILD_TRIPLET}) # Defined in Helpers\n  endif()\n  set(CONFIGURE_ENV ${CONFIGURE_ENV} env \"CXXFLAGS=${GMP_CXXFLAGS}\" env \"CFLAGS=${GMP_CFLAGS}\")\n\n  # `CC_FOR_BUILD`, `--host`, and `--build` are passed to `configure` to ensure\n  # that cross-compilation works (as suggested in the GMP documentation).\n  # Without the `--build` flag, `configure` may fail for cross-compilation\n  # builds for Windows if Wine is installed.\n  ExternalProject_Add(\n    GMP-EP\n    ${COMMON_EP_CONFIG}\n    URL https://github.com/cvc5/cvc5-deps/blob/main/gmp-${GMP_VERSION}.tar.bz2?raw=true\n    URL_HASH SHA256=ac28211a7cfb609bae2e2c8d6058d66c8fe96434f740cf6fe2e47b000d1c20cb\n    BUILD_IN_SOURCE ON\n    CONFIGURE_COMMAND\n      ${CONFIGURE_ENV}\n          ${CONFIGURE_CMD_WRAPPER} ${SHELL} <SOURCE_DIR>/configure\n          ${LINK_OPTS}\n          --prefix=<INSTALL_DIR>\n          --with-pic\n          --enable-cxx\n          ${CONFIGURE_OPTS}\n    BUILD_BYPRODUCTS ${GMP_LIBRARIES}\n  )\nendif()\n\nset(GMP_FOUND TRUE)\n\n\nif(BUILD_SHARED_LIBS)\n  add_library(GMP SHARED IMPORTED GLOBAL)\n  if(CMAKE_SYSTEM_NAME STREQUAL \"Windows\")\n    set_target_properties(GMP PROPERTIES IMPORTED_IMPLIB \"${GMP_LIBRARIES}\")\n  endif()\nelse()\n  add_library(GMP STATIC IMPORTED GLOBAL)\nendif()\nset_target_properties(GMP PROPERTIES\n  IMPORTED_LOCATION \"${GMP_LIBRARIES}\"\n  INTERFACE_SYSTEM_INCLUDE_DIRECTORIES \"${GMP_INCLUDE_DIR}\"\n)\n\nmark_as_advanced(GMP_FOUND)"
+        },
+        {
+          "start": 175,
+          "end": 196,
+          "text": "  add_dependencies(GMP GMP-EP)\n  # Static builds install the GMP static libraries.\n  # These libraries are required to compile a program that\n  # uses the cvc5 static library.\n  # On Windows, this installs the import libraries (LIB) and\n  # the DLL libraries (BIN)\n  install(\n    DIRECTORY ${DEPS_BASE}/lib/\n    TYPE LIB\n    FILES_MATCHING PATTERN libgmp* PATTERN gmp*.pc\n  )\n  if(BUILD_SHARED_LIBS AND WIN32)\n    install(\n      DIRECTORY ${DEPS_BASE}/${CMAKE_INSTALL_BINDIR}/\n      TYPE BIN\n      FILES_MATCHING PATTERN libgmp*\n    )\n  endif()\n  if(NOT SKIP_SET_RPATH AND BUILD_SHARED_LIBS AND APPLE)\n    install(CODE \"\n      file(GLOB GMP_DYLIBS \\\"\\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/libgmp*.dylib\\\")\n      foreach(GMP_DYLIB \\${GMP_DYLIBS})"
+        }
+      ]
+    },
+    "cvc5/cmake/FindCaDiCaL.cmake": {
+      "bytes": 6703,
+      "raw_digest": "sha256:af981c4c5a5fe51ce542b1f3542a438d052e74c640fb7a2189dedf5aee5d92bf",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/cmake/FindCaDiCaL.cmake",
+      "excerpts": [
+        {
+          "start": 99,
+          "end": 165,
+          "text": "  check_symbol_exists(\"getc_unlocked\" \"cstdio\" HAVE_UNLOCKED_IO)\n  if(NOT HAVE_UNLOCKED_IO)\n    string(APPEND CaDiCaL_CXXFLAGS \" -DNUNLOCKED\")\n  endif()\n  # check for closefrom\n  check_symbol_exists(\"closefrom\" \"fcntl.h\" HAVE_CLOSEFROM)\n  if(NOT HAVE_CLOSEFROM)\n    string(APPEND CaDiCaL_CXXFLAGS \" -DNCLOSEFROM\")\n  endif()\n\n  # On macOS, we have to set `-isysroot` to make sure that include headers are\n  # found because they are not necessarily installed at /usr/include anymore.\n  if(CMAKE_OSX_SYSROOT)\n    string(APPEND CaDiCaL_CXXFLAGS \" ${CMAKE_CXX_SYSROOT_FLAG} ${CMAKE_OSX_SYSROOT}\")\n  endif()\n\n  if(\"${CMAKE_GENERATOR}\" STREQUAL \"Unix Makefiles\")\n    # use $(MAKE) instead of \"make\" to allow for parallel builds\n    set(make_cmd \"$(MAKE)\")\n  else()\n    # $(MAKE) does not work with ninja\n    set(make_cmd \"make\")\n  endif()\n\n  set(USE_EMAR \"\")\n  if(NOT(WASM STREQUAL \"OFF\"))\n    set(USE_EMAR  \"-e s,ar rc,emar rc,\")\n  endif()\n\n  set(CaDiCaL_SOURCE_DIR <SOURCE_DIR>)\n  ExternalProject_Add(\n    CaDiCaL-EP\n    ${COMMON_EP_CONFIG}\n    BUILD_IN_SOURCE ON\n    URL https://github.com/arminbiere/cadical/archive/${CaDiCaL_VERSION}.tar.gz\n    URL_HASH SHA256=${CaDiCaL_CHECKSUM}\n    CONFIGURE_COMMAND mkdir -p <SOURCE_DIR>/build\n    # avoid configure script, prepare the makefile manually\n    COMMAND ${CMAKE_COMMAND} -E copy <SOURCE_DIR>/makefile.in\n            <SOURCE_DIR>/build/makefile\n    COMMAND\n      sed -i.orig -e \"s,@CXX@,${CMAKE_CXX_COMPILER},\" -e\n      \"s,@CXXFLAGS@,${CaDiCaL_CXXFLAGS},\" -e\n      \"s,@ROOT@,${CaDiCaL_SOURCE_DIR},\" -e \"s,@CONTRIB@,no,\" ${USE_EMAR}\n      <SOURCE_DIR>/build/makefile\n    BUILD_COMMAND ${make_cmd} -C <SOURCE_DIR>/build libcadical.a\n    INSTALL_COMMAND ${CMAKE_COMMAND} -E copy <SOURCE_DIR>/build/libcadical.a\n                    <INSTALL_DIR>/lib/libcadical.a\n    COMMAND ${CMAKE_COMMAND} -E copy <SOURCE_DIR>/src/cadical.hpp\n            <INSTALL_DIR>/include/cadical/cadical.hpp\n    COMMAND ${CMAKE_COMMAND} -E copy <SOURCE_DIR>/src/tracer.hpp\n            <INSTALL_DIR>/include/cadical/tracer.hpp\n    BUILD_BYPRODUCTS <INSTALL_DIR>/lib/libcadical.a\n  )\n\n  set(CaDiCaL_INCLUDE_DIR \"${DEPS_BASE}/include/\")\n  set(CaDiCaL_LIBRARIES \"${DEPS_BASE}/lib/libcadical.a\")\nendif()\n\nset(CaDiCaL_FOUND TRUE)\n\nadd_library(CaDiCaL STATIC IMPORTED GLOBAL)\nset_target_properties(\n  CaDiCaL PROPERTIES IMPORTED_LOCATION \"${CaDiCaL_LIBRARIES}\"\n)\nset_target_properties(\n  CaDiCaL PROPERTIES INTERFACE_SYSTEM_INCLUDE_DIRECTORIES \"${CaDiCaL_INCLUDE_DIR}\""
+        }
+      ]
+    },
+    "cvc5/cmake/FindPoly.cmake": {
+      "bytes": 9922,
+      "raw_digest": "sha256:848838f6e40eb26c1228fe263599ebe420b8f0b63a2ef121e581faca2cbc7599",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/cmake/FindPoly.cmake",
+      "excerpts": [
+        {
+          "start": 57,
+          "end": 85,
+          "text": "    endif()\n    set(POLY_PATCH_CMD\n      ${POLY_PATCH_KWD}\n        patch -p1 -d <SOURCE_DIR>\n        -i ${CMAKE_CURRENT_LIST_DIR}/deps-utils/poly-global-ctx.patch\n    )\n    set(POLY_PATCH_KWD COMMAND)\n  endif()\n\n  check_if_cross_compiling(CCWIN \"Windows\" \"\")\n  if(CCWIN)\n    set(POLY_PATCH_CMD\n      ${POLY_PATCH_KWD}\n        ${PROJECT_SOURCE_DIR}/cmake/deps-utils/Poly-windows-patch.sh <SOURCE_DIR>\n    )\n    set(POLY_PATCH_KWD COMMAND)\n  endif()\n\n  # On Windows, CMake's default install action places DLLs into the runtime\n  # path (/bin) after doing the build with 'ExternalProject_Add'\n  if(CMAKE_SYSTEM_NAME STREQUAL \"Windows\")\n    set(BINARY_LIBRARY_DEST \"bin\")\n  else()\n    set(BINARY_LIBRARY_DEST \"lib\")\n  endif()\n\n  get_target_property(GMP_INCLUDE_DIR GMP INTERFACE_SYSTEM_INCLUDE_DIRECTORIES)\n  get_target_property(GMP_LIBRARY GMP IMPORTED_LOCATION)\n  get_filename_component(GMP_LIB_PATH \"${GMP_LIBRARY}\" DIRECTORY)"
+        },
+        {
+          "start": 140,
+          "end": 230,
+          "text": "        ${CMAKE_COMMAND} -E copy\n          src/libpicpoly${CMAKE_STATIC_LIBRARY_SUFFIX}\n          <INSTALL_DIR>/lib/libpicpoly${CMAKE_STATIC_LIBRARY_SUFFIX}\n      COMMAND\n        ${CMAKE_COMMAND} -E copy\n          src/libpicpolyxx${CMAKE_STATIC_LIBRARY_SUFFIX}\n          <INSTALL_DIR>/lib/libpicpolyxx${CMAKE_STATIC_LIBRARY_SUFFIX}\n    )\n\n    # We only want to install the headers and the position-independent version\n    # of the static libraries, so remove the installation targets for the other\n    # versions of LibPoly\n    set(POLY_PATCH_CMD ${POLY_PATCH_CMD}\n      ${POLY_PATCH_KWD}\n        sed -ri.orig\n          \"/TARGETS (poly|polyxx|static_poly|static_polyxx) /d\"\n          <SOURCE_DIR>/src/CMakeLists.txt\n    )\n\n    set(POLY_BYPRODUCTS\n      <INSTALL_DIR>/lib/libpicpoly${CMAKE_STATIC_LIBRARY_SUFFIX}\n      <INSTALL_DIR>/lib/libpicpolyxx${CMAKE_STATIC_LIBRARY_SUFFIX}\n    )\n    set(Poly_LIBRARIES\n      \"${DEPS_BASE}/lib/libpicpoly${CMAKE_STATIC_LIBRARY_SUFFIX}\")\n    set(PolyXX_LIBRARIES\n      \"${DEPS_BASE}/lib/libpicpolyxx${CMAKE_STATIC_LIBRARY_SUFFIX}\")\n  endif()\n\n  # Disable a warning triggered by compilers (Emscripten, Apple Clang, etc.)\n  # due to deprecated literal operator syntax in a GMP header used by LibPoly.\n  set(POLY_CXX_FLAGS \"\")\n  check_cxx_compiler_flag(-Wno-error=deprecated-literal-operator HAVE_CXX_FLAGWno_error_deprecated_literal_operator)\n  if(HAVE_CXX_FLAGWno_error_deprecated_literal_operator)\n    set(POLY_CXX_FLAGS -DCMAKE_CXX_FLAGS=-Wno-error=deprecated-literal-operator)\n  endif()\n  \n  # We pass the full path of GMP to LibPoly, s.t. we can ensure that LibPoly is\n  # able to find the correct version of GMP if we built it locally. This is\n  # primarily important for cross-compiling cvc5, because LibPoly's search\n  # paths make it impossible to find the locally built GMP library otherwise.\n  ExternalProject_Add(\n    Poly-EP\n    ${COMMON_EP_CONFIG}\n    URL https://github.com/SRI-CSL/libpoly/archive/refs/tags/v${Poly_VERSION}.tar.gz\n    URL_HASH SHA256=f9920afc876f998633348b9cbfcf180757ada48cc872040256c60ad0707b5a0f\n    ${POLY_PATCH_CMD}\n    CMAKE_ARGS -DCMAKE_BUILD_TYPE=Release\n               -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>\n               -DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}\n               -DLIBPOLY_BUILD_PYTHON_API=OFF\n               -DLIBPOLY_BUILD_STATIC=${POLY_BUILD_STATIC}\n               -DLIBPOLY_BUILD_STATIC_PIC=${POLY_BUILD_STATIC}\n               -DGMP_INCLUDE_DIR=${GMP_INCLUDE_DIR}\n               -DGMP_LIBRARY=${GMP_LIBRARIES}\n               -DCMAKE_SKIP_INSTALL_ALL_DEPENDENCY=TRUE\n               -DBUILD_TESTING=OFF\n               ${POLY_CXX_FLAGS}\n    BUILD_COMMAND ${CMAKE_MAKE_PROGRAM} ${POLY_TARGETS}\n    ${POLY_INSTALL_CMD}\n    BUILD_BYPRODUCTS ${POLY_BYPRODUCTS}\n  )\n  ExternalProject_Add_Step(\n    Poly-EP cleanup\n    DEPENDEES install\n    COMMAND ${CMAKE_COMMAND} -E remove_directory <BINARY_DIR>/test/\n  )\n  add_dependencies(Poly-EP GMP)\nendif()\n\nset(Poly_FOUND TRUE)\n\n\nif(BUILD_SHARED_LIBS)\n  add_library(Poly SHARED IMPORTED GLOBAL)\n  add_library(Polyxx SHARED IMPORTED GLOBAL)\n  if(CMAKE_SYSTEM_NAME STREQUAL \"Windows\")\n    set_target_properties(Poly PROPERTIES IMPORTED_IMPLIB \"${Poly_LIBRARIES}\")\n    set_target_properties(Polyxx PROPERTIES IMPORTED_IMPLIB \"${PolyXX_LIBRARIES}\")\n  endif()\nelse()\n  add_library(Poly STATIC IMPORTED GLOBAL)\n  add_library(Polyxx STATIC IMPORTED GLOBAL)\nendif()\n\nset_target_properties(Poly PROPERTIES\n  IMPORTED_LOCATION \"${Poly_LIBRARIES}\"\n  INTERFACE_SYSTEM_INCLUDE_DIRECTORIES \"${Poly_INCLUDE_DIR}\"\n)\ntarget_link_libraries(Poly INTERFACE GMP)\nset_target_properties(Polyxx PROPERTIES"
+        }
+      ]
+    },
+    "cvc5/cmake/FindEditline.cmake": {
+      "bytes": 1381,
+      "raw_digest": "sha256:613385d5bd7a8aa6f1d550c09a38bcb88839d345cfc65dfa4bfefa7a07f5ed7a",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/cmake/FindEditline.cmake",
+      "excerpts": []
+    },
+    "cvc5/cmake/FindSymFPU.cmake": {
+      "bytes": 2112,
+      "raw_digest": "sha256:5357330b1414e9e2076dfb9b6a0d83030f4dd018d9db430a63b76ae48cd43277",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/cmake/FindSymFPU.cmake",
+      "excerpts": [
+        {
+          "start": 35,
+          "end": 58,
+          "text": "  ExternalProject_Add(\n    SymFPU-EP\n    ${COMMON_EP_CONFIG}\n    URL https://github.com/cvc5/symfpu/archive/${SymFPU_COMMIT}.tar.gz\n    URL_HASH SHA256=${SymFPU_CHECKSUM}\n    CONFIGURE_COMMAND \"\"\n    BUILD_COMMAND \"\"\n    INSTALL_COMMAND ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/core\n                    <INSTALL_DIR>/include/symfpu/core\n    COMMAND ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/utils\n            <INSTALL_DIR>/include/symfpu/utils\n  )\n\n  set(SymFPU_INCLUDE_DIR \"${DEPS_BASE}/include/\")\nendif()\n\nset(SymFPU_FOUND TRUE)\n\nadd_library(SymFPU INTERFACE IMPORTED GLOBAL)\nset_target_properties(\n  SymFPU PROPERTIES INTERFACE_SYSTEM_INCLUDE_DIRECTORIES \"${SymFPU_INCLUDE_DIR}\"\n)\n\nmark_as_advanced(SymFPU_FOUND)"
+        }
+      ]
+    },
+    "cvc5/cmake/version.cmake": {
+      "bytes": 5041,
+      "raw_digest": "sha256:9dc7a72dcfd605006ab6ad69d0b3186ebe294b33667dc6015ad9737e8da4b337",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/cmake/version.cmake",
+      "excerpts": [
+        {
+          "start": 24,
+          "end": 34,
+          "text": "  # add target to update versioninfo.cpp at build time\n  add_custom_target(gen-versioninfo\n    COMMAND ${CMAKE_COMMAND}\n      -DPROJECT_SOURCE_DIR=${PROJECT_SOURCE_DIR}\n      -DPROJECT_BINARY_DIR=${PROJECT_BINARY_DIR}\n      -P ${PROJECT_SOURCE_DIR}/cmake/version.cmake\n  )\nendif()\n\n# include basic version information\ninclude(version-base)"
+        },
+        {
+          "start": 71,
+          "end": 129,
+          "text": "# now use git to retrieve additional version information\nfind_package(Git)\nif(GIT_FOUND)\n  # git is available\n\n  # Call git. If result is 0 and prints \"true\", it is a git repository\n  execute_process(\n      COMMAND ${GIT_EXECUTABLE} -C ${PROJECT_SOURCE_DIR} rev-parse --is-inside-work-tree\n      RESULT_VARIABLE GIT_RESULT\n      OUTPUT_VARIABLE GIT_INSIDE_WORK_TREE\n      OUTPUT_STRIP_TRAILING_WHITESPACE\n  )\n\n  if(GIT_RESULT EQUAL 0 AND GIT_INSIDE_WORK_TREE STREQUAL \"true\")\n    # it is a git working copy\n\n    set(GIT_BUILD \"true\")\n    # get current git branch\n    execute_process(\n        COMMAND ${GIT_EXECUTABLE} -C ${PROJECT_SOURCE_DIR} rev-parse --abbrev-ref HEAD\n        RESULT_VARIABLE GIT_RESULT\n        OUTPUT_VARIABLE GIT_BRANCH\n        OUTPUT_STRIP_TRAILING_WHITESPACE\n    )\n    # get current git commit\n    execute_process(\n        COMMAND ${GIT_EXECUTABLE} -C ${PROJECT_SOURCE_DIR} rev-parse --short HEAD\n        RESULT_VARIABLE GIT_RESULT\n        OUTPUT_VARIABLE GIT_COMMIT\n        OUTPUT_STRIP_TRAILING_WHITESPACE\n    )\n\n    if(CVC5_IS_RELEASE STREQUAL \"false\")\n      set(CVC5_FULL_VERSION \"${CVC5_FULL_VERSION}+${GIT_BRANCH}@${GIT_COMMIT}\")\n      # A local version id MUST start with + and contain only ASCII letters, digits, and periods.\n      set(CVC5_WHEEL_VERSION \"${CVC5_WHEEL_VERSION}+${GIT_COMMIT}\")\n    endif()\n\n    # result is != 0 if worktree is dirty\n    # note: git diff HEAD shows both staged and unstaged changes.\n    execute_process(\n      COMMAND ${GIT_EXECUTABLE} -C ${PROJECT_SOURCE_DIR} diff-index --quiet HEAD\n      RESULT_VARIABLE GIT_RESULT\n    )\n    if(GIT_RESULT EQUAL 0)\n      set(GIT_DIRTY_MSG \"\")\n    else()\n      set(GIT_DIRTY_MSG \" with local modifications\")\n      set(CVC5_VERSION \"${CVC5_VERSION}-modified\")\n      set(CVC5_FULL_VERSION \"${CVC5_FULL_VERSION}-modified\")\n    endif()\n\n    set(CVC5_GIT_INFO \"git ${GIT_COMMIT} on branch ${GIT_BRANCH}${GIT_DIRTY_MSG}\")\n  endif()\nendif()\n\n# actually configure versioninfo.cpp\nconfigure_file(\n    ${PROJECT_SOURCE_DIR}/src/base/versioninfo.cpp.in ${PROJECT_BINARY_DIR}/src/base/versioninfo.cpp)"
+        }
+      ]
+    },
+    "cvc5/cmake/version-base.cmake": {
+      "bytes": 697,
+      "raw_digest": "sha256:16b2b482d753a3184eb72cd1cb949171ffe17cf882ef675b985596ced545a23b",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/cmake/version-base.cmake",
+      "excerpts": [
+        {
+          "start": 1,
+          "end": 18,
+          "text": "# These are updated when making a release\nset(CVC5_LAST_RELEASE \"1.3.4\")\nset(CVC5_IS_RELEASE \"true\")\n\n# These are used in other places in cmake\n# If possible, they are updated by version.cmake\nset(GIT_BUILD \"false\")\nset(CVC5_VERSION \"${CVC5_LAST_RELEASE}\")\nset(CVC5_VERSION_NUMBER \"${CVC5_LAST_RELEASE}\")\nset(CVC5_FULL_VERSION \"${CVC5_LAST_RELEASE}\")\nset(CVC5_WHEEL_VERSION \"${CVC5_LAST_RELEASE}\")\nset(CVC5_MAVEN_VERSION \"${CVC5_LAST_RELEASE}\")\nset(CVC5_GIT_INFO \"\")\n\n# Shared library versioning: extract and use the major version.\n# This assumes the cvc5 major version is incremented whenever\n# API/ABI compatibility is broken.\nstring(REGEX MATCH \"^[0-9]+\" CVC5_SOVERSION \"${CVC5_LAST_RELEASE}\")"
+        }
+      ]
+    },
+    "cvc5/cmake/IWYU.cmake": {
+      "bytes": 1941,
+      "raw_digest": "sha256:9d12265b23cf1a104a5cabc4dc4e4a9de7b8d20b48e1a239a3919ec406524758",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/cmake/IWYU.cmake",
+      "excerpts": [
+        {
+          "start": 16,
+          "end": 34,
+          "text": "\nif(IWYU_PATH)\n    # iwyu is available\n    message(STATUS \"Found IWYU: ${IWYU_PATH}\")\n\n    # add a target to inspect number of times headers are included.\n    add_custom_target(iwyu-list-includes\n        COMMAND grep -hor \"\\\"#include .*\\\"\"  ${PROJECT_SOURCE_DIR}/src | sort | uniq -c | sort -n\n    )\n\n    # find the standard library directory\n    find_program(CLANG_PATH clang REQUIRED)\n    execute_process(COMMAND ${CLANG_PATH} -print-resource-dir\n        OUTPUT_VARIABLE LLVM_INCLUDE_DIR\n        OUTPUT_STRIP_TRAILING_WHITESPACE\n    )\n    if(LLVM_INCLUDE_DIR)\n        set(LLVM_INCLUDE_DIR \"-I${LLVM_INCLUDE_DIR}/include\")\n    endif()"
+        }
+      ]
+    },
+    "cvc5/cmake/fuzzing-murxla.cmake": {
+      "bytes": 1749,
+      "raw_digest": "sha256:dfa996575ea4f05a21e6d4433a20e9ffc49ee8b381253794ace7d9ae461a49c3",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/cmake/fuzzing-murxla.cmake",
+      "excerpts": [
+        {
+          "start": 16,
+          "end": 48,
+          "text": "set(Murxla_COMMIT \"9ba2583\")\n\nadd_custom_target(install-for-murxla\n  COMMAND DESTDIR=murxla-install ${CMAKE_MAKE_PROGRAM} install\n  DEPENDS cvc5-bin\n)\n\nExternalProject_Add(\n  Murxla-EP\n  EXCLUDE_FROM_ALL ON\n  ${COMMON_EP_CONFIG}\n  URL https://github.com/murxla/murxla/archive/${Murxla_COMMIT}.tar.gz\n  URL_HASH SHA256=b3ae1042ff9887d91db1eee990c32be5cbebe809e0350f8b3b3e334a4c6bd0d9\n  SOURCE_DIR ${PROJECT_BINARY_DIR}/murxla\n  CMAKE_ARGS\n    -DCMAKE_PREFIX_PATH=${PROJECT_BINARY_DIR}/murxla-install/usr/local/\n    -DENABLE_BITWUZLA=OFF\n    -DENABLE_BOOLECTOR=OFF\n    -DENABLE_YICES=OFF\n  INSTALL_COMMAND\n    ${CMAKE_COMMAND} -E copy <BINARY_DIR>/bin/murxla <INSTALL_DIR>/bin/murxla\n  DEPENDS install-for-murxla\n)\nExternalProject_Get_Property(Murxla-EP BINARY_DIR)\nset(MURXLA_BINARY \"deps/bin/murxla\")\n\nadd_custom_target(fuzz-murxla\n  COMMAND echo \"\"\n  COMMAND echo \"Run Murxla as follows:\"\n  COMMAND echo \"  LD_LIBRARY_PATH=${PROJECT_BINARY_DIR}/murxla-install/usr/local/lib/ ${MURXLA_BINARY} -t 1 -d --cvc5\"\n  COMMAND echo \"Convert traces to SMT-LIB as follows:\"\n  COMMAND echo \"  LD_LIBRARY_PATH=${PROJECT_BINARY_DIR}/murxla-install/usr/local/lib/ ${MURXLA_BINARY} --smt2 -u \\\\<filename\\\\>\"\n  DEPENDS Murxla-EP"
+        }
+      ]
+    },
+    "cvc5/src/CMakeLists.txt": {
+      "bytes": 59181,
+      "raw_digest": "sha256:1b7ed5cd81aa7e19894089444236618502d443d4e72b7ee65107ef5d5a1ac32b",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/CMakeLists.txt",
+      "excerpts": [
+        {
+          "start": 1351,
+          "end": 1353,
+          "text": "if (Python_VERSION VERSION_LESS \"3.11.0\")\n  check_python_module(\"tomli\")\nendif()"
+        },
+        {
+          "start": 1410,
+          "end": 1437,
+          "text": "add_custom_command(\n  OUTPUT\n    options/options.stamp\n  COMMAND\n    ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/options\n  COMMAND\n    ${Python_EXECUTABLE}\n    ${CMAKE_CURRENT_LIST_DIR}/options/mkoptions.py\n    ${CMAKE_CURRENT_LIST_DIR}\n    ${PROJECT_BINARY_DIR}\n    ${CMAKE_CURRENT_BINARY_DIR}\n    ${abs_toml_files}\n  BYPRODUCTS\n    ${options_gen_cpp_files} ${options_gen_h_files} ${options_gen_doc_files}\n  DEPENDS\n    options/mkoptions.py\n    ${options_toml_files}\n    main/options_template.cpp\n    options/io_utils_template.h\n    options/io_utils_template.cpp\n    options/module_template.h\n    options/module_template.cpp\n    options/options_public_template.cpp\n    options/options_template.h\n    options/options_template.cpp\n)\n\nadd_custom_target(gen-options DEPENDS options/options.stamp)"
+        },
+        {
+          "start": 1502,
+          "end": 1510,
+          "text": "add_library(cvc5-obj OBJECT ${LIBCVC5_SRCS} ${LIBCVC5_GEN_SRCS})\ntarget_compile_definitions(cvc5-obj PRIVATE -D__BUILDING_CVC5LIB -Dcvc5_obj_EXPORTS)\nset_target_properties(cvc5-obj PROPERTIES POSITION_INDEPENDENT_CODE ON)\n# add_dependencies() is necessary for cmake versions before 3.21\nadd_dependencies(cvc5-obj cvc5base cvc5context)\n# Add libcvc5 dependencies for generated sources.\nadd_dependencies(cvc5-obj gen-expr gen-versioninfo gen-options gen-rewrites gen-tags gen-theory)\n\nadd_library(cvc5 $<TARGET_OBJECTS:cvc5-obj> $<TARGET_OBJECTS:cvc5base> $<TARGET_OBJECTS:cvc5context>)"
+        },
+        {
+          "start": 1582,
+          "end": 1610,
+          "text": "if(USE_POLY)\n  add_dependencies(cvc5-obj Polyxx)\n  target_include_directories(cvc5-obj SYSTEM PRIVATE ${Poly_INCLUDE_DIR})\n  if(BUILD_SHARED_LIBS)\n    target_link_libraries(cvc5 PRIVATE $<BUILD_INTERFACE:Poly> $<INSTALL_INTERFACE:picpoly>)\n    target_link_libraries(cvc5 PRIVATE $<BUILD_INTERFACE:Polyxx> $<INSTALL_INTERFACE:picpolyxx>)\n  else()\n    target_link_libraries(cvc5 PUBLIC $<BUILD_INTERFACE:Poly> $<INSTALL_INTERFACE:picpoly>)\n    target_link_libraries(cvc5 PUBLIC $<BUILD_INTERFACE:Polyxx> $<INSTALL_INTERFACE:picpolyxx>)\n  endif()\nendif()\nif(USE_COCOA)\n  add_dependencies(cvc5-obj CoCoA)\n  target_include_directories(cvc5-obj SYSTEM PRIVATE ${CoCoA_INCLUDE_DIR})\n  target_link_libraries(cvc5 PRIVATE $<BUILD_INTERFACE:CoCoA> $<INSTALL_INTERFACE:cocoa>)\nendif()\n\nadd_dependencies(cvc5-obj SymFPU)\ntarget_include_directories(cvc5-obj SYSTEM PRIVATE ${SymFPU_INCLUDE_DIR})\n\n# GMP has to be included at the end because of linker ordering issues when \n# generating a static library.\nadd_dependencies(cvc5-obj GMP)\ntarget_include_directories(cvc5-obj PRIVATE ${GMP_INCLUDE_DIR})\nif(BUILD_SHARED_LIBS)\n  target_link_libraries(cvc5 PRIVATE $<BUILD_INTERFACE:GMP> $<INSTALL_INTERFACE:gmp>)\nelse()\n  target_link_libraries(cvc5 PUBLIC $<BUILD_INTERFACE:GMP> $<INSTALL_INTERFACE:gmp>)\nendif()"
+        }
+      ]
+    },
+    "cvc5/src/main/CMakeLists.txt": {
+      "bytes": 3872,
+      "raw_digest": "sha256:b2229776d664e69841fe97df976ddf0faa97f245baec63e104608dc3e6cdf81e",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/main/CMakeLists.txt",
+      "excerpts": [
+        {
+          "start": 36,
+          "end": 57,
+          "text": "add_library(main OBJECT ${libmain_src_files} ${libmain_gen_src_files})\ntarget_compile_definitions(main PRIVATE -D__BUILDING_CVC5DRIVER -Dcvc5_obj_EXPORTS)\nset_target_properties(main PROPERTIES POSITION_INDEPENDENT_CODE ON)\n\nadd_dependencies(main gen-tokens cvc5-obj cvc5parser-objs)\n\n# main-test library is only used for linking against api and unit tests so\n# that we don't have to include all object files of main into each api/unit\n# test. Do not link against main-test in any other case.\nadd_library(main-test driver_unified.cpp $<TARGET_OBJECTS:main>)\ntarget_compile_definitions(main-test PRIVATE -D__BUILDING_CVC5DRIVER)\ntarget_link_libraries(main-test PUBLIC cvc5 cvc5parser)\nif(USE_CLN)\n  target_link_libraries(main-test PUBLIC CLN)\nendif()\nif(USE_POLY)\n  target_link_libraries(main-test PUBLIC Polyxx)\nendif()\n\n#-----------------------------------------------------------------------------#\n# cvc5 binary configuration\n"
+        },
+        {
+          "start": 75,
+          "end": 108,
+          "text": "# use the static system libraries.\n#   https://cmake.org/cmake/help/v3.0/prop_tgt/LINK_SEARCH_START_STATIC.html\n#   https://cmake.org/cmake/help/v3.0/prop_tgt/LINK_SEARCH_END_STATIC.html\nif(NOT BUILD_SHARED_LIBS)\n  if(STATIC_BINARY)\n    set_target_properties(cvc5-bin PROPERTIES LINK_FLAGS -static)\n    set_target_properties(cvc5-bin PROPERTIES LINK_SEARCH_START_STATIC ON)\n    set_target_properties(cvc5-bin PROPERTIES LINK_SEARCH_END_STATIC ON)\n  endif()\n  set_target_properties(cvc5-bin PROPERTIES INSTALL_RPATH \"\")\nendif()\ntarget_link_libraries(cvc5-bin PUBLIC cvc5 cvc5parser)\n\nif(USE_EDITLINE)\n  target_link_libraries(cvc5-bin PUBLIC ${Editline_LIBRARIES})\n  target_link_libraries(main-test PUBLIC ${Editline_LIBRARIES})\n  target_include_directories(main PUBLIC ${Editline_INCLUDE_DIRS})\nendif()\n\n#-----------------------------------------------------------------------------#\n# Generate language tokens header files.\n\nadd_custom_command(\n  OUTPUT smt2_tokens.h\n  COMMAND\n    sh ${CMAKE_CURRENT_LIST_DIR}/gen-token-header.sh\n        ${CMAKE_CURRENT_LIST_DIR}/../parser/smt2/smt2_cmd_parser.cpp\n        smt2_tokens.h\n  DEPENDS ../parser/smt2/smt2_cmd_parser.cpp\n)\n\n# Create target used as a dependency for libmain.\nadd_custom_target(gen-tokens\n  DEPENDS"
+        }
+      ]
+    },
+    "cvc5/src/main/gen-token-header.sh": {
+      "bytes": 589,
+      "raw_digest": "sha256:8c5896be0a9b573a45305799f30c21415a41789deb2996622b1cff1f08c2cab2",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/main/gen-token-header.sh",
+      "excerpts": [
+        {
+          "start": 11,
+          "end": 13,
+          "text": "grep \"\\\"[a-zA-Z][a-zA-Z0-9_-][a-zA-Z0-9_-]*\\\"\" \"$1\" | \\\n  sed 's/.*'\\\"'\\([a-zA-Z0-9_-]*\\)'\\\"'.*/\"\\1\",/' | \\\n  sort -u > \"$2\""
+        }
+      ]
+    },
+    "cvc5/src/parser/CMakeLists.txt": {
+      "bytes": 2836,
+      "raw_digest": "sha256:a654d939ccd63fe3204c25de1cfc4d10ee79a71a95c39eaa447183435abdacf1",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/parser/CMakeLists.txt",
+      "excerpts": [
+        {
+          "start": 27,
+          "end": 57,
+          "text": "  input.h\n  lexer.cpp\n  lexer.h\n  parser.cpp\n  parser.h\n  parse_op.cpp\n  parse_op.h\n  parser_state.cpp\n  parser_state.h\n  parser_utils.cpp\n  parser_utils.h\n  smt2/smt2_state.cpp\n  smt2/smt2_state.h\n  smt2/smt2_cmd_parser.cpp\n  smt2/smt2_cmd_parser.h\n  smt2/smt2_lexer.cpp\n  smt2/smt2_lexer.h\n  smt2/smt2_cmd_parser.cpp\n  smt2/smt2_cmd_parser.h\n  smt2/smt2_parser.cpp\n  smt2/smt2_parser.h\n  smt2/smt2_term_parser.cpp\n  smt2/smt2_term_parser.h\n  sym_manager.cpp\n  sym_manager.h\n  symbol_table.cpp\n  symbol_table.h\n  tokens.cpp\n  tokens.h\n)\n"
+        },
+        {
+          "start": 61,
+          "end": 89,
+          "text": "add_library(cvc5parser-objs OBJECT ${libcvc5parser_src_files})\nset_target_properties(cvc5parser-objs PROPERTIES POSITION_INDEPENDENT_CODE ON)\ntarget_compile_definitions(cvc5parser-objs PUBLIC -D__BUILDING_CVC5PARSERLIB -Dcvc5_obj_EXPORTS)\n\nadd_library(cvc5parserapi-objs OBJECT ${libcvc5parserapi_src_files})\nset_target_properties(cvc5parserapi-objs PROPERTIES POSITION_INDEPENDENT_CODE ON)\ntarget_compile_definitions(cvc5parserapi-objs PUBLIC -D__BUILDING_CVC5LIB -Dcvc5_obj_EXPORTS)\n\nadd_dependencies(cvc5parser-objs gen-expr gen-options)\nadd_dependencies(cvc5parserapi-objs cvc5parser-objs gen-expr)\n\nif(USE_POLY)\n  add_dependencies(cvc5parser-objs Polyxx)\n  target_include_directories(cvc5parser-objs SYSTEM PRIVATE ${Poly_INCLUDE_DIR})\n  add_dependencies(cvc5parserapi-objs Polyxx)\n  target_include_directories(cvc5parserapi-objs SYSTEM PRIVATE ${Poly_INCLUDE_DIR})\nendif()\n\nadd_library(cvc5parser\n  $<TARGET_OBJECTS:cvc5parser-objs>\n  $<TARGET_OBJECTS:cvc5parserapi-objs>\n)\nif(BUILD_SHARED_LIBS)\n  set_target_properties(cvc5parser PROPERTIES\n    VERSION ${CVC5_VERSION_NUMBER} SOVERSION ${CVC5_SOVERSION})\nendif()\n\nset_target_properties(cvc5parser PROPERTIES OUTPUT_NAME cvc5parser)\ntarget_link_libraries(cvc5parser PRIVATE cvc5)"
+        }
+      ]
+    },
+    "cvc5/src/base/CMakeLists.txt": {
+      "bytes": 2051,
+      "raw_digest": "sha256:4bf04a8581abfbe1d17a710d7e0a0179e1b530547db59ca092121f0f1e5f973a",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/base/CMakeLists.txt",
+      "excerpts": [
+        {
+          "start": 43,
+          "end": 68,
+          "text": "file(GLOB_RECURSE source_files\n     ${PROJECT_SOURCE_DIR}/src/*.cpp\n     ${PROJECT_SOURCE_DIR}/src/*.cc\n     ${PROJECT_SOURCE_DIR}/src/*.h\n     ${PROJECT_SOURCE_DIR}/src/*.g)\n\nadd_custom_command(\n  OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/Trace_tags.h\n  COMMAND ${Python_EXECUTABLE} ${collect_tags_script} ${CMAKE_CURRENT_BINARY_DIR}/ ${PROJECT_SOURCE_DIR}/src\n  DEPENDS ${collect_tags_script} ${source_files}\n)\n\nadd_custom_target(gen-tags\n  DEPENDS\n    ${CMAKE_CURRENT_BINARY_DIR}/Trace_tags.h\n)\n\nset_source_files_properties(\n  ${CMAKE_CURRENT_BINARY_DIR}/Trace_tags.h\n  PROPERTIES GENERATED TRUE\n)\n\nadd_library(cvc5base OBJECT ${LIBBASE_SOURCES})\nset_target_properties(cvc5base PROPERTIES POSITION_INDEPENDENT_CODE ON)\ntarget_compile_definitions(cvc5base PRIVATE -D__BUILDING_CVC5LIB -Dcvc5_obj_EXPORTS)\nadd_dependencies(cvc5base gen-versioninfo gen-tags)"
+        }
+      ]
+    },
+    "cvc5/src/base/cvc5config.h.in": {
+      "bytes": 2142,
+      "raw_digest": "sha256:2e055eda9ea0147c75aa795e309fd94e40bfb255b6931e26d2d1b9b41cec10e0",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/base/cvc5config.h.in",
+      "excerpts": []
+    },
+    "cvc5/src/expr/CMakeLists.txt": {
+      "bytes": 6329,
+      "raw_digest": "sha256:460621d0c4de07390c42c52285eb9e8d2a41d0bc14dd98267f545735772375eb",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/expr/CMakeLists.txt",
+      "excerpts": [
+        {
+          "start": 149,
+          "end": 179,
+          "text": "add_custom_command(\n  OUTPUT kind.h\n  COMMAND\n    ${Python_EXECUTABLE}\n    ${mkkind_script}\n    --template ${CMAKE_CURRENT_LIST_DIR}/kind_template.h\n    --output ${CMAKE_CURRENT_BINARY_DIR}/kind.h\n    --kinds ${KINDS_TOML_FILES}\n  DEPENDS mkkind.py kind_template.h ${KINDS_TOML_FILES}\n)\n\nadd_custom_command(\n  OUTPUT kind.cpp\n  COMMAND\n    ${Python_EXECUTABLE}\n    ${mkkind_script}\n    --template ${CMAKE_CURRENT_LIST_DIR}/kind_template.cpp\n    --output ${CMAKE_CURRENT_BINARY_DIR}/kind.cpp\n    --kinds ${KINDS_TOML_FILES}\n  DEPENDS mkkind.py kind_template.cpp kind.h ${KINDS_TOML_FILES}\n)\n\nadd_custom_command(\n  OUTPUT type_properties.h\n  COMMAND\n    ${Python_EXECUTABLE}\n    ${mkkind_script}\n    --template ${CMAKE_CURRENT_LIST_DIR}/type_properties_template.h\n    --output ${CMAKE_CURRENT_BINARY_DIR}/type_properties.h\n    --kinds ${KINDS_TOML_FILES}\n  DEPENDS mkkind.py type_properties_template.h ${KINDS_TOML_FILES}"
+        },
+        {
+          "start": 237,
+          "end": 259,
+          "text": "add_custom_command(\n  OUTPUT type_checker.cpp\n  COMMAND\n    ${Python_EXECUTABLE}\n    ${mkexpr_script}\n    --template ${CMAKE_CURRENT_LIST_DIR}/type_checker_template.cpp\n    --output ${CMAKE_CURRENT_BINARY_DIR}/type_checker.cpp\n    --kinds ${KINDS_TOML_FILES}\n  DEPENDS mkexpr.py type_checker_template.cpp ${KINDS_TOML_FILES}\n)\n\nadd_custom_target(gen-expr\n  DEPENDS\n    kind.cpp\n    kind.h\n    metakind.cpp\n    metakind.h\n    node_manager.cpp\n    node_manager.h\n    type_checker.cpp\n    type_properties.cpp\n    type_properties.h\n)"
+        }
+      ]
+    },
+    "cvc5/src/theory/CMakeLists.txt": {
+      "bytes": 1864,
+      "raw_digest": "sha256:29ba57fe14abee92f693db4a882b6551180077bca6cc62b7da483e6398621398",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/theory/CMakeLists.txt",
+      "excerpts": [
+        {
+          "start": 22,
+          "end": 60,
+          "text": "add_custom_command(\n  OUTPUT rewriter_tables.h\n  COMMAND\n    ${Python_EXECUTABLE}\n    ${mkrewriter_script}\n    --template ${CMAKE_CURRENT_LIST_DIR}/rewriter_tables_template.h\n    --output ${CMAKE_CURRENT_BINARY_DIR}/rewriter_tables.h\n    --kinds ${KINDS_TOML_FILES}\n  DEPENDS mkrewriter.py rewriter_tables_template.h ${KINDS_TOML_FILES}\n)\n\nadd_custom_command(\n  OUTPUT theory_traits.h\n  COMMAND\n    ${Python_EXECUTABLE}\n    ${mktheorytraits_script}\n    --template ${CMAKE_CURRENT_LIST_DIR}/theory_traits_template.h\n    --output ${CMAKE_CURRENT_BINARY_DIR}/theory_traits.h\n    --kinds ${KINDS_TOML_FILES}\n  DEPENDS mktheorytraits.py theory_traits_template.h ${KINDS_TOML_FILES}\n)\n\nadd_custom_command(\n  OUTPUT type_enumerator.cpp\n  COMMAND\n    ${Python_EXECUTABLE}\n    ${mktheorytraits_script}\n    --template ${CMAKE_CURRENT_LIST_DIR}/type_enumerator_template.cpp\n    --output ${CMAKE_CURRENT_BINARY_DIR}/type_enumerator.cpp\n    --kinds ${KINDS_TOML_FILES}\n  DEPENDS mktheorytraits.py type_enumerator_template.cpp ${KINDS_TOML_FILES}\n)\n\nadd_custom_target(gen-theory\n  DEPENDS\n    type_enumerator.cpp\n    theory_traits.h\n    rewriter_tables.h\n)"
+        }
+      ]
+    },
+    "cvc5/src/rewriter/CMakeLists.txt": {
+      "bytes": 2693,
+      "raw_digest": "sha256:962c302f613475785f11a68699c916895ccb31e2e61baa051121d485b281195d",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/rewriter/CMakeLists.txt",
+      "excerpts": [
+        {
+          "start": 13,
+          "end": 14,
+          "text": "# Check if the pyparsing Python module is installed.\ncheck_python_module(\"pyparsing\")"
+        },
+        {
+          "start": 63,
+          "end": 89,
+          "text": "add_custom_command(\n    OUTPUT\n      ${REWRITE_OUTPUT_FILES}\n    COMMAND\n      ${Python_EXECUTABLE}\n      ${mkrewrites_script}\n      rewrite-db\n      --src ${PROJECT_SOURCE_DIR}\n      --bin ${PROJECT_BINARY_DIR}\n      --rewrites_files ${REWRITES_FILES}\n      --rewrites_files_expert ${REWRITES_FILES_EXPERT}\n    DEPENDS\n      ${mkrewrites_script}\n      ${REWRITES_FILES}\n      ${REWRITES_FILES_EXPERT}\n      ${CMAKE_CURRENT_LIST_DIR}/theory_rewrites_template.cpp\n      ${CMAKE_CURRENT_LIST_DIR}/rewrites_template.cpp\n      ${PROJECT_SOURCE_DIR}/src/api/cpp/cvc5_proof_rule_template.cpp\n      ${PROJECT_SOURCE_DIR}/include/cvc5/cvc5_proof_rule.h\n    COMMENT\n      \"Generating rewrites.{h,cpp}\"\n)\n\nadd_custom_target(gen-rewrites\n  DEPENDS\n    ${REWRITE_OUTPUT_FILES}\n)"
+        }
+      ]
+    },
+    "cvc5/src/util/CMakeLists.txt": {
+      "bytes": 2207,
+      "raw_digest": "sha256:7a4a43281d21a03961c535e51f221ea4ed977fb4e7e287e6a67a4b752edfccef",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/util/CMakeLists.txt",
+      "excerpts": [
+        {
+          "start": 13,
+          "end": 15,
+          "text": "configure_file(rational.h.in rational.h)\nconfigure_file(integer.h.in integer.h)\nconfigure_file(real_algebraic_number.h.in real_algebraic_number.h)"
+        }
+      ]
+    },
+    "cvc5/src/api/java/CMakeLists.txt": {
+      "bytes": 15341,
+      "raw_digest": "sha256:eeedc891d75af1e5fcf5982a5e73ac1ac93f311fbe54107eb46926fc3b3ac0d8",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/api/java/CMakeLists.txt",
+      "excerpts": [
+        {
+          "start": 18,
+          "end": 35,
+          "text": "configure_file(genenums.py.in genenums.py)\n\n# Generate Kind.java\nset(JAVA_KIND_FILE\n  \"${CMAKE_CURRENT_BINARY_DIR}/io/github/cvc5/Kind.java\"\n)\nadd_custom_command(\n  OUTPUT\n    ${JAVA_KIND_FILE}\n  COMMAND\n    \"${Python_EXECUTABLE}\"\n    \"${CMAKE_CURRENT_BINARY_DIR}/genenums.py\"\n    --enums-header \"${PROJECT_SOURCE_DIR}/include/cvc5/cvc5_kind.h\"\n    --java-api-path \"${CMAKE_CURRENT_BINARY_DIR}/io/github/\"\n  DEPENDS\n    \"${CMAKE_CURRENT_BINARY_DIR}/genenums.py\"\n    \"${PROJECT_SOURCE_DIR}/src/api/parseenums.py\"\n    \"${PROJECT_SOURCE_DIR}/include/cvc5/cvc5_kind.h\""
+        },
+        {
+          "start": 101,
+          "end": 104,
+          "text": "# find java\nfind_package(Java 1.8 COMPONENTS Development REQUIRED)\ninclude(UseJava)\n"
+        },
+        {
+          "start": 190,
+          "end": 210,
+          "text": "  # If there are multiple versions of Java on the system,\n  # CMake might find a version of JNI that differs from\n  # the version of the Java executable. To address this,\n  # we retrieve the java.home from the JVM settings and\n  # set the JAVA_HOME variable.\n  # This approach works properly on Unix systems but\n  # not on Windows.\n  execute_process(\n    COMMAND ${Java_JAVA_EXECUTABLE} -XshowSettings:runtime -version\n    OUTPUT_VARIABLE java_settings\n    ERROR_VARIABLE java_settings\n    OUTPUT_STRIP_TRAILING_WHITESPACE\n  )\n  # Extract the line containing \"java.home\"\n  string(REGEX MATCH \"java.home = [^\\r\\n]+\" java_home_line \"${java_settings}\")\n  # Extract the path from the line\n  string(REPLACE \"java.home = \" \"\" JAVA_HOME \"${java_home_line}\")\n  message(STATUS \"JAVA_HOME: ${JAVA_HOME}\")\nendif()\n\nif(DEFINED JNI_HOME)"
+        },
+        {
+          "start": 295,
+          "end": 308,
+          "text": "add_library(cvc5jni SHARED ${jni_files})\nadd_dependencies(cvc5jni generate-jni-headers)\n\nif(WIN32 AND NOT BUILD_SHARED_LIBS)\n  # Ensure that cvc5jni does not expect DLL imports,\n  # but static linking\n  target_compile_definitions(cvc5jni PRIVATE CVC5_STATIC_DEFINE)\nendif()\n\ntarget_include_directories(cvc5jni PUBLIC ${JNI_INCLUDE_DIRS})\ntarget_include_directories(cvc5jni PUBLIC ${PROJECT_SOURCE_DIR}/src)\ntarget_include_directories(cvc5jni PUBLIC ${PROJECT_BINARY_DIR}/src/)\ntarget_include_directories(cvc5jni PUBLIC ${JNI_DIR})\ntarget_link_libraries(cvc5jni PRIVATE cvc5 cvc5parser)"
+        },
+        {
+          "start": 368,
+          "end": 400,
+          "text": "endif()\n\nadd_dependencies(cvc5jar generate-java-kinds cvc5jni cvc5 cvc5parser)\n\nif(BUILD_DOCS)\n  # Build cvc5-sources.jar to enable viewing, navigation, and debugging of the library source code\n  set(SOURCES_JAR ${CMAKE_CURRENT_BINARY_DIR}/cvc5-sources.jar)\n\n  add_custom_command(\n      OUTPUT ${SOURCES_JAR}\n      COMMAND ${Java_JAR_EXECUTABLE} cf ${SOURCES_JAR}\n              -C ${CMAKE_CURRENT_LIST_DIR} io/github/cvc5\n              -C ${CMAKE_CURRENT_BINARY_DIR} io/github/cvc5\n      DEPENDS ${JAVA_FILES}\n      COMMENT \"Generating sources JAR\"\n  )\n  add_custom_target(cvc5-sources-jar ALL DEPENDS ${SOURCES_JAR})\nendif()\n\nif(NOT BUILD_SHARED_LIBS)\n  # Build a JAR including the native library for publication to Maven Central\n  set(NATIVE_JAR ${CMAKE_CURRENT_BINARY_DIR}/cvc5-${SYS_NAME}-${CPU_ARCH}.jar)\n  add_custom_command(\n      OUTPUT ${NATIVE_JAR}\n      COMMAND ${Java_JAR_EXECUTABLE} cf ${NATIVE_JAR} -C ${CMAKE_CURRENT_BINARY_DIR} ${JNI_PREFIX}\n      DEPENDS cvc5jni\n      COMMENT \"Generating native JAR\"\n  )\n  add_custom_target(cvc5-native-jar ALL DEPENDS ${NATIVE_JAR})\nendif()\n\n# POM file for publishing cvc5 Java bindings to Maven Central\nconfigure_file(pom.xml.in ${PROJECT_BINARY_DIR}/pom.xml @ONLY)"
+        }
+      ]
+    },
+    "cvc5/src/api/java/genenums.py.in": {
+      "bytes": 10463,
+      "raw_digest": "sha256:b76299814d3cd3ac6190dd1d7524b59edbf0e233a99b71d0a8e0590ed1b88e18",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/api/java/genenums.py.in",
+      "excerpts": []
+    },
+    "cvc5/src/api/parseenums.py": {
+      "bytes": 7233,
+      "raw_digest": "sha256:3e7c0749009124be87fdb6b8f05ebf81e55fd915bad2ee2d7e3d1ff0f9006349",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/api/parseenums.py",
+      "excerpts": []
+    },
+    "cvc5/test/CMakeLists.txt": {
+      "bytes": 1982,
+      "raw_digest": "sha256:6545504db28fad6fb9e1a48fa64095621ec9c5a19b5f2db7ba57ab0b79d2b0d6",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/test/CMakeLists.txt",
+      "excerpts": [
+        {
+          "start": 32,
+          "end": 54,
+          "text": "add_custom_target(build-tests)\n\n# Note: Do not add custom targets for running tests (regress, apitests,\n# units) as dependencies to other run targets. This will result in executing\n# tests multiple times. For example, if check would depend on regress it would\n# first run the command of the regress target (i.e., run all regression tests)\n# and afterwards run the command specified for the check target.\n# Dependencies of check are added in the corresponding subdirectories.\nadd_custom_target(check\n  COMMAND\n    ctest --output-on-failure -LE \"regress[3-4]\" -j${CTEST_NTHREADS} $$ARGS\n  DEPENDS\n    build-tests)\n\n#-----------------------------------------------------------------------------#\n# Add subdirectories\n\nadd_subdirectory(regress)\nadd_subdirectory(api EXCLUDE_FROM_ALL)\nadd_subdirectory(binary EXCLUDE_FROM_ALL)\nif(ENABLE_UNIT_TESTING)\n  add_subdirectory(unit EXCLUDE_FROM_ALL)\nendif()"
+        }
+      ]
+    },
+    "cvc5/test/api/CMakeLists.txt": {
+      "bytes": 860,
+      "raw_digest": "sha256:81c0286482abec2723f8a570944a8c91a6d3a624f4e600689f2ffb40614d6d12",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/test/api/CMakeLists.txt",
+      "excerpts": [
+        {
+          "start": 13,
+          "end": 27,
+          "text": "add_custom_target(build-apitests)\nadd_dependencies(build-tests build-apitests)\n\nadd_subdirectory(c)\nadd_subdirectory(cpp)\nif (BUILD_BINDINGS_PYTHON)\n  add_subdirectory(python)\nendif()\nif (BUILD_BINDINGS_JAVA)\n  add_subdirectory(java)\nendif()\n\nadd_custom_target(apitests\n  COMMAND ctest --output-on-failure -L \"api\" -j${CTEST_NTHREADS} $$ARGS\n  DEPENDS build-apitests)"
+        }
+      ]
+    },
+    "cvc5/.github/workflows/ci.yml": {
+      "bytes": 20929,
+      "raw_digest": "sha256:f44341c8aaebf7c9d966d69754f4dfca8d4014fd66d0568f7db160314ea13f85",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/.github/workflows/ci.yml",
+      "excerpts": [
+        {
+          "start": 97,
+          "end": 107,
+          "text": "          - name: ubuntu:production-arm64\n            os: ubuntu-22.04-arm\n            config: production --auto-download --all-bindings --editline -DBUILD_GMP=1\n            cache-key: production-arm64\n            strip-bin: strip\n            python-bindings: true\n            java-bindings: true\n            check-examples: true\n            package-name: cvc5-Linux-arm64\n            exclude_regress: 3-4\n            run_regression_args: --tester base --tester model --tester synth --tester abduct --tester dump"
+        }
+      ]
+    },
+    "cvc5/.github/actions/configure-and-build/action.yml": {
+      "bytes": 2669,
+      "raw_digest": "sha256:7772f196e043862d2bc775d230979a9b208eafc0b60506849585e97d0c0c2c3a",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/.github/actions/configure-and-build/action.yml",
+      "excerpts": [
+        {
+          "start": 28,
+          "end": 68,
+          "text": "    - name: Set MACOSX_DEPLOYMENT_TARGET\n      if: runner.os == 'macOS' && inputs.macos-target\n      shell: ${{ inputs.shell }}\n      run: echo \"MACOSX_DEPLOYMENT_TARGET=${{ inputs.macos-target }}\" >> $GITHUB_ENV\n\n    - name: Shared build\n      id: shared-build\n      # Boolean inputs are actually strings:\n      # https://github.com/actions/runner/issues/1483\n      if: inputs.build-shared == '' || inputs.build-shared == 'true'\n      shell: ${{ inputs.shell }}\n      run: |\n        echo \"::group::Shared build\"\n        ./configure.sh ${{ inputs.configure-config }} \\\n          --prefix=$(pwd)/build-shared/install --werror --name=build-shared \\\n          -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DCMAKE_C_COMPILER_LAUNCHER=ccache\n        \n        cd build-shared/ && pwd=$(pwd)\n        ccache --set-config=\"base_dir=$pwd\"\n        \n        make -j${{ env.num_proc }}\n\n        echo \"build-dir=$pwd\" >> $GITHUB_OUTPUT \n        echo \"::endgroup::\"\n\n    - name: Static build\n      id: static-build\n      # Boolean inputs are actually strings:\n      # https://github.com/actions/runner/issues/1483\n      if: inputs.build-static == '' || inputs.build-static == 'true'\n      shell: ${{ inputs.shell }}\n      run: |\n        echo \"::group::Static build\"\n        ./configure.sh ${{ inputs.configure-config }} \\\n          --prefix=$(pwd)/build-static/install --werror --static --name=build-static \\\n          -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DCMAKE_C_COMPILER_LAUNCHER=ccache\n\n        cd build-static/ && pwd=$(pwd)\n        ccache --set-config=\"base_dir=$pwd\"\n\n        make -j${{ env.num_proc }}"
+        }
+      ]
+    },
+    "gmp/configure": {
+      "bytes": 942195,
+      "raw_digest": "sha256:a7f4836f9d77f63d0bffc70d27c6c303b6bb83edcdb7b13615c9cc96b761e092",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/gmp/gmp-6.3.0/configure",
+      "excerpts": [
+        {
+          "start": 3709,
+          "end": 3726,
+          "text": "if test \"${enable_maintainer_mode+set}\" = set; then :\n  enableval=$enable_maintainer_mode; USE_MAINTAINER_MODE=$enableval\nelse\n  USE_MAINTAINER_MODE=no\nfi\n\n  { $as_echo \"$as_me:${as_lineno-$LINENO}: result: $USE_MAINTAINER_MODE\" >&5\n$as_echo \"$USE_MAINTAINER_MODE\" >&6; }\n   if test $USE_MAINTAINER_MODE = yes; then\n  MAINTAINER_MODE_TRUE=\n  MAINTAINER_MODE_FALSE='#'\nelse\n  MAINTAINER_MODE_TRUE='#'\n  MAINTAINER_MODE_FALSE=\nfi\n\n  MAINT=$MAINTAINER_MODE_TRUE\n"
+        },
+        {
+          "start": 4411,
+          "end": 4417,
+          "text": "      aarch64*)\n        abilist=\"64 32\"\n\tpath=\"arm/v7a/cora15/neon arm/neon arm/v7a/cora15 arm/v6t2 arm/v6 arm/v5 arm\"\n\tpath_64=\"arm64\"\n\tgcc_cflags_arch=\"-march=armv8-a\"\n\tgcc_cflags_neon=\"-mfpu=neon\"\n\tgcc_cflags_tune=\"\""
+        },
+        {
+          "start": 25599,
+          "end": 25655,
+          "text": "\n\n\n\n# Don't demand an m4 unless it's actually needed.\nif test $found_asm = yes; then\n\n{ $as_echo \"$as_me:${as_lineno-$LINENO}: checking for suitable m4\" >&5\n$as_echo_n \"checking for suitable m4... \" >&6; }\nif ${gmp_cv_prog_m4+:} false; then :\n  $as_echo_n \"(cached) \" >&6\nelse\n  if test -n \"$M4\"; then\n  gmp_cv_prog_m4=\"$M4\"\nelse\n  cat >conftest.m4 <<\\EOF\ndefine(dollarhash,``$#'')ifelse(dollarhash(x),1,`define(t1,Y)',\n``bad: $# not supported (SunOS /usr/bin/m4)\n'')ifelse(eval(89),89,`define(t2,Y)',\n`bad: eval() doesnt support 8 or 9 in a constant (OpenBSD 2.6 m4)\n')ifelse(eval(9,9),10,`define(t3,Y)',\n`bad: eval() doesnt support radix in eval (FreeBSD 8.x,9.0,9.1,9.2 m4)\n')ifelse(t1`'t2`'t3,YYY,`good\n')\nEOF\n  echo \"trying m4\" >&5\n  gmp_tmp_val=`(m4 conftest.m4) 2>&5`\n  echo \"$gmp_tmp_val\" >&5\n  if test \"$gmp_tmp_val\" = good; then\n    gmp_cv_prog_m4=\"m4\"\n  else\n    IFS=\"${IFS= \t}\"; ac_save_ifs=\"$IFS\"; IFS=\":\"\n    ac_dummy=\"$PATH:/usr/5bin\"\n    for ac_dir in $ac_dummy; do\n      test -z \"$ac_dir\" && ac_dir=.\n      echo \"trying $ac_dir/m4\" >&5\n      gmp_tmp_val=`($ac_dir/m4 conftest.m4) 2>&5`\n      echo \"$gmp_tmp_val\" >&5\n      if test \"$gmp_tmp_val\" = good; then\n        gmp_cv_prog_m4=\"$ac_dir/m4\"\n        break\n      fi\n    done\n    IFS=\"$ac_save_ifs\"\n    if test -z \"$gmp_cv_prog_m4\"; then\n      as_fn_error $? \"No usable m4 in \\$PATH or /usr/5bin (see config.log for reasons).\" \"$LINENO\" 5\n    fi\n  fi\n  rm -f conftest.m4\nfi\nfi\n{ $as_echo \"$as_me:${as_lineno-$LINENO}: result: $gmp_cv_prog_m4\" >&5\n$as_echo \"$gmp_cv_prog_m4\" >&6; }\nM4=\"$gmp_cv_prog_m4\"\n\n\n"
+        }
+      ]
+    },
+    "gmp/Makefile.in": {
+      "bytes": 57558,
+      "raw_digest": "sha256:437533a520e7a1d0ece6962f8ce7f40a659036e762164284e060d668faa5d5eb",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/gmp/gmp-6.3.0/Makefile.in",
+      "excerpts": [
+        {
+          "start": 797,
+          "end": 824,
+          "text": "\t    *$$dep*) \\\n\t      echo ' cd $(srcdir) && $(AUTOMAKE) --gnu --ignore-deps'; \\\n\t      $(am__cd) $(srcdir) && $(AUTOMAKE) --gnu --ignore-deps \\\n\t\t&& exit 0; \\\n\t      exit 1;; \\\n\t  esac; \\\n\tdone; \\\n\techo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu --ignore-deps Makefile'; \\\n\t$(am__cd) $(top_srcdir) && \\\n\t  $(AUTOMAKE) --gnu --ignore-deps Makefile\nMakefile: $(srcdir)/Makefile.in $(top_builddir)/config.status\n\t@case '$?' in \\\n\t  *config.status*) \\\n\t    echo ' $(SHELL) ./config.status'; \\\n\t    $(SHELL) ./config.status;; \\\n\t  *) \\\n\t    echo ' cd $(top_builddir) && $(SHELL) ./config.status $@ $(am__depfiles_maybe)'; \\\n\t    cd $(top_builddir) && $(SHELL) ./config.status $@ $(am__depfiles_maybe);; \\\n\tesac;\n\n$(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)\n\t$(SHELL) ./config.status --recheck\n\n$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)\n\t$(am__cd) $(srcdir) && $(AUTOCONF)\n$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)\n\t$(am__cd) $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)\n$(am__aclocal_m4_deps):"
+        },
+        {
+          "start": 1455,
+          "end": 1497,
+          "text": "\t$(CC_FOR_BUILD) `test -f 'gen-fac$(U_FOR_BUILD).c' || echo '$(srcdir)/'`gen-fac$(U_FOR_BUILD).c -o gen-fac$(EXEEXT_FOR_BUILD)\n\nsieve_table.h: gen-sieve$(EXEEXT_FOR_BUILD)\n\t./gen-sieve $(GMP_LIMB_BITS) >sieve_table.h || (rm -f sieve_table.h; exit 1)\n\ngen-sieve$(EXEEXT_FOR_BUILD): gen-sieve$(U_FOR_BUILD).c bootstrap.c\n\t$(CC_FOR_BUILD) `test -f 'gen-sieve$(U_FOR_BUILD).c' || echo '$(srcdir)/'`gen-sieve$(U_FOR_BUILD).c -o gen-sieve$(EXEEXT_FOR_BUILD)\n\nfib_table.h: gen-fib$(EXEEXT_FOR_BUILD)\n\t./gen-fib header $(GMP_LIMB_BITS) $(GMP_NAIL_BITS) >fib_table.h || (rm -f fib_table.h; exit 1)\n\nmpn/fib_table.c: gen-fib$(EXEEXT_FOR_BUILD)\n\t./gen-fib table $(GMP_LIMB_BITS) $(GMP_NAIL_BITS) >mpn/fib_table.c || (rm -f mpn/fib_table.c; exit 1)\n\ngen-fib$(EXEEXT_FOR_BUILD): gen-fib$(U_FOR_BUILD).c bootstrap.c\n\t$(CC_FOR_BUILD) `test -f 'gen-fib$(U_FOR_BUILD).c' || echo '$(srcdir)/'`gen-fib$(U_FOR_BUILD).c -o gen-fib$(EXEEXT_FOR_BUILD)\n\nmp_bases.h: gen-bases$(EXEEXT_FOR_BUILD)\n\t./gen-bases header $(GMP_LIMB_BITS) $(GMP_NAIL_BITS) >mp_bases.h || (rm -f mp_bases.h; exit 1)\n\nmpn/mp_bases.c: gen-bases$(EXEEXT_FOR_BUILD)\n\t./gen-bases table $(GMP_LIMB_BITS) $(GMP_NAIL_BITS) >mpn/mp_bases.c || (rm -f mpn/mp_bases.c; exit 1)\n\ngen-bases$(EXEEXT_FOR_BUILD): gen-bases$(U_FOR_BUILD).c bootstrap.c\n\t$(CC_FOR_BUILD) `test -f 'gen-bases$(U_FOR_BUILD).c' || echo '$(srcdir)/'`gen-bases$(U_FOR_BUILD).c -o gen-bases$(EXEEXT_FOR_BUILD) $(LIBM_FOR_BUILD)\n\ntrialdivtab.h: gen-trialdivtab$(EXEEXT_FOR_BUILD)\n\t./gen-trialdivtab $(GMP_LIMB_BITS) 8000 >trialdivtab.h || (rm -f trialdivtab.h; exit 1)\n\ngen-trialdivtab$(EXEEXT_FOR_BUILD): gen-trialdivtab$(U_FOR_BUILD).c bootstrap.c\n\t$(CC_FOR_BUILD) `test -f 'gen-trialdivtab$(U_FOR_BUILD).c' || echo '$(srcdir)/'`gen-trialdivtab$(U_FOR_BUILD).c -o gen-trialdivtab$(EXEEXT_FOR_BUILD) $(LIBM_FOR_BUILD)\n\nmpn/jacobitab.h: gen-jacobitab$(EXEEXT_FOR_BUILD)\n\t./gen-jacobitab >mpn/jacobitab.h || (rm -f mpn/jacobitab.h; exit 1)\n\ngen-jacobitab$(EXEEXT_FOR_BUILD): gen-jacobitab$(U_FOR_BUILD).c\n\t$(CC_FOR_BUILD) `test -f 'gen-jacobitab$(U_FOR_BUILD).c' || echo '$(srcdir)/'`gen-jacobitab$(U_FOR_BUILD).c -o gen-jacobitab$(EXEEXT_FOR_BUILD)\n\nmpn/perfsqr.h: gen-psqr$(EXEEXT_FOR_BUILD)\n\t./gen-psqr $(GMP_LIMB_BITS) $(GMP_NAIL_BITS) >mpn/perfsqr.h || (rm -f mpn/perfsqr.h; exit 1)\n\ngen-psqr$(EXEEXT_FOR_BUILD): gen-psqr$(U_FOR_BUILD).c bootstrap.c\n\t$(CC_FOR_BUILD) `test -f 'gen-psqr$(U_FOR_BUILD).c' || echo '$(srcdir)/'`gen-psqr$(U_FOR_BUILD).c -o gen-psqr$(EXEEXT_FOR_BUILD) $(LIBM_FOR_BUILD)"
+        }
+      ]
+    },
+    "gmp/mpn/Makefile.in": {
+      "bytes": 23986,
+      "raw_digest": "sha256:6d384189a1f4b133ba6d58214093446348113645c03cc0cf0a306596f2250a56",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/gmp/gmp-6.3.0/mpn/Makefile.in",
+      "excerpts": [
+        {
+          "start": 742,
+          "end": 768,
+          "text": "# .asm assembler, preprocessed with m4.\n#\n# .o and .obj are non-PIC and just need m4 followed by a compile.\n#\n# .lo is a bit tricky.  Libtool (as of version 1.5) has foo.lo as a little\n# text file, and .libs/foo.o and foo.o as the PIC and non-PIC objects,\n# respectively.  It'd be asking for lots of trouble to try to create foo.lo\n# ourselves, so instead arrange to invoke libtool like a --mode=compile, but\n# with a special m4-ccas script which first m4 preprocesses, then compiles.\n# --tag=CC is necessary since foo.asm is otherwise unknown to libtool.\n#\n# Libtool adds -DPIC when building a shared object and the .asm files look\n# for that.  But it should be noted that the other PIC flags are on occasion\n# important too, in particular FreeBSD 2.2.8 gas 1.92.3 requires -k before\n# it accepts PIC constructs like @GOT, and gcc adds that flag only under\n# -fPIC.  (Later versions of gas are happy to accept PIC stuff any time.)\n#\n.asm.o:\n\t$(M4) -DOPERATION_$* `test -f '$<' || echo '$(srcdir)/'`$< >tmp-$*.s\n\t$(CCAS) $(COMPILE_FLAGS) tmp-$*.s -o $@\n\t$(RM_TMP) tmp-$*.s\n.asm.obj:\n\t$(M4) -DOPERATION_$* `if test -f '$<'; then $(CYGPATH_W) '$<'; else $(CYGPATH_W) '$(srcdir)/$<'; fi` >tmp-$*.s\n\t$(CCAS) $(COMPILE_FLAGS) tmp-$*.s -o $@\n\t$(RM_TMP) tmp-$*.s\n.asm.lo:\n\t$(LIBTOOL) --mode=compile --tag=CC $(top_srcdir)/mpn/m4-ccas --m4=\"$(M4)\" $(CCAS) $(COMPILE_FLAGS) `test -f '$<' || echo '$(srcdir)/'`$<"
+        }
+      ]
+    },
+    "gmp/demos/Makefile.am": {
+      "bytes": 1610,
+      "raw_digest": "sha256:a1daff66645dabeb06705f49b48aee348442431786feec715260c8faca0143b1",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/gmp/gmp-6.3.0/demos/Makefile.am",
+      "excerpts": [
+        {
+          "start": 42,
+          "end": 50,
+          "text": "# build them once libgmp.la is built.\n#\nEXTRA_PROGRAMS = factorize isprime pexpr primes qcn\n\nCLEANFILES = $(EXTRA_PROGRAMS)\n\nallprogs: $(EXTRA_PROGRAMS)\n\tcd calc; $(MAKE) $(AM_MAKEFLAGS) allprogs\n\tcd expr; $(MAKE) $(AM_MAKEFLAGS) allprogs"
+        }
+      ]
+    },
+    "gmp/demos/calc/Makefile.in": {
+      "bytes": 20273,
+      "raw_digest": "sha256:3fa004d512d3e1d3717db3b1e3045d06025bb4c4907a1fca2911d9b00dd7c088",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/gmp/gmp-6.3.0/demos/calc/Makefile.in",
+      "excerpts": [
+        {
+          "start": 173,
+          "end": 185,
+          "text": "@MAINTAINER_MODE_FALSE@am__skiplex = test -f $@ ||\nLEXCOMPILE = $(LEX) $(AM_LFLAGS) $(LFLAGS)\nLTLEXCOMPILE = $(LIBTOOL) $(AM_V_lt) $(AM_LIBTOOLFLAGS) \\\n\t$(LIBTOOLFLAGS) --mode=compile $(LEX) $(AM_LFLAGS) $(LFLAGS)\nAM_V_LEX = $(am__v_LEX_@AM_V@)\nam__v_LEX_ = $(am__v_LEX_@AM_DEFAULT_V@)\nam__v_LEX_0 = @echo \"  LEX     \" $@;\nam__v_LEX_1 = \nYLWRAP = $(top_srcdir)/ylwrap\n@MAINTAINER_MODE_FALSE@am__skipyacc = test -f $@ ||\nam__yacc_c2h = sed -e s/cc$$/hh/ -e s/cpp$$/hpp/ -e s/cxx$$/hxx/ \\\n\t\t   -e s/c++$$/h++/ -e s/c$$/h/\nYACCCOMPILE = $(YACC) $(AM_YFLAGS) $(YFLAGS)"
+        },
+        {
+          "start": 384,
+          "end": 394,
+          "text": "# $(LEXLIB) is not actually needed for flex (which means the distributed\n# calclex.c), but it's included here for the benefit of anyone rebuilding\n# with some other lex.\n#\nLDADD = $(top_builddir)/libgmp.la $(LIBREADLINE) $(LIBCURSES) $(LEXLIB)\nAM_YFLAGS = -d\ncalc_SOURCES = calc.y calclex.l calcread.c calc-common.h\nBUILT_SOURCES = calc.h\nCLEANFILES = $(EXTRA_PROGRAMS)\nall: $(BUILT_SOURCES)\n\t$(MAKE) $(AM_MAKEFLAGS) all-am"
+        },
+        {
+          "start": 549,
+          "end": 550,
+          "text": "all-am: Makefile\ninstalldirs:"
+        }
+      ]
+    },
+    "gmp/demos/calc/calc.c": {
+      "bytes": 70667,
+      "raw_digest": "sha256:8e358a523e511e8778a1f23bf7195dc9f7ccaa35abff1da62122dcca492ff475",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/gmp/gmp-6.3.0/demos/calc/calc.c",
+      "excerpts": []
+    },
+    "gmp/demos/calc/calc.h": {
+      "bytes": 4481,
+      "raw_digest": "sha256:d2355b4cfca649ff72af7fd2695e378020454c92ab79338f77371051f47b646a",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/gmp/gmp-6.3.0/demos/calc/calc.h",
+      "excerpts": []
+    },
+    "gmp/demos/calc/calclex.c": {
+      "bytes": 49571,
+      "raw_digest": "sha256:143fc0ec7350279e9109952b074262bfc4b67c64cc254c5527811008297ef1a2",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/gmp/gmp-6.3.0/demos/calc/calclex.c",
+      "excerpts": []
+    },
+    "gmp/ltmain.sh": {
+      "bytes": 324089,
+      "raw_digest": "sha256:34ffaa53e9becccce1cee4f149a3b1cbba3c4cda06ab7dfaf1ae905ea4b2c0e3",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/gmp/gmp-6.3.0/ltmain.sh",
+      "excerpts": []
+    },
+    "gmp/aclocal.m4": {
+      "bytes": 363087,
+      "raw_digest": "sha256:139e96db3e6fae93a05c108bc1f0a5b8163ffe37b75e805ad3226fc04fe4ea1e",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/gmp/gmp-6.3.0/aclocal.m4",
+      "excerpts": []
+    },
+    "gmp/config.in": {
+      "bytes": 20280,
+      "raw_digest": "sha256:7db6da9e06e56213324fc73017d4c6376b831d5da89e7861d4d3842413ae27d7",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/gmp/gmp-6.3.0/config.in",
+      "excerpts": []
+    },
+    "cadical/makefile.in": {
+      "bytes": 3347,
+      "raw_digest": "sha256:3a18273ffc3afd09d8a0e3748278a4ecba5657b50456bc0b64d247a1b189d39e",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cadical/cadical-rel-2.1.3-elevate/makefile.in",
+      "excerpts": [
+        {
+          "start": 37,
+          "end": 78,
+          "text": "COMPILE=$(CXX) $(CXXFLAGS) -I$(DIR) -I../src\n\n#--------------------------------------------------------------------------#\n\nall: libcadical.a cadical mobical\n\n#--------------------------------------------------------------------------#\n\n.SUFFIXES: .cpp .o\n\n%.o: ../*/%.cpp ../src/*.hpp makefile\n\t$(COMPILE) -c $<\n\n#--------------------------------------------------------------------------#\n\n# Application binaries (the stand alone solver 'cadical' and the model based\n# tester 'mobical') and the library are the main build targets.\n\ncadical: cadical.o libcadical.a makefile\n\t$(COMPILE) -o $@ $< -L. -lcadical $(LIBS)\n\nmobical: mobical.o libcadical.a makefile $(LIBS)\n\t$(COMPILE) -o $@ $< -L. -lcadical\n\nlibcadical.a: $(OBJ_SOLVER) $(OBJ_CONTRIB) makefile\n\tar rc $@ $(OBJ_SOLVER) $(OBJ_CONTRIB)\n\n#--------------------------------------------------------------------------#\n\n# Note that 'build.hpp' is generated and resides in the build directory.\n\nbuild.hpp: always\n\t../scripts/make-build-header.sh > build.hpp\n\nversion.o: build.hpp\n\nupdate:\n\t../scripts/update-version.sh\n\n#--------------------------------------------------------------------------#\n\n# These two 'C' interfaces include '.h' headers and thus require explicitly"
+        }
+      ]
+    },
+    "cadical/scripts/make-build-header.sh": {
+      "bytes": 2668,
+      "raw_digest": "sha256:d08d2b1c7a81cbc1a0c1a7c26e84aad9b759c562d343d80e1971de8955142f8a",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cadical/cadical-rel-2.1.3-elevate/scripts/make-build-header.sh",
+      "excerpts": [
+        {
+          "start": 28,
+          "end": 95,
+          "text": "\n#--------------------------------------------------------------------------#\n# The version.\n#\nVERSION=\"`cat ../VERSION`\"\nif [ x\"$VERSION\" = x ]\nthen\n  warning \"could not determine 'VERSION'\"\nelse\n  echo \"#define VERSION \\\"$VERSION\\\"\"\nfi\n\n#--------------------------------------------------------------------------#\n# The unique GIT hash.\n#\nIDENTIFIER=\"`../scripts/get-git-id.sh`\"\nif [ x\"$IDENTIFIER\" = x ]\nthen\n  warning \"could not determine 'IDENTIFIER' (git id)\"\n  SHORTID=\"\"\nelse\n  echo \"#define IDENTIFIER \\\"$IDENTIFIER\\\"\"\n  SHORTID=`echo $IDENTIFIER|cut -c 1-7`\n  echo \"#define SHORTID \\\"$SHORTID\\\"\"\nfi\n\n#--------------------------------------------------------------------------#\n# C++ compiler 'CXX' used in 'makefile'.\n#\nCOMPILER=\"`sed -e '/^CXX=/!d' -e 's,^CXX=,,' makefile 2>/dev/null`\"\ncase x\"$COMPILER\" in \n  x*g++* | x*clang++*)\n    COMPILER=\"`$COMPILER --version 2>/dev/null|head -1`\";;\n  *) COMPILER=\"\";;\nesac\nif [ x\"$COMPILER\" = x ]\nthen\n  warning \"could not determine 'COMPILER' ('CXX')\"\nelse\n  echo \"#define COMPILER \\\"$COMPILER\\\"\"\nfi\n\n#--------------------------------------------------------------------------#\n# C++ compiler flags 'CXXFLAGS' used in 'makefile'.\n#\nFLAGS=\"`sed -e '/^CXXFLAGS=/!d' -e 's,^CXXFLAGS=,,' makefile 2>/dev/null`\"\nif [ x\"$FLAGS\" = x ]\nthen\n  warning \"could not determine 'FLAGS' ('CXXFLAGS')\"\nelse\n  echo \"#define FLAGS \\\"$FLAGS\\\"\"\nfi\n\n#--------------------------------------------------------------------------#\n# Use time of executing this script at build time.\n#\nLC_TIME=\"C\" # Avoid umlaut in 'DATE'.\nexport LC_TIME\n# The time and date we compiled the CaDiCaL library.\nDATE=\"`date 2>/dev/null|sed -e 's,  *, ,g'`\"\nOS=\"`uname -srmn 2>/dev/null`\"\nDATE=\"`echo $DATE $OS|sed -e 's,^ *,,' -e 's, *$,,'`\"\nif [ x\"$DATE\" = x\" \" ]\nthen\n  warning \"could not determine 'DATE' (build date and time)\"\nelse\n  echo \"#define DATE \\\"$DATE\\\"\"\nfi"
+        }
+      ]
+    },
+    "cadical/scripts/get-git-id.sh": {
+      "bytes": 124,
+      "raw_digest": "sha256:50efe76bd2508edb9292f9f52d69fcfdf8b3735551d685f5746252f6c1de6cc1",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cadical/cadical-rel-2.1.3-elevate/scripts/get-git-id.sh",
+      "excerpts": [
+        {
+          "start": 1,
+          "end": 3,
+          "text": "#!/bin/sh\n# print current SHA1 git id which uniquely identifies the source code\ngit show 2>/dev/null |awk '{print $2;exit}'"
+        }
+      ]
+    },
+    "libpoly/CMakeLists.txt": {
+      "bytes": 2004,
+      "raw_digest": "sha256:f634ed81a113cf631f6b0c365f99afd689d36cb0314aaff5b933461b59bb641d",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/libpoly/libpoly-0.2.1/CMakeLists.txt",
+      "excerpts": [
+        {
+          "start": 11,
+          "end": 17,
+          "text": "include(CTest)\n\noption(LIBPOLY_BUILD_PYTHON_API \"Build the Python API\" ON)\noption(LIBPOLY_BUILD_STATIC_PIC \"Build the static PIC library\" ON)\noption(LIBPOLY_BUILD_STATIC \"Build the static library\" ON)\noption(LIBPOLY_BUILD_STATISTICS \"Build the statistics internals\" OFF)\n"
+        },
+        {
+          "start": 35,
+          "end": 83,
+          "text": "find_path(GMP_INCLUDE_DIR gmp.h)\nfind_library(GMP_LIBRARY gmp)\nif (GMP_INCLUDE_DIR AND GMP_LIBRARY)\n    message(STATUS \"GMP headers: \" ${GMP_INCLUDE_DIR})\n    message(STATUS \"GMP library: \" ${GMP_LIBRARY})\nelse()\n    MESSAGE(FATAL_ERROR \"Could not the GMP number library (sudo apt-get install libgmp-dev)\")\nendif()\n\n\n# statistics configuration\nif(LIBPOLY_BUILD_STATISTICS)\n\n  add_definitions(-DLIBPOLY_STATISTICS)\n\nendif()\n\n#\n# Check for open_memstream\n#\ninclude(CheckFunctionExists)\n\ncheck_function_exists(open_memstream HAVE_OPEN_MEMSTREAM)\n\nif(HAVE_OPEN_MEMSTREAM)\n  add_definitions(-DHAVE_OPEN_MEMSTREAM)\nendif()\n\n# Configure the library source\nadd_subdirectory(src)\n\n# Configure the headers\nadd_subdirectory(include)\n\nif(LIBPOLY_BUILD_PYTHON_API)\n  find_package(Python3 REQUIRED COMPONENTS Interpreter Development)\n  # Configure the Python bindings\n  add_subdirectory(python)\n  # Configure the Python tests\n  add_subdirectory(test/python)\nendif()\n\nif (BUILD_TESTING)\n  # Configure the C++ tests\n  enable_testing()\n  add_subdirectory(test/poly)\n  add_subdirectory(test/polyxx)\nendif()\n"
+        }
+      ]
+    },
+    "libpoly/src/CMakeLists.txt": {
+      "bytes": 4434,
+      "raw_digest": "sha256:5137b13529c891e8da7cc60dd4480692a257c3cff017ba361cc6de802b3a57c2",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/libpoly/libpoly-0.2.1/src/CMakeLists.txt",
+      "excerpts": [
+        {
+          "start": 70,
+          "end": 93,
+          "text": "set(CMAKE_C_FLAGS \"${CMAKE_C_FLAGS} -Wall -Werror -Wextra -std=gnu99\")\nset(CMAKE_CXX_FLAGS \"${CMAKE_CXX_FLAGS} -Wall -Werror -Wextra -std=c++11\")\n\ninclude_directories(${GMP_INCLUDE_DIR})\ninclude_directories(${libpoly_SOURCE_DIR}/include)\ninclude_directories(${libpoly_SOURCE_DIR}/src)\n\nadd_library(poly SHARED ${poly_SOURCES})\n\nset_target_properties(poly PROPERTIES\n  VERSION ${LIBPOLY_VERSION}\n  SOVERSION ${LIBPOLY_VERSION_MAJOR}\n)\n\ntarget_link_libraries(poly ${GMP_LIBRARY})\n\nadd_library(polyxx SHARED ${polyxx_SOURCES})\nset_target_properties(polyxx PROPERTIES\n  VERSION ${LIBPOLY_VERSION}\n  SOVERSION ${LIBPOLY_VERSION_MAJOR}\n)\n\ntarget_link_libraries(polyxx poly ${GMP_LIBRARY})\n"
+        },
+        {
+          "start": 129,
+          "end": 144,
+          "text": "if(LIBPOLY_BUILD_STATIC_PIC)\n  add_library(static_pic_poly STATIC ${poly_SOURCES})\n  set_target_properties(static_pic_poly PROPERTIES OUTPUT_NAME picpoly POSITION_INDEPENDENT_CODE true)\n  install(TARGETS static_pic_poly ARCHIVE DESTINATION lib)\n\n  add_library(static_pic_polyxx STATIC ${polyxx_SOURCES})\n  set_target_properties(static_pic_polyxx PROPERTIES OUTPUT_NAME picpolyxx POSITION_INDEPENDENT_CODE true)\n  install(TARGETS static_pic_polyxx ARCHIVE DESTINATION lib)\n  target_link_libraries(static_pic_polyxx static_pic_poly)\n\n# iam: safer to just be uniform?\n#  if(NOT (${CMAKE_SYSTEM_NAME} MATCHES \"Linux\" OR ${CMAKE_SYSTEM_NAME} MATCHES \"FreeBSD\"))\n#    set_target_properties(static_pic_poly PROPERTIES EXCLUDE_FROM_ALL ON)\n#    set_target_properties(static_pic_polyxx PROPERTIES EXCLUDE_FROM_ALL ON)\n#  endif()\nendif()"
+        }
+      ]
+    },
+    "libpoly/include/CMakeLists.txt": {
+      "bytes": 379,
+      "raw_digest": "sha256:f0f20987e103036bb55ecec8759c80e4f15af565d8ca64782282efa9d9246515",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/libpoly/libpoly-0.2.1/include/CMakeLists.txt",
+      "excerpts": [
+        {
+          "start": 1,
+          "end": 10,
+          "text": "# Configure the version\nconfigure_file(version.h.in ${CMAKE_CURRENT_SOURCE_DIR}/version.h)\n\n# Find all the base headers and add them to install target\nfile(GLOB headers *.h)\ninstall(FILES ${headers} DESTINATION include/poly)\n\n# Find all the cxx headers and add them to install target\nfile(GLOB headers_cxx polyxx/*.h)\ninstall(FILES ${headers_cxx} DESTINATION include/poly/polyxx)"
+        }
+      ]
+    },
+    "cvc5/src/base/collect_tags.py": {
+      "bytes": 3115,
+      "raw_digest": "sha256:6e60259c7df70deb709db7064925d7aa7a46aed56487a29c37f206d2facce29e",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/base/collect_tags.py",
+      "excerpts": []
+    },
+    "cvc5/src/expr/mkexpr.py": {
+      "bytes": 8096,
+      "raw_digest": "sha256:b43207452a6aee4e96b4bf17670a1a05e019a50942766d0cf4b5428ee95bc2ad",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/expr/mkexpr.py",
+      "excerpts": []
+    },
+    "cvc5/src/expr/mkkind.py": {
+      "bytes": 12854,
+      "raw_digest": "sha256:9db0159809aaa9d0f36e6620db09f73e6938f93f3605b85878ad44d474773a80",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/expr/mkkind.py",
+      "excerpts": []
+    },
+    "cvc5/src/expr/mkmetakind.py": {
+      "bytes": 13942,
+      "raw_digest": "sha256:02fcaae9253d1c95670e666c2c6c8737a5205e8757d8eed43594d7fe25c9a388",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/expr/mkmetakind.py",
+      "excerpts": []
+    },
+    "cvc5/src/expr/theory_validator.py": {
+      "bytes": 10672,
+      "raw_digest": "sha256:84de79941bda4a6058c6fb78137ee33ebeb08ffc967be056b2df7f583ef5be31",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/expr/theory_validator.py",
+      "excerpts": []
+    },
+    "cvc5/src/options/mkoptions.py": {
+      "bytes": 44915,
+      "raw_digest": "sha256:81f85d0d80881f7e9f5f06e8b5a835d86a4dc098fdee01313158c8d1653a5392",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/options/mkoptions.py",
+      "excerpts": []
+    },
+    "cvc5/src/rewriter/mkrewrites.py": {
+      "bytes": 14877,
+      "raw_digest": "sha256:5fb59fce4fa57f32c83a25ac631c1307c0c26b3a80af1f382a1f92723abb777c",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/rewriter/mkrewrites.py",
+      "excerpts": []
+    },
+    "cvc5/src/rewriter/node.py": {
+      "bytes": 12707,
+      "raw_digest": "sha256:3735b1c8c27b528f16cdc350362ad60ca82bf49ac6c0de406e6b76768341cb62",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/rewriter/node.py",
+      "excerpts": []
+    },
+    "cvc5/src/rewriter/rule.py": {
+      "bytes": 1369,
+      "raw_digest": "sha256:0eef031ae7cb4e897a49acb3e0c8fa72661824bf5b169c50464ff2f2222624ad",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/rewriter/rule.py",
+      "excerpts": []
+    },
+    "cvc5/src/rewriter/rw_parser.py": {
+      "bytes": 9357,
+      "raw_digest": "sha256:fc7dec549025f928e955e0a1c4cb4aced0c624d6a0d6f2f1c5097dcb71dbc453",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/rewriter/rw_parser.py",
+      "excerpts": []
+    },
+    "cvc5/src/rewriter/util.py": {
+      "bytes": 3518,
+      "raw_digest": "sha256:f5a82d6de9f8ad71487831e9c3de5dfeee8ef5fe004be6facefc4b7f8543e0f4",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/rewriter/util.py",
+      "excerpts": []
+    },
+    "cvc5/src/theory/mkrewriter.py": {
+      "bytes": 7410,
+      "raw_digest": "sha256:e7000c2ca467dd41c09908aa97dcbd50fbdf666600579ee640a4d45dd66099e9",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/theory/mkrewriter.py",
+      "excerpts": []
+    },
+    "cvc5/src/theory/mktheorytraits.py": {
+      "bytes": 11048,
+      "raw_digest": "sha256:4b65f0dc43296159fa5400a2d6a6a101837be52ab64527daea2173f3667b68fd",
+      "retained_path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/theory/mktheorytraits.py",
+      "excerpts": []
+    }
+  },
+  "configuration": [
+    {
+      "name": "CMAKE_BUILD_TYPE",
+      "baseline_static": "Production",
+      "candidate": "Production",
+      "assessment": "static-determined",
+      "reason": "production wrapper maps to Production",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "OPTIMIZATION_LEVEL",
+      "baseline_static": 3,
+      "candidate": 3,
+      "assessment": "conditional-unverified",
+      "reason": "-O3 addition depends on compiler flag check",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "ENABLE_ASSERTIONS",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "Production cvc5_set_option; explicit user overrides must be excluded",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "ENABLE_DEBUG_SYMBOLS",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "Production cvc5_set_option; explicit user overrides must be excluded",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "ENABLE_STATISTICS",
+      "baseline_static": "ON",
+      "candidate": "ON",
+      "assessment": "static-determined",
+      "reason": "Production cvc5_set_option; explicit user overrides must be excluded",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "ENABLE_TRACING",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "Production cvc5_set_option; explicit user overrides must be excluded",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "ENABLE_MUZZLE",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "Production cvc5_set_option; explicit user overrides must be excluded",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "ENABLE_UNIT_TESTING",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "Production cvc5_set_option; explicit user overrides must be excluded",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "ENABLE_ASAN",
+      "baseline_static": "IGNORE (false in if)",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "No Production setter or baseline argv enables it; explicit OFF freezes false branch",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "ENABLE_UBSAN",
+      "baseline_static": "IGNORE (false in if)",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "No Production setter or baseline argv enables it; explicit OFF freezes false branch",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "ENABLE_TSAN",
+      "baseline_static": "IGNORE (false in if)",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "No Production setter or baseline argv enables it; explicit OFF freezes false branch",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "ENABLE_SAFE_MODE",
+      "baseline_static": "IGNORE (false in if)",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "No Production setter or baseline argv enables it; explicit OFF freezes false branch",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "ENABLE_STABLE_MODE",
+      "baseline_static": "IGNORE (false in if)",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "No Production setter or baseline argv enables it; explicit OFF freezes false branch",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "ENABLE_VALGRIND",
+      "baseline_static": "IGNORE (false in if)",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "No Production setter or baseline argv enables it; explicit OFF freezes false branch",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "ENABLE_IPO",
+      "baseline_static": "IGNORE (false in if)",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "No Production setter or baseline argv enables it; explicit OFF freezes false branch",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "ENABLE_CLANG_TIDY",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "Two-valued option default; baseline does not override",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "ENABLE_COVERAGE",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "Two-valued option default; baseline does not override",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "ENABLE_PROFILING",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "Two-valued option default; baseline does not override",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "ENABLE_DEBUG_CONTEXT_MM",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "Two-valued option default; baseline does not override",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "ENABLE_GPL",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "Two-valued option default; baseline does not override",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "USE_CLN",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "Two-valued option default; baseline does not override",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "USE_GLPK",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "Two-valued option default; baseline does not override",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "USE_COCOA",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "Two-valued option default; baseline does not override",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "USE_CRYPTOMINISAT",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "Two-valued option default; baseline does not override",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "USE_KISSAT",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "Two-valued option default; baseline does not override",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "USE_MPFR",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "Two-valued option default; baseline does not override",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "NO_GLOBAL_POLY_CTX",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "Two-valued option default; baseline does not override",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "BUILD_DOCS",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "Two-valued option default; baseline does not override",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "BUILD_DOCS_GA",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "Two-valued option default; baseline does not override",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "ONLY_PYTHON_EXT_SRC",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "Two-valued option default; baseline does not override",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "BUILD_CLN",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "Preserve declared default; inactive branch is not deleted",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "SKIP_COMPRESS_DEBUG",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "Preserve declared default; inactive branch is not deleted",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "SKIP_SET_RPATH",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "Preserve declared default; inactive branch is not deleted",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "USE_DEFAULT_LINKER",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "Preserve declared default; inactive branch is not deleted",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "GLPK_DIR",
+      "baseline_static": "",
+      "candidate": "",
+      "assessment": "static-determined",
+      "reason": "No baseline override; no extra path/prefix/wasm flags",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "PYTHONIC_PATH",
+      "baseline_static": "",
+      "candidate": "",
+      "assessment": "static-determined",
+      "reason": "No baseline override; no extra path/prefix/wasm flags",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "PROGRAM_PREFIX",
+      "baseline_static": "",
+      "candidate": "",
+      "assessment": "static-determined",
+      "reason": "No baseline override; no extra path/prefix/wasm flags",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "WASM_FLAGS",
+      "baseline_static": "",
+      "candidate": "",
+      "assessment": "static-determined",
+      "reason": "No baseline override; no extra path/prefix/wasm flags",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "WASM",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "Linux native candidate; no emscripten wrapper",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "CMAKE_LANGUAGE_STANDARDS",
+      "baseline_static": "C11/C++17; extensions OFF",
+      "candidate": "C11/C++17; extensions OFF",
+      "assessment": "static-determined",
+      "reason": "Do not silently change dialects; dependent sources retain their own dialects",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/cmake/FindGMP.cmake",
+        "cvc5/cmake/FindCaDiCaL.cmake",
+        "libpoly/src/CMakeLists.txt"
+      ]
+    },
+    {
+      "name": "ENABLE_PROOFS",
+      "baseline_static": "Production setter present; option undeclared/unconsumed",
+      "candidate": "no new proof compile flag",
+      "assessment": "static-determined",
+      "reason": "Do not infer effective ON or a proof macro from stale setter",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake",
+        "cvc5/src/CMakeLists.txt"
+      ]
+    },
+    {
+      "name": "BUILD_SHARED_LIBS",
+      "baseline_static": "OFF",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "--static",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "STATIC_BINARY",
+      "baseline_static": "ON (non-Darwin static default)",
+      "candidate": "ON",
+      "assessment": "static-determined",
+      "reason": "CLI static link flags; ELF outcome remains unverified",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake",
+        "cvc5/src/main/CMakeLists.txt"
+      ]
+    },
+    {
+      "name": "USE_EDITLINE",
+      "baseline_static": "ON",
+      "candidate": "ON",
+      "assessment": "static-determined",
+      "reason": "--editline",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "USE_POLY",
+      "baseline_static": "ON",
+      "candidate": "ON",
+      "assessment": "static-determined",
+      "reason": "wrapper poly=ON, not bare CMake default",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "CaDiCaL",
+      "baseline_static": "required",
+      "candidate": "required",
+      "assessment": "static-determined",
+      "reason": "unconditional find/target dependency",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/src/CMakeLists.txt",
+        "cvc5/cmake/FindCaDiCaL.cmake"
+      ]
+    },
+    {
+      "name": "SymFPU",
+      "baseline_static": "required",
+      "candidate": "required",
+      "assessment": "static-determined",
+      "reason": "unconditional even if MPFR used",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/src/CMakeLists.txt",
+        "cvc5/cmake/FindSymFPU.cmake"
+      ]
+    },
+    {
+      "name": "BUILD_BINDINGS_PYTHON",
+      "baseline_static": "ON requested then OFF for static",
+      "candidate": "OFF",
+      "assessment": "static-determined",
+      "reason": "CLI generators still need Python",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "BUILD_BINDINGS_JAVA",
+      "baseline_static": "ON",
+      "candidate": "OFF",
+      "assessment": "candidate-difference",
+      "reason": "separate forward-only JNI/JAR subgraph",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/src/api/java/CMakeLists.txt",
+        "cvc5/src/main/CMakeLists.txt"
+      ]
+    },
+    {
+      "name": "ENABLE_AUTO_DOWNLOAD",
+      "baseline_static": "ON",
+      "candidate": "OFF",
+      "assessment": "candidate-difference",
+      "reason": "no build-time download/pip",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "USE_PYTHON_VENV",
+      "baseline_static": "ON",
+      "candidate": "OFF",
+      "assessment": "candidate-difference",
+      "reason": "fixed interpreter/modules replace auto venv",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "BUILD_GMP",
+      "baseline_static": "1",
+      "candidate": "OFF; independently built same fixed GMP/GMPXX imported",
+      "assessment": "candidate-difference",
+      "reason": "preserve original configure options and ABI; no outputs yet",
+      "evidence": [
+        "cvc5/configure.sh",
+        "cvc5/cmake/FindGMP.cmake"
+      ]
+    },
+    {
+      "name": "TREAT_WARNING_AS_ERROR",
+      "baseline_static": "ON plus exported CFLAGS/CXXFLAGS=-Werror",
+      "candidate": "ON plus explicit -Werror compile flags",
+      "assessment": "static-determined",
+      "reason": "wrapper semantics must be preserved",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/configure.sh",
+        "cvc5/cmake/ConfigProduction.cmake",
+        "cvc5/cmake/Helpers.cmake"
+      ]
+    },
+    {
+      "name": "COMPILER_FLAGS",
+      "baseline_static": "checked flags; actual unknown",
+      "candidate": "same checked flag proposals",
+      "assessment": "conditional-unverified",
+      "reason": "flags and platform feature macros require compiler checks",
+      "evidence": [
+        "cvc5/CMakeLists.txt",
+        "cvc5/cmake/Helpers.cmake",
+        "cvc5/cmake/ConfigureCvc5.cmake"
+      ]
+    },
+    {
+      "name": "CPU_ISA",
+      "baseline_static": "GMP build triplet aarch64-linux-gnu; no cvc5 march=native",
+      "candidate": "fixed aarch64 toolchain; no native tuning",
+      "assessment": "conditional-unverified",
+      "reason": "GMP ABI/assembly selection unverified",
+      "evidence": [
+        "cvc5/cmake/Helpers.cmake",
+        "gmp/configure"
+      ]
+    },
+    {
+      "name": "LINKER",
+      "baseline_static": "aarch64 bypasses mold/gold detection",
+      "candidate": "fixed linker/SDK tools",
+      "assessment": "conditional-unverified",
+      "reason": "actual command and implicit inputs still unknown",
+      "evidence": [
+        "cvc5/CMakeLists.txt"
+      ]
+    },
+    {
+      "name": "CCACHE_LAUNCHER",
+      "baseline_static": "ccache injected by CI action",
+      "candidate": "empty launchers; clean build tree",
+      "assessment": "candidate-difference",
+      "reason": "new bytes; no restored cache",
+      "evidence": [
+        "cvc5/.github/actions/configure-and-build/action.yml"
+      ]
+    },
+    {
+      "name": "GIT_VERSION",
+      "baseline_static": "optional find_package Git and ancestor lookup",
+      "candidate": "patch disables Git lookup",
+      "assessment": "candidate-difference",
+      "reason": "preserve base 1.3.4; do not embed RadishAxiom identity",
+      "evidence": [
+        "cvc5/cmake/version.cmake",
+        "cvc5/cmake/version-base.cmake"
+      ]
+    },
+    {
+      "name": "BUILD_TARGET",
+      "baseline_static": "CI all/install/test/SDK package",
+      "candidate": "cvc5-bin and required dependency targets",
+      "assessment": "candidate-difference",
+      "reason": "no tests/examples/Murxla/JNI/JAR build",
+      "evidence": [
+        "cvc5/src/main/CMakeLists.txt",
+        "cvc5/test/CMakeLists.txt",
+        "cvc5/cmake/fuzzing-murxla.cmake"
+      ]
+    }
+  ],
+  "python_generators": [
+    {
+      "source": "cvc5/src/base/collect_tags.py",
+      "imports": [
+        {
+          "line": 12,
+          "statement": "import argparse"
+        },
+        {
+          "line": 13,
+          "statement": "import glob"
+        },
+        {
+          "line": 14,
+          "statement": "import os"
+        },
+        {
+          "line": 15,
+          "statement": "import re"
+        },
+        {
+          "line": 16,
+          "statement": "import shutil"
+        },
+        {
+          "line": 17,
+          "statement": "import subprocess"
+        }
+      ],
+      "external_required": [],
+      "conditional_external": []
+    },
+    {
+      "source": "cvc5/src/expr/mkexpr.py",
+      "imports": [
+        {
+          "line": 14,
+          "statement": "import argparse"
+        },
+        {
+          "line": 15,
+          "statement": "import sys"
+        },
+        {
+          "line": 16,
+          "statement": "import os"
+        },
+        {
+          "line": 17,
+          "statement": "from datetime import date"
+        },
+        {
+          "line": 18,
+          "statement": "from theory_validator import TheoryValidator"
+        },
+        {
+          "line": 21,
+          "statement": "import tomllib"
+        },
+        {
+          "line": 23,
+          "statement": "import tomli as tomllib"
+        }
+      ],
+      "external_required": [],
+      "conditional_external": [
+        "tomli if Python <3.11"
+      ]
+    },
+    {
+      "source": "cvc5/src/expr/mkkind.py",
+      "imports": [
+        {
+          "line": 13,
+          "statement": "import argparse"
+        },
+        {
+          "line": 14,
+          "statement": "import sys"
+        },
+        {
+          "line": 15,
+          "statement": "import os"
+        },
+        {
+          "line": 16,
+          "statement": "from datetime import date"
+        },
+        {
+          "line": 17,
+          "statement": "from theory_validator import TheoryValidator"
+        },
+        {
+          "line": 20,
+          "statement": "import tomllib"
+        },
+        {
+          "line": 22,
+          "statement": "import tomli as tomllib"
+        }
+      ],
+      "external_required": [],
+      "conditional_external": [
+        "tomli if Python <3.11"
+      ]
+    },
+    {
+      "source": "cvc5/src/expr/mkmetakind.py",
+      "imports": [
+        {
+          "line": 13,
+          "statement": "import argparse"
+        },
+        {
+          "line": 14,
+          "statement": "import os"
+        },
+        {
+          "line": 15,
+          "statement": "import re"
+        },
+        {
+          "line": 16,
+          "statement": "import sys"
+        },
+        {
+          "line": 17,
+          "statement": "from datetime import date"
+        },
+        {
+          "line": 18,
+          "statement": "from theory_validator import TheoryValidator"
+        },
+        {
+          "line": 21,
+          "statement": "import tomllib"
+        },
+        {
+          "line": 23,
+          "statement": "import tomli as tomllib"
+        }
+      ],
+      "external_required": [],
+      "conditional_external": [
+        "tomli if Python <3.11"
+      ]
+    },
+    {
+      "source": "cvc5/src/expr/theory_validator.py",
+      "imports": [
+        {
+          "line": 13,
+          "statement": "import os"
+        }
+      ],
+      "external_required": [],
+      "conditional_external": []
+    },
+    {
+      "source": "cvc5/src/options/mkoptions.py",
+      "imports": [
+        {
+          "line": 46,
+          "statement": "import os"
+        },
+        {
+          "line": 47,
+          "statement": "import re"
+        },
+        {
+          "line": 48,
+          "statement": "import sys"
+        },
+        {
+          "line": 49,
+          "statement": "import textwrap"
+        },
+        {
+          "line": 51,
+          "statement": "import tomllib"
+        },
+        {
+          "line": 53,
+          "statement": "import tomli as tomllib"
+        }
+      ],
+      "external_required": [],
+      "conditional_external": [
+        "tomli if Python <3.11"
+      ]
+    },
+    {
+      "source": "cvc5/src/rewriter/mkrewrites.py",
+      "imports": [
+        {
+          "line": 14,
+          "statement": "import argparse"
+        },
+        {
+          "line": 15,
+          "statement": "import logging"
+        },
+        {
+          "line": 16,
+          "statement": "import os"
+        },
+        {
+          "line": 17,
+          "statement": "import sys"
+        },
+        {
+          "line": 18,
+          "statement": "from collections import defaultdict"
+        },
+        {
+          "line": 19,
+          "statement": "from dataclasses import dataclass"
+        },
+        {
+          "line": 20,
+          "statement": "from pathlib import Path"
+        },
+        {
+          "line": 21,
+          "statement": "from rw_parser import Parser"
+        },
+        {
+          "line": 22,
+          "statement": "from node import *"
+        },
+        {
+          "line": 23,
+          "statement": "from util import *"
+        }
+      ],
+      "external_required": [],
+      "conditional_external": []
+    },
+    {
+      "source": "cvc5/src/rewriter/node.py",
+      "imports": [
+        {
+          "line": 13,
+          "statement": "from enum import Enum, auto"
+        }
+      ],
+      "external_required": [],
+      "conditional_external": []
+    },
+    {
+      "source": "cvc5/src/rewriter/rule.py",
+      "imports": [],
+      "external_required": [],
+      "conditional_external": []
+    },
+    {
+      "source": "cvc5/src/rewriter/rw_parser.py",
+      "imports": [
+        {
+          "line": 13,
+          "statement": "import pyparsing as pp"
+        },
+        {
+          "line": 14,
+          "statement": "from node import *"
+        },
+        {
+          "line": 15,
+          "statement": "from rule import Rule"
+        },
+        {
+          "line": 16,
+          "statement": "from util import die, fresh_name"
+        }
+      ],
+      "external_required": [
+        "pyparsing"
+      ],
+      "conditional_external": []
+    },
+    {
+      "source": "cvc5/src/rewriter/util.py",
+      "imports": [
+        {
+          "line": 13,
+          "statement": "import os"
+        },
+        {
+          "line": 14,
+          "statement": "import shutil"
+        },
+        {
+          "line": 15,
+          "statement": "import sys"
+        },
+        {
+          "line": 16,
+          "statement": "from subprocess import Popen, PIPE, STDOUT"
+        }
+      ],
+      "external_required": [],
+      "conditional_external": []
+    },
+    {
+      "source": "cvc5/src/theory/mkrewriter.py",
+      "imports": [
+        {
+          "line": 13,
+          "statement": "import argparse"
+        },
+        {
+          "line": 14,
+          "statement": "import sys"
+        },
+        {
+          "line": 15,
+          "statement": "import os"
+        },
+        {
+          "line": 16,
+          "statement": "from datetime import date"
+        },
+        {
+          "line": 20,
+          "statement": "from expr.theory_validator import TheoryValidator"
+        },
+        {
+          "line": 23,
+          "statement": "import tomllib"
+        },
+        {
+          "line": 25,
+          "statement": "import tomli as tomllib"
+        }
+      ],
+      "external_required": [],
+      "conditional_external": [
+        "tomli if Python <3.11"
+      ]
+    },
+    {
+      "source": "cvc5/src/theory/mktheorytraits.py",
+      "imports": [
+        {
+          "line": 13,
+          "statement": "import argparse"
+        },
+        {
+          "line": 14,
+          "statement": "import re"
+        },
+        {
+          "line": 15,
+          "statement": "import sys"
+        },
+        {
+          "line": 16,
+          "statement": "import os"
+        },
+        {
+          "line": 17,
+          "statement": "from datetime import date"
+        },
+        {
+          "line": 21,
+          "statement": "from expr.theory_validator import TheoryValidator"
+        },
+        {
+          "line": 24,
+          "statement": "import tomllib"
+        },
+        {
+          "line": 26,
+          "statement": "import tomli as tomllib"
+        }
+      ],
+      "external_required": [],
+      "conditional_external": [
+        "tomli if Python <3.11"
+      ]
+    }
+  ],
+  "new_required_sdk_roots": [
+    "python3-pyparsing",
+    "m4"
+  ],
+  "not_required_new_roots": [
+    "python3-tomli",
+    "autoconf",
+    "automake",
+    "libtool",
+    "perl",
+    "bison",
+    "flex",
+    "texinfo",
+    "default-jdk",
+    "python3-pip",
+    "python3-venv",
+    "clang-format",
+    "git"
+  ],
+  "remaining_conditions": [
+    "compiler flags, generated config headers and all configure feature checks unexecuted",
+    "GMP ABI/assembler selection, m4 checks and compiled generation programs unexecuted",
+    "CaDiCaL getc_unlocked/closefrom conditionals and build.hpp generation unexecuted",
+    "Poly warning-flag/open_memstream checks and writable worktree generation unexecuted",
+    "fixed SDK contents/signature/license/trust and generator API compatibility not accepted",
+    "Editline pkg-config --static closure/order and actual archives remain missing",
+    "patch is separately reviewed; future compiler/linker/ELF/map composition not established",
+    "original resources/runtime arguments unchanged; E0/E4/E5 remain separate gates"
+  ]
+}

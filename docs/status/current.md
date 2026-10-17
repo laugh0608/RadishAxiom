@@ -79,7 +79,9 @@ Accepted E3 设计已提交为 `e2d36ce`。随后完成[具体 ABI](../query/sol
 
 方案与补证已精确提交为 `f2ad466`。随后按当前授权完成 F1：新增私有纯 `solver-supervision-core`，提取 ABI / W/S 策略 / wire / cgroup 值解析；host 保留原接口与固定资源，模拟身份和观察继续隔离。闭合[启动描述](../query/solver-bootstrap-start-v0.1.md)、strict 请求规划、Mac/S 分离声明与截止计划、增量摘要和离线资源 / 策略输入已实现。原容量 query、旧封套与策略字节保持，实际回归及独立核对见[F1 验收](../records/2026-10-17-solver-f1-validation.md)。
 
-F1 实现、验收与 [D3 构建候选方案](../query/solver-cvc5-build-candidate-plan.md)已提交为 `1a7ff38`；F2 实现与验收随后按项目所有者要求提交为 `bf197ad`，均未 push。当前授权继续 D3 C0 精确输入选择，允许取得固定快照 Release / Packages / Sources 元数据，补齐 SDK 精确版本与依赖闭包：F2 的[原生边界](../query/solver-bootstrap-native-boundary.md)与[监督实现](../query/solver-bootstrap-native-supervisor.md)只在本机脚本后端检查；D3 的[输入选择](../query/solver-cvc5-c0-input-selection.md)已固定五项源码目标；固定快照元数据已取得，170 个包 / 472 条依赖与 99 个对应源版本已完成选择和独立复核；完整配置 / patch、签名信任与包内容 / 许可仍阻断 C0 整体，`build_ready=false`，不代表原包取得、工具接受或新 CLI。主代理主持设计与验收，具体实现委派 gpt-6.1-sol / high。源码验收见[F2 / C0 记录](../records/2026-10-17-solver-f2-validation.md)，后续元数据选择见[本批验收](../records/2026-10-17-cvc5-c0-sdk-metadata.md)。原容量、旧字节与资源限值保持，不下载或安装依赖、不构建 Linux 制品或镜像、不运行探针 / solver、不修改系统配置、不 push。
+F1 与 [D3 构建候选方案](../query/solver-cvc5-build-candidate-plan.md)已提交为 `1a7ff38`，F2 已提交为 `bf197ad`，C0 [SDK 元数据选择与验收](../records/2026-10-17-cvc5-c0-sdk-metadata.md)已按要求提交为 `c2ea5d0`，均未 push。F2 的[原生边界](../query/solver-bootstrap-native-boundary.md)与[监督实现](../query/solver-bootstrap-native-supervisor.md)仍只完成本机脚本后端检查。
+
+项目所有者随后授权取得固定的五项源码归档及必要许可材料，继续完整源码、Production 配置和构建 patch 静态审阅。五项归档已取得并安全展开，四依赖摘要匹配固定配方；cvc5 的 7,066 个文件与已留存 Git tree 内容一致。完整源码揭示 CLI 的 `pyparsing` 和 GMP AArch64 汇编的 `m4` 需求，SDK 选择沿原快照补齐；配置与 patch 的结果、许可歧义及剩余条件见[本批验收](../records/2026-10-17-cvc5-c0-source-review.md)与[C0 专题](../query/solver-cvc5-c0-input-selection.md)。主代理主持设计与验收，具体工作委派 gpt-6.1-sol / high。`build_ready=false`；源码一致性不代表签名、包内容、许可或工具接受。没有下载 SDK 二进制包、安装、构建、运行探针 / solver、修改系统配置或 push；原容量、旧字节和资源限值保持。
 
 ### P4 接续（2026-10-13）
 
@@ -108,7 +110,7 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 
 - ADR 0027 与 query v0.5 / P4-A v0.2 已 Accepted，A–C 已完成本机组件验收。保持原容量、旧 profile 字节及 1 MiB；不启动真实 solver，不 push。紧凑字节与有限比较不代表实际求解、运行资源资格或证明。
 - ADR 0028 D1–D3 与执行层设计范围已 Accepted；E1–E2 已完成纯组件与模拟验收，真实适配与运行资格尚未闭合。cvc5 Linux arm64 ZIP 静态检查通过但未 accepted，OrbStack 宿主仅选为候选；完整依赖 / 许可证、固定加载与能力限制、128 MiB / 6 s 资格尚未闭合。准备授权不扩大为安装、构建镜像、容器探针、solver 执行或系统配置。
-- ADR 0029 D1–D3 已 Accepted；E3 离线组件已验收。ADR 0030 D1–D3 已 Accepted；F1 / F2 源码与本机验收已提交，当前授权仅继续 D3 C0 固定快照元数据与输入选择，尚未授权依赖包 / 源码归档取得、Linux 制品 / 镜像构建或真实运行。不得用 PID 1 / timerfd 的纸面方案宣称失联回收或 6 s 资格；也不得以 USER_NOTIF 检查不可信 pathname 后放行。真实路径继续受 E0、ABI 审查、实际运行资格和后续各项执行授权约束。
+- ADR 0029 D1–D3 已 Accepted；E3 离线组件已验收。ADR 0030 D1–D3 已 Accepted；F1 / F2 与 C0 元数据批已提交。当前 C0 源码批只取得固定五归档并作静态配置 / patch / 许可审阅，SDK 包、签名信任、实际配置和输入接受仍未闭合；未授权安装、构建或真实运行。不得用 PID 1 / timerfd 的纸面方案宣称失联回收或 6 s 资格；也不得以 USER_NOTIF 检查不可信 pathname 后放行。真实路径继续受 E0、ABI 审查、实际运行资格和后续各项执行授权约束。
 - 精确 CLI 补证保持系统库和实际构建输入缺口，不因固定配方、许可文本或 CI success 转为 accepted。日志 403 路径停止，不自动申请上游管理权限、联系发布者、换工具或展开全工具链取证；执行层按 E0–E6 清单分别收口。
 - P1、限定 P2 与 P3-A / B / C / D / E / F 已完成本机组件验收；完整生产阶段尚未验收。P3 进一步扩展须明确目标范围；新 IR / P2 / query 不能配给旧 Evidence 结果，完整 Evidence v0.2 仍须按 ADR 0009 补齐。
 - P4-A 按 ADR 0025 已完成本机组件验收；没有真实 cvc5 校准。纯 parser / 世界候选不认证响应来源，不产生 attempt、反例或 Evidence 五态；旧四版 AX-B01 stdin 尺寸拒绝保持，新 v0.5 已通过字节门槛。

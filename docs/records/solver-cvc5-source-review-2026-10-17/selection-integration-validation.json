@@ -1,0 +1,488 @@
+{
+  "format": "radishaxiom-private-c0-source-selection-integration-validation",
+  "version": "0.1",
+  "date": "2026-10-17",
+  "baseline_commit": "c2ea5d018b23a0b8a6e787b3baacf6be5af09c97",
+  "python_version": "3.14.5",
+  "scope": "offline-input-selection-integration-and-sdk-metadata-closure-only",
+  "validation_driver": {
+    "path": ".tmp/cvc5-c0-source-integration-validation-2026-10-17/validate.py",
+    "bytes": 6818,
+    "raw_digest": "sha256:242aa515fdd7bc3eea4cf32f6aa84b5f3c2d8b707976009c7c5cddafc909f1f5"
+  },
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "scripts/cvc5-c0-sdk-selection.py",
+        "resolve"
+      ],
+      "exit_code": 0,
+      "output": {
+        "path": ".tmp/cvc5-c0-source-integration-validation-2026-10-17/sdk-resolve.json",
+        "bytes": 480,
+        "raw_digest": "sha256:4d26bf651be8c9be6f0e565f0983e5ea00d2d1ecf9f56960d422399dcdfa8af7"
+      }
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/generate-cvc5-c0-input-selection.py"
+      ],
+      "exit_code": 0,
+      "output": {
+        "path": ".tmp/cvc5-c0-source-integration-validation-2026-10-17/input-generate.log",
+        "bytes": 96,
+        "raw_digest": "sha256:a927940332f612fc633ad3531e2f2973514b78ab0cbfcfab4710af1b3f8e539a"
+      }
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/check-cvc5-c0-sdk-independent.py",
+        "--output",
+        "docs/records/solver-cvc5-c0-2026-10-17/independent-check.json"
+      ],
+      "exit_code": 0,
+      "output": {
+        "path": ".tmp/cvc5-c0-source-integration-validation-2026-10-17/independent-check.json",
+        "bytes": 2446,
+        "raw_digest": "sha256:f69392f37e5a77269d3712bf07ce54b3dfa688bcf8e3a2ee825c1772ad1bc130"
+      }
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/cvc5-c0-sdk-metadata.py",
+        "metadata-verify"
+      ],
+      "exit_code": 0,
+      "output": {
+        "path": ".tmp/cvc5-c0-source-integration-validation-2026-10-17/metadata-check.json",
+        "bytes": 149,
+        "raw_digest": "sha256:b9155dd58d9dc9bf3fcfbd581f99708fa0559626aa4003141cb5d11efae5c894"
+      }
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/cvc5-c0-sdk-selection.py",
+        "verify"
+      ],
+      "exit_code": 0,
+      "output": {
+        "path": ".tmp/cvc5-c0-source-integration-validation-2026-10-17/sdk-check.json",
+        "bytes": 480,
+        "raw_digest": "sha256:4d26bf651be8c9be6f0e565f0983e5ea00d2d1ecf9f56960d422399dcdfa8af7"
+      }
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/check-cvc5-c0-input-selection.py"
+      ],
+      "exit_code": 0,
+      "output": {
+        "path": ".tmp/cvc5-c0-source-integration-validation-2026-10-17/input-check.json",
+        "bytes": 829,
+        "raw_digest": "sha256:888767c70fcff59e8c23856de19d568f7b9ab0f9e6935792fd2a00ddddf757c3"
+      }
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/test-cvc5-c0-sdk-metadata.py"
+      ],
+      "exit_code": 0,
+      "output": {
+        "path": ".tmp/cvc5-c0-source-integration-validation-2026-10-17/metadata-tests.log",
+        "bytes": 131,
+        "raw_digest": "sha256:1296d1668c9c976e4c553943c3c86549419bd40e4d072a70da5ab992e79a2038"
+      }
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/test-cvc5-c0-sdk-selection.py"
+      ],
+      "exit_code": 0,
+      "output": {
+        "path": ".tmp/cvc5-c0-source-integration-validation-2026-10-17/sdk-tests.log",
+        "bytes": 132,
+        "raw_digest": "sha256:6776d74167e1926bea5927757a2bdb4434dbd3701e65981e15f3c75169a1ed4e"
+      }
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/test-cvc5-c0-input-selection.py"
+      ],
+      "exit_code": 0,
+      "output": {
+        "path": ".tmp/cvc5-c0-source-integration-validation-2026-10-17/input-tests.log",
+        "bytes": 132,
+        "raw_digest": "sha256:7999682cf11d1735ca4c7c1448e4219a2c057fb4f1c3e08a3c6af6cf5d23a452"
+      }
+    },
+    {
+      "argv": [
+        "python3",
+        "-O",
+        "scripts/test-cvc5-c0-sdk-independent.py"
+      ],
+      "exit_code": 0,
+      "output": {
+        "path": ".tmp/cvc5-c0-source-integration-validation-2026-10-17/independent-tests-optimized.log",
+        "bytes": 112,
+        "raw_digest": "sha256:aa8d7dbd647b875f805aa34674033999f2372201f7720fcf060afdedb742f98b"
+      }
+    }
+  ],
+  "tests": {
+    "metadata-tests.log": {
+      "passed": 32,
+      "failed": 0,
+      "optimized_python": false
+    },
+    "sdk-tests.log": {
+      "passed": 33,
+      "failed": 0,
+      "optimized_python": false
+    },
+    "input-tests.log": {
+      "passed": 33,
+      "failed": 0,
+      "optimized_python": false
+    },
+    "independent-tests-optimized.log": {
+      "passed": 12,
+      "failed": 0,
+      "optimized_python": true
+    }
+  },
+  "total_distinct_tests": 110,
+  "root_checks": {
+    "metadata-check": {
+      "metadata_bytes": 18722419,
+      "packages_uncompressed_bytes": 49240269,
+      "sources_uncompressed_bytes": 50170234,
+      "signature_verified": false
+    },
+    "sdk-check": {
+      "root_groups": 17,
+      "root_packages": 53,
+      "packages": 172,
+      "dependency_edges": 474,
+      "source_packages": 101,
+      "unique_source_files": 328,
+      "binary_declared_bytes": 120870556,
+      "source_declared_bytes": 570734908,
+      "binary_max_bytes": 536870912,
+      "source_max_bytes": 1073741824,
+      "record_bytes": 817421,
+      "build_ready": false,
+      "executable": false,
+      "signature_verified": false,
+      "check_scope": "offline-regeneration-consistency-not-independent-authentication"
+    },
+    "input-check": {
+      "selection_consistent": true,
+      "build_ready": false,
+      "c0_state": "static-reviewed-blocked-on-sdk-content-effective-configuration-and-acceptance",
+      "source_archives_selected": 5,
+      "sdk_role_groups_selected": 17,
+      "source_archives_obtained": 5,
+      "configuration_executed": false,
+      "patch_state": "prepared-static-candidate-not-executed",
+      "sdk_packages_selected": 172,
+      "sdk_source_packages_selected": 101,
+      "sdk_metadata_dependency_closure": "closed-for-declared-roots-and-essential-metadata-only",
+      "retained_observations_rechecked": 29,
+      "original_cli_acceptance": "not-accepted",
+      "new_payload_acceptance": "not-accepted",
+      "metadata_authentication": "not-established",
+      "verification_scope": "reviewed-selection-and-offline-sdk-regeneration-consistency; independent-source-authentication-not-established"
+    }
+  },
+  "independent_sdk_check": {
+    "package_count": 172,
+    "essential_count": 23,
+    "dependency_clause_count": 474,
+    "alternative_clause_count": 12,
+    "source_family_versions": 101,
+    "source_archive_file_count": 328,
+    "declared_deb_bytes": 120870556,
+    "declared_source_bytes": 570734908,
+    "conflicts_or_breaks": [],
+    "format": "radishaxiom-private-c0-independent-sdk-check",
+    "version": "0.1",
+    "checker": {
+      "path": "scripts/check-cvc5-c0-sdk-independent.py",
+      "raw_digest": "sha256:0000890c739eeb3ba17354e5969a25be7717df05224ba468d200e87f1a8a9a10"
+    },
+    "selection_input": {
+      "path": "docs/records/solver-cvc5-c0-2026-10-17/sdk-selection.json",
+      "bytes": 817421,
+      "raw_digest": "sha256:313827c2435d4b895223bd04241d53e80c4f307ad1462a8b89da8fe7b36db84c"
+    },
+    "metadata_inputs": [
+      {
+        "path": ".tmp/cvc5-c0-sdk-metadata-2026-10-17/Release",
+        "bytes": 145119,
+        "raw_digest": "sha256:010b226303e531b2ca0d268079228b6667418b8ad021d6c126374837ad327055"
+      },
+      {
+        "path": ".tmp/cvc5-c0-sdk-metadata-2026-10-17/InRelease",
+        "bytes": 146972,
+        "raw_digest": "sha256:2814476b311085e250ddfdee295907bac45afb66f40dc7c1b35ab41a447c1d6c"
+      },
+      {
+        "path": ".tmp/cvc5-c0-sdk-metadata-2026-10-17/main__binary-arm64__Packages.xz",
+        "bytes": 8801860,
+        "raw_digest": "sha256:4926bbf128b8e497cb83c59c8212fd2ef4df5b2c30e9140a688198cd2cd55471"
+      },
+      {
+        "path": ".tmp/cvc5-c0-sdk-metadata-2026-10-17/main__source__Sources.xz",
+        "bytes": 9628468,
+        "raw_digest": "sha256:d1d5103c4ddd76196acc292e90fd0ffece1fe0d04408ab544633f25568e6cb19"
+      }
+    ],
+    "independently_derived_set_matches": true,
+    "metadata_body_bytes": 18722419,
+    "redirects_checked": 4,
+    "release_date": "Sat, 10 Jun 2023 08:51:17 UTC",
+    "signature_verified": false,
+    "build_ready": false,
+    "executable": false,
+    "independent_scope": "selected dependency clauses/edges, root+Essential set, architecture/Provides/alternatives, version comparisons, Conflicts/Breaks, Source and exact Built-Using associations, source/binary declared byte sums, raw metadata/hash/Release links, HTTP locator chain",
+    "unverified": [
+      "signature authentication and historical validity policy",
+      "binary/source package raw bytes and licenses",
+      "package file contents, maintainer scripts, ELF/dlopen/runtime filesystem",
+      "dynamic generator imports/effective options, SDK static link closure/map",
+      "compiler/SDK/tool acceptance"
+    ]
+  },
+  "sdk_delta": {
+    "before": {
+      "root_groups": 16,
+      "root_packages": 51,
+      "packages": 170,
+      "dependency_edges": 472,
+      "source_packages": 99,
+      "unique_source_files": 321,
+      "binary_declared_bytes": 120455832,
+      "source_declared_bytes": 567050311,
+      "binary_max_bytes": 536870912,
+      "source_max_bytes": 1073741824
+    },
+    "after": {
+      "root_groups": 17,
+      "root_packages": 53,
+      "packages": 172,
+      "dependency_edges": 474,
+      "source_packages": 101,
+      "unique_source_files": 328,
+      "binary_declared_bytes": 120870556,
+      "source_declared_bytes": 570734908,
+      "binary_max_bytes": 536870912,
+      "source_max_bytes": 1073741824
+    },
+    "added_packages": [
+      {
+        "Package": "m4",
+        "Version": "1.4.19-3",
+        "Architecture": "arm64",
+        "Filename": "pool/main/m/m4/m4_1.4.19-3_arm64.deb",
+        "Size": 276280,
+        "SHA256": "54238d48d2b7b90c9146d156cfa0d80254c4892730c5b57fce8dee0747127228",
+        "Source": null,
+        "source_package": "m4",
+        "source_version": "1.4.19-3",
+        "package_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/m/m4/m4_1.4.19-3_arm64.deb",
+        "bytes": null,
+        "raw_digest": null,
+        "package_status": "not-obtained",
+        "license_acceptance": "not-accepted",
+        "reasons": [
+          {
+            "kind": "sdk-role-root"
+          }
+        ],
+        "Depends": "libc6 (>= 2.34)",
+        "Pre-Depends": null,
+        "Provides": null,
+        "Conflicts": null,
+        "Breaks": null,
+        "Essential": null,
+        "Multi-Arch": "foreign",
+        "Replaces": null,
+        "built_using_sources": [],
+        "Built-Using": null,
+        "Static-Built-Using": null
+      },
+      {
+        "Package": "python3-pyparsing",
+        "Version": "3.0.9-1",
+        "Architecture": "all",
+        "Filename": "pool/main/p/pyparsing/python3-pyparsing_3.0.9-1_all.deb",
+        "Size": 138444,
+        "SHA256": "891dcf12a125dcadbae7166ad8e9d1fd22a6f1bf431ca4bce9f810da30dcd472",
+        "Source": "pyparsing",
+        "source_package": "pyparsing",
+        "source_version": "3.0.9-1",
+        "package_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/p/pyparsing/python3-pyparsing_3.0.9-1_all.deb",
+        "bytes": null,
+        "raw_digest": null,
+        "package_status": "not-obtained",
+        "license_acceptance": "not-accepted",
+        "reasons": [
+          {
+            "kind": "sdk-role-root"
+          }
+        ],
+        "Depends": "python3:any",
+        "Pre-Depends": null,
+        "Provides": null,
+        "Conflicts": null,
+        "Breaks": "python3-translate (<< 3.6.0~), translate-toolkit (<< 3.6.0~)",
+        "Essential": null,
+        "Multi-Arch": "foreign",
+        "Replaces": null,
+        "built_using_sources": [],
+        "Built-Using": null,
+        "Static-Built-Using": null
+      }
+    ],
+    "removed_packages": [],
+    "added_source_versions": [
+      {
+        "Package": "m4",
+        "Version": "1.4.19-3"
+      },
+      {
+        "Package": "pyparsing",
+        "Version": "3.0.9-1"
+      }
+    ],
+    "binary_declared_bytes_delta": 414724,
+    "source_declared_bytes_delta": 3684597
+  },
+  "source_inventory": [
+    {
+      "path": "scripts/cvc5-c0-sdk-metadata.py",
+      "bytes": 21790,
+      "raw_digest": "sha256:53d1d57fdd942527db9f7ca4825b485b63c509c5e907ecfd90bb2c306abd2ce3"
+    },
+    {
+      "path": "scripts/test-cvc5-c0-sdk-metadata.py",
+      "bytes": 13571,
+      "raw_digest": "sha256:352d94db70b222d7d9ab59823a989813049505b0a5a24aa2674c9e4c7b03df58"
+    },
+    {
+      "path": "scripts/cvc5-c0-sdk-selection.py",
+      "bytes": 24142,
+      "raw_digest": "sha256:eec9c8339a145c7eaa5692769d0633e391ea4017ed5fb4cacf44ae417eb11e09"
+    },
+    {
+      "path": "scripts/test-cvc5-c0-sdk-selection.py",
+      "bytes": 13385,
+      "raw_digest": "sha256:02e15bee2f606dd8eee34ea6ff9ddcabd7ab7be765be4ddd3ab6e1e216515f3a"
+    },
+    {
+      "path": "scripts/generate-cvc5-c0-input-selection.py",
+      "bytes": 18284,
+      "raw_digest": "sha256:6aae4014b1f57d691fb4bccd51571b52e9dee740c57d7cbe777b57b52d9da5cf"
+    },
+    {
+      "path": "scripts/check-cvc5-c0-input-selection.py",
+      "bytes": 6762,
+      "raw_digest": "sha256:17be81035f7588eb2b6f7d4be9b58204d0a89155ea7e694d2152ec1b70400e0e"
+    },
+    {
+      "path": "scripts/test-cvc5-c0-input-selection.py",
+      "bytes": 8089,
+      "raw_digest": "sha256:bdcbb917e7bfe9ad5396fc34dc9fe847549532c9fea458bf53d2750dd0cb6ab6"
+    },
+    {
+      "path": "scripts/check-cvc5-c0-sdk-independent.py",
+      "bytes": 26715,
+      "raw_digest": "sha256:0000890c739eeb3ba17354e5969a25be7717df05224ba468d200e87f1a8a9a10"
+    },
+    {
+      "path": "scripts/test-cvc5-c0-sdk-independent.py",
+      "bytes": 7573,
+      "raw_digest": "sha256:e5819ed63999cf0d94e578be9b74e16bf609a2021fb81d160fe8dbc22d615254"
+    }
+  ],
+  "artifact_inventory": [
+    {
+      "path": "docs/records/solver-cvc5-c0-2026-10-17/sdk-selection.json",
+      "bytes": 817421,
+      "raw_digest": "sha256:313827c2435d4b895223bd04241d53e80c4f307ad1462a8b89da8fe7b36db84c"
+    },
+    {
+      "path": "docs/records/solver-cvc5-c0-2026-10-17/input-selection.json",
+      "bytes": 36786,
+      "raw_digest": "sha256:acb07d88a0259c0299d6b68140ba243ff5866b124970f12a51a5d6963249a4e6"
+    },
+    {
+      "path": "docs/records/solver-cvc5-c0-2026-10-17/independent-check.json",
+      "bytes": 2446,
+      "raw_digest": "sha256:f69392f37e5a77269d3712bf07ce54b3dfa688bcf8e3a2ee825c1772ad1bc130"
+    },
+    {
+      "path": "docs/records/solver-cvc5-c0-2026-10-17/metadata-observations.json",
+      "bytes": 10278,
+      "raw_digest": "sha256:0ebf9f5e79a7c4374feffc35f9d45823f45aba9b564f75de03a1f324f456fe4b"
+    },
+    {
+      "path": "docs/records/solver-cvc5-source-review-2026-10-17/source-inputs.json",
+      "bytes": 8282,
+      "raw_digest": "sha256:b4d9a7813c35626d798f572cafdc63e2e79d367501e5327d231987e96e5152d3"
+    },
+    {
+      "path": "docs/records/solver-cvc5-source-review-2026-10-17/production-review.json",
+      "bytes": 139628,
+      "raw_digest": "sha256:b1de1a8085ce97db5e8b18c093e3d76f9ffb8bb66dbfdea09855b067ca22d918"
+    },
+    {
+      "path": "docs/records/solver-cvc5-source-review-2026-10-17/patch-review.json",
+      "bytes": 5237,
+      "raw_digest": "sha256:68a245cf4c703059460ad273dd8548fd5dbab30dd5d5f59d163287dcde2e3076"
+    },
+    {
+      "path": "patches/cvc5/1.3.4/explicit-inputs.patch",
+      "bytes": 44354,
+      "raw_digest": "sha256:b8d27136de75c5f576e8a06468c7ac31a9163409720bf8a4a4f32e453571251c"
+    }
+  ],
+  "intermediate_consistency_failure": {
+    "command": "python3 scripts/check-cvc5-c0-input-selection.py",
+    "exit_code": 1,
+    "error": "ValueError: selection-drift-or-false-acceptance",
+    "cause": "parallel patch review changed patch bytes from 43582 to 44354 and changed patch-review digest after input generation; production/source/SDK references unchanged at that observation",
+    "resolution": "retain strict rejection; regenerate final selection after patch review freezes; no acceptance rule weakened"
+  },
+  "historical_validation": {
+    "path": "docs/records/solver-cvc5-c0-2026-10-17/validation-results.json",
+    "policy": "preserved unchanged as previous metadata-batch facts; current results are recorded here"
+  },
+  "build_ready": false,
+  "configuration_executed": false,
+  "upstream_programs_executed": false,
+  "signature_verified": false,
+  "tool_acceptance": "not-accepted",
+  "original_cli_acceptance": "not-accepted",
+  "new_payload_acceptance": "not-accepted",
+  "not_performed": [
+    "network or further metadata acquisition",
+    "SDK binary/corresponding-source package download",
+    "package installation",
+    "upstream configure/generator/build",
+    "probe or solver execution",
+    "system configuration changes",
+    "commit, push or remote writes"
+  ],
+  "retention": "Full validation logs and driver remain in ignored task-specific .tmp directory. No cleanup performed."
+}

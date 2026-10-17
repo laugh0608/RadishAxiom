@@ -1,15 +1,15 @@
 {
   "format": "radishaxiom-private-cvc5-c0-input-selection",
-  "version": "0.2",
+  "version": "0.3",
   "observation_date": "2026-10-17",
   "generator": "scripts/generate-cvc5-c0-input-selection.py",
   "generator_identity": {
     "path": "scripts/generate-cvc5-c0-input-selection.py",
-    "bytes": 12239,
-    "raw_digest": "sha256:607daa63ea5a54d89b000566b4f86bbb7e34f287cdc8380ea4040aaa333acc87"
+    "bytes": 18284,
+    "raw_digest": "sha256:6aae4014b1f57d691fb4bccd51571b52e9dee740c57d7cbe777b57b52d9da5cf"
   },
   "scope": "candidate-selection-only-no-acceptance",
-  "c0_state": "blocked-source-config-content-authentication-and-acceptance-unresolved",
+  "c0_state": "static-reviewed-blocked-on-sdk-content-effective-configuration-and-acceptance",
   "executable": false,
   "build_ready": false,
   "original_cli_acceptance": "not-accepted",
@@ -269,11 +269,33 @@
       "url": "https://github.com/cvc5/cvc5/archive/f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341.tar.gz",
       "expected_archive_sha256": null,
       "expected_hash_basis": "not-published-in-retained-material",
-      "raw_digest": null,
-      "bytes": null,
-      "status": "not-obtained",
+      "raw_digest": "sha256:cbaa927c4d8085e38e7a097191bb9dd3a6780cc17fcde65cb156c9583e597760",
+      "bytes": 9279538,
+      "status": "obtained-static-reviewed-not-accepted",
       "license_acceptance": "not-accepted",
-      "max_download_bytes": 67108864
+      "max_download_bytes": 67108864,
+      "expected_archive_hash_matches": null,
+      "observation_scope": "retained-archive-and-inventory-consistency-not-signature-or-license-acceptance",
+      "tree_inventory": {
+        "path": "docs/records/solver-cvc5-source-review-2026-10-17/cvc5-tree.json",
+        "bytes": 3477550,
+        "raw_digest": "sha256:cc5cdb90edd330ae4b7af7efe66cba383a5a192e50ff8773fe585dacb4f3d415"
+      },
+      "license_inventory": {
+        "path": "docs/records/solver-cvc5-source-review-2026-10-17/cvc5-license-inventory.json",
+        "bytes": 1241996,
+        "raw_digest": "sha256:b41b2e5e4e86e96b2f87b71a510282a4b83e3ac9ca915860f475f49b2b4790e8"
+      },
+      "retained_git_blob_check": {
+        "retained_git_tree": {
+          "path": ".tmp/solver-cli-licenses-2026-10-17/cvc5-tree.json",
+          "bytes": 2227076,
+          "raw_digest": "sha256:93b27e663bf20edaffbca7adfe80c137f329acabffca8e07d5450de456d37974"
+        },
+        "blob_count": 7066,
+        "all_retained_git_blob_sha1_equal": true,
+        "scope": "consistency-with-retained-unsigned-publisher-tree-not-signature-authentication"
+      }
     },
     {
       "id": "cadical",
@@ -283,11 +305,24 @@
       "url": "https://github.com/arminbiere/cadical/archive/rel-2.1.3-elevate.tar.gz",
       "expected_archive_sha256": "15e1e82f7f9a9da0e97070cb8ac41d5b32139f65d54f72d2ff84849b0466ef92",
       "expected_hash_basis": "pinned-cvc5-Find-module-declaration-not-recomputed",
-      "raw_digest": null,
-      "bytes": null,
-      "status": "not-obtained",
+      "raw_digest": "sha256:15e1e82f7f9a9da0e97070cb8ac41d5b32139f65d54f72d2ff84849b0466ef92",
+      "bytes": 732469,
+      "status": "obtained-static-reviewed-not-accepted",
       "license_acceptance": "not-accepted",
-      "max_download_bytes": 33554432
+      "max_download_bytes": 33554432,
+      "expected_archive_hash_matches": true,
+      "observation_scope": "retained-archive-and-inventory-consistency-not-signature-or-license-acceptance",
+      "tree_inventory": {
+        "path": "docs/records/solver-cvc5-source-review-2026-10-17/cadical-tree.json",
+        "bytes": 197566,
+        "raw_digest": "sha256:f0a6b8bcb789c9b2b82d099148622c2360a72479e4c38204a18e243650ce7ccc"
+      },
+      "license_inventory": {
+        "path": "docs/records/solver-cvc5-source-review-2026-10-17/cadical-license-inventory.json",
+        "bytes": 7372,
+        "raw_digest": "sha256:51ff45c048539ebe58c566ff5acb2a57bfc53ce0f2a3d46eec1e840153914571"
+      },
+      "retained_git_blob_check": null
     },
     {
       "id": "gmp",
@@ -297,11 +332,24 @@
       "url": "https://github.com/cvc5/cvc5-deps/blob/main/gmp-6.3.0.tar.bz2?raw=true",
       "expected_archive_sha256": "ac28211a7cfb609bae2e2c8d6058d66c8fe96434f740cf6fe2e47b000d1c20cb",
       "expected_hash_basis": "pinned-cvc5-Find-module-declaration-not-recomputed",
-      "raw_digest": null,
-      "bytes": null,
-      "status": "not-obtained",
+      "raw_digest": "sha256:ac28211a7cfb609bae2e2c8d6058d66c8fe96434f740cf6fe2e47b000d1c20cb",
+      "bytes": 2643888,
+      "status": "obtained-static-reviewed-not-accepted",
       "license_acceptance": "not-accepted",
-      "max_download_bytes": 33554432
+      "max_download_bytes": 33554432,
+      "expected_archive_hash_matches": true,
+      "observation_scope": "retained-archive-and-inventory-consistency-not-signature-or-license-acceptance",
+      "tree_inventory": {
+        "path": "docs/records/solver-cvc5-source-review-2026-10-17/gmp-tree.json",
+        "bytes": 965860,
+        "raw_digest": "sha256:e29a88eb1fc27742d5787e808132f2291bdd28bad61cce2b737e3b60ec3076dd"
+      },
+      "license_inventory": {
+        "path": "docs/records/solver-cvc5-source-review-2026-10-17/gmp-license-inventory.json",
+        "bytes": 1058387,
+        "raw_digest": "sha256:5ecd776ebcc7ab73fd1bd8b7277892e4262f1623bca9496549b99830b78e3e4e"
+      },
+      "retained_git_blob_check": null
     },
     {
       "id": "libpoly",
@@ -311,11 +359,24 @@
       "url": "https://github.com/SRI-CSL/libpoly/archive/refs/tags/v0.2.1.tar.gz",
       "expected_archive_sha256": "f9920afc876f998633348b9cbfcf180757ada48cc872040256c60ad0707b5a0f",
       "expected_hash_basis": "pinned-cvc5-Find-module-declaration-not-recomputed",
-      "raw_digest": null,
-      "bytes": null,
-      "status": "not-obtained",
+      "raw_digest": "sha256:f9920afc876f998633348b9cbfcf180757ada48cc872040256c60ad0707b5a0f",
+      "bytes": 629599,
+      "status": "obtained-static-reviewed-not-accepted",
       "license_acceptance": "not-accepted",
-      "max_download_bytes": 33554432
+      "max_download_bytes": 33554432,
+      "expected_archive_hash_matches": true,
+      "observation_scope": "retained-archive-and-inventory-consistency-not-signature-or-license-acceptance",
+      "tree_inventory": {
+        "path": "docs/records/solver-cvc5-source-review-2026-10-17/libpoly-tree.json",
+        "bytes": 109010,
+        "raw_digest": "sha256:027f70dadd6c70d6f5a1ffc0438b53e50007d5f7db9252326b41aa2f05a269bf"
+      },
+      "license_inventory": {
+        "path": "docs/records/solver-cvc5-source-review-2026-10-17/libpoly-license-inventory.json",
+        "bytes": 60685,
+        "raw_digest": "sha256:d9cd7c637634cdcf498b1e8e4a1e18e7c69658f2903740f644a015a125e77f93"
+      },
+      "retained_git_blob_check": null
     },
     {
       "id": "symfpu",
@@ -325,13 +386,31 @@
       "url": "https://github.com/cvc5/symfpu/archive/227a7246b8ce513b393cc2645d6d65d3490ea1de.tar.gz",
       "expected_archive_sha256": "ff22e37dbc133120ada5760878974811737bec65b12a8883f92b1ed9e3f96e99",
       "expected_hash_basis": "pinned-cvc5-Find-module-declaration-not-recomputed",
-      "raw_digest": null,
-      "bytes": null,
-      "status": "not-obtained",
+      "raw_digest": "sha256:ff22e37dbc133120ada5760878974811737bec65b12a8883f92b1ed9e3f96e99",
+      "bytes": 83411,
+      "status": "obtained-static-reviewed-not-accepted",
       "license_acceptance": "not-accepted",
-      "max_download_bytes": 33554432
+      "max_download_bytes": 33554432,
+      "expected_archive_hash_matches": true,
+      "observation_scope": "retained-archive-and-inventory-consistency-not-signature-or-license-acceptance",
+      "tree_inventory": {
+        "path": "docs/records/solver-cvc5-source-review-2026-10-17/symfpu-tree.json",
+        "bytes": 23172,
+        "raw_digest": "sha256:67582df02a43e8a2ffa52f5007707a5238bbb2a1bbea5fc36a0029895f810613"
+      },
+      "license_inventory": {
+        "path": "docs/records/solver-cvc5-source-review-2026-10-17/symfpu-license-inventory.json",
+        "bytes": 2145,
+        "raw_digest": "sha256:b54332f0de908a30b234c06415801cfd974e587a0cb13098ff278a35398a2554"
+      },
+      "retained_git_blob_check": null
     }
   ],
+  "source_review_record": {
+    "path": "docs/records/solver-cvc5-source-review-2026-10-17/source-inputs.json",
+    "bytes": 8282,
+    "raw_digest": "sha256:b4d9a7813c35626d798f572cafdc63e2e79d367501e5327d231987e96e5152d3"
+  },
   "sdk": {
     "selection": "exact-metadata-only",
     "distribution": "Debian 12 bookworm",
@@ -346,8 +425,8 @@
     "binary_sdk_trust": "proposed-not-accepted",
     "selection_record": {
       "path": "docs/records/solver-cvc5-c0-2026-10-17/sdk-selection.json",
-      "bytes": 809807,
-      "raw_digest": "sha256:e6ac7c1eb85fc48eb0464a5296e31e2d1a3e52bbbdcd5925bb64801b00ef15f1",
+      "bytes": 817421,
+      "raw_digest": "sha256:313827c2435d4b895223bd04241d53e80c4f307ad1462a8b89da8fe7b36db84c",
       "format": "radishaxiom-private-cvc5-c0-sdk-selection",
       "version": "0.1"
     },
@@ -357,18 +436,18 @@
       "raw_digest": "sha256:0ebf9f5e79a7c4374feffc35f9d45823f45aba9b564f75de03a1f324f456fe4b"
     },
     "closure_summary": {
-      "root_groups": 16,
-      "root_packages": 51,
-      "packages": 170,
-      "dependency_edges": 472,
-      "source_packages": 99,
-      "unique_source_files": 321,
-      "binary_declared_bytes": 120455832,
-      "source_declared_bytes": 567050311,
+      "root_groups": 17,
+      "root_packages": 53,
+      "packages": 172,
+      "dependency_edges": 474,
+      "source_packages": 101,
+      "unique_source_files": 328,
+      "binary_declared_bytes": 120870556,
+      "source_declared_bytes": 570734908,
       "binary_max_bytes": 536870912,
       "source_max_bytes": 1073741824
     },
-    "closure_scope": "selected 16 SDK role roots plus all Essential: yes packages from this index; not all cvc5 generation tools or runtime filesystem",
+    "closure_scope": "selected 17 SDK role roots including statically identified pyparsing/m4 plus all Essential: yes packages from this index; package contents and dynamic generator/runtime filesystem behavior unverified",
     "metadata_targets": [
       "https://snapshot.debian.org/archive/debian/20230612T000000Z/dists/bookworm/InRelease",
       "https://snapshot.debian.org/archive/debian/20230612T000000Z/dists/bookworm/Release",
@@ -551,11 +630,25 @@
           "python3.11",
           "python3.11-minimal",
           "libpython3.11-stdlib",
-          "libpython3.11-minimal"
+          "libpython3.11-minimal",
+          "python3-pyparsing"
         ],
         "required_roles_not_verified_package_contents": [
           "python3",
-          "stdlib; additional imported modules unresolved"
+          "stdlib",
+          "pyparsing; imports statically reviewed, package contents unverified"
+        ],
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
+      },
+      {
+        "id": "gmp-assembly-generator",
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
+          "m4"
+        ],
+        "required_roles_not_verified_package_contents": [
+          "m4; GMP arm64 assembly generation, package contents unverified"
         ],
         "package_contents_acceptance": "not-accepted",
         "license_acceptance": "not-accepted"
@@ -682,10 +775,24 @@
     }
   ],
   "configuration": {
-    "production_expansion": "unresolved-not-obtained",
-    "source_patch": null,
-    "patch_status": "not-created-without-full-source",
-    "bindings": "CLI-only intended; Python interpreter retained; Java effect unresolved; no JDK selected",
+    "production_expansion": "static-reviewed-not-configured",
+    "production_review_record": {
+      "path": "docs/records/solver-cvc5-source-review-2026-10-17/production-review.json",
+      "bytes": 139628,
+      "raw_digest": "sha256:b1de1a8085ce97db5e8b18c093e3d76f9ffb8bb66dbfdea09855b067ca22d918"
+    },
+    "source_patch": {
+      "bytes": 44354,
+      "path": "patches/cvc5/1.3.4/explicit-inputs.patch",
+      "raw_digest": "sha256:b8d27136de75c5f576e8a06468c7ac31a9163409720bf8a4a4f32e453571251c"
+    },
+    "patch_review_record": {
+      "path": "docs/records/solver-cvc5-source-review-2026-10-17/patch-review.json",
+      "bytes": 5237,
+      "raw_digest": "sha256:68a245cf4c703059460ad273dd8548fd5dbab30dd5d5f59d163287dcde2e3076"
+    },
+    "patch_status": "prepared-static-candidate-not-executed",
+    "bindings": "CLI-only candidate; Java/Python bindings explicitly disabled in static review; required Python interpreter/pyparsing retained; no JDK selected",
     "feature_requirements": [
       "Production",
       "static-glibc",
@@ -696,7 +803,7 @@
       "CaDiCaL",
       "SymFPU"
     ],
-    "optional_features": "unresolved-fixed-Production-expansion-required",
+    "optional_features": "statically-reviewed-candidate-overrides; effective-dynamic-configuration-unverified",
     "auto_download": false
   },
   "future_acquisition": {
@@ -713,8 +820,8 @@
       10,
       30
     ],
-    "sdk_package_index_declared_total_bytes": 120455832,
-    "source_correspondence_index_declared_total_bytes": 567050311,
+    "sdk_package_index_declared_total_bytes": 120870556,
+    "source_correspondence_index_declared_total_bytes": 570734908,
     "estimate_basis": "caps remain planning limits; exact declared sizes now summed from metadata, not package observations or acceptance",
     "timeout_seconds_per_item": 180,
     "retries": 0,
@@ -724,10 +831,11 @@
   "blockers": [
     "snapshot signature trust and historical validity policy not accepted",
     "exact metadata binary/source selection is not obtained package contents or copyright acceptance",
-    "declared package runtime metadata closure is not full generator imports or a runtime filesystem",
-    "full cvc5 source/embedded components/Production expansion/CLI generation imports unresolved",
-    "actual source and SDK package bytes/tree digests not obtained",
-    "build patch bytes, SDK file inventories, .pc static closure and link map not created",
-    "configuration delta and local license/trusted SDK acceptance not decided"
+    "declared package runtime metadata closure is not verified package contents or a runtime filesystem",
+    "static Production/options/import review and text patch are not executed effective configuration or generator compatibility",
+    "SDK binary/corresponding-source bytes and file inventories not obtained",
+    ".pc static closure, actual library/header hashes and link map not created",
+    "LibPoly Debian copyright label/body conflict and GMP multi-license scope require acceptance",
+    "local source/license/configuration delta/trusted SDK acceptance not decided"
   ]
 }

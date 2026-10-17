@@ -1,0 +1,279 @@
+{
+  "format": "radishaxiom-private-cvc5-c0-root-validation",
+  "version": "0.1",
+  "scope": "offline-byte-metadata-text-checks-only",
+  "complete": true,
+  "build_ready": false,
+  "configuration_executed": false,
+  "upstream_programs_executed": false,
+  "tool_acceptance": "not-accepted",
+  "interpreter": "3.14.5 (main, May 10 2026, 19:20:57) [Clang 22.1.3 ]",
+  "started_utc": "2026-10-17T14:25:56.180859+00:00",
+  "inputs": [
+    {
+      "path": ".gitattributes",
+      "bytes": 1064,
+      "raw_digest": "sha256:eaceb11bc4fe445be775cc7ef7dc8e373a627cceafb8d80e9a4e4c99b11e5551"
+    },
+    {
+      "path": ".tmp/cvc5-c0-acquisition-2026-10-17/root-validation.py",
+      "bytes": 3392,
+      "raw_digest": "sha256:934c8a4ecd412da497bb0390ec5ddb244ea021a4c4f1e24a8c838b361dead853"
+    },
+    {
+      "path": "docs/records/solver-cvc5-source-review-2026-10-17/patch-review.json",
+      "bytes": 5237,
+      "raw_digest": "sha256:68a245cf4c703059460ad273dd8548fd5dbab30dd5d5f59d163287dcde2e3076"
+    },
+    {
+      "path": "docs/records/solver-cvc5-source-review-2026-10-17/production-review.json",
+      "bytes": 139628,
+      "raw_digest": "sha256:b1de1a8085ce97db5e8b18c093e3d76f9ffb8bb66dbfdea09855b067ca22d918"
+    },
+    {
+      "path": "docs/records/solver-cvc5-source-review-2026-10-17/selection-integration-validation.json",
+      "bytes": 17175,
+      "raw_digest": "sha256:e725406d740fdaa3a347f105cf4b42bba9ba6c293d49e3e65dfd0efc974db475"
+    },
+    {
+      "path": "docs/records/solver-cvc5-source-review-2026-10-17/source-inputs.json",
+      "bytes": 8282,
+      "raw_digest": "sha256:b4d9a7813c35626d798f572cafdc63e2e79d367501e5327d231987e96e5152d3"
+    },
+    {
+      "path": "patches/cvc5/1.3.4/explicit-inputs.patch",
+      "bytes": 44354,
+      "raw_digest": "sha256:b8d27136de75c5f576e8a06468c7ac31a9163409720bf8a4a4f32e453571251c"
+    },
+    {
+      "path": "scripts/check-cvc5-build-patch.py",
+      "bytes": 9272,
+      "raw_digest": "sha256:910da08baadcd090d860f38a97ecdf8b6662175d6044ceeea5f6c84fe8f73105"
+    },
+    {
+      "path": "scripts/check-cvc5-c0-input-selection.py",
+      "bytes": 6762,
+      "raw_digest": "sha256:17be81035f7588eb2b6f7d4be9b58204d0a89155ea7e694d2152ec1b70400e0e"
+    },
+    {
+      "path": "scripts/check-cvc5-c0-sdk-independent.py",
+      "bytes": 26715,
+      "raw_digest": "sha256:0000890c739eeb3ba17354e5969a25be7717df05224ba468d200e87f1a8a9a10"
+    },
+    {
+      "path": "scripts/check-cvc5-c0-source-independent.py",
+      "bytes": 9424,
+      "raw_digest": "sha256:ffe292ba64bd92b76f07f3b2a98a0b62b23b52770f495fbef83c2dcd50604296"
+    },
+    {
+      "path": "scripts/check-cvc5-production-source-review.py",
+      "bytes": 11163,
+      "raw_digest": "sha256:baa86c05a398d7c330e95c897d62f808c908ff84cfe3a87806251808a506b97e"
+    },
+    {
+      "path": "scripts/cvc5-c0-sdk-metadata.py",
+      "bytes": 21790,
+      "raw_digest": "sha256:53d1d57fdd942527db9f7ca4825b485b63c509c5e907ecfd90bb2c306abd2ce3"
+    },
+    {
+      "path": "scripts/cvc5-c0-sdk-selection.py",
+      "bytes": 24142,
+      "raw_digest": "sha256:eec9c8339a145c7eaa5692769d0633e391ea4017ed5fb4cacf44ae417eb11e09"
+    },
+    {
+      "path": "scripts/cvc5-c0-source-inputs.py",
+      "bytes": 35706,
+      "raw_digest": "sha256:7ca6e21a1663869f35b68206eb4e271fb8d0caefb35142d4e9a5d9aea275853d"
+    },
+    {
+      "path": "scripts/test-cvc5-build-patch.py",
+      "bytes": 5396,
+      "raw_digest": "sha256:d5c0e6befc2a3443a9e1b6aba31c88d3ef45d33f9907083f8d252c49dc285239"
+    },
+    {
+      "path": "scripts/test-cvc5-c0-source-inputs.py",
+      "bytes": 7441,
+      "raw_digest": "sha256:b20292e8eb0520aeb815ee79b962b1a597c9d6398c40ce2e9c3d3e83d014d8a7"
+    },
+    {
+      "path": "scripts/test-cvc5-production-source-review.py",
+      "bytes": 6495,
+      "raw_digest": "sha256:4b7e03eaa25c1d532b409c77203080165af658c25cb95a3bdf5563a5303514cd"
+    }
+  ],
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "scripts/cvc5-c0-source-inputs.py",
+        "verify"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "five retained archives, physical tar inventories, and all materialized entries verified; no authentication/acceptance\n",
+      "stderr": "",
+      "interpretation": "exit 0 required"
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/check-cvc5-c0-source-independent.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "{\n  \"status\": \"checked\",\n  \"sources\": 5,\n  \"archive_bytes\": 13368905,\n  \"scope\": \"independent-retained-byte-tree-consistency-only\",\n  \"signature_authentication\": \"not-established\",\n  \"license_acceptance\": \"not-accepted\",\n  \"build_ready\": false\n}\n",
+      "stderr": "",
+      "interpretation": "exit 0 required"
+    },
+    {
+      "argv": [
+        "python3",
+        "-O",
+        "scripts/test-cvc5-c0-source-inputs.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.005s\n\nOK\n",
+      "interpretation": "exit 0 required"
+    },
+    {
+      "argv": [
+        "python3",
+        "-O",
+        "scripts/check-cvc5-production-source-review.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "checked 62 retained source files; static review only, no configure/build/acceptance\n",
+      "stderr": "",
+      "interpretation": "exit 0 required"
+    },
+    {
+      "argv": [
+        "python3",
+        "-O",
+        "scripts/test-cvc5-production-source-review.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": "............\n----------------------------------------------------------------------\nRan 12 tests in 0.155s\n\nOK\n",
+      "interpretation": "exit 0 required"
+    },
+    {
+      "argv": [
+        "python3",
+        "-O",
+        "scripts/check-cvc5-build-patch.py",
+        ".tmp/cvc5-c0-acquisition-2026-10-17/sources/cvc5/cvc5-f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341",
+        "patches/cvc5/1.3.4/explicit-inputs.patch",
+        "docs/records/solver-cvc5-source-review-2026-10-17/patch-review.json"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "{\"acceptance\": \"not-accepted\", \"build_ready\": false, \"execution\": \"none\", \"patched_files\": 8, \"source_files\": 7066}\n",
+      "stderr": "",
+      "interpretation": "exit 0 required"
+    },
+    {
+      "argv": [
+        "python3",
+        "-O",
+        "scripts/test-cvc5-build-patch.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": ".................\n----------------------------------------------------------------------\nRan 17 tests in 0.004s\n\nOK\n",
+      "interpretation": "exit 0 required"
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/cvc5-c0-sdk-metadata.py",
+        "metadata-verify"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "{\n  \"metadata_bytes\": 18722419,\n  \"packages_uncompressed_bytes\": 49240269,\n  \"sources_uncompressed_bytes\": 50170234,\n  \"signature_verified\": false\n}\n",
+      "stderr": "",
+      "interpretation": "exit 0 required"
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/cvc5-c0-sdk-selection.py",
+        "verify"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "{\n  \"root_groups\": 17,\n  \"root_packages\": 53,\n  \"packages\": 172,\n  \"dependency_edges\": 474,\n  \"source_packages\": 101,\n  \"unique_source_files\": 328,\n  \"binary_declared_bytes\": 120870556,\n  \"source_declared_bytes\": 570734908,\n  \"binary_max_bytes\": 536870912,\n  \"source_max_bytes\": 1073741824,\n  \"record_bytes\": 817421,\n  \"build_ready\": false,\n  \"executable\": false,\n  \"signature_verified\": false,\n  \"check_scope\": \"offline-regeneration-consistency-not-independent-authentication\"\n}\n",
+      "stderr": "",
+      "interpretation": "exit 0 required"
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/check-cvc5-c0-input-selection.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "{\n  \"selection_consistent\": true,\n  \"build_ready\": false,\n  \"c0_state\": \"static-reviewed-blocked-on-sdk-content-effective-configuration-and-acceptance\",\n  \"source_archives_selected\": 5,\n  \"sdk_role_groups_selected\": 17,\n  \"source_archives_obtained\": 5,\n  \"configuration_executed\": false,\n  \"patch_state\": \"prepared-static-candidate-not-executed\",\n  \"sdk_packages_selected\": 172,\n  \"sdk_source_packages_selected\": 101,\n  \"sdk_metadata_dependency_closure\": \"closed-for-declared-roots-and-essential-metadata-only\",\n  \"retained_observations_rechecked\": 29,\n  \"original_cli_acceptance\": \"not-accepted\",\n  \"new_payload_acceptance\": \"not-accepted\",\n  \"metadata_authentication\": \"not-established\",\n  \"verification_scope\": \"reviewed-selection-and-offline-sdk-regeneration-consistency; independent-source-authentication-not-established\"\n}\n",
+      "stderr": "",
+      "interpretation": "exit 0 required"
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/check-cvc5-c0-sdk-independent.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "{\n  \"package_count\": 172,\n  \"essential_count\": 23,\n  \"dependency_clause_count\": 474,\n  \"alternative_clause_count\": 12,\n  \"source_family_versions\": 101,\n  \"source_archive_file_count\": 328,\n  \"declared_deb_bytes\": 120870556,\n  \"declared_source_bytes\": 570734908,\n  \"conflicts_or_breaks\": [],\n  \"format\": \"radishaxiom-private-c0-independent-sdk-check\",\n  \"version\": \"0.1\",\n  \"checker\": {\n    \"path\": \"scripts/check-cvc5-c0-sdk-independent.py\",\n    \"raw_digest\": \"sha256:0000890c739eeb3ba17354e5969a25be7717df05224ba468d200e87f1a8a9a10\"\n  },\n  \"selection_input\": {\n    \"path\": \"docs/records/solver-cvc5-c0-2026-10-17/sdk-selection.json\",\n    \"bytes\": 817421,\n    \"raw_digest\": \"sha256:313827c2435d4b895223bd04241d53e80c4f307ad1462a8b89da8fe7b36db84c\"\n  },\n  \"metadata_inputs\": [\n    {\n      \"path\": \".tmp/cvc5-c0-sdk-metadata-2026-10-17/Release\",\n      \"bytes\": 145119,\n      \"raw_digest\": \"sha256:010b226303e531b2ca0d268079228b6667418b8ad021d6c126374837ad327055\"\n    },\n    {\n      \"path\": \".tmp/cvc5-c0-sdk-metadata-2026-10-17/InRelease\",\n      \"bytes\": 146972,\n      \"raw_digest\": \"sha256:2814476b311085e250ddfdee295907bac45afb66f40dc7c1b35ab41a447c1d6c\"\n    },\n    {\n      \"path\": \".tmp/cvc5-c0-sdk-metadata-2026-10-17/main__binary-arm64__Packages.xz\",\n      \"bytes\": 8801860,\n      \"raw_digest\": \"sha256:4926bbf128b8e497cb83c59c8212fd2ef4df5b2c30e9140a688198cd2cd55471\"\n    },\n    {\n      \"path\": \".tmp/cvc5-c0-sdk-metadata-2026-10-17/main__source__Sources.xz\",\n      \"bytes\": 9628468,\n      \"raw_digest\": \"sha256:d1d5103c4ddd76196acc292e90fd0ffece1fe0d04408ab544633f25568e6cb19\"\n    }\n  ],\n  \"independently_derived_set_matches\": true,\n  \"metadata_body_bytes\": 18722419,\n  \"redirects_checked\": 4,\n  \"release_date\": \"Sat, 10 Jun 2023 08:51:17 UTC\",\n  \"signature_verified\": false,\n  \"build_ready\": false,\n  \"executable\": false,\n  \"independent_scope\": \"selected dependency clauses/edges, root+Essential set, architecture/Provides/alternatives, version comparisons, Conflicts/Breaks, Source and exact Built-Using associations, source/binary declared byte sums, raw metadata/hash/Release links, HTTP locator chain\",\n  \"unverified\": [\n    \"signature authentication and historical validity policy\",\n    \"binary/source package raw bytes and licenses\",\n    \"package file contents, maintainer scripts, ELF/dlopen/runtime filesystem\",\n    \"dynamic generator imports/effective options, SDK static link closure/map\",\n    \"compiler/SDK/tool acceptance\"\n  ]\n}\n",
+      "stderr": "",
+      "interpretation": "exit 0 required"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--no-index",
+        "--check",
+        "/dev/null",
+        "patches/cvc5/1.3.4/explicit-inputs.patch"
+      ],
+      "exit_code": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr": "",
+      "interpretation": "exit 1 denotes different files; no whitespace diagnostics"
+    },
+    {
+      "argv": [
+        "./scripts/check-repo.sh"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "repository baseline passed (2801 files checked)\n",
+      "stderr": "",
+      "interpretation": "exit 0 required"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": "",
+      "interpretation": "exit 0 required"
+    }
+  ],
+  "finished_utc": "2026-10-17T14:26:17.195013+00:00",
+  "tests_rechecked_here": 37,
+  "integration_tests_in_bound_record": 110,
+  "batch_test_methods": 147
+}

@@ -24,6 +24,8 @@
 
 官方 commit API 对 cvc5 / CaDiCaL 返回 unsigned，对 LibPoly 返回 valid；本批仅保存 API 观察，没有本地验证签名，不升级为已验证来源。静态字符串 `cadical-2.1.3-elevate-f3b21c4` 的后缀与 cvc5 提交前缀相同，不能拿它当作 CaDiCaL 的 Git commit。
 
+后续勘误：下表此前把 CaDiCaL 的 `rel-2.1.3-elevate` 称为 tag，实际 API 只解析 ref；[完整归档取得](solver-cvc5-source-review-2026-10-17/source-acquisition-review.md)观察到 GitHub 将它重定向为 `refs/heads/rel-2.1.3-elevate`。固定 commit、配方期望摘要及许可原字节保持，不据此增加签名认证结论。
+
 详细作业日志 GET 返回 HTTP 403，响应要求仓库管理权限；本批没有使用额外凭据、请求上游授权或发送消息。错误响应的实际字节已绑定到来源清单，**不是**构建日志。停止此获取路径，不将 403 解释为日志不存在或版本已确认。
 
 ## 依赖与许可矩阵

@@ -4,13 +4,13 @@
   "generator": "scripts/cvc5-c0-sdk-selection.py resolve",
   "resolver_identity": {
     "path": "scripts/cvc5-c0-sdk-selection.py",
-    "bytes": 24064,
-    "raw_digest": "sha256:8992999238450285d45fad9b846ba65076bc6525bba1736bfe336e35faed610e"
+    "bytes": 24142,
+    "raw_digest": "sha256:eec9c8339a145c7eaa5692769d0633e391ea4017ed5fb4cacf44ae417eb11e09"
   },
   "root_role_definition": {
     "path": "scripts/generate-cvc5-c0-input-selection.py",
-    "bytes": 12239,
-    "raw_digest": "sha256:607daa63ea5a54d89b000566b4f86bbb7e34f287cdc8380ea4040aaa333acc87"
+    "bytes": 18284,
+    "raw_digest": "sha256:6aae4014b1f57d691fb4bccd51571b52e9dee740c57d7cbe777b57b52d9da5cf"
   },
   "base_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/",
   "distribution": "Debian 12 bookworm",
@@ -112,7 +112,14 @@
         "python3.11",
         "python3.11-minimal",
         "libpython3.11-stdlib",
-        "libpython3.11-minimal"
+        "libpython3.11-minimal",
+        "python3-pyparsing"
+      ]
+    },
+    {
+      "id": "gmp-assembly-generator",
+      "package_names": [
+        "m4"
       ]
     },
     {
@@ -197,7 +204,7 @@
     "qualifiers": ":any requires Multi-Arch allowed on direct package or provider; foreign:any is conservatively unsupported; :native/:arm64 use the native arm64/all index only; unknown Multi-Arch fails closed",
     "conflicts_breaks": "all selected direct and provided names checked with version constraints; self conflicts ignored per Debian package semantics",
     "source_correspondence": "exact Source identity/version and exact = Built-Using/Static-Built-Using source references; no source or license bytes accepted",
-    "resolution_scope": "selected 16 SDK role roots plus all Essential: yes packages from this index; not all cvc5 generation tools or runtime filesystem"
+    "resolution_scope": "selected 17 SDK role roots including statically identified pyparsing/m4 plus all Essential: yes packages from this index; package contents and dynamic generator/runtime filesystem behavior unverified"
   },
   "packages": [
     {
@@ -2085,6 +2092,12 @@
         {
           "kind": "dependency",
           "from": "libpython3.11-minimal",
+          "field": "Depends",
+          "group_index": 0
+        },
+        {
+          "kind": "dependency",
+          "from": "m4",
           "field": "Depends",
           "group_index": 0
         },
@@ -7172,6 +7185,38 @@
       "Static-Built-Using": null
     },
     {
+      "Package": "m4",
+      "Version": "1.4.19-3",
+      "Architecture": "arm64",
+      "Filename": "pool/main/m/m4/m4_1.4.19-3_arm64.deb",
+      "Size": 276280,
+      "SHA256": "54238d48d2b7b90c9146d156cfa0d80254c4892730c5b57fce8dee0747127228",
+      "Source": null,
+      "source_package": "m4",
+      "source_version": "1.4.19-3",
+      "package_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/m/m4/m4_1.4.19-3_arm64.deb",
+      "bytes": null,
+      "raw_digest": null,
+      "package_status": "not-obtained",
+      "license_acceptance": "not-accepted",
+      "reasons": [
+        {
+          "kind": "sdk-role-root"
+        }
+      ],
+      "Depends": "libc6 (>= 2.34)",
+      "Pre-Depends": null,
+      "Provides": null,
+      "Conflicts": null,
+      "Breaks": null,
+      "Essential": null,
+      "Multi-Arch": "foreign",
+      "Replaces": null,
+      "built_using_sources": [],
+      "Built-Using": null,
+      "Static-Built-Using": null
+    },
+    {
       "Package": "make",
       "Version": "4.3-4.1",
       "Architecture": "arm64",
@@ -7595,6 +7640,12 @@
       "reasons": [
         {
           "kind": "sdk-role-root"
+        },
+        {
+          "kind": "dependency",
+          "from": "python3-pyparsing",
+          "field": "Depends",
+          "group_index": 0
         }
       ],
       "Depends": "python3.11 (>= 3.11.2-1~), libpython3-stdlib (= 3.11.2-1+b1)",
@@ -7642,6 +7693,38 @@
       "Breaks": null,
       "Essential": null,
       "Multi-Arch": "allowed",
+      "Replaces": null,
+      "built_using_sources": [],
+      "Built-Using": null,
+      "Static-Built-Using": null
+    },
+    {
+      "Package": "python3-pyparsing",
+      "Version": "3.0.9-1",
+      "Architecture": "all",
+      "Filename": "pool/main/p/pyparsing/python3-pyparsing_3.0.9-1_all.deb",
+      "Size": 138444,
+      "SHA256": "891dcf12a125dcadbae7166ad8e9d1fd22a6f1bf431ca4bce9f810da30dcd472",
+      "Source": "pyparsing",
+      "source_package": "pyparsing",
+      "source_version": "3.0.9-1",
+      "package_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/p/pyparsing/python3-pyparsing_3.0.9-1_all.deb",
+      "bytes": null,
+      "raw_digest": null,
+      "package_status": "not-obtained",
+      "license_acceptance": "not-accepted",
+      "reasons": [
+        {
+          "kind": "sdk-role-root"
+        }
+      ],
+      "Depends": "python3:any",
+      "Pre-Depends": null,
+      "Provides": null,
+      "Conflicts": null,
+      "Breaks": "python3-translate (<< 3.6.0~), translate-toolkit (<< 3.6.0~)",
+      "Essential": null,
+      "Multi-Arch": "foreign",
       "Replaces": null,
       "built_using_sources": [],
       "Built-Using": null,
@@ -11422,6 +11505,54 @@
       },
       "to": "libssl3",
       "target_version": "3.0.9-1",
+      "via_provides": false,
+      "provided_version": null,
+      "selection_reason": "first-satisfiable-alternative-direct-package"
+    },
+    {
+      "from": "python3-pyparsing",
+      "field": "Depends",
+      "group_index": 0,
+      "alternatives": [
+        {
+          "name": "python3",
+          "qualifier": "any",
+          "operator": null,
+          "version": null
+        }
+      ],
+      "selected_alternative": {
+        "name": "python3",
+        "qualifier": "any",
+        "operator": null,
+        "version": null
+      },
+      "to": "python3",
+      "target_version": "3.11.2-1+b1",
+      "via_provides": false,
+      "provided_version": null,
+      "selection_reason": "first-satisfiable-alternative-direct-package"
+    },
+    {
+      "from": "m4",
+      "field": "Depends",
+      "group_index": 0,
+      "alternatives": [
+        {
+          "name": "libc6",
+          "qualifier": null,
+          "operator": ">=",
+          "version": "2.34"
+        }
+      ],
+      "selected_alternative": {
+        "name": "libc6",
+        "qualifier": null,
+        "operator": ">=",
+        "version": "2.34"
+      },
+      "to": "libc6",
+      "target_version": "2.36-9",
       "via_provides": false,
       "provided_version": null,
       "selection_reason": "first-satisfiable-alternative-direct-package"
@@ -23086,6 +23217,63 @@
       ]
     },
     {
+      "Package": "m4",
+      "Version": "1.4.19-3",
+      "Directory": "pool/main/m/m4",
+      "Binary": "m4, m4-doc",
+      "Format": "3.0 (quilt)",
+      "files": [
+        {
+          "filename": "m4_1.4.19-3.dsc",
+          "kind": "dsc",
+          "size": 1637,
+          "sha256": "ef1d34ebe63e0bd58bb8ce503330224ed71f6c8919d7af38c451a9a2a10ce1c3",
+          "url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/m/m4/m4_1.4.19-3.dsc",
+          "bytes": null,
+          "raw_digest": null,
+          "status": "not-obtained"
+        },
+        {
+          "filename": "m4_1.4.19.orig.tar.xz",
+          "kind": "orig",
+          "size": 1654908,
+          "sha256": "63aede5c6d33b6d9b13511cd0be2cac046f2e70fd0a07aa9573a04a82783af96",
+          "url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/m/m4/m4_1.4.19.orig.tar.xz",
+          "bytes": null,
+          "raw_digest": null,
+          "status": "not-obtained"
+        },
+        {
+          "filename": "m4_1.4.19.orig.tar.xz.asc",
+          "kind": "orig",
+          "size": 488,
+          "sha256": "9700ba4dca539b06e033b4e3ab37fa5b983becb6c14569a8b8aa02dee6ab666c",
+          "url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/m/m4/m4_1.4.19.orig.tar.xz.asc",
+          "bytes": null,
+          "raw_digest": null,
+          "status": "not-obtained"
+        },
+        {
+          "filename": "m4_1.4.19-3.debian.tar.xz",
+          "kind": "debian-patch",
+          "size": 17184,
+          "sha256": "b25312f36c3577bb4a0d2e8f6c022836d68ff061c56c533632de8557d598a0ea",
+          "url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/m/m4/m4_1.4.19-3.debian.tar.xz",
+          "bytes": null,
+          "raw_digest": null,
+          "status": "not-obtained"
+        }
+      ],
+      "signature_authentication": "not-established",
+      "license_acceptance": "not-accepted",
+      "correspondence_reasons": [
+        {
+          "binary_package": "m4",
+          "field": "Source"
+        }
+      ]
+    },
+    {
       "Package": "make-dfsg",
       "Version": "4.3-4.1",
       "Directory": "pool/main/m/make-dfsg",
@@ -23938,6 +24126,53 @@
       ]
     },
     {
+      "Package": "pyparsing",
+      "Version": "3.0.9-1",
+      "Directory": "pool/main/p/pyparsing",
+      "Binary": "python-pyparsing-doc, python3-pyparsing",
+      "Format": "3.0 (quilt)",
+      "files": [
+        {
+          "filename": "pyparsing_3.0.9-1.dsc",
+          "kind": "dsc",
+          "size": 2130,
+          "sha256": "058fb1ceaa561fecf7d0602458e66ef508096f2d44386043312fb75b234d21db",
+          "url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/p/pyparsing/pyparsing_3.0.9-1.dsc",
+          "bytes": null,
+          "raw_digest": null,
+          "status": "not-obtained"
+        },
+        {
+          "filename": "pyparsing_3.0.9.orig.tar.gz",
+          "kind": "orig",
+          "size": 1999906,
+          "sha256": "2b020ecf7d21b687f219b71ecad3631f644a47f01403fa1d1036b0c6416d70fb",
+          "url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/p/pyparsing/pyparsing_3.0.9.orig.tar.gz",
+          "bytes": null,
+          "raw_digest": null,
+          "status": "not-obtained"
+        },
+        {
+          "filename": "pyparsing_3.0.9-1.debian.tar.xz",
+          "kind": "debian-patch",
+          "size": 8344,
+          "sha256": "f8cca4bad12c7b31eb9b3f4a1e3698918343aaf72d566273790c82d42d26ec35",
+          "url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/p/pyparsing/pyparsing_3.0.9-1.debian.tar.xz",
+          "bytes": null,
+          "raw_digest": null,
+          "status": "not-obtained"
+        }
+      ],
+      "signature_authentication": "not-established",
+      "license_acceptance": "not-accepted",
+      "correspondence_reasons": [
+        {
+          "binary_package": "python3-pyparsing",
+          "field": "Source"
+        }
+      ]
+    },
+    {
       "Package": "python3-defaults",
       "Version": "3.11.2-1",
       "Directory": "pool/main/p/python3-defaults",
@@ -24767,14 +25002,14 @@
     }
   ],
   "summary": {
-    "root_groups": 16,
-    "root_packages": 51,
-    "packages": 170,
-    "dependency_edges": 472,
-    "source_packages": 99,
-    "unique_source_files": 321,
-    "binary_declared_bytes": 120455832,
-    "source_declared_bytes": 567050311,
+    "root_groups": 17,
+    "root_packages": 53,
+    "packages": 172,
+    "dependency_edges": 474,
+    "source_packages": 101,
+    "unique_source_files": 328,
+    "binary_declared_bytes": 120870556,
+    "source_declared_bytes": 570734908,
     "binary_max_bytes": 536870912,
     "source_max_bytes": 1073741824
   },
@@ -24792,7 +25027,7 @@
     "signature trust and historical validity policy",
     "package/source raw bytes and licenses",
     "unpack/install/maintainer scripts and runtime filesystem",
-    "full cvc5 generators/imports/options",
+    "dynamic generator imports/effective options",
     "actual SDK file inventory/static link closure/link map",
     "local input/tool acceptance"
   ]

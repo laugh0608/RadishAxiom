@@ -391,7 +391,7 @@ def generate():
                      'qualifiers': ':any requires Multi-Arch allowed on direct package or provider; foreign:any is conservatively unsupported; :native/:arm64 use the native arm64/all index only; unknown Multi-Arch fails closed',
                      'conflicts_breaks': 'all selected direct and provided names checked with version constraints; self conflicts ignored per Debian package semantics',
                      'source_correspondence': 'exact Source identity/version and exact = Built-Using/Static-Built-Using source references; no source or license bytes accepted',
-                     'resolution_scope': 'selected 16 SDK role roots plus all Essential: yes packages from this index; not all cvc5 generation tools or runtime filesystem'},
+                     'resolution_scope': 'selected 17 SDK role roots including statically identified pyparsing/m4 plus all Essential: yes packages from this index; package contents and dynamic generator/runtime filesystem behavior unverified'},
                  'packages': binaries, 'dependency_edges': edges, 'source_packages': source_selection,
                  'summary': {'root_groups': len(groups), 'root_packages': len(roots), 'packages': len(binaries), 'dependency_edges': len(edges),
                      'source_packages': len(source_selection), 'unique_source_files': len(source_files), 'binary_declared_bytes': binary_bytes,
@@ -399,7 +399,7 @@ def generate():
                  'resource_policy': {'record_max_bytes': RECORD_LIMIT, 'index_max_rows_each': MAX_INDEX_ROWS, 'selected_package_max_count': MAX_SELECTED_PACKAGES, 'dependency_edge_max_count': MAX_DEPENDENCY_EDGES, 'source_file_max_count': MAX_SOURCE_FILES, 'relation_max_groups_per_field': 2048, 'relation_max_bytes_per_field': 131072},
                  'tool_path_requirement': 'explicit versioned gcc-12/g++-12/cpp-12 paths and PKG_CONFIG_EXECUTABLE=pkgconf remain to be verified from package contents; unversioned compiler/pkg-config aliases or alternatives not assumed',
                  'unresolved': ['signature trust and historical validity policy', 'package/source raw bytes and licenses',
-                     'unpack/install/maintainer scripts and runtime filesystem', 'full cvc5 generators/imports/options',
+                     'unpack/install/maintainer scripts and runtime filesystem', 'dynamic generator imports/effective options',
                      'actual SDK file inventory/static link closure/link map', 'local input/tool acceptance']}
     return observations, selection
 

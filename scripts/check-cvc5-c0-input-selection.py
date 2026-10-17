@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Offline consistency and boundary checks for private C0 v0.2; never accepts a tool."""
+"""Offline consistency and boundary checks for private C0 v0.3; never accepts a tool."""
 import argparse
 import importlib.util
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -54,9 +55,9 @@ def check(raw):
         raise ValueError('selection-must-be-object')
     if value.get('format') != 'radishaxiom-private-cvc5-c0-input-selection':
         raise ValueError('unsupported-selection-format')
-    if value.get('version') == '0.1':
+    if value.get('version') in ('0.1', '0.2'):
         raise ValueError('legacy-selection-version-requires-regeneration')
-    if value.get('version') != '0.2':
+    if value.get('version') != '0.3':
         raise ValueError('unsupported-selection-version')
     if any(value.get(key) is not False for key in ('executable', 'build_ready')):
         raise ValueError('false-execution-or-build-acceptance')
@@ -68,10 +69,23 @@ def check(raw):
     if not isinstance(archives, list) or any(not isinstance(row, dict) for row in archives):
         raise ValueError('invalid-source-archives-shape')
     if ([row.get('id') for row in archives] != ['cvc5', 'cadical', 'gmp', 'libpoly', 'symfpu']
-            or any(row.get('raw_digest') is not None or row.get('bytes') is not None
-                   or row.get('status') != 'not-obtained' or row.get('license_acceptance') != 'not-accepted'
+            or any(not isinstance(row.get('raw_digest'), str)
+                   or not re.fullmatch(r'sha256:[0-9a-f]{64}', row['raw_digest'])
+                   or type(row.get('bytes')) is not int or row['bytes'] <= 0
+                   or row.get('status') != 'obtained-static-reviewed-not-accepted'
+                   or row.get('license_acceptance') != 'not-accepted'
                    for row in archives)):
-        raise ValueError('source-selection-or-unobtained-archive-authentication')
+        raise ValueError('source-selection-or-obtained-archive-boundary')
+    configuration = value.get('configuration', {})
+    if (not isinstance(configuration, dict)
+            or configuration.get('production_expansion') != 'static-reviewed-not-configured'
+            or configuration.get('patch_status') != 'prepared-static-candidate-not-executed'
+            or configuration.get('auto_download') is not False
+            or not isinstance(configuration.get('source_patch'), dict)
+            or not isinstance(configuration.get('production_review_record'), dict)
+            or not isinstance(configuration.get('patch_review_record'), dict)
+            or not isinstance(value.get('source_review_record'), dict)):
+        raise ValueError('static-review-or-patch-boundary')
     sdk = value.get('sdk', {})
     if not isinstance(sdk, dict):
         raise ValueError('invalid-sdk-shape')
@@ -95,6 +109,8 @@ def check(raw):
         raise ValueError('sdk-check-result-false-acceptance')
     return {'selection_consistent': True, 'build_ready': False, 'c0_state': value['c0_state'],
             'source_archives_selected': len(archives), 'sdk_role_groups_selected': len(sdk['items']),
+            'source_archives_obtained': len(archives), 'configuration_executed': False,
+            'patch_state': configuration['patch_status'],
             'sdk_packages_selected': sdk_result['packages'], 'sdk_source_packages_selected': sdk_result['source_packages'],
             'sdk_metadata_dependency_closure': sdk['package_dependency_closure'],
             'retained_observations_rechecked': len(observations), 'original_cli_acceptance': 'not-accepted',
