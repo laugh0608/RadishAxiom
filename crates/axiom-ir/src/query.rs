@@ -1,6 +1,11 @@
-//! ADR 0019–0022 的 P3-A / B / C / D 内部组件；不运行 solver，不产生 Evidence 或证明状态。
+//! ADR 0019–0022、0027 的 P3 查询内部组件；不运行 solver，不产生 Evidence 或证明状态。
 
+mod compact;
+mod compact_budget;
 mod coverage;
+pub use compact_budget::{
+    CompactQueryLimits, CompactQueryResource, CompactQueryUsage, QueryBudgets, QueryStage,
+};
 mod encode;
 mod expressions;
 mod layout;
@@ -18,6 +23,7 @@ use crate::{
 use std::fmt;
 
 pub const QUERY_ARTIFACT: &str = "axiom-smtlib2-qf-uflia-query0.2";
+pub const QUERY_COMPACT_ARTIFACT: &str = "axiom-smtlib2-qf-uflia-query0.3";
 pub const SOLVER_DIALECT: &str = "SMT-LIB-2.6/QF_UFLIA";
 
 /// 显式选择支持集合；旧 profile 不随实现升级而隐式扩张。
@@ -27,6 +33,7 @@ pub enum QueryProfile {
     MapFilterV0_2,
     MapFilterV0_3,
     MapFilterV0_4,
+    MapFilterV0_5,
 }
 impl QueryProfile {
     pub fn as_str(self) -> &'static str {
@@ -35,6 +42,7 @@ impl QueryProfile {
             Self::MapFilterV0_2 => "axiom-p3-map-filter-query-v0.2",
             Self::MapFilterV0_3 => "axiom-p3-map-filter-query-v0.3",
             Self::MapFilterV0_4 => "axiom-p3-map-filter-query-v0.4",
+            Self::MapFilterV0_5 => "axiom-p3-map-filter-query-v0.5",
         }
     }
     fn supports(self, kind: ObligationKind) -> bool {
@@ -42,9 +50,12 @@ impl QueryProfile {
             kind,
             ObligationKind::NumericRange | ObligationKind::ContractGuarantee
         ) || (self != Self::MapFilterV0_1 && kind == ObligationKind::Totality)
-            || (matches!(self, Self::MapFilterV0_3 | Self::MapFilterV0_4)
-                && kind == ObligationKind::KeyCardinality)
-            || (self == Self::MapFilterV0_4 && kind == ObligationKind::RowCoverage)
+            || (matches!(
+                self,
+                Self::MapFilterV0_3 | Self::MapFilterV0_4 | Self::MapFilterV0_5
+            ) && kind == ObligationKind::KeyCardinality)
+            || (matches!(self, Self::MapFilterV0_4 | Self::MapFilterV0_5)
+                && kind == ObligationKind::RowCoverage)
     }
 }
 
@@ -83,6 +94,17 @@ pub struct QueryUsage {
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum QueryError {
     UnsupportedIrVersion(IrVersion),
+    BudgetProfileMismatch,
+    ResourceLimitAtStage {
+        resource: QueryResource,
+        obligation: String,
+        stage: QueryStage,
+    },
+    CompactResourceLimit {
+        resource: CompactQueryResource,
+        obligation: String,
+        stage: QueryStage,
+    },
     BindingMismatch,
     InvalidGeneratorIdentity,
     UnknownObligation(String),
@@ -136,6 +158,7 @@ impl GeneratorIdentity {
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct QueryBinding {
     profile: QueryProfile,
+    query_rules: Option<String>,
     ir_artifact: String,
     ir_document_digest: String,
     obligation_set_artifact: String,
@@ -165,8 +188,15 @@ impl QueryBinding {
     pub fn encoding_profile(&self) -> &'static str {
         self.profile.as_str()
     }
+    pub fn query_rules(&self) -> Option<&str> {
+        self.query_rules.as_deref()
+    }
     pub fn artifact_type(&self) -> &'static str {
-        QUERY_ARTIFACT
+        if self.profile == QueryProfile::MapFilterV0_5 {
+            QUERY_COMPACT_ARTIFACT
+        } else {
+            QUERY_ARTIFACT
+        }
     }
     pub fn solver_dialect(&self) -> &'static str {
         SOLVER_DIALECT
@@ -208,6 +238,7 @@ pub struct EncodedQuery {
     binding: QueryBinding,
     symbols: Vec<QuerySymbol>,
     usage: QueryUsage,
+    compact_usage: Option<CompactQueryUsage>,
     #[cfg(test)]
     coverage_trace: Option<coverage::Trace>,
 }
@@ -224,6 +255,9 @@ impl EncodedQuery {
     pub fn symbols(&self) -> &[QuerySymbol] {
         &self.symbols
     }
+    pub fn compact_usage(&self) -> Option<CompactQueryUsage> {
+        self.compact_usage
+    }
     pub fn usage(&self) -> QueryUsage {
         self.usage
     }
@@ -235,8 +269,10 @@ pub fn encode_query(
     obligations: &ObligationSet,
     obligation_id: &str,
     generator: &GeneratorIdentity,
-    limits: QueryLimits,
+    limits: impl Into<QueryBudgets>,
 ) -> Result<EncodedQuery, QueryError> {
+    let budgets = limits.into();
+    let limits = budgets.base;
     if document.version() != IrVersion::V0_2 {
         return Err(QueryError::UnsupportedIrVersion(document.version()));
     }
@@ -257,11 +293,19 @@ pub fn encode_query(
     if !profile.supports(target.kind()) {
         return Err(QueryError::UnsupportedKind(target.kind()));
     }
+    if (profile == QueryProfile::MapFilterV0_5) != budgets.compact.is_some() {
+        return Err(QueryError::BudgetProfileMismatch);
+    }
     let root = json::parse(document.canonical_bytes(), limits.ir_json).map_err(QueryError::Json)?;
     let definition =
         json::parse(target.canonical_definition(), limits.ir_json).map_err(QueryError::Json)?;
     let binding = QueryBinding {
         profile,
+        query_rules: (profile == QueryProfile::MapFilterV0_5).then(|| {
+            raw_digest(include_bytes!(
+                "../../../docs/query/map-filter-query-v0.5.md"
+            ))
+        }),
         ir_artifact: obligations.ir_artifact().to_owned(),
         ir_document_digest: document.document_id().to_owned(),
         obligation_set_artifact: obligations.artifact_digest().to_owned(),
@@ -269,7 +313,15 @@ pub fn encode_query(
         semantics_digest: format!("sha256:{}", document.version().semantics_sha256()),
         generator: generator.clone(),
     };
-    encode::encode(document, &root, &definition, target.kind(), binding, limits)
+    encode::encode(
+        document,
+        &root,
+        &definition,
+        target.kind(),
+        binding,
+        budgets,
+    )
+    .map_err(|error| stage_resource_error(profile, error))
 }
 
 /// 从已验收输入重建并逐字节比较，不把词法检查当成编码正确性或独立证明。
@@ -280,13 +332,18 @@ pub fn check_query(
     obligations: &ObligationSet,
     obligation_id: &str,
     generator: &GeneratorIdentity,
-    limits: QueryLimits,
+    limits: impl Into<QueryBudgets>,
 ) -> Result<EncodedQuery, QueryError> {
+    let budgets = limits.into();
+    let limits = budgets.base;
     if bytes.len() > limits.max_output_bytes {
-        return Err(QueryError::ResourceLimit {
-            resource: QueryResource::OutputBytes,
-            obligation: obligation_id.to_owned(),
-        });
+        return Err(stage_resource_error(
+            profile,
+            QueryError::ResourceLimit {
+                resource: QueryResource::OutputBytes,
+                obligation: obligation_id.to_owned(),
+            },
+        ));
     }
     let query = encode_query(
         profile,
@@ -294,7 +351,7 @@ pub fn check_query(
         obligations,
         obligation_id,
         generator,
-        limits,
+        budgets,
     )?;
     if bytes != query.bytes {
         let offset = bytes
@@ -305,6 +362,26 @@ pub fn check_query(
         return Err(QueryError::NonCanonicalQuery { offset });
     }
     Ok(query)
+}
+
+fn stage_resource_error(profile: QueryProfile, error: QueryError) -> QueryError {
+    if profile == QueryProfile::MapFilterV0_5
+        && let QueryError::ResourceLimit {
+            resource,
+            obligation,
+        } = error
+    {
+        return QueryError::ResourceLimitAtStage {
+            resource,
+            obligation,
+            stage: if resource == QueryResource::OutputBytes {
+                QueryStage::Rendering
+            } else {
+                QueryStage::Construction
+            },
+        };
+    }
+    error
 }
 
 type Result<T, E = QueryError> = std::result::Result<T, E>;

@@ -1,5 +1,5 @@
 //! 本地尺寸可行性诊断输入导出；原容量、原 SMT、完整符号来源，不运行 solver。
-//! 用法：export_query_compaction_inputs [--corpus] <不存在的仓库 .tmp 子目录>。
+//! 用法：export_query_compaction_inputs [--production] [--corpus] <不存在的仓库 .tmp 子目录>。
 use radishaxiom_ir::{
     document::{CanonicalDocument, check_canonical_document},
     json::{JsonLimits, canonicalize_json},
@@ -7,8 +7,8 @@ use radishaxiom_ir::{
         Obligation, ObligationLimits, ObligationProfile, ObligationSet, generate_obligations,
     },
     query::{
-        EncodedQuery, GeneratorIdentity, QueryError, QueryLimits, QueryProfile, SymbolOrigin,
-        encode_query,
+        CompactQueryLimits, EncodedQuery, GeneratorIdentity, QueryError, QueryLimits, QueryProfile,
+        SymbolOrigin, encode_query,
     },
 };
 use std::{
@@ -47,6 +47,75 @@ fn query_limits() -> QueryLimits {
         max_smt_nodes: 10_000_000,
         max_output_bytes: 100_000_000,
     }
+}
+// Explicit local diagnostic ceilings; these do not change P4 stdin or production defaults.
+fn production_query_limits() -> QueryLimits {
+    QueryLimits {
+        max_output_bytes: 1_048_576,
+        ..query_limits()
+    }
+}
+fn compact_limits() -> CompactQueryLimits {
+    CompactQueryLimits {
+        max_normalized_nodes: 1_000_000,
+        max_normalized_edges: 5_000_000,
+        max_scratch_cells: 100_000_000,
+        max_work_steps: 2_000_000_000,
+        max_temporary_bytes: 1_000_000_000,
+        max_integer_digits: 4096,
+        max_dag_depth: 100_000,
+    }
+}
+fn base_limits_json(limits: QueryLimits) -> String {
+    format!(
+        "{{\"ir_json\":{{\"max_input_bytes\":{},\"max_values\":{},\"max_nesting\":{}}},\"max_input_slots\":{},\"max_value_cells\":{},\"max_expression_instances\":{},\"max_slot_comparisons\":{},\"max_smt_nodes\":{},\"max_output_bytes\":{}}}",
+        limits.ir_json.max_input_bytes,
+        limits.ir_json.max_values,
+        limits.ir_json.max_nesting,
+        limits.max_input_slots,
+        limits.max_value_cells,
+        limits.max_expression_instances,
+        limits.max_slot_comparisons,
+        limits.max_smt_nodes,
+        limits.max_output_bytes
+    )
+}
+fn compact_limits_json(limits: CompactQueryLimits) -> String {
+    format!(
+        "{{\"max_normalized_nodes\":{},\"max_normalized_edges\":{},\"max_scratch_cells\":{},\"max_work_steps\":{},\"max_temporary_bytes\":{},\"max_integer_digits\":{},\"max_dag_depth\":{}}}",
+        limits.max_normalized_nodes,
+        limits.max_normalized_edges,
+        limits.max_scratch_cells,
+        limits.max_work_steps,
+        limits.max_temporary_bytes,
+        limits.max_integer_digits,
+        limits.max_dag_depth
+    )
+}
+fn usage(query: &EncodedQuery) -> String {
+    let u = query.usage();
+    format!(
+        "{{\"input_slots\":{},\"value_cells\":{},\"expression_instances\":{},\"slot_comparisons\":{},\"smt_nodes\":{},\"output_bytes\":{}}}",
+        u.input_slots,
+        u.value_cells,
+        u.expression_instances,
+        u.slot_comparisons,
+        u.smt_nodes,
+        u.output_bytes
+    )
+}
+fn compact_usage(query: &EncodedQuery) -> String {
+    let u = query.compact_usage().expect("production query usage");
+    format!(
+        "{{\"normalized_nodes\":{},\"normalized_edges\":{},\"scratch_cells\":{},\"work_steps\":{},\"temporary_bytes\":{},\"integer_digits\":{},\"dag_depth\":{}}}",
+        u.normalized_nodes,
+        u.normalized_edges,
+        u.scratch_cells,
+        u.work_steps,
+        u.temporary_bytes,
+        u.integer_digits,
+        u.dag_depth
+    )
 }
 fn load(root: &Path, path: &str) -> Result<(CanonicalDocument, ObligationSet)> {
     if Path::new(path)
@@ -127,6 +196,7 @@ fn create_file(path: &Path, bytes: &[u8]) -> Result<()> {
 }
 
 struct Export {
+    production: bool,
     directory: PathBuf,
     generator: GeneratorIdentity,
     unique: BTreeMap<String, (usize, String)>,
@@ -145,6 +215,7 @@ impl Export {
         target: &Obligation,
         set: &ObligationSet,
         query: &EncodedQuery,
+        legacy: Option<(QueryProfile, &EncodedQuery)>,
     ) -> Result<()> {
         let digest = query.artifact_digest();
         let hex = digest
@@ -154,20 +225,37 @@ impl Export {
             return Err("invalid query digest filename".into());
         }
         let smt_path = format!("{hex}.smt2");
-        let symbols_path = format!("{hex}.symbols.json");
+        // Compact text may coincide across distinct bindings; keep each original origin map.
+        let symbols_hex = legacy.map_or(hex, |(_, old)| &old.artifact_digest()[7..]);
+        let symbols_path = format!("{symbols_hex}.symbols.json");
         let symbol_json = symbols(query);
         if let Some((bytes, previous_symbols)) = self.unique.get(digest) {
             if *bytes != query.bytes().len()
-                || previous_symbols != &symbol_json
+                || (!self.production && previous_symbols != &symbol_json)
                 || fs::read(self.directory.join(&smt_path))? != query.bytes()
             {
                 return Err(format!("inconsistent duplicate raw query: {digest}").into());
             }
         } else {
             create_file(&self.directory.join(&smt_path), query.bytes())?;
-            create_file(&self.directory.join(&symbols_path), symbol_json.as_bytes())?;
-            self.unique
-                .insert(digest.to_owned(), (query.bytes().len(), symbol_json));
+            if !self.production {
+                create_file(&self.directory.join(&symbols_path), symbol_json.as_bytes())?;
+            }
+            self.unique.insert(
+                digest.to_owned(),
+                (query.bytes().len(), symbol_json.clone()),
+            );
+        }
+        if self.production {
+            let path = self.directory.join(&symbols_path);
+            match fs::read(&path) {
+                Ok(previous) if previous == symbol_json.as_bytes() => {}
+                Ok(_) => return Err("inconsistent symbols for original query identity".into()),
+                Err(error) if error.kind() == std::io::ErrorKind::NotFound => {
+                    create_file(&path, symbol_json.as_bytes())?
+                }
+                Err(error) => return Err(error.into()),
+            }
         }
         let definition = std::str::from_utf8(target.canonical_definition())?;
         let mut row = format!(
@@ -192,6 +280,37 @@ impl Export {
                 quoted(source.candidate)
             )?;
         }
+        if let Some((previous_profile, legacy)) = legacy {
+            let old = legacy.usage();
+            let new = query.usage();
+            if (
+                old.input_slots,
+                old.value_cells,
+                old.expression_instances,
+                old.slot_comparisons,
+                old.smt_nodes,
+            ) != (
+                new.input_slots,
+                new.value_cells,
+                new.expression_instances,
+                new.slot_comparisons,
+                new.smt_nodes,
+            ) {
+                return Err("compact changed original construction usage".into());
+            }
+            write!(
+                row,
+                ",\"legacy_profile\":{},\"legacy_query_raw\":{},\"legacy_query_bytes\":{},\"legacy_symbols\":{},\"legacy_usage\":{},\"usage\":{},\"compact_usage\":{},\"query_rules\":{}",
+                quoted(previous_profile.as_str()),
+                quoted(legacy.artifact_digest()),
+                legacy.bytes().len(),
+                symbols(legacy).trim(),
+                usage(legacy),
+                usage(query),
+                compact_usage(query),
+                quoted(query.binding().query_rules().ok_or("missing query rules")?)
+            )?;
+        }
         row.push('}');
         self.rows.push(row);
         Ok(())
@@ -212,7 +331,12 @@ impl Export {
                 ir_path: columns[1],
                 corpus: None,
             };
-            for profile in PROFILES {
+            let profiles = if self.production {
+                vec![QueryProfile::MapFilterV0_4]
+            } else {
+                PROFILES.to_vec()
+            };
+            for profile in profiles {
                 for target in set.obligations() {
                     let query = match encode_query(
                         profile,
@@ -226,13 +350,36 @@ impl Export {
                         Err(QueryError::NotProve(_) | QueryError::UnsupportedKind(_)) => continue,
                         Err(error) => return Err(error.into()),
                     };
-                    self.add(&source, profile, target, &set, &query)?;
+                    if self.production {
+                        let compact = encode_query(
+                            QueryProfile::MapFilterV0_5,
+                            &document,
+                            &set,
+                            target.id(),
+                            &self.generator,
+                            production_query_limits().with_compact(compact_limits()),
+                        )?;
+                        self.add(
+                            &source,
+                            QueryProfile::MapFilterV0_5,
+                            target,
+                            &set,
+                            &compact,
+                            Some((profile, &query)),
+                        )?;
+                    } else {
+                        self.add(&source, profile, target, &set, &query, None)?;
+                    }
                 }
             }
         }
-        if self.rows.len() != 72 || self.unique.len() != 27 {
+        if self.rows.len() != if self.production { 27 } else { 72 }
+            || self.unique.len() != if self.production { 24 } else { 27 }
+        {
             return Err(format!(
-                "expected 72 rows / 27 unique, got {} / {}",
+                "expected {} rows / {} unique, got {} / {}",
+                if self.production { 27 } else { 72 },
+                if self.production { 24 } else { 27 },
                 self.rows.len(),
                 self.unique.len()
             )
@@ -299,16 +446,37 @@ for c in d['cases']:
                     &self.generator,
                     query_limits(),
                 )?;
+                let compact = if self.production {
+                    Some(encode_query(
+                        QueryProfile::MapFilterV0_5,
+                        document,
+                        set,
+                        target.id(),
+                        &self.generator,
+                        production_query_limits().with_compact(compact_limits()),
+                    )?)
+                } else {
+                    None
+                };
                 self.add(
                     &Source {
                         candidate: fields[0],
                         ir_path: fields[1],
                         corpus: Some((&path, fields[3].parse()?)),
                     },
-                    profile,
+                    if self.production {
+                        QueryProfile::MapFilterV0_5
+                    } else {
+                        profile
+                    },
                     target,
                     set,
-                    &query,
+                    compact.as_ref().unwrap_or(&query),
+                    if self.production {
+                        Some((profile, &query))
+                    } else {
+                        None
+                    },
                 )?;
             }
         }
@@ -318,9 +486,15 @@ for c in d['cases']:
 
 fn main() -> Result<()> {
     let mut arguments = std::env::args_os().skip(1);
-    let first = arguments
-        .next()
-        .ok_or("usage: export_query_compaction_inputs [--corpus] <new .tmp directory>")?;
+    let mut first = arguments.next().ok_or(
+        "usage: export_query_compaction_inputs [--production] [--corpus] <new .tmp directory>",
+    )?;
+    let production = first == "--production";
+    if production {
+        first = arguments
+            .next()
+            .ok_or("missing production output directory")?;
+    }
     let corpus = first == "--corpus";
     let destination = if corpus {
         arguments.next().ok_or("missing output directory")?
@@ -367,6 +541,7 @@ fn main() -> Result<()> {
     }
     fs::create_dir(&directory)?;
     let mut export = Export {
+        production,
         directory,
         generator: GeneratorIdentity::new(GENERATOR)?,
         unique: BTreeMap::new(),
@@ -378,8 +553,23 @@ fn main() -> Result<()> {
         export.ax_b01(&root)?;
     }
     let manifest = format!(
-        "{{\"status\":\"local-feasibility-original-inputs-not-proof\",\"generator\":{{\"digest\":{},\"status\":\"synthetic-diagnostic-identity-not-executable-hash\"}},\"rows\":[\n{}\n]}}\n",
+        "{{\"status\":{},\"generator\":{{\"digest\":{},\"status\":\"synthetic-diagnostic-identity-not-executable-hash\"}},{}\"rows\":[\n{}\n]}}\n",
+        quoted(if production {
+            "local-production-compact-query-not-proof-not-solver"
+        } else {
+            "local-feasibility-original-inputs-not-proof"
+        }),
         quoted(GENERATOR),
+        if production {
+            format!(
+                "\"limits\":{{\"base\":{},\"compact\":{},\"legacy_base\":{}}},",
+                base_limits_json(production_query_limits()),
+                compact_limits_json(compact_limits()),
+                base_limits_json(query_limits())
+            )
+        } else {
+            String::new()
+        },
         export.rows.join(",\n")
     );
     create_file(&export.directory.join("manifest.json"), manifest.as_bytes())?;

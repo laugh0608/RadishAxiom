@@ -29,7 +29,7 @@ fn p2_limits() -> ObligationLimits {
         max_output_bytes: 24_000_000,
     }
 }
-fn limits() -> QueryLimits {
+pub(super) fn limits() -> QueryLimits {
     QueryLimits {
         ir_json: json_limits(),
         max_input_slots: 10_000,
@@ -40,10 +40,10 @@ fn limits() -> QueryLimits {
         max_output_bytes: 100_000_000,
     }
 }
-fn identity() -> GeneratorIdentity {
+pub(super) fn identity() -> GeneratorIdentity {
     GeneratorIdentity::new(&format!("sha256:{}", "a".repeat(64))).unwrap()
 }
-fn doc(name: &str) -> CanonicalDocument {
+pub(super) fn doc(name: &str) -> CanonicalDocument {
     check_canonical_document(
         &std::fs::read(root().join(format!("contracts/map-filter-query-v0.1/inputs/{name}.jcs")))
             .unwrap(),
@@ -51,10 +51,10 @@ fn doc(name: &str) -> CanonicalDocument {
     )
     .unwrap()
 }
-fn set(doc: &CanonicalDocument) -> ObligationSet {
+pub(super) fn set(doc: &CanonicalDocument) -> ObligationSet {
     generate_obligations(doc, ObligationProfile::VerificationV0_2, p2_limits()).unwrap()
 }
-fn guarantee(set: &ObligationSet) -> &str {
+pub(super) fn guarantee(set: &ObligationSet) -> &str {
     set.obligations()
         .iter()
         .find(|o| o.kind() == ObligationKind::ContractGuarantee)

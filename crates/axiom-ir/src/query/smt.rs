@@ -17,7 +17,7 @@ impl Sort {
         }
     }
 }
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub(super) enum Op {
     Not,
     And,
@@ -32,7 +32,7 @@ pub(super) enum Op {
     Ite,
 }
 impl Op {
-    fn name(self) -> &'static str {
+    pub(super) fn name(self) -> &'static str {
         match self {
             Self::Not => "not",
             Self::And => "and",
@@ -48,14 +48,14 @@ impl Op {
         }
     }
 }
-enum Node {
+pub(super) enum Node {
     Bool(bool),
     Int(String),
     Symbol(Sort),
     App(Sort, Op, Vec<Term>),
 }
 impl Node {
-    fn sort(&self) -> Sort {
+    pub(super) fn sort(&self) -> Sort {
         match self {
             Self::Bool(_) => Sort::Bool,
             Self::Int(_) => Sort::Int,
@@ -64,10 +64,12 @@ impl Node {
     }
 }
 pub(super) struct Arena {
-    nodes: Vec<Node>,
+    pub(super) nodes: Vec<Node>,
     pub budget: Budget,
     prefix: String,
     pub symbols: Vec<QuerySymbol>,
+    pub(super) compact: Option<super::compact_budget::Meter>,
+    compact_depths: Vec<usize>,
 }
 impl Arena {
     pub fn new(budget: Budget) -> Result<Self> {
@@ -77,15 +79,46 @@ impl Arena {
             budget,
             prefix,
             symbols: Vec::new(),
+            compact: None,
+            compact_depths: Vec::new(),
         };
         arena.push(Node::Bool(false), 0)?;
         arena.push(Node::Bool(true), 0)?;
         Ok(arena)
     }
+    pub fn enable_compact(&mut self, limits: super::CompactQueryLimits) -> Result<()> {
+        let mut meter = super::compact_budget::Meter::new(limits, self.budget.obligation.clone());
+        meter.stage = super::QueryStage::Construction;
+        meter.cells(self.nodes.len())?;
+        meter.work(self.nodes.len())?;
+        meter.charge(super::CompactQueryResource::DagDepth, 1)?;
+        self.compact_depths = vec![1; self.nodes.len()];
+        self.compact = Some(meter);
+        Ok(())
+    }
+    fn compact_node(&mut self, args: &[Term]) -> Result<()> {
+        if let Some(meter) = &mut self.compact {
+            meter.work(1)?;
+            let mut depth = 1;
+            for &arg in args {
+                meter.work(1)?;
+                depth = depth.max(meter.add(
+                    self.compact_depths[arg],
+                    1,
+                    super::CompactQueryResource::DagDepth,
+                )?);
+            }
+            meter.charge(super::CompactQueryResource::DagDepth, depth)?;
+            meter.cells(1)?;
+            self.compact_depths.push(depth);
+        }
+        Ok(())
+    }
     pub fn boolean(&self, value: bool) -> Term {
         usize::from(value)
     }
     fn push(&mut self, node: Node, edges: usize) -> Result<Term> {
+        self.compact_node(&[])?;
         self.budget.charge(
             QueryResource::SmtNodes,
             edges
@@ -99,10 +132,29 @@ impl Arena {
     pub fn integer(&mut self, value: &str) -> Result<Term> {
         // 数字来自已核验 IR 或有界宿主计数。先预算字符串再复制。
         self.budget.charge(QueryResource::ValueCells, value.len())?;
+        if let Some(meter) = &mut self.compact {
+            meter.charge(
+                super::CompactQueryResource::IntegerDigits,
+                value.len() - usize::from(value.starts_with('-')),
+            )?;
+            meter.bytes(value.len())?;
+        }
         self.push(Node::Int(value.to_owned()), 0)
     }
     pub fn symbol(&mut self, sort: Sort, origin: SymbolOrigin) -> Result<Term> {
         let term = self.push(Node::Symbol(sort), 0)?;
+        if let Some(meter) = &mut self.compact {
+            let digits = if term == 0 {
+                1
+            } else {
+                term.ilog10() as usize + 1
+            };
+            meter.bytes(meter.add(
+                self.prefix.len(),
+                digits,
+                super::CompactQueryResource::TemporaryBytes,
+            )?)?;
+        }
         self.symbols.push(QuerySymbol {
             name: format!("{}{term}", self.prefix),
             sort: sort.name(),
@@ -111,6 +163,11 @@ impl Arena {
         Ok(term)
     }
     pub fn app(&mut self, op: Op, args: &[Term]) -> Result<Term> {
+        if let Some(meter) = &mut self.compact {
+            // Prepay sort-validation scans, raw argument copy, and bounded dispatch.
+            let edges = meter.mul(args.len(), 3, super::CompactQueryResource::WorkSteps)?;
+            meter.work(meter.add(edges, 16, super::CompactQueryResource::WorkSteps)?)?;
+        }
         let is = |expected: &[Sort]| {
             args.len() == expected.len()
                 && args
@@ -154,6 +211,7 @@ impl Arena {
                 .checked_add(1)
                 .ok_or_else(|| self.budget.error(QueryResource::SmtNodes))?,
         )?;
+        self.compact_node(args)?;
         let id = self.nodes.len();
         self.nodes.push(Node::App(sort, op, args.to_vec()));
         Ok(id)

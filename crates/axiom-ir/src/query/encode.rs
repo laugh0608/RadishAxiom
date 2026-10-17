@@ -1,6 +1,6 @@
 use super::{
-    Budget, EncodedQuery, QueryBinding, QueryError, QueryLimits, QueryResource, QueryUsage, Result,
-    SymbolOrigin, array, get,
+    Budget, EncodedQuery, QueryBinding, QueryBudgets, QueryError, QueryResource, QueryUsage,
+    Result, SymbolOrigin, array, get,
     layout::{Data, LayoutId, Layouts},
     planning::Plan,
     smt::{Arena, Op, Sort, Term},
@@ -58,10 +58,10 @@ pub(super) fn encode(
     definition: &Value,
     kind: ObligationKind,
     binding: QueryBinding,
-    limits: QueryLimits,
+    budgets: QueryBudgets,
 ) -> Result<EncodedQuery> {
     let mut budget = Budget {
-        limits,
+        limits: budgets.base,
         usage: QueryUsage::default(),
         obligation: binding.obligation.clone(),
     };
@@ -110,6 +110,9 @@ pub(super) fn encode(
         coverage_trace: None,
         cardinality_violation: None,
     };
+    if let Some(limits) = budgets.compact {
+        encoder.arena.enable_compact(limits)?;
+    }
     for &value in &encoder.plan.literals {
         let term = encoder
             .arena
@@ -191,13 +194,20 @@ pub(super) fn encode(
     let wf = encoder.arena.and(&wf)?;
     let pre = encoder.arena.and(&pre)?;
     let goal = encoder.arena.and(&[wf, pre, violation])?;
-    let (bytes, symbols, usage) = encoder.arena.render(goal)?;
+    let (bytes, symbols, usage, compact_usage) = if let Some(limits) = budgets.compact {
+        let (bytes, symbols, usage, compact) = super::compact::render(encoder.arena, goal, limits)?;
+        (bytes, symbols, usage, Some(compact))
+    } else {
+        let (bytes, symbols, usage) = encoder.arena.render(goal)?;
+        (bytes, symbols, usage, None)
+    };
     Ok(EncodedQuery {
         artifact_digest: raw_digest(&bytes),
         bytes,
         binding,
         symbols,
         usage,
+        compact_usage,
         #[cfg(test)]
         coverage_trace: encoder.coverage_trace,
     })

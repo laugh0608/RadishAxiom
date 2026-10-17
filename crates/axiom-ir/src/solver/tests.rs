@@ -9,7 +9,10 @@ use std::path::PathBuf;
 
 mod adversarial;
 mod binding;
+mod compact;
+mod compact_replay;
 mod independent;
+mod legacy;
 mod resources;
 fn root() -> PathBuf {
     PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../..")

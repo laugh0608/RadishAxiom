@@ -1,4 +1,4 @@
-//! ADR 0025 的 P4-A 纯组件。请求身份是声明，解析不认证来源，世界候选尚未重放。
+//! ADR 0025 / 0027 的 P4-A 纯组件。请求身份是声明，解析不认证来源，世界候选尚未重放。
 
 mod encoding;
 mod layout;
@@ -12,11 +12,17 @@ mod world;
 use crate::{
     document::CanonicalDocument,
     obligations::ObligationSet,
-    query::{EncodedQuery, GeneratorIdentity, QueryError, QueryLimits, QueryProfile},
+    query::{
+        CompactQueryLimits, EncodedQuery, GeneratorIdentity, QueryBudgets, QueryError, QueryLimits,
+        QueryProfile,
+    },
 };
 use std::{collections::BTreeMap, fmt, sync::Arc};
 
 pub const PROFILE: &str = "axiom-p4-cvc5-1.3.4-query0.2-model-v0.1";
+pub const COMPACT_PROFILE: &str = "axiom-p4-cvc5-1.3.4-query0.3-model-v0.1";
+const COMPACT_RULES: &[u8] =
+    include_bytes!("../../../docs/query/p4-request-response-model-v0.2.md");
 const RULES: &[u8] = include_bytes!("../../../docs/query/p4-request-response-model-v0.1.md");
 const BASE: &[u8] = include_bytes!(
     "../../../contracts/execution-profiles-v0.1/fixtures/positive/cvc5-1.3.4-qf-uflia-v0.1.jcs"
@@ -25,17 +31,29 @@ const BASE: &[u8] = include_bytes!(
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum SolverProfile {
     Cvc5Query0_2ModelV0_1,
+    Cvc5Query0_3ModelV0_1,
 }
 impl SolverProfile {
     pub fn from_id(id: &str) -> Result<Self> {
         if id == PROFILE {
             Ok(Self::Cvc5Query0_2ModelV0_1)
+        } else if id == COMPACT_PROFILE {
+            Ok(Self::Cvc5Query0_3ModelV0_1)
         } else {
             Err(SolverError::UnsupportedProfile)
         }
     }
     pub fn as_str(self) -> &'static str {
-        PROFILE
+        match self {
+            Self::Cvc5Query0_2ModelV0_1 => PROFILE,
+            Self::Cvc5Query0_3ModelV0_1 => COMPACT_PROFILE,
+        }
+    }
+    fn rules(self) -> &'static [u8] {
+        match self {
+            Self::Cvc5Query0_2ModelV0_1 => RULES,
+            Self::Cvc5Query0_3ModelV0_1 => COMPACT_RULES,
+        }
     }
 }
 
@@ -61,6 +79,36 @@ pub struct SolverLimits {
     pub text_bytes: usize,
     pub world_bytes: usize,
     pub candidate_bytes: usize,
+}
+/// 新查询必须由调用方显式给齐 compact 预算；旧入口不补缺省限制。
+#[derive(Clone, Copy, Debug)]
+pub struct SolverBudgets {
+    pub base: SolverLimits,
+    pub compact: Option<CompactQueryLimits>,
+}
+impl SolverLimits {
+    pub fn with_compact(self, compact: CompactQueryLimits) -> SolverBudgets {
+        SolverBudgets {
+            base: self,
+            compact: Some(compact),
+        }
+    }
+}
+impl From<SolverLimits> for SolverBudgets {
+    fn from(base: SolverLimits) -> Self {
+        Self {
+            base,
+            compact: None,
+        }
+    }
+}
+impl SolverBudgets {
+    fn query(self) -> QueryBudgets {
+        QueryBudgets {
+            base: self.base.query,
+            compact: self.compact,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum SolverStage {
@@ -134,6 +182,7 @@ impl SolverUsage {
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum SolverError {
     UnsupportedProfile,
+    ProfileMismatch,
     InvalidToolIdentity,
     BindingMismatch,
     Query(QueryError),
@@ -275,6 +324,8 @@ pub struct SolverRequest {
     layout: layout::InputLayout,
     catalogue: BTreeMap<String, Sort>,
     limits: SolverLimits,
+    budgets: SolverBudgets,
+    profile: SolverProfile,
     usage: SolverUsage,
 }
 impl SolverRequest {
@@ -299,22 +350,29 @@ impl SolverRequest {
     pub fn usage(&self) -> &SolverUsage {
         &self.usage
     }
+    pub fn profile(&self) -> SolverProfile {
+        self.profile
+    }
+    pub fn budgets(&self) -> SolverBudgets {
+        self.budgets
+    }
 }
 pub fn plan_solver_request(
     profile: SolverProfile,
     input: SolverRequestInput<'_>,
-    limits: SolverLimits,
+    limits: impl Into<SolverBudgets>,
 ) -> Result<SolverRequest> {
-    request::plan(profile, input, limits)
+    request::plan(profile, input, limits.into())
 }
 /// 导出的内部请求必须由原始输入重建，不提供任意反序列化后信任的入口。
 pub fn check_solver_request(
     bytes: &[u8],
     profile: SolverProfile,
     input: SolverRequestInput<'_>,
-    limits: SolverLimits,
+    limits: impl Into<SolverBudgets>,
 ) -> Result<SolverRequest> {
-    if bytes.len() > limits.request_bytes {
+    let limits = limits.into();
+    if bytes.len() > limits.base.request_bytes {
         return Err(SolverError::ResourceLimit {
             stage: SolverStage::Request,
             resource: SolverResource::RequestBytes,

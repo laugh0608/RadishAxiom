@@ -9,7 +9,8 @@ use crate::{
     query::{SymbolOrigin, check_query},
 };
 
-fn limit_value(l: SolverLimits) -> Value {
+fn limit_value(budgets: SolverBudgets) -> Value {
+    let l = budgets.base;
     let mut component = vec![
         ("request_bytes", s(l.request_bytes.to_string())),
         ("response_bytes", s(l.response_bytes.to_string())),
@@ -31,31 +32,53 @@ fn limit_value(l: SolverLimits) -> Value {
         ("candidate_bytes", s(l.candidate_bytes.to_string())),
     ];
     let q = l.query;
-    component.push((
-        "query",
-        obj(vec![
+    let base_query = obj(vec![
+        (
+            "ir_json",
+            obj(vec![
+                ("max_input_bytes", s(q.ir_json.max_input_bytes.to_string())),
+                ("max_values", s(q.ir_json.max_values.to_string())),
+                ("max_nesting", s(q.ir_json.max_nesting.to_string())),
+            ]),
+        ),
+        ("max_input_slots", s(q.max_input_slots.to_string())),
+        ("max_value_cells", s(q.max_value_cells.to_string())),
+        (
+            "max_expression_instances",
+            s(q.max_expression_instances.to_string()),
+        ),
+        (
+            "max_slot_comparisons",
+            s(q.max_slot_comparisons.to_string()),
+        ),
+        ("max_smt_nodes", s(q.max_smt_nodes.to_string())),
+        ("max_output_bytes", s(q.max_output_bytes.to_string())),
+    ]);
+    let query = match budgets.compact {
+        None => base_query,
+        Some(c) => obj(vec![
+            ("base", base_query),
             (
-                "ir_json",
+                "compact",
                 obj(vec![
-                    ("max_input_bytes", s(q.ir_json.max_input_bytes.to_string())),
-                    ("max_values", s(q.ir_json.max_values.to_string())),
-                    ("max_nesting", s(q.ir_json.max_nesting.to_string())),
+                    (
+                        "max_normalized_nodes",
+                        s(c.max_normalized_nodes.to_string()),
+                    ),
+                    (
+                        "max_normalized_edges",
+                        s(c.max_normalized_edges.to_string()),
+                    ),
+                    ("max_scratch_cells", s(c.max_scratch_cells.to_string())),
+                    ("max_work_steps", s(c.max_work_steps.to_string())),
+                    ("max_temporary_bytes", s(c.max_temporary_bytes.to_string())),
+                    ("max_integer_digits", s(c.max_integer_digits.to_string())),
+                    ("max_dag_depth", s(c.max_dag_depth.to_string())),
                 ]),
             ),
-            ("max_input_slots", s(q.max_input_slots.to_string())),
-            ("max_value_cells", s(q.max_value_cells.to_string())),
-            (
-                "max_expression_instances",
-                s(q.max_expression_instances.to_string()),
-            ),
-            (
-                "max_slot_comparisons",
-                s(q.max_slot_comparisons.to_string()),
-            ),
-            ("max_smt_nodes", s(q.max_smt_nodes.to_string())),
-            ("max_output_bytes", s(q.max_output_bytes.to_string())),
         ]),
-    ));
+    };
+    component.push(("query", query));
     obj(vec![
         ("component", obj(component)),
         (
@@ -97,8 +120,28 @@ fn arguments() -> Value {
 pub(super) fn plan(
     profile: SolverProfile,
     input: SolverRequestInput<'_>,
-    limits: SolverLimits,
+    budgets: SolverBudgets,
 ) -> Result<SolverRequest> {
+    // 新分支的配对检查先于尺寸或 strict；旧合法配对的错误顺序保持。
+    let paired = match profile {
+        SolverProfile::Cvc5Query0_2ModelV0_1 => {
+            matches!(
+                input.query_profile,
+                QueryProfile::MapFilterV0_1
+                    | QueryProfile::MapFilterV0_2
+                    | QueryProfile::MapFilterV0_3
+                    | QueryProfile::MapFilterV0_4
+            ) && input.query.binding().artifact_type() == crate::query::QUERY_ARTIFACT
+        }
+        SolverProfile::Cvc5Query0_3ModelV0_1 => {
+            input.query_profile == QueryProfile::MapFilterV0_5
+                && input.query.binding().artifact_type() == crate::query::QUERY_COMPACT_ARTIFACT
+        }
+    };
+    if !paired {
+        return Err(SolverError::ProfileMismatch);
+    }
+    let limits = budgets.base;
     let mut b = Budget::new(limits, SolverStage::Request);
     b.charge(SolverResource::StdinBytes, input.query.bytes().len())?;
     let query = check_query(
@@ -108,7 +151,7 @@ pub(super) fn plan(
         input.obligations,
         input.obligation_id,
         input.generator,
-        limits.query,
+        budgets.query(),
     )
     .map_err(SolverError::Query)?;
     if query.binding() != input.query.binding()
@@ -193,21 +236,32 @@ pub(super) fn plan(
     ]);
     let symbol_bytes = encoding::canonical(&symbols, SolverResource::SymbolBytes, &mut b)?;
     let binding = query.binding();
+    let mut query_fields = vec![
+        ("artifact_type", s(binding.artifact_type())),
+        ("dialect", s(binding.solver_dialect())),
+        ("encoding_profile", s(binding.encoding_profile())),
+        ("raw_digest", s(query.artifact_digest())),
+        ("byte_length", s(query.bytes().len().to_string())),
+    ];
+    if profile == SolverProfile::Cvc5Query0_3ModelV0_1 {
+        query_fields.push((
+            "query_rules",
+            s(binding.query_rules().ok_or(SolverError::BindingMismatch)?),
+        ));
+    }
     let value = obj(vec![
         ("format", s("axiom-p4-solver-request")),
-        ("version", s("0.1")),
-        ("profile", s(profile.as_str())),
-        ("protocol_rules", s(raw_digest(RULES))),
         (
-            "query",
-            obj(vec![
-                ("artifact_type", s(binding.artifact_type())),
-                ("dialect", s(binding.solver_dialect())),
-                ("encoding_profile", s(binding.encoding_profile())),
-                ("raw_digest", s(query.artifact_digest())),
-                ("byte_length", s(query.bytes().len().to_string())),
-            ]),
+            "version",
+            s(if profile == SolverProfile::Cvc5Query0_3ModelV0_1 {
+                "0.2"
+            } else {
+                "0.1"
+            }),
         ),
+        ("profile", s(profile.as_str())),
+        ("protocol_rules", s(raw_digest(profile.rules()))),
+        ("query", obj(query_fields)),
         (
             "binding",
             obj(vec![
@@ -244,7 +298,7 @@ pub(super) fn plan(
                 ("stdin", s("query-bytes-then-eof")),
             ]),
         ),
-        ("limits", limit_value(limits)),
+        ("limits", limit_value(budgets)),
     ]);
     let bytes = encoding::canonical(&value, SolverResource::RequestBytes, &mut b)?;
     let raw_digest = raw_digest(&bytes);
@@ -257,6 +311,8 @@ pub(super) fn plan(
         layout,
         catalogue,
         limits,
+        budgets,
+        profile,
         usage: b.usage,
     })
 }
