@@ -1,0 +1,288 @@
+{
+  "archive_raw": "sha256:2a4c108367f20b0c8990abd6b9535a5d62e08908d471d4671c00734e408f85bc",
+  "base_inspector_raw": "sha256:60fa5cc00d4127f816a058c3bddd4ca670b535fd00c7c4d69e330bd0bb24042f",
+  "ci_job_observation": {
+    "completed_at": "2026-05-07T15:36:52Z",
+    "conclusion": "success",
+    "head_sha": "f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341",
+    "html_url": "https://github.com/cvc5/cvc5/actions/runs/25505454189/job/74849773758",
+    "id": 74849773758,
+    "labels": [
+      "ubuntu-22.04-arm"
+    ],
+    "name": "ubuntu:production-arm64",
+    "started_at": "2026-05-07T15:28:44Z"
+  },
+  "ci_logs_failure": {
+    "documentation_url": "https://docs.github.com/rest/actions/workflow-jobs#download-job-logs-for-a-workflow-run",
+    "message": "Must have admin rights to Repository.",
+    "status": "403"
+  },
+  "ci_static_publish_step": [
+    {
+      "completed_at": "2026-05-07T15:36:41Z",
+      "conclusion": "success",
+      "name": "Create and add static package to latest and release",
+      "number": 12,
+      "started_at": "2026-05-07T15:36:33Z",
+      "status": "completed"
+    }
+  ],
+  "cli_markers": [
+    {
+      "ascii": "cadical-2.1.3-elevate-f3b21c4",
+      "first_offset": 23639720,
+      "occurrences": 1
+    },
+    {
+      "ascii": "FloatingPointLiteralSymFPU",
+      "first_offset": 23275329,
+      "occurrences": 1
+    },
+    {
+      "ascii": "  GMP - Gnu Multi Precision Arithmetic Library",
+      "first_offset": 23378968,
+      "occurrences": 1
+    },
+    {
+      "ascii": "  LibPoly polynomial library",
+      "first_offset": 23379072,
+      "occurrences": 1
+    },
+    {
+      "ascii": "  Editline Library",
+      "first_offset": 23378624,
+      "occurrences": 1
+    },
+    {
+      "ascii": "/etc/terminfo:/lib/terminfo:/usr/share/terminfo",
+      "first_offset": 23630320,
+      "occurrences": 1
+    },
+    {
+      "ascii": "Fatal glibc error:",
+      "first_offset": 23723888,
+      "occurrences": 5
+    },
+    {
+      "ascii": "_GLIBCXX_REGEX_STATE_LIMIT",
+      "first_offset": 23384494,
+      "occurrences": 1
+    }
+  ],
+  "cli_raw": "sha256:26fa94d71ecb3d4f1458eb06b9b9d4762fb3753cfb5cb9dca6f917fbf4dbe6c7",
+  "declared_fallback_recipes_not_proven_binary_inputs": {
+    "cadical": {
+      "archive_sha256": "15e1e82f7f9a9da0e97070cb8ac41d5b32139f65d54f72d2ff84849b0466ef92",
+      "version": "rel-2.1.3-elevate"
+    },
+    "gmp": {
+      "archive_sha256": "ac28211a7cfb609bae2e2c8d6058d66c8fe96434f740cf6fe2e47b000d1c20cb",
+      "version": "6.3.0"
+    },
+    "libpoly": {
+      "archive_sha256": "f9920afc876f998633348b9cbfcf180757ada48cc872040256c60ad0707b5a0f",
+      "version": "0.2.1"
+    },
+    "symfpu": {
+      "archive_sha256": "ff22e37dbc133120ada5760878974811737bec65b12a8883f92b1ed9e3f96e99",
+      "commit": "227a7246b8ce513b393cc2645d6d65d3490ea1de"
+    }
+  },
+  "elf_sections": [
+    {
+      "bytes": 0,
+      "name": "",
+      "offset": 0,
+      "type": 0
+    },
+    {
+      "bytes": 36,
+      "name": ".note.gnu.build-id",
+      "offset": 400,
+      "type": 7
+    },
+    {
+      "bytes": 32,
+      "name": ".note.ABI-tag",
+      "offset": 436,
+      "type": 7
+    },
+    {
+      "bytes": 168,
+      "name": ".rela.plt",
+      "offset": 472,
+      "type": 4
+    },
+    {
+      "bytes": 24,
+      "name": ".init",
+      "offset": 640,
+      "type": 1
+    },
+    {
+      "bytes": 112,
+      "name": ".plt",
+      "offset": 672,
+      "type": 1
+    },
+    {
+      "bytes": 23029488,
+      "name": ".text",
+      "offset": 832,
+      "type": 1
+    },
+    {
+      "bytes": 3604,
+      "name": "__libc_freeres_fn",
+      "offset": 23030320,
+      "type": 1
+    },
+    {
+      "bytes": 20,
+      "name": ".fini",
+      "offset": 23033924,
+      "type": 1
+    },
+    {
+      "bytes": 799395,
+      "name": ".rodata",
+      "offset": 23033952,
+      "type": 1
+    },
+    {
+      "bytes": 1,
+      "name": ".stapsdt.base",
+      "offset": 23833347,
+      "type": 1
+    },
+    {
+      "bytes": 1782072,
+      "name": ".eh_frame",
+      "offset": 23833352,
+      "type": 1
+    },
+    {
+      "bytes": 1275834,
+      "name": ".gcc_except_table",
+      "offset": 25615424,
+      "type": 1
+    },
+    {
+      "bytes": 136,
+      "name": ".tdata",
+      "offset": 26893760,
+      "type": 1
+    },
+    {
+      "bytes": 2800,
+      "name": ".tbss",
+      "offset": 26893896,
+      "type": 8
+    },
+    {
+      "bytes": 6048,
+      "name": ".init_array",
+      "offset": 26893896,
+      "type": 14
+    },
+    {
+      "bytes": 8,
+      "name": ".fini_array",
+      "offset": 26899944,
+      "type": 15
+    },
+    {
+      "bytes": 145244,
+      "name": ".data.rel.ro",
+      "offset": 26899952,
+      "type": 1
+    },
+    {
+      "bytes": 8848,
+      "name": ".got",
+      "offset": 27045200,
+      "type": 1
+    },
+    {
+      "bytes": 80,
+      "name": ".got.plt",
+      "offset": 27054056,
+      "type": 1
+    },
+    {
+      "bytes": 51968,
+      "name": ".data",
+      "offset": 27054144,
+      "type": 1
+    },
+    {
+      "bytes": 120,
+      "name": "__libc_subfreeres",
+      "offset": 27106112,
+      "type": 1
+    },
+    {
+      "bytes": 2184,
+      "name": "__libc_IO_vtables",
+      "offset": 27106232,
+      "type": 1
+    },
+    {
+      "bytes": 8,
+      "name": "__libc_atexit",
+      "offset": 27108416,
+      "type": 1
+    },
+    {
+      "bytes": 65728,
+      "name": ".bss",
+      "offset": 27108424,
+      "type": 8
+    },
+    {
+      "bytes": 64,
+      "name": "__libc_freeres_ptrs",
+      "offset": 27108424,
+      "type": 8
+    },
+    {
+      "bytes": 45,
+      "name": ".comment",
+      "offset": 27108424,
+      "strings": [
+        "GCC: (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+      ],
+      "type": 1
+    },
+    {
+      "bytes": 5244,
+      "name": ".note.stapsdt",
+      "offset": 27108472,
+      "type": 7
+    },
+    {
+      "bytes": 308,
+      "name": ".shstrtab",
+      "offset": 27113716,
+      "type": 3
+    }
+  ],
+  "format": "radishaxiom-cvc5-static-dependency-observation",
+  "inspector_raw": "sha256:2e432ca7fa958799c8c261311bbc668603083fa724b43161bd55145f447d49cf",
+  "not_established": [
+    "complete-linked-component-inventory",
+    "exact-system-library-package-versions",
+    "recipe-to-binary-authenticated-provenance",
+    "reproducible-build",
+    "license-acceptance",
+    "redistribution-acceptance",
+    "execution",
+    "runtime-qualification"
+  ],
+  "scope": "static-markers-pinned-recipes-and-license-sources-not-acceptance",
+  "source_count": 25,
+  "source_inputs_raw": "sha256:717f5d1ce61b329f9f80b6c59be71f7798050aa9188806688f4999e5b1db9bbe",
+  "static_observation_raw": "sha256:4657b93ff159e926d89fc6b3ef2222764a1144309a4933ac5963392a2d0b3bdf",
+  "version": "0.1"
+}

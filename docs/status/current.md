@@ -64,6 +64,8 @@ Accepted 文档已提交为 `14a9693`。A–C 已完成 Rust 实现与本机验�
 
 项目所有者已接受 ADR 0028 三项决定，授权先提交准备材料，再推进精确 CLI 依赖 / 许可证补证与执行层实施清单；镜像构建、宿主负向探针和真实 solver 分别授权。已有 daemon 的能力报告不能代替 OS 限制、时限 / 清理和实际模型文法验证。
 
+ADR 0028 与准备材料已提交为 `6593254`。随后完成[精确 CLI 补证](../records/2026-10-17-cvc5-cli-dependencies.md)：25 份来源材料、四项固定依赖配方、CaDiCaL / SymFPU / LibPoly 版本化许可及对应 arm64 发布作业已核对；发现 Editline / terminfo / glibc 链需补入库存。详细 CI 日志返回 403，实际系统库版本、完整链接清单及配方到 CLI 的认证关联仍未闭合，保持 not-accepted。已形成[执行层实施清单](../query/solver-execution-implementation-plan.md)：E1–E2 可作为后续纯组件切片，E0 工具接受及 E3 独立终止 / cgroup 能力是进入真实路径的硬门禁。本批补证和清单尚未提交，没有编写生产 executor 或执行外部载荷。
+
 ### P4 接续（2026-10-13）
 
 1. **P4-A 已提交并完成本机组件验收。** 提交为 `b86eb33`；[ADR 0025](../adr/0025-p4-request-response-model-decoding.md) / [规则](../query/p4-request-response-model-v0.1.md)的三个纯入口、完整绑定、模型子集、Text 类、世界候选与预算 / 拒绝通过本机验证，见[本批记录](../records/2026-10-12-p4a-validation.md)。该记录保留提交前事实，实际提交接续以本项为准。纯解析与候选解码不计作目标重放、真实尝试或证明。
@@ -91,6 +93,7 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 
 - ADR 0027 与 query v0.5 / P4-A v0.2 已 Accepted，A–C 已完成本机组件验收。保持原容量、旧 profile 字节及 1 MiB；不启动真实 solver，不 push。紧凑字节与有限比较不代表实际求解、运行资源资格或证明。
 - ADR 0028 D1–D3 与执行层设计范围已 Accepted；具体接口 / 策略及资格尚未实现。cvc5 Linux arm64 ZIP 静态检查通过但未 accepted，OrbStack 宿主仅选为候选；完整依赖 / 许可证、固定加载与能力限制、128 MiB / 6 s 资格尚未闭合。准备授权不扩大为安装、构建镜像、容器探针、solver 执行或系统配置。
+- 精确 CLI 补证保持系统库和实际构建输入缺口，不因固定配方、许可文本或 CI success 转为 accepted。日志 403 路径停止，不自动申请上游管理权限、联系发布者、换工具或展开全工具链取证；执行层按 E0–E6 清单分别收口。
 - P1、限定 P2 与 P3-A / B / C / D / E / F 已完成本机组件验收；完整生产阶段尚未验收。P3 进一步扩展须明确目标范围；新 IR / P2 / query 不能配给旧 Evidence 结果，完整 Evidence v0.2 仍须按 ADR 0009 补齐。
 - P4-A 按 ADR 0025 已完成本机组件验收；没有真实 cvc5 校准。纯 parser / 世界候选不认证响应来源，不产生 attempt、反例或 Evidence 五态；旧四版 AX-B01 stdin 尺寸拒绝保持，新 v0.5 已通过字节门槛。
 - P4-B 的 `target-violated` 只表示 WF / 全部 Pre 成立的这一有限输入违反精确目标；`target-not-violated` 不是普遍证明。资源、绑定和格式错误不产生部分成功制品；本仓 strict 重建不等于独立 checker。
@@ -103,6 +106,8 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 ## 验证入口与本次审阅
 
 2026-10-17，真实 solver 准备批次完成只读宿主盘点、精确 ZIP 获取、标准库静态检查与合成负例；原包 / CLI 摘要、观察数据及可重跑入口见[准备记录](../records/2026-10-17-solver-preparation.md)。未运行任何真实 solver 或隔离探针，不外推工具 / 宿主接受。
+
+同日精确 CLI 补证以标准库检查固定来源摘要 / Git blob、ELF sections 与配方 / CI 关联，并保留获取失败；结果与生成入口见[补证记录](../records/2026-10-17-cvc5-cli-dependencies.md)。本批不改变 Rust、依赖、旧规范或资源值，不将静态观察外推为运行验证。
 
 2026-10-17，ADR 0027 的 A–C 实现通过格式、workspace Clippy 与完整 workspace 294 项测试，另一个默认 ignored 的旧产物导出测试单独执行通过；独立实际 Rust SMT 比较、18 份旧产物逐字节对照及仓库检查见[生产验收](../records/2026-10-17-compact-query-production-validation.md)。未启动 solver、其他平台、CI 或远程执行。
 
