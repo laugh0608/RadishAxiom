@@ -1,0 +1,22 @@
+{
+  "format": "radishaxiom-private-cvc5-c0-metadata-execution-history",
+  "version": "0.1",
+  "observation_date": "2026-10-17",
+  "events": [
+    {
+      "command": "python3 scripts/cvc5-c0-sdk-metadata.py resume-redirect",
+      "sandbox_permissions": "require_escalated",
+      "tool_elapsed_seconds_before_interruption": 277.0,
+      "tool_result": "aborted by user after 277.0s",
+      "exec_session_id": null,
+      "network_output": null,
+      "retention_recheck": "after interruption, only unchanged 1969-byte fetch-observations.json existed; no Release or InRelease raw file",
+      "scope_of_conclusion": "no successful network execution output or retained body observed for this call; permission-wait interruption is not an HTTP/network retry",
+      "subsequent_action": "root issued the same resume command; subsequent raw observations are recorded separately in fetch-observations.json",
+      "interruption_initiator": "primary-agent, not a human rejection"
+    }
+  ],
+  "signature_verified": false,
+  "build_ready": false,
+  "tool_acceptance": "not-accepted"
+}

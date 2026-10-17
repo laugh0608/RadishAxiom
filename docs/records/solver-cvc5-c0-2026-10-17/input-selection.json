@@ -1,10 +1,15 @@
 {
   "format": "radishaxiom-private-cvc5-c0-input-selection",
-  "version": "0.1",
+  "version": "0.2",
   "observation_date": "2026-10-17",
   "generator": "scripts/generate-cvc5-c0-input-selection.py",
+  "generator_identity": {
+    "path": "scripts/generate-cvc5-c0-input-selection.py",
+    "bytes": 12239,
+    "raw_digest": "sha256:607daa63ea5a54d89b000566b4f86bbb7e34f287cdc8380ea4040aaa333acc87"
+  },
   "scope": "candidate-selection-only-no-acceptance",
-  "c0_state": "blocked-exact-sdk-and-config-unresolved",
+  "c0_state": "blocked-source-config-content-authentication-and-acceptance-unresolved",
   "executable": false,
   "build_ready": false,
   "original_cli_acceptance": "not-accepted",
@@ -328,16 +333,42 @@
     }
   ],
   "sdk": {
-    "selection": "selected-distribution-snapshot-only",
+    "selection": "exact-metadata-only",
     "distribution": "Debian 12 bookworm",
     "snapshot": "20230612T000000Z",
     "architecture": "arm64",
     "base_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/",
-    "snapshot_availability": "unverified",
+    "snapshot_availability": "observed-for-four-retained-metadata-targets",
     "metadata_authentication": "not-established",
-    "package_dependency_closure": "not-established",
+    "package_dependency_closure": "closed-for-declared-roots-and-essential-metadata-only",
+    "package_contents_acceptance": "not-accepted",
     "recursive_guest_rebuild": false,
     "binary_sdk_trust": "proposed-not-accepted",
+    "selection_record": {
+      "path": "docs/records/solver-cvc5-c0-2026-10-17/sdk-selection.json",
+      "bytes": 809807,
+      "raw_digest": "sha256:e6ac7c1eb85fc48eb0464a5296e31e2d1a3e52bbbdcd5925bb64801b00ef15f1",
+      "format": "radishaxiom-private-cvc5-c0-sdk-selection",
+      "version": "0.1"
+    },
+    "metadata_record": {
+      "path": "docs/records/solver-cvc5-c0-2026-10-17/metadata-observations.json",
+      "bytes": 10278,
+      "raw_digest": "sha256:0ebf9f5e79a7c4374feffc35f9d45823f45aba9b564f75de03a1f324f456fe4b"
+    },
+    "closure_summary": {
+      "root_groups": 16,
+      "root_packages": 51,
+      "packages": 170,
+      "dependency_edges": 472,
+      "source_packages": 99,
+      "unique_source_files": 321,
+      "binary_declared_bytes": 120455832,
+      "source_declared_bytes": 567050311,
+      "binary_max_bytes": 536870912,
+      "source_max_bytes": 1073741824
+    },
+    "closure_scope": "selected 16 SDK role roots plus all Essential: yes packages from this index; not all cvc5 generation tools or runtime filesystem",
     "metadata_targets": [
       "https://snapshot.debian.org/archive/debian/20230612T000000Z/dists/bookworm/InRelease",
       "https://snapshot.debian.org/archive/debian/20230612T000000Z/dists/bookworm/Release",
@@ -347,33 +378,25 @@
     "items": [
       {
         "id": "compiler",
-        "selection": "unresolved",
-        "candidate_package_names_not_verified_in_snapshot": [
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
           "gcc-12",
           "g++-12",
           "cpp-12",
           "gcc-12-base"
         ],
         "required_roles_not_verified_package_contents": [
-          "gcc",
-          "g++",
-          "cpp"
+          "gcc-12 explicit executable path unresolved",
+          "g++-12 explicit executable path unresolved",
+          "cpp-12 explicit executable path unresolved"
         ],
-        "version": null,
-        "architecture": "arm64-or-all",
-        "package_url": null,
-        "source_package": null,
-        "source_urls": [],
-        "index_declared_sha256": null,
-        "raw_digest": null,
-        "bytes": null,
-        "license_acceptance": "not-accepted",
-        "blocker": "snapshot-index-not-obtained; exact version/file/closure/copyright unresolved"
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
       },
       {
         "id": "binutils",
-        "selection": "unresolved",
-        "candidate_package_names_not_verified_in_snapshot": [
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
           "binutils",
           "binutils-aarch64-linux-gnu",
           "binutils-common"
@@ -388,21 +411,13 @@
           "nm",
           "objdump"
         ],
-        "version": null,
-        "architecture": "arm64-or-all",
-        "package_url": null,
-        "source_package": null,
-        "source_urls": [],
-        "index_declared_sha256": null,
-        "raw_digest": null,
-        "bytes": null,
-        "license_acceptance": "not-accepted",
-        "blocker": "snapshot-index-not-obtained; exact version/file/closure/copyright unresolved"
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
       },
       {
         "id": "gcc-runtime",
-        "selection": "unresolved",
-        "candidate_package_names_not_verified_in_snapshot": [
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
           "libgcc-12-dev",
           "libstdc++-12-dev",
           "libgcc-s1",
@@ -415,21 +430,13 @@
           "libgcc_eh.a",
           "libstdc++.a"
         ],
-        "version": null,
-        "architecture": "arm64-or-all",
-        "package_url": null,
-        "source_package": null,
-        "source_urls": [],
-        "index_declared_sha256": null,
-        "raw_digest": null,
-        "bytes": null,
-        "license_acceptance": "not-accepted",
-        "blocker": "snapshot-index-not-obtained; exact version/file/closure/copyright unresolved"
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
       },
       {
         "id": "glibc-sysroot",
-        "selection": "unresolved",
-        "candidate_package_names_not_verified_in_snapshot": [
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
           "libc6",
           "libc6-dev",
           "libc-dev-bin",
@@ -446,21 +453,13 @@
           "librt.a",
           "headers"
         ],
-        "version": null,
-        "architecture": "arm64-or-all",
-        "package_url": null,
-        "source_package": null,
-        "source_urls": [],
-        "index_declared_sha256": null,
-        "raw_digest": null,
-        "bytes": null,
-        "license_acceptance": "not-accepted",
-        "blocker": "snapshot-index-not-obtained; exact version/file/closure/copyright unresolved"
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
       },
       {
         "id": "editline",
-        "selection": "unresolved",
-        "candidate_package_names_not_verified_in_snapshot": [
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
           "libedit-dev",
           "libedit2"
         ],
@@ -469,21 +468,13 @@
           "libedit.a",
           "libedit.pc"
         ],
-        "version": null,
-        "architecture": "arm64-or-all",
-        "package_url": null,
-        "source_package": null,
-        "source_urls": [],
-        "index_declared_sha256": null,
-        "raw_digest": null,
-        "bytes": null,
-        "license_acceptance": "not-accepted",
-        "blocker": "snapshot-index-not-obtained; exact version/file/closure/copyright unresolved"
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
       },
       {
         "id": "terminfo",
-        "selection": "unresolved",
-        "candidate_package_names_not_verified_in_snapshot": [
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
           "libncurses-dev",
           "libtinfo6"
         ],
@@ -492,21 +483,13 @@
           "tinfo.pc",
           "headers"
         ],
-        "version": null,
-        "architecture": "arm64-or-all",
-        "package_url": null,
-        "source_package": null,
-        "source_urls": [],
-        "index_declared_sha256": null,
-        "raw_digest": null,
-        "bytes": null,
-        "license_acceptance": "not-accepted",
-        "blocker": "snapshot-index-not-obtained; exact version/file/closure/copyright unresolved"
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
       },
       {
         "id": "bsd",
-        "selection": "unresolved",
-        "candidate_package_names_not_verified_in_snapshot": [
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
           "libbsd-dev",
           "libbsd0"
         ],
@@ -515,21 +498,13 @@
           "libbsd.pc",
           "headers"
         ],
-        "version": null,
-        "architecture": "arm64-or-all",
-        "package_url": null,
-        "source_package": null,
-        "source_urls": [],
-        "index_declared_sha256": null,
-        "raw_digest": null,
-        "bytes": null,
-        "license_acceptance": "not-accepted",
-        "blocker": "snapshot-index-not-obtained; exact version/file/closure/copyright unresolved"
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
       },
       {
         "id": "md",
-        "selection": "unresolved",
-        "candidate_package_names_not_verified_in_snapshot": [
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
           "libmd-dev",
           "libmd0"
         ],
@@ -538,21 +513,13 @@
           "libmd.pc",
           "headers"
         ],
-        "version": null,
-        "architecture": "arm64-or-all",
-        "package_url": null,
-        "source_package": null,
-        "source_urls": [],
-        "index_declared_sha256": null,
-        "raw_digest": null,
-        "bytes": null,
-        "license_acceptance": "not-accepted",
-        "blocker": "snapshot-index-not-obtained; exact version/file/closure/copyright unresolved"
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
       },
       {
         "id": "cmake",
-        "selection": "unresolved",
-        "candidate_package_names_not_verified_in_snapshot": [
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
           "cmake",
           "cmake-data"
         ],
@@ -560,41 +527,25 @@
           "cmake",
           "CMake modules"
         ],
-        "version": null,
-        "architecture": "arm64-or-all",
-        "package_url": null,
-        "source_package": null,
-        "source_urls": [],
-        "index_declared_sha256": null,
-        "raw_digest": null,
-        "bytes": null,
-        "license_acceptance": "not-accepted",
-        "blocker": "snapshot-index-not-obtained; exact version/file/closure/copyright unresolved"
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
       },
       {
         "id": "make",
-        "selection": "unresolved",
-        "candidate_package_names_not_verified_in_snapshot": [
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
           "make"
         ],
         "required_roles_not_verified_package_contents": [
           "make"
         ],
-        "version": null,
-        "architecture": "arm64-or-all",
-        "package_url": null,
-        "source_package": null,
-        "source_urls": [],
-        "index_declared_sha256": null,
-        "raw_digest": null,
-        "bytes": null,
-        "license_acceptance": "not-accepted",
-        "blocker": "snapshot-index-not-obtained; exact version/file/closure/copyright unresolved"
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
       },
       {
         "id": "python-generator",
-        "selection": "unresolved",
-        "candidate_package_names_not_verified_in_snapshot": [
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
           "python3",
           "python3-minimal",
           "python3.11",
@@ -606,21 +557,13 @@
           "python3",
           "stdlib; additional imported modules unresolved"
         ],
-        "version": null,
-        "architecture": "arm64-or-all",
-        "package_url": null,
-        "source_package": null,
-        "source_urls": [],
-        "index_declared_sha256": null,
-        "raw_digest": null,
-        "bytes": null,
-        "license_acceptance": "not-accepted",
-        "blocker": "snapshot-index-not-obtained; exact version/file/closure/copyright unresolved"
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
       },
       {
         "id": "pkg-config",
-        "selection": "unresolved",
-        "candidate_package_names_not_verified_in_snapshot": [
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
           "pkgconf",
           "pkgconf-bin",
           "libpkgconf3"
@@ -628,21 +571,13 @@
         "required_roles_not_verified_package_contents": [
           "pkgconf; explicit executable, no implicit pkg-config alias"
         ],
-        "version": null,
-        "architecture": "arm64-or-all",
-        "package_url": null,
-        "source_package": null,
-        "source_urls": [],
-        "index_declared_sha256": null,
-        "raw_digest": null,
-        "bytes": null,
-        "license_acceptance": "not-accepted",
-        "blocker": "snapshot-index-not-obtained; exact version/file/closure/copyright unresolved"
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
       },
       {
         "id": "shell",
-        "selection": "unresolved",
-        "candidate_package_names_not_verified_in_snapshot": [
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
           "dash",
           "bash"
         ],
@@ -650,21 +585,13 @@
           "sh",
           "bash"
         ],
-        "version": null,
-        "architecture": "arm64-or-all",
-        "package_url": null,
-        "source_package": null,
-        "source_urls": [],
-        "index_declared_sha256": null,
-        "raw_digest": null,
-        "bytes": null,
-        "license_acceptance": "not-accepted",
-        "blocker": "snapshot-index-not-obtained; exact version/file/closure/copyright unresolved"
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
       },
       {
         "id": "text-and-digest",
-        "selection": "unresolved",
-        "candidate_package_names_not_verified_in_snapshot": [
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
           "coreutils",
           "sed",
           "grep",
@@ -684,21 +611,13 @@
           "diff",
           "patch"
         ],
-        "version": null,
-        "architecture": "arm64-or-all",
-        "package_url": null,
-        "source_package": null,
-        "source_urls": [],
-        "index_declared_sha256": null,
-        "raw_digest": null,
-        "bytes": null,
-        "license_acceptance": "not-accepted",
-        "blocker": "snapshot-index-not-obtained; exact version/file/closure/copyright unresolved"
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
       },
       {
         "id": "archive",
-        "selection": "unresolved",
-        "candidate_package_names_not_verified_in_snapshot": [
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
           "tar",
           "gzip",
           "bzip2",
@@ -710,21 +629,13 @@
           "bzip2",
           "xz"
         ],
-        "version": null,
-        "architecture": "arm64-or-all",
-        "package_url": null,
-        "source_package": null,
-        "source_urls": [],
-        "index_declared_sha256": null,
-        "raw_digest": null,
-        "bytes": null,
-        "license_acceptance": "not-accepted",
-        "blocker": "snapshot-index-not-obtained; exact version/file/closure/copyright unresolved"
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
       },
       {
         "id": "inspection",
-        "selection": "unresolved",
-        "candidate_package_names_not_verified_in_snapshot": [
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
           "file",
           "libmagic1",
           "libmagic-mgc"
@@ -733,20 +644,21 @@
           "file",
           "magic database"
         ],
-        "version": null,
-        "architecture": "arm64-or-all",
-        "package_url": null,
-        "source_package": null,
-        "source_urls": [],
-        "index_declared_sha256": null,
-        "raw_digest": null,
-        "bytes": null,
-        "license_acceptance": "not-accepted",
-        "blocker": "snapshot-index-not-obtained; exact version/file/closure/copyright unresolved"
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
       }
     ]
   },
-  "metadata_observations": [
+  "metadata_acquisition": {
+    "authorized": true,
+    "scope": "fixed-snapshot Release/InRelease/Packages/Sources metadata only",
+    "record": {
+      "path": "docs/records/solver-cvc5-c0-2026-10-17/metadata-observations.json",
+      "bytes": 10278,
+      "raw_digest": "sha256:0ebf9f5e79a7c4374feffc35f9d45823f45aba9b564f75de03a1f324f456fe4b"
+    }
+  },
+  "metadata_observation_history": [
     {
       "url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/dists/bookworm/Release",
       "method": "sandbox Python urllib HTTPS GET",
@@ -788,7 +700,10 @@
     "auto_download": false
   },
   "future_acquisition": {
-    "authorized": false,
+    "source_archive_acquisition_authorized": false,
+    "sdk_package_acquisition_authorized": false,
+    "source_correspondence_acquisition_authorized": false,
+    "further_metadata_acquisition_authorized": false,
     "retention_directory": ".tmp/cvc5-c0-acquisition-2026-10-17",
     "source_archive_max_total_bytes": 201326592,
     "metadata_max_total_bytes": 29360128,
@@ -798,16 +713,18 @@
       10,
       30
     ],
-    "estimate_basis": "planning cap, not observed sizes; exact package sizes must be summed from accepted metadata before requesting bytes",
+    "sdk_package_index_declared_total_bytes": 120455832,
+    "source_correspondence_index_declared_total_bytes": 567050311,
+    "estimate_basis": "caps remain planning limits; exact declared sizes now summed from metadata, not package observations or acceptance",
     "timeout_seconds_per_item": 180,
     "retries": 0,
     "source_fallbacks": 0,
     "cleanup": "future exact acquired paths only; preserve original ZIP and prior evidence; no cleanup authorized"
   },
   "blockers": [
-    "signed snapshot metadata and signature trust not obtained",
-    "SDK exact binary versions/filenames/sizes/digests/source and copyright mappings unresolved",
-    "build-tool runtime package closure unresolved; no entire guest chosen",
+    "snapshot signature trust and historical validity policy not accepted",
+    "exact metadata binary/source selection is not obtained package contents or copyright acceptance",
+    "declared package runtime metadata closure is not full generator imports or a runtime filesystem",
     "full cvc5 source/embedded components/Production expansion/CLI generation imports unresolved",
     "actual source and SDK package bytes/tree digests not obtained",
     "build patch bytes, SDK file inventories, .pc static closure and link map not created",

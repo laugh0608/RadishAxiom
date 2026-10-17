@@ -1,0 +1,229 @@
+{
+  "format": "radishaxiom-private-cvc5-c0-sdk-metadata",
+  "version": "0.1",
+  "base_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/",
+  "max_total_bytes": 29360128,
+  "timeout_seconds_per_item": 180,
+  "retries": 0,
+  "fallback_sources": 0,
+  "signature_authentication": "not-established",
+  "observations": [
+    {
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/dists/bookworm/Release",
+      "relative_path": "Release",
+      "retained_file": "Release",
+      "started_utc": "2026-10-17T13:47:51.094167+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/dists/bookworm/Release",
+          "to_url": "https://snapshot.debian.org/file/4c57abe878336c7806099d53d10dde2a6d0a4540/Release",
+          "observation": "captured in prior redirect guard failure; resumed without repeating initial GET"
+        }
+      ],
+      "status": "obtained",
+      "final_url": "https://snapshot.debian.org/file/4c57abe878336c7806099d53d10dde2a6d0a4540/Release",
+      "http_status": 200,
+      "response_headers": {
+        "content-length": "145119",
+        "last-modified": "Sat, 10 Jun 2023 22:29:48 GMT",
+        "etag": "\"236df-5fdce05ec0f00\"",
+        "date": "Sat, 17 Oct 2026 13:47:52 GMT"
+      },
+      "bytes": 145119,
+      "raw_digest": "sha256:010b226303e531b2ca0d268079228b6667418b8ad021d6c126374837ad327055",
+      "finished_utc": "2026-10-17T13:47:53.989329+00:00",
+      "elapsed_seconds": 2.895
+    },
+    {
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/dists/bookworm/InRelease",
+      "relative_path": "InRelease",
+      "retained_file": "InRelease",
+      "started_utc": "2026-10-17T13:47:53.989845+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/dists/bookworm/InRelease",
+          "to_url": "https://snapshot.debian.org/file/999292fc0d7486c2645ba9555c6fb5fd5037adbb/InRelease"
+        }
+      ],
+      "status": "obtained",
+      "final_url": "https://snapshot.debian.org/file/999292fc0d7486c2645ba9555c6fb5fd5037adbb/InRelease",
+      "http_status": 200,
+      "response_headers": {
+        "content-length": "146972",
+        "last-modified": "Sat, 10 Jun 2023 22:29:51 GMT",
+        "etag": "\"23e1c-5fdce0619d5c0\"",
+        "date": "Sat, 17 Oct 2026 13:47:56 GMT"
+      },
+      "bytes": 146972,
+      "raw_digest": "sha256:2814476b311085e250ddfdee295907bac45afb66f40dc7c1b35ab41a447c1d6c",
+      "finished_utc": "2026-10-17T13:47:57.506386+00:00",
+      "elapsed_seconds": 3.517
+    },
+    {
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/dists/bookworm/main/binary-arm64/Packages.xz",
+      "relative_path": "main/binary-arm64/Packages.xz",
+      "retained_file": "main__binary-arm64__Packages.xz",
+      "started_utc": "2026-10-17T13:50:58.009173+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/dists/bookworm/main/binary-arm64/Packages.xz",
+          "to_url": "https://snapshot.debian.org/file/b600d57187e0bdcc4680509f02595d3e5055935a/4926bbf128b8e497cb83c59c8212fd2ef4df5b2c30e9140a688198cd2cd55471",
+          "observation": "captured in prior index redirect guard failure; resumed without repeating initial GET"
+        }
+      ],
+      "status": "obtained",
+      "final_url": "https://snapshot.debian.org/file/b600d57187e0bdcc4680509f02595d3e5055935a/4926bbf128b8e497cb83c59c8212fd2ef4df5b2c30e9140a688198cd2cd55471",
+      "http_status": 200,
+      "response_headers": {
+        "content-length": "8801860",
+        "last-modified": "Fri, 09 Jun 2023 12:25:16 GMT",
+        "etag": "\"864e44-5fdb17619e300\"",
+        "date": "Sat, 17 Oct 2026 13:50:59 GMT"
+      },
+      "bytes": 8801860,
+      "raw_digest": "sha256:4926bbf128b8e497cb83c59c8212fd2ef4df5b2c30e9140a688198cd2cd55471",
+      "finished_utc": "2026-10-17T13:51:03.828579+00:00",
+      "elapsed_seconds": 5.819
+    },
+    {
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/dists/bookworm/main/source/Sources.xz",
+      "relative_path": "main/source/Sources.xz",
+      "retained_file": "main__source__Sources.xz",
+      "started_utc": "2026-10-17T13:51:03.829190+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/dists/bookworm/main/source/Sources.xz",
+          "to_url": "https://snapshot.debian.org/file/054d298857955a2542fccbf2646402cd8e22a2bd/d1d5103c4ddd76196acc292e90fd0ffece1fe0d04408ab544633f25568e6cb19"
+        }
+      ],
+      "status": "obtained",
+      "final_url": "https://snapshot.debian.org/file/054d298857955a2542fccbf2646402cd8e22a2bd/d1d5103c4ddd76196acc292e90fd0ffece1fe0d04408ab544633f25568e6cb19",
+      "http_status": 200,
+      "response_headers": {
+        "content-length": "9628468",
+        "last-modified": "Fri, 09 Jun 2023 12:30:41 GMT",
+        "etag": "\"92eb34-5fdb18978fe40\"",
+        "date": "Sat, 17 Oct 2026 13:51:06 GMT"
+      },
+      "bytes": 9628468,
+      "raw_digest": "sha256:d1d5103c4ddd76196acc292e90fd0ffece1fe0d04408ab544633f25568e6cb19",
+      "finished_utc": "2026-10-17T13:51:11.069133+00:00",
+      "elapsed_seconds": 7.24
+    }
+  ],
+  "total_response_body_bytes": 18722419,
+  "complete": true,
+  "prior_redirect_guard_failure": {
+    "format": "radishaxiom-private-cvc5-c0-sdk-metadata",
+    "version": "0.1",
+    "base_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/",
+    "max_total_bytes": 29360128,
+    "timeout_seconds_per_item": 180,
+    "retries": 0,
+    "fallback_sources": 0,
+    "signature_authentication": "not-established",
+    "observations": [
+      {
+        "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/dists/bookworm/Release",
+        "relative_path": "Release",
+        "retained_file": "Release",
+        "started_utc": "2026-10-17T13:39:42.256769+00:00",
+        "redirects": [],
+        "status": "failed",
+        "bytes_received": 0,
+        "error_type": "ValueError",
+        "error": "redirect-outside-pinned-metadata-path: https://snapshot.debian.org/file/4c57abe878336c7806099d53d10dde2a6d0a4540/Release",
+        "finished_utc": "2026-10-17T13:39:43.811730+00:00",
+        "elapsed_seconds": 1.555
+      }
+    ],
+    "total_response_body_bytes": 0,
+    "complete": false,
+    "prior_sandbox_network_failure": {
+      "format": "radishaxiom-private-cvc5-c0-sdk-metadata",
+      "version": "0.1",
+      "base_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/",
+      "max_total_bytes": 29360128,
+      "timeout_seconds_per_item": 180,
+      "retries": 0,
+      "fallback_sources": 0,
+      "signature_authentication": "not-established",
+      "observations": [
+        {
+          "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/dists/bookworm/Release",
+          "relative_path": "Release",
+          "retained_file": "Release",
+          "started_utc": "2026-10-17T13:39:06.071823+00:00",
+          "redirects": [],
+          "status": "failed",
+          "bytes_received": 0,
+          "error_type": "URLError",
+          "error": "<urlopen error [Errno 1] Operation not permitted>",
+          "finished_utc": "2026-10-17T13:39:06.076720+00:00",
+          "elapsed_seconds": 0.005
+        }
+      ],
+      "total_response_body_bytes": 0,
+      "complete": false
+    }
+  },
+  "resume_action": "continue-only-observed-302-location; initial-Release-request-not-repeated",
+  "prior_index_redirect_guard_failure": {
+    "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/dists/bookworm/main/binary-arm64/Packages.xz",
+    "relative_path": "main/binary-arm64/Packages.xz",
+    "retained_file": "main__binary-arm64__Packages.xz",
+    "started_utc": "2026-10-17T13:47:57.506784+00:00",
+    "redirects": [],
+    "status": "failed",
+    "bytes_received": 0,
+    "error_type": "ValueError",
+    "error": "redirect-outside-pinned-metadata-path: https://snapshot.debian.org/file/b600d57187e0bdcc4680509f02595d3e5055935a/4926bbf128b8e497cb83c59c8212fd2ef4df5b2c30e9140a688198cd2cd55471",
+    "finished_utc": "2026-10-17T13:47:58.765355+00:00",
+    "elapsed_seconds": 1.259
+  },
+  "resume_index_action": "continue-only-observed-Packages-302-location; initial-Packages-request-not-repeated; Sources-first-request",
+  "metadata_verifier": {
+    "path": "scripts/cvc5-c0-sdk-metadata.py",
+    "bytes": 21790,
+    "raw_digest": "sha256:53d1d57fdd942527db9f7ca4825b485b63c509c5e907ecfd90bb2c306abd2ce3"
+  },
+  "retention_directory": ".tmp/cvc5-c0-sdk-metadata-2026-10-17",
+  "validation_scope": "retained-byte integrity and metadata internal consistency; not signature verification, independent authentication, package acquisition, SDK acceptance, or runtime filesystem closure",
+  "retained_fetch_manifest": {
+    "path": ".tmp/cvc5-c0-sdk-metadata-2026-10-17/fetch-observations.json",
+    "bytes": 10213,
+    "raw_digest": "sha256:474a14dfb0ec2633a0db005631dc9ae1c7467034eb61cc6dc50e9970b3736bef"
+  },
+  "release_fields": {
+    "Origin": "Debian",
+    "Label": "Debian",
+    "Suite": "stable",
+    "Version": "12.0",
+    "Codename": "bookworm",
+    "Date": "Sat, 10 Jun 2023 08:51:17 UTC",
+    "Valid-Until": null,
+    "Architectures": "all amd64 arm64 armel armhf i386 mips64el mipsel ppc64el s390x",
+    "Components": "main contrib non-free-firmware non-free"
+  },
+  "release_index_checks": [
+    {
+      "relative_path": "main/binary-arm64/Packages.xz",
+      "declared_sha256": "4926bbf128b8e497cb83c59c8212fd2ef4df5b2c30e9140a688198cd2cd55471",
+      "declared_bytes": 8801860,
+      "bytes_match": true
+    },
+    {
+      "relative_path": "main/source/Sources.xz",
+      "declared_sha256": "d1d5103c4ddd76196acc292e90fd0ffece1fe0d04408ab544633f25568e6cb19",
+      "declared_bytes": 9628468,
+      "bytes_match": true
+    }
+  ],
+  "inrelease_body_equals_release": true,
+  "signature_verified": false,
+  "signature_trust_and_time_policy": "not-accepted; historical snapshot expiry and trusted keyring require separate review"
+}

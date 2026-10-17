@@ -4,15 +4,15 @@
 
 ## 候选路线与身份
 
-候选保持 cvc5 `1.3.4`、源码提交 `f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341`，构建 Linux AArch64 LE、glibc / GCC C++ runtime、Production、静态 CLI；保留 Editline、GMP、CaDiCaL、SymFPU 与 LibPoly 功能面。glibc 路线用于减少与原发布 CLI 的运行库差异，不把 bootstrap 的 musl 候选迁给 solver。精确 GCC / glibc 包版本仍为 `unknown`，不能凭原 CLI `.comment` 或 `ubuntu-22.04-arm` 标签填写。
+候选保持 cvc5 `1.3.4`、源码提交 `f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341`，构建 Linux AArch64 LE、glibc / GCC C++ runtime、Production、静态 CLI；保留 Editline、GMP、CaDiCaL、SymFPU 与 LibPoly 功能面。glibc 路线用于减少与原发布 CLI 的运行库差异，不把 bootstrap 的 musl 候选迁给 solver。新候选的固定快照元数据已选择 GCC `12.2.0-14` / glibc `2.36-9`，详见[C0 输入选择](solver-cvc5-c0-input-selection.md)；包原字节和工具接受尚未完成。这些版本不能倒填为原 CLI 的构建输入。
 
 新 CLI 必须按实际新 bytes 登记独立身份、接受记录与来源链，不能替换原 CLI 或追认原来源。原 ZIP SHA-256 `2a4c108367f20b0c8990abd6b9535a5d62e08908d471d4671c00734e408f85bc`、成员 `bin/cvc5` SHA-256 `26fa94d71ecb3d4f1458eb06b9b9d4762fb3753cfb5cb9dca6f917fbf4dbe6c7` 继续 `not-accepted`；其 B1 / B2 缺口按[前批补证](../records/2026-10-17-cvc5-cli-dependencies.md)及[有界后续复核](../records/2026-10-17-cvc5-provenance-followup.md)保留。本路线建立新构建的来源关联，不声称复现原发行 bytes。
 
-当前可以固定的是源码提交、四项声明配方、候选功能面与闭合方法。完整 cvc5 源码、归档实际摘要、系统库 / SDK 包版本、完整构建工具、Production 展开及 patch bytes 尚未取得或审阅，**现在不能形成执行许可所需的精确命令**。这些 `unknown` 是构建前硬阻断，不是可由默认版本补齐的空位。前批四归档审批等待中止；本轮不重试、不换源、不下载。
+当前可以固定的是源码提交、四项声明配方、候选功能面与闭合方法。完整 cvc5 源码、归档实际摘要、SDK 包内容与工具接受、完整源码所需生成工具、Production 展开及 patch bytes 尚未取得或审阅，**现在不能形成执行许可所需的精确命令**。这些 `unknown` 是构建前硬阻断，不是可由默认版本补齐的空位。前批四归档审批等待中止；本轮不重试、不换源、不下载。
 
 ## 已有依据与输入账本
 
-依据限于已留存的[依赖来源索引](../records/cvc5-cli-dependencies-2026-10-17/source-inputs.json)、[静态观察](../records/cvc5-cli-dependencies-2026-10-17/dependency-observation.json)、[后续来源索引](../records/cvc5-provenance-followup-2026-10-17/source-inputs.json)及其绑定的本地原字节。其 raw digest / Git blob 用于复核已有材料，没有重新解释为发布者签名、源码包取得或 binary 关联。本方案最初仅使用留存材料；本次 C0 接续的只读元数据失败与当前页面观察见下述接续，不据此接受输入。
+依据限于已留存的[依赖来源索引](../records/cvc5-cli-dependencies-2026-10-17/source-inputs.json)、[静态观察](../records/cvc5-cli-dependencies-2026-10-17/dependency-observation.json)、[后续来源索引](../records/cvc5-provenance-followup-2026-10-17/source-inputs.json)及其绑定的本地原字节。其 raw digest / Git blob 用于复核已有材料，没有重新解释为发布者签名、源码包取得或 binary 关联。本方案最初仅使用留存材料；C0 接续已按后续授权取得固定快照元数据并闭合已选 SDK 根包的依赖关系；原包 / 配置 / 来源接受继续分开，见下述接续。
 
 下一批须先形成私有输入清单：每项记录角色、来源 URL / 固定提交或包版本与架构、获取状态、实际 raw SHA-256 / 字节数、源包与二进制包关联、许可证 / copyright 路径、必要归属、使用路径及接受决定。未取得的实际摘要用 `null` 并使清单不可执行；不放置伪摘要或能绕过检查的占位脚本。清单正文、生成器、原输入及其摘要一起审阅；不是新的公共 acceptance schema。
 
@@ -23,12 +23,12 @@
 | SymFPU | `227a7246b8ce513b393cc2645d6d65d3490ea1de`；归档 `not-obtained`；固定 LICENSE / LICENSE-BSD 已取得，候选沿 BSD-3-Clause 选项 | 实际归档 / 头文件 tree 摘要；编译依赖文件证明使用这些头而非系统副本；不能因仅含头文件而漏库存 |
 | LibPoly / Polyxx | `0.2.1`，tag 已解析为 `3d5e6fbd98639cb0941b029e23ca17c0e3c4a80a`；归档 `not-obtained`；版本化授权为 LGPL-3.0-or-later | 原包、全部 patch / 改写及前后 tree 摘要；`libpicpoly.a` / `libpicpolyxx.a`、GMP 绑定与对应源码；保留 LGPL 边界 |
 | GMP / GMPXX | `6.3.0`，原配方归档 `not-obtained`；前批引用 GNU 许可说明，本候选选择 LGPL 路径，不把整包许可概括为宽松许可 | 实际归档、源码许可 / copyright 清单、C / C++ 静态库和头文件；GMP `main` URL 只作定位，内容须匹配已固定摘要 |
-| Editline / libedit | 保留 `USE_EDITLINE=ON`。现有 Find 通过 pkg-config 获取；精确版本、源包、二进制包、patch 与 copyright 均 `unknown` | 选择并审阅一个新候选的精确版本 / 来源 / 摘要与完整许可，固定 `.pc` 及静态库；不能拿最新上游 Berkeley-style 说明替代该包许可 |
-| terminfo / ncurses | Linux Find 明确追加 `tinfo`；精确版本与组成 `unknown`，并非已确认原 CLI 的完整依赖 | 固定提供 `libtinfo.a` 的包 / 头文件 / 源包 / patch / copyright；判断是否还需 ncurses 对象或数据，实际新增须入清单 |
-| libbsd / libmd 及其他间接项 | 原配方可条件追加 `bsd`，安装记录不是链接证明。新候选先将两者列为需闭合的候选，版本 / 许可文件 `unknown` | libedit / tinfo / bsd 的静态依赖闭包、包身份与许可；若实际不链接某项，用显式依赖声明和 link map 共同排除，不能仅因主链接行未写而排除 |
-| glibc / CRT / Linux UAPI headers | 候选保留 glibc；`crt1.o` / `crti.o` / `crtn.o`、libc / libm / pthread / dl / rt 等实际选择、头文件及补丁版本均 `unknown` | 精确 sysroot 归档与逐文件包归属、源包 / patch / copyright 关联；按实际包核对许可及例外，不将整个 sysroot 标成一种 LGPL；旧版本独立库与合并版本差异不得默认处理 |
-| GCC / libstdc++ / libgcc / Binutils | 原 CLI 的 GCC 11.4.0 注记只是历史线索。新候选 compiler、linker、assembler、ar / ranlib / strip / readelf / nm、`crtbegin` / `crtend`、运行库精确版本及文件摘要 `unknown` | 取得精确可信工具包、目标 / ABI、默认 specs 与搜索目录、启动对象和静态运行库；按文件核对 GPL / GCC Runtime Library Exception 等。编译器及其依赖作为显式 trusted 输入，不递归重建 GCC 或整个 guest |
-| 构建工具与生成器 | CMake、GNU Make、Python 及所需模块、shell、sed、patch、tar / 解压器、pkg-config、文件 / 摘要检查工具均须固定；目前精确包及其运行闭包 `unknown` | 逐包版本 / 架构 / 实际摘要 / 来源 / 许可与命令路径；完整源码会揭示的生成脚本和模块一并闭合；不运行 pip / apt 在线解析 |
+| Editline / libedit | 保留 `USE_EDITLINE=ON`。现有 Find 通过 pkg-config 获取；精确版本、源包和二进制包的元数据已固定；实际包、patch 与 copyright 尚未取得 | 选择并审阅一个新候选的精确版本 / 来源 / 摘要与完整许可，固定 `.pc` 及静态库；不能拿最新上游 Berkeley-style 说明替代该包许可 |
+| terminfo / ncurses | Linux Find 明确追加 `tinfo`；新候选包版本已在 C0 固定，实际组成未知，也并非已确认原 CLI 的完整依赖 | 固定提供 `libtinfo.a` 的包 / 头文件 / 源包 / patch / copyright；判断是否还需 ncurses 对象或数据，实际新增须入清单 |
+| libbsd / libmd 及其他间接项 | 原配方可条件追加 `bsd`，安装记录不是链接证明。新候选先将两者列为需闭合的候选，新候选包版本已固定，许可文件尚未取得 | libedit / tinfo / bsd 的静态依赖闭包、包身份与许可；若实际不链接某项，用显式依赖声明和 link map 共同排除，不能仅因主链接行未写而排除 |
+| glibc / CRT / Linux UAPI headers | 候选保留 glibc；`crt1.o` / `crti.o` / `crtn.o`、libc / libm / pthread / dl / rt 等包版本 / 对应源文件已按 C0 固定，实际文件选择、头文件内容及补丁尚未核对 | 精确 sysroot 归档与逐文件包归属、源包 / patch / copyright 关联；按实际包核对许可及例外，不将整个 sysroot 标成一种 LGPL；旧版本独立库与合并版本差异不得默认处理 |
+| GCC / libstdc++ / libgcc / Binutils | 原 CLI 的 GCC 11.4.0 注记只是历史线索。新候选 compiler、linker、assembler、ar / ranlib / strip / readelf / nm、`crtbegin` / `crtend`、运行库包版本已按 C0 固定；工具路径、包内文件摘要及默认行为未知 | 取得精确可信工具包、目标 / ABI、默认 specs 与搜索目录、启动对象和静态运行库；按文件核对 GPL / GCC Runtime Library Exception 等。编译器及其依赖作为显式 trusted 输入，不递归重建 GCC 或整个 guest |
+| 构建工具与生成器 | CMake、GNU Make、Python 及所需模块、shell、sed、patch、tar / 解压器、pkg-config、文件 / 摘要检查工具均须固定；既定 16 组角色的精确包及 Depends / Pre-Depends / Essential 元数据闭包已固定；完整源码的新生成器需求及实际运行文件闭包仍未知 | 逐包版本 / 架构 / 实际摘要 / 来源 / 许可与命令路径；完整源码会揭示的生成脚本和模块一并闭合；不运行 pip / apt 在线解析 |
 | Java / Python bindings 条件输入 | 原 CI `--all-bindings` 仅作配置比较基线，static 分支源码会自动关闭 Python bindings；JDK、bindings 模块 / wheel 及生成工具需求 `unknown` | C0 审查绑定选项是否影响 CLI 对象 / 生成头，能证明无影响的 SDK / JAR 目标不构建，显式列配置差异审阅；确有 CLI 配置 / 生成需要才固定并纳入对应包 / 许可。Python 解释器作为实际构建工具的需求独立保留，不随 bindings 裁剪移除 |
 | 构建基底与执行平台 | 隔离的 Linux AArch64 LE 只读根文件树 / SDK / sysroot；尚无已接受的精确 rootfs 或镜像摘要 | 固定各包、组装入口、根树摘要、OS / 内核 / CPU 特征与执行宿主；既有 OrbStack 仅为诊断候选，不因此取得 E4 资格。不得使用浮动 `ubuntu:22.04` 或当前 runner 镜像推历史事实 |
 
@@ -90,7 +90,7 @@
 
 | 顺序 | 下一批的具体交付与出口 | 阻断 / 授权 |
 | --- | --- | --- |
-| C0：冻结候选差异 | [本轮选择接续](solver-cvc5-c0-input-selection.md)已固定五项源码目标及 Debian 12 arm64 单一快照候选；SDK 精确包版本 / 文件 / 闭包、完整源码与有效配置 / patch 未闭合，`partial-selection / blocked-on-sdk-metadata` | 只读索引查询受沙盒阻断，后续元数据请求等待中止，未取得索引；原包实际 hash 保持 null，`build_ready=false`。来源选择不等于下载 / 接受；停止重试，不自动串来源链 |
+| C0：冻结候选差异 | [本轮选择接续](solver-cvc5-c0-input-selection.md)已固定五项源码目标与 Debian 12 arm64 固定快照中的 170 个 SDK 包、472 条依赖关系、99 个对应源版本；SDK 元数据选择已闭合，完整源码 / 有效配置 / patch 未闭合 | 本轮只授权取得四份 Release / Packages / Sources 元数据；原包实际 hash 保持 null、签名信任未建立、`build_ready=false`。元数据选择不等于包内容、工具或构建接受；C0 整体仍未完成 |
 | C1：输入接受 | 实际原包摘要 / tree / 许可核对，锁定 compiler / SDK / rootfs 包与可信边界；完成有效选项差异逐项决定 | 任一 unknown、版权缺项、可选库闭包未知或 patch 未审即停；不能先安装再决定接受。来源选择不等于允许安装 |
 | C2：构建准备 | 提交可审阅离线入口、输入清单校验器、精确 argv / 环境 / 输出目录、无网络设置、资源 / 日志 / map 采集及失败保留 / 清理计划 | 工具安装 / 环境组装、构建环境镜像、实际编译分别说明并授权。CMake try_run / GMP configure 等生成的检测程序也属构建期执行，须写入授权范围；不包含运行 cvc5 `--version` / solver |
 | C3：一次受控构建 | 授权后先空目录验证，离线构建依赖再生成 cvc5，保存所有中间 / link map / stripped 前后 bytes、实际占用与失败 | 任一未列输入 / 下载 / 包安装 / 选项漂移、资源耗尽或超时即停止保留；不自动增额重跑，不把新 bytes 放原 CLI 路径 |
@@ -105,4 +105,4 @@
 
 候选仅为受控本地诊断。当前没有把第三方库链接进 RadishAxiom，没有改变项目 Apache-2.0 或用户生成产物的许可。若以后分发静态 CLI、镜像或构建 SDK，须按实际组成单独检查版权 / 许可证、LGPL corresponding source 与 relink / recombination 材料、安装信息适用性、GCC runtime exception 条件及其他各包义务；仅留上游 URL、称 non-GPL 或不复制 `.a` 均不构成分发接受。新本地 E0 接受不替代该决定。
 
-本方案之后已接续 [C0 精确输入选择](solver-cvc5-c0-input-selection.md)与[机器记录](../records/solver-cvc5-c0-2026-10-17/input-selection.json)：固定源码目标、单一 SDK 快照候选、完整待解析工具 / 静态库角色与失败事实；离线重核 29 份既有材料。C0 仍为部分选择，精确 SDK 元数据与配置 / patch 阻断未解除。没有下载依赖、安装、编译、镜像、探针 / solver、系统配置、提交或 push；候选选择不产生工具或运行接受。
+本方案之后已接续 [C0 精确输入选择](solver-cvc5-c0-input-selection.md)与[机器记录](../records/solver-cvc5-c0-2026-10-17/input-selection.json)：固定源码目标与单一 SDK 快照，离线重核 29 份既有材料；随后按明确元数据联网授权完成精确 SDK 选择和独立包级闭包复核，见[本批验收](../records/2026-10-17-cvc5-c0-sdk-metadata.md)。C0 仍受完整配置 / patch、签名信任和实际包内容 / 许可接受阻断。没有下载依赖包或源码归档、安装、编译、镜像、探针 / solver、系统配置或 push；F2 已先提交，本批元数据工作未提交，候选选择不产生工具或运行接受。
