@@ -1,6 +1,6 @@
 # RadishAxiom 开发目标与验收计划
 
-更新日期：2026-10-12
+更新日期：2026-10-17
 
 状态：开发规划；涉及正式语义、信任、公共格式或架构替代的事项仍需专题决策。
 
@@ -41,9 +41,13 @@ ADR 0007 的完整管线入口与 ADR 0011–0014 的 launcher / isolation 边�
 
 每次交接分别报告：新增的实际能力、规范与独立期望、未覆盖范围、解除或保留的阻断，以及下一切片的直接依赖。检查数量、文档数量和取证成功数只说明各自验证范围，不能作为产品完成度。
 
-P4 接续拆分为请求 / 响应 / 模型解码的 P4-A，与直接解释原 IR 的 WF / Pre / 五类精确目标重放的 P4-B。[ADR 0025（Accepted）](adr/0025-p4-request-response-model-decoding.md)及[规则](query/p4-request-response-model-v0.1.md)接受并实现 P4-A 的内部范围；纯协议 / 世界候选不产生 attempt、反例或 Evidence 五态，范围接受、真实工具校准与完整管线验收分别处理。AX-B01 原容量 query 与保留的 1 MiB stdin 上限有实际尺寸阻断；后续须单独审阅，不能静默增限、缩小容量或改写旧 query 字节。
+P4 接续拆分为请求 / 响应 / 模型解码的 P4-A，与直接解释原 IR 的 WF / Pre / 五类精确目标重放的 P4-B。[ADR 0025（Accepted）](adr/0025-p4-request-response-model-decoding.md)及[规则](query/p4-request-response-model-v0.1.md)接受并实现 P4-A 的内部范围；纯协议 / 世界候选不产生 attempt、反例或 Evidence 五态，范围接受、真实工具校准与完整管线验收分别处理。AX-B01 原容量的旧四版 query 与保留的 1 MiB stdin 上限有实际尺寸阻断，旧字节及拒绝行为继续保留。
 
-[P4-B 精确范围](query/p4-concrete-target-replay-v0.1.md)与 [ADR 0026（Accepted）](adr/0026-p4-concrete-target-replay.md)已接受并完成本机内部组件验收，见[验收记录](records/2026-10-13-p4b-validation.md)；[查询尺寸审阅](query/ax-b01-query-size-review.md)保留原容量测量与压缩仍超限的实际结果。先验收具体重放不授权真实 solver 或新资源范围，后续查询表示须单独版本化并验证。
+[P4-B 精确范围](query/p4-concrete-target-replay-v0.1.md)与 [ADR 0026（Accepted）](adr/0026-p4-concrete-target-replay.md)已接受并完成本机内部组件验收，见[验收记录](records/2026-10-13-p4b-validation.md)；[查询尺寸审阅](query/ax-b01-query-size-review.md)保留原容量测量与压缩仍超限的实际结果。先验收具体重放不授权真实 solver 或新资源范围。
+
+[ADR 0027（Accepted）](adr/0027-compact-query-and-p4-binding.md)已另行接受 v0.5 紧凑查询 / query0.3 与 P4-A v0.2 的显式配对、规则绑定和独立 compact 预算。验收须同时核对实际新字节的有限语义、符号恢复、旧四版兼容及完整模型候选接续；本批 AX-B01 已通过原容量字节门槛，真实 128 MiB / 6 s 求解可行性仍须单独校准。不得把单批压缩结果外推为任意输入可行或形式等价证明。
+
+真实后端的窄诊断入口按 [ADR 0028](adr/0028-bounded-solver-calibration-entry.md)、Linux 监督按 [ADR 0029](adr/0029-solver-linux-supervision-and-capabilities.md)、bootstrap / 构建来源按 [ADR 0030](adr/0030-solver-bootstrap-ffi-and-build-provenance.md)分别验收。模拟组件、原生源码、工具输入接受、目标制品和实际能力是不同交付；来源与构建工作必须直接服务受限校准，不替代真实 P0–P9 或独立 checker 验收。
 
 ## 里程碑与完成标准
 

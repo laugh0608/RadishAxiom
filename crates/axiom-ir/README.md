@@ -1,6 +1,8 @@
-# Axiom IR、派生义务、查询与结构推导内部组件
+# Axiom IR、派生义务、查询、结构推导与 P4 内部组件
 
-本 crate 承载 [ADR 0024](../../docs/adr/0024-core-field-origin-derivation.md) 的 P3-F 字段来源 / 标签结构推导、[ADR 0023](../../docs/adr/0023-core-empty-effect-derivation.md) 的 P3-E 空效果结构推导、[ADR 0022](../../docs/adr/0022-map-filter-row-coverage.md) 的 P3-D 双向 row-coverage、[ADR 0021](../../docs/adr/0021-map-filter-key-cardinality.md) 的 P3-C 局部 key-cardinality、[ADR 0020](../../docs/adr/0020-map-filter-node-totality.md) 的 P3-B 节点 totality 与显式 query profile、[ADR 0019](../../docs/adr/0019-map-filter-query-encoding.md) 的 P3-A map / filter 限定查询组件、[ADR 0018](../../docs/adr/0018-ir-derived-obligation-profile.md) 的 P2 IR 派生义务组件，以及 [ADR 0016](../../docs/adr/0016-core-semantic-slice-entry.md) 与 [ADR 0017](../../docs/adr/0017-ir-v0.2-support-boundaries-and-migration.md) 的 P1 内部组件。精确读取 [IR v0.1](../../docs/ir/axiom-ir-v0.md) 的既有支持子集与 [IR v0.2](../../docs/ir/axiom-ir-v0.2.md)：检查 JSON、类型、图、契约及内容身份，重建保守标签，生成完整规范文档和 strict 结果，并显式迁移共同子集。v0.2 的四项支持边界已经闭合；本机组件验收与完整 P1 生产阶段、独立 checker、跨平台和证明分别报告，不提供 CLI、Evidence 或执行门控。
+本 crate 承载 [ADR 0025](../../docs/adr/0025-p4-request-response-model-decoding.md) 的 P4-A 请求 / 响应 / 模型解码、[ADR 0026](../../docs/adr/0026-p4-concrete-target-replay.md) 的 P4-B 具体目标重放，以及 [ADR 0027](../../docs/adr/0027-compact-query-and-p4-binding.md) 的 v0.5 紧凑查询与 P4-A v0.2 显式接入。下述模块均为内部组件，不提供真实 solver 执行入口。
+
+本 crate 同时承载 [ADR 0024](../../docs/adr/0024-core-field-origin-derivation.md) 的 P3-F 字段来源 / 标签结构推导、[ADR 0023](../../docs/adr/0023-core-empty-effect-derivation.md) 的 P3-E 空效果结构推导、[ADR 0022](../../docs/adr/0022-map-filter-row-coverage.md) 的 P3-D 双向 row-coverage、[ADR 0021](../../docs/adr/0021-map-filter-key-cardinality.md) 的 P3-C 局部 key-cardinality、[ADR 0020](../../docs/adr/0020-map-filter-node-totality.md) 的 P3-B 节点 totality 与显式 query profile、[ADR 0019](../../docs/adr/0019-map-filter-query-encoding.md) 的 P3-A map / filter 限定查询组件、[ADR 0018](../../docs/adr/0018-ir-derived-obligation-profile.md) 的 P2 IR 派生义务组件，以及 [ADR 0016](../../docs/adr/0016-core-semantic-slice-entry.md) 与 [ADR 0017](../../docs/adr/0017-ir-v0.2-support-boundaries-and-migration.md) 的 P1 内部组件。精确读取 [IR v0.1](../../docs/ir/axiom-ir-v0.md) 的既有支持子集与 [IR v0.2](../../docs/ir/axiom-ir-v0.2.md)：检查 JSON、类型、图、契约及内容身份，重建保守标签，生成完整规范文档和 strict 结果，并显式迁移共同子集。v0.2 的四项支持边界已经闭合；本机组件验收与完整 P1 生产阶段、独立 checker、跨平台和证明分别报告，不提供 CLI、Evidence 或执行门控。
 
 ## 输入与输出
 
@@ -157,7 +159,11 @@ P3-C 使用 `WF ∧ Pre ∧ Ready ∧ (¬Unique ∨ ¬Capacity)`，Ready 包含�
 
 P3-D 使用 `WF ∧ Pre ∧ Ready ∧ ¬Coverage`，对所选直接来源与实际容量前候选作双向恰好一次全键匹配，允许重命名、键序变化与输出行换序。只为目标预收 Ns × No × K 比较成本，流式累计两方向计数；原四类查询字节、符号和预算保持。测试额外导出已有 term 引用核对选择、期望键与完整活动输出；该诊断不进入生产 API 或制品。局部关系 / 守卫变异与完整程序有限观察分别报告，见 [v0.4 材料](../../contracts/map-filter-query-v0.4/README.md)。
 
-这里没有 solver、模型解码、Evidence 或执行许可；有限解释比较不证明完整域正确，也不完成完整 P3 / P4 / P7 / P9。旧 query / adapter / pipeline / Evidence 字节不变，公共集成继续后置。
+[ADR 0027 / v0.5](../../docs/query/map-filter-query-v0.5.md)保持 v0.4 的五类支持集合，以有类型恒等化简、共享、保序短名称和有界代入生成 query0.3，并绑定查询规则摘要。v0.5 的 `QueryBudgets` 必须显式提供七项 `CompactQueryLimits`；旧 profile 携带 compact 预算或 v0.5 缺失该预算均拒绝。原六项账本保留，其中输出字节按新表示实际计入；新增 compact 开销另计，失败不自动切换表示。旧四版的字节与预算行为不变。
+
+[生产验收](../../docs/records/2026-10-17-compact-query-production-validation.md)实际核对 27 条 AX-B01 原容量查询为 265,107–962,850 字节，均保留 100 槽位与 501 个自由符号；最大值距 1 MiB 上限有 85,726 字节余量。790 条 corpus 记录按原查询绑定进行 12,553 次有限比较，另有 324 次原容量观察。有限检查不证明完整域等价，也不说明任意输入或真实 solver 资源可行。
+
+query 模块只负责编码，模型解码与具体重放见下文 P4 组件；没有真实 solver、Evidence 或执行许可，完整 P3 / P4 / P7 / P9 与公共集成继续后置。
 
 ## 空效果结构推导
 
@@ -213,9 +219,9 @@ cargo +1.97.1-aarch64-apple-darwin test -p radishaxiom-ir --locked --offline
 
 [ADR 0025](../../docs/adr/0025-p4-request-response-model-decoding.md)接受的 `solver` 模块提供 `plan_solver_request`、`parse_solver_response`、`decode_model_world`，以及请求 / 候选的严格重建比较入口。它从真实 IR / P2 / query 重建完整绑定与类型布局，以显式预算解析固定模型子集，再物化全部活动输入接口的世界候选；不启动 solver、不认证 stdout 来源、不重放 WF / Pre / 目标或产生 Evidence 状态。
 
-新内部 adapter 为 `planned-not-calibrated`，旧 query 字节和 registry 保留。unknown 附带模型仍不能成为 SatModel；模型缺项、冲突、别名环、未知语法、活动范围 / Enum / 键错误与资源不足均拒绝。Text 只保持本域精确相等语义，None / inactive 载荷不外部化。类型 DAG、深字段路径、物化值与编码工作栈均显式有界；候选可能包含超过 IR 文档 JSON 深度的记录嵌套，严格候选复核通过重建字节，不将现有文档 parser 当作通用 world parser。
+[P4-A v0.2](../../docs/query/p4-request-response-model-v0.2.md)新增 `Cvc5Query0_3ModelV0_1`，只接受 v0.5 / query0.3；原 `Cvc5Query0_2ModelV0_1` 只接受旧四版。请求新版本绑定 query 规则与显式 compact 预算，混配拒绝；模型文法、世界候选格式、十二项参数及进程限值保持。新内部 adapter 为 `planned-not-calibrated`，旧 query 字节和 registry 保留。unknown 附带模型仍不能成为 SatModel；模型缺项、冲突、别名环、未知语法、活动范围 / Enum / 键错误与资源不足均拒绝。Text 只保持本域精确相等语义，None / inactive 载荷不外部化。类型 DAG、深字段路径、物化值与编码工作栈均显式有界；候选可能包含超过 IR 文档 JSON 深度的记录嵌套，严格候选复核通过重建字节，不将现有文档 parser 当作通用 world parser。
 
-[合成材料与独立有限核对](../../contracts/solver-model-v0.1/README.md)区分手算值、协议解析、世界候选和真实反例。AX-B01 原容量查询受既有 1 MiB stdin 上限阻断，不缩小容量或增限。运行 `cargo +1.97.1-aarch64-apple-darwin test -p radishaxiom-ir solver --lib --locked --offline` 可复核本组件；真实执行、P4-B 与完整 Evidence 另行验收。
+[合成材料与独立有限核对](../../contracts/solver-model-v0.1/README.md)区分手算值、协议解析、世界候选和真实反例。AX-B01 原容量旧四版查询仍受既有 1 MiB stdin 上限拒绝，新 v0.5 请求已通过字节门槛，不缩小容量或增限。运行 `cargo +1.97.1-aarch64-apple-darwin test -p radishaxiom-ir solver --lib --locked --offline` 可复核本组件；合成模型已接续下文 P4-B，真实执行与完整 Evidence 仍待验收。
 
 [只读尺寸诊断](examples/inspect_ax_b01_queries.rs)实际生成 AX-B01 三候选 / 四 profile 的 72 份原查询，输出尺寸、DAG 可达项与相同项共享的字节估算；它不输出改写 SMT，不规划请求或运行工具。运行 / 复现与结果见[尺寸审阅](../../docs/query/ax-b01-query-size-review.md)。P4-B 的已接受范围见[规则](../../docs/query/p4-concrete-target-replay-v0.1.md)。
 
@@ -229,4 +235,4 @@ cargo +1.97.1-aarch64-apple-darwin test -p radishaxiom-ir --locked --offline
 
 运行 `cargo +1.97.1-aarch64-apple-darwin test -p radishaxiom-ir replay --lib --locked --offline` 可重跑合成与本机验收。测试用既有 Python 具体解释器及新增动态位置观察独立核对完整有限见证；局部重复键 / 覆盖注入明确不是完整合法程序反例。费用由生产预算精确边界回归核对，独立 Python 只核对费用上限与输入绑定，不重建 Rust 分配费用。详见[验收记录](../../docs/records/2026-10-13-p4b-validation.md)。
 
-这些观察不填 Evidence 五态、不认证 solver 来源、不构成普遍证明；真实工具、其他平台、完整 Evidence 与跨仓 checker 仍未验收。AX-B01 的查询尺寸阻断不因直接有限世界重放而解除。
+这些观察不填 Evidence 五态、不认证 solver 来源、不构成普遍证明；真实工具、其他平台、完整 Evidence 与跨仓 checker 仍未验收。旧四版 AX-B01 的查询尺寸拒绝不因直接有限世界重放而解除；新 v0.5 的字节门槛由编码与请求规划单独验收，真实求解资源仍未校准。

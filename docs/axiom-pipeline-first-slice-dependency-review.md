@@ -1,6 +1,6 @@
 # AX-B01 真实管线首切片依赖审阅
 
-审阅日期：2026-09-06；阶段入口整理：2026-09-29；新 P2 目标归因接续：2026-10-08
+审阅日期：2026-09-06；阶段入口整理：2026-09-29；新 P2 目标归因接续：2026-10-08；紧凑表示与 solver 窄入口接续：2026-10-17
 
 状态：完整管线依赖已梳理；组件入口按已接受的 ADR 0016，真实工具执行门槛不变。
 
@@ -44,5 +44,7 @@
 四题范围、八个 wrong、六平台指定范围和 Evidence v0.2 的 group 修正义务没有因先做 AX-B01 而删除。首条独立证明链不是允许 attestation 的基本产品流程前置，但 `certificate-required` 必须拒绝当前空支持集合，任何 accepted-with-trust 都不能升级为独立 proof。
 
 P3-E / F 已分别形成空效果与字段来源的内部结构记录，接续接口见[字段来源与 P4 审阅](query/field-origin-and-p4-interface-review.md)。当前 AX-B01 每份 IR 的 13 项 P2 义务中，九项可生成 query；effect-empty 与两个 field-origin 虽有内部分析记录，其公共结果支持以及 ir-structure 的实际结果支持仍须分别闭合。单目标后端尝试不以其他义务已完成为技术前提，完整验证仍要求全集；该区分不接受新 adapter、Evidence 或真实工具执行。
+
+[ADR 0027](adr/0027-compact-query-and-p4-binding.md)的 v0.5 紧凑表示与 P4-A v0.2 接入已使本批 AX-B01 原容量查询通过 1 MiB 字节门槛，P4-B 已有纯组件重放；这些结果未补齐真实模型来源、求解资源或公共结果支持。[ADR 0028](adr/0028-bounded-solver-calibration-entry.md)–[0030](adr/0030-solver-bootstrap-ffi-and-build-provenance.md)另外接受受限校准、Linux 监督和可追溯构建方向。E1–E3 / F1 模拟与纯组件、F2 原生源码、C0 来源静态审阅各自保留证据边界；E0 工具接受、Linux 目标制品和 E4 / E5 实际资格仍是单目标真实尝试的直接前置，不能将静态 `build_ready=false` 解释为可构建或可运行。
 
 下一切片只按[当前状态](status/current.md)的全项目顺位推进；[产品化审阅](checker-runtime-productization-dependency-review.md#下一切片与停止条件)描述产品运行线内部依赖，不作为纯语义组件的全项目串行前置。本稿不构成实施或执行授权。

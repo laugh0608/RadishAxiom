@@ -47,11 +47,18 @@
 
 近期验收看真实输入能否产生规范输出与可定位拒绝，区分实现、指定态 fixture、独立复核与证明；不以提交数、测试数或来源包数量替代里程碑。每个切片结束复核下一项是否直接服务上述交付；新增前置必须解释具体依赖和停止条件。
 
-### 日终交接（2026-10-08）
+### 日终交接（2026-10-17）
 
-今日 P3-B–F 五笔实现已提交，最后一笔为 `e896341`；完整提交表、代码 / 文档核对和验收细节见[日终记录](../records/2026-10-08-closeout.md)。文档收尾另作本地提交，不推送；远端状态未刷新，最终提交号与工作区状态由交接消息报告。10 月 5 日记录作为[历史参考](../records/2026-10-05-closeout.md)保留。今晚到此收工。
+今日截至 `ec56fc7` 共 13 笔提交，覆盖紧凑查询研究 / 接受 / 实现、solver 窄入口与 E1–E3、F1–F2，以及 C0 元数据和源码 / Production / patch 静态审阅。完整提交表、代码 / 文档核对与分批验证见[日终记录](../records/2026-10-17-closeout.md)。工作区实现已提交，今晚仅完成文档收尾后停止；不 push，不继续下载、构建或执行。最终文档提交号及工作区状态由交接消息报告。此前[10 月 8 日日终记录](../records/2026-10-08-closeout.md)保留为历史事实。
 
-v0.4 在既有 26 份 IR / 482 项义务中实际生成 151 查询；其余为 1 资源拒绝、197 UnsupportedKind、107 UnsupportedFeature 与 26 check。AX-B01 每份候选仍只有九项可生成 query。P3-E / F 增加内部结构记录，没有扩大 query 支持或公共 prove support；P3-F 的 758 份记录中 82 份有静态缺口、676 份无缺口，两者均不是证明或具体反例。
+### 接下来的事项
+
+下一次恢复时，先围绕“让原容量 AX-B01 在原资源限制下取得真实 solver 校准”核对以下直接前置；每批只有明确出口，不将来源清单扩展为无期限的工具链研究。这里保存建议，不延续历史批次的外部动作授权。
+
+1. **先收口 C1 输入接受的具体缺口。** 以已提交 C0 记录为基线，明确 LibPoly 许可文本歧义、SDK 签名 / 信任依据及按实际用途的 copyright 核对范围；准备固定快照包的精确获取清单、大小、留存目录和停止条件。取得对应授权后再下载 SDK 原包及必要源包 / patch / copyright，按文件闭合 compiler、sysroot / CRT、生成器与 Editline 静态依赖顺序。任何许可或来源未闭合均保持 not-accepted，不能先安装或用占位输入继续。
+2. **输入范围明确后交付 C2 可审阅的离线构建准备。** 固定实际包内路径、`.pc --static` 结果、头文件 / 库 / 工具摘要与 patch manifest；形成离线入口、输入检查器、argv / 环境 / 资源、日志与 link map 采集、失败保留和清理计划。可先编写不执行的准备代码，不能把静态文本检查写成 CMake / configure 已验证；环境组装、检测程序和实际构建分别按精确范围授权，详细出口沿用[构建候选方案](../query/solver-cvc5-build-candidate-plan.md#批次占用授权与停止线)。
+3. **在真实资格验收前闭合 F2 的 Linux 目标制品与宿主接线。** 审阅目标工具链、AArch64 汇编 / ABI、unsafe 与 FD 所有权，以及 outer setup policy、精确实例读回和 Mac adapter；本机 441 项测试不能替代这些结果。工具 / 制品条件具备并获准后，再完成目标构建和实际负向矩阵。
+4. **E0 与 E4 条件闭合后再进入 E5。** 按 ADR 0028 的最多八份校准加一次精确 wrong-add guarantee 尝试，观察真实模型文法、原容量和 128 MiB / 6 s 可行性，再经原 P4-B 核对目标。保留旧四版字节 / 拒绝及所有失败，不因资源不足缩小容量、增限或绕过门禁；这仍不等于完整 P0–P9 / Evidence / 独立 checker 验收。
 
 ### 当前接续（2026-10-17）
 
@@ -81,7 +88,7 @@ Accepted E3 设计已提交为 `e2d36ce`。随后完成[具体 ABI](../query/sol
 
 F1 与 [D3 构建候选方案](../query/solver-cvc5-build-candidate-plan.md)已提交为 `1a7ff38`，F2 已提交为 `bf197ad`，C0 [SDK 元数据选择与验收](../records/2026-10-17-cvc5-c0-sdk-metadata.md)已按要求提交为 `c2ea5d0`，均未 push。F2 的[原生边界](../query/solver-bootstrap-native-boundary.md)与[监督实现](../query/solver-bootstrap-native-supervisor.md)仍只完成本机脚本后端检查。
 
-项目所有者随后授权取得固定的五项源码归档及必要许可材料，继续完整源码、Production 配置和构建 patch 静态审阅。五项归档已取得并安全展开，四依赖摘要匹配固定配方；cvc5 的 7,066 个文件与已留存 Git tree 内容一致。完整源码揭示 CLI 的 `pyparsing` 和 GMP AArch64 汇编的 `m4` 需求，SDK 选择沿原快照补齐；配置与 patch 的结果、许可歧义及剩余条件见[本批验收](../records/2026-10-17-cvc5-c0-source-review.md)与[C0 专题](../query/solver-cvc5-c0-input-selection.md)。主代理主持设计与验收，具体工作委派 gpt-6.1-sol / high。`build_ready=false`；源码一致性不代表签名、包内容、许可或工具接受。没有下载 SDK 二进制包、安装、构建、运行探针 / solver、修改系统配置或 push；原容量、旧字节和资源限值保持。
+项目所有者随后授权取得固定的五项源码归档及必要许可材料，继续完整源码、Production 配置和构建 patch 静态审阅。五项归档已取得并安全展开，四依赖摘要匹配固定配方；cvc5 的 7,066 个文件与已留存 Git tree 内容一致。完整源码揭示 CLI 的 `pyparsing` 和 GMP AArch64 汇编的 `m4` 需求，SDK 选择沿原快照补齐；配置与 patch 的结果、许可歧义及剩余条件见[本批验收](../records/2026-10-17-cvc5-c0-source-review.md)与[C0 专题](../query/solver-cvc5-c0-input-selection.md)。主代理主持设计与验收，具体工作委派 gpt-6.1-sol / high。本批已提交为 `ec56fc7`。`build_ready=false`；源码一致性不代表签名、包内容、许可或工具接受。没有下载 SDK 二进制包、安装、构建、运行探针 / solver、修改系统配置或 push；原容量、旧字节和资源限值保持。
 
 ### P4 接续（2026-10-13）
 
@@ -122,6 +129,8 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 - 表面语法、公开 CLI / SDK、安装路径与最低支持矩阵尚未冻结；测试、结构检查、attestation 与独立 proof 分别报告。
 
 ## 验证入口与本次审阅
+
+2026-10-17，最近的 F2 实现验证为 workspace 全目标 441 项通过、1 项按原设置忽略，文档测试另有 3 项通过；格式与全 feature Clippy 通过，见[F2 验收](../records/2026-10-17-solver-f2-validation.md)。后续 C0 不修改 Rust，最终源码 / 配置 / patch / 元数据检查共 147 项 Python 测试通过，见[C0 验收](../records/2026-10-17-cvc5-c0-source-review.md)。这些计数来自不同批次，不相加作为一次完整运行；日终文档复核与实际检查见[日终记录](../records/2026-10-17-closeout.md)。
 
 2026-10-17，E3 设计批次完成官方接口资料核对、有限时间握手算例与文档检查，见[设计审阅记录](../records/2026-10-17-solver-e3-design-review.md)。该设计批次未重跑 Rust workspace，也没有运行 Linux 探针、构建镜像或真实 solver。随后离线实现批次的实际验证见[组件验收](../records/2026-10-17-solver-e3-components-validation.md)。
 
