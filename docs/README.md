@@ -60,6 +60,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 - [P4-B 具体目标重放](query/p4-concrete-target-replay-v0.1.md)：[ADR 0026（Accepted）](adr/0026-p4-concrete-target-replay.md) 的原 IR 求值、WF / Pre、五类精确归因与预算；[内部实现](../crates/axiom-ir/src/replay.rs)及[本机验收](records/2026-10-13-p4b-validation.md)只产生有限观察。
 - [AX-B01 查询尺寸审阅](query/ax-b01-query-size-review.md)：原容量 72 份查询的实际尺寸与有界压缩估算，保留 stdin 阻断与可重跑入口。
 - [AX-B01 紧凑查询表示方案](query/ax-b01-query-compaction-review.md)：同一有类型公式的紧凑表示、模型映射与生产接入门槛；[本地验收](records/2026-10-17-query-compaction-validation.md)保留实际尺寸及有限检查，不接受新生产 profile。
+- [紧凑查询与 P4 接入设计](adr/0027-compact-query-and-p4-binding.md)：ADR 0027（Accepted）明确已接受的版本、预算与实施范围；[query v0.5](query/map-filter-query-v0.5.md)及 [P4-A v0.2](query/p4-request-response-model-v0.2.md)规定固定表示、规则绑定和新旧配对；A–C 实施已授权，验收尚未完成。
 - [共享 SHA-256](../crates/digest/README.md)：runtime / IR 共用的自有摘要实现与独立复核边界。
 
 ## 机器契约

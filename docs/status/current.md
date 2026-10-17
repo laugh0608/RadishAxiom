@@ -40,7 +40,7 @@
 | --- | --- | --- |
 | 1：P1 真实语义组件 | [ADR 0016](../adr/0016-core-semantic-slice-entry.md) / [0017](../adr/0017-ir-v0.2-support-boundaries-and-migration.md)范围内已完成本机组件验收；[17 项矩阵](../ir/p1-support-boundary-review.md#必需验证矩阵对照)闭合结构、规范字节、身份与迁移回归 | 保留旧版未支持边界；不外推完整生产阶段、证明或跨平台验收 |
 | 2：P2 真实义务生成 | [ADR 0018](../adr/0018-ir-derived-obligation-profile.md) / [规则](../evidence/ir-derived-obligations-v0.2.md)已接受并完成本机内部组件验收；26 份 IR / 482 项定义与 29 份负例实际核对 | 只交付显式 ir-derived 全集；group 覆盖 / 守恒分开；保留完整 Evidence 门禁 |
-| 3：query 与纵向闭环（下一步） | [ADR 0019](../adr/0019-map-filter-query-encoding.md)–[0022](../adr/0022-map-filter-row-coverage.md) 的 P3-A / B / C / D 已完成本机组件验收；[ADR 0023](../adr/0023-core-empty-effect-derivation.md) 的 P3-E 空效果结构组件也已完成本机验收；[ADR 0024](../adr/0024-core-field-origin-derivation.md) 的 P3-F 字段来源内部分析已实现；[ADR 0025（Accepted）](../adr/0025-p4-request-response-model-decoding.md) 的 P4-A 请求 / 响应 / 模型解码已完成本机组件验收；[ADR 0026（Accepted）](../adr/0026-p4-concrete-target-replay.md) 的 P4-B 有限具体目标重放已完成本机组件验收；AX-B01 紧凑表示已完成[本地研究验收](../records/2026-10-17-query-compaction-validation.md)；下一项审阅显式新 query profile 与 P4-A 接入范围 | 完整 P3 / P4 未实现；保留 AX-B01 正确、两个 wrong、invalid、timeout 和篡改标准，外部执行独立授权 |
+| 3：query 与纵向闭环（下一步） | [ADR 0019](../adr/0019-map-filter-query-encoding.md)–[0022](../adr/0022-map-filter-row-coverage.md) 的 P3-A / B / C / D 已完成本机组件验收；[ADR 0023](../adr/0023-core-empty-effect-derivation.md) 的 P3-E 空效果结构组件也已完成本机验收；[ADR 0024](../adr/0024-core-field-origin-derivation.md) 的 P3-F 字段来源内部分析已实现；[ADR 0025（Accepted）](../adr/0025-p4-request-response-model-decoding.md) 的 P4-A 请求 / 响应 / 模型解码已完成本机组件验收；[ADR 0026（Accepted）](../adr/0026-p4-concrete-target-replay.md) 的 P4-B 有限具体目标重放已完成本机组件验收；AX-B01 紧凑表示已完成[本地研究验收](../records/2026-10-17-query-compaction-validation.md)；[ADR 0027（Accepted）](../adr/0027-compact-query-and-p4-binding.md)已接受新 query 与 P4-A 范围，下一项按 A–C 实施并验收 | 完整 P3 / P4 未实现；保留 AX-B01 正确、两个 wrong、invalid、timeout 和篡改标准，外部执行独立授权 |
 
 近期验收看真实输入能否产生规范输出与可定位拒绝，区分实现、指定态 fixture、独立复核与证明；不以提交数、测试数或来源包数量替代里程碑。每个切片结束复核下一项是否直接服务上述交付；新增前置必须解释具体依赖和停止条件。
 
@@ -54,7 +54,9 @@ v0.4 在既有 26 份 IR / 482 项义务中实际生成 151 查询；其余为 1
 
 AX-B01 [紧凑表示方案](../query/ax-b01-query-compaction-review.md)完成本地研究验收：保持原容量、旧四版字节与 1 MiB 上限，新研究表示的 72 条记录均为 265,107–962,850 字节。采用有类型公式恒等化简、共享、保序短名称与有界代入，没有改变关系编码或使用 WF 假设。12,553 次既有有限比较与 324 次原容量观察通过，见[测量与验收](../records/2026-10-17-query-compaction-validation.md)。
 
-下一项是接受确定性的显式新 query profile、生产预算与 P4-A 模型 / 绑定接入范围，再在 Rust DAG 内实现。当前生产代码、四版 profile 和原容量请求的尺寸拒绝不变；研究字节可行不代表真实 solver、128 MiB / 6 s 资源可行、证明或完整 P4。未启动 solver、安装依赖、写入远程或运行正式实验。
+研究代码与材料已提交为 `f60d4c5`。[ADR 0027（Accepted）](../adr/0027-compact-query-and-p4-binding.md)、[query v0.5](../query/map-filter-query-v0.5.md)及 [P4-A v0.2](../query/p4-request-response-model-v0.2.md)已接受：新 artifact query0.3、查询规则摘要、独立 compact 预算与请求 v0.2；旧模型文法 / 候选格式不变。项目所有者已接受 D1 表示与版本、D2 预算与拒绝、D3 P4 接入与 Rust 实施范围；按 A–C 推进，由主代理主持验收，明确实现委派 gpt-6.1-sol / high。
+
+当前生产代码、四版 profile 和原容量旧请求的尺寸拒绝不变；研究字节可行不代表真实 solver、128 MiB / 6 s 资源可行、证明或完整 P4。未启动 solver、安装依赖、写入远程或运行正式实验。
 
 ### P4 接续（2026-10-13）
 
@@ -81,6 +83,7 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 
 ## 当前停止线与待决策
 
+- ADR 0027 与 query v0.5 / P4-A v0.2 已 Accepted，A–C 实施与本机验收已授权；规范接受不等于新 profile 已实现或验收。保持原容量、旧 profile 字节及 1 MiB；不启动真实 solver，不 push。
 - P1、限定 P2 与 P3-A / B / C / D / E / F 已完成本机组件验收；完整生产阶段尚未验收。P3 进一步扩展须明确目标范围；新 IR / P2 / query 不能配给旧 Evidence 结果，完整 Evidence v0.2 仍须按 ADR 0009 补齐。
 - P4-A 按 ADR 0025 已完成本机组件验收；没有真实 cvc5 校准。纯 parser / 世界候选不认证响应来源，不产生 attempt、反例或 Evidence 五态；AX-B01 stdin 尺寸拒绝保持。
 - P4-B 的 `target-violated` 只表示 WF / 全部 Pre 成立的这一有限输入违反精确目标；`target-not-violated` 不是普遍证明。资源、绑定和格式错误不产生部分成功制品；本仓 strict 重建不等于独立 checker。
@@ -91,6 +94,8 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 - 表面语法、公开 CLI / SDK、安装路径与最低支持矩阵尚未冻结；测试、结构检查、attestation 与独立 proof 分别报告。
 
 ## 验证入口与本次审阅
+
+2026-10-17，ADR 0027 与两份规范完成现有接口 / 版本 / 资源 / P4-B 来源路径审阅，仓库检查通过（2,620 文件）。本轮只新增设计文档与路由，未实现新 profile、未重跑 Rust 测试或启动 solver；旧绑定规范与生产文件保持。
 
 2026-10-17，紧凑表示研究脚本 22 项测试、72 条原容量记录 / 790 条四版语义记录的独立比较、精确 P4-B 回归、格式与 workspace Clippy 通过，详见[本批验收](../records/2026-10-17-query-compaction-validation.md)。本批没有重跑完整 workspace 测试、真实 solver、其他平台或 CI；研究结果不能升级为新生产 profile 已接受。
 

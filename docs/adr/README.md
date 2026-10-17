@@ -37,3 +37,4 @@
 - [ADR 0024：字段来源与保守标签结构推导（Accepted）](0024-core-field-origin-derivation.md)
 - [ADR 0025：P4 请求、响应与模型解码内部组件（Accepted）](0025-p4-request-response-model-decoding.md)
 - [ADR 0026：P4 具体输入与精确目标重放（Accepted）](0026-p4-concrete-target-replay.md)
+- [ADR 0027：紧凑查询与 P4 显式绑定（Accepted）](0027-compact-query-and-p4-binding.md)
