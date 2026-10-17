@@ -1,0 +1,84 @@
+{
+  "acceptance": "not-accepted",
+  "actual_binary_input_links": [],
+  "archive_download": {
+    "archives": [
+      {
+        "actual_binary_link": null,
+        "archive_sha256": "15e1e82f7f9a9da0e97070cb8ac41d5b32139f65d54f72d2ff84849b0466ef92",
+        "component": "cadical",
+        "recipe_url": "https://github.com/arminbiere/cadical/archive/rel-2.1.3-elevate.tar.gz",
+        "recomputed_archive_digest": null,
+        "status": "not-obtained",
+        "version": "rel-2.1.3-elevate"
+      },
+      {
+        "actual_binary_link": null,
+        "archive_sha256": "ac28211a7cfb609bae2e2c8d6058d66c8fe96434f740cf6fe2e47b000d1c20cb",
+        "component": "gmp",
+        "recipe_url": "https://github.com/cvc5/cvc5-deps/blob/main/gmp-6.3.0.tar.bz2?raw=true",
+        "recomputed_archive_digest": null,
+        "status": "not-obtained",
+        "version": "6.3.0"
+      },
+      {
+        "actual_binary_link": null,
+        "archive_sha256": "f9920afc876f998633348b9cbfcf180757ada48cc872040256c60ad0707b5a0f",
+        "component": "libpoly",
+        "recipe_url": "https://github.com/SRI-CSL/libpoly/archive/refs/tags/v0.2.1.tar.gz",
+        "recomputed_archive_digest": null,
+        "status": "not-obtained",
+        "version": "0.2.1"
+      },
+      {
+        "actual_binary_link": null,
+        "archive_sha256": "ff22e37dbc133120ada5760878974811737bec65b12a8883f92b1ed9e3f96e99",
+        "commit": "227a7246b8ce513b393cc2645d6d65d3490ea1de",
+        "component": "symfpu",
+        "recipe_url": "https://github.com/cvc5/symfpu/archive/227a7246b8ce513b393cc2645d6d65d3490ea1de.tar.gz",
+        "recomputed_archive_digest": null,
+        "status": "not-obtained"
+      }
+    ],
+    "local_inventory": "Only retrieval.json plus four requested non-archive files exist; no archive or archive-retrieval.json",
+    "state": "approval-wait-aborted-by-user-no-observed-download-execution",
+    "tool_report": "require_escalated request aborted by user after 614.5 seconds; no success or network-failure output"
+  },
+  "archive_raw": "sha256:2a4c108367f20b0c8990abd6b9535a5d62e08908d471d4671c00734e408f85bc",
+  "cli_raw": "sha256:26fa94d71ecb3d4f1458eb06b9b9d4762fb3753cfb5cb9dca6f917fbf4dbe6c7",
+  "format": "radishaxiom-cvc5-provenance-followup-observation",
+  "inspector_raw": "sha256:6a8717736e40a488bdb7e9d5ea995199417747a08777e0f7100af51fc7607db3",
+  "observations": {
+    "cli-attestations.json": {
+      "body_message": "Not Found",
+      "body_status": "404",
+      "conclusion": "not-obtained-no-absence-claim-access-or-endpoint-behavior-not-excluded",
+      "http_status": 404
+    },
+    "run-artifacts.json": {
+      "artifact_count": 0,
+      "conclusion": "no-artifacts-returned-at-observation-time-not-historical-absence",
+      "http_status": 200
+    },
+    "setup-cache.yml": {
+      "conclusion": "pinned-cache-recipe-not-actual-hit-or-build-input-inventory",
+      "git_blob_sha1": "829c349f0b5ec0082b6328cf566b61d684fecfb1",
+      "http_status": 200
+    },
+    "zip-attestations.json": {
+      "body_message": "Not Found",
+      "body_status": "404",
+      "conclusion": "not-obtained-no-absence-claim-access-or-endpoint-behavior-not-excluded",
+      "http_status": 404
+    }
+  },
+  "prior_observation_raw": "sha256:a2a583cddb132036a2b42441ef26daf2a89cf601b094118dffa5b8ee0201ed89",
+  "scope": "bounded-public-source-observations-not-tool-acceptance",
+  "source_inputs_raw": "sha256:ca423795573a1f9f13d27ba28af9f1d1647e9618a60030e5b0abd4a478380ab0",
+  "unclosed": [
+    "B1-exact-linked-system-components",
+    "B2-actual-dependency-inputs",
+    "B3-license-and-tool-acceptance"
+  ],
+  "version": "0.1"
+}

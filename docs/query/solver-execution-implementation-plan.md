@@ -66,6 +66,6 @@ Linux ABI 清单须至少覆盖 memfd / seal、固定 FD 的 execveat、FD 清�
 
 补证与清单为 `ff2e4ed`，E1–E2 纯组件与验收已提交为 `a0150c6`。项目所有者随后授权 E3 设计收口，形成 ADR 0029 D1–D3 与具体能力边界；项目所有者随后明确接受三项决定，并授权具体 ABI、内部传输格式、离线纯组件与模拟测试，实际资格仍未取得。E0 缺口、E3 时钟 / cgroup / 装载前提继续作为真实路径硬门禁；本次没有镜像、探针、solver、系统配置或 push 授权。
 
-下一可审阅切片为真实 bootstrap / FFI 的 ownership、setup 调用顺序、errno / 部分 I/O、精确构建来源与制品配置设计；本批没有实现可调用原生路径。不得把固定数值网页核对替代实际工具链接受。
+E3 纯组件与验收已提交为 `c489ec2`。真实 bootstrap / FFI 的 ownership、setup 调用顺序、errno / 部分 I/O、精确构建来源与制品配置已形成[实施方案](solver-bootstrap-ffi-implementation-plan.md)与[独立审阅](solver-bootstrap-ffi-review.md)；[ADR 0030（Accepted）](../adr/0030-solver-bootstrap-ffi-and-build-provenance.md)的 D1–D3 已接受，当前接续 F1 纯组件与 D3 构建候选方案。[E0 后续补证](../records/2026-10-17-cvc5-provenance-followup.md)不代替实际 CLI 来源关联。本批没有实现可调用原生路径；不得把固定数值网页核对替代实际工具链接受。
 
 在镜像构建、探针或 solver 授权前，必须交付具体制品 / 容器配置、精确命令与目标、预计持续时间与占用、失败保留目录和按精确 ID 清理办法；此时才申请对应外部动作。当前不列可直接复制运行的 docker 命令，避免尚未合格的组合被误当成已验收执行配方。
