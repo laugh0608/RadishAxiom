@@ -1,6 +1,6 @@
 # E3 Linux 独立监督与资源设计
 
-日期：2026-10-17。状态：随 [ADR 0029](../adr/0029-solver-linux-supervision-and-capabilities.md)接受，待具体实现与运行资格。用途：给出 B4 / B5 和新增 B6 装载问题的具体收口方案；读者为设计与验收者。不包含可运行 Docker 配方、真实工具接受、探针结果或公共观察 schema。
+日期：2026-10-17。状态：随 [ADR 0029](../adr/0029-solver-linux-supervision-and-capabilities.md)接受；具体 ABI、内部封套与监督纯组件已形成，真实 bootstrap / 运行资格仍待闭合。用途：给出 B4 / B5 和新增 B6 装载问题的具体收口方案；读者为设计与验收者。不包含可运行 Docker 配方、真实工具接受、探针结果或公共观察 schema。
 
 [ADR 0028](../adr/0028-bounded-solver-calibration-entry.md)的原容量、十二参数、输入输出、128 MiB、6 s 与内部 5 s / 1,000,000 steps 保持。E0 缺口始终阻断真实路径；当前只授权具体 ABI、内部传输格式、离线纯组件和模拟测试，不启动任何 Linux 程序。
 
@@ -106,9 +106,9 @@ B 的最终 seccomp 对 `execveat` 只返回 USER_NOTIF，不直接 ALLOW；`exe
 
 ## 传输、实现接口与 ABI 审阅
 
-S 捕获 W 的两根 pipe，而 Docker stdout 是 S 的有界内部封套，不能直接送入 P4。拟议 `bootstrap-control-v0.1` 分别承载 READY / ARM / 子进程事件、stdout / stderr chunk 与 EOF；类型化解封套后原 solver bytes 原样接既有 P4。Docker CLI 的独立通道不能再次按 Engine 八字节头解码；E1–E2 模拟类型保持 simulation，不把它们直接重标真实 capture。
+S 捕获 W 的两根 pipe，而 Docker stdout 是 S 的有界内部封套，不能直接送入 P4。内部 `bootstrap-control-v0.1` 分别承载 READY / ARM / 子进程事件、stdout / stderr chunk 与 EOF；类型化解封套后原 solver bytes 原样接既有 P4。Docker CLI 的独立通道不能再次按 Engine 八字节头解码；E1–E2 模拟类型保持 simulation，不把它们直接重标真实 capture。
 
-封套的完整字段 / 编码、固定 header 和长度检查由后续纯实现规格闭合：单 frame payload 不超过 65,536 bytes，控制累计不超过 65,536，待发送队列不超过 131,072；solver 两流仍分别是 4,194,304 / 65,536，query 仍为 1,048,576。这些是新增本地诊断收紧项，均计入原内存；任何溢出停止。外层 stdin 的查询结束帧只关闭 W stdin，不结束 S 的控制生命周期；外层通道 EOF 视为失联。不得让下游不读取造成 S 永久阻塞。
+封套的完整字段 / 编码、固定 header 和长度检查见[内部传输规则](solver-bootstrap-wire-v0.1.md)：单 frame payload 不超过 65,536 bytes，控制累计不超过 65,536，待发送队列不超过 131,072；solver 两流仍分别是 4,194,304 / 65,536，query 仍为 1,048,576。这些是新增本地诊断收紧项，均计入原内存；任何溢出停止。外层 stdin 的查询结束帧只关闭 W stdin，不结束 S 的控制生命周期；外层通道 EOF 视为失联。不得让下游不读取造成 S 永久阻塞。
 
 | ABI / unsafe 面 | 必须证明的局部不变量 | 失败处理 |
 | --- | --- | --- |
@@ -119,7 +119,7 @@ S 捕获 W 的两根 pipe，而 Docker stdout 是 S 的有界内部封套，不�
 | FD / ancillary data | SCM_RIGHTS 数量恰一、MSG_CTRUNC 拒绝、FD 不重复关闭；child 最终仅 0/1/2；S 不把其控制 FD 交给 W | 清理已拥有 FD 后失败 |
 | cgroup / proc 只读解析 | 固定自有视图、受限 bytes / entries、拒绝缺失 / 重复关键字段与身份漂移；不跟随任意路径 | 资格失败，无权限修复 |
 
-拟在独立 Linux bootstrap crate 中审查以上 FFI；不在 axiom-ir 或现有 simulation crate 添加 unsafe、OS 执行或依赖。具体 libc / syscall 绑定、工具版本和源码许可尚需实施前清单，不在本次手写 syscall 编号或安装工具。
+[具体 ABI 与离线策略](solver-linux-abi-v0.1.md)固定数值来源、结构和纯过滤器规则；[监督模拟](solver-supervisor-simulation-v0.1.md)处理显式合成观测。以上纯组件留在现有私有 simulation crate，不增加 unsafe、OS 执行或依赖。将来的真实 FFI 仍须在独立 Linux bootstrap 边界逐项审查指针 / FD 生命周期、外层策略和精确工具接受；当前没有真实 bootstrap 或 Linux 制品。
 
 ## E4 资格矩阵与本次结束条件
 
