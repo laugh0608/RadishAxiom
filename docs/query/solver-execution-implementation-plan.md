@@ -17,9 +17,9 @@
 | 批次 | 精确交付 | 完成证据 / 停止线 |
 | --- | --- | --- |
 | E0：工具身份与接受闭合 | 先闭合[补证 B1–B3](../records/2026-10-17-cvc5-cli-dependencies.md#剩余缺口与有界接续)；给出精确 ZIP / CLI / 完整库存 / 许可来源 / 接受范围；审阅 cvc5 acceptance schema 与生成器扩展 | 当前阻断。来源观察不得冒充 acceptance；旧接受记录字节保持，新增格式需正负例 |
-| E1：纯执行计划 / 观察格式 | 定义下表类型与闭合本地记录；从同一 SolverRequest 生成执行计划，strict 检查身份、资源、argv、stdin；不启动外部进程 | 纯组件可先实施，但真实路径须 E0。固定字节、篡改拒绝、失败优先级和预算测试通过 |
-| E2：控制端与传输 | 新私有 crate 中分开 identity / observation / controller / transport；参数数组、精确 Docker CLI / context / daemon / image 身份，独立控制诊断流，单次容器状态机 | 先用内存 / 自有模拟传输覆盖控制失败、乱序帧、双流边界与中断；模拟不计宿主资格 |
-| E3：Linux bootstrap 与兜底终止设计收口 | 固定 ELF 装载、空环境、FD、权限、syscall 白名单、资源读回和独立终止机制；提交具体 Linux ABI / unsafe 审阅表 | 下节 B4 / B5 未闭合前不宣称可构建、可执行；不自动增线程、开放文件 / 网络或退回路径 exec |
+| E1：纯执行计划 / 观察格式 | 定义下表类型与闭合本地记录；从同一 SolverRequest 生成执行计划，strict 检查身份、资源、argv、stdin；不启动外部进程 | 纯模拟组件已随 `a0150c6` 提交并验收；真实接受 / 观察格式仍须 E0 与 E3，不把 Simulation 类型改名复用 |
+| E2：控制端与传输 | 新私有 crate 中分开 identity / observation / controller / transport；参数数组、精确 Docker CLI / context / daemon / image 身份，独立控制诊断流，单次容器状态机 | 内存状态机和模拟传输已验收；真实 bootstrap 封套 / Docker adapter 待 E3 具体实现与资格，不计宿主资格 |
+| E3：Linux bootstrap 与兜底终止设计收口 | 固定 ELF 装载、空环境、FD、权限、syscall 白名单、资源读回和独立终止机制；提交具体 Linux ABI / unsafe 审阅表 | [ADR 0029（Accepted）](../adr/0029-solver-linux-supervision-and-capabilities.md)与[具体设计](solver-linux-supervision-design.md)已形成；D1–D3 已接受，B4 / B5 / B6 未取得实际资格前不执行 |
 | E4：精确构建与宿主资格 | 先列 Linux arm64 Rust 工具 / 依赖接受与构建 recipe，再生成最小镜像；随后运行自有负向探针矩阵 | 构建、镜像写入与容器探针均须另行精确授权；当前禁止。任何宿主配置缺口报告，不修改系统或启用 privileged |
 | E5：八份真实校准 | 先生成并冻结 C1–C8 输入、完整请求、期望与清理清单，再分别用同一执行器 / host qualification 运行 | 当前禁止。任何身份、模型文法、完整性或资源失败停止；不追加选项 / 修改 parser 求通过 |
 | E6：一次目标尝试 | 校准通过后冻结原容量 wrong-add contract-guarantee 请求，单次运行并接既有 P4-B 与独立有限世界核对 | 当前禁止且须单独授权；目标与 query 摘要沿执行设计，成功也不升级 proved / Evidence |
@@ -50,19 +50,20 @@ E1 首先冻结本地观察的 format / version、闭合字段、canonical JSON�
 
 默认不新增第三方 Rust 依赖；若现有标准库不能可靠处理期限 / I/O / OS 接口，先提出最小依赖或 FFI 审阅，不私下引入 runtime。纯 IR crate 的 unsafe 禁止保持；原生调用仅能落在明确的 Linux bootstrap 边界，列明 ABI、内存安全前提和架构限制。
 
-## E3 必须先解决的两个执行缺口
+## E3 设计收口与真实路径门禁
 
 | 缺口 | 必须形成的具体决定 | 对实施的影响 |
 | --- | --- | --- |
-| B4：控制端失联后的终止 | 单纯 bootstrap exec 替换自己加 Mac 定时器，不能认证客户端 / daemon 失联后的 Linux 兜底。需提交最小受信任监督机制的拓扑、存活条件、计时起点、终止树与退出观察 | 不能用待实现 watchdog 当作已有保证。若引入额外进程或扩大 TCB，先明确其代码、资源归属和可观察性；仍只有一个 solver attempt |
-| B5：实际 cgroup / syscall 能力 | 明确在当前非 privileged Docker 路径中如何读回 memory / swap、获得可信 OOM 和整树清理结果，以及如何验证 sealed memfd / execveat / seccomp / 空 env | 若必须挂载宿主控制目录、改变系统配置或放宽 solver 能力，则停止并回到设计审阅；默认 Docker seccomp 不够 |
+| B4：控制端失联后的终止 | 提议容器 PID 1 监督器、唯一子进程、不可续期 READY / ARM 剩余时间握手；本地 timerfd / pidfd 与父死 namespace 收束 | 增加显式 TCB，全部计入原 128 MiB；跨系统时钟误差 / 运行假设尚需资格，VM 停顿不伪装成实时保证 |
+| B5：实际 cgroup / syscall 能力 | 提议只读私有 cgroup 观测、memory / swap 原值和 pids.max=2；逐阶段 [syscall 策略](solver-linux-syscall-policy.md)；退出后以 PID namespace / runtime 资格确认整树 | 不写 cgroup、不挂入宿主目录；不能把内部 populated=1 写成事后空树；OOM 事件缺失 / 时序歧义保留未知 |
+| B6：首次装载与禁止再次执行 | 本次发现 AT_EMPTY_PATH 不强制空 pathname；提议仅对可信 B 的固定初次调用作一次性通知协调，W 的再次 exec 一律拒绝 | USER_NOTIF 不作不可信 pathname 检查 / 代理；可信阶段、FD / 过滤器不变量须先接受并审查，不能只靠 fd 匹配与 CLOEXEC |
 
-Linux ABI 清单须至少覆盖 memfd / seal、固定 FD 的 execveat、FD 清理、UID / capability / no-new-privileges、seccomp 装载、计时 / 信号与终止观察；具体 allowlist 在 E3 提交时冻结。CLI 已发现 Editline / terminfo / glibc 线索，不能假设“静态链接即不调用文件接口”。实际需要能力但 profile 禁止时记录失败，不自动开放。
+Linux ABI 清单须至少覆盖 memfd / seal、固定 FD 的 execveat、FD 清理、UID / capability / no-new-privileges、seccomp 装载、计时 / 信号与终止观察；符号级允许集合已在提案列明，数值 ABI / BPF 实现和真实适配未验证。CLI 已发现 Editline / terminfo / glibc 线索，不能假设“静态链接即不调用文件接口”。实际需要能力但 profile 禁止时记录失败，不自动开放。
 
 时限资格必须覆盖真实启动 / 捕获 / 终止路径；只能做到“超时后最终回收”时不报告 6 s 成功。Linux cgroup 的已接受记账口径不取消内核暂时超额语义，也不把 daemon / VM / Mac 开销计入 128 MiB。
 
 ## 后续授权清单与当前交接
 
-补证与清单已提交为 `ff2e4ed`，随后 E1–E2 纯组件与模拟测试获得单独授权；实现由 gpt-6.1-sol / high 承担，主代理主持设计与验收。E0 剩余材料和 E3 两项设计缺口继续作为真实路径硬门禁；本次没有镜像、探针、solver、系统配置或 push 授权。
+补证与清单为 `ff2e4ed`，E1–E2 纯组件与验收已提交为 `a0150c6`。项目所有者随后授权 E3 设计收口，形成 ADR 0029 D1–D3 与具体能力边界；项目所有者随后明确接受三项决定，并授权具体 ABI、内部传输格式、离线纯组件与模拟测试，实际资格仍未取得。E0 缺口、E3 时钟 / cgroup / 装载前提继续作为真实路径硬门禁；本次没有镜像、探针、solver、系统配置或 push 授权。
 
 在镜像构建、探针或 solver 授权前，必须交付具体制品 / 容器配置、精确命令与目标、预计持续时间与占用、失败保留目录和按精确 ID 清理办法；此时才申请对应外部动作。当前不列可直接复制运行的 docker 命令，避免尚未合格的组合被误当成已验收执行配方。

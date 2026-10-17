@@ -67,6 +67,8 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 
 - [E1–E2 纯诊断组件与模拟规则](query/solver-diagnostic-simulation-v0.1.md)：私有模拟身份 / 计划 / 观察、单次状态机与有界传输；[本机验收](records/2026-10-17-solver-simulation-validation.md)覆盖原容量合成 P4-B、失败与旧字节，E0 / E3 仍阻断真实执行。
 
+- [E3 Linux 监督设计](query/solver-linux-supervision-design.md)及 [syscall 策略](query/solver-linux-syscall-policy.md)：[ADR 0029（Accepted）](adr/0029-solver-linux-supervision-and-capabilities.md)具体化独立终止、时间握手、cgroup 事实与可信首次装载；[设计审阅记录](records/2026-10-17-solver-e3-design-review.md)不代表运行资格。
+
 ## 机器契约
 
 [契约总入口](../contracts/README.md)说明生成入口、指定态材料与实现证据的区别。

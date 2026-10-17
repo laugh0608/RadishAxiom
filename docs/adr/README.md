@@ -39,3 +39,4 @@
 - [ADR 0026：P4 具体输入与精确目标重放（Accepted）](0026-p4-concrete-target-replay.md)
 - [ADR 0027：紧凑查询与 P4 显式绑定（Accepted）](0027-compact-query-and-p4-binding.md)
 - [ADR 0028：真实 solver 校准与单目标诊断的窄入口（Accepted）](0028-bounded-solver-calibration-entry.md)
+- [ADR 0029：solver Linux 监督与能力边界（Accepted）](0029-solver-linux-supervision-and-capabilities.md)
