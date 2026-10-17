@@ -12,7 +12,7 @@
 
 ## 已有依据与输入账本
 
-依据限于已留存的[依赖来源索引](../records/cvc5-cli-dependencies-2026-10-17/source-inputs.json)、[静态观察](../records/cvc5-cli-dependencies-2026-10-17/dependency-observation.json)、[后续来源索引](../records/cvc5-provenance-followup-2026-10-17/source-inputs.json)及其绑定的本地原字节。其 raw digest / Git blob 用于复核已有材料，没有重新解释为发布者签名、源码包取得或 binary 关联。此次没有新增网络观察。
+依据限于已留存的[依赖来源索引](../records/cvc5-cli-dependencies-2026-10-17/source-inputs.json)、[静态观察](../records/cvc5-cli-dependencies-2026-10-17/dependency-observation.json)、[后续来源索引](../records/cvc5-provenance-followup-2026-10-17/source-inputs.json)及其绑定的本地原字节。其 raw digest / Git blob 用于复核已有材料，没有重新解释为发布者签名、源码包取得或 binary 关联。本方案最初仅使用留存材料；本次 C0 接续的只读元数据失败与当前页面观察见下述接续，不据此接受输入。
 
 下一批须先形成私有输入清单：每项记录角色、来源 URL / 固定提交或包版本与架构、获取状态、实际 raw SHA-256 / 字节数、源包与二进制包关联、许可证 / copyright 路径、必要归属、使用路径及接受决定。未取得的实际摘要用 `null` 并使清单不可执行；不放置伪摘要或能绕过检查的占位脚本。清单正文、生成器、原输入及其摘要一起审阅；不是新的公共 acceptance schema。
 
@@ -90,7 +90,7 @@
 
 | 顺序 | 下一批的具体交付与出口 | 阻断 / 授权 |
 | --- | --- | --- |
-| C0：冻结候选差异 | 先收齐完整固定源码与上表缺项的精确来源选择；生成输入清单草案、Production 展开审阅表、实际构建 patch、每项获取命令 / 体积上限 / 保留路径 | 本文只完成方案。任何下载先单独说明目标 / 预计耗时 / 清理并获得当前授权；四归档既有审批中止不视为许可。取得失败保存一次结果后决定停止或重新立项，不自动串来源链 |
+| C0：冻结候选差异 | [本轮选择接续](solver-cvc5-c0-input-selection.md)已固定五项源码目标及 Debian 12 arm64 单一快照候选；SDK 精确包版本 / 文件 / 闭包、完整源码与有效配置 / patch 未闭合，`partial-selection / blocked-on-sdk-metadata` | 只读索引查询受沙盒阻断，后续元数据请求等待中止，未取得索引；原包实际 hash 保持 null，`build_ready=false`。来源选择不等于下载 / 接受；停止重试，不自动串来源链 |
 | C1：输入接受 | 实际原包摘要 / tree / 许可核对，锁定 compiler / SDK / rootfs 包与可信边界；完成有效选项差异逐项决定 | 任一 unknown、版权缺项、可选库闭包未知或 patch 未审即停；不能先安装再决定接受。来源选择不等于允许安装 |
 | C2：构建准备 | 提交可审阅离线入口、输入清单校验器、精确 argv / 环境 / 输出目录、无网络设置、资源 / 日志 / map 采集及失败保留 / 清理计划 | 工具安装 / 环境组装、构建环境镜像、实际编译分别说明并授权。CMake try_run / GMP configure 等生成的检测程序也属构建期执行，须写入授权范围；不包含运行 cvc5 `--version` / solver |
 | C3：一次受控构建 | 授权后先空目录验证，离线构建依赖再生成 cvc5，保存所有中间 / link map / stripped 前后 bytes、实际占用与失败 | 任一未列输入 / 下载 / 包安装 / 选项漂移、资源耗尽或超时即停止保留；不自动增额重跑，不把新 bytes 放原 CLI 路径 |
@@ -105,4 +105,4 @@
 
 候选仅为受控本地诊断。当前没有把第三方库链接进 RadishAxiom，没有改变项目 Apache-2.0 或用户生成产物的许可。若以后分发静态 CLI、镜像或构建 SDK，须按实际组成单独检查版权 / 许可证、LGPL corresponding source 与 relink / recombination 材料、安装信息适用性、GCC runtime exception 条件及其他各包义务；仅留上游 URL、称 non-GPL 或不复制 `.a` 均不构成分发接受。新本地 E0 接受不替代该决定。
 
-本轮实际动作仅为读取已留存材料并撰写本方案；没有下载、安装、编译、镜像、探针 / solver、系统配置、提交或 push。后续第一项可审阅工作是 C0 的精确输入选择与差异材料；本方案本身不解除任何来源或运行门禁。
+本方案之后已接续 [C0 精确输入选择](solver-cvc5-c0-input-selection.md)与[机器记录](../records/solver-cvc5-c0-2026-10-17/input-selection.json)：固定源码目标、单一 SDK 快照候选、完整待解析工具 / 静态库角色与失败事实；离线重核 29 份既有材料。C0 仍为部分选择，精确 SDK 元数据与配置 / patch 阻断未解除。没有下载依赖、安装、编译、镜像、探针 / solver、系统配置、提交或 push；候选选择不产生工具或运行接受。

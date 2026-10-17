@@ -20,7 +20,8 @@
 | P3-F 内部组件：五种节点 / 逐行表达式的来源、保守标签、控制与求值上下文记录，完整绑定 / strict / 预算及独立有限核对，本机组件验收 | 公共 field-origin prove support、非干扰或具体反例、完整 P3 / P4 与独立 checker 证明 |
 | P4-A 内部组件：新旧 profile 显式配对、请求规划 / 绑定 / 布局、合成协议与确定性世界候选；v0.5 原容量 AX-B01 落入 1 MiB，本机组件验收 | 真实 cvc5 校准 / 尝试、Evidence 与独立 checker；旧四版原容量请求仍受尺寸拒绝 |
 | E1–E3 私有纯组件：模拟身份 / 计划 / 观察、控制与监督状态机、有界传输、具体 ABI 与离线 W / S 策略；本机模拟验收 | E0 工具接受、E3 宿主 / bootstrap 资格、真实 Docker adapter、镜像 / 探针 / solver 执行 |
-| F1 私有纯组件：共享监督规则、增量摘要、闭合启动描述、Mac/S 双端声明与离线输入清单；本机纯组件验收 | 可调用 FFI、真实观察 / 认证捕获、完整 policy bundle、Linux 制品或工具 / 宿主接受 |
+| F1 私有纯组件：共享监督规则、增量摘要、闭合启动描述、Mac/S 双端声明与离线输入清单；本机纯组件验收 | 真实观察 / 认证捕获、完整 policy bundle、Linux 制品或工具 / 宿主接受 |
+| F2 私有原生源码：类型化 syscall、FD 所有权、独立 B 尾段、S 准备 / 监督与 cgroup 原始观察 | 尚无可执行入口；本机脚本后端检查不等于目标汇编 / 链接审阅、真实 syscall 或 E0 / E4 资格 |
 | P4-B 内部组件：直接 world / 绑定模型候选的 WF、全部 Pre 与五类精确目标重放，本机组件验收 | 真实 solver 尝试、完整 Evidence、独立 checker、普遍证明或反例最小性；新表示的实际求解资源尚未校准 |
 | 独立 Go checker 的受限解析、义务重建、重放、结论与 CLI | 全语义、反例最小性；kernel / certificate 真值复核支持集合仍为空 |
 | Rust runtime 的身份 / 选择、归档 / manifest、receipt、结果消费和 spawn plan；Darwin store 持久化与恢复 | 完整 installer / launcher、qualification、产品根安装、物理断电保证 |
@@ -78,7 +79,7 @@ Accepted E3 设计已提交为 `e2d36ce`。随后完成[具体 ABI](../query/sol
 
 方案与补证已精确提交为 `f2ad466`。随后按当前授权完成 F1：新增私有纯 `solver-supervision-core`，提取 ABI / W/S 策略 / wire / cgroup 值解析；host 保留原接口与固定资源，模拟身份和观察继续隔离。闭合[启动描述](../query/solver-bootstrap-start-v0.1.md)、strict 请求规划、Mac/S 分离声明与截止计划、增量摘要和离线资源 / 策略输入已实现。原容量 query、旧封套与策略字节保持，实际回归及独立核对见[F1 验收](../records/2026-10-17-solver-f1-validation.md)。
 
-D3 已形成[同版本 cvc5 可追溯构建候选方案](../query/solver-cvc5-build-candidate-plan.md)，列明精确输入缺项、最小 CLI 与原发布选项比较、查找 / 缓存隔离、对象 / link map 留证与 C0–C5 停止线；尚未选定完整构建输入或构建新 CLI。下一可审阅切片为 F2 原生实现与 D3 C0 精确输入闭合，须先明确对应实施范围；当前批次不包含 F2、下载 / 安装、Linux 构建、镜像、探针或 solver。纯声明和离线清单均不建立 E0 / E4 资格。
+F1 实现、验收与 [D3 构建候选方案](../query/solver-cvc5-build-candidate-plan.md)已按项目所有者要求提交为 `1a7ff38`，未 push。当前授权接续 F2 原生实现和 D3 C0 精确输入选择：F2 的[原生边界](../query/solver-bootstrap-native-boundary.md)与[监督实现](../query/solver-bootstrap-native-supervisor.md)只在本机脚本后端检查；D3 的[输入选择](../query/solver-cvc5-c0-input-selection.md)已固定五项源码目标；固定快照元数据读取受阻，SDK 精确包版本 / 闭包仍未闭合，`build_ready=false`，不代表原包取得、工具接受或新 CLI。主代理主持设计与验收，具体实现委派 gpt-6.1-sol / high。实际结果见[F2 / C0 验收记录](../records/2026-10-17-solver-f2-validation.md)。原容量、旧字节与资源限值保持，不下载或安装依赖、不构建 Linux 制品或镜像、不运行探针 / solver、不修改系统配置、不 push。
 
 ### P4 接续（2026-10-13）
 
@@ -106,8 +107,8 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 ## 当前停止线与待决策
 
 - ADR 0027 与 query v0.5 / P4-A v0.2 已 Accepted，A–C 已完成本机组件验收。保持原容量、旧 profile 字节及 1 MiB；不启动真实 solver，不 push。紧凑字节与有限比较不代表实际求解、运行资源资格或证明。
-- ADR 0028 D1–D3 与执行层设计范围已 Accepted；E1–E2 已完成纯组件与模拟验收，真实接口 / 策略及资格尚未实现。cvc5 Linux arm64 ZIP 静态检查通过但未 accepted，OrbStack 宿主仅选为候选；完整依赖 / 许可证、固定加载与能力限制、128 MiB / 6 s 资格尚未闭合。准备授权不扩大为安装、构建镜像、容器探针、solver 执行或系统配置。
-- ADR 0029 D1–D3 已 Accepted；E3 离线组件已验收。ADR 0030 D1–D3 已 Accepted；当前授权 F1 纯共享边界 / 启动描述及 D3 构建候选方案，尚未授权本批可调用原生实现、镜像构建或真实运行。不得用 PID 1 / timerfd 的纸面方案宣称失联回收或 6 s 资格；也不得以 USER_NOTIF 检查不可信 pathname 后放行。真实路径继续受 E0、ABI 审查、实际运行资格和后续各项执行授权约束。
+- ADR 0028 D1–D3 与执行层设计范围已 Accepted；E1–E2 已完成纯组件与模拟验收，真实适配与运行资格尚未闭合。cvc5 Linux arm64 ZIP 静态检查通过但未 accepted，OrbStack 宿主仅选为候选；完整依赖 / 许可证、固定加载与能力限制、128 MiB / 6 s 资格尚未闭合。准备授权不扩大为安装、构建镜像、容器探针、solver 执行或系统配置。
+- ADR 0029 D1–D3 已 Accepted；E3 离线组件已验收。ADR 0030 D1–D3 已 Accepted；F1 已提交，当前授权 F2 私有原生源码与 D3 C0 输入选择，尚未授权依赖取得、Linux 制品 / 镜像构建或真实运行。不得用 PID 1 / timerfd 的纸面方案宣称失联回收或 6 s 资格；也不得以 USER_NOTIF 检查不可信 pathname 后放行。真实路径继续受 E0、ABI 审查、实际运行资格和后续各项执行授权约束。
 - 精确 CLI 补证保持系统库和实际构建输入缺口，不因固定配方、许可文本或 CI success 转为 accepted。日志 403 路径停止，不自动申请上游管理权限、联系发布者、换工具或展开全工具链取证；执行层按 E0–E6 清单分别收口。
 - P1、限定 P2 与 P3-A / B / C / D / E / F 已完成本机组件验收；完整生产阶段尚未验收。P3 进一步扩展须明确目标范围；新 IR / P2 / query 不能配给旧 Evidence 结果，完整 Evidence v0.2 仍须按 ADR 0009 补齐。
 - P4-A 按 ADR 0025 已完成本机组件验收；没有真实 cvc5 校准。纯 parser / 世界候选不认证响应来源，不产生 attempt、反例或 Evidence 五态；旧四版 AX-B01 stdin 尺寸拒绝保持，新 v0.5 已通过字节门槛。

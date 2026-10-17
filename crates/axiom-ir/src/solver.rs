@@ -358,7 +358,7 @@ pub const PROCESS_LIMITS: SolverProcessLimits = SolverProcessLimits {
     semantic_steps: 1_000_000,
     internal_wall_clock_ms: 5_000,
 };
-const ARGUMENT_TOKENS: [&str; 12] = [
+pub const ARGUMENT_TOKENS: [&str; 12] = [
     "--safe-mode=safe",
     "--strict-parsing",
     "--force-logic=QF_UFLIA",

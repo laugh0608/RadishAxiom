@@ -35,6 +35,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "radishaxiom-solver-bootstrap-linux"
+version = "0.0.0"
+dependencies = [
+ "radishaxiom-digest",
+ "radishaxiom-solver-diagnostic-host",
+ "radishaxiom-solver-supervision-core",
+]
+
+[[package]]
 name = "radishaxiom-solver-diagnostic-host"
 version = "0.0.0"
 dependencies = [

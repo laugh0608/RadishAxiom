@@ -143,9 +143,9 @@ def read_bounded(path, limit):
         os.close(fd)
 
 
-def check_sources(rows, inventory_digest, repository=ROOT):
-    require(type(rows) is list and len(rows) == len(SOURCES), "source-inventory-shape")
-    for row, wanted in zip(rows, SOURCES):
+def check_sources(rows, inventory_digest, repository=ROOT, sources=SOURCES):
+    require(type(rows) is list and len(rows) == len(sources), "source-inventory-shape")
+    for row, wanted in zip(rows, sources):
         shape(row, ("path", "bytes", "digest"))
         require(row["path"] == wanted, "source-path-set-or-order")
         raw = read_bounded(repository / wanted, 2 * 1024 * 1024)

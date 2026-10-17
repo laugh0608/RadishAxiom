@@ -210,3 +210,89 @@ impl ParsedCgroup {
         })
     }
 }
+
+/// All strict file values, without a process-lifecycle membership assumption.
+/// Parsing establishes neither file identity nor a native observation source.
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct ParsedCgroupValues {
+    pub parsed: ParsedCgroup,
+    pub pids_current: u64,
+}
+impl ParsedCgroupValues {
+    pub fn check_stage(&self, stage: CgroupStage) -> Result<(), CgroupError> {
+        let expected = match stage {
+            CgroupStage::SupervisorOnly | CgroupStage::ReapedSupervisorOnly => &[1][..],
+            CgroupStage::SupervisorAndChild(pid) if pid > 1 => {
+                if self.parsed.members != [1, pid] || self.pids_current != 2 {
+                    return Err(CgroupError::Membership);
+                }
+                return Ok(());
+            }
+            CgroupStage::SupervisorAndChild(_) => return Err(CgroupError::Membership),
+        };
+        if self.parsed.members != expected || self.pids_current != 1 {
+            return Err(CgroupError::Membership);
+        }
+        Ok(())
+    }
+}
+impl ParsedCgroup {
+    /// Validate every file before considering a child-exit membership race. The
+    /// original parse entry and its error ordering intentionally remain intact.
+    pub fn parse_values(
+        files: CgroupFiles<'_>,
+        limits: CgroupLimits,
+    ) -> Result<ParsedCgroupValues, CgroupError> {
+        if scalar(files.memory_max, limits)? != limits.memory_max
+            || scalar(files.memory_swap_max, limits)? != limits.swap_max
+            || scalar(files.pids_max, limits)? != limits.pids_max
+        {
+            return Err(CgroupError::Configuration);
+        }
+        let memory_current = scalar(files.memory_current, limits)?;
+        let memory_peak = scalar(files.memory_peak, limits)?;
+        if memory_current > memory_peak {
+            return Err(CgroupError::Configuration);
+        }
+        let memory_oom_group = match scalar(files.memory_oom_group, limits)? {
+            0 => false,
+            1 => true,
+            _ => return Err(CgroupError::Configuration),
+        };
+        let events = fields(files.cgroup_events, &["populated", "frozen"], limits)?;
+        if events["populated"] != 1 || events["frozen"] != 0 {
+            return Err(CgroupError::Configuration);
+        }
+        let memory_events = parse_memory_events(files.memory_events, limits)?;
+        let memory_events_local = parse_memory_events(files.memory_events_local, limits)?;
+        if !memory_events.follows(memory_events_local) {
+            return Err(CgroupError::Configuration);
+        }
+        let pids_max_events = fields(files.pids_events, &["max"], limits)?["max"];
+        let pids_current = scalar(files.pids_current, limits)?;
+        let mut members = Vec::with_capacity(2);
+        for line in text(files.cgroup_procs, limits)?.lines() {
+            if members.len() == 2 {
+                return Err(CgroupError::Membership);
+            }
+            let pid = u32::try_from(number(line)?).map_err(|_| CgroupError::Number)?;
+            if pid == 0 || members.contains(&pid) {
+                return Err(CgroupError::Membership);
+            }
+            members.push(pid);
+        }
+        members.sort_unstable();
+        Ok(ParsedCgroupValues {
+            parsed: ParsedCgroup {
+                memory_events,
+                memory_events_local,
+                memory_current,
+                memory_peak,
+                memory_oom_group,
+                pids_max_events,
+                members,
+            },
+            pids_current,
+        })
+    }
+}
