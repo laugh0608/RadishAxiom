@@ -1,0 +1,99 @@
+{
+  "cases": [
+    {
+      "case": "minimal-sat",
+      "observation_raw_digest": "sha256:67cc0bb1fddb6a22fe15a5908b8f20994d836b280bfdbbd62e4da23ce2a51fa9",
+      "plan_raw_digest": "sha256:56704c6e56a059bacf591e637f77dcc5d58c1ac1e50bb27459e08cdcfc2049b9",
+      "primary_outer": "none",
+      "query_bytes": "94",
+      "status": "Sat"
+    },
+    {
+      "case": "composite-sat",
+      "observation_raw_digest": "sha256:9aee86998686aa5f6d96ba9d7dd86ab64de107652121173267e13d99bbbc8723",
+      "plan_raw_digest": "sha256:d5773ae921ee13830bb3263f537cecea0779da0d637f38af691d70a0eca81dbb",
+      "primary_outer": "none",
+      "query_bytes": "4759",
+      "status": "Sat"
+    },
+    {
+      "case": "wrong-add-sat",
+      "observation_raw_digest": "sha256:dcab49834257504c3a1ffc4f299e6669b6b3b97265f8820dbee1e96d5861490b",
+      "plan_raw_digest": "sha256:cc338a62a6db585c7e1dd416d3b0b3a38e4f53bc98e7d66cdfb3305d070cf04a",
+      "primary_outer": "none",
+      "query_bytes": "962642",
+      "status": "Sat"
+    },
+    {
+      "case": "minimal-unsat",
+      "observation_raw_digest": "sha256:b395fa5a4b615eff83042789288d2113e3003258995fee69604af0a57298bd4c",
+      "plan_raw_digest": "sha256:56704c6e56a059bacf591e637f77dcc5d58c1ac1e50bb27459e08cdcfc2049b9",
+      "primary_outer": "none",
+      "query_bytes": "94",
+      "status": "Unsat"
+    },
+    {
+      "case": "minimal-unknown",
+      "observation_raw_digest": "sha256:60b081013cb457597ccaae22aacb5e0a9036dbdee1b728f27bc3364fcc30b502",
+      "plan_raw_digest": "sha256:56704c6e56a059bacf591e637f77dcc5d58c1ac1e50bb27459e08cdcfc2049b9",
+      "primary_outer": "none",
+      "query_bytes": "94",
+      "status": "Unknown"
+    },
+    {
+      "case": "cleanup-failure",
+      "observation_raw_digest": "sha256:a13562957d121129f14bf400a2e18dd70c8b790fede9847ea86260d92123c9b7",
+      "plan_raw_digest": "sha256:56704c6e56a059bacf591e637f77dcc5d58c1ac1e50bb27459e08cdcfc2049b9",
+      "primary_outer": "unavailable",
+      "query_bytes": "94",
+      "status": "rejected-before-P4"
+    },
+    {
+      "case": "exit137",
+      "observation_raw_digest": "sha256:8f92d3e33f61f2fd64bb6489d21eb3a389721b9ff1de98b0631a397e96193acf",
+      "plan_raw_digest": "sha256:56704c6e56a059bacf591e637f77dcc5d58c1ac1e50bb27459e08cdcfc2049b9",
+      "primary_outer": "none",
+      "query_bytes": "94",
+      "status": "rejected-before-P4"
+    },
+    {
+      "case": "stdout-limit",
+      "observation_raw_digest": "sha256:7ab4416be009b66f4e1ba357a5efbd3af6ef8bc810d6dd6b2bc6756572b1a7f5",
+      "plan_raw_digest": "sha256:56704c6e56a059bacf591e637f77dcc5d58c1ac1e50bb27459e08cdcfc2049b9",
+      "primary_outer": "stdout-limit",
+      "query_bytes": "94",
+      "status": "rejected-before-P4"
+    },
+    {
+      "case": "oom-before-deadline",
+      "observation_raw_digest": "sha256:896ecc941f8f9177f2ec177f459de96bdd7e3cba632bdd1c9d295d232cf3ff63",
+      "plan_raw_digest": "sha256:56704c6e56a059bacf591e637f77dcc5d58c1ac1e50bb27459e08cdcfc2049b9",
+      "primary_outer": "memory",
+      "query_bytes": "94",
+      "status": "rejected-before-P4"
+    },
+    {
+      "case": "deadline-before-oom",
+      "observation_raw_digest": "sha256:df30ff9d0faf302eb5b6d495c8ac648dddbf3c80508dc023fce806174787c600",
+      "plan_raw_digest": "sha256:56704c6e56a059bacf591e637f77dcc5d58c1ac1e50bb27459e08cdcfc2049b9",
+      "primary_outer": "deadline",
+      "query_bytes": "94",
+      "status": "rejected-before-P4"
+    },
+    {
+      "case": "deadline-with-oom",
+      "observation_raw_digest": "sha256:edbaf5c76562a3b38ce6c0bea01155a1d727e1aab33b5d1f538a8b56ee7eb4bf",
+      "plan_raw_digest": "sha256:56704c6e56a059bacf591e637f77dcc5d58c1ac1e50bb27459e08cdcfc2049b9",
+      "primary_outer": "deadline",
+      "query_bytes": "94",
+      "status": "rejected-before-P4"
+    }
+  ],
+  "checker_raw_digest": "sha256:893a49419927bd297037816a00d22ef6dd2b9182a3c38eb19b7e482cb52f481b",
+  "format": "axiom-solver-simulation-independent-check",
+  "manifest_raw_digest": "sha256:c4f5bbf06a71ebf76810b7a10a878ef565251055dc7c2d7ee67718a02e9a1d9f",
+  "real_execution": "blocked-E0-E3",
+  "scope": "simulation",
+  "version": "0.1",
+  "wrong_add_finite_check": "passed-not-proof"
+}

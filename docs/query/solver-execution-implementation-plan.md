@@ -2,7 +2,7 @@
 
 日期：2026-10-17。状态：实施规划，依据 [ADR 0028（Accepted）](../adr/0028-bounded-solver-calibration-entry.md)及[执行设计](solver-execution-preparation.md)。读者为项目所有者与实现者；本文不授权编写后直接运行 executor，也不表示闭合格式和 syscall 策略已经冻结。
 
-本批只完成精确 CLI 补证和实施清单。原容量、query / P4 旧字节、十二项参数、stdin 1 MiB、stdout 4 MiB、stderr 64 KiB、内存 128 MiB、外层 6 s、内部 5 s / 1,000,000 steps 全部保持；没有构建镜像、运行探针或启动 solver。
+本清单最初随精确 CLI 补证提交为 `ff2e4ed`；随后项目所有者授权 E1–E2 纯组件与模拟测试，具体内部类型和边界以[模拟规则](solver-diagnostic-simulation-v0.1.md)为准。下文真实执行类型仍是待 E0 / E3 闭合的设计目标，不能把模拟记录解释为这些能力。原容量、query / P4 旧字节、十二项参数、stdin 1 MiB、stdout 4 MiB、stderr 64 KiB、内存 128 MiB、外层 6 s、内部 5 s / 1,000,000 steps 全部保持。
 
 ## 已有入口与复用范围
 
@@ -10,7 +10,7 @@
 - `SolverResponseInput` 能承载 request digest、两流 bytes / complete、`ProcessExit` 与 `OuterTermination`；执行层须认证这些观察。P4 现有失败优先级和模型文法直接复用，不新增“宽松真实 solver”入口。
 - P4-B 沿 `ReplayWorldInput::ModelCandidate` 重建世界、完整 WF / Pre 和精确目标，复用既有求值语义；不依赖 solver 派生项回答目标。
 - `checker-runtime/src/spawn.rs` 是 checker 的指定态 plan / policy 路径，不能借它的资格或资源口径启动 cvc5；不修改 checker 激活、Darwin store 或公共 runtime policy。
-- 现有 `axiom-ir` 全 crate `forbid(unsafe_code)` 且不含 OS spawn。拟新增私有 `crates/solver-diagnostic-host` 承载执行控制，理由是隔离实际副作用与纯语义边界；不在其中重写 IR、query、模型或通用调度框架。本次不创建 crate。
+- 现有 `axiom-ir` 全 crate `forbid(unsafe_code)` 且不含 OS spawn。私有 `crates/solver-diagnostic-host` 承载本次纯内存模拟控制，只有现有工作区 path 依赖；不在其中重写 IR、query、模型或通用调度框架，也没有实际副作用入口。
 
 ## 分批实施与交付门禁
 
@@ -28,7 +28,7 @@ E1–E3 是最小私有执行切片，不扩大到 installer、产品 launcher�
 
 ## E1 的具体接口与记录清单
 
-下列是拟议内部类型与责任，实施前以具体字段稿和正负例审阅，不向现行公共格式追加成员。
+下列是真实执行的拟议内部类型与责任，实施前以具体字段稿和正负例审阅，不向现行公共格式追加成员。本次只实现显式 `SimulationIdentity` / `SimulationPlan` / `SimulationObservation`，不构造真实接受、宿主资格或认证捕获类型。
 
 | 类型 / 记录 | 必须承载 | 必须拒绝 |
 | --- | --- | --- |
@@ -46,7 +46,7 @@ E1 首先冻结本地观察的 format / version、闭合字段、canonical JSON�
 
 计划校验 → create → attach → start → 发送 stdin / EOF 与并发捕获 → wait / inspect → 终止或正常收尾 → 确认空树与清理 → 发布本地观察。每个状态都绑定精确容器 ID 和剩余单调时限；不使用名字模糊匹配、重试、restart、pull 或自动切换宿主。
 
-固定 Docker CLI 子命令及参数模板只在 E2 内集中维护；create 时不传 shell、host mount、设备或秘密。stdout / stderr 的 transport 与 Docker 控制日志必须分开，坏帧 / 断连 / 缺退出事件失败。控制命令自身有界，停止客户端不能替代容器终止；不得让 cleanup 的失败被解析出来的 sat 覆盖。
+未来真实 Docker CLI 子命令及参数模板应在 E2 内集中维护；本次只提供类型化模拟意图，不生成 E3 尚未冻结的可执行 create 配方。真实 create 不得传 shell、host mount、设备或秘密。stdout / stderr 的 transport 与 Docker 控制日志必须分开，坏帧 / 断连 / 缺退出事件失败。控制命令自身有界，停止客户端不能替代容器终止；不得让 cleanup 的失败被解析出来的 sat 覆盖。
 
 默认不新增第三方 Rust 依赖；若现有标准库不能可靠处理期限 / I/O / OS 接口，先提出最小依赖或 FFI 审阅，不私下引入 runtime。纯 IR crate 的 unsafe 禁止保持；原生调用仅能落在明确的 Linux bootstrap 边界，列明 ABI、内存安全前提和架构限制。
 
@@ -63,6 +63,6 @@ Linux ABI 清单须至少覆盖 memfd / seal、固定 FD 的 execveat、FD 清�
 
 ## 后续授权清单与当前交接
 
-本次授权的提交已完成；补证与实施清单本身不运行上表后续阶段。下一次若要求实施，建议先授权 E1–E2 的纯组件与模拟测试，同时把 E0 的剩余材料和 E3 的两项设计缺口列为真实路径硬门禁。不要等待全部环境完成才编写可纯验收的身份 / 状态机，也不要因纯组件通过就开放真实启动。
+补证与清单已提交为 `ff2e4ed`，随后 E1–E2 纯组件与模拟测试获得单独授权；实现由 gpt-6.1-sol / high 承担，主代理主持设计与验收。E0 剩余材料和 E3 两项设计缺口继续作为真实路径硬门禁；本次没有镜像、探针、solver、系统配置或 push 授权。
 
 在镜像构建、探针或 solver 授权前，必须交付具体制品 / 容器配置、精确命令与目标、预计持续时间与占用、失败保留目录和按精确 ID 清理办法；此时才申请对应外部动作。当前不列可直接复制运行的 docker 命令，避免尚未合格的组合被误当成已验收执行配方。

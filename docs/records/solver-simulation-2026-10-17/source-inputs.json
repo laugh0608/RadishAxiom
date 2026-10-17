@@ -1,0 +1,92 @@
+{
+  "baseline": "ff2e4ed",
+  "files": [
+    {
+      "path": "Cargo.lock",
+      "sha256": "f55e7d7ca2ecfa61b7830f37804f58415d84cb2aaddb526eee4b269a9525455a"
+    },
+    {
+      "path": "Cargo.toml",
+      "sha256": "450b7c6a984135ea1e5043cd009fc5c695a7b1b25f4a536356d74a6555ab0a3e"
+    },
+    {
+      "path": "crates/axiom-ir/src/solver.rs",
+      "sha256": "e6a028c61135eb28a10a0d589d5783adc886741bc796ac37e8ba04a1b2ba622e"
+    },
+    {
+      "path": "crates/axiom-ir/src/solver/request.rs",
+      "sha256": "e3d8a54dc181e3ad28e2969f30e7b42a6ffafb7b7adb659246929ce140a6610b"
+    },
+    {
+      "path": "crates/solver-diagnostic-host/Cargo.toml",
+      "sha256": "2900bcff6caf24e6e5b7523e9c40eb9ecca8746b5eb83b89d8e47fae258b5774"
+    },
+    {
+      "path": "crates/solver-diagnostic-host/examples/export_simulation_observations.rs",
+      "sha256": "54522cb8a12f5b8cbf8e3431024edcdca273a25169813d8a7b3110f950d77324"
+    },
+    {
+      "path": "crates/solver-diagnostic-host/src/controller.rs",
+      "sha256": "528f39121d285de5aa06767cff0e2aec46b3c0a04bfc6519de4be05715e13ae1"
+    },
+    {
+      "path": "crates/solver-diagnostic-host/src/encoding.rs",
+      "sha256": "6561e1fb68fa1640a0b40608bcbb2ee345043629a6fb862e4600aa9446917ae8"
+    },
+    {
+      "path": "crates/solver-diagnostic-host/src/identity.rs",
+      "sha256": "6b43a5a4efbdd45ad254e8f927be27361be6526fb1d97674433a2555d2c5a3de"
+    },
+    {
+      "path": "crates/solver-diagnostic-host/src/lib.rs",
+      "sha256": "33e1047b8bea09560a1a34ed2febda0b6cb8bb7fe983dd579ffd322fcc9daf27"
+    },
+    {
+      "path": "crates/solver-diagnostic-host/src/observation.rs",
+      "sha256": "29bca2fd87dec4c940dad791f2a67bf8235b00ed1c9a8f99e242ffda7b3d73d3"
+    },
+    {
+      "path": "crates/solver-diagnostic-host/src/plan.rs",
+      "sha256": "fcbd3a7495388565842f5d1ddfa5f4afa3956fb76445ae58131f7f3ec0e0a54f"
+    },
+    {
+      "path": "crates/solver-diagnostic-host/src/transport.rs",
+      "sha256": "83519a90b1c6371d1ad7b25fbb43faa40d9f46888e4b0e9495f37d17b0beca27"
+    },
+    {
+      "path": "crates/solver-diagnostic-host/tests/common/mod.rs",
+      "sha256": "269c61094a5546e10631fc71d71f9a21e613113c0a129ec28ddbd85ceeaf9d93"
+    },
+    {
+      "path": "crates/solver-diagnostic-host/tests/e1.rs",
+      "sha256": "ee20cb279bf3359f0d1e42ee9f78b61fb98836f61d7a516177f9cd9689cc3cf5"
+    },
+    {
+      "path": "crates/solver-diagnostic-host/tests/e2.rs",
+      "sha256": "c47070c3bd90b06c478965bc3103a9b09a09811b9be774b41c852b75669c6d91"
+    },
+    {
+      "path": "crates/solver-diagnostic-host/tests/transport.rs",
+      "sha256": "efa79c9ad0d7456ba08961d7e795a3995d6d8c0748d867dc2bb51011c31313d5"
+    },
+    {
+      "path": "crates/solver-diagnostic-host/tests/workflow.rs",
+      "sha256": "c7824c80e9467f13b122e570e1601533d125879fd5238ef876061ff55bedae9a"
+    },
+    {
+      "path": "docs/query/solver-diagnostic-simulation-v0.1.md",
+      "sha256": "4b3c2fbd2d04f3f6004f15c50efefb7993966db20b12ed9bcbd0c12190c994a7"
+    },
+    {
+      "path": "scripts/check-solver-simulation-export.py",
+      "sha256": "893a49419927bd297037816a00d22ef6dd2b9182a3c38eb19b7e482cb52f481b"
+    },
+    {
+      "path": "scripts/test-check-solver-simulation-export.py",
+      "sha256": "639a9e873cf2cab01a3ac5bca64e68e6108954ab15e767d6baef7c652e72d9cf"
+    }
+  ],
+  "format": "axiom-solver-simulation-validation-inputs",
+  "scope": "simulation",
+  "version": "0.1"
+}

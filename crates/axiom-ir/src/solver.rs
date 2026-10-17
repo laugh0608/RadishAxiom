@@ -163,9 +163,9 @@ impl SolverLimits {
             TextBytes => self.text_bytes,
             WorldBytes => self.world_bytes,
             CandidateBytes => self.candidate_bytes,
-            StdinBytes => 1_048_576,
-            StdoutBytes => 4_194_304,
-            StderrBytes => 65_536,
+            StdinBytes => PROCESS_LIMITS.stdin_bytes,
+            StdoutBytes => PROCESS_LIMITS.stdout_bytes,
+            StderrBytes => PROCESS_LIMITS.stderr_bytes,
         }
     }
 }
@@ -273,6 +273,15 @@ pub struct SolverToolIdentity {
     acceptance: String,
 }
 impl SolverToolIdentity {
+    pub fn platform(&self) -> &str {
+        &self.platform
+    }
+    pub fn payload_digest(&self) -> &str {
+        &self.payload
+    }
+    pub fn acceptance_record_digest(&self) -> &str {
+        &self.acceptance
+    }
     pub fn new(
         platform: &str,
         payload_digest: &str,
@@ -327,8 +336,52 @@ pub struct SolverRequest {
     budgets: SolverBudgets,
     profile: SolverProfile,
     usage: SolverUsage,
+    tool: SolverToolIdentity,
 }
+/// 固定进程参数的只读元数据，不认证工具或执行宿主。
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub struct SolverProcessLimits {
+    pub stdin_bytes: usize,
+    pub stdout_bytes: usize,
+    pub stderr_bytes: usize,
+    pub wall_clock_ms: u64,
+    pub working_memory_bytes: usize,
+    pub semantic_steps: u64,
+    pub internal_wall_clock_ms: u64,
+}
+pub const PROCESS_LIMITS: SolverProcessLimits = SolverProcessLimits {
+    stdin_bytes: 1_048_576,
+    stdout_bytes: 4_194_304,
+    stderr_bytes: 65_536,
+    wall_clock_ms: 6_000,
+    working_memory_bytes: 134_217_728,
+    semantic_steps: 1_000_000,
+    internal_wall_clock_ms: 5_000,
+};
+const ARGUMENT_TOKENS: [&str; 12] = [
+    "--safe-mode=safe",
+    "--strict-parsing",
+    "--force-logic=QF_UFLIA",
+    "--lang=smt2",
+    "--no-incremental",
+    "--produce-models",
+    "--dump-models",
+    "--check-models",
+    "--produce-proofs",
+    "--check-proofs",
+    "--rlimit-per=1000000",
+    "--tlimit-per=5000",
+];
 impl SolverRequest {
+    pub fn tool(&self) -> &SolverToolIdentity {
+        &self.tool
+    }
+    pub fn argument_tokens(&self) -> &'static [&'static str] {
+        &ARGUMENT_TOKENS
+    }
+    pub fn process_limits(&self) -> SolverProcessLimits {
+        PROCESS_LIMITS
+    }
     pub fn canonical_bytes(&self) -> &[u8] {
         &self.bytes
     }

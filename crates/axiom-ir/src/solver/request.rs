@@ -84,37 +84,33 @@ fn limit_value(budgets: SolverBudgets) -> Value {
         (
             "tool_internal",
             obj(vec![
-                ("semantic_steps", s("1000000")),
-                ("wall_clock_ms", s("5000")),
+                (
+                    "semantic_steps",
+                    s(PROCESS_LIMITS.semantic_steps.to_string()),
+                ),
+                (
+                    "wall_clock_ms",
+                    s(PROCESS_LIMITS.internal_wall_clock_ms.to_string()),
+                ),
             ]),
         ),
         (
             "process_outer",
             obj(vec![
-                ("stdin_bytes", s("1048576")),
-                ("stdout_bytes", s("4194304")),
-                ("stderr_bytes", s("65536")),
-                ("wall_clock_ms", s("6000")),
-                ("working_memory_bytes", s("134217728")),
+                ("stdin_bytes", s(PROCESS_LIMITS.stdin_bytes.to_string())),
+                ("stdout_bytes", s(PROCESS_LIMITS.stdout_bytes.to_string())),
+                ("stderr_bytes", s(PROCESS_LIMITS.stderr_bytes.to_string())),
+                ("wall_clock_ms", s(PROCESS_LIMITS.wall_clock_ms.to_string())),
+                (
+                    "working_memory_bytes",
+                    s(PROCESS_LIMITS.working_memory_bytes.to_string()),
+                ),
             ]),
         ),
     ])
 }
 fn arguments() -> Value {
-    strings([
-        "--safe-mode=safe",
-        "--strict-parsing",
-        "--force-logic=QF_UFLIA",
-        "--lang=smt2",
-        "--no-incremental",
-        "--produce-models",
-        "--dump-models",
-        "--check-models",
-        "--produce-proofs",
-        "--check-proofs",
-        "--rlimit-per=1000000",
-        "--tlimit-per=5000",
-    ])
+    strings(ARGUMENT_TOKENS)
 }
 
 pub(super) fn plan(
@@ -314,5 +310,6 @@ pub(super) fn plan(
         budgets,
         profile,
         usage: b.usage,
+        tool: input.tool.clone(),
     })
 }

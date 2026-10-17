@@ -19,6 +19,7 @@
 | P3-E 内部组件：全部 P1 v0.2 纯构造的空效果规则记录、P2 绑定、strict / 预算拒绝与独立有限核对，本机组件验收 | 公共 kernel / certificate support、五态、field-origin、完整 P3 / P4 或独立 checker 证明 |
 | P3-F 内部组件：五种节点 / 逐行表达式的来源、保守标签、控制与求值上下文记录，完整绑定 / strict / 预算及独立有限核对，本机组件验收 | 公共 field-origin prove support、非干扰或具体反例、完整 P3 / P4 与独立 checker 证明 |
 | P4-A 内部组件：新旧 profile 显式配对、请求规划 / 绑定 / 布局、合成协议与确定性世界候选；v0.5 原容量 AX-B01 落入 1 MiB，本机组件验收 | 真实 cvc5 校准 / 尝试、Evidence 与独立 checker；旧四版原容量请求仍受尺寸拒绝 |
+| E1–E2 私有纯组件：模拟身份 / 计划 / 观察、单次控制状态机与有界分流 / 多路帧；本机模拟验收 | E0 工具接受、E3 宿主 / bootstrap 资格、真实 Docker adapter、镜像 / 探针 / solver 执行 |
 | P4-B 内部组件：直接 world / 绑定模型候选的 WF、全部 Pre 与五类精确目标重放，本机组件验收 | 真实 solver 尝试、完整 Evidence、独立 checker、普遍证明或反例最小性；新表示的实际求解资源尚未校准 |
 | 独立 Go checker 的受限解析、义务重建、重放、结论与 CLI | 全语义、反例最小性；kernel / certificate 真值复核支持集合仍为空 |
 | Rust runtime 的身份 / 选择、归档 / manifest、receipt、结果消费和 spawn plan；Darwin store 持久化与恢复 | 完整 installer / launcher、qualification、产品根安装、物理断电保证 |
@@ -40,7 +41,7 @@
 | --- | --- | --- |
 | 1：P1 真实语义组件 | [ADR 0016](../adr/0016-core-semantic-slice-entry.md) / [0017](../adr/0017-ir-v0.2-support-boundaries-and-migration.md)范围内已完成本机组件验收；[17 项矩阵](../ir/p1-support-boundary-review.md#必需验证矩阵对照)闭合结构、规范字节、身份与迁移回归 | 保留旧版未支持边界；不外推完整生产阶段、证明或跨平台验收 |
 | 2：P2 真实义务生成 | [ADR 0018](../adr/0018-ir-derived-obligation-profile.md) / [规则](../evidence/ir-derived-obligations-v0.2.md)已接受并完成本机内部组件验收；26 份 IR / 482 项定义与 29 份负例实际核对 | 只交付显式 ir-derived 全集；group 覆盖 / 守恒分开；保留完整 Evidence 门禁 |
-| 3：query 与纵向闭环（下一步） | [ADR 0019](../adr/0019-map-filter-query-encoding.md)–[0022](../adr/0022-map-filter-row-coverage.md) 的 P3-A / B / C / D 已完成本机组件验收；[ADR 0023](../adr/0023-core-empty-effect-derivation.md) 的 P3-E 空效果结构组件也已完成本机验收；[ADR 0024](../adr/0024-core-field-origin-derivation.md) 的 P3-F 字段来源内部分析已实现；[ADR 0025（Accepted）](../adr/0025-p4-request-response-model-decoding.md) 的 P4-A 请求 / 响应 / 模型解码已完成本机组件验收；[ADR 0026（Accepted）](../adr/0026-p4-concrete-target-replay.md) 的 P4-B 有限具体目标重放已完成本机组件验收；AX-B01 紧凑表示已完成[本地研究验收](../records/2026-10-17-query-compaction-validation.md)；[ADR 0027（Accepted）](../adr/0027-compact-query-and-p4-binding.md)的 A–C 已完成[生产组件本机验收](../records/2026-10-17-compact-query-production-validation.md)，已完成[真实 solver 准备审阅](../records/2026-10-17-solver-preparation.md)，下一项补齐精确 CLI 依赖 / 许可证证据并形成执行层实施清单 | 完整 P3 / P4 未实现；保留 AX-B01 正确、两个 wrong、invalid、timeout 和篡改标准，外部执行独立授权 |
+| 3：query 与纵向闭环（下一步） | [ADR 0019](../adr/0019-map-filter-query-encoding.md)–[0022](../adr/0022-map-filter-row-coverage.md) 的 P3-A / B / C / D 已完成本机组件验收；[ADR 0023](../adr/0023-core-empty-effect-derivation.md) 的 P3-E 空效果结构组件也已完成本机验收；[ADR 0024](../adr/0024-core-field-origin-derivation.md) 的 P3-F 字段来源内部分析已实现；[ADR 0025（Accepted）](../adr/0025-p4-request-response-model-decoding.md) 的 P4-A 请求 / 响应 / 模型解码已完成本机组件验收；[ADR 0026（Accepted）](../adr/0026-p4-concrete-target-replay.md) 的 P4-B 有限具体目标重放已完成本机组件验收；AX-B01 紧凑表示已完成[本地研究验收](../records/2026-10-17-query-compaction-validation.md)；[ADR 0027（Accepted）](../adr/0027-compact-query-and-p4-binding.md)的 A–C 已完成[生产组件本机验收](../records/2026-10-17-compact-query-production-validation.md)，已完成[真实 solver 准备审阅](../records/2026-10-17-solver-preparation.md)，精确 CLI [补证](../records/2026-10-17-cvc5-cli-dependencies.md)和 E1–E2 [纯组件验收](../records/2026-10-17-solver-simulation-validation.md)已接续；下一项分别收口 E0 接受缺口与 E3 执行设计 | 完整 P3 / P4 未实现；保留 AX-B01 正确、两个 wrong、invalid、timeout 和篡改标准，外部执行独立授权 |
 
 近期验收看真实输入能否产生规范输出与可定位拒绝，区分实现、指定态 fixture、独立复核与证明；不以提交数、测试数或来源包数量替代里程碑。每个切片结束复核下一项是否直接服务上述交付；新增前置必须解释具体依赖和停止条件。
 
@@ -64,7 +65,9 @@ Accepted 文档已提交为 `14a9693`。A–C 已完成 Rust 实现与本机验�
 
 项目所有者已接受 ADR 0028 三项决定，授权先提交准备材料，再推进精确 CLI 依赖 / 许可证补证与执行层实施清单；镜像构建、宿主负向探针和真实 solver 分别授权。已有 daemon 的能力报告不能代替 OS 限制、时限 / 清理和实际模型文法验证。
 
-ADR 0028 与准备材料已提交为 `6593254`。随后完成[精确 CLI 补证](../records/2026-10-17-cvc5-cli-dependencies.md)：25 份来源材料、四项固定依赖配方、CaDiCaL / SymFPU / LibPoly 版本化许可及对应 arm64 发布作业已核对；发现 Editline / terminfo / glibc 链需补入库存。详细 CI 日志返回 403，实际系统库版本、完整链接清单及配方到 CLI 的认证关联仍未闭合，保持 not-accepted。已形成[执行层实施清单](../query/solver-execution-implementation-plan.md)：E1–E2 可作为后续纯组件切片，E0 工具接受及 E3 独立终止 / cgroup 能力是进入真实路径的硬门禁。本批补证和清单尚未提交，没有编写生产 executor 或执行外部载荷。
+ADR 0028 与准备材料已提交为 `6593254`。随后完成[精确 CLI 补证](../records/2026-10-17-cvc5-cli-dependencies.md)：25 份来源材料、四项固定依赖配方、CaDiCaL / SymFPU / LibPoly 版本化许可及对应 arm64 发布作业已核对；发现 Editline / terminfo / glibc 链需补入库存。详细 CI 日志返回 403，实际系统库版本、完整链接清单及配方到 CLI 的认证关联仍未闭合，保持 not-accepted。已形成[执行层实施清单](../query/solver-execution-implementation-plan.md)：E1–E2 可作为后续纯组件切片，E0 工具接受及 E3 独立终止 / cgroup 能力是进入真实路径的硬门禁。本批补证和清单已提交为 `ff2e4ed`，没有编写真实 executor 或执行外部载荷。
+
+随后按当前任务授权完成 E1–E2 [纯组件与模拟规则](../query/solver-diagnostic-simulation-v0.1.md)的实现及[本机验收](../records/2026-10-17-solver-simulation-validation.md)：新增私有 `solver-diagnostic-host`，所有身份、计划与观察固定 simulation；事件与流仅在内存处理。主代理主持设计与验收，明确实现委派 gpt-6.1-sol / high。原容量 wrong-add guarantee 以 962,642 字节 / 501 自由符号的请求贯穿合成捕获、原 P4 解码和 P4-B 精确目标重放；11 组导出由独立脚本核对。E0 / E3 保持硬门禁，没有真实接受、资格或认证捕获能力，也没有运行镜像、探针或 solver；本批实现未提交。
 
 ### P4 接续（2026-10-13）
 
@@ -92,7 +95,7 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 ## 当前停止线与待决策
 
 - ADR 0027 与 query v0.5 / P4-A v0.2 已 Accepted，A–C 已完成本机组件验收。保持原容量、旧 profile 字节及 1 MiB；不启动真实 solver，不 push。紧凑字节与有限比较不代表实际求解、运行资源资格或证明。
-- ADR 0028 D1–D3 与执行层设计范围已 Accepted；具体接口 / 策略及资格尚未实现。cvc5 Linux arm64 ZIP 静态检查通过但未 accepted，OrbStack 宿主仅选为候选；完整依赖 / 许可证、固定加载与能力限制、128 MiB / 6 s 资格尚未闭合。准备授权不扩大为安装、构建镜像、容器探针、solver 执行或系统配置。
+- ADR 0028 D1–D3 与执行层设计范围已 Accepted；E1–E2 已完成纯组件与模拟验收，真实接口 / 策略及资格尚未实现。cvc5 Linux arm64 ZIP 静态检查通过但未 accepted，OrbStack 宿主仅选为候选；完整依赖 / 许可证、固定加载与能力限制、128 MiB / 6 s 资格尚未闭合。准备授权不扩大为安装、构建镜像、容器探针、solver 执行或系统配置。
 - 精确 CLI 补证保持系统库和实际构建输入缺口，不因固定配方、许可文本或 CI success 转为 accepted。日志 403 路径停止，不自动申请上游管理权限、联系发布者、换工具或展开全工具链取证；执行层按 E0–E6 清单分别收口。
 - P1、限定 P2 与 P3-A / B / C / D / E / F 已完成本机组件验收；完整生产阶段尚未验收。P3 进一步扩展须明确目标范围；新 IR / P2 / query 不能配给旧 Evidence 结果，完整 Evidence v0.2 仍须按 ADR 0009 补齐。
 - P4-A 按 ADR 0025 已完成本机组件验收；没有真实 cvc5 校准。纯 parser / 世界候选不认证响应来源，不产生 attempt、反例或 Evidence 五态；旧四版 AX-B01 stdin 尺寸拒绝保持，新 v0.5 已通过字节门槛。
@@ -104,6 +107,8 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 - 表面语法、公开 CLI / SDK、安装路径与最低支持矩阵尚未冻结；测试、结构检查、attestation 与独立 proof 分别报告。
 
 ## 验证入口与本次审阅
+
+2026-10-17，E1–E2 纯组件的本机验收、旧字节对照与独立模拟导出核对见[本批记录](../records/2026-10-17-solver-simulation-validation.md)。只检查模拟事实及其 P4 接续，不形成真实 solver、宿主资格或证明。
 
 2026-10-17，真实 solver 准备批次完成只读宿主盘点、精确 ZIP 获取、标准库静态检查与合成负例；原包 / CLI 摘要、观察数据及可重跑入口见[准备记录](../records/2026-10-17-solver-preparation.md)。未运行任何真实 solver 或隔离探针，不外推工具 / 宿主接受。
 

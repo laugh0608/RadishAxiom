@@ -65,6 +65,8 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 - [精确 CLI 依赖与许可证补证](records/2026-10-17-cvc5-cli-dependencies.md)：固定上游配方、版本化许可、实际 ELF 线索与系统库缺口；[执行层实施清单](query/solver-execution-implementation-plan.md)划分 E0–E6、纯组件交付和真实执行硬门禁，不授权构建或运行。
 - [共享 SHA-256](../crates/digest/README.md)：runtime / IR 共用的自有摘要实现与独立复核边界。
 
+- [E1–E2 纯诊断组件与模拟规则](query/solver-diagnostic-simulation-v0.1.md)：私有模拟身份 / 计划 / 观察、单次状态机与有界传输；[本机验收](records/2026-10-17-solver-simulation-validation.md)覆盖原容量合成 P4-B、失败与旧字节，E0 / E3 仍阻断真实执行。
+
 ## 机器契约
 
 [契约总入口](../contracts/README.md)说明生成入口、指定态材料与实现证据的区别。
