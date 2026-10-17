@@ -1,27 +1,20 @@
 //! Bounded synthetic cgroup v2 observations; no filesystem access or runtime qualification.
 
-use std::collections::BTreeMap;
-
 pub const CGROUP_MEMORY_MAX: u64 =
     radishaxiom_ir::solver::PROCESS_LIMITS.working_memory_bytes as u64;
 pub const CGROUP_PIDS_MAX: u64 = 2;
 pub const CGROUP_FILE_BYTES: usize = 4096;
-
-#[derive(Clone, Debug, Eq, PartialEq)]
-pub enum CgroupError {
-    Limit,
-    Encoding,
-    Number,
-    Missing(&'static str),
-    Duplicate,
-    UnknownField,
-    Identity,
-    Interval,
-    Configuration,
-    Membership,
-    CounterRollback,
+pub const fn process_cgroup_limits() -> CgroupLimits {
+    CgroupLimits {
+        memory_max: CGROUP_MEMORY_MAX,
+        swap_max: 0,
+        pids_max: CGROUP_PIDS_MAX,
+        file_bytes: CGROUP_FILE_BYTES,
+    }
 }
 
+pub use radishaxiom_solver_supervision_core::cgroup::{CgroupError, CgroupStage, MemoryEvents};
+use radishaxiom_solver_supervision_core::cgroup::{CgroupLimits, ParsedCgroup};
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct CgroupIdentity {
     pub daemon: [u8; 32],
@@ -61,34 +54,6 @@ pub struct SyntheticCgroupFiles<'a> {
     pub cgroup_events: &'a [u8],
 }
 
-#[derive(Clone, Copy, Debug, Eq, PartialEq)]
-pub struct MemoryEvents {
-    pub low: u64,
-    pub high: u64,
-    pub max: u64,
-    pub oom: u64,
-    pub oom_kill: u64,
-    pub oom_group_kill: u64,
-}
-impl MemoryEvents {
-    fn values(self) -> [u64; 6] {
-        [
-            self.low,
-            self.high,
-            self.max,
-            self.oom,
-            self.oom_kill,
-            self.oom_group_kill,
-        ]
-    }
-    fn follows(self, before: Self) -> bool {
-        self.values()
-            .iter()
-            .zip(before.values())
-            .all(|(a, b)| *a >= b)
-    }
-}
-
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct SyntheticCgroupObservation {
     pub(crate) identity: CgroupIdentity,
@@ -100,75 +65,6 @@ pub struct SyntheticCgroupObservation {
     pub(crate) memory_oom_group: bool,
     pub(crate) pids_max_events: u64,
     pub(crate) members: Vec<u32>,
-}
-#[derive(Clone, Copy, Debug, Eq, PartialEq)]
-pub enum CgroupStage {
-    SupervisorOnly,
-    SupervisorAndChild(u32),
-    ReapedSupervisorOnly,
-}
-
-fn text(bytes: &[u8]) -> Result<&str, CgroupError> {
-    if bytes.is_empty() || bytes.len() > CGROUP_FILE_BYTES {
-        return Err(CgroupError::Limit);
-    }
-    if !bytes.is_ascii() || !bytes.ends_with(b"\n") || bytes.contains(&b'\r') {
-        return Err(CgroupError::Encoding);
-    }
-    std::str::from_utf8(bytes).map_err(|_| CgroupError::Encoding)
-}
-fn number(s: &str) -> Result<u64, CgroupError> {
-    if s.is_empty() || !s.bytes().all(|b| b.is_ascii_digit()) {
-        return Err(CgroupError::Number);
-    }
-    // Fixed decimal input, with no signs, whitespace, max sentinel or overflow.
-    s.bytes().try_fold(0_u64, |n, b| {
-        n.checked_mul(10)
-            .and_then(|n| n.checked_add(u64::from(b - b'0')))
-            .ok_or(CgroupError::Number)
-    })
-}
-fn scalar(bytes: &[u8]) -> Result<u64, CgroupError> {
-    number(
-        text(bytes)?
-            .strip_suffix('\n')
-            .ok_or(CgroupError::Encoding)?,
-    )
-}
-fn fields<'a>(
-    bytes: &'a [u8],
-    keys: &[&'static str],
-) -> Result<BTreeMap<&'a str, u64>, CgroupError> {
-    let mut fields = BTreeMap::new();
-    for line in text(bytes)?.lines() {
-        let (key, value) = line.split_once(' ').ok_or(CgroupError::Encoding)?;
-        if !keys.contains(&key) {
-            return Err(CgroupError::UnknownField);
-        }
-        if fields.insert(key, number(value)?).is_some() {
-            return Err(CgroupError::Duplicate);
-        }
-    }
-    for key in keys {
-        if !fields.contains_key(key) {
-            return Err(CgroupError::Missing(key));
-        }
-    }
-    Ok(fields)
-}
-fn parse_memory_events(bytes: &[u8]) -> Result<MemoryEvents, CgroupError> {
-    let f = fields(
-        bytes,
-        &["low", "high", "max", "oom", "oom_kill", "oom_group_kill"],
-    )?;
-    Ok(MemoryEvents {
-        low: f["low"],
-        high: f["high"],
-        max: f["max"],
-        oom: f["oom"],
-        oom_kill: f["oom_kill"],
-        oom_group_kill: f["oom_group_kill"],
-    })
 }
 impl SyntheticCgroupObservation {
     pub fn identity(&self) -> &CgroupIdentity {
@@ -205,61 +101,34 @@ impl SyntheticCgroupObservation {
         stage: CgroupStage,
     ) -> Result<Self, CgroupError> {
         ObservationInterval::new(interval.start_ns, interval.end_ns)?;
-        if scalar(files.memory_max)? != CGROUP_MEMORY_MAX
-            || scalar(files.memory_swap_max)? != 0
-            || scalar(files.pids_max)? != CGROUP_PIDS_MAX
-        {
-            return Err(CgroupError::Configuration);
-        }
-        let memory_current = scalar(files.memory_current)?;
-        let memory_peak = scalar(files.memory_peak)?;
-        if memory_current > memory_peak {
-            return Err(CgroupError::Configuration);
-        }
-        let memory_oom_group = match scalar(files.memory_oom_group)? {
-            0 => false,
-            1 => true,
-            _ => return Err(CgroupError::Configuration),
-        };
-        let events = fields(files.cgroup_events, &["populated", "frozen"])?;
-        if events["populated"] != 1 || events["frozen"] != 0 {
-            return Err(CgroupError::Membership);
-        }
-        let mut members = Vec::with_capacity(2);
-        for line in text(files.cgroup_procs)?.lines() {
-            if members.len() == 2 {
-                return Err(CgroupError::Membership);
-            }
-            let pid = u32::try_from(number(line)?).map_err(|_| CgroupError::Number)?;
-            if pid == 0 || members.contains(&pid) {
-                return Err(CgroupError::Membership);
-            }
-            members.push(pid);
-        }
-        members.sort_unstable();
-        let expected = match stage {
-            CgroupStage::SupervisorOnly | CgroupStage::ReapedSupervisorOnly => vec![1],
-            CgroupStage::SupervisorAndChild(pid) if pid > 1 => vec![1, pid],
-            CgroupStage::SupervisorAndChild(_) => return Err(CgroupError::Membership),
-        };
-        if members != expected || scalar(files.pids_current)? != members.len() as u64 {
-            return Err(CgroupError::Membership);
-        }
-        let memory_events = parse_memory_events(files.memory_events)?;
-        let memory_events_local = parse_memory_events(files.memory_events_local)?;
-        if !memory_events.follows(memory_events_local) {
-            return Err(CgroupError::Configuration);
-        }
+        let parsed = ParsedCgroup::parse(
+            radishaxiom_solver_supervision_core::cgroup::CgroupFiles {
+                memory_max: files.memory_max,
+                memory_swap_max: files.memory_swap_max,
+                memory_events: files.memory_events,
+                memory_events_local: files.memory_events_local,
+                memory_current: files.memory_current,
+                memory_peak: files.memory_peak,
+                memory_oom_group: files.memory_oom_group,
+                pids_max: files.pids_max,
+                pids_current: files.pids_current,
+                pids_events: files.pids_events,
+                cgroup_procs: files.cgroup_procs,
+                cgroup_events: files.cgroup_events,
+            },
+            stage,
+            process_cgroup_limits(),
+        )?;
         Ok(Self {
             identity,
             interval,
-            memory_events,
-            memory_events_local,
-            memory_current,
-            memory_peak,
-            memory_oom_group,
-            pids_max_events: fields(files.pids_events, &["max"])?["max"],
-            members,
+            memory_events: parsed.memory_events,
+            memory_events_local: parsed.memory_events_local,
+            memory_current: parsed.memory_current,
+            memory_peak: parsed.memory_peak,
+            memory_oom_group: parsed.memory_oom_group,
+            pids_max_events: parsed.pids_max_events,
+            members: parsed.members,
         })
     }
     pub fn check_follows(&self, before: &Self) -> Result<(), CgroupError> {

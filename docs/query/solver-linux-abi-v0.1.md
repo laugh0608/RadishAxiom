@@ -4,7 +4,7 @@
 
 ## 范围与来源
 
-只选择 AArch64 原生 64 位小端 ABI；不是当前 Mac 的宿主 ABI。所有寄存器参数都保存原始 `u64`。`SeccompData` 是纯值，不能当作 `repr(C)` 或指针。默认 KILL_PROCESS，仅 execveat 特定分支为 USER_NOTIF。实现位于 `crates/solver-diagnostic-host/src/e3_abi.rs`、`e3_policy.rs`；监督运行过滤器另见[具体策略](solver-supervisor-policy-v0.1.md)。
+只选择 AArch64 原生 64 位小端 ABI；不是当前 Mac 的宿主 ABI。所有寄存器参数都保存原始 `u64`。`SeccompData` 是纯值，不能当作 `repr(C)` 或指针。默认 KILL_PROCESS，仅 execveat 特定分支为 USER_NOTIF。纯实现位于 `crates/solver-supervision-core/src/abi.rs`、`policy.rs`；host 的 `e3_abi` / `e3_policy` 保留旧入口重导出，监督运行过滤器另见[具体策略](solver-supervisor-policy-v0.1.md)。
 
 下列链接固定 Linux **v6.12 tag**，2026-10-17 通过官方上游源码页面逐项只读核对。这里记录必要 ABI 数值事实和字段摘要，没有复制整套头文件、上游函数或生成绑定，也未下载/保存原头文件字节，故没有宣称上游文件 raw digest。数值来源与本仓库生成 bytes 的摘要必须区分。未来 Linux 构建接受仍须绑定实际完整源码、编译器、目标与精确内核配置；网页核对不替代它。
 

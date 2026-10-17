@@ -1,6 +1,6 @@
 # 真实 bootstrap / FFI 实施方案
 
-日期：2026-10-17。状态：[ADR 0030](../adr/0030-solver-bootstrap-ffi-and-build-provenance.md) D1–D3 已 Accepted；当前授权推进 F1 与 D3 构建候选方案。用途：把已接受的 E3 能力边界落实为可审阅的模块、设置顺序、资源所有权、构建输入和验收批次。读者：项目所有者、原生实现者与验收者。本文不是运行资格、工具接受记录、可执行容器配方或对外分发许可。
+日期：2026-10-17。状态：[ADR 0030](../adr/0030-solver-bootstrap-ffi-and-build-provenance.md) D1–D3 已 Accepted；F1 已完成[纯组件本机验收](../records/2026-10-17-solver-f1-validation.md)，D3 构建候选方案已形成。用途：把已接受的 E3 能力边界落实为可审阅的模块、设置顺序、资源所有权、构建输入和验收批次。读者：项目所有者、原生实现者与验收者。本文不是运行资格、工具接受记录、可执行容器配方或对外分发许可。
 
 ## 不变项与本批范围
 
@@ -19,11 +19,23 @@ E3 纯组件已提交为 `c489ec2`。它们是模拟与离线检查，不是可�
 | 私有 `solver-bootstrap-linux` | S 设置 / 监督及 B 固定装载；只编译于精确 Linux AArch64 LE；原生句柄、局部 FFI 与本地观察 | shell、任意 argv / 路径、通用执行回调、线程池或其他架构 fallback |
 | 后续 Mac adapter | 从既有 SolverRequest / E0 接受记录 / E4 资格构造启动描述；按 DM 驱动精确 runtime / container ID，消费真实捕获 | 在纯 core 里 spawn Docker；用正常 response 掩盖清理失败 |
 
-提取是未来明确范围内的依赖整理，不能先拆整个 IR 或 runtime。原 wire 字节、W/S cBPF golden 和旧模拟结果必须逐字保持；真实生命周期另由 Mac 状态与 S 状态驱动，与既有模拟参考作共同事件矩阵比较。共享低层规则，不共享虚构观察来源。新增两个私有 crate 的 path 依赖及 Cargo.lock 改动已随 D1 接受；F1 仅新增纯 core，原生 crate 留至 F2；没有第三方 Rust crate 引入提案。
+F1 提取只整理本节共享规则，未拆整个 IR 或 runtime。原 wire 字节、W/S cBPF golden 和旧模拟结果必须逐字保持；真实生命周期另由 Mac 状态与 S 状态驱动，与既有模拟参考作共同事件矩阵比较。共享低层规则，不共享虚构观察来源。新增两个私有 crate 的 path 依赖及 Cargo.lock 改动已随 D1 接受；F1 仅新增纯 core，原生 crate 留至 F2；没有第三方 Rust crate 引入提案。
 
-当前摘要库只有整片输入接口。若采用流式载荷复制，F1 在既有 `radishaxiom-digest` 内增加增量输入状态，复用同一压缩函数并让旧接口委托它；须核对所有分块与旧摘要字节一致，不另建第二个SHA实现。复制只保留一个受界块，不额外保存完整ELF缓冲；原文件页和memfd仍按内核记账，不宣称只占一份。
+F1 已在既有 `radishaxiom-digest` 内增加增量输入状态，复用同一压缩函数并让旧接口委托它；分块与旧摘要字节一致性须持续核对，不另建第二个 SHA 实现。复制只保留一个受界块，不额外保存完整ELF缓冲；原文件页和memfd仍按内核记账，不宣称只占一份。
 
 原 `PROCESS_LIMITS` 仍是 query / P4 资源源。Linux 侧固定资源及 W/S 策略由受审阅的显式离线导出入口生成输入清单，带规则 / 源码 / 输入摘要；提取后的 pure codec 接收类型化预算，host 从既有常量传入，native 仅接受构建时生成的固定版本。不得从启动描述覆盖数值，不能手抄一套可独立演变的默认值。导出不是 Cargo build.rs 中的下载 / 自动执行；生成输入纳入制品清单并作双向一致性检查。
+
+F1 已将纯实现提取至 [solver-supervision-core](../../crates/solver-supervision-core/README.md)，host 保留旧入口和固定预算包装；增量摘要复用既有 digest。闭合启动描述、strict 请求规划与双端接口详见[启动声明 v0.1](solver-bootstrap-start-v0.1.md)。这些接口只处理声明、字节和时间输入，不取得真实观察或执行能力。
+
+### F1 离线资源 / 策略输入
+
+host 的 `bootstrap_manifest::export_offline_inputs()` 与显式 example `solver_bootstrap_manifest` 生成四份文件：`manifest.json`、`inputs.json`、`worker.cbpf.bin`、`supervisor.cbpf.bin`。输出必须写入新建的 `.tmp/<name>` 目录，不覆盖已有结果；库函数本身没有文件访问。清单格式为 `solver-bootstrap-resource-policy-inputs-v0.1`，资源、协议预算、固定 21 FD 角色和 W/S 实际 bytes 均参与绑定。
+
+`manifest.json` 保存生成入口、22 项实际编译时通过 `include_bytes!` 捕获的源码 / Cargo 输入之路径、长度与 SHA-256、有序来源清单摘要，以及另外三份文件的长度 / 摘要；这是生成相关的局部来源清单，不是完整编译器或原生 binary 来源认证。源码摘要不把本 manifest bytes 自身作为输入，避免循环。`inputs.json` 只导出原 `PROCESS_LIMITS`、原 E3 监督值与 wire 协议常量，输入清单不是运行时资源覆盖入口。
+
+`check_offline_inputs` 对本次编译的资源 / 源码 / 策略作双向一致性核对；[独立 Python 复核](../../scripts/check-solver-bootstrap-inputs.py)另核对固定资源、角色、来源字节及原 W/S golden，并复用独立 E3 有限语义检查。源码改变后旧导出仍代表旧编译捕获，但不能通过当前源码一致性检查；须在新目录重新导出，不能改摘要迁就旧材料。
+
+此清单固定 `scope=offline-pure-inputs-only`、`outer_setup_policy=not-established`、`native_build=not-accepted`。外层设置策略尚未形成，故本清单不是启动描述所要求的完整 `policy_bundle`，不能拿其摘要直接补成已接受策略、镜像或 Linux 制品；CLI / 工具链 / E4 接受仍独立。
 
 ### std / musl 的真实代价
 
@@ -39,7 +51,7 @@ Rust `std` 的初始化发生在自有 `main` 之前。[精确 1.97.1 Unix 初�
 
 现有 wire 先由 S 发 READY，故 request / policy / image 等绑定不能等收到 ARM 才得知。提议增加私有 `solver-bootstrap-start-v0.1` 启动描述，经 Docker create 的固定 S argv 数组提供；不改变 solver W 的十二参数或现有 wire 格式。
 
-拟议入口只有固定 bootstrap 路径、固定参数名和一个有界描述值；最多 4,096 个 UTF-8 bytes，只含版本、attempt、request digest、query 长度 / raw digest、policy bundle digest、预期 image digest、CLI 接受记录 digest 与启动配置 digest。所有 digest 精确形状，长度 checked，未知 / 重复字段或附加参数拒绝。它不接受路径、命令、环境、原 query、资源覆盖或任意 solver argv。候选编码固定为单个无空白 ASCII JSON 对象，下表顺序即键顺序；禁止重复/未知键、转义、额外空白、BOM、尾随数据，uint32 用无前导零的十进制。所有摘要为 `sha256:` 加 64 位小写 hex，attempt 为 64 位小写 hex；解析后必须按同一规则重编码逐字相等。F1 按已接受 D2 的闭合规则实现及反例核对，它仍是私有启动输入，不是公共接受 schema。
+拟议入口只有固定 bootstrap 路径、固定参数名和一个有界描述值；最多 4,096 个 UTF-8 bytes，只含版本、attempt、request digest、query 长度 / raw digest、policy bundle digest、预期 image digest、CLI 接受记录 digest 与启动配置 digest。所有 digest 精确形状，长度 checked，未知 / 重复字段或附加参数拒绝。它不接受路径、命令、环境、原 query、资源覆盖或任意 solver argv。F1 编码固定为单个无空白 ASCII JSON 对象，下表顺序即键顺序；禁止重复/未知键、转义、额外空白、BOM、尾随数据，uint32 用无前导零的十进制。所有摘要为 `sha256:` 加 64 位小写 hex，attempt 为 64 位小写 hex；解析后必须按同一规则重编码逐字相等。F1 已按此闭合规则实现及反例核对，它仍是私有启动输入，不是公共接受 schema。
 
 | 键（顺序固定） | 类型 / 绑定 |
 | --- | --- |
@@ -132,9 +144,11 @@ cgroup 文件与 waitid 不是原子快照，`cgroup.procs` 还不列 zombie。[
 
 | 顺位 | 可交付物 | 完成证据 / 下一门禁 |
 | --- | --- | --- |
-| F1：决定与纯共享边界 | 按已接受D1/D2提取最小core、闭合启动描述、Mac/S分离接口；保留旧字节与重导出 | 新旧golden、原容量流程、损坏描述、截止与来源混用负例；无OS能力 |
+| F1：决定与纯共享边界（已完成纯组件验收） | 最小 core、闭合启动描述、Mac/S 分离接口、增量摘要及离线资源 / 策略输入；保留旧字节与重导出 | [本机验收](../records/2026-10-17-solver-f1-validation.md)覆盖旧 golden、原容量流程、损坏描述、截止与来源混用负例；无 OS 能力 |
 | F2：原生源与静态构建审阅 | 逐wrapper实现、精确setup/FD表、独立B尾段、目标结构布局与构建输入 | 每处unsafe的前置条件/alias/错误证明；精确工具链接受后才另行授权构建；编译不能计运行资格 |
 | F3：E0与制品配置 | 本批补证形成可重跑材料；原CLI缺口不闭合则保持not-accepted；按已接受D3先交受控构建候选方案 | 新payload另登记并验收，不覆盖旧identity；不自动下载/安装工具或构建CLI |
 | F4：资格方案与授权材料 | 固定探针源码/预期/制品/配置/范围/清理；时间/失联/通知/退出竞态/资源/流矩阵 | 镜像构建和E4探针分别授权，随后才可能E5校准和E6单次wrong-add |
 
 F1/F2 的具体实现由 gpt-6.1-sol / high 承担，主代理主持设计与最终验收。项目所有者已要求先提交方案与补证，再推进 F1 及 D3 方案；F2 原生实现不在当前批次，不先写 unsafe 骨架。E0接受与运行资格必须在任何solver路径打开之前闭合，未取得资格时即使源可编译也只能保持不可运行状态。
+
+D3 已形成[同版本 cvc5 可追溯构建候选方案](solver-cvc5-build-candidate-plan.md)，保持原 CLI 未接受状态，列明精确输入缺项、构建选项比较、隔离查找 / 缓存、对象与 link map 留证和 C0–C5 顺序。它不授权下载、安装、编译或执行。

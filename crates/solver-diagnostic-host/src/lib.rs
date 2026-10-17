@@ -1,8 +1,10 @@
 #![forbid(unsafe_code)]
 
-//! ADR 0028 E1–E2 与 ADR 0029 E3 的纯内存模拟组件。所有记录固定 simulation；没有真实执行能力。
-//! E0 的工具接受与 E3 的宿主资格尚未闭合，不能从这些模拟声明构造真实能力。
+//! ADR 0028 E1–E2 与 ADR 0029 E3 对象保持 simulation；ADR 0030 F1 仅提供纯声明与离线输入，均无真实执行能力。
+//! E0 工具接受与宿主资格尚未闭合，不能从模拟对象、声明计划或离线输入构造真实能力。
 
+pub mod bootstrap_manifest;
+pub mod bootstrap_start;
 pub mod controller;
 pub mod e3_abi;
 pub mod e3_cgroup;

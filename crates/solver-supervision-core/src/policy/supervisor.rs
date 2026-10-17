@@ -3,7 +3,7 @@
 #![forbid(unsafe_code)]
 
 use super::{ArgCheck, OfflinePolicy, Rule, compile_rules};
-use crate::e3_abi::*;
+use crate::abi::*;
 
 pub const SUPERVISOR_CGROUP_FDS: usize = 12;
 pub const SUPERVISOR_OWNED_FDS: usize = 21;
@@ -21,6 +21,21 @@ pub struct SupervisorFdRoles {
     pub listener: u64,
     pub cgroup: [u64; SUPERVISOR_CGROUP_FDS],
 }
+/// Fixed ADR 0030 S roles. pidfd/listener are reserved setup targets until
+/// acquired and checked; this value does not assert that any FD is open.
+pub const BOOTSTRAP_SUPERVISOR_ROLES: SupervisorFdRoles = SupervisorFdRoles {
+    control_input: 0,
+    envelope_output: 1,
+    diagnostic_output: 2,
+    child_stdin: 10,
+    child_stdout: 11,
+    child_stderr: 12,
+    timer: 13,
+    pidfd: 14,
+    listener: 15,
+    cgroup: [20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+};
+
 impl SupervisorFdRoles {
     fn owned(&self) -> [u64; SUPERVISOR_OWNED_FDS] {
         let mut fds = [0; SUPERVISOR_OWNED_FDS];

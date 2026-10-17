@@ -2,7 +2,7 @@
 
 日期：2026-10-17。用途：把 [E3 syscall 与 FD 策略](solver-linux-syscall-policy.md)的 S 运行期收紧为固定 FD 映射、纯 cBPF 字节生成和独立寄存器语义判定。读者：bootstrap 实现者与策略审阅者。本文不提供真实过滤器安装、Linux 程序、宿主配置或 solver 兼容性结论。
 
-实现为 `crates/solver-diagnostic-host/src/e3_policy/supervisor.rs`，精准测试为 `crates/solver-diagnostic-host/tests/e3_supervisor_policy.rs`。它复用父模块的有界指令生成器与独立解释器；S 的规则和语义谓词分别编写，均不继承 B/W 的规则表。ABI 符号来自 [Linux ABI v0.1](solver-linux-abi-v0.1.md)固定的 Linux v6.12 AArch64 小端输入，不能替代真实平台尺寸核验。
+实现为 `crates/solver-supervision-core/src/policy/supervisor.rs`，host 的 `e3_policy` 保留重导出；精准测试为 `crates/solver-diagnostic-host/tests/e3_supervisor_policy.rs`。它复用父模块的有界指令生成器与独立解释器；S 的规则和语义谓词分别编写，均不继承 B/W 的规则表。ABI 符号来自 [Linux ABI v0.1](solver-linux-abi-v0.1.md)固定的 Linux v6.12 AArch64 小端输入，不能替代真实平台尺寸核验。
 
 ## 阶段与角色
 

@@ -71,7 +71,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 
 - [E3 具体 ABI](query/solver-linux-abi-v0.1.md)、[内部封套](query/solver-bootstrap-wire-v0.1.md)、[S 运行策略](query/solver-supervisor-policy-v0.1.md)与[监督模拟](query/solver-supervisor-simulation-v0.1.md)：纯组件和原容量合成 P4-B 已完成[离线验收](records/2026-10-17-solver-e3-components-validation.md)；E0 与真实运行资格继续阻断外部执行。
 
-- [真实 bootstrap / FFI 实施方案](query/solver-bootstrap-ffi-implementation-plan.md)：[ADR 0030（Accepted）](adr/0030-solver-bootstrap-ffi-and-build-provenance.md)列出原生宿主、真实绑定 / 观察和新构建候选三项已接受决定；当前推进 F1 纯共享边界 / 启动描述及 D3 构建候选方案；配套[独立审阅](query/solver-bootstrap-ffi-review.md)与 [E0 后续补证](records/2026-10-17-cvc5-provenance-followup.md)，不授权构建或真实执行；[本批验收](records/2026-10-17-solver-bootstrap-plan-review.md)记录实际范围和检查。
+- [真实 bootstrap / FFI 实施方案](query/solver-bootstrap-ffi-implementation-plan.md)：[ADR 0030（Accepted）](adr/0030-solver-bootstrap-ffi-and-build-provenance.md)列出原生宿主、真实绑定 / 观察和新构建候选三项已接受决定；F1 纯共享边界 / [启动描述](query/solver-bootstrap-start-v0.1.md)已完成[本机验收](records/2026-10-17-solver-f1-validation.md)，D3 [构建候选方案](query/solver-cvc5-build-candidate-plan.md)已形成；配套[独立审阅](query/solver-bootstrap-ffi-review.md)与 [E0 后续补证](records/2026-10-17-cvc5-provenance-followup.md)，不授权构建或真实执行；[方案批验收](records/2026-10-17-solver-bootstrap-plan-review.md)记录此前设计与补证的范围和检查。
 
 ## 机器契约
 

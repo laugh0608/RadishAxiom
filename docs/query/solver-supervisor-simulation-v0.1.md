@@ -2,7 +2,7 @@
 
 日期：2026-10-17。用途：说明 ADR 0029 D1–D3 的监督状态机与只读 cgroup 观察的纯实现接口。目标读者：监督器、传输和 P4 适配的实现者及审阅者。不包含真实 syscall、文件读取、容器操作、宿主资格、时钟误差资格或精确 CLI 的安全接受。
 
-规范依据为[Linux 监督设计](solver-linux-supervision-design.md)与[syscall 策略](solver-linux-syscall-policy.md)。实现位于 `crates/solver-diagnostic-host/src/e3_supervisor.rs` 与 `e3_cgroup.rs`；输入均为显式合成观测，输出均为 `SimulationAction`。`scope()` 固定 `simulation`，`real_execution()` 固定 `blocked-E0-and-runtime-qualification`。没有接受调用方布尔值、观测样本或模拟通过来解除门禁的接口。
+规范依据为[Linux 监督设计](solver-linux-supervision-design.md)与[syscall 策略](solver-linux-syscall-policy.md)。实现位于 `crates/solver-diagnostic-host/src/e3_supervisor.rs` 与 `e3_cgroup.rs`；无来源认证含义的 cgroup 字节解析提取至 `crates/solver-supervision-core/src/cgroup.rs`，合成观测构造与生命周期仍留在 host。输入均为显式合成观测，输出均为 `SimulationAction`。`scope()` 固定 `simulation`，`real_execution()` 固定 `blocked-E0-and-runtime-qualification`。没有接受调用方布尔值、观测样本或模拟通过来解除门禁的接口。
 
 ## 时钟与因果握手
 

@@ -40,4 +40,12 @@ version = "0.0.0"
 dependencies = [
  "radishaxiom-digest",
  "radishaxiom-ir",
+ "radishaxiom-solver-supervision-core",
+]
+
+[[package]]
+name = "radishaxiom-solver-supervision-core"
+version = "0.0.0"
+dependencies = [
+ "radishaxiom-digest",
 ]

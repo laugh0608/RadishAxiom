@@ -2,7 +2,7 @@
 
 日期：2026-10-17。用途：闭合 [ADR 0029](../adr/0029-solver-linux-supervision-and-capabilities.md)接受的内部 `bootstrap-control-v0.1` 帧格式与纯组件边界。读者：未来 bootstrap 实现者、模拟组件维护者与静态审阅者。本文不定义公共观察 / Evidence schema，不提供真实传输适配器、可执行程序或运行资格。
 
-实现为 `crates/solver-diagnostic-host/src/e3_wire.rs`，测试为 `tests/e3_wire.rs`。它仅解释字节；解码成功不认证消息来源、挑战随机性、内核事实、时间可信性或容器身份，不产生 Qualified / Accepted 能力。离线调用必须保留独立的 simulation 包装，不能把此模块的普通帧类型转换成真实 capture 身份。[监督设计](solver-linux-supervision-design.md)与[syscall 策略](solver-linux-syscall-policy.md)的 E0 / E4 / E5 门禁继续生效。
+纯实现为 `crates/solver-supervision-core/src/wire.rs`；`crates/solver-diagnostic-host/src/e3_wire.rs` 保留原构造器与资源常量包装，旧测试为 host 的 `tests/e3_wire.rs`。它仅解释字节；解码成功不认证消息来源、挑战随机性、内核事实、时间可信性或容器身份，不产生 Qualified / Accepted 能力。离线调用必须保留独立的 simulation 包装，不能把此模块的普通帧类型转换成真实 capture 身份。[监督设计](solver-linux-supervision-design.md)与[syscall 策略](solver-linux-syscall-policy.md)的 E0 / E4 / E5 门禁继续生效。
 
 ## 承载与方向
 

@@ -7,3 +7,4 @@ publish = false
 [dependencies]
 radishaxiom-ir = { path = "../axiom-ir" }
 radishaxiom-digest = { path = "../digest" }
+radishaxiom-solver-supervision-core = { path = "../solver-supervision-core" }
