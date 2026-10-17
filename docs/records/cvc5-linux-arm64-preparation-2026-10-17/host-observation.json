@@ -1,0 +1,64 @@
+{
+  "format": "radishaxiom-solver-host-readonly-observation",
+  "inventory_notes": [
+    "utmctl list: all nine VMs stopped; no VM started",
+    "orb list: exit 0, empty stdout; no Linux machine selected",
+    "Docker reported zero running containers; image metadata read only; no image selected as solver rootfs"
+  ],
+  "not_tested": [
+    "live-container-cgroup-enforcement",
+    "seccomp-denials",
+    "exact-executable-loading",
+    "empty-exec-environment",
+    "six-second-lifecycle",
+    "process-cleanup",
+    "solver-execution"
+  ],
+  "observation_date": "2026-10-17",
+  "physical_host": {
+    "architecture": "arm64",
+    "os": "macOS",
+    "version": "27.0.1"
+  },
+  "raw_docker_info_digest": "sha256:0662ac0baff78a18e29a569211c47cb68ee89d3a6393eb3339a2c39e9c56bc23",
+  "selected_candidate": {
+    "docker_context": "orbstack",
+    "reported": {
+      "architecture": "aarch64",
+      "cgroup_driver": "cgroupfs",
+      "cgroup_version": "2",
+      "containers_running": 0,
+      "default_runtime": "runc",
+      "kernel": "7.2.9-orbstack-00391-g2b298d05fbd4",
+      "memory_limit": true,
+      "operating_system": "OrbStack",
+      "pids_limit": true,
+      "runc_reported_annotations": {
+        "com.cyphar.pathrs.libpathrs.version": "0.2.5",
+        "io.github.seccomp.libseccomp.version": "2.6.0",
+        "org.opencontainers.runc.checkpoint.enabled": "true",
+        "org.opencontainers.runc.commit": "29dd3dc2b13b4123162e5fe132504bb4b15569f1",
+        "org.opencontainers.runc.version": "1.5.2"
+      },
+      "runc_reported_namespaces": [
+        "cgroup",
+        "ipc",
+        "mount",
+        "network",
+        "pid",
+        "time",
+        "user",
+        "uts"
+      ],
+      "security_options": [
+        "name=seccomp,profile=builtin",
+        "name=cgroupns"
+      ],
+      "server_id": "ad69e9f6-8215-4c61-96df-1178e1368456",
+      "server_version": "29.8.2",
+      "swap_limit": true
+    },
+    "status": "selected-for-design-not-qualified"
+  },
+  "version": "0.1"
+}

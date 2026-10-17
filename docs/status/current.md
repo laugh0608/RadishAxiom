@@ -40,7 +40,7 @@
 | --- | --- | --- |
 | 1：P1 真实语义组件 | [ADR 0016](../adr/0016-core-semantic-slice-entry.md) / [0017](../adr/0017-ir-v0.2-support-boundaries-and-migration.md)范围内已完成本机组件验收；[17 项矩阵](../ir/p1-support-boundary-review.md#必需验证矩阵对照)闭合结构、规范字节、身份与迁移回归 | 保留旧版未支持边界；不外推完整生产阶段、证明或跨平台验收 |
 | 2：P2 真实义务生成 | [ADR 0018](../adr/0018-ir-derived-obligation-profile.md) / [规则](../evidence/ir-derived-obligations-v0.2.md)已接受并完成本机内部组件验收；26 份 IR / 482 项定义与 29 份负例实际核对 | 只交付显式 ir-derived 全集；group 覆盖 / 守恒分开；保留完整 Evidence 门禁 |
-| 3：query 与纵向闭环（下一步） | [ADR 0019](../adr/0019-map-filter-query-encoding.md)–[0022](../adr/0022-map-filter-row-coverage.md) 的 P3-A / B / C / D 已完成本机组件验收；[ADR 0023](../adr/0023-core-empty-effect-derivation.md) 的 P3-E 空效果结构组件也已完成本机验收；[ADR 0024](../adr/0024-core-field-origin-derivation.md) 的 P3-F 字段来源内部分析已实现；[ADR 0025（Accepted）](../adr/0025-p4-request-response-model-decoding.md) 的 P4-A 请求 / 响应 / 模型解码已完成本机组件验收；[ADR 0026（Accepted）](../adr/0026-p4-concrete-target-replay.md) 的 P4-B 有限具体目标重放已完成本机组件验收；AX-B01 紧凑表示已完成[本地研究验收](../records/2026-10-17-query-compaction-validation.md)；[ADR 0027（Accepted）](../adr/0027-compact-query-and-p4-binding.md)的 A–C 已完成[生产组件本机验收](../records/2026-10-17-compact-query-production-validation.md)，下一项审阅真实 solver 校准与单目标尝试的精确工具、宿主和资源前置 | 完整 P3 / P4 未实现；保留 AX-B01 正确、两个 wrong、invalid、timeout 和篡改标准，外部执行独立授权 |
+| 3：query 与纵向闭环（下一步） | [ADR 0019](../adr/0019-map-filter-query-encoding.md)–[0022](../adr/0022-map-filter-row-coverage.md) 的 P3-A / B / C / D 已完成本机组件验收；[ADR 0023](../adr/0023-core-empty-effect-derivation.md) 的 P3-E 空效果结构组件也已完成本机验收；[ADR 0024](../adr/0024-core-field-origin-derivation.md) 的 P3-F 字段来源内部分析已实现；[ADR 0025（Accepted）](../adr/0025-p4-request-response-model-decoding.md) 的 P4-A 请求 / 响应 / 模型解码已完成本机组件验收；[ADR 0026（Accepted）](../adr/0026-p4-concrete-target-replay.md) 的 P4-B 有限具体目标重放已完成本机组件验收；AX-B01 紧凑表示已完成[本地研究验收](../records/2026-10-17-query-compaction-validation.md)；[ADR 0027（Accepted）](../adr/0027-compact-query-and-p4-binding.md)的 A–C 已完成[生产组件本机验收](../records/2026-10-17-compact-query-production-validation.md)，已完成[真实 solver 准备审阅](../records/2026-10-17-solver-preparation.md)，下一项补齐精确 CLI 依赖 / 许可证证据并形成执行层实施清单 | 完整 P3 / P4 未实现；保留 AX-B01 正确、两个 wrong、invalid、timeout 和篡改标准，外部执行独立授权 |
 
 近期验收看真实输入能否产生规范输出与可定位拒绝，区分实现、指定态 fixture、独立复核与证明；不以提交数、测试数或来源包数量替代里程碑。每个切片结束复核下一项是否直接服务上述交付；新增前置必须解释具体依赖和停止条件。
 
@@ -58,7 +58,11 @@ AX-B01 [紧凑表示方案](../query/ax-b01-query-compaction-review.md)完成本
 
 Accepted 文档已提交为 `14a9693`。A–C 已完成 Rust 实现与本机验收：v0.5 / query0.3、新 solver profile / 请求 v0.2、七项 compact 预算与合成 P4-B 接续均已落地。原容量 27 个目标的新查询实际为 265,107–962,850 字节，全部保持 100 槽位与 501 个自由符号，最大余量 85,726 字节；790 条 corpus 记录的 12,553 次有限比较及 324 次原容量观察通过，见[生产验收](../records/2026-10-17-compact-query-production-validation.md)。
 
-旧四版字节、原容量旧请求的尺寸拒绝和 1 MiB 上限保持；新字节可行不代表真实 solver、128 MiB / 6 s 资源可行、证明或完整 P4。未启动 solver、安装依赖、写入远程或运行正式实验。实现和本批验收材料尚未提交；下一步先审阅真实工具校准 / 单目标尝试前置，外部执行仍需精确范围与授权。
+旧四版字节、原容量旧请求的尺寸拒绝和 1 MiB 上限保持；新字节可行不代表真实 solver、128 MiB / 6 s 资源可行、证明或完整 P4。实现与验收材料已提交为 `d055658`，未 push。
+
+随后按项目所有者授权完成[solver 准备审阅](../records/2026-10-17-solver-preparation.md)：现有 OrbStack Linux arm64 Docker 宿主选为诊断候选，未取得运行资格；精确 cvc5 1.3.4 non-GPL static ZIP 已获取，摘要、包内路径和 CLI 静态 ELF 检查通过，完整依赖 / 许可证接受尚有缺口。[ADR 0028](../adr/0028-bounded-solver-calibration-entry.md)与[执行层设计](../query/solver-execution-preparation.md)已按 D1–D3 接受，限定最多八份校准加一次精确 wrong-add guarantee 尝试、显式 cgroup 内存范围和失败关闭路径。当前只完成准备，未安装或启动 solver、构建 / 启动容器或 VM、修改系统配置或远程状态。
+
+项目所有者已接受 ADR 0028 三项决定，授权先提交准备材料，再推进精确 CLI 依赖 / 许可证补证与执行层实施清单；镜像构建、宿主负向探针和真实 solver 分别授权。已有 daemon 的能力报告不能代替 OS 限制、时限 / 清理和实际模型文法验证。
 
 ### P4 接续（2026-10-13）
 
@@ -86,6 +90,7 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 ## 当前停止线与待决策
 
 - ADR 0027 与 query v0.5 / P4-A v0.2 已 Accepted，A–C 已完成本机组件验收。保持原容量、旧 profile 字节及 1 MiB；不启动真实 solver，不 push。紧凑字节与有限比较不代表实际求解、运行资源资格或证明。
+- ADR 0028 D1–D3 与执行层设计范围已 Accepted；具体接口 / 策略及资格尚未实现。cvc5 Linux arm64 ZIP 静态检查通过但未 accepted，OrbStack 宿主仅选为候选；完整依赖 / 许可证、固定加载与能力限制、128 MiB / 6 s 资格尚未闭合。准备授权不扩大为安装、构建镜像、容器探针、solver 执行或系统配置。
 - P1、限定 P2 与 P3-A / B / C / D / E / F 已完成本机组件验收；完整生产阶段尚未验收。P3 进一步扩展须明确目标范围；新 IR / P2 / query 不能配给旧 Evidence 结果，完整 Evidence v0.2 仍须按 ADR 0009 补齐。
 - P4-A 按 ADR 0025 已完成本机组件验收；没有真实 cvc5 校准。纯 parser / 世界候选不认证响应来源，不产生 attempt、反例或 Evidence 五态；旧四版 AX-B01 stdin 尺寸拒绝保持，新 v0.5 已通过字节门槛。
 - P4-B 的 `target-violated` 只表示 WF / 全部 Pre 成立的这一有限输入违反精确目标；`target-not-violated` 不是普遍证明。资源、绑定和格式错误不产生部分成功制品；本仓 strict 重建不等于独立 checker。
@@ -96,6 +101,8 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 - 表面语法、公开 CLI / SDK、安装路径与最低支持矩阵尚未冻结；测试、结构检查、attestation 与独立 proof 分别报告。
 
 ## 验证入口与本次审阅
+
+2026-10-17，真实 solver 准备批次完成只读宿主盘点、精确 ZIP 获取、标准库静态检查与合成负例；原包 / CLI 摘要、观察数据及可重跑入口见[准备记录](../records/2026-10-17-solver-preparation.md)。未运行任何真实 solver 或隔离探针，不外推工具 / 宿主接受。
 
 2026-10-17，ADR 0027 的 A–C 实现通过格式、workspace Clippy 与完整 workspace 294 项测试，另一个默认 ignored 的旧产物导出测试单独执行通过；独立实际 Rust SMT 比较、18 份旧产物逐字节对照及仓库检查见[生产验收](../records/2026-10-17-compact-query-production-validation.md)。未启动 solver、其他平台、CI 或远程执行。
 

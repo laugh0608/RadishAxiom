@@ -1,0 +1,428 @@
+{
+  "archive": {
+    "bytes": 41650395,
+    "filename": "cvc5-Linux-arm64-static.zip",
+    "raw_digest": "sha256:2a4c108367f20b0c8990abd6b9535a5d62e08908d471d4671c00734e408f85bc",
+    "source_url": "https://github.com/cvc5/cvc5/releases/download/cvc5-1.3.4/cvc5-Linux-arm64-static.zip"
+  },
+  "format": "radishaxiom-cvc5-static-inspection",
+  "inspection": {
+    "cli": {
+      "bytes": 27115880,
+      "elf": {
+        "class": "ELF64",
+        "endian": "little",
+        "entry": 4546304,
+        "interpretation": "static-layout-only-not-runtime-compatibility",
+        "machine": "AArch64",
+        "program_headers": [
+          {
+            "alignment": 65536,
+            "file_bytes": 26891258,
+            "flags": 5,
+            "memory_bytes": 26891258,
+            "offset": 0,
+            "type": 1,
+            "virtual_address": 4194304
+          },
+          {
+            "alignment": 65536,
+            "file_bytes": 214664,
+            "flags": 6,
+            "memory_bytes": 280456,
+            "offset": 26893760,
+            "type": 1,
+            "virtual_address": 31153600
+          },
+          {
+            "alignment": 4,
+            "file_bytes": 68,
+            "flags": 4,
+            "memory_bytes": 68,
+            "offset": 400,
+            "type": 4,
+            "virtual_address": 4194704
+          },
+          {
+            "alignment": 8,
+            "file_bytes": 136,
+            "flags": 4,
+            "memory_bytes": 2936,
+            "offset": 26893760,
+            "type": 7,
+            "virtual_address": 31153600
+          },
+          {
+            "alignment": 16,
+            "file_bytes": 0,
+            "flags": 6,
+            "memory_bytes": 0,
+            "offset": 0,
+            "type": 1685382481,
+            "virtual_address": 0
+          },
+          {
+            "alignment": 1,
+            "file_bytes": 160320,
+            "flags": 4,
+            "memory_bytes": 160320,
+            "offset": 26893760,
+            "type": 1685382482,
+            "virtual_address": 31153600
+          }
+        ],
+        "pt_dynamic": false,
+        "pt_interp": false,
+        "type": "ET_EXEC"
+      },
+      "path": "cvc5-Linux-arm64-static/bin/cvc5",
+      "raw_digest": "sha256:26fa94d71ecb3d4f1458eb06b9b9d4762fb3753cfb5cb9dca6f917fbf4dbe6c7",
+      "unverified_build_strings": [
+        "cadical-2.1.3-elevate-f3b21c4"
+      ]
+    },
+    "expanded_bytes": 140369085,
+    "license_member_paths": [
+      "cvc5-Linux-arm64-static/AUTHORS",
+      "cvc5-Linux-arm64-static/COPYING",
+      "cvc5-Linux-arm64-static/licenses/GCC-exception-3.1.txt",
+      "cvc5-Linux-arm64-static/licenses/apache-2.0-with-llvm-exceptions.txt",
+      "cvc5-Linux-arm64-static/licenses/gpl-3.0.txt",
+      "cvc5-Linux-arm64-static/licenses/lgpl-3.0.txt",
+      "cvc5-Linux-arm64-static/licenses/minisat-LICENSE"
+    ],
+    "member_count": 48,
+    "members": [
+      {
+        "bytes": 0,
+        "kind": "directory",
+        "path": "cvc5-Linux-arm64-static/"
+      },
+      {
+        "bytes": 2228,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/AUTHORS",
+        "raw_digest": "sha256:561bdaab091a514306dc2537aaa0b9192bfb7a2eb2e0f7feee5442236dfadcfa"
+      },
+      {
+        "bytes": 6211,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/COPYING",
+        "raw_digest": "sha256:341cd23c1133beda63509cad8d82b96a47dc8e321bdd49ce8190e371110ccff7"
+      },
+      {
+        "bytes": 0,
+        "kind": "directory",
+        "path": "cvc5-Linux-arm64-static/bin/"
+      },
+      {
+        "bytes": 27115880,
+        "kind": "file",
+        "mode": "0o755",
+        "path": "cvc5-Linux-arm64-static/bin/cvc5",
+        "raw_digest": "sha256:26fa94d71ecb3d4f1458eb06b9b9d4762fb3753cfb5cb9dca6f917fbf4dbe6c7"
+      },
+      {
+        "bytes": 0,
+        "kind": "directory",
+        "path": "cvc5-Linux-arm64-static/include/"
+      },
+      {
+        "bytes": 0,
+        "kind": "directory",
+        "path": "cvc5-Linux-arm64-static/include/cvc5/"
+      },
+      {
+        "bytes": 0,
+        "kind": "directory",
+        "path": "cvc5-Linux-arm64-static/include/cvc5/c/"
+      },
+      {
+        "bytes": 190763,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/include/cvc5/c/cvc5.h",
+        "raw_digest": "sha256:ebd356335653c2dc5ec89740808e57aeee344a50ffb42aa5c5a2fae9cff8d3c1"
+      },
+      {
+        "bytes": 11480,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/include/cvc5/c/cvc5_parser.h",
+        "raw_digest": "sha256:9cf78012c61a588056fb122573bd92c3a98a72d67e78b0f9c7426b5a6dbd681b"
+      },
+      {
+        "bytes": 224014,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/include/cvc5/cvc5.h",
+        "raw_digest": "sha256:f5277f3334a029b80e3672aa1da1dcd503b03cc19501b9d4d7a29666080b6e54"
+      },
+      {
+        "bytes": 1001,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/include/cvc5/cvc5_export.h",
+        "raw_digest": "sha256:927fd11ed9daeff8fe9160461d092c6761cba7cf2ca8052a00a10e2c2ef82fe6"
+      },
+      {
+        "bytes": 174533,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/include/cvc5/cvc5_kind.h",
+        "raw_digest": "sha256:452c79bf682eb67535238f14434b4c9562c2644e13ef3eab80463a12b8da48df"
+      },
+      {
+        "bytes": 13324,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/include/cvc5/cvc5_parser.h",
+        "raw_digest": "sha256:d6affc3e3f038cb853aaffd9e6db98260ba4da7537677b7eb6c5e3eeadb0065a"
+      },
+      {
+        "bytes": 167457,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/include/cvc5/cvc5_proof_rule.h",
+        "raw_digest": "sha256:e3de9709e1467f77e432a58890de3b1c45a9b72a7050ba91f844b3cff59c4ef0"
+      },
+      {
+        "bytes": 30340,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/include/cvc5/cvc5_skolem_id.h",
+        "raw_digest": "sha256:15ad944b1991426f739822f2697a14cbfe8d61c5aeee233fd763e1328e7a109c"
+      },
+      {
+        "bytes": 21201,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/include/cvc5/cvc5_types.h",
+        "raw_digest": "sha256:ca9d9bc385003d01569015ab2b1e14b566336db2ec8b806def4e5d817d9d2081"
+      },
+      {
+        "bytes": 0,
+        "kind": "directory",
+        "path": "cvc5-Linux-arm64-static/lib/"
+      },
+      {
+        "bytes": 0,
+        "kind": "directory",
+        "path": "cvc5-Linux-arm64-static/lib/cmake/"
+      },
+      {
+        "bytes": 0,
+        "kind": "directory",
+        "path": "cvc5-Linux-arm64-static/lib/cmake/cvc5/"
+      },
+      {
+        "bytes": 1821,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/lib/cmake/cvc5/cvc5Config.cmake",
+        "raw_digest": "sha256:f7a98f4779e220364cfc6075e5c1fdee5725863f50ca53626120d5a897431d93"
+      },
+      {
+        "bytes": 3249,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/lib/cmake/cvc5/cvc5ConfigVersion.cmake",
+        "raw_digest": "sha256:f6ef53d5188a6d421f31cd4758b3cdbb3506893bf55413790fbd9041567ac42e"
+      },
+      {
+        "bytes": 1482,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/lib/cmake/cvc5/cvc5JavaTargets.cmake",
+        "raw_digest": "sha256:0f88af0c8d8f9feb58d6fbc911de2ef7b6afc029a58416a9bca67adb1645b306"
+      },
+      {
+        "bytes": 1331,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/lib/cmake/cvc5/cvc5Targets-production.cmake",
+        "raw_digest": "sha256:eb282bb4af8502c23a8236e9a295c574bbf8f31b376245538dac3b5eccfd6ba3"
+      },
+      {
+        "bytes": 4403,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/lib/cmake/cvc5/cvc5Targets.cmake",
+        "raw_digest": "sha256:2178b96cb9bb9fbf7a78d8ef3a31b20de9495ee38c30a697b09f47b6fee8ed5a"
+      },
+      {
+        "bytes": 1813794,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/lib/libcadical.a",
+        "raw_digest": "sha256:0c3f55e922aef2a74715bd57d38d99e7b9720c434b961991b83a53a136312236"
+      },
+      {
+        "bytes": 75166686,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/lib/libcvc5.a",
+        "raw_digest": "sha256:8c1cb3fe965b9d802b19f31cbe2314eae1fd035cb9280336d0447e418536293d"
+      },
+      {
+        "bytes": 30064584,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/lib/libcvc5jni.so",
+        "raw_digest": "sha256:d63fa6219b83e26407a6baf6dd4cb68a4809a6eba2d55c32876fcb72cdff0951"
+      },
+      {
+        "bytes": 2056914,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/lib/libcvc5parser.a",
+        "raw_digest": "sha256:2c7fe1bc3c5f50f018ac13cf01b8a4ad540750a234d3f34997cf439cae109d9d"
+      },
+      {
+        "bytes": 1646576,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/lib/libgmp.a",
+        "raw_digest": "sha256:2ef4e31aa7e21129b06b1b0c2221ea144cf2b66d88bd11e7539a6c117b79f58b"
+      },
+      {
+        "bytes": 897,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/lib/libgmp.la",
+        "raw_digest": "sha256:b1db4b662b375bd6b32372a15f9dcdf21dc03dc122272e857074af9f3cfd9037"
+      },
+      {
+        "bytes": 70074,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/lib/libgmpxx.a",
+        "raw_digest": "sha256:b91632c8a336e35809b153edb4107166d673cbfa472ae01aaa9944cc0c6a1195"
+      },
+      {
+        "bytes": 963,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/lib/libgmpxx.la",
+        "raw_digest": "sha256:d5a65a71292d8d37b5493c0275dc254319ed62ff76fb30c204d72e26bcacbfae"
+      },
+      {
+        "bytes": 874206,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/lib/libpicpoly.a",
+        "raw_digest": "sha256:1282252f1e4e720f7d43152ec02be6bd4b4e20035bf34780975508ad7cdb74dc"
+      },
+      {
+        "bytes": 414388,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/lib/libpicpolyxx.a",
+        "raw_digest": "sha256:56e4e7c0fcea5ccb87c85416622dae789759103804533d34e5baab19a78cbe99"
+      },
+      {
+        "bytes": 0,
+        "kind": "directory",
+        "path": "cvc5-Linux-arm64-static/lib/pkgconfig/"
+      },
+      {
+        "bytes": 286,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/lib/pkgconfig/gmp.pc",
+        "raw_digest": "sha256:4f8525f9df07c4636d4d383624db8d4323e246ca20098b451f706dfc33093eaa"
+      },
+      {
+        "bytes": 321,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/lib/pkgconfig/gmpxx.pc",
+        "raw_digest": "sha256:bf931b78061f20d928a1b6335da41b0b1827803617ef469484550b4041eec814"
+      },
+      {
+        "bytes": 0,
+        "kind": "directory",
+        "path": "cvc5-Linux-arm64-static/licenses/"
+      },
+      {
+        "bytes": 3324,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/licenses/GCC-exception-3.1.txt",
+        "raw_digest": "sha256:9d6b43ce4d8de0c878bf16b54d8e7a10d9bd42b75178153e3af6a815bdc90f74"
+      },
+      {
+        "bytes": 16703,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/licenses/apache-2.0-with-llvm-exceptions.txt",
+        "raw_digest": "sha256:539dd7aed86e8a4f12cbdd0e6c50c189c7d74847e4fecc64ce2c6ee3a01da38b"
+      },
+      {
+        "bytes": 35149,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/licenses/gpl-3.0.txt",
+        "raw_digest": "sha256:3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+      },
+      {
+        "bytes": 7652,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/licenses/lgpl-3.0.txt",
+        "raw_digest": "sha256:e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+      },
+      {
+        "bytes": 1142,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/licenses/minisat-LICENSE",
+        "raw_digest": "sha256:c75f5063560674728fcfa7b9b291d26a3a8b9436a0d9940eadc81aab7779d62b"
+      },
+      {
+        "bytes": 0,
+        "kind": "directory",
+        "path": "cvc5-Linux-arm64-static/share/"
+      },
+      {
+        "bytes": 0,
+        "kind": "directory",
+        "path": "cvc5-Linux-arm64-static/share/java/"
+      },
+      {
+        "bytes": 112354,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/share/java/cvc5-1.3.4.jar",
+        "raw_digest": "sha256:5244f2f838f02e8f3bd65b18656c7bb46d2e95e497e27b599579992c36e1cb6c"
+      },
+      {
+        "bytes": 112354,
+        "kind": "file",
+        "mode": "0o644",
+        "path": "cvc5-Linux-arm64-static/share/java/cvc5.jar",
+        "raw_digest": "sha256:5244f2f838f02e8f3bd65b18656c7bb46d2e95e497e27b599579992c36e1cb6c"
+      }
+    ],
+    "metadata_text": {
+      "cvc5-Linux-arm64-static/lib/cmake/cvc5/cvc5ConfigVersion.cmake": "# This is a basic version file for the Config-mode of find_package().\n# It is used by write_basic_package_version_file() as input file for configure_file()\n# to create a version-file which can be installed along a config.cmake file.\n#\n# The created file sets PACKAGE_VERSION_EXACT if the current version string and\n# the requested version string are exactly the same and it sets\n# PACKAGE_VERSION_COMPATIBLE if the current version is equal to the requested version.\n# The tweak version component is ignored.\n# The variable CVF_VERSION must be set before calling configure_file().\n\n\nif (PACKAGE_FIND_VERSION_RANGE)\n  message(AUTHOR_WARNING\n    \"`find_package()` specify a version range but the version strategy \"\n    \"(ExactVersion) of the module `${PACKAGE_FIND_NAME}` is incompatible \"\n    \"with this request. Only the lower endpoint of the range will be used.\")\nendif()\n\nset(PACKAGE_VERSION \"1.3.4\")\n\nif(\"1.3.4\" MATCHES \"^([0-9]+)\\\\.([0-9]+)\\\\.([0-9]+)\") # strip the tweak version\n  set(CVF_VERSION_MAJOR \"${CMAKE_MATCH_1}\")\n  set(CVF_VERSION_MINOR \"${CMAKE_MATCH_2}\")\n  set(CVF_VERSION_PATCH \"${CMAKE_MATCH_3}\")\n\n  if(NOT CVF_VERSION_MAJOR VERSION_EQUAL 0)\n    string(REGEX REPLACE \"^0+\" \"\" CVF_VERSION_MAJOR \"${CVF_VERSION_MAJOR}\")\n  endif()\n  if(NOT CVF_VERSION_MINOR VERSION_EQUAL 0)\n    string(REGEX REPLACE \"^0+\" \"\" CVF_VERSION_MINOR \"${CVF_VERSION_MINOR}\")\n  endif()\n  if(NOT CVF_VERSION_PATCH VERSION_EQUAL 0)\n    string(REGEX REPLACE \"^0+\" \"\" CVF_VERSION_PATCH \"${CVF_VERSION_PATCH}\")\n  endif()\n\n  set(CVF_VERSION_NO_TWEAK \"${CVF_VERSION_MAJOR}.${CVF_VERSION_MINOR}.${CVF_VERSION_PATCH}\")\nelse()\n  set(CVF_VERSION_NO_TWEAK \"1.3.4\")\nendif()\n\nif(PACKAGE_FIND_VERSION MATCHES \"^([0-9]+)\\\\.([0-9]+)\\\\.([0-9]+)\") # strip the tweak version\n  set(REQUESTED_VERSION_MAJOR \"${CMAKE_MATCH_1}\")\n  set(REQUESTED_VERSION_MINOR \"${CMAKE_MATCH_2}\")\n  set(REQUESTED_VERSION_PATCH \"${CMAKE_MATCH_3}\")\n\n  if(NOT REQUESTED_VERSION_MAJOR VERSION_EQUAL 0)\n    string(REGEX REPLACE \"^0+\" \"\" REQUESTED_VERSION_MAJOR \"${REQUESTED_VERSION_MAJOR}\")\n  endif()\n  if(NOT REQUESTED_VERSION_MINOR VERSION_EQUAL 0)\n    string(REGEX REPLACE \"^0+\" \"\" REQUESTED_VERSION_MINOR \"${REQUESTED_VERSION_MINOR}\")\n  endif()\n  if(NOT REQUESTED_VERSION_PATCH VERSION_EQUAL 0)\n    string(REGEX REPLACE \"^0+\" \"\" REQUESTED_VERSION_PATCH \"${REQUESTED_VERSION_PATCH}\")\n  endif()\n\n  set(REQUESTED_VERSION_NO_TWEAK\n      \"${REQUESTED_VERSION_MAJOR}.${REQUESTED_VERSION_MINOR}.${REQUESTED_VERSION_PATCH}\")\nelse()\n  set(REQUESTED_VERSION_NO_TWEAK \"${PACKAGE_FIND_VERSION}\")\nendif()\n\nif(REQUESTED_VERSION_NO_TWEAK STREQUAL CVF_VERSION_NO_TWEAK)\n  set(PACKAGE_VERSION_COMPATIBLE TRUE)\nelse()\n  set(PACKAGE_VERSION_COMPATIBLE FALSE)\nendif()\n\nif(PACKAGE_FIND_VERSION STREQUAL PACKAGE_VERSION)\n  set(PACKAGE_VERSION_EXACT TRUE)\nendif()\n\n\n# if the installed or the using project don't have CMAKE_SIZEOF_VOID_P set, ignore it:\nif(\"${CMAKE_SIZEOF_VOID_P}\" STREQUAL \"\" OR \"8\" STREQUAL \"\")\n  return()\nendif()\n\n# check that the installed version has the same 32/64bit-ness as the one which is currently searching:\nif(NOT CMAKE_SIZEOF_VOID_P STREQUAL \"8\")\n  math(EXPR installedBits \"8 * 8\")\n  set(PACKAGE_VERSION \"${PACKAGE_VERSION} (${installedBits}bit)\")\n  set(PACKAGE_VERSION_UNSUITABLE TRUE)\nendif()\n",
+      "cvc5-Linux-arm64-static/lib/pkgconfig/gmp.pc": "prefix=/home/runner/work/cvc5/cvc5/build-static/deps\nexec_prefix=${prefix}\nincludedir=${prefix}/include\nlibdir=${exec_prefix}/lib\n\nName: GNU MP\nDescription: GNU Multiple Precision Arithmetic Library\nURL: https://gmplib.org\nVersion: 6.3.0\nCflags: -I${includedir}\nLibs: -L${libdir} -lgmp\n",
+      "cvc5-Linux-arm64-static/lib/pkgconfig/gmpxx.pc": "prefix=/home/runner/work/cvc5/cvc5/build-static/deps\nexec_prefix=${prefix}\nincludedir=${prefix}/include\nlibdir=${exec_prefix}/lib\n\nName: GNU MP C++\nDescription: GNU Multiple Precision Arithmetic Library (C++ bindings)\nURL: https://gmplib.org\nVersion: 6.3.0\nRequires: gmp\nCflags: -I${includedir}\nLibs: -L${libdir} -lgmpxx\n"
+    }
+  },
+  "inspector_raw": "sha256:60fa5cc00d4127f816a058c3bddd4ca670b535fd00c7c4d69e330bd0bb24042f",
+  "not_established": [
+    "publisher-signature-verification",
+    "binary-source-reproducibility",
+    "complete-linked-dependency-and-license-acceptance",
+    "installation",
+    "execution",
+    "runtime-isolation",
+    "model-or-proof-support"
+  ],
+  "registry_raw": "sha256:b515e255501b61c7fa997509b5ecd31718d284a82ea176736f58199290a9d09a",
+  "scope": "registered-archive-bytes-layout-and-static-cli-only",
+  "version": "0.1"
+}

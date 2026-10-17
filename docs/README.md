@@ -61,6 +61,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 - [AX-B01 查询尺寸审阅](query/ax-b01-query-size-review.md)：原容量 72 份查询的实际尺寸与有界压缩估算，保留 stdin 阻断与可重跑入口。
 - [AX-B01 紧凑查询表示方案](query/ax-b01-query-compaction-review.md)：同一有类型公式的紧凑表示、模型映射与生产接入门槛；[本地验收](records/2026-10-17-query-compaction-validation.md)保留实际尺寸及有限检查，不接受新生产 profile。
 - [紧凑查询与 P4 接入设计](adr/0027-compact-query-and-p4-binding.md)：ADR 0027（Accepted）明确已接受的版本、预算与实施范围；[query v0.5](query/map-filter-query-v0.5.md)及 [P4-A v0.2](query/p4-request-response-model-v0.2.md)规定固定表示、规则绑定和新旧配对；A–C 已完成[生产组件本机验收](records/2026-10-17-compact-query-production-validation.md)，含实际 Rust 字节、独立有限比较与新候选重放，不包含真实 solver。
+- [真实 solver 窄入口](adr/0028-bounded-solver-calibration-entry.md)：ADR 0028（Accepted）与[执行层设计](query/solver-execution-preparation.md)提出有界校准、单目标尝试、宿主与资源范围；[准备记录](records/2026-10-17-solver-preparation.md)保存现有 Linux arm64 宿主只读观察及精确 cvc5 ZIP 静态检查，工具接受与运行资格尚未闭合。
 - [共享 SHA-256](../crates/digest/README.md)：runtime / IR 共用的自有摘要实现与独立复核边界。
 
 ## 机器契约
