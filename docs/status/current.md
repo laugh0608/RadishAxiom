@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-10-13
+更新日期：2026-10-17
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。历史事实按需进入[截至 2026-09-03 的归档](../records/status-through-2026-09-03.md)。
 
@@ -40,7 +40,7 @@
 | --- | --- | --- |
 | 1：P1 真实语义组件 | [ADR 0016](../adr/0016-core-semantic-slice-entry.md) / [0017](../adr/0017-ir-v0.2-support-boundaries-and-migration.md)范围内已完成本机组件验收；[17 项矩阵](../ir/p1-support-boundary-review.md#必需验证矩阵对照)闭合结构、规范字节、身份与迁移回归 | 保留旧版未支持边界；不外推完整生产阶段、证明或跨平台验收 |
 | 2：P2 真实义务生成 | [ADR 0018](../adr/0018-ir-derived-obligation-profile.md) / [规则](../evidence/ir-derived-obligations-v0.2.md)已接受并完成本机内部组件验收；26 份 IR / 482 项定义与 29 份负例实际核对 | 只交付显式 ir-derived 全集；group 覆盖 / 守恒分开；保留完整 Evidence 门禁 |
-| 3：query 与纵向闭环（下一步） | [ADR 0019](../adr/0019-map-filter-query-encoding.md)–[0022](../adr/0022-map-filter-row-coverage.md) 的 P3-A / B / C / D 已完成本机组件验收；[ADR 0023](../adr/0023-core-empty-effect-derivation.md) 的 P3-E 空效果结构组件也已完成本机验收；[ADR 0024](../adr/0024-core-field-origin-derivation.md) 的 P3-F 字段来源内部分析已实现；[ADR 0025（Accepted）](../adr/0025-p4-request-response-model-decoding.md) 的 P4-A 请求 / 响应 / 模型解码已完成本机组件验收；[ADR 0026（Accepted）](../adr/0026-p4-concrete-target-replay.md) 的 P4-B 有限具体目标重放已完成本机组件验收；下一项审阅 AX-B01 查询表示与真实尝试前置 | 完整 P3 / P4 未实现；保留 AX-B01 正确、两个 wrong、invalid、timeout 和篡改标准，外部执行独立授权 |
+| 3：query 与纵向闭环（下一步） | [ADR 0019](../adr/0019-map-filter-query-encoding.md)–[0022](../adr/0022-map-filter-row-coverage.md) 的 P3-A / B / C / D 已完成本机组件验收；[ADR 0023](../adr/0023-core-empty-effect-derivation.md) 的 P3-E 空效果结构组件也已完成本机验收；[ADR 0024](../adr/0024-core-field-origin-derivation.md) 的 P3-F 字段来源内部分析已实现；[ADR 0025（Accepted）](../adr/0025-p4-request-response-model-decoding.md) 的 P4-A 请求 / 响应 / 模型解码已完成本机组件验收；[ADR 0026（Accepted）](../adr/0026-p4-concrete-target-replay.md) 的 P4-B 有限具体目标重放已完成本机组件验收；AX-B01 紧凑表示已完成[本地研究验收](../records/2026-10-17-query-compaction-validation.md)；下一项审阅显式新 query profile 与 P4-A 接入范围 | 完整 P3 / P4 未实现；保留 AX-B01 正确、两个 wrong、invalid、timeout 和篡改标准，外部执行独立授权 |
 
 近期验收看真实输入能否产生规范输出与可定位拒绝，区分实现、指定态 fixture、独立复核与证明；不以提交数、测试数或来源包数量替代里程碑。每个切片结束复核下一项是否直接服务上述交付；新增前置必须解释具体依赖和停止条件。
 
@@ -50,14 +50,20 @@
 
 v0.4 在既有 26 份 IR / 482 项义务中实际生成 151 查询；其余为 1 资源拒绝、197 UnsupportedKind、107 UnsupportedFeature 与 26 check。AX-B01 每份候选仍只有九项可生成 query。P3-E / F 增加内部结构记录，没有扩大 query 支持或公共 prove support；P3-F 的 758 份记录中 82 份有静态缺口、676 份无缺口，两者均不是证明或具体反例。
 
-### 当前接续（2026-10-13）
+### 当前接续（2026-10-17）
+
+AX-B01 [紧凑表示方案](../query/ax-b01-query-compaction-review.md)完成本地研究验收：保持原容量、旧四版字节与 1 MiB 上限，新研究表示的 72 条记录均为 265,107–962,850 字节。采用有类型公式恒等化简、共享、保序短名称与有界代入，没有改变关系编码或使用 WF 假设。12,553 次既有有限比较与 324 次原容量观察通过，见[测量与验收](../records/2026-10-17-query-compaction-validation.md)。
+
+下一项是接受确定性的显式新 query profile、生产预算与 P4-A 模型 / 绑定接入范围，再在 Rust DAG 内实现。当前生产代码、四版 profile 和原容量请求的尺寸拒绝不变；研究字节可行不代表真实 solver、128 MiB / 6 s 资源可行、证明或完整 P4。未启动 solver、安装依赖、写入远程或运行正式实验。
+
+### P4 接续（2026-10-13）
 
 1. **P4-A 已提交并完成本机组件验收。** 提交为 `b86eb33`；[ADR 0025](../adr/0025-p4-request-response-model-decoding.md) / [规则](../query/p4-request-response-model-v0.1.md)的三个纯入口、完整绑定、模型子集、Text 类、世界候选与预算 / 拒绝通过本机验证，见[本批记录](../records/2026-10-12-p4a-validation.md)。该记录保留提交前事实，实际提交接续以本项为准。纯解析与候选解码不计作目标重放、真实尝试或证明。
 2. **尺寸阻断已测量，保留原 query 与上限。** [尺寸审阅](../query/ax-b01-query-size-review.md)实际核对 72 份原容量查询为 42,577,698–65,831,615 字节；短名字、死定义移除和相同项共享的组合估算仍全部超过 1 MiB。新内部 adapter 保持 planned-not-calibrated，后续查询表示或资源 profile 分别审阅，不缩小容量、原地改字节或自动增限。unknown 可附模型但不解码 world，真实校准仍缺失。
 3. **P4-B 已按接受范围完成本机组件验收。** [ADR 0026（Accepted）](../adr/0026-p4-concrete-target-replay.md) / [规则](../query/p4-concrete-target-replay-v0.1.md)落实为直接原 IR 求值、完整 WF / Pre、五类精确目标、来源绑定与 strict 观察。29,153 次既有有限目标观察及新增手算、深度、预算与篡改检查见[本批记录](../records/2026-10-13-p4b-validation.md)。AX-B01 原容量三个候选在同一有限输入上由 guarantee 区分，wrong-drop-zero 的内建 coverage 仍成立；直接 world 不声明来自 solver。
 4. **保持单目标尝试与完整验证分开。** 真实 solver 校准 / 执行另须精确工具验收、adapter、执行宿主、硬资源限制和当前任务授权。join / group 查询、聚合契约、双世界非干扰、公共结构证明支持、完整 Evidence v0.2、跨仓 checker 与 P7 / P9 继续分别审阅。
 
-下一项优先审阅 AX-B01 的新查询表示及其等价性 / 模型布局验收范围；保留原容量、原四版字节与 1 MiB 上限。真实工具校准、资源变更与完整 Evidence 仍待各自决定，不自动启动 solver、安装依赖、写入远程或进入正式实验。
+上述查询表示审阅已由 2026-10-17 的本地研究接续；研究结果与生产范围接受仍分开。真实工具校准、资源变更与完整 Evidence 仍待各自决定，不自动启动 solver、安装依赖、写入远程或进入正式实验。
 
 ### 暂缓工作与恢复条件
 
@@ -85,6 +91,8 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 - 表面语法、公开 CLI / SDK、安装路径与最低支持矩阵尚未冻结；测试、结构检查、attestation 与独立 proof 分别报告。
 
 ## 验证入口与本次审阅
+
+2026-10-17，紧凑表示研究脚本 22 项测试、72 条原容量记录 / 790 条四版语义记录的独立比较、精确 P4-B 回归、格式与 workspace Clippy 通过，详见[本批验收](../records/2026-10-17-query-compaction-validation.md)。本批没有重跑完整 workspace 测试、真实 solver、其他平台或 CI；研究结果不能升级为新生产 profile 已接受。
 
 2026-10-13，P4-B 新增 12 项 Rust 回归，完整 workspace 277 项测试、格式、Clippy 与仓库检查通过，见[本批验收](../records/2026-10-13-p4b-validation.md)。独立 Python 重建 29,153 次有限观察与完整见证；原容量 AX-B01、5,002 Record 类型、1,500 层故障依赖、13 类预算与篡改分别核对。本批没有真实 solver、其他平台、独立 checker、CI 或远程执行。
 
