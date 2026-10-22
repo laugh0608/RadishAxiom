@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""One authorized C1 raw-byte acquisition; stop at the first error, never resume.
+"""Authorized C1 raw-byte acquisition; stop at first error, no automatic retry.
 
 No archive contents are inspected or executed. The offline preparation entry
 remains separate and unchanged; this consumer freezes its approved plan bytes.
@@ -28,6 +28,12 @@ HEADER_NAMES = frozenset(('content-length', 'content-encoding', 'content-type',
                          'date', 'last-modified', 'etag'))
 REQUEST_HEADERS = {'User-Agent': 'RadishAxiom-C1-byte-acquisition/0.1', 'Accept-Encoding': 'identity'}
 BLOCK = 1024 * 1024
+ORIGINAL_RECORDS = {
+    'acquisition-plan.json': APPROVED_PLAN_SHA256,
+    'fetch-helper.py': 'd7d3c548fe1ec24324c5cb20c0f58421dfaa3343b247b2044c0f73e24188f965',
+    'events.jsonl': 'ad2bd7b496c117f0303947535b4a4245b634c6992f70f199e72e2e4d60509fc4',
+    'result.json': 'eadebcfe3fbaed9d2b06f8159614fcffd1d1d6a4a12fa5abe5213f24eac225c8',
+}
 
 
 def require(ok, reason):
@@ -195,12 +201,17 @@ def fetch_one(row, directory, observation, budget, event, seconds):
         require(observation['sha256'] == row['declared_sha256'], 'payload-sha256-mismatch')
 
 
-def fetch_rows(plan, directory, journal, result):
+def fetch_rows(plan, directory, journal, result, start_index=1, first_url=None):
     policy = plan['transport_policy']
     deadline = time.monotonic() + policy['batch_deadline_seconds']
-    budget = {'received': 0, 'limit': policy['response_body_byte_limit']}
-    for index, row in enumerate(plan['entries'], 1):
+    retained_bytes = sum(row['declared_bytes'] for row in plan['entries'][:start_index - 1])
+    budget = {'received': 0, 'limit': policy['response_body_byte_limit'] - retained_bytes}
+    for index, original_row in enumerate(plan['entries'][start_index - 1:], start_index):
+        row = dict(original_row)
+        if index == start_index and first_url is not None:
+            row['url'] = first_url
         observation = {'index': index, 'requested_url': row['url'], 'relative_path': row['relative_path'],
+                       'planned_url': original_row['url'],
                        'started_utc': now(), 'redirects': [], 'bytes': 0, 'status': 'started'}
         result['observations'].append(observation)
         started = time.monotonic()
@@ -239,7 +250,38 @@ def fetch_rows(plan, directory, journal, result):
     result['download_complete'] = True
 
 
-def fetch():
+def continuation_preflight(plan, directory):
+    """Bind one explicit continuation to the preserved zero-body seventh failure."""
+    PREP.canonical_directory(directory)
+    originals = {}
+    for name, expected in ORIGINAL_RECORDS.items():
+        path = directory / name
+        require(path.is_file() and not path.is_symlink(), 'original-record-not-regular:' + name)
+        originals[name] = identity(path)
+        require(originals[name]['sha256'] == expected, 'original-record-drift:' + name)
+    prior = json.loads((directory / 'result.json').read_bytes())
+    require(prior['matched_files'] == 6 and prior['matched_bytes'] == 239168
+            and prior['failure']['index'] == 7 and len(prior['observations']) == 7,
+            'original-failure-shape')
+    failed, row = prior['observations'][-1], plan['entries'][6]
+    require(failed['requested_url'] == row['url'] and failed['relative_path'] == row['relative_path']
+            and failed['bytes'] == 0 and failed['status'] == 'failed', 'original-failure-binding')
+    rejected = failed['rejected_redirect']
+    require(rejected['status'] == 302 and rejected['from_url'] == row['url'], 'original-redirect-binding')
+    target = urllib.parse.urljoin(row['url'], rejected['location'])
+    allowed_redirect(target)
+    require(urllib.parse.unquote(urllib.parse.urlsplit(target).path.rsplit('/', 1)[1])
+            == Path(row['relative_path']).name, 'continuation-filename-binding')
+    audit = PREP.audit_archives(plan, directory)
+    require(audit['matched_files'] == 6
+            and audit['missing_files'] == [r['relative_path'] for r in plan['entries'][6:]],
+            'continuation-requires-exact-six-retained')
+    return target, {'original_records': originals, 'retained_readback': audit,
+                    'start_index': 7, 'remaining_files': 494, 'remaining_bytes': 691366296,
+                    'first_requested_url': target}
+
+
+def fetch(continue_from_7=False):
     raw = PREP.PLAN.read_bytes()
     require(hashlib.sha256(raw).hexdigest() == APPROVED_PLAN_SHA256, 'approved-plan-sha256-drift')
     plan = PREP.verify_plan()
@@ -248,12 +290,17 @@ def fetch():
     directory = ROOT / plan['retention_directory']
     require(directory == ROOT / '.tmp/cvc5-c1-acquisition-2026-10-22', 'retention-target-drift')
     require(directory.parent.resolve() == directory.parent, 'retention-parent-noncanonical')
-    require(not directory.exists() and not directory.is_symlink(), 'batch-exists-refuse-resume')
+    continuation, first_url = None, None
+    logs = directory
+    if continue_from_7:
+        first_url, continuation = continuation_preflight(plan, directory)
+        logs = directory / 'continuation-1'
+    require(not logs.exists() and not logs.is_symlink(), 'batch-exists-refuse-resume')
     free = shutil.disk_usage(directory.parent).free
     require(free >= plan['transport_policy']['minimum_free_bytes'], 'insufficient-free-space')
-    directory.mkdir(mode=0o700)
+    logs.mkdir(mode=0o700)
     for name, data in (('acquisition-plan.json', raw), ('fetch-helper.py', Path(__file__).read_bytes())):
-        with (directory / name).open('xb') as stream:
+        with (logs / name).open('xb') as stream:
             stream.write(data)
     # The approved plan stays immutable and records its preparation-time state;
     # current authorization is recorded separately, never forged into C0 data.
@@ -261,19 +308,22 @@ def fetch():
               'scope': 'authorized-raw-download-and-byte-check-only',
               'authorization': 'owner-confirmed-500-files-stop-first-error-no-unpack-install-build-or-payload-execution',
               'started_utc': now(), 'initial_free_bytes': free,
-              'plan': identity(directory / 'acquisition-plan.json'),
-              'fetch_method': identity(directory / 'fetch-helper.py'),
+              'plan': identity(logs / 'acquisition-plan.json'),
+              'fetch_method': identity(logs / 'fetch-helper.py'),
               'download_complete': False, 'readback_complete': False,
               'matched_files': 0, 'matched_bytes': 0, 'response_body_bytes': 0,
               'failure': None, 'observations': [], 'signature_verified': False,
               'input_acceptance': 'not-accepted', 'build_ready': False,
               'unpacked': False, 'installed': False, 'built': False, 'payload_executed': False}
     # Physical journal+result budgets total at most the authorized 8 MiB.
-    journal = Journal(directory / 'events.jsonl', 6 * 1024 * 1024)
+    if continuation is not None:
+        result.update(authorization='owner-confirmed-remaining-494-from-7-preserve-six-and-original-failure',
+                      continuation=continuation, matched_files=6, matched_bytes=239168)
+    journal = Journal(logs / 'events.jsonl', 6 * 1024 * 1024)
     old_alarm = signal.signal(signal.SIGALRM, timeout)
     old_term = signal.signal(signal.SIGTERM, interrupted)
     try:
-        fetch_rows(plan, directory, journal, result)
+        fetch_rows(plan, directory, journal, result, 7 if continue_from_7 else 1, first_url)
         if result['download_complete']:
             audit = PREP.audit_archives(plan, directory)
             require(audit['archive_bytes_complete'], 'final-readback-incomplete')
@@ -287,10 +337,10 @@ def fetch():
         signal.signal(signal.SIGTERM, old_term)
         journal.close()
         result['finished_utc'] = now()
-        result['journal'] = identity(directory / 'events.jsonl')
+        result['journal'] = identity(logs / 'events.jsonl')
         data = encoded(result)
         require(len(data) <= 2 * 1024 * 1024, 'result-byte-budget')
-        with (directory / 'result.json').open('xb') as stream:
+        with (logs / 'result.json').open('xb') as stream:
             stream.write(data)
     print(json.dumps({key: result[key] for key in ('download_complete', 'readback_complete',
         'matched_files', 'matched_bytes', 'response_body_bytes', 'failure', 'build_ready')}), flush=True)
@@ -300,6 +350,8 @@ def fetch():
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--confirmed-plan-sha256', required=True)
+    parser.add_argument('--continue-from-7', action='store_true',
+                        help='Explicitly authorized one-time continuation; preserves original records and six inputs')
     args = parser.parse_args()
     require(args.confirmed_plan_sha256 == APPROVED_PLAN_SHA256, 'explicit-approved-plan-hash-required')
-    raise SystemExit(fetch())
+    raise SystemExit(fetch(args.continue_from_7))

@@ -3,6 +3,7 @@
 import hashlib
 import importlib.util
 import io
+import json
 from email.message import Message
 from pathlib import Path
 import tempfile
@@ -136,6 +137,70 @@ class FetchTests(unittest.TestCase):
     def test_error_details_do_not_echo_proxy_credentials(self):
         error = urllib.error.URLError('https://user:secret@example.invalid')
         self.assertNotIn('secret', str(FETCH.error_info(error)))
+
+    def test_continuation_skips_retained_and_stops_at_first_error(self):
+        rows = [dict(self.row, relative_path='inputs/file' + str(i)) for i in range(8)]
+        plan = {'entries': rows, 'transport_policy': {'batch_deadline_seconds': 30,
+                'per_item_deadline_seconds': 10, 'response_body_byte_limit': len(self.raw) * 8}}
+        journal = FETCH.Journal(self.root / 'events.jsonl', 1024 * 1024)
+        self.addCleanup(journal.close)
+        result = {'observations': [], 'matched_files': 6, 'matched_bytes': len(self.raw) * 6,
+                  'download_complete': False}
+        observed = 'https://snapshot.debian.org/file/' + 'a' * 40 + '/file6'
+        with patch.object(FETCH, 'fetch_one', side_effect=ValueError('synthetic-failure')) as fetch:
+            with patch.object(FETCH.signal, 'setitimer'), patch('builtins.print'):
+                FETCH.fetch_rows(plan, self.root, journal, result, 7, observed)
+        self.assertEqual(fetch.call_count, 1)
+        self.assertEqual(fetch.call_args.args[0]['url'], observed)
+        self.assertEqual(fetch.call_args.args[3]['limit'], len(self.raw) * 2)
+        self.assertEqual(result['failure']['index'], 7)
+        self.assertEqual(result['matched_files'], 6)
+        self.assertEqual(rows[6]['url'], self.row['url'])
+        self.assertEqual(result['observations'][0]['planned_url'], self.row['url'])
+
+    def continuation_fixture(self):
+        rows = [dict(self.row, relative_path='inputs/pool/main/s/synthetic/file' + str(i)) for i in range(8)]
+        for row in rows[:6]:
+            path = self.root / row['relative_path']
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(self.raw)
+        failed = {'requested_url': rows[6]['url'], 'relative_path': rows[6]['relative_path'],
+                  'bytes': 0, 'status': 'failed', 'rejected_redirect': {'status': 302,
+                  'from_url': rows[6]['url'], 'location': '/file/' + 'a' * 40 + '/file6'}}
+        prior = {'matched_files': 6, 'matched_bytes': 239168, 'failure': {'index': 7},
+                 'observations': [{}] * 6 + [failed]}
+        (self.root / 'result.json').write_text(json.dumps(prior))
+        expected = {'result.json': hashlib.sha256((self.root / 'result.json').read_bytes()).hexdigest()}
+        return {'entries': rows}, expected, prior
+
+    def test_continuation_preflight_six_only(self):
+        plan, expected, _ = self.continuation_fixture()
+        with patch.object(FETCH, 'ORIGINAL_RECORDS', expected):
+            target, record = FETCH.continuation_preflight(plan, self.root)
+        self.assertTrue(target.endswith('/file6'))
+        self.assertEqual(record['retained_readback']['matched_files'], 6)
+
+    def test_continuation_rejects_original_record_drift(self):
+        plan, expected, _ = self.continuation_fixture()
+        with (self.root / 'result.json').open('a') as stream:
+            stream.write(' ')
+        with patch.object(FETCH, 'ORIGINAL_RECORDS', expected), self.assertRaisesRegex(ValueError, 'original-record-drift'):
+            FETCH.continuation_preflight(plan, self.root)
+
+    def test_continuation_rejects_existing_seventh_file(self):
+        plan, expected, _ = self.continuation_fixture()
+        (self.root / plan['entries'][6]['relative_path']).write_bytes(self.raw)
+        with patch.object(FETCH, 'ORIGINAL_RECORDS', expected), self.assertRaisesRegex(ValueError, 'exact-six-retained'):
+            FETCH.continuation_preflight(plan, self.root)
+
+    def test_continuation_rejects_wrong_redirect_filename(self):
+        plan, _, prior = self.continuation_fixture()
+        prior['observations'][-1]['rejected_redirect']['location'] += '-other'
+        raw = json.dumps(prior).encode()
+        (self.root / 'result.json').write_bytes(raw)
+        with patch.object(FETCH, 'ORIGINAL_RECORDS', {'result.json': hashlib.sha256(raw).hexdigest()}):
+            with self.assertRaisesRegex(ValueError, 'filename-binding'):
+                FETCH.continuation_preflight(plan, self.root)
 
 
 class RedirectTests(unittest.TestCase):
