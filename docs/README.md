@@ -105,6 +105,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 | 2026-10-22 C1 获取 | [六项取得、第七项编码拒绝、首错停止与剩余缺口](records/2026-10-22-cvc5-c1-acquisition.md) |
 | 2026-10-22 C1 接续 | [修正后从第七项获取、累计四十项匹配与第 41 项超时](records/2026-10-22-cvc5-c1-continuation.md) |
 | 2026-10-22 C1 超时分析 | [原材料保护、尾部请求与按大小计时的待确认方案](records/2026-10-22-cvc5-c1-timeout-review.md) |
+| 2026-10-22 C1 Range 准备 | [受限尾部获取、分阶段限时与多目录核对的离线实施](records/2026-10-22-cvc5-c1-range-preparation.md) |
 | Rust Linux 与静态目标输入 | [签名 / 归档盘点、安装候选与 kernel 许可审阅](records/rust-linux-input-review/README.md) |
 | 2026-10-17 日终回顾 | [紧凑查询、监督组件与 C0 全天提交、代码 / 文档复核及接续事项](records/2026-10-17-closeout.md) |
 | 2026-10-08 日终回顾 | [P3-B–F 全天提交、代码与文档核对及明日交接](records/2026-10-08-closeout.md) |
