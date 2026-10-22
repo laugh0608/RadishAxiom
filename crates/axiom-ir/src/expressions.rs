@@ -1,11 +1,53 @@
-//! 逐行表达式的局部类型推导。不求值、不规范化表达式、不证明算术范围或信息流。
+//! 逐行与契约共用的类型规则，以及逐行标签推导 / 规范化。不求值、不证明算术范围或非干扰。
 
 use std::collections::BTreeSet;
 use std::fmt;
 
-use crate::declarations::{self as decode, DeclarationError, DeclarationErrorKind, ValueType};
+use crate::declarations::{
+    self as decode, DeclarationError, DeclarationErrorKind, Label, ValueType,
+};
 use crate::json::{self, JsonLimits, Value};
 use crate::normalization::{NormalizedDeclaration, NormalizedTypeDeclarations};
+use crate::version::IrVersion;
+
+pub(crate) mod labels;
+pub(crate) mod normalization;
+mod record;
+pub(crate) mod tables;
+
+use tables::{ContractScope, InterfaceReference, Interfaces, TypingContext};
+
+/// 保守字段依赖标签；不是非干扰、总性或运行时安全结论。
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct RowLabelAnalysis {
+    value_type: ValueType,
+    label: Label,
+}
+
+impl RowLabelAnalysis {
+    pub fn value_type(&self) -> &ValueType {
+        &self.value_type
+    }
+    pub fn label(&self) -> Label {
+        self.label
+    }
+}
+
+/// 已检查支持范围和类型的逐行表达式；不含独立表达式摘要或证明结论。
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct NormalizedRowExpression {
+    value_type: ValueType,
+    canonical_bytes: Vec<u8>,
+}
+
+impl NormalizedRowExpression {
+    pub fn value_type(&self) -> &ValueType {
+        &self.value_type
+    }
+    pub fn canonical_bytes(&self) -> &[u8] {
+        &self.canonical_bytes
+    }
+}
 
 /// 仅描述逐行环境，不凭调用方给出的类型或标签缓存推导结果。
 #[derive(Clone, Copy, Debug)]
@@ -37,16 +79,19 @@ pub enum TypeErrorKind {
     UnknownEnumMember,
     LiteralOutOfRange,
     ContractOperationInRow,
+    UnknownInterfaceKind,
+    UnknownInterface,
+    OutputInAssumption,
+    IncompleteFields,
+    NonEquatableType,
 }
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum UnsupportedTyping {
-    /// IR 的 record.fields 元素结构和 is_some 机器 tag 尚待精确规范确认。
+    /// v0.1 的 record.fields 元素结构和 is_some 机器 tag 未定义完整。
     UnspecifiedForm,
     /// 记录（含可选记录）的相等规则未纳入本组件的支持范围。
     RecordEquality,
-    /// 不同范围的 Int 比较需确认类型兼容规则，不能自行添加隐式转换。
-    MixedIntComparison,
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -69,10 +114,10 @@ pub enum ExpressionError {
 impl fmt::Display for ExpressionError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            Self::Input(error) => write!(f, "row expression input: {error}"),
-            Self::Type { kind, path } => write!(f, "row expression {kind:?} at {path:?}"),
+            Self::Input(error) => write!(f, "IR expression input: {error}"),
+            Self::Type { kind, path } => write!(f, "IR expression {kind:?} at {path:?}"),
             Self::Unsupported { reason, path } => {
-                write!(f, "row expression unsupported {reason:?} at {path:?}")
+                write!(f, "IR expression unsupported {reason:?} at {path:?}")
             }
             Self::UnknownScopeRecord { slot, id } => {
                 write!(f, "unknown row scope record at slot {slot}: {id}")
@@ -131,6 +176,65 @@ impl<'a> RowTypeChecker<'a> {
         scope: RowScope<'_>,
     ) -> Result<ValueType, ExpressionError> {
         let value = json::parse(input, limits).map_err(DeclarationError::Json)?;
+        self.infer_parsed(&value, "", scope)
+    }
+
+    /// 检查原始全部分支和操作数后，从声明重建保守标签；不接受标签缓存。
+    pub fn analyze_labels(
+        &self,
+        input: &[u8],
+        limits: JsonLimits,
+        scope: RowScope<'_>,
+    ) -> Result<RowLabelAnalysis, ExpressionError> {
+        let value = json::parse(input, limits).map_err(DeclarationError::Json)?;
+        let value_type = self.infer_parsed(&value, "", scope)?;
+        let records = match scope {
+            RowScope::Closed => vec![],
+            RowScope::Single { record_type } => vec![record_type],
+            RowScope::Join {
+                left_record_type,
+                right_record_type,
+            } => {
+                vec![left_record_type, right_record_type]
+            }
+        };
+        let scopes: Vec<_> = records
+            .into_iter()
+            .map(|record_type| labels::RecordScope {
+                record_type,
+                fields: None,
+            })
+            .collect();
+        let label = labels::LabelAnalyzer::new(self.types).analyze_checked(&value, &scopes);
+        Ok(RowLabelAnalysis { value_type, label })
+    }
+
+    /// 先检查原输入全部表达式，再执行 IR 明确允许的结构规范化。
+    /// 不做常量求值、算术重写、类型扩大或短路删除；未支持范围与 infer 相同。
+    pub fn normalize(
+        &self,
+        input: &[u8],
+        limits: JsonLimits,
+        scope: RowScope<'_>,
+    ) -> Result<NormalizedRowExpression, ExpressionError> {
+        let mut value = json::parse(input, limits).map_err(DeclarationError::Json)?;
+        let value_type = self.infer_parsed(&value, "", scope)?;
+        normalization::normalize_checked(&mut value);
+        let mut canonical_bytes = Vec::new();
+        json::encode(&value, &mut canonical_bytes);
+        Ok(NormalizedRowExpression {
+            value_type,
+            canonical_bytes,
+        })
+    }
+
+    /// 节点检查复用有界文档树和原始 JSON Pointer，不重新编码 / 解析表达式。
+    pub(crate) fn infer_parsed(
+        &self,
+        value: &Value,
+        path: &str,
+        scope: RowScope<'_>,
+    ) -> Result<ValueType, ExpressionError> {
         let records = match scope {
             RowScope::Closed => Vec::new(),
             RowScope::Single { record_type } => vec![record_type],
@@ -148,14 +252,40 @@ impl<'a> RowTypeChecker<'a> {
             }
         }
         // 栈顶为索引 0；join 初始语义顺序仍是 [left_row, right_row]。
-        let mut bindings = records
+        let bindings = records
             .into_iter()
             .rev()
             .map(|id| ValueType::Record {
                 record_type: id.to_owned(),
             })
             .collect();
-        self.infer_value(&value, "", &mut bindings)
+        let mut context = TypingContext {
+            bindings,
+            contract: None,
+            references: BTreeSet::new(),
+        };
+        self.infer_value(value, path, &mut context)
+    }
+
+    /// 契约复用同一标量类型规则；接口只从已检查节点图构造，顶层环境为空。
+    pub(crate) fn infer_contract_parsed(
+        &self,
+        value: &Value,
+        path: &str,
+        interfaces: &Interfaces<'_>,
+        allow_outputs: bool,
+    ) -> Result<Vec<InterfaceReference>, ExpressionError> {
+        let mut context = TypingContext {
+            bindings: vec![],
+            contract: Some(ContractScope {
+                interfaces,
+                allow_outputs,
+            }),
+            references: BTreeSet::new(),
+        };
+        let actual = self.infer_value(value, path, &mut context)?;
+        require_same(&actual, &ValueType::Bool, path)?;
+        Ok(context.references.into_iter().collect())
     }
 
     fn annotation(&self, value: &Value, path: &str) -> Result<ValueType, ExpressionError> {
@@ -191,7 +321,7 @@ impl<'a> RowTypeChecker<'a> {
         &self,
         value: &Value,
         path: &str,
-        bindings: &mut Vec<ValueType>,
+        context: &mut TypingContext<'_>,
     ) -> Result<ValueType, ExpressionError> {
         let Value::Object(members) = value else {
             return Err(decode::error(DeclarationErrorKind::ExpectedObject, path).into());
@@ -217,9 +347,18 @@ impl<'a> RowTypeChecker<'a> {
             "if" => &["condition", "else", "op", "result_type", "then"],
             "match_option" => &["none", "op", "result_type", "some", "subject"],
             "forall_rows" | "exists_rows" | "lookup" | "count_where" | "sum_where" => {
-                return Err(type_error(TypeErrorKind::ContractOperationInRow, &op_path));
+                if context.contract.is_none() {
+                    return Err(type_error(TypeErrorKind::ContractOperationInRow, &op_path));
+                }
+                match op {
+                    "forall_rows" | "exists_rows" => &["body", "op", "table"],
+                    "lookup" => &["keys", "op", "table"],
+                    "count_where" => &["op", "predicate", "result_type", "table"],
+                    _ => &["op", "predicate", "result_type", "table", "value"],
+                }
             }
-            "record" | "is_some" => {
+            "record" if self.types.version() == IrVersion::V0_2 => &["fields", "op", "record_type"],
+            "record" | "is_some" if self.types.version() == IrVersion::V0_1 => {
                 return Err(unsupported(UnsupportedTyping::UnspecifiedForm, &op_path));
             }
             _ => return Err(type_error(TypeErrorKind::UnknownOperator, &op_path)),
@@ -230,14 +369,18 @@ impl<'a> RowTypeChecker<'a> {
             "literal_bool" | "literal_text" | "literal_int" | "literal_fixed" | "literal_enum" => {
                 self.infer_literal(op, members, path)
             }
-            "none" | "some" | "bound" | "field" => self.infer_access(op, members, path, bindings),
-            "not" | "and" | "or" => self.infer_boolean(op, members, path, bindings),
-            "eq" | "lt" | "le" | "gt" | "ge" => self.infer_comparison(op, members, path, bindings),
+            "none" | "some" | "bound" | "field" => self.infer_access(op, members, path, context),
+            "record" => self.infer_record(members, path, context),
+            "not" | "and" | "or" => self.infer_boolean(op, members, path, context),
+            "eq" | "lt" | "le" | "gt" | "ge" => self.infer_comparison(op, members, path, context),
             "int_add" | "int_sub" | "fixed_add" | "fixed_sub" => {
-                self.infer_arithmetic(op, members, path, bindings)
+                self.infer_arithmetic(op, members, path, context)
             }
-            "if" => self.infer_conditional(members, path, bindings),
-            "match_option" => self.infer_match_option(members, path, bindings),
+            "if" => self.infer_conditional(members, path, context),
+            "match_option" => self.infer_match_option(members, path, context),
+            "forall_rows" | "exists_rows" | "lookup" | "count_where" | "sum_where" => {
+                self.infer_table(op, members, path, context)
+            }
             _ => unreachable!("operator shape checked"),
         }
     }
@@ -299,7 +442,7 @@ impl<'a> RowTypeChecker<'a> {
         op: &str,
         members: &decode::Members,
         path: &str,
-        bindings: &mut Vec<ValueType>,
+        context: &mut TypingContext<'_>,
     ) -> Result<ValueType, ExpressionError> {
         let get = |key| decode::member(members, key);
         let at = |key| decode::child(path, key);
@@ -312,7 +455,7 @@ impl<'a> RowTypeChecker<'a> {
                 Ok(ty)
             }
             "some" => Ok(ValueType::Option {
-                inner: Box::new(self.infer_value(get("value"), &at("value"), bindings)?),
+                inner: Box::new(self.infer_value(get("value"), &at("value"), context)?),
             }),
             "bound" => {
                 let index = decode::integer(get("index"), &at("index"), true)?;
@@ -321,12 +464,12 @@ impl<'a> RowTypeChecker<'a> {
                     .as_str()
                     .parse::<usize>()
                     .ok()
-                    .filter(|index| *index < bindings.len())
+                    .filter(|index| *index < context.bindings.len())
                     .ok_or_else(|| type_error(TypeErrorKind::BoundOutOfRange, &at("index")))?;
-                Ok(bindings[bindings.len() - 1 - index].clone())
+                Ok(context.bindings[context.bindings.len() - 1 - index].clone())
             }
             "field" => {
-                let record = self.infer_value(get("record"), &at("record"), bindings)?;
+                let record = self.infer_value(get("record"), &at("record"), context)?;
                 let ValueType::Record { record_type } = record else {
                     return Err(type_error(TypeErrorKind::ExpectedRecord, &at("record")));
                 };
@@ -348,14 +491,14 @@ impl<'a> RowTypeChecker<'a> {
         op: &str,
         members: &decode::Members,
         path: &str,
-        bindings: &mut Vec<ValueType>,
+        context: &mut TypingContext<'_>,
     ) -> Result<ValueType, ExpressionError> {
         let get = |key| decode::member(members, key);
         let at = |key| decode::child(path, key);
         match op {
             "not" => {
                 require_same(
-                    &self.infer_value(get("value"), &at("value"), bindings)?,
+                    &self.infer_value(get("value"), &at("value"), context)?,
                     &ValueType::Bool,
                     &at("value"),
                 )?;
@@ -369,7 +512,7 @@ impl<'a> RowTypeChecker<'a> {
                 for (index, value) in values.iter().enumerate() {
                     let path = format!("{}/{}", at("values"), index);
                     require_same(
-                        &self.infer_value(value, &path, bindings)?,
+                        &self.infer_value(value, &path, context)?,
                         &ValueType::Bool,
                         &path,
                     )?;
@@ -385,33 +528,27 @@ impl<'a> RowTypeChecker<'a> {
         op: &str,
         members: &decode::Members,
         path: &str,
-        bindings: &mut Vec<ValueType>,
+        context: &mut TypingContext<'_>,
     ) -> Result<ValueType, ExpressionError> {
         let get = |key| decode::member(members, key);
         let at = |key| decode::child(path, key);
         match op {
             "eq" | "lt" | "le" | "gt" | "ge" => {
-                let left = self.infer_value(get("left"), &at("left"), bindings)?;
-                let right = self.infer_value(get("right"), &at("right"), bindings)?;
+                let left = self.infer_value(get("left"), &at("left"), context)?;
+                let right = self.infer_value(get("right"), &at("right"), context)?;
                 if op == "eq" {
                     require_same(&right, &left, &at("right"))?;
-                    let mut ty = &left;
-                    while let ValueType::Option { inner } = ty {
-                        ty = inner;
-                    }
-                    if matches!(ty, ValueType::Record { .. }) {
+                    if !left.supports_value_equality() {
+                        if self.types.version() == IrVersion::V0_2 {
+                            return Err(type_error(TypeErrorKind::NonEquatableType, path));
+                        }
                         return Err(unsupported(UnsupportedTyping::RecordEquality, path));
                     }
                 } else {
                     match (&left, &right) {
-                        (ValueType::Int { .. }, ValueType::Int { .. }) => {
-                            if left != right {
-                                return Err(unsupported(
-                                    UnsupportedTyping::MixedIntComparison,
-                                    path,
-                                ));
-                            }
-                        }
+                        // 现行语义对有序比较采用数学整数顺序；只有 eq / Int 加减
+                        // 要求完全同型。此处不转换操作数、不合并或扩大声明范围。
+                        (ValueType::Int { .. }, ValueType::Int { .. }) => {}
                         (
                             ValueType::Fixed { scale: left, .. },
                             ValueType::Fixed { scale: right, .. },
@@ -437,7 +574,7 @@ impl<'a> RowTypeChecker<'a> {
         op: &str,
         members: &decode::Members,
         path: &str,
-        bindings: &mut Vec<ValueType>,
+        context: &mut TypingContext<'_>,
     ) -> Result<ValueType, ExpressionError> {
         let get = |key| decode::member(members, key);
         let at = |key| decode::child(path, key);
@@ -451,14 +588,14 @@ impl<'a> RowTypeChecker<'a> {
                     let left_path = format!("{}/0", at("values"));
                     let right_path = format!("{}/1", at("values"));
                     (
-                        self.infer_value(&values[0], &left_path, bindings)?,
-                        self.infer_value(&values[1], &right_path, bindings)?,
+                        self.infer_value(&values[0], &left_path, context)?,
+                        self.infer_value(&values[1], &right_path, context)?,
                         right_path,
                     )
                 } else {
                     (
-                        self.infer_value(get("left"), &at("left"), bindings)?,
-                        self.infer_value(get("right"), &at("right"), bindings)?,
+                        self.infer_value(get("left"), &at("left"), context)?,
+                        self.infer_value(get("right"), &at("right"), context)?,
                         at("right"),
                     )
                 };
@@ -496,19 +633,19 @@ impl<'a> RowTypeChecker<'a> {
         &self,
         members: &decode::Members,
         path: &str,
-        bindings: &mut Vec<ValueType>,
+        context: &mut TypingContext<'_>,
     ) -> Result<ValueType, ExpressionError> {
         let get = |key| decode::member(members, key);
         let at = |key| decode::child(path, key);
         require_same(
-            &self.infer_value(get("condition"), &at("condition"), bindings)?,
+            &self.infer_value(get("condition"), &at("condition"), context)?,
             &ValueType::Bool,
             &at("condition"),
         )?;
         let result = self.annotation(get("result_type"), &at("result_type"))?;
         for key in ["then", "else"] {
             require_same(
-                &self.infer_value(get(key), &at(key), bindings)?,
+                &self.infer_value(get(key), &at(key), context)?,
                 &result,
                 &at(key),
             )?;
@@ -520,23 +657,23 @@ impl<'a> RowTypeChecker<'a> {
         &self,
         members: &decode::Members,
         path: &str,
-        bindings: &mut Vec<ValueType>,
+        context: &mut TypingContext<'_>,
     ) -> Result<ValueType, ExpressionError> {
         let get = |key| decode::member(members, key);
         let at = |key| decode::child(path, key);
-        let subject = self.infer_value(get("subject"), &at("subject"), bindings)?;
+        let subject = self.infer_value(get("subject"), &at("subject"), context)?;
         let ValueType::Option { inner } = subject else {
             return Err(type_error(TypeErrorKind::ExpectedOption, &at("subject")));
         };
         let result = self.annotation(get("result_type"), &at("result_type"))?;
         require_same(
-            &self.infer_value(get("none"), &at("none"), bindings)?,
+            &self.infer_value(get("none"), &at("none"), context)?,
             &result,
             &at("none"),
         )?;
-        bindings.push(*inner);
-        let some = self.infer_value(get("some"), &at("some"), bindings);
-        bindings.pop();
+        context.bindings.push(*inner);
+        let some = self.infer_value(get("some"), &at("some"), context);
+        context.bindings.pop();
         require_same(&some?, &result, &at("some"))?;
         Ok(result)
     }

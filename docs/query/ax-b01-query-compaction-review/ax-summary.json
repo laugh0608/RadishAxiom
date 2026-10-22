@@ -1,0 +1,43 @@
+{
+  "arithmetic_mutations_detected": 0,
+  "assertion_mutations_detected": 31,
+  "compact_max_bytes": 962850,
+  "compact_min_bytes": 265107,
+  "finite_comparisons": 324,
+  "independent_replay_checks": 324,
+  "manifest_raw": "sha256:8eb07088a15864ebf584937ad098fc47a020f46c67ba1f4d93f7dddfff7a6ea5",
+  "mapping_mutation_classes_rejected": 5,
+  "mapping_world_checks": 324,
+  "profile_rows": 72,
+  "research_budgets": {
+    "inline_bytes": 128,
+    "inline_constant_bytes": 16,
+    "inline_depth": 8,
+    "inline_multiuse_bytes": 32,
+    "max_depth": 100000,
+    "max_edges": 5000000,
+    "max_input_bytes": 67108864,
+    "max_integer_digits": 4096,
+    "max_origins_bytes": 16777216,
+    "max_output_bytes": 16777216,
+    "max_syntax_depth": 16,
+    "max_terms": 1000000,
+    "min_free_name_digits": 1
+  },
+  "sources": {
+    "crates/axiom-ir/examples/export_query_compaction_inputs.rs": "sha256:1e4131e16367f768c917c6366e465f3027540b22cb46f748025139f320f03935",
+    "scripts/check-p3-query-semantics.py": "sha256:0786b319bc4a0cdf471263b3fc851f097599a7a0add5099a373f86915a7fe71d",
+    "scripts/check-query-compaction.py": "sha256:ccd3eea2447a90fd4a170a591d48050429836fcf031084d8c6f14dcc01245657",
+    "scripts/p3_cardinality_semantics.py": "sha256:53187c5fd8c87b64cea04bbc4f20313444a52bf61d18291a5bbd78b2f47c0f6d",
+    "scripts/p3_coverage_semantics.py": "sha256:7fce8103248c136e9b67775853165996841e2bfa1f7358797d1c1f70b272056e",
+    "scripts/p3_query_semantics.py": "sha256:48ccc69d6391adaab9926e86dfb761bb9b3fab54b0066fb86a0d70d1569be7cd",
+    "scripts/p3_totality_semantics.py": "sha256:e987470e3297adea04f150c9bb1f2e5e0367d460bc6101aa8a8ed8fba504517a",
+    "scripts/p4b_replay_semantics.py": "sha256:3834fa91943c64805efb8ca2c6cc9675a52da8a698a46cf4ea277a0a7d15761f",
+    "scripts/query_compaction_prototype.py": "sha256:ac6d60994a01e17258543d5daec71df14761cb3ea0f56662d98f826333cdbc6f",
+    "scripts/test-query-compaction-prototype.py": "sha256:0c81096e1f658711ff095140a2534cae1ccf35853ff74ddcd60b6f72a46c286d"
+  },
+  "status": "local-finite-feasibility-not-proof-not-solver-not-production-profile",
+  "stdin_limit_bytes": 1048576,
+  "unique_queries": 27,
+  "within_limit_rows": 72
+}

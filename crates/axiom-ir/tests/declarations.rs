@@ -70,7 +70,8 @@ fn header_is_closed_and_exactly_version_bound() {
     rejects("[]", Kind::ExpectedObject, "");
     for (from, to, path) in [
         ("\"axiom-ir\"", "\"other\"", "/format"),
-        ("\"0.1\"", "\"0.2\"", "/ir_version"),
+        ("\"0.1\"", "\"0.3\"", "/ir_version"),
+        ("\"0.1\"", "\"1.0\"", "/ir_version"),
         ("\"sha-256\"", "\"sha256\"", "/digest_algorithm"),
         (
             "\"keyed-finite-table-semantics\"",

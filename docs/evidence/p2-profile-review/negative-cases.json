@@ -1,0 +1,292 @@
+[
+  {
+    "baseline_case": "ax-b03-correct",
+    "expected_rejection": "missing-required-definition",
+    "id": "sha256:6c331b23e67823cd4619e9c5801b4cc0f27414b79b9496fa955ab9902e92bcd3",
+    "name": "omit-row-coverage",
+    "operation": "remove"
+  },
+  {
+    "baseline_case": "ax-b03-correct",
+    "expected_rejection": "missing-required-definition",
+    "id": "sha256:42b663a02cdfb74210723f6c93a195677b8034b077d6e04cebf6b15dc2499127",
+    "name": "omit-group-conservation",
+    "operation": "remove"
+  },
+  {
+    "baseline_case": "ax-b03-correct",
+    "expected_rejection": "missing-required-definition",
+    "id": "sha256:1843b3402e66f1e29db500edf12747e1b7b69a0902baf0baa3228dacc290d674",
+    "name": "omit-numeric-range",
+    "operation": "remove"
+  },
+  {
+    "baseline_case": "ax-b03-correct",
+    "entry": {
+      "definition": {
+        "expectation": "prove",
+        "kind": "numeric-range",
+        "subject": {
+          "id": "sha256:a32cb2ae5c4f3fd9d601981d1c9ca0575d94b31e89b15a96054a9d810c676cec",
+          "ir_document_digest": "sha256:1ef9446471f85b12c1ac70ff6e4ae6b7a0f26d7830988cdf1b2499a90b5823e3",
+          "kind": "contract-path",
+          "path": [
+            "expression",
+            "body",
+            "some",
+            "values",
+            "0",
+            "right"
+          ]
+        }
+      },
+      "id": "sha256:1843b3402e66f1e29db500edf12747e1b7b69a0902baf0baa3228dacc290d674"
+    },
+    "expected_rejection": "duplicate-position",
+    "name": "duplicate",
+    "operation": "append"
+  },
+  {
+    "baseline_case": "ax-b03-correct",
+    "entry": {
+      "definition": {
+        "expectation": "check",
+        "kind": "numeric-range",
+        "subject": {
+          "id": "sha256:a32cb2ae5c4f3fd9d601981d1c9ca0575d94b31e89b15a96054a9d810c676cec",
+          "ir_document_digest": "sha256:1ef9446471f85b12c1ac70ff6e4ae6b7a0f26d7830988cdf1b2499a90b5823e3",
+          "kind": "contract-path",
+          "path": [
+            "expression",
+            "body",
+            "some",
+            "values",
+            "0",
+            "right"
+          ]
+        }
+      },
+      "id": "sha256:f6f5214bffa84f1787a751931fd6e1140679b8cbe91318c6fd05aac8d9db8dbf"
+    },
+    "expected_rejection": "wrong-expectation",
+    "id": "sha256:1843b3402e66f1e29db500edf12747e1b7b69a0902baf0baa3228dacc290d674",
+    "name": "wrong-expectation",
+    "operation": "replace"
+  },
+  {
+    "baseline_case": "ax-b03-correct",
+    "entry": {
+      "definition": {
+        "expectation": "prove",
+        "kind": "numeric-range",
+        "subject": {
+          "id": "sha256:a32cb2ae5c4f3fd9d601981d1c9ca0575d94b31e89b15a96054a9d810c676cec",
+          "ir_document_digest": "sha256:1ef9446471f85b12c1ac70ff6e4ae6b7a0f26d7830988cdf1b2499a90b5823e3",
+          "kind": "contract-path",
+          "path": [
+            "expression",
+            "body",
+            "some",
+            "values",
+            "0",
+            "right",
+            "01"
+          ]
+        }
+      },
+      "id": "sha256:623177569dae515b08aa4b516ed778f47d15ae9917e53105269b1f7d0b140341"
+    },
+    "expected_rejection": "invalid-canonical-path",
+    "id": "sha256:1843b3402e66f1e29db500edf12747e1b7b69a0902baf0baa3228dacc290d674",
+    "name": "wrong-path",
+    "operation": "replace"
+  },
+  {
+    "baseline_case": "ax-b03-correct",
+    "entry": {
+      "definition": {
+        "expectation": "prove",
+        "kind": "numeric-range",
+        "subject": {
+          "id": "sha256:a32cb2ae5c4f3fd9d601981d1c9ca0575d94b31e89b15a96054a9d810c676cec",
+          "ir_document_digest": "sha256:90d876b9fdd533944e09f4274ba4aaa313d179454427e60eca81575707054f0b",
+          "kind": "contract-path",
+          "path": [
+            "expression",
+            "body",
+            "some",
+            "values",
+            "0",
+            "right"
+          ]
+        }
+      },
+      "id": "sha256:419b412e31b8d97587a76654429f2aa50d09f0acd41a763d2eed65b66b6cbb88"
+    },
+    "expected_rejection": "wrong-ir-context",
+    "id": "sha256:1843b3402e66f1e29db500edf12747e1b7b69a0902baf0baa3228dacc290d674",
+    "name": "other-ir-context",
+    "operation": "replace"
+  },
+  {
+    "baseline_case": "ax-b03-correct",
+    "entry": {
+      "definition": {
+        "expectation": "prove",
+        "kind": "numeric-range",
+        "subject": {
+          "id": "sha256:a32cb2ae5c4f3fd9d601981d1c9ca0575d94b31e89b15a96054a9d810c676cec",
+          "kind": "contract-path",
+          "path": [
+            "expression",
+            "body",
+            "some",
+            "values",
+            "0",
+            "right"
+          ]
+        }
+      },
+      "id": "sha256:f1a3cb70780b5be6896d9198042f48c7af98a6b716b30643ccf8d54023e271b7"
+    },
+    "expected_rejection": "missing-ir-context",
+    "id": "sha256:1843b3402e66f1e29db500edf12747e1b7b69a0902baf0baa3228dacc290d674",
+    "name": "old-anchor-shape",
+    "operation": "replace"
+  },
+  {
+    "baseline_case": "ax-b03-correct",
+    "entry": {
+      "definition": {
+        "expectation": "prove",
+        "kind": "totality",
+        "subject": {
+          "id": "sha256:cf787f896596ab507ce57db69f8b20d2729f97d7152af2b1c6c3f8aa450ff114",
+          "ir_document_digest": "sha256:1ef9446471f85b12c1ac70ff6e4ae6b7a0f26d7830988cdf1b2499a90b5823e3",
+          "kind": "node"
+        }
+      },
+      "id": "sha256:4276220559495dfd6ce01eca38f2662f70b8b928d513b4a9645b5d4019932386"
+    },
+    "expected_rejection": "extra-definition",
+    "name": "extra-input-totality",
+    "operation": "append"
+  },
+  {
+    "baseline_case": "ax-b03-correct",
+    "entry": {
+      "definition": {
+        "expectation": "prove",
+        "kind": "numeric-range",
+        "subject": {
+          "id": "sha256:a32cb2ae5c4f3fd9d601981d1c9ca0575d94b31e89b15a96054a9d810c676cec",
+          "ir_document_digest": "sha256:1ef9446471f85b12c1ac70ff6e4ae6b7a0f26d7830988cdf1b2499a90b5823e3",
+          "kind": "contract-path",
+          "path": [
+            "expression",
+            "body",
+            "some",
+            "values",
+            "0",
+            "right"
+          ]
+        }
+      },
+      "id": "sha256:8af740b580acf359f7de5f327e2fbf53bf5e80761d63b40a63f02a4f922af658"
+    },
+    "expected_rejection": "identity-mismatch",
+    "id": "sha256:1843b3402e66f1e29db500edf12747e1b7b69a0902baf0baa3228dacc290d674",
+    "name": "old-domain",
+    "operation": "replace"
+  },
+  {
+    "baseline_case": "ax-b03-correct",
+    "entry": {
+      "definition": {
+        "expectation": "prove",
+        "kind": "numeric-range",
+        "subject": {
+          "id": "sha256:a32cb2ae5c4f3fd9d601981d1c9ca0575d94b31e89b15a96054a9d810c676cec",
+          "ir_document_digest": "sha256:1ef9446471f85b12c1ac70ff6e4ae6b7a0f26d7830988cdf1b2499a90b5823e3",
+          "kind": "contract-path",
+          "path": [
+            "expression",
+            "body",
+            "some",
+            "values",
+            "0",
+            "right"
+          ]
+        }
+      },
+      "id": "sha256:24461c7f56fea4ec80cd9df22a8d812bb0c2972063735146b35c55be88f0d1a7"
+    },
+    "expected_rejection": "identity-mismatch",
+    "id": "sha256:1843b3402e66f1e29db500edf12747e1b7b69a0902baf0baa3228dacc290d674",
+    "name": "missing-nul",
+    "operation": "replace"
+  },
+  {
+    "baseline_case": "ax-b03-correct",
+    "entry": {
+      "definition": {
+        "expectation": "prove",
+        "kind": "numeric-range",
+        "subject": {
+          "id": "sha256:a32cb2ae5c4f3fd9d601981d1c9ca0575d94b31e89b15a96054a9d810c676cec",
+          "ir_document_digest": "sha256:1ef9446471f85b12c1ac70ff6e4ae6b7a0f26d7830988cdf1b2499a90b5823e3",
+          "kind": "contract-path",
+          "path": [
+            "expression",
+            "body",
+            "some",
+            "values",
+            "0",
+            "right"
+          ]
+        }
+      },
+      "id": "sha256:2f279a2fa048940c3175b64e4545c538219655eb9f67c59e7cbdddb056cb2701"
+    },
+    "expected_rejection": "identity-mismatch",
+    "id": "sha256:1843b3402e66f1e29db500edf12747e1b7b69a0902baf0baa3228dacc290d674",
+    "name": "wrapper-hash",
+    "operation": "replace"
+  },
+  {
+    "baseline_case": "ax-b03-correct",
+    "entry": {
+      "definition": {
+        "expectation": "prove",
+        "kind": "numeric-range",
+        "subject": {
+          "id": "sha256:a32cb2ae5c4f3fd9d601981d1c9ca0575d94b31e89b15a96054a9d810c676cec",
+          "ir_document_digest": "sha256:1ef9446471f85b12c1ac70ff6e4ae6b7a0f26d7830988cdf1b2499a90b5823e3",
+          "kind": "contract-path",
+          "path": [
+            "expression",
+            "body",
+            "some",
+            "values",
+            "0",
+            "right"
+          ]
+        }
+      },
+      "id": "sha256:1843b3402e66f1e29db500edf12747e1b7b69a0902baf0baa3228dacc290d674",
+      "result": {
+        "kind": "proved"
+      }
+    },
+    "expected_rejection": "result-forbidden",
+    "id": "sha256:1843b3402e66f1e29db500edf12747e1b7b69a0902baf0baa3228dacc290d674",
+    "name": "result-in-p2",
+    "operation": "replace"
+  },
+  {
+    "baseline_case": "ax-b03-correct",
+    "expected_rejection": "noncanonical-order",
+    "name": "reverse-order",
+    "operation": "reverse"
+  }
+]

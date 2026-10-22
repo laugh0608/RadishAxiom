@@ -18,6 +18,22 @@ MAX_PATH_LENGTH = 180
 MAX_FILE_BYTES = 10 * 1024 * 1024
 
 REQUIRED_FILES = (
+    "docs/adr/0026-p4-concrete-target-replay.md",
+    "docs/query/p4-concrete-target-replay-v0.1.md",
+    "crates/axiom-ir/src/replay.rs",
+    "scripts/generate-p4b-replay-vectors.py",
+    "scripts/generate-p4b-hand-vectors.py",
+    "scripts/p4b_replay_semantics.py",
+    "scripts/check-p4b-replay.py",
+    "docs/adr/0025-p4-request-response-model-decoding.md",
+    "docs/query/p4-request-response-model-v0.1.md",
+    "contracts/solver-model-v0.1/README.md",
+    "contracts/solver-model-v0.1/inputs/composite.jcs",
+    "contracts/solver-model-v0.1/inputs/deep-type.jcs",
+    "contracts/solver-model-v0.1/hand-cases.json",
+    "scripts/generate-p4a-model-vectors.py",
+    "scripts/check-p4a-model-world.py",
+    "crates/axiom-ir/src/solver.rs",
     ".editorconfig",
     ".gitattributes",
     ".gitignore",
@@ -54,6 +70,97 @@ REQUIRED_FILES = (
     "crates/digest/Cargo.toml",
     "crates/digest/src/lib.rs",
     "scripts/generate-ir-type-vectors.py",
+    "scripts/generate-ir-node-vectors.py",
+    "scripts/generate-ir-contract-vectors.py",
+    "scripts/generate-ir-document-vectors.py",
+    "scripts/generate-ir-v02-vectors.py",
+    "docs/adr/0017-ir-v0.2-support-boundaries-and-migration.md",
+    "docs/ir/axiom-ir-v0.2.md",
+    "docs/ir/ir-v0.1-to-v0.2-migration.md",
+    "docs/semantics/keyed-finite-table-semantics-v0.2.md",
+    "crates/axiom-ir/tests/fixtures/v0.2/README.md",
+    "scripts/generate-p2-profile-review.py",
+    "scripts/generate-p3-query-review.py",
+    "docs/query/p3-query-encoding-review.md",
+    "docs/query/p3-query-review/README.md",
+    "docs/query/p3-query-review/materials.json",
+    "docs/adr/0019-map-filter-query-encoding.md",
+    "docs/query/map-filter-query-v0.1.md",
+    "contracts/map-filter-query-v0.1/README.md",
+    "contracts/map-filter-query-v0.1/cases.json",
+    "scripts/generate-p3-query-vectors.py",
+    "scripts/p3_query_semantics.py",
+    "scripts/check-p3-query-semantics.py",
+    "crates/axiom-ir/src/query.rs",
+    "crates/axiom-ir/tests/query.rs",
+    "docs/adr/0020-map-filter-node-totality.md",
+    "docs/query/map-filter-query-v0.2.md",
+    "docs/query/p3-node-totality-review.md",
+    "contracts/map-filter-query-v0.2/README.md",
+    "contracts/map-filter-query-v0.2/cases.json",
+    "contracts/map-filter-query-v0.2/v0.1-baseline.tsv",
+    "scripts/generate-p3-totality-vectors.py",
+    "scripts/p3_totality_semantics.py",
+    "scripts/check-p3-totality-semantics.py",
+    "crates/axiom-ir/src/query/tests/totality.rs",
+    "docs/adr/0021-map-filter-key-cardinality.md",
+    "docs/query/map-filter-query-v0.3.md",
+    "docs/query/p3-key-cardinality-review.md",
+    "contracts/map-filter-query-v0.3/README.md",
+    "contracts/map-filter-query-v0.3/cases.json",
+    "contracts/map-filter-query-v0.3/v0.2-baseline.tsv",
+    "scripts/generate-p3-cardinality-vectors.py",
+    "scripts/p3_cardinality_semantics.py",
+    "scripts/check-p3-cardinality-semantics.py",
+    "crates/axiom-ir/src/query/tests/cardinality.rs",
+    "crates/axiom-ir/src/query/coverage.rs",
+    "crates/axiom-ir/src/query/tests/row_coverage.rs",
+    "docs/adr/0022-map-filter-row-coverage.md",
+    "docs/query/map-filter-query-v0.4.md",
+    "docs/query/p3-row-coverage-review.md",
+    "contracts/map-filter-query-v0.4/README.md",
+    "contracts/map-filter-query-v0.4/cases.json",
+    "contracts/map-filter-query-v0.4/v0.3-baseline.tsv",
+    "scripts/generate-p3-coverage-vectors.py",
+    "scripts/p3_coverage_semantics.py",
+    "scripts/check-p3-coverage-semantics.py",
+    "crates/axiom-ir/src/origins.rs",
+    "crates/axiom-ir/src/origins/build.rs",
+    "crates/axiom-ir/src/origins/encoding.rs",
+    "crates/axiom-ir/src/origins/expressions.rs",
+    "crates/axiom-ir/src/origins/nodes.rs",
+    "crates/axiom-ir/src/origins/tests.rs",
+    "docs/adr/0024-core-field-origin-derivation.md",
+    "docs/query/core-field-origin-v0.1.md",
+    "docs/query/field-origin-and-p4-interface-review.md",
+    "contracts/core-field-origin-v0.1/README.md",
+    "contracts/core-field-origin-v0.1/cases.tsv",
+    "contracts/core-field-origin-v0.1/hand-checks.json",
+    "contracts/core-field-origin-v0.1/sources.json",
+    "scripts/p3_origin_derivation.py",
+    "scripts/p3_origin_cases.py",
+    "scripts/generate-p3-origin-vectors.py",
+    "scripts/check-p3-origin-derivations.py",
+    "crates/axiom-ir/src/effects.rs",
+    "crates/axiom-ir/src/effects/rules.rs",
+    "crates/axiom-ir/src/effects/encoding.rs",
+    "crates/axiom-ir/src/effects/tests.rs",
+    "docs/adr/0023-core-empty-effect-derivation.md",
+    "docs/query/core-empty-effects-v0.1.md",
+    "docs/query/p3-structural-obligations-and-p4-review.md",
+    "contracts/core-empty-effects-v0.1/README.md",
+    "contracts/core-empty-effects-v0.1/cases.tsv",
+    "contracts/core-empty-effects-v0.1/sources.json",
+    "scripts/p3_effect_derivation.py",
+    "scripts/generate-p3-effect-vectors.py",
+    "scripts/check-p3-effect-derivations.py",
+    "docs/evidence/p2-obligation-profile-review.md",
+    "docs/evidence/p2-profile-review/README.md",
+    "docs/adr/0018-ir-derived-obligation-profile.md",
+    "docs/evidence/ir-derived-obligations-v0.2.md",
+    "contracts/ir-derived-obligations-v0.2/README.md",
+    "crates/axiom-ir/src/obligations.rs",
+    "crates/axiom-ir/tests/obligations.rs",
     "crates/checker-runtime/src/store.rs",
     "crates/checker-runtime/src/store/evidence.rs",
     "benchmarks/keyed-finite-table-v0.1/README.md",
@@ -214,7 +321,7 @@ TEXT_NAMES = {
 }
 
 CONVENTIONAL_COMMIT = re.compile(
-    r"^(feat|fix|docs|refactor|test|chore|ci|build|perf|revert)"
+    r"^(feat|fix|docs|research|refactor|test|chore|ci|build|perf|revert)"
     r"(\([a-z0-9._/-]+\))?!?: .+"
 )
 ALLOWED_MERGE_COMMIT = re.compile(
@@ -492,9 +599,23 @@ def check_benchmark_corpus(errors: list[str]) -> None:
         errors.append(f"benchmark corpus check failed: {detail}")
 
 
-def check_ir_type_vectors(errors: list[str]) -> None:
+def check_ir_vectors(errors: list[str]) -> None:
+    for kind in ["type", "node", "contract", "document", "v02"]:
+        result = subprocess.run(
+            [sys.executable, str(REPO_ROOT / f"scripts/generate-ir-{kind}-vectors.py"), "--check"],
+            cwd=REPO_ROOT,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        if result.returncode != 0:
+            detail = (result.stdout + result.stderr).strip()
+            errors.append(f"IR {kind} identity vectors check failed: {detail}")
+
+
+def check_p2_profile_review(errors: list[str]) -> None:
     result = subprocess.run(
-        [sys.executable, str(REPO_ROOT / "scripts/generate-ir-type-vectors.py"), "--check"],
+        [sys.executable, str(REPO_ROOT / "scripts/generate-p2-profile-review.py"), "--check"],
         cwd=REPO_ROOT,
         check=False,
         capture_output=True,
@@ -502,7 +623,21 @@ def check_ir_type_vectors(errors: list[str]) -> None:
     )
     if result.returncode != 0:
         detail = (result.stdout + result.stderr).strip()
-        errors.append(f"IR type identity vectors check failed: {detail}")
+        errors.append(f"P2 independent materials check failed: {detail}")
+
+
+def check_p3_query_materials(errors: list[str]) -> None:
+    for script in ["generate-p3-query-review.py", "generate-p3-query-vectors.py", "generate-p3-totality-vectors.py", "generate-p3-cardinality-vectors.py", "generate-p3-coverage-vectors.py", "generate-p3-effect-vectors.py", "generate-p3-origin-vectors.py", "generate-p4a-model-vectors.py"]:
+        result = subprocess.run(
+            [sys.executable, str(REPO_ROOT / "scripts" / script), "--check"],
+            cwd=REPO_ROOT,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        if result.returncode != 0:
+            detail = (result.stdout + result.stderr).strip()
+            errors.append(f"P3 materials check failed ({script}): {detail}")
 
 
 def check_independent_check_contracts(errors: list[str]) -> None:
@@ -820,7 +955,9 @@ def main() -> int:
     check_ruleset_contract(errors)
     check_workflow_contract(errors)
     check_benchmark_corpus(errors)
-    check_ir_type_vectors(errors)
+    check_ir_vectors(errors)
+    check_p2_profile_review(errors)
+    check_p3_query_materials(errors)
     check_independent_check_contracts(errors)
     check_toolchain_adapter_identities(errors)
     check_toolchain_payload_acceptance(errors)

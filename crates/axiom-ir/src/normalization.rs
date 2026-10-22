@@ -1,10 +1,11 @@
 //! 类型声明的规范数组与内容身份。成功只覆盖声明，不覆盖节点、契约、输出或整个 IR。
 
 use crate::declarations::{
-    DeclarationError, EnumType, Label, RecordType, TableType, UnverifiedDeclaration, ValueType,
-    decode_type_declarations,
+    DeclarationError, EnumType, Label, RecordType, TableType, UnverifiedDeclaration,
+    UnverifiedTypeDeclarations, ValueType, decode_type_declarations,
 };
 use crate::json::{self, JsonLimits, Value};
+use crate::version::{ContentKind, IrVersion};
 
 /// 私有字段保证规范 definition、内容 ID 和类型化数据无法被独立修改。
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -29,12 +30,16 @@ impl<T> NormalizedDeclaration<T> {
 /// 三类声明各自按 ID 排序。此类型不代表完整 IR，也不能作为 target gate 的凭证。
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct NormalizedTypeDeclarations {
+    version: IrVersion,
     enum_types: Vec<NormalizedDeclaration<EnumType>>,
     record_types: Vec<NormalizedDeclaration<RecordType>>,
     table_types: Vec<NormalizedDeclaration<TableType>>,
 }
 
 impl NormalizedTypeDeclarations {
+    pub fn version(&self) -> IrVersion {
+        self.version
+    }
     pub fn enum_types(&self) -> &[NormalizedDeclaration<EnumType>] {
         &self.enum_types
     }
@@ -54,23 +59,30 @@ pub fn normalize_type_declarations(
     limits: JsonLimits,
 ) -> Result<NormalizedTypeDeclarations, DeclarationError> {
     let decoded = decode_type_declarations(input, limits)?;
+    normalize_decoded_declarations(decoded)
+}
+
+pub(crate) fn normalize_decoded_declarations(
+    decoded: UnverifiedTypeDeclarations,
+) -> Result<NormalizedTypeDeclarations, DeclarationError> {
     Ok(NormalizedTypeDeclarations {
+        version: decoded.version,
         enum_types: normalize(
             decoded.enum_types,
             "enum_types",
-            "axiom-ir-v0.1:enum-type",
+            &decoded.version.domain(ContentKind::EnumType),
             enum_definition,
         )?,
         record_types: normalize(
             decoded.record_types,
             "record_types",
-            "axiom-ir-v0.1:record-type",
+            &decoded.version.domain(ContentKind::RecordType),
             record_definition,
         )?,
         table_types: normalize(
             decoded.table_types,
             "table_types",
-            "axiom-ir-v0.1:table-type",
+            &decoded.version.domain(ContentKind::TableType),
             table_definition,
         )?,
     })
@@ -88,11 +100,7 @@ fn normalize<T>(
         let value = definition_value(&mut definition);
         let mut canonical_definition = Vec::new();
         json::encode(&value, &mut canonical_definition);
-        let mut hash_input = Vec::with_capacity(domain.len() + 1 + canonical_definition.len());
-        hash_input.extend_from_slice(domain.as_bytes());
-        hash_input.push(0);
-        hash_input.extend_from_slice(&canonical_definition);
-        let computed = format!("sha256:{}", radishaxiom_digest::digest_hex(&hash_input));
+        let computed = content_id(domain, &canonical_definition);
         if entry.supplied_id != computed {
             return Err(DeclarationError::ContentIdMismatch {
                 path: format!("/{collection}/{index}/id"),
@@ -109,6 +117,14 @@ fn normalize<T>(
     // 解码已拒绝同类重复 ID，身份核对后无需默默去重或重映射引用。
     result.sort_by(|left, right| left.id.cmp(&right.id));
     Ok(result)
+}
+
+pub(crate) fn content_id(domain: &str, canonical_definition: &[u8]) -> String {
+    let mut hash_input = Vec::with_capacity(domain.len() + 1 + canonical_definition.len());
+    hash_input.extend_from_slice(domain.as_bytes());
+    hash_input.push(0);
+    hash_input.extend_from_slice(canonical_definition);
+    format!("sha256:{}", radishaxiom_digest::digest_hex(&hash_input))
 }
 
 fn object<const N: usize>(members: [(&str, Value); N]) -> Value {

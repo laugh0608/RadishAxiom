@@ -6,9 +6,9 @@ use std::fmt;
 
 use crate::integer::Integer;
 use crate::json::{self, JsonError, JsonLimits, Value};
+use crate::version::IrVersion;
 
-pub const SEMANTICS_SHA256: &str =
-    "6b18d65eefa439956db8eebe1f4ce90e08b4def4abf7c718c2605e7528598d0d";
+pub use crate::version::V0_1_SEMANTICS_SHA256 as SEMANTICS_SHA256;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum DeclarationErrorKind {
@@ -100,10 +100,31 @@ pub enum ValueType {
     },
 }
 
+impl ValueType {
+    /// 当前相等支持集合；记录及其任意 Option 包装尚无通用相等语义。
+    pub(crate) fn supports_value_equality(&self) -> bool {
+        let mut ty = self;
+        while let Self::Option { inner } = ty {
+            ty = inner;
+        }
+        !matches!(ty, Self::Record { .. })
+    }
+}
+
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum Label {
     Public,
     Sensitive,
+}
+
+impl Label {
+    pub(crate) fn join(self, other: Self) -> Self {
+        if self == Self::Sensitive || other == Self::Sensitive {
+            Self::Sensitive
+        } else {
+            Self::Public
+        }
+    }
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -142,6 +163,7 @@ pub struct UnverifiedDeclaration<T> {
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct UnverifiedTypeDeclarations {
+    pub version: IrVersion,
     pub enum_types: Vec<UnverifiedDeclaration<EnumType>>,
     pub record_types: Vec<UnverifiedDeclaration<RecordType>>,
     pub table_types: Vec<UnverifiedDeclaration<TableType>>,
@@ -157,8 +179,15 @@ pub fn decode_type_declarations(
     limits: JsonLimits,
 ) -> Result<UnverifiedTypeDeclarations, DeclarationError> {
     let value = json::parse(input, limits).map_err(DeclarationError::Json)?;
+    decode_type_declarations_value(&value)
+}
+
+/// 复用同一次有界解析；调用方不能传入未经 JSON parser 检查的外部树。
+pub(crate) fn decode_type_declarations_value(
+    value: &Value,
+) -> Result<UnverifiedTypeDeclarations, DeclarationError> {
     let root = object(
-        &value,
+        value,
         "",
         &[
             "contracts",
@@ -175,7 +204,8 @@ pub fn decode_type_declarations(
         ],
     )?;
     exact(root, "format", "", "axiom-ir")?;
-    exact(root, "ir_version", "", "0.1")?;
+    let version = IrVersion::parse(string(member(root, "ir_version"), "/ir_version")?)
+        .ok_or_else(|| error(DeclarationErrorKind::UnsupportedValue, "/ir_version"))?;
     exact(root, "digest_algorithm", "", "sha-256")?;
     let semantics = object(member(root, "semantics"), "/semantics", &["name", "sha256"])?;
     exact(
@@ -184,7 +214,12 @@ pub fn decode_type_declarations(
         "/semantics",
         "keyed-finite-table-semantics",
     )?;
-    exact(semantics, "sha256", "/semantics", SEMANTICS_SHA256)?;
+    exact(
+        semantics,
+        "sha256",
+        "/semantics",
+        version.semantics_sha256(),
+    )?;
     if !array(member(root, "effects"), "/effects")?.is_empty() {
         return Err(error(DeclarationErrorKind::NonEmptyEffects, "/effects"));
     }
@@ -192,6 +227,7 @@ pub fn decode_type_declarations(
         array(member(root, key), &child("", key))?;
     }
     let result = UnverifiedTypeDeclarations {
+        version,
         enum_types: declarations(member(root, "enum_types"), "/enum_types", enum_type)?,
         record_types: declarations(member(root, "record_types"), "/record_types", record_type)?,
         table_types: declarations(member(root, "table_types"), "/table_types", table_type)?,
@@ -243,6 +279,14 @@ pub(crate) fn object<'a>(
 pub(crate) fn member<'a>(members: &'a Members, key: &str) -> &'a Value {
     &members
         .iter()
+        .find(|(found, _, _)| found == key)
+        .expect("closed members checked")
+        .1
+}
+
+pub(crate) fn member_mut<'a>(members: &'a mut Members, key: &str) -> &'a mut Value {
+    &mut members
+        .iter_mut()
         .find(|(found, _, _)| found == key)
         .expect("closed members checked")
         .1

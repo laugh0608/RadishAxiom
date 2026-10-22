@@ -18,8 +18,8 @@
 
 ## 正式规范与实验
 
-- [首域类型化语义](semantics/keyed-finite-table-semantics.md)：值、表、转换、契约、效果和信任边界。
-- [Axiom IR v0.1](ir/axiom-ir-v0.md)：canonical JSON、内容身份、DAG、投影与迁移。
+- [IR v0.2 语义快照](semantics/keyed-finite-table-semantics-v0.2.md)：值、表、转换、契约及四项闭合边界；[旧语义](semantics/keyed-finite-table-semantics.md)保留原字节与历史绑定。
+- [Axiom IR v0.2](ir/axiom-ir-v0.2.md)、[显式迁移规则](ir/ir-v0.1-to-v0.2-migration.md)：canonical JSON、版本化身份、记录构造与兼容边界；[v0.1](ir/axiom-ir-v0.md)继续供旧制品读取。
 - [Axiom Evidence v0.1](evidence/axiom-evidence-v0.md)：义务、五态、反例、trust 与结论。
 - [Evidence 验证说明](evidence/axiom-evidence-v0-validation.md)：现有规范验证与检查边界。
 - [四题基准语料](benchmarks/keyed-finite-table-corpus-v0.md)：任务、候选、合成数据和预期断言。
@@ -38,14 +38,40 @@
 | payload 发布、launcher、产品宿主 | [ADR 0010](adr/0010-checker-runtime-payload-durable-registration.md)、[0011](adr/0011-checker-runtime-launcher-installation-and-activation.md)、[0012](adr/0012-product-checker-runtime-host-and-persistence-interface.md) |
 | Darwin 强隔离与 container 状态 | [ADR 0013](adr/0013-darwin-checker-hard-isolation.md)、[0014](adr/0014-darwin-app-sandbox-container-state.md) |
 | 虚拟 checker 资源保证与迁移边界 | [ADR 0015（Accepted）](adr/0015-virtualized-checker-resource-profile.md) |
-| 核心语义组件的分阶段实施入口 | [ADR 0016（Accepted）](adr/0016-core-semantic-slice-entry.md) |
+| 核心语义组件、IR 与义务版本范围 | [ADR 0016（Accepted）](adr/0016-core-semantic-slice-entry.md)、[0017（Accepted）](adr/0017-ir-v0.2-support-boundaries-and-migration.md)、[0018（Accepted）](adr/0018-ir-derived-obligation-profile.md) |
+| 空效果结构推导 | [ADR 0023（Accepted）](adr/0023-core-empty-effect-derivation.md) |
+| map / filter 限定查询编码 | [ADR 0019（Accepted）](adr/0019-map-filter-query-encoding.md)、[ADR 0020（Accepted）](adr/0020-map-filter-node-totality.md)、[ADR 0021（Accepted）](adr/0021-map-filter-key-cardinality.md)、[ADR 0022（Accepted）](adr/0022-map-filter-row-coverage.md) |
 
 ADR 定义决策和重评条件，不表示相关生产能力已完成；实现进度由当前状态维护。
 
 ## 内部实现入口
 
-- [Axiom IR 组件](../crates/axiom-ir/README.md)：JSON、类型声明身份和受限逐行表达式类型推导；不代表完整 P1。
+- [Axiom IR 组件](../crates/axiom-ir/README.md)：JSON、类型 / 图 / 契约分析与身份、完整文档规范化、strict 检查及显式 v0.1 → v0.2 迁移。
+- [P1 支持边界与验收矩阵审阅](ir/p1-support-boundary-review.md)：初次缺口审阅、已接受决定与版本化矩阵对照；不替代规范。
+- [IR 派生义务 profile v0.2](evidence/ir-derived-obligations-v0.2.md)：已接受的 P2 范围、版本 / 身份、group 目标和 strict 完整性；[审阅](evidence/p2-obligation-profile-review.md)与[正负例](../contracts/ir-derived-obligations-v0.2/README.md)保留来源和兼容边界。
+- [map / filter 查询编码](query/map-filter-query-v0.1.md)：[ADR 0019](adr/0019-map-filter-query-encoding.md)接受的 P3-A 内部范围、故障 / 资源与字节规则；[独立验收](../contracts/map-filter-query-v0.1/README.md)和[初始审阅](query/p3-query-encoding-review.md)分别保留动态材料与决策来源。
+- [map / filter 查询 v0.2](query/map-filter-query-v0.2.md)：ADR 0020 接受的节点 totality、显式 profile 与旧版兼容；[独立材料](../contracts/map-filter-query-v0.2/README.md)与[剩余义务审阅](query/p3-node-totality-review.md)分别提供验收和决策来源。
+- [map / filter 查询 v0.3](query/map-filter-query-v0.3.md)：ADR 0021 接受的 key-cardinality、Ready 故障归因与目标比较预算；[独立材料](../contracts/map-filter-query-v0.3/README.md)与[设计审阅](query/p3-key-cardinality-review.md)。
+- [map / filter 查询 v0.4](query/map-filter-query-v0.4.md)：ADR 0022 接受的 row-coverage、双向行关系及独立观察；[验收材料](../contracts/map-filter-query-v0.4/README.md)和[设计审阅](query/p3-row-coverage-review.md)分别保留复现与决策依据。
+- [纯核心空效果推导 v0.1](query/core-empty-effects-v0.1.md)：ADR 0023 接受的 P3-E 规则记录、预算与兼容边界；[独立材料](../contracts/core-empty-effects-v0.1/README.md)。
+- [剩余结构义务与 P4 接续审阅](query/p3-structural-obligations-and-p4-review.md)：保留 P3-E 实施前的判断；P3-E / F 内部范围现已接受，P4 单目标 / 完整管线依赖接续下项审阅。
+- [字段来源推导 v0.1](query/core-field-origin-v0.1.md)：[ADR 0024](adr/0024-core-field-origin-derivation.md) 接受的 P3-F 来源、标签与带角色前提的内部记录；[独立材料](../contracts/core-field-origin-v0.1/README.md)与[接续审阅](query/field-origin-and-p4-interface-review.md)分别提供验收和 P4 待接受接口。
+- [P4-A 请求 / 响应 / 模型解码](query/p4-request-response-model-v0.1.md)：[ADR 0025（Accepted）](adr/0025-p4-request-response-model-decoding.md) 的精确绑定、模型文法、Text 类、世界候选和预算 / 验收；[内部实现](../crates/axiom-ir/src/solver.rs)与[合成独立材料](../contracts/solver-model-v0.1/README.md)不构成真实工具校准或目标重放。
+- [P4-B 具体目标重放](query/p4-concrete-target-replay-v0.1.md)：[ADR 0026（Accepted）](adr/0026-p4-concrete-target-replay.md) 的原 IR 求值、WF / Pre、五类精确归因与预算；[内部实现](../crates/axiom-ir/src/replay.rs)及[本机验收](records/2026-10-13-p4b-validation.md)只产生有限观察。
+- [AX-B01 查询尺寸审阅](query/ax-b01-query-size-review.md)：原容量 72 份查询的实际尺寸与有界压缩估算，保留 stdin 阻断与可重跑入口。
+- [AX-B01 紧凑查询表示方案](query/ax-b01-query-compaction-review.md)：同一有类型公式的紧凑表示、模型映射与生产接入门槛；[本地验收](records/2026-10-17-query-compaction-validation.md)保留实际尺寸及有限检查，不接受新生产 profile。
+- [紧凑查询与 P4 接入设计](adr/0027-compact-query-and-p4-binding.md)：ADR 0027（Accepted）明确已接受的版本、预算与实施范围；[query v0.5](query/map-filter-query-v0.5.md)及 [P4-A v0.2](query/p4-request-response-model-v0.2.md)规定固定表示、规则绑定和新旧配对；A–C 已完成[生产组件本机验收](records/2026-10-17-compact-query-production-validation.md)，含实际 Rust 字节、独立有限比较与新候选重放，不包含真实 solver。
+- [真实 solver 窄入口](adr/0028-bounded-solver-calibration-entry.md)：ADR 0028（Accepted）与[执行层设计](query/solver-execution-preparation.md)提出有界校准、单目标尝试、宿主与资源范围；[准备记录](records/2026-10-17-solver-preparation.md)保存现有 Linux arm64 宿主只读观察及精确 cvc5 ZIP 静态检查，工具接受与运行资格尚未闭合。
+- [精确 CLI 依赖与许可证补证](records/2026-10-17-cvc5-cli-dependencies.md)：固定上游配方、版本化许可、实际 ELF 线索与系统库缺口；[执行层实施清单](query/solver-execution-implementation-plan.md)划分 E0–E6、纯组件交付和真实执行硬门禁，不授权构建或运行。
 - [共享 SHA-256](../crates/digest/README.md)：runtime / IR 共用的自有摘要实现与独立复核边界。
+
+- [E1–E2 纯诊断组件与模拟规则](query/solver-diagnostic-simulation-v0.1.md)：私有模拟身份 / 计划 / 观察、单次状态机与有界传输；[本机验收](records/2026-10-17-solver-simulation-validation.md)覆盖原容量合成 P4-B、失败与旧字节，E0 / E3 仍阻断真实执行。
+
+- [E3 Linux 监督设计](query/solver-linux-supervision-design.md)及 [syscall 策略](query/solver-linux-syscall-policy.md)：[ADR 0029（Accepted）](adr/0029-solver-linux-supervision-and-capabilities.md)具体化独立终止、时间握手、cgroup 事实与可信首次装载；[设计审阅记录](records/2026-10-17-solver-e3-design-review.md)不代表运行资格。
+
+- [E3 具体 ABI](query/solver-linux-abi-v0.1.md)、[内部封套](query/solver-bootstrap-wire-v0.1.md)、[S 运行策略](query/solver-supervisor-policy-v0.1.md)与[监督模拟](query/solver-supervisor-simulation-v0.1.md)：纯组件和原容量合成 P4-B 已完成[离线验收](records/2026-10-17-solver-e3-components-validation.md)；E0 与真实运行资格继续阻断外部执行。
+
+- [真实 bootstrap / FFI 实施方案](query/solver-bootstrap-ffi-implementation-plan.md)：[ADR 0030（Accepted）](adr/0030-solver-bootstrap-ffi-and-build-provenance.md)列出原生宿主、真实绑定 / 观察和新构建候选三项已接受决定；F1 纯共享边界 / [启动描述](query/solver-bootstrap-start-v0.1.md)已完成[本机验收](records/2026-10-17-solver-f1-validation.md)；F2 [原生边界](query/solver-bootstrap-native-boundary.md) / [监督实现](query/solver-bootstrap-native-supervisor.md)接续私有源码与本机脚本后端检查，D3 [构建候选方案](query/solver-cvc5-build-candidate-plan.md)接续 [C0 输入选择](query/solver-cvc5-c0-input-selection.md)，实际范围见[F2 / C0 验收](records/2026-10-17-solver-f2-validation.md)与后续[SDK 元数据复核](records/2026-10-17-cvc5-c0-sdk-metadata.md)、[完整源码 / Production / patch 静态审阅](records/2026-10-17-cvc5-c0-source-review.md)；配套[独立审阅](query/solver-bootstrap-ffi-review.md)与 [E0 后续补证](records/2026-10-17-cvc5-provenance-followup.md)，不授权构建或真实执行；[方案批验收](records/2026-10-17-solver-bootstrap-plan-review.md)记录此前设计与补证的范围和检查。
 
 ## 机器契约
 
@@ -76,6 +102,14 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 | Linux 来源实际核验 | [摘要 / 签名与 builder 库存](records/linux-6.18.49-source-review/README.md)、[归档文件盘点与精确缺失包候选](records/linux-6.18.49-archive-inventory/README.md) |
 | Linux 构建包来源与安装差异 | [Debian 签名摘要链、控制脚本审阅与安装模拟](records/linux-builder-source-chain/README.md) |
 | Rust Linux 与静态目标输入 | [签名 / 归档盘点、安装候选与 kernel 许可审阅](records/rust-linux-input-review/README.md) |
+| 2026-10-17 日终回顾 | [紧凑查询、监督组件与 C0 全天提交、代码 / 文档复核及接续事项](records/2026-10-17-closeout.md) |
+| 2026-10-08 日终回顾 | [P3-B–F 全天提交、代码与文档核对及明日交接](records/2026-10-08-closeout.md) |
+| 2026-10-08 P3-F | [字段来源 / 保守标签、独立规则、手算与篡改验收](records/2026-10-08-p3f-validation.md) |
+| 2026-10-08 P3-E | [空效果结构推导、独立规则与预算 / 兼容验收](records/2026-10-08-p3e-validation.md) |
+| 2026-10-08 P3-D | [双向行覆盖、独立中间观察与局部关系变异验收](records/2026-10-08-p3d-validation.md) |
+| 2026-10-08 P3-C | [局部键 / 基数、独立容量前观察与预算兼容验收](records/2026-10-08-p3c-validation.md) |
+| 2026-10-08 P3-B | [节点 totality、独立比较、兼容性与失败修复验收](records/2026-10-08-p3b-validation.md) |
+| 2026-10-05 日终回顾 | [P1 / P2 / P3-A 全天提交、代码与文档核对及明日交接](records/2026-10-05-closeout.md) |
 | 2026-09-29 日终回顾 | [全天提交、代码与文档核对及明日交接](records/2026-09-29-closeout.md) |
 | 2026-09-29 阶段整理 | [投入审阅、核心语义顺位调整与保留资产](records/2026-09-29-core-realignment.md) |
 | 2026-09-25 日终回顾 | [MPFR / MPC 接受、剩余来源材料及 GMP 失败诊断的提交与文档复核](records/2026-09-25-closeout.md) |

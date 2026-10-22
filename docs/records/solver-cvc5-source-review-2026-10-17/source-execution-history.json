@@ -1,0 +1,92 @@
+{
+  "format": "radishaxiom-private-cvc5-source-acquisition-history",
+  "version": "0.1",
+  "scope": "local-observations-not-publisher-authentication",
+  "download_selection": {
+    "path": ".tmp/cvc5-c0-acquisition-2026-10-17/input-selection.json",
+    "bytes": 30710,
+    "raw_digest": "sha256:a4cc446f18e277a52c4ca5e7f246309ada4dc090122c882a49f5f2a19c5c62f0"
+  },
+  "initial_fetch_helper": {
+    "path": ".tmp/cvc5-c0-acquisition-2026-10-17/fetch-helper.py",
+    "bytes": 30462,
+    "raw_digest": "sha256:8f89aca0ca80cd1955dbc7a741738c1a417bffde10ffebed33039e5a02496843"
+  },
+  "continuation_helper": {
+    "path": ".tmp/cvc5-c0-acquisition-2026-10-17/continuation-helper.py",
+    "bytes": 34272,
+    "raw_digest": "sha256:7d0704d03d5aab303f9f7c68457e41dc932b57d8f4115e85e16b21bef63d2da4"
+  },
+  "initial_failed_manifest": {
+    "path": "docs/records/solver-cvc5-source-review-2026-10-17/fetch-before-redirect-continuation.json",
+    "bytes": 2722,
+    "raw_digest": "sha256:61290204d6470ada8d3a11bc9d1de3514bdabfa0e8fb9770c48526b79cb4c265"
+  },
+  "completed_manifest": {
+    "path": "docs/records/solver-cvc5-source-review-2026-10-17/fetch-observations.json",
+    "bytes": 8297,
+    "raw_digest": "sha256:241952d62d5bc631674aee2712500e12722e6792dc1b4b5581110526c3e093d9"
+  },
+  "root_executed_network_actions": [
+    "python3 scripts/cvc5-c0-source-inputs.py fetch",
+    "python3 scripts/cvc5-c0-source-inputs.py continue-cadical-redirect"
+  ],
+  "continuation": {
+    "initial_failure": "exact-CaDiCaL-ref-canonicalization-guard-before-response-body",
+    "initial_manifest_captured_http_status": false,
+    "reconstructed_http_status": 302,
+    "reconstructed_http_status_basis": "root tool traceback HTTPRedirectHandler.http_error_302, not original failed-manifest field",
+    "initial_requests_repeated": false,
+    "cvc5_refetched": false,
+    "fallback_sources": 0,
+    "retry_after_transfer_failure": false
+  },
+  "inspection_initial_snapshot": {
+    "path": ".tmp/cvc5-c0-acquisition-2026-10-17/inspection-helper-initial.py",
+    "bytes": 34272,
+    "raw_digest": "sha256:7d0704d03d5aab303f9f7c68457e41dc932b57d8f4115e85e16b21bef63d2da4"
+  },
+  "summary_before_explicit_refresh": {
+    "path": ".tmp/cvc5-c0-acquisition-2026-10-17/source-inputs-before-verifier-update.json",
+    "bytes": 6855,
+    "raw_digest": "sha256:493239afbb6a3b226568145c606c1b1a5e3c8bd0f49dcb87c1b39e7f4fe96bf0"
+  },
+  "explicit_summary_refresh_reason": "add-all-selected-commit-PAX-checks-and-bind-current-plus-retained-inspector-bytes",
+  "commands_passed": [
+    {
+      "argv": "python3 scripts/test-cvc5-c0-source-inputs.py",
+      "unittest_methods": 8
+    },
+    {
+      "argv": "python3 scripts/cvc5-c0-source-inputs.py inspect-cvc5",
+      "scope": "partial-cvc5-only"
+    },
+    {
+      "argv": "python3 scripts/cvc5-c0-source-inputs.py inspect",
+      "sources": 5
+    },
+    {
+      "argv": "python3 scripts/cvc5-c0-source-inputs.py refresh-summary",
+      "sources": 5
+    },
+    {
+      "argv": "python3 scripts/cvc5-c0-source-inputs.py verify",
+      "sources": 5
+    },
+    {
+      "argv": "python3 scripts/check-cvc5-c0-source-independent.py",
+      "sources": 5
+    },
+    {
+      "argv": "git diff --check"
+    }
+  ],
+  "independent_checker": {
+    "path": "scripts/check-cvc5-c0-source-independent.py",
+    "bytes": 9424,
+    "raw_digest": "sha256:ffe292ba64bd92b76f07f3b2a98a0b62b23b52770f495fbef83c2dcd50604296"
+  },
+  "upstream_programs_executed": false,
+  "license_acceptance": "not-accepted",
+  "build_ready": false
+}

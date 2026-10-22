@@ -1,0 +1,59 @@
+{
+  "package_count": 172,
+  "essential_count": 23,
+  "dependency_clause_count": 474,
+  "alternative_clause_count": 12,
+  "source_family_versions": 101,
+  "source_archive_file_count": 328,
+  "declared_deb_bytes": 120870556,
+  "declared_source_bytes": 570734908,
+  "conflicts_or_breaks": [],
+  "format": "radishaxiom-private-c0-independent-sdk-check",
+  "version": "0.1",
+  "checker": {
+    "path": "scripts/check-cvc5-c0-sdk-independent.py",
+    "raw_digest": "sha256:0000890c739eeb3ba17354e5969a25be7717df05224ba468d200e87f1a8a9a10"
+  },
+  "selection_input": {
+    "path": "docs/records/solver-cvc5-c0-2026-10-17/sdk-selection.json",
+    "bytes": 817421,
+    "raw_digest": "sha256:313827c2435d4b895223bd04241d53e80c4f307ad1462a8b89da8fe7b36db84c"
+  },
+  "metadata_inputs": [
+    {
+      "path": ".tmp/cvc5-c0-sdk-metadata-2026-10-17/Release",
+      "bytes": 145119,
+      "raw_digest": "sha256:010b226303e531b2ca0d268079228b6667418b8ad021d6c126374837ad327055"
+    },
+    {
+      "path": ".tmp/cvc5-c0-sdk-metadata-2026-10-17/InRelease",
+      "bytes": 146972,
+      "raw_digest": "sha256:2814476b311085e250ddfdee295907bac45afb66f40dc7c1b35ab41a447c1d6c"
+    },
+    {
+      "path": ".tmp/cvc5-c0-sdk-metadata-2026-10-17/main__binary-arm64__Packages.xz",
+      "bytes": 8801860,
+      "raw_digest": "sha256:4926bbf128b8e497cb83c59c8212fd2ef4df5b2c30e9140a688198cd2cd55471"
+    },
+    {
+      "path": ".tmp/cvc5-c0-sdk-metadata-2026-10-17/main__source__Sources.xz",
+      "bytes": 9628468,
+      "raw_digest": "sha256:d1d5103c4ddd76196acc292e90fd0ffece1fe0d04408ab544633f25568e6cb19"
+    }
+  ],
+  "independently_derived_set_matches": true,
+  "metadata_body_bytes": 18722419,
+  "redirects_checked": 4,
+  "release_date": "Sat, 10 Jun 2023 08:51:17 UTC",
+  "signature_verified": false,
+  "build_ready": false,
+  "executable": false,
+  "independent_scope": "selected dependency clauses/edges, root+Essential set, architecture/Provides/alternatives, version comparisons, Conflicts/Breaks, Source and exact Built-Using associations, source/binary declared byte sums, raw metadata/hash/Release links, HTTP locator chain",
+  "unverified": [
+    "signature authentication and historical validity policy",
+    "binary/source package raw bytes and licenses",
+    "package file contents, maintainer scripts, ELF/dlopen/runtime filesystem",
+    "dynamic generator imports/effective options, SDK static link closure/map",
+    "compiler/SDK/tool acceptance"
+  ]
+}

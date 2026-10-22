@@ -4,5 +4,8 @@ members = [
     "crates/checker-runtime",
     "crates/checker-runtime-darwin-store",
     "crates/digest",
+    "crates/solver-diagnostic-host",
+    "crates/solver-supervision-core",
+    "crates/solver-bootstrap-linux",
 ]
 resolver = "3"

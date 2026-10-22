@@ -1,0 +1,841 @@
+{
+  "format": "radishaxiom-private-cvc5-c0-input-selection",
+  "version": "0.3",
+  "observation_date": "2026-10-17",
+  "generator": "scripts/generate-cvc5-c0-input-selection.py",
+  "generator_identity": {
+    "path": "scripts/generate-cvc5-c0-input-selection.py",
+    "bytes": 18284,
+    "raw_digest": "sha256:6aae4014b1f57d691fb4bccd51571b52e9dee740c57d7cbe777b57b52d9da5cf"
+  },
+  "scope": "candidate-selection-only-no-acceptance",
+  "c0_state": "static-reviewed-blocked-on-sdk-content-effective-configuration-and-acceptance",
+  "executable": false,
+  "build_ready": false,
+  "original_cli_acceptance": "not-accepted",
+  "new_payload_acceptance": "not-accepted",
+  "source_indexes": [
+    {
+      "path": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "bytes": 10282,
+      "raw_digest": "sha256:717f5d1ce61b329f9f80b6c59be71f7798050aa9188806688f4999e5b1db9bbe"
+    },
+    {
+      "path": "docs/records/cvc5-provenance-followup-2026-10-17/source-inputs.json",
+      "bytes": 5260,
+      "raw_digest": "sha256:ca423795573a1f9f13d27ba28af9f1d1647e9618a60030e5b0abd4a478380ab0"
+    }
+  ],
+  "rechecked_retained_observations": [
+    {
+      "index": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "file": ".tmp/solver-cli-licenses-2026-10-17/cmake__FindCaDiCaL.cmake",
+      "url": "https://raw.githubusercontent.com/cvc5/cvc5/f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/cmake/FindCaDiCaL.cmake",
+      "bytes": 6703,
+      "raw_digest": "sha256:af981c4c5a5fe51ce542b1f3542a438d052e74c640fb7a2189dedf5aee5d92bf",
+      "role": "pinned-upstream-source-not-built"
+    },
+    {
+      "index": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "file": ".tmp/solver-cli-licenses-2026-10-17/cmake__FindSymFPU.cmake",
+      "url": "https://raw.githubusercontent.com/cvc5/cvc5/f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/cmake/FindSymFPU.cmake",
+      "bytes": 2112,
+      "raw_digest": "sha256:5357330b1414e9e2076dfb9b6a0d83030f4dd018d9db430a63b76ae48cd43277",
+      "role": "pinned-upstream-source-not-built"
+    },
+    {
+      "index": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "file": ".tmp/solver-cli-licenses-2026-10-17/cmake__FindPoly.cmake",
+      "url": "https://raw.githubusercontent.com/cvc5/cvc5/f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/cmake/FindPoly.cmake",
+      "bytes": 9922,
+      "raw_digest": "sha256:848838f6e40eb26c1228fe263599ebe420b8f0b63a2ef121e581faca2cbc7599",
+      "role": "pinned-upstream-source-not-built"
+    },
+    {
+      "index": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "file": ".tmp/solver-cli-licenses-2026-10-17/cmake__FindGMP.cmake",
+      "url": "https://raw.githubusercontent.com/cvc5/cvc5/f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/cmake/FindGMP.cmake",
+      "bytes": 6999,
+      "raw_digest": "sha256:9ab6c0270e1108eca84907f1b8eae7c7c0aab60c1f5e877e29fb8a4397fa5d68",
+      "role": "pinned-upstream-source-not-built"
+    },
+    {
+      "index": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "file": ".tmp/solver-cli-licenses-2026-10-17/.github__workflows__ci.yml",
+      "url": "https://raw.githubusercontent.com/cvc5/cvc5/f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/.github/workflows/ci.yml",
+      "bytes": 20929,
+      "raw_digest": "sha256:f44341c8aaebf7c9d966d69754f4dfca8d4014fd66d0568f7db160314ea13f85",
+      "role": "pinned-upstream-source-not-built"
+    },
+    {
+      "index": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "file": ".tmp/solver-cli-licenses-2026-10-17/.github__actions__install-dependencies__action.yml",
+      "url": "https://raw.githubusercontent.com/cvc5/cvc5/f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/.github/actions/install-dependencies/action.yml",
+      "bytes": 5830,
+      "raw_digest": "sha256:bb2c478c23ddc407fe3a6b4643777e43be1efaace90cb67d19b92d083ae20906",
+      "role": "pinned-upstream-source-not-built"
+    },
+    {
+      "index": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "file": ".tmp/solver-cli-licenses-2026-10-17/.github__actions__configure-and-build__action.yml",
+      "url": "https://raw.githubusercontent.com/cvc5/cvc5/f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/.github/actions/configure-and-build/action.yml",
+      "bytes": 2669,
+      "raw_digest": "sha256:7772f196e043862d2bc775d230979a9b208eafc0b60506849585e97d0c0c2c3a",
+      "role": "pinned-upstream-source-not-built"
+    },
+    {
+      "index": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "file": ".tmp/solver-cli-licenses-2026-10-17/src__base__configuration.cpp",
+      "url": "https://raw.githubusercontent.com/cvc5/cvc5/f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/src/base/configuration.cpp",
+      "bytes": 7880,
+      "raw_digest": "sha256:930bb52c4603cc21a4ea88c04d1d5ba252dfedb1b186914b1d33e0d4bd7c8ff7",
+      "role": "pinned-upstream-source-not-built"
+    },
+    {
+      "index": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "file": ".tmp/solver-cli-licenses-2026-10-17/CMakeLists.txt",
+      "url": "https://raw.githubusercontent.com/cvc5/cvc5/f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/CMakeLists.txt",
+      "bytes": 32159,
+      "raw_digest": "sha256:84ec0baeec06dcbee56f6d9893e4b53de1ce783c7a49686ca3c0dcf8aa95e410",
+      "role": "pinned-upstream-source-not-built"
+    },
+    {
+      "index": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "file": ".tmp/solver-cli-licenses-2026-10-17/COPYING",
+      "url": "https://raw.githubusercontent.com/cvc5/cvc5/f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/COPYING",
+      "bytes": 6211,
+      "raw_digest": "sha256:341cd23c1133beda63509cad8d82b96a47dc8e321bdd49ce8190e371110ccff7",
+      "role": "pinned-upstream-source-not-built"
+    },
+    {
+      "index": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "file": ".tmp/solver-cli-licenses-2026-10-17/cmake__FindEditline.cmake",
+      "url": "https://raw.githubusercontent.com/cvc5/cvc5/f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/cmake/FindEditline.cmake",
+      "bytes": 1381,
+      "raw_digest": "sha256:613385d5bd7a8aa6f1d550c09a38bcb88839d345cfc65dfa4bfefa7a07f5ed7a",
+      "role": "pinned-upstream-source-not-built"
+    },
+    {
+      "index": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "file": ".tmp/solver-cli-licenses-2026-10-17/add-package.yml",
+      "url": "https://raw.githubusercontent.com/cvc5/cvc5/f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/.github/actions/add-package/action.yml",
+      "bytes": 2828,
+      "raw_digest": "sha256:a59e9501d9bb7d1c83e78954d01c53db937a597eeb3373400f7c664de2112620",
+      "role": "pinned-upstream-source-not-built"
+    },
+    {
+      "index": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "file": ".tmp/solver-cli-licenses-2026-10-17/cvc5-tree.json",
+      "url": "https://api.github.com/repos/cvc5/cvc5/git/trees/cvc5-1.3.4?recursive=1",
+      "bytes": 2227076,
+      "raw_digest": "sha256:93b27e663bf20edaffbca7adfe80c137f329acabffca8e07d5450de456d37974",
+      "role": "publisher-tree"
+    },
+    {
+      "index": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "file": ".tmp/solver-cli-licenses-2026-10-17/cvc5-commit.json",
+      "url": "https://api.github.com/repos/cvc5/cvc5/commits/cvc5-1.3.4",
+      "bytes": 4672,
+      "raw_digest": "sha256:9dd6e9b74fe00bc99df3ccf838df745407a13c97c59f9545319f77adbff3214e",
+      "role": "publisher-ref-observation"
+    },
+    {
+      "index": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "file": ".tmp/solver-cli-licenses-2026-10-17/cvc5-runs.json",
+      "url": "https://api.github.com/repos/cvc5/cvc5/actions/runs?head_sha=f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341&per_page=20",
+      "bytes": 27102,
+      "raw_digest": "sha256:2a8b2d59afa0455dd52d93b19568e4bf485617d88455c69bf1508629f76e404a",
+      "role": "publisher-runs"
+    },
+    {
+      "index": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "file": ".tmp/solver-cli-licenses-2026-10-17/cvc5-ci-jobs.json",
+      "url": "https://api.github.com/repos/cvc5/cvc5/actions/runs/25505454189/jobs?per_page=100",
+      "bytes": 118232,
+      "raw_digest": "sha256:2649762fe76511fda0c67427fed4006548bad3e5ec634f3f3e65a1dc99ce11e3",
+      "role": "publisher-jobs"
+    },
+    {
+      "index": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "file": ".tmp/solver-cli-licenses-2026-10-17/cvc5-ci-arm64.log",
+      "url": "https://api.github.com/repos/cvc5/cvc5/actions/jobs/74849773758/logs",
+      "bytes": 190,
+      "raw_digest": "sha256:6ca691454865d888a2d353fa7d2c98835508affb11cf428992e1bd3115f995a4",
+      "role": "http-403-failure-not-build-log"
+    },
+    {
+      "index": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "file": ".tmp/solver-cli-licenses-2026-10-17/cadical-commit.json",
+      "url": "https://api.github.com/repos/arminbiere/cadical/commits/rel-2.1.3-elevate",
+      "bytes": 5991,
+      "raw_digest": "sha256:461db2a0773c110ab422d984694951d622d142a59149c1a467713e06b270bd28",
+      "role": "publisher-ref-observation"
+    },
+    {
+      "index": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "file": ".tmp/solver-cli-licenses-2026-10-17/libpoly-commit.json",
+      "url": "https://api.github.com/repos/SRI-CSL/libpoly/commits/v0.2.1",
+      "bytes": 5890,
+      "raw_digest": "sha256:ad52e8efcbd7e0b8ada1e18048160a5bcf36cc4129ccfa62c955986d28a30836",
+      "role": "publisher-ref-observation"
+    },
+    {
+      "index": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "file": ".tmp/solver-cli-licenses-2026-10-17/libpoly-tree.json",
+      "url": "https://api.github.com/repos/SRI-CSL/libpoly/git/trees/3d5e6fbd98639cb0941b029e23ca17c0e3c4a80a?recursive=1",
+      "bytes": 75708,
+      "raw_digest": "sha256:9d0a77b7cb4316e54e567f654188d9c4f9996b4c5ddb77ba493a440cfab24722",
+      "role": "publisher-tree"
+    },
+    {
+      "index": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "file": ".tmp/solver-cli-licenses-2026-10-17/cadical-pinned-LICENSE",
+      "url": "https://raw.githubusercontent.com/arminbiere/cadical/a384d221a920d473b770df6a7221f35fc5d99e90/LICENSE",
+      "bytes": 1643,
+      "raw_digest": "sha256:faf8e28f930684e3fbaf50a03c0c0b6b2373977cd74988efec19144241f0667c",
+      "role": "pinned-license"
+    },
+    {
+      "index": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "file": ".tmp/solver-cli-licenses-2026-10-17/symfpu-LICENSE",
+      "url": "https://raw.githubusercontent.com/cvc5/symfpu/227a7246b8ce513b393cc2645d6d65d3490ea1de/LICENSE",
+      "bytes": 123,
+      "raw_digest": "sha256:663f684cfc4fbf827926924cb32f5cd84ebcb275d60c55506f9e62524fd14f98",
+      "role": "pinned-license-choice"
+    },
+    {
+      "index": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "file": ".tmp/solver-cli-licenses-2026-10-17/symfpu-LICENSE-BSD",
+      "url": "https://raw.githubusercontent.com/cvc5/symfpu/227a7246b8ce513b393cc2645d6d65d3490ea1de/LICENSE-BSD",
+      "bytes": 1441,
+      "raw_digest": "sha256:00f50e5054992dc8d34e9995d33ce092c2633c8a000a67df00844b560ba8aeb0",
+      "role": "pinned-license"
+    },
+    {
+      "index": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "file": ".tmp/solver-cli-licenses-2026-10-17/libpoly-pinned-LICENCE",
+      "url": "https://raw.githubusercontent.com/SRI-CSL/libpoly/3d5e6fbd98639cb0941b029e23ca17c0e3c4a80a/LICENCE",
+      "bytes": 7651,
+      "raw_digest": "sha256:da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768",
+      "role": "pinned-license"
+    },
+    {
+      "index": "docs/records/cvc5-cli-dependencies-2026-10-17/source-inputs.json",
+      "file": ".tmp/solver-cli-licenses-2026-10-17/libpoly-poly-pinned.h",
+      "url": "https://raw.githubusercontent.com/SRI-CSL/libpoly/3d5e6fbd98639cb0941b029e23ca17c0e3c4a80a/include/poly.h",
+      "bytes": 2873,
+      "raw_digest": "sha256:a7cc881b3d31c745fb5fdb7e7b12182e47fe39993ba7814fd4a5ec44978f661f",
+      "role": "pinned-license-grant"
+    },
+    {
+      "index": "docs/records/cvc5-provenance-followup-2026-10-17/source-inputs.json",
+      "file": ".tmp/cvc5-provenance-followup-2026-10-17/run-artifacts.json",
+      "url": "https://api.github.com/repos/cvc5/cvc5/actions/runs/25505454189/artifacts?per_page=100",
+      "bytes": 32,
+      "raw_digest": "sha256:244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "role": "publisher-API-observation-not-component-inventory"
+    },
+    {
+      "index": "docs/records/cvc5-provenance-followup-2026-10-17/source-inputs.json",
+      "file": ".tmp/cvc5-provenance-followup-2026-10-17/zip-attestations.json",
+      "url": "https://api.github.com/repos/cvc5/cvc5/attestations/sha256:2a4c108367f20b0c8990abd6b9535a5d62e08908d471d4671c00734e408f85bc",
+      "bytes": 126,
+      "raw_digest": "sha256:8ecae33333826db91507fbc9512eabf6e8e7c9be3c43f6681ca70bff4c028a6d",
+      "role": "publisher-API-observation-not-component-inventory"
+    },
+    {
+      "index": "docs/records/cvc5-provenance-followup-2026-10-17/source-inputs.json",
+      "file": ".tmp/cvc5-provenance-followup-2026-10-17/cli-attestations.json",
+      "url": "https://api.github.com/repos/cvc5/cvc5/attestations/sha256:26fa94d71ecb3d4f1458eb06b9b9d4762fb3753cfb5cb9dca6f917fbf4dbe6c7",
+      "bytes": 126,
+      "raw_digest": "sha256:8ecae33333826db91507fbc9512eabf6e8e7c9be3c43f6681ca70bff4c028a6d",
+      "role": "publisher-API-observation-not-component-inventory"
+    },
+    {
+      "index": "docs/records/cvc5-provenance-followup-2026-10-17/source-inputs.json",
+      "file": ".tmp/cvc5-provenance-followup-2026-10-17/setup-cache.yml",
+      "url": "https://raw.githubusercontent.com/cvc5/cvc5/f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341/.github/actions/setup-cache/action.yml",
+      "bytes": 3208,
+      "raw_digest": "sha256:4c3ab441581251da369270ce5a81569b5f527dcd83eaa1350ebc9ef64215817b",
+      "role": "pinned-upstream-cache-recipe"
+    }
+  ],
+  "source_archives": [
+    {
+      "id": "cvc5",
+      "version": "1.3.4",
+      "commit": "f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341",
+      "selection": "selected",
+      "url": "https://github.com/cvc5/cvc5/archive/f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341.tar.gz",
+      "expected_archive_sha256": null,
+      "expected_hash_basis": "not-published-in-retained-material",
+      "raw_digest": "sha256:cbaa927c4d8085e38e7a097191bb9dd3a6780cc17fcde65cb156c9583e597760",
+      "bytes": 9279538,
+      "status": "obtained-static-reviewed-not-accepted",
+      "license_acceptance": "not-accepted",
+      "max_download_bytes": 67108864,
+      "expected_archive_hash_matches": null,
+      "observation_scope": "retained-archive-and-inventory-consistency-not-signature-or-license-acceptance",
+      "tree_inventory": {
+        "path": "docs/records/solver-cvc5-source-review-2026-10-17/cvc5-tree.json",
+        "bytes": 3477550,
+        "raw_digest": "sha256:cc5cdb90edd330ae4b7af7efe66cba383a5a192e50ff8773fe585dacb4f3d415"
+      },
+      "license_inventory": {
+        "path": "docs/records/solver-cvc5-source-review-2026-10-17/cvc5-license-inventory.json",
+        "bytes": 1241996,
+        "raw_digest": "sha256:b41b2e5e4e86e96b2f87b71a510282a4b83e3ac9ca915860f475f49b2b4790e8"
+      },
+      "retained_git_blob_check": {
+        "retained_git_tree": {
+          "path": ".tmp/solver-cli-licenses-2026-10-17/cvc5-tree.json",
+          "bytes": 2227076,
+          "raw_digest": "sha256:93b27e663bf20edaffbca7adfe80c137f329acabffca8e07d5450de456d37974"
+        },
+        "blob_count": 7066,
+        "all_retained_git_blob_sha1_equal": true,
+        "scope": "consistency-with-retained-unsigned-publisher-tree-not-signature-authentication"
+      }
+    },
+    {
+      "id": "cadical",
+      "version": "rel-2.1.3-elevate",
+      "commit": "a384d221a920d473b770df6a7221f35fc5d99e90",
+      "selection": "selected",
+      "url": "https://github.com/arminbiere/cadical/archive/rel-2.1.3-elevate.tar.gz",
+      "expected_archive_sha256": "15e1e82f7f9a9da0e97070cb8ac41d5b32139f65d54f72d2ff84849b0466ef92",
+      "expected_hash_basis": "pinned-cvc5-Find-module-declaration-not-recomputed",
+      "raw_digest": "sha256:15e1e82f7f9a9da0e97070cb8ac41d5b32139f65d54f72d2ff84849b0466ef92",
+      "bytes": 732469,
+      "status": "obtained-static-reviewed-not-accepted",
+      "license_acceptance": "not-accepted",
+      "max_download_bytes": 33554432,
+      "expected_archive_hash_matches": true,
+      "observation_scope": "retained-archive-and-inventory-consistency-not-signature-or-license-acceptance",
+      "tree_inventory": {
+        "path": "docs/records/solver-cvc5-source-review-2026-10-17/cadical-tree.json",
+        "bytes": 197566,
+        "raw_digest": "sha256:f0a6b8bcb789c9b2b82d099148622c2360a72479e4c38204a18e243650ce7ccc"
+      },
+      "license_inventory": {
+        "path": "docs/records/solver-cvc5-source-review-2026-10-17/cadical-license-inventory.json",
+        "bytes": 7372,
+        "raw_digest": "sha256:51ff45c048539ebe58c566ff5acb2a57bfc53ce0f2a3d46eec1e840153914571"
+      },
+      "retained_git_blob_check": null
+    },
+    {
+      "id": "gmp",
+      "version": "6.3.0",
+      "commit": null,
+      "selection": "selected",
+      "url": "https://github.com/cvc5/cvc5-deps/blob/main/gmp-6.3.0.tar.bz2?raw=true",
+      "expected_archive_sha256": "ac28211a7cfb609bae2e2c8d6058d66c8fe96434f740cf6fe2e47b000d1c20cb",
+      "expected_hash_basis": "pinned-cvc5-Find-module-declaration-not-recomputed",
+      "raw_digest": "sha256:ac28211a7cfb609bae2e2c8d6058d66c8fe96434f740cf6fe2e47b000d1c20cb",
+      "bytes": 2643888,
+      "status": "obtained-static-reviewed-not-accepted",
+      "license_acceptance": "not-accepted",
+      "max_download_bytes": 33554432,
+      "expected_archive_hash_matches": true,
+      "observation_scope": "retained-archive-and-inventory-consistency-not-signature-or-license-acceptance",
+      "tree_inventory": {
+        "path": "docs/records/solver-cvc5-source-review-2026-10-17/gmp-tree.json",
+        "bytes": 965860,
+        "raw_digest": "sha256:e29a88eb1fc27742d5787e808132f2291bdd28bad61cce2b737e3b60ec3076dd"
+      },
+      "license_inventory": {
+        "path": "docs/records/solver-cvc5-source-review-2026-10-17/gmp-license-inventory.json",
+        "bytes": 1058387,
+        "raw_digest": "sha256:5ecd776ebcc7ab73fd1bd8b7277892e4262f1623bca9496549b99830b78e3e4e"
+      },
+      "retained_git_blob_check": null
+    },
+    {
+      "id": "libpoly",
+      "version": "0.2.1",
+      "commit": "3d5e6fbd98639cb0941b029e23ca17c0e3c4a80a",
+      "selection": "selected",
+      "url": "https://github.com/SRI-CSL/libpoly/archive/refs/tags/v0.2.1.tar.gz",
+      "expected_archive_sha256": "f9920afc876f998633348b9cbfcf180757ada48cc872040256c60ad0707b5a0f",
+      "expected_hash_basis": "pinned-cvc5-Find-module-declaration-not-recomputed",
+      "raw_digest": "sha256:f9920afc876f998633348b9cbfcf180757ada48cc872040256c60ad0707b5a0f",
+      "bytes": 629599,
+      "status": "obtained-static-reviewed-not-accepted",
+      "license_acceptance": "not-accepted",
+      "max_download_bytes": 33554432,
+      "expected_archive_hash_matches": true,
+      "observation_scope": "retained-archive-and-inventory-consistency-not-signature-or-license-acceptance",
+      "tree_inventory": {
+        "path": "docs/records/solver-cvc5-source-review-2026-10-17/libpoly-tree.json",
+        "bytes": 109010,
+        "raw_digest": "sha256:027f70dadd6c70d6f5a1ffc0438b53e50007d5f7db9252326b41aa2f05a269bf"
+      },
+      "license_inventory": {
+        "path": "docs/records/solver-cvc5-source-review-2026-10-17/libpoly-license-inventory.json",
+        "bytes": 60685,
+        "raw_digest": "sha256:d9cd7c637634cdcf498b1e8e4a1e18e7c69658f2903740f644a015a125e77f93"
+      },
+      "retained_git_blob_check": null
+    },
+    {
+      "id": "symfpu",
+      "version": null,
+      "commit": "227a7246b8ce513b393cc2645d6d65d3490ea1de",
+      "selection": "selected",
+      "url": "https://github.com/cvc5/symfpu/archive/227a7246b8ce513b393cc2645d6d65d3490ea1de.tar.gz",
+      "expected_archive_sha256": "ff22e37dbc133120ada5760878974811737bec65b12a8883f92b1ed9e3f96e99",
+      "expected_hash_basis": "pinned-cvc5-Find-module-declaration-not-recomputed",
+      "raw_digest": "sha256:ff22e37dbc133120ada5760878974811737bec65b12a8883f92b1ed9e3f96e99",
+      "bytes": 83411,
+      "status": "obtained-static-reviewed-not-accepted",
+      "license_acceptance": "not-accepted",
+      "max_download_bytes": 33554432,
+      "expected_archive_hash_matches": true,
+      "observation_scope": "retained-archive-and-inventory-consistency-not-signature-or-license-acceptance",
+      "tree_inventory": {
+        "path": "docs/records/solver-cvc5-source-review-2026-10-17/symfpu-tree.json",
+        "bytes": 23172,
+        "raw_digest": "sha256:67582df02a43e8a2ffa52f5007707a5238bbb2a1bbea5fc36a0029895f810613"
+      },
+      "license_inventory": {
+        "path": "docs/records/solver-cvc5-source-review-2026-10-17/symfpu-license-inventory.json",
+        "bytes": 2145,
+        "raw_digest": "sha256:b54332f0de908a30b234c06415801cfd974e587a0cb13098ff278a35398a2554"
+      },
+      "retained_git_blob_check": null
+    }
+  ],
+  "source_review_record": {
+    "path": "docs/records/solver-cvc5-source-review-2026-10-17/source-inputs.json",
+    "bytes": 8282,
+    "raw_digest": "sha256:b4d9a7813c35626d798f572cafdc63e2e79d367501e5327d231987e96e5152d3"
+  },
+  "sdk": {
+    "selection": "exact-metadata-only",
+    "distribution": "Debian 12 bookworm",
+    "snapshot": "20230612T000000Z",
+    "architecture": "arm64",
+    "base_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/",
+    "snapshot_availability": "observed-for-four-retained-metadata-targets",
+    "metadata_authentication": "not-established",
+    "package_dependency_closure": "closed-for-declared-roots-and-essential-metadata-only",
+    "package_contents_acceptance": "not-accepted",
+    "recursive_guest_rebuild": false,
+    "binary_sdk_trust": "proposed-not-accepted",
+    "selection_record": {
+      "path": "docs/records/solver-cvc5-c0-2026-10-17/sdk-selection.json",
+      "bytes": 817421,
+      "raw_digest": "sha256:313827c2435d4b895223bd04241d53e80c4f307ad1462a8b89da8fe7b36db84c",
+      "format": "radishaxiom-private-cvc5-c0-sdk-selection",
+      "version": "0.1"
+    },
+    "metadata_record": {
+      "path": "docs/records/solver-cvc5-c0-2026-10-17/metadata-observations.json",
+      "bytes": 10278,
+      "raw_digest": "sha256:0ebf9f5e79a7c4374feffc35f9d45823f45aba9b564f75de03a1f324f456fe4b"
+    },
+    "closure_summary": {
+      "root_groups": 17,
+      "root_packages": 53,
+      "packages": 172,
+      "dependency_edges": 474,
+      "source_packages": 101,
+      "unique_source_files": 328,
+      "binary_declared_bytes": 120870556,
+      "source_declared_bytes": 570734908,
+      "binary_max_bytes": 536870912,
+      "source_max_bytes": 1073741824
+    },
+    "closure_scope": "selected 17 SDK role roots including statically identified pyparsing/m4 plus all Essential: yes packages from this index; package contents and dynamic generator/runtime filesystem behavior unverified",
+    "metadata_targets": [
+      "https://snapshot.debian.org/archive/debian/20230612T000000Z/dists/bookworm/InRelease",
+      "https://snapshot.debian.org/archive/debian/20230612T000000Z/dists/bookworm/Release",
+      "https://snapshot.debian.org/archive/debian/20230612T000000Z/dists/bookworm/main/binary-arm64/Packages.xz",
+      "https://snapshot.debian.org/archive/debian/20230612T000000Z/dists/bookworm/main/source/Sources.xz"
+    ],
+    "items": [
+      {
+        "id": "compiler",
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
+          "gcc-12",
+          "g++-12",
+          "cpp-12",
+          "gcc-12-base"
+        ],
+        "required_roles_not_verified_package_contents": [
+          "gcc-12 explicit executable path unresolved",
+          "g++-12 explicit executable path unresolved",
+          "cpp-12 explicit executable path unresolved"
+        ],
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
+      },
+      {
+        "id": "binutils",
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
+          "binutils",
+          "binutils-aarch64-linux-gnu",
+          "binutils-common"
+        ],
+        "required_roles_not_verified_package_contents": [
+          "as",
+          "ld.bfd",
+          "ar",
+          "ranlib",
+          "strip",
+          "readelf",
+          "nm",
+          "objdump"
+        ],
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
+      },
+      {
+        "id": "gcc-runtime",
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
+          "libgcc-12-dev",
+          "libstdc++-12-dev",
+          "libgcc-s1",
+          "libstdc++6"
+        ],
+        "required_roles_not_verified_package_contents": [
+          "crtbegin.o",
+          "crtend.o",
+          "libgcc.a",
+          "libgcc_eh.a",
+          "libstdc++.a"
+        ],
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
+      },
+      {
+        "id": "glibc-sysroot",
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
+          "libc6",
+          "libc6-dev",
+          "libc-dev-bin",
+          "linux-libc-dev"
+        ],
+        "required_roles_not_verified_package_contents": [
+          "crt1.o",
+          "crti.o",
+          "crtn.o",
+          "libc.a",
+          "libm.a",
+          "libpthread.a",
+          "libdl.a",
+          "librt.a",
+          "headers"
+        ],
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
+      },
+      {
+        "id": "editline",
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
+          "libedit-dev",
+          "libedit2"
+        ],
+        "required_roles_not_verified_package_contents": [
+          "histedit.h",
+          "libedit.a",
+          "libedit.pc"
+        ],
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
+      },
+      {
+        "id": "terminfo",
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
+          "libncurses-dev",
+          "libtinfo6"
+        ],
+        "required_roles_not_verified_package_contents": [
+          "libtinfo.a",
+          "tinfo.pc",
+          "headers"
+        ],
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
+      },
+      {
+        "id": "bsd",
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
+          "libbsd-dev",
+          "libbsd0"
+        ],
+        "required_roles_not_verified_package_contents": [
+          "libbsd.a",
+          "libbsd.pc",
+          "headers"
+        ],
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
+      },
+      {
+        "id": "md",
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
+          "libmd-dev",
+          "libmd0"
+        ],
+        "required_roles_not_verified_package_contents": [
+          "libmd.a",
+          "libmd.pc",
+          "headers"
+        ],
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
+      },
+      {
+        "id": "cmake",
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
+          "cmake",
+          "cmake-data"
+        ],
+        "required_roles_not_verified_package_contents": [
+          "cmake",
+          "CMake modules"
+        ],
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
+      },
+      {
+        "id": "make",
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
+          "make"
+        ],
+        "required_roles_not_verified_package_contents": [
+          "make"
+        ],
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
+      },
+      {
+        "id": "python-generator",
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
+          "python3",
+          "python3-minimal",
+          "python3.11",
+          "python3.11-minimal",
+          "libpython3.11-stdlib",
+          "libpython3.11-minimal",
+          "python3-pyparsing"
+        ],
+        "required_roles_not_verified_package_contents": [
+          "python3",
+          "stdlib",
+          "pyparsing; imports statically reviewed, package contents unverified"
+        ],
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
+      },
+      {
+        "id": "gmp-assembly-generator",
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
+          "m4"
+        ],
+        "required_roles_not_verified_package_contents": [
+          "m4; GMP arm64 assembly generation, package contents unverified"
+        ],
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
+      },
+      {
+        "id": "pkg-config",
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
+          "pkgconf",
+          "pkgconf-bin",
+          "libpkgconf3"
+        ],
+        "required_roles_not_verified_package_contents": [
+          "pkgconf; explicit executable, no implicit pkg-config alias"
+        ],
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
+      },
+      {
+        "id": "shell",
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
+          "dash",
+          "bash"
+        ],
+        "required_roles_not_verified_package_contents": [
+          "sh",
+          "bash"
+        ],
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
+      },
+      {
+        "id": "text-and-digest",
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
+          "coreutils",
+          "sed",
+          "grep",
+          "gawk",
+          "findutils",
+          "diffutils",
+          "patch"
+        ],
+        "required_roles_not_verified_package_contents": [
+          "sha256sum",
+          "sort",
+          "cp",
+          "sed",
+          "grep",
+          "awk",
+          "find",
+          "diff",
+          "patch"
+        ],
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
+      },
+      {
+        "id": "archive",
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
+          "tar",
+          "gzip",
+          "bzip2",
+          "xz-utils"
+        ],
+        "required_roles_not_verified_package_contents": [
+          "tar",
+          "gzip",
+          "bzip2",
+          "xz"
+        ],
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
+      },
+      {
+        "id": "inspection",
+        "selection": "exact-metadata-roots-selected-contents-unverified",
+        "selected_package_names": [
+          "file",
+          "libmagic1",
+          "libmagic-mgc"
+        ],
+        "required_roles_not_verified_package_contents": [
+          "file",
+          "magic database"
+        ],
+        "package_contents_acceptance": "not-accepted",
+        "license_acceptance": "not-accepted"
+      }
+    ]
+  },
+  "metadata_acquisition": {
+    "authorized": true,
+    "scope": "fixed-snapshot Release/InRelease/Packages/Sources metadata only",
+    "record": {
+      "path": "docs/records/solver-cvc5-c0-2026-10-17/metadata-observations.json",
+      "bytes": 10278,
+      "raw_digest": "sha256:0ebf9f5e79a7c4374feffc35f9d45823f45aba9b564f75de03a1f324f456fe4b"
+    }
+  },
+  "metadata_observation_history": [
+    {
+      "url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/dists/bookworm/Release",
+      "method": "sandbox Python urllib HTTPS GET",
+      "result": "URLError: [Errno 1] Operation not permitted",
+      "bytes_obtained": 0,
+      "raw_digest": null
+    },
+    {
+      "url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/dists/bookworm/",
+      "method": "metadata-only escalated Python urllib for Release/Packages/Sources",
+      "result": "approval-waiting call interrupted after 1062.0 seconds; no successful execution output; target directory absent on local recheck",
+      "bytes_obtained": 0,
+      "raw_digest": null
+    },
+    {
+      "url": "https://packages.debian.org/bookworm/g%2B%2B-12",
+      "method": "web open rendered official metadata page",
+      "result": "page reports 12.2.0-14+deb12u1; current page is not selected snapshot metadata and is not used as package selection evidence",
+      "bytes_obtained": null,
+      "raw_digest": null
+    }
+  ],
+  "configuration": {
+    "production_expansion": "static-reviewed-not-configured",
+    "production_review_record": {
+      "path": "docs/records/solver-cvc5-source-review-2026-10-17/production-review.json",
+      "bytes": 139628,
+      "raw_digest": "sha256:b1de1a8085ce97db5e8b18c093e3d76f9ffb8bb66dbfdea09855b067ca22d918"
+    },
+    "source_patch": {
+      "bytes": 44354,
+      "path": "patches/cvc5/1.3.4/explicit-inputs.patch",
+      "raw_digest": "sha256:b8d27136de75c5f576e8a06468c7ac31a9163409720bf8a4a4f32e453571251c"
+    },
+    "patch_review_record": {
+      "path": "docs/records/solver-cvc5-source-review-2026-10-17/patch-review.json",
+      "bytes": 5237,
+      "raw_digest": "sha256:68a245cf4c703059460ad273dd8548fd5dbab30dd5d5f59d163287dcde2e3076"
+    },
+    "patch_status": "prepared-static-candidate-not-executed",
+    "bindings": "CLI-only candidate; Java/Python bindings explicitly disabled in static review; required Python interpreter/pyparsing retained; no JDK selected",
+    "feature_requirements": [
+      "Production",
+      "static-glibc",
+      "non-GPL",
+      "Editline",
+      "Poly",
+      "GMP/GMPXX",
+      "CaDiCaL",
+      "SymFPU"
+    ],
+    "optional_features": "statically-reviewed-candidate-overrides; effective-dynamic-configuration-unverified",
+    "auto_download": false
+  },
+  "future_acquisition": {
+    "source_archive_acquisition_authorized": false,
+    "sdk_package_acquisition_authorized": false,
+    "source_correspondence_acquisition_authorized": false,
+    "further_metadata_acquisition_authorized": false,
+    "retention_directory": ".tmp/cvc5-c0-acquisition-2026-10-17",
+    "source_archive_max_total_bytes": 201326592,
+    "metadata_max_total_bytes": 29360128,
+    "sdk_package_max_total_bytes": 536870912,
+    "source_correspondence_max_total_bytes": 1073741824,
+    "estimated_network_minutes": [
+      10,
+      30
+    ],
+    "sdk_package_index_declared_total_bytes": 120870556,
+    "source_correspondence_index_declared_total_bytes": 570734908,
+    "estimate_basis": "caps remain planning limits; exact declared sizes now summed from metadata, not package observations or acceptance",
+    "timeout_seconds_per_item": 180,
+    "retries": 0,
+    "source_fallbacks": 0,
+    "cleanup": "future exact acquired paths only; preserve original ZIP and prior evidence; no cleanup authorized"
+  },
+  "blockers": [
+    "snapshot signature trust and historical validity policy not accepted",
+    "exact metadata binary/source selection is not obtained package contents or copyright acceptance",
+    "declared package runtime metadata closure is not verified package contents or a runtime filesystem",
+    "static Production/options/import review and text patch are not executed effective configuration or generator compatibility",
+    "SDK binary/corresponding-source bytes and file inventories not obtained",
+    ".pc static closure, actual library/header hashes and link map not created",
+    "LibPoly Debian copyright label/body conflict and GMP multi-license scope require acceptance",
+    "local source/license/configuration delta/trusted SDK acceptance not decided"
+  ]
+}

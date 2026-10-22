@@ -34,4 +34,4 @@ RadishAxiom 希望形成严谨、开放并允许充分技术分歧的协作社�
 
 ## 报告
 
-行为问题可通过 `laugh0608@foxmail.com` 私下报告。安全漏洞请遵循 [SECURITY.md](SECURITY.md)，不要将可利用细节混入公开行为投诉。
+行为问题可通过 `luobo@radishx.com` 私下报告。安全漏洞请遵循 [SECURITY.md](SECURITY.md)，不要将可利用细节混入公开行为投诉。

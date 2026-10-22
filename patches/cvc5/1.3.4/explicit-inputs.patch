@@ -1,0 +1,1159 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -15,6 +15,9 @@
+ #-----------------------------------------------------------------------------#
+ # Project configuration
+ 
++# Validate the fixed external manifest before project() can probe compilers.
++include("${CMAKE_CURRENT_LIST_DIR}/cmake/cvc5-c0-inputs.cmake")
++
+ project(cvc5)
+ 
+ include(CheckIPOSupported)
+@@ -69,12 +72,7 @@
+ #-----------------------------------------------------------------------------#
+ # Tell CMake where to find our dependencies
+ 
+-if(GLPK_DIR)
+-  list(APPEND CMAKE_PREFIX_PATH "${GLPK_DIR}")
+-endif()
+-
+-# By default the contrib/get-* scripts install dependencies to deps/install.
+-list(APPEND CMAKE_PREFIX_PATH "${PROJECT_SOURCE_DIR}/deps/install")
++# C0 dependencies come exclusively from the reviewed explicit input manifest.
+ 
+ #-----------------------------------------------------------------------------#
+ 
+@@ -251,6 +249,7 @@
+ 
+ message(STATUS "Building ${CMAKE_BUILD_TYPE} build")
+ include(Config${CMAKE_BUILD_TYPE})
++cvc5_c0_check_configuration()
+ 
+ #-----------------------------------------------------------------------------#
+ # Compiler flags
+diff --git a/cmake/FindCaDiCaL.cmake b/cmake/FindCaDiCaL.cmake
+--- a/cmake/FindCaDiCaL.cmake
++++ b/cmake/FindCaDiCaL.cmake
+@@ -6,190 +6,13 @@
+ # All rights reserved.  See the file COPYING in the top-level source
+ # directory for licensing information.
+ # #############################################################################
+-#
+-# Find CaDiCaL
+-# CaDiCaL_FOUND - system has CaDiCaL lib
+-# CaDiCaL_INCLUDE_DIR - the CaDiCaL include directory
+-# CaDiCaL_LIBRARIES - Libraries needed to use CaDiCaL
+-##
+ 
+-include(deps-helper)
++# Private fixed-input candidate: no discovery, download, or probe fallback.
++include(cvc5-c0-inputs)
+ 
+-find_path(CaDiCaL_INCLUDE_DIR NAMES cadical/cadical.hpp cadical/tracer.hpp)
+-find_library(CaDiCaL_LIBRARIES NAMES cadical)
+-
++set(CaDiCaL_INCLUDE_DIR "${CVC5_C0_HEADER_cadical}")
++set(CaDiCaL_LIBRARIES "${CVC5_C0_ARCHIVE_cadical}")
++set(CaDiCaL_VERSION "${cadical_version}")
++set(CaDiCaL_FOUND TRUE)
+ set(CaDiCaL_FOUND_SYSTEM FALSE)
+-if(CaDiCaL_INCLUDE_DIR AND CaDiCaL_LIBRARIES)
+-
+-  # Generate our version check file in PROJECT_BINARY_DIR
+-  set(CaDiCaL_version_src "${PROJECT_BINARY_DIR}/CaDiCaL_version.cpp")
+-  file(WRITE ${CaDiCaL_version_src}
+-    "
+-    #include <cadical/cadical.hpp>
+-    #include <iostream>
+-
+-    int main(void)
+-    {
+-      std::cout << CaDiCaL::Solver::version() << std::endl;
+-      return 0;
+-    }
+-    "
+-  )
+-
+-  # `try_run` doesn't have a way to specify a specific include dirs, so we need
+-  # to set (and then reset) `CMAKE_CXX_FLAGS`; our version file is a .cpp file,
+-  # so CXX_FLAGS are the right flags
+-  set(OLD_CXX_FLAGS ${CMAKE_CXX_FLAGS})
+-
+-  # cvc5 doesn't support MSVC, so we're fine to hard-code `-I` as the include
+-  # flag
+-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I${CaDiCaL_INCLUDE_DIR}")
+-
+-  # Try to compile and run our version file
+-  try_run(RUN_RESULT_VAR
+-    COMPILE_RESULT_VAR
+-    ${PROJECT_BINARY_DIR}
+-    ${CaDiCaL_version_src}
+-    LINK_LIBRARIES ${CaDiCaL_LIBRARIES}
+-    RUN_OUTPUT_VARIABLE CaDiCaL_VERSION
+-  )
+-
+-  # Restore our CXX flags after checking with `try_run`
+-  set(CMAKE_CXX_FLAGS ${OLD_CXX_FLAGS})
+-
+-  # If this failed to compile or run, we have bigger issues
+-  if (NOT ${RUN_RESULT_VAR} EQUAL 0 OR NOT ${COMPILE_RESULT_VAR})
+-    set(CaDiCaL_VERSION "")
+-  endif()
+-
+-  # Minimum supported version
+-  set(CaDiCaL_FIND_VERSION "2.1.0")
+-  # Maximum supported version
+-  set(CaDiCaL_FIND_VERSION_MAX "2.1.3")
+-
+-  # Set FOUND_SYSTEM to true; check_system_version will unset this if the
+-  # version is less than the minimum required
+-  set(CaDiCaL_FOUND_SYSTEM TRUE)
+-
+-  # Check the version against the required version
+-  check_system_version("CaDiCaL")
+-endif()
+-
+-if(NOT CaDiCaL_FOUND_SYSTEM)
+-  check_ep_downloaded("CaDiCaL-EP")
+-  if(NOT CaDiCaL-EP_DOWNLOADED)
+-    check_auto_download("CaDiCaL" "")
+-  endif()
+-
+-  include(CheckSymbolExists)
+-  include(ExternalProject)
+-
+-  set(CaDiCaL_VERSION "rel-2.1.3-elevate")
+-  set(CaDiCaL_CHECKSUM "15e1e82f7f9a9da0e97070cb8ac41d5b32139f65d54f72d2ff84849b0466ef92")
+-
+-  # avoid configure script and instantiate the makefile manually the configure
+-  # scripts unnecessarily fails for cross compilation thus we do the bare
+-  # minimum from the configure script here
+-  set(CaDiCaL_CXXFLAGS "-fPIC -O3 -DNDEBUG -DQUIET -std=c++11")
+-  if(CMAKE_CROSSCOMPILING_MACOS)
+-    set(CaDiCaL_CXXFLAGS "${CaDiCaL_CXXFLAGS} -arch ${CMAKE_OSX_ARCHITECTURES}")
+-  endif()
+-
+-  # check for getc_unlocked
+-  check_symbol_exists("getc_unlocked" "cstdio" HAVE_UNLOCKED_IO)
+-  if(NOT HAVE_UNLOCKED_IO)
+-    string(APPEND CaDiCaL_CXXFLAGS " -DNUNLOCKED")
+-  endif()
+-  # check for closefrom
+-  check_symbol_exists("closefrom" "fcntl.h" HAVE_CLOSEFROM)
+-  if(NOT HAVE_CLOSEFROM)
+-    string(APPEND CaDiCaL_CXXFLAGS " -DNCLOSEFROM")
+-  endif()
+-
+-  # On macOS, we have to set `-isysroot` to make sure that include headers are
+-  # found because they are not necessarily installed at /usr/include anymore.
+-  if(CMAKE_OSX_SYSROOT)
+-    string(APPEND CaDiCaL_CXXFLAGS " ${CMAKE_CXX_SYSROOT_FLAG} ${CMAKE_OSX_SYSROOT}")
+-  endif()
+-
+-  if("${CMAKE_GENERATOR}" STREQUAL "Unix Makefiles")
+-    # use $(MAKE) instead of "make" to allow for parallel builds
+-    set(make_cmd "$(MAKE)")
+-  else()
+-    # $(MAKE) does not work with ninja
+-    set(make_cmd "make")
+-  endif()
+-
+-  set(USE_EMAR "")
+-  if(NOT(WASM STREQUAL "OFF"))
+-    set(USE_EMAR  "-e s,ar rc,emar rc,")
+-  endif()
+-
+-  set(CaDiCaL_SOURCE_DIR <SOURCE_DIR>)
+-  ExternalProject_Add(
+-    CaDiCaL-EP
+-    ${COMMON_EP_CONFIG}
+-    BUILD_IN_SOURCE ON
+-    URL https://github.com/arminbiere/cadical/archive/${CaDiCaL_VERSION}.tar.gz
+-    URL_HASH SHA256=${CaDiCaL_CHECKSUM}
+-    CONFIGURE_COMMAND mkdir -p <SOURCE_DIR>/build
+-    # avoid configure script, prepare the makefile manually
+-    COMMAND ${CMAKE_COMMAND} -E copy <SOURCE_DIR>/makefile.in
+-            <SOURCE_DIR>/build/makefile
+-    COMMAND
+-      sed -i.orig -e "s,@CXX@,${CMAKE_CXX_COMPILER}," -e
+-      "s,@CXXFLAGS@,${CaDiCaL_CXXFLAGS}," -e
+-      "s,@ROOT@,${CaDiCaL_SOURCE_DIR}," -e "s,@CONTRIB@,no," ${USE_EMAR}
+-      <SOURCE_DIR>/build/makefile
+-    BUILD_COMMAND ${make_cmd} -C <SOURCE_DIR>/build libcadical.a
+-    INSTALL_COMMAND ${CMAKE_COMMAND} -E copy <SOURCE_DIR>/build/libcadical.a
+-                    <INSTALL_DIR>/lib/libcadical.a
+-    COMMAND ${CMAKE_COMMAND} -E copy <SOURCE_DIR>/src/cadical.hpp
+-            <INSTALL_DIR>/include/cadical/cadical.hpp
+-    COMMAND ${CMAKE_COMMAND} -E copy <SOURCE_DIR>/src/tracer.hpp
+-            <INSTALL_DIR>/include/cadical/tracer.hpp
+-    BUILD_BYPRODUCTS <INSTALL_DIR>/lib/libcadical.a
+-  )
+-
+-  set(CaDiCaL_INCLUDE_DIR "${DEPS_BASE}/include/")
+-  set(CaDiCaL_LIBRARIES "${DEPS_BASE}/lib/libcadical.a")
+-endif()
+-
+-set(CaDiCaL_FOUND TRUE)
+-
+-add_library(CaDiCaL STATIC IMPORTED GLOBAL)
+-set_target_properties(
+-  CaDiCaL PROPERTIES IMPORTED_LOCATION "${CaDiCaL_LIBRARIES}"
+-)
+-set_target_properties(
+-  CaDiCaL PROPERTIES INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${CaDiCaL_INCLUDE_DIR}"
+-)
+-
+-if (WIN32)
+-  # The Windows version of CaDiCaL calls GetProcessMemoryInfo(), which is
+-  # defined in the Process Status API (psapi), so we declare it as a dependency
+-  # of the CaDiCaL library (without this, linking a static cvc5 executable
+-  # fails).
+-  set_target_properties(
+-    CaDiCaL PROPERTIES IMPORTED_LINK_INTERFACE_LIBRARIES psapi
+-  )
+-endif ()
+-
+-mark_as_advanced(CaDiCaL_FOUND)
+-mark_as_advanced(CaDiCaL_FOUND_SYSTEM)
+-mark_as_advanced(CaDiCaL_INCLUDE_DIR)
+-mark_as_advanced(CaDiCaL_LIBRARIES)
+-
+-if(CaDiCaL_FOUND_SYSTEM)
+-  message(STATUS "Found CaDiCaL ${CaDiCaL_VERSION}: ${CaDiCaL_LIBRARIES}")
+-else()
+-  message(STATUS "Building CaDiCaL ${CaDiCaL_VERSION}: ${CaDiCaL_LIBRARIES}")
+-  add_dependencies(CaDiCaL CaDiCaL-EP)
+-
+-  # Install CaDiCaL static library only if it is a static build.
+-  # The CaDiCaL static library is required to compile a program that
+-  # uses the cvc5 static library.
+-  if(NOT BUILD_SHARED_LIBS)
+-    install(FILES ${CaDiCaL_LIBRARIES} TYPE ${LIB_BUILD_TYPE})
+-  endif()
+-endif()
++cvc5_c0_import(CaDiCaL cadical cadical)
+diff --git a/cmake/FindEditline.cmake b/cmake/FindEditline.cmake
+--- a/cmake/FindEditline.cmake
++++ b/cmake/FindEditline.cmake
+@@ -6,35 +6,21 @@
+ # All rights reserved.  See the file COPYING in the top-level source
+ # directory for licensing information.
+ # #############################################################################
+-#
+-# Find Editline
+-# Editline_FOUND - found Editline lib
+-# Editline_INCLUDE_DIRS - the Editline include directory
+-# Editline_LIBRARIES - Libraries needed to use Editline
+-##
+ 
+-# When finding libedit, use pkg-config to ensure we find all the required
+-# linking flags for libedit
+-find_package(PkgConfig REQUIRED)
+-pkg_check_modules(Editline REQUIRED libedit)
++# Private fixed-input candidate: no discovery, download, or probe fallback.
++include(cvc5-c0-inputs)
+ 
+-if(Editline_INCLUDE_DIRS)
+-  if(NOT CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+-    find_library(BSD_LIBRARIES NAMES bsd)
+-    if (BSD_LIBRARIES)
+-      set(Editline_LIBRARIES ${Editline_LIBRARIES} bsd)
+-    endif()
+-    set(Editline_LIBRARIES ${Editline_LIBRARIES} tinfo)
++set(Editline_INCLUDE_DIRS "${CVC5_C0_HEADER_editline}")
++set(Editline_FOUND TRUE)
++add_library(Editline INTERFACE IMPORTED GLOBAL)
++set(editline_targets "")
++foreach(role IN LISTS CVC5_C0_EDITLINE_ROLES)
++  if(NOT TARGET CVC5C0_${role})
++    cvc5_c0_import(CVC5C0_${role} ${role} editline)
+   endif()
+-endif()
+-
+-include(FindPackageHandleStandardArgs)
+-find_package_handle_standard_args(Editline
+-  DEFAULT_MSG Editline_INCLUDE_DIRS Editline_LIBRARIES)
+-mark_as_advanced(
+-  Editline_INCLUDE_DIRS
+-  Editline_LIBRARIES
+-)
+-if(Editline_LIBRARIES)
+-  message(STATUS "Editline library: ${Editline_LIBRARIES}")
+-endif()
++  list(APPEND editline_targets CVC5C0_${role})
++endforeach()
++set_target_properties(Editline PROPERTIES
++  INTERFACE_LINK_LIBRARIES "${editline_targets}"
++  INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${Editline_INCLUDE_DIRS}")
++set(Editline_LIBRARIES Editline)
+diff --git a/cmake/FindGMP.cmake b/cmake/FindGMP.cmake
+--- a/cmake/FindGMP.cmake
++++ b/cmake/FindGMP.cmake
+@@ -12,195 +12,17 @@
+ # GMP - target for the GMP library
+ ##
+ 
+-include(deps-helper)
++# Private fixed-input candidate: no discovery, download, or probe fallback.
++include(cvc5-c0-inputs)
+ 
+-if (NOT BUILD_GMP)
+-  find_path(GMP_INCLUDE_DIR NAMES gmp.h)
+-  find_path(GMPXX_INCLUDE_DIR NAMES gmpxx.h)
+-  find_library(GMP_LIBRARIES NAMES gmp)
+-  find_library(GMPXX_LIBRARIES NAMES gmpxx)
+-endif()
+-
++set(GMP_INCLUDE_DIR "${CVC5_C0_HEADER_gmp}")
++set(GMPXX_INCLUDE_DIR "${CVC5_C0_HEADER_gmpxx}")
++set(GMP_LIBRARIES "${CVC5_C0_ARCHIVE_gmp}")
++set(GMPXX_LIBRARIES "${CVC5_C0_ARCHIVE_gmpxx}")
++set(GMP_VERSION "${gmp_version}")
++set(GMP_FOUND TRUE)
+ set(GMP_FOUND_SYSTEM FALSE)
+-if(GMP_INCLUDE_DIR AND GMPXX_INCLUDE_DIR AND GMP_LIBRARIES AND GMPXX_LIBRARIES)
+-  set(GMP_FOUND_SYSTEM TRUE)
+-
+-  # Attempt to retrieve the version from gmp.h
+-  function(getversionpart OUTPUT FILENAME DESC)
+-    file(STRINGS ${FILENAME} RES REGEX "^#define __GNU_MP_${DESC}[ \\t]+.*")
+-    string(REGEX MATCH "[0-9]+" RES "${RES}")
+-    set(${OUTPUT}
+-        "${RES}"
+-        PARENT_SCOPE
+-    )
+-  endfunction()
+-  getversionpart(MAJOR "${GMP_INCLUDE_DIR}/gmp.h" "VERSION")
+-  getversionpart(MINOR "${GMP_INCLUDE_DIR}/gmp.h" "VERSION_MINOR")
+-  getversionpart(PATCH "${GMP_INCLUDE_DIR}/gmp.h" "VERSION_PATCHLEVEL")
+-
+-  if(MAJOR AND MINOR AND PATCH)
+-    set(GMP_VERSION
+-        "${MAJOR}.${MINOR}.${PATCH}"
+-    )
+-  else()
+-    set(GMP_VERSION "(unknown version)")
+-  endif()
+-
+-  # This test checks whether GMP is usable and whether the version is new
+-  # enough
+-  try_compile(GMP_USABLE "${DEPS_BASE}/try_compile/GMP-EP"
+-    "${CMAKE_CURRENT_LIST_DIR}/deps-utils/gmp-test.cpp"
+-    CMAKE_FLAGS
+-      "-DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}"
+-      "-DINCLUDE_DIRECTORIES=${GMP_INCLUDE_DIR}"
+-    LINK_LIBRARIES ${GMP_LIBRARIES} ${GMPXX_LIBRARIES}
+-  )
+-  if(NOT GMP_USABLE)
+-    message(STATUS "System version for GMP does not work in the selected configuration. Maybe we are cross-compiling?")
+-    set(GMP_FOUND_SYSTEM FALSE)
+-  endif()
+-endif()
+-
+-if(NOT GMP_FOUND_SYSTEM)
+-  check_ep_downloaded("GMP-EP")
+-  if(NOT GMP-EP_DOWNLOADED)
+-    check_auto_download("GMP" "")
+-  endif()
+-
+-  include(ExternalProject)
+-
+-  set(GMP_VERSION "6.3.0")
+-
+-  set(GMP_INCLUDE_DIR "${DEPS_BASE}/include/")
+-
+-  # Newer versions of gcc use C23 as default C standard but GMP (as of 6.3.0)
+-  # only supports C17. To also support older compiler versions, we fix the
+-  # standard for GMP to C99.
+-  set(GMP_CFLAGS "-std=gnu99")
+-  set(GMP_CXXFLAGS "")
+-
+-  if(BUILD_SHARED_LIBS)
+-    set(LINK_OPTS --enable-shared --disable-static)
+-    if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+-      set(GMP_LIBRARIES "${DEPS_BASE}/lib/libgmp.dll.a")
+-    else()
+-      set(GMP_LIBRARIES "${DEPS_BASE}/lib/libgmp${CMAKE_SHARED_LIBRARY_SUFFIX}")
+-    endif()
+-  else()
+-    set(LINK_OPTS --disable-shared --enable-static)
+-    set(GMP_LIBRARIES "${DEPS_BASE}/lib/libgmp.a")
+-  endif()
+-
+-  set(CONFIGURE_OPTS "")  
+-  # GMP yields the following message at the end of the build process.
+-  #     WARNING: `makeinfo' is missing on your system.
+-
+-  # This is a specific issue to Github CI on linux environments:
+-  #     https://github.com/ps2dev/ps2toolchain/issues/64
+-  #     https://github.com/spack/spack/issues/34906
+-  #     https://github.com/periscop/candl/issues/16
+-  #     https://github.com/microsoft/vcpkg/issues/22671
+-  # Many solution attempts have been tried, but none worked.
+-
+-  # Since makeinfo just builds the documentation for GMP,
+-  # it is possible to get around this issue by just disabling it:
+-  set(CONFIGURE_ENV ${CONFIGURE_ENV} env "MAKEINFO=true")
+-
+-  if(CMAKE_CROSSCOMPILING OR CMAKE_CROSSCOMPILING_MACOS)
+-    set(CONFIGURE_OPTS
+-      --host=${TOOLCHAIN_PREFIX}
+-      --build=${CMAKE_HOST_SYSTEM_PROCESSOR})
+-
+-    set(CONFIGURE_ENV ${CONFIGURE_ENV} ${CMAKE_COMMAND} -E
+-      env "CC_FOR_BUILD=cc")
+-    if (CMAKE_CROSSCOMPILING_MACOS)
+-      set(CONFIGURE_ENV
+-        ${CONFIGURE_ENV}
+-        env "LDFLAGS=-arch ${CMAKE_OSX_ARCHITECTURES}")
+-      set(GMP_CFLAGS "${GMP_CFLAGS} --target=${TOOLCHAIN_PREFIX}")
+-      set(GMP_CXXFLAGS "${GMP_CXXFLAGS} --target=${TOOLCHAIN_PREFIX}")
+-    endif()
+-  else()
+-    set(CONFIGURE_OPTS --build=${BUILD_TRIPLET}) # Defined in Helpers
+-  endif()
+-  set(CONFIGURE_ENV ${CONFIGURE_ENV} env "CXXFLAGS=${GMP_CXXFLAGS}" env "CFLAGS=${GMP_CFLAGS}")
+-
+-  # `CC_FOR_BUILD`, `--host`, and `--build` are passed to `configure` to ensure
+-  # that cross-compilation works (as suggested in the GMP documentation).
+-  # Without the `--build` flag, `configure` may fail for cross-compilation
+-  # builds for Windows if Wine is installed.
+-  ExternalProject_Add(
+-    GMP-EP
+-    ${COMMON_EP_CONFIG}
+-    URL https://github.com/cvc5/cvc5-deps/blob/main/gmp-${GMP_VERSION}.tar.bz2?raw=true
+-    URL_HASH SHA256=ac28211a7cfb609bae2e2c8d6058d66c8fe96434f740cf6fe2e47b000d1c20cb
+-    BUILD_IN_SOURCE ON
+-    CONFIGURE_COMMAND
+-      ${CONFIGURE_ENV}
+-          ${CONFIGURE_CMD_WRAPPER} ${SHELL} <SOURCE_DIR>/configure
+-          ${LINK_OPTS}
+-          --prefix=<INSTALL_DIR>
+-          --with-pic
+-          --enable-cxx
+-          ${CONFIGURE_OPTS}
+-    BUILD_BYPRODUCTS ${GMP_LIBRARIES}
+-  )
+-endif()
+-
+-set(GMP_FOUND TRUE)
+-
+-
+-if(BUILD_SHARED_LIBS)
+-  add_library(GMP SHARED IMPORTED GLOBAL)
+-  if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+-    set_target_properties(GMP PROPERTIES IMPORTED_IMPLIB "${GMP_LIBRARIES}")
+-  endif()
+-else()
+-  add_library(GMP STATIC IMPORTED GLOBAL)
+-endif()
+-set_target_properties(GMP PROPERTIES
+-  IMPORTED_LOCATION "${GMP_LIBRARIES}"
+-  INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${GMP_INCLUDE_DIR}"
+-)
+-
+-mark_as_advanced(GMP_FOUND)
+-mark_as_advanced(GMP_FOUND_SYSTEM)
+-mark_as_advanced(GMP_INCLUDE_DIR)
+-mark_as_advanced(GMP_LIBRARIES)
+-
+-if(GMP_FOUND_SYSTEM)
+-  message(STATUS "Found GMP ${GMP_VERSION}: ${GMP_LIBRARIES}")
+-else()
+-  message(STATUS "Building GMP ${GMP_VERSION}: ${GMP_LIBRARIES}")
+-  add_dependencies(GMP GMP-EP)
+-  # Static builds install the GMP static libraries.
+-  # These libraries are required to compile a program that
+-  # uses the cvc5 static library.
+-  # On Windows, this installs the import libraries (LIB) and
+-  # the DLL libraries (BIN)
+-  install(
+-    DIRECTORY ${DEPS_BASE}/lib/
+-    TYPE LIB
+-    FILES_MATCHING PATTERN libgmp* PATTERN gmp*.pc
+-  )
+-  if(BUILD_SHARED_LIBS AND WIN32)
+-    install(
+-      DIRECTORY ${DEPS_BASE}/${CMAKE_INSTALL_BINDIR}/
+-      TYPE BIN
+-      FILES_MATCHING PATTERN libgmp*
+-    )
+-  endif()
+-  if(NOT SKIP_SET_RPATH AND BUILD_SHARED_LIBS AND APPLE)
+-    install(CODE "
+-      file(GLOB GMP_DYLIBS \"\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/libgmp*.dylib\")
+-      foreach(GMP_DYLIB \${GMP_DYLIBS})
+-        execute_process(COMMAND \${CMAKE_COMMAND}
+-          -DRPATH=@loader_path
+-          -DINSTALL_NAME_TOOL=${CMAKE_INSTALL_NAME_TOOL}
+-          -DDYLIB_PATH=\${GMP_DYLIB}
+-          -DDEPS_BASE=${DEPS_BASE}
+-          -P ${PROJECT_SOURCE_DIR}/cmake/update_rpath_macos.cmake)
+-      endforeach()
+-    ")
+-  endif()
+-endif()
++cvc5_c0_import(GMP gmp gmp)
++# Keep GMP's original C-only interface; provide the pinned C++ archive separately.
++cvc5_c0_import(GMPXX gmpxx gmpxx)
++target_link_libraries(GMPXX INTERFACE GMP)
+diff --git a/cmake/FindPoly.cmake b/cmake/FindPoly.cmake
+--- a/cmake/FindPoly.cmake
++++ b/cmake/FindPoly.cmake
+@@ -6,257 +6,17 @@
+ # All rights reserved.  See the file COPYING in the top-level source
+ # directory for licensing information.
+ # #############################################################################
+-#
+-# Find LibPoly
+-# Poly_FOUND - should always be true
+-# Poly - target for the libpoly library
+-# Polyxx - target for the C++ interface of libpoly, also links Poly
+-##
+ 
+-include(deps-helper)
++# Private fixed-input candidate: no discovery, download, or probe fallback.
++include(cvc5-c0-inputs)
+ 
+-find_path(Poly_INCLUDE_DIR NAMES poly/poly.h)
+-if(BUILD_SHARED_LIBS)
+-  find_library(Poly_LIBRARIES NAMES poly)
+-  find_library(PolyXX_LIBRARIES NAMES polyxx)
+-else()
+-  find_library(Poly_LIBRARIES NAMES picpoly)
+-  find_library(PolyXX_LIBRARIES NAMES picpolyxx)
+-endif()
+-
++set(Poly_INCLUDE_DIR "${CVC5_C0_HEADER_poly}")
++set(Poly_LIBRARIES "${CVC5_C0_ARCHIVE_poly}")
++set(PolyXX_LIBRARIES "${CVC5_C0_ARCHIVE_polyxx}")
++set(Poly_VERSION "${poly_version}")
++set(Poly_FOUND TRUE)
+ set(Poly_FOUND_SYSTEM FALSE)
+-if(Poly_INCLUDE_DIR
+-   AND Poly_LIBRARIES
+-   AND PolyXX_LIBRARIES
+-)
+-  set(Poly_FOUND_SYSTEM TRUE)
+-
+-  file(STRINGS ${Poly_INCLUDE_DIR}/poly/version.h Poly_VERSION
+-       REGEX "^#define[\t ]+LIBPOLY_VERSION [0-9+]+"
+-  )
+-  string(REGEX MATCH "[0-9.]+" Poly_VERSION "${Poly_VERSION}")
+-
+-  check_system_version("Poly")
+-endif()
+-
+-if(NOT Poly_FOUND_SYSTEM)
+-  check_ep_downloaded("Poly-EP")
+-  if(NOT Poly-EP_DOWNLOADED)
+-    check_auto_download("Poly" "--no-poly")
+-  endif()
+-
+-  include(ExternalProject)
+-
+-  set(Poly_VERSION "0.2.1")
+-
+-  set(POLY_PATCH_KWD PATCH_COMMAND)
+-  if (NO_GLOBAL_POLY_CTX)
+-    find_program(PATCH_BIN patch)
+-    if(NOT PATCH_BIN)
+-      message(FATAL_ERROR "Can not patch LibPoly, missing binary for patch")
+-    endif()
+-    set(POLY_PATCH_CMD
+-      ${POLY_PATCH_KWD}
+-        patch -p1 -d <SOURCE_DIR>
+-        -i ${CMAKE_CURRENT_LIST_DIR}/deps-utils/poly-global-ctx.patch
+-    )
+-    set(POLY_PATCH_KWD COMMAND)
+-  endif()
+-
+-  check_if_cross_compiling(CCWIN "Windows" "")
+-  if(CCWIN)
+-    set(POLY_PATCH_CMD
+-      ${POLY_PATCH_KWD}
+-        ${PROJECT_SOURCE_DIR}/cmake/deps-utils/Poly-windows-patch.sh <SOURCE_DIR>
+-    )
+-    set(POLY_PATCH_KWD COMMAND)
+-  endif()
+-
+-  # On Windows, CMake's default install action places DLLs into the runtime
+-  # path (/bin) after doing the build with 'ExternalProject_Add'
+-  if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+-    set(BINARY_LIBRARY_DEST "bin")
+-  else()
+-    set(BINARY_LIBRARY_DEST "lib")
+-  endif()
+-
+-  get_target_property(GMP_INCLUDE_DIR GMP INTERFACE_SYSTEM_INCLUDE_DIRECTORIES)
+-  get_target_property(GMP_LIBRARY GMP IMPORTED_LOCATION)
+-  get_filename_component(GMP_LIB_PATH "${GMP_LIBRARY}" DIRECTORY)
+-
+-  set(Poly_INCLUDE_DIR "${DEPS_BASE}/include/")
+-
+-  if(BUILD_SHARED_LIBS)
+-    set(POLY_BUILD_STATIC OFF)
+-    set(POLY_TARGETS poly polyxx)
+-    set(POLY_INSTALL_CMD
+-      INSTALL_COMMAND 
+-        ${CMAKE_MAKE_PROGRAM} install ${POLY_TARGETS}
+-    )
+-
+-    if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+-      set(POLY_BYPRODUCTS
+-        <INSTALL_DIR>/lib/libpoly.0${CMAKE_SHARED_LIBRARY_SUFFIX}
+-        <INSTALL_DIR>/lib/libpoly.${Poly_VERSION}${CMAKE_SHARED_LIBRARY_SUFFIX}
+-        <INSTALL_DIR>/lib/libpolyxx.0${CMAKE_SHARED_LIBRARY_SUFFIX}
+-        <INSTALL_DIR>/lib/libpolyxx.${Poly_VERSION}${CMAKE_SHARED_LIBRARY_SUFFIX}
+-        <INSTALL_DIR>/lib/libpoly${CMAKE_SHARED_LIBRARY_SUFFIX}
+-        <INSTALL_DIR>/lib/libpolyxx${CMAKE_SHARED_LIBRARY_SUFFIX}
+-      )
+-      set(Poly_LIBRARIES "${DEPS_BASE}/lib/libpoly${CMAKE_SHARED_LIBRARY_SUFFIX}")
+-      set(PolyXX_LIBRARIES "${DEPS_BASE}/lib/libpolyxx${CMAKE_SHARED_LIBRARY_SUFFIX}")
+-    elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+-      # For Windows builds, LibPoly installs the .dlls to the bin directory
+-      set(POLY_BYPRODUCTS
+-        <INSTALL_DIR>/bin/libpoly${CMAKE_SHARED_LIBRARY_SUFFIX}
+-        <INSTALL_DIR>/bin/libpolyxx${CMAKE_SHARED_LIBRARY_SUFFIX}
+-      )
+-      set(Poly_LIBRARIES "${DEPS_BASE}/bin/libpoly${CMAKE_SHARED_LIBRARY_SUFFIX}")
+-      set(PolyXX_LIBRARIES "${DEPS_BASE}/bin/libpolyxx${CMAKE_SHARED_LIBRARY_SUFFIX}")
+-    else()
+-      set(POLY_BYPRODUCTS
+-        <INSTALL_DIR>/lib/libpoly${CMAKE_SHARED_LIBRARY_SUFFIX}.0
+-        <INSTALL_DIR>/lib/libpoly${CMAKE_SHARED_LIBRARY_SUFFIX}.${Poly_VERSION}
+-        <INSTALL_DIR>/lib/libpolyxx${CMAKE_SHARED_LIBRARY_SUFFIX}.0
+-        <INSTALL_DIR>/lib/libpolyxx${CMAKE_SHARED_LIBRARY_SUFFIX}.${Poly_VERSION}
+-        <INSTALL_DIR>/lib/libpoly${CMAKE_SHARED_LIBRARY_SUFFIX}
+-        <INSTALL_DIR>/lib/libpolyxx${CMAKE_SHARED_LIBRARY_SUFFIX}
+-      )
+-      set(Poly_LIBRARIES "${DEPS_BASE}/lib/libpoly${CMAKE_SHARED_LIBRARY_SUFFIX}")
+-      set(PolyXX_LIBRARIES "${DEPS_BASE}/lib/libpolyxx${CMAKE_SHARED_LIBRARY_SUFFIX}")
+-    endif()
+-  else()
+-    # For static builds, we only build and install the `static_pic_poly` and
+-    # `static_pic_polyxx` targets. We pass the full path of GMP to LibPoly
+-    # below. If we are building a static version of cvc5, it is the static
+-    # version of GMP, which does not work for building a shared version of
+-    # LibPoly.
+-    set(POLY_BUILD_STATIC ON)
+-    set(POLY_TARGETS static_pic_poly static_pic_polyxx)
+-    set(POLY_INSTALL_CMD
+-      INSTALL_COMMAND 
+-        ${CMAKE_MAKE_PROGRAM} install ${POLY_TARGETS}
+-      COMMAND
+-        ${CMAKE_COMMAND} -E copy
+-          src/libpicpoly${CMAKE_STATIC_LIBRARY_SUFFIX}
+-          <INSTALL_DIR>/lib/libpicpoly${CMAKE_STATIC_LIBRARY_SUFFIX}
+-      COMMAND
+-        ${CMAKE_COMMAND} -E copy
+-          src/libpicpolyxx${CMAKE_STATIC_LIBRARY_SUFFIX}
+-          <INSTALL_DIR>/lib/libpicpolyxx${CMAKE_STATIC_LIBRARY_SUFFIX}
+-    )
+-
+-    # We only want to install the headers and the position-independent version
+-    # of the static libraries, so remove the installation targets for the other
+-    # versions of LibPoly
+-    set(POLY_PATCH_CMD ${POLY_PATCH_CMD}
+-      ${POLY_PATCH_KWD}
+-        sed -ri.orig
+-          "/TARGETS (poly|polyxx|static_poly|static_polyxx) /d"
+-          <SOURCE_DIR>/src/CMakeLists.txt
+-    )
+-
+-    set(POLY_BYPRODUCTS
+-      <INSTALL_DIR>/lib/libpicpoly${CMAKE_STATIC_LIBRARY_SUFFIX}
+-      <INSTALL_DIR>/lib/libpicpolyxx${CMAKE_STATIC_LIBRARY_SUFFIX}
+-    )
+-    set(Poly_LIBRARIES
+-      "${DEPS_BASE}/lib/libpicpoly${CMAKE_STATIC_LIBRARY_SUFFIX}")
+-    set(PolyXX_LIBRARIES
+-      "${DEPS_BASE}/lib/libpicpolyxx${CMAKE_STATIC_LIBRARY_SUFFIX}")
+-  endif()
+-
+-  # Disable a warning triggered by compilers (Emscripten, Apple Clang, etc.)
+-  # due to deprecated literal operator syntax in a GMP header used by LibPoly.
+-  set(POLY_CXX_FLAGS "")
+-  check_cxx_compiler_flag(-Wno-error=deprecated-literal-operator HAVE_CXX_FLAGWno_error_deprecated_literal_operator)
+-  if(HAVE_CXX_FLAGWno_error_deprecated_literal_operator)
+-    set(POLY_CXX_FLAGS -DCMAKE_CXX_FLAGS=-Wno-error=deprecated-literal-operator)
+-  endif()
+-  
+-  # We pass the full path of GMP to LibPoly, s.t. we can ensure that LibPoly is
+-  # able to find the correct version of GMP if we built it locally. This is
+-  # primarily important for cross-compiling cvc5, because LibPoly's search
+-  # paths make it impossible to find the locally built GMP library otherwise.
+-  ExternalProject_Add(
+-    Poly-EP
+-    ${COMMON_EP_CONFIG}
+-    URL https://github.com/SRI-CSL/libpoly/archive/refs/tags/v${Poly_VERSION}.tar.gz
+-    URL_HASH SHA256=f9920afc876f998633348b9cbfcf180757ada48cc872040256c60ad0707b5a0f
+-    ${POLY_PATCH_CMD}
+-    CMAKE_ARGS -DCMAKE_BUILD_TYPE=Release
+-               -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
+-               -DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}
+-               -DLIBPOLY_BUILD_PYTHON_API=OFF
+-               -DLIBPOLY_BUILD_STATIC=${POLY_BUILD_STATIC}
+-               -DLIBPOLY_BUILD_STATIC_PIC=${POLY_BUILD_STATIC}
+-               -DGMP_INCLUDE_DIR=${GMP_INCLUDE_DIR}
+-               -DGMP_LIBRARY=${GMP_LIBRARIES}
+-               -DCMAKE_SKIP_INSTALL_ALL_DEPENDENCY=TRUE
+-               -DBUILD_TESTING=OFF
+-               ${POLY_CXX_FLAGS}
+-    BUILD_COMMAND ${CMAKE_MAKE_PROGRAM} ${POLY_TARGETS}
+-    ${POLY_INSTALL_CMD}
+-    BUILD_BYPRODUCTS ${POLY_BYPRODUCTS}
+-  )
+-  ExternalProject_Add_Step(
+-    Poly-EP cleanup
+-    DEPENDEES install
+-    COMMAND ${CMAKE_COMMAND} -E remove_directory <BINARY_DIR>/test/
+-  )
+-  add_dependencies(Poly-EP GMP)
+-endif()
+-
+-set(Poly_FOUND TRUE)
+-
+-
+-if(BUILD_SHARED_LIBS)
+-  add_library(Poly SHARED IMPORTED GLOBAL)
+-  add_library(Polyxx SHARED IMPORTED GLOBAL)
+-  if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+-    set_target_properties(Poly PROPERTIES IMPORTED_IMPLIB "${Poly_LIBRARIES}")
+-    set_target_properties(Polyxx PROPERTIES IMPORTED_IMPLIB "${PolyXX_LIBRARIES}")
+-  endif()
+-else()
+-  add_library(Poly STATIC IMPORTED GLOBAL)
+-  add_library(Polyxx STATIC IMPORTED GLOBAL)
+-endif()
+-
+-set_target_properties(Poly PROPERTIES
+-  IMPORTED_LOCATION "${Poly_LIBRARIES}"
+-  INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${Poly_INCLUDE_DIR}"
+-)
++cvc5_c0_import(Poly poly poly)
++cvc5_c0_import(Polyxx polyxx poly)
+ target_link_libraries(Poly INTERFACE GMP)
+-set_target_properties(Polyxx PROPERTIES
+-  IMPORTED_LOCATION "${PolyXX_LIBRARIES}"
+-  INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${Poly_INCLUDE_DIR}"
+-)
+-
+-mark_as_advanced(Poly_FOUND)
+-mark_as_advanced(Poly_FOUND_SYSTEM)
+-mark_as_advanced(Poly_INCLUDE_DIR)
+-mark_as_advanced(Poly_LIBRARIES)
+-mark_as_advanced(PolyXX_LIBRARIES)
+-
+-if(Poly_FOUND_SYSTEM)
+-  message(STATUS "Found Poly ${Poly_VERSION}: ${Poly_LIBRARIES}, ${PolyXX_LIBRARIES}")
+-else()
+-  message(STATUS "Building Poly ${Poly_VERSION}: ${Poly_LIBRARIES}, ${PolyXX_LIBRARIES}")
+-  add_dependencies(Poly Poly-EP)
+-  add_dependencies(Polyxx Poly-EP)
+-
+-  ExternalProject_Get_Property(Poly-EP BUILD_BYPRODUCTS INSTALL_DIR)
+-  string(REPLACE "<INSTALL_DIR>" "${INSTALL_DIR}" BUILD_BYPRODUCTS "${BUILD_BYPRODUCTS}")
+-
+-  # Static builds install the Poly static libraries.
+-  # These libraries are required to compile a program that
+-  # uses the cvc5 static library.
+-  install(FILES ${BUILD_BYPRODUCTS} TYPE ${LIB_BUILD_TYPE})
+-
+-  if(NOT SKIP_SET_RPATH AND BUILD_SHARED_LIBS AND APPLE)
+-    foreach(POLY_DYLIB ${BUILD_BYPRODUCTS})
+-      get_filename_component(POLY_DYLIB_NAME ${POLY_DYLIB} NAME)
+-      update_rpath_macos(${POLY_DYLIB_NAME})
+-    endforeach()
+-  endif()
+-endif()
++# Preserve upstream's Poly/Polyxx ordering in src/CMakeLists.txt.
+diff --git a/cmake/FindSymFPU.cmake b/cmake/FindSymFPU.cmake
+--- a/cmake/FindSymFPU.cmake
++++ b/cmake/FindSymFPU.cmake
+@@ -6,62 +6,14 @@
+ # All rights reserved.  See the file COPYING in the top-level source
+ # directory for licensing information.
+ # #############################################################################
+-#
+-# Find SymFPU
+-# SymFPU_FOUND - should always be true
+-# SymFPU - interface target for the SymFPU headers
+-##
+ 
+-find_path(SymFPU_INCLUDE_DIR NAMES symfpu/core/unpackedFloat.h)
++# Private fixed-input candidate: no discovery, download, or probe fallback.
++include(cvc5-c0-inputs)
+ 
++set(SymFPU_INCLUDE_DIR "${CVC5_C0_HEADER_symfpu}")
++set(SymFPU_COMMIT "${symfpu_version}")
++set(SymFPU_FOUND TRUE)
+ set(SymFPU_FOUND_SYSTEM FALSE)
+-if(SymFPU_INCLUDE_DIR)
+-  # Found SymFPU to be installed system-wide
+-  set(SymFPU_FOUND_SYSTEM TRUE)
+-endif()
+-
+-if(NOT SymFPU_FOUND_SYSTEM)
+-  check_ep_downloaded("SymFPU-EP")
+-  if(NOT SymFPU-EP_DOWNLOADED)
+-    check_auto_download("SymFPU" "")
+-  endif()
+-
+-  include(ExternalProject)
+-  include(deps-helper)
+-
+-  set(SymFPU_COMMIT "227a7246b8ce513b393cc2645d6d65d3490ea1de")
+-  set(SymFPU_CHECKSUM "ff22e37dbc133120ada5760878974811737bec65b12a8883f92b1ed9e3f96e99")
+-
+-  ExternalProject_Add(
+-    SymFPU-EP
+-    ${COMMON_EP_CONFIG}
+-    URL https://github.com/cvc5/symfpu/archive/${SymFPU_COMMIT}.tar.gz
+-    URL_HASH SHA256=${SymFPU_CHECKSUM}
+-    CONFIGURE_COMMAND ""
+-    BUILD_COMMAND ""
+-    INSTALL_COMMAND ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/core
+-                    <INSTALL_DIR>/include/symfpu/core
+-    COMMAND ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/utils
+-            <INSTALL_DIR>/include/symfpu/utils
+-  )
+-
+-  set(SymFPU_INCLUDE_DIR "${DEPS_BASE}/include/")
+-endif()
+-
+-set(SymFPU_FOUND TRUE)
+-
+ add_library(SymFPU INTERFACE IMPORTED GLOBAL)
+-set_target_properties(
+-  SymFPU PROPERTIES INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${SymFPU_INCLUDE_DIR}"
+-)
+-
+-mark_as_advanced(SymFPU_FOUND)
+-mark_as_advanced(SymFPU_FOUND_SYSTEM)
+-mark_as_advanced(SymFPU_INCLUDE_DIR)
+-
+-if(SymFPU_FOUND_SYSTEM)
+-  message(STATUS "Found SymFPU: ${SymFPU_INCLUDE_DIR}")
+-else()
+-  message(STATUS "Building SymFPU: ${SymFPU_INCLUDE_DIR}")
+-  add_dependencies(SymFPU SymFPU-EP)
+-endif()
++set_target_properties(SymFPU PROPERTIES
++  INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${SymFPU_INCLUDE_DIR}")
+diff --git a/cmake/cvc5-c0-inputs.cmake b/cmake/cvc5-c0-inputs.cmake
+new file mode 100644
+--- /dev/null
++++ b/cmake/cvc5-c0-inputs.cmake
+@@ -0,0 +1,295 @@
++# RadishAxiom private C0 input selection, for one fixed archive candidate.
++# This checks reviewed bytes; it does not establish ABI or tool acceptance.
++include_guard(GLOBAL)
++if(CMAKE_VERSION VERSION_LESS 3.19)
++  message(FATAL_ERROR "C0 requires JSON support (fixed SDK uses CMake 3.25)")
++endif()
++
++function(cvc5_c0_path path)
++  if(NOT IS_ABSOLUTE "${path}" OR NOT "${path}" MATCHES "^/[A-Za-z0-9_./+@=-]+$"
++     OR "${path}" MATCHES "(^|/)\\.\\.?(/|$)" OR "${path}" STREQUAL "/")
++    message(FATAL_ERROR "C0 requires a canonical absolute input path")
++  endif()
++  get_filename_component(real "${path}" REALPATH)
++  if(NOT "${real}" STREQUAL "${path}" OR IS_SYMLINK "${path}" OR NOT EXISTS "${path}")
++    message(FATAL_ERROR "C0 input missing, noncanonical, or symlink: ${path}")
++  endif()
++endfunction()
++
++cvc5_c0_path("${CVC5_C0_INPUT_MANIFEST}")
++file(SIZE "${CVC5_C0_INPUT_MANIFEST}" manifest_size)
++if(manifest_size GREATER 8388608 OR manifest_size EQUAL 0)
++  message(FATAL_ERROR "C0 manifest size rejected")
++endif()
++string(LENGTH "${CVC5_C0_INPUT_MANIFEST_SHA256}" hash_length)
++if(NOT hash_length EQUAL 64 OR NOT CVC5_C0_INPUT_MANIFEST_SHA256 MATCHES "^[0-9a-f]+$")
++  message(FATAL_ERROR "C0 requires the separately reviewed manifest SHA256")
++endif()
++file(SHA256 "${CVC5_C0_INPUT_MANIFEST}" manifest_hash)
++if(NOT manifest_hash STREQUAL CVC5_C0_INPUT_MANIFEST_SHA256)
++  message(FATAL_ERROR "C0 manifest SHA256 mismatch")
++endif()
++file(READ "${CVC5_C0_INPUT_MANIFEST}" CVC5_C0_JSON)
++
++function(cvc5_c0_get out)
++  string(JSON value ERROR_VARIABLE error GET "${CVC5_C0_JSON}" ${ARGN})
++  if(NOT error STREQUAL "NOTFOUND")
++    message(FATAL_ERROR "C0 manifest missing/invalid field: ${ARGN}: ${error}")
++  endif()
++  set(${out} "${value}" PARENT_SCOPE)
++endfunction()
++
++function(cvc5_c0_keys out)
++  string(JSON count ERROR_VARIABLE error LENGTH "${CVC5_C0_JSON}" ${ARGN})
++  if(NOT error STREQUAL "NOTFOUND" OR count EQUAL 0 OR count GREATER 100000)
++    message(FATAL_ERROR "C0 manifest collection rejected: ${ARGN}")
++  endif()
++  math(EXPR last "${count} - 1")
++  set(keys "")
++  foreach(i RANGE 0 ${last})
++    string(JSON key MEMBER "${CVC5_C0_JSON}" ${ARGN} ${i})
++    if(NOT key MATCHES "^[a-z][a-z0-9_]*$")
++      message(FATAL_ERROR "C0 manifest role rejected")
++    endif()
++    list(APPEND keys "${key}")
++  endforeach()
++  list(SORT keys)
++  set(${out} "${keys}" PARENT_SCOPE)
++endfunction()
++
++function(cvc5_c0_file path)
++  cvc5_c0_path("${path}")
++  if(IS_DIRECTORY "${path}")
++    message(FATAL_ERROR "C0 expected a regular file")
++  endif()
++  cvc5_c0_get(expected_size ${ARGN} bytes)
++  cvc5_c0_get(expected_hash ${ARGN} sha256)
++  string(LENGTH "${expected_hash}" hash_length)
++  if(NOT expected_size MATCHES "^[1-9][0-9]*$" OR NOT hash_length EQUAL 64
++     OR NOT expected_hash MATCHES "^[0-9a-f]+$")
++    message(FATAL_ERROR "C0 input requires actual bytes/SHA256")
++  endif()
++  file(SIZE "${path}" actual_size)
++  if(NOT actual_size EQUAL expected_size)
++    message(FATAL_ERROR "C0 input bytes mismatch: ${path}")
++  endif()
++  file(SHA256 "${path}" actual_hash)
++  if(NOT actual_hash STREQUAL expected_hash)
++    message(FATAL_ERROR "C0 input bytes/SHA256 mismatch: ${path}")
++  endif()
++endfunction()
++
++cvc5_c0_get(format format)
++cvc5_c0_get(version version)
++cvc5_c0_get(upstream upstream_commit)
++cvc5_c0_get(target target_abi)
++cvc5_c0_get(review review_state)
++cvc5_c0_keys(root_keys)
++if(NOT root_keys STREQUAL "archives;closure_review;editline_link_order;format;header_roots;review_state;target_abi;upstream_commit;version;versions")
++  message(FATAL_ERROR "C0 manifest has unknown/missing root fields")
++endif()
++if(NOT format STREQUAL "radishaxiom-cvc5-private-build-inputs" OR NOT version STREQUAL "0.1"
++   OR NOT upstream STREQUAL "f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341"
++   OR NOT target STREQUAL "linux-aarch64-le-glibc-gcc12"
++   OR NOT review STREQUAL "reviewed-for-configuration")
++  message(FATAL_ERROR "C0 identity/ABI/closure review is missing or incompatible")
++endif()
++cvc5_c0_get(closure_path closure_review path)
++cvc5_c0_file("${closure_path}" closure_review)
++file(SIZE "${closure_path}" closure_size)
++if(closure_size GREATER 8388608)
++  message(FATAL_ERROR "C0 closure review size rejected")
++endif()
++file(READ "${closure_path}" closure_json)
++string(JSON closure_state GET "${closure_json}" review_state)
++if(NOT closure_state STREQUAL "static-closure-and-abi-reviewed")
++  message(FATAL_ERROR "C0 static closure/ABI review is not complete")
++endif()
++foreach(field IN ITEMS upstream_commit target_abi versions archives header_roots editline_link_order)
++  string(JSON expected ERROR_VARIABLE expected_error GET "${CVC5_C0_JSON}" ${field})
++  string(JSON observed ERROR_VARIABLE observed_error GET "${closure_json}" ${field})
++  if(NOT expected_error STREQUAL "NOTFOUND" OR NOT observed_error STREQUAL "NOTFOUND"
++     OR NOT expected STREQUAL observed)
++    message(FATAL_ERROR "C0 closure review does not bind the actual input field: ${field}")
++  endif()
++endforeach()
++# These are checked assertions of an external package/archive/object review.
++# This helper cannot replace that review or establish tool acceptance itself.
++cvc5_c0_get(gmp_version versions gmp)
++cvc5_c0_get(poly_version versions poly)
++cvc5_c0_get(cadical_version versions cadical)
++cvc5_c0_get(symfpu_version versions symfpu)
++if(NOT gmp_version STREQUAL "6.3.0" OR NOT poly_version STREQUAL "0.2.1"
++   OR NOT cadical_version STREQUAL "rel-2.1.3-elevate"
++   OR NOT symfpu_version STREQUAL "227a7246b8ce513b393cc2645d6d65d3490ea1de")
++  message(FATAL_ERROR "C0 dependency source version mismatch")
++endif()
++
++cvc5_c0_keys(header_roles header_roots)
++if(NOT header_roles STREQUAL "cadical;editline;gmp;gmpxx;poly;symfpu")
++  message(FATAL_ERROR "C0 exact header role set required")
++endif()
++set(CVC5_C0_REQUIRED_gmp gmp.h)
++set(CVC5_C0_REQUIRED_gmpxx gmpxx.h)
++set(CVC5_C0_REQUIRED_cadical cadical/cadical.hpp cadical/tracer.hpp)
++set(CVC5_C0_REQUIRED_poly poly/poly.h poly/version.h)
++set(CVC5_C0_REQUIRED_symfpu symfpu/core/unpackedFloat.h)
++set(CVC5_C0_REQUIRED_editline histedit.h)
++foreach(role IN LISTS header_roles)
++  cvc5_c0_get(root header_roots ${role} path)
++  cvc5_c0_path("${root}")
++  if(NOT IS_DIRECTORY "${root}")
++    message(FATAL_ERROR "C0 header root is not a directory")
++  endif()
++  string(JSON count LENGTH "${CVC5_C0_JSON}" header_roots ${role} files)
++  if(count LESS 1 OR count GREATER 100000)
++    message(FATAL_ERROR "C0 header inventory count rejected")
++  endif()
++  math(EXPR last "${count} - 1")
++  set(expected_files "")
++  foreach(i RANGE 0 ${last})
++    cvc5_c0_get(relative header_roots ${role} files ${i} path)
++    if(IS_ABSOLUTE "${relative}" OR NOT relative MATCHES "^[A-Za-z0-9_./+@=-]+$"
++       OR relative MATCHES "(^|/)\\.\\.?(/|$)" OR relative IN_LIST expected_files)
++      message(FATAL_ERROR "C0 unsafe or duplicate header inventory path")
++    endif()
++    cvc5_c0_file("${root}/${relative}" header_roots ${role} files ${i})
++    list(APPEND expected_files "${relative}")
++  endforeach()
++  foreach(required IN LISTS CVC5_C0_REQUIRED_${role})
++    if(NOT required IN_LIST expected_files)
++      message(FATAL_ERROR "C0 required header missing from reviewed inventory")
++    endif()
++  endforeach()
++  file(GLOB_RECURSE entries LIST_DIRECTORIES TRUE RELATIVE "${root}" "${root}/*")
++  set(actual_files "")
++  foreach(relative IN LISTS entries)
++    cvc5_c0_path("${root}/${relative}")
++    if(NOT IS_DIRECTORY "${root}/${relative}")
++      list(APPEND actual_files "${relative}")
++    endif()
++  endforeach()
++  list(SORT expected_files)
++  list(SORT actual_files)
++  if(NOT actual_files STREQUAL expected_files)
++    message(FATAL_ERROR "C0 missing/extra header inventory entry")
++  endif()
++  set(CVC5_C0_HEADER_${role} "${root}")
++endforeach()
++
++cvc5_c0_keys(archive_roles archives)
++foreach(role IN ITEMS gmp gmpxx cadical poly polyxx editline)
++  if(NOT role IN_LIST archive_roles)
++    message(FATAL_ERROR "C0 missing required archive role: ${role}")
++  endif()
++endforeach()
++foreach(role IN LISTS archive_roles)
++  cvc5_c0_get(path archives ${role} path)
++  if(NOT path MATCHES "\\.a$")
++    message(FATAL_ERROR "C0 requires explicit static archives")
++  endif()
++  cvc5_c0_file("${path}" archives ${role})
++  set(CVC5_C0_ARCHIVE_${role} "${path}")
++endforeach()
++string(JSON count LENGTH "${CVC5_C0_JSON}" editline_link_order)
++if(count LESS 1 OR count GREATER 32)
++  message(FATAL_ERROR "C0 reviewed Editline static link closure required")
++endif()
++math(EXPR last "${count} - 1")
++set(CVC5_C0_EDITLINE_ROLES "")
++foreach(i RANGE 0 ${last})
++  cvc5_c0_get(role editline_link_order ${i})
++  if(NOT role MATCHES "^[a-z][a-z0-9_]*$" OR NOT role IN_LIST archive_roles
++     OR role MATCHES "^(gmp|gmpxx|cadical|poly|polyxx)$")
++    message(FATAL_ERROR "C0 Editline closure has an invalid or missing archive")
++  endif()
++  # Repeated archive roles are retained if the reviewed static order needs them.
++  list(APPEND CVC5_C0_EDITLINE_ROLES "${role}")
++endforeach()
++if(NOT "editline" IN_LIST CVC5_C0_EDITLINE_ROLES)
++  message(FATAL_ERROR "C0 Editline link order omits Editline")
++endif()
++set(used_roles ${CVC5_C0_EDITLINE_ROLES} gmp gmpxx cadical poly polyxx)
++list(REMOVE_DUPLICATES used_roles)
++list(SORT used_roles)
++if(NOT used_roles STREQUAL archive_roles)
++  message(FATAL_ERROR "C0 unused/extra archive role")
++endif()
++
++function(cvc5_c0_import target role header_role)
++  add_library(${target} STATIC IMPORTED GLOBAL)
++  set_target_properties(${target} PROPERTIES
++    IMPORTED_LOCATION "${CVC5_C0_ARCHIVE_${role}}"
++    INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${CVC5_C0_HEADER_${header_role}}")
++endfunction()
++
++# These apply before project() and to all subsequent dependency discovery.
++set(CMAKE_FIND_USE_PACKAGE_REGISTRY FALSE)
++set(CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY FALSE)
++set(CMAKE_FIND_PACKAGE_NO_PACKAGE_REGISTRY TRUE)
++set(CMAKE_FIND_PACKAGE_NO_SYSTEM_PACKAGE_REGISTRY TRUE)
++set(CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH FALSE)
++set(CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH FALSE)
++set(CMAKE_FIND_PACKAGE_PREFER_CONFIG FALSE)
++set(CMAKE_DISABLE_FIND_PACKAGE_Git TRUE)
++
++function(cvc5_c0_check_configuration)
++  if(NOT CMAKE_BUILD_TYPE STREQUAL "Production" OR BUILD_SHARED_LIBS OR NOT STATIC_BINARY
++     OR NOT CMAKE_SYSTEM_NAME STREQUAL "Linux" OR NOT CMAKE_SYSTEM_PROCESSOR STREQUAL "aarch64"
++     OR NOT WASM STREQUAL "OFF")
++    message(FATAL_ERROR "C0 requires the reviewed Production Linux AArch64 static candidate")
++  endif()
++  foreach(option IN ITEMS ENABLE_STATISTICS STATIC_BINARY USE_EDITLINE USE_POLY TREAT_WARNING_AS_ERROR)
++    if(NOT "${${option}}" STREQUAL "ON")
++      message(FATAL_ERROR "C0 requires ON: ${option}")
++    endif()
++  endforeach()
++  foreach(option IN ITEMS ENABLE_ASSERTIONS ENABLE_DEBUG_SYMBOLS ENABLE_TRACING
++      ENABLE_MUZZLE ENABLE_UNIT_TESTING ENABLE_ASAN ENABLE_UBSAN ENABLE_TSAN
++      ENABLE_SAFE_MODE ENABLE_STABLE_MODE ENABLE_VALGRIND ENABLE_IPO
++      ENABLE_AUTO_DOWNLOAD USE_PYTHON_VENV)
++    # In the original three-valued API, IGNORE is false unless ConfigProduction
++    # or a later upstream setter resolves it. Do not rewrite cache values here.
++    if(NOT "${${option}}" STREQUAL "OFF" AND NOT "${${option}}" STREQUAL "IGNORE")
++      message(FATAL_ERROR "C0 requires false (OFF/IGNORE): ${option}")
++    endif()
++  endforeach()
++  foreach(option IN ITEMS BUILD_SHARED_LIBS BUILD_GMP BUILD_CLN ENABLE_GPL
++      ENABLE_CLANG_TIDY ENABLE_COVERAGE ENABLE_PROFILING ENABLE_DEBUG_CONTEXT_MM
++      USE_CLN USE_GLPK USE_COCOA USE_CRYPTOMINISAT USE_KISSAT USE_MPFR
++      NO_GLOBAL_POLY_CTX BUILD_BINDINGS_PYTHON BUILD_BINDINGS_JAVA
++      BUILD_DOCS BUILD_DOCS_GA ONLY_PYTHON_EXT_SRC
++      SKIP_COMPRESS_DEBUG SKIP_SET_RPATH USE_DEFAULT_LINKER)
++    if(NOT "${${option}}" STREQUAL "OFF")
++      message(FATAL_ERROR "C0 requires OFF: ${option}")
++    endif()
++  endforeach()
++  if(NOT CMAKE_C_STANDARD EQUAL 11 OR NOT CMAKE_CXX_STANDARD EQUAL 17)
++    message(FATAL_ERROR "C0 language standard drift")
++  endif()
++  if(CMAKE_C_EXTENSIONS OR CMAKE_CXX_EXTENSIONS)
++    message(FATAL_ERROR "C0 requires the original language extensions OFF")
++  endif()
++  foreach(launcher IN ITEMS CMAKE_C_COMPILER_LAUNCHER CMAKE_CXX_COMPILER_LAUNCHER
++      CMAKE_C_LINKER_LAUNCHER CMAKE_CXX_LINKER_LAUNCHER
++      GLPK_DIR PYTHONIC_PATH PROGRAM_PREFIX WASM_FLAGS)
++    if(NOT "${${launcher}}" STREQUAL "")
++      message(FATAL_ERROR "C0 requires an empty launcher: ${launcher}")
++    endif()
++  endforeach()
++  foreach(flag_variable IN ITEMS CMAKE_C_FLAGS CMAKE_CXX_FLAGS)
++    separate_arguments(flag_tokens UNIX_COMMAND "${${flag_variable}}")
++    if(NOT "-Werror" IN_LIST flag_tokens)
++      message(FATAL_ERROR "C0 requires an exact -Werror token in ${flag_variable}")
++    endif()
++    foreach(token IN LISTS flag_tokens)
++      if(token MATCHES "^-Wno-error" OR token STREQUAL "-w")
++        message(FATAL_ERROR "C0 rejects warning-error overrides in ${flag_variable}")
++      endif()
++    endforeach()
++  endforeach()
++  if(EXISTS "${PROJECT_SOURCE_DIR}/deps/install" OR EXISTS "${PROJECT_BINARY_DIR}/deps"
++     OR CMAKE_PREFIX_PATH OR GLPK_DIR)
++    message(FATAL_ERROR "C0 rejects historical dependency prefixes/cache")
++  endif()
++endfunction()
+diff --git a/cmake/version.cmake b/cmake/version.cmake
+--- a/cmake/version.cmake
++++ b/cmake/version.cmake
+@@ -69,7 +69,9 @@
+ endif()
+ 
+ # now use git to retrieve additional version information
+-find_package(Git)
++# Fixed archive candidate: do not read an ancestor repository's Git identity.
++# The source commit and patch identity are bound by the external C0 record.
++set(GIT_FOUND FALSE)
+ if(GIT_FOUND)
+   # git is available
+ 

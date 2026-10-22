@@ -1,0 +1,173 @@
+[
+  {
+    "direct_source": [
+      {
+        "key": "a",
+        "units": "2"
+      },
+      {
+        "key": "b",
+        "units": "0"
+      }
+    ],
+    "group_conservation": true,
+    "name": "correct",
+    "observed_groups": [
+      {
+        "key": "a",
+        "units": "2"
+      },
+      {
+        "key": "b",
+        "units": "0"
+      }
+    ],
+    "row_coverage": true
+  },
+  {
+    "direct_source": [
+      {
+        "key": "a",
+        "units": "2"
+      },
+      {
+        "key": "b",
+        "units": "0"
+      }
+    ],
+    "group_conservation": true,
+    "name": "omit-zero-group",
+    "observed_groups": [
+      {
+        "key": "a",
+        "units": "2"
+      }
+    ],
+    "row_coverage": false
+  },
+  {
+    "direct_source": [
+      {
+        "key": "a",
+        "units": "2"
+      },
+      {
+        "key": "b",
+        "units": "0"
+      }
+    ],
+    "group_conservation": false,
+    "name": "wrong-aggregate",
+    "observed_groups": [
+      {
+        "key": "a",
+        "units": "3"
+      },
+      {
+        "key": "b",
+        "units": "0"
+      }
+    ],
+    "row_coverage": true
+  },
+  {
+    "direct_source": [
+      {
+        "key": "a",
+        "units": "2"
+      },
+      {
+        "key": "b",
+        "units": "0"
+      }
+    ],
+    "group_conservation": false,
+    "name": "same-global-sum-wrong-groups",
+    "observed_groups": [
+      {
+        "key": "a",
+        "units": "1"
+      },
+      {
+        "key": "b",
+        "units": "1"
+      }
+    ],
+    "row_coverage": true
+  },
+  {
+    "direct_source": [],
+    "group_conservation": true,
+    "name": "empty",
+    "observed_groups": [],
+    "row_coverage": true
+  },
+  {
+    "direct_source": [
+      {
+        "key": "merged",
+        "units": "2"
+      },
+      {
+        "key": "merged",
+        "units": "0"
+      }
+    ],
+    "group_conservation": true,
+    "name": "upstream-key-rewrite",
+    "observed_groups": [
+      {
+        "key": "merged",
+        "units": "2"
+      }
+    ],
+    "original_input": [
+      {
+        "key": "a",
+        "units": "2"
+      },
+      {
+        "key": "b",
+        "units": "0"
+      }
+    ],
+    "row_coverage": true,
+    "task_group_equals_original": false
+  },
+  {
+    "direct_source": [
+      {
+        "key": "a",
+        "units": "1"
+      },
+      {
+        "key": "b",
+        "units": "1"
+      }
+    ],
+    "group_conservation": true,
+    "name": "upstream-value-rewrite",
+    "observed_groups": [
+      {
+        "key": "a",
+        "units": "1"
+      },
+      {
+        "key": "b",
+        "units": "1"
+      }
+    ],
+    "original_input": [
+      {
+        "key": "a",
+        "units": "2"
+      },
+      {
+        "key": "b",
+        "units": "0"
+      }
+    ],
+    "row_coverage": true,
+    "task_group_equals_original": false
+  }
+]

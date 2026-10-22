@@ -80,33 +80,92 @@ const ROUND_CONSTANTS: [u32; 64] = [
     0xc671_78f2,
 ];
 
+/// SHA-256 accepts messages strictly shorter than 2^64 bits.
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub struct LengthOverflow;
+impl std::fmt::Display for LengthOverflow {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str("SHA-256 input length exceeds 2^64 - 1 bits")
+    }
+}
+impl std::error::Error for LengthOverflow {}
+
+/// Incremental hashing retains one partial block, never the whole input.
+#[derive(Clone, Debug)]
+pub struct Sha256 {
+    state: [u32; 8],
+    block: [u8; 64],
+    buffered: usize,
+    byte_length: u64,
+}
+impl Default for Sha256 {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+impl Sha256 {
+    pub fn new() -> Self {
+        Self {
+            state: INITIAL_STATE,
+            block: [0; 64],
+            buffered: 0,
+            byte_length: 0,
+        }
+    }
+    /// On overflow no bytes are consumed and the previous state is unchanged.
+    pub fn update(&mut self, mut input: &[u8]) -> Result<(), LengthOverflow> {
+        let added = u64::try_from(input.len()).map_err(|_| LengthOverflow)?;
+        let length = self
+            .byte_length
+            .checked_add(added)
+            .filter(|length| *length <= u64::MAX / 8)
+            .ok_or(LengthOverflow)?;
+        self.byte_length = length;
+        if self.buffered != 0 {
+            let count = (64 - self.buffered).min(input.len());
+            self.block[self.buffered..self.buffered + count].copy_from_slice(&input[..count]);
+            self.buffered += count;
+            input = &input[count..];
+            if self.buffered < 64 {
+                return Ok(());
+            }
+            compress(&mut self.state, &self.block);
+            self.buffered = 0;
+        }
+        let mut chunks = input.chunks_exact(64);
+        for chunk in chunks.by_ref() {
+            compress(
+                &mut self.state,
+                chunk.try_into().expect("exact chunk length"),
+            );
+        }
+        let remainder = chunks.remainder();
+        self.block[..remainder.len()].copy_from_slice(remainder);
+        self.buffered = remainder.len();
+        Ok(())
+    }
+    pub fn finalize(mut self) -> [u8; 32] {
+        self.block[self.buffered] = 0x80;
+        self.block[self.buffered + 1..].fill(0);
+        if self.buffered >= 56 {
+            compress(&mut self.state, &self.block);
+            self.block.fill(0);
+        }
+        self.block[56..].copy_from_slice(&(self.byte_length * 8).to_be_bytes());
+        compress(&mut self.state, &self.block);
+        let mut output = [0; 32];
+        for (word, bytes) in self.state.iter().zip(output.chunks_exact_mut(4)) {
+            bytes.copy_from_slice(&word.to_be_bytes());
+        }
+        output
+    }
+}
+
 pub fn digest(input: &[u8]) -> [u8; 32] {
-    let mut state = INITIAL_STATE;
-    let mut chunks = input.chunks_exact(64);
-    for chunk in chunks.by_ref() {
-        compress(&mut state, chunk.try_into().expect("exact chunk length"));
-    }
-
-    let remainder = chunks.remainder();
-    let mut tail = [0_u8; 128];
-    tail[..remainder.len()].copy_from_slice(remainder);
-    tail[remainder.len()] = 0x80;
-    let bit_length = (input.len() as u128)
-        .checked_mul(8)
-        .expect("usize byte length fits u128 bits");
-    let encoded_length =
-        u64::try_from(bit_length).expect("SHA-256 input is shorter than 2^64 bits");
-    let tail_length = if remainder.len() < 56 { 64 } else { 128 };
-    tail[tail_length - 8..tail_length].copy_from_slice(&encoded_length.to_be_bytes());
-    for chunk in tail[..tail_length].chunks_exact(64) {
-        compress(&mut state, chunk.try_into().expect("exact chunk length"));
-    }
-
-    let mut output = [0_u8; 32];
-    for (word, bytes) in state.iter().zip(output.chunks_exact_mut(4)) {
-        bytes.copy_from_slice(&word.to_be_bytes());
-    }
-    output
+    let mut hash = Sha256::new();
+    hash.update(input)
+        .expect("SHA-256 input is shorter than 2^64 bits");
+    hash.finalize()
 }
 
 pub fn digest_hex(input: &[u8]) -> String {
@@ -168,7 +227,7 @@ fn compress(state: &mut [u32; 8], block: &[u8; 64]) {
 
 #[cfg(test)]
 mod tests {
-    use super::digest_hex;
+    use super::{LengthOverflow, Sha256, digest, digest_hex};
 
     #[test]
     fn nist_and_padding_boundary_vectors_match() {
@@ -201,6 +260,48 @@ mod tests {
         for (input, expected) in vectors {
             assert_eq!(digest_hex(input.as_bytes()), expected);
         }
+    }
+
+    #[test]
+    fn every_partition_and_empty_update_preserve_digest() {
+        // Independent hashlib-derived vector for nonuniform multiblock input.
+        let data: Vec<u8> = (0..=255).cycle().take(1025).collect();
+        assert_eq!(
+            digest_hex(&data),
+            "b3981d93eeb64aa900f3e48cfcd48e9bbc89b77732c49ea201c93656c62b6a09"
+        );
+        for length in [0, 1, 55, 56, 63, 64, 65, 119, 120, 127, 128, 129, 1025] {
+            for split in 0..=length {
+                let mut hash = Sha256::new();
+                hash.update(&[]).unwrap();
+                hash.update(&data[..split]).unwrap();
+                hash.update(&[]).unwrap();
+                hash.update(&data[split..length]).unwrap();
+                hash.update(&[]).unwrap();
+                assert_eq!(hash.finalize(), digest(&data[..length]));
+            }
+            for chunk in [1, 2, 7, 55, 56, 63, 64, 65, 128] {
+                let mut hash = Sha256::new();
+                for bytes in data[..length].chunks(chunk) {
+                    hash.update(bytes).unwrap();
+                }
+                assert_eq!(hash.finalize(), digest(&data[..length]));
+            }
+        }
+    }
+    #[test]
+    fn overflow_is_explicit_and_atomic() {
+        let mut hash = Sha256::new();
+        hash.byte_length = u64::MAX / 8;
+        let before = hash.clone();
+        assert_eq!(hash.update(&[1]), Err(LengthOverflow));
+        assert_eq!(hash.state, before.state);
+        assert_eq!(hash.block, before.block);
+        assert_eq!(hash.buffered, before.buffered);
+        assert_eq!(hash.byte_length, before.byte_length);
+        assert_eq!(hash.update(&[]), Ok(()));
+        hash.byte_length = u64::MAX;
+        assert_eq!(hash.update(&[1]), Err(LengthOverflow));
     }
 
     #[test]

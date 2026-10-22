@@ -1,0 +1,184 @@
+{
+  "format": "radishaxiom-private-cvc5-source-license-inventory",
+  "version": "0.1",
+  "source_id": "cadical",
+  "scope": "full-regular-file-byte-scan-plus-license-filenames; contextual-review-required; no-license-or-distribution-acceptance",
+  "scan_pattern": "copyright|SPDX-License-Identifier|permission-is-hereby-granted|GNU-General/Lesser|license/licensing-exception|all-rights-reserved",
+  "materials": [
+    {
+      "archive_path": "cadical-rel-2.1.3-elevate/CONTRIBUTING.md",
+      "bytes": 1904,
+      "sha256": "8f7d75eec6ec936caa8eae4f568d3636bf80cdf8f9c8c7f04f7beb4375257e3b",
+      "named_license_material": false,
+      "matched_line_count": 1,
+      "short_declarations": [
+        "Copyright (C) 2004, 2006 The Linux Foundation and its contributors."
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "cadical-rel-2.1.3-elevate/LICENSE",
+      "bytes": 1643,
+      "sha256": "faf8e28f930684e3fbaf50a03c0c0b6b2373977cd74988efec19144241f0667c",
+      "named_license_material": true,
+      "matched_line_count": 11,
+      "short_declarations": [
+        "Copyright (c) 2016-2021 Armin Biere, Johannes Kepler University Linz, Austria",
+        "Copyright (c) 2020-2021 Mathias Fleury, Johannes Kepler University Linz, Austria"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "cadical-rel-2.1.3-elevate/NEWS.md",
+      "bytes": 10895,
+      "sha256": "d1a0404808ea1707abf08c5f44c1184ee3beb5d32a83ef92356d2508b0e1988c",
+      "named_license_material": false,
+      "matched_line_count": 3,
+      "short_declarations": [
+        "- Updates to documentation and copyright.",
+        "- More copyright updates in banner."
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "cadical-rel-2.1.3-elevate/contrib/craigtracer.LICENSE.APACHE",
+      "bytes": 617,
+      "sha256": "ab4514bb0d44841942f3d07a32e2e2e5c972d6448c9e4d34838b61d906229ace",
+      "named_license_material": false,
+      "matched_line_count": 3,
+      "short_declarations": [
+        "Copyright 2013 Stefan Kupferschmid",
+        "Copyright 2023 Florian Pollitt"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "cadical-rel-2.1.3-elevate/contrib/craigtracer.LICENSE.MIT",
+      "bytes": 1127,
+      "sha256": "a51564e32ad7b5cf01e67ce95160532c850c9a0aa4c46bffc3d9b054af45267f",
+      "named_license_material": false,
+      "matched_line_count": 6,
+      "short_declarations": [
+        "Copyright 2013 Stefan Kupferschmid",
+        "Copyright 2023 Florian Pollitt"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "cadical-rel-2.1.3-elevate/contrib/craigtracer.cpp",
+      "bytes": 35118,
+      "sha256": "aacfba6ca82b789f8df071036e4397f30cb9ccff1b8c0abf487cc05768fac94d",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "// SPDX-License-Identifier: MIT OR Apache-2.0",
+        "// Copyright 2013 Stefan Kupferschmid"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "cadical-rel-2.1.3-elevate/contrib/craigtracer.hpp",
+      "bytes": 6207,
+      "sha256": "50887f707b193df42ce63f4c9c0548b162088d511a49251f1a7df04da1511c77",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "// SPDX-License-Identifier: MIT OR Apache-2.0",
+        "// Copyright 2013 Stefan Kupferschmid"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "cadical-rel-2.1.3-elevate/src/cadical.cpp",
+      "bytes": 34719,
+      "sha256": "7360b2f2c83b9cc31c5a22fed481931892abfdf82792949c479eb0f57db01894",
+      "named_license_material": false,
+      "matched_line_count": 5,
+      "short_declarations": [
+        "\"  --copyright    print copyright information\\n\");",
+        "} else if (!strcmp (arg, \"--copyright\")) {"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "cadical-rel-2.1.3-elevate/src/mobical.cpp",
+      "bytes": 158416,
+      "sha256": "dd4be9ef8121605bad11e7921e01f0aa5521e06c4dfc13ad112a4f4e41f226f2",
+      "named_license_material": false,
+      "matched_line_count": 9,
+      "short_declarations": [
+        "/* Copyright (C) 2018-2021 Armin Biere, Johannes Kepler University Linz   */",
+        "/* Copyright (C) 2020-2021 Mathias Fleury, Johannes Kepler University Linz*/"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "cadical-rel-2.1.3-elevate/src/version.cpp",
+      "bytes": 2947,
+      "sha256": "03a49b4cc89d4ff06a3f0840f04e1588ed07923b0a53f70e5d32d26ba048976e",
+      "named_license_material": false,
+      "matched_line_count": 3,
+      "short_declarations": [
+        "// The copyright of the code is here.",
+        "static const char *COPYRIGHT = \"Copyright (c) 2016-2024\";"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "cadical-rel-2.1.3-elevate/src/version.hpp",
+      "bytes": 269,
+      "sha256": "f582daa9d4985a982af864921a5c31261608f66bc816ebf8534e37fd63b1859e",
+      "named_license_material": false,
+      "matched_line_count": 1,
+      "short_declarations": [
+        "const char *copyright ();"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "cadical-rel-2.1.3-elevate/test/cnf/drat-trim.c",
+      "bytes": 65015,
+      "sha256": "848573d6e50824646476a2f4b7203e38c314416109e5d32cc05b685de1b92d30",
+      "named_license_material": false,
+      "matched_line_count": 5,
+      "short_declarations": [
+        "Copyright (c) 2014 Marijn Heule and Nathan Wetzler, The University of Texas",
+        "at Austin. Copyright (c) 2015-2017 Marijn Heule, The University of Texas at"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "cadical-rel-2.1.3-elevate/test/cnf/lrat-trim.c",
+      "bytes": 78133,
+      "sha256": "13ba351a1beaddf814d1afebf983235dd4a612c677c5f3999a94df07949318d9",
+      "named_license_material": false,
+      "matched_line_count": 1,
+      "short_declarations": [
+        "\"c Copyright (c) 2023 Armin Biere University of Freiburg\\n\","
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "cadical-rel-2.1.3-elevate/test/cnf/precochk.c",
+      "bytes": 6517,
+      "sha256": "15bdd3dc1c94cb023324d93cd31832d09d7f924d16ff65c10ddb5f393fc31e8d",
+      "named_license_material": false,
+      "matched_line_count": 1,
+      "short_declarations": [
+        "* Copyright (c) 2009, Armin Biere, JKU, Linz, Austria.  All rights"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "cadical-rel-2.1.3-elevate/test/usage/run.sh",
+      "bytes": 3633,
+      "sha256": "0b9316f07635cb006e202285009ce5e71cb245c304b389b6f5b8023355d68b3c",
+      "named_license_material": false,
+      "matched_line_count": 1,
+      "short_declarations": [
+        "run 0 --copyright"
+      ],
+      "classification": "requires-contextual-component-review"
+    }
+  ]
+}

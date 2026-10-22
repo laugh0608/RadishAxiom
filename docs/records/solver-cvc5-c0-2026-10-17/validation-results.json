@@ -1,0 +1,294 @@
+{
+  "format": "radishaxiom-private-c0-sdk-local-validation",
+  "version": "0.1",
+  "date": "2026-10-17",
+  "baseline_commit": "bf197ad6ff55909261af11861866cbf5d01bcd21",
+  "python_version": "3.14.5",
+  "scope": "metadata-and-offline-selection-only",
+  "tests": {
+    "metadata-tests.log": {
+      "passed": 32,
+      "failed": 0,
+      "optimized_python": false
+    },
+    "sdk-tests.log": {
+      "passed": 33,
+      "failed": 0,
+      "optimized_python": false
+    },
+    "input-tests.log": {
+      "passed": 19,
+      "failed": 0,
+      "optimized_python": false
+    },
+    "independent-tests-optimized.log": {
+      "passed": 12,
+      "failed": 0,
+      "optimized_python": true
+    }
+  },
+  "total_distinct_tests": 96,
+  "root_checks": {
+    "metadata": {
+      "metadata_bytes": 18722419,
+      "packages_uncompressed_bytes": 49240269,
+      "sources_uncompressed_bytes": 50170234,
+      "signature_verified": false
+    },
+    "sdk_regeneration": {
+      "root_groups": 16,
+      "root_packages": 51,
+      "packages": 170,
+      "dependency_edges": 472,
+      "source_packages": 99,
+      "unique_source_files": 321,
+      "binary_declared_bytes": 120455832,
+      "source_declared_bytes": 567050311,
+      "binary_max_bytes": 536870912,
+      "source_max_bytes": 1073741824,
+      "record_bytes": 809807,
+      "build_ready": false,
+      "executable": false,
+      "signature_verified": false,
+      "check_scope": "offline-regeneration-consistency-not-independent-authentication"
+    },
+    "input_selection": {
+      "selection_consistent": true,
+      "build_ready": false,
+      "c0_state": "blocked-source-config-content-authentication-and-acceptance-unresolved",
+      "source_archives_selected": 5,
+      "sdk_role_groups_selected": 16,
+      "sdk_packages_selected": 170,
+      "sdk_source_packages_selected": 99,
+      "sdk_metadata_dependency_closure": "closed-for-declared-roots-and-essential-metadata-only",
+      "retained_observations_rechecked": 29,
+      "original_cli_acceptance": "not-accepted",
+      "new_payload_acceptance": "not-accepted",
+      "metadata_authentication": "not-established",
+      "verification_scope": "reviewed-selection-and-offline-sdk-regeneration-consistency; independent-source-authentication-not-established"
+    },
+    "independent": {
+      "package_count": 170,
+      "essential_count": 23,
+      "dependency_clause_count": 472,
+      "alternative_clause_count": 12,
+      "source_family_versions": 99,
+      "source_archive_file_count": 321,
+      "declared_deb_bytes": 120455832,
+      "declared_source_bytes": 567050311,
+      "conflicts_or_breaks": [],
+      "format": "radishaxiom-private-c0-independent-sdk-check",
+      "version": "0.1",
+      "checker": {
+        "path": "scripts/check-cvc5-c0-sdk-independent.py",
+        "raw_digest": "sha256:f6bd79623fc5fb7a85c16e13ba58220ffaa1315ba1b2e47c4187f134a3bb1b69"
+      },
+      "selection_input": {
+        "path": "docs/records/solver-cvc5-c0-2026-10-17/sdk-selection.json",
+        "bytes": 809807,
+        "raw_digest": "sha256:e6ac7c1eb85fc48eb0464a5296e31e2d1a3e52bbbdcd5925bb64801b00ef15f1"
+      },
+      "metadata_inputs": [
+        {
+          "path": ".tmp/cvc5-c0-sdk-metadata-2026-10-17/Release",
+          "bytes": 145119,
+          "raw_digest": "sha256:010b226303e531b2ca0d268079228b6667418b8ad021d6c126374837ad327055"
+        },
+        {
+          "path": ".tmp/cvc5-c0-sdk-metadata-2026-10-17/InRelease",
+          "bytes": 146972,
+          "raw_digest": "sha256:2814476b311085e250ddfdee295907bac45afb66f40dc7c1b35ab41a447c1d6c"
+        },
+        {
+          "path": ".tmp/cvc5-c0-sdk-metadata-2026-10-17/main__binary-arm64__Packages.xz",
+          "bytes": 8801860,
+          "raw_digest": "sha256:4926bbf128b8e497cb83c59c8212fd2ef4df5b2c30e9140a688198cd2cd55471"
+        },
+        {
+          "path": ".tmp/cvc5-c0-sdk-metadata-2026-10-17/main__source__Sources.xz",
+          "bytes": 9628468,
+          "raw_digest": "sha256:d1d5103c4ddd76196acc292e90fd0ffece1fe0d04408ab544633f25568e6cb19"
+        }
+      ],
+      "independently_derived_set_matches": true,
+      "metadata_body_bytes": 18722419,
+      "redirects_checked": 4,
+      "release_date": "Sat, 10 Jun 2023 08:51:17 UTC",
+      "signature_verified": false,
+      "build_ready": false,
+      "executable": false,
+      "independent_scope": "selected dependency clauses/edges, root+Essential set, architecture/Provides/alternatives, version comparisons, Conflicts/Breaks, Source and exact Built-Using associations, source/binary declared byte sums, raw metadata/hash/Release links, HTTP locator chain",
+      "unverified": [
+        "signature authentication and historical validity policy",
+        "binary/source package raw bytes and licenses",
+        "package file contents, maintainer scripts, ELF/dlopen/runtime filesystem",
+        "full cvc5 generator imports/options, SDK static link closure/map",
+        "compiler/SDK/tool acceptance"
+      ]
+    }
+  },
+  "source_inventory": [
+    {
+      "path": "scripts/cvc5-c0-sdk-metadata.py",
+      "bytes": 21790,
+      "raw_digest": "sha256:53d1d57fdd942527db9f7ca4825b485b63c509c5e907ecfd90bb2c306abd2ce3"
+    },
+    {
+      "path": "scripts/test-cvc5-c0-sdk-metadata.py",
+      "bytes": 13571,
+      "raw_digest": "sha256:352d94db70b222d7d9ab59823a989813049505b0a5a24aa2674c9e4c7b03df58"
+    },
+    {
+      "path": "scripts/cvc5-c0-sdk-selection.py",
+      "bytes": 24064,
+      "raw_digest": "sha256:8992999238450285d45fad9b846ba65076bc6525bba1736bfe336e35faed610e"
+    },
+    {
+      "path": "scripts/test-cvc5-c0-sdk-selection.py",
+      "bytes": 13385,
+      "raw_digest": "sha256:02e15bee2f606dd8eee34ea6ff9ddcabd7ab7be765be4ddd3ab6e1e216515f3a"
+    },
+    {
+      "path": "scripts/generate-cvc5-c0-input-selection.py",
+      "bytes": 12239,
+      "raw_digest": "sha256:607daa63ea5a54d89b000566b4f86bbb7e34f287cdc8380ea4040aaa333acc87"
+    },
+    {
+      "path": "scripts/check-cvc5-c0-input-selection.py",
+      "bytes": 5716,
+      "raw_digest": "sha256:cab2cba72c9f8bcd96cf03f8a27d3515fe0ca3e0138163f4342a5c555a27e6c0"
+    },
+    {
+      "path": "scripts/test-cvc5-c0-input-selection.py",
+      "bytes": 3844,
+      "raw_digest": "sha256:d8b7b83f63147a18f088a6bc8188d94a0c3b4f36257572edac846ab8eaae23f4"
+    },
+    {
+      "path": "scripts/check-cvc5-c0-sdk-independent.py",
+      "bytes": 26684,
+      "raw_digest": "sha256:f6bd79623fc5fb7a85c16e13ba58220ffaa1315ba1b2e47c4187f134a3bb1b69"
+    },
+    {
+      "path": "scripts/test-cvc5-c0-sdk-independent.py",
+      "bytes": 7573,
+      "raw_digest": "sha256:e5819ed63999cf0d94e578be9b74e16bf609a2021fb81d160fe8dbc22d615254"
+    }
+  ],
+  "artifact_inventory": [
+    {
+      "path": "docs/records/solver-cvc5-c0-2026-10-17/metadata-observations.json",
+      "bytes": 10278,
+      "raw_digest": "sha256:0ebf9f5e79a7c4374feffc35f9d45823f45aba9b564f75de03a1f324f456fe4b"
+    },
+    {
+      "path": "docs/records/solver-cvc5-c0-2026-10-17/metadata-execution-history.json",
+      "bytes": 1077,
+      "raw_digest": "sha256:4f86d1bf51ed86b48d8b6160243785ef44f26fc47a5bae77e00cf1236fde0c96"
+    },
+    {
+      "path": "docs/records/solver-cvc5-c0-2026-10-17/sdk-selection.json",
+      "bytes": 809807,
+      "raw_digest": "sha256:e6ac7c1eb85fc48eb0464a5296e31e2d1a3e52bbbdcd5925bb64801b00ef15f1"
+    },
+    {
+      "path": "docs/records/solver-cvc5-c0-2026-10-17/input-selection.json",
+      "bytes": 30710,
+      "raw_digest": "sha256:a4cc446f18e277a52c4ca5e7f246309ada4dc090122c882a49f5f2a19c5c62f0"
+    },
+    {
+      "path": "docs/records/solver-cvc5-c0-2026-10-17/independent-check.json",
+      "bytes": 2437,
+      "raw_digest": "sha256:3cffaba5dc4b0c0de8f90959737d85ff73677bd916f170a955bf77009907db5b"
+    }
+  ],
+  "local_validation_logs": [
+    {
+      "path": ".tmp/cvc5-c0-sdk-validation-2026-10-17/metadata-check.json",
+      "bytes": 149,
+      "raw_digest": "sha256:b9155dd58d9dc9bf3fcfbd581f99708fa0559626aa4003141cb5d11efae5c894"
+    },
+    {
+      "path": ".tmp/cvc5-c0-sdk-validation-2026-10-17/sdk-check.json",
+      "bytes": 479,
+      "raw_digest": "sha256:14aafd118411d308a30b2dffe624122d2f3dd947b57942493d663cb679f7481b"
+    },
+    {
+      "path": ".tmp/cvc5-c0-sdk-validation-2026-10-17/input-check.json",
+      "bytes": 694,
+      "raw_digest": "sha256:91632d94693b4e7b8a68243980c4491d8504debc5d98506183272c5db13c25b9"
+    },
+    {
+      "path": ".tmp/cvc5-c0-sdk-validation-2026-10-17/independent-check.json",
+      "bytes": 2437,
+      "raw_digest": "sha256:3cffaba5dc4b0c0de8f90959737d85ff73677bd916f170a955bf77009907db5b"
+    },
+    {
+      "path": ".tmp/cvc5-c0-sdk-validation-2026-10-17/metadata-tests.log",
+      "bytes": 131,
+      "raw_digest": "sha256:9ae9445110e988870e5404464143093300b3e020c255d5fab099fd8f000d6eaf"
+    },
+    {
+      "path": ".tmp/cvc5-c0-sdk-validation-2026-10-17/sdk-tests.log",
+      "bytes": 132,
+      "raw_digest": "sha256:85c8f9b1f1c6b4962d6414cb3ccd5f8efab72853ed033c7ef5806bf1fc0ad4d6"
+    },
+    {
+      "path": ".tmp/cvc5-c0-sdk-validation-2026-10-17/input-tests.log",
+      "bytes": 118,
+      "raw_digest": "sha256:8fb89e405f3dd94e57b023616c29b61202a00bc569d373c6f321e7d235259daf"
+    },
+    {
+      "path": ".tmp/cvc5-c0-sdk-validation-2026-10-17/independent-tests-optimized.log",
+      "bytes": 112,
+      "raw_digest": "sha256:6f7c14be775698f4b8110281ffe3601da27b937505bf6020f35583b71ee00668"
+    }
+  ],
+  "first_resolution_failure": {
+    "command": "python3 scripts/cvc5-c0-sdk-selection.py resolve",
+    "exit_code": 1,
+    "error": "ValueError: dependency-field-budget-or-type",
+    "traceback_endpoint": "index_maps -> relations(row.get(Provides, empty))",
+    "observed_maximum": {
+      "field": "Provides",
+      "package": "librust-winapi-dev",
+      "bytes": 75639,
+      "comma_groups": 1603
+    },
+    "previous_budget": {
+      "bytes_per_relation_field": 65536,
+      "groups_per_relation_field": 1024
+    },
+    "reviewed_budget": {
+      "bytes_per_relation_field": 131072,
+      "groups_per_relation_field": 2048
+    },
+    "policy": "parse complete fixed index with finite revised metadata-only limits; no ignored fields, package bytes, solver execution or solver limit changes"
+  },
+  "compatibility": {
+    "git_diff_against_baseline_exit_code": 0,
+    "paths": [
+      "crates",
+      "Cargo.toml",
+      "Cargo.lock",
+      "contracts",
+      "rust-toolchain.toml"
+    ],
+    "rust_and_public_contract_changes": false,
+    "old_query_capacity_bytes_and_solver_limits": "unchanged"
+  },
+  "record_retention": "Original metadata and full logs remain in ignored local .tmp directories. Recorded digests do not replace their bytes. No cleanup performed.",
+  "historical_fetch_source_digest": "not-captured; source_inventory binds final offline verifier/resolver/checker only",
+  "build_ready": false,
+  "signature_verified": false,
+  "tool_acceptance": "not-accepted",
+  "original_cli_acceptance": "not-accepted",
+  "new_payload_acceptance": "not-accepted",
+  "not_performed": [
+    "dependency binary/source archive download",
+    "dependency installation",
+    "Linux or image build",
+    "probe or solver execution",
+    "system configuration changes",
+    "push or remote writes"
+  ]
+}

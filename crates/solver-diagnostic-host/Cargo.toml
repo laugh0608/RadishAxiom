@@ -1,0 +1,10 @@
+[package]
+name = "radishaxiom-solver-diagnostic-host"
+version = "0.0.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+radishaxiom-ir = { path = "../axiom-ir" }
+radishaxiom-digest = { path = "../digest" }
+radishaxiom-solver-supervision-core = { path = "../solver-supervision-core" }

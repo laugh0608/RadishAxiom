@@ -1,0 +1,12 @@
+[package]
+name = "radishaxiom-solver-bootstrap-linux"
+version = "0.0.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+radishaxiom-solver-supervision-core = { path = "../solver-supervision-core" }
+radishaxiom-digest = { path = "../digest" }
+
+[dev-dependencies]
+radishaxiom-solver-diagnostic-host = { path = "../solver-diagnostic-host" }

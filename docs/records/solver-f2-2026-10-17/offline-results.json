@@ -1,0 +1,438 @@
+{
+  "schema": "radishaxiom-solver-f2-local-validation-v1",
+  "record_date": "2026-10-17",
+  "baseline_commit": "1a7ff384bb312bdb93609461140f6dcb51a92f7d",
+  "scope": "native-source-scripted-backend-and-offline-artifacts-only",
+  "rust_toolchain": "1.97.1-aarch64-apple-darwin",
+  "cargo_network_policy": "--locked --offline",
+  "validation": {
+    "workspace_all_targets": {
+      "passed": 441,
+      "failed": 0,
+      "ignored": 1,
+      "measured": 0,
+      "filtered_out": 0
+    },
+    "workspace_doctests": {
+      "passed": 3,
+      "failed": 0,
+      "ignored": 0,
+      "measured": 0,
+      "filtered_out": 0
+    },
+    "native_scripted_backend_tests": 41,
+    "fmt_final_exit_code": 0,
+    "clippy_workspace_all_targets_all_features_deny_warnings_exit_code": 0,
+    "python_checkers": {
+      "command-tests.log": {
+        "passed": 5,
+        "failed": 0
+      },
+      "inputs-tests.log": {
+        "passed": 9,
+        "failed": 0
+      },
+      "e3-checker-tests.log": {
+        "passed": 6,
+        "failed": 0
+      },
+      "c0-tests.log": {
+        "passed": 11,
+        "failed": 0
+      }
+    },
+    "initial_fmt_failure": "One whitespace difference during parallel implementation; preserved fmt.log. Final format check passed."
+  },
+  "independent_offline_checks": {
+    "bootstrap_inputs": {
+      "complete_policy_bundle": "not-established",
+      "inputs_digest": "sha256:1a1bb831b571f2708b8f2ed35c4fde51e9235ce32c5aa50f5038c423fd7297e5",
+      "manifest_digest": "sha256:f19e9206e4d492bcea9f7ff676e184bfaca9420d5bc877c3526bdd9791c2e4a1",
+      "native_build": "not-accepted",
+      "outer_setup_policy": "not-established",
+      "runtime_qualification": "not-established",
+      "scope": "offline-pure-inputs-only",
+      "source_count": 22,
+      "supervisor_digest": "sha256:cf0ff9e3b57b8a0b3fa38414082a128922eb09ad9c14f9a5a227327a9572b57e",
+      "supervisor_finite_cases": 1450,
+      "worker_digest": "sha256:2f5ff64bffb3b8cd438049d8f33d6ce86f9d3c72f4d61add5eba7da056a04e8f",
+      "worker_finite_cases": 3176
+    },
+    "command_inputs": {
+      "argument_count": 12,
+      "command_bytes": 251,
+      "command_digest": "sha256:2673236e323ca8a7d3e1b23ff5b75fb22e00ad9382f75fb913c83eb24d4a1398",
+      "manifest_digest": "sha256:4f9ed3dfbe373f7a3ec0d1d8be003953ef2814b1202fae13036a6ec88d4ddde8",
+      "native_build": "not-accepted",
+      "runtime_qualification": "not-established",
+      "scope": "offline-command-inputs-only",
+      "source_count": 10
+    },
+    "e3_simulation": {
+      "control_bytes": 4576,
+      "mac_frames": 17,
+      "policy_cases": 3176,
+      "query_bytes": 962642,
+      "query_sha256": "5ba58e0d9754c3448f299ce4d9be2060c2d91d829253ec3e4a170e0d4d07a85a",
+      "real_execution": "blocked-E0-and-runtime-qualification",
+      "scope": "offline-simulation-only",
+      "stderr_sha256": "0fc85d148d03fe05e6d58cad8e20dc1dc5d3223d237df4f2349153430243f72a",
+      "stdout_sha256": "a247b4f3b8c27b22aed56f9ba173b04084f19a4b0b855a692550e3af48e32796",
+      "supervisor_frames": 7,
+      "supervisor_instructions": 980,
+      "supervisor_policy_cases": 1450,
+      "supervisor_sha256": "cf0ff9e3b57b8a0b3fa38414082a128922eb09ad9c14f9a5a227327a9572b57e",
+      "worker_instructions": 782,
+      "worker_sha256": "2f5ff64bffb3b8cd438049d8f33d6ce86f9d3c72f4d61add5eba7da056a04e8f"
+    }
+  },
+  "c0_draft_consistency_only": {
+    "draft_consistent": true,
+    "build_ready": false,
+    "c0_state": "blocked-exact-sdk-and-config-unresolved",
+    "source_archives_selected": 5,
+    "sdk_item_groups_unresolved": 16,
+    "retained_observations_rechecked": 29,
+    "original_cli_acceptance": "not-accepted",
+    "new_payload_acceptance": "not-accepted"
+  },
+  "compatibility": {
+    "baseline_files": {
+      "baseline_commit": "1a7ff384bb312bdb93609461140f6dcb51a92f7d",
+      "compared": 2052,
+      "unchanged": 2047,
+      "changed": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "crates/axiom-ir/src/solver.rs",
+        "crates/solver-diagnostic-host/src/lib.rs",
+        "crates/solver-supervision-core/src/cgroup.rs"
+      ]
+    },
+    "e3_artifacts": [
+      {
+        "path": "binding.bin",
+        "bytes": 160,
+        "digest": "sha256:d04fbc648b6a1d24697a2641b46817155ed30e6ff225354463cb1f0739402189",
+        "identical_to_f1_and_e3": true
+      },
+      {
+        "path": "candidate.json",
+        "bytes": 1886,
+        "digest": "sha256:3acaf8dee140d89b1bd54c0fc566de6a4de44c9c424c0f15be52e3b1b1e5a49f",
+        "identical_to_f1_and_e3": true
+      },
+      {
+        "path": "mac.wire",
+        "bytes": 965814,
+        "digest": "sha256:93a08e92724c4188fddaf0426b6a90ddd966a875845c48043a91aaa22846899b",
+        "identical_to_f1_and_e3": true
+      },
+      {
+        "path": "query.smt2",
+        "bytes": 962642,
+        "digest": "sha256:5ba58e0d9754c3448f299ce4d9be2060c2d91d829253ec3e4a170e0d4d07a85a",
+        "identical_to_f1_and_e3": true
+      },
+      {
+        "path": "replay.json",
+        "bytes": 2342,
+        "digest": "sha256:87038bb9efdd6ee67351ee042e184d858e7ac001d8fa90e2ddb8655c8d752462",
+        "identical_to_f1_and_e3": true
+      },
+      {
+        "path": "request.json",
+        "bytes": 3202,
+        "digest": "sha256:4142ebacee8a61d69485e09050a5def8497c5738bfe773434da3496b6a335a91",
+        "identical_to_f1_and_e3": true
+      },
+      {
+        "path": "response.json",
+        "bytes": 481,
+        "digest": "sha256:57bd17421375b3c8f08e0d11327e444e1ff2de6d54994ed9b47ca530fcd17ab1",
+        "identical_to_f1_and_e3": true
+      },
+      {
+        "path": "stderr.bin",
+        "bytes": 22,
+        "digest": "sha256:0fc85d148d03fe05e6d58cad8e20dc1dc5d3223d237df4f2349153430243f72a",
+        "identical_to_f1_and_e3": true
+      },
+      {
+        "path": "stdout.bin",
+        "bytes": 14834,
+        "digest": "sha256:a247b4f3b8c27b22aed56f9ba173b04084f19a4b0b855a692550e3af48e32796",
+        "identical_to_f1_and_e3": true
+      },
+      {
+        "path": "supervisor.cbpf.bin",
+        "bytes": 7840,
+        "digest": "sha256:cf0ff9e3b57b8a0b3fa38414082a128922eb09ad9c14f9a5a227327a9572b57e",
+        "identical_to_f1_and_e3": true
+      },
+      {
+        "path": "supervisor.wire",
+        "bytes": 16260,
+        "digest": "sha256:8b27ac6e6f481aabe9181f1e4d08366a851a735434cd871478be44d7a52e7468",
+        "identical_to_f1_and_e3": true
+      },
+      {
+        "path": "worker.cbpf.bin",
+        "bytes": 6256,
+        "digest": "sha256:2f5ff64bffb3b8cd438049d8f33d6ce86f9d3c72f4d61add5eba7da056a04e8f",
+        "identical_to_f1_and_e3": true
+      },
+      {
+        "path": "world.json",
+        "bytes": 1491,
+        "digest": "sha256:a9c7c19884863a92c51d933ee36a4d5073baaca336125d43261d141e4ee2a8b9",
+        "identical_to_f1_and_e3": true
+      }
+    ],
+    "f1_data_files_unchanged": [
+      "inputs.json",
+      "worker.cbpf.bin",
+      "supervisor.cbpf.bin"
+    ],
+    "f1_manifest": "Regenerated to bind current source bytes; previous manifest retained unchanged."
+  },
+  "changed_source_inventory": [
+    {
+      "path": "Cargo.lock",
+      "bytes": 1203,
+      "raw_sha256": "da13b685586917299e301ba0e01fad393514c5d909d685822eb6b774ff215275"
+    },
+    {
+      "path": "Cargo.toml",
+      "bytes": 270,
+      "raw_sha256": "ae7a711f78aa93f673ecd9338dfdb3d477087ea40eff72211a105377931cf9c6"
+    },
+    {
+      "path": "crates/axiom-ir/src/solver.rs",
+      "bytes": 17852,
+      "raw_sha256": "df4e492e056023ab7d8ece71d38bbc136e39518f69e272a64d3cd06a5a25a3e6"
+    },
+    {
+      "path": "crates/solver-bootstrap-linux/Cargo.toml",
+      "bytes": 339,
+      "raw_sha256": "ba214760d3e619d6fc8377a8a42ecb9a37f5981c0184e6799e2f6fdbc6808020"
+    },
+    {
+      "path": "crates/solver-bootstrap-linux/src/abi.rs",
+      "bytes": 7923,
+      "raw_sha256": "f325961d91d86320755e46dca7dd3f262275a126bf8cbff9d17683605eb9d4ec"
+    },
+    {
+      "path": "crates/solver-bootstrap-linux/src/child.rs",
+      "bytes": 12534,
+      "raw_sha256": "5876b7ff97035e21509380cefee3148540c466b49a80ee2287001a8f131526ab"
+    },
+    {
+      "path": "crates/solver-bootstrap-linux/src/child_tests.rs",
+      "bytes": 12621,
+      "raw_sha256": "2c63ca73d70eae94e1a5cb3e1332dcb77d9305bef03708463d4411ae7be7cb00"
+    },
+    {
+      "path": "crates/solver-bootstrap-linux/src/configuration.rs",
+      "bytes": 12139,
+      "raw_sha256": "f846f3cb0b4ce9e95d734ca9ff8aea90c5b7a3f060ca84d64b5637912bf6f4e6"
+    },
+    {
+      "path": "crates/solver-bootstrap-linux/src/fd.rs",
+      "bytes": 770,
+      "raw_sha256": "9f5bb741f653e1ec2e8e4e0c1e903b0432558325c2fa00539fa5f9202be8faf4"
+    },
+    {
+      "path": "crates/solver-bootstrap-linux/src/lib.rs",
+      "bytes": 579,
+      "raw_sha256": "b2ac2e90fa9df46226fd2fd510bc8f511ed40d6fdb2801558e88eba1757cbf4d"
+    },
+    {
+      "path": "crates/solver-bootstrap-linux/src/observation.rs",
+      "bytes": 8053,
+      "raw_sha256": "6b2cf996323eb31ca46829512cfa431fa9b9ed1a99f79b675a93e52b53e12e99"
+    },
+    {
+      "path": "crates/solver-bootstrap-linux/src/observation_tests.rs",
+      "bytes": 7361,
+      "raw_sha256": "39bb2f36195596d2df7fd01fb7403585c997bfb0861d50307877eb1b66adde5c"
+    },
+    {
+      "path": "crates/solver-bootstrap-linux/src/setup.rs",
+      "bytes": 25001,
+      "raw_sha256": "d9c94d9df8cb6b4a951cc7ea08e1501253f8ede2f6fa62fd8d3dcbc9aad8192e"
+    },
+    {
+      "path": "crates/solver-bootstrap-linux/src/setup_tests.rs",
+      "bytes": 27012,
+      "raw_sha256": "1156c89017ef663a7ee16f27619cce6ba7bba45fe831ad89f77ce10331d62698"
+    },
+    {
+      "path": "crates/solver-bootstrap-linux/src/supervisor.rs",
+      "bytes": 29504,
+      "raw_sha256": "348bbbc178db08e4731fae4fd99309059576bbdeccf9c2085cfface163b926df"
+    },
+    {
+      "path": "crates/solver-bootstrap-linux/src/supervisor_tests.rs",
+      "bytes": 22494,
+      "raw_sha256": "4cc2bb0e7839df6a491cceaf7f87d09a8aa57899e783b233d68db70851b38dbb"
+    },
+    {
+      "path": "crates/solver-bootstrap-linux/src/syscall.rs",
+      "bytes": 28140,
+      "raw_sha256": "4007c1a3ae30c24d1ee4d7f29d481d696412d368efd0988e5172a2e66fc42b34"
+    },
+    {
+      "path": "crates/solver-bootstrap-linux/src/syscall_listener.rs",
+      "bytes": 4115,
+      "raw_sha256": "d14663362f4a7a99278e09bbceea5ab643cee00e56dd9fa1827fc5dcbaa5aa54"
+    },
+    {
+      "path": "crates/solver-bootstrap-linux/src/syscall_signals.rs",
+      "bytes": 5013,
+      "raw_sha256": "45bc5475102cdfe9da3270b33a47ca99eec0f413a8c2c1e73a4b36b733ea9f2e"
+    },
+    {
+      "path": "crates/solver-bootstrap-linux/src/syscall_tests.rs",
+      "bytes": 10835,
+      "raw_sha256": "6ef97f2920be9ee79f7f685ee9afee88c4022c61b5bc20f31e20e694e1ba9872"
+    },
+    {
+      "path": "crates/solver-bootstrap-linux/src/test_support.rs",
+      "bytes": 11150,
+      "raw_sha256": "500526043519cc870d89e292c74ce4f3249778769f9558791828361f451b81e2"
+    },
+    {
+      "path": "crates/solver-diagnostic-host/examples/solver_bootstrap_command.rs",
+      "bytes": 1467,
+      "raw_sha256": "246740c7b5ccaa843c11e3f9e729cb9fbecbd57ab5bb67b9903ba27e7d48f8c5"
+    },
+    {
+      "path": "crates/solver-diagnostic-host/src/bootstrap_command.rs",
+      "bytes": 4284,
+      "raw_sha256": "03289ad51e39161fc88775981c9b3696d17da0258eaff554ef14ad22987f1015"
+    },
+    {
+      "path": "crates/solver-diagnostic-host/src/lib.rs",
+      "bytes": 2993,
+      "raw_sha256": "22fec260d605a483e4e77129b8cfc6992e8cdf0b7121fc05de3a3ee7f36e0b04"
+    },
+    {
+      "path": "crates/solver-supervision-core/src/cgroup.rs",
+      "bytes": 10326,
+      "raw_sha256": "01955b42ab09ede7f9c199f024209051c14fc0d9f305345ea286e4e317ee35df"
+    },
+    {
+      "path": "crates/solver-supervision-core/tests/cgroup_values.rs",
+      "bytes": 3266,
+      "raw_sha256": "64f127d8ae30c8456fb34d862c7a837ae92a0a97852a6dcc924d84d8244aafcb"
+    },
+    {
+      "path": "scripts/check-cvc5-c0-input-selection.py",
+      "bytes": 2588,
+      "raw_sha256": "489a7043f2b37d35e868efde8b376db9ffbc0bfbff5af4b0eaec8774866dcdea"
+    },
+    {
+      "path": "scripts/check-solver-bootstrap-command.py",
+      "bytes": 3802,
+      "raw_sha256": "2ac0872ff99b6a59fd0b6331101bb2e2437bfabc5c8a8fc289b4b2d776c8f0a7"
+    },
+    {
+      "path": "scripts/check-solver-bootstrap-inputs.py",
+      "bytes": 9279,
+      "raw_sha256": "aef5ec2ccb98381e48bd9fd54588d37f60ae6799d4f546a7dc2bc9a29188393d"
+    },
+    {
+      "path": "scripts/generate-cvc5-c0-input-selection.py",
+      "bytes": 9291,
+      "raw_sha256": "90ff0d69ba3dda9ce24cf104f607f723bf293ca32c9bce62a70810a551d62139"
+    },
+    {
+      "path": "scripts/test-cvc5-c0-input-selection.py",
+      "bytes": 2251,
+      "raw_sha256": "851988f0598b81fd714db4fef52041e520d843230843a7adf15f1dde5c645ced"
+    },
+    {
+      "path": "scripts/test-solver-bootstrap-command.py",
+      "bytes": 4759,
+      "raw_sha256": "8c6c5d6de13f123c441c18313468daf80379a5960f513d365d1fb6ca68ff12ca"
+    }
+  ],
+  "local_log_inventory": [
+    {
+      "path": ".tmp/solver-f2-2026-10-17/workspace-test.log",
+      "bytes": 46465,
+      "raw_sha256": "88059ecc5389d40122f48fda514ab6ca73867783b0163fa4b14879d3c951e4ab"
+    },
+    {
+      "path": ".tmp/solver-f2-2026-10-17/doctest.log",
+      "bytes": 1683,
+      "raw_sha256": "399eed49e72db541262f3d04d7c9facff227c316cee757bd8c18183d568d0486"
+    },
+    {
+      "path": ".tmp/solver-f2-2026-10-17/clippy.log",
+      "bytes": 589,
+      "raw_sha256": "62ff15066bcc22498330fb26a67ebaa327ce289c3b64b5e6098884b4caab8884"
+    },
+    {
+      "path": ".tmp/solver-f2-2026-10-17/fmt.log",
+      "bytes": 454,
+      "raw_sha256": "1bea956fbdd370e9171029e680a4ce9fceacd47aa3e73f012770eb0681d8e0b8"
+    },
+    {
+      "path": ".tmp/solver-f2-2026-10-17/fmt-final.log",
+      "bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".tmp/solver-f2-2026-10-17/command-tests.log",
+      "bytes": 103,
+      "raw_sha256": "b29b03a2697317e5be70cdf9183e300a501a69cf666f2c048f47e1af086d26ee"
+    },
+    {
+      "path": ".tmp/solver-f2-2026-10-17/inputs-tests.log",
+      "bytes": 107,
+      "raw_sha256": "0816065fe0d5a82ace2cd6e57c13acf798ab7e69d339f516b2e112daecf68ee0"
+    },
+    {
+      "path": ".tmp/solver-f2-2026-10-17/e3-checker-tests.log",
+      "bytes": 104,
+      "raw_sha256": "62cfbeb2911bb226088bfb0918eb4b05008ea70b20bce854ee2ca8a564bd37a5"
+    },
+    {
+      "path": ".tmp/solver-f2-2026-10-17/c0-tests.log",
+      "bytes": 110,
+      "raw_sha256": "04d74c068a055925d9a5e9ad000b3e7ee51ee9aa2da2a18d044b44ef98f1392b"
+    },
+    {
+      "path": ".tmp/solver-f2-2026-10-17/manifest-export.log",
+      "bytes": 292,
+      "raw_sha256": "c8ceff4e153cc6de6d51bc85ae198e587c4dabaa6221344a7dc94ce47c699985"
+    },
+    {
+      "path": ".tmp/solver-f2-2026-10-17/command-export.log",
+      "bytes": 280,
+      "raw_sha256": "b86ae9c7b0f14dbe19cd632c43e00eda35632a17561159e89981b1363d476ed1"
+    },
+    {
+      "path": ".tmp/solver-f2-2026-10-17/e3-export.log",
+      "bytes": 399,
+      "raw_sha256": "3f31f93d213ca9e02f3ebba56af1c036bf948be1f82bdd94da47790c4eb9a3df"
+    }
+  ],
+  "log_retention": "Logs and offline exports are ignored local .tmp files; this record retains their digests, not their full contents.",
+  "not_performed": [
+    "Linux target compilation, linking or emitted assembly review",
+    "Real Linux syscall execution or kernel policy installation",
+    "Dependency download or installation",
+    "Container, VM, image build, probe or solver execution",
+    "System configuration changes",
+    "Remote writes or push"
+  ],
+  "native_build": "not-accepted",
+  "runtime_qualification": "not-established",
+  "outer_setup_policy": "not-established",
+  "original_cli_acceptance": "not-accepted",
+  "new_payload_acceptance": "not-accepted",
+  "proof_claim": "none"
+}

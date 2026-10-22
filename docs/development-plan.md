@@ -1,6 +1,6 @@
 # RadishAxiom 开发目标与验收计划
 
-更新日期：2026-09-29
+更新日期：2026-10-17
 
 状态：开发规划；涉及正式语义、信任、公共格式或架构替代的事项仍需专题决策。
 
@@ -22,16 +22,32 @@ ADR 0007 的完整管线入口与 ADR 0011–0014 的 launcher / isolation 边�
 
 ### 核心组件的分阶段入口
 
-[ADR 0016（Accepted）](adr/0016-core-semantic-slice-entry.md)已接受 P1–P2 的窄入口例外，仅替代 ADR 0007 的组件实施先后要求。先交付真实 P1 IR / 类型检查组件，再在义务版本入口闭合后交付 P2；P3 单独审阅，完整 P0–P9 与产品运行仍按原标准验收。
+[ADR 0016（Accepted）](adr/0016-core-semantic-slice-entry.md)已接受 P1–P2 的窄入口例外，仅替代 ADR 0007 的组件实施先后要求。先交付真实 P1 IR / 类型检查组件，再在义务版本入口闭合后交付 P2；P3 的限定切片已另经 [ADR 0019](adr/0019-map-filter-query-encoding.md) / [ADR 0020](adr/0020-map-filter-node-totality.md) / [ADR 0021](adr/0021-map-filter-key-cardinality.md) / [ADR 0022](adr/0022-map-filter-row-coverage.md) / [ADR 0023](adr/0023-core-empty-effect-derivation.md) / [ADR 0024](adr/0024-core-field-origin-derivation.md) 接受，完整 P0–P9 与产品运行仍按原标准验收。
 
 | 中间交付 | 必须展示的实际结果 | 不得外推的能力 |
 | --- | --- | --- |
 | P1 组件 | candidate bytes 到 canonical IR / 内容身份或可定位诊断；四题与同域新输入、Unicode / 数学整数 / 图结构负例及独立期望 | 验证义务成立、完整 Evidence、生产 invocation / receipt、六平台已通过 |
 | P2 组件 | 从 IR 与明确义务 profile 生成完整义务定义及稳定 ID；遗漏、多余、错配与 group 区分例 | solver 已执行、独立 checker 已接受、形式证明 |
+| P3-A 组件 | 从严格匹配的 IR / P2 集合生成 map / filter 的 numeric-range / contract-guarantee 查询；规范字节、完整绑定、资源 / 未支持拒绝及独立有限求值比较 | 完整 P3、真实 solver / 模型 / proof、新 Evidence 或独立 checker 集成 |
+| P3-B 组件 | 在显式 v0.2 query profile 中增加指定节点 totality；区分依赖 / 无关 / 契约故障，保持 v0.1 支持及字节，独立有限比较与预算拒绝 | 其他义务、完整 P3、solver / proof / Evidence 或独立 checker 集成 |
+| P3-C 组件 | 在显式 v0.3 query profile 中增加 key-cardinality；Ready 守卫容量前候选，独立有限比较、局部唯一键注入与旧三类字节 / 预算回归 | row-coverage 等其余义务、完整 P3、solver / proof / Evidence 或独立 checker 集成 |
+| P3-D 组件 | 在显式 v0.4 query profile 中增加 row-coverage；Ready 守卫双向恰好一次键关系，中间观察 / 局部变异及旧四类字节与预算回归 | effect-empty 等其余义务、结构证书、完整 P3、solver / proof / Evidence 或独立 checker 集成 |
+| P3-E 组件 | 从全部 P1 v0.2 纯构造与原 P2 effect-empty 目标生成版本化结构推导记录；规则 / 前提 / 路径完整、预算拒绝、独立字节与变异核对 | field-origin、公共 kernel / certificate support、五态、完整 P3 / P4 或独立 checker 集成 |
+| P3-F 组件 | 全部五种节点与逐行表达式的来源 / 保守标签推导；字段值、控制、求值上下文与声明边分开，完整绑定 / 预算 / strict，独立材料保留缺口 | 公共 field-origin prove support、非干扰或反例、完整 P3 / P4 / Evidence 与独立 checker 集成 |
 
-P2 进入编码前必须处理 ADR 0009 的生产义务版本边界，不能把 checker 的受限 v0.1 profile 自动外推到新生产生成器；这一阻断不反向作用于 P1。两项组件都是中间里程碑，最终首域仍覆盖四题，不为单题建立硬编码路径。
+[ADR 0017](adr/0017-ir-v0.2-support-boundaries-and-migration.md)扩展 P1 的精确输入范围为 v0.1 既有支持子集与 v0.2，闭合四项边界并增加显式迁移；它不接受新 Evidence profile，也不改变组件与完整生产阶段的区分。
+
+[ADR 0018](adr/0018-ir-derived-obligation-profile.md) 已按 ADR 0016 的更窄入口接受 P2 的 IR v0.2 / ir-derived profile；完整 Evidence v0.2 仍保留 ADR 0009 的规范、迁移与独立验收门禁，不能把旧 checker 的受限 v0.1 profile 外推到新格式。[P3-A](query/map-filter-query-v0.1.md) 仅编码 map / filter 的 numeric-range 与 contract-guarantee，[P3-B](query/map-filter-query-v0.2.md)在显式新 profile 增加节点 totality，[P3-C](query/map-filter-query-v0.3.md)再增加局部 key-cardinality，[P3-D](query/map-filter-query-v0.4.md)增加双向 row-coverage；[P3-E](query/core-empty-effects-v0.1.md)单独生成空效果结构记录，不扩张 query profile 或填证明状态；[P3-F](query/core-field-origin-v0.1.md)生成来源与标签分析记录，缺口不冒充反例；其余目标保留。这些组件都是中间里程碑，最终首域仍覆盖四题，不为单题建立硬编码路径。
 
 每次交接分别报告：新增的实际能力、规范与独立期望、未覆盖范围、解除或保留的阻断，以及下一切片的直接依赖。检查数量、文档数量和取证成功数只说明各自验证范围，不能作为产品完成度。
+
+P4 接续拆分为请求 / 响应 / 模型解码的 P4-A，与直接解释原 IR 的 WF / Pre / 五类精确目标重放的 P4-B。[ADR 0025（Accepted）](adr/0025-p4-request-response-model-decoding.md)及[规则](query/p4-request-response-model-v0.1.md)接受并实现 P4-A 的内部范围；纯协议 / 世界候选不产生 attempt、反例或 Evidence 五态，范围接受、真实工具校准与完整管线验收分别处理。AX-B01 原容量的旧四版 query 与保留的 1 MiB stdin 上限有实际尺寸阻断，旧字节及拒绝行为继续保留。
+
+[P4-B 精确范围](query/p4-concrete-target-replay-v0.1.md)与 [ADR 0026（Accepted）](adr/0026-p4-concrete-target-replay.md)已接受并完成本机内部组件验收，见[验收记录](records/2026-10-13-p4b-validation.md)；[查询尺寸审阅](query/ax-b01-query-size-review.md)保留原容量测量与压缩仍超限的实际结果。先验收具体重放不授权真实 solver 或新资源范围。
+
+[ADR 0027（Accepted）](adr/0027-compact-query-and-p4-binding.md)已另行接受 v0.5 紧凑查询 / query0.3 与 P4-A v0.2 的显式配对、规则绑定和独立 compact 预算。验收须同时核对实际新字节的有限语义、符号恢复、旧四版兼容及完整模型候选接续；本批 AX-B01 已通过原容量字节门槛，真实 128 MiB / 6 s 求解可行性仍须单独校准。不得把单批压缩结果外推为任意输入可行或形式等价证明。
+
+真实后端的窄诊断入口按 [ADR 0028](adr/0028-bounded-solver-calibration-entry.md)、Linux 监督按 [ADR 0029](adr/0029-solver-linux-supervision-and-capabilities.md)、bootstrap / 构建来源按 [ADR 0030](adr/0030-solver-bootstrap-ffi-and-build-provenance.md)分别验收。模拟组件、原生源码、工具输入接受、目标制品和实际能力是不同交付；来源与构建工作必须直接服务受限校准，不替代真实 P0–P9 或独立 checker 验收。
 
 ## 里程碑与完成标准
 

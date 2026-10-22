@@ -1,0 +1,51 @@
+{
+  "format": "radishaxiom-private-cvc5-source-license-inventory",
+  "version": "0.1",
+  "source_id": "symfpu",
+  "scope": "full-regular-file-byte-scan-plus-license-filenames; contextual-review-required; no-license-or-distribution-acceptance",
+  "scan_pattern": "copyright|SPDX-License-Identifier|permission-is-hereby-granted|GNU-General/Lesser|license/licensing-exception|all-rights-reserved",
+  "materials": [
+    {
+      "archive_path": "symfpu-227a7246b8ce513b393cc2645d6d65d3490ea1de/AUTHORS",
+      "bytes": 110,
+      "sha256": "84528c470a2a77633a4f9545bb136972b5902d3b3ab1c46a7c1f59cbb03eb9f2",
+      "named_license_material": true,
+      "matched_line_count": 0,
+      "short_declarations": [],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "symfpu-227a7246b8ce513b393cc2645d6d65d3490ea1de/LICENSE",
+      "bytes": 123,
+      "sha256": "663f684cfc4fbf827926924cb32f5cd84ebcb275d60c55506f9e62524fd14f98",
+      "named_license_material": true,
+      "matched_line_count": 0,
+      "short_declarations": [],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "symfpu-227a7246b8ce513b393cc2645d6d65d3490ea1de/LICENSE-BSD",
+      "bytes": 1441,
+      "sha256": "00f50e5054992dc8d34e9995d33ce092c2633c8a000a67df00844b560ba8aeb0",
+      "named_license_material": true,
+      "matched_line_count": 3,
+      "short_declarations": [
+        "SymFPU is copyright (C) by the authors from 2018",
+        "(1) Redistributions of source code must retain the above copyright"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "symfpu-227a7246b8ce513b393cc2645d6d65d3490ea1de/LICENSE-GPL3",
+      "bytes": 35147,
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+      "named_license_material": true,
+      "matched_line_count": 45,
+      "short_declarations": [
+        "GNU GENERAL PUBLIC LICENSE",
+        "Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>"
+      ],
+      "classification": "requires-contextual-component-review"
+    }
+  ]
+}

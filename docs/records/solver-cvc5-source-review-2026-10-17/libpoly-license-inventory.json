@@ -1,0 +1,1484 @@
+{
+  "format": "radishaxiom-private-cvc5-source-license-inventory",
+  "version": "0.1",
+  "source_id": "libpoly",
+  "scope": "full-regular-file-byte-scan-plus-license-filenames; contextual-review-required; no-license-or-distribution-acceptance",
+  "scan_pattern": "copyright|SPDX-License-Identifier|permission-is-hereby-granted|GNU-General/Lesser|license/licensing-exception|all-rights-reserved",
+  "materials": [
+    {
+      "archive_path": "libpoly-0.2.1/LICENCE",
+      "bytes": 7651,
+      "sha256": "da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768",
+      "named_license_material": true,
+      "matched_line_count": 13,
+      "short_declarations": [
+        "GNU LESSER GENERAL PUBLIC LICENSE",
+        "Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/debian/copyright",
+      "bytes": 912,
+      "sha256": "cd3eb8b96019760e240235847501addff027f870ffe57687c4128ec78a155664",
+      "named_license_material": true,
+      "matched_line_count": 5,
+      "short_declarations": [
+        "Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/",
+        "Copyright: 2017 SRI International"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/algebraic_number.h",
+      "bytes": 6623,
+      "sha256": "0c614b1c8134d3ea6379bbdcaf47e6c28fab9ee52bb2b2e2ba8c606c7700982f",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/assignment.h",
+      "bytes": 4104,
+      "sha256": "76351e43b0cba9402fc183eec72b0fa96ca10f2763b6af9ebb31d54962541c52",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/dyadic_interval.h",
+      "bytes": 5829,
+      "sha256": "90c6ec1dcde756ce448877d248e350badf18cd9f5da5e3d43dc765e3ab6f40b9",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/dyadic_rational.h",
+      "bytes": 5170,
+      "sha256": "6d64599f730b0f3cce99ce432a6a25459e95d3319b18ef095c58370076aed1bf",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/feasibility_set.h",
+      "bytes": 4533,
+      "sha256": "f4d0b78b8a0a97b4b4848d9d9fbd611ae9186a7690cc72b37c91699e501dedfb",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/feasibility_set_int.h",
+      "bytes": 5258,
+      "sha256": "f2618c0fd08a4c12406b6102662a61d5efcc315a6a3812b2bbbe85aaa6bd8eb9",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2024, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/integer.h",
+      "bytes": 9433,
+      "sha256": "077e1a180f0436cdd773bc7b9718e7893a7fcc65594a21978e73638cfad12cc3",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/interval.h",
+      "bytes": 5974,
+      "sha256": "5cea96845982976c2bb16fcdc5dee8503e52a7a27e16c2dbd18227df7d32b84e",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/monomial.h",
+      "bytes": 2565,
+      "sha256": "a2b05bfc543ada10fb5d7ec8b583466b86907317d8b3ba80ca15b320ef9e23f0",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/output_language.h",
+      "bytes": 1208,
+      "sha256": "4068df3f89251962da20602bdb17cf1d3665e79427ba53164100909e23d5a3a7",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/poly.h",
+      "bytes": 2873,
+      "sha256": "a7cc881b3d31c745fb5fdb7e7b12182e47fe39993ba7814fd4a5ec44978f661f",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/polynomial.h",
+      "bytes": 18863,
+      "sha256": "cee13d7552ba70e99623d702df5d3091f763ce4500ea5d309625a3556d3e6898",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/polynomial_context.h",
+      "bytes": 2092,
+      "sha256": "e7acc3b394245e2abc8ee3bce1351cfdb79ffb76376ea3bdf4f8aa2a1a6bd9de",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/polynomial_hash_set.h",
+      "bytes": 3486,
+      "sha256": "c1d659efb97ab8cedf214572f36748e6549c406c352429b752a93513060448cf",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/polynomial_heap.h",
+      "bytes": 3074,
+      "sha256": "4f4c01d28e832d1d3b89fce2bc9f273b75e2c465cb03e0647ecdf3525b483975",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/polynomial_vector.h",
+      "bytes": 2392,
+      "sha256": "583607f57e3fc63ae03cd768c7eb68a4b5741fb38eef77542e9ddcb936045ee2",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/rational.h",
+      "bytes": 5047,
+      "sha256": "c88244342a7f4508b1795ea08b034ed191ca3cb7cd6ebaaa5335d612b2cebae0",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/rational_interval.h",
+      "bytes": 4327,
+      "sha256": "e1ce4ee7916c5522f578dbb55f8de65e607c77702502fad81a38a8992a0b0573",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/sign_condition.h",
+      "bytes": 2041,
+      "sha256": "3214d53269cee9ce2e028398988526b3594896f25f79dd3ec16cf41177b1a3d7",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/upolynomial.h",
+      "bytes": 13273,
+      "sha256": "1a38161e44152895311378b4f136df2a9a96dd0f1a0dde1572333dec7bd970c0",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/upolynomial_factors.h",
+      "bytes": 2500,
+      "sha256": "ad3b5249260cc318d8d5e7af33501070e9f0479cc85893dfdf32f49ba6c727f6",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/value.h",
+      "bytes": 6354,
+      "sha256": "0d8777e7542fc2d0143a2d1654ebb58ba722acf7b659d4e468c60d2e13105e77",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/variable_db.h",
+      "bytes": 1786,
+      "sha256": "77861ba0c1992dc2599bd3fbb012f3091556a66296b27ba0be60160430254890",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/variable_list.h",
+      "bytes": 2703,
+      "sha256": "cb441b29853d9f2e976c24335fbd4f5dcf0a0b26ef01ba9822b0594d420ac4a2",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/variable_order.h",
+      "bytes": 3504,
+      "sha256": "e813a84f698816f6afa67530ce64db635cd62c14f9389b88c22dbf8c179f8f67",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/include/version.h.in",
+      "bytes": 1050,
+      "sha256": "30795be98a40e02b18a79ff4a153cebdb8542799993e559a617515025951df99",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/python/polypy.c",
+      "bytes": 5659,
+      "sha256": "81b3305c775687fa6a3a0a7e32fb8b8e0be35c2417c25283eb165045186b86d9",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/python/polypyAlgebraicNumber.c",
+      "bytes": 16713,
+      "sha256": "6b782806f228c63895bef201f798dfa5319a76b3fb6324b5d78614ae64d2918e",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/python/polypyAlgebraicNumber.h",
+      "bytes": 1356,
+      "sha256": "8e9e8e7b033228a4d8cb9fc40db629639735bd3635f8dd180c974e3f859f9597",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/python/polypyAssignment.c",
+      "bytes": 10957,
+      "sha256": "483ad40dc8d429343a6d7c8c0ad7ff7e784bb6092ac4cbdfb2ffd9d0224de8b4",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/python/polypyAssignment.h",
+      "bytes": 1283,
+      "sha256": "480725fe2b4555c7b5da0e311c6627e620882545a65320bb489885f9129fe306",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/python/polypyFeasibilitySet.c",
+      "bytes": 8072,
+      "sha256": "447b8cc34f1eca083787868dcccb62b056baad92887085e4d8938fb4bcd01249",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/python/polypyFeasibilitySet.h",
+      "bytes": 1324,
+      "sha256": "9c2c6acb7b2eb55c8ab2de7d8e9ef4dc35fe6edaf6ec69d22335179a2742e000",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/python/polypyInteger.c",
+      "bytes": 9024,
+      "sha256": "6e413e50de171a51fcd353b244126066fdf8e985f99944ae745c30439da26a0b",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/python/polypyInteger.h",
+      "bytes": 1300,
+      "sha256": "12b4b978b6259ec96fd264263f1f3d0671d3f5131d315feb07c20ea351d52e5a",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/python/polypyInterval.c",
+      "bytes": 6636,
+      "sha256": "0c0d24377cfd3a1a9bffffb668d96a099514bc17cc988831f4e0b6557d7a7609",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/python/polypyInterval.h",
+      "bytes": 1261,
+      "sha256": "27385ca25cc6952534b9547a820e00e675baa37bd899b048869ad3f2c34ec70e",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/python/polypyPolynomial.c",
+      "bytes": 50891,
+      "sha256": "e7864611847a98b600abb24313eeaca1f030107d1197803cb6595458bbdbb728",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/python/polypyPolynomial.h",
+      "bytes": 1896,
+      "sha256": "84e9303dbe7d50365d128ce5a0097be9caa1ade9f950c9c5ac1f9af7389691c9",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/python/polypyUPolynomial.c",
+      "bytes": 30445,
+      "sha256": "b6e568efe75c5c77c16b2645d6ab460a10ec012035c3289884f58f57db9c3463",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/python/polypyUPolynomial.h",
+      "bytes": 1467,
+      "sha256": "9f4d68a193027ea58612b3375bf7329f5e48dbcfed911d6ee0e7a559571f6476",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/python/polypyValue.c",
+      "bytes": 14796,
+      "sha256": "1a239efaed3b288c92e9b4e208232e75b2b4bed8e915648e3108b6e91124359b",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/python/polypyValue.h",
+      "bytes": 1253,
+      "sha256": "142edf489343b0b53c3563997ba5c66ae2715bb64dac5f156f613bcc55eb39f3",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/python/polypyVariable.c",
+      "bytes": 16397,
+      "sha256": "0cc99e6658d1eadfe844f49a8d75bd7c7c2900f91a8b2fe5489804ceee49b997",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/python/polypyVariable.h",
+      "bytes": 1440,
+      "sha256": "1f57a0fd2b42d0a01979f06217f43597746b64fe33296a18ae0058e5633f5953",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/python/polypyVariableOrder.c",
+      "bytes": 10072,
+      "sha256": "4379db56dca30a58b2d97c454d97eb64ef5aaf587ff6a95c877e34302791ef94",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/python/polypyVariableOrder.h",
+      "bytes": 1562,
+      "sha256": "580b32a1341af4d8ad3c11717b71e89eb8cb8891e559502b0beb5d062e3f5276",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/python/python.h",
+      "bytes": 871,
+      "sha256": "1c634f31505b86c4dd40f7420568434d4f989f9ba9455cca5519cf87c6729170",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/python/utils.c",
+      "bytes": 3307,
+      "sha256": "eca241535f505b0340935b4c0cd5e8033bbbea40d20b6d4404982e03523d7ed2",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/python/utils.h",
+      "bytes": 2346,
+      "sha256": "5038e40d31038d04897de4484b002fc04764acbf8935a99f1366068d1a48b9fe",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/interval/arithmetic.c",
+      "bytes": 39310,
+      "sha256": "bc5e02961dfd000279cc31406b0182a0404bb518192be6dc518799b834eae7c1",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/interval/arithmetic.h",
+      "bytes": 2223,
+      "sha256": "458a9a5d521479beecbed0ab60774c45581ab3d4f451b06c8f6119f169b15e87",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/interval/interval.c",
+      "bytes": 35060,
+      "sha256": "ac5a4ebe5cf2abd8b987e29a0eb8339d1b536b30d0052af181f21a4c514062eb",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/number/algebraic_number.c",
+      "bytes": 43105,
+      "sha256": "4e90910f667b349a8812a137d89d88bc5e7beb8b89d1a39d89167dae491a6337",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/number/dyadic_rational.c",
+      "bytes": 8350,
+      "sha256": "6a6a1cb75c602d83325c6c2a12d63748d3cf910e1d65752748c9189f1593f6af",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/number/dyadic_rational.h",
+      "bytes": 12502,
+      "sha256": "1f8527d056e8a72478a1a14931fbe63215919d85a580e6665fb0277980237ca3",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/number/integer.c",
+      "bytes": 8026,
+      "sha256": "c37e54631a9d64646cd6eb19168fef386c513a1446c0d824f2a6cff2edf9beac",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/number/integer.h",
+      "bytes": 12917,
+      "sha256": "56df56821a4cfecac6582d4b26c620a504903bd1fa30619ba8a9ca4b195b29bd",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/number/rational.c",
+      "bytes": 5949,
+      "sha256": "cc7ac8a2d78b400aa3267faae8b2f03360e6375f0cdac8adf353d5ad288823d2",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/number/rational.h",
+      "bytes": 5875,
+      "sha256": "9f822e90e16b4c834223f6d8026764538ca3da058a698d231c399326e8c4d6aa",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/number/value.c",
+      "bytes": 38746,
+      "sha256": "543467c19a072eedf6a70577f234bae75a8e0f340a7cb77f6deec5aa7ec0a727",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/number/value.h",
+      "bytes": 1225,
+      "sha256": "73563a7fecf2ffec80f29336616ce01d779527cbffdf2a4caa29c115ac2bc8b6",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/poly.c",
+      "bytes": 1277,
+      "sha256": "ebac8bee7630929be42563e225d2af07b84cd5eab3d61f28cbb31afb17e25eac",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/polynomial/coefficient.c",
+      "bytes": 112966,
+      "sha256": "0454b29f082db9a6a7b113f5865951c423fdfb33f43568150921bd190d3f8f7f",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/polynomial/coefficient.h",
+      "bytes": 17597,
+      "sha256": "523d39d4294fb439c6edd071b643967a0f5f9f530dd53573f8973c424f711192",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/polynomial/factorization.c",
+      "bytes": 11457,
+      "sha256": "f3106cb14643559ffb3fc7ddb1cfcc5231c0f937f2eb3c9cba8c996db155b25c",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/polynomial/factorization.h",
+      "bytes": 1781,
+      "sha256": "3b20ae219c20b84bdd358624086dc6cfc0f8a55f5aa47fdaf6b9f6e5ef6d3470",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/polynomial/feasibility_set.c",
+      "bytes": 18248,
+      "sha256": "33a5dc42ac9155f6bd126aba78b7111a7fc0d668c3df75ea64348104f189032f",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/polynomial/feasibility_set.h",
+      "bytes": 820,
+      "sha256": "5060af85723dae464c60e46729175bdfad9b4ff599d754a811f6f68d784c3915",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/polynomial/feasibility_set_int.c",
+      "bytes": 19852,
+      "sha256": "d753f64ece38cccbdca0c2001673b32240c220dff339a0162af4c8ea2d276760",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2024, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/polynomial/gcd.c",
+      "bytes": 27522,
+      "sha256": "2987e192c65de3c0c85719ce76d16f99ef587366fceea01234ea50ef4d671d6c",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/polynomial/gcd.h",
+      "bytes": 1993,
+      "sha256": "8793f2c1cf404d351f3572f762fd2c8d7284c149836d6c13c8cc91de7b4a058d",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/polynomial/monomial.c",
+      "bytes": 4127,
+      "sha256": "0c0da8edb9af732bb2e0cc8bb651ee378e6b13cc463fc321a5cfa4ca80c633dc",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/polynomial/output.c",
+      "bytes": 3323,
+      "sha256": "8f3ae5ec8150952b7306b7ebcc2777943f664772e2d2a8a37d59ca56820a818c",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/polynomial/output.h",
+      "bytes": 1229,
+      "sha256": "e8cca749de6a8a4bef51cec7a3df5325e8a67516291e8232fd13d6f53df13467",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/polynomial/polynomial.c",
+      "bytes": 77716,
+      "sha256": "656c7a35a3ac19965f5c992e4e72b694d6a49235133f7b122fcaaf3f26ead43d",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/polynomial/polynomial.h",
+      "bytes": 1453,
+      "sha256": "bf47c27232a73021795557a7679d5da0234e90613212c45c2937459acadee4b8",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/polynomial/polynomial_context.c",
+      "bytes": 3468,
+      "sha256": "0bd0219e00f51c55f30c778b753bf6bae3297bf125fa11b8913b8913be028bfe",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/polynomial/polynomial_context.h",
+      "bytes": 1083,
+      "sha256": "4e64ec3256468b80b1d34a0bdf4c92bd7da50a0849382363e4b9860851ee7297",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/polynomial/polynomial_hash_set.c",
+      "bytes": 9065,
+      "sha256": "78ad7c9ee95c70768d504d2289b7d99eaea71ac431272a8bfede3f78125ab536",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/polynomial/polynomial_heap.c",
+      "bytes": 5978,
+      "sha256": "40df1cfd5ea3c0d26b47d868ed62c250ef8b10dbe7002b23e5bcd8222867dbbb",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/polynomial/polynomial_vector.c",
+      "bytes": 5367,
+      "sha256": "9073612d66a918e6c25f2ebf526e19b5ceb555959f65bfe63be503428bfbff5c",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/polynomial/polynomial_vector.h",
+      "bytes": 1600,
+      "sha256": "344bd13b5bfaa267e48fd59ebaeb06be59a90db1250ffc5df08523110e499ed5",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/polynomial/subres.c",
+      "bytes": 17829,
+      "sha256": "01bb39c09538e3d65f4eb4a315dde0a53de31f891445f65f3ce65bfdf4a2bf1f",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/upolynomial/bounds.c",
+      "bytes": 4607,
+      "sha256": "d656dbd10f2de655a96b755c5a25dd40ee80e8e171fbce71503bb347f4466770",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/upolynomial/bounds.h",
+      "bytes": 1392,
+      "sha256": "ff168b5524c68baaa30a4741294bbcf843b39d9800577b7ab37045912893ea9e",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/upolynomial/factorization.c",
+      "bytes": 51752,
+      "sha256": "b23163f707f1c056cc37f6c733a075d35134f8b2e3188eaf5e23ea69b6ae4fba",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/upolynomial/factorization.h",
+      "bytes": 1775,
+      "sha256": "178c2ae10c10108947b041078c9bfd882aed9ed07fbae5424834a79d1f430453",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/upolynomial/factors.c",
+      "bytes": 3127,
+      "sha256": "e3a7feb6b63235667b9e6d1a534148f42cbf7f6839f42bb73149056cc4aab609",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/upolynomial/factors.h",
+      "bytes": 1131,
+      "sha256": "a9285ccb90090c385bc2db449234ae11675f8731a329f6a2b9d805e88ebb2d53",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/upolynomial/gcd.c",
+      "bytes": 16679,
+      "sha256": "288c2af28d983e6f7e2e6f457a10c7e54098cfe6a49d6143210b61f72cca8d51",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/upolynomial/gcd.h",
+      "bytes": 1863,
+      "sha256": "addcfb50b14ae12eeb125964deac57bb59ab4c0efc0fa6856a6eda5c6f0676ef",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/upolynomial/output.c",
+      "bytes": 2812,
+      "sha256": "7eba852411d49ac23083ebae52cd050eb083b8c027b01879d5fce6610687a2f7",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/upolynomial/output.h",
+      "bytes": 1027,
+      "sha256": "8db453559bad534f4809b7be421a0fe659ab056a59097c6dbb944528609e53d9",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/upolynomial/root_finding.c",
+      "bytes": 22502,
+      "sha256": "c6a21dfaeb41e8ec307fc4a39918ce1accb142e6892048380dd757d75f7961c8",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/upolynomial/root_finding.h",
+      "bytes": 1982,
+      "sha256": "f475069929108f50fd47a226888c7fe7fdf14ff6162bda559fcab91cfa2247c0",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/upolynomial/umonomial.c",
+      "bytes": 1658,
+      "sha256": "188164960f4c8041d85e5808ea6200e606355f8698cc793b660b6c6dbf56d93c",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/upolynomial/umonomial.h",
+      "bytes": 1382,
+      "sha256": "d705e50986d38b5ea68d791cfde6e170df1b4887f2fae820f4ac61094cd76adb",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/upolynomial/upolynomial.c",
+      "bytes": 38752,
+      "sha256": "160780d1253068d21bb823201784646b2891772a4c24cf614611228753197e8e",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/upolynomial/upolynomial.h",
+      "bytes": 1384,
+      "sha256": "0620a0bc23b7d4f78187ac92ace805dbe28851968d0492f83326b06414a8dcf9",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/upolynomial/upolynomial_dense.c",
+      "bytes": 17495,
+      "sha256": "b57f5931d48a96747d03a988bb00544cd9d87f2839a648ad23e91de7fe237a38",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/upolynomial/upolynomial_dense.h",
+      "bytes": 6247,
+      "sha256": "0b009b9c2e7b7ed6693acdebe8af66ca1df6203d4bd287319d4d61bc4a9e9240",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/upolynomial/upolynomial_vector.c",
+      "bytes": 2387,
+      "sha256": "b13a8ddd97422addb3c386c44b3e0028f9ce6bd7b761fdc4a9ab7397e8270821",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/upolynomial/upolynomial_vector.h",
+      "bytes": 2180,
+      "sha256": "368b5a92708d6fd24a62f6ac8837295a56744634efa93343eac942b03561086a",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/utils/assignment.c",
+      "bytes": 7372,
+      "sha256": "6567aec5621d7afd961c8360b71bcff75b08c3a526d4566e9f985e7ae5ee5956",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/utils/debug_trace.c",
+      "bytes": 1555,
+      "sha256": "b60d934610533ccc1d6323e5572c7b7f808f84be54c53024f2d2c7e442707653",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/utils/debug_trace.h",
+      "bytes": 1614,
+      "sha256": "d7d1e82edc7aa5f1e293a14fc776a27d19406fa211caa5d23d761ee31ee187e3",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/utils/hash.h",
+      "bytes": 866,
+      "sha256": "96bdce96590fe184b36c0e1929df3eeda0655a7d857690b2ec60faef36db659e",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/utils/open_memstream.h",
+      "bytes": 915,
+      "sha256": "db8c55e1f9ddf271a90a08f069325242cc13996943a63a509d8251c0d4f27149",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/utils/output.c",
+      "bytes": 1635,
+      "sha256": "e606a581202cd370a9ceb4efdc7c06945869662c676cdcd56724389e4872e36a",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/utils/output.h",
+      "bytes": 1010,
+      "sha256": "10defcc818af4f1e55f6d94401e4cc71c2430488d1f0e34f85ac9f3302aa79ee",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/utils/sign_condition.c",
+      "bytes": 3252,
+      "sha256": "dd14268c0fbd01e2e16f1acc3580d296b17368a0c31bb8d50d5d99c7cf21cb1c",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/utils/statistics.c",
+      "bytes": 1678,
+      "sha256": "60be196b0c5d353a04fbd8f19d4956b171cfdc0ced9e996f25935095cfda7b34",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/utils/statistics.h",
+      "bytes": 2150,
+      "sha256": "00533eb471c6771c13a5149268c16882219b924d135d99d91816cdc1bd9e1ba6",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/utils/u_memstream.c",
+      "bytes": 2858,
+      "sha256": "e2d184e5e74a90caa3ee5ca0adeccade380b075ea26dc94129af330697d211fe",
+      "named_license_material": false,
+      "matched_line_count": 5,
+      "short_declarations": [
+        "* This mesa code is licensed under the MIT license. The copyright notice is",
+        "* Copyright 2020 Lag Free Games, LLC"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/utils/u_memstream.h",
+      "bytes": 2419,
+      "sha256": "f1e5d7baeb5fcc9524b1c71ded197a5d9e63b7e270a1c608b84591caaadd1a7d",
+      "named_license_material": false,
+      "matched_line_count": 5,
+      "short_declarations": [
+        "* This mesa code is licensed under the MIT license. The copyright notice is",
+        "* Copyright 2020 Lag Free Games, LLC"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/variable/variable_db.c",
+      "bytes": 3797,
+      "sha256": "30fcf08eb13c407bef880de043e0f3db9a847697d73eb17753010a06003f0014",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/variable/variable_list.c",
+      "bytes": 4480,
+      "sha256": "3dc027b37eb383bcdb4a8daab4b23b4f35e3c9a72669bde5883b5a140df57099",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/variable/variable_order.c",
+      "bytes": 5703,
+      "sha256": "2650f7a75594f1493f61fd3cc7fae6799a4de371c9825754db780b36d60bdb39",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/src/variable/variable_order.h",
+      "bytes": 1070,
+      "sha256": "46e0513420d8bc8d68aabc769f787051f21c2a3bc6b2685d8980ffd98391eeae",
+      "named_license_material": false,
+      "matched_line_count": 4,
+      "short_declarations": [
+        "* Copyright 2015, SRI International.",
+        "* it under the terms of the GNU Lesser General Public License as published by"
+      ],
+      "classification": "requires-contextual-component-review"
+    },
+    {
+      "archive_path": "libpoly-0.2.1/test/polyxx/doctest.h",
+      "bytes": 321184,
+      "sha256": "e48f47da2e8dd9402298eaaf39384b7bdc4864f96cfd460fc1711405e0b02d8e",
+      "named_license_material": false,
+      "matched_line_count": 1,
+      "short_declarations": [
+        "// Copyright (c) 2016-2021 Viktor Kirilov"
+      ],
+      "classification": "requires-contextual-component-review"
+    }
+  ]
+}

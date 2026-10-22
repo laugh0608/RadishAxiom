@@ -1,0 +1,738 @@
+{
+  "semantics": {
+    "sha256": "6b18d65eefa439956db8eebe1f4ce90e08b4def4abf7c718c2605e7528598d0d",
+    "name": "keyed-finite-table-semantics"
+  },
+  "table_types": [
+    {
+      "id": "sha256:478206fc9440028a65ab10bb870f93523de5baf5b1946fb778c9e175cf6b7ebd",
+      "definition": {
+        "record_type": "sha256:18b3c7aab01b079dae6ae07ed8602f8c21747dcd1a7bd983e1c99ad8ea1bb1db",
+        "primary_key": [
+          "\ud800\udc00",
+          "\ue000"
+        ],
+        "capacity": "4"
+      }
+    }
+  ],
+  "record_types": [
+    {
+      "id": "sha256:18b3c7aab01b079dae6ae07ed8602f8c21747dcd1a7bd983e1c99ad8ea1bb1db",
+      "definition": {
+        "fields": [
+          {
+            "label": "public",
+            "type": {
+              "kind": "text"
+            },
+            "name": "\ud800\udc00"
+          },
+          {
+            "label": "public",
+            "type": {
+              "kind": "text"
+            },
+            "name": "\ue000"
+          },
+          {
+            "label": "public",
+            "type": {
+              "upper": "10",
+              "lower": "0",
+              "kind": "int"
+            },
+            "name": "units"
+          },
+          {
+            "label": "public",
+            "type": {
+              "upper": "100",
+              "lower": "0",
+              "scale": "2",
+              "kind": "fixed"
+            },
+            "name": "price"
+          },
+          {
+            "label": "public",
+            "type": {
+              "kind": "bool"
+            },
+            "name": "flag"
+          }
+        ]
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "node": "sha256:228db0cac99835886cba2eb3df20292a501286618186922eccf95f6303703042",
+      "name": "\ud800\udc00"
+    },
+    {
+      "node": "sha256:b452e5f059a7f361407f63a0934eee8da0f79589c2182f4e3d9a87e7f97b00f0",
+      "name": "\ue000"
+    },
+    {
+      "node": "sha256:b6f843ec67cfc816558dffd8873f44ef7d09907aa5855e226c09d6595676714b",
+      "name": "\u00e9"
+    },
+    {
+      "node": "sha256:e9b63010f893471499cfed70a23d0695389e698864f4cc44e530bd54f31fe748",
+      "name": "result"
+    },
+    {
+      "node": "sha256:c27fdee0560865781b1afb3bc6428a8c53d6ad4fae7b677c730f69cfb7d2fef5",
+      "name": "e\u0301"
+    }
+  ],
+  "nodes": [
+    {
+      "definition": {
+        "table_type": "sha256:478206fc9440028a65ab10bb870f93523de5baf5b1946fb778c9e175cf6b7ebd",
+        "predicate": {
+          "values": [
+            {
+              "value": true,
+              "op": "literal_bool"
+            },
+            {
+              "values": [
+                {
+                  "value": true,
+                  "op": "literal_bool"
+                },
+                {
+                  "value": false,
+                  "op": "literal_bool"
+                }
+              ],
+              "op": "and"
+            },
+            {
+              "value": false,
+              "op": "literal_bool"
+            }
+          ],
+          "op": "and"
+        },
+        "source": "sha256:c610161e367afef814909e5eafbf01ed59617e0c7eed74872e766d43594a4222",
+        "kind": "filter"
+      },
+      "id": "sha256:e9b63010f893471499cfed70a23d0695389e698864f4cc44e530bd54f31fe748"
+    },
+    {
+      "definition": {
+        "table_type": "sha256:478206fc9440028a65ab10bb870f93523de5baf5b1946fb778c9e175cf6b7ebd",
+        "port": "\ue000",
+        "kind": "input"
+      },
+      "id": "sha256:b452e5f059a7f361407f63a0934eee8da0f79589c2182f4e3d9a87e7f97b00f0"
+    },
+    {
+      "definition": {
+        "table_type": "sha256:478206fc9440028a65ab10bb870f93523de5baf5b1946fb778c9e175cf6b7ebd",
+        "port": "\ud800\udc00",
+        "kind": "input"
+      },
+      "id": "sha256:228db0cac99835886cba2eb3df20292a501286618186922eccf95f6303703042"
+    },
+    {
+      "definition": {
+        "table_type": "sha256:478206fc9440028a65ab10bb870f93523de5baf5b1946fb778c9e175cf6b7ebd",
+        "port": "e\u0301",
+        "kind": "input"
+      },
+      "id": "sha256:c27fdee0560865781b1afb3bc6428a8c53d6ad4fae7b677c730f69cfb7d2fef5"
+    },
+    {
+      "definition": {
+        "table_type": "sha256:478206fc9440028a65ab10bb870f93523de5baf5b1946fb778c9e175cf6b7ebd",
+        "port": "\u00e9",
+        "kind": "input"
+      },
+      "id": "sha256:b6f843ec67cfc816558dffd8873f44ef7d09907aa5855e226c09d6595676714b"
+    },
+    {
+      "definition": {
+        "table_type": "sha256:478206fc9440028a65ab10bb870f93523de5baf5b1946fb778c9e175cf6b7ebd",
+        "port": "source",
+        "kind": "input"
+      },
+      "id": "sha256:c610161e367afef814909e5eafbf01ed59617e0c7eed74872e766d43594a4222"
+    }
+  ],
+  "ir_version": "0.1",
+  "format": "axiom-ir",
+  "enum_types": [],
+  "effects": [],
+  "digest_algorithm": "sha-256",
+  "contracts": [
+    {
+      "definition": {
+        "expression": {
+          "body": {
+            "values": [
+              {
+                "value": true,
+                "op": "literal_bool"
+              },
+              {
+                "values": [
+                  {
+                    "value": true,
+                    "op": "literal_bool"
+                  },
+                  {
+                    "value": false,
+                    "op": "literal_bool"
+                  }
+                ],
+                "op": "and"
+              },
+              {
+                "value": false,
+                "op": "literal_bool"
+              }
+            ],
+            "op": "and"
+          },
+          "table": {
+            "name": "source",
+            "kind": "input"
+          },
+          "op": "forall_rows"
+        },
+        "role": "assume",
+        "kind": "formula"
+      },
+      "id": "sha256:650262b41c545890f6136314ca8afbc440bc2316c1d2be69fff95fd8e8d9bdaf"
+    },
+    {
+      "definition": {
+        "expression": {
+          "body": {
+            "body": {
+              "some": {
+                "right": {
+                  "record": {
+                    "index": "0",
+                    "op": "bound"
+                  },
+                  "field": "flag",
+                  "op": "field"
+                },
+                "left": {
+                  "record": {
+                    "index": "2",
+                    "op": "bound"
+                  },
+                  "field": "flag",
+                  "op": "field"
+                },
+                "op": "eq"
+              },
+              "subject": {
+                "keys": [
+                  {
+                    "record": {
+                      "index": "1",
+                      "op": "bound"
+                    },
+                    "field": "\ud800\udc00",
+                    "op": "field"
+                  },
+                  {
+                    "record": {
+                      "index": "0",
+                      "op": "bound"
+                    },
+                    "field": "\ue000",
+                    "op": "field"
+                  }
+                ],
+                "table": {
+                  "name": "source",
+                  "kind": "input"
+                },
+                "op": "lookup"
+              },
+              "none": {
+                "value": false,
+                "op": "literal_bool"
+              },
+              "result_type": {
+                "kind": "bool"
+              },
+              "op": "match_option"
+            },
+            "table": {
+              "name": "result",
+              "kind": "output"
+            },
+            "op": "exists_rows"
+          },
+          "table": {
+            "name": "source",
+            "kind": "input"
+          },
+          "op": "forall_rows"
+        },
+        "role": "guarantee",
+        "kind": "formula"
+      },
+      "id": "sha256:f89ebf04d254432705645294d5170ec0e726d8d1b5d679ccbef6854fcc2859ac"
+    },
+    {
+      "definition": {
+        "expression": {
+          "body": {
+            "body": {
+              "some": {
+                "right": {
+                  "record": {
+                    "index": "0",
+                    "op": "bound"
+                  },
+                  "field": "flag",
+                  "op": "field"
+                },
+                "left": {
+                  "record": {
+                    "index": "1",
+                    "op": "bound"
+                  },
+                  "field": "flag",
+                  "op": "field"
+                },
+                "op": "eq"
+              },
+              "subject": {
+                "keys": [
+                  {
+                    "record": {
+                      "index": "1",
+                      "op": "bound"
+                    },
+                    "field": "\ud800\udc00",
+                    "op": "field"
+                  },
+                  {
+                    "record": {
+                      "index": "0",
+                      "op": "bound"
+                    },
+                    "field": "\ue000",
+                    "op": "field"
+                  }
+                ],
+                "table": {
+                  "name": "source",
+                  "kind": "input"
+                },
+                "op": "lookup"
+              },
+              "none": {
+                "value": false,
+                "op": "literal_bool"
+              },
+              "result_type": {
+                "kind": "bool"
+              },
+              "op": "match_option"
+            },
+            "table": {
+              "name": "result",
+              "kind": "output"
+            },
+            "op": "exists_rows"
+          },
+          "table": {
+            "name": "source",
+            "kind": "input"
+          },
+          "op": "forall_rows"
+        },
+        "role": "guarantee",
+        "kind": "formula"
+      },
+      "id": "sha256:8c3a28c46152a8382f16bad04e5c16ce5d06000d399b886871bfe69129062324"
+    },
+    {
+      "definition": {
+        "expression": {
+          "right": {
+            "result_type": {
+              "upper": "4",
+              "lower": "0",
+              "kind": "int"
+            },
+            "predicate": {
+              "values": [
+                {
+                  "value": true,
+                  "op": "literal_bool"
+                },
+                {
+                  "values": [
+                    {
+                      "value": true,
+                      "op": "literal_bool"
+                    },
+                    {
+                      "value": false,
+                      "op": "literal_bool"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "value": false,
+                  "op": "literal_bool"
+                }
+              ],
+              "op": "and"
+            },
+            "table": {
+              "name": "result",
+              "kind": "output"
+            },
+            "op": "count_where"
+          },
+          "left": {
+            "value": "0",
+            "type": {
+              "upper": "4",
+              "lower": "0",
+              "kind": "int"
+            },
+            "op": "literal_int"
+          },
+          "op": "eq"
+        },
+        "role": "guarantee",
+        "kind": "formula"
+      },
+      "id": "sha256:4fc71da665abb759de7a09d34e79d0ee23a77c60853aa01970c1b719dc1d420b"
+    },
+    {
+      "definition": {
+        "expression": {
+          "right": {
+            "value": "0",
+            "type": {
+              "upper": "80",
+              "lower": "0",
+              "kind": "int"
+            },
+            "op": "literal_int"
+          },
+          "left": {
+            "result_type": {
+              "upper": "80",
+              "lower": "0",
+              "kind": "int"
+            },
+            "value": {
+              "values": [
+                {
+                  "value": "1",
+                  "type": {
+                    "upper": "10",
+                    "lower": "0",
+                    "kind": "int"
+                  },
+                  "op": "literal_int"
+                },
+                {
+                  "record": {
+                    "index": "0",
+                    "op": "bound"
+                  },
+                  "field": "units",
+                  "op": "field"
+                }
+              ],
+              "result_type": {
+                "upper": "10",
+                "lower": "0",
+                "kind": "int"
+              },
+              "op": "int_add"
+            },
+            "predicate": {
+              "values": [
+                {
+                  "value": true,
+                  "op": "literal_bool"
+                },
+                {
+                  "values": [
+                    {
+                      "value": true,
+                      "op": "literal_bool"
+                    },
+                    {
+                      "value": false,
+                      "op": "literal_bool"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "value": false,
+                  "op": "literal_bool"
+                }
+              ],
+              "op": "and"
+            },
+            "table": {
+              "name": "source",
+              "kind": "input"
+            },
+            "op": "sum_where"
+          },
+          "op": "eq"
+        },
+        "role": "guarantee",
+        "kind": "formula"
+      },
+      "id": "sha256:4db8b2a406e98e581c5f3471514a94628b0f2780d88b19d7f2d19c5cfe5e0a1c"
+    },
+    {
+      "definition": {
+        "expression": {
+          "right": {
+            "coefficient": "2",
+            "type": {
+              "upper": "100",
+              "lower": "0",
+              "scale": "2",
+              "kind": "fixed"
+            },
+            "op": "literal_fixed"
+          },
+          "left": {
+            "value": {
+              "result_type": {
+                "upper": "100",
+                "lower": "0",
+                "scale": "2",
+                "kind": "fixed"
+              },
+              "values": [
+                {
+                  "coefficient": "2",
+                  "type": {
+                    "upper": "100",
+                    "lower": "0",
+                    "scale": "2",
+                    "kind": "fixed"
+                  },
+                  "op": "literal_fixed"
+                },
+                {
+                  "coefficient": "10",
+                  "type": {
+                    "upper": "100",
+                    "lower": "0",
+                    "scale": "2",
+                    "kind": "fixed"
+                  },
+                  "op": "literal_fixed"
+                }
+              ],
+              "op": "fixed_add"
+            },
+            "result_type": {
+              "upper": "100",
+              "lower": "0",
+              "scale": "2",
+              "kind": "fixed"
+            },
+            "predicate": {
+              "value": true,
+              "op": "literal_bool"
+            },
+            "table": {
+              "name": "source",
+              "kind": "input"
+            },
+            "op": "sum_where"
+          },
+          "op": "eq"
+        },
+        "role": "guarantee",
+        "kind": "formula"
+      },
+      "id": "sha256:60dd5975751ddf3773e8b1c61ff5df4ad3b4faa6c0e7cd41119bfc95a0e7125d"
+    },
+    {
+      "definition": {
+        "expression": {
+          "values": [
+            {
+              "value": false,
+              "op": "literal_bool"
+            },
+            {
+              "value": false,
+              "op": "literal_bool"
+            }
+          ],
+          "op": "or"
+        },
+        "role": "guarantee",
+        "kind": "formula"
+      },
+      "id": "sha256:3125afb854b6179ab63e6409201fc6ff2870e5b67f06b0cb06ca8c14f7ce20f3"
+    },
+    {
+      "definition": {
+        "expression": {
+          "value": false,
+          "op": "literal_bool"
+        },
+        "role": "assume",
+        "kind": "formula"
+      },
+      "id": "sha256:35dffb75c09ee0e042ed33b8de937aa1979e4e21b010631cb8acdba96232bca9"
+    },
+    {
+      "definition": {
+        "expression": {
+          "body": {
+            "result_type": {
+              "kind": "bool"
+            },
+            "else": {
+              "record": {
+                "index": "0",
+                "op": "bound"
+              },
+              "field": "flag",
+              "op": "field"
+            },
+            "then": {
+              "values": [
+                {
+                  "value": true,
+                  "op": "literal_bool"
+                },
+                {
+                  "values": [
+                    {
+                      "value": true,
+                      "op": "literal_bool"
+                    },
+                    {
+                      "value": false,
+                      "op": "literal_bool"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "value": false,
+                  "op": "literal_bool"
+                }
+              ],
+              "op": "and"
+            },
+            "condition": {
+              "value": true,
+              "op": "literal_bool"
+            },
+            "op": "if"
+          },
+          "table": {
+            "name": "result",
+            "kind": "output"
+          },
+          "op": "exists_rows"
+        },
+        "role": "guarantee",
+        "kind": "formula"
+      },
+      "id": "sha256:ad336cd2a74238299935432fca276809ac36330c875184d0de7693ebe379069b"
+    },
+    {
+      "definition": {
+        "expression": {
+          "right": {
+            "value": "1",
+            "type": {
+              "upper": "1",
+              "lower": "1",
+              "kind": "int"
+            },
+            "op": "literal_int"
+          },
+          "left": {
+            "result_type": {
+              "upper": "1",
+              "lower": "1",
+              "kind": "int"
+            },
+            "predicate": {
+              "values": [
+                {
+                  "value": true,
+                  "op": "literal_bool"
+                },
+                {
+                  "values": [
+                    {
+                      "value": true,
+                      "op": "literal_bool"
+                    },
+                    {
+                      "value": false,
+                      "op": "literal_bool"
+                    }
+                  ],
+                  "op": "and"
+                },
+                {
+                  "value": false,
+                  "op": "literal_bool"
+                }
+              ],
+              "op": "and"
+            },
+            "table": {
+              "name": "result",
+              "kind": "output"
+            },
+            "op": "count_where"
+          },
+          "op": "eq"
+        },
+        "role": "guarantee",
+        "kind": "formula"
+      },
+      "id": "sha256:ea465154468c077b5b98cec56e21f4ddd5e3134d7cb2b94fa46b4d41e6349fb9"
+    },
+    {
+      "definition": {
+        "outputs": [
+          "result",
+          "\u00e9",
+          "e\u0301",
+          "\ud800\udc00",
+          "\ue000"
+        ],
+        "inputs": [
+          "source",
+          "\u00e9",
+          "e\u0301",
+          "\ud800\udc00",
+          "\ue000"
+        ],
+        "kind": "noninterference"
+      },
+      "id": "sha256:18ce84f6ec5194faa7dd251e42a6f43e279d876468b53d18e7dd96c453938294"
+    }
+  ]
+}

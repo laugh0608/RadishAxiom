@@ -1,0 +1,9 @@
+{
+  "adr_sha256": "sha256:663fe816e9bd979c1def1c972143e92bc7af7d10aa41ff1aae3f2c2956e97384",
+  "generator_sha256": "sha256:2b04e78210a4a31425fa299adb9be10b561af1043b609b56797a60f5d31dd131",
+  "negative_count": "29",
+  "old_evidence_results_transferred": false,
+  "positive_count": "26",
+  "rule_sha256": "sha256:d14cff1b4f71e14b780bbf0ff69b303ab617e622d2a961e741f4a9b0f7d44919",
+  "status": "accepted-ir-derived-only"
+}

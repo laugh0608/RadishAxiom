@@ -4,6 +4,15 @@
 
 当前契约：
 
+- [IR 派生义务 v0.2](ir-derived-obligations-v0.2/README.md)：ADR 0018 的限定 P2 集合、26 份独立正例和 29 份拒绝材料；不启用完整 Evidence v0.2。
+- [map / filter 查询 v0.1](map-filter-query-v0.1/README.md)：ADR 0019 的 P3-A 合成 IR、具体世界、手算 SMT 字节与独立语义比较；不执行 solver 或生成证明。
+- [map / filter 查询 v0.2](map-filter-query-v0.2/README.md)：ADR 0020 的 P3-B 节点总定义性、独立归因区分、旧版字节回归和 profile / 预算拒绝材料。
+- [map / filter 查询 v0.3](map-filter-query-v0.3/README.md)：ADR 0021 的 P3-C 键 / 基数归因、独立容量前行观察、局部唯一键谓词与旧三类预算回归。
+- [map / filter 查询 v0.4](map-filter-query-v0.4/README.md)：ADR 0022 的 P3-D 双向行覆盖、中间观察、局部关系变异与旧四类兼容基线。
+- [纯核心空效果推导 v0.1](core-empty-effects-v0.1/README.md)：ADR 0023 的 P3-E 版本化结构记录、独立规则重建与篡改拒绝，不是 SMT 或证明 support。
+- [纯核心字段来源推导 v0.1](core-field-origin-v0.1/README.md)：ADR 0024 的 P3-F 来源 / 标签 / 控制 / 求值上下文记录、独立核对与缺口保留，不是反例或公共证明。
+- [P4-A 请求与模型解码 v0.1](solver-model-v0.1/README.md)：ADR 0025 的合成模型、独立布局 / 世界核对和手算值；不代表真实后端、反例重放或 Evidence。
+
 - [Independent Check Contract v0.1](independent-check-v0.1/README.md)：ADR 0008 的 request、bundle manifest、独立 result、摘要和结构拒绝样例。
 - [Execution Profile Contract v0.1](execution-profiles-v0.1/README.md)：cvc5 / Node / Go checker 的允许 invocation、职责分离 limits、进程结果边界和空 certificate 能力矩阵。
 - [Toolchain & Adapter Identity Registry v0.1](toolchain-adapters-v0.1/README.md)：ADR 0004–0008 的精确工具版本、六平台候选制品、官方元数据、供应链停止线与 profile 身份。

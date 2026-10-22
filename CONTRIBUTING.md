@@ -43,10 +43,11 @@
 feat(parser): 支持显式效果声明
 fix(evidence): 保留未知验证义务
 docs(semantics): 澄清 trusted 边界
+research(query): 记录紧凑表示方案与有限比较
 chore(repo): 完善仓库治理基线
 ```
 
-允许的常用类型为 `feat`、`fix`、`docs`、`refactor`、`test`、`chore`、`ci`、`build`、`perf`、`revert`。提交必须使用贡献者自己的 Git 身份，不添加 AI 协作者署名。
+允许的类型为 `feat`、`fix`、`docs`、`research`、`refactor`、`test`、`chore`、`ci`、`build`、`perf`、`revert`。`research` 用于研究方案、测量与有限比较；研究结论不自动代表生产能力、工具接受或形式证明。提交必须使用贡献者自己的 Git 身份，不添加 AI 协作者署名。
 
 ## 正确性与证据要求
 
