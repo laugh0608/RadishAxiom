@@ -1,0 +1,19 @@
+{
+  "format": "radishaxiom-private-cvc5-c1-partial-readback",
+  "version": "0.1",
+  "scope": "read-only-raw-bytes-and-request-journal",
+  "result_sha256": "eadebcfe3fbaed9d2b06f8159614fcffd1d1d6a4a12fa5abe5213f24eac225c8",
+  "matched_files": 6,
+  "matched_bytes": 239168,
+  "missing_files": 494,
+  "attempted_files": 7,
+  "unattempted_files": 493,
+  "accepted_redirects": 6,
+  "rejected_redirects": 1,
+  "failed_item_bytes": 0,
+  "audit_exit_code": 2,
+  "new_requests_during_readback": 0,
+  "unpacked": false,
+  "input_acceptance": "not-accepted",
+  "build_ready": false
+}

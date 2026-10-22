@@ -1,0 +1,220 @@
+{
+  "format": "radishaxiom-private-cvc5-c1-acquisition",
+  "version": "0.1",
+  "scope": "authorized-raw-download-and-byte-check-only",
+  "authorization": "owner-confirmed-500-files-stop-first-error-no-unpack-install-build-or-payload-execution",
+  "started_utc": "2026-10-22T12:27:16.640222+00:00",
+  "initial_free_bytes": 462848000000,
+  "plan": {
+    "path": ".tmp/cvc5-c1-acquisition-2026-10-22/acquisition-plan.json",
+    "bytes": 265924,
+    "sha256": "165672c67dcaea6963f00dc13e2128a3563fc8a59b58e27326ae58e47f1749cc"
+  },
+  "fetch_method": {
+    "path": ".tmp/cvc5-c1-acquisition-2026-10-22/fetch-helper.py",
+    "bytes": 14877,
+    "sha256": "d7d3c548fe1ec24324c5cb20c0f58421dfaa3343b247b2044c0f73e24188f965"
+  },
+  "download_complete": false,
+  "readback_complete": false,
+  "matched_files": 6,
+  "matched_bytes": 239168,
+  "response_body_bytes": 239168,
+  "failure": {
+    "index": 7,
+    "relative_path": "inputs/pool/main/b/bash/bash_5.2.15-2+b2_arm64.deb",
+    "type": "ValueError",
+    "reason": "redirect-outside-approved-content-address-path"
+  },
+  "observations": [
+    {
+      "index": 1,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/a/acl/libacl1_2.3.1-3_arm64.deb",
+      "relative_path": "inputs/pool/main/a/acl/libacl1_2.3.1-3_arm64.deb",
+      "started_utc": "2026-10-22T12:27:16.640536+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/a/acl/libacl1_2.3.1-3_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/dd3aa3035aced1aa0d540f5dd4beab6c69f98291/libacl1_2.3.1-3_arm64.deb"
+        }
+      ],
+      "bytes": 30768,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/dd3aa3035aced1aa0d540f5dd4beab6c69f98291/libacl1_2.3.1-3_arm64.deb",
+      "response_headers": {
+        "content-length": "30768",
+        "date": "Thu, 22 Oct 2026 12:27:18 GMT",
+        "last-modified": "Thu, 19 Jan 2023 18:17:54 GMT",
+        "etag": "\"7830-5f2a1f3977880\""
+      },
+      "sha256": "2b0eef11a2e271e7355adaf1f6cbf8d2e83835ae1b6cf15165d59b8289c08342",
+      "finished_utc": "2026-10-22T12:27:19.182867+00:00",
+      "elapsed_seconds": 2.542346
+    },
+    {
+      "index": 2,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/a/attr/libattr1_2.5.1-4_arm64.deb",
+      "relative_path": "inputs/pool/main/a/attr/libattr1_2.5.1-4_arm64.deb",
+      "started_utc": "2026-10-22T12:27:19.183129+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/a/attr/libattr1_2.5.1-4_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/15565bb599f1751fde58ad9259e137f78760d11e/libattr1_2.5.1-4_arm64.deb"
+        }
+      ],
+      "bytes": 21888,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/15565bb599f1751fde58ad9259e137f78760d11e/libattr1_2.5.1-4_arm64.deb",
+      "response_headers": {
+        "content-length": "21888",
+        "date": "Thu, 22 Oct 2026 12:27:22 GMT",
+        "last-modified": "Thu, 19 Jan 2023 18:29:48 GMT",
+        "etag": "\"5580-5f2a21e263f00\""
+      },
+      "sha256": "481e1c3fcad6773ba1c9d7f1de59e4fc80d95326c9b20192e13b7111013c932a",
+      "finished_utc": "2026-10-22T12:27:22.577158+00:00",
+      "elapsed_seconds": 3.39403
+    },
+    {
+      "index": 3,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/a/audit/libaudit-common_3.0.9-1_all.deb",
+      "relative_path": "inputs/pool/main/a/audit/libaudit-common_3.0.9-1_all.deb",
+      "started_utc": "2026-10-22T12:27:22.577332+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/a/audit/libaudit-common_3.0.9-1_all.deb",
+          "to_url": "https://snapshot.debian.org/file/f364e70efbb3f31cf095e14f83c00085546614a4/libaudit-common_3.0.9-1_all.deb"
+        }
+      ],
+      "bytes": 10448,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/f364e70efbb3f31cf095e14f83c00085546614a4/libaudit-common_3.0.9-1_all.deb",
+      "response_headers": {
+        "content-length": "10448",
+        "date": "Thu, 22 Oct 2026 12:27:24 GMT",
+        "last-modified": "Sat, 11 Feb 2023 05:51:13 GMT",
+        "etag": "\"28d0-5f46633981640\""
+      },
+      "sha256": "17d0341ca6ce604ce59c296780ac2c2a24141a769823c50669af942c025e6591",
+      "finished_utc": "2026-10-22T12:27:24.904590+00:00",
+      "elapsed_seconds": 2.32727
+    },
+    {
+      "index": 4,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/a/audit/libaudit1_3.0.9-1_arm64.deb",
+      "relative_path": "inputs/pool/main/a/audit/libaudit1_3.0.9-1_arm64.deb",
+      "started_utc": "2026-10-22T12:27:24.904770+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/a/audit/libaudit1_3.0.9-1_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/d910a3b885983b6c58a1293ee73da10781711b11/libaudit1_3.0.9-1_arm64.deb"
+        }
+      ],
+      "bytes": 46104,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/d910a3b885983b6c58a1293ee73da10781711b11/libaudit1_3.0.9-1_arm64.deb",
+      "response_headers": {
+        "content-length": "46104",
+        "date": "Thu, 22 Oct 2026 12:27:27 GMT",
+        "last-modified": "Sat, 11 Feb 2023 05:52:29 GMT",
+        "etag": "\"b418-5f466381fc140\""
+      },
+      "sha256": "619606427a334cba955e0afb18bf4a636df4141d32ea474a79cc512b5ca358e7",
+      "finished_utc": "2026-10-22T12:27:27.615703+00:00",
+      "elapsed_seconds": 2.71096
+    },
+    {
+      "index": 5,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/base-files/base-files_12.4_arm64.deb",
+      "relative_path": "inputs/pool/main/b/base-files/base-files_12.4_arm64.deb",
+      "started_utc": "2026-10-22T12:27:27.616025+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/base-files/base-files_12.4_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/4647098f8190b61e1d46bf0108603455eac6fd4e/base-files_12.4_arm64.deb"
+        }
+      ],
+      "bytes": 70596,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/4647098f8190b61e1d46bf0108603455eac6fd4e/base-files_12.4_arm64.deb",
+      "response_headers": {
+        "content-length": "70596",
+        "date": "Thu, 22 Oct 2026 12:27:30 GMT",
+        "last-modified": "Fri, 03 Mar 2023 12:47:43 GMT",
+        "etag": "\"113c4-5f5fe59f0b9c0\""
+      },
+      "sha256": "b63edb81b2a98f344eb64e4d6944df4291b5a8a9b665fff234d2f911f05fe329",
+      "finished_utc": "2026-10-22T12:27:31.759152+00:00",
+      "elapsed_seconds": 4.14312
+    },
+    {
+      "index": 6,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/base-passwd/base-passwd_3.6.1_arm64.deb",
+      "relative_path": "inputs/pool/main/b/base-passwd/base-passwd_3.6.1_arm64.deb",
+      "started_utc": "2026-10-22T12:27:31.759341+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/base-passwd/base-passwd_3.6.1_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/ce67a367f549b7be990ce74a533cb3ccc78890f1/base-passwd_3.6.1_arm64.deb"
+        }
+      ],
+      "bytes": 59364,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/ce67a367f549b7be990ce74a533cb3ccc78890f1/base-passwd_3.6.1_arm64.deb",
+      "response_headers": {
+        "content-length": "59364",
+        "date": "Thu, 22 Oct 2026 12:27:33 GMT",
+        "last-modified": "Tue, 20 Sep 2022 18:19:27 GMT",
+        "etag": "\"e7e4-5e91fde5629c0\""
+      },
+      "sha256": "8c4ed6254eab324563644fb81317ee2ab345cb7c1d846f9583832423e40449f4",
+      "finished_utc": "2026-10-22T12:27:34.388185+00:00",
+      "elapsed_seconds": 2.628855
+    },
+    {
+      "index": 7,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/bash/bash_5.2.15-2+b2_arm64.deb",
+      "relative_path": "inputs/pool/main/b/bash/bash_5.2.15-2+b2_arm64.deb",
+      "started_utc": "2026-10-22T12:27:34.388346+00:00",
+      "redirects": [],
+      "bytes": 0,
+      "status": "failed",
+      "rejected_redirect": {
+        "status": 302,
+        "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/bash/bash_5.2.15-2+b2_arm64.deb",
+        "location": "/file/9daaa738e73c3098c4958feb6b2f3849f56b687f/bash_5.2.15-2%2Bb2_arm64.deb"
+      },
+      "finished_utc": "2026-10-22T12:27:35.886841+00:00",
+      "error": {
+        "type": "ValueError",
+        "reason": "redirect-outside-approved-content-address-path"
+      },
+      "elapsed_seconds": 1.498512
+    }
+  ],
+  "signature_verified": false,
+  "input_acceptance": "not-accepted",
+  "build_ready": false,
+  "unpacked": false,
+  "installed": false,
+  "built": false,
+  "payload_executed": false,
+  "finished_utc": "2026-10-22T12:27:35.887210+00:00",
+  "journal": {
+    "path": ".tmp/cvc5-c1-acquisition-2026-10-22/events.jsonl",
+    "bytes": 11708,
+    "sha256": "ad2bd7b496c117f0303947535b4a4245b634c6992f70f199e72e2e4d60509fc4"
+  }
+}

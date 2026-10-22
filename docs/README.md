@@ -101,6 +101,8 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 | Linux builder 隔离安装 | [精确安装范围、命令、中间核对与清理审阅](checker-runtime-linux-install-slice-review.md) |
 | Linux 来源实际核验 | [摘要 / 签名与 builder 库存](records/linux-6.18.49-source-review/README.md)、[归档文件盘点与精确缺失包候选](records/linux-6.18.49-archive-inventory/README.md) |
 | Linux 构建包来源与安装差异 | [Debian 签名摘要链、控制脚本审阅与安装模拟](records/linux-builder-source-chain/README.md) |
+| 2026-10-22 C1 / C2 离线准备 | [输入接受缺口、精确原包清单与构建输入预检](records/2026-10-22-cvc5-c1-c2-preparation.md) |
+| 2026-10-22 C1 获取 | [六项取得、第七项编码拒绝、首错停止与剩余缺口](records/2026-10-22-cvc5-c1-acquisition.md) |
 | Rust Linux 与静态目标输入 | [签名 / 归档盘点、安装候选与 kernel 许可审阅](records/rust-linux-input-review/README.md) |
 | 2026-10-17 日终回顾 | [紧凑查询、监督组件与 C0 全天提交、代码 / 文档复核及接续事项](records/2026-10-17-closeout.md) |
 | 2026-10-08 日终回顾 | [P3-B–F 全天提交、代码与文档核对及明日交接](records/2026-10-08-closeout.md) |

@@ -1,6 +1,6 @@
 # cvc5 1.3.4 可追溯构建候选方案
 
-日期：2026-10-17。状态：`planned / blocked-on-inputs / not-accepted`。[ADR 0030 D3](../adr/0030-solver-bootstrap-ffi-and-build-provenance.md#d3e0-公开来源不足时的下一候选)已接受准备此方案；本文的工具、包、patch、构建参数与新产物尚未接受。用途：给实施者及验收者提供一次有界受控构建的输入闭合、执行顺序与停止线。本文不提供可直接运行的构建脚本，不授权下载、安装、编译、镜像或载荷执行，也不接受对外分发。
+更新日期：2026-10-22。状态：`planned / blocked-on-inputs / not-accepted`。[ADR 0030 D3](../adr/0030-solver-bootstrap-ffi-and-build-provenance.md#d3e0-公开来源不足时的下一候选)已接受准备此方案；本文的工具、包、patch、构建参数与新产物尚未接受。用途：给实施者及验收者提供一次有界受控构建的输入闭合、执行顺序与停止线。本文不提供可直接运行的构建脚本，不授权下载、安装、编译、镜像或载荷执行，也不接受对外分发。C1 缺口与 C2 离线入口的当前接续见[输入准备专题](solver-cvc5-input-preparation.md)。
 
 ## 候选路线与身份
 
@@ -106,3 +106,7 @@
 候选仅为受控本地诊断。当前没有把第三方库链接进 RadishAxiom，没有改变项目 Apache-2.0 或用户生成产物的许可。若以后分发静态 CLI、镜像或构建 SDK，须按实际组成单独检查版权 / 许可证、LGPL corresponding source 与 relink / recombination 材料、安装信息适用性、GCC runtime exception 条件及其他各包义务；仅留上游 URL、称 non-GPL 或不复制 `.a` 均不构成分发接受。新本地 E0 接受不替代该决定。
 
 本方案之后已接续 [C0 精确输入选择](solver-cvc5-c0-input-selection.md)与[机器记录](../records/solver-cvc5-c0-2026-10-17/input-selection.json)：固定源码目标与单一 SDK 快照，离线重核 29 份既有材料；随后按明确元数据联网授权完成精确 SDK 选择和独立包级闭包复核，见[本批验收](../records/2026-10-17-cvc5-c0-sdk-metadata.md)。该元数据批已提交为 `c2ea5d0`；随后源码取得、Production / patch 审阅及生成工具补选见[当前批验收](../records/2026-10-17-cvc5-c0-source-review.md)。SDK 包、签名信任、许可接受、实际配置和链接输入仍阻断；未安装、构建、运行探针 / solver、修改系统配置或 push。候选选择与静态审阅不产生工具或运行接受。
+
+## C1 / C2 接续
+
+C1 缺口、500 文件精确获取范围、已实现离线检查入口及完整 C2 的剩余依赖统一见[输入接受与离线准备](solver-cvc5-input-preparation.md)，实际复核见[2026-10-22 记录](../records/2026-10-22-cvc5-c1-c2-preparation.md)。C1 未接受、C2 只完成离线部分，`build_ready=false`；本方案原批次顺序、资源及执行授权边界保持。

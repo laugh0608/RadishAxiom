@@ -1,0 +1,101 @@
+{
+  "format": "radishaxiom-private-cvc5-c1-c2-offline-validation",
+  "version": "0.1",
+  "date": "2026-10-22",
+  "results": [
+    {
+      "argv": [
+        "python3",
+        "scripts/test-cvc5-build-preparation.py"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "outputs": {
+        "stdout": {
+          "path": ".tmp/cvc5-c1-c2-validation-2026-10-22/1-stdout.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": ".tmp/cvc5-c1-c2-validation-2026-10-22/1-stderr.txt",
+          "bytes": 146,
+          "sha256": "54b7cf5e9539f2c1959f6220ff1352bf7e3d09ef1c856534fd31b5ee2c047b1d"
+        }
+      }
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/cvc5-build-preparation.py",
+        "verify"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "outputs": {
+        "stdout": {
+          "path": ".tmp/cvc5-c1-c2-validation-2026-10-22/2-stdout.txt",
+          "bytes": 321,
+          "sha256": "fe3ff294af1aa7f135d23aa75c39921bc4aed7008985a046dd5f99e36b2cafa4"
+        },
+        "stderr": {
+          "path": ".tmp/cvc5-c1-c2-validation-2026-10-22/2-stderr.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/cvc5-build-preparation.py",
+        "audit-archives",
+        "--directory",
+        "/Users/luobo/Code/RadishAxiom/.tmp/cvc5-c1-c2-validation-2026-10-22/empty-acquisition"
+      ],
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "outputs": {
+        "stdout": {
+          "path": ".tmp/cvc5-c1-c2-validation-2026-10-22/3-stdout.txt",
+          "bytes": 31565,
+          "sha256": "e817ee7479dee43aaecf647ae1a1c902f908a07579bc561ae8b78a02f7bb0e9d"
+        },
+        "stderr": {
+          "path": ".tmp/cvc5-c1-c2-validation-2026-10-22/3-stderr.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "missing_files": 500,
+      "build_ready": false
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/check-cvc5-build-inputs.py",
+        "/Users/luobo/Code/RadishAxiom/.tmp/cvc5-c1-c2-validation-2026-10-22/absent-build-manifest.json",
+        "--sha256",
+        "0000000000000000000000000000000000000000000000000000000000000000"
+      ],
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "outputs": {
+        "stdout": {
+          "path": ".tmp/cvc5-c1-c2-validation-2026-10-22/4-stdout.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": ".tmp/cvc5-c1-c2-validation-2026-10-22/4-stderr.txt",
+          "bytes": 166,
+          "sha256": "a94890b1d19b46f7d91946a68ebfc79b564650e1bce8635e871cd245611c4f03"
+        }
+      }
+    }
+  ],
+  "scope": "self-authored-offline-checks-only",
+  "downloaded": false,
+  "signature_verified": false,
+  "build_ready": false,
+  "third_party_execution": false
+}

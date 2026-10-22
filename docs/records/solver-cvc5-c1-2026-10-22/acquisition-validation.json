@@ -1,0 +1,48 @@
+{
+  "format": "radishaxiom-private-cvc5-c1-fetch-validation",
+  "version": "0.1",
+  "date": "2026-10-22",
+  "initial_network_free_tests": {
+    "count": 17,
+    "exit_code": 0
+  },
+  "actual_fetch_exit_code": 1,
+  "regression_before_fix": {
+    "count": 18,
+    "errors": 1,
+    "exit_code": 1,
+    "stderr": {
+      "path": ".tmp/cvc5-c1-c2-validation-2026-10-22/encoded-plus-before.stderr.txt",
+      "bytes": 1645,
+      "sha256": "6d529646c67f3e6b023f0e18c03bda8f47804097fc3c48ade642aa158f540d04"
+    }
+  },
+  "regression_after_fix": {
+    "count": 19,
+    "errors": 0,
+    "exit_code": 0,
+    "stderr": {
+      "path": ".tmp/cvc5-c1-c2-validation-2026-10-22/encoded-plus-after.stderr.txt",
+      "bytes": 118,
+      "sha256": "049c6d919dbb09b2f9775bcc881fb74010c53dd49722c8995168fd1aabd8313d"
+    }
+  },
+  "current_fetch_method": {
+    "path": "scripts/fetch-cvc5-c1-inputs.py",
+    "bytes": 15081,
+    "sha256": "06588eb3c4dd4e7fc11d343873b2472d22b69f4243807d8a1892c07494d2d636"
+  },
+  "tests": {
+    "path": "scripts/test-fetch-cvc5-c1-inputs.py",
+    "bytes": 9230,
+    "sha256": "5b0e068aa1ad057106f6ab2c4436523bdeb1c6197735ec352cfacefc2afa23f1"
+  },
+  "frozen_execution_method": {
+    "path": ".tmp/cvc5-c1-acquisition-2026-10-22/fetch-helper.py",
+    "bytes": 14877,
+    "sha256": "d7d3c548fe1ec24324c5cb20c0f58421dfaa3343b247b2044c0f73e24188f965"
+  },
+  "requests_after_failure": 0,
+  "resume_implemented": false,
+  "build_ready": false
+}
