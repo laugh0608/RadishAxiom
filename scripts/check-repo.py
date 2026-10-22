@@ -321,7 +321,7 @@ TEXT_NAMES = {
 }
 
 CONVENTIONAL_COMMIT = re.compile(
-    r"^(feat|fix|docs|refactor|test|chore|ci|build|perf|revert)"
+    r"^(feat|fix|docs|research|refactor|test|chore|ci|build|perf|revert)"
     r"(\([a-z0-9._/-]+\))?!?: .+"
 )
 ALLOWED_MERGE_COMMIT = re.compile(

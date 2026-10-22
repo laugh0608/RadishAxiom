@@ -40,7 +40,7 @@
 - 串行推进的普通任务直接进入 `dev`；外部贡献、并行写入、风险隔离或明确评审需求通过主题分支 PR 进入 `dev`，阶段性稳定化和 hotfix 才进入 `master`。
 - 需要主题分支时，使用 `feature/*`、`fix/*`、`docs/*`、`proposal/*`、`experiment/*`、`chore/*` 或 `hotfix/*`；Agent 不自动创建 `codex/*` 分支或额外 worktree。
 - 共享分支禁止 force push 和破坏性历史重写。
-- 提交遵循 Conventional Commits；允许 Git 生成的正常 merge commit。
+- 提交遵循 Conventional Commits，允许类型以 [CONTRIBUTING](../../CONTRIBUTING.md#提交信息) 为准；其中 `research` 用于研究方案、测量与有限比较，不自动代表生产能力、工具接受或形式证明。允许 Git 生成的正常 merge commit。
 - 提交使用真实贡献者身份，不加入 AI 协作者署名。
 
 ## PR 审查重点
