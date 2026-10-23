@@ -1,0 +1,157 @@
+{
+  "format": "radishaxiom-private-cvc5-execution-review-validation",
+  "version": "0.1",
+  "scope": "offline-layout-and-declared-event-checks-only",
+  "methods": [
+    {
+      "path": "scripts/prepare-cvc5-execution-review.py",
+      "bytes": 10830,
+      "sha256": "a3b7e0f00e4ba90362a5a45d94c6ffc2363ee5e1995b7279e6009c1796a67d2c"
+    },
+    {
+      "path": "scripts/cvc5-build-support/event_rules.py",
+      "bytes": 9890,
+      "sha256": "2072b5fcde1eb2236ece15cbfb569aea37a5d0eff281c85e1791de2a84d8db0d"
+    },
+    {
+      "path": "scripts/test-cvc5-execution-review.py",
+      "bytes": 18391,
+      "sha256": "9e56eabd03df6b536c35861720c06fca4204f4189dc95ab401e46ebcfd4ef972"
+    }
+  ],
+  "recipe": {
+    "path": "docs/records/solver-cvc5-c2-2026-10-23/offline-build-recipe.json",
+    "bytes": 89552,
+    "sha256": "2ee5ae5e9c437036c6b0cc6ec8c4324b875b0376dcd91c9aa3d5dca29d01f4dd"
+  },
+  "inventory": {
+    "path": "docs/records/solver-cvc5-c1-review-2026-10-23/content-inventory.json.gz",
+    "bytes": 1198187,
+    "sha256": "2b97d59f72e9d2abe1c348e356213d29af9ac1e17ff676c517bf52d1ba9efff5"
+  },
+  "retained_layout": {
+    "path": "artifacts/cvc5-c2-execution-review-2026-10-23/sdk-layout-review.json",
+    "bytes": 5852999,
+    "sha256": "9bdb1a5d1deb76c56669abefe38ed386e03fda1fae92c29473493d7c459e96e8"
+  },
+  "summary": {
+    "packages": 172,
+    "archive_entries": 17125,
+    "unique_paths": 14719,
+    "regular_bytes": 537445262,
+    "kinds": {
+      "directory": 1367,
+      "file": 12525,
+      "hardlink": 5,
+      "symlink": 822
+    },
+    "implicit_directories": 0
+  },
+  "unresolved_symlinks": [
+    {
+      "link_path": "etc/rmt",
+      "status": "missing",
+      "path": "usr/sbin/rmt",
+      "trail": [
+        "etc/rmt"
+      ]
+    }
+  ],
+  "permission_changes": [
+    {
+      "path": "bin/su",
+      "from": "4755",
+      "to": "0755"
+    },
+    {
+      "path": "sbin/unix_chkpwd",
+      "from": "2755",
+      "to": "0755"
+    },
+    {
+      "path": "usr/bin/newgrp",
+      "from": "4755",
+      "to": "0755"
+    },
+    {
+      "path": "usr/bin/wall",
+      "from": "2755",
+      "to": "0755"
+    },
+    {
+      "path": "var/local",
+      "from": "2775",
+      "to": "0775"
+    }
+  ],
+  "preflight": {
+    "exit_code": 2,
+    "real_original_inputs_rechecked": true,
+    "stdout": {
+      "path": ".tmp/cvc5-c2-execution-review-2026-10-23/final.stdout.json",
+      "bytes": 801,
+      "sha256": "aa558bd0d60eede67c74446d48de15f55fab8591ee456c19442e877e965a6bfb"
+    },
+    "stderr": {
+      "path": ".tmp/cvc5-c2-execution-review-2026-10-23/final.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "tests": [
+    {
+      "command": "python3 -O scripts/test-cvc5-execution-review.py",
+      "passed": 36,
+      "exit_code": 0,
+      "stdout": {
+        "path": ".tmp/cvc5-c2-execution-review-2026-10-23/tests-36.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": ".tmp/cvc5-c2-execution-review-2026-10-23/tests-36.stderr.txt",
+        "bytes": 135,
+        "sha256": "9019e84d070d1287d696ee3fd51daf4c5ec87e39c547530af63eba243f751a7e"
+      }
+    },
+    {
+      "command": "python3 -O scripts/test-prepare-cvc5-offline-build.py",
+      "passed": 33,
+      "exit_code": 0,
+      "stdout": {
+        "path": ".tmp/cvc5-c2-execution-review-2026-10-23/recipe-regression.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": ".tmp/cvc5-c2-execution-review-2026-10-23/recipe-regression.stderr.txt",
+        "bytes": 132,
+        "sha256": "1ad2534b7925eabb9b3279666efb12e96237b1637555a3f6318b3991c9d07c9b"
+      }
+    }
+  ],
+  "repository_check": {
+    "status": "passed",
+    "command": "./scripts/check-repo.sh",
+    "exit_code": 0,
+    "files_checked": 2868,
+    "stdout": {
+      "path": ".tmp/cvc5-c2-execution-review-2026-10-23/repo-check.stdout.txt",
+      "bytes": 48,
+      "sha256": "960aab676835b7aa3a5c1b90b73c982eb1b210877bc9256c0fa085f732700323"
+    },
+    "stderr": {
+      "path": ".tmp/cvc5-c2-execution-review-2026-10-23/repo-check.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "assembly_ready": false,
+  "execution_ready": false,
+  "build_ready": false,
+  "sdk_materialized": false,
+  "container_started": false,
+  "third_party_tool_executed": false,
+  "upstream_message_sent": false,
+  "automatic_cleanup": false
+}

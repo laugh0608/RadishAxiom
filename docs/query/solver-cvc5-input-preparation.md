@@ -53,6 +53,8 @@ copyright 核对按用途分层：
 
 2026-10-23 已完成[离线入口与留证规则](../records/2026-10-23-cvc5-c2-offline-entry.md)：[入口](../../scripts/prepare-cvc5-offline-build.py)只生成 / 核对命令数据，绑定全部原包、五源码、SDK 库存、patch、工具路径、环境及阶段条件；包含日志 / 链接清单、失败保留和精确清理约束。`check` 通过准备检查后仍返回 2，保持 `execution_ready=false` / `build_ready=false`。不存在执行或删除模式；CMake 检测项目仅保存为文本。
 
+随后形成[SDK 组装与构建监督离线接线设计](solver-cvc5-execution-preparation.md)：真实库存生成 14,719 路径的候选，显式保留 `etc/rmt` 悬空链接和五处权限变换待审阅项；事件纯规则检查原配方顺序、预算及失败保留。36 项新测试及 33 项配方回归通过，见[本批记录](../records/2026-10-23-cvc5-c2-execution-review.md)。尚无组装 / 执行适配器、完整读取监控或宿主资格，旧 solver 监督策略未放宽。
+
 1. `python3 scripts/cvc5-build-preparation.py verify` 从现有 C0 / SDK 输入重建原清单并逐类型核对，拒绝清单、状态、预算或绑定漂移；输出的 signature_verified / authorization 是被冻结原计划的时点，不读取本批后续验签接受记录。`audit-archives` 只读核对实际原包，逐文件检查长度 / SHA-256，拒绝多余文件 / 目录、符号链接与特殊文件；缺文件返回 2。它不解压和执行第三方内容，全部原包匹配仍返回 `build_ready=false`。
 2. [构建输入预检](../../scripts/check-cvc5-build-inputs.py)消费[既有 patch 的私有输入格式](solver-cvc5-build-patch-review.md#私有输入约束)，通过 `manifest` 路径与必需的 `--sha256` 接收另行审阅的真实输入。检查闭合 JSON 字段、六类 header 全量文件、必要头、至少六类 `.a`、实际字节和绑定的 closure review；保留 Editline 顺序及重复项，拒绝遗漏、多余、错序绑定、路径逃逸与特殊文件。未知字段、重复键和非有限数也拒绝。
 3. Python 预检比 CMake 字节守卫更早执行，附加 8 MiB JSON、单文件 1 GiB、累计读取 4 GiB / 100,000 文件与树项上限；这些仅约束离线检查器，不改变 solver 或构建额度。输出只说明字节与外部审阅声明绑定成立，不证明 `.a` 对象 ABI、许可、工具接受或 CMake 行为。它不生成 `reviewed-for-configuration` 标记或真实 manifest，不认证可被并发修改的文件树；实际构建仍须只读挂载与启动时重核。

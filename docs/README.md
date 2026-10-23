@@ -112,6 +112,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 | 2026-10-23 LibPoly 许可历史 | [声明冲突引入、Polyxx / memstream 来源与待补依据](records/2026-10-23-libpoly-license-history.md) |
 | 2026-10-23 LibPoly 澄清草稿 | [给上游的固定版本许可、Polyxx 覆盖与旧 memstream 来源问题（未发送）](records/2026-10-23-libpoly-upstream-clarification-draft.md) |
 | 2026-10-23 C2 离线入口 | [阶段配方、输入预检、日志 / 链接清单与失败保留](records/2026-10-23-cvc5-c2-offline-entry.md) |
+| 2026-10-23 C2 执行准备 | [SDK 布局、构建事件检查与接线设计](records/2026-10-23-cvc5-c2-execution-review.md) |
 | Rust Linux 与静态目标输入 | [签名 / 归档盘点、安装候选与 kernel 许可审阅](records/rust-linux-input-review/README.md) |
 | 2026-10-17 日终回顾 | [紧凑查询、监督组件与 C0 全天提交、代码 / 文档复核及接续事项](records/2026-10-17-closeout.md) |
 | 2026-10-08 日终回顾 | [P3-B–F 全天提交、代码与文档核对及明日交接](records/2026-10-08-closeout.md) |
