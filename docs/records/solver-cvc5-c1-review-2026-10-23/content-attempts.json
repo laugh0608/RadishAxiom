@@ -1,0 +1,146 @@
+[
+  {
+    "started_utc": "2026-10-23T12:10:39.952023+00:00",
+    "finished_utc": "2026-10-23T12:10:42.774998+00:00",
+    "method": {
+      "path": "scripts/inspect-cvc5-c1-sdk-content.py",
+      "bytes": 15644,
+      "sha256": "7fc7798a58161893b887740b1441f99aeb1b1fbf771391535a23b03c3ce1c6c2"
+    },
+    "limits": {
+      "total_expanded_bytes": 4294967296,
+      "archive_expanded_bytes": 1073741824,
+      "entries_per_archive": 100000,
+      "regular_file_bytes": 134217728,
+      "selected_text_bytes": 8388608,
+      "total_selected_bytes": 67108864,
+      "seconds": 600,
+      "path_bytes": 4096
+    },
+    "complete": false,
+    "consumed": {
+      "expanded": 328125358,
+      "selected": 739318
+    },
+    "attempt": 1,
+    "failure": {
+      "type": "ValueError",
+      "reason": "ar-magic",
+      "index": 59
+    },
+    "observations": 59,
+    "inventory": {
+      "path": "artifacts/cvc5-c1-content-review-2026-10-23/content-inventory.json.gz",
+      "bytes": 327520,
+      "sha256": "388a8dab0579588967809bdce3c6a35a35c643324e15bb01bc34f0cc830db992"
+    },
+    "frozen_method": "artifacts/cvc5-c1-content-review-2026-10-23/inspection-method.py"
+  },
+  {
+    "started_utc": "2026-10-23T12:11:55.340482+00:00",
+    "finished_utc": "2026-10-23T12:12:00.473574+00:00",
+    "method": {
+      "path": "scripts/inspect-cvc5-c1-sdk-content.py",
+      "bytes": 16242,
+      "sha256": "c181c0970fb275dea1b30a41bc4076face0d103c9a8d49eb3247f2edcaa14100"
+    },
+    "limits": {
+      "total_expanded_bytes": 4294967296,
+      "archive_expanded_bytes": 1073741824,
+      "entries_per_archive": 100000,
+      "regular_file_bytes": 134217728,
+      "selected_text_bytes": 8388608,
+      "total_selected_bytes": 67108864,
+      "seconds": 600,
+      "path_bytes": 4096
+    },
+    "complete": false,
+    "consumed": {
+      "expanded": 624495590,
+      "selected": 4187227
+    },
+    "attempt": 2,
+    "failure": {
+      "type": "ValueError",
+      "reason": "selected-text-budget",
+      "index": 250
+    },
+    "observations": 223,
+    "inventory": {
+      "path": "artifacts/cvc5-c1-content-review-2026-10-23-attempt-2/content-inventory.json.gz",
+      "bytes": 919702,
+      "sha256": "ab7b697edba559e6cb049934168e1030a805d8eb733927b145ef20a4cb15ac59"
+    },
+    "frozen_method": "artifacts/cvc5-c1-content-review-2026-10-23-attempt-2/inspection-method.py"
+  },
+  {
+    "started_utc": "2026-10-23T12:13:56.206014+00:00",
+    "finished_utc": "2026-10-23T12:14:01.657248+00:00",
+    "method": {
+      "path": "scripts/inspect-cvc5-c1-sdk-content.py",
+      "bytes": 16243,
+      "sha256": "cf9e39bd59301b62aa26ed20810a09bc03d7f64954f36ccd69004049ba665c9a"
+    },
+    "limits": {
+      "total_expanded_bytes": 4294967296,
+      "archive_expanded_bytes": 1073741824,
+      "entries_per_archive": 100000,
+      "regular_file_bytes": 134217728,
+      "selected_text_bytes": 33554432,
+      "total_selected_bytes": 67108864,
+      "seconds": 600,
+      "path_bytes": 4096
+    },
+    "complete": false,
+    "consumed": {
+      "expanded": 663013376,
+      "selected": 27856590
+    },
+    "attempt": 3,
+    "failure": {
+      "type": "ReadError",
+      "reason": "invalid header",
+      "index": 396
+    },
+    "observations": 309,
+    "inventory": {
+      "path": "artifacts/cvc5-c1-content-review-2026-10-23-attempt-3/content-inventory.json.gz",
+      "bytes": 1088421,
+      "sha256": "e398e44d35afbbe1f3cc13bb83688b24eec82437b9c0f3f92a7a4a043ce3c34c"
+    },
+    "frozen_method": "artifacts/cvc5-c1-content-review-2026-10-23-attempt-3/inspection-method.py"
+  },
+  {
+    "started_utc": "2026-10-23T12:16:37.918249+00:00",
+    "finished_utc": "2026-10-23T12:16:43.649217+00:00",
+    "method": {
+      "path": "scripts/inspect-cvc5-c1-sdk-content.py",
+      "bytes": 17349,
+      "sha256": "865de6b17ad9c81e2dd39c0665d61360a7d1c256428b0e9d51a7549b864887e5"
+    },
+    "limits": {
+      "total_expanded_bytes": 4294967296,
+      "archive_expanded_bytes": 1073741824,
+      "entries_per_archive": 100000,
+      "regular_file_bytes": 134217728,
+      "selected_text_bytes": 33554432,
+      "total_selected_bytes": 67108864,
+      "seconds": 600,
+      "path_bytes": 4096
+    },
+    "complete": true,
+    "consumed": {
+      "expanded": 674818233,
+      "selected": 29873712
+    },
+    "attempt": 4,
+    "failure": null,
+    "observations": 374,
+    "inventory": {
+      "path": "artifacts/cvc5-c1-content-review-2026-10-23-attempt-4/content-inventory.json.gz",
+      "bytes": 1198187,
+      "sha256": "2b97d59f72e9d2abe1c348e356213d29af9ac1e17ff676c517bf52d1ba9efff5"
+    },
+    "frozen_method": "artifacts/cvc5-c1-content-review-2026-10-23-attempt-4/inspection-method.py"
+  }
+]

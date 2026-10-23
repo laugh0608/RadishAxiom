@@ -1,0 +1,1222 @@
+{
+  "format": "radishaxiom-private-cvc5-historical-verification",
+  "version": "0.1",
+  "started_utc": "2026-10-23T12:31:23.398989+00:00",
+  "current_task_profile_accepted": true,
+  "required_signatures": {
+    "80D15823B7FD1561F9F7BCDDDC30D7C23CBBABEE": [
+      "0146DC6D4A0B2914BDED34DB648ACFD622F3D138",
+      "1"
+    ],
+    "1F89983E0081FDE018F3CC9673A4F27B8DD47936": [
+      "A7236886F3CCCAAD148A27F80E98404D386FA1D9",
+      "1"
+    ],
+    "4D64FEC119C2029067D6E791F8D2585B8783D481": [
+      "4D64FEC119C2029067D6E791F8D2585B8783D481",
+      "22"
+    ]
+  },
+  "passed": false,
+  "cases": [
+    {
+      "step": "legacy-filter",
+      "name": "rax-musl-verify-90560ff751f7499d8557883ccef3baf4-legacy-filter",
+      "command": [
+        "/usr/bin/gpg",
+        "--batch",
+        "--no-tty",
+        "--no-options",
+        "--homedir",
+        "/work/full",
+        "--no-autostart",
+        "--disable-dirmngr",
+        "--no-auto-key-retrieve",
+        "--auto-key-locate",
+        "clear",
+        "--no-auto-check-trustdb",
+        "--no-sig-cache",
+        "--lock-never",
+        "--require-cross-certification",
+        "--status-file",
+        "/work/status",
+        "--exit-on-status-write-error",
+        "--import-options",
+        "import-export,self-sigs-only",
+        "--output",
+        "-",
+        "--import",
+        "/inputs/legacy.raw.gpg"
+      ],
+      "passed": true,
+      "expected_inputs": {
+        "InRelease": {
+          "bytes": 146972,
+          "sha256": "2814476b311085e250ddfdee295907bac45afb66f40dc7c1b35ab41a447c1d6c"
+        },
+        "InRelease.tampered": {
+          "bytes": 146972,
+          "sha256": "d8d6377ecbe53c9069c86a02aa133b4c7d40bd85ac14b47a89684257955e1d83"
+        },
+        "archive.raw.gpg": {
+          "bytes": 8700,
+          "sha256": "9395df01c1c6226584206a77d237c60fdc7039a015ece4e6bd3b1947db6c3b1e"
+        },
+        "debian-archive-keyring.gpg": {
+          "bytes": 64050,
+          "sha256": "eebe9ab3210202da308514f27407a259c76af61937e7a4bc9cb4e67da513079a"
+        },
+        "keyring.bad-cross.gpg": {
+          "bytes": 64050,
+          "sha256": "428a125521da1da233bf0862de130b018196337da103f7888ce0899847f19f2a"
+        },
+        "legacy.raw.gpg": {
+          "bytes": 8132,
+          "sha256": "89d89bcedee9ed88b25eabb5be786fbca6259f121e6ad6ebf5651f852f5227cf"
+        },
+        "release.raw.gpg": {
+          "bytes": 280,
+          "sha256": "1891e84fa2e1ff6db0acfbc0e398824379b415534dd0154ecb1d21e70fe2ac62"
+        }
+      },
+      "status_file": "legacy-filter.status",
+      "inputs": {
+        "InRelease": {
+          "bytes": 146972,
+          "sha256": "2814476b311085e250ddfdee295907bac45afb66f40dc7c1b35ab41a447c1d6c"
+        },
+        "InRelease.tampered": {
+          "bytes": 146972,
+          "sha256": "d8d6377ecbe53c9069c86a02aa133b4c7d40bd85ac14b47a89684257955e1d83"
+        },
+        "archive.raw.gpg": {
+          "bytes": 8700,
+          "sha256": "9395df01c1c6226584206a77d237c60fdc7039a015ece4e6bd3b1947db6c3b1e"
+        },
+        "debian-archive-keyring.gpg": {
+          "bytes": 64050,
+          "sha256": "eebe9ab3210202da308514f27407a259c76af61937e7a4bc9cb4e67da513079a"
+        },
+        "keyring.bad-cross.gpg": {
+          "bytes": 64050,
+          "sha256": "428a125521da1da233bf0862de130b018196337da103f7888ce0899847f19f2a"
+        },
+        "legacy.raw.gpg": {
+          "bytes": 8132,
+          "sha256": "89d89bcedee9ed88b25eabb5be786fbca6259f121e6ad6ebf5651f852f5227cf"
+        },
+        "release.raw.gpg": {
+          "bytes": 280,
+          "sha256": "1891e84fa2e1ff6db0acfbc0e398824379b415534dd0154ecb1d21e70fe2ac62"
+        }
+      },
+      "container_id": "077a9f45b9c698afb53133d5953243a7b7dab48baa4646a6363b82fffd1fe3d6",
+      "start_command_number": 5,
+      "observed_at": 1792758683,
+      "invocation": {
+        "returncode": 0,
+        "failure": null,
+        "seconds": 0.07159299997147173
+      },
+      "final_state": {
+        "State.Status": "exited",
+        "State.Running": false,
+        "State.Paused": false,
+        "State.Restarting": false,
+        "State.Dead": false,
+        "State.OOMKilled": false,
+        "State.ExitCode": 0,
+        "State.Error": ""
+      },
+      "status": {
+        "bytes": 50,
+        "sha256": "7301f319a00e43887bf8a12f51680f8f7b7958e5296be04eb9d423fe1204071c"
+      },
+      "stdout": {
+        "bytes": 5834,
+        "sha256": "637553532002000ad8ab389e7e5cd6fe4ee4378b06bf8c4c19b55c0f18e70614"
+      },
+      "stderr": {
+        "bytes": 76,
+        "sha256": "6ff2fa3d50c8ebc0daf88b224c6890ac52a3cafd86b2578068ca175dc3b5e67d"
+      },
+      "cleanup": {
+        "container_id": "077a9f45b9c698afb53133d5953243a7b7dab48baa4646a6363b82fffd1fe3d6",
+        "removed": true,
+        "state_before_remove": {
+          "State.Status": "exited",
+          "State.Running": false,
+          "State.Paused": false,
+          "State.Restarting": false,
+          "State.Dead": false,
+          "State.OOMKilled": false,
+          "State.ExitCode": 0,
+          "State.Error": ""
+        }
+      },
+      "status_after_confirmed_cleanup": true,
+      "assessment": {
+        "result": "self-material-retained",
+        "raw_key_unchanged": true
+      }
+    },
+    {
+      "step": "legacy-certifications",
+      "name": "rax-musl-verify-90560ff751f7499d8557883ccef3baf4-legacy-certifications",
+      "command": [
+        "/usr/bin/gpg",
+        "--batch",
+        "--no-tty",
+        "--no-options",
+        "--homedir",
+        "/work/full",
+        "--no-autostart",
+        "--disable-dirmngr",
+        "--no-auto-key-retrieve",
+        "--auto-key-locate",
+        "clear",
+        "--no-auto-check-trustdb",
+        "--no-sig-cache",
+        "--lock-never",
+        "--require-cross-certification",
+        "--status-file",
+        "/work/status",
+        "--exit-on-status-write-error",
+        "--no-default-keyring",
+        "--keyring",
+        "/inputs/legacy.self.gpg",
+        "--with-colons",
+        "--fixed-list-mode",
+        "--with-fingerprint",
+        "--with-subkey-fingerprint",
+        "--check-sigs",
+        "80D15823B7FD1561F9F7BCDDDC30D7C23CBBABEE"
+      ],
+      "passed": true,
+      "expected_inputs": {
+        "InRelease": {
+          "bytes": 146972,
+          "sha256": "2814476b311085e250ddfdee295907bac45afb66f40dc7c1b35ab41a447c1d6c"
+        },
+        "InRelease.tampered": {
+          "bytes": 146972,
+          "sha256": "d8d6377ecbe53c9069c86a02aa133b4c7d40bd85ac14b47a89684257955e1d83"
+        },
+        "archive.raw.gpg": {
+          "bytes": 8700,
+          "sha256": "9395df01c1c6226584206a77d237c60fdc7039a015ece4e6bd3b1947db6c3b1e"
+        },
+        "debian-archive-keyring.gpg": {
+          "bytes": 64050,
+          "sha256": "eebe9ab3210202da308514f27407a259c76af61937e7a4bc9cb4e67da513079a"
+        },
+        "keyring.bad-cross.gpg": {
+          "bytes": 64050,
+          "sha256": "428a125521da1da233bf0862de130b018196337da103f7888ce0899847f19f2a"
+        },
+        "legacy.raw.gpg": {
+          "bytes": 8132,
+          "sha256": "89d89bcedee9ed88b25eabb5be786fbca6259f121e6ad6ebf5651f852f5227cf"
+        },
+        "release.raw.gpg": {
+          "bytes": 280,
+          "sha256": "1891e84fa2e1ff6db0acfbc0e398824379b415534dd0154ecb1d21e70fe2ac62"
+        },
+        "legacy.self.gpg": {
+          "bytes": 5834,
+          "sha256": "637553532002000ad8ab389e7e5cd6fe4ee4378b06bf8c4c19b55c0f18e70614"
+        }
+      },
+      "status_file": "legacy-certifications.status",
+      "inputs": {
+        "InRelease": {
+          "bytes": 146972,
+          "sha256": "2814476b311085e250ddfdee295907bac45afb66f40dc7c1b35ab41a447c1d6c"
+        },
+        "InRelease.tampered": {
+          "bytes": 146972,
+          "sha256": "d8d6377ecbe53c9069c86a02aa133b4c7d40bd85ac14b47a89684257955e1d83"
+        },
+        "archive.raw.gpg": {
+          "bytes": 8700,
+          "sha256": "9395df01c1c6226584206a77d237c60fdc7039a015ece4e6bd3b1947db6c3b1e"
+        },
+        "debian-archive-keyring.gpg": {
+          "bytes": 64050,
+          "sha256": "eebe9ab3210202da308514f27407a259c76af61937e7a4bc9cb4e67da513079a"
+        },
+        "keyring.bad-cross.gpg": {
+          "bytes": 64050,
+          "sha256": "428a125521da1da233bf0862de130b018196337da103f7888ce0899847f19f2a"
+        },
+        "legacy.raw.gpg": {
+          "bytes": 8132,
+          "sha256": "89d89bcedee9ed88b25eabb5be786fbca6259f121e6ad6ebf5651f852f5227cf"
+        },
+        "legacy.self.gpg": {
+          "bytes": 5834,
+          "sha256": "637553532002000ad8ab389e7e5cd6fe4ee4378b06bf8c4c19b55c0f18e70614"
+        },
+        "release.raw.gpg": {
+          "bytes": 280,
+          "sha256": "1891e84fa2e1ff6db0acfbc0e398824379b415534dd0154ecb1d21e70fe2ac62"
+        }
+      },
+      "container_id": "7f86fcffd378253ce59ad51d014de407e2351e9d723a3f08cc79adcd9ed4abb3",
+      "start_command_number": 12,
+      "observed_at": 1792758683,
+      "invocation": {
+        "returncode": 0,
+        "failure": null,
+        "seconds": 0.0745960840722546
+      },
+      "final_state": {
+        "State.Status": "exited",
+        "State.Running": false,
+        "State.Paused": false,
+        "State.Restarting": false,
+        "State.Dead": false,
+        "State.OOMKilled": false,
+        "State.ExitCode": 0,
+        "State.Error": ""
+      },
+      "status": {
+        "bytes": 67,
+        "sha256": "d64ade4bfb518ddb0df37d5f2f889f96f153242b096c09c33228614234717b03"
+      },
+      "stdout": {
+        "bytes": 1860,
+        "sha256": "64bfb3685653186b35fd1d154bc37453cc67efe939a104b96d47e4959947dc06"
+      },
+      "stderr": {
+        "bytes": 45,
+        "sha256": "bdec07f9464884ad00954c71d5a79e1b7de6d9882abf4f116ef30ab4eccb0c8c"
+      },
+      "cleanup": {
+        "container_id": "7f86fcffd378253ce59ad51d014de407e2351e9d723a3f08cc79adcd9ed4abb3",
+        "removed": true,
+        "state_before_remove": {
+          "State.Status": "exited",
+          "State.Running": false,
+          "State.Paused": false,
+          "State.Restarting": false,
+          "State.Dead": false,
+          "State.OOMKilled": false,
+          "State.ExitCode": 0,
+          "State.Error": ""
+        }
+      },
+      "status_after_confirmed_cleanup": true,
+      "assessment": {
+        "primary": "80D15823B7FD1561F9F7BCDDDC30D7C23CBBABEE",
+        "signer": "0146DC6D4A0B2914BDED34DB648ACFD622F3D138",
+        "self_certifications": 7,
+        "original_material_examined": true,
+        "cryptography_executed_by_parser": false
+      }
+    },
+    {
+      "step": "archive-filter",
+      "name": "rax-musl-verify-90560ff751f7499d8557883ccef3baf4-archive-filter",
+      "command": [
+        "/usr/bin/gpg",
+        "--batch",
+        "--no-tty",
+        "--no-options",
+        "--homedir",
+        "/work/full",
+        "--no-autostart",
+        "--disable-dirmngr",
+        "--no-auto-key-retrieve",
+        "--auto-key-locate",
+        "clear",
+        "--no-auto-check-trustdb",
+        "--no-sig-cache",
+        "--lock-never",
+        "--require-cross-certification",
+        "--status-file",
+        "/work/status",
+        "--exit-on-status-write-error",
+        "--import-options",
+        "import-export,self-sigs-only",
+        "--output",
+        "-",
+        "--import",
+        "/inputs/archive.raw.gpg"
+      ],
+      "passed": true,
+      "expected_inputs": {
+        "InRelease": {
+          "bytes": 146972,
+          "sha256": "2814476b311085e250ddfdee295907bac45afb66f40dc7c1b35ab41a447c1d6c"
+        },
+        "InRelease.tampered": {
+          "bytes": 146972,
+          "sha256": "d8d6377ecbe53c9069c86a02aa133b4c7d40bd85ac14b47a89684257955e1d83"
+        },
+        "archive.raw.gpg": {
+          "bytes": 8700,
+          "sha256": "9395df01c1c6226584206a77d237c60fdc7039a015ece4e6bd3b1947db6c3b1e"
+        },
+        "debian-archive-keyring.gpg": {
+          "bytes": 64050,
+          "sha256": "eebe9ab3210202da308514f27407a259c76af61937e7a4bc9cb4e67da513079a"
+        },
+        "keyring.bad-cross.gpg": {
+          "bytes": 64050,
+          "sha256": "428a125521da1da233bf0862de130b018196337da103f7888ce0899847f19f2a"
+        },
+        "legacy.raw.gpg": {
+          "bytes": 8132,
+          "sha256": "89d89bcedee9ed88b25eabb5be786fbca6259f121e6ad6ebf5651f852f5227cf"
+        },
+        "release.raw.gpg": {
+          "bytes": 280,
+          "sha256": "1891e84fa2e1ff6db0acfbc0e398824379b415534dd0154ecb1d21e70fe2ac62"
+        },
+        "legacy.self.gpg": {
+          "bytes": 5834,
+          "sha256": "637553532002000ad8ab389e7e5cd6fe4ee4378b06bf8c4c19b55c0f18e70614"
+        }
+      },
+      "status_file": "archive-filter.status",
+      "inputs": {
+        "InRelease": {
+          "bytes": 146972,
+          "sha256": "2814476b311085e250ddfdee295907bac45afb66f40dc7c1b35ab41a447c1d6c"
+        },
+        "InRelease.tampered": {
+          "bytes": 146972,
+          "sha256": "d8d6377ecbe53c9069c86a02aa133b4c7d40bd85ac14b47a89684257955e1d83"
+        },
+        "archive.raw.gpg": {
+          "bytes": 8700,
+          "sha256": "9395df01c1c6226584206a77d237c60fdc7039a015ece4e6bd3b1947db6c3b1e"
+        },
+        "debian-archive-keyring.gpg": {
+          "bytes": 64050,
+          "sha256": "eebe9ab3210202da308514f27407a259c76af61937e7a4bc9cb4e67da513079a"
+        },
+        "keyring.bad-cross.gpg": {
+          "bytes": 64050,
+          "sha256": "428a125521da1da233bf0862de130b018196337da103f7888ce0899847f19f2a"
+        },
+        "legacy.raw.gpg": {
+          "bytes": 8132,
+          "sha256": "89d89bcedee9ed88b25eabb5be786fbca6259f121e6ad6ebf5651f852f5227cf"
+        },
+        "legacy.self.gpg": {
+          "bytes": 5834,
+          "sha256": "637553532002000ad8ab389e7e5cd6fe4ee4378b06bf8c4c19b55c0f18e70614"
+        },
+        "release.raw.gpg": {
+          "bytes": 280,
+          "sha256": "1891e84fa2e1ff6db0acfbc0e398824379b415534dd0154ecb1d21e70fe2ac62"
+        }
+      },
+      "container_id": "eab7b9338340b4e08fc7f00c75f12f759e0c8197ab8cdad4d801567ec9c4e204",
+      "start_command_number": 19,
+      "observed_at": 1792758684,
+      "invocation": {
+        "returncode": 0,
+        "failure": null,
+        "seconds": 0.07305729109793901
+      },
+      "final_state": {
+        "State.Status": "exited",
+        "State.Running": false,
+        "State.Paused": false,
+        "State.Restarting": false,
+        "State.Dead": false,
+        "State.OOMKilled": false,
+        "State.ExitCode": 0,
+        "State.Error": ""
+      },
+      "status": {
+        "bytes": 50,
+        "sha256": "7301f319a00e43887bf8a12f51680f8f7b7958e5296be04eb9d423fe1204071c"
+      },
+      "stdout": {
+        "bytes": 5836,
+        "sha256": "75271e48c015de9d5cffa9592ccefd373a1d74c24444a096b204b47de8c5694b"
+      },
+      "stderr": {
+        "bytes": 76,
+        "sha256": "6ff2fa3d50c8ebc0daf88b224c6890ac52a3cafd86b2578068ca175dc3b5e67d"
+      },
+      "cleanup": {
+        "container_id": "eab7b9338340b4e08fc7f00c75f12f759e0c8197ab8cdad4d801567ec9c4e204",
+        "removed": true,
+        "state_before_remove": {
+          "State.Status": "exited",
+          "State.Running": false,
+          "State.Paused": false,
+          "State.Restarting": false,
+          "State.Dead": false,
+          "State.OOMKilled": false,
+          "State.ExitCode": 0,
+          "State.Error": ""
+        }
+      },
+      "status_after_confirmed_cleanup": true,
+      "assessment": {
+        "result": "self-material-retained",
+        "raw_key_unchanged": true
+      }
+    },
+    {
+      "step": "archive-certifications",
+      "name": "rax-musl-verify-90560ff751f7499d8557883ccef3baf4-archive-certifications",
+      "command": [
+        "/usr/bin/gpg",
+        "--batch",
+        "--no-tty",
+        "--no-options",
+        "--homedir",
+        "/work/full",
+        "--no-autostart",
+        "--disable-dirmngr",
+        "--no-auto-key-retrieve",
+        "--auto-key-locate",
+        "clear",
+        "--no-auto-check-trustdb",
+        "--no-sig-cache",
+        "--lock-never",
+        "--require-cross-certification",
+        "--status-file",
+        "/work/status",
+        "--exit-on-status-write-error",
+        "--no-default-keyring",
+        "--keyring",
+        "/inputs/archive.self.gpg",
+        "--with-colons",
+        "--fixed-list-mode",
+        "--with-fingerprint",
+        "--with-subkey-fingerprint",
+        "--check-sigs",
+        "1F89983E0081FDE018F3CC9673A4F27B8DD47936"
+      ],
+      "passed": true,
+      "expected_inputs": {
+        "InRelease": {
+          "bytes": 146972,
+          "sha256": "2814476b311085e250ddfdee295907bac45afb66f40dc7c1b35ab41a447c1d6c"
+        },
+        "InRelease.tampered": {
+          "bytes": 146972,
+          "sha256": "d8d6377ecbe53c9069c86a02aa133b4c7d40bd85ac14b47a89684257955e1d83"
+        },
+        "archive.raw.gpg": {
+          "bytes": 8700,
+          "sha256": "9395df01c1c6226584206a77d237c60fdc7039a015ece4e6bd3b1947db6c3b1e"
+        },
+        "debian-archive-keyring.gpg": {
+          "bytes": 64050,
+          "sha256": "eebe9ab3210202da308514f27407a259c76af61937e7a4bc9cb4e67da513079a"
+        },
+        "keyring.bad-cross.gpg": {
+          "bytes": 64050,
+          "sha256": "428a125521da1da233bf0862de130b018196337da103f7888ce0899847f19f2a"
+        },
+        "legacy.raw.gpg": {
+          "bytes": 8132,
+          "sha256": "89d89bcedee9ed88b25eabb5be786fbca6259f121e6ad6ebf5651f852f5227cf"
+        },
+        "release.raw.gpg": {
+          "bytes": 280,
+          "sha256": "1891e84fa2e1ff6db0acfbc0e398824379b415534dd0154ecb1d21e70fe2ac62"
+        },
+        "legacy.self.gpg": {
+          "bytes": 5834,
+          "sha256": "637553532002000ad8ab389e7e5cd6fe4ee4378b06bf8c4c19b55c0f18e70614"
+        },
+        "archive.self.gpg": {
+          "bytes": 5836,
+          "sha256": "75271e48c015de9d5cffa9592ccefd373a1d74c24444a096b204b47de8c5694b"
+        }
+      },
+      "status_file": "archive-certifications.status",
+      "inputs": {
+        "InRelease": {
+          "bytes": 146972,
+          "sha256": "2814476b311085e250ddfdee295907bac45afb66f40dc7c1b35ab41a447c1d6c"
+        },
+        "InRelease.tampered": {
+          "bytes": 146972,
+          "sha256": "d8d6377ecbe53c9069c86a02aa133b4c7d40bd85ac14b47a89684257955e1d83"
+        },
+        "archive.raw.gpg": {
+          "bytes": 8700,
+          "sha256": "9395df01c1c6226584206a77d237c60fdc7039a015ece4e6bd3b1947db6c3b1e"
+        },
+        "archive.self.gpg": {
+          "bytes": 5836,
+          "sha256": "75271e48c015de9d5cffa9592ccefd373a1d74c24444a096b204b47de8c5694b"
+        },
+        "debian-archive-keyring.gpg": {
+          "bytes": 64050,
+          "sha256": "eebe9ab3210202da308514f27407a259c76af61937e7a4bc9cb4e67da513079a"
+        },
+        "keyring.bad-cross.gpg": {
+          "bytes": 64050,
+          "sha256": "428a125521da1da233bf0862de130b018196337da103f7888ce0899847f19f2a"
+        },
+        "legacy.raw.gpg": {
+          "bytes": 8132,
+          "sha256": "89d89bcedee9ed88b25eabb5be786fbca6259f121e6ad6ebf5651f852f5227cf"
+        },
+        "legacy.self.gpg": {
+          "bytes": 5834,
+          "sha256": "637553532002000ad8ab389e7e5cd6fe4ee4378b06bf8c4c19b55c0f18e70614"
+        },
+        "release.raw.gpg": {
+          "bytes": 280,
+          "sha256": "1891e84fa2e1ff6db0acfbc0e398824379b415534dd0154ecb1d21e70fe2ac62"
+        }
+      },
+      "container_id": "47ff7648622363744687d7a27a69fb59302cac0594f9a392126d25c8de6d78e2",
+      "start_command_number": 26,
+      "observed_at": 1792758684,
+      "invocation": {
+        "returncode": 0,
+        "failure": null,
+        "seconds": 0.07641508302185684
+      },
+      "final_state": {
+        "State.Status": "exited",
+        "State.Running": false,
+        "State.Paused": false,
+        "State.Restarting": false,
+        "State.Dead": false,
+        "State.OOMKilled": false,
+        "State.ExitCode": 0,
+        "State.Error": ""
+      },
+      "status": {
+        "bytes": 67,
+        "sha256": "8375263344981e11b1e77e4458fc243476fa15c4c312246c5de58840bfc9b54d"
+      },
+      "stdout": {
+        "bytes": 1876,
+        "sha256": "c7b8ea6e5a78ca86de5e4be310ecfd444dffb2e208554357903332236d120bc2"
+      },
+      "stderr": {
+        "bytes": 45,
+        "sha256": "bdec07f9464884ad00954c71d5a79e1b7de6d9882abf4f116ef30ab4eccb0c8c"
+      },
+      "cleanup": {
+        "container_id": "47ff7648622363744687d7a27a69fb59302cac0594f9a392126d25c8de6d78e2",
+        "removed": true,
+        "state_before_remove": {
+          "State.Status": "exited",
+          "State.Running": false,
+          "State.Paused": false,
+          "State.Restarting": false,
+          "State.Dead": false,
+          "State.OOMKilled": false,
+          "State.ExitCode": 0,
+          "State.Error": ""
+        }
+      },
+      "status_after_confirmed_cleanup": true,
+      "assessment": {
+        "primary": "1F89983E0081FDE018F3CC9673A4F27B8DD47936",
+        "signer": "A7236886F3CCCAAD148A27F80E98404D386FA1D9",
+        "self_certifications": 7,
+        "original_material_examined": true,
+        "cryptography_executed_by_parser": false
+      }
+    },
+    {
+      "step": "release-filter",
+      "name": "rax-musl-verify-90560ff751f7499d8557883ccef3baf4-release-filter",
+      "command": [
+        "/usr/bin/gpg",
+        "--batch",
+        "--no-tty",
+        "--no-options",
+        "--homedir",
+        "/work/full",
+        "--no-autostart",
+        "--disable-dirmngr",
+        "--no-auto-key-retrieve",
+        "--auto-key-locate",
+        "clear",
+        "--no-auto-check-trustdb",
+        "--no-sig-cache",
+        "--lock-never",
+        "--require-cross-certification",
+        "--status-file",
+        "/work/status",
+        "--exit-on-status-write-error",
+        "--import-options",
+        "import-export,self-sigs-only",
+        "--output",
+        "-",
+        "--import",
+        "/inputs/release.raw.gpg"
+      ],
+      "passed": true,
+      "expected_inputs": {
+        "InRelease": {
+          "bytes": 146972,
+          "sha256": "2814476b311085e250ddfdee295907bac45afb66f40dc7c1b35ab41a447c1d6c"
+        },
+        "InRelease.tampered": {
+          "bytes": 146972,
+          "sha256": "d8d6377ecbe53c9069c86a02aa133b4c7d40bd85ac14b47a89684257955e1d83"
+        },
+        "archive.raw.gpg": {
+          "bytes": 8700,
+          "sha256": "9395df01c1c6226584206a77d237c60fdc7039a015ece4e6bd3b1947db6c3b1e"
+        },
+        "debian-archive-keyring.gpg": {
+          "bytes": 64050,
+          "sha256": "eebe9ab3210202da308514f27407a259c76af61937e7a4bc9cb4e67da513079a"
+        },
+        "keyring.bad-cross.gpg": {
+          "bytes": 64050,
+          "sha256": "428a125521da1da233bf0862de130b018196337da103f7888ce0899847f19f2a"
+        },
+        "legacy.raw.gpg": {
+          "bytes": 8132,
+          "sha256": "89d89bcedee9ed88b25eabb5be786fbca6259f121e6ad6ebf5651f852f5227cf"
+        },
+        "release.raw.gpg": {
+          "bytes": 280,
+          "sha256": "1891e84fa2e1ff6db0acfbc0e398824379b415534dd0154ecb1d21e70fe2ac62"
+        },
+        "legacy.self.gpg": {
+          "bytes": 5834,
+          "sha256": "637553532002000ad8ab389e7e5cd6fe4ee4378b06bf8c4c19b55c0f18e70614"
+        },
+        "archive.self.gpg": {
+          "bytes": 5836,
+          "sha256": "75271e48c015de9d5cffa9592ccefd373a1d74c24444a096b204b47de8c5694b"
+        }
+      },
+      "status_file": "release-filter.status",
+      "inputs": {
+        "InRelease": {
+          "bytes": 146972,
+          "sha256": "2814476b311085e250ddfdee295907bac45afb66f40dc7c1b35ab41a447c1d6c"
+        },
+        "InRelease.tampered": {
+          "bytes": 146972,
+          "sha256": "d8d6377ecbe53c9069c86a02aa133b4c7d40bd85ac14b47a89684257955e1d83"
+        },
+        "archive.raw.gpg": {
+          "bytes": 8700,
+          "sha256": "9395df01c1c6226584206a77d237c60fdc7039a015ece4e6bd3b1947db6c3b1e"
+        },
+        "archive.self.gpg": {
+          "bytes": 5836,
+          "sha256": "75271e48c015de9d5cffa9592ccefd373a1d74c24444a096b204b47de8c5694b"
+        },
+        "debian-archive-keyring.gpg": {
+          "bytes": 64050,
+          "sha256": "eebe9ab3210202da308514f27407a259c76af61937e7a4bc9cb4e67da513079a"
+        },
+        "keyring.bad-cross.gpg": {
+          "bytes": 64050,
+          "sha256": "428a125521da1da233bf0862de130b018196337da103f7888ce0899847f19f2a"
+        },
+        "legacy.raw.gpg": {
+          "bytes": 8132,
+          "sha256": "89d89bcedee9ed88b25eabb5be786fbca6259f121e6ad6ebf5651f852f5227cf"
+        },
+        "legacy.self.gpg": {
+          "bytes": 5834,
+          "sha256": "637553532002000ad8ab389e7e5cd6fe4ee4378b06bf8c4c19b55c0f18e70614"
+        },
+        "release.raw.gpg": {
+          "bytes": 280,
+          "sha256": "1891e84fa2e1ff6db0acfbc0e398824379b415534dd0154ecb1d21e70fe2ac62"
+        }
+      },
+      "container_id": "eb716d39d9f9afdfb9e912e35d1dd558ed1130f5b2c4c64573eb60511ad80d68",
+      "start_command_number": 33,
+      "observed_at": 1792758684,
+      "invocation": {
+        "returncode": 0,
+        "failure": null,
+        "seconds": 0.0882903749588877
+      },
+      "final_state": {
+        "State.Status": "exited",
+        "State.Running": false,
+        "State.Paused": false,
+        "State.Restarting": false,
+        "State.Dead": false,
+        "State.OOMKilled": false,
+        "State.ExitCode": 0,
+        "State.Error": ""
+      },
+      "status": {
+        "bytes": 50,
+        "sha256": "7301f319a00e43887bf8a12f51680f8f7b7958e5296be04eb9d423fe1204071c"
+      },
+      "stdout": {
+        "bytes": 280,
+        "sha256": "1891e84fa2e1ff6db0acfbc0e398824379b415534dd0154ecb1d21e70fe2ac62"
+      },
+      "stderr": {
+        "bytes": 76,
+        "sha256": "6ff2fa3d50c8ebc0daf88b224c6890ac52a3cafd86b2578068ca175dc3b5e67d"
+      },
+      "cleanup": {
+        "container_id": "eb716d39d9f9afdfb9e912e35d1dd558ed1130f5b2c4c64573eb60511ad80d68",
+        "removed": true,
+        "state_before_remove": {
+          "State.Status": "exited",
+          "State.Running": false,
+          "State.Paused": false,
+          "State.Restarting": false,
+          "State.Dead": false,
+          "State.OOMKilled": false,
+          "State.ExitCode": 0,
+          "State.Error": ""
+        }
+      },
+      "status_after_confirmed_cleanup": true,
+      "assessment": {
+        "result": "self-material-retained",
+        "raw_key_unchanged": true
+      }
+    },
+    {
+      "step": "release-certifications",
+      "name": "rax-musl-verify-90560ff751f7499d8557883ccef3baf4-release-certifications",
+      "command": [
+        "/usr/bin/gpg",
+        "--batch",
+        "--no-tty",
+        "--no-options",
+        "--homedir",
+        "/work/full",
+        "--no-autostart",
+        "--disable-dirmngr",
+        "--no-auto-key-retrieve",
+        "--auto-key-locate",
+        "clear",
+        "--no-auto-check-trustdb",
+        "--no-sig-cache",
+        "--lock-never",
+        "--require-cross-certification",
+        "--status-file",
+        "/work/status",
+        "--exit-on-status-write-error",
+        "--no-default-keyring",
+        "--keyring",
+        "/inputs/release.self.gpg",
+        "--with-colons",
+        "--fixed-list-mode",
+        "--with-fingerprint",
+        "--with-subkey-fingerprint",
+        "--check-sigs",
+        "4D64FEC119C2029067D6E791F8D2585B8783D481"
+      ],
+      "passed": true,
+      "expected_inputs": {
+        "InRelease": {
+          "bytes": 146972,
+          "sha256": "2814476b311085e250ddfdee295907bac45afb66f40dc7c1b35ab41a447c1d6c"
+        },
+        "InRelease.tampered": {
+          "bytes": 146972,
+          "sha256": "d8d6377ecbe53c9069c86a02aa133b4c7d40bd85ac14b47a89684257955e1d83"
+        },
+        "archive.raw.gpg": {
+          "bytes": 8700,
+          "sha256": "9395df01c1c6226584206a77d237c60fdc7039a015ece4e6bd3b1947db6c3b1e"
+        },
+        "debian-archive-keyring.gpg": {
+          "bytes": 64050,
+          "sha256": "eebe9ab3210202da308514f27407a259c76af61937e7a4bc9cb4e67da513079a"
+        },
+        "keyring.bad-cross.gpg": {
+          "bytes": 64050,
+          "sha256": "428a125521da1da233bf0862de130b018196337da103f7888ce0899847f19f2a"
+        },
+        "legacy.raw.gpg": {
+          "bytes": 8132,
+          "sha256": "89d89bcedee9ed88b25eabb5be786fbca6259f121e6ad6ebf5651f852f5227cf"
+        },
+        "release.raw.gpg": {
+          "bytes": 280,
+          "sha256": "1891e84fa2e1ff6db0acfbc0e398824379b415534dd0154ecb1d21e70fe2ac62"
+        },
+        "legacy.self.gpg": {
+          "bytes": 5834,
+          "sha256": "637553532002000ad8ab389e7e5cd6fe4ee4378b06bf8c4c19b55c0f18e70614"
+        },
+        "archive.self.gpg": {
+          "bytes": 5836,
+          "sha256": "75271e48c015de9d5cffa9592ccefd373a1d74c24444a096b204b47de8c5694b"
+        },
+        "release.self.gpg": {
+          "bytes": 280,
+          "sha256": "1891e84fa2e1ff6db0acfbc0e398824379b415534dd0154ecb1d21e70fe2ac62"
+        }
+      },
+      "status_file": "release-certifications.status",
+      "inputs": {
+        "InRelease": {
+          "bytes": 146972,
+          "sha256": "2814476b311085e250ddfdee295907bac45afb66f40dc7c1b35ab41a447c1d6c"
+        },
+        "InRelease.tampered": {
+          "bytes": 146972,
+          "sha256": "d8d6377ecbe53c9069c86a02aa133b4c7d40bd85ac14b47a89684257955e1d83"
+        },
+        "archive.raw.gpg": {
+          "bytes": 8700,
+          "sha256": "9395df01c1c6226584206a77d237c60fdc7039a015ece4e6bd3b1947db6c3b1e"
+        },
+        "archive.self.gpg": {
+          "bytes": 5836,
+          "sha256": "75271e48c015de9d5cffa9592ccefd373a1d74c24444a096b204b47de8c5694b"
+        },
+        "debian-archive-keyring.gpg": {
+          "bytes": 64050,
+          "sha256": "eebe9ab3210202da308514f27407a259c76af61937e7a4bc9cb4e67da513079a"
+        },
+        "keyring.bad-cross.gpg": {
+          "bytes": 64050,
+          "sha256": "428a125521da1da233bf0862de130b018196337da103f7888ce0899847f19f2a"
+        },
+        "legacy.raw.gpg": {
+          "bytes": 8132,
+          "sha256": "89d89bcedee9ed88b25eabb5be786fbca6259f121e6ad6ebf5651f852f5227cf"
+        },
+        "legacy.self.gpg": {
+          "bytes": 5834,
+          "sha256": "637553532002000ad8ab389e7e5cd6fe4ee4378b06bf8c4c19b55c0f18e70614"
+        },
+        "release.raw.gpg": {
+          "bytes": 280,
+          "sha256": "1891e84fa2e1ff6db0acfbc0e398824379b415534dd0154ecb1d21e70fe2ac62"
+        },
+        "release.self.gpg": {
+          "bytes": 280,
+          "sha256": "1891e84fa2e1ff6db0acfbc0e398824379b415534dd0154ecb1d21e70fe2ac62"
+        }
+      },
+      "container_id": "8e2f43874a53576ae624d33ff81cef7ff36deaf34240069e02294b078b8f9221",
+      "start_command_number": 40,
+      "observed_at": 1792758684,
+      "invocation": {
+        "returncode": 0,
+        "failure": null,
+        "seconds": 0.06625904201064259
+      },
+      "final_state": {
+        "State.Status": "exited",
+        "State.Running": false,
+        "State.Paused": false,
+        "State.Restarting": false,
+        "State.Dead": false,
+        "State.OOMKilled": false,
+        "State.ExitCode": 0,
+        "State.Error": ""
+      },
+      "status": {
+        "bytes": 67,
+        "sha256": "c8240ce392a35a3c506b86f1b17977d0939cb3fae7122df69b73ef1270e4ff55"
+      },
+      "stdout": {
+        "bytes": 474,
+        "sha256": "2ab62329b0d5f4bcdd2134d9416a96c9f8f3cb199456e9b2e2e42f89c3594f47"
+      },
+      "stderr": {
+        "bytes": 45,
+        "sha256": "bdec07f9464884ad00954c71d5a79e1b7de6d9882abf4f116ef30ab4eccb0c8c"
+      },
+      "cleanup": {
+        "container_id": "8e2f43874a53576ae624d33ff81cef7ff36deaf34240069e02294b078b8f9221",
+        "removed": true,
+        "state_before_remove": {
+          "State.Status": "exited",
+          "State.Running": false,
+          "State.Paused": false,
+          "State.Restarting": false,
+          "State.Dead": false,
+          "State.OOMKilled": false,
+          "State.ExitCode": 0,
+          "State.Error": ""
+        }
+      },
+      "status_after_confirmed_cleanup": true,
+      "assessment": {
+        "primary": "4D64FEC119C2029067D6E791F8D2585B8783D481",
+        "signer": "4D64FEC119C2029067D6E791F8D2585B8783D481",
+        "self_certifications": 1,
+        "original_material_examined": true,
+        "cryptography_executed_by_parser": false
+      }
+    },
+    {
+      "step": "verify",
+      "name": "rax-musl-verify-90560ff751f7499d8557883ccef3baf4-verify",
+      "command": [
+        "/usr/bin/gpg",
+        "--batch",
+        "--no-tty",
+        "--no-options",
+        "--homedir",
+        "/work/full",
+        "--no-autostart",
+        "--disable-dirmngr",
+        "--no-auto-key-retrieve",
+        "--auto-key-locate",
+        "clear",
+        "--no-auto-check-trustdb",
+        "--no-sig-cache",
+        "--lock-never",
+        "--require-cross-certification",
+        "--status-file",
+        "/work/status",
+        "--exit-on-status-write-error",
+        "--no-default-keyring",
+        "--keyring",
+        "/inputs/debian-archive-keyring.gpg",
+        "--proc-all-sigs",
+        "--output",
+        "-",
+        "--decrypt",
+        "/inputs/InRelease"
+      ],
+      "passed": false,
+      "expected_inputs": {
+        "InRelease": {
+          "bytes": 146972,
+          "sha256": "2814476b311085e250ddfdee295907bac45afb66f40dc7c1b35ab41a447c1d6c"
+        },
+        "InRelease.tampered": {
+          "bytes": 146972,
+          "sha256": "d8d6377ecbe53c9069c86a02aa133b4c7d40bd85ac14b47a89684257955e1d83"
+        },
+        "archive.raw.gpg": {
+          "bytes": 8700,
+          "sha256": "9395df01c1c6226584206a77d237c60fdc7039a015ece4e6bd3b1947db6c3b1e"
+        },
+        "debian-archive-keyring.gpg": {
+          "bytes": 64050,
+          "sha256": "eebe9ab3210202da308514f27407a259c76af61937e7a4bc9cb4e67da513079a"
+        },
+        "keyring.bad-cross.gpg": {
+          "bytes": 64050,
+          "sha256": "428a125521da1da233bf0862de130b018196337da103f7888ce0899847f19f2a"
+        },
+        "legacy.raw.gpg": {
+          "bytes": 8132,
+          "sha256": "89d89bcedee9ed88b25eabb5be786fbca6259f121e6ad6ebf5651f852f5227cf"
+        },
+        "release.raw.gpg": {
+          "bytes": 280,
+          "sha256": "1891e84fa2e1ff6db0acfbc0e398824379b415534dd0154ecb1d21e70fe2ac62"
+        },
+        "legacy.self.gpg": {
+          "bytes": 5834,
+          "sha256": "637553532002000ad8ab389e7e5cd6fe4ee4378b06bf8c4c19b55c0f18e70614"
+        },
+        "archive.self.gpg": {
+          "bytes": 5836,
+          "sha256": "75271e48c015de9d5cffa9592ccefd373a1d74c24444a096b204b47de8c5694b"
+        },
+        "release.self.gpg": {
+          "bytes": 280,
+          "sha256": "1891e84fa2e1ff6db0acfbc0e398824379b415534dd0154ecb1d21e70fe2ac62"
+        }
+      },
+      "status_file": "verify.status",
+      "inputs": {
+        "InRelease": {
+          "bytes": 146972,
+          "sha256": "2814476b311085e250ddfdee295907bac45afb66f40dc7c1b35ab41a447c1d6c"
+        },
+        "InRelease.tampered": {
+          "bytes": 146972,
+          "sha256": "d8d6377ecbe53c9069c86a02aa133b4c7d40bd85ac14b47a89684257955e1d83"
+        },
+        "archive.raw.gpg": {
+          "bytes": 8700,
+          "sha256": "9395df01c1c6226584206a77d237c60fdc7039a015ece4e6bd3b1947db6c3b1e"
+        },
+        "archive.self.gpg": {
+          "bytes": 5836,
+          "sha256": "75271e48c015de9d5cffa9592ccefd373a1d74c24444a096b204b47de8c5694b"
+        },
+        "debian-archive-keyring.gpg": {
+          "bytes": 64050,
+          "sha256": "eebe9ab3210202da308514f27407a259c76af61937e7a4bc9cb4e67da513079a"
+        },
+        "keyring.bad-cross.gpg": {
+          "bytes": 64050,
+          "sha256": "428a125521da1da233bf0862de130b018196337da103f7888ce0899847f19f2a"
+        },
+        "legacy.raw.gpg": {
+          "bytes": 8132,
+          "sha256": "89d89bcedee9ed88b25eabb5be786fbca6259f121e6ad6ebf5651f852f5227cf"
+        },
+        "legacy.self.gpg": {
+          "bytes": 5834,
+          "sha256": "637553532002000ad8ab389e7e5cd6fe4ee4378b06bf8c4c19b55c0f18e70614"
+        },
+        "release.raw.gpg": {
+          "bytes": 280,
+          "sha256": "1891e84fa2e1ff6db0acfbc0e398824379b415534dd0154ecb1d21e70fe2ac62"
+        },
+        "release.self.gpg": {
+          "bytes": 280,
+          "sha256": "1891e84fa2e1ff6db0acfbc0e398824379b415534dd0154ecb1d21e70fe2ac62"
+        }
+      },
+      "container_id": "074c2c4da875c73663407b927b1a3a24b1d73be7427c5fb148b6826bfce8bf6f",
+      "start_command_number": 47,
+      "observed_at": 1792758684,
+      "invocation": {
+        "returncode": 0,
+        "failure": null,
+        "seconds": 0.07858454098459333
+      },
+      "final_state": {
+        "State.Status": "exited",
+        "State.Running": false,
+        "State.Paused": false,
+        "State.Restarting": false,
+        "State.Dead": false,
+        "State.OOMKilled": false,
+        "State.ExitCode": 0,
+        "State.Error": ""
+      },
+      "status": {
+        "bytes": 1491,
+        "sha256": "c062a26df288e963221c14e21603992b7763a7f53ef52f3fa60e67109638cb4d"
+      },
+      "stdout": {
+        "bytes": 145119,
+        "sha256": "010b226303e531b2ca0d268079228b6667418b8ad021d6c126374837ad327055"
+      },
+      "stderr": {
+        "bytes": 1632,
+        "sha256": "5cd72e46a6e8a222efdd6af0ffeecb9627fede2b8f3e1bb97ba49b6120c2b074"
+      },
+      "cleanup": {
+        "container_id": "074c2c4da875c73663407b927b1a3a24b1d73be7427c5fb148b6826bfce8bf6f",
+        "removed": true,
+        "state_before_remove": {
+          "State.Status": "exited",
+          "State.Running": false,
+          "State.Paused": false,
+          "State.Restarting": false,
+          "State.Dead": false,
+          "State.OOMKilled": false,
+          "State.ExitCode": 0,
+          "State.Error": ""
+        }
+      },
+      "status_after_confirmed_cleanup": true,
+      "assessment": {
+        "kind": "diagnostic-cvc5-historical-signature-status-v1",
+        "result": "required-role-statuses-matched",
+        "observed_at": 1792758684,
+        "signatures": {
+          "80D15823B7FD1561F9F7BCDDDC30D7C23CBBABEE": {
+            "primary": "80D15823B7FD1561F9F7BCDDDC30D7C23CBBABEE",
+            "signer": "0146DC6D4A0B2914BDED34DB648ACFD622F3D138",
+            "public_key_algorithm": "1",
+            "digest_algorithm": "8",
+            "created_at": 1686387123,
+            "expires_at": 0,
+            "date": "2023-06-10"
+          },
+          "1F89983E0081FDE018F3CC9673A4F27B8DD47936": {
+            "primary": "1F89983E0081FDE018F3CC9673A4F27B8DD47936",
+            "signer": "A7236886F3CCCAAD148A27F80E98404D386FA1D9",
+            "public_key_algorithm": "1",
+            "digest_algorithm": "8",
+            "created_at": 1686387124,
+            "expires_at": 0,
+            "date": "2023-06-10"
+          },
+          "4D64FEC119C2029067D6E791F8D2585B8783D481": {
+            "primary": "4D64FEC119C2029067D6E791F8D2585B8783D481",
+            "signer": "4D64FEC119C2029067D6E791F8D2585B8783D481",
+            "public_key_algorithm": "22",
+            "digest_algorithm": "8",
+            "created_at": 1686389638,
+            "expires_at": 0,
+            "date": "2023-06-10"
+          }
+        },
+        "status": {
+          "bytes": 1491,
+          "sha256": "c062a26df288e963221c14e21603992b7763a7f53ef52f3fa60e67109638cb4d"
+        },
+        "source_acceptance": "not-assessed",
+        "cryptography_executed_by_parser": false,
+        "self_certifications_assessed": false,
+        "cross_certification_assessed": false
+      }
+    }
+  ],
+  "method": {
+    "bytes": 10907,
+    "sha256": "9e00bdae4feaca70c5ae699459cbf82166c7fd678c032371c48fb9753963abb1"
+  },
+  "profile": {
+    "bytes": 7762,
+    "sha256": "85cf7ffd66b7aee48059bec88b15d92fd819a280a6f4494b2559fd2176dd979d"
+  },
+  "candidate": {
+    "bytes": 2057,
+    "sha256": "06e811774a47d811e4470ae8e5becec6d89e81ff5d47ab450d7a16320db597fd"
+  },
+  "key_material_as_of": "retained-debian-archive-keyring-2025.1; identity-pages-reviewed-2026-10-23",
+  "current_all_channel_revocation_checked": false,
+  "input_acceptance": "not-accepted",
+  "build_ready": false,
+  "image": "sha256:55063921d0e996f717092e07dce8041cb2376cc171a070bf9a0a38a5dd16c777",
+  "cli_sha256": "4a728ee98f89005a90198a9be791e8fdaebbcb5e6af9721251efe0113df37759",
+  "daemon": {
+    "Server.Version": "29.8.2",
+    "Server.ApiVersion": "1.56",
+    "Server.Os": "linux",
+    "Server.Arch": "arm64"
+  },
+  "initial_inputs": {
+    "InRelease": {
+      "bytes": 146972,
+      "sha256": "2814476b311085e250ddfdee295907bac45afb66f40dc7c1b35ab41a447c1d6c"
+    },
+    "InRelease.tampered": {
+      "bytes": 146972,
+      "sha256": "d8d6377ecbe53c9069c86a02aa133b4c7d40bd85ac14b47a89684257955e1d83"
+    },
+    "archive.raw.gpg": {
+      "bytes": 8700,
+      "sha256": "9395df01c1c6226584206a77d237c60fdc7039a015ece4e6bd3b1947db6c3b1e"
+    },
+    "debian-archive-keyring.gpg": {
+      "bytes": 64050,
+      "sha256": "eebe9ab3210202da308514f27407a259c76af61937e7a4bc9cb4e67da513079a"
+    },
+    "keyring.bad-cross.gpg": {
+      "bytes": 64050,
+      "sha256": "428a125521da1da233bf0862de130b018196337da103f7888ce0899847f19f2a"
+    },
+    "legacy.raw.gpg": {
+      "bytes": 8132,
+      "sha256": "89d89bcedee9ed88b25eabb5be786fbca6259f121e6ad6ebf5651f852f5227cf"
+    },
+    "release.raw.gpg": {
+      "bytes": 280,
+      "sha256": "1891e84fa2e1ff6db0acfbc0e398824379b415534dd0154ecb1d21e70fe2ac62"
+    }
+  },
+  "metadata_chain": {},
+  "failure": "[Errno 2] No such file or directory: '/Users/luobo/Code/RadishAxiom/.tmp/cvc5-c0-sdk-metadata-2026-10-17/Packages'",
+  "finished_utc": "2026-10-23T12:31:25.154542+00:00",
+  "elapsed_seconds": 1.7550269580679014
+}

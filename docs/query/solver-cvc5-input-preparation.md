@@ -3,17 +3,17 @@
 更新日期：2026-10-23。用途：供输入审阅者和构建实施者核对 C1 的精确缺口、原字节获取结果与 C2 离线检查入口；接续[构建候选方案](solver-cvc5-build-candidate-plan.md)。本文不改变公共契约、许可或信任决定，不提供实际构建 / 运行授权；当前均未 accepted。
 
 
-2026-10-22，按项目所有者要求先收口 C1 缺口、准备精确获取清单并推进可离线完成的 C2。现已完成缺口定位、全部原包获取与独立原字节核对，**C1 尚未接受，C2 尚未形成完整构建入口**。实际复核见[本批记录](../records/2026-10-22-cvc5-c1-c2-preparation.md)。旧 C0 / Production / patch 记录与公共格式不改写。
+2026-10-22，按项目所有者要求先收口 C1 缺口、准备精确获取清单并推进可离线完成的 C2。现已完成全部原包获取、独立原字节核对，以及[后续留存、包内容和真实验签审阅](../records/2026-10-23-cvc5-c1-input-review.md)，**C1 尚未接受，C2 尚未形成完整构建入口**。实际复核见[本批记录](../records/2026-10-22-cvc5-c1-c2-preparation.md)。旧 C0 / Production / patch 记录与公共格式不改写。
 
 ### C1 的三个决定边界
 
 | 项目 | 已有材料能确定什么 | 关闭缺口所需的具体出口 |
 | --- | --- | --- |
-| LibPoly 许可冲突 | 固定 `debian/copyright` 的两处 `GPL-3+` 标签、Lesser 正文和末尾 GPL 路径确有冲突；根 `LICENCE` 与 `include/poly.h` 支持 LGPL 声明。顶层 CMake 进入 src / include 与条件 bindings / tests，没有直接进入 debian 子目录 | 区分库源码 / 头文件、构建输入、Debian 打包文本及未来实际嵌入对象，给出限定本地诊断的明确接受依据；如既有声明不足则仅取得针对该版本的权威澄清。不能仅凭未构建 debian 目录消除 `Files: *` 的声明冲突，不能删去或修写原文；当前继续 `not-accepted` |
-| 快照签名与信任 | 固定 Release 为 2023-06-10 / Debian 12.0，未含 `Valid-Until`；摘要链已核对。已有历史 keyring 可读回，旧签名结果对应另一份 InRelease；已有 GnuPG 2.4.7 环境记录可供复用审阅 | 明确当前任务的公钥身份依据、两必要 bookworm 角色、验证工具 / 宿主信任范围及材料截至时点；另获真实验签授权并核对固定 2023 原字节。没有有效期字段不等于永久有效或最新安全状态，不关闭过期 / 撤销检查，不以同一未认证索引里的钥匙自证索引 |
-| SDK 内容与 copyright | 已有 172 包 / 101 源版本的精确元数据关联，全部原包字节已取得并核对，尚未审阅包内内容；源码、工具运行库与候选嵌入对象是不同用途 | 基于已取得固定原包，在明确审阅范围后按文件建立 compiler / linker、sysroot / CRT、生成器、Editline 依赖的内容 / 来源 / patch / copyright 关联。先审实际用途和例外，再作工具输入接受；原包匹配本身不满足 C1 |
+| LibPoly 许可冲突 | 根许可与 94 个源码 / 头文件的 LGPL-3+ 声明、两份 memstream MIT 声明均可定位；另 38 个文件没有该文件内 LGPL 声明，仍须判断根许可覆盖；固定 Debian `Files: *` 的 GPL-3+ / Lesser 冲突未消失 | 固定版本 Poly / Polyxx 与 memstream 的覆盖及来源需要权威澄清或明确审阅依据；不能因不构建 debian 目录而排除声明、默认是笔误或改 GPL 路线。当前 `not-accepted` |
+| 快照签名与信任 | 初次 GnuPG exit 2 暴露旧钥匙及历史角色缺口；随后从既有 removed-keys 取得精确 buster 块，经项目所有者明确接受三历史角色及有限身份 / 时效依据后，原文三签名、钥匙认证、Release / 索引绑定与五负例全部通过 | 本次本地诊断范围已收口；保留公钥材料时点、HTTPS / 留存包身份与全渠道最新撤销未覆盖的显式信任限制，不外推运行资格 |
+| SDK 内容与 copyright | 172 包 control 与元数据一致，全部 copyright 路径解析到文件；101 `.dsc` 与源码集合 / 摘要匹配；工具、CRT、静态库、`.pc` 已有实际路径与字节身份 | 库存 / 声明来源已补齐；整体输入接受仍受 LibPoly 许可约束。真实搜索行为、patch 生效、实际链接对象及完整静态闭包留到 C2–C4；不以静态摘要升级为 ABI、重建或运行接受 |
 
-签名复用优先检查仓库既有材料，避免新增工具链取证：历史 [keyring / gpgv 记录](../records/linux-builder-source-chain/release-verification.json)含 55,918 bytes 公钥环，SHA-256 `506b815cbb32d9b6066b4a2aa524071e071761e7e7f68c3ac74f3061ba852017`；[历史说明](../records/linux-builder-source-chain/README.md#信任与时效边界)列出 bookworm archive / stable release 完整主指纹及 HTTPS / 镜像信任缺口。[后续验证环境](../records/rust-linux-input-review/musl-verifier-smoke-execution-2026-09-12.md)记录 GnuPG 2.4.7 的限定信任接受。它们不是本次验签结果或本次运行授权；本轮不查询 daemon、不导入 keyring、不启动容器。当前不追加 keyring 下载，也不假称复用环境已经完成本次资格检查。
+既有 55,918 bytes keyring 单独验证原文时失败；本任务随后明确接受[历史三角色方案](../records/solver-cvc5-c1-review-2026-10-23/historical-key-candidate.json)，追加同一留存 keyring 包 removed-keys 中的 8,132 bytes buster 公钥块，完整原文三签名必须全部通过。[实际验证](../records/solver-cvc5-c1-review-2026-10-23/historical-verification.json)及五负例均通过；没有删除签名或忽略 NO_PUBKEY。当前 Docker CLI SHA-256 为 `4a728ee98f89005a90198a9be791e8fdaebbcb5e6af9721251efe0113df37759`、daemon 为 `29.8.2 / API 1.56`，两次漂移及限定信任确认见[本批记录](../records/2026-10-23-cvc5-c1-input-review.md)。三次执行共 20 个短时容器全部退出并删除；无新增钥匙下载、安装或构建。公钥材料、官方身份页面、工具与宿主仍是明确的信任输入，全渠道最新撤销未覆盖；不得沿用为 SDK / solver 运行资格。
 
 copyright 核对按用途分层：
 
@@ -35,7 +35,7 @@ copyright 核对按用途分层：
 | orig 及索引中附带的签名文件 | 126 | 555,943,445 |
 | 合计 | 500 | 691,605,464 |
 
-源文件共 328 个、570,734,908 bytes；按精确 URL 去重，保留共享文件的全部来源关联。版权文件预计位于这些包内，**当前没有假设其具体内容或额外版权 URL**。仅请求固定 `https://snapshot.debian.org/archive/debian/20230612T000000Z/` 下清单中的目标；允许记录到的同站 `/file/<40 位十六进制>/<单段安全名称>` 重定向，至多五跳，最终仍须匹配清单的 SHA-256 / 长度，地址中的 SHA-1 不代替内容 SHA-256。
+源文件共 328 个、570,734,908 bytes；按精确 URL 去重，保留共享文件的全部来源关联。这些包内的 copyright 路径现已逐项解析并留存，见本批内容记录；原获取清单没有增加额外版权 URL。仅请求固定 `https://snapshot.debian.org/archive/debian/20230612T000000Z/` 下清单中的目标；允许记录到的同站 `/file/<40 位十六进制>/<单段安全名称>` 重定向，至多五跳，最终仍须匹配清单的 SHA-256 / 长度，地址中的 SHA-1 不代替内容 SHA-256。
 
 精确留存目录为 `/Users/luobo/Code/RadishAxiom/.tmp/cvc5-c1-acquisition-2026-10-22`；首次取得六项后在第七项编码重定向处停止，[原失败记录](../records/2026-10-22-cvc5-c1-acquisition.md)保留。经项目所有者确认，修正后的入口从第七项接续，在第 41 项达到单项 180 秒限时后停止；累计 40 项通过字节核对，第 41 项部分文件保留、459 项未请求，详见[接续记录](../records/2026-10-22-cvc5-c1-continuation.md)。新日志与冻结方法独立放 `continuation-1/`，前六项没有重复请求或覆盖。
 
@@ -47,11 +47,11 @@ copyright 核对按用途分层：
 
 [超时分析与第二次接续提案](../records/2026-10-22-cvc5-c1-timeout-review.md)固定原材料只读、Range 获取第 41 项尾部后再取得第 42–500 项，正文总上限 636,150,180 bytes；新输出独立放 `continuation-2/`。预算区分 60 秒无进展、按剩余大小计算的单项上限与 6 小时批次上限，未写回原批准清单。[离线实施与验证](../records/2026-10-22-cvc5-c1-range-preparation.md)完成后，又加入显式本机 HTTP 代理选项，下载器 68 项测试通过；原 C1 / C2 离线准备 47 项测试结果保留。
 
-已按后续确认通过本机代理实际试取：第 41 项 Range 和完整拼接核对成功，但尾部仅约 55.5 KiB/s；按低速即汇报要求主动停止。累计完成至第 46 项，第 47 项部分文件保留，453 项未请求；旧材料未变，详见[代理获取记录](../records/2026-10-22-cvc5-c1-proxy-acquisition.md)。当前 `continuation-2/` 已占用，原接续入口拒绝重跑，不自动续下或整包重下。2026-10-23 按项目所有者“继续下载”完成[第三次接续](../records/2026-10-23-cvc5-c1-continuation.md)：复用用户取得的第 48 项，补齐第 47 项后取得第 49–500 项；本批新正文 628,212,768 bytes，耗时约 29 分 35 秒，无失败。现已完整取得全部 500 项 / 691,605,464 bytes，下载器与独立原字节复核均通过，旧材料未变。新目录 `continuation-3/` 已占用，第 48 项仍在用户提供的系统临时目录；没有后台下载。70 项下载器测试通过，未解包或执行包内工具；原字节齐全不解除 C1 接受或构建门禁。
+已按后续确认通过本机代理实际试取：第 41 项 Range 和完整拼接核对成功，但尾部仅约 55.5 KiB/s；按低速即汇报要求主动停止。累计完成至第 46 项，第 47 项部分文件保留，453 项未请求；旧材料未变，详见[代理获取记录](../records/2026-10-22-cvc5-c1-proxy-acquisition.md)。当前 `continuation-2/` 已占用，原接续入口拒绝重跑，不自动续下或整包重下。2026-10-23 按项目所有者“继续下载”完成[第三次接续](../records/2026-10-23-cvc5-c1-continuation.md)：复用用户取得的第 48 项，补齐第 47 项后取得第 49–500 项；本批新正文 628,212,768 bytes，耗时约 29 分 35 秒，无失败。现已完整取得全部 500 项 / 691,605,464 bytes，下载器与独立原字节复核均通过，旧材料未变。新目录 `continuation-3/` 已占用，当时第 48 项仍在用户提供的系统临时目录；后续已复制留存到项目 `artifacts/cvc5-c1-retained-2026-10-23/`，全部 500 项再次回读匹配，见[新留存索引](../records/solver-cvc5-c1-review-2026-10-23/retained-inventory.json)。没有后台下载。70 项下载器测试属于获取批次；后续内容扫描、初次失败与经确认接续通过的验签另行记录，原字节齐全不解除 C1 接受或构建门禁。
 
 ### 已实现的 C2 离线部分与剩余依赖
 
-1. `python3 scripts/cvc5-build-preparation.py verify` 从现有 C0 / SDK 输入重建清单并逐类型核对，拒绝清单、状态、预算或绑定漂移。`audit-archives` 只读核对实际原包，逐文件检查长度 / SHA-256，拒绝多余文件 / 目录、符号链接与特殊文件；缺文件返回 2。它不解压和执行第三方内容，全部原包匹配仍返回 `build_ready=false`。
+1. `python3 scripts/cvc5-build-preparation.py verify` 从现有 C0 / SDK 输入重建原清单并逐类型核对，拒绝清单、状态、预算或绑定漂移；输出的 signature_verified / authorization 是被冻结原计划的时点，不读取本批后续验签接受记录。`audit-archives` 只读核对实际原包，逐文件检查长度 / SHA-256，拒绝多余文件 / 目录、符号链接与特殊文件；缺文件返回 2。它不解压和执行第三方内容，全部原包匹配仍返回 `build_ready=false`。
 2. [构建输入预检](../../scripts/check-cvc5-build-inputs.py)消费[既有 patch 的私有输入格式](solver-cvc5-build-patch-review.md#私有输入约束)，通过 `manifest` 路径与必需的 `--sha256` 接收另行审阅的真实输入。检查闭合 JSON 字段、六类 header 全量文件、必要头、至少六类 `.a`、实际字节和绑定的 closure review；保留 Editline 顺序及重复项，拒绝遗漏、多余、错序绑定、路径逃逸与特殊文件。未知字段、重复键和非有限数也拒绝。
 3. Python 预检比 CMake 字节守卫更早执行，附加 8 MiB JSON、单文件 1 GiB、累计读取 4 GiB / 100,000 文件与树项上限；这些仅约束离线检查器，不改变 solver 或构建额度。输出只说明字节与外部审阅声明绑定成立，不证明 `.a` 对象 ABI、许可、工具接受或 CMake 行为。它不生成 `reviewed-for-configuration` 标记或真实 manifest，不认证可被并发修改的文件树；实际构建仍须只读挂载与启动时重核。
 
@@ -59,7 +59,7 @@ copyright 核对按用途分层：
 
 | 准备项 | 所需真实输入 / 何时才能完成 |
 | --- | --- |
-| 工具路径 / sysroot / CRT / specs / `.pc` 清单 | 原包已齐全；按明确范围审阅 SDK 包内内容，固定 compiler / linker / ar / strip / Python / pkgconf 的实际文件身份，解析 symlink 归属。执行 `pkgconf --static` 属工具执行，另行说明并确认；静态文本解析不能冒充该结果 |
+| 工具路径 / sysroot / CRT / specs / `.pc` 清单 | 真实工具 / CRT / 静态库 / `.pc` 路径及 symlink 归属已定位，见[文件关联结果](../records/solver-cvc5-c1-review-2026-10-23/derived-content-review.json)。必须绑定版本化 gcc-12 / g++-12，包集合未提供通用 cc / gcc / g++；默认 specs 与运行搜索目录仍未查询。执行 `pkgconf --static` 属工具执行，另行说明并确认；静态文本解析不能冒充该结果 |
 | 四依赖与主目标精确 argv / patch manifest | 在输入路径明确后固定 GMP / CaDiCaL / Poly / SymFPU 顺序、配方变换和 `cvc5-bin` 目标；依赖输出真实产生后才具备头 / 库摘要和 ABI / closure 审阅材料，不能要求在首次依赖构建前伪造这些输出 |
 | 环境与资源 | 使用无继承环境的明确 PATH / locale / TZ / umask / CPU / SOURCE_DATE_EPOCH 来源；清空已有方案列出的查找 / launcher 变量；输入只读、独立源码工作副本、无网络、无宿主 socket / credentials。4 jobs / 8 GiB / 20 GiB / 90 分钟仍为待核定构建估算 |
 | 留证与失败处理 | 精确 argv / cwd / 环境，CMake trace/cache、生成器输出、依赖文件、对象 / archive 成员、link map / trace / response file、strip 前后 ELF 与退出码分别保存；未知输入或越额立即停，保留失败。不能仅用 compile_commands 代替完整输入关系 |

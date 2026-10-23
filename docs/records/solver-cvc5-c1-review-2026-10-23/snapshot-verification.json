@@ -1,0 +1,179 @@
+{
+  "format": "radishaxiom-private-cvc5-snapshot-verification",
+  "version": "0.1",
+  "started_utc": "2026-10-23T12:20:55.398971+00:00",
+  "method": {
+    "bytes": 5813,
+    "sha256": "7583a329cf7e2747f1a90ce87341bdbc9f4b31153f796d1b1dc1186f11e9ea34"
+  },
+  "image": "sha256:55063921d0e996f717092e07dce8041cb2376cc171a070bf9a0a38a5dd16c777",
+  "cli_sha256": "4a728ee98f89005a90198a9be791e8fdaebbcb5e6af9721251efe0113df37759",
+  "required_primary_roles": [
+    "B8B80B5B623EAB6AD8775C45B7C5D7D6350947F8",
+    "4D64FEC119C2029067D6E791F8D2585B8783D481"
+  ],
+  "cases": [
+    {
+      "step": "verify",
+      "name": "rax-musl-verify-1d5db767e3b44d35b84afeacaa9f7de7-verify",
+      "command": [
+        "/usr/bin/gpg",
+        "--batch",
+        "--no-tty",
+        "--no-options",
+        "--homedir",
+        "/work/full",
+        "--no-autostart",
+        "--disable-dirmngr",
+        "--no-auto-key-retrieve",
+        "--auto-key-locate",
+        "clear",
+        "--no-auto-check-trustdb",
+        "--no-sig-cache",
+        "--lock-never",
+        "--require-cross-certification",
+        "--status-file",
+        "/work/status",
+        "--exit-on-status-write-error",
+        "--no-default-keyring",
+        "--keyring",
+        "/inputs/debian-archive-keyring.gpg",
+        "--proc-all-sigs",
+        "--output",
+        "-",
+        "--decrypt",
+        "/inputs/InRelease"
+      ],
+      "passed": true,
+      "expected_inputs": {
+        "InRelease": {
+          "bytes": 146972,
+          "sha256": "2814476b311085e250ddfdee295907bac45afb66f40dc7c1b35ab41a447c1d6c"
+        },
+        "debian-archive-keyring.gpg": {
+          "bytes": 55918,
+          "sha256": "506b815cbb32d9b6066b4a2aa524071e071761e7e7f68c3ac74f3061ba852017"
+        }
+      },
+      "status_file": "verify.status",
+      "inputs": {
+        "InRelease": {
+          "bytes": 146972,
+          "sha256": "2814476b311085e250ddfdee295907bac45afb66f40dc7c1b35ab41a447c1d6c"
+        },
+        "debian-archive-keyring.gpg": {
+          "bytes": 55918,
+          "sha256": "506b815cbb32d9b6066b4a2aa524071e071761e7e7f68c3ac74f3061ba852017"
+        }
+      },
+      "container_id": "2984a4ee3aa3f81b1483c7f225c89a8d85e58b90187ae719116e5ebdb5ed4d2a",
+      "start_command_number": 5,
+      "observed_at": 1792758055,
+      "invocation": {
+        "returncode": 2,
+        "failure": null,
+        "seconds": 0.13666770793497562
+      },
+      "final_state": {
+        "State.Status": "exited",
+        "State.Running": false,
+        "State.Paused": false,
+        "State.Restarting": false,
+        "State.Dead": false,
+        "State.OOMKilled": false,
+        "State.ExitCode": 2,
+        "State.Error": ""
+      },
+      "status": {
+        "bytes": 1184,
+        "sha256": "439a4eff4ee7a9e3933db4e22d6e23f39e3b70e59e52e13ed2ce00020ed910e9"
+      },
+      "stdout": {
+        "bytes": 145119,
+        "sha256": "010b226303e531b2ca0d268079228b6667418b8ad021d6c126374837ad327055"
+      },
+      "stderr": {
+        "bytes": 1269,
+        "sha256": "7ada21259e467b40edea53b2a830022fb72ad4492e55b2a6d54ced4b3020c66b"
+      },
+      "cleanup": {
+        "container_id": "2984a4ee3aa3f81b1483c7f225c89a8d85e58b90187ae719116e5ebdb5ed4d2a",
+        "removed": true,
+        "state_before_remove": {
+          "State.Status": "exited",
+          "State.Running": false,
+          "State.Paused": false,
+          "State.Restarting": false,
+          "State.Dead": false,
+          "State.OOMKilled": false,
+          "State.ExitCode": 2,
+          "State.Error": ""
+        }
+      },
+      "status_after_confirmed_cleanup": true
+    }
+  ],
+  "passed": false,
+  "input_acceptance": "not-accepted",
+  "build_ready": false,
+  "keyring_source": "docs/records/linux-builder-source-chain/release-verification.json",
+  "current_all_channel_revocation_checked": false,
+  "negative_cases_executed": false,
+  "method_dependencies": {
+    "retain-musl-verifier-inputs.py": {
+      "bytes": 10295,
+      "sha256": "72047818576ab27de02cf8e9620c33299c007b4c64108fb7c11a3c1d23e3ca0a"
+    },
+    "run-musl-verification.py": {
+      "bytes": 21944,
+      "sha256": "79749087f7853b81bad27b4d561610402a73a466b10cc01666c73455e55edf13"
+    },
+    "prepare-musl-verification-inputs.py": {
+      "bytes": 5864,
+      "sha256": "3a11a72abb726d415df885c7b839e73fcb0f04453fe4186541b9f60f2725b9ea"
+    },
+    "run-musl-verifier-smoke.py": {
+      "bytes": 23815,
+      "sha256": "4b0151dfbe00b7772697c06afb447521e0cf66fe2011ca1e4adb84f4029c016c"
+    },
+    "inspect-musl-verification-keys.py": {
+      "bytes": 11967,
+      "sha256": "391c7e48b0792330135990e3358f5dad811d745c3010a30aad084c81e6e05ae4"
+    },
+    "inspect-musl-verification-status.py": {
+      "bytes": 7460,
+      "sha256": "b3964b6904c13c82596438af2ec8030455137c0121cfdc35ff3e77a79963e9fc"
+    }
+  },
+  "daemon": {
+    "Server.Version": "29.8.2",
+    "Server.ApiVersion": "1.56",
+    "Server.Os": "linux",
+    "Server.Arch": "arm64"
+  },
+  "inputs": {
+    "InRelease": {
+      "bytes": 146972,
+      "sha256": "2814476b311085e250ddfdee295907bac45afb66f40dc7c1b35ab41a447c1d6c"
+    },
+    "debian-archive-keyring.gpg": {
+      "bytes": 55918,
+      "sha256": "506b815cbb32d9b6066b4a2aa524071e071761e7e7f68c3ac74f3061ba852017"
+    }
+  },
+  "gpg_exit_code": 2,
+  "status_text": "[GNUPG:] PLAINTEXT 74 0 \n[GNUPG:] NEWSIG\n[GNUPG:] ERRSIG 648ACFD622F3D138 1 8 01 1686387123 9 0146DC6D4A0B2914BDED34DB648ACFD622F3D138\n[GNUPG:] NO_PUBKEY 648ACFD622F3D138\n[GNUPG:] NEWSIG\n[GNUPG:] KEY_CONSIDERED 1F89983E0081FDE018F3CC9673A4F27B8DD47936 0\n[GNUPG:] SIG_ID Bsoele+28nhuCf3SsXctN7Q7/Bk 2023-06-10 1686387124\n[GNUPG:] GOODSIG 0E98404D386FA1D9 Debian Archive Automatic Signing Key (11/bullseye) <ftpmaster@debian.org>\n[GNUPG:] VALIDSIG A7236886F3CCCAAD148A27F80E98404D386FA1D9 2023-06-10 1686387124 0 4 0 1 8 01 1F89983E0081FDE018F3CC9673A4F27B8DD47936\n[GNUPG:] KEY_CONSIDERED 1F89983E0081FDE018F3CC9673A4F27B8DD47936 0\n[GNUPG:] TRUST_UNDEFINED 0 pgp\n[GNUPG:] NEWSIG debian-release@lists.debian.org\n[GNUPG:] KEY_CONSIDERED 4D64FEC119C2029067D6E791F8D2585B8783D481 0\n[GNUPG:] SIG_ID miEhIc8KWgj0dzZMjUP47k5R1NU 2023-06-10 1686389638\n[GNUPG:] GOODSIG F8D2585B8783D481 Debian Stable Release Key (12/bookworm) <debian-release@lists.debian.org>\n[GNUPG:] VALIDSIG 4D64FEC119C2029067D6E791F8D2585B8783D481 2023-06-10 1686389638 0 4 0 22 8 01 4D64FEC119C2029067D6E791F8D2585B8783D481\n[GNUPG:] TRUST_UNDEFINED 0 pgp debian-release@lists.debian.org\n[GNUPG:] FAILURE gpg-exit 33554433\n",
+  "stderr_text": "gpg: Signature made Sat Jun 10 08:52:03 2023 UTC\ngpg:                using RSA key 0146DC6D4A0B2914BDED34DB648ACFD622F3D138\ngpg: Can't check signature: No public key\ngpg: Signature made Sat Jun 10 08:52:04 2023 UTC\ngpg:                using RSA key A7236886F3CCCAAD148A27F80E98404D386FA1D9\ngpg: /work/full/trustdb.gpg: trustdb created\ngpg: Good signature from \"Debian Archive Automatic Signing Key (11/bullseye) <ftpmaster@debian.org>\" [unknown]\ngpg: WARNING: This key is not certified with a trusted signature!\ngpg:          There is no indication that the signature belongs to the owner.\nPrimary key fingerprint: 1F89 983E 0081 FDE0 18F3  CC96 73A4 F27B 8DD4 7936\n     Subkey fingerprint: A723 6886 F3CC CAAD 148A  27F8 0E98 404D 386F A1D9\ngpg: Signature made Sat Jun 10 09:33:58 2023 UTC\ngpg:                using EDDSA key 4D64FEC119C2029067D6E791F8D2585B8783D481\ngpg:                issuer \"debian-release@lists.debian.org\"\ngpg: Good signature from \"Debian Stable Release Key (12/bookworm) <debian-release@lists.debian.org>\" [unknown]\ngpg: WARNING: The key's User ID is not certified with a trusted signature!\ngpg:          There is no indication that the signature belongs to the owner.\nPrimary key fingerprint: 4D64 FEC1 19C2 0290 67D6  E791 F8D2 585B 8783 D481\n",
+  "release_plaintext": {
+    "bytes": 145119,
+    "sha256": "010b226303e531b2ca0d268079228b6667418b8ad021d6c126374837ad327055"
+  },
+  "plaintext_matches_fixed_release": true,
+  "observed_validsig_primaries": [
+    "1F89983E0081FDE018F3CC9673A4F27B8DD47936",
+    "4D64FEC119C2029067D6E791F8D2585B8783D481"
+  ],
+  "required_roles_present": false,
+  "failure": "positive verification returned nonzero; stop before negatives",
+  "finished_utc": "2026-10-23T12:20:55.852348+00:00"
+}

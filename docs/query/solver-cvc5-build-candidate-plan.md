@@ -1,14 +1,14 @@
 # cvc5 1.3.4 可追溯构建候选方案
 
-更新日期：2026-10-22。状态：`planned / blocked-on-inputs / not-accepted`。[ADR 0030 D3](../adr/0030-solver-bootstrap-ffi-and-build-provenance.md#d3e0-公开来源不足时的下一候选)已接受准备此方案；本文的工具、包、patch、构建参数与新产物尚未接受。用途：给实施者及验收者提供一次有界受控构建的输入闭合、执行顺序与停止线。本文不提供可直接运行的构建脚本，不授权下载、安装、编译、镜像或载荷执行，也不接受对外分发。C1 缺口与 C2 离线入口的当前接续见[输入准备专题](solver-cvc5-input-preparation.md)。
+更新日期：2026-10-23。状态：`planned / blocked-on-inputs / not-accepted`。[ADR 0030 D3](../adr/0030-solver-bootstrap-ffi-and-build-provenance.md#d3e0-公开来源不足时的下一候选)已接受准备此方案；本文的工具、包、patch、构建参数与新产物尚未接受。用途：给实施者及验收者提供一次有界受控构建的输入闭合、执行顺序与停止线。本文不提供可直接运行的构建脚本，不授权下载、安装、编译、镜像或载荷执行，也不接受对外分发。C1 缺口与 C2 离线入口的当前接续见[输入准备专题](solver-cvc5-input-preparation.md)。
 
 ## 候选路线与身份
 
-候选保持 cvc5 `1.3.4`、源码提交 `f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341`，构建 Linux AArch64 LE、glibc / GCC C++ runtime、Production、静态 CLI；保留 Editline、GMP、CaDiCaL、SymFPU 与 LibPoly 功能面。glibc 路线用于减少与原发布 CLI 的运行库差异，不把 bootstrap 的 musl 候选迁给 solver。新候选的固定快照元数据已选择 GCC `12.2.0-14` / glibc `2.36-9`，详见[C0 输入选择](solver-cvc5-c0-input-selection.md)；包原字节和工具接受尚未完成。这些版本不能倒填为原 CLI 的构建输入。
+候选保持 cvc5 `1.3.4`、源码提交 `f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341`，构建 Linux AArch64 LE、glibc / GCC C++ runtime、Production、静态 CLI；保留 Editline、GMP、CaDiCaL、SymFPU 与 LibPoly 功能面。glibc 路线用于减少与原发布 CLI 的运行库差异，不把 bootstrap 的 musl 候选迁给 solver。新候选的固定快照元数据已选择 GCC `12.2.0-14` / glibc `2.36-9`，详见[C0 输入选择](solver-cvc5-c0-input-selection.md)；包原字节与内容库存已完成核对，工具接受尚未完成。这些版本不能倒填为原 CLI 的构建输入。
 
 新 CLI 必须按实际新 bytes 登记独立身份、接受记录与来源链，不能替换原 CLI 或追认原来源。原 ZIP SHA-256 `2a4c108367f20b0c8990abd6b9535a5d62e08908d471d4671c00734e408f85bc`、成员 `bin/cvc5` SHA-256 `26fa94d71ecb3d4f1458eb06b9b9d4762fb3753cfb5cb9dca6f917fbf4dbe6c7` 继续 `not-accepted`；其 B1 / B2 缺口按[前批补证](../records/2026-10-17-cvc5-cli-dependencies.md)及[有界后续复核](../records/2026-10-17-cvc5-provenance-followup.md)保留。本路线建立新构建的来源关联，不声称复现原发行 bytes。
 
-当前可以固定的是源码提交、四项声明配方、候选功能面与闭合方法。完整五项源码及实际归档摘要现已取得，Production 和构建 patch 已进入[本批静态审阅](../records/2026-10-17-cvc5-c0-source-review.md)。SDK 包内容、受信任工具接受、实际配置探测与链接闭包仍未闭合，**现在不能形成执行许可所需的精确命令**。本批不运行上游脚本；历史四归档审批中止事实保留，当前五源码取得来自后续明确授权。
+当前可以固定的是源码提交、四项声明配方、候选功能面与闭合方法。完整五项源码及实际归档摘要现已取得，Production 和构建 patch 已进入[本批静态审阅](../records/2026-10-17-cvc5-c0-source-review.md)。SDK 内容库存已补齐；受信任工具接受、实际配置探测与链接闭包仍未闭合，**现在不能形成执行许可所需的精确命令**。本批不运行上游脚本；历史四归档审批中止事实保留，当前五源码取得来自后续明确授权。
 
 ## 已有依据与输入账本
 
@@ -23,12 +23,12 @@
 | SymFPU | `227a7246b8ce513b393cc2645d6d65d3490ea1de`；完整归档、LICENSE / LICENSE-BSD 已取得，候选沿 BSD-3-Clause 选项 | 归档 / 头文件 tree 摘要已固定；仍须编译依赖文件确认使用这些头而非系统副本；不能因仅含头文件而漏库存 |
 | LibPoly / Polyxx | `0.2.1`，tag 已解析为 `3d5e6fbd98639cb0941b029e23ca17c0e3c4a80a`；完整归档已取得；主许可 / 头文件写 LGPL-3.0-or-later，但附带 Debian copyright 标签为 GPL-3+，许可接受保留歧义 | 原包、全部 patch / 改写及前后 tree 摘要；`libpicpoly.a` / `libpicpolyxx.a`、GMP 绑定与对应源码；保留 LGPL 边界 |
 | GMP / GMPXX | `6.3.0` 原配方归档已取得并匹配固定摘要；核心库有 LGPL 路径，构建辅助 / 文档还包含 GPL、例外与 GFDL，按文件审阅 | 实际归档、源码许可 / copyright 清单、C / C++ 静态库和头文件；GMP `main` URL 只作定位，内容须匹配已固定摘要 |
-| Editline / libedit | 保留 `USE_EDITLINE=ON`。现有 Find 通过 pkg-config 获取；精确版本、源包和二进制包的元数据已固定；实际包、patch 与 copyright 尚未取得 | 选择并审阅一个新候选的精确版本 / 来源 / 摘要与完整许可，固定 `.pc` 及静态库；不能拿最新上游 Berkeley-style 说明替代该包许可 |
-| terminfo / ncurses | Linux Find 明确追加 `tinfo`；新候选包版本已在 C0 固定，实际组成未知，也并非已确认原 CLI 的完整依赖 | 固定提供 `libtinfo.a` 的包 / 头文件 / 源包 / patch / copyright；判断是否还需 ncurses 对象或数据，实际新增须入清单 |
-| libbsd / libmd 及其他间接项 | 原配方可条件追加 `bsd`，安装记录不是链接证明。新候选先将两者列为需闭合的候选，新候选包版本已固定，许可文件尚未取得 | libedit / tinfo / bsd 的静态依赖闭包、包身份与许可；若实际不链接某项，用显式依赖声明和 link map 共同排除，不能仅因主链接行未写而排除 |
+| Editline / libedit | 保留 `USE_EDITLINE=ON`。现有 Find 通过 pkg-config 获取；精确版本、源包和二进制包的元数据已固定；实际包、patch 与 copyright 已取得并完成路径 / 摘要关联，接受仍受 C1 约束 | 选择并审阅一个新候选的精确版本 / 来源 / 摘要与完整许可，固定 `.pc` 及静态库；不能拿最新上游 Berkeley-style 说明替代该包许可 |
+| terminfo / ncurses | Linux Find 明确追加 `tinfo`；新候选包版本已在 C0 固定，libtermcap.a → libtinfo.a 及成员头身份已核对，实际使用组成仍待链接观察，也并非已确认原 CLI 的完整依赖 | 固定提供 `libtinfo.a` 的包 / 头文件 / 源包 / patch / copyright；判断是否还需 ncurses 对象或数据，实际新增须入清单 |
+| libbsd / libmd 及其他间接项 | 原配方可条件追加 `bsd`，安装记录不是链接证明。新候选先将两者列为需闭合的候选，新候选包版本与许可文件已取得，实际使用范围仍待接受 | libedit / tinfo / bsd 的静态依赖闭包、包身份与许可；若实际不链接某项，用显式依赖声明和 link map 共同排除，不能仅因主链接行未写而排除 |
 | glibc / CRT / Linux UAPI headers | 候选保留 glibc；`crt1.o` / `crti.o` / `crtn.o`、libc / libm / pthread / dl / rt 等包版本 / 对应源文件已按 C0 固定，实际文件选择、头文件内容及补丁尚未核对 | 精确 sysroot 归档与逐文件包归属、源包 / patch / copyright 关联；按实际包核对许可及例外，不将整个 sysroot 标成一种 LGPL；旧版本独立库与合并版本差异不得默认处理 |
-| GCC / libstdc++ / libgcc / Binutils | 原 CLI 的 GCC 11.4.0 注记只是历史线索。新候选 compiler、linker、assembler、ar / ranlib / strip / readelf / nm、`crtbegin` / `crtend`、运行库包版本已按 C0 固定；工具路径、包内文件摘要及默认行为未知 | 取得精确可信工具包、目标 / ABI、默认 specs 与搜索目录、启动对象和静态运行库；按文件核对 GPL / GCC Runtime Library Exception 等。编译器及其依赖作为显式 trusted 输入，不递归重建 GCC 或整个 guest |
-| 构建工具与生成器 | CMake、GNU Make、Python 及所需模块、shell、sed、patch、tar / 解压器、pkg-config、文件 / 摘要检查工具均须固定；精确包及 Depends / Pre-Depends / Essential 元数据闭包已固定；完整源码发现须补 `python3-pyparsing` 与 `m4`，见当前 C0 选择；实际包内文件与运行闭包仍待核对 | 逐包版本 / 架构 / 实际摘要 / 来源 / 许可与命令路径；完整源码会揭示的生成脚本和模块一并闭合；不运行 pip / apt 在线解析 |
+| GCC / libstdc++ / libgcc / Binutils | 原 CLI 的 GCC 11.4.0 注记只是历史线索。新候选 compiler、linker、assembler、ar / ranlib / strip / readelf / nm、`crtbegin` / `crtend`、运行库包版本已按 C0 固定；工具路径与包内文件摘要已定位，默认行为未执行核对 | 取得精确可信工具包、目标 / ABI、默认 specs 与搜索目录、启动对象和静态运行库；按文件核对 GPL / GCC Runtime Library Exception 等。编译器及其依赖作为显式 trusted 输入，不递归重建 GCC 或整个 guest |
+| 构建工具与生成器 | CMake、GNU Make、Python 及所需模块、shell、sed、patch、tar / 解压器、pkg-config、文件 / 摘要检查工具均须固定；精确包及 Depends / Pre-Depends / Essential 元数据闭包已固定；完整源码发现须补 `python3-pyparsing` 与 `m4`，见当前 C0 选择；实际包内文件已核对，运行闭包与生成行为仍待核对 | 逐包版本 / 架构 / 实际摘要 / 来源 / 许可与命令路径；完整源码会揭示的生成脚本和模块一并闭合；不运行 pip / apt 在线解析 |
 | Java / Python bindings 条件输入 | 原 CI `--all-bindings` 仅作配置比较基线；static 自动关闭 Python bindings，Java 无 CLI 反向依赖，候选显式关闭两种 bindings，详见[Production 审阅](solver-cvc5-production-source-review.md) | 不新增 JDK / JAR / bindings 工具；Python 3.11 / pyparsing 为独立 CLI 生成角色，实际包内容与 API 可运行性仍须接受，不随 bindings 裁剪移除 |
 | 构建基底与执行平台 | 隔离的 Linux AArch64 LE 只读根文件树 / SDK / sysroot；尚无已接受的精确 rootfs 或镜像摘要 | 固定各包、组装入口、根树摘要、OS / 内核 / CPU 特征与执行宿主；既有 OrbStack 仅为诊断候选，不因此取得 E4 资格。不得使用浮动 `ubuntu:22.04` 或当前 runner 镜像推历史事实 |
 
@@ -61,7 +61,7 @@
 
 ## 消除系统选择、缓存与隐含 patch
 
-首选将四依赖在固定 SDK 中按已审阅的原配方等价步骤独立构建 / 安装到一次性 prefix；cvc5 只消费这些精确输出。对固定 Find 模块准备一个范围有限的自有构建 patch：不改变 solver 源码语义，只把查找改为带存在性、摘要 / tree 核对的显式 imported 路径，并在缺失时失败，禁止回退到系统或下载。[实际 patch 候选](solver-cvc5-build-patch-review.md)现已形成，包含精确 diff 与前后树摘要；只完成静态核对，没有运行 CMake 或证明构建可行。SDK 文件 / Editline 有序静态闭包尚缺，不能生成可接受的执行 manifest。
+首选将四依赖在固定 SDK 中按已审阅的原配方等价步骤独立构建 / 安装到一次性 prefix；cvc5 只消费这些精确输出。对固定 Find 模块准备一个范围有限的自有构建 patch：不改变 solver 源码语义，只把查找改为带存在性、摘要 / tree 核对的显式 imported 路径，并在缺失时失败，禁止回退到系统或下载。[实际 patch 候选](solver-cvc5-build-patch-review.md)现已形成，包含精确 diff 与前后树摘要；只完成静态核对，没有运行 CMake 或证明构建可行。SDK 文件已定位，Editline 有序静态闭包的实际使用验证尚缺，不能生成可接受的执行 manifest。
 
 1. CaDiCaL、GMP / GMPXX、Poly / Polyxx 均显式指定头文件目录、绝对 `.a` 路径及传递链接关系；SymFPU 指向固定头文件 tree。消除项目 `deps/install` 的自动优先路径；若保留该目录，只能由本批清单生成且启动时为空，不能复用旧 stamp。
 2. Editline 的原模块会追加裸 `bsd` / `tinfo`，仅加 `CMAKE_PREFIX_PATH` 不足。固定 `.pc`、`pkg-config` 可执行文件、`PKG_CONFIG_LIBDIR` / sysroot，清除外部 `PKG_CONFIG_PATH`；记录 `--static` 依赖结果，把闭包转成已核对的绝对库路径与固定顺序。原 module 的头文件存在条件分支也须记录，不能为了避开追加项而传空 include 目录。
@@ -90,7 +90,7 @@
 
 | 顺序 | 下一批的具体交付与出口 | 阻断 / 授权 |
 | --- | --- | --- |
-| C0：冻结候选差异 | [本轮选择接续](solver-cvc5-c0-input-selection.md)已取得五项源码并补审生成工具、Production 与有限 patch；SDK 元数据沿 Debian 12 arm64 固定快照扩选。当前精确计数以 C0 机器记录为准，静态审阅不代替实际配置 | 元数据批已提交 `c2ea5d0`；后续授权取得固定五源码，Production / patch 静态结果见本批记录。SDK 包未取得，许可歧义 / 信任 / 实际配置与链接输入仍阻断，`build_ready=false` |
+| C0：冻结候选差异 | [本轮选择接续](solver-cvc5-c0-input-selection.md)已取得五项源码并补审生成工具、Production 与有限 patch；SDK 元数据沿 Debian 12 arm64 固定快照扩选。当前精确计数以 C0 机器记录为准，静态审阅不代替实际配置 | 元数据批已提交 `c2ea5d0`；后续授权取得固定五源码，Production / patch 静态结果见本批记录。SDK 原包与内容库存现已取得，许可歧义 / 实际配置与链接输入仍阻断，`build_ready=false` |
 | C1：输入接受 | 实际原包摘要 / tree / 许可核对，锁定 compiler / SDK / rootfs 包与可信边界；完成有效选项差异逐项决定 | 任一 unknown、版权缺项、可选库闭包未知或 patch 未审即停；不能先安装再决定接受。来源选择不等于允许安装 |
 | C2：构建准备 | 提交可审阅离线入口、输入清单校验器、精确 argv / 环境 / 输出目录、无网络设置、资源 / 日志 / map 采集及失败保留 / 清理计划 | 工具安装 / 环境组装、构建环境镜像、实际编译分别说明并授权。CMake try_run / GMP configure 等生成的检测程序也属构建期执行，须写入授权范围；不包含运行 cvc5 `--version` / solver |
 | C3：一次受控构建 | 授权后先空目录验证，离线构建依赖再生成 cvc5，保存所有中间 / link map / stripped 前后 bytes、实际占用与失败 | 任一未列输入 / 下载 / 包安装 / 选项漂移、资源耗尽或超时即停止保留；不自动增额重跑，不把新 bytes 放原 CLI 路径 |
@@ -105,8 +105,10 @@
 
 候选仅为受控本地诊断。当前没有把第三方库链接进 RadishAxiom，没有改变项目 Apache-2.0 或用户生成产物的许可。若以后分发静态 CLI、镜像或构建 SDK，须按实际组成单独检查版权 / 许可证、LGPL corresponding source 与 relink / recombination 材料、安装信息适用性、GCC runtime exception 条件及其他各包义务；仅留上游 URL、称 non-GPL 或不复制 `.a` 均不构成分发接受。新本地 E0 接受不替代该决定。
 
-本方案之后已接续 [C0 精确输入选择](solver-cvc5-c0-input-selection.md)与[机器记录](../records/solver-cvc5-c0-2026-10-17/input-selection.json)：固定源码目标与单一 SDK 快照，离线重核 29 份既有材料；随后按明确元数据联网授权完成精确 SDK 选择和独立包级闭包复核，见[本批验收](../records/2026-10-17-cvc5-c0-sdk-metadata.md)。该元数据批已提交为 `c2ea5d0`；随后源码取得、Production / patch 审阅及生成工具补选见[当前批验收](../records/2026-10-17-cvc5-c0-source-review.md)。SDK 包、签名信任、许可接受、实际配置和链接输入仍阻断；未安装、构建、运行探针 / solver、修改系统配置或 push。候选选择与静态审阅不产生工具或运行接受。
+本方案之后已接续 [C0 精确输入选择](solver-cvc5-c0-input-selection.md)与[机器记录](../records/solver-cvc5-c0-2026-10-17/input-selection.json)：固定源码目标与单一 SDK 快照，离线重核 29 份既有材料；随后按明确元数据联网授权完成精确 SDK 选择和独立包级闭包复核，见[本批验收](../records/2026-10-17-cvc5-c0-sdk-metadata.md)。该元数据批已提交为 `c2ea5d0`；随后源码取得、Production / patch 审阅及生成工具补选见[当前批验收](../records/2026-10-17-cvc5-c0-source-review.md)。SDK 原包与内容库存已由后续批次补齐；本地诊断的限定签名方案已验证；许可接受、实际配置和链接输入仍阻断；未安装、构建、运行探针 / solver、修改系统配置或 push。候选选择与静态审阅不产生工具或运行接受。
 
 ## C1 / C2 接续
 
 C1 缺口、500 文件精确获取范围、已实现离线检查入口及完整 C2 的剩余依赖统一见[输入接受与离线准备](solver-cvc5-input-preparation.md)，实际复核见[2026-10-22 记录](../records/2026-10-22-cvc5-c1-c2-preparation.md)。C1 未接受、C2 只完成离线部分，`build_ready=false`；本方案原批次顺序、资源及执行授权边界保持。
+
+2026-10-23 已接续[输入接受审阅](../records/2026-10-23-cvc5-c1-input-review.md)：第 48 项已留存、172 包内容及 copyright 路径 / 101 源码声明关联完成；初次验签失败后，经明确确认复用既有旧钥匙并按历史三角色完整验证通过；旧失败保留。LibPoly 声明冲突未闭合，整体 not-accepted，不授权安装或构建。
