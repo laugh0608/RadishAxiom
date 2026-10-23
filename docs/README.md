@@ -73,6 +73,8 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 
 - [真实 bootstrap / FFI 实施方案](query/solver-bootstrap-ffi-implementation-plan.md)：[ADR 0030（Accepted）](adr/0030-solver-bootstrap-ffi-and-build-provenance.md)列出原生宿主、真实绑定 / 观察和新构建候选三项已接受决定；F1 纯共享边界 / [启动描述](query/solver-bootstrap-start-v0.1.md)已完成[本机验收](records/2026-10-17-solver-f1-validation.md)；F2 [原生边界](query/solver-bootstrap-native-boundary.md) / [监督实现](query/solver-bootstrap-native-supervisor.md)接续私有源码与本机脚本后端检查，D3 [构建候选方案](query/solver-cvc5-build-candidate-plan.md)接续 [C0 输入选择](query/solver-cvc5-c0-input-selection.md)，实际范围见[F2 / C0 验收](records/2026-10-17-solver-f2-validation.md)与后续[SDK 元数据复核](records/2026-10-17-cvc5-c0-sdk-metadata.md)、[完整源码 / Production / patch 静态审阅](records/2026-10-17-cvc5-c0-source-review.md)；配套[独立审阅](query/solver-bootstrap-ffi-review.md)与 [E0 后续补证](records/2026-10-17-cvc5-provenance-followup.md)，不授权构建或真实执行；[方案批验收](records/2026-10-17-solver-bootstrap-plan-review.md)记录此前设计与补证的范围和检查。
 
+- [C1 输入接受与 C2 离线准备](query/solver-cvc5-input-preparation.md)：原包、内容库存与限定历史签名已核对，LibPoly 许可仍未接受；[SDK 组装与构建监督接线设计](query/solver-cvc5-execution-preparation.md)记录布局 / 事件检查和真实适配器缺口，未安装、组装或构建 SDK / solver。
+
 ## 机器契约
 
 [契约总入口](../contracts/README.md)说明生成入口、指定态材料与实现证据的区别。
@@ -113,6 +115,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 | 2026-10-23 LibPoly 澄清草稿 | [给上游的固定版本许可、Polyxx 覆盖与旧 memstream 来源问题（未发送）](records/2026-10-23-libpoly-upstream-clarification-draft.md) |
 | 2026-10-23 C2 离线入口 | [阶段配方、输入预检、日志 / 链接清单与失败保留](records/2026-10-23-cvc5-c2-offline-entry.md) |
 | 2026-10-23 C2 执行准备 | [SDK 布局、构建事件检查与接线设计](records/2026-10-23-cvc5-c2-execution-review.md) |
+| 2026-10-23 日终回顾 | [全天提交、代码 / 文档复核与下一次接续](records/2026-10-23-closeout.md) |
 | Rust Linux 与静态目标输入 | [签名 / 归档盘点、安装候选与 kernel 许可审阅](records/rust-linux-input-review/README.md) |
 | 2026-10-17 日终回顾 | [紧凑查询、监督组件与 C0 全天提交、代码 / 文档复核及接续事项](records/2026-10-17-closeout.md) |
 | 2026-10-08 日终回顾 | [P3-B–F 全天提交、代码与文档核对及明日交接](records/2026-10-08-closeout.md) |

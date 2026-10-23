@@ -69,11 +69,11 @@
 4. 用离线、只读 inputs / SDK 与无网络的隔离 build root执行；输出目录单独可写，无 host socket、credentials、runner cache 或历史 ccache。环境固定 PATH、locale / TZ、umask、工作目录、SOURCE_DATE_EPOCH 的来源和 CPU 特征。内核、构建根与 compiler 是显式 trusted 输入；不声称隔离或摘要消除编译器信任。
 5. 完整保存 CMake trace / cache / configure 检测、编译依赖文件、实际命令及 linker 搜索 / 追踪结果。对每个读入头、库、启动对象、specs / linker script和生成输入做 allowlist 核对；发现未列文件、自动下载、默认系统库或 cache 命中立即失败。`compile_commands.json` 不覆盖所有外部项目 / 生成工具，不能单独作为完整证明。
 
-还须固定上游的真实变换：CaDiCaL 手工实例化 `makefile.in` 的 sed 替换及宏；GMP C99 / PIC / C++ / 静态配置、构建 triplet 与探测；Poly 的安装目标 sed、可条件启用的 global-context patch与编译器警告 flag 探测；其余源码生成。每项保存入口 / 输入 / 输出摘要、工具及顺序；Windows patch 不适用于此 Linux 目标，不能因文件存在就声称应用。不得把 ExternalProject 的已下载 stamp 或 ccache 作为输入认证。
+[C2 离线配方](../records/2026-10-23-cvc5-c2-offline-entry.md)已固定 CaDiCaL `makefile.in` 替换及宏分支、GMP C99 / PIC / C++ / 静态参数与 triplet、Poly 安装规则变换及 warning flag 两分支；当前候选不应用 global-context 或 Windows patch。变换的原字节与候选输出摘要已有静态绑定，实际检测分支、生成内容及配置结果仍待执行后审阅，不能默认选择假值。每项须保存实际入口 / 输入 / 输出摘要、工具及顺序；不得把 ExternalProject 的已下载 stamp 或 ccache 作为输入认证。
 
 ## 从输入到新 bytes 的留证与验收
 
-每次构建使用唯一批次目录，输出只追加；输入清单先冻结并取得自己的摘要，实际构建记录引用它。输出记录再绑定命令 / 环境 / 日志、返回码、所有中间与最终文件摘要；最终记录不把自身摘要嵌回自身。生成器 / patch / 清单属于自有文件，未来进入仓库；第三方原包、工具包、中间对象与日志放任务专用保留区并给出持久留存决定，不复制进正式文档仓库。
+每次构建使用唯一批次目录，输出只追加；输入清单先冻结并取得自己的摘要，实际构建记录引用它。输出记录再绑定命令 / 环境 / 日志、返回码、所有中间与最终文件摘要；最终记录不把自身摘要嵌回自身。自有生成入口、patch 与离线配方已经入库，实际依赖 manifest 和构建结果尚未产生；第三方原包、工具包、中间对象与日志放任务专用保留区并给出持久留存决定，不复制进正式文档仓库。
 
 | 检查层 | 必须保存与判定 |
 | --- | --- |
@@ -110,5 +110,7 @@
 ## C1 / C2 接续
 
 C1 缺口、500 文件精确获取范围、已实现离线检查入口及完整 C2 的剩余依赖统一见[输入接受与离线准备](solver-cvc5-input-preparation.md)，实际复核见[2026-10-22 记录](../records/2026-10-22-cvc5-c1-c2-preparation.md)。随后已交付[C2 可审阅离线入口](../records/2026-10-23-cvc5-c2-offline-entry.md)、阶段配方、输入预检与留证 / 清理约束；C1 未接受、实际隔离执行器与执行资格尚未形成，`build_ready=false`；本方案原批次顺序、资源及执行授权边界保持。
+
+[SDK 组装与构建监督接线设计](solver-cvc5-execution-preparation.md)已补充真实库存的 14,719 路径候选和依赖阶段事件检查；`etc/rmt` 悬空链接、五处权限变换、PID / inode 限额和实际读取 / 资源观察仍待审阅。现有 solver 的两进程监督及 W/S 策略不直接承担多进程构建，不能为构建放宽原运行边界；离线序列一致不代表实际执行能力。
 
 2026-10-23 已接续[输入接受审阅](../records/2026-10-23-cvc5-c1-input-review.md)：第 48 项已留存、172 包内容及 copyright 路径 / 101 源码声明关联完成；初次验签失败后，经明确确认复用既有旧钥匙并按历史三角色完整验证通过；旧失败保留。LibPoly 声明冲突未闭合，整体 not-accepted，不授权安装或构建。
