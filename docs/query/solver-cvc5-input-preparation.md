@@ -3,7 +3,7 @@
 更新日期：2026-10-23。用途：供输入审阅者和构建实施者核对 C1 的精确缺口、原字节获取结果与 C2 离线检查入口；接续[构建候选方案](solver-cvc5-build-candidate-plan.md)。本文不改变公共契约、许可或信任决定，不提供实际构建 / 运行授权；当前均未 accepted。
 
 
-2026-10-22，按项目所有者要求先收口 C1 缺口、准备精确获取清单并推进可离线完成的 C2。现已完成全部原包获取、独立原字节核对，以及[后续留存、包内容和真实验签审阅](../records/2026-10-23-cvc5-c1-input-review.md)，**C1 尚未接受，C2 尚未形成完整构建入口**。实际复核见[本批记录](../records/2026-10-22-cvc5-c1-c2-preparation.md)。旧 C0 / Production / patch 记录与公共格式不改写。
+2026-10-22，按项目所有者要求先收口 C1 缺口、准备精确获取清单并推进可离线完成的 C2。现已完成全部原包获取、独立原字节核对，以及[后续留存、包内容和真实验签审阅](../records/2026-10-23-cvc5-c1-input-review.md)，**C1 尚未接受，C2 已形成可审阅的离线配方与预检，尚无执行资格**。实际复核见[本批记录](../records/2026-10-22-cvc5-c1-c2-preparation.md)。旧 C0 / Production / patch 记录与公共格式不改写。
 
 ### C1 的三个决定边界
 
@@ -51,11 +51,13 @@ copyright 核对按用途分层：
 
 ### 已实现的 C2 离线部分与剩余依赖
 
+2026-10-23 已完成[离线入口与留证规则](../records/2026-10-23-cvc5-c2-offline-entry.md)：[入口](../../scripts/prepare-cvc5-offline-build.py)只生成 / 核对命令数据，绑定全部原包、五源码、SDK 库存、patch、工具路径、环境及阶段条件；包含日志 / 链接清单、失败保留和精确清理约束。`check` 通过准备检查后仍返回 2，保持 `execution_ready=false` / `build_ready=false`。不存在执行或删除模式；CMake 检测项目仅保存为文本。
+
 1. `python3 scripts/cvc5-build-preparation.py verify` 从现有 C0 / SDK 输入重建原清单并逐类型核对，拒绝清单、状态、预算或绑定漂移；输出的 signature_verified / authorization 是被冻结原计划的时点，不读取本批后续验签接受记录。`audit-archives` 只读核对实际原包，逐文件检查长度 / SHA-256，拒绝多余文件 / 目录、符号链接与特殊文件；缺文件返回 2。它不解压和执行第三方内容，全部原包匹配仍返回 `build_ready=false`。
 2. [构建输入预检](../../scripts/check-cvc5-build-inputs.py)消费[既有 patch 的私有输入格式](solver-cvc5-build-patch-review.md#私有输入约束)，通过 `manifest` 路径与必需的 `--sha256` 接收另行审阅的真实输入。检查闭合 JSON 字段、六类 header 全量文件、必要头、至少六类 `.a`、实际字节和绑定的 closure review；保留 Editline 顺序及重复项，拒绝遗漏、多余、错序绑定、路径逃逸与特殊文件。未知字段、重复键和非有限数也拒绝。
 3. Python 预检比 CMake 字节守卫更早执行，附加 8 MiB JSON、单文件 1 GiB、累计读取 4 GiB / 100,000 文件与树项上限；这些仅约束离线检查器，不改变 solver 或构建额度。输出只说明字节与外部审阅声明绑定成立，不证明 `.a` 对象 ABI、许可、工具接受或 CMake 行为。它不生成 `reviewed-for-configuration` 标记或真实 manifest，不认证可被并发修改的文件树；实际构建仍须只读挂载与启动时重核。
 
-完整 C2 按以下具体依赖接续，暂不填入猜测路径或占位命令：
+当前离线配方已固定已知路径、命令与条件分支；以下实际观察仍是未来执行前或阶段间的门禁，不填入假输出摘要：
 
 | 准备项 | 所需真实输入 / 何时才能完成 |
 | --- | --- |
@@ -64,4 +66,4 @@ copyright 核对按用途分层：
 | 环境与资源 | 使用无继承环境的明确 PATH / locale / TZ / umask / CPU / SOURCE_DATE_EPOCH 来源；清空已有方案列出的查找 / launcher 变量；输入只读、独立源码工作副本、无网络、无宿主 socket / credentials。4 jobs / 8 GiB / 20 GiB / 90 分钟仍为待核定构建估算 |
 | 留证与失败处理 | 精确 argv / cwd / 环境，CMake trace/cache、生成器输出、依赖文件、对象 / archive 成员、link map / trace / response file、strip 前后 ELF 与退出码分别保存；未知输入或越额立即停，保留失败。不能仅用 compile_commands 代替完整输入关系 |
 
-当前只验收上述离线入口；不宣称已经生成完整执行计划、验证 `.pc --static`、CMake/configure、目标构建或实际链接。通过 C1 后可先准备依赖构建的精确授权范围；拿到真实依赖输出，再完成主 cvc5 配置输入清单，两步均受原 C2–C4 停止线约束。
+当前已交付分阶段的可审阅配方和预检，主目标 argv 通过真实 manifest 后绑定；未实现实际隔离调度与读取 / 资源监控，不宣称验证 `.pc --static`、CMake/configure、目标构建或实际链接。通过 C1 后可先准备依赖构建的精确授权范围；拿到真实依赖输出，再完成主 cvc5 配置输入清单，两步均受原 C2–C4 停止线约束。

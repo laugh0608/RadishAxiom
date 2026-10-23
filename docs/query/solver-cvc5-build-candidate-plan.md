@@ -109,6 +109,6 @@
 
 ## C1 / C2 接续
 
-C1 缺口、500 文件精确获取范围、已实现离线检查入口及完整 C2 的剩余依赖统一见[输入接受与离线准备](solver-cvc5-input-preparation.md)，实际复核见[2026-10-22 记录](../records/2026-10-22-cvc5-c1-c2-preparation.md)。C1 未接受、C2 只完成离线部分，`build_ready=false`；本方案原批次顺序、资源及执行授权边界保持。
+C1 缺口、500 文件精确获取范围、已实现离线检查入口及完整 C2 的剩余依赖统一见[输入接受与离线准备](solver-cvc5-input-preparation.md)，实际复核见[2026-10-22 记录](../records/2026-10-22-cvc5-c1-c2-preparation.md)。随后已交付[C2 可审阅离线入口](../records/2026-10-23-cvc5-c2-offline-entry.md)、阶段配方、输入预检与留证 / 清理约束；C1 未接受、实际隔离执行器与执行资格尚未形成，`build_ready=false`；本方案原批次顺序、资源及执行授权边界保持。
 
 2026-10-23 已接续[输入接受审阅](../records/2026-10-23-cvc5-c1-input-review.md)：第 48 项已留存、172 包内容及 copyright 路径 / 101 源码声明关联完成；初次验签失败后，经明确确认复用既有旧钥匙并按历史三角色完整验证通过；旧失败保留。LibPoly 声明冲突未闭合，整体 not-accepted，不授权安装或构建。
