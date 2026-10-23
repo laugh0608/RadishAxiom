@@ -36,6 +36,8 @@ ORIGINAL_RECORDS = {
 }
 CONTINUATION_PLAN = ROOT / 'docs/records/solver-cvc5-c1-2026-10-22/continuation-2-plan.json'
 CONTINUATION_SHA256 = 'fb4860b00bdcd2a399392ce7d5fb26ca9837d8fa483b6a3714810c837862874c'
+CONTINUATION3_SHA256 = '061d506821b5e7b22aed9766188d041d2de400c6fbc99a50052bc9bade1a4c45'
+LOCAL_HTTP_PROXY = 'http://127.0.0.1:10808'
 
 
 def require(ok, reason):
@@ -53,7 +55,7 @@ def encoded(value):
 
 def identity(path):
     raw = path.read_bytes()
-    return {'path': str(path.relative_to(ROOT)), 'bytes': len(raw),
+    return {'path': str(path.relative_to(ROOT)) if path.is_relative_to(ROOT) else str(path), 'bytes': len(raw),
             'sha256': hashlib.sha256(raw).hexdigest()}
 
 
@@ -474,7 +476,131 @@ def continuation2_preflight():
     return proposal, plan, retained, free
 
 
-def fetch_continuation_item(row, partial, observation, budget, event, deadlines):
+def continuation_proxy_route(http_proxy):
+    if http_proxy is None:
+        return {'mode': 'urllib-default', 'actual_route_recorded': False}
+    require(http_proxy == LOCAL_HTTP_PROXY, 'proxy-outside-owner-specified-endpoint')
+    # urllib's ProxyHandler honors bypass settings even with an explicit map.
+    # Refuse that state instead of silently switching this request to direct.
+    require(not urllib.request.proxy_bypass('snapshot.debian.org'), 'snapshot-would-bypass-requested-proxy')
+    return {'mode': 'explicit-http-connect', 'https_proxy': http_proxy,
+            'tls_certificate_verification': True, 'direct_fallback': False}
+
+
+def continuation3_retained(proposal, plan):
+    """Verify prior records and the explicit three-location retained inventory."""
+    for expected in proposal['prior_records']:
+        path = ROOT / expected['path']
+        require(path.resolve() == path and not path.is_symlink(), 'prior-record-path')
+        require(identity(path) == expected, 'prior-record-drift')
+    for row in proposal['retained_complete_files'] + [proposal['retained_partial']]:
+        path = ROOT / row['path']
+        require(path.resolve() == path and not path.is_symlink(), 'retained-input-path')
+        actual = identity(path)
+        require(all(actual[key] == row[key] for key in ('bytes', 'sha256')), 'retained-input-drift')
+        if row['index'] != 47:
+            original = plan['entries'][row['index'] - 1]
+            require(row['bytes'] == original['declared_bytes']
+                    and row['sha256'] == original['declared_sha256'], 'retained-manifest-binding')
+    return {'complete_files': 47, 'complete_bytes': sum(row['bytes'] for row in proposal['retained_complete_files']),
+            'partial_bytes': proposal['retained_partial']['bytes'], 'old_records_unchanged': True}
+
+
+def continuation3_preflight():
+    """One-time continuation of the recorded interruption; no discovery requests."""
+    require(hashlib.sha256(CONTINUATION_PLAN.read_bytes()).hexdigest() == CONTINUATION_SHA256,
+            'continuation-plan-sha256-drift')
+    require(hashlib.sha256(PREP.PLAN.read_bytes()).hexdigest() == APPROVED_PLAN_SHA256,
+            'approved-plan-sha256-drift')
+    previous, plan = json.loads(CONTINUATION_PLAN.read_bytes()), PREP.verify_plan()
+    continuation2_bindings(previous, plan)
+    continuation2_retained(previous, plan)
+    base = ROOT / plan['retention_directory']
+    old = base / 'continuation-2'
+    raw = (old / 'result.json').read_bytes()
+    recorded = ROOT / 'docs/records/solver-cvc5-c1-2026-10-22/proxy-acquisition-result.json'
+    require(raw == recorded.read_bytes(), 'prior-result-copy-drift')
+    result = json.loads(raw)
+    require(result['failure'] == {'index': 47, 'type': 'InterruptedError', 'reason': 'acquisition-interrupted'}
+            and [row['index'] for row in result['observations']] == list(range(41, 48)),
+            'prior-interruption-binding')
+    for field in ('fetch_method', 'journal', 'proposal'):
+        require(identity(ROOT / result[field]['path']) == result[field], 'prior-execution-record-drift')
+    require(identity(old / 'acquisition-plan.json')['sha256'] == APPROVED_PLAN_SHA256, 'prior-plan-drift')
+    audit_plan = dict(plan, entries=[dict(row) for row in plan['entries'][40:]])
+    failed = result['observations'][-1]
+    require(failed['bytes'] == 79180 and failed['sha256'] ==
+            '5a8a1f574bdb1bb1ca8de6fe2c30e97c640fa10f7dd9416e2ded299c37b5d233', 'prior-partial-binding')
+    audit_plan['entries'][6].update(declared_bytes=failed['bytes'], declared_sha256=failed['sha256'])
+    audit = PREP.audit_archives(audit_plan, old)
+    require(audit['matched_files'] == 7
+            and audit['missing_files'] == [row['relative_path'] for row in plan['entries'][47:]],
+            'prior-continuation-tree-drift')
+    retained = list(previous['retained_complete_files'])
+    for index in range(41, 47):
+        retained.append({'index': index, **identity(old / plan['entries'][index - 1]['relative_path'])})
+    user_path = Path('/tmp/cvc5-proxy-test.nLZRSY/libhwasan0.deb')
+    require(user_path.is_file() and not user_path.is_symlink(), 'user-download-missing')
+    user_path = user_path.resolve()
+    user_raw = user_path.read_bytes()
+    retained.append({'index': 48, 'path': str(user_path), 'bytes': len(user_raw),
+                     'sha256': hashlib.sha256(user_raw).hexdigest()})
+    partial = {'index': 47, **identity(old / plan['entries'][46]['relative_path'])}
+    directory = base / 'continuation-3'
+    require(directory.parent.resolve() == directory.parent and not directory.exists()
+            and not directory.is_symlink(), 'continuation-already-exists')
+    rows = []
+    for template in previous['requests_detail']:
+        index = template['index']
+        if index < 47 or index == 48:
+            continue
+        row = dict(template, request_headers=dict(template['request_headers']))
+        row['output_path'] = str((directory / plan['entries'][index - 1]['relative_path']).relative_to(ROOT))
+        if index == 47:
+            allowed_redirect(failed['final_url'])
+            require(failed['final_url'] == failed['redirects'][-1]['to_url'], 'unobserved-resume-url')
+            require(failed['response_headers']['etag'].startswith('"'), 'resume-requires-strong-etag')
+            row.update(request_url=failed['final_url'], expected_status=206,
+                       network_body_bytes=row['complete_bytes'] - partial['bytes'],
+                       expected_content_range=f"bytes {partial['bytes']}-{row['complete_bytes'] - 1}/{row['complete_bytes']}")
+            row['request_headers'].update(Range=f"bytes={partial['bytes']}-{row['complete_bytes'] - 1}",
+                                          **{'If-Range': failed['response_headers']['etag']})
+        row['total_deadline_seconds'] = max(300, 120 + (row['network_body_bytes'] + 32767) // 32768)
+        rows.append(row)
+    proposal = {'format': 'radishaxiom-private-cvc5-c1-continuation', 'version': '0.1',
+                'authorization': 'owner-requested-continue-download-2026-10-23',
+                'base_plan': previous['base_plan'], 'retained_complete_files': retained,
+                'retained_partial': partial, 'new_directory': str(directory.relative_to(ROOT)),
+                'prior_records': previous['prior_records'] + [identity(old / name) for name in
+                    ('acquisition-plan.json', 'continuation-plan.json', 'fetch-helper.py', 'events.jsonl', 'result.json', 'readback.json')],
+                'requests_detail': rows, 'transport_policy': dict(previous['transport_policy']),
+                'user_download': {'index': 48, 'original_path': str(user_path),
+                                  'provenance': 'owner-ran-provided-curl-command-and-supplied-path; local-bytes-rechecked'},
+                'scope': 'raw-bytes-only-no-unpack-install-build-or-payload-execution'}
+    proposal['transport_policy']['new_response_body_byte_limit'] = sum(row['network_body_bytes'] for row in rows)
+    require(hashlib.sha256(encoded(proposal)).hexdigest() == CONTINUATION3_SHA256,
+            'continuation-3-plan-drift')
+    retained_summary = continuation3_retained(proposal, plan)
+    free = shutil.disk_usage(directory.parent).free
+    require(free >= proposal['transport_policy']['minimum_free_bytes'], 'insufficient-free-space')
+    return proposal, plan, retained_summary, free
+
+
+def continuation3_readback(proposal, plan):
+    retained = continuation3_retained(proposal, plan)
+    rows = [plan['entries'][row['index'] - 1] for row in proposal['requests_detail']]
+    audit = PREP.audit_archives(dict(plan, entries=rows), ROOT / proposal['new_directory'])
+    require(audit['archive_bytes_complete'] and audit['matched_files'] == 453, 'new-inventory-incomplete')
+    inventory = [{'index': row['index'], 'path': row['path']} for row in proposal['retained_complete_files']]
+    inventory += [{'index': row['index'], 'path': row['output_path']} for row in proposal['requests_detail']]
+    require(sorted(row['index'] for row in inventory) == list(range(1, 501)), 'final-inventory-indices')
+    return {'matched_files': 500, 'matched_bytes': plan['summary']['total_bytes'],
+            'inventory': sorted(inventory, key=lambda row: row['index']), 'retained': retained,
+            'new_inputs': audit, 'input_acceptance': 'not-accepted', 'build_ready': False}
+
+
+def fetch_continuation_item(row, partial, observation, budget, event, deadlines, http_proxy=None):
+    observation['transport_route'] = continuation_proxy_route(http_proxy)
     path = ROOT / row['output_path']
     path.parent.mkdir(parents=True, exist_ok=True)
     require(path.parent.resolve() == path.parent and not path.is_symlink(), 'output-parent-or-file-symlink')
@@ -495,8 +621,10 @@ def fetch_continuation_item(row, partial, observation, budget, event, deadlines)
                     'prefix-byte-mismatch')
         context = ssl.create_default_context()
         context.minimum_version = ssl.TLSVersion.TLSv1_2
-        opener = urllib.request.build_opener(Redirect(observation, event),
-                                            urllib.request.HTTPSHandler(context=context))
+        handlers = [Redirect(observation, event), urllib.request.HTTPSHandler(context=context)]
+        if http_proxy is not None:
+            handlers.insert(0, urllib.request.ProxyHandler({'https': http_proxy}))
+        opener = urllib.request.build_opener(*handlers)
         request = urllib.request.Request(row['request_url'],
                                          headers=dict(REQUEST_HEADERS, **row['request_headers']))
         header_seconds = deadlines.start_headers()
@@ -558,19 +686,19 @@ def fetch_continuation_item(row, partial, observation, budget, event, deadlines)
     require(hasher.hexdigest() == row['complete_sha256'], 'payload-sha256-mismatch')
 
 
-def continuation2_rows(proposal, journal, result, deadlines):
+def continuation2_rows(proposal, journal, result, deadlines, http_proxy=None):
     budget = {'received': 0, 'limit': proposal['transport_policy']['new_response_body_byte_limit']}
     for row in proposal['requests_detail']:
         observation = {'index': row['index'], 'requested_url': row['request_url'], 'planned_url': row['planned_url'],
-                       'output_path': row['output_path'], 'range_request': row['index'] == 41,
+                       'output_path': row['output_path'], 'range_request': row['index'] == proposal['retained_partial']['index'],
                        'started_utc': now(), 'redirects': [], 'bytes': 0, 'network_bytes': 0, 'status': 'started'}
         result['observations'].append(observation)
         started = time.monotonic()
         try:
             deadlines.start_item(row['total_deadline_seconds'])
             journal.append({'event': 'item-start', **observation})
-            partial = proposal['retained_partial'] if row['index'] == 41 else None
-            fetch_continuation_item(row, partial, observation, budget, journal.append, deadlines)
+            partial = proposal['retained_partial'] if observation['range_request'] else None
+            fetch_continuation_item(row, partial, observation, budget, journal.append, deadlines, http_proxy)
             deadlines.finish_item()
             observation.update(status='obtained-byte-matched', finished_utc=now(),
                                elapsed_seconds=round(time.monotonic() - started, 6))
@@ -608,39 +736,47 @@ def continuation2_readback(proposal, plan):
             'old_partial_is_complete_input': False, 'input_acceptance': 'not-accepted', 'build_ready': False}
 
 
-def fetch_continuation2(check_only=False):
+def fetch_continuation2(check_only=False, http_proxy=None, from_47=False):
     started_utc, started = now(), time.monotonic()
     with ContinuationDeadlines(21600) as deadlines:
-        proposal, plan, retained, free = continuation2_preflight()
+        route = continuation_proxy_route(http_proxy)
+        proposal, plan, retained, free = continuation3_preflight() if from_47 else continuation2_preflight()
+        proposal_raw = encoded(proposal) if from_47 else CONTINUATION_PLAN.read_bytes()
+        proposal_sha256 = hashlib.sha256(proposal_raw).hexdigest()
         if check_only:
-            print(json.dumps({'scope': 'offline-preflight-only', 'proposal_sha256': CONTINUATION_SHA256,
+            print(json.dumps({'scope': 'offline-preflight-only', 'proposal_sha256': proposal_sha256,
                               'retained': retained, 'new_requests': 0, 'new_directory_created': False,
-                              'network_authorization': 'pending-owner-confirmation', 'build_ready': False}))
+                              'transport_route': route,
+                              'network_authorization': 'owner-requested' if from_47 else 'pending-owner-confirmation',
+                              'build_ready': False}))
             return 0
         directory = ROOT / proposal['new_directory']
         directory.mkdir(mode=0o700)
         for name, data in (('acquisition-plan.json', PREP.PLAN.read_bytes()),
-                           ('continuation-plan.json', CONTINUATION_PLAN.read_bytes()),
+                           ('continuation-plan.json', proposal_raw),
                            ('fetch-helper.py', Path(__file__).read_bytes())):
             with (directory / name).open('xb') as stream:
                 stream.write(data)
         result = {'format': 'radishaxiom-private-cvc5-c1-range-continuation', 'version': '0.1',
                   'scope': 'raw-download-and-byte-check-only',
-                  'authorization': 'owner-confirmed-range-tail-and-459-full-files-stop-first-error',
+                  'authorization': ('owner-requested-continue-from-47-reuse-user-48-stop-first-error' if from_47 else
+                                    'owner-confirmed-range-tail-and-459-full-files-stop-first-error'),
                   'started_utc': started_utc, 'initial_free_bytes': free, 'retained_preflight': retained,
                   'batch_deadline_seconds': 21600,
+                  'transport_route': route,
                   'proposal': identity(directory / 'continuation-plan.json'),
                   'fetch_method': identity(directory / 'fetch-helper.py'),
                   'download_complete': False, 'readback_complete': False, 'failure': None,
-                  'matched_files': 40, 'matched_bytes': 42872372, 'response_body_bytes': 0, 'observations': [],
+                  'matched_files': retained['complete_files'], 'matched_bytes': retained['complete_bytes'],
+                  'response_body_bytes': 0, 'observations': [],
                   'signature_verified': False, 'input_acceptance': 'not-accepted', 'build_ready': False,
                   'unpacked': False, 'installed': False, 'built': False, 'payload_executed': False}
         journal = Journal(directory / 'events.jsonl', 6 * 1024 * 1024)
         try:
-            continuation2_rows(proposal, journal, result, deadlines)
+            continuation2_rows(proposal, journal, result, deadlines, http_proxy)
             if result['download_complete']:
                 deadlines.arm()
-                result['readback'] = continuation2_readback(proposal, plan)
+                result['readback'] = (continuation3_readback if from_47 else continuation2_readback)(proposal, plan)
                 deadlines.arm()
                 result['readback_complete'] = True
         except (Exception, KeyboardInterrupt) as error:
@@ -674,12 +810,24 @@ if __name__ == '__main__':
                               help='Read-only local preflight; no requests or new output directory')
     continuation.add_argument('--continue-from-41', action='store_true',
                               help='Owner-confirmed tail Range and remaining 459 files; no fallback or retries')
+    continuation.add_argument('--check-continuation-from-47', action='store_true',
+                              help='Read-only preflight for recorded interruption and user-downloaded item 48')
+    continuation.add_argument('--continue-from-47', action='store_true',
+                              help='Owner-requested item 47 tail and items 49-500; reuse item 48')
     parser.add_argument('--confirmed-continuation-sha256')
+    parser.add_argument('--http-proxy', choices=(LOCAL_HTTP_PROXY,),
+                        help='Use the owner-specified local HTTP CONNECT proxy for Range continuations')
     args = parser.parse_args()
     require(args.confirmed_plan_sha256 == APPROVED_PLAN_SHA256, 'explicit-approved-plan-hash-required')
+    require(args.http_proxy is None or args.continue_from_41 or args.check_continuation_from_41
+            or args.continue_from_47 or args.check_continuation_from_47, 'explicit-proxy-requires-range-continuation')
+    if args.continue_from_47 or args.check_continuation_from_47:
+        require(args.http_proxy == LOCAL_HTTP_PROXY, 'continuation-from-47-requires-owner-proxy')
+        raise SystemExit(fetch_continuation2(check_only=args.check_continuation_from_47,
+                                            http_proxy=args.http_proxy, from_47=True))
     if args.continue_from_41:
         require(args.confirmed_continuation_sha256 == CONTINUATION_SHA256, 'explicit-continuation-hash-required')
-        raise SystemExit(fetch_continuation2())
+        raise SystemExit(fetch_continuation2(http_proxy=args.http_proxy))
     if args.check_continuation_from_41:
-        raise SystemExit(fetch_continuation2(check_only=True))
+        raise SystemExit(fetch_continuation2(check_only=True, http_proxy=args.http_proxy))
     raise SystemExit(fetch(args.continue_from_7))

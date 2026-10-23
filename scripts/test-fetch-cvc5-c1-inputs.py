@@ -329,7 +329,7 @@ class RangeFetchTests(unittest.TestCase):
         self.complete = self.prefix + self.tail
         self.source = self.root / 'old-partial.deb'
         self.source.write_bytes(self.prefix)
-        self.partial = {'path': str(self.source.relative_to(ROOT)), 'bytes': len(self.prefix),
+        self.partial = {'index': 41, 'path': str(self.source.relative_to(ROOT)), 'bytes': len(self.prefix),
                         'sha256': hashlib.sha256(self.prefix).hexdigest()}
         self.path = self.root / 'new/inputs/pkg.deb'
         self.url = 'https://snapshot.debian.org/file/' + 'a' * 40 + '/pkg.deb'
@@ -370,6 +370,34 @@ class RangeFetchTests(unittest.TestCase):
         self.assertEqual(self.budget['received'], len(self.tail))
         self.assertEqual(self.observation['sha256'], self.row['complete_sha256'])
         self.assertTrue(response.closed)
+
+    def test_explicit_local_http_proxy_keeps_https_verification(self):
+        opener = Opener(self.response())
+        with patch.object(FETCH.urllib.request, 'proxy_bypass', return_value=False):
+            with patch.object(FETCH.urllib.request, 'build_opener', return_value=opener) as build:
+                FETCH.fetch_continuation_item(self.row, self.partial, self.observation, self.budget,
+                                              self.events.append, self.deadlines, FETCH.LOCAL_HTTP_PROXY)
+        handlers = build.call_args.args
+        proxy = next(h for h in handlers if isinstance(h, FETCH.urllib.request.ProxyHandler))
+        https = next(h for h in handlers if isinstance(h, FETCH.urllib.request.HTTPSHandler))
+        self.assertEqual(proxy.proxies, {'https': 'http://127.0.0.1:10808'})
+        self.assertTrue(https._context.check_hostname)
+        self.assertEqual(https._context.verify_mode, FETCH.ssl.CERT_REQUIRED)
+        self.assertEqual(self.observation['transport_route']['mode'], 'explicit-http-connect')
+        self.assertFalse(self.observation['transport_route']['direct_fallback'])
+
+    def test_proxy_bypass_refused_before_file_or_network(self):
+        with patch.object(FETCH.urllib.request, 'proxy_bypass', return_value=True):
+            with patch.object(FETCH.urllib.request, 'build_opener') as opener:
+                with self.assertRaisesRegex(ValueError, 'snapshot-would-bypass-requested-proxy'):
+                    FETCH.fetch_continuation_item(self.row, self.partial, self.observation, self.budget,
+                                                  self.events.append, self.deadlines, FETCH.LOCAL_HTTP_PROXY)
+                opener.assert_not_called()
+        self.assertFalse(self.path.exists())
+
+    def test_unapproved_proxy_endpoint_rejected(self):
+        with self.assertRaisesRegex(ValueError, 'proxy-outside-owner-specified-endpoint'):
+            FETCH.continuation_proxy_route('http://127.0.0.1:10809')
 
     def test_missing_etag_still_requires_complete_hash(self):
         response = self.response()
@@ -496,7 +524,7 @@ class RangeFetchTests(unittest.TestCase):
 
     def test_range_then_full_file_in_order_without_retained_requests(self):
         full = b'next-full-file\n'
-        second = dict(self.row, index=42, request_url=self.row['planned_url'] + '-next',
+        second = dict(self.row, index=49 if self.row['index'] == 47 else 42, request_url=self.row['planned_url'] + '-next',
                       planned_url=self.row['planned_url'] + '-next', expected_status=200,
                       output_path=str((self.path.parent / 'next.deb').relative_to(ROOT)),
                       request_headers={'Accept-Encoding': 'identity'}, expected_content_range=None,
@@ -526,6 +554,26 @@ class RangeFetchTests(unittest.TestCase):
         self.assertTrue(result['download_complete'])
         self.assertEqual((ROOT / second['output_path']).read_bytes(), full)
         self.assertEqual(self.source.read_bytes(), self.prefix)
+
+    def test_range_47_then_49_skips_retained_48(self):
+        self.row['index'] = self.partial['index'] = 47
+        self.test_range_then_full_file_in_order_without_retained_requests()
+        events = [json.loads(line) for line in (self.root / 'events.jsonl').read_text().splitlines()]
+        self.assertEqual([row['index'] for row in events if row['event'] == 'request-start'], [47, 49])
+
+    def test_range_47_error_stops_before_49(self):
+        self.row['index'] = self.partial['index'] = 47
+        proposal = {'requests_detail': [self.row, dict(self.row, index=49)], 'retained_partial': self.partial,
+                    'transport_policy': {'new_response_body_byte_limit': 1000}}
+        result = {'observations': [], 'matched_files': 47, 'matched_bytes': 0, 'download_complete': False}
+        journal = FETCH.Journal(self.root / 'events.jsonl', 1024 * 1024)
+        self.addCleanup(journal.close)
+        opener = Opener(self.response(b'x' * len(self.tail)))
+        with patch.object(FETCH.urllib.request, 'build_opener', return_value=opener):
+            FETCH.continuation2_rows(proposal, journal, result, self.deadlines)
+        self.assertEqual(opener.calls, 1)
+        self.assertEqual(result['failure']['index'], 47)
+        self.assertEqual(result['matched_files'], 47)
 
     def test_progress_log_for_slow_data(self):
         clock = [0]

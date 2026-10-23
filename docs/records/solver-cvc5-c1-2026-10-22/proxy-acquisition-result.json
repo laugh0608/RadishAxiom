@@ -1,0 +1,308 @@
+{
+  "format": "radishaxiom-private-cvc5-c1-range-continuation",
+  "version": "0.1",
+  "scope": "raw-download-and-byte-check-only",
+  "authorization": "owner-confirmed-range-tail-and-459-full-files-stop-first-error",
+  "started_utc": "2026-10-22T13:50:14.239219+00:00",
+  "initial_free_bytes": 462848000000,
+  "retained_preflight": {
+    "complete_files": 40,
+    "complete_bytes": 42872372,
+    "partial_bytes": 12582912,
+    "old_records_unchanged": true
+  },
+  "batch_deadline_seconds": 21600,
+  "transport_route": {
+    "mode": "explicit-http-connect",
+    "https_proxy": "http://127.0.0.1:10808",
+    "tls_certificate_verification": true,
+    "direct_fallback": false
+  },
+  "proposal": {
+    "path": ".tmp/cvc5-c1-acquisition-2026-10-22/continuation-2/continuation-plan.json",
+    "bytes": 367111,
+    "sha256": "fb4860b00bdcd2a399392ce7d5fb26ca9837d8fa483b6a3714810c837862874c"
+  },
+  "fetch_method": {
+    "path": ".tmp/cvc5-c1-acquisition-2026-10-22/continuation-2/fetch-helper.py",
+    "bytes": 39048,
+    "sha256": "4e0c47e93a76efad41de876f101a9b5a98849fb80dce3c46d7c4025008fae18a"
+  },
+  "download_complete": false,
+  "readback_complete": false,
+  "failure": {
+    "index": 47,
+    "type": "InterruptedError",
+    "reason": "acquisition-interrupted"
+  },
+  "matched_files": 46,
+  "matched_bytes": 62315084,
+  "response_body_bytes": 6938980,
+  "observations": [
+    {
+      "index": 41,
+      "requested_url": "https://snapshot.debian.org/file/acc34ff193ccbc339a89c5f9e446c14f95bbedca/gcc-12_12.2.0-14_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/gcc-12_12.2.0-14_arm64.deb",
+      "output_path": ".tmp/cvc5-c1-acquisition-2026-10-22/continuation-2/inputs/pool/main/g/gcc-12/gcc-12_12.2.0-14_arm64.deb",
+      "range_request": true,
+      "started_utc": "2026-10-22T13:50:18.560037+00:00",
+      "redirects": [],
+      "bytes": 16306652,
+      "network_bytes": 3723740,
+      "status": "obtained-byte-matched",
+      "transport_route": {
+        "mode": "explicit-http-connect",
+        "https_proxy": "http://127.0.0.1:10808",
+        "tls_certificate_verification": true,
+        "direct_fallback": false
+      },
+      "sha256": "08e8df9c180b00fe260b7b3f0a7b89d6b03b2abb703e351d13cb5de539d2452f",
+      "http_status": 206,
+      "final_url": "https://snapshot.debian.org/file/acc34ff193ccbc339a89c5f9e446c14f95bbedca/gcc-12_12.2.0-14_arm64.deb",
+      "response_headers": {
+        "etag": "\"f8d1dc-5f1e0d4e06f80\"",
+        "date": "Thu, 22 Oct 2026 13:50:19 GMT",
+        "content-range": "bytes 12582912-16306651/16306652",
+        "last-modified": "Tue, 10 Jan 2023 03:53:50 GMT",
+        "content-length": "3723740"
+      },
+      "body_started_utc": "2026-10-22T13:50:19.396380+00:00",
+      "finished_utc": "2026-10-22T13:51:24.036513+00:00",
+      "elapsed_seconds": 65.476191
+    },
+    {
+      "index": 42,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/libasan8_12.2.0-14_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/libasan8_12.2.0-14_arm64.deb",
+      "output_path": ".tmp/cvc5-c1-acquisition-2026-10-22/continuation-2/inputs/pool/main/g/gcc-12/libasan8_12.2.0-14_arm64.deb",
+      "range_request": false,
+      "started_utc": "2026-10-22T13:51:24.036610+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/libasan8_12.2.0-14_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/92b7c9dd15f8d6553fea04dd81a3f6334d8d636a/libasan8_12.2.0-14_arm64.deb"
+        }
+      ],
+      "bytes": 2094756,
+      "network_bytes": 2094756,
+      "status": "obtained-byte-matched",
+      "transport_route": {
+        "mode": "explicit-http-connect",
+        "https_proxy": "http://127.0.0.1:10808",
+        "tls_certificate_verification": true,
+        "direct_fallback": false
+      },
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/92b7c9dd15f8d6553fea04dd81a3f6334d8d636a/libasan8_12.2.0-14_arm64.deb",
+      "response_headers": {
+        "etag": "\"1ff6a4-5f1e0b27c1d40\"",
+        "date": "Thu, 22 Oct 2026 13:51:30 GMT",
+        "last-modified": "Tue, 10 Jan 2023 03:44:13 GMT",
+        "content-length": "2094756"
+      },
+      "body_started_utc": "2026-10-22T13:51:30.598724+00:00",
+      "sha256": "7dbf07af4c6a5bb53e31f7e487c1c65f3168959cd4015d66f8d0fec660289a94",
+      "finished_utc": "2026-10-22T13:51:59.952858+00:00",
+      "elapsed_seconds": 35.9161
+    },
+    {
+      "index": 43,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/libatomic1_12.2.0-14_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/libatomic1_12.2.0-14_arm64.deb",
+      "output_path": ".tmp/cvc5-c1-acquisition-2026-10-22/continuation-2/inputs/pool/main/g/gcc-12/libatomic1_12.2.0-14_arm64.deb",
+      "range_request": false,
+      "started_utc": "2026-10-22T13:51:59.952980+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/libatomic1_12.2.0-14_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/353d3c4f03a9c6cb38604d753804699d1cd08469/libatomic1_12.2.0-14_arm64.deb"
+        }
+      ],
+      "bytes": 9536,
+      "network_bytes": 9536,
+      "status": "obtained-byte-matched",
+      "transport_route": {
+        "mode": "explicit-http-connect",
+        "https_proxy": "http://127.0.0.1:10808",
+        "tls_certificate_verification": true,
+        "direct_fallback": false
+      },
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/353d3c4f03a9c6cb38604d753804699d1cd08469/libatomic1_12.2.0-14_arm64.deb",
+      "response_headers": {
+        "etag": "\"2540-5f1e0b4922c00\"",
+        "date": "Thu, 22 Oct 2026 13:52:02 GMT",
+        "last-modified": "Tue, 10 Jan 2023 03:44:48 GMT",
+        "content-length": "9536"
+      },
+      "body_started_utc": "2026-10-22T13:52:02.489966+00:00",
+      "sha256": "25a32fd0fe8b083fea31d2819d50e7254a0b9e529477c0740bbb44cbe297ec70",
+      "finished_utc": "2026-10-22T13:52:02.490558+00:00",
+      "elapsed_seconds": 2.537569
+    },
+    {
+      "index": 44,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/libcc1-0_12.2.0-14_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/libcc1-0_12.2.0-14_arm64.deb",
+      "output_path": ".tmp/cvc5-c1-acquisition-2026-10-22/continuation-2/inputs/pool/main/g/gcc-12/libcc1-0_12.2.0-14_arm64.deb",
+      "range_request": false,
+      "started_utc": "2026-10-22T13:52:02.490633+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/libcc1-0_12.2.0-14_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/12820b8726a3e29ac005ffa11f2bbb99a8800451/libcc1-0_12.2.0-14_arm64.deb"
+        }
+      ],
+      "bytes": 37748,
+      "network_bytes": 37748,
+      "status": "obtained-byte-matched",
+      "transport_route": {
+        "mode": "explicit-http-connect",
+        "https_proxy": "http://127.0.0.1:10808",
+        "tls_certificate_verification": true,
+        "direct_fallback": false
+      },
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/12820b8726a3e29ac005ffa11f2bbb99a8800451/libcc1-0_12.2.0-14_arm64.deb",
+      "response_headers": {
+        "etag": "\"9374-5f1e0b6a83ac0\"",
+        "date": "Thu, 22 Oct 2026 13:52:05 GMT",
+        "last-modified": "Tue, 10 Jan 2023 03:45:23 GMT",
+        "content-length": "37748"
+      },
+      "body_started_utc": "2026-10-22T13:52:05.592910+00:00",
+      "sha256": "e6d265b7e5a4860b708a3606d84c7e61d27a520e49797c982d84514c5abbac88",
+      "finished_utc": "2026-10-22T13:52:06.052082+00:00",
+      "elapsed_seconds": 3.561441
+    },
+    {
+      "index": 45,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/libgcc-12-dev_12.2.0-14_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/libgcc-12-dev_12.2.0-14_arm64.deb",
+      "output_path": ".tmp/cvc5-c1-acquisition-2026-10-22/continuation-2/inputs/pool/main/g/gcc-12/libgcc-12-dev_12.2.0-14_arm64.deb",
+      "range_request": false,
+      "started_utc": "2026-10-22T13:52:06.052181+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/libgcc-12-dev_12.2.0-14_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/16d0487ea83a762171d0cf717ac54201b60d8234/libgcc-12-dev_12.2.0-14_arm64.deb"
+        }
+      ],
+      "bytes": 959184,
+      "network_bytes": 959184,
+      "status": "obtained-byte-matched",
+      "transport_route": {
+        "mode": "explicit-http-connect",
+        "https_proxy": "http://127.0.0.1:10808",
+        "tls_certificate_verification": true,
+        "direct_fallback": false
+      },
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/16d0487ea83a762171d0cf717ac54201b60d8234/libgcc-12-dev_12.2.0-14_arm64.deb",
+      "response_headers": {
+        "etag": "\"ea2d0-5f1e0b89082c0\"",
+        "date": "Thu, 22 Oct 2026 13:52:08 GMT",
+        "last-modified": "Tue, 10 Jan 2023 03:45:55 GMT",
+        "content-length": "959184"
+      },
+      "body_started_utc": "2026-10-22T13:52:08.182602+00:00",
+      "sha256": "fb74956b50ec86fd82a7a20aede3047e728155da019c34ff4fcbd3e3b79bbda8",
+      "finished_utc": "2026-10-22T13:52:29.890756+00:00",
+      "elapsed_seconds": 23.838478
+    },
+    {
+      "index": 46,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/libgcc-s1_12.2.0-14_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/libgcc-s1_12.2.0-14_arm64.deb",
+      "output_path": ".tmp/cvc5-c1-acquisition-2026-10-22/continuation-2/inputs/pool/main/g/gcc-12/libgcc-s1_12.2.0-14_arm64.deb",
+      "range_request": false,
+      "started_utc": "2026-10-22T13:52:29.890856+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/libgcc-s1_12.2.0-14_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/144808acc6820e20f580a94419256f83f3991135/libgcc-s1_12.2.0-14_arm64.deb"
+        }
+      ],
+      "bytes": 34836,
+      "network_bytes": 34836,
+      "status": "obtained-byte-matched",
+      "transport_route": {
+        "mode": "explicit-http-connect",
+        "https_proxy": "http://127.0.0.1:10808",
+        "tls_certificate_verification": true,
+        "direct_fallback": false
+      },
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/144808acc6820e20f580a94419256f83f3991135/libgcc-s1_12.2.0-14_arm64.deb",
+      "response_headers": {
+        "etag": "\"8814-5f1e0bab5d3c0\"",
+        "date": "Thu, 22 Oct 2026 13:52:32 GMT",
+        "last-modified": "Tue, 10 Jan 2023 03:46:31 GMT",
+        "content-length": "34836"
+      },
+      "body_started_utc": "2026-10-22T13:52:33.170217+00:00",
+      "sha256": "6fce2268d8f3152a4e84634f5a24133d3c62903b2f9b11b9c59235cbbc1b23a8",
+      "finished_utc": "2026-10-22T13:52:33.473955+00:00",
+      "elapsed_seconds": 3.583091
+    },
+    {
+      "index": 47,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/libgomp1_12.2.0-14_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/libgomp1_12.2.0-14_arm64.deb",
+      "output_path": ".tmp/cvc5-c1-acquisition-2026-10-22/continuation-2/inputs/pool/main/g/gcc-12/libgomp1_12.2.0-14_arm64.deb",
+      "range_request": false,
+      "started_utc": "2026-10-22T13:52:33.474051+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/libgomp1_12.2.0-14_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/ff7da38e802662da77e08677e7ce6e5651626214/libgomp1_12.2.0-14_arm64.deb"
+        }
+      ],
+      "bytes": 79180,
+      "network_bytes": 79180,
+      "status": "failed",
+      "transport_route": {
+        "mode": "explicit-http-connect",
+        "https_proxy": "http://127.0.0.1:10808",
+        "tls_certificate_verification": true,
+        "direct_fallback": false
+      },
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/ff7da38e802662da77e08677e7ce6e5651626214/libgomp1_12.2.0-14_arm64.deb",
+      "response_headers": {
+        "etag": "\"19638-5f1e07a37d140\"",
+        "date": "Thu, 22 Oct 2026 13:52:36 GMT",
+        "last-modified": "Tue, 10 Jan 2023 03:28:29 GMT",
+        "content-length": "103992"
+      },
+      "body_started_utc": "2026-10-22T13:52:36.240246+00:00",
+      "sha256": "5a8a1f574bdb1bb1ca8de6fe2c30e97c640fa10f7dd9416e2ded299c37b5d233",
+      "finished_utc": "2026-10-22T13:52:38.085778+00:00",
+      "error": {
+        "type": "InterruptedError",
+        "reason": "acquisition-interrupted"
+      },
+      "elapsed_seconds": 4.611717
+    }
+  ],
+  "signature_verified": false,
+  "input_acceptance": "not-accepted",
+  "build_ready": false,
+  "unpacked": false,
+  "installed": false,
+  "built": false,
+  "payload_executed": false,
+  "finished_utc": "2026-10-22T13:52:38.085918+00:00",
+  "elapsed_seconds": 143.845958,
+  "journal": {
+    "path": ".tmp/cvc5-c1-acquisition-2026-10-22/continuation-2/events.jsonl",
+    "bytes": 20152,
+    "sha256": "827b8243c84c8f7ef12a96a0c31dd585cedabe60bcb317d059e8303c0564483b"
+  }
+}
