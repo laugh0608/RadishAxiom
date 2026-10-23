@@ -9,7 +9,7 @@
 
 | 项目 | 已有材料能确定什么 | 关闭缺口所需的具体出口 |
 | --- | --- | --- |
-| LibPoly 许可冲突 | 根许可与 94 个源码 / 头文件的 LGPL-3+ 声明、两份 memstream MIT 声明均可定位；另 38 个文件没有该文件内 LGPL 声明，仍须判断根许可覆盖；固定 Debian `Files: *` 的 GPL-3+ / Lesser 冲突未消失 | 固定版本 Poly / Polyxx 与 memstream 的覆盖及来源需要权威澄清或明确审阅依据；不能因不构建 debian 目录而排除声明、默认是笔误或改 GPL 路线。当前 `not-accepted` |
+| LibPoly 许可冲突 | [上游历史核对](../records/2026-10-23-libpoly-license-history.md)确认 Debian 冲突在 2017 年首次加入时已存在；Polyxx 作为同项目封装加入，属于根许可覆盖的支持依据；新 memstream 有 Mesa / MIT 声明及引入讨论，旧 memstream 来源仍未明确 | 需固定版本整体许可及 Poly / Polyxx 覆盖的权威解释，并补旧 `open_memstream.c` 来源授权；MIT 通知须保留，Mesa 原文件独立比对尚未完成。不能认定已确认笔误或改 GPL 路线。当前 `not-accepted` |
 | 快照签名与信任 | 初次 GnuPG exit 2 暴露旧钥匙及历史角色缺口；随后从既有 removed-keys 取得精确 buster 块，经项目所有者明确接受三历史角色及有限身份 / 时效依据后，原文三签名、钥匙认证、Release / 索引绑定与五负例全部通过 | 本次本地诊断范围已收口；保留公钥材料时点、HTTPS / 留存包身份与全渠道最新撤销未覆盖的显式信任限制，不外推运行资格 |
 | SDK 内容与 copyright | 172 包 control 与元数据一致，全部 copyright 路径解析到文件；101 `.dsc` 与源码集合 / 摘要匹配；工具、CRT、静态库、`.pc` 已有实际路径与字节身份 | 库存 / 声明来源已补齐；整体输入接受仍受 LibPoly 许可约束。真实搜索行为、patch 生效、实际链接对象及完整静态闭包留到 C2–C4；不以静态摘要升级为 ABI、重建或运行接受 |
 

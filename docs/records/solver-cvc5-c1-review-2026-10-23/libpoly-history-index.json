@@ -1,0 +1,387 @@
+{
+  "record_kind": "private-source-review-index",
+  "observed_at_utc": "2026-10-23T12:44:13.325546+00:00",
+  "fixed_commit": "3d5e6fbd98639cb0941b029e23ca17c0e3c4a80a",
+  "observed_master": "8779171e061fdbda9708d8839e3ca8d0a250df4f",
+  "raw_snapshots_ignored_not_distributed": true,
+  "text_checks": {
+    "LICENCE": {
+      "fixed_current_and_retained_equal": true,
+      "bytes": 7651,
+      "sha256": "da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768"
+    },
+    "debian/copyright": {
+      "fixed_current_and_retained_equal": true,
+      "bytes": 912,
+      "sha256": "cd3eb8b96019760e240235847501addff027f870ffe57687c4128ec78a155664"
+    }
+  },
+  "snapshots": [
+    {
+      "key": "copyright-add",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/copyright-add.json",
+      "bytes": 87758,
+      "sha256": "f79369f3fa37610087613d434111b2ba0a62deaef94703b996438601687e2a6b",
+      "source_url": "https://api.github.com/repos/SRI-CSL/libpoly/commits/9d25ed278c2faf4772f581ed6593448b4550ba2b",
+      "retrieval_error": null
+    },
+    {
+      "key": "copyright-history",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/copyright-history.json",
+      "bytes": 14643,
+      "sha256": "6c6a904d4464b537d99eae19e6d54174dbe8c657d6ae4d16c1959b7455b27d34",
+      "source_url": "https://api.github.com/repos/SRI-CSL/libpoly/commits?path=debian%2Fcopyright&per_page=100",
+      "retrieval_error": null
+    },
+    {
+      "key": "copyright-update",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/copyright-update.json",
+      "bytes": 13644,
+      "sha256": "f302ea8db5762eecdb829ab17c30cddffe5268a5befe2621dbf24ac3e73b727a",
+      "source_url": "https://api.github.com/repos/SRI-CSL/libpoly/commits/41dde08ff67a5db23d62f8ce5c1cafc5d0715f81",
+      "retrieval_error": null
+    },
+    {
+      "key": "fixed-copyright",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/fixed-copyright.json",
+      "bytes": 2361,
+      "sha256": "e72751919c9523cc94ee6af2f229fb6aa3cb89d42c2a180621cebee9c0748c64",
+      "source_url": "https://github.com/SRI-CSL/libpoly/blob/3d5e6fbd98639cb0941b029e23ca17c0e3c4a80a/debian/copyright",
+      "retrieval_error": null
+    },
+    {
+      "key": "fixed-license",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/fixed-license.json",
+      "bytes": 16126,
+      "sha256": "df7889438e2e9c43018d6d47c483a11716c6e04116e168e179e2ab79b4fd81da",
+      "source_url": "https://github.com/SRI-CSL/libpoly/blob/3d5e6fbd98639cb0941b029e23ca17c0e3c4a80a/LICENCE",
+      "retrieval_error": null
+    },
+    {
+      "key": "issue12-comments",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/issue12-comments.json",
+      "bytes": 7703,
+      "sha256": "087ab0bbaeff0e7fddd73be590e7767b0d70b9577bc57b00d8c381a57023cd0e",
+      "source_url": "https://api.github.com/repos/SRI-CSL/libpoly/issues/12/comments?per_page=100",
+      "retrieval_error": null
+    },
+    {
+      "key": "issue12",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/issue12.json",
+      "bytes": 12555,
+      "sha256": "83827b4b9b62570745a3177a286a7e338c483cf7e56da2ce694617e44b3842fd",
+      "source_url": "https://api.github.com/repos/SRI-CSL/libpoly/issues/12",
+      "retrieval_error": null
+    },
+    {
+      "key": "issue65-comments",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/issue65-comments.json",
+      "bytes": 38007,
+      "sha256": "c1acd329aeb051ab2ed973f3a19d935d94622ce785f66bbaaf9c9762708dfc43",
+      "source_url": "https://api.github.com/repos/SRI-CSL/libpoly/issues/65/comments?per_page=100",
+      "retrieval_error": null
+    },
+    {
+      "key": "licence-search",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/licence-search.json",
+      "bytes": 445,
+      "sha256": "64b5cf4dcff7ac63e511c9196af457a95baf617e6ef4fdd8d88a0d96cda88b7e",
+      "source_url": "https://api.github.com/search/issues?q=repo%3ASRI-CSL%2Flibpoly%20licence&per_page=100",
+      "retrieval_error": "GitHub API error 422: {\"message\":\"Query must include 'is:issue' or 'is:pull-request'\",\"documentation_url\":\"https://docs.github.com/rest/search/search#search-issues-and-pull-requests\",\"status\":\"422\"}"
+    },
+    {
+      "key": "license-add",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/license-add.json",
+      "bytes": 360272,
+      "sha256": "7523501df6fd98aa1fa5b2483235a838099dc4daa10fd044010139975251f51b",
+      "source_url": "https://api.github.com/repos/SRI-CSL/libpoly/commits/1e570302ff1fb53b6ea2d5bc09a286fb19947730",
+      "retrieval_error": null
+    },
+    {
+      "key": "license-history",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/license-history.json",
+      "bytes": 7370,
+      "sha256": "34b780bde4d9111449f7a316460bc9db3137f8079fc7b44273aa6a4f470be970",
+      "source_url": "https://api.github.com/repos/SRI-CSL/libpoly/commits?path=LICENCE&per_page=100",
+      "retrieval_error": null
+    },
+    {
+      "key": "license-search",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/license-search.json",
+      "bytes": 445,
+      "sha256": "64b5cf4dcff7ac63e511c9196af457a95baf617e6ef4fdd8d88a0d96cda88b7e",
+      "source_url": "https://api.github.com/search/issues?q=repo%3ASRI-CSL%2Flibpoly%20license&per_page=100",
+      "retrieval_error": "GitHub API error 422: {\"message\":\"Query must include 'is:issue' or 'is:pull-request'\",\"documentation_url\":\"https://docs.github.com/rest/search/search#search-issues-and-pull-requests\",\"status\":\"422\"}"
+    },
+    {
+      "key": "open-add",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/open-add.json",
+      "bytes": 28734,
+      "sha256": "dbec7d8b67f77fb40379e8586d4c24872d940cbfa3ab67a109e83e95fd5dcb53",
+      "source_url": "https://api.github.com/repos/SRI-CSL/libpoly/commits/53d544c110acfbf6e755d3810f021aa16d020c37",
+      "retrieval_error": null
+    },
+    {
+      "key": "open-comment",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/open-comment.json",
+      "bytes": 9500,
+      "sha256": "66521b638d95f3fa24cf0e4c05136f081d3200d2b5c2d3eb26ceb1aff66202ea",
+      "source_url": "https://api.github.com/repos/SRI-CSL/libpoly/commits/bf1e91cb9123538a937a5da4cc834838a5b898cc",
+      "retrieval_error": null
+    },
+    {
+      "key": "open-fix",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/open-fix.json",
+      "bytes": 10174,
+      "sha256": "961ce0839f26570ab5a11f9401a7f3703e187a126bfcaa40917e69fffbb84dc3",
+      "source_url": "https://api.github.com/repos/SRI-CSL/libpoly/commits/168226ab91f2e10c4eb64c52e331e87d11acb47b",
+      "retrieval_error": null
+    },
+    {
+      "key": "open-memstream-history",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/open-memstream-history.json",
+      "bytes": 17853,
+      "sha256": "db4a5667bda68e77c66bfc3167ea4f7c7f87a79877ef7c714ea9301b26d0c5ef",
+      "source_url": "https://api.github.com/repos/SRI-CSL/libpoly/commits?path=src%2Futils%2Fopen_memstream.c&per_page=100",
+      "retrieval_error": null
+    },
+    {
+      "key": "polyxx-add",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/polyxx-add.json",
+      "bytes": 21348,
+      "sha256": "7c379df090f1cdb35e2db0718b1227c57c6a644082c6e91125dca7d7059528df",
+      "source_url": "https://api.github.com/repos/SRI-CSL/libpoly/commits/fabc345b836bea35883602cecf2aadac103412aa",
+      "retrieval_error": null
+    },
+    {
+      "key": "polyxx-header-add",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/polyxx-header-add.json",
+      "bytes": 19698,
+      "sha256": "24958bb8406a7b0076a74d2f0e72f06d008d290e5900f078c99489621c4c1c46",
+      "source_url": "https://api.github.com/repos/SRI-CSL/libpoly/commits/79474f7b4218938b30382917eaefbfbf3c8188bf",
+      "retrieval_error": null
+    },
+    {
+      "key": "polyxx-header-history",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/polyxx-header-history.json",
+      "bytes": 30554,
+      "sha256": "e0f0e1a3ac72cf38dbf566bf55aa7cde705db0a2e321faa73bb868438c86826b",
+      "source_url": "https://api.github.com/repos/SRI-CSL/libpoly/commits?path=include%2Fpolyxx%2Fcontext.h&sha=3d5e6fbd98639cb0941b029e23ca17c0e3c4a80a&per_page=100",
+      "retrieval_error": null
+    },
+    {
+      "key": "polyxx-history",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/polyxx-history.json",
+      "bytes": 19761,
+      "sha256": "1a9a4661b47ab13258ecf56595767b08d7dca4b6f07bf4949a59742950d21fda",
+      "source_url": "https://api.github.com/repos/SRI-CSL/libpoly/commits?path=src%2Fpolyxx%2Fcontext.cpp&per_page=100",
+      "retrieval_error": null
+    },
+    {
+      "key": "polyxx-prs",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/polyxx-prs.json",
+      "bytes": 33371,
+      "sha256": "c6f242cb57d32ef329c8bc30e2902916a6ed2662d89a1390196f5b900d0fc8cb",
+      "source_url": "https://api.github.com/repos/SRI-CSL/libpoly/commits/fabc345b836bea35883602cecf2aadac103412aa/pulls",
+      "retrieval_error": null
+    },
+    {
+      "key": "pr25-comments",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/pr25-comments.json",
+      "bytes": 25817,
+      "sha256": "4378b2b949c396d4b0f9fcb56b71b2e68308470442e6fdb964b7718dd947597b",
+      "source_url": "https://api.github.com/repos/SRI-CSL/libpoly/issues/25/comments?per_page=100",
+      "retrieval_error": null
+    },
+    {
+      "key": "pr25-inline",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/pr25-inline.json",
+      "bytes": 33344,
+      "sha256": "5562b26fbb42494fdec2cd93b8f9f7a367b6815d4b203a1824e61111de23e6dc",
+      "source_url": "https://api.github.com/repos/SRI-CSL/libpoly/pulls/25/comments?per_page=100",
+      "retrieval_error": null
+    },
+    {
+      "key": "pr25-reviews",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/pr25-reviews.json",
+      "bytes": 20428,
+      "sha256": "c648589890641a3b09f444d0f2b446d1b84d8972bd3023d3672cbdccbd1614a1",
+      "source_url": "https://api.github.com/repos/SRI-CSL/libpoly/pulls/25/reviews?per_page=100",
+      "retrieval_error": null
+    },
+    {
+      "key": "pr66-comments",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/pr66-comments.json",
+      "bytes": 3889,
+      "sha256": "ecd085603fff203435e43ed294043d3a2053b930ffaf220b632f25d01292ec5e",
+      "source_url": "https://api.github.com/repos/SRI-CSL/libpoly/issues/66/comments?per_page=100",
+      "retrieval_error": null
+    },
+    {
+      "key": "pr66",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/pr66.json",
+      "bytes": 25650,
+      "sha256": "4df924a394d4f9cd55a2b1166348505e1de43705b56b17c19fc98f147eda89c1",
+      "source_url": "https://api.github.com/repos/SRI-CSL/libpoly/pulls/66",
+      "retrieval_error": null
+    },
+    {
+      "key": "search-GPL",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/search-GPL.json",
+      "bytes": 14,
+      "sha256": "32a45b2a0dfc651ccd5a8355d6f4cb56b8a6b1bc10cbd8281506e37622317d19",
+      "source_url": null,
+      "retrieval_error": null,
+      "retrieval_tool": "GitHub search_issues",
+      "retrieval_arguments": {
+        "query": "GPL",
+        "repository_full_name": "SRI-CSL/libpoly",
+        "topn": 30
+      }
+    },
+    {
+      "key": "search-LGPL",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/search-LGPL.json",
+      "bytes": 14,
+      "sha256": "32a45b2a0dfc651ccd5a8355d6f4cb56b8a6b1bc10cbd8281506e37622317d19",
+      "source_url": null,
+      "retrieval_error": null,
+      "retrieval_tool": "GitHub search_issues",
+      "retrieval_arguments": {
+        "query": "LGPL",
+        "repository_full_name": "SRI-CSL/libpoly",
+        "topn": 30
+      }
+    },
+    {
+      "key": "search-licence",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/search-licence.json",
+      "bytes": 14,
+      "sha256": "32a45b2a0dfc651ccd5a8355d6f4cb56b8a6b1bc10cbd8281506e37622317d19",
+      "source_url": null,
+      "retrieval_error": null,
+      "retrieval_tool": "GitHub search_issues",
+      "retrieval_arguments": {
+        "query": "licence",
+        "repository_full_name": "SRI-CSL/libpoly",
+        "topn": 30
+      }
+    },
+    {
+      "key": "search-license",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/search-license.json",
+      "bytes": 1399,
+      "sha256": "1011e1dc8d2000c8da0a5b8d2d58c5821aa9b8994c5396f89118d8e261a24e88",
+      "source_url": null,
+      "retrieval_error": null,
+      "retrieval_tool": "GitHub search_issues",
+      "retrieval_arguments": {
+        "query": "license",
+        "repository_full_name": "SRI-CSL/libpoly",
+        "topn": 30
+      }
+    },
+    {
+      "key": "tip-copyright",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/tip-copyright.json",
+      "bytes": 2361,
+      "sha256": "58a5804afedc4b4f455c4e98bd0935d614a97ced3ba86902afbc8d98156b0603",
+      "source_url": "https://github.com/SRI-CSL/libpoly/blob/8779171e061fdbda9708d8839e3ca8d0a250df4f/debian/copyright",
+      "retrieval_error": null
+    },
+    {
+      "key": "tip-license",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/tip-license.json",
+      "bytes": 16126,
+      "sha256": "e85e82c4b73ef418f8d7b3749becac595fa4993283e804000bf0fb8a0ffe7cac",
+      "source_url": "https://github.com/SRI-CSL/libpoly/blob/8779171e061fdbda9708d8839e3ca8d0a250df4f/LICENCE",
+      "retrieval_error": null
+    },
+    {
+      "key": "tip",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/tip.json",
+      "bytes": 29034,
+      "sha256": "632bba74597e3c7186d46f557eb427a1c77c742e9a72eaee49ce8f834dafe4fd",
+      "source_url": "https://api.github.com/repos/SRI-CSL/libpoly/commits/master",
+      "retrieval_error": null
+    },
+    {
+      "key": "u-memstream-add",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/u-memstream-add.json",
+      "bytes": 83368,
+      "sha256": "eddd2bbe39f858971d22bf8d42f2fea4c288323495e058722adca82b71f3c75d",
+      "source_url": "https://api.github.com/repos/SRI-CSL/libpoly/commits/59ee683e544b573101bcdac213cd7a494d67b86a",
+      "retrieval_error": null
+    },
+    {
+      "key": "u-memstream-history",
+      "path": "artifacts/cvc5-libpoly-license-history-2026-10-23/u-memstream-history.json",
+      "bytes": 8522,
+      "sha256": "7f260fc76200915334b9014efbb6b8e7c0e82501726c3b65632fee37f9e5c3bf",
+      "source_url": "https://api.github.com/repos/SRI-CSL/libpoly/commits?path=src%2Futils%2Fu_memstream.c&per_page=100",
+      "retrieval_error": null
+    }
+  ],
+  "retained_local_files": [
+    {
+      "path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/libpoly/libpoly-0.2.1/LICENCE",
+      "bytes": 7651,
+      "sha256": "da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768"
+    },
+    {
+      "path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/libpoly/libpoly-0.2.1/debian/copyright",
+      "bytes": 912,
+      "sha256": "cd3eb8b96019760e240235847501addff027f870ffe57687c4128ec78a155664"
+    },
+    {
+      "path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/libpoly/libpoly-0.2.1/src/CMakeLists.txt",
+      "bytes": 4434,
+      "sha256": "5137b13529c891e8da7cc60dd4480692a257c3cff017ba361cc6de802b3a57c2"
+    },
+    {
+      "path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/libpoly/libpoly-0.2.1/src/utils/open_memstream.c",
+      "bytes": 6494,
+      "sha256": "d9b3169b2f785da1b8e361cb965aaca9a68fa15ce553030fb07c4c3a1bac383a"
+    },
+    {
+      "path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/libpoly/libpoly-0.2.1/src/utils/open_memstream.h",
+      "bytes": 915,
+      "sha256": "db8c55e1f9ddf271a90a08f069325242cc13996943a63a509d8251c0d4f27149"
+    },
+    {
+      "path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/libpoly/libpoly-0.2.1/src/utils/u_memstream.c",
+      "bytes": 2858,
+      "sha256": "e2d184e5e74a90caa3ee5ca0adeccade380b075ea26dc94129af330697d211fe"
+    },
+    {
+      "path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/libpoly/libpoly-0.2.1/src/utils/u_memstream.h",
+      "bytes": 2419,
+      "sha256": "f1e5d7baeb5fcc9524b1c71ded197a5d9e63b7e270a1c608b84591caaadd1a7d"
+    },
+    {
+      "path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/libpoly/libpoly-0.2.1/include/polyxx/context.h",
+      "bytes": 1447,
+      "sha256": "45a43d23f29d6c0a3861b8c260a37e50537384cfd26695bbfa7ff769ee09956f"
+    },
+    {
+      "path": ".tmp/cvc5-c0-acquisition-2026-10-17/sources/libpoly/libpoly-0.2.1/src/polyxx/context.cpp",
+      "bytes": 1923,
+      "sha256": "f0b38d3267216abadc28427126c5b4b0fb971df801a876a582cc70b5ba0d518c"
+    }
+  ],
+  "unavailable_sources": [
+    {
+      "url": "https://gitlab.freedesktop.org/mesa/mesa/-/blob/14f9f98dcb4b6034c331120acf405e9a3c64edc6/src/util/memstream.c",
+      "result": "web reader inaccessible; raw .c and .h also inaccessible; no independent Mesa byte comparison"
+    }
+  ],
+  "acceptance": "not-accepted",
+  "build_ready": false,
+  "verification": {
+    "snapshot_hashes_rechecked": 35,
+    "retained_file_hashes_rechecked": 9,
+    "repository_check": "passed (2855 files checked)",
+    "git_diff_check": "passed",
+    "rust_or_payload_tests_run": false
+  }
+}

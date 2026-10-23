@@ -108,6 +108,8 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 | 2026-10-22 C1 Range 准备 | [受限尾部获取、分阶段限时与多目录核对的离线实施](records/2026-10-22-cvc5-c1-range-preparation.md) |
 | 2026-10-22 C1 代理获取 | [Range 成功、速度仍慢后主动停止与四十六项复核](records/2026-10-22-cvc5-c1-proxy-acquisition.md) |
 | 2026-10-23 C1 第三次接续 | [第 47 项断点、用户第 48 项复用及后续获取](records/2026-10-23-cvc5-c1-continuation.md) |
+| 2026-10-23 C1 输入审阅 | [留存、SDK 内容、历史三签名与许可缺口](records/2026-10-23-cvc5-c1-input-review.md) |
+| 2026-10-23 LibPoly 许可历史 | [声明冲突引入、Polyxx / memstream 来源与待补依据](records/2026-10-23-libpoly-license-history.md) |
 | Rust Linux 与静态目标输入 | [签名 / 归档盘点、安装候选与 kernel 许可审阅](records/rust-linux-input-review/README.md) |
 | 2026-10-17 日终回顾 | [紧凑查询、监督组件与 C0 全天提交、代码 / 文档复核及接续事项](records/2026-10-17-closeout.md) |
 | 2026-10-08 日终回顾 | [P3-B–F 全天提交、代码与文档核对及明日交接](records/2026-10-08-closeout.md) |
