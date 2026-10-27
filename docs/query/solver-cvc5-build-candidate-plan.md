@@ -2,6 +2,8 @@
 
 更新日期：2026-10-23。状态：`planned / blocked-on-inputs / not-accepted`。[ADR 0030 D3](../adr/0030-solver-bootstrap-ffi-and-build-provenance.md#d3e0-公开来源不足时的下一候选)已接受准备此方案；本文的工具、包、patch、构建参数与新产物尚未接受。用途：给实施者及验收者提供一次有界受控构建的输入闭合、执行顺序与停止线。本文不提供可直接运行的构建脚本，不授权下载、安装、编译、镜像或载荷执行，也不接受对外分发。C1 缺口与 C2 离线入口的当前接续见[输入准备专题](solver-cvc5-input-preparation.md)。
 
+2026-10-27 接续：[ADR 0031 D1–D3（Accepted）](../adr/0031-local-cvc5-build-provenance-boundary.md)仅对本地 cvc5 新构建候选的来源要求作限定替代：完整逐次读取观察改由受控输入集合、阶段来源、稳定链接输入与独立对账验收；不重解释原发布 CLI 的缺口，不更改旧配方 / 入口，显式版本迁移前继续拒绝。C1、实际构建环境资格、E0 / E4 / E5 及外部动作授权保持独立；本次只核定有限实施计划，不组装、构建或运行 solver。
+
 ## 候选路线与身份
 
 候选保持 cvc5 `1.3.4`、源码提交 `f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341`，构建 Linux AArch64 LE、glibc / GCC C++ runtime、Production、静态 CLI；保留 Editline、GMP、CaDiCaL、SymFPU 与 LibPoly 功能面。glibc 路线用于减少与原发布 CLI 的运行库差异，不把 bootstrap 的 musl 候选迁给 solver。新候选的固定快照元数据已选择 GCC `12.2.0-14` / glibc `2.36-9`，详见[C0 输入选择](solver-cvc5-c0-input-selection.md)；包原字节与内容库存已完成核对，工具接受尚未完成。这些版本不能倒填为原 CLI 的构建输入。
