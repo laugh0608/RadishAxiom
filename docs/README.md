@@ -75,7 +75,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 
 - [C1 输入接受与 C2 离线准备](query/solver-cvc5-input-preparation.md)：原包、内容库存与限定历史签名已核对，LibPoly 许可仍未接受；[SDK 组装与构建监督接线设计](query/solver-cvc5-execution-preparation.md)记录布局 / 事件检查和真实适配器缺口，未安装、组装或构建 SDK / solver。
 
-- [ADR 0031（Accepted）：本地 cvc5 构建来源保证边界](adr/0031-local-cvc5-build-provenance-boundary.md)：选项二的限定替代已接受，保留 / 减少的保证、三类材料、信任、验收和停止条件明确；[阶段拆分与有限实施计划](query/solver-local-cvc5-phase-plan.md)已完成静态核定，下一批建议仅实施离线新版本、截获与拒绝验证；旧入口及实际执行门禁仍有效。
+- [ADR 0031（Accepted）：本地 cvc5 构建来源保证边界](adr/0031-local-cvc5-build-provenance-boundary.md)：选项二的限定替代已接受，保留 / 减少的保证、三类材料、信任、验收和停止条件明确；[阶段拆分与有限实施计划](query/solver-local-cvc5-phase-plan.md)已完成静态核定，[私有 v0.2 离线切片](query/solver-local-cvc5-offline-v0.2.md)已按授权完成，实际检查见[本批记录](records/2026-10-27-cvc5-offline-phases.md)；旧入口及实际执行门禁仍有效。
 
 ## 机器契约
 

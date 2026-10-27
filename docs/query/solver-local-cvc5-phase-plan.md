@@ -1,6 +1,6 @@
 # 本地 cvc5：阶段拆分核定与有限实施计划
 
-日期：2026-10-27。状态：**静态可行性审阅完成，有限实施建议待授权；没有运行组装、配置、编译、链接或 solver**。用途：供实施者与复核者核定固定配方的拆分、交付与成本。保证边界以 [ADR 0031](../adr/0031-local-cvc5-build-provenance-boundary.md)为准，验收以 [A1–A10](solver-local-cvc5-build-provenance-review.md#必需验收矩阵)为准；本文不是新的接受规范、执行许可或来源账本。
+日期：2026-10-27。状态：**静态核定后，项目所有者已授权下一批离线实施；完成情况见本批记录，没有运行组装、配置、编译、链接或 solver**。用途：供实施者与复核者核定固定配方的拆分、交付与成本。保证边界以 [ADR 0031](../adr/0031-local-cvc5-build-provenance-boundary.md)为准，验收以 [A1–A10](solver-local-cvc5-build-provenance-review.md#必需验收矩阵)为准；本文不是新的接受规范、执行许可或来源账本。
 
 ## 核定结论与依据
 
@@ -47,9 +47,9 @@ SDK 组装及其接受是阶段之前的独立门禁。表中各阶段只描述�
 
 不选改写 `build.make` 或新造编译目标，以免维护生成器内部格式及属性复制。若固定版本的 launcher 行为不符，保留失败并重评，不自动切换路径。
 
-## 下一批有限实施建议
+## 已授权的有限实施切片
 
-**建议只实施一个离线切片：私有 v0.2 阶段规则、截获小工具与独立拒绝验证。** 不包含 SDK 组装、真实 CMake / Make / compiler / linker 调用、Docker / VM 适配、探针或 solver。现有材料足以开始此离线切片，LibPoly 未闭合仍阻断实际路径。
+项目所有者已授权并完成本节离线切片：[私有 v0.2 规则](solver-local-cvc5-offline-v0.2.md)、截获小工具与独立拒绝验证，实际结果见[本批记录](../records/2026-10-27-cvc5-offline-phases.md)。以下保留交付边界。 不包含 SDK 组装、真实 CMake / Make / compiler / linker 调用、Docker / VM 适配、探针或 solver。现有材料足以开始此离线切片，LibPoly 未闭合仍阻断实际路径。
 
 | 工作 | 拟修改位置与边界 | 可审阅出口 |
 | --- | --- | --- |

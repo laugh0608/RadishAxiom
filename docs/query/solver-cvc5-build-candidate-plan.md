@@ -2,7 +2,7 @@
 
 更新日期：2026-10-23。状态：`planned / blocked-on-inputs / not-accepted`。[ADR 0030 D3](../adr/0030-solver-bootstrap-ffi-and-build-provenance.md#d3e0-公开来源不足时的下一候选)已接受准备此方案；本文的工具、包、patch、构建参数与新产物尚未接受。用途：给实施者及验收者提供一次有界受控构建的输入闭合、执行顺序与停止线。本文不提供可直接运行的构建脚本，不授权下载、安装、编译、镜像或载荷执行，也不接受对外分发。C1 缺口与 C2 离线入口的当前接续见[输入准备专题](solver-cvc5-input-preparation.md)。
 
-2026-10-27 接续：[ADR 0031 D1–D3（Accepted）](../adr/0031-local-cvc5-build-provenance-boundary.md)仅对本地 cvc5 新构建候选的来源要求作限定替代：完整逐次读取观察改由受控输入集合、阶段来源、稳定链接输入与独立对账验收；不重解释原发布 CLI 的缺口，不更改旧配方 / 入口，显式版本迁移前继续拒绝。C1、实际构建环境资格、E0 / E4 / E5 及外部动作授权保持独立；本次只核定有限实施计划，不组装、构建或运行 solver。
+2026-10-27 接续：[ADR 0031 D1–D3（Accepted）](../adr/0031-local-cvc5-build-provenance-boundary.md)仅对本地 cvc5 新构建候选的来源要求作限定替代：完整逐次读取观察改由受控输入集合、阶段来源、稳定链接输入与独立对账验收；不重解释原发布 CLI 的缺口，保留旧配方字节与默认 v0.1 拒绝；[私有 v0.2 离线入口](solver-local-cvc5-offline-v0.2.md)已显式接续。C1、实际构建环境资格、E0 / E4 / E5 及外部动作授权保持独立；有限离线切片已按后续授权完成，见[本批记录](../records/2026-10-27-cvc5-offline-phases.md)；没有组装、构建或运行 solver。
 
 ## 候选路线与身份
 

@@ -4,7 +4,7 @@
 
 本清单最初随精确 CLI 补证提交为 `ff2e4ed`；随后项目所有者授权 E1–E2 纯组件与模拟测试，具体内部类型和边界以[模拟规则](solver-diagnostic-simulation-v0.1.md)为准。下文真实执行类型仍是待 E0 / E3 闭合的设计目标，不能把模拟记录解释为这些能力。原容量、query / P4 旧字节、十二项参数、stdin 1 MiB、stdout 4 MiB、stderr 64 KiB、内存 128 MiB、外层 6 s、内部 5 s / 1,000,000 steps 全部保持。
 
-2026-10-27 接续：[ADR 0031 D1–D3（Accepted）](../adr/0031-local-cvc5-build-provenance-boundary.md)仅对本地 cvc5 新构建候选的来源要求作限定替代：完整逐次读取观察改由受控输入集合、阶段来源、稳定链接输入与独立对账验收；不重解释原发布 CLI 的缺口，不更改旧配方 / 入口，显式版本迁移前继续拒绝。C1、实际构建环境资格、E0 / E4 / E5 及外部动作授权保持独立；本次只核定有限实施计划，不组装、构建或运行 solver。
+2026-10-27 接续：[ADR 0031 D1–D3（Accepted）](../adr/0031-local-cvc5-build-provenance-boundary.md)仅对本地 cvc5 新构建候选的来源要求作限定替代：完整逐次读取观察改由受控输入集合、阶段来源、稳定链接输入与独立对账验收；不重解释原发布 CLI 的缺口，保留旧配方字节与默认 v0.1 拒绝；[私有 v0.2 离线入口](solver-local-cvc5-offline-v0.2.md)已显式接续。C1、实际构建环境资格、E0 / E4 / E5 及外部动作授权保持独立；有限离线切片已按后续授权完成，见[本批记录](../records/2026-10-27-cvc5-offline-phases.md)；没有组装、构建或运行 solver。
 
 ## 已有入口与复用范围
 

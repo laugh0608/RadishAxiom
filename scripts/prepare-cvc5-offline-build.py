@@ -80,6 +80,13 @@ def read_json(path):
                            parse_constant=PREP.CHECK.reject_constant)
 
 
+def read_phase_json(path):
+    rules = module('cvc5_phase_json', 'scripts/cvc5-build-support/phase_rules.py')
+    with regular(path).open('rb') as stream:
+        raw = stream.read(JSON_LIMIT + 1)
+    return raw, rules.decode(raw)
+
+
 def relative_path(value):
     return BUILD.relative_value(value)
 
@@ -448,7 +455,11 @@ def support_files():
     return sorted(found)
 
 
-def generate(batch_id):
+def generate(batch_id, version='0.1'):
+    require(version in ('0.1', '0.2'), 'recipe-version')
+    if version == '0.2':
+        phases = module('cvc5_phase_recipe', 'scripts/cvc5-build-support/phase_recipe.py')
+        return phases.upgrade(generate(batch_id), ROOT, identity, PATCH)
     plan = PREP.verify_plan()
     _, retained = read_json(local(REVIEW_RECORDS + 'retained-inventory.json'))
     matched = check_retained(plan, retained)
@@ -520,26 +531,34 @@ def write_new(path, value):
         stream.write(encoded(value))
 
 
-def checked_plan(path, sha256):
+def checked_plan(path, sha256, version='0.1'):
     BUILD.hash_value(sha256)
-    raw, value = read_json(path)
+    raw, value = read_phase_json(path) if version == '0.2' else read_json(path)
     require(hashlib.sha256(raw).hexdigest() == sha256, 'recipe-hash-mismatch')
-    require(isinstance(value, dict) and value.get('format') == FORMAT and value.get('version') == '0.1', 'recipe-format')
-    require(PREP.CHECK.same_typed(value, generate(value['batch_id'])), 'recipe-drift')
+    require(version in ('0.1', '0.2') and isinstance(value, dict)
+            and value.get('format') == FORMAT and value.get('version') == version, 'recipe-format')
+    expected = generate(value['batch_id']) if version == '0.1' else generate(value['batch_id'], version)
+    require(PREP.CHECK.same_typed(value, expected), 'recipe-drift')
     return value
 
 
-def bind_inputs(plan_path, recipe_sha256, manifest_path, manifest_sha256):
+def bind_inputs(plan_path, recipe_sha256, manifest_path, manifest_sha256, version='0.1'):
     # Run in the future mounted namespace, after dependency review. This mode
     # only emits argv, and still does not authorize or execute any tool.
     BUILD.hash_value(recipe_sha256)
-    raw, recipe = read_json(plan_path)
+    raw, recipe = read_phase_json(plan_path) if version == '0.2' else read_json(plan_path)
     require(hashlib.sha256(raw).hexdigest() == recipe_sha256, 'recipe-hash-mismatch')
-    require(recipe['format'] == FORMAT and recipe['version'] == '0.1'
+    require(version in ('0.1', '0.2') and recipe['format'] == FORMAT and recipe['version'] == version
             and recipe['build_ready'] is False and recipe['execution_ready'] is False, 'recipe-boundary')
     for name in (SELF, 'scripts/check-cvc5-build-inputs.py', SOURCE_RECORDS + 'production-review.json'):
         rows = [x for x in recipe['references'] if x['path'] == name]
         require(len(rows) == 1 and identity(local(name)) == rows[0], 'recipe-entry-or-review-drift')
+    if version == '0.2':
+        phases = module('cvc5_phase_recipe', 'scripts/cvc5-build-support/phase_recipe.py')
+        phases.check_bound_structure(recipe)
+        for name in phases.FILES:
+            rows = [x for x in recipe['references'] if x['path'] == name]
+            require(len(rows) == 1 and identity(local(name)) == rows[0], 'recipe-phase-method-drift')
     _, production = read_json(local(SOURCE_RECORDS + 'production-review.json'))
     require(PREP.CHECK.same_typed(recipe['main_phase']['configuration'], production['configuration']),
             'main-configuration-drift')
@@ -550,11 +569,15 @@ def bind_inputs(plan_path, recipe_sha256, manifest_path, manifest_sha256):
     for row in list(manifest['header_roots'].values()) + list(manifest['archives'].values()):
         require(row['path'].startswith(allowed_roots), 'manifest-outside-build-namespace')
     require(manifest['closure_review']['path'].startswith('/work/review/'), 'closure-outside-review-namespace')
-    return {'format': FORMAT + '-bound-main', 'version': '0.1', 'recipe_sha256': recipe_sha256,
+    steps = cvc5_commands(recipe['main_phase']['configuration'], manifest_sha256)
+    if version == '0.2':
+        steps = phases.bound_steps(steps)
+    return {'format': FORMAT + '-bound-main', 'version': version, 'recipe_sha256': recipe_sha256,
             'manifest_sha256': manifest_sha256, 'byte_preflight': result,
-            'steps': cvc5_commands(recipe['main_phase']['configuration'], manifest_sha256),
+            'steps': steps,
             'resolved_in_this_step': ['actual manifest byte and review-declaration binding only'],
-            'execution_ready': False, 'build_ready': False, 'blocking_conditions': list(BLOCKERS),
+            'execution_ready': False, 'build_ready': False,
+            'blocking_conditions': list(BLOCKERS if version == '0.1' else recipe['blocking_conditions']),
             'executed_recipe_steps': []}
 
 
@@ -573,20 +596,23 @@ def main():
     bind.add_argument('--manifest', type=Path, required=True)
     bind.add_argument('--manifest-sha256', required=True)
     bind.add_argument('--output', type=Path, required=True)
+    for mode in (prepare, check, bind):
+        mode.add_argument('--recipe-version', choices=('0.1', '0.2'), default='0.1',
+                          help='Explicit private version; never infer or migrate from input')
     args = parser.parse_args()
     try:
         if args.mode == 'prepare':
-            value = generate(args.batch_id)
+            value = generate(args.batch_id, args.recipe_version)
             write_new(args.output, value)
             print(json.dumps({'recipe_written': str(args.output), 'sha256': hashlib.sha256(encoded(value)).hexdigest(),
                               'checked_inputs': value['checked_inputs'], 'execution_ready': False, 'build_ready': False}))
             return 0
         if args.mode == 'check':
-            value = checked_plan(args.plan, args.sha256)
+            value = checked_plan(args.plan, args.sha256, args.recipe_version)
             print(json.dumps({'preparation_check': 'passed', 'checked_inputs': value['checked_inputs'],
                               'blocking_conditions': value['blocking_conditions'], 'execution_ready': False, 'build_ready': False}))
             return 2
-        result = bind_inputs(args.plan, args.sha256, args.manifest, args.manifest_sha256)
+        result = bind_inputs(args.plan, args.sha256, args.manifest, args.manifest_sha256, args.recipe_version)
         write_new(args.output, result)
         print(json.dumps({'command_data_written': str(args.output), 'execution_ready': False, 'build_ready': False}))
         return 2

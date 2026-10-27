@@ -164,8 +164,9 @@ def layout(packages):
             'unresolved_symlinks': missing, 'permission_changes': mode_changes}
 
 
-def generate(recipe_path, digest):
-    recipe = C2.checked_plan(recipe_path, digest)
+def generate(recipe_path, digest, version='0.1'):
+    recipe = (C2.checked_plan(recipe_path, digest) if version == '0.1'
+              else C2.checked_plan(recipe_path, digest, version))
     ref = recipe['sdk']['inventory']
     path = C2.local(ref['path'])
     with C2.regular(path).open('rb') as stream:
@@ -178,7 +179,7 @@ def generate(recipe_path, digest):
     inventory = json.loads(raw, object_pairs_hook=C2.PREP.CHECK.reject_duplicates,
                            parse_constant=C2.PREP.CHECK.reject_constant)
     candidate = layout([p for p in inventory['observations'] if p['kind'] == 'binary'])
-    return {'format': FORMAT, 'version': '0.1', 'scope': 'offline-candidate-no-execution',
+    result = {'format': FORMAT, 'version': '0.1', 'scope': 'offline-candidate-no-execution',
             'recipe_sha256': digest, 'inventory': ref,
             'methods': [C2.identity(ROOT / p) for p in (SELF, RULES)],
             'assembly_ready': False, 'execution_ready': False, 'build_ready': False,
@@ -199,6 +200,31 @@ def generate(recipe_path, digest):
                             'log_limits': recipe['evidence']['log_limits'],
                             'runtime_acceptance': False},
             'executed_steps': [], 'materialized_paths': []}
+    if version == '0.2':
+        phases = C2.module('cvc5_phase_recipe', 'scripts/cvc5-build-support/phase_recipe.py')
+        result = phases.execution_review(result)
+        methods = {r['path']: r for r in result['methods']}
+        methods.update({name: C2.identity(ROOT / name) for name in phases.FILES})
+        result['methods'] = [methods[name] for name in sorted(methods)]
+    return result
+
+
+def review_declarations(recipe_path, digest, phase_path, link_path=None, material_root=None):
+    recipe = C2.checked_plan(recipe_path, digest, '0.2')
+    phases = C2.module('cvc5_phase_rules', 'scripts/cvc5-build-support/phase_rules.py')
+    phase_raw, declared = C2.read_phase_json(phase_path)
+    result = phases.check_declarations(declared, recipe, digest)
+    result['phase_declarations_sha256'] = hashlib.sha256(phase_raw).hexdigest()
+    if link_path is not None:
+        require(material_root is not None, 'link-material-root-required')
+        link_raw, link = C2.read_phase_json(link_path)
+        materials = C2.module('cvc5_link_materials', 'scripts/cvc5-build-support/link_materials.py')
+        result['link_materials'] = materials.check(link, material_root, recipe, digest,
+                                                 result, C2)
+        result['link_declarations_sha256'] = hashlib.sha256(link_raw).hexdigest()
+    else:
+        require(material_root is None, 'unused-material-root')
+    return result
 
 
 def main():
@@ -206,9 +232,22 @@ def main():
     parser.add_argument('--recipe', type=Path, required=True)
     parser.add_argument('--sha256', required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--recipe-version', choices=('0.1', '0.2'), default='0.1')
+    parser.add_argument('--phase-declarations', type=Path)
+    parser.add_argument('--link-materials', type=Path)
+    parser.add_argument('--material-root', type=Path)
     args = parser.parse_args()
     try:
-        result = generate(args.recipe, args.sha256)
+        if args.phase_declarations is not None:
+            require(args.recipe_version == '0.2', 'phase-explicit-version-required')
+            result = review_declarations(args.recipe, args.sha256, args.phase_declarations,
+                                         args.link_materials, args.material_root)
+            C2.write_new(args.output, result)
+            print(json.dumps({'review_written': str(args.output), 'scope': result['scope'],
+                              'runtime_qualification': False, 'execution_ready': False, 'build_ready': False}))
+            return 2
+        require(args.link_materials is None and args.material_root is None, 'phase-declarations-required')
+        result = generate(args.recipe, args.sha256, args.recipe_version)
         C2.write_new(args.output, result)
         print(json.dumps({'review_written': str(args.output),
                           'sha256': hashlib.sha256(C2.encoded(result)).hexdigest(),
