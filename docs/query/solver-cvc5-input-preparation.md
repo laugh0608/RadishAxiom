@@ -57,6 +57,8 @@ copyright 核对按用途分层：
 
 随后形成[SDK 组装与构建监督离线接线设计](solver-cvc5-execution-preparation.md)：真实库存生成 14,719 路径的候选，显式保留 `etc/rmt` 悬空链接和五处权限变换待审阅项；事件纯规则检查原配方顺序、预算及失败保留。36 项新测试及 33 项配方回归通过，见[本批记录](../records/2026-10-23-cvc5-c2-execution-review.md)。尚无组装 / 执行适配器、完整读取监控或宿主资格，旧 solver 监督策略未放宽。
 
+2026-10-27 已修正布局的目录限定符、40 次展开边界及符号链接权限处理，并交付显式 v0.2 阶段 / 截获 / 链接材料检查。旧依赖事件组件与默认 v0.1 保持；主编译截获专用非零退出不表示链接成功，完整 map / trace / ELF 对账仍待真实材料。新候选不再要求上述完整逐次读取监控，其限定来源规则由 ADR 0031 接续，实际输入封闭 / 冻结与控制面资格仍阻断。版本选择、预算与入口见[私有 v0.2 规则](solver-local-cvc5-offline-v0.2.md)。
+
 1. `python3 scripts/cvc5-build-preparation.py verify` 从现有 C0 / SDK 输入重建原清单并逐类型核对，拒绝清单、状态、预算或绑定漂移；输出的 signature_verified / authorization 是被冻结原计划的时点，不读取本批后续验签接受记录。`audit-archives` 只读核对实际原包，逐文件检查长度 / SHA-256，拒绝多余文件 / 目录、符号链接与特殊文件；缺文件返回 2。它不解压和执行第三方内容，全部原包匹配仍返回 `build_ready=false`。
 2. [构建输入预检](../../scripts/check-cvc5-build-inputs.py)消费[既有 patch 的私有输入格式](solver-cvc5-build-patch-review.md#私有输入约束)，通过 `manifest` 路径与必需的 `--sha256` 接收另行审阅的真实输入。检查闭合 JSON 字段、六类 header 全量文件、必要头、至少六类 `.a`、实际字节和绑定的 closure review；保留 Editline 顺序及重复项，拒绝遗漏、多余、错序绑定、路径逃逸与特殊文件。未知字段、重复键和非有限数也拒绝。
 3. Python 预检比 CMake 字节守卫更早执行，附加 8 MiB JSON、单文件 1 GiB、累计读取 4 GiB / 100,000 文件与树项上限；这些仅约束离线检查器，不改变 solver 或构建额度。输出只说明字节与外部审阅声明绑定成立，不证明 `.a` 对象 ABI、许可、工具接受或 CMake 行为。它不生成 `reviewed-for-configuration` 标记或真实 manifest，不认证可被并发修改的文件树；实际构建仍须只读挂载与启动时重核。
@@ -70,4 +72,4 @@ copyright 核对按用途分层：
 | 环境与资源 | 使用无继承环境的明确 PATH / locale / TZ / umask / CPU / SOURCE_DATE_EPOCH 来源；清空已有方案列出的查找 / launcher 变量；输入只读、独立源码工作副本、无网络、无宿主 socket / credentials。4 jobs / 8 GiB / 20 GiB / 90 分钟仍为待核定构建估算 |
 | 留证与失败处理 | 精确 argv / cwd / 环境，CMake trace/cache、生成器输出、依赖文件、对象 / archive 成员、link map / trace / response file、strip 前后 ELF 与退出码分别保存；未知输入或越额立即停，保留失败。不能仅用 compile_commands 代替完整输入关系 |
 
-当前已交付分阶段的可审阅配方和预检，主目标 argv 通过真实 manifest 后绑定；未实现实际隔离调度与读取 / 资源监控，不宣称验证 `.pc --static`、CMake/configure、目标构建或实际链接。通过 C1 后可先准备依赖构建的精确授权范围；拿到真实依赖输出，再完成主 cvc5 配置输入清单，两步均受原 C2–C4 停止线约束。
+当前已交付分阶段的可审阅配方和预检，主目标 argv 通过真实 manifest 后绑定；未实现实际隔离调度、输入封闭 / 冻结与资源观察，不宣称验证 `.pc --static`、CMake/configure、目标构建或实际链接。C1 与构建环境资格闭合后，才可进入获精确授权的依赖构建；拿到真实依赖输出，再完成主 cvc5 配置输入清单，两步均受原 C2–C4 停止线约束。

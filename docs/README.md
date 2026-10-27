@@ -119,6 +119,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 | 2026-10-23 C2 执行准备 | [SDK 布局、构建事件检查与接线设计](records/2026-10-23-cvc5-c2-execution-review.md) |
 | 2026-10-23 日终回顾 | [全天提交、代码 / 文档复核与下一次接续](records/2026-10-23-closeout.md) |
 | 2026-10-27 C2 边界审阅 | [布局拒绝修正、有限执行缺口与 LibPoly 澄清发送](records/2026-10-27-cvc5-c2-boundary-review.md) |
+| 2026-10-27 日终回顾 | [全天提交、离线实现与文档核对及下一次接续](records/2026-10-27-closeout.md) |
 | Rust Linux 与静态目标输入 | [签名 / 归档盘点、安装候选与 kernel 许可审阅](records/rust-linux-input-review/README.md) |
 | 2026-10-17 日终回顾 | [紧凑查询、监督组件与 C0 全天提交、代码 / 文档复核及接续事项](records/2026-10-17-closeout.md) |
 | 2026-10-08 日终回顾 | [P3-B–F 全天提交、代码与文档核对及明日交接](records/2026-10-08-closeout.md) |

@@ -47,7 +47,7 @@ P4 接续拆分为请求 / 响应 / 模型解码的 P4-A，与直接解释原 IR
 
 [ADR 0027（Accepted）](adr/0027-compact-query-and-p4-binding.md)已另行接受 v0.5 紧凑查询 / query0.3 与 P4-A v0.2 的显式配对、规则绑定和独立 compact 预算。验收须同时核对实际新字节的有限语义、符号恢复、旧四版兼容及完整模型候选接续；本批 AX-B01 已通过原容量字节门槛，真实 128 MiB / 6 s 求解可行性仍须单独校准。不得把单批压缩结果外推为任意输入可行或形式等价证明。
 
-真实后端的窄诊断入口按 [ADR 0028](adr/0028-bounded-solver-calibration-entry.md)、Linux 监督按 [ADR 0029](adr/0029-solver-linux-supervision-and-capabilities.md)、bootstrap / 构建来源按 [ADR 0030](adr/0030-solver-bootstrap-ffi-and-build-provenance.md)分别验收。模拟组件、原生源码、工具输入接受、目标制品和实际能力是不同交付；来源与构建工作必须直接服务受限校准，不替代真实 P0–P9 或独立 checker 验收。
+真实后端的窄诊断入口按 [ADR 0028](adr/0028-bounded-solver-calibration-entry.md)、Linux 监督按 [ADR 0029](adr/0029-solver-linux-supervision-and-capabilities.md)、bootstrap / 构建来源按 [ADR 0030](adr/0030-solver-bootstrap-ffi-and-build-provenance.md)分别验收；本地固定 cvc5 新构建候选的来源保证由 [ADR 0031](adr/0031-local-cvc5-build-provenance-boundary.md)限定替代为受控输入集合、阶段来源与稳定链接输入对账，不再声明完整逐次读取历史。模拟组件、原生源码、离线材料核对、工具输入接受、目标制品和实际能力是不同交付；来源与构建工作必须直接服务受限校准，不替代真实 P0–P9 或独立 checker 验收。
 
 ## 里程碑与完成标准
 
