@@ -89,6 +89,25 @@ class LayoutTests(unittest.TestCase):
         result = self.layout([file('lib/a'), link('usr/b', '../lib/a')])
         self.assertEqual(result['entries'][-1]['resolution']['path'], 'lib/a')
 
+    def test_link_directory_components_cannot_resolve_to_file(self):
+        for target in ('a/', 'a/.', 'a/./.', 'a/./child', 'indirect/', 'indirect/.'):
+            with self.subTest(target=target), self.assertRaisesRegex(ValueError, 'nondirectory-ancestor'):
+                self.layout([file('a'), link('indirect', 'a'), link('z', target)])
+
+    def test_link_directory_components_preserve_valid_directories(self):
+        for target, expected in (('dir/', 'dir'), ('dir/.', 'dir'), ('dir/./a', 'dir/a'),
+                                 ('indirect/.', 'dir'), ('/', ''), ('.', '')):
+            with self.subTest(target=target):
+                result = self.layout([file('dir/a'), link('indirect', 'dir'), link('z', target)])
+                self.assertEqual(result['entries'][-1]['resolution']['path'], expected)
+                self.assertEqual(result['entries'][-1]['resolution']['status'], 'resolved')
+
+    def test_exact_link_depth_limit(self):
+        result = self.layout([link('p' + str(n), 'p' + str(n + 1)) for n in range(40)] + [file('p40')])
+        first = next(e for e in result['entries'] if e['path'] == 'p0')
+        self.assertEqual(first['resolution']['path'], 'p40')
+        self.assertEqual(len(first['resolution']['trail']), 40)
+
     def test_link_cycle_and_depth(self):
         with self.assertRaisesRegex(ValueError, 'cycle'):
             self.layout([link('a', 'b'), link('b', 'a')])
@@ -111,6 +130,14 @@ class LayoutTests(unittest.TestCase):
         result = self.layout([file('a', '4755'), file('b', '2755')])
         self.assertEqual(result['permission_changes'], [
             {'path': 'a', 'from': '4755', 'to': '0755'}, {'path': 'b', 'from': '2755', 'to': '0755'}])
+
+    def test_symlink_mode_is_inventory_only_and_sticky_is_preserved(self):
+        result = self.layout([file('a', '7755'), link('b', 'a', mode='4777'),
+                              {'path': 'dir', 'kind': 'directory', 'bytes': 0, 'mode': '3775'}])
+        self.assertEqual(result['permission_changes'], [
+            {'path': 'a', 'from': '7755', 'to': '1755'},
+            {'path': 'dir', 'from': '3775', 'to': '1775'}])
+        self.assertEqual(result['entries'][1]['candidate_mode'], '4777')
 
     def test_special_files_and_bool_size_rejected(self):
         for changed in ({'kind': 'fifo'}, {'kind': 'device'}, {'bytes': True}, {'mode': '9999'},

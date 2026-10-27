@@ -37,7 +37,13 @@ def link_target(path, target, hardlink):
     parts = [] if hardlink or target.startswith('/') else path.split('/')[:-1]
     descended = False
     for part in target.split('/'):
-        if part in ('', '.'):
+        if part == '':
+            continue
+        if part == '.':
+            # Keep directory traversal requirements after a named component.
+            # Removing `file/.` would incorrectly turn ENOTDIR into a file hit.
+            if descended:
+                parts.append(part)
             continue
         if part == '..':
             # Lexical normalization after traversing a link can disagree with
@@ -48,29 +54,38 @@ def link_target(path, target, hardlink):
         else:
             parts.append(part)
             descended = True
+    if target.endswith('/'):
+        parts.append('.')
     return '/'.join(parts)
 
 
 def resolve(index, path):
     seen, trail = set(), []
-    for _ in range(40):
+    # Forty expansions are allowed; the last lookup still has to be checked.
+    for _ in range(41):
         require(path not in seen, 'layout-link-cycle:' + path)
         seen.add(path)
         parts = path.split('/') if path else []
-        for n in range(1, len(parts) + 1):
-            prefix = '/'.join(parts[:n])
+        canonical = []
+        for n, part in enumerate(parts, 1):
+            if part == '.':
+                continue
+            canonical.append(part)
+            prefix = '/'.join(canonical)
             row = index.get(prefix)
             if row is None:
                 return {'status': 'missing', 'path': prefix, 'trail': trail}
             if row['kind'] in ('symlink', 'hardlink'):
+                require(len(trail) < 40, 'layout-link-depth')
                 target = link_target(prefix, row['target'], row['kind'] == 'hardlink')
                 path = '/'.join(([target] if target else []) + parts[n:])
                 trail.append(prefix)
                 break
             require(n == len(parts) or row['kind'] == 'directory', 'layout-nondirectory-ancestor')
         else:
-            return {'status': 'resolved', 'path': path,
-                    'kind': index[path]['kind'] if path else 'directory', 'trail': trail}
+            final = '/'.join(canonical)
+            return {'status': 'resolved', 'path': final,
+                    'kind': index[final]['kind'] if final else 'directory', 'trail': trail}
     raise ValueError('layout-link-depth')
 
 
@@ -97,7 +112,9 @@ def layout(packages):
             require(type(size) is int and 0 <= size <= 128 * 1024**2, 'layout-file-budget')
             require(kind == 'file' or size == 0, 'layout-nonfile-payload')
             row = {'path': path, 'kind': kind, 'bytes': size, 'archive_mode': mode,
-                   'candidate_mode': format(int(mode, 8) & ~0o6000, '04o')}
+                   # Link modes are inventory only; never plan a chmod that
+                   # could follow the symlink and alter another object.
+                   'candidate_mode': mode if kind == 'symlink' else format(int(mode, 8) & ~0o6000, '04o')}
             if kind == 'file':
                 C2.BUILD.hash_value(source['sha256'])
                 row['sha256'] = source['sha256']
