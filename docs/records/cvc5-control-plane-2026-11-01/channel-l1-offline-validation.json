@@ -1,0 +1,77 @@
+{
+  "artifacts": [
+    {
+      "bytes": 9085,
+      "digest": "sha256:422301097d4bd0fffcb1f5e8f148ffecca44ebd749f3bfe325378d2dbf262d70",
+      "file": "inputs.json"
+    },
+    {
+      "bytes": 9717,
+      "digest": "sha256:e1f884bc7762c5cd64a456b93785860810cd16ba21bb1a67a9bb5607a71f54ae",
+      "file": "collector.sh"
+    },
+    {
+      "bytes": 1747,
+      "digest": "sha256:3c6c36fc89b86c3a6b5bcf3a904069dba8f1098c266463bddd15c62d85a2f547",
+      "file": "synthetic-report.bin"
+    }
+  ],
+  "base_commit": "2e5da3a",
+  "build_ready": false,
+  "collector_executed": false,
+  "created_or_started_environment": false,
+  "execution_ready": false,
+  "export_directory": ".tmp/linux-channel-l1-2026-11-01-reviewed",
+  "format": "radishaxiom-private-linux-channel-l1-validation",
+  "inputs": {
+    "build_ready": false,
+    "collector_digest": "sha256:e1f884bc7762c5cd64a456b93785860810cd16ba21bb1a67a9bb5607a71f54ae",
+    "execution_ready": false,
+    "input_binding": "sha256:422301097d4bd0fffcb1f5e8f148ffecca44ebd749f3bfe325378d2dbf262d70",
+    "scope": "offline-source-binding-only",
+    "source_count": 45,
+    "target_acceptance": "not-established"
+  },
+  "linux_artifact_built": false,
+  "methods": [
+    {
+      "digest": "sha256:43df73ae6d3e2c9912b8117d4fa249ae5aca92a27044cc8ec84c42fa7b727f84",
+      "path": "crates/solver-bootstrap-linux/examples/export_linux_channel_inputs.rs"
+    },
+    {
+      "digest": "sha256:81f808e609bda2abba0d19e1067c576466b8dfee7440c5c15d4dc5b34bc35aff",
+      "path": "scripts/check-linux-channel-inputs.py"
+    },
+    {
+      "digest": "sha256:eab9364e21f3e4d6b4cbb96f55fe97f953bc64a327ad3a78291b321f0989d601",
+      "path": "scripts/cvc5-build-support/channel_report.py"
+    },
+    {
+      "digest": "sha256:86b9b55b17b6c7389b5e2b5159a7f9a2bbc9d5e82133e5921055e3b490d0ef6e",
+      "path": "scripts/test-linux-channel.py"
+    }
+  ],
+  "remaining": [
+    "L2 IO/first deadline/panic/allocator/raw-exit integration",
+    "target tool/image/license/host qualification and actual syscall behavior"
+  ],
+  "scope": "source-export-and-synthetic-interop-only",
+  "synthetic": {
+    "partition_sizes": [
+      1,
+      7,
+      19,
+      20,
+      21,
+      4096,
+      1747
+    ],
+    "payload": "synthetic-only LF",
+    "run_id": "0707070707070707070707070707070707070707070707070707070707070707",
+    "runtime_exit_confirmed": false,
+    "truncated_prefixes_rejected": 1747,
+    "wire_bytes": 1747
+  },
+  "target_component_installed": false,
+  "version": "0.1"
+}

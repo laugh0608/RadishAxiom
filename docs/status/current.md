@@ -61,6 +61,8 @@ G0 随后按明确要求提交为 `e507d78`，未 push；[新 Linux 通道最小
 
 PID 1 更改已提交为 `be8c620`，未 push；随后核定[目标构建与交付方案](../query/solver-linux-channel-build-and-delivery-plan.md)：Rust 1.97.1 / Linux musl AArch64 静态非 PIE、已有 bundled rust-lld，内嵌正文原字节与独立输入绑定，单文件 runtime 目录只读挂既有 `/mnt`。本机实际只有 Darwin target std，Linux 组件未安装；现有子流直接继承须改为内部管道、PID 1 独占外部帧报告，并在原 20 s 内预留最终导出与 raw exit，另审 panic / 分配失败出口。详见[本批记录](../records/2026-11-01-linux-channel-delivery-review.md)；没有实现这些新接线、取得 / 安装组件、构建 / 挂载制品或创建 / 启动环境。
 
+交付方案已提交为 `2e5da3a`，未 push；随后 [L1](../query/solver-linux-channel-l1.md)形成固定只读采集正文、单一 profile、45 源离线输入绑定、Rust 报告 codec 与独立 Python 输入 / 流复核。实际纯导出与合成互操作见[本批记录](../records/2026-11-01-linux-channel-l1-review.md)，scope 仅 offline-source-binding-only，工具输入 null、readiness=false；正文仅做语法 / 合成过滤，未运行。L2 独占 pipe / 首 t0 / 回收 / 最终退出、目标安装 / Linux 构建与全部实际资格仍未接通或接受。
+
 ### 历史日终交接（2026-10-27）
 
 今日截至 `2c3f82b` 共 4 笔提交：布局边界修正与 C2 缺口审阅、ADR 0031 D1–D3 接受、阶段拆分与有限计划、私有 v0.2 离线实现。完整提交表、代码 / 文档核对和分批验证见[日终记录](../records/2026-10-27-closeout.md)；[10 月 23 日日终](../records/2026-10-23-closeout.md)保留为历史。
@@ -74,7 +76,7 @@ v0.2 只形成阶段声明、目标级链接截获、留存材料与独立有限
 下一次恢复时，先围绕“让原容量 AX-B01 在原资源限制下取得真实 solver 校准”核对以下直接前置；每批只有明确出口，不将来源清单扩展为无期限的工具链研究。这里保存建议，不延续历史批次的外部动作授权。
 
 1. **取得 LibPoly 固定版本的许可澄清后，再作 C1 接受审阅。** [历史核对](../records/2026-10-23-libpoly-license-history.md)已收敛为整体许可冲突、Polyxx 覆盖与旧 `open_memstream.c` 来源授权三项；[issue #113](https://github.com/SRI-CSL/libpoly/issues/113)已按 10 月 27 日明确授权发送。后续依据须适用固定提交并覆盖这些缺口；不重复查同一历史、下载已匹配材料或把风险接受写成许可事实。未安排自动轮询，不自动追加消息。
-2. **诊断构建 / 交付候选已具体化，先推进正文绑定与报告纯组件。** 按[交付方案 L1 / L2](../query/solver-linux-channel-build-and-delivery-plan.md#实施顺序验收与停止线)，先形成真实白名单采集正文、单一 profile / 源码输入绑定、独占帧报告与拒绝测试，再做统一管道 / 首截止 / 回收 / 最终 raw exit 源码接线。L3 只补精确 Rust 1.97.1 Linux musl target 组件，工具输入取得 / 安装、一次构建与交付挂载 / 执行分别授权；不自动展开完整工具链研究。实际宿主权限 / proc / seccomp / bind 源关联、无并行写别名、完整来源 / 许可及独立终止 / 存储硬限缺口保留；不把源码、摘要或本机合成结果当资格，不用占位正文或环境试跑补入口。原 C1 / G0 / E0 / E4 与 solver 门禁保持，本轮不创建 / 启动环境。
+2. **L1 已形成，下一切片为 L2 受界入口源码接线。** 按[交付方案](../query/solver-linux-channel-build-and-delivery-plan.md#实施顺序验收与停止线)接内部 pipe / FD 所有权、同一首 t0、非阻塞传输 / 回收、200 ms 最终预留、panic / allocator 与 raw exit；继续用宿主静态 / scripted 故障注入，不直接运行正文。L1 源绑定不能充作完整 build inputs，后续工具 / flags 必须明确版本 / scope 迁移；L3 仅补精确 Rust 1.97.1 Linux musl target 组件，取得 / 安装、一次构建、交付挂载与执行分别授权，不扩张完整工具链研究。真实宿主权限 / proc / seccomp / bind、无写别名、来源 / 许可及独立终止 / 存储硬限缺口保留；原 C1 / G0 / E0 / E4 与 solver 门禁保持。本轮不安装 target、不构建 Linux 制品、不创建 / 启动环境。
 3. **等待 C1 时，可继续 F2 的静态边界审阅。** 核对目标工具链、AArch64 汇编 / ABI、unsafe 与 FD 所有权，以及 outer setup policy、精确实例读回和 Mac adapter 接线；出口是具体问题修正或有限待验清单。既有本机 441 项测试不等于 Linux 目标构建 / 实际 syscall 验收；工具 / 制品条件具备并获准后再执行目标构建和真实负向矩阵。
 4. **条件闭合后按原顺序进入实际路径。** C1 与构建环境资格闭合后，按[C3–C5](../query/solver-cvc5-build-candidate-plan.md#批次占用授权与停止线)先构建依赖、审阅实际 ABI / Editline 有序闭包和 manifest，再配置 / 构建主目标；C4 决定 E0，实际 E4 通过后才进入 E5 的最多八份校准及一次精确 wrong-add guarantee 尝试。保持原容量、128 MiB / 6 s 和旧四版字节 / 拒绝，不因不足增限或绕过门禁；这仍不等于完整 P0–P9 / Evidence / 独立 checker 验收。
 
@@ -147,6 +149,8 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 - 表面语法、公开 CLI / SDK、安装路径与最低支持矩阵尚未冻结；测试、结构检查、attestation 与独立 proof 分别报告。
 
 ## 验证入口与本次审阅
+
+2026-11-01，交付方案已提交为 `2e5da3a`；随后 L1 正文 / 源绑定 / 纯 codec 完成：受影响包本机 87 项（新增 18 / 既有 69）、Python 合成 15 项、格式与全 feature Clippy 通过；45 源绑定及 Rust → Python 样本 1,747 个截断拒绝 / 7 种分块互操作通过；仓库检查通过（2,923 文件）、差异卫生及局部引用 / 留存绑定通过。实际命令和失败见[本批记录](../records/2026-11-01-linux-channel-l1-review.md)。未运行采集正文、镜像 applet 或 Linux syscall，未安装目标组件、构建 Linux 制品或创建 / 启动环境，readiness / 实际资格不升级。
 
 2026-11-01，PID 1 更改已提交为 `be8c620`；随后只读核对已安装宿主工具 / 缺失 Linux target、三份工具原字节及已有挂载点，完成目标构建 / 交付、正文绑定、报告与最终退出方案。完整仓库检查通过（2,910 文件），差异卫生、局部引用 / 观察绑定与预算算术核对通过；实际命令、来源 / 失败与未实施边界见[本批记录](../records/2026-11-01-linux-channel-delivery-review.md)。未改源码或重跑 Rust 组件测试，未取得 / 安装目标组件、构建制品、挂载或启动环境。
 

@@ -6,12 +6,8 @@ use crate::{
 };
 use std::ffi::CStr;
 
+use crate::channel_profile::{CHILD_LIMIT, EVENT_LIMIT, TICK_NS, TOTAL_NS, WORK_NS};
 const SECOND: u64 = 1_000_000_000;
-const WORK_NS: u64 = 18 * SECOND;
-const TOTAL_NS: u64 = 20 * SECOND;
-const TICK_NS: u64 = 10_000_000;
-const CHILD_LIMIT: usize = 15; // PID 1 + children remain inside the candidate 16.
-const EVENT_LIMIT: usize = 64;
 const CHILDREN_BYTES: usize = 256;
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]

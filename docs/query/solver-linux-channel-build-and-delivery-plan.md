@@ -2,6 +2,8 @@
 
 日期：2026-11-01。状态：**方案已静态核定；实施候选，build_ready=false / execution_ready=false**。用途：向项目所有者、实施者和审阅者明确[最小通道](solver-linux-management-channel-minimum-plan.md)的精确目标、采集正文绑定、输出所有权与退出路径。本页不接受工具 / 许可证 / 宿主资格，不提供已经可运行的构建或容器命令，不授权安装、构建、交付挂载或环境执行。实际盘点和验证见[本批记录](../records/2026-11-01-linux-channel-delivery-review.md)，现行顺位见[当前状态](../status/current.md)。
 
+方案随后提交为 `2e5da3a`；按项目所有者的下一批授权，[L1](solver-linux-channel-l1.md)已实现真实采集正文、45 源输入绑定与 Rust / Python 报告纯组件，并完成本机静态 / 合成验证。L1 导出的 scope 仅为 offline-source-binding-only，完整目标工具 / flags 尚未绑定，不替代本页最终构建 inputs。L2 管道 / 首截止 / 最终退出仍未接线；没有执行采集正文或新增 Linux 制品 / 环境。
+
 ## 唯一候选与当前缺口
 
 沿既有 [Rust / musl 候选](solver-bootstrap-ffi-implementation-plan.md#d1-候选结构与原生边界)，选择 **macOS AArch64 上的 Rust 1.97.1，交叉构建 aarch64-unknown-linux-musl 的静态非 PIE AArch64 LE ELF**。不引入新 Linux 构建容器、GCC / SDK、QEMU、动态 libc 或 no_std 第二路线；原 cvc5 glibc 路线不变。用已有 bundled rust-lld 的 GNU flavor，交付为已审 Alpine 候选内的只读附加文件，不构建派生镜像。
@@ -13,7 +15,7 @@
 | 编译器宿主 | `1.97.1-aarch64-apple-darwin`，rustc commit `8bab26f4f68e0e26f0bb7960be334d5b520ea452`；Cargo commit `c980f4866141969fab6254a680546a277789d6f0` |
 | 链接器候选 | 已有 `rust-lld 22.1.6`，LLVM commit `dcc3606807c989700e0ac1cac18c31741bcd40d9`；三份宿主工具实际文件的长度 / SHA256 已留存，不等于发布者认证或其动态库闭包接受 |
 | 目标组件 | 已安装 target 只有 `aarch64-apple-darwin`；Linux musl target 目录与安装 manifest 均不存在。不能运行 rustup 安装，也不能据 `--target` 字符串宣称可以离线构建 |
-| 自有源码 | `be8c620` 只有库内监督 / 回收入口；binary target、采集正文、绑定生成器、帧输出与最终入口尚未实现，不把该提交写成可执行制品来源 |
+| 方案核定时源码 | `be8c620` 只有库内监督 / 回收入口，不把该提交写成可执行制品来源。随后 L1 正文 / 纯组件见页首接续；native binary / IO / 最终入口仍未实现 |
 | 镜像 | 仍为前批固定 index / arm64 manifest；留存 rootfs 的 `/mnt` 是 `0:0 / 0755` 空目录。镜像 / 许可与宿主读取资格仍未接受 |
 
 目标选择依据是 [Rust 目标说明](https://doc.rust-lang.org/rustc/platform-support/aarch64-unknown-linux-musl.html)与精确 [1.97.1 target](https://github.com/rust-lang/rust/blob/1.97.1/compiler/rustc_target/src/spec/targets/aarch64_unknown_linux_musl.rs)。后者声明静态 CRT 默认与 musl 1.2.5 描述，但不是本机缺失组件的实际包库存、构建认证或许可结论。所需组件须另作**仅这个版本 / target 的有限取得与接受**，不恢复整套 Rust / GCC 来源研究；缺字节、来源 / 许可或链接闭包就停在构建前。
@@ -47,11 +49,11 @@
 
 ## 采集正文与构建绑定
 
-唯一正文仍拟置 `scripts/cvc5-build-support/inspect_linux_host.sh`，本批未创建。正文为 UTF-8 无 BOM、LF、末尾 LF、无 NUL，1..32,768 bytes；SHA256 对**含末尾 LF 的原字节**计算，不含之后的 CString NUL。拒绝编码 / 行尾漂移，不 trim、不重新转义或从运行态环境取脚本。
+唯一正文现置 `scripts/cvc5-build-support/inspect_linux_host.sh`，由后续 L1 创建并仅做静态 / 合成验证，未运行。正文为 UTF-8 无 BOM、LF、末尾 LF、无 NUL，1..32,768 bytes；SHA256 对**含末尾 LF 的原字节**计算，不含之后的 CString NUL。拒绝编码 / 行尾漂移，不 trim、不重新转义或从运行态环境取脚本。
 
-未来 `channel_profile.rs` 作为单一类型化常量来源，承载现有期限、PID / 字节 / 帧预算及 profile 版本，编译期以 include_bytes 捕获正文；复用既有 digest 在父侧核对 / 计算相同原字节，再只构造一次 CString 传给私有 run。正文不从 argv、stdin、宿主挂载或 report 反向载入；子分支继续固定 `/bin/busybox` 和 `busybox, sh, -c, <已绑定字面正文>`。先实现并审阅真实白名单采集 / 脱敏 / 有界读取与失败处理，不将 printf 占位程序封成可接受制品。
+L1 的 `channel_profile.rs` 作为单一类型化常量来源，承载现有期限、PID / 字节 / 帧预算及 profile 版本，编译期以 include_bytes 捕获正文；复用既有 digest 在父侧核对 / 计算相同原字节，再只构造一次 CString 传给私有 run。正文不从 argv、stdin、宿主挂载或 report 反向载入；子分支继续固定 `/bin/busybox` 和 `busybox, sh, -c, <已绑定字面正文>`。先实现并审阅真实白名单采集 / 脱敏 / 有界读取与失败处理，不将 printf 占位程序封成可接受制品。
 
-显式离线生成器从同一次源快照导出版本化 `inputs.json`（≤1 MiB）：有序源码清单、正文 profile / 长度 / raw SHA256、类型化预算、目标 / flags / 工具输入身份和采集白名单。该文件只绑定声明，不可覆盖代码常量；独立 checker 对源码 / 正文 / 数值双向核对。其 raw SHA256 是 `input_binding`，编译期捕获同一原文件；Start / Final 仅报告该摘要及实际内嵌正文摘要，Mac 必须与**事先登记**的输入比对，不能把收到的摘要当期望值。
+最终构建输入应由显式离线生成器从同一次源快照导出版本化 `inputs.json`（≤1 MiB）：有序源码清单、正文 profile / 长度 / raw SHA256、类型化预算、目标 / flags / 工具输入身份和采集白名单。该文件只绑定声明，不可覆盖代码常量；独立 checker 对源码 / 正文 / 数值双向核对。其 raw SHA256 是 `input_binding`，编译期捕获同一原文件；Start / Final 仅报告该摘要及实际内嵌正文摘要，Mac 必须与**事先登记**的输入比对，不能把收到的摘要当期望值。
 
 生成输入不得含自身摘要、最终 ELF / build manifest / 容器 CID 摘要，避免自引用。最终外置 `build-manifest.json` 再绑定 `input_binding`、实际 ELF、link map / trace、许可证 / 来源材料与实际构建结果；接受记录独立引用其原字节摘要，不在生成 manifest 中伪填 accepted。源码变更、正文换行变更、工具 / flags 或 profile 变化均需重生成、重建、重核与登记，旧制品不原地替换。
 
@@ -103,7 +105,7 @@ Final 保留：同一绑定；首个原因 / child_pid / main_exit；全部有�
 
 ## 实施顺序、验收与停止线
 
-后续落点沿现有包 / 支持目录设置，不另开 runner 或第二套配置入口：
+文件落点沿现有包 / 支持目录设置；L1 的已实现部分见专题，L2 / 最终构建部分仍为候选，不另开 runner 或第二套配置入口：
 
 | 拟议文件 | 边界 |
 | --- | --- |
@@ -122,4 +124,4 @@ Final 保留：同一绑定；首个原因 / child_pid / main_exit；全部有�
 | L4：实际制品离线验收 | 构建 / 链接 / ELF / 来源 / 许可和正文绑定独立核对，登记实际制品及单文件 runtime 目录；不创建镜像 / 容器，不在 Mac / Linux / 模拟器执行产物。静态通过仍不是运行资格 |
 | L5：执行前收口 | 精确宿主权限 / proc / seccomp、Mac 共享源 / 无写别名、限额和单 CID 配置 / 清理范围闭合后，才提交真实一次诊断的完整参数与许可范围。缺任一前置不 create / start，不提权 / 加依赖 / 换镜像补救 |
 
-本批只核定方案和既有工具的只读观察，不实施以上新入口 / codec / allocator、正文或生成器，不取得 / 安装 target std、不构建或复制制品、不创建 / 启动环境。原 C1 / E0 / E4、G0 / A1–A10、镜像 / 许可接受和 readiness 不变；后续授权按明确动作与目标分别处理，不因方案写成具体路径就自动生效。
+本方案核定批次只做设计和既有工具只读观察；后续 L1 授权及实现见上方接续与专题，不授权 L2 或任何目标安装 / 构建 / 交付执行。原 C1 / E0 / E4、G0 / A1–A10、镜像 / 许可接受和 readiness 不变；后续授权按明确动作与目标分别处理，不因方案写成具体路径就自动生效。

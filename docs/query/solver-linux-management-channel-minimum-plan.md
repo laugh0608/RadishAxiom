@@ -8,6 +8,8 @@
 
 启动器源码已提交为 `be8c620`；后续[目标构建与交付方案](solver-linux-channel-build-and-delivery-plan.md)选择 Rust 1.97.1 / aarch64-unknown-linux-musl / bundled rust-lld 的静态非 PIE 候选、内嵌采集原字节、单文件 runtime 目录只读挂 `/mnt`，以及 PID 1 独占 stdout 的私有帧报告 / raw exit。Linux target std 实际未安装；正文、入口、管道 / codec / 退出接线均未实现。方案在原 20 s 中安排 18 s 工作、1.8 s 收束、0.2 s 最终导出，不把该安排写成现有代码或运行保证。详细参数、绑定、预算和验收以该方案为准，本批未安装 / 构建或交付挂载。
 
+交付方案已提交为 `2e5da3a`；后续 [L1](solver-linux-channel-l1.md)已完成正文、源绑定与报告纯组件，本机静态 / 合成检查及独立互操作结果见[记录](../records/2026-11-01-linux-channel-l1-review.md)。尚无真实采集、独占管道 / 最终入口接线、目标组件安装或 Linux 制品；不能用现有 run 直接执行正文绕过 L2。
+
 ## 核定结论与选项
 
 推荐在**同一 OrbStack Docker daemon** 上，另经授权创建最多一个短时、非 root、无 capabilities 的只读诊断容器。它只读固定的 Linux 内核 / 挂载 / cgroup 元数据并导出有界报告，随后停止并移除精确实例。使用 Docker 创建后，先检查未启动实例的配置，再启动固定采集命令；不进入交互式 shell，不开放 SSH / 端口，不安装服务。
@@ -32,9 +34,9 @@
 
 实际离线链现已定位：原 Id 为多平台 index，arm64/v8 manifest 为 `d858bb5442632a31bd4bca6c5e601dbe6b536fd7942092ea6a08a0a95805693c`，config 为 `1087dfd14fa77fe3bd102f39d42ee9c7e183876bd1a65f38fe2c18198ae976b4`；[实际检查](../records/cvc5-control-plane-2026-11-01/image-offline-inspection.json)保留其余摘要、两份执行文件、初始 PATH 和库依赖。固定上游 rootfs 与镜像的相对树一致，但没有验证发布者签名或完整构建认证，不从数据核对直接转为 accepted。
 
-采集器拟置 `scripts/cvc5-build-support/inspect_linux_host.sh`，只调用固定镜像内经审阅的 BusyBox applet；Mac 编排拟置同目录 `inspect_linux_host.py`，使用现有 Python 标准库和固定 Docker CLI。**本批不创建这两个代码文件。** 执行前须实现并审阅有界读取、固定 argv / 环境、输出解析、期限、精确 CID 和失败留存；核对实际调用的 applet 在该版本的行为。脚本、镜像、CLI 身份和完整参数全部绑定后再请求一次执行授权，不发含占位 digest 的可运行命令。
+采集正文现置 `scripts/cvc5-build-support/inspect_linux_host.sh`，L1 仅静态审阅及合成过滤测试，未执行；实际 applet 行为仍待核定。Mac 编排拟置同目录 `inspect_linux_host.py`，尚未创建；继续使用 Python 标准库和固定 Docker CLI。执行前须完成 L2 有界 pipe / 固定环境 / 报告 / 最终退出，再接精确 CID 与失败留存。脚本、镜像、CLI 身份和完整参数全部绑定后再请求一次执行授权，不发含占位 digest 的可运行命令。
 
-启动器源码为 [channel_init.rs](../../crates/solver-bootstrap-linux/src/channel_init.rs)，目前仅供库内审阅与显式脚本后端测试调用。它接受可信调用方已经绑定的有界采集正文，固定 exec `/bin/busybox sh -c <字面正文>`，不是对外开放任意命令的入口。采集正文绑定、入口进程启动、原生二进制 / loader 来源与许可、交付到只读容器的精确方式以及有界报告传输均尚未接线；不能从本机类型检查追认这些工具或将代码自动挂入镜像。上述两个采集 / 编排脚本仍未创建。
+启动器源码为 [channel_init.rs](../../crates/solver-bootstrap-linux/src/channel_init.rs)，目前仅供库内审阅与显式脚本后端测试调用。它接受可信调用方已经绑定的有界采集正文，固定 exec `/bin/busybox sh -c <字面正文>`，不是对外开放任意命令的入口。L1 已形成离线正文绑定，但原生入口对该绑定的消费、入口进程启动、制品 / loader 来源与许可和有界传输仍未接线；不能从本机类型检查追认工具或将代码自动挂入镜像。正文已存在但未运行，Mac 编排仍未创建。
 
 ## 权限与输入的闭合范围
 
@@ -116,7 +118,7 @@
 
 ## 验收出口与下一步
 
-静态方案、镜像离线核对、PID 1 库内源码及目标构建 / 交付候选已有结果，**仍不接受新信任、镜像或诊断执行例外**。下一切片沿[交付方案 L1 / L2](solver-linux-channel-build-and-delivery-plan.md#实施顺序验收与停止线)先实施真实采集正文 / 输入绑定与报告纯组件，再做统一管道 / 期限 / raw exit 源码接线；目标组件安装、构建、交付挂载和诊断分别授权，真实宿主权限及来源 / 许可接受继续是执行前置。不重复完整来源清单或运行旧 timeout 入口，不先创建环境试错。
+静态方案、镜像离线核对、PID 1 库内源码及 L1 正文 / 源绑定 / 报告纯组件已有结果，**仍不接受新信任、镜像或诊断执行例外**。下一切片沿[交付方案 L2](solver-linux-channel-build-and-delivery-plan.md#实施顺序验收与停止线)做统一管道 / FD / 首截止 / 回收 / raw exit 源码接线；L1 离线源输入不等于完整工具构建输入。目标安装、构建、交付挂载和诊断分别授权，真实宿主权限及来源 / 许可接受继续是执行前置。不重复完整来源清单或运行旧 timeout 入口，不先创建环境试错。
 
 真实执行如果另获授权，必须分别报告：创建 / 配置读回是否一致；采集是否真实完整；宿主 / namespace 来源是否可定位；资源 / 退出 / Docker 清理各自观察与缺失。身份 / 数据矛盾为失败，缺失为未取得，不合成为资格 success。只能用结果决定同宿主后续具体根 / quota / 控制权限的可行性，不能把本次读回写成 A3 / A4 / A7 / A8 或 C1 / E0 / E4 通过。
 

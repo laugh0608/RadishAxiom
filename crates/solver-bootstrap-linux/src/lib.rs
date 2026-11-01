@@ -8,6 +8,10 @@
 
 mod abi;
 mod channel_init;
+pub mod channel_inputs;
+mod channel_json;
+pub mod channel_profile;
+pub mod channel_report;
 mod child;
 mod configuration;
 mod fd;
