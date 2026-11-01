@@ -1,6 +1,6 @@
 # 本地 cvc5：新 Linux 管理通道的最小方案
 
-日期：2026-11-01。状态：**仅完成静态方案核定；推荐一次性只读诊断通道，未接受镜像、未创建环境、未授权执行**。用途：在 [G0 现有入口不足](../records/2026-11-01-cvc5-g0-capability-review.md)后，给出唯一下一候选的权限、资源、退出 / 清理与停止条件。读者为项目所有者、实施者和审阅者。本文只解决如何取得必要 Linux 读回，不提供常驻控制服务、构建或 solver 入口，不扩张 [ADR 0031](../adr/0031-local-cvc5-build-provenance-boundary.md)的信任 / 接受范围。现行顺位见[当前状态](../status/current.md)，实际静态核对见[本批记录](../records/2026-11-01-linux-channel-minimum-review.md)。
+日期：2026-11-01。状态：**方案及 PID 1 / L1–L3 源码已完成限定静态验证；未接受镜像、未创建环境、未授权执行**。用途：在 [G0 现有入口不足](../records/2026-11-01-cvc5-g0-capability-review.md)后，给出唯一下一候选的权限、资源、退出 / 清理与停止条件。读者为项目所有者、实施者和审阅者。本文只解决如何取得必要 Linux 读回，不提供常驻控制服务、构建或 solver 入口，不扩张 [ADR 0031](../adr/0031-local-cvc5-build-provenance-boundary.md)的信任 / 接受范围。现行顺位见[当前状态](../status/current.md)，实际静态核对见[本批记录](../records/2026-11-01-linux-channel-minimum-review.md)。
 
 后续[离线核对](../records/2026-11-01-linux-channel-offline-review.md)已完成所选平台字节链、原 minirootfs 514 项相对树、16 包 / 10 配方的版本 / 许可声明及参考内核读取路径核对；APK shadow 校验差异和 SBOM 来源记录区分均保留。**仍未接受镜像或实际权限，且发现直接作为 PID 1 的 BusyBox timeout 不能提供原设想的内部强杀保证**；下文启动拓扑与根 cgroup 文件范围据此修正。没有创建或启动环境。
 
@@ -8,7 +8,7 @@
 
 启动器源码已提交为 `be8c620`；后续[目标构建与交付方案](solver-linux-channel-build-and-delivery-plan.md)选择 Rust 1.97.1 / aarch64-unknown-linux-musl / bundled rust-lld 的静态非 PIE 候选、内嵌采集原字节、单文件 runtime 目录只读挂 `/mnt`，以及 PID 1 独占 stdout 的私有帧报告 / raw exit。Linux target std 实际未安装；核定时上述接线未实现。后续 L1 / L2 已形成正文 / codec / 管道 / 最终入口源码，在原 20 s 内安排 18 s 工作、1.8 s 收束、0.2 s 最终导出；这不是运行保证。详细参数、绑定、预算和验收以该方案为准，本批未安装 / 构建或交付挂载。
 
-交付方案已提交为 `2e5da3a`；后续 [L1](solver-linux-channel-l1.md)已完成正文、源绑定与报告纯组件，本机静态 / 合成检查及独立互操作结果见[记录](../records/2026-11-01-linux-channel-l1-review.md)。L1 随后提交为 `5609e6a`；[L2](solver-linux-channel-l2.md)已完成独占管道 / 最终入口源码与宿主验证，见[记录](../records/2026-11-01-linux-channel-l2-review.md)。尚无真实采集、目标组件安装或 Linux 制品；源绑定仍不包含完整目标工具输入。L2 已提交为 `5dab738`，[L3](solver-linux-channel-l3.md)已核定精确 target / 输入方案并重核旧原包，不重新下载或执行安装 / 构建。
+交付方案已提交为 `2e5da3a`；后续 [L1](solver-linux-channel-l1.md)已完成正文、源绑定与报告纯组件，本机静态 / 合成检查及独立互操作结果见[记录](../records/2026-11-01-linux-channel-l1-review.md)。L1 随后提交为 `5609e6a`；[L2](solver-linux-channel-l2.md)已完成独占管道 / 最终入口源码与宿主验证，见[记录](../records/2026-11-01-linux-channel-l2-review.md)。L2 已提交为 `5dab738`；[L3](solver-linux-channel-l3.md)源码已提交为 `bb9d963`，具备 v0.2 纯输入 / 独立复核、native 捕获与有界包装器，保留的 v0.1 当前为 53 源。尚无真实完整 root、采集、目标组件安装或 Linux 制品；真实安装观察、工具 / 系统 / 许可接受未闭合，不能用合成材料替代。旧 target 原包已重核，不重复下载。
 
 ## 核定结论与选项
 
@@ -36,7 +36,7 @@
 
 采集正文现置 `scripts/cvc5-build-support/inspect_linux_host.sh`，L1 仅静态审阅及合成过滤测试，未执行；实际 applet 行为仍待核定。Mac 编排拟置同目录 `inspect_linux_host.py`，尚未创建；继续使用 Python 标准库和固定 Docker CLI。L2 有界 pipe / 固定环境 / 报告 / 最终退出已有源码；执行前仍须目标验收，再接精确 CID 与失败留存。脚本、镜像、CLI 身份和完整参数全部绑定后再请求一次执行授权，不发含占位 digest 的可运行命令。
 
-启动器源码为 [channel_init.rs](../../crates/solver-bootstrap-linux/src/channel_init.rs)，与 [channel_entry.rs](../../crates/solver-bootstrap-linux/src/channel_entry.rs)共同实现默认关闭的专用 leaf 入口，本批仅做库内审阅与显式脚本后端测试。它接受可信调用方已经绑定的有界采集正文，固定 exec `/bin/busybox sh -c <字面正文>`，不是对外开放任意命令的入口。L2 已接通现行离线源绑定消费与有界传输，但完整工具绑定、入口真实启动、制品 / loader 来源与许可仍未接受；不能从本机类型检查追认工具或将代码自动挂入镜像。正文已存在但未运行，Mac 编排仍未创建。
+启动器源码为 [channel_init.rs](../../crates/solver-bootstrap-linux/src/channel_init.rs)，与 [channel_entry.rs](../../crates/solver-bootstrap-linux/src/channel_entry.rs)共同实现默认关闭的专用 leaf 入口，本批仅做库内审阅与显式脚本后端测试。它接受可信调用方已经绑定的有界采集正文，固定 exec `/bin/busybox sh -c <字面正文>`，不是对外开放任意命令的入口。L2 已接通有界传输，L3 将 native 输入改为编译期捕获并拒绝 source-only v0.1；完整输入机制已有源码，但真实工具 / 安装材料、入口启动、制品 / loader 来源与许可仍未接受；不能从本机类型检查追认工具或将代码自动挂入镜像。正文已存在但未运行，Mac 编排仍未创建。
 
 ## 权限与输入的闭合范围
 
@@ -118,7 +118,7 @@
 
 ## 验收出口与下一步
 
-静态方案、镜像离线核对、PID 1、L1 纯组件与 L2 入口源码已有本机结果，**仍不接受新信任、镜像或诊断执行例外**。L3 精确 target 与完整输入计划已核定，下一源码切片沿 [L3](solver-linux-channel-l3.md)实施 v0.2 纯绑定 / 独立复核和包装器静态验证；L1 离线源输入不等于完整工具构建输入。目标安装、构建、交付挂载和诊断分别授权，真实宿主权限及来源 / 许可接受继续是执行前置。不重复完整来源清单或运行旧 timeout 入口，不先创建环境试错。
+静态方案、镜像离线核对、PID 1 与 L1–L3 源码已有本机有限结果，**仍不接受新信任、镜像或诊断执行例外**。后续沿 [L3](solver-linux-channel-l3.md)先审阅精确 target / installer / 宿主运行时及两份 Cargo 解析元数据的有限接受，再就单 target 安装单独核定；实际安装观察闭合后才生成真实完整 root。L1 离线源输入不等于完整工具构建输入。目标安装、构建、交付挂载和诊断分别授权，真实宿主权限及来源 / 许可接受继续是执行前置。不重复完整来源清单或运行旧 timeout 入口，不先创建环境试错。
 
 真实执行如果另获授权，必须分别报告：创建 / 配置读回是否一致；采集是否真实完整；宿主 / namespace 来源是否可定位；资源 / 退出 / Docker 清理各自观察与缺失。身份 / 数据矛盾为失败，缺失为未取得，不合成为资格 success。只能用结果决定同宿主后续具体根 / quota / 控制权限的可行性，不能把本次读回写成 A3 / A4 / A7 / A8 或 C1 / E0 / E4 通过。
 

@@ -4,7 +4,7 @@
 
 2026-11-01 接续：[控制面与真实资格方案](solver-local-cvc5-control-plane-plan.md)已明确代码接线位置、冻结顺序、负向矩阵与有限 G0 出口；随后 [G0 盘点](../records/2026-11-01-cvc5-g0-capability-review.md)以证据不足结束，未取得 Linux 管理上下文、私有存储 / 块与 inode 硬限、写别名防护、独立终止或 PID / inode / 时间参数，不能进入真实接线或 C3。恢复先指定精确现有入口和候选根，不默认重复盘点。本次没有运行组装、构建或资格探针；后续成本拆分见该方案，不把下文历史估算当作可用额度。
 
-新入口的后续候选见[最小通道方案](solver-linux-management-channel-minimum-plan.md)：仅形成一次性只读诊断的权限 / 资源 / 清理设计，镜像和执行尚未接受，未创建环境；不把该通道当作本阶段冻结或独立终止实现。
+新入口的后续候选见[最小通道方案](solver-linux-management-channel-minimum-plan.md)：已形成一次性只读诊断设计及 PID 1 / L1–L3 源码与限定宿主验证，当前实现见 [L3](solver-linux-channel-l3.md)；镜像和执行尚未接受，target 未安装、环境未创建；不把该通道当作本阶段冻结或独立终止实现。
 
 ## 核定结论与依据
 

@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-11-01（L3 源码与静态验证接续）
+更新日期：2026-11-01（日终提交与文档复核）
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。整体目标见[开发计划](../development-plan.md)，归属与任务来源见[能力专题地图](../topics.md)；历史流水见[整理前快照](../records/status-before-planning-alignment-2026-11-01.md)与[早期归档](../records/status-through-2026-09-03.md)。
 
@@ -32,7 +32,11 @@
 
 ### 当前接续（2026-11-01）
 
-G0 以证据不足结束，真实接线仍未放行。L1 / L2 的源绑定、报告与管道 / 截止 / 回收源码已完成原范围本机或离线验证；[L3](../query/solver-linux-channel-l3.md)现已实现私有 v0.2 纯生成 / sidecar 独立复核、native 编译捕获与有界 build / argv recorder，并完成宿主静态 / 合成验证。保留的 v0.1 当前为 53 源；native 拒绝 v0.1 / null / 漂移。没有真实完整 root、target 安装、Linux 制品或环境资格。空 Cargo home 的 workspace 解析缺口已用既有两份索引数据的精确绑定补正，不引入新的 normal 编译依赖。实际命令和边界见[实现记录](../records/2026-11-01-linux-channel-l3-implementation.md)；不从离线材料推导实际资格或执行授权。
+G0 以证据不足结束，真实接线仍未放行。L1 / L2 的源绑定、报告与管道 / 截止 / 回收源码已完成原范围本机或离线验证；[L3](../query/solver-linux-channel-l3.md)现已实现私有 v0.2 纯生成 / sidecar 独立复核、native 编译捕获与有界 build / argv recorder，并完成宿主静态 / 合成验证。保留的 v0.1 当前为 53 源；native 拒绝 v0.1 / null / 漂移。没有真实完整 root、target 安装、Linux 制品或环境资格。空 Cargo home 的 workspace 解析缺口已用既有两份索引数据的精确绑定补正，不引入新的 normal 编译依赖。实现已提交为 `bb9d963`；实际命令和边界见[实现记录](../records/2026-11-01-linux-channel-l3-implementation.md)，全天提交与本次文档复核见[日终记录](../records/2026-11-01-closeout.md)；不从离线材料推导实际资格或执行授权。
+
+### 日终交接（2026-11-01）
+
+今天完成控制面方案 / G0 结束决定、最小诊断通道、镜像与权限离线核对、PID 1、构建交付方案、L1 / L2 / L3 源码和规划导航；11 笔实现 / 方案提交逐项见[日终回顾](../records/2026-11-01-closeout.md)。最后源码批 `bb9d963` 的 119 项 Rust、27 项新增 Python、16 项既有 Python 与互操作结果均是限定宿主 / 合成验证，不累加成 Linux 或 solver 验收。日终只补文档、核对源绑定与仓库检查，不重跑无变更代码，也不继续开发或外部执行。
 
 ### 历史日终交接（2026-10-27）
 
@@ -45,7 +49,9 @@ G0 以证据不足结束，真实接线仍未放行。L1 / L2 的源绑定、报
 下一次恢复时，先围绕“让原容量 AX-B01 在原资源限制下取得真实 solver 校准”核对以下直接前置；每批只有明确出口，不将来源清单扩展为无期限的工具链研究。这里保存建议，不延续历史批次的外部动作授权。
 
 1. **取得 LibPoly 固定版本的许可澄清后，再作 C1 接受审阅。** [历史核对](../records/2026-10-23-libpoly-license-history.md)已收敛为整体许可冲突、Polyxx 覆盖与旧 `open_memstream.c` 来源授权三项；[issue #113](https://github.com/SRI-CSL/libpoly/issues/113)已按 10 月 27 日明确授权发送。后续依据须适用固定提交并覆盖这些缺口；不重复查同一历史、下载已匹配材料或把风险接受写成许可事实。未安排自动轮询，不自动追加消息。
-2. **L3 源码切片已完成，后续先审阅精确输入，再分别授权单 target 安装 / 一次构建。** 按 [L3](../query/solver-linux-channel-l3.md)复核本次实现；真实 v0.2 仍需最终已提交源、实际 66 文件安装观察、精确工具 / dylib / OS 信任、来源 / 许可证与有限接受，还需覆盖新明确的两份既有 Cargo 解析元数据。不得把合成安装 / 接受 fixture 或 v0.1 当真实完整 root。既有 target 原包不重复下载；未获分别授权前，不安装、不构建 Linux 制品或创建 / 启动环境。L4 离线制品审阅与 L5 挂载 / 执行另行收口，保留 std / CRT / allocator / syscall、宿主权限 / proc / seccomp / bind、无写别名、独立终止 / 存储硬限及 C1 / G0 / E0 / E4 门禁。
+2. **下一直接批次：L3 精确输入的有限接受审阅，先不安装或构建。** 以 `bb9d963` 为已验证实现基线，按 [L3](../query/solver-linux-channel-l3.md)复用已留存原包 / 身份，收口这个 target 归档、installer、cargo / rustc / lld / Python / Git、非系统 dylib 解析闭包、OS / dyld / ctypes / libproc 信任，以及两份既有 Cargo 解析元数据的来源 / 许可。出口是一份对精确对象有原字节引用的有限接受或不接受决定和明确剩余项，不再追加通用工具链取证，也不从版本 / 摘要或填写 accepted 字符串自动放行。无可靠工时账，不重报剩余额度；出现新增工具、权限或来源链就结束并重评范围。
+
+   若接受条件闭合，**再单独核定并授权一次 target 安装**：列明原归档 cache 新副本、120 s / 新增磁盘观测 512 MiB、唯一 target / 元数据写入和失败保留 / 清理边界；安装后双向核对 66 文件、原五个 component / 三工具及元数据差异。真实安装观察齐备后，绑定执行前最终干净 commit 的完整树与五份 sidecar / 外部 review pin，生成并独立复核真实 v0.2 root；不能用 53 源选定闭包替代全树或把 `bb9d963` 预填成尚未发生构建的来源。此后一次 600 s / 512 MiB Linux 构建、L4 离线制品验收、L5 交付 / 挂载 / 诊断执行分别授权；不因为输入机制已有源码就跳过安装观察 / 工具接受，或创建环境试错。旧原包不重下，合成 root / 回执和 source-only v0.1 均不充作真实输入。C1 / G0 / E0 / E4、实际 std / CRT / allocator / syscall、proc / seccomp / bind、无写别名、独立终止 / 存储硬限仍未闭合。
 3. **等待 C1 时，可继续 F2 的静态边界审阅。** 核对目标工具链、AArch64 汇编 / ABI、unsafe 与 FD 所有权，以及 outer setup policy、精确实例读回和 Mac adapter 接线；出口是具体问题修正或有限待验清单。既有本机 441 项测试不等于 Linux 目标构建 / 实际 syscall 验收；工具 / 制品条件具备并获准后再执行目标构建和真实负向矩阵。
 4. **条件闭合后按原顺序进入实际路径。** C1 与构建环境资格闭合后，按[C3–C5](../query/solver-cvc5-build-candidate-plan.md#批次占用授权与停止线)先构建依赖、审阅实际 ABI / Editline 有序闭包和 manifest，再配置 / 构建主目标；C4 决定 E0，实际 E4 通过后才进入 E5 的最多八份校准及一次精确 wrong-add guarantee 尝试。保持原容量、128 MiB / 6 s 和旧四版字节 / 拒绝，不因不足增限或绕过门禁；这仍不等于完整 P0–P9 / Evidence / 独立 checker 验收。
 
@@ -88,7 +94,7 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 
 ## 验证入口与本次审阅
 
-原逐批测试、失败和环境记录保留于[验证快照](../records/status-before-planning-alignment-2026-11-01.md#验证入口与本次审阅)，本次规划整理的实际检查见[本批记录](../records/2026-11-01-planning-alignment.md)。不同日期的测试数不相加，不推断本批重跑过未改实现。
+原逐批测试、失败和环境记录保留于[验证快照](../records/status-before-planning-alignment-2026-11-01.md#验证入口与本次审阅)，规划整理的实际检查见[原记录](../records/2026-11-01-planning-alignment.md)，L3 实现验证见[实现记录](../records/2026-11-01-linux-channel-l3-implementation.md)，本次日终复核见[日终记录](../records/2026-11-01-closeout.md)。不同日期的测试数不相加，不推断本批重跑过未改实现。
 
 仓库级契约、生成一致性与文本检查：
 

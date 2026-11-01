@@ -1,6 +1,6 @@
 # 诊断通道 L1：采集正文、离线输入与报告纯组件
 
-日期：2026-11-01。状态：**L1 已实现并完成本机有限验证；build_ready=false / execution_ready=false**。用途：供实施者和审阅者理解[交付方案](solver-linux-channel-build-and-delivery-plan.md)的已实现部分与私有 v0.1 字节契约；实际命令、失败与观察见[本批记录](../records/2026-11-01-linux-channel-l1-review.md)。本文不接受镜像、工具 / 许可或真实运行资格，不授权采集 / Linux 执行；后续入口接线见 [L2](solver-linux-channel-l2.md)，历史 L1 验证数与材料不改写。
+日期：2026-11-01。状态：**L1 已实现并完成本机有限验证；build_ready=false / execution_ready=false**。用途：供实施者和审阅者理解[交付方案](solver-linux-channel-build-and-delivery-plan.md)的已实现部分与私有 v0.1 字节契约；实际命令、失败与观察见[本批记录](../records/2026-11-01-linux-channel-l1-review.md)。本文不接受镜像、工具 / 许可或真实运行资格，不授权采集 / Linux 执行；后续入口接线见 [L2](solver-linux-channel-l2.md)，历史 L1 验证数与材料不改写。当前 [L3](solver-linux-channel-l3.md)已提交为 `bb9d963`：保留的 v0.1 为 53 源，另有 v0.2 纯生成 / 独立复核与 native 捕获；本页 v0.1 契约不充作 native 构建输入。
 
 ## 已实现边界
 
@@ -8,7 +8,7 @@
 | --- | --- |
 | [inspect_linux_host.sh](../../scripts/cvc5-build-support/inspect_linux_host.sh) | 固定只读采集正文，无参数、外部脚本加载、写盘、网络、目录递归或重试；仅静态 / 合成审阅，尚未运行 |
 | [channel_profile.rs](../../crates/solver-bootstrap-linux/src/channel_profile.rs) | 唯一类型化预算 / profile、内嵌正文原字节和读白名单；L1 仅归位同值常量；后续 L2 统一截止 / 控制流 |
-| [channel_inputs.rs](../../crates/solver-bootstrap-linux/src/channel_inputs.rs) / [显式宿主导出](../../crates/solver-bootstrap-linux/examples/export_linux_channel_inputs.rs) | 编译期捕获固定源家族（L1 为 45 份，L2 为 50 份），导出新任务目录；不创建原生 binary 或调用 Kernel |
+| [channel_inputs.rs](../../crates/solver-bootstrap-linux/src/channel_inputs.rs) / [显式宿主导出](../../crates/solver-bootstrap-linux/examples/export_linux_channel_inputs.rs) | 编译期捕获固定源家族（L1 为 45 份、L2 为 50 份；当前 L3 为 53 份），导出新任务目录；不创建原生 binary 或调用 Kernel |
 | [channel_report.rs](../../crates/solver-bootstrap-linux/src/channel_report.rs) / 私有 channel_json | 类型化控制值、有界 canonical ASCII JSON、Encoder / 增量 Decoder；无 OS / 文件 / 进程访问 |
 | [check-linux-channel-inputs.py](../../scripts/check-linux-channel-inputs.py) / [channel_report.py](../../scripts/cvc5-build-support/channel_report.py) | 独立标准库输入复核与增量流解析，不从 Rust 导出推导固定预算，不产生资格或执行确认 |
 
@@ -34,7 +34,7 @@
 
 `format, version, scope, generator, target, profile, budgets, collector, collector_reads, source_set_digest, sources, build_inputs, native_build, build_ready, execution_ready`。
 
-format 为 `radishaxiom-private-linux-channel-inputs`，version 为 `0.1`，**scope 为 offline-source-binding-only**。build_inputs 必须 null、native_build 为 not-accepted、两个 readiness 均 false。它只实现 L1 的源绑定，尚不含目标 std / 工具 / flags 的完整构建输入；不能直接充作交付方案中的最终构建 inputs。未来补完整工具输入须显式版本 / scope 迁移并保留旧版拒绝，不能原地改布尔值升级。
+format 为 `radishaxiom-private-linux-channel-inputs`，version 为 `0.1`，**scope 为 offline-source-binding-only**。build_inputs 必须 null、native_build 为 not-accepted、两个 readiness 均 false。它只实现 L1 的源绑定，尚不含目标 std / 工具 / flags 的完整构建输入；不能直接充作交付方案中的最终构建 inputs。L3 已另行实现显式 v0.2 / scope 迁移并在 native 拒绝旧版；尚无真实完整 root，不能原地改本页布尔值升级。
 
 sources 是固定有序源清单，行键为 path / bytes / digest：三包 src 的完整 .rs 家族、根 Cargo / pin、三包 Cargo、导出 example、正文和对应 Python 检查 / 测试入口。编译期原字节形成各行摘要及 source_set_digest；自身源码可以参与，生成输出自身与最终 ELF 不参与。复核器按当前仓库独立枚举同一源家族、拒绝 symlink / 缺失 / 新增 / 重排 / 大小 / 原字节变化，复用现有有界文件与 canonical JSON 检查，不改旧 checker。
 

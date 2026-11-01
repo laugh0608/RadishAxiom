@@ -4,7 +4,7 @@
 
 2026-11-01 接续：[控制面、冻结与资格方案](solver-local-cvc5-control-plane-plan.md)细化了当前 v0.2 的实现位置和真实验收；随后 [G0 盘点](../records/2026-11-01-cvc5-g0-capability-review.md)以证据不足结束，Linux 管理上下文、存储硬限 / 写别名 / 独立终止及参数未闭合，不进入实际接线。下文旧逐次读取方向仍只保留设计背景；新方案不增加完整读取观察器，也不改变离线 false 或来源接受状态。
 
-G0 后已另行形成[新 Linux 通道最小方案](solver-linux-management-channel-minimum-plan.md)，限定同一 daemon 的非 root、一次性只读诊断；仅核定权限 / 资源 / 清理候选，没有创建环境或接受镜像，也不提供本页缺失的 quota / 冻结 / 独立终止资格。
+G0 后已另行形成[新 Linux 通道最小方案](solver-linux-management-channel-minimum-plan.md)，限定同一 daemon 的非 root、一次性只读诊断；已完成 PID 1 / L1–L3 诊断源码与限定宿主验证，当前实现见 [L3](solver-linux-channel-l3.md)；没有创建环境或接受镜像，也不提供本页缺失的 quota / 冻结 / 独立终止资格。
 
 ## 本批实现出口
 

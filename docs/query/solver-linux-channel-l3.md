@@ -6,7 +6,7 @@
 
 唯一目标继续是 macOS AArch64 的 `1.97.1-aarch64-apple-darwin` 交叉构建 `aarch64-unknown-linux-musl`，使用已有 rust-lld 的 GNU flavor，产出静态非 PIE ET_EXEC。无新 GNU SDK / GCC / Linux builder、QEMU 或动态 libc 路线。
 
-L2 已提交为 `5dab738`。原方案批次只形成方案和诊断记录；本次实现尚未提交，最终 v0.2 输入实现 / 包装器的 source commit **尚不存在**；不能把 `5dab738` 写成那些未来实现的来源。具体候选参数见[候选计划 JSON](../records/cvc5-control-plane-2026-11-01/channel-l3-candidate-plan.json)，其 scope 为 proposal-only-not-native-build-inputs，final_implementation_commit=null，所有安装 / 构建授权和 readiness=false；它不能被原生入口当 inputs 消费。
+L2 已提交为 `5dab738`；L3 源码实现已提交为 **`bb9d963b38273bfd9ec7aefe69cc13417a4a8f34`**，其中含 v0.2 纯生成 / 独立复核、native 捕获与有界包装器。它是本次已验证的实现基线；未来完整构建输入仍须绑定执行前最终干净 commit 的完整树，不把 L2 或本页日终文档提交误记为已构建制品来源。原方案批次只形成方案和诊断记录。具体候选参数见[候选计划 JSON](../records/cvc5-control-plane-2026-11-01/channel-l3-candidate-plan.json)，其 scope 为 proposal-only-not-native-build-inputs，final_implementation_commit=null 是方案生成时的历史状态，旧 JSON 不回填；所有安装 / 构建授权和 readiness=false；它不能被原生入口当 inputs 消费。
 
 [只读观察 JSON](../records/cvc5-control-plane-2026-11-01/channel-l3-input-observation.json)绑定以下真实对象，全部以本机实际字节重核：
 
@@ -62,7 +62,7 @@ root ≤1 MiB、维持现有控制 JSON 的深度 / 64 项数组等边界；大�
 
 编译 root 使用受控的 `RADISHAXIOM_LINUX_CHANNEL_INPUTS` 路径作为 include_bytes 输入；先完整生成 / 独立复核，再固定原字节进入唯一编译，前后均核对。原生 prepare 必须消费这一捕获值，替换 L2 对运行时 source export 的调用；缺变量 / 文件、v0.1、错误 scope / null build_inputs / 漂移均失败，不回退旧 source-only 绑定，也不从运行环境或 argv 载入 inputs。仅文件捕获原语受目标 cfg 约束，所有校验和绑定逻辑继续用宿主纯 / 脚本后端检查，不能用 cfg 隐藏实现。
 
-报告 wire v0.1 保持不变；input_binding 是新 root 的 raw SHA256，Mac 将来必须使用预先登记的期望 root / build-manifest。不能从 Start 建立信任，不能用当前 L2 的 50 源导出冒充新 root。实际编译闭包清单随着未来实现重新生成；50 只是已提交 L2 的基线计数。
+报告 wire v0.1 保持不变；input_binding 是新 root 的 raw SHA256，Mac 将来必须使用预先登记的期望 root / build-manifest。不能从 Start 建立信任，不能用 source-only v0.1 导出冒充新 root。L2 的 50 源是历史基线，本次实现为 53 源；完整源码快照还须包含最终 commit 的全部 tracked 文件，不能把 53 源选定闭包当全树。
 
 ## 一次构建包装器与占用
 

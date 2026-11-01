@@ -1,8 +1,8 @@
 # 诊断 Linux 启动器：目标构建、交付与最终入口方案
 
-日期：2026-11-01。状态：**方案已静态核定；实施候选，build_ready=false / execution_ready=false**。用途：向项目所有者、实施者和审阅者明确[最小通道](solver-linux-management-channel-minimum-plan.md)的精确目标、采集正文绑定、输出所有权与退出路径。本页不接受工具 / 许可证 / 宿主资格，不提供已经可运行的构建或容器命令，不授权安装、构建、交付挂载或环境执行。实际盘点和验证见[本批记录](../records/2026-11-01-linux-channel-delivery-review.md)，现行顺位见[当前状态](../status/current.md)。
+日期：2026-11-01。状态：**方案及 L1–L3 源码已完成限定静态验证；build_ready=false / execution_ready=false**。用途：向项目所有者、实施者和审阅者明确[最小通道](solver-linux-management-channel-minimum-plan.md)的精确目标、采集正文绑定、输出所有权与退出路径。本页不接受工具 / 许可证 / 宿主资格，不提供已经可运行的构建或容器命令，不授权安装、构建、交付挂载或环境执行。实际盘点和验证见[本批记录](../records/2026-11-01-linux-channel-delivery-review.md)，现行顺位见[当前状态](../status/current.md)。
 
-方案随后提交为 `2e5da3a`；按项目所有者的下一批授权，[L1](solver-linux-channel-l1.md)已实现真实采集正文、45 源输入绑定与 Rust / Python 报告纯组件，并完成本机静态 / 合成验证。L1 导出的 scope 仅为 offline-source-binding-only，完整目标工具 / flags 尚未绑定，不替代本页最终构建 inputs。随后 L1 已提交为 `5609e6a`；[L2](solver-linux-channel-l2.md)已接通管道 / 首截止 / 最终退出源码并完成宿主静态 / 脚本验证。现行源绑定为 50 源、仍是 offline-source-binding-only；没有执行采集正文或新增 Linux 制品 / 环境。L2 已提交为 `5dab738`；[L3 精确组件与完整输入方案](solver-linux-channel-l3.md)已核定并重核既有 target 原包，不安装、不构建，现已实现 v0.2 纯输入、native 捕获与包装器的源码 / 静态切片，见 [L3 实现](solver-linux-channel-l3.md#v02-实现接口与静态出口)；没有真实完整 root、安装或 Linux 构建。
+方案随后提交为 `2e5da3a`；按项目所有者的下一批授权，[L1](solver-linux-channel-l1.md)已实现真实采集正文、45 源输入绑定与 Rust / Python 报告纯组件，并完成本机静态 / 合成验证。L1 导出的 scope 仅为 offline-source-binding-only，完整目标工具 / flags 尚未绑定，不替代本页最终构建 inputs。随后 L1 已提交为 `5609e6a`；[L2](solver-linux-channel-l2.md)已接通管道 / 首截止 / 最终退出源码并完成宿主静态 / 脚本验证。L2 交付时源绑定为 50 源、offline-source-binding-only；没有执行采集正文或新增 Linux 制品 / 环境。L2 已提交为 `5dab738`；[L3 精确组件与完整输入方案](solver-linux-channel-l3.md)已核定并重核既有 target 原包，不安装、不构建，现已实现 v0.2 纯输入、native 捕获与包装器的源码 / 静态切片，见 [L3 实现](solver-linux-channel-l3.md#v02-实现接口与静态出口)；L3 实现已提交为 `bb9d963`，现行 v0.1 为 53 源、native 严格要求 v0.2；没有真实完整 root、安装或 Linux 构建。
 
 ## 唯一候选与当前缺口
 
@@ -124,4 +124,4 @@ L2 leaf main 已按以下约束接精确目标路由，库内原生入口不返�
 | L4：实际制品离线验收 | 构建 / 链接 / ELF / 来源 / 许可和正文绑定独立核对，登记实际制品及单文件 runtime 目录；不创建镜像 / 容器，不在 Mac / Linux / 模拟器执行产物。静态通过仍不是运行资格 |
 | L5：执行前收口 | 精确宿主权限 / proc / seccomp、Mac 共享源 / 无写别名、限额和单 CID 配置 / 清理范围闭合后，才提交真实一次诊断的完整参数与许可范围。缺任一前置不 create / start，不提权 / 加依赖 / 换镜像补救 |
 
-本方案核定批次只做设计和既有工具只读观察；后续 L1 / L2 明确授权及源码实现见上方接续与专题。它们不授权任何目标安装 / 构建 / 交付执行。原 C1 / E0 / E4、G0 / A1–A10、镜像 / 许可接受和 readiness 不变；后续授权按明确动作与目标分别处理，不因方案写成具体路径就自动生效。
+本方案核定批次只做设计和既有工具只读观察；后续 L1–L3 明确授权及源码实现见上方接续与专题。它们不授权任何目标安装 / 构建 / 交付执行。原 C1 / E0 / E4、G0 / A1–A10、镜像 / 许可接受和 readiness 不变；后续授权按明确动作与目标分别处理，不因方案写成具体路径就自动生效。

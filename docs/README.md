@@ -80,7 +80,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 - [本地 cvc5 控制面与真实资格方案](query/solver-local-cvc5-control-plane-plan.md)：固定宿主候选、代码接线位置、阶段冻结、资源与真实正负例；G0 已以证据不足结束，恢复须先指定精确现有 Linux 管理入口和候选根，不授权探针或真实构建。
 - [新 Linux 管理通道最小方案](query/solver-linux-management-channel-minimum-plan.md)：同一 daemon 的一次性非 root 只读诊断候选，明确精确镜像、权限 / 输入、资源和 CID 清理；镜像与执行未接受，环境未创建，不替代独立终止 / 冻结资格。
 - [诊断镜像与宿主权限离线核对](records/2026-11-01-linux-channel-offline-review.md)：固定平台字节链、原始 rootfs / 包与许可声明、参考内核路径；保留真实差异并修正直接 PID 1 timeout 假设，没有创建 / 启动环境或接受运行资格。
-- [诊断 PID 1 启动器源码切片](records/2026-11-01-linux-channel-init-review.md)：沿现有 Rust syscall 边界实现私有监督 / 回收入口与合成验证；无可执行 CLI、Linux 制品或镜像接入，没有创建 / 启动环境。
+- [诊断 PID 1 启动器源码切片](records/2026-11-01-linux-channel-init-review.md)：初始库内监督 / 回收与合成验证；后续 L2 已有默认关闭的诊断 leaf，L3 已接严格输入捕获，仍无 Linux 制品 / 镜像接入或实际环境。
 - [诊断启动器目标构建与交付方案](query/solver-linux-channel-build-and-delivery-plan.md)：精确 Rust / musl / linker 候选、正文绑定、只读单文件交付、PID 1 帧报告与 raw exit；目标 std 未安装，L1 / L2 源码已形成，实际构建 / 交付与入口仍未接受执行。
 - [诊断通道 L1](query/solver-linux-channel-l1.md)：固定采集正文、离线源绑定、Rust / Python 报告纯组件及独立合成互操作；未运行正文或接受真实执行。
 - [诊断通道 L2](query/solver-linux-channel-l2.md)：内部 pipe / FD 所有权、唯一首时钟与 18 / 19.8 / 20 s 截止、非阻塞传输 / 回收、panic / allocator 与最终 raw exit 源码；仅宿主静态 / 脚本验证，未构建或执行 Linux 制品。
@@ -133,6 +133,8 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 | 2026-11-01 G0 能力盘点 | [前批提交、现有入口 / 共享视图观察与证据不足的结束决定](records/2026-11-01-cvc5-g0-capability-review.md) |
 | 2026-11-01 新通道方案 | [G0 提交、最小诊断通道、镜像只读元数据与权限 / 资源 / 清理设计](records/2026-11-01-linux-channel-minimum-review.md) |
 | 2026-11-01 新通道离线核对 | [最小方案提交、精确镜像 / 来源 / 许可与读取权限核对、PID 1 超时设计缺口](records/2026-11-01-linux-channel-offline-review.md) |
+| 2026-11-01 L3 实现 | [v0.2 / native 捕获 / 有界包装器、Cargo 解析输入补正与宿主进程组身份修正](records/2026-11-01-linux-channel-l3-implementation.md) |
+| 2026-11-01 日终回顾 | [全天提交、代码对应文档复核与下一批有限输入接受审阅](records/2026-11-01-closeout.md) |
 | Rust Linux 与静态目标输入 | [签名 / 归档盘点、安装候选与 kernel 许可审阅](records/rust-linux-input-review/README.md) |
 | 2026-10-17 日终回顾 | [紧凑查询、监督组件与 C0 全天提交、代码 / 文档复核及接续事项](records/2026-10-17-closeout.md) |
 | 2026-10-08 日终回顾 | [P3-B–F 全天提交、代码与文档核对及明日交接](records/2026-10-08-closeout.md) |

@@ -1,14 +1,14 @@
 # F2 原生 syscall 与 B 尾段边界
 
-日期：2026-10-17。用途：审查 `solver-bootstrap-linux` 的原生调用、布局、所有权与 clone 子分支；读者为 F2 实施者及 unsafe 审阅者。不包含运行资格、已接受 CLI、完整外层 setup filter、Linux 制品、镜像或真实内核观察。上层设置 / 监督职责另见 [F2 实化](solver-bootstrap-ffi-implementation-plan.md)及原生实现文件；本页不替代 ADR 0030 或既有 W/S 策略。
+日期：2026-10-17；诊断入口接续复核：2026-11-01。用途：审查 `solver-bootstrap-linux` 的原生调用、布局、所有权与 clone 子分支；读者为 F2 实施者及 unsafe 审阅者。不包含运行资格、已接受 CLI、完整外层 setup filter、Linux 制品、镜像或真实内核观察。上层设置 / 监督职责另见 [F2 实化](solver-bootstrap-ffi-implementation-plan.md)及原生实现文件；本页不替代 ADR 0030 或既有 W/S 策略。
 
 ## 实现与平台边界
 
-私有库没有 `main`、公开执行 API 或默认 accepted 配置。`NativeKernel` 只在 `target_os=linux`、`target_arch=aarch64`、`target_endian=little`、`target_pointer_width=64` 四条件同时成立时存在。其他平台没有原生 backend 或 libc / fork fallback。typed wrappers、设置、监督及 child 尾段仍在 Darwin 编译；测试显式选择 scripted `Kernel`。只有 `svc 0` 汇编块受目标 cfg 限制，不能用本机类型检查声称已编译 Linux 汇编、链接 musl 或执行内核。
+F2 solver 路径没有公开执行 API 或默认 accepted 配置。私有库已在 L2 增加默认关闭的专用 `linux-channel-entry` feature、隐藏诊断桥接与 `axiom-linux-channel-init` leaf；该 binary 只在 Linux / musl / AArch64 / LE / LP64 分支进入诊断 backend，其他目标 main 退出 125。它不开放 solver 或任意命令入口。`NativeKernel` 只在 `target_os=linux`、`target_arch=aarch64`、`target_endian=little`、`target_pointer_width=64` 四条件同时成立时存在。其他平台没有原生 backend 或 libc / fork fallback。typed wrappers、设置、监督及 child 尾段仍在 Darwin 编译；测试显式选择 scripted `Kernel`。底层 `svc 0` 汇编受目标 cfg 限制；专用诊断 leaf 路由、编译捕获原语与全局 allocator 绑定也受精确 target / feature 约束。共享监督 / IO / 校验逻辑仍接受宿主检查；不能用这些检查声称已编译 Linux 汇编、链接 musl 或执行内核。
 
-crate 使用 `deny(unsafe_op_in_unsafe_fn)`。局部 unsafe 注释逐处列出缓冲区和生命周期。crate 级 `allow(dead_code)` 只因本批是没有可运行入口的源码交付，私有原生组件尚未从可执行入口可达；其他 lint 不因此放宽。`Kernel` / `Call` 和任意寄存器入口均不对外公开；内部 `call` 仍为 unsafe，safe API 不接受原始指针。指针只从本次调用拥有的 slice、固定布局对象、`CStr` 或 parent 预冻结对象构造。
+crate 使用 `deny(unsafe_op_in_unsafe_fn)`。局部 unsafe 注释逐处列出缓冲区和生命周期。crate 级 `allow(dead_code)` 保留未接执行入口的 F2 私有组件；专用诊断 leaf 只能到达诊断监督 / 传输路径，不能据此声称全部私有组件不可达或 F2 已获执行资格。其他 lint 不因此放宽。`Kernel` / `Call` 和任意寄存器入口均不对外公开；内部 `call` 仍为 unsafe，safe API 不接受原始指针。指针只从本次调用拥有的 slice、固定布局对象、`CStr` 或 parent 预冻结对象构造。
 
-2026-11-01 新增的私有 `channel_init` 仅服务[只读诊断通道](solver-linux-management-channel-minimum-plan.md)，复用本库 Kernel / FD / 布局 / 信号冻结及 waitid 解码，不复用 solver 的 B / W/S 策略或认证协议。新增 get*id / getgroups / rt_sigtimedwait / pidfd_open / clone(SIGCHLD) 只参照 Linux v6.18 asm-generic UAPI，不改变原 v6.12 布局或既有 final filter。其 unsafe 库内入口、单线程 / namespace 前置、固定采集子分支、精确回收与未接 CLI / 制品边界见[本批记录](../records/2026-11-01-linux-channel-init-review.md)；不能从新增诊断组件推导 F2 / solver 的运行资格。
+2026-11-01 新增的私有 `channel_init` 仅服务[只读诊断通道](solver-linux-management-channel-minimum-plan.md)，复用本库 Kernel / FD / 布局 / 信号冻结及 waitid 解码，不复用 solver 的 B / W/S 策略或认证协议。新增 get*id / getgroups / rt_sigtimedwait / pidfd_open / clone(SIGCHLD) 只参照 Linux v6.18 asm-generic UAPI，不改变原 v6.12 布局或既有 final filter。初始 unsafe 库内入口及有限检查见[初始记录](../records/2026-11-01-linux-channel-init-review.md)；后续 [L2](solver-linux-channel-l2.md)接通管道 / 最终 raw exit / panic 与 allocator 桥接，[L3](solver-linux-channel-l3.md)实现严格 v0.2 编译捕获，当前实现基线为 `bb9d963`。单线程 / namespace 前置、固定子分支和精确 pidfd 回收边界保留，尚无 Linux 制品或实际 syscall 验收；不能从新增诊断组件推导 F2 / solver 的运行资格。
 
 原生汇编通过 x8 传 syscall 编号、x0..x5 传完整 `u64` 参数，x0 为输入输出。`svc` 不声明 `nomem`、`pure` 或 `readonly`；`nostack` 只说明汇编自身不改变用户栈。返回寄存器落在 `-4095..=-1` 时按完整 64 位二补码解出 errno，保留操作名与 errno；不会把 libc 的 `-1 + TLS errno` 规则混进来。短 IO、EINTR、EAGAIN、EPIPE、ESRCH 等由上层明确处理，不在 wrapper 内隐含重试。单次 clone、SCM_RIGHTS 发送和通知 CONTINUE 尤其不能自动重试。
 

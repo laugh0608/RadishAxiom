@@ -8,7 +8,7 @@
 
 [统一入口](../../crates/solver-bootstrap-linux/src/channel_entry.rs)只解析 `--run-id <64 位小写 hex>`，内嵌固定正文，不开放 argv / 任意 CStr / syscall 执行 API。库内 Kernel 继续私有。默认宿主导出仍只生成三份纯数据，不调用该 binary。
 
-本批入口消费的 input_binding **精确对应现行 offline-source-binding-only inputs**：50 源（L1 的 45 源加本批五份 Rust 源），build_inputs=null、native_build=not-accepted、两个 readiness=false。它不是最终工具 / flags 绑定，也没有资格升级开关。完整目标输入仍须 L3 明确版本 / scope 迁移；此源码状态不得直接登记为可交付构建。Cargo 中加入已核定的独立 `linux-channel` profile，不改变普通 release / test 默认、依赖和 lockfile；尚未使用该 profile 构建。
+L2 提交 `5dab738` 的入口消费 input_binding **精确对应当时 offline-source-binding-only inputs**：50 源（L1 的 45 源加本批五份 Rust 源），build_inputs=null、native_build=not-accepted、两个 readiness=false。它不是最终工具 / flags 绑定，也没有资格升级开关。L3 后续已实现 v0.2 / scope 迁移，native 仅消费编译捕获 root、拒绝本页旧版；当前 source-only v0.1 为 53 源。L2 的 50 源 / null 及下方 117 项是历史基线，不代表当前 native 行为或新的目标验收。Cargo 中加入已核定的独立 `linux-channel` profile，不改变普通 release / test 默认、依赖和 lockfile；L2 批次未使用该 profile 构建；L3 仅用同名 profile 验证 Darwin digest rlib，不是 Linux 制品。
 
 ## FD 所有权与子尾段
 
@@ -50,4 +50,4 @@ leaf binary 独占 `#[global_allocator]`；[最小包装](../../crates/solver-bo
 
 尚未验证 Linux target 的 std / CRT / 汇编 / 链接闭包、真实 pipe / BOOTTIME / 信号 / raw exit / allocator、精确镜像 BusyBox 行为、proc / seccomp / bind 权限、Mac adapter 或 daemon 清理。panic hook 不能认证所有同步故障 / 栈溢出 / main 前失败；200 ms 足够性也没有实测保证。完整 Final 不证明 PID 1 已退出或 namespace 后代已销毁。
 
-L2 已提交为 `5dab738`；[L3](solver-linux-channel-l3.md)已核定精确 target、完整输入与包装器方案并重核旧原包，尚未安装或实现 v0.2。下一源码切片先实现纯绑定 / 独立复核、native 捕获和包装器静态验证；取得 / 安装、一次 Linux 构建、离线制品验收、交付和真实执行分别授权。C1 / E0 / E4、G0 / A1–A10、镜像 / 权限 / 来源与独立终止 / 存储硬限缺口均保留，不创建环境试错。
+L2 已提交为 `5dab738`；[L3](solver-linux-channel-l3.md)源码已提交为 `bb9d963`，完成 v0.2 纯绑定 / 独立复核、native 捕获和包装器宿主静态验证，未安装 target 或构建 Linux 制品。后续先完成特定输入接受，单组件安装及实际观察、一次 Linux 构建、离线制品验收、交付和真实执行分别授权。C1 / E0 / E4、G0 / A1–A10、镜像 / 权限 / 来源与独立终止 / 存储硬限缺口均保留，不创建环境试错。
