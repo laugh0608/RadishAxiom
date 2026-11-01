@@ -6,6 +6,8 @@
 
 随后按授权完成 [PID 1 启动器的最小源码实现与静态验证](../records/2026-11-01-linux-channel-init-review.md)。实现复用现有 Rust Linux syscall 边界，由 PID 1 自行计时、直接启动非 PID 1 采集子进程，并按精确 pidfd 回收被接管的子进程；不再叠加 BusyBox timeout。固定普通 clone 路径避免依赖上游默认 seccomp 对 clone3 的额外 capability 条件，仍须核对本机有效策略。当前只有库内私有入口，没有可执行 CLI、Linux 制品或镜像接入；真实执行仍停止。
 
+启动器源码已提交为 `be8c620`；后续[目标构建与交付方案](solver-linux-channel-build-and-delivery-plan.md)选择 Rust 1.97.1 / aarch64-unknown-linux-musl / bundled rust-lld 的静态非 PIE 候选、内嵌采集原字节、单文件 runtime 目录只读挂 `/mnt`，以及 PID 1 独占 stdout 的私有帧报告 / raw exit。Linux target std 实际未安装；正文、入口、管道 / codec / 退出接线均未实现。方案在原 20 s 中安排 18 s 工作、1.8 s 收束、0.2 s 最终导出，不把该安排写成现有代码或运行保证。详细参数、绑定、预算和验收以该方案为准，本批未安装 / 构建或交付挂载。
+
 ## 核定结论与选项
 
 推荐在**同一 OrbStack Docker daemon** 上，另经授权创建最多一个短时、非 root、无 capabilities 的只读诊断容器。它只读固定的 Linux 内核 / 挂载 / cgroup 元数据并导出有界报告，随后停止并移除精确实例。使用 Docker 创建后，先检查未启动实例的配置，再启动固定采集命令；不进入交互式 shell，不开放 SSH / 端口，不安装服务。
@@ -39,10 +41,10 @@
 | 能力 | 固定候选配置与必须读回的事实 |
 | --- | --- |
 | 身份 | 显式 `65532:65532`、无附加组、`--cap-drop=ALL`、`no-new-privileges`；保留 daemon user namespace 策略，不使用 `--userns=host` 解除 remap。记录实际 UID / GID / 映射，缺权限就结束，不改 root |
-| 执行 | 只执行自有采集器及已审 applet；显式覆盖 image 默认入口 / 命令，使用 `env -i` 的闭合环境（仅 PATH、LANG、LC_ALL、TZ）。首个 applet / loader 在清环境前已经启动，故须先核定 image / create 的有效环境，拒绝加载器注入及未知键，不能仅凭 `env -i` 追认。无 TTY、无交互 stdin、无 init / healthcheck 隐含载荷、无后台任务或任意用户命令 |
+| 执行 | 只执行已审静态启动器、内嵌自有采集器及已审 applet；显式覆盖 image 默认入口 / 命令，create 有效环境仅 PATH、LANG、LC_ALL、TZ，无重复 / 未知键或加载器注入，不继承宿主环境。不能待 main / 子进程清环境后才追认初始环境。无 TTY、无交互 stdin、无 init / healthcheck 隐含载荷、无采集后台任务或任意用户命令 |
 | 网络 / 设备 | `network=none`、IPC `none`、不映射端口、不传额外设备 / credentials / agent / daemon socket；不继承宿主环境。不关闭默认 seccomp，不给 mount / ptrace / BPF 能力 |
 | namespace | 保留私有 PID / mount / IPC / UTS；仅候选 `cgroupns=host` 用于读实际 cgroup 路径，明确增加 cgroup 层级可见性。不能据此声称进入宿主 PID / mount namespace；若 daemon 策略不允许，拒绝而非关闭 user namespace 或启用 privileged |
-| 文件系统 | rootfs 只读，无 volume、无额外用户 tmpfs / `/dev/shm`；默认 `/dev` 等 runtime 挂载须逐项读回并计入资源，不能称为完全无 tmpfs 或零可写状态。不挂宿主 `/`、`/usr`、用户目录、SDK、源码、构建树或整个 `/proc`。采集脚本作为固定 argv 的字面代码传入，不挂整仓库，不用 shell 插值组装 Docker 命令 |
+| 文件系统 | rootfs 只读，无 volume、无额外用户 tmpfs / `/dev/shm`；默认 runtime 挂载须读回并计量。除下列观察白名单外，只额外 bind 已核对的单文件 runtime 目录到既有 `/mnt`，readonly / rprivate / 禁递归子挂载；不挂整个用户目录、SDK、源码、构建树、宿主 `/`、`/usr` 或 `/proc`。正文内嵌启动器，只在固定子 exec argv 中传字面代码；Docker argv 不接正文或路径覆盖，不用 shell 插值组装命令 |
 | 记录 | 报告只经有界 stdout / stderr 传到 Mac；`log-driver=none` 避免 daemon 再复制工具日志。Mac 另存本批配置、CID、退出 / 清理结果与报告；无容器内持久输出目录 |
 
 容器外的 Docker 客户端仍持有 daemon 管理能力；诊断进程不持有该 socket。剩余信任为精确镜像 / applet、自有采集与编排、Docker CLI / daemon、OrbStack 与内核；不能抵御恶意管理员或把同用户进程自动视为可信。报告中的 Linux 路径和身份属于事实材料，不是宿主 root 授权。
@@ -114,7 +116,7 @@
 
 ## 验收出口与下一步
 
-静态方案、镜像离线核对与 PID 1 库内源码切片已有实际结果，**仍不接受新信任、镜像或诊断执行例外**。下一切片核定启动器的精确目标构建 / 交付、可信采集正文绑定、有界报告 / 最终退出接线与必要负例，再接有限采集 / Mac 编排；真实宿主权限及剩余来源 / 许可接受继续是执行前置。不重复完整来源清单或运行旧 timeout 入口，不先创建环境试错。
+静态方案、镜像离线核对、PID 1 库内源码及目标构建 / 交付候选已有结果，**仍不接受新信任、镜像或诊断执行例外**。下一切片沿[交付方案 L1 / L2](solver-linux-channel-build-and-delivery-plan.md#实施顺序验收与停止线)先实施真实采集正文 / 输入绑定与报告纯组件，再做统一管道 / 期限 / raw exit 源码接线；目标组件安装、构建、交付挂载和诊断分别授权，真实宿主权限及来源 / 许可接受继续是执行前置。不重复完整来源清单或运行旧 timeout 入口，不先创建环境试错。
 
 真实执行如果另获授权，必须分别报告：创建 / 配置读回是否一致；采集是否真实完整；宿主 / namespace 来源是否可定位；资源 / 退出 / Docker 清理各自观察与缺失。身份 / 数据矛盾为失败，缺失为未取得，不合成为资格 success。只能用结果决定同宿主后续具体根 / quota / 控制权限的可行性，不能把本次读回写成 A3 / A4 / A7 / A8 或 C1 / E0 / E4 通过。
 

@@ -80,6 +80,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 - [新 Linux 管理通道最小方案](query/solver-linux-management-channel-minimum-plan.md)：同一 daemon 的一次性非 root 只读诊断候选，明确精确镜像、权限 / 输入、资源和 CID 清理；镜像与执行未接受，环境未创建，不替代独立终止 / 冻结资格。
 - [诊断镜像与宿主权限离线核对](records/2026-11-01-linux-channel-offline-review.md)：固定平台字节链、原始 rootfs / 包与许可声明、参考内核路径；保留真实差异并修正直接 PID 1 timeout 假设，没有创建 / 启动环境或接受运行资格。
 - [诊断 PID 1 启动器源码切片](records/2026-11-01-linux-channel-init-review.md)：沿现有 Rust syscall 边界实现私有监督 / 回收入口与合成验证；无可执行 CLI、Linux 制品或镜像接入，没有创建 / 启动环境。
+- [诊断启动器目标构建与交付方案](query/solver-linux-channel-build-and-delivery-plan.md)：精确 Rust / musl / linker 候选、正文绑定、只读单文件交付、PID 1 帧报告与 raw exit；目标 std 未安装，方案未实施或接受运行资格。
 
 ## 机器契约
 
