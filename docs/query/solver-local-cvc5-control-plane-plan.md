@@ -4,6 +4,8 @@
 
 后续按项目所有者要求完成[新 Linux 通道最小方案](solver-linux-management-channel-minimum-plan.md)：唯一候选为同一 daemon 的一次性非 root 只读诊断容器，已列固定镜像候选、权限、资源和精确清理；没有接受镜像、执行例外或创建环境，也没有解决独立终止 / 冻结。下一批先完成精确工具和有界采集 / 编排的离线审阅，再就具体诊断执行另行决定，不重跑 G0 盘点或直接部署常驻控制器。
 
+精确镜像和权限的[后续离线核对](../records/2026-11-01-linux-channel-offline-review.md)已取得平台字节链、原始 rootfs 514 项相对树一致、16 包 / 10 配方版本 / 许可声明以及参考内核路径；没有接受镜像或本机可读性。新发现 BusyBox timeout 直接位于容器 PID 1 的内部强杀假设不能成立，最小方案已要求保留 PID 1 监督 / 回收角色、改用非 PID 1 采集子进程；未实现或运行，不提高冻结 / 独立终止资格。
+
 ## 结论与直接出口
 
 已完成的 v0.2 是离线阶段 / 链接前材料检查。`phase_rules.check_declarations` 检查 `frozen`、`writers`、`writable_aliases` 和 `control_record_sha256` 等声明，但不观察 OS；`capture_link.py` 的输出位于构建可写目录，属于不可信工具观察。给这些结果外包一层容器命令，不能补出实际冻结或认证捕获。

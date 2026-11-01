@@ -1,0 +1,4958 @@
+{
+  "apk_checksum_mismatches": [
+    {
+      "declared_sha1": "9a24457ba32e602580895c6a885ce175d7a006ae",
+      "observed_sha1": "fdcce813d9a3aa27fffcf07126d2deabf17cb057",
+      "package": "alpine-baselayout-data",
+      "path": "etc/shadow"
+    }
+  ],
+  "apk_file_checksums_checked": 109,
+  "archive": {
+    "bytes": 4289024,
+    "sha256": "b235aa410b8cf689f2ebfb340eac1f6ebe0d569b300f667809a59ca097787adb"
+  },
+  "attestations": [
+    {
+      "additional_records": [
+        {
+          "declared_generated_from_by": [
+            [
+              "alpine-release",
+              "3.23.5-r0"
+            ]
+          ],
+          "declared_source_origin": true,
+          "name": "alpine-base",
+          "version": "3.23.5-r0"
+        },
+        {
+          "declared_generated_from_by": [
+            [
+              "ca-certificates-bundle",
+              "20260611-r0"
+            ]
+          ],
+          "declared_source_origin": true,
+          "name": "ca-certificates",
+          "version": "20260611-r0"
+        },
+        {
+          "declared_generated_from_by": [
+            [
+              "libcrypto3",
+              "3.5.7-r0"
+            ],
+            [
+              "libssl3",
+              "3.5.7-r0"
+            ]
+          ],
+          "declared_source_origin": true,
+          "name": "openssl",
+          "version": "3.5.7-r0"
+        },
+        {
+          "declared_generated_from_by": [
+            [
+              "scanelf",
+              "1.3.8-r2"
+            ]
+          ],
+          "declared_source_origin": true,
+          "name": "pax-utils",
+          "version": "1.3.8-r2"
+        }
+      ],
+      "apk_package_versions": [
+        [
+          "alpine-base",
+          "3.23.5-r0"
+        ],
+        [
+          "alpine-baselayout",
+          "3.7.2-r0"
+        ],
+        [
+          "alpine-baselayout-data",
+          "3.7.2-r0"
+        ],
+        [
+          "alpine-keys",
+          "2.6-r0"
+        ],
+        [
+          "alpine-release",
+          "3.23.5-r0"
+        ],
+        [
+          "apk-tools",
+          "3.0.6-r0"
+        ],
+        [
+          "busybox",
+          "1.37.0-r30"
+        ],
+        [
+          "busybox-binsh",
+          "1.37.0-r30"
+        ],
+        [
+          "ca-certificates",
+          "20260611-r0"
+        ],
+        [
+          "ca-certificates-bundle",
+          "20260611-r0"
+        ],
+        [
+          "libapk",
+          "3.0.6-r0"
+        ],
+        [
+          "libcrypto3",
+          "3.5.7-r0"
+        ],
+        [
+          "libssl3",
+          "3.5.7-r0"
+        ],
+        [
+          "musl",
+          "1.2.5-r23"
+        ],
+        [
+          "musl-utils",
+          "1.2.5-r23"
+        ],
+        [
+          "openssl",
+          "3.5.7-r0"
+        ],
+        [
+          "pax-utils",
+          "1.3.8-r2"
+        ],
+        [
+          "scanelf",
+          "1.3.8-r2"
+        ],
+        [
+          "ssl_client",
+          "1.37.0-r30"
+        ],
+        [
+          "zlib",
+          "1.3.2-r0"
+        ]
+      ],
+      "authentication": "not-established",
+      "blob": "sha256:61a2246fa5b8fe5704242ae2e4de52194e6c9c062505785db7426c14d0b783ce",
+      "installed_packages_covered": true,
+      "matches_apk_database": false,
+      "predicate_type": "https://spdx.dev/Document",
+      "subject_digest": "sha256:d858bb5442632a31bd4bca6c5e601dbe6b536fd7942092ea6a08a0a95805693c"
+    },
+    {
+      "authentication": "not-established",
+      "blob": "sha256:91dc314ba1f9a21793224168933c36d4b2c483f0894d6856f7f548f209ed9236",
+      "config_source": {
+        "entryPoint": "Dockerfile",
+        "uri": "https://github.com/alpinelinux/docker-alpine.git#4ad948cca27e7a605aa63ae1c59c22081a2c6d13:aarch64"
+      },
+      "materials": [
+        {
+          "digest": {
+            "sha256": "13c89fb6085aceb41f9556825c59d957917a3be670e3493598bd1f7f2a49f2fe"
+          },
+          "uri": "pkg:docker/docker/scout-sbom-indexer@1?digest=sha256:13c89fb6085aceb41f9556825c59d957917a3be670e3493598bd1f7f2a49f2fe"
+        },
+        {
+          "digest": {
+            "sha256": "2de98a0fb47ebe4f51f3829f05638c6f821315c3f400b363860f7f0283c95cc7"
+          },
+          "uri": "pkg:docker/tianon/buildkit@0.16?digest=sha256:2de98a0fb47ebe4f51f3829f05638c6f821315c3f400b363860f7f0283c95cc7&platform=linux%2Farm64%2Fv8"
+        },
+        {
+          "digest": {
+            "sha256": "2de98a0fb47ebe4f51f3829f05638c6f821315c3f400b363860f7f0283c95cc7"
+          },
+          "uri": "pkg:docker/tianon/buildkit@0.16?digest=sha256:2de98a0fb47ebe4f51f3829f05638c6f821315c3f400b363860f7f0283c95cc7"
+        },
+        {
+          "digest": {
+            "sha1": "4ad948cca27e7a605aa63ae1c59c22081a2c6d13"
+          },
+          "uri": "https://github.com/alpinelinux/docker-alpine.git#4ad948cca27e7a605aa63ae1c59c22081a2c6d13"
+        }
+      ],
+      "predicate_type": "https://slsa.dev/provenance/v0.2",
+      "subject_digest": "sha256:d858bb5442632a31bd4bca6c5e601dbe6b536fd7942092ea6a08a0a95805693c"
+    }
+  ],
+  "candidate_sha256": "2d6d2bd22959b77f1f590f2a4cb1a1ac7abd61ba0e34ea1435d757e5c555d3f9",
+  "compressed_layer_digest": "sha256:14a4754c352fba4c6c0da8e4f01bb990463c19f7ff63e090073c385bd2bc5046",
+  "config": {
+    "architecture": "arm64",
+    "config": {
+      "Cmd": [
+        "/bin/sh"
+      ],
+      "Env": [
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      ],
+      "WorkingDir": "/"
+    },
+    "os": "linux",
+    "rootfs": {
+      "diff_ids": [
+        "sha256:91d5cf66444f05b8c72e1b9d725c1752b9b015b68a7918125fc46ecdb7cc46d5"
+      ],
+      "type": "layers"
+    },
+    "variant": "v8"
+  },
+  "config_digest": "sha256:1087dfd14fa77fe3bd102f39d42ee9c7e183876bd1a65f38fe2c18198ae976b4",
+  "diff_ids": [
+    "sha256:91d5cf66444f05b8c72e1b9d725c1752b9b015b68a7918125fc46ecdb7cc46d5"
+  ],
+  "executables": [
+    {
+      "bytes": 919304,
+      "elf": {
+        "interpreter": [
+          "/lib/ld-musl-aarch64.so.1"
+        ],
+        "machine": "AArch64",
+        "needed": [
+          "libc.musl-aarch64.so.1"
+        ],
+        "rpath_or_runpath": [],
+        "scope": "program-header-and-dynamic-layout-only",
+        "type": "ET_DYN"
+      },
+      "path": "bin/busybox",
+      "sha256": "dd10691d81c84f0182f5af5f1583d566ddc0b9d0d9fc46b41b99b83c398306dd"
+    },
+    {
+      "bytes": 723480,
+      "elf": {
+        "interpreter": [],
+        "machine": "AArch64",
+        "needed": [],
+        "rpath_or_runpath": [],
+        "scope": "program-header-and-dynamic-layout-only",
+        "type": "ET_DYN"
+      },
+      "path": "lib/ld-musl-aarch64.so.1",
+      "sha256": "fc61b6e11fd8c6bfee3235865249cd78eea34aa36d88277e6008038031160993"
+    }
+  ],
+  "execution_aliases": {
+    "bin/sh": "bin/busybox",
+    "lib/libc.musl-aarch64.so.1": "lib/ld-musl-aarch64.so.1",
+    "usr/bin/env": "bin/busybox",
+    "usr/bin/timeout": "bin/busybox"
+  },
+  "execution_ready": false,
+  "expanded_tar_bytes": 8939520,
+  "format": "radishaxiom-private-linux-channel-image-inspection",
+  "history_count": 2,
+  "image_acceptance": "not-accepted",
+  "index_digest": "sha256:fd791d74b68913cbb027c6546007b3f0d3bc45125f797758156952bc2d6daf40",
+  "inventory": [
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "bin",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/arch",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/ash",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/base64",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/bbconfig",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 919304,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0755",
+      "path": "bin/busybox",
+      "sha256": "dd10691d81c84f0182f5af5f1583d566ddc0b9d0d9fc46b41b99b83c398306dd",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/cat",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/chattr",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/chgrp",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/chmod",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/chown",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/cp",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/date",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/dd",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/df",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/dmesg",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/dnsdomainname",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/dumpkmap",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/echo",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/egrep",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/false",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/fatattr",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/fdflush",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/fgrep",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/fsync",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/getopt",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/grep",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/gunzip",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/gzip",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/hostname",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/ionice",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/iostat",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/ipcalc",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/kbd_mode",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/kill",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/link",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/linux32",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/linux64",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/ln",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/login",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/ls",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/lsattr",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/lzop",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/makemime",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/mkdir",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/mknod",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/mktemp",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/more",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/mount",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/mountpoint",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/mpstat",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/mv",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/netstat",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/nice",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/pidof",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/ping",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/ping6",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/pipe_progress",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/printenv",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/ps",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/pwd",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/reformime",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/rev",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/rm",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/rmdir",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/run-parts",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/sed",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/setpriv",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/setserial",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/sh",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/sleep",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/stat",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/stty",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/su",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/sync",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/tar",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/touch",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/true",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/umount",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/uname",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/usleep",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/watch",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "bin/zcat",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "dev",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc",
+      "uid": 0
+    },
+    {
+      "bytes": 7,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/alpine-release",
+      "sha256": "1578c32f17ab4cbaf89e0e858764cabaeea9833921801e8ff7deea1eeeb0085c",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/apk",
+      "uid": 0
+    },
+    {
+      "bytes": 8,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/apk/arch",
+      "sha256": "5121ae59314a84da7b4d9587374398f1afa2000b243b3e54f491adefaac54f92",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/apk/keys",
+      "uid": 0
+    },
+    {
+      "bytes": 451,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/apk/keys/alpine-devel@lists.alpinelinux.org-58199dcc.rsa.pub",
+      "sha256": "73867d92083f2f8ab899a26ccda7ef63dfaa0032a938620eda605558958a8041",
+      "uid": 0
+    },
+    {
+      "bytes": 800,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/apk/keys/alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub",
+      "sha256": "d11f6b21c61b4274e182eb888883a8ba8acdbf820dcc7a6d82a7d9fc2fd2836d",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/apk/protected_paths.d",
+      "uid": 0
+    },
+    {
+      "bytes": 103,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/apk/repositories",
+      "sha256": "680df3aa52f6778e1529e3e64b2b4ded9de96f8fed8d647b8bee06db919e6392",
+      "uid": 0
+    },
+    {
+      "bytes": 74,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/apk/world",
+      "sha256": "bf2e4562deee401d11a98d9873fc6823e963b2fc5833df25302682701feb8869",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/busybox-paths.d",
+      "uid": 0
+    },
+    {
+      "bytes": 3986,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/busybox-paths.d/busybox",
+      "sha256": "ad43f2888aa6679930812faef33672c45e98021d3be0d0ed08d257c1d957a968",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/crontabs",
+      "uid": 0
+    },
+    {
+      "bytes": 283,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0600",
+      "path": "etc/crontabs/root",
+      "sha256": "575d810a9fae5f2f0671c9b2c0ce973e46c7207fbe5cb8d1b0d1836a6a0470e3",
+      "uid": 0
+    },
+    {
+      "bytes": 89,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/fstab",
+      "sha256": "a3efca2e8d62785c87517283092b4c800d88612b6f3f06b80a4c2f39d8e68841",
+      "uid": 0
+    },
+    {
+      "bytes": 510,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/group",
+      "sha256": "6fb6ab5a5526e6f4896b70c7e3c350fd475158a1f0d7b5fc0f3f9bd57f1c3be8",
+      "uid": 0
+    },
+    {
+      "bytes": 10,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/hostname",
+      "sha256": "d906aecb61d076a967d9ffe8821c7b04b063f72df9d9e35b33ef36b1c0d98f16",
+      "uid": 0
+    },
+    {
+      "bytes": 79,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/hosts",
+      "sha256": "e3998dbe02b51dada33de87ae43d18a93ab6915b9e34f5a751bf2b9b25a55492",
+      "uid": 0
+    },
+    {
+      "bytes": 570,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/inittab",
+      "sha256": "7326d8ad56bf5fea63b1ca516a747ff6e6723e25ae84a93c31620b03de6c001d",
+      "uid": 0
+    },
+    {
+      "bytes": 51,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/issue",
+      "sha256": "0325c9565c4226e4dfdfa532939274823e3f6ac5d58930e749bc0c65455c56f2",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/logrotate.d",
+      "uid": 0
+    },
+    {
+      "bytes": 140,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/logrotate.d/acpid",
+      "sha256": "d608a3b7715886b5735def0cc50a6359fd364fac2e0e0a459c588c04be471031",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/modprobe.d",
+      "uid": 0
+    },
+    {
+      "bytes": 1545,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/modprobe.d/aliases.conf",
+      "sha256": "3ebaba946f213670170c7d69949f690a3854553bd0b1560f1d980cba4c83a942",
+      "uid": 0
+    },
+    {
+      "bytes": 2247,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/modprobe.d/blacklist.conf",
+      "sha256": "0e9ab848289bfb20b9b066d05c8b1383a7c92b97ff8072a50806054b5d3fd739",
+      "uid": 0
+    },
+    {
+      "bytes": 122,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/modprobe.d/i386.conf",
+      "sha256": "6c46c4cbfb8b7594f19eb94801a350fa2221ae9ac5239a8819d15555caa76ae8",
+      "uid": 0
+    },
+    {
+      "bytes": 15,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/modules",
+      "sha256": "2c881de75a5409c35d2433a24f180b8b02ba478ef2c1c60ea3434a35bcbc335d",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/modules-load.d",
+      "uid": 0
+    },
+    {
+      "bytes": 284,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/motd",
+      "sha256": "ff044e9be5daa2eee2d3d10a4da72e5477e4c24c16f1792de2c91dae844c0e30",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "etc/mtab",
+      "target": "../proc/mounts",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/network",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/network/if-down.d",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/network/if-post-down.d",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/network/if-post-up.d",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/network/if-pre-down.d",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/network/if-pre-up.d",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/network/if-up.d",
+      "uid": 0
+    },
+    {
+      "bytes": 285,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0775",
+      "path": "etc/network/if-up.d/dad",
+      "sha256": "2fd20d1bc67d9ee711990002b24f156635a73f56b8935b2f76592938817fa4e7",
+      "uid": 0
+    },
+    {
+      "bytes": 205,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/nsswitch.conf",
+      "sha256": "0afd94c183d30a348b45057f6bf468e121aa448a7641109addb5bb8e282f514d",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/opt",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "etc/os-release",
+      "target": "../usr/lib/os-release",
+      "uid": 0
+    },
+    {
+      "bytes": 702,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/passwd",
+      "sha256": "31a94f06f17bc3b9085fccab1d0fa6ee9e79c4a1e4d91f617fa5de95863be015",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/periodic",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/periodic/15min",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/periodic/daily",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/periodic/hourly",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/periodic/monthly",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/periodic/weekly",
+      "uid": 0
+    },
+    {
+      "bytes": 547,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/profile",
+      "sha256": "87e8643d3ce156de0c09370d4d39446f30bd00d264bea248abc191c4d7b9df3e",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/profile.d",
+      "uid": 0
+    },
+    {
+      "bytes": 97,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/profile.d/20locale.sh",
+      "sha256": "284a6ef56ab97a13a777c6b01ae14f2cc3d2b7a29c19e750e622e70cc3c73186",
+      "uid": 0
+    },
+    {
+      "bytes": 249,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/profile.d/README",
+      "sha256": "b73284f27fe2da9ae1902b1fe9596c3ffc61a154e2805a034184f0468f8b09b0",
+      "uid": 0
+    },
+    {
+      "bytes": 447,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/profile.d/color_prompt.sh.disabled",
+      "sha256": "ba24425c6864a5d17fa0fdaf914c4d21419e47c4d62080c33830af059fe46617",
+      "uid": 0
+    },
+    {
+      "bytes": 3144,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/protocols",
+      "sha256": "4959498abbadaa1e50894a266f8d0d94500101cfe5b5f09dcad82e9d5bdfab46",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/secfixes.d",
+      "uid": 0
+    },
+    {
+      "bytes": 97,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/secfixes.d/alpine",
+      "sha256": "d9b3bbeccb06c17e3de3db6db3f793d319642c41331b501a978c47cf0b0ef68f",
+      "uid": 0
+    },
+    {
+      "bytes": 156,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/securetty",
+      "sha256": "713fcea5109728883b9147e822429133fcc8b5e253afd3c2a197b10cd0bc3b4d",
+      "uid": 0
+    },
+    {
+      "bytes": 12813,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/services",
+      "sha256": "f6183055fd949f9c53d49ee620f85d0150123ea691d25ed1bba0c641b4ee2f48",
+      "uid": 0
+    },
+    {
+      "bytes": 260,
+      "gid": 42,
+      "kind": "file",
+      "mode": "0640",
+      "path": "etc/shadow",
+      "sha256": "d5992a27f05f380fc5faeb82a3359e2f230fd1d6ea6517b45892b771a2194ddb",
+      "uid": 0
+    },
+    {
+      "bytes": 38,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/shells",
+      "sha256": "24be6ceb236610df45684c83b06c918ae45635be55f69975e43676b7595bbc5f",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/ssl",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "etc/ssl/cert.pem",
+      "target": "certs/ca-certificates.crt",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/ssl/certs",
+      "uid": 0
+    },
+    {
+      "bytes": 179359,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/ssl/certs/ca-certificates.crt",
+      "sha256": "b8d837841b88bfaa1a0fa827cbca8e2576418dd47c9fc4bb7f1f9d89c83111b9",
+      "uid": 0
+    },
+    {
+      "bytes": 412,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/ssl/ct_log_list.cnf",
+      "sha256": "f1c1803d13d1d0b755b13b23c28bd4e20e07baf9f2b744c9337ba5866aa0ec3b",
+      "uid": 0
+    },
+    {
+      "bytes": 412,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/ssl/ct_log_list.cnf.dist",
+      "sha256": "f1c1803d13d1d0b755b13b23c28bd4e20e07baf9f2b744c9337ba5866aa0ec3b",
+      "uid": 0
+    },
+    {
+      "bytes": 12411,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/ssl/openssl.cnf",
+      "sha256": "a65a2cb9f4ee8ffdc7ef4f0ac600c0bdafb95b7b1ab457188ac610a62f5ad6b3",
+      "uid": 0
+    },
+    {
+      "bytes": 12411,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/ssl/openssl.cnf.dist",
+      "sha256": "a65a2cb9f4ee8ffdc7ef4f0ac600c0bdafb95b7b1ab457188ac610a62f5ad6b3",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/ssl/private",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/ssl1.1",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "etc/ssl1.1/cert.pem",
+      "target": "/etc/ssl/cert.pem",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "etc/ssl1.1/certs",
+      "target": "/etc/ssl/certs",
+      "uid": 0
+    },
+    {
+      "bytes": 53,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/sysctl.conf",
+      "sha256": "8bba47da45bc8715c69ac904a60410eabffaa7bbbef640f9c1368ab9c48493d0",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/sysctl.d",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "etc/udhcpc",
+      "uid": 0
+    },
+    {
+      "bytes": 287,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "etc/udhcpc/udhcpc.conf",
+      "sha256": "5b372209e01cda07c87b8afa6d1ab3d7e8daf18a1f2332d744203a6dc289eb1a",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "home",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "lib",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "lib/apk",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "lib/apk/db",
+      "uid": 0
+    },
+    {
+      "bytes": 15105,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "lib/apk/db/installed",
+      "sha256": "0b615da47c330365a758eca7a9e453ac364322d5b9872f77c47d791f456fbcc2",
+      "uid": 0
+    },
+    {
+      "bytes": 1915,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "lib/apk/db/scripts.tar.gz",
+      "sha256": "c3181072b43b79645e23f5148714401773209f03394cba03a565d6df66eaf16e",
+      "uid": 0
+    },
+    {
+      "bytes": 95,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "lib/apk/db/triggers",
+      "sha256": "160ada91a83cff9611e622cfb2feda16223294d53c67a704d8229f4a13f3d1b4",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "lib/apk/exec",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "lib/firmware",
+      "uid": 0
+    },
+    {
+      "bytes": 723480,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0755",
+      "path": "lib/ld-musl-aarch64.so.1",
+      "sha256": "fc61b6e11fd8c6bfee3235865249cd78eea34aa36d88277e6008038031160993",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "lib/libc.musl-aarch64.so.1",
+      "target": "ld-musl-aarch64.so.1",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "lib/modules-load.d",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "lib/sysctl.d",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "media",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "media/cdrom",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "media/floppy",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "media/usb",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "mnt",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "opt",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "proc",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0700",
+      "path": "root",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "run",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "run/lock",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "sbin",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/acpid",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/adjtimex",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 135248,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0755",
+      "path": "sbin/apk",
+      "sha256": "cb3d3d34ba8dd5b015b9628355483a5d4a92b335a185fb3fd809bb0c077c69fc",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/arp",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/blkdiscard",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/blkid",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/blockdev",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/depmod",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/fbsplash",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/fdisk",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/findfs",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/fsck",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/fstrim",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/getty",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/halt",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/hwclock",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/ifconfig",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/ifdown",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/ifenslave",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/ifup",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/init",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/inotifyd",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/insmod",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/ip",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/ipaddr",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/iplink",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/ipneigh",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/iproute",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/iprule",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/iptunnel",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/klogd",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 393,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0755",
+      "path": "sbin/ldconfig",
+      "sha256": "7065021e04a5060957b5c6907af671a7028230d91927fb0c25892cadd9312b7c",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/loadkmap",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/logread",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/losetup",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/lsmod",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/mdev",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/mkdosfs",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/mkfs.vfat",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/mkswap",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/modinfo",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/modprobe",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/nameif",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/nologin",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/pivot_root",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/poweroff",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/raidautorun",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/reboot",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/rmmod",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/route",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/setconsole",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/slattach",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/swapoff",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/swapon",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/switch_root",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/sysctl",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/syslogd",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/tunctl",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/udhcpc",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/vconfig",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/watchdog",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "sbin/zcip",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "srv",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "sys",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "1777",
+      "path": "tmp",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/bin",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/[",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/[[",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/awk",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/basename",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/bc",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/beep",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/bunzip2",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/bzcat",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/bzip2",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/cal",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/chvt",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/cksum",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/clear",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/cmp",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/comm",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/cpio",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/crontab",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/cryptpw",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/cut",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/dc",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/deallocvt",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/diff",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/dirname",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/dos2unix",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/du",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/eject",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/env",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/expand",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/expr",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/factor",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/fallocate",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/find",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/flock",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/fold",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/free",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/fuser",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 67320,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0755",
+      "path": "usr/bin/getconf",
+      "sha256": "4b22a4083e4aa0a837d8e42d20510c106d968fdf14e1e46de9c876ffaaf61744",
+      "uid": 0
+    },
+    {
+      "bytes": 67528,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0755",
+      "path": "usr/bin/getent",
+      "sha256": "c488a82796a118871b0b6b076a277103f5ef11f0e9a279b9138a2258c5d5f342",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/groups",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/hd",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/head",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/hexdump",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/hostid",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 67240,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0755",
+      "path": "usr/bin/iconv",
+      "sha256": "16ceac1b9016595e9e84be2e3287655105eaa1ff7169389f7ee5bc7717abd8ce",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/id",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/install",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/ipcrm",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/ipcs",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/killall",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/last",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 53,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0755",
+      "path": "usr/bin/ldd",
+      "sha256": "5f115be8562262bcc50ec469e25c0af2fda3bad72a960c6aa3488acd7a7da8cf",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/less",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/logger",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/lsof",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/lsusb",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/lzcat",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/lzma",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/lzopcat",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/md5sum",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/mesg",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/microcom",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/mkfifo",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/mkpasswd",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/nc",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/nl",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/nmeter",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/nohup",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/nproc",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/nsenter",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/nslookup",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/od",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/openvt",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/passwd",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/paste",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/pgrep",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/pkill",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/pmap",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/printf",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/pscan",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/pstree",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/pwdx",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/readlink",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/realpath",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/renice",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/reset",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/resize",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 67424,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0755",
+      "path": "usr/bin/scanelf",
+      "sha256": "8aec09cc4082b1c5b3123750ffed2885dd2ece3eda37df26a884bb4f938ef51a",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/seq",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/setkeycodes",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/setsid",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/sha1sum",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/sha256sum",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/sha3sum",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/sha512sum",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/showkey",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/shred",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/shuf",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/sort",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/split",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 67472,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0755",
+      "path": "usr/bin/ssl_client",
+      "sha256": "d7b5e405251b14983b8f96b13f0d66dfe30f304c58aa91bf1ed482a6c4166436",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/strings",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/sum",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/tac",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/tail",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/tee",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/test",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/time",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/timeout",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/top",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/tr",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/traceroute",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/traceroute6",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/tree",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/truncate",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/tty",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/ttysize",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/udhcpc6",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/unexpand",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/uniq",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/unix2dos",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/unlink",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/unlzma",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/unlzop",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/unshare",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/unxz",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/unzip",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/uptime",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/uudecode",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/uuencode",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/vi",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/vlock",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/volname",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/wc",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/wget",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/which",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/who",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/whoami",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/whois",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/xargs",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/xxd",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/xzcat",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/bin/yes",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/lib",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/lib/engines-3",
+      "uid": 0
+    },
+    {
+      "bytes": 67680,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0755",
+      "path": "usr/lib/engines-3/afalg.so",
+      "sha256": "bc540ebd639e48cdf84a6f9c0160d65febf374837f39e5f6e02dee323969b8f5",
+      "uid": 0
+    },
+    {
+      "bytes": 67168,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0755",
+      "path": "usr/lib/engines-3/capi.so",
+      "sha256": "6885967ecb6a3340771fdbdd77d76e4b4fe56830ba3ad513144dd60e0e738af6",
+      "uid": 0
+    },
+    {
+      "bytes": 67952,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0755",
+      "path": "usr/lib/engines-3/loader_attic.so",
+      "sha256": "7216a12fa0675ea0a0b1432979d562b5ddee15828853953526ad811bc0dfff33",
+      "uid": 0
+    },
+    {
+      "bytes": 67168,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0755",
+      "path": "usr/lib/engines-3/padlock.so",
+      "sha256": "f86e940b38e6a4ca113dc449cbaf416b93493685b66f4e1792f15d9d721955dc",
+      "uid": 0
+    },
+    {
+      "bytes": 330360,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0755",
+      "path": "usr/lib/libapk.so.3.0.0",
+      "sha256": "a47076bea14daf729f1cb74342fe9767d612bd3bbb6a2139e069a7eb28ce833d",
+      "uid": 0
+    },
+    {
+      "bytes": 4533144,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0755",
+      "path": "usr/lib/libcrypto.so.3",
+      "sha256": "fa49b35ebd46e12a7c4f6954a31b440dcb7fa2f04511e08babfd84b7cc241099",
+      "uid": 0
+    },
+    {
+      "bytes": 868240,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0755",
+      "path": "usr/lib/libssl.so.3",
+      "sha256": "e4a8742553cd2560e4d51994844d2a2892bef87ce3a12d9646a7e71e61f66ed5",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/lib/libz.so.1",
+      "target": "libz.so.1.3.2",
+      "uid": 0
+    },
+    {
+      "bytes": 133008,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0755",
+      "path": "usr/lib/libz.so.1.3.2",
+      "sha256": "88a9f0b9eae3d367e8cf829a4470614db1fca41faab3da6b18f5a26b7505dcd4",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/lib/modules-load.d",
+      "uid": 0
+    },
+    {
+      "bytes": 188,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "usr/lib/os-release",
+      "sha256": "ef917e0c302643d0a479f9fb1327d196edbbbddb9c352c84f60999f032dd2cb8",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/lib/ossl-modules",
+      "uid": 0
+    },
+    {
+      "bytes": 133008,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0755",
+      "path": "usr/lib/ossl-modules/legacy.so",
+      "sha256": "0ce18547d689160bf8555c8e2fdc58ce12bfa670f03f3a704306829077286f01",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/lib/sysctl.d",
+      "uid": 0
+    },
+    {
+      "bytes": 1278,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "usr/lib/sysctl.d/00-alpine.conf",
+      "sha256": "ee169bea2cb6859420b55ca7a9c23fb68b50adc1d26c951f904dec9e8f767380",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/local",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/local/bin",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/local/lib",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/local/share",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/sbin",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/add-shell",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/addgroup",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/adduser",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/arping",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/brctl",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/chpasswd",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/chroot",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/crond",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/delgroup",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/deluser",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/ether-wake",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/fbset",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/killall5",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/loadfont",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/nanddump",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/nandwrite",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/nbd-client",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/ntpd",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/partprobe",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/rdate",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/rdev",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/readahead",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/remove-shell",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/rfkill",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/sendmail",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/setfont",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/sbin/setlogcons",
+      "target": "/bin/busybox",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/share",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/share/apk",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/share/apk/keys",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/share/apk/keys/aarch64",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/share/apk/keys/aarch64/alpine-devel@lists.alpinelinux.org-58199dcc.rsa.pub",
+      "target": "../alpine-devel@lists.alpinelinux.org-58199dcc.rsa.pub",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/share/apk/keys/aarch64/alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub",
+      "target": "../alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub",
+      "uid": 0
+    },
+    {
+      "bytes": 451,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub",
+      "sha256": "9c102bcc376af1498d549b77bdbfa815ae86faa1d2d82f040e616b18ef2df2d4",
+      "uid": 0
+    },
+    {
+      "bytes": 451,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-5243ef4b.rsa.pub",
+      "sha256": "ebf31683b56410ecc4c00acd9f6e2839e237a3b62b5ae7ef686705c7ba0396a9",
+      "uid": 0
+    },
+    {
+      "bytes": 451,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-524d27bb.rsa.pub",
+      "sha256": "1bb2a846c0ea4ca9d0e7862f970863857fc33c32f5506098c636a62a726a847b",
+      "uid": 0
+    },
+    {
+      "bytes": 451,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-5261cecb.rsa.pub",
+      "sha256": "12f899e55a7691225603d6fb3324940fc51cd7f133e7ead788663c2b7eecb00c",
+      "uid": 0
+    },
+    {
+      "bytes": 451,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-58199dcc.rsa.pub",
+      "sha256": "73867d92083f2f8ab899a26ccda7ef63dfaa0032a938620eda605558958a8041",
+      "uid": 0
+    },
+    {
+      "bytes": 451,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-58cbb476.rsa.pub",
+      "sha256": "9a4cd858d9710963848e6d5f555325dc199d1c952b01cf6e64da2c15deedbd97",
+      "uid": 0
+    },
+    {
+      "bytes": 451,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-58e4f17d.rsa.pub",
+      "sha256": "780b3ed41786772cbc7b68136546fa3f897f28a23b30c72dde6225319c44cfff",
+      "uid": 0
+    },
+    {
+      "bytes": 451,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-5e69ca50.rsa.pub",
+      "sha256": "59c01c57b446633249f67c04b115dd6787f4378f183dff2bbf65406df93f176d",
+      "uid": 0
+    },
+    {
+      "bytes": 451,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-60ac2099.rsa.pub",
+      "sha256": "db0b49163f07ffba64a5ca198bcf1688610b0bd1f0d8d5afeaf78559d73f2278",
+      "uid": 0
+    },
+    {
+      "bytes": 800,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub",
+      "sha256": "207e4696d3c05f7cb05966aee557307151f1f00217af4143c1bcaf33b8df733f",
+      "uid": 0
+    },
+    {
+      "bytes": 800,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-61666e3f.rsa.pub",
+      "sha256": "128d34d4aec39b0daedea8163cd8dc24dff36fd3d848630ab97eeb1d3084bbb3",
+      "uid": 0
+    },
+    {
+      "bytes": 800,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-616a9724.rsa.pub",
+      "sha256": "10877cce0a935e46ad88cb79e174a2491680508eccda08e92bf04fb9bf37fbc1",
+      "uid": 0
+    },
+    {
+      "bytes": 800,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-616abc23.rsa.pub",
+      "sha256": "4a095a9daca86da496a3cd9adcd95ee2197fdbeb84638656d469f05a4d740751",
+      "uid": 0
+    },
+    {
+      "bytes": 800,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-616ac3bc.rsa.pub",
+      "sha256": "0caf5662fde45616d88cfd7021b7bda269a2fcaf311e51c48945a967a609ec0b",
+      "uid": 0
+    },
+    {
+      "bytes": 800,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-616adfeb.rsa.pub",
+      "sha256": "ebe717d228555aa58133c202314a451f81e71f174781fd7ff8d8970d6cfa60da",
+      "uid": 0
+    },
+    {
+      "bytes": 800,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub",
+      "sha256": "d11f6b21c61b4274e182eb888883a8ba8acdbf820dcc7a6d82a7d9fc2fd2836d",
+      "uid": 0
+    },
+    {
+      "bytes": 800,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-616db30d.rsa.pub",
+      "sha256": "40a216cbd163f22e5f16a9e0929de7cde221b9cbae8e36aa368b1e128afe0a31",
+      "uid": 0
+    },
+    {
+      "bytes": 800,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0644",
+      "path": "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-66ba20fe.rsa.pub",
+      "sha256": "7cf4cb8314e6ccc985b0d7f1aa0c6e0a81e3588f69a41f383af7a63d1ba61793",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/share/apk/keys/armhf",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/share/apk/keys/armhf/alpine-devel@lists.alpinelinux.org-524d27bb.rsa.pub",
+      "target": "../alpine-devel@lists.alpinelinux.org-524d27bb.rsa.pub",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/share/apk/keys/armhf/alpine-devel@lists.alpinelinux.org-616a9724.rsa.pub",
+      "target": "../alpine-devel@lists.alpinelinux.org-616a9724.rsa.pub",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/share/apk/keys/armv7",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/share/apk/keys/armv7/alpine-devel@lists.alpinelinux.org-524d27bb.rsa.pub",
+      "target": "../alpine-devel@lists.alpinelinux.org-524d27bb.rsa.pub",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/share/apk/keys/armv7/alpine-devel@lists.alpinelinux.org-616adfeb.rsa.pub",
+      "target": "../alpine-devel@lists.alpinelinux.org-616adfeb.rsa.pub",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/share/apk/keys/loongarch64",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/share/apk/keys/loongarch64/alpine-devel@lists.alpinelinux.org-66ba20fe.rsa.pub",
+      "target": "../alpine-devel@lists.alpinelinux.org-66ba20fe.rsa.pub",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/share/apk/keys/mips64",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/share/apk/keys/mips64/alpine-devel@lists.alpinelinux.org-5e69ca50.rsa.pub",
+      "target": "../alpine-devel@lists.alpinelinux.org-5e69ca50.rsa.pub",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/share/apk/keys/ppc64le",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/share/apk/keys/ppc64le/alpine-devel@lists.alpinelinux.org-58cbb476.rsa.pub",
+      "target": "../alpine-devel@lists.alpinelinux.org-58cbb476.rsa.pub",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/share/apk/keys/ppc64le/alpine-devel@lists.alpinelinux.org-616abc23.rsa.pub",
+      "target": "../alpine-devel@lists.alpinelinux.org-616abc23.rsa.pub",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/share/apk/keys/riscv64",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/share/apk/keys/riscv64/alpine-devel@lists.alpinelinux.org-60ac2099.rsa.pub",
+      "target": "../alpine-devel@lists.alpinelinux.org-60ac2099.rsa.pub",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/share/apk/keys/riscv64/alpine-devel@lists.alpinelinux.org-616db30d.rsa.pub",
+      "target": "../alpine-devel@lists.alpinelinux.org-616db30d.rsa.pub",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/share/apk/keys/s390x",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/share/apk/keys/s390x/alpine-devel@lists.alpinelinux.org-58e4f17d.rsa.pub",
+      "target": "../alpine-devel@lists.alpinelinux.org-58e4f17d.rsa.pub",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/share/apk/keys/s390x/alpine-devel@lists.alpinelinux.org-616ac3bc.rsa.pub",
+      "target": "../alpine-devel@lists.alpinelinux.org-616ac3bc.rsa.pub",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/share/apk/keys/x86",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/share/apk/keys/x86/alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub",
+      "target": "../alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/share/apk/keys/x86/alpine-devel@lists.alpinelinux.org-5243ef4b.rsa.pub",
+      "target": "../alpine-devel@lists.alpinelinux.org-5243ef4b.rsa.pub",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/share/apk/keys/x86/alpine-devel@lists.alpinelinux.org-61666e3f.rsa.pub",
+      "target": "../alpine-devel@lists.alpinelinux.org-61666e3f.rsa.pub",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/share/apk/keys/x86_64",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/share/apk/keys/x86_64/alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub",
+      "target": "../alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/share/apk/keys/x86_64/alpine-devel@lists.alpinelinux.org-5261cecb.rsa.pub",
+      "target": "../alpine-devel@lists.alpinelinux.org-5261cecb.rsa.pub",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "usr/share/apk/keys/x86_64/alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub",
+      "target": "../alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/share/misc",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "usr/share/udhcpc",
+      "uid": 0
+    },
+    {
+      "bytes": 4010,
+      "gid": 0,
+      "kind": "file",
+      "mode": "0755",
+      "path": "usr/share/udhcpc/default.script",
+      "sha256": "c7b39bba4d7f1ce05dbdeba7d2fd97b96a8c3c0c1ebc0259f641fb8e1c3827d2",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "var",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "var/cache",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "var/cache/apk",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "var/cache/misc",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0555",
+      "path": "var/empty",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "var/lib",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "var/lib/misc",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "var/local",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "var/lock",
+      "target": "../run/lock",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "var/log",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "var/mail",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "var/opt",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "var/run",
+      "target": "../run",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "var/spool",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "0755",
+      "path": "var/spool/cron",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "var/spool/cron/crontabs",
+      "target": "../../../etc/crontabs",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "symlink",
+      "mode": "0777",
+      "path": "var/spool/mail",
+      "target": "../mail",
+      "uid": 0
+    },
+    {
+      "bytes": 0,
+      "gid": 0,
+      "kind": "directory",
+      "mode": "1777",
+      "path": "var/tmp",
+      "uid": 0
+    }
+  ],
+  "license_file_paths": [],
+  "method_sha256": "c12b05a3f1d4906db8bacb947e643f3797b0d37bbe2500b3a4f9516ad36dbd83",
+  "package_file_check": "mismatches-found",
+  "packages": [
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 13,
+      "declared_aports_commit": "15b3b78187b3808104f98f765e9632e0b09281a7",
+      "declared_license": "GPL-2.0-only",
+      "name": "alpine-baselayout",
+      "origin": "alpine-baselayout",
+      "version": "3.7.2-r0"
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 15,
+      "declared_aports_commit": "15b3b78187b3808104f98f765e9632e0b09281a7",
+      "declared_license": "GPL-2.0-only",
+      "name": "alpine-baselayout-data",
+      "origin": "alpine-baselayout",
+      "version": "3.7.2-r0"
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 40,
+      "declared_aports_commit": "b9f23becced4d7b3ccc0fa0f28530243ccd314a0",
+      "declared_license": "MIT",
+      "name": "alpine-keys",
+      "origin": "alpine-keys",
+      "version": "2.6-r0"
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 5,
+      "declared_aports_commit": "1fa9ca1a79c5fd52c46a70b2199059c41ead572a",
+      "declared_license": "MIT",
+      "name": "alpine-release",
+      "origin": "alpine-base",
+      "version": "3.23.5-r0"
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 1,
+      "declared_aports_commit": "3812c9da974bef8b28f995490ca8233f1472ccc4",
+      "declared_license": "GPL-2.0-only",
+      "name": "apk-tools",
+      "origin": "apk-tools",
+      "version": "3.0.6-r0"
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 7,
+      "declared_aports_commit": "1e823a60eb85606954b3a5af5f8e5bbd1ea680cf",
+      "declared_license": "GPL-2.0-only",
+      "name": "busybox",
+      "origin": "busybox",
+      "version": "1.37.0-r30"
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 1,
+      "declared_aports_commit": "1e823a60eb85606954b3a5af5f8e5bbd1ea680cf",
+      "declared_license": "GPL-2.0-only",
+      "name": "busybox-binsh",
+      "origin": "busybox",
+      "version": "1.37.0-r30"
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 4,
+      "declared_aports_commit": "6e30aafe4fa807ba70797509731f1e7d644dc8f3",
+      "declared_license": "MPL-2.0 AND MIT",
+      "name": "ca-certificates-bundle",
+      "origin": "ca-certificates",
+      "version": "20260611-r0"
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 1,
+      "declared_aports_commit": "3812c9da974bef8b28f995490ca8233f1472ccc4",
+      "declared_license": "GPL-2.0-only",
+      "name": "libapk",
+      "origin": "apk-tools",
+      "version": "3.0.6-r0"
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 10,
+      "declared_aports_commit": "0ca3c59c63240aaf5e762174f8d93109f9cabd8d",
+      "declared_license": "Apache-2.0",
+      "name": "libcrypto3",
+      "origin": "openssl",
+      "version": "3.5.7-r0"
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 1,
+      "declared_aports_commit": "0ca3c59c63240aaf5e762174f8d93109f9cabd8d",
+      "declared_license": "Apache-2.0",
+      "name": "libssl3",
+      "origin": "openssl",
+      "version": "3.5.7-r0"
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 2,
+      "declared_aports_commit": "8aef0c37b0ad23dc4137f0e4755b97a59dc698b8",
+      "declared_license": "MIT",
+      "name": "musl",
+      "origin": "musl",
+      "version": "1.2.5-r23"
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 5,
+      "declared_aports_commit": "8aef0c37b0ad23dc4137f0e4755b97a59dc698b8",
+      "declared_license": "MIT AND BSD-2-Clause AND GPL-2.0-or-later",
+      "name": "musl-utils",
+      "origin": "musl",
+      "version": "1.2.5-r23"
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 1,
+      "declared_aports_commit": "3912b4fa83437852312ad3c37a00229ff59fab1c",
+      "declared_license": "GPL-2.0-only",
+      "name": "scanelf",
+      "origin": "pax-utils",
+      "version": "1.3.8-r2"
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 1,
+      "declared_aports_commit": "1e823a60eb85606954b3a5af5f8e5bbd1ea680cf",
+      "declared_license": "GPL-2.0-only",
+      "name": "ssl_client",
+      "origin": "busybox",
+      "version": "1.37.0-r30"
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 2,
+      "declared_aports_commit": "f8c94d2e1d318ab29eb4ac5f00225341c877ed65",
+      "declared_license": "Zlib",
+      "name": "zlib",
+      "origin": "zlib",
+      "version": "1.3.2-r0"
+    }
+  ],
+  "platform_annotations": {
+    "com.docker.official-images.bashbrew.arch": "arm64v8",
+    "org.opencontainers.image.base.name": "scratch",
+    "org.opencontainers.image.created": "2026-06-22T19:19:37Z",
+    "org.opencontainers.image.revision": "4ad948cca27e7a605aa63ae1c59c22081a2c6d13",
+    "org.opencontainers.image.source": "https://github.com/alpinelinux/docker-alpine.git#4ad948cca27e7a605aa63ae1c59c22081a2c6d13:aarch64",
+    "org.opencontainers.image.url": "https://hub.docker.com/_/alpine",
+    "org.opencontainers.image.version": "3.23.5"
+  },
+  "platform_digest": "sha256:d858bb5442632a31bd4bca6c5e601dbe6b536fd7942092ea6a08a0a95805693c",
+  "runtime_qualification": false,
+  "scope": "offline-selected-platform-byte-consistency-only",
+  "unretained_other_platform_descriptors": 14,
+  "version": "0.1"
+}

@@ -1,0 +1,571 @@
+{
+  "acquisitions": [
+    {
+      "bytes": 75,
+      "name": "dockerfile",
+      "sha256": "e530cc79303a077f43e9cd2f4af22eb4da9285df1b2127e20698794677999534",
+      "status": "retained",
+      "url": "https://raw.githubusercontent.com/alpinelinux/docker-alpine/4ad948cca27e7a605aa63ae1c59c22081a2c6d13/aarch64/Dockerfile"
+    },
+    {
+      "error": "HTTPError",
+      "http_status": 404,
+      "name": "docker-recipe-license",
+      "status": "failed",
+      "url": "https://raw.githubusercontent.com/alpinelinux/docker-alpine/4ad948cca27e7a605aa63ae1c59c22081a2c6d13/LICENSE"
+    },
+    {
+      "bytes": 24569,
+      "name": "aports-busybox",
+      "sha256": "fb2323ac3121c6cd1122c42cabbd19ec28a29a1cf434a4c0759792c63a1c63a8",
+      "status": "retained",
+      "url": "https://raw.githubusercontent.com/alpinelinux/aports/1e823a60eb85606954b3a5af5f8e5bbd1ea680cf/main/busybox/APKBUILD"
+    },
+    {
+      "bytes": 8830,
+      "name": "aports-musl",
+      "sha256": "e8425e24c5c3c6d8f74b4412b11c6990fda6dbf7648c79ec6e2efa082fc5adcf",
+      "status": "retained",
+      "url": "https://raw.githubusercontent.com/alpinelinux/aports/8aef0c37b0ad23dc4137f0e4755b97a59dc698b8/main/musl/APKBUILD"
+    },
+    {
+      "bytes": 7957,
+      "name": "linux-v6.18-proc-namespace",
+      "sha256": "fd82c0db52055ae807ee0b46c7c9bc5d47a9239805eb8ca5c47d2ba81d695776",
+      "status": "retained",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/v6.18/fs/proc_namespace.c"
+    },
+    {
+      "bytes": 98872,
+      "name": "linux-v6.18-proc-base",
+      "sha256": "a2775a79e3a3085c578eee088e196d113c2ee1c16794748889a208733fc01c63",
+      "status": "retained",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/v6.18/fs/proc/base.c"
+    },
+    {
+      "bytes": 17056,
+      "name": "linux-v6.18-proc-inode",
+      "sha256": "a9afe0b38fbae0171e2dbe6357fe9c2d4db5b6786441560743ee31cf73615c22",
+      "status": "retained",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/v6.18/fs/proc/inode.c"
+    },
+    {
+      "bytes": 1507,
+      "name": "aports-alpine-base",
+      "sha256": "0ddd6f619824d5299f9b52c879e4942a96f93d8f6c646d75aaa84824e9ba1aee",
+      "status": "retained",
+      "url": "https://raw.githubusercontent.com/alpinelinux/aports/1fa9ca1a79c5fd52c46a70b2199059c41ead572a/main/alpine-base/APKBUILD"
+    },
+    {
+      "bytes": 8670,
+      "name": "aports-alpine-baselayout",
+      "sha256": "3e87be1806f9513edfd22a555bf16cba43c5e66b9b1b91319925bea4d5c385c3",
+      "status": "retained",
+      "url": "https://raw.githubusercontent.com/alpinelinux/aports/15b3b78187b3808104f98f765e9632e0b09281a7/main/alpine-baselayout/APKBUILD"
+    },
+    {
+      "bytes": 5259,
+      "name": "aports-alpine-keys",
+      "sha256": "cb352e13b9e481b424763bd36d3afdb81ac308e508abed15eb7175530050bd3f",
+      "status": "retained",
+      "url": "https://raw.githubusercontent.com/alpinelinux/aports/b9f23becced4d7b3ccc0fa0f28530243ccd314a0/main/alpine-keys/APKBUILD"
+    },
+    {
+      "bytes": 4179,
+      "name": "aports-apk-tools",
+      "sha256": "9f76c34490ad5a32f50f9a875839322b69c09eecfde37d55c2e4b12c136ef2db",
+      "status": "retained",
+      "url": "https://raw.githubusercontent.com/alpinelinux/aports/3812c9da974bef8b28f995490ca8233f1472ccc4/main/apk-tools/APKBUILD"
+    },
+    {
+      "bytes": 2520,
+      "name": "aports-ca-certificates",
+      "sha256": "a1429622d05b27e016c1266312be8a9a7e4610da01d7d40826b1681677c53843",
+      "status": "retained",
+      "url": "https://raw.githubusercontent.com/alpinelinux/aports/6e30aafe4fa807ba70797509731f1e7d644dc8f3/main/ca-certificates/APKBUILD"
+    },
+    {
+      "bytes": 7053,
+      "name": "aports-openssl",
+      "sha256": "63b8a9adf00a6076c830b79e4c1f56d9ac57f29a4b068e0d5bf7c62073758ea2",
+      "status": "retained",
+      "url": "https://raw.githubusercontent.com/alpinelinux/aports/0ca3c59c63240aaf5e762174f8d93109f9cabd8d/main/openssl/APKBUILD"
+    },
+    {
+      "bytes": 1782,
+      "name": "aports-pax-utils",
+      "sha256": "d3ab7f1f1de34d023921a8f09cf80ba70063b05f1a99d8e2056ff8667c0f1213",
+      "status": "retained",
+      "url": "https://raw.githubusercontent.com/alpinelinux/aports/3912b4fa83437852312ad3c37a00229ff59fab1c/main/pax-utils/APKBUILD"
+    },
+    {
+      "bytes": 901,
+      "name": "aports-zlib",
+      "sha256": "e9ad3aa7ecf048f4bfa26b946275bee347f75254385320e90eecd3fd6651bcf4",
+      "status": "retained",
+      "url": "https://raw.githubusercontent.com/alpinelinux/aports/f8c94d2e1d318ab29eb4ac5f00225341c877ed65/main/zlib/APKBUILD"
+    },
+    {
+      "error": "HTTPError",
+      "http_status": 404,
+      "name": "busybox-license-1.37.0",
+      "status": "failed",
+      "url": "https://git.busybox.net/busybox/plain/LICENSE?h=1_37_0"
+    },
+    {
+      "bytes": 6204,
+      "name": "musl-copyright-1.2.5",
+      "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af",
+      "status": "retained",
+      "url": "https://git.musl-libc.org/cgit/musl/plain/COPYRIGHT?h=v1.2.5"
+    },
+    {
+      "bytes": 6297,
+      "name": "docker-source-tree",
+      "sha256": "431725db076b8b8e2d0762a0649bf6e6fc974e27f24e43bb3ae7dd595f755d02",
+      "status": "retained",
+      "url": "https://api.github.com/repos/alpinelinux/docker-alpine/git/trees/4ad948cca27e7a605aa63ae1c59c22081a2c6d13?recursive=1"
+    },
+    {
+      "binding_actual": "5d1dae18a0c27a6af3afaad29f0864b56a31085f",
+      "binding_expected": "5d1dae18a0c27a6af3afaad29f0864b56a31085f",
+      "binding_kind": "git-blob",
+      "byte_limit": 8388608,
+      "bytes": 4021949,
+      "deadline_seconds": 8,
+      "name": "original-minirootfs.tar.gz",
+      "sha256": "d9a77cb31f715c56afa4f0a5aa42c04cfde813b70ad74a64725902b09c29a6cc",
+      "status": "retained",
+      "url": "https://raw.githubusercontent.com/alpinelinux/docker-alpine/4ad948cca27e7a605aa63ae1c59c22081a2c6d13/aarch64/alpine-minirootfs-3.23.5-aarch64.tar.gz"
+    },
+    {
+      "byte_limit": 8388608,
+      "deadline_seconds": 8,
+      "error": "URLError",
+      "name": "busybox-1.37.0.tar.bz2",
+      "status": "failed",
+      "url": "https://busybox.net/downloads/busybox-1.37.0.tar.bz2"
+    },
+    {
+      "binding_actual": null,
+      "binding_expected": null,
+      "binding_kind": null,
+      "byte_limit": 262144,
+      "bytes": 1402,
+      "deadline_seconds": 8,
+      "name": "rootfs-checksums.txt",
+      "sha256": "258a2bf5b8ea6daa2c49a6990165c1185577cbb8743f244ca967c78b536cb284",
+      "status": "retained",
+      "url": "https://raw.githubusercontent.com/alpinelinux/docker-alpine/4ad948cca27e7a605aa63ae1c59c22081a2c6d13/checksums.sha512"
+    },
+    {
+      "binding_actual": null,
+      "binding_expected": null,
+      "binding_kind": null,
+      "byte_limit": 262144,
+      "bytes": 31637,
+      "deadline_seconds": 8,
+      "name": "busybox-config.txt",
+      "sha256": "65b29f6085cd79ab5f032d7e4299534a86c3efad240e78c16186a19bf847fcca",
+      "status": "retained",
+      "url": "https://raw.githubusercontent.com/alpinelinux/aports/1e823a60eb85606954b3a5af5f8e5bbd1ea680cf/main/busybox/busyboxconfig"
+    },
+    {
+      "byte_limit": 8388608,
+      "bytes": 2565764,
+      "deadline_seconds": 8,
+      "expected_sha512": "ad8fd06f082699774f990a53d7a73b189ed404fe0a2166aff13eae4d9d8ee5c9239493befe949c98801fe7897520dbff3ed0224faa7205854ce4fa975e18467e",
+      "reason": "one explicitly selected Alpine cache after original host URLError; same APKBUILD SHA512",
+      "sha256": "3311dff32e746499f4df0d5df04d7eb396382d7e108bb9250e7b519b837043a4",
+      "sha512": "ad8fd06f082699774f990a53d7a73b189ed404fe0a2166aff13eae4d9d8ee5c9239493befe949c98801fe7897520dbff3ed0224faa7205854ce4fa975e18467e",
+      "status": "retained",
+      "url": "https://distfiles.alpinelinux.org/distfiles/v3.23/busybox-1.37.0.tar.bz2"
+    },
+    {
+      "byte_limit": 262144,
+      "bytes": 6706,
+      "deadline_seconds": 8,
+      "name": "linux-v6.18-filesystems",
+      "sha256": "bb2b9cf646321bf9c0bd37ddd0394e7ef9815a7bdfff567f112491c0777f2c46",
+      "status": "retained",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/v6.18/fs/filesystems.c"
+    },
+    {
+      "byte_limit": 262144,
+      "bytes": 53935,
+      "deadline_seconds": 8,
+      "name": "linux-v6.18-random",
+      "sha256": "6e8d61bf2ca3851f0aac44c8dbd737b23d5ed38efe7cb79d2e81dafabdc7fc96",
+      "status": "retained",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/v6.18/drivers/char/random.c"
+    },
+    {
+      "byte_limit": 262144,
+      "bytes": 20001,
+      "deadline_seconds": 8,
+      "name": "linux-v6.18-proc-generic",
+      "sha256": "89cb3704808e2f83c6c20e3bd8c3b3f01310c8c636abe60279534138913bec9d",
+      "status": "retained",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/v6.18/fs/proc/generic.c"
+    },
+    {
+      "byte_limit": 262144,
+      "bytes": 199222,
+      "deadline_seconds": 8,
+      "name": "linux-v6.18-cgroup",
+      "sha256": "de44cafc76c19f8da3289ae23e4f12ed0ba43cbe7ceb6c5822e34ac570371616",
+      "status": "retained",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/v6.18/kernel/cgroup/cgroup.c"
+    }
+  ],
+  "base_commit": "aa162af",
+  "busybox_selected_source_members": {
+    "archive_sha256": "3311dff32e746499f4df0d5df04d7eb396382d7e108bb9250e7b519b837043a4",
+    "expanded_bytes": 12892160,
+    "members": [
+      {
+        "bytes": 18348,
+        "member": "busybox-1.37.0/LICENSE",
+        "retained": "busybox-source-LICENSE.txt",
+        "sha256": "bbfc9843646d483c334664f651c208b9839626891d8f17604db2146962f43548"
+      },
+      {
+        "bytes": 4661,
+        "member": "busybox-1.37.0/coreutils/timeout.c",
+        "retained": "busybox-source-timeout.c.txt",
+        "sha256": "985e5125c2f906028177ccc7b67c834de9f5b7b92d9717a33dfa24e4fb487514"
+      }
+    ]
+  },
+  "created_or_started_environment": false,
+  "execution_ready": false,
+  "export": {
+    "byte_limit": 67108864,
+    "bytes": 4289024,
+    "command": [
+      "docker",
+      "image",
+      "save",
+      "sha256:fd791d74b68913cbb027c6546007b3f0d3bc45125f797758156952bc2d6daf40"
+    ],
+    "created_or_started_environment": false,
+    "deadline_seconds": 8,
+    "elapsed_seconds": 0.238,
+    "exit_code": 0,
+    "path": ".tmp/linux-channel-image-audit-2026-11-01/image.tar",
+    "scope": "local-image-export-no-container",
+    "sha256": "b235aa410b8cf689f2ebfb340eac1f6ebe0d569b300f667809a59ca097787adb",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "format": "radishaxiom-private-linux-channel-offline-materials",
+  "image_acceptance": "not-accepted",
+  "license_declaration_matrix": [
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 13,
+      "declared_aports_commit": "15b3b78187b3808104f98f765e9632e0b09281a7",
+      "declared_license": "GPL-2.0-only",
+      "interpretation": "fixed recipe declaration only; no package signature or complete rights acceptance",
+      "license_declaration_matches": true,
+      "name": "alpine-baselayout",
+      "origin": "alpine-baselayout",
+      "recipe_license": "GPL-2.0-only",
+      "recipe_path": ".tmp/linux-channel-image-audit-2026-11-01/sources/aports-alpine-baselayout.txt",
+      "recipe_sha256": "3e87be1806f9513edfd22a555bf16cba43c5e66b9b1b91319925bea4d5c385c3",
+      "recipe_version": "3.7.2-r0",
+      "version": "3.7.2-r0",
+      "version_matches": true
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 15,
+      "declared_aports_commit": "15b3b78187b3808104f98f765e9632e0b09281a7",
+      "declared_license": "GPL-2.0-only",
+      "interpretation": "fixed recipe declaration only; no package signature or complete rights acceptance",
+      "license_declaration_matches": true,
+      "name": "alpine-baselayout-data",
+      "origin": "alpine-baselayout",
+      "recipe_license": "GPL-2.0-only",
+      "recipe_path": ".tmp/linux-channel-image-audit-2026-11-01/sources/aports-alpine-baselayout.txt",
+      "recipe_sha256": "3e87be1806f9513edfd22a555bf16cba43c5e66b9b1b91319925bea4d5c385c3",
+      "recipe_version": "3.7.2-r0",
+      "version": "3.7.2-r0",
+      "version_matches": true
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 40,
+      "declared_aports_commit": "b9f23becced4d7b3ccc0fa0f28530243ccd314a0",
+      "declared_license": "MIT",
+      "interpretation": "fixed recipe declaration only; no package signature or complete rights acceptance",
+      "license_declaration_matches": true,
+      "name": "alpine-keys",
+      "origin": "alpine-keys",
+      "recipe_license": "MIT",
+      "recipe_path": ".tmp/linux-channel-image-audit-2026-11-01/sources/aports-alpine-keys.txt",
+      "recipe_sha256": "cb352e13b9e481b424763bd36d3afdb81ac308e508abed15eb7175530050bd3f",
+      "recipe_version": "2.6-r0",
+      "version": "2.6-r0",
+      "version_matches": true
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 5,
+      "declared_aports_commit": "1fa9ca1a79c5fd52c46a70b2199059c41ead572a",
+      "declared_license": "MIT",
+      "interpretation": "fixed recipe declaration only; no package signature or complete rights acceptance",
+      "license_declaration_matches": true,
+      "name": "alpine-release",
+      "origin": "alpine-base",
+      "recipe_license": "MIT",
+      "recipe_path": ".tmp/linux-channel-image-audit-2026-11-01/sources/aports-alpine-base.txt",
+      "recipe_sha256": "0ddd6f619824d5299f9b52c879e4942a96f93d8f6c646d75aaa84824e9ba1aee",
+      "recipe_version": "3.23.5-r0",
+      "version": "3.23.5-r0",
+      "version_matches": true
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 1,
+      "declared_aports_commit": "3812c9da974bef8b28f995490ca8233f1472ccc4",
+      "declared_license": "GPL-2.0-only",
+      "interpretation": "fixed recipe declaration only; no package signature or complete rights acceptance",
+      "license_declaration_matches": true,
+      "name": "apk-tools",
+      "origin": "apk-tools",
+      "recipe_license": "GPL-2.0-only",
+      "recipe_path": ".tmp/linux-channel-image-audit-2026-11-01/sources/aports-apk-tools.txt",
+      "recipe_sha256": "9f76c34490ad5a32f50f9a875839322b69c09eecfde37d55c2e4b12c136ef2db",
+      "recipe_version": "3.0.6-r0",
+      "version": "3.0.6-r0",
+      "version_matches": true
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 7,
+      "declared_aports_commit": "1e823a60eb85606954b3a5af5f8e5bbd1ea680cf",
+      "declared_license": "GPL-2.0-only",
+      "interpretation": "fixed recipe declaration only; no package signature or complete rights acceptance",
+      "license_declaration_matches": true,
+      "name": "busybox",
+      "origin": "busybox",
+      "recipe_license": "GPL-2.0-only",
+      "recipe_path": ".tmp/linux-channel-image-audit-2026-11-01/sources/aports-busybox.txt",
+      "recipe_sha256": "fb2323ac3121c6cd1122c42cabbd19ec28a29a1cf434a4c0759792c63a1c63a8",
+      "recipe_version": "1.37.0-r30",
+      "version": "1.37.0-r30",
+      "version_matches": true
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 1,
+      "declared_aports_commit": "1e823a60eb85606954b3a5af5f8e5bbd1ea680cf",
+      "declared_license": "GPL-2.0-only",
+      "interpretation": "fixed recipe declaration only; no package signature or complete rights acceptance",
+      "license_declaration_matches": true,
+      "name": "busybox-binsh",
+      "origin": "busybox",
+      "recipe_license": "GPL-2.0-only",
+      "recipe_path": ".tmp/linux-channel-image-audit-2026-11-01/sources/aports-busybox.txt",
+      "recipe_sha256": "fb2323ac3121c6cd1122c42cabbd19ec28a29a1cf434a4c0759792c63a1c63a8",
+      "recipe_version": "1.37.0-r30",
+      "version": "1.37.0-r30",
+      "version_matches": true
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 4,
+      "declared_aports_commit": "6e30aafe4fa807ba70797509731f1e7d644dc8f3",
+      "declared_license": "MPL-2.0 AND MIT",
+      "interpretation": "fixed recipe declaration only; no package signature or complete rights acceptance",
+      "license_declaration_matches": true,
+      "name": "ca-certificates-bundle",
+      "origin": "ca-certificates",
+      "recipe_license": "MPL-2.0 AND MIT",
+      "recipe_path": ".tmp/linux-channel-image-audit-2026-11-01/sources/aports-ca-certificates.txt",
+      "recipe_sha256": "a1429622d05b27e016c1266312be8a9a7e4610da01d7d40826b1681677c53843",
+      "recipe_version": "20260611-r0",
+      "version": "20260611-r0",
+      "version_matches": true
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 1,
+      "declared_aports_commit": "3812c9da974bef8b28f995490ca8233f1472ccc4",
+      "declared_license": "GPL-2.0-only",
+      "interpretation": "fixed recipe declaration only; no package signature or complete rights acceptance",
+      "license_declaration_matches": true,
+      "name": "libapk",
+      "origin": "apk-tools",
+      "recipe_license": "GPL-2.0-only",
+      "recipe_path": ".tmp/linux-channel-image-audit-2026-11-01/sources/aports-apk-tools.txt",
+      "recipe_sha256": "9f76c34490ad5a32f50f9a875839322b69c09eecfde37d55c2e4b12c136ef2db",
+      "recipe_version": "3.0.6-r0",
+      "version": "3.0.6-r0",
+      "version_matches": true
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 10,
+      "declared_aports_commit": "0ca3c59c63240aaf5e762174f8d93109f9cabd8d",
+      "declared_license": "Apache-2.0",
+      "interpretation": "fixed recipe declaration only; no package signature or complete rights acceptance",
+      "license_declaration_matches": true,
+      "name": "libcrypto3",
+      "origin": "openssl",
+      "recipe_license": "Apache-2.0",
+      "recipe_path": ".tmp/linux-channel-image-audit-2026-11-01/sources/aports-openssl.txt",
+      "recipe_sha256": "63b8a9adf00a6076c830b79e4c1f56d9ac57f29a4b068e0d5bf7c62073758ea2",
+      "recipe_version": "3.5.7-r0",
+      "version": "3.5.7-r0",
+      "version_matches": true
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 1,
+      "declared_aports_commit": "0ca3c59c63240aaf5e762174f8d93109f9cabd8d",
+      "declared_license": "Apache-2.0",
+      "interpretation": "fixed recipe declaration only; no package signature or complete rights acceptance",
+      "license_declaration_matches": true,
+      "name": "libssl3",
+      "origin": "openssl",
+      "recipe_license": "Apache-2.0",
+      "recipe_path": ".tmp/linux-channel-image-audit-2026-11-01/sources/aports-openssl.txt",
+      "recipe_sha256": "63b8a9adf00a6076c830b79e4c1f56d9ac57f29a4b068e0d5bf7c62073758ea2",
+      "recipe_version": "3.5.7-r0",
+      "version": "3.5.7-r0",
+      "version_matches": true
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 2,
+      "declared_aports_commit": "8aef0c37b0ad23dc4137f0e4755b97a59dc698b8",
+      "declared_license": "MIT",
+      "interpretation": "fixed recipe declaration only; no package signature or complete rights acceptance",
+      "license_declaration_matches": true,
+      "name": "musl",
+      "origin": "musl",
+      "recipe_license": "MIT",
+      "recipe_path": ".tmp/linux-channel-image-audit-2026-11-01/sources/aports-musl.txt",
+      "recipe_sha256": "e8425e24c5c3c6d8f74b4412b11c6990fda6dbf7648c79ec6e2efa082fc5adcf",
+      "recipe_version": "1.2.5-r23",
+      "version": "1.2.5-r23",
+      "version_matches": true
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 5,
+      "declared_aports_commit": "8aef0c37b0ad23dc4137f0e4755b97a59dc698b8",
+      "declared_license": "MIT AND BSD-2-Clause AND GPL-2.0-or-later",
+      "interpretation": "fixed recipe declaration only; no package signature or complete rights acceptance",
+      "license_declaration_matches": true,
+      "name": "musl-utils",
+      "origin": "musl",
+      "recipe_license": "MIT AND BSD-2-Clause AND GPL-2.0-or-later",
+      "recipe_path": ".tmp/linux-channel-image-audit-2026-11-01/sources/aports-musl.txt",
+      "recipe_sha256": "e8425e24c5c3c6d8f74b4412b11c6990fda6dbf7648c79ec6e2efa082fc5adcf",
+      "recipe_version": "1.2.5-r23",
+      "version": "1.2.5-r23",
+      "version_matches": true
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 1,
+      "declared_aports_commit": "3912b4fa83437852312ad3c37a00229ff59fab1c",
+      "declared_license": "GPL-2.0-only",
+      "interpretation": "fixed recipe declaration only; no package signature or complete rights acceptance",
+      "license_declaration_matches": true,
+      "name": "scanelf",
+      "origin": "pax-utils",
+      "recipe_license": "GPL-2.0-only",
+      "recipe_path": ".tmp/linux-channel-image-audit-2026-11-01/sources/aports-pax-utils.txt",
+      "recipe_sha256": "d3ab7f1f1de34d023921a8f09cf80ba70063b05f1a99d8e2056ff8667c0f1213",
+      "recipe_version": "1.3.8-r2",
+      "version": "1.3.8-r2",
+      "version_matches": true
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 1,
+      "declared_aports_commit": "1e823a60eb85606954b3a5af5f8e5bbd1ea680cf",
+      "declared_license": "GPL-2.0-only",
+      "interpretation": "fixed recipe declaration only; no package signature or complete rights acceptance",
+      "license_declaration_matches": true,
+      "name": "ssl_client",
+      "origin": "busybox",
+      "recipe_license": "GPL-2.0-only",
+      "recipe_path": ".tmp/linux-channel-image-audit-2026-11-01/sources/aports-busybox.txt",
+      "recipe_sha256": "fb2323ac3121c6cd1122c42cabbd19ec28a29a1cf434a4c0759792c63a1c63a8",
+      "recipe_version": "1.37.0-r30",
+      "version": "1.37.0-r30",
+      "version_matches": true
+    },
+    {
+      "arch": "aarch64",
+      "checked_file_checksums": 2,
+      "declared_aports_commit": "f8c94d2e1d318ab29eb4ac5f00225341c877ed65",
+      "declared_license": "Zlib",
+      "interpretation": "fixed recipe declaration only; no package signature or complete rights acceptance",
+      "license_declaration_matches": true,
+      "name": "zlib",
+      "origin": "zlib",
+      "recipe_license": "Zlib",
+      "recipe_path": ".tmp/linux-channel-image-audit-2026-11-01/sources/aports-zlib.txt",
+      "recipe_sha256": "e9ad3aa7ecf048f4bfa26b946275bee347f75254385320e90eecd3fd6651bcf4",
+      "recipe_version": "1.3.2-r0",
+      "version": "1.3.2-r0",
+      "version_matches": true
+    }
+  ],
+  "observation_date": "2026-11-01",
+  "permission_reference": {
+    "actual_host": "7.2.12-orbstack-00394-gbecdd6130068",
+    "actual_host_source_binding": "not-established",
+    "cgroup_root_shape": "reference root omits cgroup.type/events (NOT_ON_ROOT); read these only at exact non-root observer cgroup; never waive unexpected ENOENT",
+    "files": [
+      {
+        "path": "fs/proc_namespace.c",
+        "sha256": "fd82c0db52055ae807ee0b46c7c9bc5d47a9239805eb8ca5c47d2ba81d695776"
+      },
+      {
+        "path": "fs/proc/base.c",
+        "sha256": "a2775a79e3a3085c578eee088e196d113c2ee1c16794748889a208733fc01c63"
+      },
+      {
+        "path": "fs/proc/inode.c",
+        "sha256": "a9afe0b38fbae0171e2dbe6357fe9c2d4db5b6786441560743ee31cf73615c22"
+      },
+      {
+        "path": "fs/filesystems.c",
+        "sha256": "bb2b9cf646321bf9c0bd37ddd0394e7ef9815a7bdfff567f112491c0777f2c46"
+      },
+      {
+        "path": "drivers/char/random.c",
+        "sha256": "6e8d61bf2ca3851f0aac44c8dbd737b23d5ed38efe7cb79d2e81dafabdc7fc96"
+      },
+      {
+        "path": "fs/proc/generic.c",
+        "sha256": "89cb3704808e2f83c6c20e3bd8c3b3f01310c8c636abe60279534138913bec9d"
+      },
+      {
+        "path": "kernel/cgroup/cgroup.c",
+        "sha256": "de44cafc76c19f8da3289ae23e4f12ed0ba43cbe7ceb6c5822e34ac570371616"
+      }
+    ],
+    "finding": "mountinfo open in reference has no unconditional ptrace check; proc PID directory lookup/hidepid and actual bind/source/LSM conditions remain distinct",
+    "runtime_permission": "not-tested",
+    "version": "upstream Linux v6.18"
+  },
+  "remaining": [
+    "publisher/signature and build-association trust decision",
+    "complete accessible package source/license acceptance beyond reviewed declarations",
+    "exact target kernel/runtime bind/LSM and permission association",
+    "PID1 launcher and timeout/cleanup implementation and negative qualification",
+    "diagnostic metadata quota/daemon-loss limits and explicit execution authorization"
+  ],
+  "runtime_qualification": false,
+  "scope": "bounded-local-export-and-fixed-source-review-no-environment",
+  "timeout_static_finding": "BusyBox 1.37.0 source and same-SHA512 Alpine cache checked: grandchild watchdog signals original exec target; if target is namespace PID1, same-namespace SIGKILL cannot be deadline enforcement; retained PID1 parent/reaper and non-PID1 target required, not implemented or qualified",
+  "version": "0.1"
+}

@@ -1,0 +1,41 @@
+{
+  "compared_fields": [
+    "relative path",
+    "kind",
+    "mode",
+    "uid",
+    "gid",
+    "bytes",
+    "literal link",
+    "file SHA256"
+  ],
+  "difference_paths": [],
+  "execution_ready": false,
+  "image_acceptance": "not-accepted",
+  "image_archive_sha256": "b235aa410b8cf689f2ebfb340eac1f6ebe0d569b300f667809a59ca097787adb",
+  "image_compressed_digest": "14a4754c352fba4c6c0da8e4f01bb990463c19f7ff63e090073c385bd2bc5046",
+  "image_count": 514,
+  "image_diff_id": "91d5cf66444f05b8c72e1b9d725c1752b9b015b68a7918125fc46ecdb7cc46d5",
+  "method_sha256": "211ada6aae25bce8acd635b38a5255ff7962bc2c24e08ea0c2104b0cf190626e",
+  "not_compared": [
+    "runtime root directory metadata",
+    "mtime",
+    "uname",
+    "gname",
+    "tar header encoding/padding",
+    "runtime mounts/namespace"
+  ],
+  "path_rule": "source dot root retained separately; remove exactly one leading ./; reject collisions",
+  "relative_trees_equal": true,
+  "scope": "relative-tree-comparison-only-not-runtime-root-equivalence",
+  "source_archive_sha256": "d9a77cb31f715c56afa4f0a5aa42c04cfde813b70ad74a64725902b09c29a6cc",
+  "source_count": 514,
+  "source_git_blob_sha1": "5d1dae18a0c27a6af3afaad29f0864b56a31085f",
+  "source_root_header_not_present_in_image_layer": {
+    "gid": 0,
+    "mode": 493,
+    "uid": 0
+  },
+  "source_sha512": "8b6faef155f73485d917f3e1ce5aa2289c9dd6be05823814b6d47b127e7ada5fe5842f329ec317e9554395c05cceca4f28c0fd87d577296a76690e9ea2123d70",
+  "source_tar_sha256": "f9ee8bdeb0b4ce53ad2513982a0ff7df80a66fbbcb0c76c0c578240ad3bda0a9"
+}

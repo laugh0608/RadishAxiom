@@ -78,6 +78,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 - [ADR 0031（Accepted）：本地 cvc5 构建来源保证边界](adr/0031-local-cvc5-build-provenance-boundary.md)：选项二的限定替代已接受，保留 / 减少的保证、三类材料、信任、验收和停止条件明确；[阶段拆分与有限实施计划](query/solver-local-cvc5-phase-plan.md)已完成静态核定，[私有 v0.2 离线切片](query/solver-local-cvc5-offline-v0.2.md)已按授权完成，实际检查见[本批记录](records/2026-10-27-cvc5-offline-phases.md)；旧入口及实际执行门禁仍有效。
 - [本地 cvc5 控制面与真实资格方案](query/solver-local-cvc5-control-plane-plan.md)：固定宿主候选、代码接线位置、阶段冻结、资源与真实正负例；G0 已以证据不足结束，恢复须先指定精确现有 Linux 管理入口和候选根，不授权探针或真实构建。
 - [新 Linux 管理通道最小方案](query/solver-linux-management-channel-minimum-plan.md)：同一 daemon 的一次性非 root 只读诊断候选，明确精确镜像、权限 / 输入、资源和 CID 清理；镜像与执行未接受，环境未创建，不替代独立终止 / 冻结资格。
+- [诊断镜像与宿主权限离线核对](records/2026-11-01-linux-channel-offline-review.md)：固定平台字节链、原始 rootfs / 包与许可声明、参考内核路径；保留真实差异并修正直接 PID 1 timeout 假设，没有创建 / 启动环境或接受运行资格。
 
 ## 机器契约
 
@@ -125,6 +126,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 | 2026-11-01 控制面方案 | [代码职责、宿主只读更新、冻结 / 资格矩阵及后续 G0 范围](records/2026-11-01-cvc5-control-plane-review.md) |
 | 2026-11-01 G0 能力盘点 | [前批提交、现有入口 / 共享视图观察与证据不足的结束决定](records/2026-11-01-cvc5-g0-capability-review.md) |
 | 2026-11-01 新通道方案 | [G0 提交、最小诊断通道、镜像只读元数据与权限 / 资源 / 清理设计](records/2026-11-01-linux-channel-minimum-review.md) |
+| 2026-11-01 新通道离线核对 | [最小方案提交、精确镜像 / 来源 / 许可与读取权限核对、PID 1 超时设计缺口](records/2026-11-01-linux-channel-offline-review.md) |
 | Rust Linux 与静态目标输入 | [签名 / 归档盘点、安装候选与 kernel 许可审阅](records/rust-linux-input-review/README.md) |
 | 2026-10-17 日终回顾 | [紧凑查询、监督组件与 C0 全天提交、代码 / 文档复核及接续事项](records/2026-10-17-closeout.md) |
 | 2026-10-08 日终回顾 | [P3-B–F 全天提交、代码与文档核对及明日交接](records/2026-10-08-closeout.md) |
