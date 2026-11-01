@@ -157,7 +157,7 @@ fn run_id(text: &str) -> Result<[u8; 32]> {
     }
     Ok(out)
 }
-fn prepare(emergency: fn() -> !) -> Result<(Binding, CString)> {
+fn prepare(emergency: fn() -> !, captured_inputs: &[u8]) -> Result<(Binding, CString)> {
     std::panic::set_hook(Box::new(move |_| emergency()));
     let mut args = std::env::args_os();
     args.next();
@@ -171,14 +171,8 @@ fn prepare(emergency: fn() -> !) -> Result<(Binding, CString)> {
     let id = run_id(id.to_str().ok_or(Error::invalid("channel-run-id"))?)?;
     crate::channel_profile::validate_collector(crate::channel_profile::COLLECTOR)
         .map_err(|_| Error::invalid("channel-body"))?;
-    let sources = crate::channel_inputs::export().map_err(|_| Error::invalid("channel-inputs"))?;
-    // L2 binds precisely the source-only manifest, still build_inputs=null /
-    // readiness=false. L3 must bind full tool inputs before any delivery.
-    let binding = Binding {
-        run_id: id,
-        input: radishaxiom_digest::digest(&sources),
-        collector: radishaxiom_digest::digest(crate::channel_profile::COLLECTOR),
-    };
+    let binding = crate::channel_inputs::native_binding(captured_inputs, id)
+        .map_err(|_| Error::invalid("channel-inputs"))?;
     let collector = CString::new(crate::channel_profile::COLLECTOR)
         .map_err(|_| Error::invalid("channel-body"))?;
     Ok((binding, collector))
@@ -196,7 +190,12 @@ fn prepare(emergency: fn() -> !) -> Result<(Binding, CString)> {
 ))]
 pub(crate) fn native() -> ! {
     let mut linux = Linux::new(crate::syscall::NativeKernel);
-    enter(&mut linux, || prepare(emergency))
+    enter(&mut linux, || {
+        prepare(
+            emergency,
+            include_bytes!(env!("RADISHAXIOM_LINUX_CHANNEL_INPUTS")),
+        )
+    })
 }
 #[cfg(all(
     feature = "linux-channel-entry",

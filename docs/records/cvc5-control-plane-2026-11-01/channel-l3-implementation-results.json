@@ -1,0 +1,312 @@
+{
+  "format": "radishaxiom-private-linux-channel-l3-implementation-observation",
+  "version": "0.1",
+  "date": "2026-11-01",
+  "scope": "host-static-and-synthetic-only-not-build-inputs",
+  "baseline_commit": "c4143473ce2826f61c0b13fb8c8c74ca4dbd30bb",
+  "final_implementation_commit": null,
+  "methods": [
+    {
+      "path": "crates/solver-bootstrap-linux/examples/export_linux_channel_inputs.rs",
+      "bytes": 2996,
+      "digest": "sha256:d09e608226332be1e440b2c164ec27e835d259cc7696ff5ce5a1fa5dea750f89"
+    },
+    {
+      "path": "crates/solver-bootstrap-linux/src/channel_entry.rs",
+      "bytes": 7991,
+      "digest": "sha256:ffcef189ae10ea259ef99de7438a69e4022f9ea0df3d43322ffec7d7b49add06"
+    },
+    {
+      "path": "crates/solver-bootstrap-linux/src/channel_inputs.rs",
+      "bytes": 10693,
+      "digest": "sha256:9590f13db28675581cbd235338d6259fb279c5e61c33d29be3b5efa94cc10379"
+    },
+    {
+      "path": "crates/solver-bootstrap-linux/src/channel_json.rs",
+      "bytes": 7251,
+      "digest": "sha256:4eee3f08717b42e8c5c545f1d41a4d09d46cf1041282aafb2b8686f592b77199"
+    },
+    {
+      "path": "scripts/check-linux-channel-inputs.py",
+      "bytes": 28532,
+      "digest": "sha256:19cc5d6d340540388c22415b0c67619b0be2a45b50fa59a54271cd3f8c4a888a"
+    },
+    {
+      "path": "scripts/build-linux-channel.py",
+      "bytes": 36513,
+      "digest": "sha256:d6e1e4e785d61998f1c33cdb1b0a699499ad3896426341c19b9f96060e251881"
+    },
+    {
+      "path": "scripts/test-linux-channel-build.py",
+      "bytes": 24861,
+      "digest": "sha256:d064ef06885b8acd134c957db163d51408a2ff6ba222056a948644c968a2313b"
+    }
+  ],
+  "collector": {
+    "path": "scripts/cvc5-build-support/inspect_linux_host.sh",
+    "bytes": 9717,
+    "digest": "sha256:e1f884bc7762c5cd64a456b93785860810cd16ba21bb1a67a9bb5607a71f54ae"
+  },
+  "source_count": 53,
+  "source_set_digest": "sha256:a682ee989592df9f283e85a0bd1cf147bc4062b1bce301133e0ca8ac887a1447",
+  "checks": [
+    {
+      "name": "fmt",
+      "argv": [
+        "cargo",
+        "+1.97.1-aarch64-apple-darwin",
+        "fmt",
+        "--all",
+        "--check"
+      ],
+      "exit_code": 0,
+      "scope": "Darwin-host-static-and-scripted-only"
+    },
+    {
+      "name": "clippy",
+      "argv": [
+        "cargo",
+        "+1.97.1-aarch64-apple-darwin",
+        "clippy",
+        "--workspace",
+        "--all-targets",
+        "--all-features",
+        "--locked",
+        "--offline",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "exit_code": 0,
+      "scope": "Darwin-host-static-and-scripted-only"
+    },
+    {
+      "name": "rust-tests",
+      "argv": [
+        "cargo",
+        "+1.97.1-aarch64-apple-darwin",
+        "test",
+        "-p",
+        "radishaxiom-solver-bootstrap-linux",
+        "--all-targets",
+        "--all-features",
+        "--locked",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "scope": "Darwin-host-static-and-scripted-only"
+    },
+    {
+      "name": "python-build-tests",
+      "argv": [
+        "python3.14",
+        "-W",
+        "error::ResourceWarning",
+        "scripts/test-linux-channel-build.py"
+      ],
+      "exit_code": 0,
+      "scope": "synthetic-only"
+    },
+    {
+      "name": "python-channel-tests",
+      "argv": [
+        "python3.14",
+        "scripts/test-linux-channel.py"
+      ],
+      "exit_code": 0,
+      "scope": "synthetic-only"
+    },
+    {
+      "name": "python-bytecompile",
+      "argv": [
+        "python3.14",
+        "-m",
+        "py_compile",
+        "scripts/check-linux-channel-inputs.py",
+        "scripts/build-linux-channel.py",
+        "scripts/test-linux-channel-build.py"
+      ],
+      "exit_code": 0,
+      "scope": "synthetic-only"
+    }
+  ],
+  "rust_tests": 119,
+  "python_new_tests": 27,
+  "python_existing_tests": 16,
+  "synthetic_interoperability": {
+    "scope": "synthetic-v02-binding-only",
+    "input_binding": "sha256:cbd37bcaec910798d9a5a2411c6b440241d237e7b1e91fd009d1bfc5cc2961b1",
+    "source_commit": "0101010101010101010101010101010101010101",
+    "source_count": 53,
+    "synthetic": true,
+    "build_ready": false,
+    "execution_ready": false,
+    "native_build": "not-accepted",
+    "wire_bytes": 1747,
+    "partitions": 7,
+    "truncated_prefixes_rejected": 1747,
+    "runtime_exit_confirmed": false,
+    "production_synthetic_rejected": true,
+    "legacy_v01": {
+      "scope": "source-export-and-synthetic-interop-only",
+      "inputs": {
+        "scope": "offline-source-binding-only",
+        "input_binding": "sha256:b2058e25c86bb24c9f797d59e589d72bcfd81828ac21d0180eb83db869576c8e",
+        "collector_digest": "sha256:e1f884bc7762c5cd64a456b93785860810cd16ba21bb1a67a9bb5607a71f54ae",
+        "source_count": 53,
+        "build_ready": false,
+        "execution_ready": false,
+        "target_acceptance": "not-established"
+      },
+      "wire_bytes": 1747,
+      "truncated_prefixes_rejected": 1747,
+      "partition_sizes": [
+        1,
+        7,
+        19,
+        20,
+        21,
+        4096,
+        1747
+      ],
+      "runtime_exit_confirmed": false,
+      "build_ready": false,
+      "execution_ready": false
+    }
+  },
+  "capture_macro": [
+    {
+      "case": "missing-env",
+      "exit_code": 1,
+      "host_metadata_only": true
+    },
+    {
+      "case": "missing-file",
+      "exit_code": 1,
+      "host_metadata_only": true
+    },
+    {
+      "case": "captured",
+      "exit_code": 0,
+      "host_metadata_only": true
+    }
+  ],
+  "cargo_resolution_observation": {
+    "exit_code": 0,
+    "stderr": "    Checking radishaxiom-digest v0.0.0 (/Users/luobo/Code/RadishAxiom/crates/digest)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.17s\n",
+    "inputs": [
+      {
+        "path": "/Users/luobo/.cargo/registry/index/index.crates.io-1949cf8c6b5b557f/config.json",
+        "destination": "registry/index/index.crates.io-1949cf8c6b5b557f/config.json",
+        "bytes": 76,
+        "digest": "sha256:5b943a2c6f7eb743f7308aba07bdbb47d9ae44aafecd832d7f15df186afbafb3"
+      },
+      {
+        "path": "/Users/luobo/.cargo/registry/index/index.crates.io-1949cf8c6b5b557f/.cache/li/bc/libc",
+        "destination": "registry/index/index.crates.io-1949cf8c6b5b557f/.cache/li/bc/libc",
+        "bytes": 84005,
+        "digest": "sha256:0c0c0edd0d15a477311bebab5f7b35d68767bb2ebeea274f85404cd2921c498a"
+      }
+    ],
+    "host_check_only": true,
+    "downloaded_or_unpacked_dependency": false
+  },
+  "empty_home_host_check_exit_code": 101,
+  "empty_home_metadata_exit_code": 0,
+  "host_rlib_target": "aarch64-apple-darwin",
+  "host_rlib_profile": "linux-channel",
+  "materials": [
+    {
+      "path": ".tmp/linux-channel-l3-implementation-20261101-final-audited/rust-check-results.json",
+      "bytes": 894,
+      "digest": "sha256:bce209d53806b0f1fabb23973386c1c990e1c4030efdb3de59b19bd9a9c7f4b8"
+    },
+    {
+      "path": ".tmp/linux-channel-l3-implementation-20261101-final-audited/python-check-results.json",
+      "bytes": 696,
+      "digest": "sha256:4ef57b12119295c0ccb0105c67848f3f327cccd0b91ebaa8c591c1b9151ec0de"
+    },
+    {
+      "path": ".tmp/linux-channel-l3-implementation-20261101-final-audited/interop-results.json",
+      "bytes": 1001,
+      "digest": "sha256:e1cb9331b760fe419dc4c7b8f0b8788342ad28d00bb06d65f8b9ec08ea902a04"
+    },
+    {
+      "path": ".tmp/linux-channel-l3-implementation-20261101-final-audited/rust-v01-export/inputs.json",
+      "bytes": 10327,
+      "digest": "sha256:b2058e25c86bb24c9f797d59e589d72bcfd81828ac21d0180eb83db869576c8e"
+    },
+    {
+      "path": ".tmp/linux-channel-l3-implementation-20261101-final-audited/rust-v02-export/inputs.json",
+      "bytes": 11027,
+      "digest": "sha256:cbd37bcaec910798d9a5a2411c6b440241d237e7b1e91fd009d1bfc5cc2961b1"
+    },
+    {
+      "path": ".tmp/linux-channel-l3-implementation-20261101-a/host-metadata.stdout.json",
+      "bytes": 17306,
+      "digest": "sha256:cbc820c699fb66a1783e89086a7769f375a84af0e7742668b77895289db90f7f"
+    },
+    {
+      "path": ".tmp/linux-channel-l3-implementation-20261101-a/host-check.stderr.txt",
+      "bytes": 386,
+      "digest": "sha256:6c566cebfd21b966a7e0f18844ebe1ae23ce61932aaa527dec101a5b05994b29"
+    },
+    {
+      "path": ".tmp/linux-channel-l3-implementation-20261101-a/host-resolution-results.json",
+      "bytes": 908,
+      "digest": "sha256:c9eb9c1f1fa1264ae69caf32a5513d2ffc16fb757f3d6073a1a3ba4a714a2932"
+    },
+    {
+      "path": ".tmp/linux-channel-l3-implementation-20261101-a/host-recorded.stderr.txt",
+      "bytes": 165,
+      "digest": "sha256:0171f049476fb6913be1bcad11be49667ea2e2be003ef17fe2bbec533f8d1c03"
+    },
+    {
+      "path": ".tmp/linux-channel-l3-implementation-20261101-a/capture-macro-results.json",
+      "bytes": 262,
+      "digest": "sha256:bef28b2727f15839a6feb20b71e1c6069a5c359e7826a129058757675b85bf96"
+    }
+  ],
+  "target_absent_observed": true,
+  "candidate_real_build_root_absent": true,
+  "target_component_installed": false,
+  "linux_artifact_built": false,
+  "created_or_started_linux_environment": false,
+  "real_complete_inputs_generated": false,
+  "build_ready": false,
+  "execution_ready": false,
+  "limitations": [
+    "installation and host-resolution receipts are external reviewed trust inputs, not replayed or authenticated here",
+    "synthetic root and reviews never qualify a real build",
+    "no Linux target native cfg, Cargo argv, link, ABI or syscall qualification",
+    "time and size observations rely on trusted host OS; no RSS/storage hard quota or independent termination proof",
+    "finite resolver metadata source/license acceptance still required",
+    "original process group only; no proof of absence of descendants that changed session/PGID"
+  ],
+  "supervision": {
+    "platform": "macOS-aarch64",
+    "leader_wait": "waitid-WNOWAIT-before-signals-and-reap",
+    "sigchld": "default-required",
+    "group_members_max": 64,
+    "query": "/usr/lib/libproc.dylib:proc_listpids(PROC_PGRP_ONLY)",
+    "signal_after_reap": false,
+    "real_closed_stdio_descendant_rejected": true,
+    "assumptions": [
+      "sole waiter in this process",
+      "trusted macOS libproc/Python/ctypes/runtime"
+    ],
+    "independent_termination_proved": false
+  },
+  "implementation_abi_references": [
+    {
+      "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/libproc.h",
+      "bytes": 7575,
+      "digest": "sha256:246d87709fc6b9157ce5cf3c475656ac48e0e1ae8bbdc46cf45acd34294448cd"
+    },
+    {
+      "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/proc_info.h",
+      "bytes": 31262,
+      "digest": "sha256:e427fa96b348537b21552b9de71e01039410bcad2cedee5584c5e5fddafd70fc"
+    }
+  ]
+}

@@ -84,7 +84,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 - [诊断启动器目标构建与交付方案](query/solver-linux-channel-build-and-delivery-plan.md)：精确 Rust / musl / linker 候选、正文绑定、只读单文件交付、PID 1 帧报告与 raw exit；目标 std 未安装，L1 / L2 源码已形成，实际构建 / 交付与入口仍未接受执行。
 - [诊断通道 L1](query/solver-linux-channel-l1.md)：固定采集正文、离线源绑定、Rust / Python 报告纯组件及独立合成互操作；未运行正文或接受真实执行。
 - [诊断通道 L2](query/solver-linux-channel-l2.md)：内部 pipe / FD 所有权、唯一首时钟与 18 / 19.8 / 20 s 截止、非阻塞传输 / 回收、panic / allocator 与最终 raw exit 源码；仅宿主静态 / 脚本验证，未构建或执行 Linux 制品。
-- [诊断通道 L3](query/solver-linux-channel-l3.md)：精确 Rust musl target 的既有原包 / 66 文件重核、单组件安装副作用与清理、私有完整输入 v0.2 / sidecars / 构建包装器方案；未安装或构建，未迁移现行 v0.1。
+- [诊断通道 L3](query/solver-linux-channel-l3.md)：精确 Rust musl target 的既有原包 / 66 文件重核、单组件安装副作用与清理、私有完整输入 v0.2 / sidecars / native 捕获 / 有界构建包装器实现及静态验证；无真实完整 root、target 安装或 Linux 构建。
 
 ## 机器契约
 

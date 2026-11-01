@@ -2,7 +2,7 @@
 
 日期：2026-11-01。状态：**方案已静态核定；实施候选，build_ready=false / execution_ready=false**。用途：向项目所有者、实施者和审阅者明确[最小通道](solver-linux-management-channel-minimum-plan.md)的精确目标、采集正文绑定、输出所有权与退出路径。本页不接受工具 / 许可证 / 宿主资格，不提供已经可运行的构建或容器命令，不授权安装、构建、交付挂载或环境执行。实际盘点和验证见[本批记录](../records/2026-11-01-linux-channel-delivery-review.md)，现行顺位见[当前状态](../status/current.md)。
 
-方案随后提交为 `2e5da3a`；按项目所有者的下一批授权，[L1](solver-linux-channel-l1.md)已实现真实采集正文、45 源输入绑定与 Rust / Python 报告纯组件，并完成本机静态 / 合成验证。L1 导出的 scope 仅为 offline-source-binding-only，完整目标工具 / flags 尚未绑定，不替代本页最终构建 inputs。随后 L1 已提交为 `5609e6a`；[L2](solver-linux-channel-l2.md)已接通管道 / 首截止 / 最终退出源码并完成宿主静态 / 脚本验证。现行源绑定为 50 源、仍是 offline-source-binding-only；没有执行采集正文或新增 Linux 制品 / 环境。L2 已提交为 `5dab738`；[L3 精确组件与完整输入方案](solver-linux-channel-l3.md)已核定并重核既有 target 原包，不安装、不构建，当前输入仍未迁移到 v0.2。
+方案随后提交为 `2e5da3a`；按项目所有者的下一批授权，[L1](solver-linux-channel-l1.md)已实现真实采集正文、45 源输入绑定与 Rust / Python 报告纯组件，并完成本机静态 / 合成验证。L1 导出的 scope 仅为 offline-source-binding-only，完整目标工具 / flags 尚未绑定，不替代本页最终构建 inputs。随后 L1 已提交为 `5609e6a`；[L2](solver-linux-channel-l2.md)已接通管道 / 首截止 / 最终退出源码并完成宿主静态 / 脚本验证。现行源绑定为 50 源、仍是 offline-source-binding-only；没有执行采集正文或新增 Linux 制品 / 环境。L2 已提交为 `5dab738`；[L3 精确组件与完整输入方案](solver-linux-channel-l3.md)已核定并重核既有 target 原包，不安装、不构建，现已实现 v0.2 纯输入、native 捕获与包装器的源码 / 静态切片，见 [L3 实现](solver-linux-channel-l3.md#v02-实现接口与静态出口)；没有真实完整 root、安装或 Linux 构建。
 
 ## 唯一候选与当前缺口
 
@@ -53,7 +53,7 @@ L2 已新增供显式选择的 `linux-channel` profile（未使用它构建，�
 
 L1 的 `channel_profile.rs` 作为单一类型化常量来源，承载现有期限、PID / 字节 / 帧预算及 profile 版本，编译期以 include_bytes 捕获正文；复用既有 digest 在父侧核对 / 计算相同原字节，再只构造一次 CString 传给私有 run。正文不从 argv、stdin、宿主挂载或 report 反向载入；子分支继续固定 `/bin/busybox` 和 `busybox, sh, -c, <已绑定字面正文>`。先实现并审阅真实白名单采集 / 脱敏 / 有界读取与失败处理，不将 printf 占位程序封成可接受制品。
 
-L3 已核定 v0.2 私有 root 与摘要绑定 sidecars 的迁移，尚未实现；具体字段、完整 workspace 与 66 项 target 库存、受控 native 捕获及旧版拒绝以 [L3](solver-linux-channel-l3.md#完整输入-v02-与无自引用绑定)为准。最终构建输入应由显式离线生成器从同一次源快照导出版本化 `inputs.json`（≤1 MiB）：有序源码清单、正文 profile / 长度 / raw SHA256、类型化预算、目标 / flags / 工具输入身份和采集白名单。该文件只绑定声明，不可覆盖代码常量；独立 checker 对源码 / 正文 / 数值双向核对。其 raw SHA256 是 `input_binding`，编译期捕获同一原文件；Start / Final 仅报告该摘要及实际内嵌正文摘要，Mac 必须与**事先登记**的输入比对，不能把收到的摘要当期望值。
+L3 已实现 v0.2 私有 root 与摘要绑定 sidecars 的源码迁移，仍无真实完整 root；具体字段、完整 workspace 与 66 项 target 库存、受控 native 捕获及旧版拒绝以 [L3](solver-linux-channel-l3.md#完整输入-v02-与无自引用绑定)为准。最终构建输入应由显式离线生成器从同一次源快照导出版本化 `inputs.json`（≤1 MiB）：有序源码清单、正文 profile / 长度 / raw SHA256、类型化预算、目标 / flags / 工具输入身份和采集白名单。该文件只绑定声明，不可覆盖代码常量；独立 checker 对源码 / 正文 / 数值双向核对。其 raw SHA256 是 `input_binding`，编译期捕获同一原文件；Start / Final 仅报告该摘要及实际内嵌正文摘要，Mac 必须与**事先登记**的输入比对，不能把收到的摘要当期望值。
 
 生成输入不得含自身摘要、最终 ELF / build manifest / 容器 CID 摘要，避免自引用。最终外置 `build-manifest.json` 再绑定 `input_binding`、实际 ELF、link map / trace、许可证 / 来源材料与实际构建结果；接受记录独立引用其原字节摘要，不在生成 manifest 中伪填 accepted。源码变更、正文换行变更、工具 / flags 或 profile 变化均需重生成、重建、重核与登记，旧制品不原地替换。
 
@@ -120,7 +120,7 @@ L2 leaf main 已按以下约束接精确目标路由，库内原生入口不返�
 | --- | --- |
 | L1：绑定与报告纯组件 | 真实采集正文审阅、单一 profile / 源码绑定生成与独立复核；Header / Start / Chunk / Final codec 与预算；全截断、未知 / 重复 / 尾随、序号、绑定漂移与 prefix / EOF / ECHILD 区分。只用合成输入，不启动采集 shell |
 | L2：入口接线源码 | 内部 pipe / FD 所有权、首 t0 与 200 ms 预留、非阻塞 IO / 回收统一循环、raw 退出 / panic / allocator 失败路径；全目标宿主检查及 scripted partial write / EAGAIN / EINTR / EPIPE / 取消 / 并发退出 / PID 复用 / 报告截断 / 分配失败。不得换 backend 或放宽现有检查 |
-| L3：有限工具输入与构建审阅 | 精确组件 / 完整输入方案已核定，见 [L3](solver-linux-channel-l3.md)。先实施 v0.2 纯生成 / 独立复核、native 捕获与包装器静态验证；特定输入接受、单 target 安装、实际安装观察与一次构建分别收口。已有原包不重复取得，不把方案当安装 / 构建许可 |
+| L3：有限工具输入与构建审阅 | 精确组件 / 完整输入方案已核定，见 [L3](solver-linux-channel-l3.md)。v0.2 纯生成 / 独立复核、native 捕获与包装器已完成宿主静态 / 合成验证；特定输入接受、单 target 安装、实际安装观察与一次构建分别收口。已有原包不重复取得，不把方案当安装 / 构建许可 |
 | L4：实际制品离线验收 | 构建 / 链接 / ELF / 来源 / 许可和正文绑定独立核对，登记实际制品及单文件 runtime 目录；不创建镜像 / 容器，不在 Mac / Linux / 模拟器执行产物。静态通过仍不是运行资格 |
 | L5：执行前收口 | 精确宿主权限 / proc / seccomp、Mac 共享源 / 无写别名、限额和单 CID 配置 / 清理范围闭合后，才提交真实一次诊断的完整参数与许可范围。缺任一前置不 create / start，不提权 / 加依赖 / 换镜像补救 |
 

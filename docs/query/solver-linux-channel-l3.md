@@ -1,12 +1,12 @@
 # 诊断通道 L3：精确 target 组件与完整构建输入方案
 
-日期：2026-11-01。状态：**方案已核定、指定留存输入已离线重核；未授权或执行安装 / Linux 构建**。读者：项目所有者、实施者与输入 / 制品审阅者。用途：收口[交付方案](solver-linux-channel-build-and-delivery-plan.md)中 L3 的具体组件、安装副作用、输入绑定和有界包装器；不另开工具链路线、修改公共 Evidence / solver 格式或接受新运行资格。当前源码为 [L2](solver-linux-channel-l2.md)；实际观察、方法、失败和边界见[本批记录](../records/2026-11-01-linux-channel-l3-review.md)。
+日期：2026-11-01。状态：**方案及 v0.2 / native 捕获 / 包装器源码已实现，完成宿主静态与合成验证；未安装 target 或构建 Linux 制品**。读者：项目所有者、实施者与输入 / 制品审阅者。用途：收口[交付方案](solver-linux-channel-build-and-delivery-plan.md)中 L3 的具体组件、安装副作用、输入绑定和有界包装器；不另开工具链路线、修改公共 Evidence / solver 格式或接受新运行资格。方案基线为 [L2](solver-linux-channel-l2.md)；原包观察见[方案记录](../records/2026-11-01-linux-channel-l3-review.md)，本次实现、发现与验证见[实现记录](../records/2026-11-01-linux-channel-l3-implementation.md)。
 
 ## 已冻结的选择与现有材料
 
 唯一目标继续是 macOS AArch64 的 `1.97.1-aarch64-apple-darwin` 交叉构建 `aarch64-unknown-linux-musl`，使用已有 rust-lld 的 GNU flavor，产出静态非 PIE ET_EXEC。无新 GNU SDK / GCC / Linux builder、QEMU 或动态 libc 路线。
 
-L2 已提交为 `5dab738`。本批只形成方案和诊断记录，最终 v0.2 输入实现 / 包装器的 source commit **尚不存在**；不能把 `5dab738` 写成那些未来实现的来源。具体候选参数见[候选计划 JSON](../records/cvc5-control-plane-2026-11-01/channel-l3-candidate-plan.json)，其 scope 为 proposal-only-not-native-build-inputs，final_implementation_commit=null，所有安装 / 构建授权和 readiness=false；它不能被原生入口当 inputs 消费。
+L2 已提交为 `5dab738`。原方案批次只形成方案和诊断记录；本次实现尚未提交，最终 v0.2 输入实现 / 包装器的 source commit **尚不存在**；不能把 `5dab738` 写成那些未来实现的来源。具体候选参数见[候选计划 JSON](../records/cvc5-control-plane-2026-11-01/channel-l3-candidate-plan.json)，其 scope 为 proposal-only-not-native-build-inputs，final_implementation_commit=null，所有安装 / 构建授权和 readiness=false；它不能被原生入口当 inputs 消费。
 
 [只读观察 JSON](../records/cvc5-control-plane-2026-11-01/channel-l3-input-observation.json)绑定以下真实对象，全部以本机实际字节重核：
 
@@ -44,7 +44,7 @@ L2 已提交为 `5dab738`。本批只形成方案和诊断记录，最终 v0.2 �
 
 ## 完整输入 v0.2 与无自引用绑定
 
-**本节核定私有设计，尚未实现或导出 v0.2。** 保留现有 v0.1 offline-source-binding-only 的纯导出和严格拒绝；不把 null 改成空对象或把 readiness 改 true 冒充迁移。
+**本节为私有输入约束；实现接口和宿主验证发现的补正见下文。尚未生成真实完整 v0.2 root。** 保留现有 v0.1 offline-source-binding-only 的纯导出和严格拒绝；不把 null 改成空对象或把 readiness 改 true 冒充迁移。
 
 候选 root 继续 format=radishaxiom-private-linux-channel-inputs，version 升为 `0.2`、scope=target-build-input-binding。原 profile / budgets / collector / collector_reads / 有序源码闭包仍由类型化常量与编译捕获源双向核对。build_inputs 必须完整，包含最终 source commit、安装观察与有限接受引用、有序构建参数 / 环境和以下清单的 path / bytes / `sha256:` 原字节引用。native_build=not-accepted 与两个产品 readiness=false 保持，有限构建许可来自独立的对象接受和本次执行授权，不用内嵌布尔值开关代替它们。
 
@@ -66,7 +66,7 @@ root ≤1 MiB、维持现有控制 JSON 的深度 / 64 项数组等边界；大�
 
 ## 一次构建包装器与占用
 
-本批仅声明包装器，不创建 build 根或运行 cargo build。候选任务根为 `.tmp/linux-channel-build-l3-01/`，当前不存在；未来执行前必须重新解析、拒绝已有 / symlink / 并行写入并登记精确目标。候选参数全部在 JSON 中，含缺失实现和授权的停止条件，不是可直接执行的已接受构建配方。
+原方案批次仅声明包装器；本次已实现源码和合成验证，未以真实输入调用 build 或进入其 Cargo / Linux 构建分支。候选任务根为 `.tmp/linux-channel-build-l3-01/`，当前不存在；未来执行前必须重新解析、拒绝已有 / symlink / 并行写入并登记精确目标。候选参数全部在 JSON 中，含缺失实现和授权的停止条件，不是可直接执行的已接受构建配方。
 
 - **快照。** 从最终干净 commit 按 Git blob 复制全部 tracked 普通文件到新 source 根，不复制 .git、ignored 缓存、全局配置或工作树未提交内容；不使用可能改变文件的 export filter。因为根 workspace 声明七包，不能只复制三个 normal 编译包而破坏 Cargo 图。`5dab738` 的实际基线为 2,931 文件 / 97,632,590 bytes；候选快照上限 4,096 文件 / 128 MiB，纳入任务总量，超额停止。完整树不等于全部文件都会编译或链接。
 - **Cargo 图。** 独立只读 metadata / 三包 Cargo 核对 normal 闭包恰为 bootstrap / supervision-core / digest，均已有 path 依赖；拒绝 build.rs、build-dependency、proc macro、注册表 / Git 新依赖和非预期 target。examples / tests / dev-dependency 不进入目标构建；不能只看 Cargo.lock 包数量作此判断。
@@ -76,7 +76,7 @@ root ≤1 MiB、维持现有控制 JSON 的深度 / 64 项数组等边界；大�
 - **flags。** 沿交付方案的静态 CRT / self-contained / generic CPU / static relocation / ld.lld / -static / -no-pie / noexecstack，不改变独立 profile。结构化数组用 U+001F 生成 CARGO_ENCODED_RUSTFLAGS，不经 shell split。Map 与 --trace 外增加仅一项 `--why-extract=<任务 records>/link-why-extract.tsv`，以关联真实 archive member；已有 LLD 22.1.6 --help 确认选项存在，未构建验证。不使用复制整个工具输入的 --reproduce，不在失败后换 linker / flags 重跑。
 - **上限与失败。** 首个单调 t0 起 600 s 覆盖前检 / 快照 / 必要宿主纯生成 / 唯一目标编译 / 记录；一个受管进程组内运行可信宿主工具，取消不续期。jobs=1；整个任务（source / cargo-home / target / records / delivery 副本）观测限 512 MiB，ELF 16 MiB、map 8 MiB、why-extract 4 MiB、双流日志合计 4 MiB。增量读取 / 落盘有界，超限、短写、ENOSPC、取消、未知子进程 / 未能停止都保存失败，不能返回成功或增限重试。Mac 进程组与文件计量不是 RSS / 块 / inode 硬限、独立终止或 Linux G0 资格。
 
-未来优先扩展现有 export example / check-linux-channel-inputs.py 处理明确版本，新增单个 scripts/build-linux-channel.py 承担私有 plan / 执行与内部参数记录职责；只在任务 tools 目录生成受绑定的 recorder 入口，不另造常驻服务、第二份资源配置或通用命令 runner。本批不创建这些实现。
+未来优先扩展现有 export example / check-linux-channel-inputs.py 处理明确版本，新增单个 scripts/build-linux-channel.py 承担私有 plan / 执行与内部参数记录职责；只在任务 tools 目录生成受绑定的 recorder 入口，不另造常驻服务、第二份资源配置或通用命令 runner。本次源码接续已实现这些入口，仍未进行真实 Linux 构建。
 
 终止后只按精确已登记任务文件 / 子进程身份审阅；保留失败 / 源 / inputs / 日志和旧材料，不自动清理全局 Cargo / rustup 缓存。未知存活状态仍失败，后续恢复 / 删除另列精确范围。生成成功也不执行 ELF，build-manifest 只记实际结果，不自填 accepted。
 
@@ -93,6 +93,49 @@ root ≤1 MiB、维持现有控制 JSON 的深度 / 64 项数组等边界；大�
 
 [旧精确配方与许可材料](../records/rust-linux-input-review/source-recipes-2026-09-10.md)继续作为起点。本轮重核其 255 份留存文本与已提交元数据逐项一致，并单列六份 Rust / compiler-builtins / compiler-rt / libunwind 许可摘要，没有重扫 / 重建整套源码工具链。目标 .a 当前只在归档 / 文件层绑定；最终 trace / map / why-extract、对象解析、ELF 与必要来源 / 归属文件的对应仍属 L4。必要许可材料放 records、不挂入只含单 ELF 的 runtime 目录；具体分发接受不在本批发生。
 
-下一源码切片先实现 v0.2 纯生成 / 独立复核、native 捕获与有界包装器，使用合成安装观察 / argv / 进程测试覆盖 v0.1 / null / 篡改 / 配置注入 / 超额 / 取消 / 失败拒绝；不自动安装或构建 Linux。真实完整 root 只有实际组件安装观察、精确工具 / 系统范围和接受材料齐备后才能生成，不能用合成 fixture 替代。随后按独立授权安装这一 target，再单独授权一次构建；L4 离线制品核对和 L5 执行前收口顺序不变。
+本次源码切片已实现 v0.2 纯生成 / 独立复核、native 捕获与有界包装器，使用合成安装观察 / argv / 短时宿主进程覆盖旧版 / null / 篡改 / 配置注入 / 超额 / 取消 / 失败拒绝；实际边界与命令见实现记录。不自动安装或构建 Linux。真实完整 root 只有实际组件安装观察、精确工具 / 系统范围和接受材料齐备后才能生成，不能用合成 fixture 替代。随后按独立授权安装这一 target，再单独授权一次构建；L4 离线制品核对和 L5 执行前收口顺序不变。
 
 C1 / LibPoly、E0 / E4、G0 / A1–A10、镜像 / 权限 / 无写别名 / 独立终止 / 存储硬限仍未闭合。输入方案、签名历史或元数据成功均不授权诊断环境，不创建 / 启动 Linux 环境试错，也不推进 solver 真实路径。
+
+
+## v0.2 实现接口与静态出口
+
+入口沿用 [Rust export example](../../crates/solver-bootstrap-linux/examples/export_linux_channel_inputs.rs)、[独立输入 checker](../../scripts/check-linux-channel-inputs.py)，新增唯一 [build / recorder 包装器](../../scripts/build-linux-channel.py)；[合成测试](../../scripts/test-linux-channel-build.py)不安装或执行 Linux。当前选定闭包为 **53 个源文件**（L2 的 50 个加包装器、其测试和原已被 Python checker 调用的 bootstrap checker）；旧 v0.1 仍按现行源码严格导出，不接受历史库存漂移。L1 / L2 旧记录的 45 / 50 计数不重写。
+
+### 纯 root 与宿主清单
+
+Rust `export_v02(request)` 接受 canonical ASCII JSON：`source_commit` 为最终 40 位小写 Git ID，`sidecars` 为上表顺序的五个 `{path,bytes,digest}` 引用；只能使用固定 basename、非零 ≤4 MiB 长度和 `sha256:` 摘要。它不读取外部状态或认定材料 accepted。example 的 `--v02 <request-file> <new-output-directory>` 模式输出 root、原正文和显式 synthetic-report；后者始终是合成互操作样本。旧无 flag 模式仍导出 v0.1。
+
+独立 checker 的 v0.2 模式要求 `--v02-source <exact-snapshot> --source-commit <registered-commit> --review-digest <registered-review-sha256>`。两项 pin 必须来自外部审阅，不从输入自行发现或默认接受。checker 核对 root 固定数值 / 源闭包、五份原字节引用、完整 source 文件树、66 项安装 payload / 多余文件拒绝、实际工具 / 库文件、安装及宿主解析回执、固定构建计划和有限接受范围。root parser 保持 16 层 / 64 项数组 / 32 字段对象 / 256 字符串；仅 inputs 字节限独立为 1 MiB，报告仍为 32 KiB。sidecar 独立限制为 4 MiB / 4,096 项 / 16 层 / 1,024 字符串，不放宽报告 parser。
+
+五份清单均有 `format=radishaxiom-private-linux-channel-<name>, version=0.2`：
+
+| 清单 | 具体实现字段 |
+| --- | --- |
+| source-snapshot | source_commit、完整 files（path / Git mode / bytes / digest）、有序 compile_sources；必须与实际快照全树及独立枚举的选定源相等，≤4,096 文件 / 128 MiB |
+| target-payload | target、installed_root、archive / release_manifest 原字节引用、66 项 files、materials 下的 installation-receipt 引用；真实模式还与已固定的 L3 原观察 / 归档身份核对 |
+| tool-inventory | toolchain、cargo / rustc / lld / installer / python / git 六角色身份、dylibs、host-resolution 引用、system OS / dyld 身份材料和显式信任边界、下文 cargo_resolution |
+| build-plan | 固定 package / bin / feature / target / profile / argv / metadata_argv / flags / env / paths / limits、recorder / interpreter_flags / 生成入口字节引用；由 checker 自己的固定预期核对，不导入 producer |
+| input-review | scope=finite-diagnostic-build-inputs、decision=accepted-for-one-diagnostic-build、synthetic=false、source_commit、前四份对象的精确引用、非空 decisions / licenses 材料引用及 trust / limitations；raw SHA256 必须命中外部登记 |
+
+installation-receipt 必须声明 installed-reconciled，绑定 archive / files_digest、真实元数据文件与原三工具未改身份；host-resolution 必须将所有工具 / 非系统库文件绑定到解析边、明确系统路径及 limitations。这两类回执和有限接受是**独立审阅的信任输入**：本 checker 复核结构和字节，不认证发布者、不重演安装事务、不自行解析 Mach-O / dyld cache 或证明宿主解析完整性。缺少真实限定审阅就没有真实 root；不能靠填写 accepted 字符串解除此门禁。测试用 `synthetic=True` 只存在于纯 Python 调用，结果明确带 synthetic；生产 CLI / build 不开放此模式。
+
+### 空 Cargo home 的解析输入补正
+
+宿主验证发现原方案遗漏：已有 Cargo 在全新空 CARGO_HOME 下，`metadata --no-deps` 能成功，但即便只选择 digest，编译前的 workspace lock 解析仍会要求 Darwin store 已有 `libc 0.2.189` 的索引。原三个 normal path 编译包没有新增依赖，不能因此放行整个用户 Cargo home、联网、下载 crate 或把 libc 纳入诊断制品。
+
+唯一补正是 tool-inventory 的 `cargo_resolution`：scope=workspace-lock-resolution-only-not-compiled，固定 package / version / Cargo.lock checksum；只允许两份既有普通文件，分别种入新任务 Cargo home 的 `registry/index/index.crates.io-1949cf8c6b5b557f/config.json` 和 `.cache/li/bc/libc`。每份必须绑定原路径 / 长度 / SHA256，有限接受须覆盖这两份数据。checker 验证官方 registry URL、已有 sparse cache v3 / index v2、唯一 0.2.189 条目的 checksum / 非 yanked 与实际 lock 相等。不得复制 `.crate`、已解包源、凭据、其他索引或全局配置。wrapper create-new 复制并在构建后读回核对；它不是依赖安装器。
+
+本机仅为验证这一根因，在忽略任务目录复制了现存的 **76 bytes + 84,005 bytes** 索引数据，并完成 Darwin digest 检查 / rlib 构建；没有下载或解包 libc。未回写这两份原索引或预填全局缓存，文件未加入仓库。实际身份与原空 home 失败均保留于实现记录；此宿主结果不代签未来特定输入接受或 Linux 构建资格。
+
+### native 捕获与一次包装器
+
+原生入口仅在原精确 cfg 内使用 `include_bytes!(env!("RADISHAXIOM_LINUX_CHANNEL_INPUTS"))`。缺变量 / 文件在编译期失败；`prepare` 和宿主测试共用 `native_binding` 校验被捕获 root 并散列原字节，拒绝 v0.1 / null / 错误 scope / 源漂移。runtime argv 仅保留 run-id，runtime 不加载 inputs 环境或 sidecar；wire v0.1 不变。
+
+`build-linux-channel.py plan` 是纯输出，不创建任务；`build` 接受已生成且完成外部审阅的 bundle / source commit / review digest 与明确任务根。必要的 Rust 纯导出在执行请求前完成，build 不隐式编译 host generator。build 的同一 600 s 从前检起覆盖输入复核、Git 精确 blob 快照、两份解析数据、只读 Cargo metadata、唯一 cargo build、前后复核与外置 manifest。只有独立执行授权后才能调用 build，本批没有调用其真实构建路径。
+
+Git 只读调用禁用用户全局 / 系统配置、fsmonitor hook、可选锁和 lazy fetch；保持完整七包快照，拒绝脏源、symlink / 其他模式，另核对三个 normal 包无 build.rs / build-dependency / proc macro / 注册表依赖及实际 metadata。所有工具直指已绑定文件，不使用 rustup proxy。
+
+recorder 的生成字节和 Python 身份均进入输入，启动解释器固定 `-I -S -B`，关闭继承 wrapper。记录真实 canonical argv 后仅 exec 绑定的 rustc；允许精确 version / host / target probes 和四个编译单位（三个 lib + 唯一 bin），有序 flags 必须完整出现且仅一次，拒绝未知执行路径 / 单位 / 输出 / response file / 覆盖参数。最多 64 记录、每份 64 KiB；`-vv` 只作日志。源码闭包包含 recorder 实现，不另造通用 runner。
+
+超时、取消、流超额、文件增长、短写 / ENOSPC、非零退出、未知存活组或未确认停止全部保留失败；cleanup 失败同时保留主因。只停止自己创建的进程组，不自动重试 / 更改 linker / 清理缓存。宿主监督要求 SIGCHLD 为默认处置且本进程为唯一 waiter；通过 waitid(WNOWAIT) 保留组长 PID，在其回收前用固定 macOS libproc 的 PROC_PGRP_ONLY 枚举（≤64）核对 / 停止原组，回收后不再发组信号。libproc / ctypes / Python 扩展属于待审宿主运行时输入；未知成员或查询失败不认定成功。枚举只覆盖原组，不能证明不存在改变 session / PGID 后逃逸的后代；工具不得产生此类逃逸，仍依赖有限宿主信任。失败中的数值 PID / PGID 仅作诊断，不能用于事后发信号。600 s / 512 MiB 及单文件限额为受信宿主下的截止与观测：Popen 所有权交接、文件 IO、SIGKILL / wait 依赖宿主 OS，停止确认最多另观察 1 s；不是 OS 硬 quota、RSS 限制或独立终止证明。manifest 始终 built-not-accepted，须同时核对包装器实际退出和失败记录，不能仅凭 manifest 判定成功，更不能据此执行 ELF。

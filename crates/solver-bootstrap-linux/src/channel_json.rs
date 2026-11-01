@@ -92,6 +92,10 @@ impl J {
     }
 }
 pub(crate) fn parse(raw: &[u8]) -> R<J> {
+    parse_bounded(raw, 32768)
+}
+// Inputs have a separate byte budget; report depth/array/string limits stay fixed.
+pub(crate) fn parse_bounded(raw: &[u8], limit: usize) -> R<J> {
     struct P<'a> {
         b: &'a [u8],
         p: usize,
@@ -201,7 +205,7 @@ pub(crate) fn parse(raw: &[u8]) -> R<J> {
             }
         }
     }
-    if raw.len() > 32768 {
+    if raw.len() > limit {
         return Err("json-size");
     };
     let mut p = P { b: raw, p: 0 };
