@@ -9,6 +9,7 @@
 | 任务 | 入口 |
 | --- | --- |
 | 现状、下一步、停止线、验证命令 | [当前状态](status/current.md) |
+| 能力主线、子专题、任务与验收来源 | [能力专题地图](topics.md) |
 | 产品定位、首批工作流与价值验收 | [产品定义](product-definition.md) |
 | 核心闭环、运行能力、证明覆盖与实验验收 | [开发目标与验收计划](development-plan.md) |
 | 工作区、授权、实施、验证、实验留存与交接 | [Agent 协作与执行规则](governance/agent-collaboration.md) |
