@@ -76,6 +76,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 - [C1 输入接受与 C2 离线准备](query/solver-cvc5-input-preparation.md)：原包、内容库存与限定历史签名已核对，LibPoly 许可仍未接受；[SDK 组装与构建监督接线设计](query/solver-cvc5-execution-preparation.md)记录布局 / 事件检查和真实适配器缺口，未安装、组装或构建 SDK / solver。
 
 - [ADR 0031（Accepted）：本地 cvc5 构建来源保证边界](adr/0031-local-cvc5-build-provenance-boundary.md)：选项二的限定替代已接受，保留 / 减少的保证、三类材料、信任、验收和停止条件明确；[阶段拆分与有限实施计划](query/solver-local-cvc5-phase-plan.md)已完成静态核定，[私有 v0.2 离线切片](query/solver-local-cvc5-offline-v0.2.md)已按授权完成，实际检查见[本批记录](records/2026-10-27-cvc5-offline-phases.md)；旧入口及实际执行门禁仍有效。
+- [本地 cvc5 控制面与真实资格方案](query/solver-local-cvc5-control-plane-plan.md)：固定宿主候选、代码接线位置、阶段冻结、资源与真实正负例；存储 / 权限 / 独立终止能力未闭合，先以有限 G0 核定，不授权探针或真实构建。
 
 ## 机器契约
 
@@ -120,6 +121,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 | 2026-10-23 日终回顾 | [全天提交、代码 / 文档复核与下一次接续](records/2026-10-23-closeout.md) |
 | 2026-10-27 C2 边界审阅 | [布局拒绝修正、有限执行缺口与 LibPoly 澄清发送](records/2026-10-27-cvc5-c2-boundary-review.md) |
 | 2026-10-27 日终回顾 | [全天提交、离线实现与文档核对及下一次接续](records/2026-10-27-closeout.md) |
+| 2026-11-01 控制面方案 | [代码职责、宿主只读更新、冻结 / 资格矩阵及有限 G0 结束决定](records/2026-11-01-cvc5-control-plane-review.md) |
 | Rust Linux 与静态目标输入 | [签名 / 归档盘点、安装候选与 kernel 许可审阅](records/rust-linux-input-review/README.md) |
 | 2026-10-17 日终回顾 | [紧凑查询、监督组件与 C0 全天提交、代码 / 文档复核及接续事项](records/2026-10-17-closeout.md) |
 | 2026-10-08 日终回顾 | [P3-B–F 全天提交、代码与文档核对及明日交接](records/2026-10-08-closeout.md) |
