@@ -2,6 +2,8 @@
 
 日期：2026-11-01。状态：**方案审阅完成；随后 G0 有限盘点以证据不足结束，真实接线不放行**。用途：把[阶段计划](solver-local-cvc5-phase-plan.md)中剩余的控制面职责、实现位置、负向资格和结束决定收敛为一批可审阅工作。读者为实施者、验收者与项目所有者。本文不定义公共格式，不接受宿主 / 工具，不授权组装、探针、构建或 solver，也不改变 [ADR 0031](../adr/0031-local-cvc5-build-provenance-boundary.md)的信任边界。当前顺位只由[当前状态](../status/current.md)维护；方案事实见[前批记录](../records/2026-11-01-cvc5-control-plane-review.md)，有限能力结果见 [G0 接续](../records/2026-11-01-cvc5-g0-capability-review.md)。
 
+后续按项目所有者要求完成[新 Linux 通道最小方案](solver-linux-management-channel-minimum-plan.md)：唯一候选为同一 daemon 的一次性非 root 只读诊断容器，已列固定镜像候选、权限、资源和精确清理；没有接受镜像、执行例外或创建环境，也没有解决独立终止 / 冻结。下一批先完成精确工具和有界采集 / 编排的离线审阅，再就具体诊断执行另行决定，不重跑 G0 盘点或直接部署常驻控制器。
+
 ## 结论与直接出口
 
 已完成的 v0.2 是离线阶段 / 链接前材料检查。`phase_rules.check_declarations` 检查 `frozen`、`writers`、`writable_aliases` 和 `control_record_sha256` 等声明，但不观察 OS；`capture_link.py` 的输出位于构建可写目录，属于不可信工具观察。给这些结果外包一层容器命令，不能补出实际冻结或认证捕获。

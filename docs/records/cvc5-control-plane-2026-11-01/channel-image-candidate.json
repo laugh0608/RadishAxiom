@@ -1,0 +1,87 @@
+{
+  "base_commit": "e507d78",
+  "executed_container_commands": [],
+  "execution_ready": false,
+  "format": "radishaxiom-private-linux-channel-image-candidate",
+  "image_acceptance": "not-accepted",
+  "inventory_summary": {
+    "generic_base_candidates": [
+      {
+        "id": "sha256:a2ca65377c251208de42e1a2722cb949211236c161b634f6f3663754e2d06850",
+        "repository": "debian",
+        "tag": "<none>"
+      },
+      {
+        "id": "sha256:fd791d74b68913cbb027c6546007b3f0d3bc45125f797758156952bc2d6daf40",
+        "repository": "alpine",
+        "tag": "3.23.5"
+      }
+    ],
+    "reported_image_rows": 39
+  },
+  "method": {
+    "commands": [
+      [
+        "docker",
+        "image",
+        "ls",
+        "--no-trunc",
+        "--format",
+        "{{json .}}"
+      ],
+      [
+        "docker",
+        "image",
+        "inspect",
+        "sha256:fd791d74b68913cbb027c6546007b3f0d3bc45125f797758156952bc2d6daf40"
+      ]
+    ],
+    "retention": "selected fields from successful read-only queries; other image names, environment values, full inspect not retained",
+    "timeout_seconds": 8
+  },
+  "observation_date": "2026-11-01",
+  "runtime_qualification": false,
+  "scope": "local-docker-metadata-only-not-accepted",
+  "selected_candidate_metadata": {
+    "Architecture": "arm64",
+    "Config": {
+      "Cmd": [
+        "/bin/sh"
+      ],
+      "Entrypoint": null,
+      "Healthcheck": null,
+      "StopSignal": null,
+      "User": null,
+      "Volumes": null,
+      "WorkingDir": "/"
+    },
+    "Created": "2026-06-22T19:19:57.882771852Z",
+    "Id": "sha256:fd791d74b68913cbb027c6546007b3f0d3bc45125f797758156952bc2d6daf40",
+    "Os": "linux",
+    "RepoDigests": [
+      "alpine@sha256:fd791d74b68913cbb027c6546007b3f0d3bc45125f797758156952bc2d6daf40"
+    ],
+    "RepoTags": [
+      "alpine:3.23.5"
+    ],
+    "RootFS": {
+      "Layers": [
+        "sha256:91d5cf66444f05b8c72e1b9d725c1752b9b015b68a7918125fc46ecdb7cc46d5"
+      ],
+      "Type": "layers"
+    },
+    "Size": 14468568,
+    "env_count": 1,
+    "label_count": 0
+  },
+  "timezone": "Asia/Shanghai",
+  "unverified": [
+    "registry-origin-and-platform-manifest-binding",
+    "rootfs-files-and-executable-identities",
+    "package-versions-sources-and-licenses",
+    "applet-flags-and-timeout-behavior",
+    "runtime-bind-path-translation-and-permissions",
+    "resource-enforcement-and-cleanup"
+  ],
+  "version": "0.1"
+}

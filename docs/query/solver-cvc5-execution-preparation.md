@@ -4,6 +4,8 @@
 
 2026-11-01 接续：[控制面、冻结与资格方案](solver-local-cvc5-control-plane-plan.md)细化了当前 v0.2 的实现位置和真实验收；随后 [G0 盘点](../records/2026-11-01-cvc5-g0-capability-review.md)以证据不足结束，Linux 管理上下文、存储硬限 / 写别名 / 独立终止及参数未闭合，不进入实际接线。下文旧逐次读取方向仍只保留设计背景；新方案不增加完整读取观察器，也不改变离线 false 或来源接受状态。
 
+G0 后已另行形成[新 Linux 通道最小方案](solver-linux-management-channel-minimum-plan.md)，限定同一 daemon 的非 root、一次性只读诊断；仅核定权限 / 资源 / 清理候选，没有创建环境或接受镜像，也不提供本页缺失的 quota / 冻结 / 独立终止资格。
+
 ## 本批实现出口
 
 [入口](../../scripts/prepare-cvc5-execution-review.py)重用既有 C2 `checked_plan`，重新核对原配方及真实原包 / 源码 / patch，再从已绑定内容库存生成完整布局。输出只是 JSON，不建立 SDK、源码副本或构建批次目录。[事件规则](../../scripts/cvc5-build-support/event_rules.py)消费 Python 中的显式事件值，不读取系统状态、不执行命令，也没有把声明转换成执行资格的入口。
