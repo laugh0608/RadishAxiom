@@ -8,6 +8,8 @@
 
 crate 使用 `deny(unsafe_op_in_unsafe_fn)`。局部 unsafe 注释逐处列出缓冲区和生命周期。crate 级 `allow(dead_code)` 只因本批是没有可运行入口的源码交付，私有原生组件尚未从可执行入口可达；其他 lint 不因此放宽。`Kernel` / `Call` 和任意寄存器入口均不对外公开；内部 `call` 仍为 unsafe，safe API 不接受原始指针。指针只从本次调用拥有的 slice、固定布局对象、`CStr` 或 parent 预冻结对象构造。
 
+2026-11-01 新增的私有 `channel_init` 仅服务[只读诊断通道](solver-linux-management-channel-minimum-plan.md)，复用本库 Kernel / FD / 布局 / 信号冻结及 waitid 解码，不复用 solver 的 B / W/S 策略或认证协议。新增 get*id / getgroups / rt_sigtimedwait / pidfd_open / clone(SIGCHLD) 只参照 Linux v6.18 asm-generic UAPI，不改变原 v6.12 布局或既有 final filter。其 unsafe 库内入口、单线程 / namespace 前置、固定采集子分支、精确回收与未接 CLI / 制品边界见[本批记录](../records/2026-11-01-linux-channel-init-review.md)；不能从新增诊断组件推导 F2 / solver 的运行资格。
+
 原生汇编通过 x8 传 syscall 编号、x0..x5 传完整 `u64` 参数，x0 为输入输出。`svc` 不声明 `nomem`、`pure` 或 `readonly`；`nostack` 只说明汇编自身不改变用户栈。返回寄存器落在 `-4095..=-1` 时按完整 64 位二补码解出 errno，保留操作名与 errno；不会把 libc 的 `-1 + TLS errno` 规则混进来。短 IO、EINTR、EAGAIN、EPIPE、ESRCH 等由上层明确处理，不在 wrapper 内隐含重试。单次 clone、SCM_RIGHTS 发送和通知 CONTINUE 尤其不能自动重试。
 
 raw `ppoll` 与 libc wrapper 的区别已经落实：剩余 timespec 为 `&mut` 独占可写对象，kernel 可以写回剩余时间；见 [poll(2) C library/kernel differences](https://man7.org/linux/man-pages/man2/poll.2.html)。scripted 测试实际写入这个受借用缓冲区，但不能代替真实 ppoll 观察。

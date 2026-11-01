@@ -712,22 +712,23 @@ impl<K: Kernel> Linux<K> {
         )
     }
     pub(crate) fn wait(&mut self, fd: i32) -> Result<Option<ChildExit>> {
+        self.wait_info(P_PIDFD, fd_arg(fd)?)
+    }
+    fn wait_info(&mut self, kind: u64, id: u64) -> Result<Option<ChildExit>> {
+        let operation = if kind == 0 {
+            "waitid-all"
+        } else {
+            "waitid-pidfd"
+        };
         let mut out = SigInfo::default();
         // SAFETY: 128-byte, 8-aligned exclusive siginfo; zeroing makes WNOHANG
         // no-state distinguishable without reading uninitialized fields.
         unsafe {
             self.call_zero(
-                "waitid-pidfd",
+                operation,
                 Call {
                     nr: NR_WAITID,
-                    args: [
-                        P_PIDFD,
-                        fd_arg(fd)?,
-                        &mut out as *mut _ as u64,
-                        WEXITED | WNOHANG,
-                        0,
-                        0,
-                    ],
+                    args: [kind, id, &mut out as *mut _ as u64, WEXITED | WNOHANG, 0, 0],
                 },
             )
         }?;
@@ -743,7 +744,7 @@ impl<K: Kernel> Linux<K> {
                 || (exit.code == 1 && !(0..=255).contains(&exit.status))
                 || (exit.code != 1 && !(1..=64).contains(&exit.status))
             {
-                return Err(Error::returned("waitid-pidfd"));
+                return Err(Error::returned(operation));
             }
             Ok(Some(exit))
         } else {
@@ -802,10 +803,13 @@ impl<K: Kernel> Linux<K> {
     }
 }
 
+#[path = "syscall_channel.rs"]
+mod channel;
 #[path = "syscall_listener.rs"]
 mod listener;
 #[path = "syscall_signals.rs"]
 mod signals;
+pub(crate) use channel::WaitAny;
 #[cfg(test)]
 #[path = "syscall_tests.rs"]
 mod tests;

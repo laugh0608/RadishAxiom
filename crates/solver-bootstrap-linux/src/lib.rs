@@ -7,6 +7,7 @@
 #![allow(dead_code)]
 
 mod abi;
+mod channel_init;
 mod child;
 mod configuration;
 mod fd;

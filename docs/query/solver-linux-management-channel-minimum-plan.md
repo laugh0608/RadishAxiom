@@ -4,6 +4,8 @@
 
 后续[离线核对](../records/2026-11-01-linux-channel-offline-review.md)已完成所选平台字节链、原 minirootfs 514 项相对树、16 包 / 10 配方的版本 / 许可声明及参考内核读取路径核对；APK shadow 校验差异和 SBOM 来源记录区分均保留。**仍未接受镜像或实际权限，且发现直接作为 PID 1 的 BusyBox timeout 不能提供原设想的内部强杀保证**；下文启动拓扑与根 cgroup 文件范围据此修正。没有创建或启动环境。
 
+随后按授权完成 [PID 1 启动器的最小源码实现与静态验证](../records/2026-11-01-linux-channel-init-review.md)。实现复用现有 Rust Linux syscall 边界，由 PID 1 自行计时、直接启动非 PID 1 采集子进程，并按精确 pidfd 回收被接管的子进程；不再叠加 BusyBox timeout。固定普通 clone 路径避免依赖上游默认 seccomp 对 clone3 的额外 capability 条件，仍须核对本机有效策略。当前只有库内私有入口，没有可执行 CLI、Linux 制品或镜像接入；真实执行仍停止。
+
 ## 核定结论与选项
 
 推荐在**同一 OrbStack Docker daemon** 上，另经授权创建最多一个短时、非 root、无 capabilities 的只读诊断容器。它只读固定的 Linux 内核 / 挂载 / cgroup 元数据并导出有界报告，随后停止并移除精确实例。使用 Docker 创建后，先检查未启动实例的配置，再启动固定采集命令；不进入交互式 shell，不开放 SSH / 端口，不安装服务。
@@ -28,7 +30,9 @@
 
 实际离线链现已定位：原 Id 为多平台 index，arm64/v8 manifest 为 `d858bb5442632a31bd4bca6c5e601dbe6b536fd7942092ea6a08a0a95805693c`，config 为 `1087dfd14fa77fe3bd102f39d42ee9c7e183876bd1a65f38fe2c18198ae976b4`；[实际检查](../records/cvc5-control-plane-2026-11-01/image-offline-inspection.json)保留其余摘要、两份执行文件、初始 PATH 和库依赖。固定上游 rootfs 与镜像的相对树一致，但没有验证发布者签名或完整构建认证，不从数据核对直接转为 accepted。
 
-采集器拟置 `scripts/cvc5-build-support/inspect_linux_host.sh`，只调用固定镜像内经审阅的 BusyBox applet；Mac 编排拟置同目录 `inspect_linux_host.py`，使用现有 Python 标准库和固定 Docker CLI。**本批不创建这两个代码文件。** 执行前须实现并审阅有界读取、固定 argv / 环境、输出解析、期限、精确 CID 和失败留存；核对 applet / timeout 在该版本的行为。脚本、镜像、CLI 身份和完整参数全部绑定后再请求一次执行授权，不发含占位 digest 的可运行命令。
+采集器拟置 `scripts/cvc5-build-support/inspect_linux_host.sh`，只调用固定镜像内经审阅的 BusyBox applet；Mac 编排拟置同目录 `inspect_linux_host.py`，使用现有 Python 标准库和固定 Docker CLI。**本批不创建这两个代码文件。** 执行前须实现并审阅有界读取、固定 argv / 环境、输出解析、期限、精确 CID 和失败留存；核对实际调用的 applet 在该版本的行为。脚本、镜像、CLI 身份和完整参数全部绑定后再请求一次执行授权，不发含占位 digest 的可运行命令。
+
+启动器源码为 [channel_init.rs](../../crates/solver-bootstrap-linux/src/channel_init.rs)，目前仅供库内审阅与显式脚本后端测试调用。它接受可信调用方已经绑定的有界采集正文，固定 exec `/bin/busybox sh -c <字面正文>`，不是对外开放任意命令的入口。采集正文绑定、入口进程启动、原生二进制 / loader 来源与许可、交付到只读容器的精确方式以及有界报告传输均尚未接线；不能从本机类型检查追认这些工具或将代码自动挂入镜像。上述两个采集 / 编排脚本仍未创建。
 
 ## 权限与输入的闭合范围
 
@@ -54,7 +58,7 @@
 | `/proc/1/mountinfo` → `/host-observe/init-mountinfo` | 同一 Linux 宿主 PID 1 的挂载信息，最多 1 MiB；只导出根、cgroup 及与后续明确候选根相关的非敏感字段 | PID 1 的 mount namespace 不一定等于 daemon 的；这份报告不能独立定位全部实际存储。身份 / 来源不明就报告缺口，不切 `--pid=host` 或读取任意 PID |
 | `/sys/fs/cgroup` → `/host-observe/cgroup` | 根层只读 controllers / subtree_control 等定义在根的文件及挂载属性；type / events 与非根限值只在已核对的**本诊断实例非根 cgroup**读取，合计最多 256 KiB，不递归枚举其他工作负载 | 参考实现将 cgroup.type / events 标为 NOT_ON_ROOT，不能要求真正根层存在，也不能把任意 ENOENT 当正常。存在 / 可读不等于可写或 kill 生效；不试写 limits、kill 或建目录 |
 
-此外只读容器自己的 `/proc/self/mountinfo`、`cgroup`、`uid_map`、`gid_map` 和 namespace 链接、固定 uname / 身份字段；逐项记录真实读取错误。对 `/host-observe` 的挂载类型、read-only 与 source 关联交叉核对，拒绝 regular file 冒充 procfs、未知中间链接、缺挂载、source 自动创建或与目标内核不符。绑定不同文件仍不构成一次原子快照，报告采集顺序和时间窗口。
+此外只读容器自己的 `/proc/self/mountinfo`、`cgroup`、`uid_map`、`gid_map` 和 namespace 链接、固定 uname / 身份字段；逐项记录真实读取错误。启动器另外只读 `/proc/self/task/1/children` 的至多 256 bytes 子进程 PID 清单，不读取其他进程内容，不递归扫描 proc；该路径的 procfs 身份与真实内核行为仍须验收。对 `/host-observe` 的挂载类型、read-only 与 source 关联交叉核对，拒绝 regular file 冒充 procfs、未知中间链接、缺挂载、source 自动创建或与目标内核不符。绑定不同文件仍不构成一次原子快照，报告采集顺序和时间窗口。
 
 挂载报告只保留上述目标对应的 mount ID / parent ID、设备号、文件系统类型、root / mountpoint 和只读标志；不保留任意 source、super options、其他工作负载路径或未筛选原文，以免带入网络挂载凭据 / 私有路径。错误只报告字段和原因，不回显原行或完整环境；格式不认识就拒绝，不保存“方便以后分析”的完整宿主快照。
 
@@ -74,10 +78,10 @@
 | --- | --- |
 | 数量 / 寿命 | 最多一个新容器、一次启动，无 restart policy、无自动重试；正常目标为数秒内完成，整个批次最多 90 s（含创建、读回、采集和清理请求） |
 | Linux 内存 / swap | `memory=128 MiB`，memory-swap 总额同为 128 MiB，即候选 swap 0；启动后读实际 cgroup 限值 / events。不能将 Docker 参数存在当作已强制 |
-| CPU / 进程 / FD | `cpus=0.5`，`pids-limit=16`，`nofile=64:64`；计入启动器 / timeout / shell / applet 的全部进程与线程。除已审监督 / 计时 / 回收子进程外不派生后台任务，不并行扫描；超额 / OOM / 被拒绝即失败，不增限重跑 |
+| CPU / 进程 / FD | `cpus=0.5`，`pids-limit=16`，`nofile=64:64`；计入 PID 1 / shell / applet 的全部进程与线程。PID 1 自行计时，无额外 timeout 守护进程；采集器不派生后台任务、不并行扫描。超额 / OOM / 被拒绝即失败，不增限重跑 |
 | 文件写入 | rootfs 只读、无新卷 / 用户 tmpfs、采集器不写盘，默认 runtime tmpfs 等计入内存。Docker 仍创建容器元数据 / writable layer 对象，`read-only` 不等于零磁盘或零 inode；这部分没有已验收硬 quota。执行前须说明并接受该有限诊断新增状态的计量 / 停止边界，不能冒充构建硬磁盘资格 |
 | 镜像 / 数据 | 使用已在本机的固定候选，不复制 / pull 镜像；reported 14,468,568 bytes 不是实际独占磁盘占用。输出 stdout ≤2 MiB、stderr ≤64 KiB；Mac 新增记录总额 ≤8 MiB，超限保留已有字节与 overflow，不伪称完整 |
-| 内部 / 外部期限 | 内部 20 s 保持候选目标，但 BusyBox timeout 不能直接位于 PID 1 并用同 namespace watchdog 强杀自身；必须按下文修正启动拓扑，再验证实际语义。Mac 同一单调 90 s 截止、单次管理请求 8 s、启动 / 输出采集 20 s 均不续期，不是当前资格保证 |
+| 内部 / 外部期限 | 启动器从首个 BOOTTIME 读数固定 20 s 总截止，18 s 工作 / 设置、末 2 s 收束；任何阶段不得续期。期限或时钟错误保留未确认回收，未来入口必须退出，不能继续服务。Mac 同一单调 90 s 截止、单次管理请求 8 s、启动 / 输出采集 20 s 均不续期，均不是当前资格保证 |
 | 清理预留 | 最迟在第 50 s 停止工作，后 40 s 留给精确 CID 的 kill / wait / remove / inspect，每项仍受剩余总期限约束。不承诺 daemon 无响应时能在 90 s 清空：届时必须报告未知残留、禁止新实例，不能重启 daemon 来“修复” |
 | Mac 端 | 一个有界编排 / 捕获进程，常驻缓存只保留上述流上限，不缓存整个镜像 / 宿主文件；自身 RSS / daemon 元数据占用尚未实测，不宣称端到端内存硬限已验收 |
 
@@ -87,7 +91,13 @@
 
 精确 BusyBox `1.37.0` 源码显示 timeout 以 grandchild watchdog 监控原 PID，再在原 PID exec 目标。结合 [PID namespace 信号规则](https://man7.org/linux/man-pages/man7/pid_namespaces.7.html)，直接将这条 exec 链放在容器 PID 1 时，同 namespace watchdog 的 SIGKILL 不能成为强制期限。该结果是静态审阅，不是本机故障复现；原直接入口方向保持停止。
 
-最小修正限定为自有启动器保留 PID 1 的监督 / 回收角色，将 timeout / 采集器置于非 PID 1 子进程，等待该精确子进程并保留真实退出，然后收束、退出；不得因 shell 最后一条命令的 exec 优化丢失 PID 1 角色。具体实现、信号 / 孤儿回收、PID 身份、超时 / 取消 / 超额负例尚未形成，进程仍计入 16 PID / 128 MiB，不自动加入未审 `--init`、新依赖或 cap。此修正不提供 daemon 失联时的独立管理能力。
+沿既有 BusyBox 原包继续只读检查发现其 timeout 的 daemonize 路径调用 setsid，故仅依赖进程组信号不足以覆盖该守护进程。当前最小实现改由 PID 1 保留监督 / 回收和绝对计时角色，直接 exec 非 PID 1 采集子进程，省去 timeout applet；没有 shell 尾命令替换 PID 1 的路径。
+
+入口先核对 PID / TID=1、PPID=0、四个 UID / GID=65532、附加组为空及 no-new-privileges，关闭继承的 FD≥3，核定非阻塞 stderr；复用现有信号冻结，阻塞信号后同步等待取消 / SIGCHLD。固定一次 raw clone(SIGCHLD) 后立即 pidfd_open，无 clone3 尝试或运行时降级；子分支只经 raw 调用清 FD / 信号掩码、固定 exec，失败尝试一次 16-byte 诊断后 raw exit。库内调用方仍必须证明单线程、私有 PID / proc namespace、无并行 fork / wait / auto-reap；局部身份检查不替代外层配置读回。
+
+监督器保留真实主子进程退出与所有实际回收事件，清理用只读自身 children 清单定位已接管子进程，逐个取得 pidfd 后 SIGKILL，不用负 PID / kill(-1) 或进程组广播。在单一回收者、SIGCHLD 非 IGN / NOCLDWAIT 且不在清单与 pidfd_open 之间 reap 的前提下，已退出子进程仍为 zombie，不会在该区间复用 PID。清单依赖 CONFIG_PROC_CHILDREN，未冻结时可能遗漏项，不当作完整快照；再扫描处理后续接管，仅真实 waitid(P_ALL) 的 ECHILD 能标记无剩余子进程；ESRCH、空清单或客户端退出均不能代替。首错、信号结果、退出状态、关闭错误与观察超额分别保留；意外孤儿即失败，不将强杀后的主退出写成采集成功。
+
+上述路径已经本机类型检查与合成正负例覆盖，尚无 Linux 目标编译 / 链接、实际信号 / 回收和资源验收；报告导出和最终 raw exit 的可执行入口未接线。进程仍计入 16 PID / 128 MiB，不加入 `--init`、新依赖或 cap，不提供 daemon 失联时的独立管理能力。
 
 ## 生命周期、清理与失败留存
 
@@ -96,7 +106,7 @@
 1. **准备。** 接受精确镜像 / applet / 脚本，绑定当前 context / daemon / 规则和唯一批次标识；本机独占创建记录文件，确认容量、无相同任务实例。若镜像缺失、source 不明或目标已变，停止；无 pull 或配置补救。
 2. **创建后读回。** 只创建一个指定名称 / 本批 label 的容器并保留完整 CID；不用 `--rm`，以免失去失败状态。创建本身已是环境写入，必须另获授权。通过完整 CID 核对 image、原 argv、挂载、UID、cap / security、namespace、资源、日志与重启策略；任何漂移都不启动，只保留并走精确清理。
 3. **一次启动与捕获。** `start --attach` 对该 CID 启动已审 PID 1 启动器及非 PID 1 采集子进程，无交互输入；读取有界双流。采集器先检查自身身份 / 限值 / mount，再读白名单；缺事实报告缺失，不填假的零值或成功。超时、取消、超额或观察错误保存首错并转清理。
-4. **停止与留证。** 在剩余期限内向同一 CID 请求 kill / wait，留存真实退出 / 信号、OOM / 错误和状态，再对照身份。启动请求超时后也可能已有实例运行，不能把客户端退出当作容器退出。内置 timeout 不是独立管理器的资格证明。
+4. **停止与留证。** 在剩余期限内向同一 CID 请求 kill / wait，留存真实退出 / 信号、OOM / 错误和状态，再对照身份。启动请求超时后也可能已有实例运行，不能把客户端退出当作容器退出。内部计时不是独立管理器的资格证明。
 5. **精确移除。** 仅在该 CID / daemon / 本批 label / image 一致且已确认停止后，移除该单个容器，不带 volume 删除、不删镜像、不 prune、不批量按名称清理。移除后按 CID 读回不存在；原镜像、原输入和所有报告保留。Docker 侧 stopped / absent 只说明 runtime 观察，不能代替 A8 的 Linux 整树与回收资格。
 6. **未知残留。** daemon 请求无响应、身份不一致、CID 未留全、退出或移除未确认时，记录现存精确身份 / 最后观察和未知项，封锁下一次创建；不 force remove、不重启 OrbStack / daemon、不删全局路径。恢复后先只读重核同一 CID，再对精确对象请求清理授权；不能杀同名替代实例。
 
@@ -104,7 +114,7 @@
 
 ## 验收出口与下一步
 
-静态方案及镜像 / 来源 / 许可声明的离线核对已有实际结果，**仍不接受新信任、镜像或诊断执行例外**。下一切片围绕已定位的 PID 1 启动器 / 回收拓扑、精确宿主读取权限关联和剩余来源 / 许可接受收口，不重复完整清单或直接运行原 timeout 入口。自有采集 / 有界编排与正负例另行核定实现，随后才就确切诊断范围和执行作决定；不先创建环境试错。
+静态方案、镜像离线核对与 PID 1 库内源码切片已有实际结果，**仍不接受新信任、镜像或诊断执行例外**。下一切片核定启动器的精确目标构建 / 交付、可信采集正文绑定、有界报告 / 最终退出接线与必要负例，再接有限采集 / Mac 编排；真实宿主权限及剩余来源 / 许可接受继续是执行前置。不重复完整来源清单或运行旧 timeout 入口，不先创建环境试错。
 
 真实执行如果另获授权，必须分别报告：创建 / 配置读回是否一致；采集是否真实完整；宿主 / namespace 来源是否可定位；资源 / 退出 / Docker 清理各自观察与缺失。身份 / 数据矛盾为失败，缺失为未取得，不合成为资格 success。只能用结果决定同宿主后续具体根 / quota / 控制权限的可行性，不能把本次读回写成 A3 / A4 / A7 / A8 或 C1 / E0 / E4 通过。
 

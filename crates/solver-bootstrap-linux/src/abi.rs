@@ -32,6 +32,15 @@ pub(crate) const NR_GETRANDOM: i32 = 278;
 pub(crate) const NR_MEMFD_CREATE: i32 = 279;
 pub(crate) const NR_CLONE3: i32 = 435;
 pub(crate) const NR_CLOSE_RANGE: i32 = 436;
+// Additional diagnostic-init calls: Linux v6.18 asm-generic/unistd.h.
+pub(crate) const NR_RT_SIGTIMEDWAIT: i32 = 137;
+pub(crate) const NR_GETUID: i32 = 174;
+pub(crate) const NR_GETEUID: i32 = 175;
+pub(crate) const NR_GETGID: i32 = 176;
+pub(crate) const NR_GETEGID: i32 = 177;
+pub(crate) const NR_GETGROUPS: i32 = 158;
+pub(crate) const NR_PIDFD_OPEN: i32 = 434;
+pub(crate) const NR_CHANNEL_CLONE: i32 = 220;
 pub(crate) const PR_SET_NO_NEW_PRIVS: u64 = 38;
 pub(crate) const PR_GET_NO_NEW_PRIVS: u64 = 39;
 pub(crate) const SECCOMP_SET_MODE_FILTER: u64 = 1;
