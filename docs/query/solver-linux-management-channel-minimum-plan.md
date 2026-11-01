@@ -4,11 +4,11 @@
 
 后续[离线核对](../records/2026-11-01-linux-channel-offline-review.md)已完成所选平台字节链、原 minirootfs 514 项相对树、16 包 / 10 配方的版本 / 许可声明及参考内核读取路径核对；APK shadow 校验差异和 SBOM 来源记录区分均保留。**仍未接受镜像或实际权限，且发现直接作为 PID 1 的 BusyBox timeout 不能提供原设想的内部强杀保证**；下文启动拓扑与根 cgroup 文件范围据此修正。没有创建或启动环境。
 
-随后按授权完成 [PID 1 启动器的最小源码实现与静态验证](../records/2026-11-01-linux-channel-init-review.md)。实现复用现有 Rust Linux syscall 边界，由 PID 1 自行计时、直接启动非 PID 1 采集子进程，并按精确 pidfd 回收被接管的子进程；不再叠加 BusyBox timeout。固定普通 clone 路径避免依赖上游默认 seccomp 对 clone3 的额外 capability 条件，仍须核对本机有效策略。当前只有库内私有入口，没有可执行 CLI、Linux 制品或镜像接入；真实执行仍停止。
+随后按授权完成 [PID 1 启动器的最小源码实现与静态验证](../records/2026-11-01-linux-channel-init-review.md)。实现复用现有 Rust Linux syscall 边界，由 PID 1 自行计时、直接启动非 PID 1 采集子进程，并按精确 pidfd 回收被接管的子进程；不再叠加 BusyBox timeout。固定普通 clone 路径避免依赖上游默认 seccomp 对 clone3 的额外 capability 条件，仍须核对本机有效策略。该批只有库内私有入口；后续 L2 源码接续见下方，仍无 Linux 制品或镜像接入，真实执行停止。
 
-启动器源码已提交为 `be8c620`；后续[目标构建与交付方案](solver-linux-channel-build-and-delivery-plan.md)选择 Rust 1.97.1 / aarch64-unknown-linux-musl / bundled rust-lld 的静态非 PIE 候选、内嵌采集原字节、单文件 runtime 目录只读挂 `/mnt`，以及 PID 1 独占 stdout 的私有帧报告 / raw exit。Linux target std 实际未安装；正文、入口、管道 / codec / 退出接线均未实现。方案在原 20 s 中安排 18 s 工作、1.8 s 收束、0.2 s 最终导出，不把该安排写成现有代码或运行保证。详细参数、绑定、预算和验收以该方案为准，本批未安装 / 构建或交付挂载。
+启动器源码已提交为 `be8c620`；后续[目标构建与交付方案](solver-linux-channel-build-and-delivery-plan.md)选择 Rust 1.97.1 / aarch64-unknown-linux-musl / bundled rust-lld 的静态非 PIE 候选、内嵌采集原字节、单文件 runtime 目录只读挂 `/mnt`，以及 PID 1 独占 stdout 的私有帧报告 / raw exit。Linux target std 实际未安装；核定时上述接线未实现。后续 L1 / L2 已形成正文 / codec / 管道 / 最终入口源码，在原 20 s 内安排 18 s 工作、1.8 s 收束、0.2 s 最终导出；这不是运行保证。详细参数、绑定、预算和验收以该方案为准，本批未安装 / 构建或交付挂载。
 
-交付方案已提交为 `2e5da3a`；后续 [L1](solver-linux-channel-l1.md)已完成正文、源绑定与报告纯组件，本机静态 / 合成检查及独立互操作结果见[记录](../records/2026-11-01-linux-channel-l1-review.md)。尚无真实采集、独占管道 / 最终入口接线、目标组件安装或 Linux 制品；不能用现有 run 直接执行正文绕过 L2。
+交付方案已提交为 `2e5da3a`；后续 [L1](solver-linux-channel-l1.md)已完成正文、源绑定与报告纯组件，本机静态 / 合成检查及独立互操作结果见[记录](../records/2026-11-01-linux-channel-l1-review.md)。L1 随后提交为 `5609e6a`；[L2](solver-linux-channel-l2.md)已完成独占管道 / 最终入口源码与宿主验证，见[记录](../records/2026-11-01-linux-channel-l2-review.md)。尚无真实采集、目标组件安装或 Linux 制品；源绑定仍不包含完整目标工具输入。
 
 ## 核定结论与选项
 
@@ -34,9 +34,9 @@
 
 实际离线链现已定位：原 Id 为多平台 index，arm64/v8 manifest 为 `d858bb5442632a31bd4bca6c5e601dbe6b536fd7942092ea6a08a0a95805693c`，config 为 `1087dfd14fa77fe3bd102f39d42ee9c7e183876bd1a65f38fe2c18198ae976b4`；[实际检查](../records/cvc5-control-plane-2026-11-01/image-offline-inspection.json)保留其余摘要、两份执行文件、初始 PATH 和库依赖。固定上游 rootfs 与镜像的相对树一致，但没有验证发布者签名或完整构建认证，不从数据核对直接转为 accepted。
 
-采集正文现置 `scripts/cvc5-build-support/inspect_linux_host.sh`，L1 仅静态审阅及合成过滤测试，未执行；实际 applet 行为仍待核定。Mac 编排拟置同目录 `inspect_linux_host.py`，尚未创建；继续使用 Python 标准库和固定 Docker CLI。执行前须完成 L2 有界 pipe / 固定环境 / 报告 / 最终退出，再接精确 CID 与失败留存。脚本、镜像、CLI 身份和完整参数全部绑定后再请求一次执行授权，不发含占位 digest 的可运行命令。
+采集正文现置 `scripts/cvc5-build-support/inspect_linux_host.sh`，L1 仅静态审阅及合成过滤测试，未执行；实际 applet 行为仍待核定。Mac 编排拟置同目录 `inspect_linux_host.py`，尚未创建；继续使用 Python 标准库和固定 Docker CLI。L2 有界 pipe / 固定环境 / 报告 / 最终退出已有源码；执行前仍须目标验收，再接精确 CID 与失败留存。脚本、镜像、CLI 身份和完整参数全部绑定后再请求一次执行授权，不发含占位 digest 的可运行命令。
 
-启动器源码为 [channel_init.rs](../../crates/solver-bootstrap-linux/src/channel_init.rs)，目前仅供库内审阅与显式脚本后端测试调用。它接受可信调用方已经绑定的有界采集正文，固定 exec `/bin/busybox sh -c <字面正文>`，不是对外开放任意命令的入口。L1 已形成离线正文绑定，但原生入口对该绑定的消费、入口进程启动、制品 / loader 来源与许可和有界传输仍未接线；不能从本机类型检查追认工具或将代码自动挂入镜像。正文已存在但未运行，Mac 编排仍未创建。
+启动器源码为 [channel_init.rs](../../crates/solver-bootstrap-linux/src/channel_init.rs)，与 [channel_entry.rs](../../crates/solver-bootstrap-linux/src/channel_entry.rs)共同实现默认关闭的专用 leaf 入口，本批仅做库内审阅与显式脚本后端测试。它接受可信调用方已经绑定的有界采集正文，固定 exec `/bin/busybox sh -c <字面正文>`，不是对外开放任意命令的入口。L2 已接通现行离线源绑定消费与有界传输，但完整工具绑定、入口真实启动、制品 / loader 来源与许可仍未接受；不能从本机类型检查追认工具或将代码自动挂入镜像。正文已存在但未运行，Mac 编排仍未创建。
 
 ## 权限与输入的闭合范围
 
@@ -97,11 +97,11 @@
 
 沿既有 BusyBox 原包继续只读检查发现其 timeout 的 daemonize 路径调用 setsid，故仅依赖进程组信号不足以覆盖该守护进程。当前最小实现改由 PID 1 保留监督 / 回收和绝对计时角色，直接 exec 非 PID 1 采集子进程，省去 timeout applet；没有 shell 尾命令替换 PID 1 的路径。
 
-入口先核对 PID / TID=1、PPID=0、四个 UID / GID=65532、附加组为空及 no-new-privileges，关闭继承的 FD≥3，核定非阻塞 stderr；复用现有信号冻结，阻塞信号后同步等待取消 / SIGCHLD。固定一次 raw clone(SIGCHLD) 后立即 pidfd_open，无 clone3 尝试或运行时降级；子分支只经 raw 调用清 FD / 信号掩码、固定 exec，失败尝试一次 16-byte 诊断后 raw exit。库内调用方仍必须证明单线程、私有 PID / proc namespace、无并行 fork / wait / auto-reap；局部身份检查不替代外层配置读回。
+入口先核对 PID / TID=1、PPID=0、四个 UID / GID=65532、附加组为空及 no-new-privileges，关闭继承的 FD≥3，再创建拥有明确所有权的内部 pipe，外部 FD1 / FD2 设非阻塞；复用现有信号冻结，阻塞信号后同步等待取消 / SIGCHLD。固定一次 raw clone(SIGCHLD) 后立即 pidfd_open，无 clone3 尝试或运行时降级；子分支先接内部 stderr，再经 raw 调用接 stdin / stdout、清 FD / 信号掩码、固定 exec；stderr 接通前失败静默 raw exit，之后失败尝试一次内部 16-byte 诊断后 raw exit。库内调用方仍必须证明单线程、私有 PID / proc namespace、无并行 fork / wait / auto-reap；局部身份检查不替代外层配置读回。
 
 监督器保留真实主子进程退出与所有实际回收事件，清理用只读自身 children 清单定位已接管子进程，逐个取得 pidfd 后 SIGKILL，不用负 PID / kill(-1) 或进程组广播。在单一回收者、SIGCHLD 非 IGN / NOCLDWAIT 且不在清单与 pidfd_open 之间 reap 的前提下，已退出子进程仍为 zombie，不会在该区间复用 PID。清单依赖 CONFIG_PROC_CHILDREN，未冻结时可能遗漏项，不当作完整快照；再扫描处理后续接管，仅真实 waitid(P_ALL) 的 ECHILD 能标记无剩余子进程；ESRCH、空清单或客户端退出均不能代替。首错、信号结果、退出状态、关闭错误与观察超额分别保留；意外孤儿即失败，不将强杀后的主退出写成采集成功。
 
-上述路径已经本机类型检查与合成正负例覆盖，尚无 Linux 目标编译 / 链接、实际信号 / 回收和资源验收；报告导出和最终 raw exit 的可执行入口未接线。进程仍计入 16 PID / 128 MiB，不加入 `--init`、新依赖或 cap，不提供 daemon 失联时的独立管理能力。
+上述路径已经本机类型检查与合成正负例覆盖，尚无 Linux 目标编译 / 链接、实际信号 / 回收和资源验收；L2 报告导出和最终 raw exit 已接源码，但尚无目标可执行制品。进程仍计入 16 PID / 128 MiB，不加入 `--init`、新依赖或 cap，不提供 daemon 失联时的独立管理能力。
 
 ## 生命周期、清理与失败留存
 
@@ -118,7 +118,7 @@
 
 ## 验收出口与下一步
 
-静态方案、镜像离线核对、PID 1 库内源码及 L1 正文 / 源绑定 / 报告纯组件已有结果，**仍不接受新信任、镜像或诊断执行例外**。下一切片沿[交付方案 L2](solver-linux-channel-build-and-delivery-plan.md#实施顺序验收与停止线)做统一管道 / FD / 首截止 / 回收 / raw exit 源码接线；L1 离线源输入不等于完整工具构建输入。目标安装、构建、交付挂载和诊断分别授权，真实宿主权限及来源 / 许可接受继续是执行前置。不重复完整来源清单或运行旧 timeout 入口，不先创建环境试错。
+静态方案、镜像离线核对、PID 1、L1 纯组件与 L2 入口源码已有本机结果，**仍不接受新信任、镜像或诊断执行例外**。下一切片沿[交付方案 L3](solver-linux-channel-build-and-delivery-plan.md#实施顺序验收与停止线)先核定精确 target 组件与完整构建输入计划；L1 离线源输入不等于完整工具构建输入。目标安装、构建、交付挂载和诊断分别授权，真实宿主权限及来源 / 许可接受继续是执行前置。不重复完整来源清单或运行旧 timeout 入口，不先创建环境试错。
 
 真实执行如果另获授权，必须分别报告：创建 / 配置读回是否一致；采集是否真实完整；宿主 / namespace 来源是否可定位；资源 / 退出 / Docker 清理各自观察与缺失。身份 / 数据矛盾为失败，缺失为未取得，不合成为资格 success。只能用结果决定同宿主后续具体根 / quota / 控制权限的可行性，不能把本次读回写成 A3 / A4 / A7 / A8 或 C1 / E0 / E4 通过。
 

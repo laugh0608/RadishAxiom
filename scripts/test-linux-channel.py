@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""L1 synthetic/static checks only. Never invokes the collector shell or Linux."""
+"""Diagnostic channel synthetic/static checks only. Never invokes the collector shell or Linux."""
 import copy
 import hashlib
 import json
@@ -104,6 +104,21 @@ class Reports(unittest.TestCase):
             self.assertFalse(decode(wire(g))['collection_succeeded'])
         g = copy.deepcopy(f); g['stdout'].update(prefix_only=True, seen_bytes=4); g['selected_exit_code'] = 125
         self.assertTrue(decode(wire(g))['final']['stdout']['prefix_only'])
+
+    def test_missing_main_reap_retains_echild_only_with_explicit_failure(self):
+        _, f = fixture()
+        f.update(main_exit=None, exits=[], selected_exit_code=125)
+        with self.assertRaises(ValueError): decode(wire(f))
+        f['cause'] = dict(kind='kernel', signal=None,
+                          error=dict(operation='channel-init-missing-main-exit', kind='invalid-input', detail=0))
+        with self.assertRaises(ValueError): decode(wire(f))
+        f['errors'] = [f['cause']['error']]
+        r = decode(wire(f))
+        self.assertTrue(r['final']['no_children'])
+        self.assertIsNone(r['final']['main_exit'])
+        self.assertFalse(r['collection_succeeded'])
+        f['selected_exit_code'] = 0
+        with self.assertRaises(ValueError): decode(wire(f))
 
     def test_canonical_controls_and_budgets(self):
         a, f = fixture()
@@ -219,6 +234,39 @@ class Inputs(unittest.TestCase):
             with self.assertRaises(ValueError): I['check'](out, root)
             (root/names[0]).unlink(); (root/names[0]).symlink_to(out/'collector.sh')
             with self.assertRaises(ValueError): I['check'](out, root)
+
+
+def check_scripted_export(directory):
+    """Independent consumption of actual scripted-kernel writes; no runtime fact."""
+    directory = Path(directory).resolve(strict=True)
+    read = I['read_bounded']
+    require = I['require']
+    meta = I['parse'](read(directory/'cases.json', 32768))
+    require(meta['scope'] == 'scripted-kernel-only' and meta['runtime_exit_confirmed'] is False, 'script-scope')
+    names = ('complete', 'eintr', 'prefix', 'missing-main', 'half-chunk', 'broken-final', 'late-clock')
+    require(tuple(c['name'] for c in meta['cases']) == names, 'script-cases')
+    require({p.name for p in directory.iterdir()} == {'cases.json', *(n+'.bin' for n in names)}, 'script-files')
+    binding = dict(run_id='07'*32, input_binding='sha256:'+'08'*32, collector_digest='sha256:'+'09'*32)
+    for c in meta['cases']:
+        raw = read(directory/(c['name']+'.bin'), I['BUDGETS']['wire_bytes'])
+        require(len(raw) == c['bytes'] and digest(raw) == c['digest'], 'script-bytes')
+        for size in (1, 7, 4096):
+            d = M['Decoder'](binding)
+            try:
+                for off in range(0, len(raw), size): d.feed(raw[off:off+size])
+                result = d.finish()
+            except ValueError:
+                require(c['complete_final'] is False and c['final_code'] is None, 'script-unexpected-rejection')
+            else:
+                require(c['complete_final'] is True and result['final']['selected_exit_code'] == c['final_code'], 'script-final')
+                require(result['runtime_exit_confirmed'] is False, 'script-runtime')
+                require((c['scripted_selected_code'] == c['final_code']) == (c['name'] != 'late-clock'), 'script-exit-selection')
+                if c['name'] == 'missing-main':
+                    require(result['final']['no_children'] and result['final']['main_exit'] is None, 'script-missing-main')
+                if c['name'] == 'prefix':
+                    require(result['final']['stderr']['prefix_only'] and not result['final']['stderr']['eof'], 'script-prefix')
+    return dict(scope='scripted-kernel-only', cases=len(names), partitions=3,
+                runtime_exit_confirmed=False, qualification='not-established')
 
 
 if __name__ == '__main__':

@@ -29,8 +29,9 @@ enum Fd {
     Inherited,
     Pid(u32),
     Proc(VecDeque<u8>),
+    Pipe(usize),
 }
-struct Model {
+pub(crate) struct Model {
     calls: Vec<Call>,
     fds: BTreeMap<i32, Fd>,
     waits: VecDeque<Wait>,
@@ -38,7 +39,22 @@ struct Model {
     pending: VecDeque<u32>,
     now: u64,
     mask: u64,
-    flags: u64,
+    fd_flags: BTreeMap<i32, u64>,
+    pipes: usize,
+    wire: Vec<u8>,
+    write_sizes: VecDeque<u64>,
+    output: [VecDeque<u8>; 2],
+    read_errno: Option<u64>,
+    pipe_fail: Option<usize>,
+    close_errno: Option<u64>,
+    close_after: usize,
+    final_errno: Option<u64>,
+    final_cancel: bool,
+    final_time: Option<u64>,
+    cut_chunk: bool,
+    never_eof: bool,
+    poll_errno: Option<u64>,
+    poll_disconnect: bool,
     pid: u64,
     uid: u64,
     clone_result: u64,
@@ -68,7 +84,22 @@ impl Model {
             pending: VecDeque::new(),
             now: 0,
             mask: 0,
-            flags: 1,
+            fd_flags: [(0, 0), (1, 1), (2, 1)].into(),
+            pipes: 0,
+            wire: Vec::new(),
+            write_sizes: VecDeque::new(),
+            output: [VecDeque::new(), VecDeque::new()],
+            read_errno: None,
+            pipe_fail: None,
+            close_errno: None,
+            close_after: 0,
+            final_errno: None,
+            final_cancel: false,
+            final_time: None,
+            cut_chunk: false,
+            never_eof: false,
+            poll_errno: None,
+            poll_disconnect: false,
             pid: 1,
             uid: 65532,
             clone_result: 42,
@@ -140,7 +171,11 @@ unsafe impl Kernel for Model {
                 // SAFETY: one live exclusive fixed-layout Stat.
                 unsafe {
                     (*(call.args[1] as *mut Stat)).mode =
-                        if call.args[0] == 2 { 0x1000 } else { 0x8000 };
+                        if matches!(self.fds.get(&(call.args[0] as i32)), Some(Fd::Proc(_))) {
+                            0x8000
+                        } else {
+                            0x1000
+                        };
                 }
                 0
             }
@@ -156,11 +191,11 @@ unsafe impl Kernel for Model {
                 0
             }
             NR_FCNTL => {
-                assert_eq!(call.args[0], 2);
+                let fd = call.args[0] as i32;
                 match call.args[1] {
-                    F_GETFL => self.flags,
+                    F_GETFL => *self.fd_flags.get(&fd).expect("flags owner"),
                     F_SETFL => {
-                        self.flags = call.args[2];
+                        self.fd_flags.insert(fd, call.args[2]);
                         0
                     }
                     _ => panic!("unexpected fcntl"),
@@ -213,7 +248,101 @@ unsafe impl Kernel for Model {
                     .expect("unexpected children snapshot");
                 self.fd(Fd::Proc(list.into()))
             }
+            NR_PIPE2 => {
+                self.pipes += 1;
+                if self.pipe_fail == Some(self.pipes) {
+                    return errno(24);
+                }
+                assert_eq!(call.args[1], O_CLOEXEC);
+                let a = self.fd(Fd::Pipe(self.pipes - 1)) as i32;
+                let b = self.fd(Fd::Pipe(self.pipes - 1)) as i32;
+                self.fd_flags.insert(a, 0);
+                self.fd_flags.insert(b, 1);
+                // SAFETY: wrapper supplies exactly two exclusive i32 outputs.
+                unsafe {
+                    (call.args[0] as *mut i32).write(a);
+                    (call.args[0] as *mut i32).add(1).write(b);
+                }
+                0
+            }
+            NR_PPOLL => {
+                if self.poll_disconnect {
+                    self.poll_disconnect = false;
+                    // SAFETY: the first of the live pollfd outputs only.
+                    unsafe {
+                        (*(call.args[0] as *mut PollFd)).revents = 8;
+                    }
+                    return 1;
+                }
+                if let Some(e) = self.poll_errno.take() {
+                    return errno(e);
+                }
+                // SAFETY: exactly the wrapper's initialized Timespec.
+                self.now += unsafe { *(call.args[2] as *const Timespec) }.ns().unwrap();
+                0
+            }
+            NR_WRITE => {
+                assert_eq!(call.args[0], 1);
+                // SAFETY: write wrapper supplies this exact immutable slice.
+                let bytes = unsafe {
+                    std::slice::from_raw_parts(call.args[1] as *const u8, call.args[2] as usize)
+                };
+                if bytes.len() >= 13 && &bytes[..8] == b"AXCHN001" {
+                    if bytes[12] == 3 {
+                        if let Some(e) = self.final_errno.take() {
+                            return errno(e);
+                        }
+                        if self.final_cancel {
+                            self.final_cancel = false;
+                            self.pending.push_back(15);
+                            return errno(11);
+                        }
+                        if let Some(t) = self.final_time.take() {
+                            self.now = t;
+                        }
+                    }
+                    if bytes[12] == 2 && self.cut_chunk {
+                        self.cut_chunk = false;
+                        self.write_sizes.push_front(errno(32));
+                        self.write_sizes.push_front(9);
+                    }
+                }
+                let n = self.write_sizes.pop_front().unwrap_or(call.args[2]);
+                if n >= u64::MAX - 4094 {
+                    return n;
+                }
+                let n = n.min(call.args[2]) as usize;
+                // SAFETY: bounded immutable syscall input bytes.
+                self.wire.extend_from_slice(unsafe {
+                    std::slice::from_raw_parts(call.args[1] as *const u8, n)
+                });
+                n as u64
+            }
             NR_READ => {
+                if let Some(Fd::Pipe(i)) = self.fds.get(&(call.args[0] as i32)) {
+                    let i = *i;
+                    assert!(i > 0);
+                    if self.clone_count == 0 {
+                        return errno(11);
+                    }
+                    if let Some(e) = self.read_errno.take() {
+                        return errno(e);
+                    }
+                    let bytes = &mut self.output[i - 1];
+                    let n = bytes.len().min(call.args[2] as usize);
+                    for j in 0..n {
+                        unsafe {
+                            (call.args[1] as *mut u8)
+                                .add(j)
+                                .write(bytes.pop_front().unwrap());
+                        }
+                    }
+                    return if n == 0 && self.never_eof {
+                        errno(11)
+                    } else {
+                        n as u64
+                    };
+                }
                 let Some(Fd::Proc(bytes)) = self.fds.get_mut(&(call.args[0] as i32)) else {
                     panic!("not proc fd")
                 };
@@ -233,7 +362,12 @@ unsafe impl Kernel for Model {
             }
             NR_CLOSE => {
                 assert!(self.fds.remove(&(call.args[0] as i32)).is_some());
-                0
+                if self.close_after > 0 {
+                    self.close_after -= 1;
+                    0
+                } else {
+                    self.close_errno.take().map_or(0, errno)
+                }
             }
             NR_CHANNEL_CLONE => {
                 self.clone_count += 1;
@@ -295,14 +429,24 @@ unsafe impl Kernel for Model {
                     errno(11)
                 }
             }
+            NR_EXIT_GROUP => std::panic::panic_any(call.args[0] as u8),
             _ => panic!("unlisted syscall {}", call.nr),
         }
     }
 }
+fn binding() -> crate::channel_report::Binding {
+    crate::channel_report::Binding {
+        run_id: [7; 32],
+        input: [8; 32],
+        collector: [9; 32],
+    }
+}
 fn run_model(model: Model) -> (Report, Model) {
     let mut linux = Linux::new(model);
-    // SAFETY: explicit in-memory backend only; no actual signals/FDs/clone occur.
-    let report = unsafe { run(&mut linux, c"printf synthetic") };
+    let mut budget = Budget::new(linux.boottime_ns().unwrap()).unwrap();
+    let mut io = crate::channel_io::Io::new(binding());
+    let mut report = run(&mut linux, c"printf synthetic", &mut budget, &mut io);
+    io.close_all(&mut linux, &mut report);
     (report, linux.kernel)
 }
 
@@ -566,6 +710,11 @@ unsafe impl Kernel for TailModel {
         match c.nr {
             NR_GETPID => 42,
             NR_GETPPID => 1,
+            NR_DUP3 => {
+                assert_eq!(c.args[0], c.args[1] + 3);
+                assert_eq!(c.args[2], 0);
+                c.args[1]
+            }
             NR_CLOSE_RANGE => {
                 assert_eq!(c.args, [3, u32::MAX as u64, 0, 0, 0, 0]);
                 0
@@ -659,7 +808,8 @@ fn child_uses_fixed_exec_closed_environment_and_raw_failure_record() {
         catch_unwind(AssertUnwindSafe(|| clone_collector(
             &mut child,
             c"printf synthetic",
-            WORK_NS
+            WORK_NS,
+            [3, 4, 5]
         )))
         .is_err()
     );
@@ -690,6 +840,7 @@ fn child_setup_failure_never_execs_or_returns() {
         argv: argv.as_ptr() as u64,
         env: argv.as_ptr() as u64,
         work_end: WORK_NS,
+        stdio: [3, 4, 5],
     };
     let mut k = TailModel {
         calls: Vec::new(),
@@ -770,7 +921,7 @@ fn orphan_pidfd_failure_never_falls_back_to_numeric_or_group_kill() {
 fn clock_rollback_across_signal_freeze_is_not_hidden() {
     let mut m = Model::new([], &[]);
     m.now = 1;
-    m.clock_values = [10, 1].into();
+    m.clock_values = [10, 10, 1].into();
     let (r, m) = run_model(m);
     assert!(!r.clone_attempted);
     assert_eq!(r.errors[0].operation, "channel-init-clock-rollback");
@@ -779,7 +930,7 @@ fn clock_rollback_across_signal_freeze_is_not_hidden() {
 #[test]
 fn initial_nonblocking_stderr_and_no_new_privs_are_mandatory() {
     for (nr, result) in [(NR_FCNTL, errno(1)), (NR_PRCTL, 0), (NR_GETGROUPS, 1)] {
-        let mut m = Model::new([], &[]);
+        let mut m = Model::new([], if nr == NR_FCNTL { &[b""] } else { &[] });
         m.fail_nr = Some((nr, result));
         let (r, m) = run_model(m);
         assert!(!r.clone_attempted);
@@ -800,6 +951,7 @@ fn child_error_write_failure_still_raw_exits_without_retry() {
         argv: 0,
         env: 0,
         work_end: WORK_NS,
+        stdio: [3, 4, 5],
     };
     let mut k = TailModel {
         calls: Vec::new(),
@@ -856,3 +1008,6 @@ fn incomplete_children_snapshot_cannot_replace_echild() {
     assert_eq!(r.exits.len(), 2);
     m.done();
 }
+
+#[path = "channel_entry_tests.rs"]
+mod entry_tests;

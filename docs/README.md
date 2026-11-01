@@ -80,8 +80,9 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 - [新 Linux 管理通道最小方案](query/solver-linux-management-channel-minimum-plan.md)：同一 daemon 的一次性非 root 只读诊断候选，明确精确镜像、权限 / 输入、资源和 CID 清理；镜像与执行未接受，环境未创建，不替代独立终止 / 冻结资格。
 - [诊断镜像与宿主权限离线核对](records/2026-11-01-linux-channel-offline-review.md)：固定平台字节链、原始 rootfs / 包与许可声明、参考内核路径；保留真实差异并修正直接 PID 1 timeout 假设，没有创建 / 启动环境或接受运行资格。
 - [诊断 PID 1 启动器源码切片](records/2026-11-01-linux-channel-init-review.md)：沿现有 Rust syscall 边界实现私有监督 / 回收入口与合成验证；无可执行 CLI、Linux 制品或镜像接入，没有创建 / 启动环境。
-- [诊断启动器目标构建与交付方案](query/solver-linux-channel-build-and-delivery-plan.md)：精确 Rust / musl / linker 候选、正文绑定、只读单文件交付、PID 1 帧报告与 raw exit；目标 std 未安装，L1 已形成，实际构建 / 交付与入口仍未接受执行。
-- [诊断通道 L1](query/solver-linux-channel-l1.md)：固定采集正文、45 源离线绑定、Rust / Python 报告纯组件及独立合成互操作；未运行正文或接线 / 接受真实执行。
+- [诊断启动器目标构建与交付方案](query/solver-linux-channel-build-and-delivery-plan.md)：精确 Rust / musl / linker 候选、正文绑定、只读单文件交付、PID 1 帧报告与 raw exit；目标 std 未安装，L1 / L2 源码已形成，实际构建 / 交付与入口仍未接受执行。
+- [诊断通道 L1](query/solver-linux-channel-l1.md)：固定采集正文、离线源绑定、Rust / Python 报告纯组件及独立合成互操作；未运行正文或接受真实执行。
+- [诊断通道 L2](query/solver-linux-channel-l2.md)：内部 pipe / FD 所有权、唯一首时钟与 18 / 19.8 / 20 s 截止、非阻塞传输 / 回收、panic / allocator 与最终 raw exit 源码；仅宿主静态 / 脚本验证，未构建或执行 Linux 制品。
 
 ## 机器契约
 

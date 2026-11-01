@@ -1,4 +1,4 @@
-//! Private diagnostic PID 1 source entry; no CLI, Docker adapter or solver path.
+//! Private PID 1 supervision, shared by the single framed diagnostic entry.
 use crate::{
     abi::*,
     fd::OwnedFd,
@@ -6,7 +6,8 @@ use crate::{
 };
 use std::ffi::CStr;
 
-use crate::channel_profile::{CHILD_LIMIT, EVENT_LIMIT, TICK_NS, TOTAL_NS, WORK_NS};
+use crate::channel_io::Io;
+use crate::channel_profile::{CHILD_LIMIT, CLEANUP_NS, EVENT_LIMIT, TOTAL_NS, WORK_NS};
 const SECOND: u64 = 1_000_000_000;
 const CHILDREN_BYTES: usize = 256;
 
@@ -18,6 +19,8 @@ pub(crate) enum Cause {
     UnexpectedSignal(u32),
     OrphanedChild,
     EventLimit,
+    Capture,
+    Transport,
 }
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub(crate) struct SignalFact {
@@ -37,7 +40,7 @@ pub(crate) struct Report {
     pub observations_overflowed: bool,
 }
 impl Report {
-    fn new() -> Self {
+    pub(super) fn new() -> Self {
         Self {
             cause: None,
             child_pid: None,
@@ -50,10 +53,10 @@ impl Report {
             observations_overflowed: false,
         }
     }
-    fn fail(&mut self, cause: Cause) {
+    pub(super) fn fail(&mut self, cause: Cause) {
         self.cause.get_or_insert(cause);
     }
-    fn error(&mut self, error: Error) {
+    pub(super) fn error(&mut self, error: Error) {
         self.fail(Cause::Kernel(error));
         if self.errors.len() < EVENT_LIMIT {
             self.errors.push(error);
@@ -93,24 +96,30 @@ impl Report {
         }
     }
 }
-struct Budget {
-    last: u64,
-    work: u64,
-    end: u64,
+pub(super) struct Budget {
+    pub first: u64,
+    pub last: u64,
+    pub work: u64,
+    pub end: u64,
+    pub final_end: u64,
 }
 impl Budget {
-    fn new(start: u64) -> Result<Self> {
+    pub(super) fn new(start: u64) -> Result<Self> {
         Ok(Self {
+            first: start,
             last: start,
             work: start
                 .checked_add(WORK_NS)
                 .ok_or(Error::invalid("channel-init-clock"))?,
             end: start
+                .checked_add(CLEANUP_NS)
+                .ok_or(Error::invalid("channel-init-clock"))?,
+            final_end: start
                 .checked_add(TOTAL_NS)
                 .ok_or(Error::invalid("channel-init-clock"))?,
         })
     }
-    fn now<K: Kernel>(&mut self, linux: &mut Linux<K>) -> Result<u64> {
+    pub(super) fn now<K: Kernel>(&mut self, linux: &mut Linux<K>) -> Result<u64> {
         let now = linux.boottime_ns()?;
         if now < self.last {
             return Err(Error::invalid("channel-init-clock-rollback"));
@@ -118,7 +127,7 @@ impl Budget {
         self.last = now;
         Ok(now)
     }
-    fn remaining<K: Kernel>(&mut self, linux: &mut Linux<K>, end: u64) -> Result<u64> {
+    pub(super) fn remaining<K: Kernel>(&mut self, linux: &mut Linux<K>, end: u64) -> Result<u64> {
         let now = self.now(linux)?;
         if now >= end {
             return Err(Error::invalid("channel-init-final-deadline"));
@@ -127,51 +136,53 @@ impl Budget {
     }
 }
 
-/// # Safety
-/// Future native entry must be a dedicated, single-threaded namespace PID 1,
-/// with private PID/proc namespaces verified by the outer adapter, no concurrent
-/// fork/wait or auto-reaper, and only trusted bound collector text. This is not
-/// a safe API for embedding in another running process: signals and fd>=3 are
-/// replaced. Caller must preserve Report and raw-exit immediately after return;
-/// it must never resume service or start another child. No public caller exists.
-pub(crate) unsafe fn run<K: Kernel>(linux: &mut Linux<K>, collector: &CStr) -> Report {
+// Caller owns the sole t0 and transport before entering. The native caller is
+// single-threaded PID 1 and must raw-exit after terminal export, never resume.
+pub(super) fn run<K: Kernel>(
+    linux: &mut Linux<K>,
+    collector: &CStr,
+    budget: &mut Budget,
+    io: &mut Io,
+) -> Report {
     let mut report = Report::new();
     let prepared = (|| {
+        budget.remaining(linux, budget.work)?;
         if collector.is_empty() || collector.to_bytes().len() > 32768 {
             return Err(Error::invalid("channel-init-collector-size"));
         }
-        let mut budget = Budget::new(linux.boottime_ns()?)?;
         linux.check_channel_identity()?;
         linux.channel_close_inherited()?;
-        // Emergency child failure reporting must never block on inherited fd2.
-        if linux.fstat(2)?.mode & 0xf000 != 0x1000 {
-            return Err(Error::invalid("channel-init-stderr-pipe"));
-        }
-        linux.set_nonblocking(2, true)?;
-        if linux.flags(2)? & (O_NONBLOCK | 3) != O_NONBLOCK | 1 {
-            return Err(Error::invalid("channel-init-stderr-flags"));
-        }
         let frozen = linux.freeze_signals(budget.work)?;
         if frozen < budget.last {
             return Err(Error::invalid("channel-init-clock-rollback"));
         }
         budget.last = frozen;
-        if children(linux, &mut budget, &mut report, false)?.len != 0 {
+        if children(linux, budget, &mut report, false)?.len != 0 {
             return Err(Error::invalid("channel-init-existing-children"));
         }
-        budget.remaining(linux, budget.work)?;
-        Ok(budget)
-    })();
-    let mut budget = match prepared {
-        Ok(budget) if report.cause.is_none() => budget,
-        Ok(_) => return report,
-        Err(e) => {
-            report.error(e);
-            return report;
+        if report.cause.is_some() {
+            return Ok(());
         }
-    };
+        budget.remaining(linux, budget.work)?;
+        io.prepare(linux, &mut report)?;
+        io.progress(linux, budget, &mut report, budget.work);
+        budget.remaining(linux, budget.work)?;
+        Ok(())
+    })();
+    if let Err(e) = prepared {
+        if matches!(
+            e.operation,
+            "channel-init-final-deadline" | "signal-freeze-deadline"
+        ) {
+            report.fail(Cause::WorkDeadline);
+        }
+        report.error(e);
+    }
+    if report.cause.is_some() {
+        return report;
+    }
     report.clone_attempted = true;
-    let pid = match clone_collector(linux, collector, budget.work) {
+    let pid = match clone_collector(linux, collector, budget.work, io.child_fds()) {
         Ok(pid) => pid,
         Err(e) => {
             report.error(e);
@@ -179,6 +190,7 @@ pub(crate) unsafe fn run<K: Kernel>(linux: &mut Linux<K>, collector: &CStr) -> R
         }
     };
     report.child_pid = Some(pid);
+    io.close_child(linux, &mut report);
     // No reap or other mutation occurs before opening this exact unreaped
     // child. SIGCHLD is DFL without NOCLDWAIT and this is the sole reaper.
     let pidfd = match linux.channel_pidfd(pid) {
@@ -191,8 +203,8 @@ pub(crate) unsafe fn run<K: Kernel>(linux: &mut Linux<K>, collector: &CStr) -> R
         }
     };
     let child = Child { pid, pidfd };
-    monitor(linux, &mut budget, &mut report);
-    cleanup(linux, &mut budget, &mut report, &child);
+    monitor(linux, budget, &mut report, io);
+    cleanup(linux, budget, &mut report, &child, io);
     close(linux, &mut report, child.pidfd);
     report
 }
@@ -205,6 +217,7 @@ fn clone_collector<K: Kernel>(
     linux: &mut Linux<K>,
     collector: &CStr,
     work_end: u64,
+    stdio: [i32; 3],
 ) -> Result<u32> {
     // All pointers are frozen before clone. Child inherits a private COW image,
     // calls no Rust runtime/allocator and never returns through these frames.
@@ -226,6 +239,7 @@ fn clone_collector<K: Kernel>(
         argv: argv.as_ptr() as u64,
         env: env.as_ptr() as u64,
         work_end,
+        stdio,
     };
     // Fixed clone(SIGCHLD), not a runtime fallback from clone3. No shared VM,
     // files, threads, new namespace, output pointer or alternate stack. This
@@ -248,7 +262,7 @@ fn clone_collector<K: Kernel>(
     Ok(pid as u32)
 }
 
-fn monitor<K: Kernel>(linux: &mut Linux<K>, budget: &mut Budget, report: &mut Report) {
+fn monitor<K: Kernel>(linux: &mut Linux<K>, budget: &mut Budget, report: &mut Report, io: &mut Io) {
     while report.cause.is_none() && report.main_exit.is_none() {
         match budget.now(linux) {
             Ok(now) if now < budget.work => {}
@@ -265,6 +279,10 @@ fn monitor<K: Kernel>(linux: &mut Linux<K>, budget: &mut Budget, report: &mut Re
             report.error(e);
             break;
         }
+        if report.cause.is_some() {
+            break;
+        }
+        io.progress(linux, budget, report, budget.work);
         if report.cause.is_some() {
             break;
         }
@@ -285,7 +303,7 @@ fn monitor<K: Kernel>(linux: &mut Linux<K>, budget: &mut Budget, report: &mut Re
         }
         match budget.remaining(linux, budget.work) {
             Ok(left) => {
-                if let Err(e) = receive_signal(linux, report, left.min(TICK_NS)) {
+                if let Err(e) = io.wait(linux, report, left) {
                     report.error(e);
                 }
             }
@@ -296,7 +314,7 @@ fn monitor<K: Kernel>(linux: &mut Linux<K>, budget: &mut Budget, report: &mut Re
         }
     }
 }
-fn receive_signal<K: Kernel>(
+pub(super) fn receive_signal<K: Kernel>(
     linux: &mut Linux<K>,
     report: &mut Report,
     timeout: u64,
@@ -370,7 +388,7 @@ fn children<K: Kernel>(
     close(linux, report, fd);
     result
 }
-fn close<K: Kernel>(linux: &mut Linux<K>, report: &mut Report, fd: OwnedFd) {
+pub(super) fn close<K: Kernel>(linux: &mut Linux<K>, report: &mut Report, fd: OwnedFd) {
     if let Err(e) = linux.close(fd) {
         report.error(e);
     }
@@ -395,6 +413,7 @@ fn cleanup<K: Kernel>(
     budget: &mut Budget,
     report: &mut Report,
     child: &Child,
+    io: &mut Io,
 ) {
     let mut signalled = [0u32; CHILD_LIMIT];
     if report.main_exit.is_none() {
@@ -412,6 +431,26 @@ fn cleanup<K: Kernel>(
         if let Err(e) = budget.remaining(linux, budget.end) {
             report.error(e);
             break;
+        }
+        io.progress(linux, budget, report, budget.end);
+        if let Err(e) = receive_signal(linux, report, 0) {
+            report.error(e);
+            return;
+        }
+        if report.no_children {
+            if io.finished() {
+                return;
+            }
+            match budget
+                .remaining(linux, budget.end)
+                .and_then(|left| io.wait(linux, report, left))
+            {
+                Ok(()) => continue,
+                Err(e) => {
+                    report.error(e);
+                    return;
+                }
+            }
         }
         // No wait occurs between this direct-child snapshot and pidfd acquisition.
         // With SIGCHLD default, a sole reaper and no auto-reap, exited children
@@ -460,7 +499,7 @@ fn cleanup<K: Kernel>(
                     if report.main_exit.is_none() {
                         report.error(Error::invalid("channel-init-missing-main-exit"));
                     }
-                    return;
+                    break;
                 }
                 Ok(WaitAny::Exited(exit)) => {
                     for pid in &mut signalled {
@@ -480,9 +519,12 @@ fn cleanup<K: Kernel>(
                 }
             }
         }
+        if report.no_children && io.finished() {
+            return;
+        }
         match budget.remaining(linux, budget.end) {
             Ok(left) => {
-                if let Err(e) = receive_signal(linux, report, left.min(TICK_NS)) {
+                if let Err(e) = io.wait(linux, report, left) {
                     report.error(e);
                     return;
                 }
@@ -499,6 +541,7 @@ struct Tail {
     argv: u64,
     env: u64,
     work_end: u64,
+    stdio: [i32; 3],
 }
 /// # Safety
 /// Only the dedicated single clone child can enter, with private COW stack and
@@ -515,9 +558,9 @@ unsafe fn tail<K: Kernel>(kernel: &mut K, input: &Tail) -> ! {
             }
         }};
     }
-    // Preserve the exact failed syscall result in a bounded stderr record. The
-    // future adapter must make fd2 nonblocking; its provenance is not accepted
-    // by this source entry. No shell fallback or retry of exec is permitted.
+    // After its first dup, fd2 is the owned internal nonblocking pipe prepared
+    // by PID 1. AXCI is opaque Chunk data, never external control or a Final.
+    // No shell fallback or retry of exec is permitted.
     macro_rules! require {
         ($nr:expr, $args:expr, $expected:expr) => {{
             let result = raw!($nr, $args);
@@ -526,11 +569,29 @@ unsafe fn tail<K: Kernel>(kernel: &mut K, input: &Tail) -> ! {
             }
         }};
     }
+    // Until stderr has been replaced, no failure record may touch inherited
+    // fd2. A failed first dup takes the silent terminal path.
+    let stderr = input.stdio[2];
+    if stderr < 3 || raw!(NR_DUP3, [stderr as u64, 2, 0, 0, 0, 0]) != 2 {
+        tail_exit(kernel);
+    }
     let pid = raw!(NR_GETPID, [0; 6]);
     if !(2..=i32::MAX as u64).contains(&pid) {
         tail_error(kernel, NR_GETPID, pid);
     }
     require!(NR_GETPPID, [0; 6], 1);
+    // Sources are unique owned CLOEXEC pipe ends >=3. Targets are the only
+    // inherited borrowed descriptors, deliberately replaced in this child only.
+    for (target, source) in input.stdio[..2].iter().copied().enumerate() {
+        if source < 3 {
+            tail_error(kernel, NR_DUP3, u64::MAX);
+        }
+        require!(
+            NR_DUP3,
+            [source as u64, target as u64, 0, 0, 0, 0],
+            target as u64
+        );
+    }
     require!(NR_CLOSE_RANGE, [3, u32::MAX as u64, 0, 0, 0, 0], 0);
     let mask = 0u64;
     require!(
@@ -583,6 +644,9 @@ fn tail_error<K: Kernel>(kernel: &mut K, nr: i32, raw: u64) -> ! {
             args: [2, record.as_ptr() as u64, 16, 0, 0, 0],
         });
     }
+    tail_exit(kernel)
+}
+fn tail_exit<K: Kernel>(kernel: &mut K) -> ! {
     loop {
         // SAFETY: terminal pointer-free syscall; never return to Rust cleanup.
         unsafe {

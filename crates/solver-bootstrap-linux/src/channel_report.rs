@@ -311,7 +311,7 @@ impl Final {
                 && self.exits.iter().find(|x| Some(x.pid) == self.child_pid) == Some(&e))?
         }
         if self.no_children && self.child_pid.is_some() {
-            yes(self.main_exit.is_some())?
+            yes(self.main_exit.is_some() || (self.cause.is_some() && !self.errors.is_empty()))?
         }
         for stream in [&self.stdout, &self.stderr] {
             yes(stream.seen >= stream.exported as u64)?;

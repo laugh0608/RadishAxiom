@@ -106,7 +106,7 @@ def check_final(f, expected, counts, hashes):
     if e is not None:
         child_exit(e)
         require(e['pid'] == pid and next((x for x in f['exits'] if x['pid'] == pid), None) == e, 'main-exit-binding')
-    require(not (f['no_children'] and pid is not None) or e is not None, 'missing-main-reap')
+    require(not (f['no_children'] and pid is not None) or e is not None or (f['cause'] is not None and bool(f['errors'])), 'missing-main-reap')
     if f['cause'] is None:
         require(len(f['exits']) <= 1 and all(e['pid'] == pid for e in f['exits']) and not f['signals'], 'hidden-orphan-or-signal')
     for i, k in enumerate(('stdout', 'stderr')):
