@@ -2,7 +2,7 @@
 
 日期：2026-11-01。状态：**方案已静态核定；实施候选，build_ready=false / execution_ready=false**。用途：向项目所有者、实施者和审阅者明确[最小通道](solver-linux-management-channel-minimum-plan.md)的精确目标、采集正文绑定、输出所有权与退出路径。本页不接受工具 / 许可证 / 宿主资格，不提供已经可运行的构建或容器命令，不授权安装、构建、交付挂载或环境执行。实际盘点和验证见[本批记录](../records/2026-11-01-linux-channel-delivery-review.md)，现行顺位见[当前状态](../status/current.md)。
 
-方案随后提交为 `2e5da3a`；按项目所有者的下一批授权，[L1](solver-linux-channel-l1.md)已实现真实采集正文、45 源输入绑定与 Rust / Python 报告纯组件，并完成本机静态 / 合成验证。L1 导出的 scope 仅为 offline-source-binding-only，完整目标工具 / flags 尚未绑定，不替代本页最终构建 inputs。随后 L1 已提交为 `5609e6a`；[L2](solver-linux-channel-l2.md)已接通管道 / 首截止 / 最终退出源码并完成宿主静态 / 脚本验证。现行源绑定为 50 源、仍是 offline-source-binding-only；没有执行采集正文或新增 Linux 制品 / 环境。
+方案随后提交为 `2e5da3a`；按项目所有者的下一批授权，[L1](solver-linux-channel-l1.md)已实现真实采集正文、45 源输入绑定与 Rust / Python 报告纯组件，并完成本机静态 / 合成验证。L1 导出的 scope 仅为 offline-source-binding-only，完整目标工具 / flags 尚未绑定，不替代本页最终构建 inputs。随后 L1 已提交为 `5609e6a`；[L2](solver-linux-channel-l2.md)已接通管道 / 首截止 / 最终退出源码并完成宿主静态 / 脚本验证。现行源绑定为 50 源、仍是 offline-source-binding-only；没有执行采集正文或新增 Linux 制品 / 环境。L2 已提交为 `5dab738`；[L3 精确组件与完整输入方案](solver-linux-channel-l3.md)已核定并重核既有 target 原包，不安装、不构建，当前输入仍未迁移到 v0.2。
 
 ## 唯一候选与当前缺口
 
@@ -18,32 +18,32 @@
 | 方案核定时源码 | `be8c620` 只有库内监督 / 回收入口，不把该提交写成可执行制品来源。随后 L1 / L2 接续见页首；默认关闭的 binary / IO / 最终入口已有源码，尚无 Linux 制品或运行接受 |
 | 镜像 | 仍为前批固定 index / arm64 manifest；留存 rootfs 的 `/mnt` 是 `0:0 / 0755` 空目录。镜像 / 许可与宿主读取资格仍未接受 |
 
-目标选择依据是 [Rust 目标说明](https://doc.rust-lang.org/rustc/platform-support/aarch64-unknown-linux-musl.html)与精确 [1.97.1 target](https://github.com/rust-lang/rust/blob/1.97.1/compiler/rustc_target/src/spec/targets/aarch64_unknown_linux_musl.rs)。后者声明静态 CRT 默认与 musl 1.2.5 描述，但不是本机缺失组件的实际包库存、构建认证或许可结论。所需组件须另作**仅这个版本 / target 的有限取得与接受**，不恢复整套 Rust / GCC 来源研究；缺字节、来源 / 许可或链接闭包就停在构建前。
+目标选择依据是 [Rust 目标说明](https://doc.rust-lang.org/rustc/platform-support/aarch64-unknown-linux-musl.html)与精确 [1.97.1 target](https://github.com/rust-lang/rust/blob/1.97.1/compiler/rustc_target/src/spec/targets/aarch64_unknown_linux_musl.rs)。后者声明静态 CRT 默认与 musl 1.2.5 描述，但不是本机缺失组件的实际包库存、构建认证或许可结论。L3 已在旧留存中重核这个精确 target 原包，29,062,284 bytes / SHA256 `49ff0879d94e2e8e86d5e85eb15a9215943e8c78b51363d6553443598cab5d31`，不再重复取得。有限接受、安装观察和最终链接仍待独立收口，不恢复整套 Rust / GCC 来源研究；缺来源 / 许可或链接闭包就停在构建前。
 
 ## 目标构建输入与参数
 
-L2 已在同一 workspace 的 `radishaxiom-solver-bootstrap-linux` 包添加 `axiom-linux-channel-init` binary，入口置 `src/bin/linux_channel_init.rs`，显式 `required-features=["linux-channel-entry"]`、默认 feature 关闭、`test=false / bench=false`。库只向这个 leaf binary 提供受同一 feature 和精确 Linux AArch64 LE LP64 cfg 约束的隐藏入口，不开放任意 CStr / argv 执行 API。普通宿主全 feature 检查仍须通过：非目标 binary 只能固定拒绝并退出 125，不能产生 Linux 报告、调用原生 backend 或模拟成功；真正目标入口及其逻辑必须继续可用 scripted backend 做本机检查。禁止用 compile_error 迫使仓库放宽现有宿主全 feature 检查。
+L2 已在同一 workspace 的 `radishaxiom-solver-bootstrap-linux` 包添加 `axiom-linux-channel-init` binary，入口置 `src/bin/linux_channel_init.rs`，显式 `required-features=["linux-channel-entry"]`、默认 feature 关闭、`test=false / bench=false`。库只向这个 leaf binary 提供受同一 feature 和精确 Linux musl AArch64 LE LP64 cfg 约束的隐藏入口，不开放任意 CStr / argv 执行 API。普通宿主全 feature 检查仍须通过：非目标 binary 只能固定拒绝并退出 125，不能产生 Linux 报告、调用原生 backend 或模拟成功；真正目标入口及其逻辑必须继续可用 scripted backend 做本机检查。禁止用 compile_error 迫使仓库放宽现有宿主全 feature 检查。
 
 仅构建指定 package / bin / feature / target / profile，使用 `--locked --offline --jobs 1 --verbose --verbose`，留存真实编译 / 链接调用；不构建 examples、测试、工作区全体、solver 或 dev-dependency 路径。实际 normal Cargo 闭包是本包、`solver-supervision-core` 与 `digest`，均为已有 path 依赖；以实际 Cargo 元数据和编译 / 链接调用重核，不因 Cargo.lock 还有其他包就声称它们都进入二进制，也不忽略传递的 std / CRT 输入。
 
-L2 已新增供显式选择的 `linux-channel` profile（本批未使用它构建）（不改全局 release / 测试默认）：`inherits=release, opt-level=2, codegen-units=1, lto=false, panic=abort, overflow-checks=true, debug=1, strip=none, incremental=false`。精确 linker 是当前 sysroot 下 `lib/rustlib/aarch64-apple-darwin/bin/rust-lld`，禁止以 PATH 中的 ld / cc 替代。flags 必须作为结构化数组经受控 CARGO_ENCODED_RUSTFLAGS 传递，候选固定如下，表中输出目录在生成具体构建计划时解析为新建任务目录的绝对路径：
+L2 已新增供显式选择的 `linux-channel` profile（未使用它构建，不改全局 release / 测试默认）：`inherits=release, opt-level=2, codegen-units=1, lto=false, panic=abort, overflow-checks=true, debug=1, strip=none, incremental=false`。精确 linker 是当前 sysroot 下 `lib/rustlib/aarch64-apple-darwin/bin/rust-lld`，禁止以 PATH 中的 ld / cc 替代。flags 必须作为结构化数组经受控 CARGO_ENCODED_RUSTFLAGS 传递，候选固定如下，表中输出目录在生成具体构建计划时解析为新建任务目录的绝对路径：
 
 | 项 | 候选值 |
 | --- | --- |
 | 目标代码 | `-C target-cpu=generic`、`-C target-feature=+crt-static`、`-C relocation-model=static`、`-C prefer-dynamic=no` |
 | 链接输入 | `-C link-self-contained=yes`、`-C linker=<已绑定 rust-lld 绝对路径>`、`-C linker-flavor=ld.lld` |
-| 最终链接 | 分别传 `-C link-arg=-static`、`-C link-arg=-no-pie`、`-C link-arg=-z`、`-C link-arg=noexecstack`、`-C link-arg=--trace`、`-C link-arg=-Map=<任务输出>/link.map` |
+| 最终链接 | 分别传 `-C link-arg=-static`、`-C link-arg=-no-pie`、`-C link-arg=-z`、`-C link-arg=noexecstack`、`-C link-arg=--trace`、`-C link-arg=-Map=<任务输出>/link.map`；L3 补 `-C link-arg=--why-extract=<任务输出>/link-why-extract.tsv`，已有 LLD help 确认选项，实际关联待构建审阅 |
 
 以上不是可直接执行的占位命令。既有 rustc 的 `-C help` 已确认选项名称，flags 的组合、CRT 选择和最终 ELF 仍未构建验证。精确 [1.97.1 musl base](https://github.com/rust-lang/rust/blob/1.97.1/compiler/rustc_target/src/spec/base/linux_musl.rs)及 [CRT 选择](https://github.com/rust-lang/rust/blob/1.97.1/compiler/rustc_target/src/spec/crt_objects.rs)只支持候选方向；不能把 bundled CRT 与 Alpine rootfs 中的 musl 当作同一已接受来源。失败不得自动改 PIE、加系统库或换 linker。
 
 构建调用前必须封闭以下输入：
 
-- **源码快照。** 最终入口实现后的精确 commit，加全部实际三包源码 / Cargo 文件、Cargo.lock、rust-toolchain、采集原字节、生成器、生成输入及各自长度 / SHA256；拒绝脏源码、缺文件、目录外 symlink 或事后改写。当前 `be8c620` 只是基线，不预填未来源码 / ELF 摘要。
+- **源码快照。** 最终入口实现后的精确 commit，加全部实际三包源码 / Cargo 文件、Cargo.lock、rust-toolchain、采集原字节、生成器、生成输入及各自长度 / SHA256；拒绝脏源码、缺文件、目录外 symlink 或事后改写。原 `be8c620` 和当前 L2 提交 `5dab738` 都不是未来 v0.2 / 包装器的最终源码，不预填未来源码 / ELF 摘要。L3 明确复制完整已提交 workspace 图，再核对实际三包编译闭包，详见专题。
 - **目标组件与链接闭包。** 精确版本发行 manifest / target 包及其原字节摘要和有限接受依据，真实 rust-std rlib、musl / CRT / compiler-builtins / panic runtime / allocator 与链接器输入 / 许可。先重用已有且完全匹配的审阅材料，再仅补这一组件的缺项；不推定 version 字符串等于包认证。所有链接输入记录解析后的真实路径、原字节与 archive member；map / trace 的无歧义关联不足就拒绝制品。
 - **环境与副作用。** 直接调用已绑定的 cargo / rustc；审阅并隔离 Cargo 的逐级配置与 CARGO_HOME，关闭继承的 RUSTFLAGS、wrapper、runner、target linker 和动态加载注入；只传固定 PATH / locale / 任务输出及必要精确工具路径。不复制凭据或宿主完整环境。不引入 build.rs 网络 / 下载、任意 build script 或外部生成工具。`--offline` 不能代替构建输入封闭。
-- **有限占用。** 候选一次构建、jobs=1、600 s 单调总期限；任务根（含生成、build / delivery 副本与 records）输出观测上限 512 MiB，单 ELF 16 MiB、map 8 MiB、双流日志合计 4 MiB。它们是未来包装器的停止 / 留存条件，Mac 文件计量和进程组取消不构成已验收的 RSS / 块 / inode 硬限，不能冒充原 Linux 构建或 solver 资格。实测超额、工具失败或不能精确停止就保存结果结束，不增限重试。
+- **有限占用。** 候选一次构建、jobs=1、600 s 单调总期限；任务根（含生成、build / delivery 副本与 records）输出观测上限 512 MiB，单 ELF 16 MiB、map 8 MiB、why-extract 4 MiB、双流日志合计 4 MiB。它们是未来包装器的停止 / 留存条件，Mac 文件计量和进程组取消不构成已验收的 RSS / 块 / inode 硬限，不能冒充原 Linux 构建或 solver 资格。实测超额、工具失败或不能精确停止就保存结果结束，不增限重试。
 
-目标组件安装的精确候选动作是 `rustup target add --toolchain 1.97.1-aarch64-apple-darwin aarch64-unknown-linux-musl`，本批未执行。执行前另行绑定 installer 的实际版本 / 原字节、发行 manifest、仅这一 target 的归档及解包清单；候选原包上限 128 MiB、解包 512 MiB、一次安装请求 120 s，实际取得 / 安装影响和接受范围须先明确授权。Rustup 可能写 target 目录、component manifest / components 与下载缓存，不能把它称为仓库内无副作用操作；完成后须与已审归档逐文件核对再允许构建。失败保留原包 / 日志 / 部分状态，不重复安装或手删 sysroot；后续清理只可另按授权用精确 target remove，不卸载整个 toolchain 或删除全局缓存。该组件 / 缓存不属于上述 build 任务根的 512 MiB，须单独计量，不能在额度里漏记。
+目标组件已经留存、尚未安装；安装 / cache 写入与清理的精确候选以 [L3](solver-linux-channel-l3.md#未来安装只增加一个-target)为准。仍是现有 toolchain 的单个 target add，先精确 cache 新建 / 重算、使用本地空 dist root，不重下原包；旧 cache / .partial 存在即停，不能让 installer 删除未经授权的既有材料。候选安装 120 s / 新增磁盘观测限额 512 MiB，单独计量，不挪用上述 build 任务根额度；target remove 与恢复另行明确授权。不运行 install.sh、手删 sysroot 或卸载整个 toolchain。
 
 构建后独立检查 ELF64 LE / AArch64 / **ET_EXEC**，无 PT_INTERP、DT_NEEDED、RPATH / RUNPATH、可写且可执行 LOAD，GNU_STACK 明确不可执行；entry 与 segment / section / archive member 关联一致。核对所有权 / 模式及库内 native svc / raw child / panic / 分配失败出口实际链接可达性。旧 cvc5 ZIP 检查器和原镜像检查器不为此放宽；复用有界解析能力时保留各自类型 / 来源语义。参数或 linker 退出 0 不能代替这些检查，不能接受动态 / PIE 输出“先跑一次”。
 
@@ -53,7 +53,7 @@ L2 已新增供显式选择的 `linux-channel` profile（本批未使用它构�
 
 L1 的 `channel_profile.rs` 作为单一类型化常量来源，承载现有期限、PID / 字节 / 帧预算及 profile 版本，编译期以 include_bytes 捕获正文；复用既有 digest 在父侧核对 / 计算相同原字节，再只构造一次 CString 传给私有 run。正文不从 argv、stdin、宿主挂载或 report 反向载入；子分支继续固定 `/bin/busybox` 和 `busybox, sh, -c, <已绑定字面正文>`。先实现并审阅真实白名单采集 / 脱敏 / 有界读取与失败处理，不将 printf 占位程序封成可接受制品。
 
-最终构建输入应由显式离线生成器从同一次源快照导出版本化 `inputs.json`（≤1 MiB）：有序源码清单、正文 profile / 长度 / raw SHA256、类型化预算、目标 / flags / 工具输入身份和采集白名单。该文件只绑定声明，不可覆盖代码常量；独立 checker 对源码 / 正文 / 数值双向核对。其 raw SHA256 是 `input_binding`，编译期捕获同一原文件；Start / Final 仅报告该摘要及实际内嵌正文摘要，Mac 必须与**事先登记**的输入比对，不能把收到的摘要当期望值。
+L3 已核定 v0.2 私有 root 与摘要绑定 sidecars 的迁移，尚未实现；具体字段、完整 workspace 与 66 项 target 库存、受控 native 捕获及旧版拒绝以 [L3](solver-linux-channel-l3.md#完整输入-v02-与无自引用绑定)为准。最终构建输入应由显式离线生成器从同一次源快照导出版本化 `inputs.json`（≤1 MiB）：有序源码清单、正文 profile / 长度 / raw SHA256、类型化预算、目标 / flags / 工具输入身份和采集白名单。该文件只绑定声明，不可覆盖代码常量；独立 checker 对源码 / 正文 / 数值双向核对。其 raw SHA256 是 `input_binding`，编译期捕获同一原文件；Start / Final 仅报告该摘要及实际内嵌正文摘要，Mac 必须与**事先登记**的输入比对，不能把收到的摘要当期望值。
 
 生成输入不得含自身摘要、最终 ELF / build manifest / 容器 CID 摘要，避免自引用。最终外置 `build-manifest.json` 再绑定 `input_binding`、实际 ELF、link map / trace、许可证 / 来源材料与实际构建结果；接受记录独立引用其原字节摘要，不在生成 manifest 中伪填 accepted。源码变更、正文换行变更、工具 / flags 或 profile 变化均需重生成、重建、重核与登记，旧制品不原地替换。
 
@@ -120,7 +120,7 @@ L2 leaf main 已按以下约束接精确目标路由，库内原生入口不返�
 | --- | --- |
 | L1：绑定与报告纯组件 | 真实采集正文审阅、单一 profile / 源码绑定生成与独立复核；Header / Start / Chunk / Final codec 与预算；全截断、未知 / 重复 / 尾随、序号、绑定漂移与 prefix / EOF / ECHILD 区分。只用合成输入，不启动采集 shell |
 | L2：入口接线源码 | 内部 pipe / FD 所有权、首 t0 与 200 ms 预留、非阻塞 IO / 回收统一循环、raw 退出 / panic / allocator 失败路径；全目标宿主检查及 scripted partial write / EAGAIN / EINTR / EPIPE / 取消 / 并发退出 / PID 复用 / 报告截断 / 分配失败。不得换 backend 或放宽现有检查 |
-| L3：有限工具输入与构建审阅 | 单独列明 Rust 1.97.1 Linux musl target 组件的精确取得 / 安装目标、来源 / 许可、大小 / 时间及清理方式，再获得授权。先形成完整输入与构建包装器计划，随后分别授权安装与一次交叉构建；不把本页当安装指令 |
+| L3：有限工具输入与构建审阅 | 精确组件 / 完整输入方案已核定，见 [L3](solver-linux-channel-l3.md)。先实施 v0.2 纯生成 / 独立复核、native 捕获与包装器静态验证；特定输入接受、单 target 安装、实际安装观察与一次构建分别收口。已有原包不重复取得，不把方案当安装 / 构建许可 |
 | L4：实际制品离线验收 | 构建 / 链接 / ELF / 来源 / 许可和正文绑定独立核对，登记实际制品及单文件 runtime 目录；不创建镜像 / 容器，不在 Mac / Linux / 模拟器执行产物。静态通过仍不是运行资格 |
 | L5：执行前收口 | 精确宿主权限 / proc / seccomp、Mac 共享源 / 无写别名、限额和单 CID 配置 / 清理范围闭合后，才提交真实一次诊断的完整参数与许可范围。缺任一前置不 create / start，不提权 / 加依赖 / 换镜像补救 |
 

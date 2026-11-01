@@ -50,4 +50,4 @@ leaf binary 独占 `#[global_allocator]`；[最小包装](../../crates/solver-bo
 
 尚未验证 Linux target 的 std / CRT / 汇编 / 链接闭包、真实 pipe / BOOTTIME / 信号 / raw exit / allocator、精确镜像 BusyBox 行为、proc / seccomp / bind 权限、Mac adapter 或 daemon 清理。panic hook 不能认证所有同步故障 / 栈溢出 / main 前失败；200 ms 足够性也没有实测保证。完整 Final 不证明 PID 1 已退出或 namespace 后代已销毁。
 
-下一切片只先核定 L3 精确 target 组件来源 / 许可、大小 / 耗时 / 安装目标与清理方案，以及完整输入 / 构建包装器计划；取得 / 安装、一次 Linux 构建、离线制品验收、交付和真实执行分别授权。C1 / E0 / E4、G0 / A1–A10、镜像 / 权限 / 来源与独立终止 / 存储硬限缺口均保留，不创建环境试错。
+L2 已提交为 `5dab738`；[L3](solver-linux-channel-l3.md)已核定精确 target、完整输入与包装器方案并重核旧原包，尚未安装或实现 v0.2。下一源码切片先实现纯绑定 / 独立复核、native 捕获和包装器静态验证；取得 / 安装、一次 Linux 构建、离线制品验收、交付和真实执行分别授权。C1 / E0 / E4、G0 / A1–A10、镜像 / 权限 / 来源与独立终止 / 存储硬限缺口均保留，不创建环境试错。

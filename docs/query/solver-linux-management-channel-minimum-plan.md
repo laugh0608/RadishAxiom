@@ -8,7 +8,7 @@
 
 启动器源码已提交为 `be8c620`；后续[目标构建与交付方案](solver-linux-channel-build-and-delivery-plan.md)选择 Rust 1.97.1 / aarch64-unknown-linux-musl / bundled rust-lld 的静态非 PIE 候选、内嵌采集原字节、单文件 runtime 目录只读挂 `/mnt`，以及 PID 1 独占 stdout 的私有帧报告 / raw exit。Linux target std 实际未安装；核定时上述接线未实现。后续 L1 / L2 已形成正文 / codec / 管道 / 最终入口源码，在原 20 s 内安排 18 s 工作、1.8 s 收束、0.2 s 最终导出；这不是运行保证。详细参数、绑定、预算和验收以该方案为准，本批未安装 / 构建或交付挂载。
 
-交付方案已提交为 `2e5da3a`；后续 [L1](solver-linux-channel-l1.md)已完成正文、源绑定与报告纯组件，本机静态 / 合成检查及独立互操作结果见[记录](../records/2026-11-01-linux-channel-l1-review.md)。L1 随后提交为 `5609e6a`；[L2](solver-linux-channel-l2.md)已完成独占管道 / 最终入口源码与宿主验证，见[记录](../records/2026-11-01-linux-channel-l2-review.md)。尚无真实采集、目标组件安装或 Linux 制品；源绑定仍不包含完整目标工具输入。
+交付方案已提交为 `2e5da3a`；后续 [L1](solver-linux-channel-l1.md)已完成正文、源绑定与报告纯组件，本机静态 / 合成检查及独立互操作结果见[记录](../records/2026-11-01-linux-channel-l1-review.md)。L1 随后提交为 `5609e6a`；[L2](solver-linux-channel-l2.md)已完成独占管道 / 最终入口源码与宿主验证，见[记录](../records/2026-11-01-linux-channel-l2-review.md)。尚无真实采集、目标组件安装或 Linux 制品；源绑定仍不包含完整目标工具输入。L2 已提交为 `5dab738`，[L3](solver-linux-channel-l3.md)已核定精确 target / 输入方案并重核旧原包，不重新下载或执行安装 / 构建。
 
 ## 核定结论与选项
 
@@ -118,7 +118,7 @@
 
 ## 验收出口与下一步
 
-静态方案、镜像离线核对、PID 1、L1 纯组件与 L2 入口源码已有本机结果，**仍不接受新信任、镜像或诊断执行例外**。下一切片沿[交付方案 L3](solver-linux-channel-build-and-delivery-plan.md#实施顺序验收与停止线)先核定精确 target 组件与完整构建输入计划；L1 离线源输入不等于完整工具构建输入。目标安装、构建、交付挂载和诊断分别授权，真实宿主权限及来源 / 许可接受继续是执行前置。不重复完整来源清单或运行旧 timeout 入口，不先创建环境试错。
+静态方案、镜像离线核对、PID 1、L1 纯组件与 L2 入口源码已有本机结果，**仍不接受新信任、镜像或诊断执行例外**。L3 精确 target 与完整输入计划已核定，下一源码切片沿 [L3](solver-linux-channel-l3.md)实施 v0.2 纯绑定 / 独立复核和包装器静态验证；L1 离线源输入不等于完整工具构建输入。目标安装、构建、交付挂载和诊断分别授权，真实宿主权限及来源 / 许可接受继续是执行前置。不重复完整来源清单或运行旧 timeout 入口，不先创建环境试错。
 
 真实执行如果另获授权，必须分别报告：创建 / 配置读回是否一致；采集是否真实完整；宿主 / namespace 来源是否可定位；资源 / 退出 / Docker 清理各自观察与缺失。身份 / 数据矛盾为失败，缺失为未取得，不合成为资格 success。只能用结果决定同宿主后续具体根 / quota / 控制权限的可行性，不能把本次读回写成 A3 / A4 / A7 / A8 或 C1 / E0 / E4 通过。
 

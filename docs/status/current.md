@@ -65,6 +65,8 @@ PID 1 更改已提交为 `be8c620`，未 push；随后核定[目标构建与交�
 
 L1 已提交为 `5609e6a`，未 push；随后 [L2](../query/solver-linux-channel-l2.md)接通内部三条 pipe / 显式 FD 所有权、唯一首 t0、18 / 19.8 / 20 s 截止、非阻塞帧传输与精确回收、终端 raw exit，以及默认关闭 leaf 的 panic / allocator 出口。现行 50 源输入仍是 offline-source-binding-only / 工具 null / readiness=false。宿主全目标 / 全 feature 117 项与独立脚本流复核见[本批记录](../records/2026-11-01-linux-channel-l2-review.md)；没有运行正文、Linux syscall、目标安装 / 构建、创建 / 启动环境或扩大资格。
 
+L2 已提交为 `5dab738`，未 push；随后 [L3](../query/solver-linux-channel-l3.md)核定精确 target / 完整输入方案。旧 musl target 原包 29,062,284 bytes / `49ff0879…cab5d31` 已重新核对，7 目录 / 78 文件及 66 项 payload 与旧库存完全相等，不重新下载；target 仍未安装。方案明确 cache / .partial 先前存在即停、单组件 120 s / 512 MiB 与精确卸载，完整 v0.2 root 通过独立清单绑定实际安装、工具 / 来源接受及 workspace 快照，保留现行 v0.1 拒绝。具体参数 / 方法 / 未覆盖范围见[本批记录](../records/2026-11-01-linux-channel-l3-review.md)。未实现 v0.2 / 包装器、安装组件、构建 Linux 制品或创建 / 启动环境，readiness=false。
+
 ### 历史日终交接（2026-10-27）
 
 今日截至 `2c3f82b` 共 4 笔提交：布局边界修正与 C2 缺口审阅、ADR 0031 D1–D3 接受、阶段拆分与有限计划、私有 v0.2 离线实现。完整提交表、代码 / 文档核对和分批验证见[日终记录](../records/2026-10-27-closeout.md)；[10 月 23 日日终](../records/2026-10-23-closeout.md)保留为历史。
@@ -78,7 +80,7 @@ v0.2 只形成阶段声明、目标级链接截获、留存材料与独立有限
 下一次恢复时，先围绕“让原容量 AX-B01 在原资源限制下取得真实 solver 校准”核对以下直接前置；每批只有明确出口，不将来源清单扩展为无期限的工具链研究。这里保存建议，不延续历史批次的外部动作授权。
 
 1. **取得 LibPoly 固定版本的许可澄清后，再作 C1 接受审阅。** [历史核对](../records/2026-10-23-libpoly-license-history.md)已收敛为整体许可冲突、Polyxx 覆盖与旧 `open_memstream.c` 来源授权三项；[issue #113](https://github.com/SRI-CSL/libpoly/issues/113)已按 10 月 27 日明确授权发送。后续依据须适用固定提交并覆盖这些缺口；不重复查同一历史、下载已匹配材料或把风险接受写成许可事实。未安排自动轮询，不自动追加消息。
-2. **L2 源码已完成，下一切片先核定 L3 精确 target 输入与构建包装器计划。** 按[交付方案](../query/solver-linux-channel-build-and-delivery-plan.md#实施顺序验收与停止线)，只补 Rust 1.97.1 Linux musl target 的精确来源 / 许可、安装目标、大小 / 时间与清理范围，以及完整工具 / flags 绑定；源输入须明确版本 / scope 迁移，不把当前 50 源绑定充作最终 build inputs。取得 / 安装、一次 Linux 构建、离线制品验收、交付挂载与执行分别授权，不扩张完整工具链研究。真实 std / CRT / allocator / syscall、宿主权限 / proc / seccomp / bind、无写别名、来源 / 许可及独立终止 / 存储硬限缺口保留；原 C1 / G0 / E0 / E4 与 solver 门禁保持。本轮不安装 target、不构建 Linux 制品、不创建 / 启动环境。
+2. **L3 方案已核定，下一源码切片为 v0.2 纯输入 / 独立复核、native 捕获与有界包装器。** 按 [L3](../query/solver-linux-channel-l3.md)实施私有版本 / scope 迁移、sidecar 摘要绑定和实际 argv / 预算 / 取消拒绝测试；现行 50 源 v0.1 不能当完整 inputs，也不在原生入口 fallback。精确 target 旧原包已留存 / 重核，不重复下载；实际安装观察和特定工具 / 宿主 / 许可接受齐备前，不生成真实完整 root。组件安装、一次 Linux 构建、离线制品验收、交付挂载与执行分别授权；本轮不安装、不构建或创建 / 启动环境。保留实际 std / CRT / dylib / allocator / syscall、宿主权限 / proc / seccomp / bind、无写别名与独立终止 / 存储硬限，以及 C1 / G0 / E0 / E4 / solver 门禁。
 3. **等待 C1 时，可继续 F2 的静态边界审阅。** 核对目标工具链、AArch64 汇编 / ABI、unsafe 与 FD 所有权，以及 outer setup policy、精确实例读回和 Mac adapter 接线；出口是具体问题修正或有限待验清单。既有本机 441 项测试不等于 Linux 目标构建 / 实际 syscall 验收；工具 / 制品条件具备并获准后再执行目标构建和真实负向矩阵。
 4. **条件闭合后按原顺序进入实际路径。** C1 与构建环境资格闭合后，按[C3–C5](../query/solver-cvc5-build-candidate-plan.md#批次占用授权与停止线)先构建依赖、审阅实际 ABI / Editline 有序闭包和 manifest，再配置 / 构建主目标；C4 决定 E0，实际 E4 通过后才进入 E5 的最多八份校准及一次精确 wrong-add guarantee 尝试。保持原容量、128 MiB / 6 s 和旧四版字节 / 拒绝，不因不足增限或绕过门禁；这仍不等于完整 P0–P9 / Evidence / 独立 checker 验收。
 
@@ -151,6 +153,8 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 - 表面语法、公开 CLI / SDK、安装路径与最低支持矩阵尚未冻结；测试、结构检查、attestation 与独立 proof 分别报告。
 
 ## 验证入口与本次审阅
+
+2026-11-01，L2 已提交为 `5dab738`；随后 L3 核定方案并仅重核指定已有原字节：musl target 全归档 / 66 payload、发行与安装清单投影、四工具字节、255 份旧源码文本 / 许可元数据和精确 linker help。只读诊断、计划 / 材料交叉核对和完整仓库检查见[本批记录](../records/2026-11-01-linux-channel-l3-review.md)。没有改 Rust / Cargo / lockfile，未重跑无变化的 Rust 测试；无取得 / 安装组件、Linux 构建或环境动作，现行绑定 / readiness / 实际资格不升级。
 
 2026-11-01，L1 已提交为 `5609e6a`；随后 L2 源码接线完成：受影响包全目标 / 全 feature 本机 117 项（新增 30 / 既有 87）、Python 合成 16 项、格式及 workspace 全 feature Clippy 通过；50 源导出 / 旧样本互操作及七份脚本后端实际流的独立 Python 复核通过。仓库与留存核对、命令 / 失败和有限信任范围见[本批记录](../records/2026-11-01-linux-channel-l2-review.md)。没有执行 Linux / collector、目标安装 / 构建或创建 / 启动环境；L2 新改动未自动提交 / 推送，readiness / 实际资格不升级。
 
