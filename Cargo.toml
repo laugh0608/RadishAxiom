@@ -9,3 +9,15 @@ members = [
     "crates/solver-bootstrap-linux",
 ]
 resolver = "3"
+
+# Dedicated diagnostic leaf only; ordinary release/test defaults stay unchanged.
+[profile.linux-channel]
+inherits = "release"
+opt-level = 2
+codegen-units = 1
+lto = false
+panic = "abort"
+overflow-checks = true
+debug = 1
+strip = "none"
+incremental = false

@@ -1,0 +1,75 @@
+{
+  "scope": "offline-declaration-consistency-only",
+  "checked_prefix": [
+    "dependencies",
+    "main-compile"
+  ],
+  "unverified_outputs": {
+    "sdk": "de80e7984c92d111a61e4a57c4c969d5e9d77a8108de4d1cea3e422426058120",
+    "sources": "d0df5e3245da3aaf44ea953a9b207b349b11f891393464eb29825905b13ba175",
+    "recipe": "0b6e31f762fd351063d4e656c1bf299c80c28269b370ad6f355c7674b2e4edee",
+    "dependencies": "24e6689a5ccda39b8a0bf4a7e86a7a5d8715e458357ef6e4ca3b7d4d3b11ef86",
+    "dependency-evidence": "ac9e949157a172740dfc5b1c344b222425d250186eba97445d4c650be20f5662",
+    "main-tree": "a9401e413ca5d45f291b490f7089964cb60e747a2ede418136f55b1ac4b76e50",
+    "main-evidence": "39a5cd0d053b92036640aa905de30059baf3fb7d2d2c01de7f528c8419c79443",
+    "link-capture": "7a490ae9297cf890a58f8629020141602934dd1bbe00ca72fea662e1bcd3c03d"
+  },
+  "runtime_qualification": false,
+  "execution_ready": false,
+  "build_ready": false,
+  "acceptance": "not-accepted",
+  "phase_declarations_sha256": "442e32d373bffdf653106b54b942b80ce4143934f3333e31656779ccb26b62d7",
+  "link_materials": {
+    "scope": "offline-prelink-byte-consistency-only",
+    "input_sequence": [
+      "/work/build/cvc5/CMakeFiles/alpha.o",
+      "/work/build/cvc5/CMakeFiles/space name.o",
+      "/work/build/cvc5/CMakeFiles/alpha.o",
+      "/work/prefix/test/lib/libroute.a",
+      "/work/prefix/test/lib/libdep.a",
+      "/work/prefix/test/lib/libdep.a",
+      "/work/prefix/test/lib/libdep.a"
+    ],
+    "response_sequence": [
+      "/work/build/cvc5/CMakeFiles/objects.rsp",
+      "/work/build/cvc5/CMakeFiles/more.rsp"
+    ],
+    "implicit_inputs": [
+      "/usr/lib/aarch64-linux-gnu/crt1.o",
+      "/usr/lib/gcc/aarch64-linux-gnu/12/specs"
+    ],
+    "implicit_input_sequence": [
+      "/usr/lib/aarch64-linux-gnu/crt1.o",
+      "/usr/lib/gcc/aarch64-linux-gnu/12/specs"
+    ],
+    "implicit_input_completeness": "not-established",
+    "without_use_observation": [],
+    "archive_members": {
+      "/work/prefix/test/lib/libdep.a": [
+        {
+          "bytes": 274,
+          "index": 0,
+          "kind": "object",
+          "name": "duplicate.o",
+          "occurrence": 1,
+          "sha256": "332c3a2a8245bb66224fc345a340f02127601404e58546a16155a6e7bd889de5"
+        },
+        {
+          "bytes": 274,
+          "index": 1,
+          "kind": "object",
+          "name": "duplicate.o",
+          "occurrence": 2,
+          "sha256": "82693bec0af1e9d9efe050e328fefcce44c22df5fbd8f747825bed3d31e78d72"
+        }
+      ]
+    },
+    "actual_member_extraction": "not-observed",
+    "bytes_checked": 3339,
+    "runtime_qualification": false,
+    "execution_ready": false,
+    "build_ready": false,
+    "acceptance": "not-accepted"
+  },
+  "link_declarations_sha256": "afbb429e5e5f623c468890783649c77cd1cba976b6394f8507148f69860b79eb"
+}

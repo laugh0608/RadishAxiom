@@ -1,0 +1,52 @@
+{
+  "format": "radishaxiom-private-cvc5-historical-key-candidate",
+  "version": "0.1",
+  "method": {
+    "bytes": 3423,
+    "sha256": "ef21b1e8fb025d67b959a959f4a00232ef16afc9add482abaead583bc1a13d93"
+  },
+  "package": {
+    "bytes": 178572,
+    "sha256": "f699e2f88dca05212f2a452b58475f2993cb6993dfbafb1d0205a3291eb8b4b8"
+  },
+  "retained_object": "artifacts/source-inputs/musl-verifier-2fb2e70-20260912/objects/f699e2f88dca05212f2a452b58475f2993cb6993dfbafb1d0205a3291eb8b4b8",
+  "removed_ring": {
+    "bytes": 72636,
+    "sha256": "0ff45da93c7fd62cc3f10b4c5019985caf49e5959bb3bf992f558d11963870fa"
+  },
+  "missing_key_block": {
+    "bytes": 8132,
+    "sha256": "89d89bcedee9ed88b25eabb5be786fbca6259f121e6ad6ebf5651f852f5227cf"
+  },
+  "primary": "80D15823B7FD1561F9F7BCDDDC30D7C23CBBABEE",
+  "signer": "0146DC6D4A0B2914BDED34DB648ACFD622F3D138",
+  "self_certification_packets": 7,
+  "required_signatures": {
+    "80D15823B7FD1561F9F7BCDDDC30D7C23CBBABEE": "0146DC6D4A0B2914BDED34DB648ACFD622F3D138",
+    "1F89983E0081FDE018F3CC9673A4F27B8DD47936": "A7236886F3CCCAAD148A27F80E98404D386FA1D9",
+    "4D64FEC119C2029067D6E791F8D2585B8783D481": "4D64FEC119C2029067D6E791F8D2585B8783D481"
+  },
+  "acceptance": "proposed-not-accepted",
+  "cryptography_executed": false,
+  "new_network_download": false,
+  "system_keyring_changed": false,
+  "execution_proposal": {
+    "positive": "all-three-original-signatures-required; no signature removed",
+    "key_checks": "self-certifications, expiry, retained revocations, required cross-certifications",
+    "negative": [
+      "tampered-cleartext",
+      "each-of-three-required-keys-missing",
+      "bad-archive-cross-certification"
+    ],
+    "same_image_and_container_isolation": true,
+    "seconds_per_command": 30,
+    "estimated_seconds": 300,
+    "cleanup": "only-new-owned-containers; retain-all-logs"
+  },
+  "remaining_trust": [
+    "historical-role-profile-approval",
+    "retired-key-identity-and-status",
+    "HTTPS-and-retained-package-identity-basis",
+    "no-all-channel-current-revocation-proof"
+  ]
+}

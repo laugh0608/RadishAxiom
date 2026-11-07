@@ -1,0 +1,534 @@
+{
+  "format": "radishaxiom-private-cvc5-phases-validation",
+  "version": "0.2",
+  "scope": "offline-components-and-retained-byte-checks-only",
+  "observed_utc": "2026-10-27T13:36:04.961301+00:00",
+  "recipe": {
+    "path": "docs/records/solver-cvc5-phases-2026-10-27/offline-build-recipe.json",
+    "bytes": 96505,
+    "sha256": "0b6e31f762fd351063d4e656c1bf299c80c28269b370ad6f355c7674b2e4edee"
+  },
+  "runs": [
+    {
+      "label": "final-phase-tests",
+      "argv": [
+        "/Users/luobo/.local/share/mise/installs/python/latest/bin/python3",
+        "-O",
+        "scripts/test-cvc5-phases.py"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "elapsed_seconds": 1.41,
+      "stdout": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/final-phase-tests.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/final-phase-tests.stderr.txt",
+        "bytes": 127,
+        "sha256": "3bdddf0e32eb50d2956806d85bcd2f9b2cbb456c1bcf3cc5bc4c64a93a824540"
+      }
+    },
+    {
+      "label": "final-link-tests",
+      "argv": [
+        "/Users/luobo/.local/share/mise/installs/python/latest/bin/python3",
+        "-O",
+        "scripts/test-cvc5-link-materials.py"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "elapsed_seconds": 0.539,
+      "stdout": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/final-link-tests.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/final-link-tests.stderr.txt",
+        "bytes": 134,
+        "sha256": "034184a0b10a821cbe9230c0ca38e9a21807e1c21233ab52122e7a02d34cc3cb"
+      }
+    },
+    {
+      "label": "final-v1-regression",
+      "argv": [
+        "/Users/luobo/.local/share/mise/installs/python/latest/bin/python3",
+        "-O",
+        "scripts/test-prepare-cvc5-offline-build.py"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "elapsed_seconds": 0.259,
+      "stdout": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/final-v1-regression.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/final-v1-regression.stderr.txt",
+        "bytes": 132,
+        "sha256": "7d98af071e7bbf72ecac6725cc5e60930cfc8bb3f21985ea9bde14c04f03897d"
+      }
+    },
+    {
+      "label": "final-layout-events-regression",
+      "argv": [
+        "/Users/luobo/.local/share/mise/installs/python/latest/bin/python3",
+        "-O",
+        "scripts/test-cvc5-execution-review.py"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "elapsed_seconds": 0.373,
+      "stdout": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/final-layout-events-regression.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/final-layout-events-regression.stderr.txt",
+        "bytes": 139,
+        "sha256": "1e4e1a9b807972073b5ca5219e22da113958aa6a0ca0025e459443172fc3a556"
+      }
+    },
+    {
+      "label": "final-recipe-check",
+      "argv": [
+        "/Users/luobo/.local/share/mise/installs/python/latest/bin/python3",
+        "scripts/prepare-cvc5-offline-build.py",
+        "check",
+        "/Users/luobo/Code/RadishAxiom/docs/records/solver-cvc5-phases-2026-10-27/offline-build-recipe.json",
+        "--sha256",
+        "0b6e31f762fd351063d4e656c1bf299c80c28269b370ad6f355c7674b2e4edee",
+        "--recipe-version",
+        "0.2"
+      ],
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "elapsed_seconds": 6.344,
+      "stdout": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/final-recipe-check.stdout.txt",
+        "bytes": 816,
+        "sha256": "c24e65ccd45c9f6fbb47fd1a014083ed059598861e57bad4cc19a61c2d220258"
+      },
+      "stderr": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/final-recipe-check.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "final-sdk-layout",
+      "argv": [
+        "/Users/luobo/.local/share/mise/installs/python/latest/bin/python3",
+        "scripts/prepare-cvc5-execution-review.py",
+        "--recipe",
+        "/Users/luobo/Code/RadishAxiom/docs/records/solver-cvc5-phases-2026-10-27/offline-build-recipe.json",
+        "--sha256",
+        "0b6e31f762fd351063d4e656c1bf299c80c28269b370ad6f355c7674b2e4edee",
+        "--recipe-version",
+        "0.2",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/cvc5-phase-implementation-2026-10-27/sdk-layout-final.json"
+      ],
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "elapsed_seconds": 5.991,
+      "stdout": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/final-sdk-layout.stdout.txt",
+        "bytes": 803,
+        "sha256": "c7e92215c03bace97b1dbde5d81219dadeae83897e171cda1c627ae5d120b29d"
+      },
+      "stderr": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/final-sdk-layout.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "final-independent-inputs",
+      "argv": [
+        "/Users/luobo/.local/share/mise/installs/python/latest/bin/python3",
+        "scripts/check-cvc5-phases-independent.py",
+        "prepare",
+        "--recipe",
+        "/Users/luobo/Code/RadishAxiom/docs/records/solver-cvc5-phases-2026-10-27/offline-build-recipe.json",
+        "--sha256",
+        "0b6e31f762fd351063d4e656c1bf299c80c28269b370ad6f355c7674b2e4edee",
+        "--directory",
+        "/Users/luobo/Code/RadishAxiom/.tmp/cvc5-phase-implementation-2026-10-27/synthetic-final"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "elapsed_seconds": 1.085,
+      "stdout": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/final-independent-inputs.stdout.txt",
+        "bytes": 255,
+        "sha256": "0959f23a986144c2b8b3c943a72e302f39930e30720cbfe374f92ebdfbc72b77"
+      },
+      "stderr": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/final-independent-inputs.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "final-prelink-review",
+      "argv": [
+        "/Users/luobo/.local/share/mise/installs/python/latest/bin/python3",
+        "scripts/prepare-cvc5-execution-review.py",
+        "--recipe",
+        "/Users/luobo/Code/RadishAxiom/docs/records/solver-cvc5-phases-2026-10-27/offline-build-recipe.json",
+        "--sha256",
+        "0b6e31f762fd351063d4e656c1bf299c80c28269b370ad6f355c7674b2e4edee",
+        "--recipe-version",
+        "0.2",
+        "--phase-declarations",
+        "/Users/luobo/Code/RadishAxiom/.tmp/cvc5-phase-implementation-2026-10-27/synthetic-final/phases.json",
+        "--link-materials",
+        "/Users/luobo/Code/RadishAxiom/.tmp/cvc5-phase-implementation-2026-10-27/synthetic-final/prelink.json",
+        "--material-root",
+        "/Users/luobo/Code/RadishAxiom/.tmp/cvc5-phase-implementation-2026-10-27/synthetic-final",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/docs/records/solver-cvc5-phases-2026-10-27/synthetic-review.json"
+      ],
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "elapsed_seconds": 5.847,
+      "stdout": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/final-prelink-review.stdout.txt",
+        "bytes": 246,
+        "sha256": "79e897b2d8a45c5c354db578a5239692195f49f00d6bf92a4c2dc09478dbf0fd"
+      },
+      "stderr": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/final-prelink-review.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "final-independent-export",
+      "argv": [
+        "/Users/luobo/.local/share/mise/installs/python/latest/bin/python3",
+        "scripts/check-cvc5-phases-independent.py",
+        "check",
+        "--recipe",
+        "/Users/luobo/Code/RadishAxiom/docs/records/solver-cvc5-phases-2026-10-27/offline-build-recipe.json",
+        "--sha256",
+        "0b6e31f762fd351063d4e656c1bf299c80c28269b370ad6f355c7674b2e4edee",
+        "--directory",
+        "/Users/luobo/Code/RadishAxiom/.tmp/cvc5-phase-implementation-2026-10-27/synthetic-final",
+        "--export",
+        "/Users/luobo/Code/RadishAxiom/docs/records/solver-cvc5-phases-2026-10-27/synthetic-review.json"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "elapsed_seconds": 0.49,
+      "stdout": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/final-independent-export.stdout.txt",
+        "bytes": 287,
+        "sha256": "e621e21ecba1904457ca32502783b2618b67ad9676dbba8d0223cb14265fdf5a"
+      },
+      "stderr": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/final-independent-export.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "final-old-byte-drift-rejection",
+      "argv": [
+        "/Users/luobo/.local/share/mise/installs/python/latest/bin/python3",
+        "scripts/prepare-cvc5-offline-build.py",
+        "check",
+        "/Users/luobo/Code/RadishAxiom/docs/records/solver-cvc5-c2-2026-10-23/offline-build-recipe.json",
+        "--sha256",
+        "2ee5ae5e9c437036c6b0cc6ec8c4324b875b0376dcd91c9aa3d5dca29d01f4dd"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "elapsed_seconds": 5.603,
+      "stdout": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/final-old-byte-drift-rejection.stdout.txt",
+        "bytes": 106,
+        "sha256": "760b6257d95273d95363a8c92e38394d7c854487a89c6bd834d668b35b55d658"
+      },
+      "stderr": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/final-old-byte-drift-rejection.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "final-explicit-version-rejection",
+      "argv": [
+        "/Users/luobo/.local/share/mise/installs/python/latest/bin/python3",
+        "scripts/prepare-cvc5-offline-build.py",
+        "check",
+        "/Users/luobo/Code/RadishAxiom/docs/records/solver-cvc5-phases-2026-10-27/offline-build-recipe.json",
+        "--sha256",
+        "0b6e31f762fd351063d4e656c1bf299c80c28269b370ad6f355c7674b2e4edee"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "elapsed_seconds": 0.04,
+      "stdout": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/final-explicit-version-rejection.stdout.txt",
+        "bytes": 107,
+        "sha256": "f902a6d79e92105034b8c76ba5708d3351533b8325509a235216c54720e74ae1"
+      },
+      "stderr": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/final-explicit-version-rejection.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "default-v1-generation",
+      "argv": [
+        "/Users/luobo/.local/share/mise/installs/python/latest/bin/python3",
+        "scripts/prepare-cvc5-offline-build.py",
+        "prepare",
+        "--batch-id",
+        "candidate-2026-10-23",
+        "--output",
+        "/Users/luobo/Code/RadishAxiom/.tmp/cvc5-phase-implementation-2026-10-27/regenerated-v1.json"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "elapsed_seconds": 5.993,
+      "stdout": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/default-v1-generation.stdout.txt",
+        "bytes": 360,
+        "sha256": "475c94e718007aece9f8a8a4f170ef3a3564c9d547e0543e16294e4c77c65b25"
+      },
+      "stderr": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/default-v1-generation.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "default-v1-current-check",
+      "argv": [
+        "/Users/luobo/.local/share/mise/installs/python/latest/bin/python3",
+        "scripts/prepare-cvc5-offline-build.py",
+        "check",
+        "/Users/luobo/Code/RadishAxiom/.tmp/cvc5-phase-implementation-2026-10-27/regenerated-v1.json",
+        "--sha256",
+        "1a92dcd4d3a02907199954471f3061ef4f50375589a3f1abec3136668803b0f7"
+      ],
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "elapsed_seconds": 5.678,
+      "stdout": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/default-v1-current-check.stdout.txt",
+        "bytes": 662,
+        "sha256": "3f3975193b00b73b0b22c89fd61927ef4610bfa7f14e482dd3ddcdec4dd9e67e"
+      },
+      "stderr": {
+        "path": ".tmp/cvc5-phase-implementation-2026-10-27/default-v1-current-check.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "layout_summary": {
+    "packages": 172,
+    "archive_entries": 17125,
+    "unique_paths": 14719,
+    "regular_bytes": 537445262,
+    "kinds": {
+      "directory": 1367,
+      "file": 12525,
+      "hardlink": 5,
+      "symlink": 822
+    },
+    "implicit_directories": 0
+  },
+  "sdk_layout": {
+    "path": ".tmp/cvc5-phase-implementation-2026-10-27/sdk-layout-final.json",
+    "bytes": 5856717,
+    "sha256": "7e61110af1ef894b1cf153274fea0c8d20daad7481583bcdada84eda725341b1"
+  },
+  "synthetic_inputs": [
+    {
+      "path": ".tmp/cvc5-phase-implementation-2026-10-27/synthetic-final/alpha.o",
+      "bytes": 274,
+      "sha256": "332c3a2a8245bb66224fc345a340f02127601404e58546a16155a6e7bd889de5"
+    },
+    {
+      "path": ".tmp/cvc5-phase-implementation-2026-10-27/synthetic-final/capture.json",
+      "bytes": 1282,
+      "sha256": "7a490ae9297cf890a58f8629020141602934dd1bbe00ca72fea662e1bcd3c03d"
+    },
+    {
+      "path": ".tmp/cvc5-phase-implementation-2026-10-27/synthetic-final/crt1.o",
+      "bytes": 274,
+      "sha256": "b0fe406d4aab44deb9edce74c61f26d3295938dedebb66e31c7b3fdc2d7ac718"
+    },
+    {
+      "path": ".tmp/cvc5-phase-implementation-2026-10-27/synthetic-final/libdep.a",
+      "bytes": 676,
+      "sha256": "f0a772fd3e2a759e37bbbf585b836f82eba98a0877333deba39f69c1c4e81a12"
+    },
+    {
+      "path": ".tmp/cvc5-phase-implementation-2026-10-27/synthetic-final/libroute.a",
+      "bytes": 86,
+      "sha256": "313d0b4f007c9d4b0b40dcbfafd2d8cfd13ef5768ca97443542eba246183485a"
+    },
+    {
+      "path": ".tmp/cvc5-phase-implementation-2026-10-27/synthetic-final/link.txt",
+      "bytes": 355,
+      "sha256": "607ccda3cd870142b9224ca9e78cbea492efde056299543d84736666b9c7433e"
+    },
+    {
+      "path": ".tmp/cvc5-phase-implementation-2026-10-27/synthetic-final/more.rsp",
+      "bytes": 19,
+      "sha256": "102876e6e63665053d97695f26d87e43d1736b6a8cbc00896280e1895cc36409"
+    },
+    {
+      "path": ".tmp/cvc5-phase-implementation-2026-10-27/synthetic-final/objects.rsp",
+      "bytes": 66,
+      "sha256": "10eafdf38cc0f3d2904c564fdd4445305a8f3ba2ba7dd26a58b3080688a6411e"
+    },
+    {
+      "path": ".tmp/cvc5-phase-implementation-2026-10-27/synthetic-final/phases.json",
+      "bytes": 4035,
+      "sha256": "442e32d373bffdf653106b54b942b80ce4143934f3333e31656779ccb26b62d7"
+    },
+    {
+      "path": ".tmp/cvc5-phase-implementation-2026-10-27/synthetic-final/prelink.json",
+      "bytes": 5614,
+      "sha256": "afbb429e5e5f623c468890783649c77cd1cba976b6394f8507148f69860b79eb"
+    },
+    {
+      "path": ".tmp/cvc5-phase-implementation-2026-10-27/synthetic-final/space.o",
+      "bytes": 274,
+      "sha256": "82693bec0af1e9d9efe050e328fefcce44c22df5fbd8f747825bed3d31e78d72"
+    },
+    {
+      "path": ".tmp/cvc5-phase-implementation-2026-10-27/synthetic-final/specs.txt",
+      "bytes": 33,
+      "sha256": "06d3ad2b6b17b9a1e8f610c864a542d36f46cc06df2fa63afc23bdf1852374f8"
+    }
+  ],
+  "synthetic_export": {
+    "path": "docs/records/solver-cvc5-phases-2026-10-27/synthetic-review.json",
+    "bytes": 2803,
+    "sha256": "4b2301712768f43ee2faf27f91f83e97cef92ac3005da4b6d36236c61d204b87"
+  },
+  "methods": [
+    {
+      "path": "scripts/prepare-cvc5-offline-build.py",
+      "bytes": 40797,
+      "sha256": "ae0b2e423d92937806d22b881fbdfaa722300331c13250f4098edeccecd93e6a"
+    },
+    {
+      "path": "scripts/prepare-cvc5-execution-review.py",
+      "bytes": 14100,
+      "sha256": "525bf9b317c53e15fb30d046fcd6ec536d1179931e95f900f59ba717349eb39c"
+    },
+    {
+      "path": "scripts/check-cvc5-phases-independent.py",
+      "bytes": 16718,
+      "sha256": "3a781a2c858ec59d43b745da173ffb48684c77acf69d4511ffdc4260f991e160"
+    },
+    {
+      "path": "scripts/test-cvc5-phases.py",
+      "bytes": 17359,
+      "sha256": "f5dc09362d117dc67849d3dc5cdf98284adda625d6b4d541cf34c875c3749da9"
+    },
+    {
+      "path": "scripts/test-cvc5-link-materials.py",
+      "bytes": 19614,
+      "sha256": "76598ec23ad2433749da7ad1c964eaaf7c1edb91fd1bf07bc29891dc0d17bfb4"
+    },
+    {
+      "path": "scripts/cvc5-build-support/capture_link.py",
+      "bytes": 3620,
+      "sha256": "4c24008f5caeb8affda80fcd7bd25e67eb50b267783391eab38265e8666f74fd"
+    },
+    {
+      "path": "scripts/cvc5-build-support/event_rules.py",
+      "bytes": 9890,
+      "sha256": "2072b5fcde1eb2236ece15cbfb569aea37a5d0eff281c85e1791de2a84d8db0d"
+    },
+    {
+      "path": "scripts/cvc5-build-support/link_formats.py",
+      "bytes": 7932,
+      "sha256": "10e8135e8140383fcc521e4fa677d4a15eaf3dd5a75cb02328dfea81c46984a9"
+    },
+    {
+      "path": "scripts/cvc5-build-support/link_materials.py",
+      "bytes": 16772,
+      "sha256": "9b12d26fa9d1a8f716a661b8dee058750cee05d8f8c0b71e92c46b7a1fade680"
+    },
+    {
+      "path": "scripts/cvc5-build-support/phase_recipe.py",
+      "bytes": 10224,
+      "sha256": "d7945082ba409dd55949cc66f6e12513168e5b915f72e5f6d08fe1e7e431a946"
+    },
+    {
+      "path": "scripts/cvc5-build-support/phase_rules.py",
+      "bytes": 12125,
+      "sha256": "2f450e4045f71bf4422de269a3c3ec6cb9f7be8def767edbd6429d2f64f671ca"
+    }
+  ],
+  "executed_recipe_steps": [],
+  "execution_ready": false,
+  "build_ready": false,
+  "runtime_qualification": false,
+  "acceptance": "not-accepted",
+  "not_run": [
+    "SDK assembly",
+    "upstream configure/CMake/Make/compiler/linker",
+    "containers/VMs/probes",
+    "solver",
+    "Rust tests",
+    "dependency installation",
+    "remote writes/push"
+  ],
+  "legacy_comparison": {
+    "frozen_recipe_sha256": "2ee5ae5e9c437036c6b0cc6ec8c4324b875b0376dcd91c9aa3d5dca29d01f4dd",
+    "regenerated_recipe": {
+      "path": ".tmp/cvc5-phase-implementation-2026-10-27/regenerated-v1.json",
+      "bytes": 89552,
+      "sha256": "1a92dcd4d3a02907199954471f3061ef4f50375589a3f1abec3136668803b0f7"
+    },
+    "all_non_reference_fields_identical": true,
+    "changed_reference_paths": [
+      "scripts/prepare-cvc5-offline-build.py"
+    ],
+    "current_default_check_exit": 2,
+    "historical_check_remains_rejected": true,
+    "layout_identical_to": {
+      "path": "artifacts/cvc5-c2-boundary-2026-10-27/sdk-layout-review.json",
+      "bytes": 5852999,
+      "sha256": "b2620482bb3c7609d8016c2e1ad16f02268090c589e3cd86c716a1e9d77962ae"
+    }
+  },
+  "repository_checks": {
+    "baseline": {
+      "argv": ["./scripts/check-repo.sh"],
+      "exit_code": 0,
+      "files_checked": 2887
+    },
+    "diff_whitespace": {
+      "argv": ["git", "diff", "--check"],
+      "exit_code": 0
+    },
+    "scope": "repository-hygiene-only-not-build-or-runtime-qualification"
+  },
+  "preparation": {
+    "exit_code": 0,
+    "checked_inputs": {
+      "matched_files": 500,
+      "matched_bytes": 691605464,
+      "source_archives_and_trees": 5,
+      "patch_files": 9
+    }
+  }
+}

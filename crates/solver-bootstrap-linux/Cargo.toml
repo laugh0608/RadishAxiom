@@ -10,3 +10,14 @@ radishaxiom-digest = { path = "../digest" }
 
 [dev-dependencies]
 radishaxiom-solver-diagnostic-host = { path = "../solver-diagnostic-host" }
+
+[features]
+default = []
+linux-channel-entry = []
+
+[[bin]]
+name = "axiom-linux-channel-init"
+path = "src/bin/linux_channel_init.rs"
+required-features = ["linux-channel-entry"]
+test = false
+bench = false

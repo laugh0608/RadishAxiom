@@ -1,0 +1,60 @@
+{
+  "build_ready": false,
+  "context": "orbstack",
+  "execution_ready": false,
+  "format": "radishaxiom-private-cvc5-host-readonly-observation",
+  "method": {
+    "commands": [
+      [
+        "docker",
+        "context",
+        "show"
+      ],
+      [
+        "docker",
+        "info",
+        "--format",
+        "{{json .}}"
+      ]
+    ],
+    "per_command_timeout_seconds": 8,
+    "retention": "selected fields only; full raw daemon response not retained"
+  },
+  "not_observed": [
+    "backing-filesystem-and-quota",
+    "exclusive-storage-and-writable-aliases",
+    "exact-instance-user-namespace-and-mount-readback",
+    "cgroup-kill-access-and-termination",
+    "pid-and-inode-enforcement",
+    "watchdog-independent-of-daemon",
+    "sdk-assembly-or-build-or-solver"
+  ],
+  "observation_date": "2026-11-01",
+  "reported": {
+    "Architecture": "aarch64",
+    "CgroupDriver": "cgroupfs",
+    "CgroupVersion": "2",
+    "DefaultRuntime": "runc",
+    "Driver": "overlayfs",
+    "DriverStatus": [
+      [
+        "driver-type",
+        "io.containerd.snapshotter.v1"
+      ]
+    ],
+    "ID": "ad69e9f6-8215-4c61-96df-1178e1368456",
+    "KernelVersion": "7.2.12-orbstack-00394-gbecdd6130068",
+    "MemoryLimit": true,
+    "PidsLimit": true,
+    "SecurityOptions": [
+      "name=seccomp,profile=builtin",
+      "name=cgroupns"
+    ],
+    "ServerVersion": "29.8.2",
+    "SwapLimit": true
+  },
+  "runtime_qualification": false,
+  "scope": "daemon-report-only-not-qualification",
+  "timezone": "Asia/Shanghai",
+  "version": "0.1"
+}

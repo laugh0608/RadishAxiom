@@ -1,0 +1,84 @@
+{
+  "format": "radishaxiom-private-cvc5-c1-range-preparation-validation",
+  "version": "0.1",
+  "scope": "offline-implementation-tests-and-existing-bytes-preflight-only",
+  "authorization": "new-network-requests-pending-owner-confirmation",
+  "proposal": {
+    "path": "docs/records/solver-cvc5-c1-2026-10-22/continuation-2-plan.json",
+    "bytes": 367111,
+    "sha256": "fb4860b00bdcd2a399392ce7d5fb26ca9837d8fa483b6a3714810c837862874c"
+  },
+  "methods": [
+    {
+      "path": "scripts/fetch-cvc5-c1-inputs.py",
+      "bytes": 37565,
+      "sha256": "262d833096454b6c13606b6e5f92f69b0cfd9f3e966046e3ca4df1390eb82f06"
+    },
+    {
+      "path": "scripts/test-fetch-cvc5-c1-inputs.py",
+      "bytes": 37422,
+      "sha256": "a32222446937f360563cffc9f97a3565113bea0ff4d710f4048ceb880fedc1c1"
+    },
+    {
+      "path": "scripts/cvc5-build-preparation.py",
+      "bytes": 16523,
+      "sha256": "7ce06b803cf3eb51c8f46df3a82cfc8379e7519115981b974a36062262e919a9"
+    },
+    {
+      "path": "scripts/test-cvc5-build-preparation.py",
+      "bytes": 15478,
+      "sha256": "e8b9b02e1c75f75d2d88d00694925e39182c953779a09d530608de75d03ff6ec"
+    }
+  ],
+  "checks": [
+    {
+      "command": "python3 scripts/test-fetch-cvc5-c1-inputs.py",
+      "exit_code": 0,
+      "tests_passed": 65,
+      "includes_real_signal_timer": true,
+      "http_responses": "synthetic-only"
+    },
+    {
+      "command": "python3 scripts/test-cvc5-build-preparation.py",
+      "exit_code": 0,
+      "tests_passed": 47
+    },
+    {
+      "command": "python3 scripts/fetch-cvc5-c1-inputs.py --confirmed-plan-sha256 165672c67dcaea6963f00dc13e2128a3563fc8a59b58e27326ae58e47f1749cc --check-continuation-from-41",
+      "exit_code": 0,
+      "invocation": "runpy with urllib.request.OpenerDirector.open patched to raise if called",
+      "stdout": {
+        "path": ".tmp/cvc5-c1-range-validation-2026-10-22/preflight.stdout.txt",
+        "bytes": 373,
+        "sha256": "30622b636ffe46ffa6369a68601bf786a8c03de0900a3456969a97e52d9ef18f"
+      },
+      "stderr": {
+        "path": ".tmp/cvc5-c1-range-validation-2026-10-22/preflight.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "preflight": {
+    "scope": "offline-preflight-only",
+    "proposal_sha256": "fb4860b00bdcd2a399392ce7d5fb26ca9837d8fa483b6a3714810c837862874c",
+    "retained": {
+      "complete_files": 40,
+      "complete_bytes": 42872372,
+      "partial_bytes": 12582912,
+      "old_records_unchanged": true
+    },
+    "new_requests": 0,
+    "new_directory_created": false,
+    "network_authorization": "pending-owner-confirmation",
+    "build_ready": false
+  },
+  "new_directory_exists": false,
+  "network_requests": 0,
+  "unpacked": false,
+  "installed": false,
+  "built": false,
+  "payload_executed": false,
+  "input_acceptance": "not-accepted",
+  "build_ready": false
+}

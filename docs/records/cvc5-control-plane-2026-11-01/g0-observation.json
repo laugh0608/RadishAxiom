@@ -1,0 +1,242 @@
+{
+  "base_commit": "25ef314",
+  "build_ready": false,
+  "docker": {
+    "additional_query_note": "MemTotal/NCPU selected in a separate successful info query; matching daemon ID retained",
+    "command": [
+      "docker",
+      "info",
+      "--format",
+      "{{json .}}"
+    ],
+    "exit_code": 0,
+    "reported": {
+      "Architecture": "aarch64",
+      "CgroupDriver": "cgroupfs",
+      "CgroupVersion": "2",
+      "Containers": 0,
+      "ContainersRunning": 0,
+      "DefaultRuntime": "runc",
+      "Driver": "overlayfs",
+      "DriverStatus": [
+        [
+          "driver-type",
+          "io.containerd.snapshotter.v1"
+        ]
+      ],
+      "ID": "ad69e9f6-8215-4c61-96df-1178e1368456",
+      "KernelVersion": "7.2.12-orbstack-00394-gbecdd6130068",
+      "MemTotal": 16818991104,
+      "MemoryLimit": true,
+      "NCPU": 10,
+      "PidsLimit": true,
+      "ServerVersion": "29.8.2",
+      "SwapLimit": true
+    }
+  },
+  "execution_ready": false,
+  "format": "radishaxiom-private-cvc5-g0-readonly-observation",
+  "mac_path_metadata": {
+    "caller_uid": 501,
+    "interpretation": "presence/metadata only; false os.access does not establish denial for ordinary host processes or child files",
+    "method": "Python Path.stat follows path; os.access is caller-context only; no write or directory-content enumeration",
+    "observations": [
+      {
+        "caller_search_access": true,
+        "caller_write_access": false,
+        "gid": 20,
+        "home_relative_path": "OrbStack",
+        "kind": "directory",
+        "mode": "0700",
+        "uid": 501
+      },
+      {
+        "caller_search_access": true,
+        "caller_write_access": false,
+        "gid": 0,
+        "home_relative_path": "OrbStack/docker",
+        "kind": "directory",
+        "mode": "0755",
+        "uid": 0
+      },
+      {
+        "caller_search_access": true,
+        "caller_write_access": false,
+        "gid": 0,
+        "home_relative_path": "OrbStack/docker/volumes",
+        "kind": "directory",
+        "mode": "0755",
+        "uid": 0
+      },
+      {
+        "caller_search_access": true,
+        "caller_write_access": false,
+        "gid": 0,
+        "home_relative_path": "OrbStack/docker/containers",
+        "kind": "directory",
+        "mode": "0755",
+        "uid": 0
+      },
+      {
+        "caller_search_access": true,
+        "caller_write_access": false,
+        "gid": 20,
+        "home_relative_path": ".orbstack/run/docker.sock",
+        "kind": "socket",
+        "mode": "0755",
+        "uid": 501
+      }
+    ]
+  },
+  "method": {
+    "bounded_queries_timeout_seconds": 8,
+    "mutation_commands_executed": [],
+    "record": "docs/records/2026-11-01-cvc5-g0-capability-review.md"
+  },
+  "observation_date": "2026-11-01",
+  "orbstack": {
+    "commit": "bf842321f95fc3ca7cda3227bf0cd41cb188c471",
+    "config_reports": [
+      {
+        "command": [
+          "orbctl",
+          "config",
+          "get",
+          "memory_mib"
+        ],
+        "exit_code": 0,
+        "retained_stdout": "16384\n"
+      },
+      {
+        "command": [
+          "orbctl",
+          "config",
+          "get",
+          "cpu"
+        ],
+        "exit_code": 0,
+        "retained_stdout": "10\n"
+      },
+      {
+        "command": [
+          "orbctl",
+          "config",
+          "get",
+          "mount_hide_shared"
+        ],
+        "exit_code": 0,
+        "retained_stdout": "false\n"
+      }
+    ],
+    "help_observations": [
+      {
+        "command": [
+          "orb",
+          "--help"
+        ],
+        "retained_scope": "orb runs Linux commands in a selected/default machine; Docker containers use docker"
+      },
+      {
+        "command": [
+          "orbctl",
+          "--help"
+        ],
+        "retained_scope": "run manages machines; debug targets Docker containers"
+      },
+      {
+        "command": [
+          "orbctl",
+          "list",
+          "--help"
+        ],
+        "retained_scope": "--format supports text/json; --running filters running machines"
+      },
+      {
+        "command": [
+          "orbctl",
+          "run",
+          "--help"
+        ],
+        "retained_scope": "--machine and --user select a machine/user; no host VM shell entry advertised"
+      },
+      {
+        "command": [
+          "orbctl",
+          "docker",
+          "--help"
+        ],
+        "retained_subcommands": [
+          "migrate",
+          "volume"
+        ]
+      },
+      {
+        "command": [
+          "orbctl",
+          "docker",
+          "volume",
+          "--help"
+        ],
+        "retained_subcommands": [
+          "clone",
+          "export",
+          "import"
+        ]
+      },
+      {
+        "command": [
+          "orbctl",
+          "config",
+          "--help"
+        ],
+        "retained_subcommands": [
+          "add",
+          "docker",
+          "get",
+          "remove",
+          "reset",
+          "set",
+          "show"
+        ]
+      },
+      {
+        "command": [
+          "orbctl",
+          "config",
+          "get",
+          "--help"
+        ],
+        "retained_usage": "orbctl config get KEY [flags]"
+      }
+    ],
+    "machines": {
+      "command": [
+        "orbctl",
+        "list",
+        "--format",
+        "json"
+      ],
+      "exit_code": 0,
+      "retained_stdout": "[]\n"
+    },
+    "version": "2.2.5 (2020500)",
+    "version_command": [
+      "orbctl",
+      "version"
+    ]
+  },
+  "result": "evidence-insufficient-stop-before-wiring",
+  "retention": "curated fields and excerpts from actual read-only command results; full daemon/config/help responses not retained",
+  "runtime_qualification": false,
+  "scope": "mac-client-and-daemon-reports-no-linux-host-readback",
+  "timezone": "Asia/Shanghai",
+  "unobserved": [
+    "linux-host-management-context",
+    "boot-and-namespace-identities",
+    "backing-filesystem-and-block-inode-hard-quota",
+    "exclusive-frozen-root-and-write-alias-revocation",
+    "independent-cgroup-kill-and-reaping",
+    "pid-inode-and-timing-qualification"
+  ],
+  "version": "0.1"
+}

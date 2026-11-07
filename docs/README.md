@@ -9,6 +9,7 @@
 | 任务 | 入口 |
 | --- | --- |
 | 现状、下一步、停止线、验证命令 | [当前状态](status/current.md) |
+| 能力主线、子专题、任务与验收来源 | [能力专题地图](topics.md) |
 | 产品定位、首批工作流与价值验收 | [产品定义](product-definition.md) |
 | 核心闭环、运行能力、证明覆盖与实验验收 | [开发目标与验收计划](development-plan.md) |
 | 工作区、授权、实施、验证、实验留存与交接 | [Agent 协作与执行规则](governance/agent-collaboration.md) |
@@ -73,6 +74,18 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 
 - [真实 bootstrap / FFI 实施方案](query/solver-bootstrap-ffi-implementation-plan.md)：[ADR 0030（Accepted）](adr/0030-solver-bootstrap-ffi-and-build-provenance.md)列出原生宿主、真实绑定 / 观察和新构建候选三项已接受决定；F1 纯共享边界 / [启动描述](query/solver-bootstrap-start-v0.1.md)已完成[本机验收](records/2026-10-17-solver-f1-validation.md)；F2 [原生边界](query/solver-bootstrap-native-boundary.md) / [监督实现](query/solver-bootstrap-native-supervisor.md)接续私有源码与本机脚本后端检查，D3 [构建候选方案](query/solver-cvc5-build-candidate-plan.md)接续 [C0 输入选择](query/solver-cvc5-c0-input-selection.md)，实际范围见[F2 / C0 验收](records/2026-10-17-solver-f2-validation.md)与后续[SDK 元数据复核](records/2026-10-17-cvc5-c0-sdk-metadata.md)、[完整源码 / Production / patch 静态审阅](records/2026-10-17-cvc5-c0-source-review.md)；配套[独立审阅](query/solver-bootstrap-ffi-review.md)与 [E0 后续补证](records/2026-10-17-cvc5-provenance-followup.md)，不授权构建或真实执行；[方案批验收](records/2026-10-17-solver-bootstrap-plan-review.md)记录此前设计与补证的范围和检查。
 
+- [C1 输入接受与 C2 离线准备](query/solver-cvc5-input-preparation.md)：原包、内容库存与限定历史签名已核对，LibPoly 许可仍未接受；[SDK 组装与构建监督接线设计](query/solver-cvc5-execution-preparation.md)记录布局 / 事件检查和真实适配器缺口，未安装、组装或构建 SDK / solver。
+
+- [ADR 0031（Accepted）：本地 cvc5 构建来源保证边界](adr/0031-local-cvc5-build-provenance-boundary.md)：选项二的限定替代已接受，保留 / 减少的保证、三类材料、信任、验收和停止条件明确；[阶段拆分与有限实施计划](query/solver-local-cvc5-phase-plan.md)已完成静态核定，[私有 v0.2 离线切片](query/solver-local-cvc5-offline-v0.2.md)已按授权完成，实际检查见[本批记录](records/2026-10-27-cvc5-offline-phases.md)；旧入口及实际执行门禁仍有效。
+- [本地 cvc5 控制面与真实资格方案](query/solver-local-cvc5-control-plane-plan.md)：固定宿主候选、代码接线位置、阶段冻结、资源与真实正负例；G0 已以证据不足结束，恢复须先指定精确现有 Linux 管理入口和候选根，不授权探针或真实构建。
+- [新 Linux 管理通道最小方案](query/solver-linux-management-channel-minimum-plan.md)：同一 daemon 的一次性非 root 只读诊断候选，明确精确镜像、权限 / 输入、资源和 CID 清理；镜像与执行未接受，环境未创建，不替代独立终止 / 冻结资格。
+- [诊断镜像与宿主权限离线核对](records/2026-11-01-linux-channel-offline-review.md)：固定平台字节链、原始 rootfs / 包与许可声明、参考内核路径；保留真实差异并修正直接 PID 1 timeout 假设，没有创建 / 启动环境或接受运行资格。
+- [诊断 PID 1 启动器源码切片](records/2026-11-01-linux-channel-init-review.md)：初始库内监督 / 回收与合成验证；后续 L2 已有默认关闭的诊断 leaf，L3 已接严格输入捕获，仍无 Linux 制品 / 镜像接入或实际环境。
+- [诊断启动器目标构建与交付方案](query/solver-linux-channel-build-and-delivery-plan.md)：精确 Rust / musl / linker 候选、正文绑定、只读单文件交付、PID 1 帧报告与 raw exit；目标 std 未安装，L1 / L2 源码已形成，实际构建 / 交付与入口仍未接受执行。
+- [诊断通道 L1](query/solver-linux-channel-l1.md)：固定采集正文、离线源绑定、Rust / Python 报告纯组件及独立合成互操作；未运行正文或接受真实执行。
+- [诊断通道 L2](query/solver-linux-channel-l2.md)：内部 pipe / FD 所有权、唯一首时钟与 18 / 19.8 / 20 s 截止、非阻塞传输 / 回收、panic / allocator 与最终 raw exit 源码；仅宿主静态 / 脚本验证，未构建或执行 Linux 制品。
+- [诊断通道 L3](query/solver-linux-channel-l3.md)：精确 Rust musl target 的既有原包 / 66 文件重核、单组件安装副作用与清理、私有完整输入 v0.2 / sidecars / native 捕获 / 有界构建包装器实现及静态验证；无真实完整 root、target 安装或 Linux 构建。
+
 ## 机器契约
 
 [契约总入口](../contracts/README.md)说明生成入口、指定态材料与实现证据的区别。
@@ -101,6 +114,27 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 | Linux builder 隔离安装 | [精确安装范围、命令、中间核对与清理审阅](checker-runtime-linux-install-slice-review.md) |
 | Linux 来源实际核验 | [摘要 / 签名与 builder 库存](records/linux-6.18.49-source-review/README.md)、[归档文件盘点与精确缺失包候选](records/linux-6.18.49-archive-inventory/README.md) |
 | Linux 构建包来源与安装差异 | [Debian 签名摘要链、控制脚本审阅与安装模拟](records/linux-builder-source-chain/README.md) |
+| 2026-10-22 C1 / C2 离线准备 | [输入接受缺口、精确原包清单与构建输入预检](records/2026-10-22-cvc5-c1-c2-preparation.md) |
+| 2026-10-22 C1 获取 | [六项取得、第七项编码拒绝、首错停止与剩余缺口](records/2026-10-22-cvc5-c1-acquisition.md) |
+| 2026-10-22 C1 接续 | [修正后从第七项获取、累计四十项匹配与第 41 项超时](records/2026-10-22-cvc5-c1-continuation.md) |
+| 2026-10-22 C1 超时分析 | [原材料保护、尾部请求与按大小计时的待确认方案](records/2026-10-22-cvc5-c1-timeout-review.md) |
+| 2026-10-22 C1 Range 准备 | [受限尾部获取、分阶段限时与多目录核对的离线实施](records/2026-10-22-cvc5-c1-range-preparation.md) |
+| 2026-10-22 C1 代理获取 | [Range 成功、速度仍慢后主动停止与四十六项复核](records/2026-10-22-cvc5-c1-proxy-acquisition.md) |
+| 2026-10-23 C1 第三次接续 | [第 47 项断点、用户第 48 项复用及后续获取](records/2026-10-23-cvc5-c1-continuation.md) |
+| 2026-10-23 C1 输入审阅 | [留存、SDK 内容、历史三签名与许可缺口](records/2026-10-23-cvc5-c1-input-review.md) |
+| 2026-10-23 LibPoly 许可历史 | [声明冲突引入、Polyxx / memstream 来源与待补依据](records/2026-10-23-libpoly-license-history.md) |
+| 2026-10-23 LibPoly 澄清草稿 | [给上游的固定版本许可、Polyxx 覆盖与旧 memstream 来源问题（10 月 27 日已发送）](records/2026-10-23-libpoly-upstream-clarification-draft.md) |
+| 2026-10-23 C2 离线入口 | [阶段配方、输入预检、日志 / 链接清单与失败保留](records/2026-10-23-cvc5-c2-offline-entry.md) |
+| 2026-10-23 C2 执行准备 | [SDK 布局、构建事件检查与接线设计](records/2026-10-23-cvc5-c2-execution-review.md) |
+| 2026-10-23 日终回顾 | [全天提交、代码 / 文档复核与下一次接续](records/2026-10-23-closeout.md) |
+| 2026-10-27 C2 边界审阅 | [布局拒绝修正、有限执行缺口与 LibPoly 澄清发送](records/2026-10-27-cvc5-c2-boundary-review.md) |
+| 2026-10-27 日终回顾 | [全天提交、离线实现与文档核对及下一次接续](records/2026-10-27-closeout.md) |
+| 2026-11-01 控制面方案 | [代码职责、宿主只读更新、冻结 / 资格矩阵及后续 G0 范围](records/2026-11-01-cvc5-control-plane-review.md) |
+| 2026-11-01 G0 能力盘点 | [前批提交、现有入口 / 共享视图观察与证据不足的结束决定](records/2026-11-01-cvc5-g0-capability-review.md) |
+| 2026-11-01 新通道方案 | [G0 提交、最小诊断通道、镜像只读元数据与权限 / 资源 / 清理设计](records/2026-11-01-linux-channel-minimum-review.md) |
+| 2026-11-01 新通道离线核对 | [最小方案提交、精确镜像 / 来源 / 许可与读取权限核对、PID 1 超时设计缺口](records/2026-11-01-linux-channel-offline-review.md) |
+| 2026-11-01 L3 实现 | [v0.2 / native 捕获 / 有界包装器、Cargo 解析输入补正与宿主进程组身份修正](records/2026-11-01-linux-channel-l3-implementation.md) |
+| 2026-11-01 日终回顾 | [全天提交、代码对应文档复核与下一批有限输入接受审阅](records/2026-11-01-closeout.md) |
 | Rust Linux 与静态目标输入 | [签名 / 归档盘点、安装候选与 kernel 许可审阅](records/rust-linux-input-review/README.md) |
 | 2026-10-17 日终回顾 | [紧凑查询、监督组件与 C0 全天提交、代码 / 文档复核及接续事项](records/2026-10-17-closeout.md) |
 | 2026-10-08 日终回顾 | [P3-B–F 全天提交、代码与文档核对及明日交接](records/2026-10-08-closeout.md) |

@@ -1,0 +1,13 @@
+diff --git a/src/main/CMakeLists.txt b/src/main/CMakeLists.txt
+--- a/src/main/CMakeLists.txt
++++ b/src/main/CMakeLists.txt
+@@ -58,6 +58,9 @@
+ add_executable(cvc5-bin driver_unified.cpp main.cpp $<TARGET_OBJECTS:main>)
+ target_compile_definitions(cvc5-bin PRIVATE -D__BUILDING_CVC5DRIVER -Dcvc5_obj_EXPORTS)
++# Local provenance boundary: capture only; the controller links frozen inputs.
++set_property(TARGET cvc5-bin PROPERTY CXX_LINKER_LAUNCHER
++  "/usr/bin/python3.11;/recipe/scripts/cvc5-build-support/capture_link.py;--output;/work/evidence/cvc5-link-capture.json;--")
+ set_target_properties(cvc5-bin
+   PROPERTIES
+     OUTPUT_NAME cvc5
+     RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)

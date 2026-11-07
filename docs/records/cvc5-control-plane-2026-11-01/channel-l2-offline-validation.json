@@ -1,0 +1,200 @@
+{
+  "base_commit": "5609e6a",
+  "build_ready": false,
+  "collector_executed": false,
+  "created_or_started_environment": false,
+  "execution_ready": false,
+  "export_directory": ".tmp/linux-channel-l2-2026-11-01-audited",
+  "format": "radishaxiom-private-linux-channel-l2-validation",
+  "inputs": {
+    "build_ready": false,
+    "collector_digest": "sha256:e1f884bc7762c5cd64a456b93785860810cd16ba21bb1a67a9bb5607a71f54ae",
+    "execution_ready": false,
+    "input_binding": "sha256:56823d72244a0025d3cf62977d0ac6f74d3457ec9063033f942e08ea57f6e8c5",
+    "scope": "offline-source-binding-only",
+    "source_count": 50,
+    "target_acceptance": "not-established"
+  },
+  "linux_artifact_built": false,
+  "methods": [
+    {
+      "bytes": 2346,
+      "digest": "sha256:43df73ae6d3e2c9912b8117d4fa249ae5aca92a27044cc8ec84c42fa7b727f84",
+      "path": "crates/solver-bootstrap-linux/examples/export_linux_channel_inputs.rs"
+    },
+    {
+      "bytes": 17016,
+      "digest": "sha256:a56b223a54000676b6e8f29c9207658eca0f866f9fac431cf3c9ea91102f93c8",
+      "path": "crates/solver-bootstrap-linux/src/channel_entry_tests.rs"
+    },
+    {
+      "bytes": 6652,
+      "digest": "sha256:81f808e609bda2abba0d19e1067c576466b8dfee7440c5c15d4dc5b34bc35aff",
+      "path": "scripts/check-linux-channel-inputs.py"
+    },
+    {
+      "bytes": 8712,
+      "digest": "sha256:e9c24dcfa3c654c3bb5b301b32e7a7d546a23ca98bd991f5c2d34fa83cee0522",
+      "path": "scripts/cvc5-build-support/channel_report.py"
+    },
+    {
+      "bytes": 15770,
+      "digest": "sha256:13e1aada961f3a57d86dc18f8f7beba58c034a465d85aaae0b80003550dd6b3d",
+      "path": "scripts/test-linux-channel.py"
+    }
+  ],
+  "remaining": [
+    "full target tool/flags inputs and explicit scope/version migration",
+    "Linux std/CRT/assembly/link/allocator and real syscall behavior",
+    "image/license/host permissions/runtime observation/Mac adapter and cleanup qualification"
+  ],
+  "runtime_exit_confirmed": false,
+  "scope": "host-static-and-scripted-kernel-only",
+  "scripted_artifacts": [
+    {
+      "bytes": 724,
+      "digest": "sha256:1acc571bc1078981fd66caed7f73962677bfcc523868bc156256710af59d91b4",
+      "path": ".tmp/linux-channel-l2-2026-11-01-scripted-audited/broken-final.bin"
+    },
+    {
+      "bytes": 1365,
+      "digest": "sha256:15c98381eaf2bb1a63d8a8196a11144acfa3fc2b7dc1e0a8fe9c53b6043cec3f",
+      "path": ".tmp/linux-channel-l2-2026-11-01-scripted-audited/cases.json"
+    },
+    {
+      "bytes": 1747,
+      "digest": "sha256:d87cc6bb3da603bbcd884feade0524b1dc543d874a1d9d2656a14f1184bc6f28",
+      "path": ".tmp/linux-channel-l2-2026-11-01-scripted-audited/complete.bin"
+    },
+    {
+      "bytes": 1868,
+      "digest": "sha256:3912c9163d86f46a15fad7a2b3d7dd3a70ec3c04724482caadbe7057860b1dc4",
+      "path": ".tmp/linux-channel-l2-2026-11-01-scripted-audited/eintr.bin"
+    },
+    {
+      "bytes": 698,
+      "digest": "sha256:51760b7a053028ebd756a55eb3444595b50c934f8485117dd6933af8e3f3604b",
+      "path": ".tmp/linux-channel-l2-2026-11-01-scripted-audited/half-chunk.bin"
+    },
+    {
+      "bytes": 1747,
+      "digest": "sha256:d87cc6bb3da603bbcd884feade0524b1dc543d874a1d9d2656a14f1184bc6f28",
+      "path": ".tmp/linux-channel-l2-2026-11-01-scripted-audited/late-clock.bin"
+    },
+    {
+      "bytes": 1969,
+      "digest": "sha256:5096bbe414ccd5cd9cbd62730dc7a9cd45298997c45e803010a5efa9d925d907",
+      "path": ".tmp/linux-channel-l2-2026-11-01-scripted-audited/missing-main.bin"
+    },
+    {
+      "bytes": 67661,
+      "digest": "sha256:2b4f7d32473150b75758f3f256937b2678935e146b9c529ed12b4596562b4c05",
+      "path": ".tmp/linux-channel-l2-2026-11-01-scripted-audited/prefix.bin"
+    }
+  ],
+  "scripted_cases": [
+    {
+      "bytes": 1747,
+      "complete_final": true,
+      "digest": "sha256:d87cc6bb3da603bbcd884feade0524b1dc543d874a1d9d2656a14f1184bc6f28",
+      "final_code": 0,
+      "name": "complete",
+      "scripted_selected_code": 0
+    },
+    {
+      "bytes": 1868,
+      "complete_final": true,
+      "digest": "sha256:3912c9163d86f46a15fad7a2b3d7dd3a70ec3c04724482caadbe7057860b1dc4",
+      "final_code": 125,
+      "name": "eintr",
+      "scripted_selected_code": 125
+    },
+    {
+      "bytes": 67661,
+      "complete_final": true,
+      "digest": "sha256:2b4f7d32473150b75758f3f256937b2678935e146b9c529ed12b4596562b4c05",
+      "final_code": 125,
+      "name": "prefix",
+      "scripted_selected_code": 125
+    },
+    {
+      "bytes": 1969,
+      "complete_final": true,
+      "digest": "sha256:5096bbe414ccd5cd9cbd62730dc7a9cd45298997c45e803010a5efa9d925d907",
+      "final_code": 125,
+      "name": "missing-main",
+      "scripted_selected_code": 125
+    },
+    {
+      "bytes": 698,
+      "complete_final": false,
+      "digest": "sha256:51760b7a053028ebd756a55eb3444595b50c934f8485117dd6933af8e3f3604b",
+      "final_code": null,
+      "name": "half-chunk",
+      "scripted_selected_code": 125
+    },
+    {
+      "bytes": 724,
+      "complete_final": false,
+      "digest": "sha256:1acc571bc1078981fd66caed7f73962677bfcc523868bc156256710af59d91b4",
+      "final_code": null,
+      "name": "broken-final",
+      "scripted_selected_code": 125
+    },
+    {
+      "bytes": 1747,
+      "complete_final": true,
+      "digest": "sha256:d87cc6bb3da603bbcd884feade0524b1dc543d874a1d9d2656a14f1184bc6f28",
+      "final_code": 0,
+      "name": "late-clock",
+      "scripted_selected_code": 125
+    }
+  ],
+  "scripted_export_directory": ".tmp/linux-channel-l2-2026-11-01-scripted-audited",
+  "scripted_interoperability": {
+    "cases": 7,
+    "partitions": 3,
+    "qualification": "not-established",
+    "runtime_exit_confirmed": false,
+    "scope": "scripted-kernel-only"
+  },
+  "source_artifacts": [
+    {
+      "bytes": 9717,
+      "digest": "sha256:e1f884bc7762c5cd64a456b93785860810cd16ba21bb1a67a9bb5607a71f54ae",
+      "path": ".tmp/linux-channel-l2-2026-11-01-audited/collector.sh"
+    },
+    {
+      "bytes": 9894,
+      "digest": "sha256:56823d72244a0025d3cf62977d0ac6f74d3457ec9063033f942e08ea57f6e8c5",
+      "path": ".tmp/linux-channel-l2-2026-11-01-audited/inputs.json"
+    },
+    {
+      "bytes": 1747,
+      "digest": "sha256:5d3361403e9c74775a097b5273dd34852b0cc3287bdce808fed539261043867b",
+      "path": ".tmp/linux-channel-l2-2026-11-01-audited/synthetic-report.bin"
+    }
+  ],
+  "target_component_installed": false,
+  "verification": {
+    "codec_partition_sizes": [
+      1,
+      7,
+      19,
+      20,
+      21,
+      4096,
+      1747
+    ],
+    "codec_sample_bytes": 1747,
+    "codec_truncated_prefixes_rejected": 1747,
+    "existing_rust_tests": 87,
+    "host_toolchain": "1.97.1-aarch64-apple-darwin",
+    "new_rust_tests": 30,
+    "python_synthetic_tests_passed": 16,
+    "repository_files_checked": 2931,
+    "rust_package_all_targets_all_features_passed": 117,
+    "source_count": 50
+  },
+  "version": "0.1"
+}

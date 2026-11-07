@@ -41,3 +41,4 @@
 - [ADR 0028：真实 solver 校准与单目标诊断的窄入口（Accepted）](0028-bounded-solver-calibration-entry.md)
 - [ADR 0029：solver Linux 监督与能力边界（Accepted）](0029-solver-linux-supervision-and-capabilities.md)
 - [ADR 0030：solver 原生 bootstrap 实施与构建来源（Accepted）](0030-solver-bootstrap-ffi-and-build-provenance.md)
+- [ADR 0031：本地 cvc5 构建候选的来源保证边界（Accepted）](0031-local-cvc5-build-provenance-boundary.md)

@@ -1,0 +1,1520 @@
+{
+  "format": "radishaxiom-private-cvc5-c1-acquisition",
+  "version": "0.1",
+  "scope": "authorized-raw-download-and-byte-check-only",
+  "authorization": "owner-confirmed-remaining-494-from-7-preserve-six-and-original-failure",
+  "started_utc": "2026-10-22T12:39:49.897747+00:00",
+  "initial_free_bytes": 462848000000,
+  "plan": {
+    "path": ".tmp/cvc5-c1-acquisition-2026-10-22/continuation-1/acquisition-plan.json",
+    "bytes": 265924,
+    "sha256": "165672c67dcaea6963f00dc13e2128a3563fc8a59b58e27326ae58e47f1749cc"
+  },
+  "fetch_method": {
+    "path": ".tmp/cvc5-c1-acquisition-2026-10-22/continuation-1/fetch-helper.py",
+    "bytes": 18344,
+    "sha256": "9c431ecc05e29018ecb58362773770188fb83f0af70cf1fc2235d6ceacc0c7db"
+  },
+  "download_complete": false,
+  "readback_complete": false,
+  "matched_files": 40,
+  "matched_bytes": 42872372,
+  "response_body_bytes": 55216116,
+  "failure": {
+    "index": 41,
+    "relative_path": "inputs/pool/main/g/gcc-12/gcc-12_12.2.0-14_arm64.deb",
+    "type": "TimeoutError",
+    "reason": "item-or-batch-deadline"
+  },
+  "observations": [
+    {
+      "index": 7,
+      "requested_url": "https://snapshot.debian.org/file/9daaa738e73c3098c4958feb6b2f3849f56b687f/bash_5.2.15-2%2Bb2_arm64.deb",
+      "relative_path": "inputs/pool/main/b/bash/bash_5.2.15-2+b2_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/bash/bash_5.2.15-2+b2_arm64.deb",
+      "started_utc": "2026-10-22T12:39:49.898055+00:00",
+      "redirects": [],
+      "bytes": 1444348,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/9daaa738e73c3098c4958feb6b2f3849f56b687f/bash_5.2.15-2%2Bb2_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:39:51 GMT",
+        "content-length": "1444348",
+        "etag": "\"1609fc-5fa2530dbd300\"",
+        "last-modified": "Tue, 25 Apr 2023 08:48:44 GMT"
+      },
+      "sha256": "13c4e70030a059aeec6b745e4ce2949ce67405246bb38521e6c8f4d21c133543",
+      "finished_utc": "2026-10-22T12:40:05.231887+00:00",
+      "elapsed_seconds": 15.333831
+    },
+    {
+      "index": 8,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/binutils/binutils-aarch64-linux-gnu_2.40-2_arm64.deb",
+      "relative_path": "inputs/pool/main/b/binutils/binutils-aarch64-linux-gnu_2.40-2_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/binutils/binutils-aarch64-linux-gnu_2.40-2_arm64.deb",
+      "started_utc": "2026-10-22T12:40:05.232077+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/binutils/binutils-aarch64-linux-gnu_2.40-2_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/c3a0173eed3db7a97348d2a0c5142c6a7079275c/binutils-aarch64-linux-gnu_2.40-2_arm64.deb"
+        }
+      ],
+      "bytes": 2637164,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/c3a0173eed3db7a97348d2a0c5142c6a7079275c/binutils-aarch64-linux-gnu_2.40-2_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:40:07 GMT",
+        "content-length": "2637164",
+        "etag": "\"283d6c-5f2620c24ac00\"",
+        "last-modified": "Mon, 16 Jan 2023 14:03:28 GMT"
+      },
+      "sha256": "fa154fed9b3bb5e11c4c152c3faaa5b56dce9ea39fed68156c3d656c97b4a11e",
+      "finished_utc": "2026-10-22T12:40:47.326499+00:00",
+      "elapsed_seconds": 42.094364
+    },
+    {
+      "index": 9,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/binutils/binutils-common_2.40-2_arm64.deb",
+      "relative_path": "inputs/pool/main/b/binutils/binutils-common_2.40-2_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/binutils/binutils-common_2.40-2_arm64.deb",
+      "started_utc": "2026-10-22T12:40:47.326777+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/binutils/binutils-common_2.40-2_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/4bd05d6c23c7535e574ba1140ad29c6d3387e76e/binutils-common_2.40-2_arm64.deb"
+        }
+      ],
+      "bytes": 2486664,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/4bd05d6c23c7535e574ba1140ad29c6d3387e76e/binutils-common_2.40-2_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:40:49 GMT",
+        "content-length": "2486664",
+        "etag": "\"25f188-5f261f5138540\"",
+        "last-modified": "Mon, 16 Jan 2023 13:57:01 GMT"
+      },
+      "sha256": "2e340788164c94d876ab88c41f85ec0875a9f4324f83c93a44a14879925a11a0",
+      "finished_utc": "2026-10-22T12:41:32.678560+00:00",
+      "elapsed_seconds": 45.351714
+    },
+    {
+      "index": 10,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/binutils/binutils_2.40-2_arm64.deb",
+      "relative_path": "inputs/pool/main/b/binutils/binutils_2.40-2_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/binutils/binutils_2.40-2_arm64.deb",
+      "started_utc": "2026-10-22T12:41:32.678798+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/binutils/binutils_2.40-2_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/b3fb807db2cb51c32c6579020befa0cd97b8b41c/binutils_2.40-2_arm64.deb"
+        }
+      ],
+      "bytes": 64944,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/b3fb807db2cb51c32c6579020befa0cd97b8b41c/binutils_2.40-2_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:41:35 GMT",
+        "content-length": "64944",
+        "etag": "\"fdb0-5f261eea39240\"",
+        "last-modified": "Mon, 16 Jan 2023 13:55:13 GMT"
+      },
+      "sha256": "546129bb85470fa3b5398d7429cd87c5353ab47f37e9d5e28abc57e6923a24fa",
+      "finished_utc": "2026-10-22T12:41:38.701582+00:00",
+      "elapsed_seconds": 6.022789
+    },
+    {
+      "index": 11,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/binutils/libbinutils_2.40-2_arm64.deb",
+      "relative_path": "inputs/pool/main/b/binutils/libbinutils_2.40-2_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/binutils/libbinutils_2.40-2_arm64.deb",
+      "started_utc": "2026-10-22T12:41:38.701875+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/binutils/libbinutils_2.40-2_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/a35c629f9d3e78eb5794262286d1cef07cbd4e8b/libbinutils_2.40-2_arm64.deb"
+        }
+      ],
+      "bytes": 645336,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/a35c629f9d3e78eb5794262286d1cef07cbd4e8b/libbinutils_2.40-2_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:41:40 GMT",
+        "content-length": "645336",
+        "etag": "\"9d8d8-5f261e10c9140\"",
+        "last-modified": "Mon, 16 Jan 2023 13:51:25 GMT"
+      },
+      "sha256": "1987db5a2ca550be3153dce8b23d6b2e038079c4de0b26b349e5b742e293ad23",
+      "finished_utc": "2026-10-22T12:41:55.986102+00:00",
+      "elapsed_seconds": 17.283301
+    },
+    {
+      "index": 12,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/binutils/libctf-nobfd0_2.40-2_arm64.deb",
+      "relative_path": "inputs/pool/main/b/binutils/libctf-nobfd0_2.40-2_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/binutils/libctf-nobfd0_2.40-2_arm64.deb",
+      "started_utc": "2026-10-22T12:41:55.986229+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/binutils/libctf-nobfd0_2.40-2_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/ebc5ddf67e4081a077f62676ced4ec0a6b602066/libctf-nobfd0_2.40-2_arm64.deb"
+        }
+      ],
+      "bytes": 143508,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/ebc5ddf67e4081a077f62676ced4ec0a6b602066/libctf-nobfd0_2.40-2_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:41:58 GMT",
+        "content-length": "143508",
+        "etag": "\"23094-5f2619e0db040\"",
+        "last-modified": "Mon, 16 Jan 2023 13:32:41 GMT"
+      },
+      "sha256": "27a232cba9b33bd8495e7ccc8ffbe24c729574a8073df0851decba037fb12a63",
+      "finished_utc": "2026-10-22T12:42:03.764432+00:00",
+      "elapsed_seconds": 7.777683
+    },
+    {
+      "index": 13,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/binutils/libctf0_2.40-2_arm64.deb",
+      "relative_path": "inputs/pool/main/b/binutils/libctf0_2.40-2_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/binutils/libctf0_2.40-2_arm64.deb",
+      "started_utc": "2026-10-22T12:42:03.764546+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/binutils/libctf0_2.40-2_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/1df5795021399aac6a1ca918f9d17a1f3a191e12/libctf0_2.40-2_arm64.deb"
+        }
+      ],
+      "bytes": 79188,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/1df5795021399aac6a1ca918f9d17a1f3a191e12/libctf0_2.40-2_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:42:06 GMT",
+        "content-length": "79188",
+        "etag": "\"13554-5f261978e7b00\"",
+        "last-modified": "Mon, 16 Jan 2023 13:30:52 GMT"
+      },
+      "sha256": "539036b9ecf8af5e803962ffcf0639332dcb3a027a7ab10b174f8f92272f5b21",
+      "finished_utc": "2026-10-22T12:42:07.314076+00:00",
+      "elapsed_seconds": 3.54938
+    },
+    {
+      "index": 14,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/binutils/libgprofng0_2.40-2_arm64.deb",
+      "relative_path": "inputs/pool/main/b/binutils/libgprofng0_2.40-2_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/binutils/libgprofng0_2.40-2_arm64.deb",
+      "started_utc": "2026-10-22T12:42:07.314243+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/binutils/libgprofng0_2.40-2_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/b8fbf6daface04a0ec5cdae0ade46637ad4e1b59/libgprofng0_2.40-2_arm64.deb"
+        }
+      ],
+      "bytes": 680048,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/b8fbf6daface04a0ec5cdae0ade46637ad4e1b59/libgprofng0_2.40-2_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:42:10 GMT",
+        "content-length": "680048",
+        "etag": "\"a6070-5f2619d569540\"",
+        "last-modified": "Mon, 16 Jan 2023 13:32:29 GMT"
+      },
+      "sha256": "dd0d7fe758461a2a5560b272a7b71b26b571258554adfb5e9b72c4f18ddf6b24",
+      "finished_utc": "2026-10-22T12:42:16.015589+00:00",
+      "elapsed_seconds": 8.701079
+    },
+    {
+      "index": 15,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/brotli/libbrotli1_1.0.9-2+b6_arm64.deb",
+      "relative_path": "inputs/pool/main/b/brotli/libbrotli1_1.0.9-2+b6_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/brotli/libbrotli1_1.0.9-2+b6_arm64.deb",
+      "started_utc": "2026-10-22T12:42:16.015783+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/brotli/libbrotli1_1.0.9-2+b6_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/0e28e1469a09df559a5471bc10d1d35568eb4cbd/libbrotli1_1.0.9-2%2Bb6_arm64.deb"
+        }
+      ],
+      "bytes": 269124,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/0e28e1469a09df559a5471bc10d1d35568eb4cbd/libbrotli1_1.0.9-2%2Bb6_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:42:18 GMT",
+        "content-length": "269124",
+        "etag": "\"41b44-5f3b8388f4a00\"",
+        "last-modified": "Thu, 02 Feb 2023 14:17:12 GMT"
+      },
+      "sha256": "3137de7f71952e710ee9f0df05026b3c6f463be9369a502d57c7696732f1ed22",
+      "finished_utc": "2026-10-22T12:42:29.829283+00:00",
+      "elapsed_seconds": 13.81328
+    },
+    {
+      "index": 16,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/bzip2/bzip2_1.0.8-5+b1_arm64.deb",
+      "relative_path": "inputs/pool/main/b/bzip2/bzip2_1.0.8-5+b1_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/bzip2/bzip2_1.0.8-5+b1_arm64.deb",
+      "started_utc": "2026-10-22T12:42:29.829517+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/bzip2/bzip2_1.0.8-5+b1_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/90e41657481c2e6ca6e72938624b20879a9bd248/bzip2_1.0.8-5%2Bb1_arm64.deb"
+        }
+      ],
+      "bytes": 48868,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/90e41657481c2e6ca6e72938624b20879a9bd248/bzip2_1.0.8-5%2Bb1_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:42:32 GMT",
+        "content-length": "48868",
+        "etag": "\"bee4-5e90c196ce6c0\"",
+        "last-modified": "Mon, 19 Sep 2022 18:44:19 GMT"
+      },
+      "sha256": "7624d678ce308bc301f2932fb5c60392de09c569b9be4f2ae2dfe9a59cd73868",
+      "finished_utc": "2026-10-22T12:42:33.052626+00:00",
+      "elapsed_seconds": 3.223077
+    },
+    {
+      "index": 17,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/bzip2/libbz2-1.0_1.0.8-5+b1_arm64.deb",
+      "relative_path": "inputs/pool/main/b/bzip2/libbz2-1.0_1.0.8-5+b1_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/bzip2/libbz2-1.0_1.0.8-5+b1_arm64.deb",
+      "started_utc": "2026-10-22T12:42:33.052785+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/b/bzip2/libbz2-1.0_1.0.8-5+b1_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/889f56b979bc946c7891f559180aa5d899a86104/libbz2-1.0_1.0.8-5%2Bb1_arm64.deb"
+        }
+      ],
+      "bytes": 47452,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/889f56b979bc946c7891f559180aa5d899a86104/libbz2-1.0_1.0.8-5%2Bb1_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:42:35 GMT",
+        "content-length": "47452",
+        "etag": "\"b95c-5e90c196ce6c0\"",
+        "last-modified": "Mon, 19 Sep 2022 18:44:19 GMT"
+      },
+      "sha256": "d3a96ece03326498b39ff093a76800dfcbcb1d4049d6ae6e9f6fa1aa7a590ad6",
+      "finished_utc": "2026-10-22T12:42:36.147305+00:00",
+      "elapsed_seconds": 3.094507
+    },
+    {
+      "index": 18,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/c/cdebconf/libdebconfclient0_0.270_arm64.deb",
+      "relative_path": "inputs/pool/main/c/cdebconf/libdebconfclient0_0.270_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/c/cdebconf/libdebconfclient0_0.270_arm64.deb",
+      "started_utc": "2026-10-22T12:42:36.147484+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/c/cdebconf/libdebconfclient0_0.270_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/93d27ca9e8d19e73ca81fb7ac41d6945dd4387aa/libdebconfclient0_0.270_arm64.deb"
+        }
+      ],
+      "bytes": 9976,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/93d27ca9e8d19e73ca81fb7ac41d6945dd4387aa/libdebconfclient0_0.270_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:42:38 GMT",
+        "content-length": "9976",
+        "etag": "\"26f8-5fc645e440b00\"",
+        "last-modified": "Tue, 23 May 2023 23:01:32 GMT"
+      },
+      "sha256": "87a7e4cf5c8cf77eb2f8728b7536c9cba201f29b0f38c4f84e2a784b817bbcec",
+      "finished_utc": "2026-10-22T12:42:39.214955+00:00",
+      "elapsed_seconds": 3.067457
+    },
+    {
+      "index": 19,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/c/cmake/cmake-data_3.25.1-1_all.deb",
+      "relative_path": "inputs/pool/main/c/cmake/cmake-data_3.25.1-1_all.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/c/cmake/cmake-data_3.25.1-1_all.deb",
+      "started_utc": "2026-10-22T12:42:39.215089+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/c/cmake/cmake-data_3.25.1-1_all.deb",
+          "to_url": "https://snapshot.debian.org/file/9c35e53ad29590ba57abfff6edfdcb685302698f/cmake-data_3.25.1-1_all.deb"
+        }
+      ],
+      "bytes": 2026484,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/9c35e53ad29590ba57abfff6edfdcb685302698f/cmake-data_3.25.1-1_all.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:42:41 GMT",
+        "content-length": "2026484",
+        "etag": "\"1eebf4-5eec1924a6080\"",
+        "last-modified": "Thu, 01 Dec 2022 10:20:34 GMT"
+      },
+      "sha256": "8371f9694da94fd551a3ea653e2e25d99747471ca0b48cc029bf5c792ea590a3",
+      "finished_utc": "2026-10-22T12:43:18.908782+00:00",
+      "elapsed_seconds": 39.693541
+    },
+    {
+      "index": 20,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/c/cmake/cmake_3.25.1-1_arm64.deb",
+      "relative_path": "inputs/pool/main/c/cmake/cmake_3.25.1-1_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/c/cmake/cmake_3.25.1-1_arm64.deb",
+      "started_utc": "2026-10-22T12:43:18.908916+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/c/cmake/cmake_3.25.1-1_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/e7b1c95f22bde436e0f171c68e336902d43b08ab/cmake_3.25.1-1_arm64.deb"
+        }
+      ],
+      "bytes": 6806404,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/e7b1c95f22bde436e0f171c68e336902d43b08ab/cmake_3.25.1-1_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:43:21 GMT",
+        "content-length": "6806404",
+        "etag": "\"67db84-5eec19259a2c0\"",
+        "last-modified": "Thu, 01 Dec 2022 10:20:35 GMT"
+      },
+      "sha256": "457c1e246b50bbfc2cd6f0f0d1da09889c8bc24677b9acb8946c4c778eaa74e5",
+      "finished_utc": "2026-10-22T12:45:58.668123+00:00",
+      "elapsed_seconds": 159.75886
+    },
+    {
+      "index": 21,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/c/coreutils/coreutils_9.1-1_arm64.deb",
+      "relative_path": "inputs/pool/main/c/coreutils/coreutils_9.1-1_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/c/coreutils/coreutils_9.1-1_arm64.deb",
+      "started_utc": "2026-10-22T12:45:58.668403+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/c/coreutils/coreutils_9.1-1_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/759d74915f34b6643940494759e2ecf775ada768/coreutils_9.1-1_arm64.deb"
+        }
+      ],
+      "bytes": 2815252,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/759d74915f34b6643940494759e2ecf775ada768/coreutils_9.1-1_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:46:01 GMT",
+        "content-length": "2815252",
+        "etag": "\"2af514-5e924ed8ba640\"",
+        "last-modified": "Wed, 21 Sep 2022 00:21:37 GMT"
+      },
+      "sha256": "ec8f090a14c684879dce251254d8d9ed0876d4480f750d5807ef04e5435e1c4d",
+      "finished_utc": "2026-10-22T12:46:36.540212+00:00",
+      "elapsed_seconds": 37.871736
+    },
+    {
+      "index": 22,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/c/curl/libcurl4_7.88.1-10_arm64.deb",
+      "relative_path": "inputs/pool/main/c/curl/libcurl4_7.88.1-10_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/c/curl/libcurl4_7.88.1-10_arm64.deb",
+      "started_utc": "2026-10-22T12:46:36.540400+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/c/curl/libcurl4_7.88.1-10_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/c2f21f25eb2dc41ad54f40989548909fb31a02fe/libcurl4_7.88.1-10_arm64.deb"
+        }
+      ],
+      "bytes": 361792,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/c2f21f25eb2dc41ad54f40989548909fb31a02fe/libcurl4_7.88.1-10_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:46:39 GMT",
+        "content-length": "361792",
+        "etag": "\"58540-5fc11ec709cc0\"",
+        "last-modified": "Fri, 19 May 2023 20:39:55 GMT"
+      },
+      "sha256": "0f3450c523d6c3d4e86f425dbed18a842f05e3232245b7503c5cb791cd10b45c",
+      "finished_utc": "2026-10-22T12:46:53.307273+00:00",
+      "elapsed_seconds": 16.76684
+    },
+    {
+      "index": 23,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/c/cyrus-sasl2/libsasl2-2_2.1.28+dfsg-10_arm64.deb",
+      "relative_path": "inputs/pool/main/c/cyrus-sasl2/libsasl2-2_2.1.28+dfsg-10_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/c/cyrus-sasl2/libsasl2-2_2.1.28+dfsg-10_arm64.deb",
+      "started_utc": "2026-10-22T12:46:53.307404+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/c/cyrus-sasl2/libsasl2-2_2.1.28+dfsg-10_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/59bc2cd1313edf1668678c0bf5f9e81605877189/libsasl2-2_2.1.28%2Bdfsg-10_arm64.deb"
+        }
+      ],
+      "bytes": 58016,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/59bc2cd1313edf1668678c0bf5f9e81605877189/libsasl2-2_2.1.28%2Bdfsg-10_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:46:56 GMT",
+        "content-length": "58016",
+        "etag": "\"e2a0-5ee2247798bc0\"",
+        "last-modified": "Wed, 23 Nov 2022 12:17:59 GMT"
+      },
+      "sha256": "61dcbb6560e2eb20bff256f1b445ac9af13aa61c6a6ae115ad8cb96c9c50ea38",
+      "finished_utc": "2026-10-22T12:46:56.962743+00:00",
+      "elapsed_seconds": 3.655337
+    },
+    {
+      "index": 24,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/c/cyrus-sasl2/libsasl2-modules-db_2.1.28+dfsg-10_arm64.deb",
+      "relative_path": "inputs/pool/main/c/cyrus-sasl2/libsasl2-modules-db_2.1.28+dfsg-10_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/c/cyrus-sasl2/libsasl2-modules-db_2.1.28+dfsg-10_arm64.deb",
+      "started_utc": "2026-10-22T12:46:56.962844+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/c/cyrus-sasl2/libsasl2-modules-db_2.1.28+dfsg-10_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/cfffa92a7d2d57983f0b3e6e55bdab74c70b681c/libsasl2-modules-db_2.1.28%2Bdfsg-10_arm64.deb"
+        }
+      ],
+      "bytes": 20820,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/cfffa92a7d2d57983f0b3e6e55bdab74c70b681c/libsasl2-modules-db_2.1.28%2Bdfsg-10_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:46:59 GMT",
+        "content-length": "20820",
+        "etag": "\"5154-5ee22483fe900\"",
+        "last-modified": "Wed, 23 Nov 2022 12:18:12 GMT"
+      },
+      "sha256": "56d9c35ac6729b02f78900175557dd36bef26611dab89584f29da15631628869",
+      "finished_utc": "2026-10-22T12:46:59.405693+00:00",
+      "elapsed_seconds": 2.442855
+    },
+    {
+      "index": 25,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/d/dash/dash_0.5.12-2_arm64.deb",
+      "relative_path": "inputs/pool/main/d/dash/dash_0.5.12-2_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/d/dash/dash_0.5.12-2_arm64.deb",
+      "started_utc": "2026-10-22T12:46:59.405801+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/d/dash/dash_0.5.12-2_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/e7610521c6e5731ec2c8323d12269f641d74cf7c/dash_0.5.12-2_arm64.deb"
+        }
+      ],
+      "bytes": 88808,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/e7610521c6e5731ec2c8323d12269f641d74cf7c/dash_0.5.12-2_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:47:02 GMT",
+        "content-length": "88808",
+        "etag": "\"15ae8-5f1973f207240\"",
+        "last-modified": "Fri, 06 Jan 2023 12:06:25 GMT"
+      },
+      "sha256": "c1358e2a8054eb93efd460adf480224a16ea9e0b4d7b4c6cbcf8c8c91902a1d7",
+      "finished_utc": "2026-10-22T12:47:02.904841+00:00",
+      "elapsed_seconds": 3.499052
+    },
+    {
+      "index": 26,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/d/db5.3/libdb5.3_5.3.28+dfsg2-1_arm64.deb",
+      "relative_path": "inputs/pool/main/d/db5.3/libdb5.3_5.3.28+dfsg2-1_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/d/db5.3/libdb5.3_5.3.28+dfsg2-1_arm64.deb",
+      "started_utc": "2026-10-22T12:47:02.905015+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/d/db5.3/libdb5.3_5.3.28+dfsg2-1_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/80588ac24a9094332d6b311dece8098eb1375230/libdb5.3_5.3.28%2Bdfsg2-1_arm64.deb"
+        }
+      ],
+      "bytes": 625748,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/80588ac24a9094332d6b311dece8098eb1375230/libdb5.3_5.3.28%2Bdfsg2-1_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:47:04 GMT",
+        "content-length": "625748",
+        "etag": "\"98c54-5f286496d69c0\"",
+        "last-modified": "Wed, 18 Jan 2023 09:17:35 GMT"
+      },
+      "sha256": "344367608d622298a3d916f4cee3dc3173286f3b21f8f497ab21e7178ba930f9",
+      "finished_utc": "2026-10-22T12:47:16.396410+00:00",
+      "elapsed_seconds": 13.491376
+    },
+    {
+      "index": 27,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/d/debconf/debconf_1.5.82_all.deb",
+      "relative_path": "inputs/pool/main/d/debconf/debconf_1.5.82_all.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/d/debconf/debconf_1.5.82_all.deb",
+      "started_utc": "2026-10-22T12:47:16.396583+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/d/debconf/debconf_1.5.82_all.deb",
+          "to_url": "https://snapshot.debian.org/file/e7b7ee8dd73364ae9955dda8c9afa936323cfeff/debconf_1.5.82_all.deb"
+        }
+      ],
+      "bytes": 121212,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/e7b7ee8dd73364ae9955dda8c9afa936323cfeff/debconf_1.5.82_all.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:47:18 GMT",
+        "content-length": "121212",
+        "etag": "\"1d97c-5f1dd7a735b00\"",
+        "last-modified": "Mon, 09 Jan 2023 23:53:48 GMT"
+      },
+      "sha256": "74ab14194a3762b2fc717917dcfda42929ab98e3c59295a063344dc551cd7cc8",
+      "finished_utc": "2026-10-22T12:47:21.185432+00:00",
+      "elapsed_seconds": 4.788857
+    },
+    {
+      "index": 28,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/d/debianutils/debianutils_5.7-0.4_arm64.deb",
+      "relative_path": "inputs/pool/main/d/debianutils/debianutils_5.7-0.4_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/d/debianutils/debianutils_5.7-0.4_arm64.deb",
+      "started_utc": "2026-10-22T12:47:21.185568+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/d/debianutils/debianutils_5.7-0.4_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/a7c248ce4f90b039a09785ea3487eda6d1ec780a/debianutils_5.7-0.4_arm64.deb"
+        }
+      ],
+      "bytes": 102488,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/a7c248ce4f90b039a09785ea3487eda6d1ec780a/debianutils_5.7-0.4_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:47:24 GMT",
+        "content-length": "102488",
+        "etag": "\"19058-5ecc0dc08e640\"",
+        "last-modified": "Sat, 05 Nov 2022 22:39:13 GMT"
+      },
+      "sha256": "2cdb5a5809edcec34549fcccc452deb56c966369e23675d6c507d4744c476f6f",
+      "finished_utc": "2026-10-22T12:47:25.983548+00:00",
+      "elapsed_seconds": 4.797985
+    },
+    {
+      "index": 29,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/d/diffutils/diffutils_3.8-4_arm64.deb",
+      "relative_path": "inputs/pool/main/d/diffutils/diffutils_3.8-4_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/d/diffutils/diffutils_3.8-4_arm64.deb",
+      "started_utc": "2026-10-22T12:47:25.983638+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/d/diffutils/diffutils_3.8-4_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/b478736c300fa6bbce312c67bbdbaa3d5834a102/diffutils_3.8-4_arm64.deb"
+        }
+      ],
+      "bytes": 344700,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/b478736c300fa6bbce312c67bbdbaa3d5834a102/diffutils_3.8-4_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:47:28 GMT",
+        "content-length": "344700",
+        "etag": "\"5427c-5f3e5c46b9b00\"",
+        "last-modified": "Sat, 04 Feb 2023 20:37:32 GMT"
+      },
+      "sha256": "d2a65fa215001e84c26e2fbe08b44746c6b64be51878ae1d79d5263365e244ec",
+      "finished_utc": "2026-10-22T12:47:31.748326+00:00",
+      "elapsed_seconds": 5.764702
+    },
+    {
+      "index": 30,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/d/dpkg/dpkg_1.21.22_arm64.deb",
+      "relative_path": "inputs/pool/main/d/dpkg/dpkg_1.21.22_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/d/dpkg/dpkg_1.21.22_arm64.deb",
+      "started_utc": "2026-10-22T12:47:31.748512+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/d/dpkg/dpkg_1.21.22_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/18b5dc89061b745927a96e91fbb362e1ded97d3e/dpkg_1.21.22_arm64.deb"
+        }
+      ],
+      "bytes": 1549512,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/18b5dc89061b745927a96e91fbb362e1ded97d3e/dpkg_1.21.22_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:47:34 GMT",
+        "content-length": "1549512",
+        "etag": "\"17a4c8-5fbeb6c650780\"",
+        "last-modified": "Wed, 17 May 2023 22:43:58 GMT"
+      },
+      "sha256": "4775b5f27315054c6860f402d1ef74614090e61a4192ec9c63cec9c88a75f9c2",
+      "finished_utc": "2026-10-22T12:47:43.022975+00:00",
+      "elapsed_seconds": 11.274459
+    },
+    {
+      "index": 31,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/e/e2fsprogs/libcom-err2_1.47.0-2_arm64.deb",
+      "relative_path": "inputs/pool/main/e/e2fsprogs/libcom-err2_1.47.0-2_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/e/e2fsprogs/libcom-err2_1.47.0-2_arm64.deb",
+      "started_utc": "2026-10-22T12:47:43.023223+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/e/e2fsprogs/libcom-err2_1.47.0-2_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/68a3e4ca372d7b4f1f7625c400d210f14f97f801/libcom-err2_1.47.0-2_arm64.deb"
+        }
+      ],
+      "bytes": 19580,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/68a3e4ca372d7b4f1f7625c400d210f14f97f801/libcom-err2_1.47.0-2_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:47:46 GMT",
+        "content-length": "19580",
+        "etag": "\"4c7c-5f624815a7d40\"",
+        "last-modified": "Sun, 05 Mar 2023 10:18:53 GMT"
+      },
+      "sha256": "0bd07f2a030f9e0346a80bbdf211fe3a55835dda70ed0e9d9da23f0e24cf4e99",
+      "finished_utc": "2026-10-22T12:47:47.943915+00:00",
+      "elapsed_seconds": 4.920683
+    },
+    {
+      "index": 32,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/e/expat/libexpat1_2.5.0-1_arm64.deb",
+      "relative_path": "inputs/pool/main/e/expat/libexpat1_2.5.0-1_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/e/expat/libexpat1_2.5.0-1_arm64.deb",
+      "started_utc": "2026-10-22T12:47:47.944034+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/e/expat/libexpat1_2.5.0-1_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/f243cd21c2b374117c3935748bd81c4cbe104c22/libexpat1_2.5.0-1_arm64.deb"
+        }
+      ],
+      "bytes": 84828,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/f243cd21c2b374117c3935748bd81c4cbe104c22/libexpat1_2.5.0-1_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:47:50 GMT",
+        "content-length": "84828",
+        "etag": "\"14b5c-5ec1ba7bce580\"",
+        "last-modified": "Fri, 28 Oct 2022 17:33:26 GMT"
+      },
+      "sha256": "39de7d17cb312d76f586866a38d7649102178a2cdb7f4cef1b4f279ea3cebf07",
+      "finished_utc": "2026-10-22T12:47:51.244002+00:00",
+      "elapsed_seconds": 3.299979
+    },
+    {
+      "index": 33,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/f/file/file_5.44-3_arm64.deb",
+      "relative_path": "inputs/pool/main/f/file/file_5.44-3_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/f/file/file_5.44-3_arm64.deb",
+      "started_utc": "2026-10-22T12:47:51.244171+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/f/file/file_5.44-3_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/f725f3f28032c65555eed51130a0e59eeb1b6d1a/file_5.44-3_arm64.deb"
+        }
+      ],
+      "bytes": 42476,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/f725f3f28032c65555eed51130a0e59eeb1b6d1a/file_5.44-3_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:47:58 GMT",
+        "content-length": "42476",
+        "etag": "\"a5ec-5f37a1a93b240\"",
+        "last-modified": "Mon, 30 Jan 2023 12:10:41 GMT"
+      },
+      "sha256": "de027231666482a8ae108f7f9c64711e08382b23476bb1f67979f9e3c39905c6",
+      "finished_utc": "2026-10-22T12:47:59.193761+00:00",
+      "elapsed_seconds": 7.94959
+    },
+    {
+      "index": 34,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/f/file/libmagic-mgc_5.44-3_arm64.deb",
+      "relative_path": "inputs/pool/main/f/file/libmagic-mgc_5.44-3_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/f/file/libmagic-mgc_5.44-3_arm64.deb",
+      "started_utc": "2026-10-22T12:47:59.193942+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/f/file/libmagic-mgc_5.44-3_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/43508cf4dc3f5e759189bf91ba9908db4f0b96ae/libmagic-mgc_5.44-3_arm64.deb"
+        }
+      ],
+      "bytes": 304888,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/43508cf4dc3f5e759189bf91ba9908db4f0b96ae/libmagic-mgc_5.44-3_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:48:01 GMT",
+        "content-length": "304888",
+        "etag": "\"4a6f8-5f37a1be363c0\"",
+        "last-modified": "Mon, 30 Jan 2023 12:11:03 GMT"
+      },
+      "sha256": "ff57ca94d3c1231b16d10587e60a2cf6c53b53249879235c59fa0b19e832974c",
+      "finished_utc": "2026-10-22T12:48:06.611848+00:00",
+      "elapsed_seconds": 7.417893
+    },
+    {
+      "index": 35,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/f/file/libmagic1_5.44-3_arm64.deb",
+      "relative_path": "inputs/pool/main/f/file/libmagic1_5.44-3_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/f/file/libmagic1_5.44-3_arm64.deb",
+      "started_utc": "2026-10-22T12:48:06.611936+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/f/file/libmagic1_5.44-3_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/06a38ffd7afd7a68d19ea22127c99e51ce4848a0/libmagic1_5.44-3_arm64.deb"
+        }
+      ],
+      "bytes": 98536,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/06a38ffd7afd7a68d19ea22127c99e51ce4848a0/libmagic1_5.44-3_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:48:08 GMT",
+        "content-length": "98536",
+        "etag": "\"180e8-5f37a1e08b4c0\"",
+        "last-modified": "Mon, 30 Jan 2023 12:11:39 GMT"
+      },
+      "sha256": "2fbaa1e2efdb80cf20cb13b2c523e82602c117cf5ec922c6d1d4ce6e18440052",
+      "finished_utc": "2026-10-22T12:48:09.935121+00:00",
+      "elapsed_seconds": 3.323191
+    },
+    {
+      "index": 36,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/f/findutils/findutils_4.9.0-4_arm64.deb",
+      "relative_path": "inputs/pool/main/f/findutils/findutils_4.9.0-4_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/f/findutils/findutils_4.9.0-4_arm64.deb",
+      "started_utc": "2026-10-22T12:48:09.935244+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/f/findutils/findutils_4.9.0-4_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/f3199cb749a0c92b0832af3fed1468150f1adcfc/findutils_4.9.0-4_arm64.deb"
+        }
+      ],
+      "bytes": 630396,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/f3199cb749a0c92b0832af3fed1468150f1adcfc/findutils_4.9.0-4_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:48:12 GMT",
+        "content-length": "630396",
+        "etag": "\"99e7c-5f1ddf52d33c0\"",
+        "last-modified": "Tue, 10 Jan 2023 00:28:07 GMT"
+      },
+      "sha256": "cc8792e769ff4a1280ff1a43b11a1858a72d858fb6eb871ec327ec8eebe99eaa",
+      "finished_utc": "2026-10-22T12:48:17.614578+00:00",
+      "elapsed_seconds": 7.679335
+    },
+    {
+      "index": 37,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gawk/gawk_5.2.1-2_arm64.deb",
+      "relative_path": "inputs/pool/main/g/gawk/gawk_5.2.1-2_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gawk/gawk_5.2.1-2_arm64.deb",
+      "started_utc": "2026-10-22T12:48:17.614831+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gawk/gawk_5.2.1-2_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/b05d72ed2a9084f37a3ef34f19ebfa25559e3888/gawk_5.2.1-2_arm64.deb"
+        }
+      ],
+      "bytes": 640116,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/b05d72ed2a9084f37a3ef34f19ebfa25559e3888/gawk_5.2.1-2_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:48:19 GMT",
+        "content-length": "640116",
+        "etag": "\"9c474-5f5155c86a6c0\"",
+        "last-modified": "Sun, 19 Feb 2023 22:49:39 GMT"
+      },
+      "sha256": "38f1cfc73847954dd2a0a94e414472a0d6ea0d1bb0c399d1f6e1948e15ff5880",
+      "finished_utc": "2026-10-22T12:48:30.295963+00:00",
+      "elapsed_seconds": 12.681104
+    },
+    {
+      "index": 38,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/cpp-12_12.2.0-14_arm64.deb",
+      "relative_path": "inputs/pool/main/g/gcc-12/cpp-12_12.2.0-14_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/cpp-12_12.2.0-14_arm64.deb",
+      "started_utc": "2026-10-22T12:48:30.296123+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/cpp-12_12.2.0-14_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/2026ab2e590d4b0fcdce5d1d8ab33e0828095479/cpp-12_12.2.0-14_arm64.deb"
+        }
+      ],
+      "bytes": 8225948,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/2026ab2e590d4b0fcdce5d1d8ab33e0828095479/cpp-12_12.2.0-14_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:48:33 GMT",
+        "content-length": "8225948",
+        "etag": "\"7d849c-5f1e0c8a86240\"",
+        "last-modified": "Tue, 10 Jan 2023 03:50:25 GMT"
+      },
+      "sha256": "7a69b35b2c99958acc3e288137eb6b26b493e506a97de962a6eeb028bdc057ad",
+      "finished_utc": "2026-10-22T12:49:53.391359+00:00",
+      "elapsed_seconds": 83.095009
+    },
+    {
+      "index": 39,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/g++-12_12.2.0-14_arm64.deb",
+      "relative_path": "inputs/pool/main/g/gcc-12/g++-12_12.2.0-14_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/g++-12_12.2.0-14_arm64.deb",
+      "started_utc": "2026-10-22T12:49:53.391476+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/g++-12_12.2.0-14_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/986872c8df15e365629de9185f02efa333303d7e/g%2B%2B-12_12.2.0-14_arm64.deb"
+        }
+      ],
+      "bytes": 9071076,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/986872c8df15e365629de9185f02efa333303d7e/g%2B%2B-12_12.2.0-14_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:49:57 GMT",
+        "content-length": "9071076",
+        "etag": "\"8a69e4-5f1e0e0bcef40\"",
+        "last-modified": "Tue, 10 Jan 2023 03:57:09 GMT"
+      },
+      "sha256": "9eeee14dfe8747ccbd58ff04e4d1f193dabf911593c2d1846b3545300066a909",
+      "finished_utc": "2026-10-22T12:51:36.619365+00:00",
+      "elapsed_seconds": 103.227678
+    },
+    {
+      "index": 40,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/gcc-12-base_12.2.0-14_arm64.deb",
+      "relative_path": "inputs/pool/main/g/gcc-12/gcc-12-base_12.2.0-14_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/gcc-12-base_12.2.0-14_arm64.deb",
+      "started_utc": "2026-10-22T12:51:36.619581+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/gcc-12-base_12.2.0-14_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/d3c19dadc92cc9c01a1257b70534311c0f6a4cd7/gcc-12-base_12.2.0-14_arm64.deb"
+        }
+      ],
+      "bytes": 37504,
+      "status": "obtained-byte-matched",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/d3c19dadc92cc9c01a1257b70534311c0f6a4cd7/gcc-12-base_12.2.0-14_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:51:39 GMT",
+        "content-length": "37504",
+        "etag": "\"9280-5f1e0e286b2c0\"",
+        "last-modified": "Tue, 10 Jan 2023 03:57:39 GMT"
+      },
+      "sha256": "e1f2fb7212546c0e360af8df26303608f7b09e123ac9c96e15872d1ec1ce3275",
+      "finished_utc": "2026-10-22T12:51:40.000240+00:00",
+      "elapsed_seconds": 3.380662
+    },
+    {
+      "index": 41,
+      "requested_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/gcc-12_12.2.0-14_arm64.deb",
+      "relative_path": "inputs/pool/main/g/gcc-12/gcc-12_12.2.0-14_arm64.deb",
+      "planned_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/gcc-12_12.2.0-14_arm64.deb",
+      "started_utc": "2026-10-22T12:51:40.000358+00:00",
+      "redirects": [
+        {
+          "status": 302,
+          "from_url": "https://snapshot.debian.org/archive/debian/20230612T000000Z/pool/main/g/gcc-12/gcc-12_12.2.0-14_arm64.deb",
+          "to_url": "https://snapshot.debian.org/file/acc34ff193ccbc339a89c5f9e446c14f95bbedca/gcc-12_12.2.0-14_arm64.deb"
+        }
+      ],
+      "bytes": 12582912,
+      "status": "failed",
+      "http_status": 200,
+      "final_url": "https://snapshot.debian.org/file/acc34ff193ccbc339a89c5f9e446c14f95bbedca/gcc-12_12.2.0-14_arm64.deb",
+      "response_headers": {
+        "date": "Thu, 22 Oct 2026 12:51:43 GMT",
+        "content-length": "16306652",
+        "etag": "\"f8d1dc-5f1e0d4e06f80\"",
+        "last-modified": "Tue, 10 Jan 2023 03:53:50 GMT"
+      },
+      "sha256": "8e33d39de0845609e19c56ba90b09a6d9b14fae6f9438afe4ebc9cbf411fe7ee",
+      "finished_utc": "2026-10-22T12:54:40.010368+00:00",
+      "error": {
+        "type": "TimeoutError",
+        "reason": "item-or-batch-deadline"
+      },
+      "elapsed_seconds": 180.009641
+    }
+  ],
+  "signature_verified": false,
+  "input_acceptance": "not-accepted",
+  "build_ready": false,
+  "unpacked": false,
+  "installed": false,
+  "built": false,
+  "payload_executed": false,
+  "continuation": {
+    "original_records": {
+      "acquisition-plan.json": {
+        "path": ".tmp/cvc5-c1-acquisition-2026-10-22/acquisition-plan.json",
+        "bytes": 265924,
+        "sha256": "165672c67dcaea6963f00dc13e2128a3563fc8a59b58e27326ae58e47f1749cc"
+      },
+      "fetch-helper.py": {
+        "path": ".tmp/cvc5-c1-acquisition-2026-10-22/fetch-helper.py",
+        "bytes": 14877,
+        "sha256": "d7d3c548fe1ec24324c5cb20c0f58421dfaa3343b247b2044c0f73e24188f965"
+      },
+      "events.jsonl": {
+        "path": ".tmp/cvc5-c1-acquisition-2026-10-22/events.jsonl",
+        "bytes": 11708,
+        "sha256": "ad2bd7b496c117f0303947535b4a4245b634c6992f70f199e72e2e4d60509fc4"
+      },
+      "result.json": {
+        "path": ".tmp/cvc5-c1-acquisition-2026-10-22/result.json",
+        "bytes": 9817,
+        "sha256": "eadebcfe3fbaed9d2b06f8159614fcffd1d1d6a4a12fa5abe5213f24eac225c8"
+      }
+    },
+    "retained_readback": {
+      "scope": "raw-archive-integrity-only",
+      "matched_files": 6,
+      "missing_files": [
+        "inputs/pool/main/b/bash/bash_5.2.15-2+b2_arm64.deb",
+        "inputs/pool/main/b/binutils/binutils-aarch64-linux-gnu_2.40-2_arm64.deb",
+        "inputs/pool/main/b/binutils/binutils-common_2.40-2_arm64.deb",
+        "inputs/pool/main/b/binutils/binutils_2.40-2_arm64.deb",
+        "inputs/pool/main/b/binutils/libbinutils_2.40-2_arm64.deb",
+        "inputs/pool/main/b/binutils/libctf-nobfd0_2.40-2_arm64.deb",
+        "inputs/pool/main/b/binutils/libctf0_2.40-2_arm64.deb",
+        "inputs/pool/main/b/binutils/libgprofng0_2.40-2_arm64.deb",
+        "inputs/pool/main/b/brotli/libbrotli1_1.0.9-2+b6_arm64.deb",
+        "inputs/pool/main/b/bzip2/bzip2_1.0.8-5+b1_arm64.deb",
+        "inputs/pool/main/b/bzip2/libbz2-1.0_1.0.8-5+b1_arm64.deb",
+        "inputs/pool/main/c/cdebconf/libdebconfclient0_0.270_arm64.deb",
+        "inputs/pool/main/c/cmake/cmake-data_3.25.1-1_all.deb",
+        "inputs/pool/main/c/cmake/cmake_3.25.1-1_arm64.deb",
+        "inputs/pool/main/c/coreutils/coreutils_9.1-1_arm64.deb",
+        "inputs/pool/main/c/curl/libcurl4_7.88.1-10_arm64.deb",
+        "inputs/pool/main/c/cyrus-sasl2/libsasl2-2_2.1.28+dfsg-10_arm64.deb",
+        "inputs/pool/main/c/cyrus-sasl2/libsasl2-modules-db_2.1.28+dfsg-10_arm64.deb",
+        "inputs/pool/main/d/dash/dash_0.5.12-2_arm64.deb",
+        "inputs/pool/main/d/db5.3/libdb5.3_5.3.28+dfsg2-1_arm64.deb",
+        "inputs/pool/main/d/debconf/debconf_1.5.82_all.deb",
+        "inputs/pool/main/d/debianutils/debianutils_5.7-0.4_arm64.deb",
+        "inputs/pool/main/d/diffutils/diffutils_3.8-4_arm64.deb",
+        "inputs/pool/main/d/dpkg/dpkg_1.21.22_arm64.deb",
+        "inputs/pool/main/e/e2fsprogs/libcom-err2_1.47.0-2_arm64.deb",
+        "inputs/pool/main/e/expat/libexpat1_2.5.0-1_arm64.deb",
+        "inputs/pool/main/f/file/file_5.44-3_arm64.deb",
+        "inputs/pool/main/f/file/libmagic-mgc_5.44-3_arm64.deb",
+        "inputs/pool/main/f/file/libmagic1_5.44-3_arm64.deb",
+        "inputs/pool/main/f/findutils/findutils_4.9.0-4_arm64.deb",
+        "inputs/pool/main/g/gawk/gawk_5.2.1-2_arm64.deb",
+        "inputs/pool/main/g/gcc-12/cpp-12_12.2.0-14_arm64.deb",
+        "inputs/pool/main/g/gcc-12/g++-12_12.2.0-14_arm64.deb",
+        "inputs/pool/main/g/gcc-12/gcc-12-base_12.2.0-14_arm64.deb",
+        "inputs/pool/main/g/gcc-12/gcc-12_12.2.0-14_arm64.deb",
+        "inputs/pool/main/g/gcc-12/libasan8_12.2.0-14_arm64.deb",
+        "inputs/pool/main/g/gcc-12/libatomic1_12.2.0-14_arm64.deb",
+        "inputs/pool/main/g/gcc-12/libcc1-0_12.2.0-14_arm64.deb",
+        "inputs/pool/main/g/gcc-12/libgcc-12-dev_12.2.0-14_arm64.deb",
+        "inputs/pool/main/g/gcc-12/libgcc-s1_12.2.0-14_arm64.deb",
+        "inputs/pool/main/g/gcc-12/libgomp1_12.2.0-14_arm64.deb",
+        "inputs/pool/main/g/gcc-12/libhwasan0_12.2.0-14_arm64.deb",
+        "inputs/pool/main/g/gcc-12/libitm1_12.2.0-14_arm64.deb",
+        "inputs/pool/main/g/gcc-12/liblsan0_12.2.0-14_arm64.deb",
+        "inputs/pool/main/g/gcc-12/libstdc++-12-dev_12.2.0-14_arm64.deb",
+        "inputs/pool/main/g/gcc-12/libstdc++6_12.2.0-14_arm64.deb",
+        "inputs/pool/main/g/gcc-12/libtsan2_12.2.0-14_arm64.deb",
+        "inputs/pool/main/g/gcc-12/libubsan1_12.2.0-14_arm64.deb",
+        "inputs/pool/main/g/gdbm/libgdbm-compat4_1.23-3_arm64.deb",
+        "inputs/pool/main/g/gdbm/libgdbm6_1.23-3_arm64.deb",
+        "inputs/pool/main/g/glibc/libc-bin_2.36-9_arm64.deb",
+        "inputs/pool/main/g/glibc/libc-dev-bin_2.36-9_arm64.deb",
+        "inputs/pool/main/g/glibc/libc6-dev_2.36-9_arm64.deb",
+        "inputs/pool/main/g/glibc/libc6_2.36-9_arm64.deb",
+        "inputs/pool/main/g/gmp/libgmp10_6.2.1+dfsg1-1.1_arm64.deb",
+        "inputs/pool/main/g/gnutls28/libgnutls30_3.7.9-2_arm64.deb",
+        "inputs/pool/main/g/grep/grep_3.8-5_arm64.deb",
+        "inputs/pool/main/g/gzip/gzip_1.12-1_arm64.deb",
+        "inputs/pool/main/h/hostname/hostname_3.23+nmu1_arm64.deb",
+        "inputs/pool/main/i/icu/libicu72_72.1-3_arm64.deb",
+        "inputs/pool/main/i/init-system-helpers/init-system-helpers_1.65.2_all.deb",
+        "inputs/pool/main/i/isl/libisl23_0.25-1_arm64.deb",
+        "inputs/pool/main/j/jansson/libjansson4_2.14-2_arm64.deb",
+        "inputs/pool/main/k/keyutils/libkeyutils1_1.6.3-2_arm64.deb",
+        "inputs/pool/main/k/krb5/libgssapi-krb5-2_1.20.1-2_arm64.deb",
+        "inputs/pool/main/k/krb5/libk5crypto3_1.20.1-2_arm64.deb",
+        "inputs/pool/main/k/krb5/libkrb5-3_1.20.1-2_arm64.deb",
+        "inputs/pool/main/k/krb5/libkrb5support0_1.20.1-2_arm64.deb",
+        "inputs/pool/main/l/linux/linux-libc-dev_6.1.27-1_arm64.deb",
+        "inputs/pool/main/l/lz4/liblz4-1_1.9.4-1_arm64.deb",
+        "inputs/pool/main/liba/libarchive/libarchive13_3.6.2-1_arm64.deb",
+        "inputs/pool/main/libb/libbsd/libbsd-dev_0.11.7-2_arm64.deb",
+        "inputs/pool/main/libb/libbsd/libbsd0_0.11.7-2_arm64.deb",
+        "inputs/pool/main/libc/libcap-ng/libcap-ng0_0.8.3-1+b3_arm64.deb",
+        "inputs/pool/main/libc/libcap2/libcap2_2.66-4_arm64.deb",
+        "inputs/pool/main/libe/libedit/libedit-dev_3.1-20221030-2_arm64.deb",
+        "inputs/pool/main/libe/libedit/libedit2_3.1-20221030-2_arm64.deb",
+        "inputs/pool/main/libf/libffi/libffi8_3.4.4-1_arm64.deb",
+        "inputs/pool/main/libf/libfile-find-rule-perl/libfile-find-rule-perl_0.34-3_all.deb",
+        "inputs/pool/main/libg/libgcrypt20/libgcrypt20_1.10.1-3_arm64.deb",
+        "inputs/pool/main/libg/libgpg-error/libgpg-error0_1.46-1_arm64.deb",
+        "inputs/pool/main/libi/libidn2/libidn2-0_2.3.3-1+b1_arm64.deb",
+        "inputs/pool/main/libj/libjsoncpp/libjsoncpp25_1.9.5-4_arm64.deb",
+        "inputs/pool/main/libm/libmd/libmd-dev_1.0.4-2_arm64.deb",
+        "inputs/pool/main/libm/libmd/libmd0_1.0.4-2_arm64.deb",
+        "inputs/pool/main/libn/libnsl/libnsl-dev_1.3.0-2_arm64.deb",
+        "inputs/pool/main/libn/libnsl/libnsl2_1.3.0-2_arm64.deb",
+        "inputs/pool/main/libn/libnumber-compare-perl/libnumber-compare-perl_0.03-3_all.deb",
+        "inputs/pool/main/libp/libpsl/libpsl5_0.21.2-1_arm64.deb",
+        "inputs/pool/main/libs/libselinux/libselinux1_3.4-1+b6_arm64.deb",
+        "inputs/pool/main/libs/libsigsegv/libsigsegv2_2.14-1_arm64.deb",
+        "inputs/pool/main/libs/libssh2/libssh2-1_1.10.0-3+b1_arm64.deb",
+        "inputs/pool/main/libt/libtasn1-6/libtasn1-6_4.19.0-2_arm64.deb",
+        "inputs/pool/main/libt/libtext-glob-perl/libtext-glob-perl_0.11-3_all.deb",
+        "inputs/pool/main/libt/libtirpc/libtirpc-common_1.3.3+ds-1_all.deb",
+        "inputs/pool/main/libt/libtirpc/libtirpc-dev_1.3.3+ds-1_arm64.deb",
+        "inputs/pool/main/libt/libtirpc/libtirpc3_1.3.3+ds-1_arm64.deb",
+        "inputs/pool/main/libu/libunistring/libunistring2_1.0-2_arm64.deb",
+        "inputs/pool/main/libu/libuv1/libuv1_1.44.2-1_arm64.deb",
+        "inputs/pool/main/libx/libxcrypt/libcrypt-dev_4.4.33-2_arm64.deb",
+        "inputs/pool/main/libx/libxcrypt/libcrypt1_4.4.33-2_arm64.deb",
+        "inputs/pool/main/libx/libxml2/libxml2_2.9.14+dfsg-1.2_arm64.deb",
+        "inputs/pool/main/libz/libzstd/libzstd1_1.5.4+dfsg2-5_arm64.deb",
+        "inputs/pool/main/m/m4/m4_1.4.19-3_arm64.deb",
+        "inputs/pool/main/m/make-dfsg/make_4.3-4.1_arm64.deb",
+        "inputs/pool/main/m/media-types/media-types_10.0.0_all.deb",
+        "inputs/pool/main/m/mpclib3/libmpc3_1.3.1-1_arm64.deb",
+        "inputs/pool/main/m/mpfr4/libmpfr6_4.2.0-1_arm64.deb",
+        "inputs/pool/main/n/ncurses/libncurses-dev_6.4-4_arm64.deb",
+        "inputs/pool/main/n/ncurses/libncurses6_6.4-4_arm64.deb",
+        "inputs/pool/main/n/ncurses/libncursesw6_6.4-4_arm64.deb",
+        "inputs/pool/main/n/ncurses/libtinfo6_6.4-4_arm64.deb",
+        "inputs/pool/main/n/ncurses/ncurses-base_6.4-4_all.deb",
+        "inputs/pool/main/n/ncurses/ncurses-bin_6.4-4_arm64.deb",
+        "inputs/pool/main/n/nettle/libhogweed6_3.8.1-2_arm64.deb",
+        "inputs/pool/main/n/nettle/libnettle8_3.8.1-2_arm64.deb",
+        "inputs/pool/main/n/nghttp2/libnghttp2-14_1.52.0-1_arm64.deb",
+        "inputs/pool/main/o/openldap/libldap-2.5-0_2.5.13+dfsg-5_arm64.deb",
+        "inputs/pool/main/o/openssl/libssl3_3.0.9-1_arm64.deb",
+        "inputs/pool/main/p/p11-kit/libp11-kit0_0.24.1-2_arm64.deb",
+        "inputs/pool/main/p/pam/libpam-modules-bin_1.5.2-6_arm64.deb",
+        "inputs/pool/main/p/pam/libpam-modules_1.5.2-6_arm64.deb",
+        "inputs/pool/main/p/pam/libpam-runtime_1.5.2-6_all.deb",
+        "inputs/pool/main/p/pam/libpam0g_1.5.2-6_arm64.deb",
+        "inputs/pool/main/p/patch/patch_2.7.6-7_arm64.deb",
+        "inputs/pool/main/p/pcre2/libpcre2-8-0_10.42-1_arm64.deb",
+        "inputs/pool/main/p/perl/libperl5.36_5.36.0-7_arm64.deb",
+        "inputs/pool/main/p/perl/perl-base_5.36.0-7_arm64.deb",
+        "inputs/pool/main/p/perl/perl-modules-5.36_5.36.0-7_all.deb",
+        "inputs/pool/main/p/perl/perl_5.36.0-7_arm64.deb",
+        "inputs/pool/main/p/pkgconf/libpkgconf3_1.8.1-1_arm64.deb",
+        "inputs/pool/main/p/pkgconf/pkgconf-bin_1.8.1-1_arm64.deb",
+        "inputs/pool/main/p/pkgconf/pkgconf_1.8.1-1_arm64.deb",
+        "inputs/pool/main/p/procps/libproc2-0_4.0.2-3_arm64.deb",
+        "inputs/pool/main/p/procps/procps_4.0.2-3_arm64.deb",
+        "inputs/pool/main/p/pyparsing/python3-pyparsing_3.0.9-1_all.deb",
+        "inputs/pool/main/p/python3-defaults/libpython3-stdlib_3.11.2-1+b1_arm64.deb",
+        "inputs/pool/main/p/python3-defaults/python3-minimal_3.11.2-1+b1_arm64.deb",
+        "inputs/pool/main/p/python3-defaults/python3_3.11.2-1+b1_arm64.deb",
+        "inputs/pool/main/p/python3.11/libpython3.11-minimal_3.11.2-6_arm64.deb",
+        "inputs/pool/main/p/python3.11/libpython3.11-stdlib_3.11.2-6_arm64.deb",
+        "inputs/pool/main/p/python3.11/python3.11-minimal_3.11.2-6_arm64.deb",
+        "inputs/pool/main/p/python3.11/python3.11_3.11.2-6_arm64.deb",
+        "inputs/pool/main/r/readline/libreadline8_8.2-1.3_arm64.deb",
+        "inputs/pool/main/r/readline/readline-common_8.2-1.3_all.deb",
+        "inputs/pool/main/r/rhash/librhash0_1.4.3-3_arm64.deb",
+        "inputs/pool/main/r/rpcsvc-proto/rpcsvc-proto_1.4.3-1_arm64.deb",
+        "inputs/pool/main/r/rtmpdump/librtmp1_2.4+20151223.gitfa8646d.1-2+b2_arm64.deb",
+        "inputs/pool/main/s/sed/sed_4.9-1_arm64.deb",
+        "inputs/pool/main/s/shadow/login_4.13+dfsg1-1+b1_arm64.deb",
+        "inputs/pool/main/s/sqlite3/libsqlite3-0_3.40.1-2_arm64.deb",
+        "inputs/pool/main/s/systemd/libsystemd0_252.6-1_arm64.deb",
+        "inputs/pool/main/s/systemd/libudev1_252.6-1_arm64.deb",
+        "inputs/pool/main/s/sysvinit/sysvinit-utils_3.06-4_arm64.deb",
+        "inputs/pool/main/t/tar/tar_1.34+dfsg-1.2_arm64.deb",
+        "inputs/pool/main/u/usrmerge/usrmerge_35_all.deb",
+        "inputs/pool/main/u/util-linux/bsdutils_2.38.1-5+b1_arm64.deb",
+        "inputs/pool/main/u/util-linux/libblkid1_2.38.1-5+b1_arm64.deb",
+        "inputs/pool/main/u/util-linux/libmount1_2.38.1-5+b1_arm64.deb",
+        "inputs/pool/main/u/util-linux/libsmartcols1_2.38.1-5+b1_arm64.deb",
+        "inputs/pool/main/u/util-linux/libuuid1_2.38.1-5+b1_arm64.deb",
+        "inputs/pool/main/u/util-linux/util-linux-extra_2.38.1-5+b1_arm64.deb",
+        "inputs/pool/main/u/util-linux/util-linux_2.38.1-5+b1_arm64.deb",
+        "inputs/pool/main/x/xz-utils/liblzma5_5.4.1-0.2_arm64.deb",
+        "inputs/pool/main/x/xz-utils/xz-utils_5.4.1-0.2_arm64.deb",
+        "inputs/pool/main/z/zlib/zlib1g_1.2.13.dfsg-1_arm64.deb",
+        "inputs/pool/main/a/acl/acl_2.3.1-3.debian.tar.xz",
+        "inputs/pool/main/a/acl/acl_2.3.1-3.dsc",
+        "inputs/pool/main/a/acl/acl_2.3.1.orig.tar.xz",
+        "inputs/pool/main/a/acl/acl_2.3.1.orig.tar.xz.asc",
+        "inputs/pool/main/a/attr/attr_2.5.1-4.debian.tar.xz",
+        "inputs/pool/main/a/attr/attr_2.5.1-4.dsc",
+        "inputs/pool/main/a/attr/attr_2.5.1.orig.tar.xz",
+        "inputs/pool/main/a/attr/attr_2.5.1.orig.tar.xz.asc",
+        "inputs/pool/main/a/audit/audit_3.0.9-1.debian.tar.xz",
+        "inputs/pool/main/a/audit/audit_3.0.9-1.dsc",
+        "inputs/pool/main/a/audit/audit_3.0.9.orig.tar.gz",
+        "inputs/pool/main/b/base-files/base-files_12.4.dsc",
+        "inputs/pool/main/b/base-files/base-files_12.4.tar.xz",
+        "inputs/pool/main/b/base-passwd/base-passwd_3.6.1.dsc",
+        "inputs/pool/main/b/base-passwd/base-passwd_3.6.1.tar.xz",
+        "inputs/pool/main/b/bash/bash_5.2.15-2.debian.tar.xz",
+        "inputs/pool/main/b/bash/bash_5.2.15-2.dsc",
+        "inputs/pool/main/b/bash/bash_5.2.15.orig.tar.gz",
+        "inputs/pool/main/b/binutils/binutils_2.40-2.debian.tar.xz",
+        "inputs/pool/main/b/binutils/binutils_2.40-2.dsc",
+        "inputs/pool/main/b/binutils/binutils_2.40.orig.tar.xz",
+        "inputs/pool/main/b/brotli/brotli_1.0.9-2.debian.tar.xz",
+        "inputs/pool/main/b/brotli/brotli_1.0.9-2.dsc",
+        "inputs/pool/main/b/brotli/brotli_1.0.9.orig.tar.gz",
+        "inputs/pool/main/b/bzip2/bzip2_1.0.8-5.debian.tar.bz2",
+        "inputs/pool/main/b/bzip2/bzip2_1.0.8-5.dsc",
+        "inputs/pool/main/b/bzip2/bzip2_1.0.8.orig.tar.gz",
+        "inputs/pool/main/c/cdebconf/cdebconf_0.270.dsc",
+        "inputs/pool/main/c/cdebconf/cdebconf_0.270.tar.xz",
+        "inputs/pool/main/c/cmake/cmake_3.25.1-1.debian.tar.xz",
+        "inputs/pool/main/c/cmake/cmake_3.25.1-1.dsc",
+        "inputs/pool/main/c/cmake/cmake_3.25.1.orig.tar.gz",
+        "inputs/pool/main/c/coreutils/coreutils_9.1-1.debian.tar.xz",
+        "inputs/pool/main/c/coreutils/coreutils_9.1-1.dsc",
+        "inputs/pool/main/c/coreutils/coreutils_9.1.orig.tar.xz",
+        "inputs/pool/main/c/curl/curl_7.88.1-10.debian.tar.xz",
+        "inputs/pool/main/c/curl/curl_7.88.1-10.dsc",
+        "inputs/pool/main/c/curl/curl_7.88.1.orig.tar.gz",
+        "inputs/pool/main/c/curl/curl_7.88.1.orig.tar.gz.asc",
+        "inputs/pool/main/c/cyrus-sasl2/cyrus-sasl2_2.1.28+dfsg-10.debian.tar.xz",
+        "inputs/pool/main/c/cyrus-sasl2/cyrus-sasl2_2.1.28+dfsg-10.dsc",
+        "inputs/pool/main/c/cyrus-sasl2/cyrus-sasl2_2.1.28+dfsg.orig.tar.xz",
+        "inputs/pool/main/d/dash/dash_0.5.12-2.debian.tar.xz",
+        "inputs/pool/main/d/dash/dash_0.5.12-2.dsc",
+        "inputs/pool/main/d/dash/dash_0.5.12.orig.tar.gz",
+        "inputs/pool/main/d/db5.3/db5.3_5.3.28+dfsg2-1.debian.tar.xz",
+        "inputs/pool/main/d/db5.3/db5.3_5.3.28+dfsg2-1.dsc",
+        "inputs/pool/main/d/db5.3/db5.3_5.3.28+dfsg2.orig.tar.xz",
+        "inputs/pool/main/d/debconf/debconf_1.5.82.dsc",
+        "inputs/pool/main/d/debconf/debconf_1.5.82.tar.xz",
+        "inputs/pool/main/d/debianutils/debianutils_5.7-0.4.debian.tar.xz",
+        "inputs/pool/main/d/debianutils/debianutils_5.7-0.4.dsc",
+        "inputs/pool/main/d/debianutils/debianutils_5.7.orig.tar.gz",
+        "inputs/pool/main/d/diffutils/diffutils_3.8-4.debian.tar.xz",
+        "inputs/pool/main/d/diffutils/diffutils_3.8-4.dsc",
+        "inputs/pool/main/d/diffutils/diffutils_3.8.orig.tar.xz",
+        "inputs/pool/main/d/diffutils/diffutils_3.8.orig.tar.xz.asc",
+        "inputs/pool/main/d/dpkg/dpkg_1.21.22.dsc",
+        "inputs/pool/main/d/dpkg/dpkg_1.21.22.tar.xz",
+        "inputs/pool/main/e/e2fsprogs/e2fsprogs_1.47.0-2.debian.tar.xz",
+        "inputs/pool/main/e/e2fsprogs/e2fsprogs_1.47.0-2.dsc",
+        "inputs/pool/main/e/e2fsprogs/e2fsprogs_1.47.0.orig.tar.gz",
+        "inputs/pool/main/e/e2fsprogs/e2fsprogs_1.47.0.orig.tar.gz.asc",
+        "inputs/pool/main/e/expat/expat_2.5.0-1.debian.tar.xz",
+        "inputs/pool/main/e/expat/expat_2.5.0-1.dsc",
+        "inputs/pool/main/e/expat/expat_2.5.0.orig.tar.gz",
+        "inputs/pool/main/f/file/file_5.44-3.debian.tar.xz",
+        "inputs/pool/main/f/file/file_5.44-3.dsc",
+        "inputs/pool/main/f/file/file_5.44.orig.tar.gz",
+        "inputs/pool/main/f/file/file_5.44.orig.tar.gz.asc",
+        "inputs/pool/main/f/findutils/findutils_4.9.0-4.debian.tar.xz",
+        "inputs/pool/main/f/findutils/findutils_4.9.0-4.dsc",
+        "inputs/pool/main/f/findutils/findutils_4.9.0.orig.tar.xz",
+        "inputs/pool/main/f/findutils/findutils_4.9.0.orig.tar.xz.asc",
+        "inputs/pool/main/g/gawk/gawk_5.2.1-2.debian.tar.xz",
+        "inputs/pool/main/g/gawk/gawk_5.2.1-2.dsc",
+        "inputs/pool/main/g/gawk/gawk_5.2.1.orig.tar.xz",
+        "inputs/pool/main/g/gcc-12/gcc-12_12.2.0-14.debian.tar.xz",
+        "inputs/pool/main/g/gcc-12/gcc-12_12.2.0-14.dsc",
+        "inputs/pool/main/g/gcc-12/gcc-12_12.2.0.orig.tar.gz",
+        "inputs/pool/main/g/gdbm/gdbm_1.23-3.debian.tar.xz",
+        "inputs/pool/main/g/gdbm/gdbm_1.23-3.dsc",
+        "inputs/pool/main/g/gdbm/gdbm_1.23.orig.tar.gz",
+        "inputs/pool/main/g/gdbm/gdbm_1.23.orig.tar.gz.asc",
+        "inputs/pool/main/g/glibc/glibc_2.36-9.debian.tar.xz",
+        "inputs/pool/main/g/glibc/glibc_2.36-9.dsc",
+        "inputs/pool/main/g/glibc/glibc_2.36.orig.tar.xz",
+        "inputs/pool/main/g/gmp/gmp_6.2.1+dfsg1-1.1.debian.tar.xz",
+        "inputs/pool/main/g/gmp/gmp_6.2.1+dfsg1-1.1.dsc",
+        "inputs/pool/main/g/gmp/gmp_6.2.1+dfsg1.orig.tar.xz",
+        "inputs/pool/main/g/gnutls28/gnutls28_3.7.9-2.debian.tar.xz",
+        "inputs/pool/main/g/gnutls28/gnutls28_3.7.9-2.dsc",
+        "inputs/pool/main/g/gnutls28/gnutls28_3.7.9.orig.tar.xz",
+        "inputs/pool/main/g/gnutls28/gnutls28_3.7.9.orig.tar.xz.asc",
+        "inputs/pool/main/g/grep/grep_3.8-5.debian.tar.xz",
+        "inputs/pool/main/g/grep/grep_3.8-5.dsc",
+        "inputs/pool/main/g/grep/grep_3.8.orig.tar.xz",
+        "inputs/pool/main/g/grep/grep_3.8.orig.tar.xz.asc",
+        "inputs/pool/main/g/gzip/gzip_1.12-1.debian.tar.xz",
+        "inputs/pool/main/g/gzip/gzip_1.12-1.dsc",
+        "inputs/pool/main/g/gzip/gzip_1.12.orig.tar.xz",
+        "inputs/pool/main/g/gzip/gzip_1.12.orig.tar.xz.asc",
+        "inputs/pool/main/h/hostname/hostname_3.23+nmu1.dsc",
+        "inputs/pool/main/h/hostname/hostname_3.23+nmu1.tar.xz",
+        "inputs/pool/main/i/icu/icu_72.1-3.debian.tar.xz",
+        "inputs/pool/main/i/icu/icu_72.1-3.dsc",
+        "inputs/pool/main/i/icu/icu_72.1.orig.tar.gz",
+        "inputs/pool/main/i/icu/icu_72.1.orig.tar.gz.asc",
+        "inputs/pool/main/i/init-system-helpers/init-system-helpers_1.65.2.dsc",
+        "inputs/pool/main/i/init-system-helpers/init-system-helpers_1.65.2.tar.xz",
+        "inputs/pool/main/i/isl/isl_0.25-1.debian.tar.xz",
+        "inputs/pool/main/i/isl/isl_0.25-1.dsc",
+        "inputs/pool/main/i/isl/isl_0.25.orig.tar.xz",
+        "inputs/pool/main/j/jansson/jansson_2.14-2.debian.tar.xz",
+        "inputs/pool/main/j/jansson/jansson_2.14-2.dsc",
+        "inputs/pool/main/j/jansson/jansson_2.14.orig.tar.gz",
+        "inputs/pool/main/k/keyutils/keyutils_1.6.3-2.debian.tar.xz",
+        "inputs/pool/main/k/keyutils/keyutils_1.6.3-2.dsc",
+        "inputs/pool/main/k/keyutils/keyutils_1.6.3.orig.tar.gz",
+        "inputs/pool/main/k/krb5/krb5_1.20.1-2.debian.tar.xz",
+        "inputs/pool/main/k/krb5/krb5_1.20.1-2.dsc",
+        "inputs/pool/main/k/krb5/krb5_1.20.1.orig.tar.gz",
+        "inputs/pool/main/k/krb5/krb5_1.20.1.orig.tar.gz.asc",
+        "inputs/pool/main/l/linux/linux_6.1.27-1.debian.tar.xz",
+        "inputs/pool/main/l/linux/linux_6.1.27-1.dsc",
+        "inputs/pool/main/l/linux/linux_6.1.27.orig.tar.xz",
+        "inputs/pool/main/l/lz4/lz4_1.9.4-1.debian.tar.xz",
+        "inputs/pool/main/l/lz4/lz4_1.9.4-1.dsc",
+        "inputs/pool/main/l/lz4/lz4_1.9.4.orig.tar.gz",
+        "inputs/pool/main/liba/libarchive/libarchive_3.6.2-1.debian.tar.xz",
+        "inputs/pool/main/liba/libarchive/libarchive_3.6.2-1.dsc",
+        "inputs/pool/main/liba/libarchive/libarchive_3.6.2.orig.tar.xz",
+        "inputs/pool/main/liba/libarchive/libarchive_3.6.2.orig.tar.xz.asc",
+        "inputs/pool/main/libb/libbsd/libbsd_0.11.7-2.debian.tar.xz",
+        "inputs/pool/main/libb/libbsd/libbsd_0.11.7-2.dsc",
+        "inputs/pool/main/libb/libbsd/libbsd_0.11.7.orig.tar.xz",
+        "inputs/pool/main/libb/libbsd/libbsd_0.11.7.orig.tar.xz.asc",
+        "inputs/pool/main/libc/libcap-ng/libcap-ng_0.8.3-1.debian.tar.xz",
+        "inputs/pool/main/libc/libcap-ng/libcap-ng_0.8.3-1.dsc",
+        "inputs/pool/main/libc/libcap-ng/libcap-ng_0.8.3.orig.tar.gz",
+        "inputs/pool/main/libc/libcap2/libcap2_2.66-4.debian.tar.xz",
+        "inputs/pool/main/libc/libcap2/libcap2_2.66-4.dsc",
+        "inputs/pool/main/libc/libcap2/libcap2_2.66.orig.tar.xz",
+        "inputs/pool/main/libe/libedit/libedit_3.1-20221030-2.debian.tar.xz",
+        "inputs/pool/main/libe/libedit/libedit_3.1-20221030-2.dsc",
+        "inputs/pool/main/libe/libedit/libedit_3.1-20221030.orig.tar.gz",
+        "inputs/pool/main/libf/libffi/libffi_3.4.4-1.debian.tar.xz",
+        "inputs/pool/main/libf/libffi/libffi_3.4.4-1.dsc",
+        "inputs/pool/main/libf/libffi/libffi_3.4.4.orig.tar.gz",
+        "inputs/pool/main/libf/libfile-find-rule-perl/libfile-find-rule-perl_0.34-3.debian.tar.xz",
+        "inputs/pool/main/libf/libfile-find-rule-perl/libfile-find-rule-perl_0.34-3.dsc",
+        "inputs/pool/main/libf/libfile-find-rule-perl/libfile-find-rule-perl_0.34.orig.tar.gz",
+        "inputs/pool/main/libg/libgcrypt20/libgcrypt20_1.10.1-3.debian.tar.xz",
+        "inputs/pool/main/libg/libgcrypt20/libgcrypt20_1.10.1-3.dsc",
+        "inputs/pool/main/libg/libgcrypt20/libgcrypt20_1.10.1.orig.tar.bz2",
+        "inputs/pool/main/libg/libgcrypt20/libgcrypt20_1.10.1.orig.tar.bz2.asc",
+        "inputs/pool/main/libg/libgpg-error/libgpg-error_1.46-1.debian.tar.xz",
+        "inputs/pool/main/libg/libgpg-error/libgpg-error_1.46-1.dsc",
+        "inputs/pool/main/libg/libgpg-error/libgpg-error_1.46.orig.tar.bz2",
+        "inputs/pool/main/libg/libgpg-error/libgpg-error_1.46.orig.tar.bz2.asc",
+        "inputs/pool/main/libi/libidn2/libidn2_2.3.3-1.debian.tar.xz",
+        "inputs/pool/main/libi/libidn2/libidn2_2.3.3-1.dsc",
+        "inputs/pool/main/libi/libidn2/libidn2_2.3.3.orig.tar.gz",
+        "inputs/pool/main/libi/libidn2/libidn2_2.3.3.orig.tar.gz.asc",
+        "inputs/pool/main/libj/libjsoncpp/libjsoncpp_1.9.5-4.debian.tar.xz",
+        "inputs/pool/main/libj/libjsoncpp/libjsoncpp_1.9.5-4.dsc",
+        "inputs/pool/main/libj/libjsoncpp/libjsoncpp_1.9.5.orig.tar.gz",
+        "inputs/pool/main/libm/libmd/libmd_1.0.4-2.debian.tar.xz",
+        "inputs/pool/main/libm/libmd/libmd_1.0.4-2.dsc",
+        "inputs/pool/main/libm/libmd/libmd_1.0.4.orig.tar.xz",
+        "inputs/pool/main/libm/libmd/libmd_1.0.4.orig.tar.xz.asc",
+        "inputs/pool/main/libn/libnsl/libnsl_1.3.0-2.debian.tar.xz",
+        "inputs/pool/main/libn/libnsl/libnsl_1.3.0-2.dsc",
+        "inputs/pool/main/libn/libnsl/libnsl_1.3.0.orig.tar.xz",
+        "inputs/pool/main/libn/libnumber-compare-perl/libnumber-compare-perl_0.03-3.debian.tar.xz",
+        "inputs/pool/main/libn/libnumber-compare-perl/libnumber-compare-perl_0.03-3.dsc",
+        "inputs/pool/main/libn/libnumber-compare-perl/libnumber-compare-perl_0.03.orig.tar.gz",
+        "inputs/pool/main/libp/libpsl/libpsl_0.21.2-1.debian.tar.xz",
+        "inputs/pool/main/libp/libpsl/libpsl_0.21.2-1.dsc",
+        "inputs/pool/main/libp/libpsl/libpsl_0.21.2.orig.tar.xz",
+        "inputs/pool/main/libs/libselinux/libselinux_3.4-1.debian.tar.xz",
+        "inputs/pool/main/libs/libselinux/libselinux_3.4-1.dsc",
+        "inputs/pool/main/libs/libselinux/libselinux_3.4.orig.tar.gz",
+        "inputs/pool/main/libs/libselinux/libselinux_3.4.orig.tar.gz.asc",
+        "inputs/pool/main/libs/libsigsegv/libsigsegv_2.14-1.debian.tar.xz",
+        "inputs/pool/main/libs/libsigsegv/libsigsegv_2.14-1.dsc",
+        "inputs/pool/main/libs/libsigsegv/libsigsegv_2.14.orig.tar.gz",
+        "inputs/pool/main/libs/libsigsegv/libsigsegv_2.14.orig.tar.gz.asc",
+        "inputs/pool/main/libs/libssh2/libssh2_1.10.0-3.debian.tar.xz",
+        "inputs/pool/main/libs/libssh2/libssh2_1.10.0-3.dsc",
+        "inputs/pool/main/libs/libssh2/libssh2_1.10.0.orig.tar.gz",
+        "inputs/pool/main/libs/libssh2/libssh2_1.10.0.orig.tar.gz.asc",
+        "inputs/pool/main/libt/libtasn1-6/libtasn1-6_4.19.0-2.debian.tar.xz",
+        "inputs/pool/main/libt/libtasn1-6/libtasn1-6_4.19.0-2.dsc",
+        "inputs/pool/main/libt/libtasn1-6/libtasn1-6_4.19.0.orig.tar.gz",
+        "inputs/pool/main/libt/libtasn1-6/libtasn1-6_4.19.0.orig.tar.gz.asc",
+        "inputs/pool/main/libt/libtext-glob-perl/libtext-glob-perl_0.11-3.debian.tar.xz",
+        "inputs/pool/main/libt/libtext-glob-perl/libtext-glob-perl_0.11-3.dsc",
+        "inputs/pool/main/libt/libtext-glob-perl/libtext-glob-perl_0.11.orig.tar.gz",
+        "inputs/pool/main/libt/libtirpc/libtirpc_1.3.3+ds-1.debian.tar.xz",
+        "inputs/pool/main/libt/libtirpc/libtirpc_1.3.3+ds-1.dsc",
+        "inputs/pool/main/libt/libtirpc/libtirpc_1.3.3+ds.orig.tar.gz",
+        "inputs/pool/main/libu/libunistring/libunistring_1.0-2.debian.tar.xz",
+        "inputs/pool/main/libu/libunistring/libunistring_1.0-2.dsc",
+        "inputs/pool/main/libu/libunistring/libunistring_1.0.orig.tar.xz",
+        "inputs/pool/main/libu/libunistring/libunistring_1.0.orig.tar.xz.asc",
+        "inputs/pool/main/libu/libuv1/libuv1_1.44.2-1.debian.tar.xz",
+        "inputs/pool/main/libu/libuv1/libuv1_1.44.2-1.dsc",
+        "inputs/pool/main/libu/libuv1/libuv1_1.44.2.orig.tar.gz",
+        "inputs/pool/main/libx/libxcrypt/libxcrypt_4.4.33-2.debian.tar.xz",
+        "inputs/pool/main/libx/libxcrypt/libxcrypt_4.4.33-2.dsc",
+        "inputs/pool/main/libx/libxcrypt/libxcrypt_4.4.33.orig.tar.xz",
+        "inputs/pool/main/libx/libxml2/libxml2_2.9.14+dfsg-1.2.debian.tar.xz",
+        "inputs/pool/main/libx/libxml2/libxml2_2.9.14+dfsg-1.2.dsc",
+        "inputs/pool/main/libx/libxml2/libxml2_2.9.14+dfsg.orig.tar.xz",
+        "inputs/pool/main/libz/libzstd/libzstd_1.5.4+dfsg2-5.debian.tar.xz",
+        "inputs/pool/main/libz/libzstd/libzstd_1.5.4+dfsg2-5.dsc",
+        "inputs/pool/main/libz/libzstd/libzstd_1.5.4+dfsg2.orig.tar.xz",
+        "inputs/pool/main/libz/libzstd/libzstd_1.5.4+dfsg2.orig.tar.xz.asc",
+        "inputs/pool/main/m/m4/m4_1.4.19-3.debian.tar.xz",
+        "inputs/pool/main/m/m4/m4_1.4.19-3.dsc",
+        "inputs/pool/main/m/m4/m4_1.4.19.orig.tar.xz",
+        "inputs/pool/main/m/m4/m4_1.4.19.orig.tar.xz.asc",
+        "inputs/pool/main/m/make-dfsg/make-dfsg_4.3-4.1.diff.gz",
+        "inputs/pool/main/m/make-dfsg/make-dfsg_4.3-4.1.dsc",
+        "inputs/pool/main/m/make-dfsg/make-dfsg_4.3.orig.tar.gz",
+        "inputs/pool/main/m/media-types/media-types_10.0.0.dsc",
+        "inputs/pool/main/m/media-types/media-types_10.0.0.tar.xz",
+        "inputs/pool/main/m/mpclib3/mpclib3_1.3.1-1.debian.tar.xz",
+        "inputs/pool/main/m/mpclib3/mpclib3_1.3.1-1.dsc",
+        "inputs/pool/main/m/mpclib3/mpclib3_1.3.1.orig.tar.gz",
+        "inputs/pool/main/m/mpfr4/mpfr4_4.2.0-1.debian.tar.xz",
+        "inputs/pool/main/m/mpfr4/mpfr4_4.2.0-1.dsc",
+        "inputs/pool/main/m/mpfr4/mpfr4_4.2.0.orig.tar.xz",
+        "inputs/pool/main/n/ncurses/ncurses_6.4-4.debian.tar.xz",
+        "inputs/pool/main/n/ncurses/ncurses_6.4-4.dsc",
+        "inputs/pool/main/n/ncurses/ncurses_6.4.orig.tar.gz",
+        "inputs/pool/main/n/ncurses/ncurses_6.4.orig.tar.gz.asc",
+        "inputs/pool/main/n/nettle/nettle_3.8.1-2.debian.tar.xz",
+        "inputs/pool/main/n/nettle/nettle_3.8.1-2.dsc",
+        "inputs/pool/main/n/nettle/nettle_3.8.1.orig.tar.gz",
+        "inputs/pool/main/n/nettle/nettle_3.8.1.orig.tar.gz.asc",
+        "inputs/pool/main/n/nghttp2/nghttp2_1.52.0-1.debian.tar.xz",
+        "inputs/pool/main/n/nghttp2/nghttp2_1.52.0-1.dsc",
+        "inputs/pool/main/n/nghttp2/nghttp2_1.52.0.orig.tar.gz",
+        "inputs/pool/main/o/openldap/openldap_2.5.13+dfsg-5.debian.tar.xz",
+        "inputs/pool/main/o/openldap/openldap_2.5.13+dfsg-5.dsc",
+        "inputs/pool/main/o/openldap/openldap_2.5.13+dfsg.orig.tar.xz",
+        "inputs/pool/main/o/openssl/openssl_3.0.9-1.debian.tar.xz",
+        "inputs/pool/main/o/openssl/openssl_3.0.9-1.dsc",
+        "inputs/pool/main/o/openssl/openssl_3.0.9.orig.tar.gz",
+        "inputs/pool/main/o/openssl/openssl_3.0.9.orig.tar.gz.asc",
+        "inputs/pool/main/p/p11-kit/p11-kit_0.24.1-2.debian.tar.xz",
+        "inputs/pool/main/p/p11-kit/p11-kit_0.24.1-2.dsc",
+        "inputs/pool/main/p/p11-kit/p11-kit_0.24.1.orig.tar.xz",
+        "inputs/pool/main/p/p11-kit/p11-kit_0.24.1.orig.tar.xz.asc",
+        "inputs/pool/main/p/pam/pam_1.5.2-6.debian.tar.xz",
+        "inputs/pool/main/p/pam/pam_1.5.2-6.dsc",
+        "inputs/pool/main/p/pam/pam_1.5.2.orig.tar.xz",
+        "inputs/pool/main/p/patch/patch_2.7.6-7.debian.tar.xz",
+        "inputs/pool/main/p/patch/patch_2.7.6-7.dsc",
+        "inputs/pool/main/p/patch/patch_2.7.6.orig.tar.xz",
+        "inputs/pool/main/p/pcre2/pcre2_10.42-1.diff.gz",
+        "inputs/pool/main/p/pcre2/pcre2_10.42-1.dsc",
+        "inputs/pool/main/p/pcre2/pcre2_10.42.orig.tar.gz",
+        "inputs/pool/main/p/perl/perl_5.36.0-7.debian.tar.xz",
+        "inputs/pool/main/p/perl/perl_5.36.0-7.dsc",
+        "inputs/pool/main/p/perl/perl_5.36.0.orig-regen-configure.tar.xz",
+        "inputs/pool/main/p/perl/perl_5.36.0.orig.tar.xz",
+        "inputs/pool/main/p/pkgconf/pkgconf_1.8.1-1.debian.tar.xz",
+        "inputs/pool/main/p/pkgconf/pkgconf_1.8.1-1.dsc",
+        "inputs/pool/main/p/pkgconf/pkgconf_1.8.1.orig.tar.xz",
+        "inputs/pool/main/p/procps/procps_4.0.2-3.debian.tar.xz",
+        "inputs/pool/main/p/procps/procps_4.0.2-3.dsc",
+        "inputs/pool/main/p/procps/procps_4.0.2.orig.tar.xz",
+        "inputs/pool/main/p/pyparsing/pyparsing_3.0.9-1.debian.tar.xz",
+        "inputs/pool/main/p/pyparsing/pyparsing_3.0.9-1.dsc",
+        "inputs/pool/main/p/pyparsing/pyparsing_3.0.9.orig.tar.gz",
+        "inputs/pool/main/p/python3-defaults/python3-defaults_3.11.2-1.dsc",
+        "inputs/pool/main/p/python3-defaults/python3-defaults_3.11.2-1.tar.gz",
+        "inputs/pool/main/p/python3.11/python3.11_3.11.2-6.debian.tar.xz",
+        "inputs/pool/main/p/python3.11/python3.11_3.11.2-6.dsc",
+        "inputs/pool/main/p/python3.11/python3.11_3.11.2.orig.tar.gz",
+        "inputs/pool/main/r/readline/readline_8.2-1.3.debian.tar.xz",
+        "inputs/pool/main/r/readline/readline_8.2-1.3.dsc",
+        "inputs/pool/main/r/readline/readline_8.2.orig.tar.gz",
+        "inputs/pool/main/r/rhash/rhash_1.4.3-3.debian.tar.xz",
+        "inputs/pool/main/r/rhash/rhash_1.4.3-3.dsc",
+        "inputs/pool/main/r/rhash/rhash_1.4.3.orig.tar.gz",
+        "inputs/pool/main/r/rhash/rhash_1.4.3.orig.tar.gz.asc",
+        "inputs/pool/main/r/rpcsvc-proto/rpcsvc-proto_1.4.3-1.debian.tar.xz",
+        "inputs/pool/main/r/rpcsvc-proto/rpcsvc-proto_1.4.3-1.dsc",
+        "inputs/pool/main/r/rpcsvc-proto/rpcsvc-proto_1.4.3.orig.tar.xz",
+        "inputs/pool/main/r/rtmpdump/rtmpdump_2.4+20151223.gitfa8646d.1-2.debian.tar.xz",
+        "inputs/pool/main/r/rtmpdump/rtmpdump_2.4+20151223.gitfa8646d.1-2.dsc",
+        "inputs/pool/main/r/rtmpdump/rtmpdump_2.4+20151223.gitfa8646d.1.orig.tar.gz",
+        "inputs/pool/main/s/sed/sed_4.9-1.debian.tar.xz",
+        "inputs/pool/main/s/sed/sed_4.9-1.dsc",
+        "inputs/pool/main/s/sed/sed_4.9.orig.tar.xz",
+        "inputs/pool/main/s/sed/sed_4.9.orig.tar.xz.asc",
+        "inputs/pool/main/s/shadow/shadow_4.13+dfsg1-1.debian.tar.xz",
+        "inputs/pool/main/s/shadow/shadow_4.13+dfsg1-1.dsc",
+        "inputs/pool/main/s/shadow/shadow_4.13+dfsg1.orig.tar.xz",
+        "inputs/pool/main/s/sqlite3/sqlite3_3.40.1-2.debian.tar.xz",
+        "inputs/pool/main/s/sqlite3/sqlite3_3.40.1-2.dsc",
+        "inputs/pool/main/s/sqlite3/sqlite3_3.40.1.orig-www.tar.xz",
+        "inputs/pool/main/s/sqlite3/sqlite3_3.40.1.orig.tar.xz",
+        "inputs/pool/main/s/systemd/systemd_252.6-1.debian.tar.xz",
+        "inputs/pool/main/s/systemd/systemd_252.6-1.dsc",
+        "inputs/pool/main/s/systemd/systemd_252.6.orig.tar.gz",
+        "inputs/pool/main/s/sysvinit/sysvinit_3.06-4.debian.tar.xz",
+        "inputs/pool/main/s/sysvinit/sysvinit_3.06-4.dsc",
+        "inputs/pool/main/s/sysvinit/sysvinit_3.06.orig.tar.gz",
+        "inputs/pool/main/t/tar/tar_1.34+dfsg-1.2.debian.tar.xz",
+        "inputs/pool/main/t/tar/tar_1.34+dfsg-1.2.dsc",
+        "inputs/pool/main/t/tar/tar_1.34+dfsg.orig.tar.xz",
+        "inputs/pool/main/u/usrmerge/usrmerge_35.dsc",
+        "inputs/pool/main/u/usrmerge/usrmerge_35.tar.xz",
+        "inputs/pool/main/u/util-linux/util-linux_2.38.1-5.debian.tar.xz",
+        "inputs/pool/main/u/util-linux/util-linux_2.38.1-5.dsc",
+        "inputs/pool/main/u/util-linux/util-linux_2.38.1.orig.tar.xz",
+        "inputs/pool/main/x/xz-utils/xz-utils_5.4.1-0.2.debian.tar.xz",
+        "inputs/pool/main/x/xz-utils/xz-utils_5.4.1-0.2.dsc",
+        "inputs/pool/main/x/xz-utils/xz-utils_5.4.1.orig.tar.xz",
+        "inputs/pool/main/x/xz-utils/xz-utils_5.4.1.orig.tar.xz.asc",
+        "inputs/pool/main/z/zlib/zlib_1.2.13.dfsg-1.debian.tar.xz",
+        "inputs/pool/main/z/zlib/zlib_1.2.13.dfsg-1.dsc",
+        "inputs/pool/main/z/zlib/zlib_1.2.13.dfsg.orig.tar.bz2"
+      ],
+      "archive_bytes_complete": false,
+      "signature_verified": false,
+      "input_acceptance": "not-accepted",
+      "build_ready": false,
+      "executable": false
+    },
+    "start_index": 7,
+    "remaining_files": 494,
+    "remaining_bytes": 691366296,
+    "first_requested_url": "https://snapshot.debian.org/file/9daaa738e73c3098c4958feb6b2f3849f56b687f/bash_5.2.15-2%2Bb2_arm64.deb"
+  },
+  "finished_utc": "2026-10-22T12:54:40.010877+00:00",
+  "journal": {
+    "path": ".tmp/cvc5-c1-acquisition-2026-10-22/continuation-1/events.jsonl",
+    "bytes": 70631,
+    "sha256": "8cd14da3004d1315fe1f7bbb59d035371c7a6e74fafe8f459fa1255b5a494ff4"
+  }
+}

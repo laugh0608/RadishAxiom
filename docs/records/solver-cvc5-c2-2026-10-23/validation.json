@@ -1,0 +1,119 @@
+{
+  "format": "radishaxiom-private-cvc5-c2-preparation-validation",
+  "version": "0.1",
+  "observed_utc": "2026-10-23T13:18:49.537832+00:00",
+  "scope": "offline-self-authored-preparation-only",
+  "recipe": {
+    "path": "docs/records/solver-cvc5-c2-2026-10-23/offline-build-recipe.json",
+    "bytes": 89552,
+    "sha256": "2ee5ae5e9c437036c6b0cc6ec8c4324b875b0376dcd91c9aa3d5dca29d01f4dd"
+  },
+  "prepare_exit_code": 0,
+  "check_exit_code": 2,
+  "check_result": {
+    "preparation_check": "passed",
+    "checked_inputs": {
+      "matched_files": 500,
+      "matched_bytes": 691605464,
+      "source_archives_and_trees": 5,
+      "patch_files": 8
+    },
+    "blocking_conditions": [
+      "C1 fixed LibPoly license and old open_memstream provenance not accepted",
+      "compiler/SDK/rootfs and native Linux AArch64 execution host not accepted",
+      "SDK assembly and isolated build execution not authorized",
+      "actual compiler searches/specs/CRT and pkgconf static closure not observed",
+      "dependency outputs, ABI/closure review and main input manifest not produced",
+      "resource estimates and runtime log/input monitoring not qualified"
+    ],
+    "execution_ready": false,
+    "build_ready": false
+  },
+  "tests": [
+    {
+      "script": "scripts/test-prepare-cvc5-offline-build.py",
+      "count": 33,
+      "exit_code": 0,
+      "mode": "python3 -O",
+      "log": {
+        "path": ".tmp/cvc5-c2-preparation-2026-10-23/tests-final.stderr.txt",
+        "bytes": 132,
+        "sha256": "6003353bd707f6b32a9a7dc2616dbe0d6fe009a650199577fd4f4fef9ee350d8"
+      }
+    },
+    {
+      "script": "scripts/test-cvc5-build-preparation.py",
+      "count": 47,
+      "exit_code": 0,
+      "mode": "python3 -O",
+      "log": {
+        "path": ".tmp/cvc5-c2-preparation-2026-10-23/existing-preflight.stderr.txt",
+        "bytes": 146,
+        "sha256": "12b68afa25c2b383598ded4ee4b91cc72fb579ac18d4dff9ff725a691c019855"
+      }
+    }
+  ],
+  "development_rejections": [
+    {
+      "attempt": 1,
+      "exit_code": 1,
+      "reason": "sdk-observation-count",
+      "correction": "match the 374 inspected categories to their original indices; all 500 bytes still checked"
+    },
+    {
+      "attempt": 2,
+      "exit_code": 1,
+      "reason": "unsafe-header-path",
+      "correction": "reuse archive-safe paths for SDK inventory including space-containing documentation names"
+    },
+    {
+      "attempt": 3,
+      "exit_code": 1,
+      "reason": "sdk-tool-missing:/usr/bin/mawk",
+      "correction": "bind the already inventoried gawk; no packages added"
+    }
+  ],
+  "methods": [
+    {
+      "path": "scripts/prepare-cvc5-offline-build.py",
+      "bytes": 39205,
+      "sha256": "7e9d4eaec105f8781f4643af33b4c6501c4061666145f3817b80b2de8f79a80c"
+    },
+    {
+      "path": "scripts/cvc5-build-support/CMakeLists.txt",
+      "bytes": 1040,
+      "sha256": "29ab32e21b0e2aae38feb1a7e782653e79f359a8982aa93c569d8bcde6644537"
+    },
+    {
+      "path": "scripts/test-prepare-cvc5-offline-build.py",
+      "bytes": 16180,
+      "sha256": "45a153d0f46ea45f5d6b7defa8f1d4ce77e415d4d3a23c7576ad5e5c8325f8a7"
+    }
+  ],
+  "repository_check": {
+    "result": "passed",
+    "files_checked": 2862,
+    "log": {
+      "path": ".tmp/cvc5-c2-preparation-2026-10-23/repo-check.stdout.txt",
+      "bytes": 48,
+      "sha256": "b96034e43d506fca6dbe2fb9992d68d148dc80435a12f0766fb1d61574416516"
+    }
+  },
+  "git_diff_check": "passed",
+  "candidate_batch_created": false,
+  "executed_recipe_steps": [],
+  "not_run": [
+    "SDK assembly/install",
+    "upstream configure",
+    "CMake including probe project",
+    "Make/compiler/pkgconf",
+    "containers",
+    "solver/probe",
+    "Rust tests",
+    "upstream messaging",
+    "push"
+  ],
+  "execution_ready": false,
+  "build_ready": false,
+  "license_acceptance": "not-accepted"
+}

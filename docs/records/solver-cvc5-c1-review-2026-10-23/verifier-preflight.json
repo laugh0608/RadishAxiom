@@ -1,0 +1,54 @@
+{
+  "format": "radishaxiom-private-cvc5-verifier-preflight",
+  "version": "0.1",
+  "docker_cli": {
+    "path": "/usr/local/bin/docker",
+    "sha256": "4a728ee98f89005a90198a9be791e8fdaebbcb5e6af9721251efe0113df37759"
+  },
+  "image": "sha256:55063921d0e996f717092e07dce8041cb2376cc171a070bf9a0a38a5dd16c777",
+  "method_sha256": "e22d50a872e509ca1d44da0145f695e7b2f026cbee350f7774b19d6136cc8927",
+  "reused_method_sha256": "4b0151dfbe00b7772697c06afb447521e0cf66fe2011ca1e4adb84f4029c016c",
+  "started_utc": "2026-10-23T12:19:38.316628+00:00",
+  "passed": true,
+  "container_created": false,
+  "current_task_cli_trust_accepted": true,
+  "current_task_daemon_trust_accepted": true,
+  "rootfs": {
+    "bytes": 8407040,
+    "sha256": "f1ac49bc29d33182a9c9a070b70509c739d857369876afbe307b9e9898d6b8b3"
+  },
+  "daemon": {
+    "Server.Version": "29.8.2",
+    "Server.ApiVersion": "1.56",
+    "Server.Os": "linux",
+    "Server.Arch": "arm64"
+  },
+  "resource_capabilities": {
+    "MemoryLimit": true,
+    "SwapLimit": true,
+    "PidsLimit": true,
+    "CpuCfsPeriod": true,
+    "CpuCfsQuota": true,
+    "CgroupVersion": "2",
+    "SecurityOptions": [
+      "name=seccomp,profile=builtin",
+      "name=cgroupns"
+    ]
+  },
+  "image_observed": {
+    "Id": "sha256:55063921d0e996f717092e07dce8041cb2376cc171a070bf9a0a38a5dd16c777",
+    "Os": "linux",
+    "Architecture": "arm64",
+    "Config.Labels": {
+      "org.radishaxiom.musl-rootfs-sha256": "f1ac49bc29d33182a9c9a070b70509c739d857369876afbe307b9e9898d6b8b3"
+    },
+    "Config.Env": null,
+    "Config.Entrypoint": null,
+    "Config.Cmd": null,
+    "Config.Volumes": null,
+    "Config.OnBuild": null,
+    "Config.Healthcheck": null,
+    "Config.User": null
+  },
+  "finished_utc": "2026-10-23T12:19:38.460537+00:00"
+}

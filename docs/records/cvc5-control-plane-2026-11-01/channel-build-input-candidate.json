@@ -1,0 +1,169 @@
+{
+  "base_commit": "be8c6203e372aeb627602129e173a4cb9ed9313a",
+  "base_input_files": [
+    {
+      "bytes": 270,
+      "path": "Cargo.toml",
+      "sha256": "ae7a711f78aa93f673ecd9338dfdb3d477087ea40eff72211a105377931cf9c6"
+    },
+    {
+      "bytes": 1203,
+      "path": "Cargo.lock",
+      "sha256": "da13b685586917299e301ba0e01fad393514c5d909d685822eb6b774ff215275"
+    },
+    {
+      "bytes": 86,
+      "path": "rust-toolchain.toml",
+      "sha256": "279d77167cec5426fa80f457cd066dc74a360fbe4e2816f4f3fa01487a918fdc"
+    },
+    {
+      "bytes": 339,
+      "path": "crates/solver-bootstrap-linux/Cargo.toml",
+      "sha256": "ba214760d3e619d6fc8377a8a42ecb9a37f5981c0184e6799e2f6fdbc6808020"
+    },
+    {
+      "bytes": 166,
+      "path": "crates/solver-supervision-core/Cargo.toml",
+      "sha256": "ca44c32e360a87b9dc13e6540114f2472aa2e765dafe65bb8f71744a3e29d544"
+    },
+    {
+      "bytes": 105,
+      "path": "crates/digest/Cargo.toml",
+      "sha256": "452a26c765b860be7cb3be2118e9c2013b26fe8aca29a3b13f18f2c6ec3b7370"
+    }
+  ],
+  "build_ready": false,
+  "candidate_artifact_emitted": false,
+  "cargo_commit": "c980f4866141969fab6254a680546a277789d6f0",
+  "created_or_started_environment": false,
+  "execution_ready": false,
+  "format": "radishaxiom-private-linux-channel-build-input-observation",
+  "future_binary_entry_present": false,
+  "future_collector_present": false,
+  "installed_targets": [
+    "aarch64-apple-darwin"
+  ],
+  "linux_build_performed": false,
+  "linux_target_directory_present": false,
+  "linux_target_manifest_present": false,
+  "lld_llvm_commit": "dcc3606807c989700e0ac1cac18c31741bcd40d9",
+  "llvm_version": "22.1.6",
+  "notes": [
+    "hashes identify existing host files only, not publisher authentication or transitive dynamic-library acceptance",
+    "base source has private library only; no current executable build recipe or bound collector",
+    "no target component retrieval/installation, build, image mutation or environment operation"
+  ],
+  "observation_date": "2026-11-01",
+  "raw_output_root": ".tmp/linux-channel-delivery-review-2026-11-01",
+  "retained_image_mountpoint": {
+    "bytes": 0,
+    "gid": 0,
+    "kind": "directory",
+    "mode": "0755",
+    "path": "mnt",
+    "uid": 0
+  },
+  "rustc_commit": "8bab26f4f68e0e26f0bb7960be334d5b520ea452",
+  "scope": "host-tool-metadata-and-selected-bytes-only-not-build-or-acceptance",
+  "target": "aarch64-unknown-linux-musl",
+  "target_tool_acceptance": "not-established",
+  "toolchain": "1.97.1-aarch64-apple-darwin",
+  "tools": [
+    {
+      "acceptance": "not-established-by-this-observation",
+      "bytes": 412504,
+      "name": "rustc",
+      "path": "/Users/luobo/.rustup/toolchains/1.97.1-aarch64-apple-darwin/bin/rustc",
+      "sha256": "210df6794001b73ec3d453878707fa1e0bdcb63c427024a6e6574bbe5615a4da"
+    },
+    {
+      "acceptance": "not-established-by-this-observation",
+      "bytes": 31867672,
+      "name": "cargo",
+      "path": "/Users/luobo/.rustup/toolchains/1.97.1-aarch64-apple-darwin/bin/cargo",
+      "sha256": "7672ead309d505577c018fff2cafb3433601f073e38cbe87359ac1f7b944bbf5"
+    },
+    {
+      "acceptance": "not-established-by-this-observation",
+      "bytes": 130977488,
+      "name": "rust-lld",
+      "path": "/Users/luobo/.rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/aarch64-apple-darwin/bin/rust-lld",
+      "sha256": "8f5fe507df7232eac0a610c12a5d11f3202205235f710eb98c6c78df6d3f548d"
+    }
+  ],
+  "version": "0.1",
+  "version_observations": [
+    {
+      "argv": [
+        "/Users/luobo/.rustup/toolchains/1.97.1-aarch64-apple-darwin/bin/rustc",
+        "--version",
+        "--verbose"
+      ],
+      "exit_code": 0,
+      "name": "rustc-version",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 192,
+      "stdout_sha256": "e794146d99fad54562fdcbd4a7c8b22b0240d2b0312ff6d879d67939b3131850"
+    },
+    {
+      "argv": [
+        "/Users/luobo/.rustup/toolchains/1.97.1-aarch64-apple-darwin/bin/cargo",
+        "--version",
+        "--verbose"
+      ],
+      "exit_code": 0,
+      "name": "cargo-version",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 335,
+      "stdout_sha256": "cff3a4d8e7d4fc3fda550318a366dc8acee9f7815182d3b8b4c0ccb57eab9ab8"
+    },
+    {
+      "argv": [
+        "/Users/luobo/.rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/aarch64-apple-darwin/bin/rust-lld",
+        "-flavor",
+        "gnu",
+        "--version"
+      ],
+      "exit_code": 0,
+      "name": "lld-version",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 130,
+      "stdout_sha256": "b7549812016ce1962d8280cde30870181479afeb543e0f19361ffdc7a7922542"
+    },
+    {
+      "argv": [
+        "rustup",
+        "target",
+        "list",
+        "--installed",
+        "--toolchain",
+        "1.97.1-aarch64-apple-darwin"
+      ],
+      "exit_code": 0,
+      "name": "installed-targets",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 21,
+      "stdout_sha256": "19afaf54e1c73ed8d742a22e5ad23c0fc9875c0697df22365652435250dd2496"
+    },
+    {
+      "argv": [
+        "rustup",
+        "component",
+        "list",
+        "--installed",
+        "--toolchain",
+        "1.97.1-aarch64-apple-darwin"
+      ],
+      "exit_code": 0,
+      "name": "installed-components",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 141,
+      "stdout_sha256": "f5f290a916dd48fe695f8aa2fd39d16dd46feef645d112c33b42ce61050d7fd0"
+    }
+  ]
+}
