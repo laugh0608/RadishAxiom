@@ -39,6 +39,32 @@ def reference(role, raw):
     return {"role": role, "byte_length": str(len(raw)), "content_digest": raw_digest(raw)}
 
 
+def attempt_record(*, ir, task, fixture, case, slot, cap, result, output, tool, rule, task_pin):
+    outputs = []
+    if output is not None:
+        outputs.append({
+            **reference("host-input" if slot == "input" else "golden-host-output", output),
+            "format": "axiom-host-data",
+            "format_version": "0.2",
+        })
+    return {
+        "format": "radishaxiom-private-p5-execution",
+        "inputs": [
+            reference("benchmark-task", task),
+            reference("canonical-ir", ir),
+            reference("fixture", fixture),
+        ],
+        "kind": "check-fixture",
+        "limits": {**OTHER_LIMITS, "envelope_bytes": str(cap)},
+        "options": {"case": case, "expected_ir": raw_digest(ir), "expected_task": task_pin, "slot": slot},
+        "outputs": outputs,
+        "result": result,
+        "rule": rule,
+        "tool": tool,
+        "version": "0.1",
+    }
+
+
 def main(path):
     executable = Path(path).resolve(strict=True)
     assert executable.is_file() and 0 < executable.stat().st_size <= 32 * 1024 * 1024
@@ -80,30 +106,12 @@ def main(path):
             assert raw_digest(data) == cases[case][slot]["sha256"]
             expected_role = "input" if slot == "input" else "output"
             assert output == envelope("0.2", ir_id, expected_role, json.loads(data)["tables"])
-            outputs = [{
-                **reference("host-input" if slot == "input" else "golden-host-output", output),
-                "format": "axiom-host-data",
-                "format_version": "0.2",
-            }]
         else:
             assert proc.returncode == 1 and not output
-            outputs = []
-        expected = {
-            "format": "radishaxiom-private-p5-execution",
-            "inputs": [
-                reference("benchmark-task", task_raw),
-                reference("canonical-ir", ir_raw),
-                reference("fixture", data),
-            ],
-            "kind": "check-fixture",
-            "limits": {**OTHER_LIMITS, "envelope_bytes": str(cap)},
-            "options": {"case": case, "expected_ir": ir_pin, "expected_task": wanted_task, "slot": slot},
-            "outputs": outputs,
-            "result": result,
-            "rule": rule,
-            "tool": tool,
-            "version": "0.1",
-        }
+        expected = attempt_record(
+            ir=ir_raw, task=task_raw, fixture=data, case=case, slot=slot, cap=cap, result=result,
+            output=output or None, tool=tool, rule=rule, task_pin=wanted_task,
+        )
         assert parse_canonical(record) == expected
         assert record == canonical_bytes(expected)
         print(case, slot, cap, result["kind"], result.get("code", "-"),

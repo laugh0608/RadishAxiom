@@ -44,3 +44,4 @@
 - [ADR 0031：本地 cvc5 构建候选的来源保证边界（Accepted）](0031-local-cvc5-build-provenance-boundary.md)
 - [ADR 0032：AX-B01 的 P5 具体输入检查组件入口（Accepted）](0032-ax-b01-p5-component-entry.md)
 - [ADR 0033：P5 宿主封套与 IR v0.2 的版本配对（Accepted）](0033-p5-host-data-ir-v02-pairing.md)
+- [ADR 0034：IR v0.2 管线回执的 P5 用例关联（Proposed）](0034-p5-case-receipt-v02.md)

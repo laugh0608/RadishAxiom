@@ -14,7 +14,9 @@ use radishaxiom_ir::{
     host_data::{
         FixtureConversion, FixtureSlot, HostDataLimits, PinnedBytes,
         execution::{
-            FixtureCheckerTool, MAX_OBSERVED_INPUT_BYTES, MAX_TOOL_BYTES, execute_fixture,
+            FixtureCheckerTool, MAX_OBSERVED_INPUT_BYTES, MAX_TOOL_BYTES,
+            case::{FixtureCaseRequest, execute_fixture_case},
+            execute_fixture,
         },
     },
     json::JsonLimits,
@@ -47,6 +49,10 @@ fn main() -> ExitCode {
 }
 
 fn observe() -> Result<bool, Box<dyn Error>> {
+    enum Mode<'a> {
+        Slot(FixtureSlot),
+        Case(Option<&'a str>),
+    }
     let args: Vec<_> = env::args().skip(1).collect();
     let [
         tool_pin,
@@ -58,14 +64,16 @@ fn observe() -> Result<bool, Box<dyn Error>> {
         slot,
         fixture_path,
         limit,
+        rest @ ..,
     ] = args.as_slice()
     else {
-        return Err("expected: TOOL_SHA IR IR_SHA TASK TASK_SHA CASE INPUT_OR_GOLDEN FIXTURE ENVELOPE_BYTES".into());
+        return Err("expected: TOOL_SHA IR IR_SHA TASK TASK_SHA CASE MODE FIXTURE ENVELOPE_BYTES [GOLDEN_OR_DASH]".into());
     };
-    let slot = match slot.as_str() {
-        "input" => FixtureSlot::Input,
-        "golden" => FixtureSlot::Golden,
-        _ => return Err("expected input or golden slot".into()),
+    let mode = match (slot.as_str(), rest) {
+        ("input", []) => Mode::Slot(FixtureSlot::Input),
+        ("golden", []) => Mode::Slot(FixtureSlot::Golden),
+        ("case", [golden]) => Mode::Case((golden != "-").then_some(golden.as_str())),
+        _ => return Err("expected input, golden or case mode with its required arguments".into()),
     };
     let envelope_bytes = limit.parse::<usize>()?;
     if envelope_bytes > JSON.max_input_bytes || envelope_bytes.to_string() != *limit {
@@ -81,28 +89,63 @@ fn observe() -> Result<bool, Box<dyn Error>> {
     let ir = read_bounded(Path::new(ir_path), MAX_OBSERVED_INPUT_BYTES)?;
     let task = read_bounded(Path::new(task_path), MAX_OBSERVED_INPUT_BYTES)?;
     let fixture = read_bounded(Path::new(fixture_path), MAX_OBSERVED_INPUT_BYTES)?;
+    let canonical_ir = PinnedBytes {
+        bytes: &ir,
+        sha256: ir_pin,
+    };
+    let task = PinnedBytes {
+        bytes: &task,
+        sha256: task_pin,
+    };
+    let limits = HostDataLimits {
+        task_json: JSON,
+        fixture: FIXTURE,
+        envelope_bytes,
+    };
+    let mut output = io::stdout().lock();
+    let slot = match mode {
+        Mode::Slot(slot) => slot,
+        Mode::Case(golden_path) => {
+            let golden = golden_path
+                .map(|path| read_bounded(Path::new(path), MAX_OBSERVED_INPUT_BYTES))
+                .transpose()?;
+            let execution = execute_fixture_case(
+                &tool,
+                FixtureCaseRequest {
+                    canonical_ir,
+                    task,
+                    case,
+                    input: &fixture,
+                    golden: golden.as_deref(),
+                },
+                limits,
+            )?;
+            output.write_all(execution.canonical_record())?;
+            for attempt in
+                std::iter::once(execution.input_execution()).chain(execution.golden_execution())
+            {
+                output.write_all(b"\n")?;
+                output.write_all(attempt.canonical_record())?;
+                if let Ok(envelope) = attempt.outcome() {
+                    output.write_all(b"\n")?;
+                    output.write_all(envelope.canonical_bytes())?;
+                }
+            }
+            output.flush()?;
+            return Ok(execution.completed_pair().is_some());
+        }
+    };
     let execution = execute_fixture(
         &tool,
         FixtureConversion {
-            canonical_ir: PinnedBytes {
-                bytes: &ir,
-                sha256: ir_pin,
-            },
-            task: PinnedBytes {
-                bytes: &task,
-                sha256: task_pin,
-            },
+            canonical_ir,
+            task,
             case,
             slot,
             fixture_bytes: &fixture,
         },
-        HostDataLimits {
-            task_json: JSON,
-            fixture: FIXTURE,
-            envelope_bytes,
-        },
+        limits,
     )?;
-    let mut output = io::stdout().lock();
     output.write_all(execution.canonical_record())?;
     output.write_all(b"\n")?;
     if let Ok(envelope) = execution.outcome() {

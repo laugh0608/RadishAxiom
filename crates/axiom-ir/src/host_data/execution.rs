@@ -12,6 +12,8 @@ use crate::{
     obligations::raw_digest,
 };
 
+pub mod case;
+
 pub const MAX_OBSERVED_INPUT_BYTES: usize = 128 * 1024;
 pub const MAX_TOOL_BYTES: usize = 32 * 1024 * 1024;
 const RULE: &[u8] = include_bytes!("../../../../docs/adr/0033-p5-host-data-ir-v02-pairing.md");
@@ -28,14 +30,19 @@ pub enum ObservationError {
 
 impl fmt::Display for ObservationError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let code = match self {
+        f.write_str(self.code())
+    }
+}
+
+impl ObservationError {
+    fn code(self) -> &'static str {
+        match self {
             Self::ToolSize => "tool-size",
             Self::ToolDigest => "tool-digest",
             Self::InputSize => "observation-input-size",
             Self::InputPin => "observation-input-pin",
             Self::CaseName => "observation-case-name",
-        };
-        f.write_str(code)
+        }
     }
 }
 
@@ -140,18 +147,13 @@ pub fn execute_fixture(
             ]);
             (object([("kind", string("completed"))]), vec![output])
         }
-        Err(cause) => {
-            let kind = match cause.failure() {
-                ConversionFailure::Invalid => "invalid",
-                ConversionFailure::ResourceExhausted => "resource-exhausted",
-                ConversionFailure::Unsupported => "unsupported",
-                ConversionFailure::Error => "error",
-            };
-            (
-                object([("code", string(cause.code())), ("kind", string(kind))]),
-                vec![],
-            )
-        }
+        Err(cause) => (
+            object([
+                ("code", string(cause.code())),
+                ("kind", string(failure_kind(cause))),
+            ]),
+            vec![],
+        ),
     };
     let input_refs = inputs.into_iter().map(|(role, bytes)| {
         object([
@@ -188,6 +190,15 @@ pub fn execute_fixture(
         record: bytes,
         outcome,
     })
+}
+
+fn failure_kind(cause: &HostDataError) -> &'static str {
+    match cause.failure() {
+        ConversionFailure::Invalid => "invalid",
+        ConversionFailure::ResourceExhausted => "resource-exhausted",
+        ConversionFailure::Unsupported => "unsupported",
+        ConversionFailure::Error => "error",
+    }
 }
 
 fn valid_pin(text: &str) -> bool {
