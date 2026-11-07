@@ -22,6 +22,8 @@ L2 已提交为 `5dab738`；L3 源码实现已提交为 **`bb9d963b38273bfd9ec7a
 
 旧 Rust 分离签名诊断、SHA-1 自认证缺口和 [payload 接受的有限范围](../checker-runtime-rust-first-slice-review.md)保持原义；本批没有重新验签或把历史 GNU host / musl 原包接受转移到此 component。后续可按既有受控二进制输入方式，单独审阅这个精确归档、installer 与宿主运行时的有限信任范围；不要求重建整套 Rust / GCC，也不把摘要匹配写成发布构建证明。未形成该对象的接受决定前，停止安装与构建。
 
+2026-11-07 的[有限输入审阅](../records/2026-11-07-linux-channel-l3-input-acceptance-review.md)重核了归档与 Cargo 解析数据，并记录实际宿主工具及加载边界，结论为 `not-accepted`。单次 target 安装仍以该审阅列出的精确缺口收口为前置条件。
+
 ## 未来安装：只增加一个 target
 
 候选安装仍使用现有 rustup 的 `target add --toolchain 1.97.1-aarch64-apple-darwin aarch64-unknown-linux-musl`，不是 archive 内的 install.sh。该参数和下面写入目标只是供审阅，**本页不授权执行**。
