@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-11-07（AX-B01 P5 内部组件与 L3 精确输入有限接受审阅）
+更新日期：2026-11-07（AX-B01 P5 版本配对审阅与 L3 精确输入有限接受审阅）
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。整体目标见[开发计划](../development-plan.md)，归属与任务来源见[能力专题地图](../topics.md)；历史流水见[整理前快照](../records/status-before-planning-alignment-2026-11-01.md)与[早期归档](../records/status-through-2026-09-03.md)。
 
@@ -28,7 +28,7 @@
 
 ### 下一步
 
-AX-B01 的 P5 内部检查已按 [ADR 0032（Accepted）](../adr/0032-ax-b01-p5-component-entry.md)实现。IR v0.2 路径通过 `base` / `boundary` 的独立表值对照，并依据实际前置条件拒绝 `invalid` 的 `orders:OX`。核心线接续先审阅 IR v0.2 与宿主封套的版本配对及生产 `check-fixture` 的绑定，P6 继续受原门控约束。 [样本与组件核对记录](../records/2026-11-07-ax-b01-p5-entry-review.md)
+AX-B01 的 P5 内部检查已按 [ADR 0032（Accepted）](../adr/0032-ax-b01-p5-component-entry.md)实现。IR v0.2 路径通过 `base` / `boundary` 的独立表值对照，并依据实际前置条件拒绝 `invalid` 的 `orders:OX`。核心线接续审阅 [ADR 0033（Proposed）](../adr/0033-p5-host-data-ir-v02-pairing.md)的宿主封套版本配对与生产 `check-fixture` 绑定，接受后才进入新配对实施。P6 继续受原门控约束。 [新旧版本对照](../records/2026-11-07-ax-b01-p5-pairing-review.md)
 
 运行线恢复条件见下文“接下来的事项”。`--no-poly` 可作为后续单独评估的校准候选，任何选型变化须重审配置、实际依赖和工具身份。各切片的契约和验收从[专题地图](../topics.md)进入。
 
