@@ -77,4 +77,4 @@ S1–S3 都需要明示 execution 的输入、输出、规则、实际工具身�
 | 后端与归因 | 将相同 SMT 字节的另一目标响应换入。用 `sat` 模型、Pre 不成立的 world 或只违反 guarantee 的 world 支撑 filter coverage 的 `failed` | 拒绝错误目标绑定或无有效精确重放的 `failed` |
 | 结论与门控 | 无 attempt 却填 `unknown`，用 `trusted` 或 `checked` 完成 `prove`，把裸 `unsat` 或 P5 `accepted` 用作全义务满足 / 开 P6 的依据 | 拒绝无支持结果或错误结论。独立检查按完整 profile 重算，真实但不充分的尝试按其实际级别保留 |
 
-S1 的三条支持边界已获所有者批准。S2 的独立重演与 P1 / P2 前提待审，之后审阅 S3 的字段来源充分条件。审阅通过后可据此定义最小公共支持与独立检查矩阵，ADR 0009 的完整迁移演练仍是公开读取的前置。运行线继续受既有 P4、宿主和工具门槛约束。 [S1 决定](ir-structure-result-v0.2-review.md#审阅出口) · [S2 专项审阅](effect-empty-result-v0.2-review.md)
+S1 的三条支持边界已获所有者批准。S2 的独立重演与 P1 / P2 前提、S3 的首批字段来源充分条件分别待审。审阅通过后可据此定义最小公共支持与独立检查矩阵，ADR 0009 的完整迁移演练仍是公开读取的前置。运行线继续受既有 P4、宿主和工具门槛约束。 [S1 决定](ir-structure-result-v0.2-review.md#审阅出口) · [S2 专项审阅](effect-empty-result-v0.2-review.md) · [S3 专项审阅](field-origin-result-v0.2-review.md)
