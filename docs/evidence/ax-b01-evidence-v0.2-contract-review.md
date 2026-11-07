@@ -36,6 +36,8 @@
 
 所有九项的 expectation 均为 `prove`。`checked` 和 `trusted` 对这些目标均不合法。`target-not-violated` 只覆盖当前 world。wrong-drop-zero 可违反业务 guarantee，同时满足相对于实际谓词的内建 row-coverage，反例必须归到被重放的目标。 [有限归因材料](../records/2026-10-17-query-compaction-validation.md) · [校准停止线](../adr/0028-bounded-solver-calibration-entry.md) · [五态与支持](axiom-evidence-v0.md#五种状态)
 
+后续审阅按实际捕获、编码覆盖、独立重放和未决归因列出了绑定与拒绝用例。 [后端结果与信任审阅](ax-b01-evidence-v0.2-backend-support-review.md)
+
 ## 四个结构目标的接入决定
 
 **S1 · ir-structure。** 生产已有 `check_canonical_document`。它验证结构、类型、绑定和原始规范字节，产出不可变 CanonicalDocument。对合法 subject，建议在 v0.2 明确允许 `normalize` / `ir-normalizer` 以严格模式支撑 `checked`，执行绑定原始输入、精确语义、规则 / 工具、预算、规范产物及文档域 ID。独立路径重读实际字节并重算身份。旧 v0.1 的 `checked` 支持列表未列 `normalize`，锁定合成生成器用 `check-fixture` 记录这项检查。建议只在新版本声明新的支持关系。对真正拒绝的候选，另行固定 `rejected-ir` 分支及 `structure-path` 的实际复核规则，复现确定性拒绝后才能给 `failed`。资源或工具故障只有实际 attempt 才可支撑 `unknown`。严格模式必须检查原始输入并拒绝非规范字节，即使 normalize 能从该输入生成另一份合法制品。 [P1 入口](../../crates/axiom-ir/src/document.rs) · [旧合成执行生成](../../scripts/checker_bundle_contracts/evidence.py) · [v0.1 subject 与结果](axiom-evidence-v0.md)

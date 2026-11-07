@@ -69,3 +69,36 @@ Rust 定向测试通过 Python 的 --rust-vectors 只读输出取得相同的三
 ```bash
 cargo +1.97.1-aarch64-apple-darwin test -p radishaxiom-ir evidence_review::tests --lib --locked --offline
 ```
+
+## 后端绑定候选
+
+[后端登记](backend.json)把 [B1–B3 审阅](../ax-b01-evidence-v0.2-backend-support-review.md)具体化为来源封套、执行模式和结果引用。它使用本页的 Evidence 域、执行成员、ID 与排序规则。离线投影只有一项 P2 义务、一次求解及其可选重放、所用工具和信任条目。投影单独计算原始 SHA-256，用于比对向量。完整 Evidence 的义务全集、trust-boundary 条目及结论仍由正式入口验收。基础登记及 Rust 读回的模式集合保持原样。
+
+| 对象 | 闭合绑定 |
+| --- | --- |
+| `axiom-evidence-backend-capture / 0.1` | `invocation` 标识实际调度尝试，由采集端分配并与精确请求绑定。 `launch` 指向归档、执行文件、接受记录、依赖清单、宿主、监督器、策略和资格。正常运行须从实际执行和加载观察核对这些引用。 `observation` 指向原始捕获原件，`proof_policy` 记录此次生产策略，`terminal` 由同一次捕获及严格协议观察重建。 |
+| 流引用 | `complete` 或 `prefix` 恰含 `kind`、`artifact`，分别引用完整流或已取得的前缀。确无流时用 `{kind: absent}`，并由捕获原因支撑。只有成功退出、完整流和清理齐全的运行可提供正常响应。 |
+| `p4-solver-response-v0.2` | `prove`／`prover`，provenance 引用上述封套原字节。输入角色、格式和预算见登记。有效 response 的 request、stdout、stderr 与封套及实际请求字节交叉核对。 `completed` 时输出唯一 response；`interrupted` 时无正常输出，保留带原因的捕获原件。归档和接受摘要与 P4 请求匹配，工具条目绑定实际 CLI。工具缺失的分支只引用已登记的预期制品，并须有可核对的已调度失败记录。 |
+| `axiom-evidence-backend-replay-source / 0.1` | 独立的 replay invocation，绑定求解 execution ID、重放原件与终态。来源端对回放工具、重放请求与实际尝试提供外部核验。相同 stdout 或 world 不能替代具体 solve execution。 |
+| `p4-target-replay-v0.1` | `replay-counterexample`／`counterexample-replayer`，仅接同目标的 `sat`。完成须具备模型候选、规范 world 及完整 P4-B 观察。若实际重放任务在模型解码阶段中止，使用 `inputs_before_world`，禁止合成 world 或 target-replay 输出；到达重放后中止则保留实际输入及诊断原件。 |
+
+规范封套的 raw 摘要由验证端用独立受信的 invocation 绑定核对。启动和重放来源须可验证，封套内的 `scope` 与身份声明只参与绑定。离线脚本先验证既有 Rust 合成导出，再单独生成并提供模拟环境的预期 pin。所有样例的 scope 为 `simulation`，改写为 `qualified` 会被拒绝。真实观察原件格式、外部来源配置、重放认证和实际工具资格属于后续实现验收。 [既有模拟导出及其检查器](../../../scripts/check-solver-simulation-export.py)
+
+### 结果投影
+
+- `proved / backend-attestation` 的四个引用按登记闭合。只接受绑定正常 `unsat` 的求解 execution。首批审阅候选保留 `proof-backend`、`production-generator`、`host-runtime` 三项实际依赖，scope 分别绑定 solver tool、生成该查询的执行上下文和受控运行上下文。求解 execution 的 request 绑定 generator 原件、query 规则和同一目标。独立路径若确立查询对反例的覆盖，才可按 B1 规则缓解 generator trust。独立请求要求证书或未允许任一剩余 trust 时，产生策略不完整判定。
+- `failed` 的候选 counterexample 使用 `target-replay` tag，含 `{kind: unreduced}`、一个与模型候选逐字节一致的规范 world、全部已满足的 assume ID，以及同一观察的 `result.witness`。trace 恰含两步，先 `{kind: obligation, ref}` 绑定精确义务，再 `{kind: replay-observation, artifact}` 绑定观察原件。独立 checker 须直接重做 WF、全部 Pre 和指定目标后核对投影。
+- `unknown` 的 reason 按登记的阶段终态和原因表产生。已完整取得的 `unknown` 协议帧、已完成但未发现目标违反的 replay，或生产侧 `certificate-required` 收到 `unsat` 却缺可接受证书，均可引用已完成的组件 execution。终态只表示该组件实际完成了相应工作。若多个尝试实际发生，候选按最后一次尝试的可核对终态选择 reason，引用同目标同原因的终态执行，保留全部历史 executions；单次离线投影尚未覆盖多次尝试的整体聚合。
+
+### 离线复核
+
+从仓库根运行，给导出指定新的 .tmp 子目录。
+
+```sh
+out=".tmp/evidence-backend-vectors-$(uuidgen)"
+cargo +1.97.1-aarch64-apple-darwin run -p radishaxiom-solver-diagnostic-host \
+  --example export_simulation_observations --locked --offline -- "$out"
+python3 -I -B docs/evidence/evidence-v0.2-machine-contract/check_backend_vectors.py "$out"
+```
+
+[固定指纹](backend-fingerprints.json)由同一脚本加 `--show-fingerprints` 输出。12 份投影覆盖实际生成的 P4 合成字节，包括原容量 AX-B01-wrong-add 的 guarantee、未见违例的有限重放、后端 unknown、证书策略、截断、清理故障与内存／期限归因。16 项负例核对缺独立来源 pin、重算身份后改写来源或宿主、归档冒充 CLI、错角色、旧 attestation 挪用、目标换绑、错上游执行、丢 Pre 或 trust，以及摘要和原件缺失。脚本只验证合成投影，实际执行来源、完整 M1 及公共读回仍待验收。P6 为 `closed / p6-not-evaluated`。

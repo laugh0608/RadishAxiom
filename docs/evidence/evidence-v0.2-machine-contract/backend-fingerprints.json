@@ -1,0 +1,14 @@
+{
+  "certificate-required": "sha256:37d532c723e867acc1391e9d3d8736d2626f86f1bd1294f9db597884723f3e8e",
+  "cleanup-failure": "sha256:7f4e478cfe2c85e196694bb4fb0e4ffc3a18bdd961ffb81648abd8dff794b3bd",
+  "composite-sat": "sha256:b1b885f8de436cf3ed20688b2b15211cf530e95e2a9100f4ee2a6afdb95409c5",
+  "deadline-before-oom": "sha256:a64dd90fe4c8883d50fbf9d99c9281eb001b764cb1ccd69662dc23f4ff2a98f5",
+  "deadline-with-oom": "sha256:1386e23f2bce6f8495769895719841992b35a6abedeca3a82428ff87e31409b0",
+  "exit137": "sha256:300b3fb8fdea8368c73199575a7df02eaf0a99b27a17c4734d979cceb3be1d4b",
+  "minimal-sat": "sha256:e7f16299dfd05ab6e22b67f6a07dfdfe1f4838a41717144f84131b3b75f0b821",
+  "minimal-unknown": "sha256:2d609908cff5bead7abb57e19007fb51f9bb5a58947492b6b9ede6bd0eda1c69",
+  "minimal-unsat": "sha256:f62069b26c3df39226f4c6866b351c3993508abf84e34cc08749859cb75592c8",
+  "oom-before-deadline": "sha256:c3c72871986d08319b4ad2a63ef82846ab49db45c4d24687bfe84b1d486c3ebc",
+  "stdout-limit": "sha256:01cda88db0b2659346225c304dcca476c41fb3dda3223a27820ed0d68ca4267d",
+  "wrong-add-sat": "sha256:68a15d0f48a11d5d6f46ccd5a1c1682b3f0aa627ab4c70098229ecbabbafa1cd"
+}

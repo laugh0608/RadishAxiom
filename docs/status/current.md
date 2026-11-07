@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-11-07（AX-B01 Evidence v0.2 本仓读回、L3 精确输入审阅）
+更新日期：2026-11-07（AX-B01 Evidence v0.2 后端机器绑定待审、L3 精确输入审阅）
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。整体目标见[开发计划](../development-plan.md)，归属与任务来源见[能力专题地图](../topics.md)；历史流水见[整理前快照](../records/status-before-planning-alignment-2026-11-01.md)与[早期归档](../records/status-through-2026-09-03.md)。
 
@@ -35,6 +35,8 @@ Evidence v0.2 已记录所有者对 S1 结构结果边界、S2 空效果独立�
 verification 机器契约已有本仓 Rust 严格读回与 S1–S3 结果绑定，使用实际 IR 重建 P2 全集，并复用 P1、P3-E / F 重建。合成完整文档的字节与独立 Python 向量一致，缺义务的 AX-B01 部分材料被拒绝。公共读取仍须审定机器契约并完成 ADR 0009 的完整迁移演练和独立检查。 [机器契约及本仓读回](../evidence/evidence-v0.2-machine-contract/README.md)
 
 ADR 0009 的 M1 已使用主仓 `CHK-PROOF-02` 精确源包复跑 Go checker 源码级严格检查，在旧策略下得到 `accepted-with-trust`。具名 IR 迁移重建了 13 项核心义务。S1–S3 已复跑本仓组件，九项后端目标已重生成精确查询与离线请求。缺合格的实际执行及新结果支持，目标 Evidence 装配停在迁移准备。 [M1 原件、逐项对照与阻断记录](../records/2026-11-07-ax-b01-evidence-m1-preflight.md)
+
+九项后端结果与信任已有审阅稿和机器绑定候选，覆盖来源封套、attestation、精确反例与未决原因。离线投影使用既有 P4 合成导出，复核 12 份投影及 16 项拒绝用例。审定候选后接入生产严格读回和独立检查。实际运行继续按下列资格顺位。 [后端结果与信任审阅](../evidence/ax-b01-evidence-v0.2-backend-support-review.md) · [后端机器绑定候选](../evidence/evidence-v0.2-machine-contract/README.md#后端绑定候选)
 
 运行线恢复条件见下文“接下来的事项”。`--no-poly` 可作为后续单独评估的校准候选，任何选型变化须重审配置、实际依赖和工具身份。各切片的契约和验收从[专题地图](../topics.md)进入。
 
