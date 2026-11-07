@@ -12,6 +12,12 @@ use super::{
     tool_definition,
 };
 
+mod acceptance;
+pub use acceptance::{
+    MAX_ACCEPTANCE_BYTES, MAX_PROVENANCE_BYTES, P5_DARWIN_RELEASE_LIMITS, P5ToolAcceptance,
+    ToolAcceptanceError,
+};
+
 pub const MAX_RECEIPT_BYTES: usize = 64 * 1024;
 const PROFILE: &str = "raxc-keyed-finite-table-pipeline-v0.2";
 
@@ -23,6 +29,7 @@ pub enum ReceiptError {
     ReceiptSize,
     ReceiptDigest,
     ReceiptMismatch,
+    ToolAcceptance(ToolAcceptanceError),
 }
 
 impl fmt::Display for ReceiptError {
@@ -55,6 +62,25 @@ pub fn record_p5_receipt(
     request: FixtureCaseRequest<'_>,
     limits: HostDataLimits,
 ) -> Result<P5ReceiptRun, ReceiptError> {
+    record_receipt(tool, request, limits, None)
+}
+
+/// Records a P5 case using approval material from the caller's trust boundary.
+pub fn record_p5_receipt_with_acceptance(
+    tool: &FixtureCheckerTool,
+    request: FixtureCaseRequest<'_>,
+    limits: HostDataLimits,
+    acceptance: P5ToolAcceptance<'_>,
+) -> Result<P5ReceiptRun, ReceiptError> {
+    record_receipt(tool, request, limits, Some(acceptance))
+}
+
+fn record_receipt(
+    tool: &FixtureCheckerTool,
+    request: FixtureCaseRequest<'_>,
+    limits: HostDataLimits,
+    acceptance: Option<P5ToolAcceptance<'_>>,
+) -> Result<P5ReceiptRun, ReceiptError> {
     let ir = request.canonical_ir;
     if ir.bytes.len() > limits.fixture.ir_json.max_input_bytes
         || ir.bytes.len() > super::MAX_OBSERVED_INPUT_BYTES
@@ -67,16 +93,27 @@ pub fn record_p5_receipt(
     if document.version() != IrVersion::V0_2 {
         return Err(ReceiptError::IrBinding);
     }
+    let mut artifacts = Artifacts::default();
+    let definition = tool_definition(&tool.digest);
+    let tool_id = identity("tool", &definition);
+    let acceptance = match acceptance {
+        Some(material) => {
+            material
+                .validate(tool, &tool_id, request, limits)
+                .map_err(ReceiptError::ToolAcceptance)?;
+            let record = artifacts.add(material.record.bytes, "axiom-p5-tool-acceptance", "0.1")?;
+            artifacts.add(material.provenance, "radishaxiom-p5-darwin-build", "0.1")?;
+            object([("artifact", string(&record)), ("kind", string("accepted"))])
+        }
+        None => object([("kind", string("not-accepted"))]),
+    };
     let execution =
         execute_fixture_case(tool, request, limits).map_err(ReceiptError::Observation)?;
 
-    let mut artifacts = Artifacts::default();
     let ir_ref = artifacts.add(ir.bytes, "axiom-ir", "0.2")?;
     let task = artifacts.add(request.task.bytes, "axiom-benchmark-task", "0.1")?;
     let rule = artifacts.add(RULE, "axiom-p5-rule", "0.1")?;
     artifacts.insert(tool.digest.clone(), tool.len, "native-executable", "0.1")?;
-    let definition = tool_definition(&tool.digest);
-    let tool_id = identity("tool", &definition);
     let context = AttemptContext {
         request,
         limits,
@@ -147,7 +184,7 @@ pub fn record_p5_receipt(
         (
             "tool",
             object([
-                ("acceptance", object([("kind", string("not-accepted"))])),
+                ("acceptance", acceptance),
                 ("definition", definition),
                 ("id", string(&tool_id)),
             ]),
@@ -175,13 +212,35 @@ pub fn check_p5_receipt(
     request: FixtureCaseRequest<'_>,
     limits: HostDataLimits,
 ) -> Result<(), ReceiptError> {
+    check_receipt(proposed, tool, request, limits, None)
+}
+
+/// Rebuilds a receipt using the caller's independently trusted approval pin.
+/// Neither the receipt nor its artifact descriptors select that pin.
+pub fn check_p5_receipt_with_acceptance(
+    proposed: PinnedBytes<'_>,
+    tool: &FixtureCheckerTool,
+    request: FixtureCaseRequest<'_>,
+    limits: HostDataLimits,
+    acceptance: P5ToolAcceptance<'_>,
+) -> Result<(), ReceiptError> {
+    check_receipt(proposed, tool, request, limits, Some(acceptance))
+}
+
+fn check_receipt(
+    proposed: PinnedBytes<'_>,
+    tool: &FixtureCheckerTool,
+    request: FixtureCaseRequest<'_>,
+    limits: HostDataLimits,
+    acceptance: Option<P5ToolAcceptance<'_>>,
+) -> Result<(), ReceiptError> {
     if proposed.bytes.len() > MAX_RECEIPT_BYTES {
         return Err(ReceiptError::ReceiptSize);
     }
     if raw_digest(proposed.bytes) != proposed.sha256 {
         return Err(ReceiptError::ReceiptDigest);
     }
-    if record_p5_receipt(tool, request, limits)?.bytes != proposed.bytes {
+    if record_receipt(tool, request, limits, acceptance)?.bytes != proposed.bytes {
         return Err(ReceiptError::ReceiptMismatch);
     }
     Ok(())

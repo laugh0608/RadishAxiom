@@ -20,7 +20,7 @@
       "properties": {
         "byte_length": {"$ref": "#/$defs/uint"},
         "content_digest": {"$ref": "#/$defs/digest"},
-        "format": {"enum": ["axiom-ir", "axiom-benchmark-task", "axiom-p5-rule", "native-executable", "axiom-benchmark-data", "axiom-host-data"]},
+        "format": {"enum": ["axiom-ir", "axiom-benchmark-task", "axiom-p5-rule", "native-executable", "axiom-benchmark-data", "axiom-host-data", "axiom-p5-tool-acceptance", "radishaxiom-p5-darwin-build"]},
         "format_version": {"enum": ["0.1", "0.2"]}
       }
     },
@@ -93,8 +93,28 @@
   "type": "object",
   "additionalProperties": false,
   "required": ["artifacts", "attempts", "evidence", "format", "format_version", "ir", "mode", "outcome", "p5", "pipeline_profile", "tool", "verification_gate"],
+  "if": {"properties": {"tool": {"properties": {"acceptance": {"const": {"kind": "not-accepted"}}}}}},
+  "then": {
+    "properties": {
+      "artifacts": {
+        "maxItems": 8,
+        "items": {"properties": {"format": {"not": {"enum": ["axiom-p5-tool-acceptance", "radishaxiom-p5-darwin-build"]}}}}
+      }
+    }
+  },
+  "else": {
+    "properties": {
+      "artifacts": {
+        "minItems": 7,
+        "allOf": [
+          {"contains": {"properties": {"format": {"const": "axiom-p5-tool-acceptance"}, "format_version": {"const": "0.1"}}}, "maxContains": 1},
+          {"contains": {"properties": {"format": {"const": "radishaxiom-p5-darwin-build"}, "format_version": {"const": "0.1"}}}, "maxContains": 1}
+        ]
+      }
+    }
+  },
   "properties": {
-    "artifacts": {"type": "array", "items": {"$ref": "#/$defs/artifact"}, "minItems": 5, "maxItems": 8},
+    "artifacts": {"type": "array", "items": {"$ref": "#/$defs/artifact"}, "minItems": 5, "maxItems": 10},
     "attempts": {"type": "array", "items": {"$ref": "#/$defs/attempt"}, "minItems": 1, "maxItems": 2},
     "evidence": {"const": {"kind": "not-assembled"}},
     "format": {"const": "axiom-pipeline-receipt"},
@@ -135,7 +155,18 @@
     "tool": {
       "type": "object", "additionalProperties": false, "required": ["acceptance", "definition", "id"],
       "properties": {
-        "acceptance": {"const": {"kind": "not-accepted"}},
+        "acceptance": {
+          "oneOf": [
+            {"const": {"kind": "not-accepted"}},
+            {
+              "type": "object", "additionalProperties": false, "required": ["artifact", "kind"],
+              "properties": {
+                "artifact": {"$ref": "#/$defs/digest"},
+                "kind": {"const": "accepted"}
+              }
+            }
+          ]
+        },
         "definition": {
           "type": "object", "additionalProperties": false, "required": ["artifact", "name", "roles", "version"],
           "properties": {
