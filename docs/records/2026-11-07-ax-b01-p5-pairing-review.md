@@ -2,7 +2,7 @@
 
 日期：2026-11-07。基线：`dev` 的 `f03db3f`。
 
-本记录保存 [ADR 0033（Proposed）](../adr/0033-p5-host-data-ir-v02-pairing.md) 的样本、拒绝对照与验证入口。对照工具只生成 ASCII 样本并做绑定检查。生产 serializer、`check-fixture` 执行记录和 Node consumer 尚待实现及验收。
+本记录保存 [ADR 0033](../adr/0033-p5-host-data-ir-v02-pairing.md) 的样本、拒绝对照和接受后的组件验证。评审工具只生成 ASCII 样本并做绑定检查。
 
 ## 现行读取器的实测
 
@@ -50,4 +50,16 @@ python3.14 -I -B docs/records/2026-11-07-ax-b01-p5-pairing/compare.py
 cargo +1.97.1-aarch64-apple-darwin test --package radishaxiom-ir --lib --locked --offline fixtures::tests
 ```
 
-四份对照及九项拟议配对拒绝通过，另有两项旧读取器版本拒绝。七项 Rust 组件测试通过。原契约由仓库检查回归。新封套的 Unicode 编码、序列化预算、完整执行记录及跨实现复核仍是实现后的验收项。
+评审阶段通过四份对照、九项拟议配对拒绝和两项旧读取器版本拒绝。既有七项 Rust P5 组件测试通过，原契约通过仓库检查。该阶段只覆盖 ASCII 参考字节与既有 P5 判定。
+
+## 接受后的转换与重建
+
+评审批次提交为 `f031d34`，项目所有者随后接受 ADR 0033。[转换组件](../../crates/axiom-ir/src/host_data.rs)读取实际 canonical IR、固定任务清单和所选 case 的夹具原字节。清单只提供任务名、case、槽位、角色和摘要。实际类型与前置条件来自 IR v0.2，清单的旧候选和预期场景不参与判定。组件不按夹具路径读取文件。
+
+结果保留 IR 制品 SHA-256、IR 文档 ID、清单与夹具 SHA-256、case、角色和实际预算。相同 IR、角色和规范表值可产生相同封套，case 与原始夹具仍须由执行记录分别绑定。封套的字节预算与内部表值预算分开，复用同一规范编码先计数再分配。重建入口先核对候选封套的原始 SHA-256，再重跑转换并比较完整字节。它和转换共享实现，独立复核仍须使用不同的路径。
+
+新增测试对照四份参考摘要，并分别检查 UTF-16 对象字段顺序与 Unicode scalar 主键顺序、282 字节恰好通过及差 1 字节的拒绝。错案、错角色、旧版标签、错误的 IR 文档域和非规范字节在重算制品摘要后仍被拒绝。原 `invalid`、耗尽前置预算、黄金制品模式错误分别给出 `Invalid`、`ResourceExhausted`、`Error`，失败时无成功封套。
+
+Darwin arm64 Rust `1.97.1` 的工作区全目标离线回归通过 532 项，1 项按既有配置忽略。六项新封套测试包含在内。全仓格式、`radishaxiom-ir` 全目标 / 全 feature Clippy、独立对照和仓库检查通过。
+
+本组件提供生产记录所需的转换事实和失败分类。登记实际 `fixture-checker`、组装生产 `check-fixture` 执行、公开 receipt / Evidence 和 Node 消费仍待接入与验收。

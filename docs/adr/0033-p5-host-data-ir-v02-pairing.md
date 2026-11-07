@@ -1,14 +1,14 @@
 # ADR 0033：P5 宿主封套与 IR v0.2 的版本配对
 
-日期：2026-11-07。状态：Proposed。
+日期：2026-11-07。状态：Accepted。项目所有者接受本 ADR 并要求推进实现。
 
-本文提出 AX-B01 的 P5 封套配对和生产 `check-fixture` 的绑定要求，供管线、宿主与独立复核实现者审阅。范围限于 [ADR 0032](0032-ax-b01-p5-component-entry.md) 已接受的具体检查能力。完整 receipt、Evidence 迁移、生成器和执行器各有自己的验收入口。
+本文定义 AX-B01 的 P5 封套配对和生产 `check-fixture` 的绑定要求，供管线、宿主与独立复核实现者使用。范围限于 [ADR 0032](0032-ax-b01-p5-component-entry.md) 已接受的具体检查能力。完整 receipt、Evidence 迁移、生成器和执行器各有自己的验收入口。
 
 ## 背景
 
 [现行制品契约](../../contracts/pipeline-artifacts-v0.1/README.md)固定 IR v0.1、宿主封套 v0.1 和 receipt v0.1。旧封套的 `ir_document_digest` 只提供摘要词法，旧结构检查器无法从它识别 IR 版本。旧 receipt 又明确拒绝 IR v0.2。原封套仅换摘要会产生形状合法但版本关系未经确认的字节。[旧读取器实测及新旧对照](../records/2026-11-07-ax-b01-p5-pairing-review.md)
 
-## 拟议配对
+## 版本配对
 
 - 接收 `axiom-ir` `0.2` 的实际 canonical 字节和 `axiom-benchmark-data` `0.1` 原始字节，产生 `axiom-host-data` `0.2`。保留原五个字段 `format`、`format_version`、`ir_document_digest`、`role`、`tables`，由新版本值区分配对。旧 v0.1 字节、配对和拒绝规则继续按现行契约解析。
 - `ir_document_digest` 是 `axiom-ir-v0.2:document` 域加 NUL 和 canonical IR 字节的 SHA-256。IR、夹具和宿主封套的制品引用各使用各自原始字节 SHA-256。接收端须取得实际 IR，分别重算制品摘要和文档 ID，并核对精确版本和角色。
@@ -30,4 +30,4 @@
 
 ## 验收入口
 
-先按 [AX-B01 对照](../records/2026-11-07-ax-b01-p5-pairing-review.md)核对 `base`、`boundary` 的四份封套和旧版回归。实际实现还须检查 Unicode 字段名与主键的两种顺序、封套序列化预算边界、`invalid`、资源耗尽、同案不同角色以及重新计算外层摘要的错配。任一必要身份缺失、序列化中断或复算不一致时停止产生成功输出。确认新配对后，才将独立重建纳入后续生产验收。
+按 [AX-B01 对照](../records/2026-11-07-ax-b01-p5-pairing-review.md)核对 `base`、`boundary` 的四份封套和旧版回归。组件验收覆盖 Unicode 字段名与主键的两种顺序、封套序列化预算边界、`invalid`、资源耗尽、同案不同角色以及重新计算外层摘要的错配。任一必要身份缺失、序列化中断或复算不一致时停止产生成功输出。生产验收另须接入实际工具身份、执行记录及独立重建。

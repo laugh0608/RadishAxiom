@@ -8,6 +8,7 @@ pub mod document;
 pub mod effects;
 pub mod expressions;
 pub mod fixtures;
+pub mod host_data;
 pub mod integer;
 pub mod json;
 pub mod migration;

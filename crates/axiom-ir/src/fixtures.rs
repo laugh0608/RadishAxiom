@@ -35,7 +35,7 @@ impl FixtureRole {
     }
 }
 
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub struct FixtureLimits {
     pub fixture_json: JsonLimits,
     /// 文档使用字节上限，实际解码的每项前置定义也使用层级和单元上限。
