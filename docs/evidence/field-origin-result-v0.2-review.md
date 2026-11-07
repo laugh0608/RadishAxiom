@@ -1,6 +1,6 @@
 # Evidence v0.2 S3 字段来源结果支持审阅
 
-日期为 2026-11-07，基线为 `dev` 的 `01688f9`。状态为待审阅。本文给出 AX-B01 两项 `field-origin / prove` 的候选充分条件、独立重演与拒绝矩阵。S2 空效果仍待审定，两项支持分别评审。P6 为 `closed / p6-not-evaluated`。 [AX-B01 契约审阅](ax-b01-evidence-v0.2-contract-review.md) · [ADR 0024](../adr/0024-core-field-origin-derivation.md)
+日期为 2026-11-07，审阅基线为 `dev` 的 `01688f9`。项目所有者已批准 S3 首批范围和充分条件。本文给出 AX-B01 两项 `field-origin / prove` 的支持边界、独立重演与拒绝矩阵。公共支持随汇总契约验收。P6 为 `closed / p6-not-evaluated`。 [AX-B01 契约审阅](ax-b01-evidence-v0.2-contract-review.md) · [ADR 0024](../adr/0024-core-field-origin-derivation.md)
 
 ## 待证明的静态性质
 
@@ -63,4 +63,4 @@ correct 两份记录各 38 个导出步骤。行控制根 `26` 经筛选谓词�
 
 ## 审阅出口
 
-待审定首批范围与三条充分条件，尤其是公开字段的值与行控制须同时为 `public`，以及仅在求值闭包中出现的 gap 对首批支持的阻断。之后可将 S1、S2、S3 分别审定的边界汇入最小公共结果支持矩阵，再按 ADR 0009 确认实施和迁移演练。 [迁移边界](../adr/0009-axiom-evidence-v0-drift-and-migration.md#决策)
+2026-11-07，项目所有者批准首批范围与三条充分条件。公开字段的值与行控制须同时满足公开条件，三根闭包中的 gap 均阻断首批支持，包括只经求值边可达的 gap。公共结果支持矩阵和 ADR 0009 迁移演练见汇总审阅。 [公共支持汇总](evidence-v0.2-minimal-support-review.md) · [迁移边界](../adr/0009-axiom-evidence-v0-drift-and-migration.md#决策)

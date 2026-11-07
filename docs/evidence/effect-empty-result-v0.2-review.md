@@ -1,6 +1,6 @@
 # Evidence v0.2 S2 空效果独立重演审阅
 
-日期为 2026-11-07，基线为 `dev` 的 `bd1bbe6`。状态为待审阅。本文给出 AX-B01 `effect-empty / prove / program` 接入 `kernel-replay` 的候选条件，供生产记录和独立 checker 实现评审。现有 P3-E 是内部推导，公共支持须按本稿单独验收。P6 为 `closed / p6-not-evaluated`。 [AX-B01 契约审阅](ax-b01-evidence-v0.2-contract-review.md) · [ADR 0023](../adr/0023-core-empty-effect-derivation.md)
+日期为 2026-11-07，审阅基线为 `dev` 的 `bd1bbe6`。项目所有者已批准 S2 的独立重演及 P1 / P2 前提。本文给出 AX-B01 `effect-empty / prove / program` 接入 `kernel-replay` 的支持边界，供生产记录和独立 checker 实现评审。现有 P3-E 是内部推导，公共支持须单独验收。P6 为 `closed / p6-not-evaluated`。 [AX-B01 契约审阅](ax-b01-evidence-v0.2-contract-review.md) · [ADR 0023](../adr/0023-core-empty-effect-derivation.md)
 
 ## 目标与执行材料
 
@@ -55,4 +55,4 @@ AX-B01 correct 的实际内部推导为 54 步、60 条前提边、1,699 path by
 
 ## 审阅出口
 
-本稿待审定两个条件。第一，公共 S2 只接受绑定实际 `prove` 执行、明确规则及完整产物的空效果重演。第二，独立结果要求同一原始 IR 的完整 P1 和 P2 前提先由 checker 独立确立，效果规则自身的有限复核按 `incomplete` 边界处理。公共状态支持、独立实现及上述验收矩阵是后续交付。旧 v0.1 结果按原身份保存，迁移仍须按 ADR 0009 重新绑定与执行。 [迁移要求](../adr/0009-axiom-evidence-v0-drift-and-migration.md#决策)
+2026-11-07，项目所有者批准 S2 独立重演及 P1 / P2 前提。S2 支持绑定实际 `prove` 执行、明确规则及完整产物。checker 须先独立确立同一原始 IR 的 P1、重建 P2，效果规则自身的有限复核按 `incomplete` 边界处理。公共格式、独立实现和验收随汇总契约推进。旧 v0.1 结果按原身份保存，迁移仍须按 ADR 0009 重新绑定与执行。 [公共支持汇总](evidence-v0.2-minimal-support-review.md) · [迁移要求](../adr/0009-axiom-evidence-v0-drift-and-migration.md#决策)
