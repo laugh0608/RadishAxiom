@@ -1,6 +1,6 @@
 # AX-B01 真实管线首切片依赖审阅
 
-审阅日期：2026-09-06；阶段入口整理：2026-09-29；新 P2 目标归因接续：2026-10-08；紧凑表示与 solver 窄入口接续：2026-10-17
+审阅日期：2026-09-06。阶段入口整理于 2026-09-29，P2 目标归因接续于 2026-10-08，紧凑查询和 solver 窄入口接续于 2026-10-17，P5 与 Evidence 接续于 2026-11-07。
 
 状态：完整管线依赖已梳理；组件入口按已接受的 ADR 0016，真实工具执行门槛不变。
 
@@ -43,7 +43,9 @@
 
 四题范围、八个 wrong、六平台指定范围和 Evidence v0.2 的 group 修正义务没有因先做 AX-B01 而删除。首条独立证明链不是允许 attestation 的基本产品流程前置，但 `certificate-required` 必须拒绝当前空支持集合，任何 accepted-with-trust 都不能升级为独立 proof。
 
-P3-E / F 已分别形成空效果与字段来源的内部结构记录，接续接口见[字段来源与 P4 审阅](query/field-origin-and-p4-interface-review.md)。当前 AX-B01 每份 IR 的 13 项 P2 义务中，九项可生成 query；effect-empty 与两个 field-origin 虽有内部分析记录，其公共结果支持以及 ir-structure 的实际结果支持仍须分别闭合。单目标后端尝试不以其他义务已完成为技术前提，完整验证仍要求全集；该区分不接受新 adapter、Evidence 或真实工具执行。
+P3-E／F 的内部记录已接入 Evidence v0.2 候选读回。AX-B01 的 13 项 P2 义务中，结构、空效果和两个字段来源已有本仓 S1–S3 绑定。其余九项可生成精确 query 与离线请求，后端结果和来源绑定已有合成向量。完整验证须取得全义务和实际信任项的可用结果，再装配 Evidence 并完成独立验收。单目标后端尝试本身可在其余义务完成前实施，实际运行仍按其资格和授权范围。 [候选读回与后端绑定](evidence/evidence-v0.2-machine-contract/README.md) · [M1 迁移准备](records/2026-11-07-ax-b01-evidence-m1-preflight.md)
+
+AX-B01 的 P5 已形成严格夹具检查、同案宿主封套及 v0.2 回执，并在审阅限定的本机 Darwin arm64 release 范围完成七案生产接受。该范围止于 P5，回执门控为 `closed / p6-not-evaluated`。上表中的 P6、P7、P8 仍按各自前置，后续可消费已验收的 P5 原件。 [回执契约](../contracts/pipeline-artifacts-v0.2/README.md) · [本机接受记录](records/2026-11-07-ax-b01-p5-darwin-release-review.md#本机生产接受)
 
 [ADR 0027](adr/0027-compact-query-and-p4-binding.md)的 v0.5 紧凑表示与 P4-A v0.2 接入已使本批 AX-B01 原容量查询通过 1 MiB 字节门槛，P4-B 已有纯组件重放；这些结果未补齐真实模型来源、求解资源或公共结果支持。[ADR 0028](adr/0028-bounded-solver-calibration-entry.md)–[0030](adr/0030-solver-bootstrap-ffi-and-build-provenance.md)另外接受受限校准、Linux 监督和可追溯构建方向。E1–E3 / F1 模拟与纯组件、F2 原生源码、C0 来源静态审阅各自保留证据边界；E0 工具接受、Linux 目标制品和 E4 / E5 实际资格仍是单目标真实尝试的直接前置，不能将静态 `build_ready=false` 解释为可构建或可运行。
 

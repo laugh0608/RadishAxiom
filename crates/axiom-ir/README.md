@@ -1,8 +1,8 @@
-# Axiom IR、派生义务、查询、结构推导与 P4 内部组件
+# Axiom IR、验证管线与 Evidence 内部组件
 
 本 crate 承载 [ADR 0025](../../docs/adr/0025-p4-request-response-model-decoding.md) 的 P4-A 请求 / 响应 / 模型解码、[ADR 0026](../../docs/adr/0026-p4-concrete-target-replay.md) 的 P4-B 具体目标重放，以及 [ADR 0027](../../docs/adr/0027-compact-query-and-p4-binding.md) 的 v0.5 紧凑查询与 P4-A v0.2 显式接入。下述模块均为内部组件，不提供真实 solver 执行入口。
 
-本 crate 同时承载 [ADR 0024](../../docs/adr/0024-core-field-origin-derivation.md) 的 P3-F 字段来源 / 标签结构推导、[ADR 0023](../../docs/adr/0023-core-empty-effect-derivation.md) 的 P3-E 空效果结构推导、[ADR 0022](../../docs/adr/0022-map-filter-row-coverage.md) 的 P3-D 双向 row-coverage、[ADR 0021](../../docs/adr/0021-map-filter-key-cardinality.md) 的 P3-C 局部 key-cardinality、[ADR 0020](../../docs/adr/0020-map-filter-node-totality.md) 的 P3-B 节点 totality 与显式 query profile、[ADR 0019](../../docs/adr/0019-map-filter-query-encoding.md) 的 P3-A map / filter 限定查询组件、[ADR 0018](../../docs/adr/0018-ir-derived-obligation-profile.md) 的 P2 IR 派生义务组件，以及 [ADR 0016](../../docs/adr/0016-core-semantic-slice-entry.md) 与 [ADR 0017](../../docs/adr/0017-ir-v0.2-support-boundaries-and-migration.md) 的 P1 内部组件。精确读取 [IR v0.1](../../docs/ir/axiom-ir-v0.md) 的既有支持子集与 [IR v0.2](../../docs/ir/axiom-ir-v0.2.md)：检查 JSON、类型、图、契约及内容身份，重建保守标签，生成完整规范文档和 strict 结果，并显式迁移共同子集。v0.2 的四项支持边界已经闭合；本机组件验收与完整 P1 生产阶段、独立 checker、跨平台和证明分别报告，不提供 CLI、Evidence 或执行门控。
+本 crate 同时承载 [ADR 0024](../../docs/adr/0024-core-field-origin-derivation.md) 的 P3-F 字段来源 / 标签结构推导、[ADR 0023](../../docs/adr/0023-core-empty-effect-derivation.md) 的 P3-E 空效果结构推导、[ADR 0022](../../docs/adr/0022-map-filter-row-coverage.md) 的 P3-D 双向 row-coverage、[ADR 0021](../../docs/adr/0021-map-filter-key-cardinality.md) 的 P3-C 局部 key-cardinality、[ADR 0020](../../docs/adr/0020-map-filter-node-totality.md) 的 P3-B 节点 totality 与显式 query profile、[ADR 0019](../../docs/adr/0019-map-filter-query-encoding.md) 的 P3-A map / filter 限定查询组件、[ADR 0018](../../docs/adr/0018-ir-derived-obligation-profile.md) 的 P2 IR 派生义务组件，以及 [ADR 0016](../../docs/adr/0016-core-semantic-slice-entry.md) 与 [ADR 0017](../../docs/adr/0017-ir-v0.2-support-boundaries-and-migration.md) 的 P1 内部组件。精确读取 [IR v0.1](../../docs/ir/axiom-ir-v0.md) 的既有支持子集与 [IR v0.2](../../docs/ir/axiom-ir-v0.2.md)，检查 JSON、类型、图、契约及内容身份，重建保守标签，生成完整规范文档和 strict 结果，并显式迁移共同子集。v0.2 的四项支持边界已有本机组件验收，完整 P1 生产阶段、独立 checker、跨平台和证明分别验收。P5 与 Evidence 的本地入口见下文。
 
 ## 输入与输出
 
@@ -236,3 +236,13 @@ cargo +1.97.1-aarch64-apple-darwin test -p radishaxiom-ir --locked --offline
 运行 `cargo +1.97.1-aarch64-apple-darwin test -p radishaxiom-ir replay --lib --locked --offline` 可重跑合成与本机验收。测试用既有 Python 具体解释器及新增动态位置观察独立核对完整有限见证；局部重复键 / 覆盖注入明确不是完整合法程序反例。费用由生产预算精确边界回归核对，独立 Python 只核对费用上限与输入绑定，不重建 Rust 分配费用。详见[验收记录](../../docs/records/2026-10-13-p4b-validation.md)。
 
 这些观察不填 Evidence 五态、不认证 solver 来源、不构成普遍证明；真实工具、其他平台、完整 Evidence 与跨仓 checker 仍未验收。旧四版 AX-B01 的查询尺寸拒绝不因直接有限世界重放而解除；新 v0.5 的字节门槛由编码与请求规划单独验收，真实求解资源仍未校准。
+
+## P5 夹具、宿主封套与回执
+
+`fixtures::check_fixture` 按实际规范 IR 检查 AX-B01 夹具的接口、值类型、键、容量和适用前置。 `host_data::convert_fixture` 使用固定清单、槽位与夹具原字节生成 `axiom-host-data` v0.2，`check_host_data` 从原材料重建并比较字节。输入和黄金使用不同角色，`execute_fixture_case` 保留输入先于黄金的实际尝试顺序，只有两槽均通过才返回同案封套对。 [ADR 0032](../../docs/adr/0032-ax-b01-p5-component-entry.md) · [ADR 0033](../../docs/adr/0033-p5-host-data-ir-v02-pairing.md)
+
+`record_p5_receipt` 与 `check_p5_receipt` 提供观察入口。显式的 `_with_acceptance` 入口按外部受信摘要核对接受记录、实际工具及构建来源，并重建同案回执。接受范围是单个 Darwin arm64 release 制品及审阅指定的本机宿主，由受保护启动和独立复跑提供运行事实。 [回执契约](../../contracts/pipeline-artifacts-v0.2/README.md) · [受保护启动与七案接受](../../docs/records/2026-11-07-ax-b01-p5-darwin-release-review.md#本机生产接受)
+
+## Evidence v0.2 候选读回
+
+`evidence_review::readback_v02` 使用调用方提供的制品解析器及显式预算，校验规范字节、制品与执行身份、工具角色和完整 P2 集合。支持 S1 的严格结构结果和 S2／S3 的推导重建，返回原始及文档域摘要。后端绑定候选目前由离线向量覆盖，实际来源认证、完整装配和独立 checker 分别验收。 [机器契约与本仓读回](../../docs/evidence/evidence-v0.2-machine-contract/README.md#rust-本地读回) · [M1 迁移准备](../../docs/records/2026-11-07-ax-b01-evidence-m1-preflight.md)

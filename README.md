@@ -28,7 +28,9 @@ RadishAxiom 是 Radish 家族中面向 AI Agent 的语言与可信语义项目�
 
 项目处于设计到受控实现阶段。首域为有键有限表的确定性纯转换，语义、IR / Evidence 与机器契约已形成；分仓 Go checker 已有受限 profile 的离线复核和 CLI，主仓 Rust 已实现 checker runtime 的身份、归档、存储与结果消费组件。[Axiom IR 内部组件](crates/axiom-ir/README.md)已完成 P1 v0.2 的结构 / 类型 / 图 / 契约与规范身份、显式版本迁移，P2 的 IR 派生义务全集，以及 P3-A–D 的 map / filter 五类限定查询、P3-E 空效果结构推导与 P3-F 字段来源 / 保守标签分析的本机组件验收。P4-A 请求 / 模型解码与 P4-B 具体目标重放也已完成本机组件验收；显式 v0.5 紧凑查询及 P4-A v0.2 接入让本批 AX-B01 原容量查询落入既有 1 MiB 上限。结构记录与有限重放不提供普遍证明；完整生产阶段、其余查询范围、真实 solver 与新 Evidence / 独立 checker 集成仍待完成。
 
-真实 solver 路径已形成 E1–E3 模拟组件、F1 共享纯规则与 F2 原生监督源码，见[实施边界](docs/query/solver-bootstrap-ffi-implementation-plan.md)。F2 尚无可执行入口，Linux 目标制品与实际系统能力未验收；cvc5 候选已完成原包获取、内容库存与限定历史签名核对，并形成[离线构建准备](docs/query/solver-cvc5-input-preparation.md)、SDK 布局和构建事件检查。[ADR 0031](docs/adr/0031-local-cvc5-build-provenance-boundary.md)接受本地新候选的限定来源边界；[私有 v0.2](docs/query/solver-local-cvc5-offline-v0.2.md)已实现阶段声明、链接前截获与材料核对，默认仍为 v0.1。许可接受、真实冻结 / 构建监督、完整链接组成及工具 / 运行资格仍未闭合。
+AX-B01 的 P5 已在限定 Darwin arm64 宿主上用精确 release 制品完成本机生产验收，覆盖输入、黄金、阻断结果和同案回执 v0.2。P6 保持关闭。Evidence v0.2 已有 S1–S3 的本仓严格读回与后端机器绑定候选，完整迁移和独立验收仍待完成。 [P5 本机接受](docs/records/2026-11-07-ax-b01-p5-darwin-release-review.md#本机生产接受) · [Evidence 候选](docs/evidence/evidence-v0.2-machine-contract/README.md)
+
+真实 solver 路径已形成 E1–E3 模拟组件、F1 共享纯规则与 F2 原生监督源码。L2 提供默认关闭的诊断 leaf，L3 已接入私有输入捕获与构建包装器。Linux 目标制品、实际系统能力和 solver 执行资格仍待验收。cvc5 候选已完成原包、内容库存与限定历史签名核对，并形成 SDK 布局和构建事件的离线检查；许可接受、真实冻结／构建监督和完整链接组成仍未闭合。 [F2 实施边界](docs/query/solver-bootstrap-ffi-implementation-plan.md) · [L3 构建输入](docs/query/solver-linux-channel-l3.md) · [cvc5 离线构建准备](docs/query/solver-cvc5-input-preparation.md)
 
 完整 `raxc` 生产管线、产品 checker runtime 和 Agent 收益尚未验收，active runtime 为 0。Darwin 强隔离采用 ADR 0013 / 0014 的逐次 Hypervisor runner 方向；已有合成 Linux guest 观察，真实 checker 负载、产品化与公共身份迁移仍待完成。
 

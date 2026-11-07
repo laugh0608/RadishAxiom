@@ -79,6 +79,6 @@ M2 的两个 group 目标须绑定同一目标节点，却有不同 ID。以直�
 
 本轮只核对旧源 Evidence 摘要和 profile、目标 P2 身份及材料链接，运行现有 IR 迁移和义务测试。公共 Evidence v0.2 规范、严格迁移器、独立支持和实际完整演练仍是后续验收项。旧公共读取支持以 ADR 0009 为准。
 
-接续草案已将 verification 的字节、身份、执行、制品和结果绑定写入机器登记并配套离线向量，待审定后接入生产路径。 [机器契约草案](evidence-v0.2-machine-contract/README.md)
+接续草案已将 verification 的字节、身份、执行、制品和结果绑定写入机器登记。S1–S3 已接入本仓严格读回。九项后端结果另有单目标合成向量，生产来源认证、正式装配和独立 checker 继续按各自范围验收。 [机器契约与本仓读回](evidence-v0.2-machine-contract/README.md) · [后端绑定候选](evidence-v0.2-machine-contract/README.md#后端绑定候选)
 
 M1 已严格核验主仓源包并完成目标 IR、P2 全集和九份离线请求重建。演练保留未完成，阻断项按实际执行和独立验收分别记录。 [M1 迁移准备记录](../records/2026-11-07-ax-b01-evidence-m1-preflight.md)

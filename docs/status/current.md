@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-11-07（AX-B01 Evidence v0.2 后端机器绑定待审、L3 精确输入审阅）
+更新日期：2026-11-07（P5 本机接受、Evidence v0.2 候选与 L3 日终交接）
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。整体目标见[开发计划](../development-plan.md)，归属与任务来源见[能力专题地图](../topics.md)；历史流水见[整理前快照](../records/status-before-planning-alignment-2026-11-01.md)与[早期归档](../records/status-through-2026-09-03.md)。
 
@@ -13,20 +13,20 @@
 | 主线 | 已有基线与未关闭范围 | 任务 / 验收来源 |
 | --- | --- | --- |
 | 语义与 IR | P1 / P2 内部组件已有本机证据；不等于完整生产阶段或 Evidence v0.2 | [语义与义务来源](../topics.md#semantics-ir) |
-| 验证管线 | 限定 P3、P4-A / B、紧凑表示和 AX-B01 P5 内部检查已有组件证据；真实 solver、完整 P0–P9 与四题闭环未验收 | [管线与反例来源](../topics.md#verification-pipeline) |
-| Evidence / Checker | 格式、指定态制品与受限消费已有材料；生产声明、接受和独立证明分别判断 | [独立复核来源](../topics.md#independent-checker) |
+| 验证管线 | 限定 P3、P4-A / B 与紧凑表示已有组件证据，AX-B01 P5 已完成限定本机生产接受。真实 solver、P6 和完整 P0–P9 仍待验收 | [管线与反例来源](../topics.md#verification-pipeline) |
+| Evidence / Checker | v0.1 有受限离线消费。v0.2 有 S1–S3 本仓读回、后端合成绑定和 M1 迁移准备，公共读取及独立验收待完成 | [独立复核来源](../topics.md#independent-checker) |
 | 运行交付 | F / C 及 L1 / L2 等已有本机或离线材料；L3 完整输入 / 包装器源码已有静态与合成验证；工具 / 宿主 / 实际执行资格未闭合 | [运行与交付来源](../topics.md#runtime-delivery) |
 | 实验评估 | 三表示、两模型、四任务、72 个 trial bundle 已预注册；execution lock、完整装置、正式模型与收益未验收 | [实验来源](../topics.md#evaluation) |
 
-分仓与动态结果沿用历史记录，本次未重验。历史 producer claim 的独立证明数为 0；反例目标归因的静态疑点仍待复现，不据此判定历史结果失效。跨仓交接见[开发计划](../development-plan.md#独立-checker-语义验收与跨仓交接)，group 义务版本边界见 [ADR 0009](../adr/0009-axiom-evidence-v0-drift-and-migration.md)。
+独立 checker 的产品制品与动态基线沿用历史记录。M1 只新增了旧包的源码级核验，独立证明数为 0。反例目标归因的静态疑点仍待复现。跨仓交接见[开发计划](../development-plan.md#独立-checker-语义验收与跨仓交接)，group 义务版本边界见 [ADR 0009](../adr/0009-axiom-evidence-v0-drift-and-migration.md)。
 
 工具 pin 为 Rust `1.97.1` / Rust 2024、Go `go1.26.7`、cvc5 `1.3.4`、Node.js `24.19.0`；身份和实际验收分别见[工具登记](../../contracts/toolchain-adapters-v0.1/README.md)、[payload 验收](../../contracts/toolchain-payload-acceptance-v0.1/README.md)。runtime policy `0.3` 仍为 `specified-not-implemented`，制品以[精确登记](../../contracts/checker-runtime-payloads-v0.1/README.md)为准。
 
 ## 近期顺位
 
-核心主线优先推进 AX-B01 首个纵向切片。P5 纯组件和有界 solver 校准按各自的前置推进，C1、L3 和宿主资格归入运行交付。完整范围与退出标准按[开发计划](../development-plan.md#里程碑与完成标准)。原 P1 / P2 / query 顺位表保留在[日期化快照](../records/status-before-planning-alignment-2026-11-01.md#下一步)。
+核心主线优先推进 AX-B01 首个纵向切片。Evidence 与有界 solver 校准按各自前置推进，C1、L3 和宿主资格归入运行交付。完整范围与退出标准按[开发计划](../development-plan.md#里程碑与完成标准)。原 P1 / P2 / query 顺位表保留在[日期化快照](../records/status-before-planning-alignment-2026-11-01.md#下一步)。
 
-### 下一步
+### AX-B01 当前交付
 
 AX-B01 的 P5 已有输入检查、宿主封套 v0.2 和同案公开回执。所有者已批准精确 Darwin arm64 release 制品及本机 macOS 27.0.1（26A434）宿主范围。受保护入口从仓库外独立受信配置读取接受摘要，实际七案通过独立规范字节重建、Schema 与 Rust 读回。本地 P5 工具为 `accepted`，P6 保持 `closed / p6-not-evaluated`。Evidence 和 P7 / P8 各自审阅。 [本机生产接受](../records/2026-11-07-ax-b01-p5-darwin-release-review.md#本机生产接受)
 
@@ -36,9 +36,9 @@ verification 机器契约已有本仓 Rust 严格读回与 S1–S3 结果绑定�
 
 ADR 0009 的 M1 已使用主仓 `CHK-PROOF-02` 精确源包复跑 Go checker 源码级严格检查，在旧策略下得到 `accepted-with-trust`。具名 IR 迁移重建了 13 项核心义务。S1–S3 已复跑本仓组件，九项后端目标已重生成精确查询与离线请求。缺合格的实际执行及新结果支持，目标 Evidence 装配停在迁移准备。 [M1 原件、逐项对照与阻断记录](../records/2026-11-07-ax-b01-evidence-m1-preflight.md)
 
-九项后端结果与信任已有审阅稿和机器绑定候选，覆盖来源封套、attestation、精确反例与未决原因。离线投影使用既有 P4 合成导出，复核 12 份投影及 16 项拒绝用例。审定候选后接入生产严格读回和独立检查。实际运行继续按下列资格顺位。 [后端结果与信任审阅](../evidence/ax-b01-evidence-v0.2-backend-support-review.md) · [后端机器绑定候选](../evidence/evidence-v0.2-machine-contract/README.md#后端绑定候选)
+九项后端结果与信任已有审阅稿和机器绑定候选，覆盖来源封套、attestation、精确反例与未决原因。离线投影使用既有 P4 合成导出，复核 12 份投影及 16 项拒绝用例。 [后端结果与信任审阅](../evidence/ax-b01-evidence-v0.2-backend-support-review.md) · [后端机器绑定候选](../evidence/evidence-v0.2-machine-contract/README.md#后端绑定候选)
 
-运行线恢复条件见下文“接下来的事项”。`--no-poly` 可作为后续单独评估的校准候选，任何选型变化须重审配置、实际依赖和工具身份。各切片的契约和验收从[专题地图](../topics.md)进入。
+全天提交与代码／文档核对见[11 月 7 日日终回顾](../records/2026-11-07-closeout.md)。各切片的契约和验收从[专题地图](../topics.md)进入。
 
 ### 当前接续（2026-11-07）
 
@@ -62,11 +62,21 @@ G0 以证据不足结束，真实接线仍未放行。L1 / L2 的源绑定、报
 
 原文保留于[历史交接](../records/status-before-planning-alignment-2026-11-01.md#历史日终交接2026-10-27)，不覆盖下列当前顺位。
 
+<a id="下一步"></a>
+
 ### 接下来的事项
+
+#### AX-B01 Evidence v0.2
+
+1. **先审定后端绑定候选。** 确认 B1–B3 的结果与信任规则、执行和重放来源由谁提供受信摘要、完整流与前缀／缺流的边界，以及多次真实尝试的终态与保留规则。确认 `certificate-required`、显式剩余信任与错绑拒绝的预期。 [后端结果与信任](../evidence/ax-b01-evidence-v0.2-backend-support-review.md) · [机器绑定候选](../evidence/evidence-v0.2-machine-contract/README.md#后端绑定候选)
+2. **按审定范围接入 Rust 严格读回与独立 checker。** 复用 P4 已有请求、解码、重放和 P2 全集重建。补齐多次尝试的结果聚合，覆盖后次完成仍留历史、同目标结果冲突、跨目标换绑、缺独立来源及信任策略拒绝。独立 checker 通过版本化材料分仓验收，生产读回与模拟结果分别留证。 [独立检查与拒绝矩阵](../evidence/evidence-v0.2-minimal-support-review.md#独立检查矩阵)
+3. **资格和实际结果齐备后恢复 M1。** AX-B01 correct 九项后端实际执行须有覆盖相应制品、宿主和目标的范围。用新的结果与实际 trust 装配全集，取得绑定新 Evidence 原始和文档域摘要的独立结果；按 ADR 0009 补齐 group、旧历史及版本拒绝矩阵后再审定公共读取。P6 继续保持 `closed / p6-not-evaluated`。 [M1 阻断与恢复](../records/2026-11-07-ax-b01-evidence-m1-preflight.md#阻断与恢复顺序) · [ADR 0009](../adr/0009-axiom-evidence-v0-drift-and-migration.md)
+
+#### Solver 与运行交付
 
 恢复基线：C1 **500 / 500 文件、691,605,464 bytes** 已取得并独立复核；172 包内容、copyright 路径及 101 `.dsc` 关联已核对，历史三角色签名与五负例按明确接受的有限信任范围通过，旧失败保留，见[输入审阅](../records/2026-10-23-cvc5-c1-input-review.md)。20 个短时验签容器均已退出并删除，未安装、组装或执行 SDK / solver；验签宿主接受不能转用为构建资格。LibPoly [原草稿及发送接续](../records/2026-10-23-libpoly-upstream-clarification-draft.md)已发布，缺口仍待权威依据；C2 已交付离线配方、布局与事件检查，**C1 仍 not-accepted，build_ready=false**。
 
-以下顺位用于恢复现有候选的运行交付，目标是在原资源限制下完成原容量 AX-B01 的真实 solver 校准。每批须有明确出口，历史批次的外部动作授权不随计划延续。
+以下顺位用于恢复现有候选的运行交付，目标是在原资源限制下完成原容量 AX-B01 的真实 solver 校准。每批须有明确出口，历史批次的外部动作授权不随计划延续。`--no-poly` 仍属单独评估的候选，任何选型变化须重审配置、实际依赖和工具身份。
 
 1. **取得 LibPoly 固定版本的许可澄清后，再作 C1 接受审阅。** [历史核对](../records/2026-10-23-libpoly-license-history.md)已收敛为整体许可冲突、Polyxx 覆盖与旧 `open_memstream.c` 来源授权三项；[issue #113](https://github.com/SRI-CSL/libpoly/issues/113)已按 10 月 27 日明确授权发送。后续依据须适用固定提交并覆盖这些缺口；不重复查同一历史、下载已匹配材料或把风险接受写成许可事实。未安排自动轮询，不自动追加消息。
 2. **L3 保持阻断，收口剩余输入审阅。** 复用已核对的 target 归档、Rust 工具、Python 构建和 Apple Git 实际执行链。恢复时核定 target 发布清单的有限信任范围、Apple Git 的精确源码缺口、Cargo 解析数据来源 / 许可及固定宿主信任。新增来源链或信任假设先核定范围。 [Apple Git 剩余边界](../records/2026-11-07-linux-channel-l3-apple-git-readback.md#漂移时如何阻断)
@@ -114,7 +124,7 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 
 ## 验证入口与本次审阅
 
-原逐批测试、失败和环境记录保留于[验证快照](../records/status-before-planning-alignment-2026-11-01.md#验证入口与本次审阅)，规划整理的实际检查见[原记录](../records/2026-11-01-planning-alignment.md)，L3 实现验证见[实现记录](../records/2026-11-01-linux-channel-l3-implementation.md)，本次日终复核见[日终记录](../records/2026-11-01-closeout.md)。不同日期的测试数不相加，不推断本批重跑过未改实现。
+原逐批测试、失败和环境记录保留于[验证快照](../records/status-before-planning-alignment-2026-11-01.md#验证入口与本次审阅)。L3 实现验证见[实现记录](../records/2026-11-01-linux-channel-l3-implementation.md)，本次复跑范围见[11 月 7 日日终记录](../records/2026-11-07-closeout.md#验证与留存)。各批测试数按当时执行范围解释。
 
 仓库级契约、生成一致性与文本检查：
 

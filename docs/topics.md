@@ -32,6 +32,7 @@
 | [map / filter 查询 v0.5](query/map-filter-query-v0.5.md)及原四版 | P3-A–D；[紧凑表示绑定 ADR 0027](adr/0027-compact-query-and-p4-binding.md)、原独立材料与版本配对 | 语义与义务、P4 |
 | [空效果结构推导](query/core-empty-effects-v0.1.md)、[字段来源](query/core-field-origin-v0.1.md) | P3-E / F；原规则、独立材料及有限观察范围 | 语义与标签 |
 | [P4-A v0.2](query/p4-request-response-model-v0.2.md)、[P4-B 重放](query/p4-concrete-target-replay-v0.1.md) | 原模型解析 / 具体重放矩阵；[P4-B 本机证据](records/2026-10-13-p4b-validation.md) | solver 执行、独立 Checker |
+| [P5 夹具与宿主封套](adr/0033-p5-host-data-ir-v02-pairing.md)、[同案回执 v0.2](../contracts/pipeline-artifacts-v0.2/README.md) | [受保护的 Darwin 本机接受](records/2026-11-07-ax-b01-p5-darwin-release-review.md#本机生产接受)；P6 按完整管线门控 | 输入、后续宿主执行 |
 | [窄入口执行清单](query/solver-execution-implementation-plan.md) | E0–E6 的逻辑入口与退出；E3 所需宿主 / 原生实现由运行交付提供，E5 的原容量校准保持原范围 | 运行交付 |
 
 完成需逐层区分真实工具、有限重放、完整制品与独立证明；旧尺寸拒绝、资源限制、错误 / timeout / 篡改路径仍按原合同。一次校准不能代签完整四题或 P0–P9。
@@ -45,6 +46,7 @@
 | 子专题 / 设计来源 | 实施与验收来源 | 协同 |
 | --- | --- | --- |
 | [Evidence v0.1](evidence/axiom-evidence-v0.md)、[验证说明](evidence/axiom-evidence-v0-validation.md) | [ADR 0009 迁移边界](adr/0009-axiom-evidence-v0-drift-and-migration.md)；新旧义务、格式与旧结果不得混配 | 语义、管线 |
+| [AX-B01 Evidence v0.2 候选](evidence/evidence-v0.2-machine-contract/README.md) | S1–S3 本仓读回、后端绑定向量与 [M1 迁移准备](records/2026-11-07-ax-b01-evidence-m1-preflight.md)；完整迁移和独立结果按 ADR 0009 验收 | P2、P4、运行资格 |
 | [独立 Checker 交接](development-plan.md#独立-checker-语义验收与跨仓交接) | 原计划中的目标归因、同域新题、正向证明与结果解释；实现状态沿其指向的独立仓库维护 | 运行交付、实验评估 |
 | [结果消费切片](checker-runtime-result-consumer-slice-review.md) | 原消费范围及程序结论 / 接受状态 / 覆盖 / 外层运行保证的分开验收 | 产品 runtime |
 
