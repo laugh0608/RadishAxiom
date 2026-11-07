@@ -97,7 +97,33 @@ def expected_receipt(case, private, final, *, ir, binary, tool, rule_bytes, appr
     }
 
 
-def main(executable, schema_path, exercise_acceptance):
+def acceptance_bytes(binary, rule_bytes, provenance):
+    return canonical_bytes({
+        "artifact": raw_digest(binary),
+        "build_profile": "release",
+        "format": "axiom-p5-tool-acceptance",
+        "format_version": "0.1",
+        "invocation": "record-p5-fixture-cli-v0.1",
+        "ir": EXPECTED_IR,
+        "limits": {**OTHER_LIMITS, "envelope_bytes": "65536"},
+        "pipeline_profile": PROFILE,
+        "provenance": raw_digest(provenance),
+        "role": "fixture-checker",
+        "rule": raw_digest(rule_bytes),
+        "target": "aarch64-apple-darwin",
+        "task": EXPECTED_TASK,
+        "tool": identity("tool", tool_identity(binary)["definition"]),
+    })
+
+
+def observe(argv):
+    return subprocess.run(
+        argv, cwd=ROOT, env={"PATH": "/usr/bin:/bin", "LANG": "C", "LC_ALL": "C"},
+        capture_output=True, timeout=20, check=False,
+    )
+
+
+def main(executable, schema_path, exercise_acceptance, *, invoke=observe, approval=None, scratch=None):
     exe = Path(executable).resolve(strict=True)
     assert exe.is_file() and 0 < exe.stat().st_size <= 32 * 1024 * 1024
     binary = exe.read_bytes()
@@ -105,27 +131,12 @@ def main(executable, schema_path, exercise_acceptance):
     ir, task, rule_bytes = MIGRATED_IR.read_bytes(), TASK.read_bytes(), RULE.read_bytes()
     assert raw_digest(ir) == EXPECTED_IR and raw_digest(task) == EXPECTED_TASK
     cases = {item["name"]: item for item in json.loads(task)["fixtures"]}
-    approval = None
     if exercise_acceptance:
+        assert approval is None
         # Deliberately synthetic material. This keyless test pin is never a production decision.
         provenance = b"synthetic P5 approval regression material; not production provenance"
-        record = {
-            "artifact": raw_digest(binary),
-            "build_profile": "release",
-            "format": "axiom-p5-tool-acceptance",
-            "format_version": "0.1",
-            "invocation": "record-p5-fixture-cli-v0.1",
-            "ir": EXPECTED_IR,
-            "limits": {**OTHER_LIMITS, "envelope_bytes": "65536"},
-            "pipeline_profile": PROFILE,
-            "provenance": raw_digest(provenance),
-            "role": "fixture-checker",
-            "rule": raw_digest(rule_bytes),
-            "target": "aarch64-apple-darwin",
-            "task": EXPECTED_TASK,
-            "tool": identity("tool", tool["definition"]),
-        }
-        record_bytes = canonical_bytes(record)
+        record_bytes = acceptance_bytes(binary, rule_bytes, provenance)
+        record = parse_canonical(record_bytes)
         approval = (record_bytes, raw_digest(record_bytes), provenance)
     validate_schema = None
     if schema_path is not None:
@@ -138,24 +149,22 @@ def main(executable, schema_path, exercise_acceptance):
         fixture = source(case, "input", cases)
         golden = source(golden_case, "golden", cases) if golden_case else "-"
         assert exe.read_bytes() == binary
-        with tempfile.TemporaryDirectory(prefix="radishaxiom-p5-approval-") as tmp:
+        with tempfile.TemporaryDirectory(prefix="radishaxiom-p5-approval-", dir=scratch) as tmp:
             if material:
                 record_path, provenance_path = Path(tmp) / "record.jcs", Path(tmp) / "provenance"
                 record_path.write_bytes(material[0])
                 provenance_path.write_bytes(material[2])
                 extra = [*extra, str(record_path), material[1], str(provenance_path)]
                 mode += "-accepted"
-            result = subprocess.run(
-                [str(exe), raw_digest(binary), str(MIGRATED_IR), EXPECTED_IR, str(TASK), EXPECTED_TASK,
-                 case, mode, str(fixture), str(cap), str(golden), *extra],
-                cwd=ROOT, env={"PATH": "/usr/bin:/bin", "LANG": "C", "LC_ALL": "C"},
-                capture_output=True, timeout=20, check=False,
-            )
+            result = invoke([
+                str(exe), raw_digest(binary), str(MIGRATED_IR), EXPECTED_IR, str(TASK), EXPECTED_TASK,
+                case, mode, str(fixture), str(cap), str(golden), *extra,
+            ])
         assert exe.read_bytes() == binary
         return result
 
     def check(raw, case, golden, cap, *, accepted, material=approval):
-        with tempfile.TemporaryDirectory(prefix="radishaxiom-receipt-") as tmp:
+        with tempfile.TemporaryDirectory(prefix="radishaxiom-receipt-", dir=scratch) as tmp:
             path = Path(tmp) / "receipt.jcs"
             path.write_bytes(raw)
             proc = launch(case, golden, cap, "receipt-check", [str(path), raw_digest(raw)], material=material)
@@ -241,6 +250,7 @@ def main(executable, schema_path, exercise_acceptance):
         assert unapproved.returncode == 0
         check(unapproved.stdout, "boundary", "boundary", 65536, accepted=False)
 
+    if exercise_acceptance:
         def reject_material(material, code):
             result = launch("boundary", "boundary", 65536, "receipt", material=material)
             assert result.returncode == 2 and not result.stdout and code in result.stderr, result.stderr

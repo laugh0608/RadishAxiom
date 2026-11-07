@@ -26,4 +26,50 @@ python3.14 -I -B docs/records/2026-11-07-ax-b01-p5-pairing/verify_receipt.py "$c
   --schema contracts/pipeline-artifacts-v0.2/schemas/axiom-pipeline-receipt.schema.json --exercise-acceptance
 ```
 
-本批生产状态为 `not-accepted`。正式接受待项目所有者审阅这个精确制品、构建来源和宿主信任范围，由受信配置提供[接受记录](../../contracts/pipeline-artifacts-v0.2/README.md#p5-工具接受记录-v01)的摘要，并在受保护的实际启动路径重跑上述场景。候选清单摘要用于绑定构建来源。正式接受记录及其受信摘要尚未签发，P6 继续执行原有义务与保证门控。
+初次接线完成时，生产状态为 `not-accepted`。正式接受要求项目所有者审阅精确制品、构建来源和宿主信任范围，由受信配置提供[接受记录](../../contracts/pipeline-artifacts-v0.2/README.md#p5-工具接受记录-v01)的摘要，并通过受保护的实际启动路径重跑上述场景。实际决定见[本机生产接受](#本机生产接受)。
+
+## 生产接受前复核
+
+基线为 `dev` 的 `e9ac904`。重读了清单的 37,539 bytes 与上述 Mach-O 的 1,339,024 bytes，长度、SHA-256 和 arm64 UUID 均吻合。Apple 工具的严格签名检查通过，签名为链接器生成的 ad hoc 签名。五份原始链接记录和版权文件匹配清单。88 项源材料、源集合摘要、71 个编译器输入的包含关系、9 项工具和 SDK 材料、42 个 SDK stub 路径对应的 40 个文件、19 个已安装 Rust 归档、9 个实际贡献归档及标准库接受记录均已重核。整包与归档成员的对应沿用原构建时的核对，本轮在候选留存目录及检查的本机缓存中未找到 Rust 标准库原归档。未重建候选。
+
+### 宿主信任范围
+
+宿主范围限当前本机的 native Darwin arm64，Darwin `27.0.0`、macOS `27.0.1`（`26A434`）。启动入口核对 `SystemVersion.plist` 和 `/usr/lib/dyld` 的原始摘要、当前 shared cache UUID `c284a291-b68b-3d0d-a1a0-3f866f87efdc`，并逐次核对实际暂存路径、清单绑定的制品 UUID 和 80 个系统映像的路径及 UUID。当前根卷报告 sealed、read-only。UUID 用于识别实际装载集合，系统映像未逐文件验收。
+
+本地复跑信任该宿主的 Apple 启动系统、内核、dyld、系统共享缓存、文件系统权限和进程语义，及项目所有者控制的 root / 同 UID 进程。独立复核还信任已审阅的脚本、固定 Schema 和本机 Python `3.14.5` 安装。入口核对 Python 可执行文件摘要，Python 标准库、`ctypes` 和现有 `jsonschema 4.26.0` 及其依赖在本次有限宿主信任内。脚本和解释器由受信操作者选定并保持稳定。构建期 Xcode SDK、编译器和 Rust 归档用于来源复核，运行期依赖以实际装载集合为准。
+
+受保护路径的保证依赖操作者维持上述边界，尤其是没有能写入暂存目录、启动器、解释器、复核输入或审批配置的不受信同 UID 或管理员进程。换宿主、更新系统或换启动链时需重审。范围限本机 AX-B01 的 P5 夹具检查和回执复核。系统加载观察与进程超时不提供产品隔离或运行资格。
+
+### 受保护启动与独立复跑
+
+[受保护入口](2026-11-07-ax-b01-p5-pairing/verify_darwin_release.py)使用固定清单摘要和精确留存路径读取制品，将已核对的原字节独占写入 `/private/tmp` 下新建的 `0700` 目录，以 `0500` 权限启动该副本。每次运行都使用绝对路径、私有工作目录和白名单环境，检查启动前后的目录与文件标识、权限和制品摘要。dyld 输出必须报告暂存副本的精确路径、制品 UUID 和清单中的完整系统映像列表。错误或缺失的装载观察阻断回执交付。复跑末尾重核留存原件、宿主和适用的受信配置，通过后才输出整批结果。
+
+独立 Python 路径继续重建规范回执原字节、校验 Schema 并调用 Rust 读回。用下列命令执行本机观察复跑，默认生成 `not-accepted` 的回执：
+
+```bash
+pair=docs/records/2026-11-07-ax-b01-p5-pairing
+p5_python="$HOME/.local/share/mise/installs/python/3.14.5/bin/python3.14"
+/usr/bin/env -i PATH=/usr/bin:/bin LANG=C LC_ALL=C "$p5_python" -I -B "$pair/verify_darwin_release.py"
+```
+
+实际观察七案通过规范字节重建、Schema 与 Rust 读回。基础、边界、恰好达到预算均为 `completed`，非法输入为 `invalid`，预算不足为 `resource-exhausted`，黄金缺失与错案黄金为 `error`。篡改黄金、工具角色、接受声明和 P6 门控，以及跨版本回执均被拒绝。新增[本机回归检查](2026-11-07-ax-b01-p5-pairing/test_verify_darwin_release.py)覆盖清单与制品漂移、同字节文件替换、错误实参及实际启动路径、缺失装载日志、宿主 cache UUID 不符、缺失或错误接受摘要和不受保护的配置。合成批准通过同一受保护启动和七案独立复核，合成来源与真实构建清单不同。
+
+## 本机生产接受
+
+2026-11-07，项目所有者明确批准 SHA-256 为 `c860a38f2f5b182b7eca0f481d0e3c47e1f4207ff10dc7de7b6bfad1af350d0e` 的精确 Mach-O，以及[本机 macOS 27.0.1（26A434）原生 arm64 宿主范围](#宿主信任范围)。复核了制品、原始构建清单和宿主指纹。正式[接受记录](2026-11-07-ax-b01-p5-pairing/darwin-tool-acceptance.jcs)保留审阅草案的 1,131 个原始字节，SHA-256 为 `9f754b227607ccd06d26711eba06064946eec147813736662a6be249683dabbe`。记录按既有 v0.1 契约绑定 Mach-O、原始构建清单、固定 P5 规则、AX-B01 IR、任务、工具 ID、调用方式、角色及预算。宿主范围由受保护入口执行。
+
+获批后在仓库和暂存目录之外独占创建了 `~/.config/radishaxiom/p5/acceptance.sha256`，目录为 `0700`，配置为 `0400` 的单链接普通文件，内容为上述记录摘要加 LF。受保护入口从当前账户的系统登记 home 读取此配置，核对祖先目录的所有权、权限、ACL 和真实路径，并在复跑前后重核摘要。配置缺失、摘要错误、记录范围不符、制品或宿主漂移、实际启动路径不符均阻断。
+
+在上述观察命令后加 `--acceptance-record "$pair/darwin-tool-acceptance.jcs"` 复跑。受保护入口以退出码 0 完成实际七案，每份回执均通过独立规范字节重建、Schema 与 Rust 读回，工具状态为 `accepted`。错案黄金替换、篡改工具角色或接受声明、伪造 P6 开门、跨版本与跨接受入口读回均被拒绝。
+
+| 场景 | P5 结果 | 回执原始 SHA-256 |
+| --- | --- | --- |
+| `base` | `completed` | `4eccb2031b45a288bcac129608770a9229fdb8cb7e22bab40330367527308982` |
+| `boundary` | `completed` | `586f8c019143003e048e95a41569507da7c06eea66c3ddcd863cb6c88b540efe` |
+| `invalid` | `invalid` | `6b5013e32c0cdd5ca9d1576d3afc53e15439ec9175ee96901b93d58884d61b88` |
+| `resource` | `resource-exhausted` | `a769551ee14585b46874bc814ffecfdf491cf94d9f611fb8decdcac940244ae9` |
+| `missing-golden` | `error` | `74aa4991c8a80b4ee4e14f0a720fb62a1bd295cc1e96c4225b1a73c159f1755e` |
+| `wrong-golden` | `error` | `19963ad42b3f6e1fc3b5cb2c46a70a43b842d019b87bf81f3064749303cd1961` |
+| `boundary-exact` | `completed` | `c6aec80c0bca90d07bc017d1c65682d2dc1bf10e686b48193aff0daffbfce7b3` |
+
+本次接受限上述精确制品、宿主和受保护入口上的本地 AX-B01 P5。所有回执的 P6 门控为 `closed / p6-not-evaluated`，Evidence 为 `not-assembled`。

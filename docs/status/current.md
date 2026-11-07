@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-11-07（AX-B01 P5 Darwin release 候选与 L3 精确输入有限接受审阅）
+更新日期：2026-11-07（AX-B01 P5 Darwin 本机生产接受与 L3 精确输入审阅）
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。整体目标见[开发计划](../development-plan.md)，归属与任务来源见[能力专题地图](../topics.md)；历史流水见[整理前快照](../records/status-before-planning-alignment-2026-11-01.md)与[早期归档](../records/status-through-2026-09-03.md)。
 
@@ -28,7 +28,7 @@
 
 ### 下一步
 
-AX-B01 的 P5 已有输入检查、宿主封套 v0.2 和同案公开回执。Darwin arm64 release 候选已完成精确构建、来源和本机加载观察。观察路径及显式接受路径各通过七案独立字节核对，后者使用合成审批材料。生产工具保持 `not-accepted`，接续审阅精确制品、宿主信任与受保护启动路径，条件满足后配置外部受信接受摘要并重跑。Evidence 和 P7 / P8 各自审阅，P6 保持原门控。 [Darwin 候选与接受接线](../records/2026-11-07-ax-b01-p5-darwin-release-review.md)
+AX-B01 的 P5 已有输入检查、宿主封套 v0.2 和同案公开回执。所有者已批准精确 Darwin arm64 release 制品及本机 macOS 27.0.1（26A434）宿主范围。受保护入口从仓库外独立受信配置读取接受摘要，实际七案通过独立规范字节重建、Schema 与 Rust 读回。本地 P5 工具为 `accepted`，P6 保持 `closed / p6-not-evaluated`。Evidence 和 P7 / P8 各自审阅。 [本机生产接受](../records/2026-11-07-ax-b01-p5-darwin-release-review.md#本机生产接受)
 
 运行线恢复条件见下文“接下来的事项”。`--no-poly` 可作为后续单独评估的校准候选，任何选型变化须重审配置、实际依赖和工具身份。各切片的契约和验收从[专题地图](../topics.md)进入。
 
