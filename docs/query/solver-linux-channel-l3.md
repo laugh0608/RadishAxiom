@@ -24,7 +24,7 @@ L2 已提交为 `5dab738`；L3 源码实现已提交为 **`bb9d963b38273bfd9ec7a
 
 2026-11-07 的有限输入审阅重核了归档与 Cargo 解析数据，并记录实际宿主工具及加载边界。后续核对确认 installer 匹配官方发布摘要、实际加载的 Rust driver 与已接受 Darwin 组件成员逐块相等。Python 已对回精确发布制品与构建清单，`_ctypes` 的静态 libffi 来源和许可原文已核对。总体决定为 `not-accepted`，单次 target 安装仍以剩余输入审阅为前置条件。 [有限输入审阅](../records/2026-11-07-linux-channel-l3-input-acceptance-review.md) · [Rust 来源核对](../records/2026-11-07-linux-channel-l3-rust-source-readback.md) · [Python 来源核对与剩余缺口](../records/2026-11-07-linux-channel-l3-python-source-readback.md)
 
-Apple Git 的实际执行链已核对。固定入口 `/usr/bin/git` 经当前选择器执行 Xcode 27.2（27B52）内的 Apple Git-157。记录绑定了本机程序、安装收据、Apple 签名与随包 GPL v2 声明。构建前后的选择状态读回及漂移阻断仍待接入。 [Apple Git 执行链核对](../records/2026-11-07-linux-channel-l3-apple-git-readback.md)
+Apple Git 的实际执行链已核对。固定入口 `/usr/bin/git` 经当前选择器执行 Xcode 27.2（27B52）内的 Apple Git-157。记录绑定了本机程序、安装收据、Apple 签名与随包 GPL v2 声明。构建包装器已在源码快照前后检查选择结果和文件摘要。 [Apple Git 执行链核对](../records/2026-11-07-linux-channel-l3-apple-git-readback.md)
 
 ## 未来安装：只增加一个 target
 
@@ -139,6 +139,10 @@ installation-receipt 必须声明 installed-reconciled，绑定 archive / files_
 `build-linux-channel.py plan` 是纯输出，不创建任务；`build` 接受已生成且完成外部审阅的 bundle / source commit / review digest 与明确任务根。必要的 Rust 纯导出在执行请求前完成，build 不隐式编译 host generator。build 的同一 600 s 从前检起覆盖输入复核、Git 精确 blob 快照、两份解析数据、只读 Cargo metadata、唯一 cargo build、前后复核与外置 manifest。只有独立执行授权后才能调用 build，本批没有调用其真实构建路径。
 
 Git 只读调用禁用用户全局 / 系统配置、fsmonitor hook、可选锁和 lazy fetch；保持完整七包快照，拒绝脏源、symlink / 其他模式，另核对三个 normal 包无 build.rs / build-dependency / proc macro / 注册表依赖及实际 metadata。所有工具直指已绑定文件，不使用 rustup proxy。
+
+构建要求 `input-review.json` 的 `decisions` 唯一引用 `materials/apple-git-selection.json`。该材料按顺序含 `format=radishaxiom-private-linux-channel-apple-git-selection`、`version=0.2`、`developer_dir`、`selector`、`resolver`、`git`、`xcode_version`。开发者目录须为 Xcode 的 `Contents/Developer`，四个文件引用分别绑定 `/usr/bin/xcode-select`、`/usr/bin/xcrun`、该目录的 `usr/bin/git` 和相邻 `Contents/version.plist`。引用形状为 `path / bytes / digest`。输入审阅的外部摘要绑定该材料，`tool-inventory` 继续绑定入口 `/usr/bin/git`。构建读取并验证实际使用的审阅和工具清单字节。
+
+源码快照前后，在 Git 只读命令的同一精简环境中重核上述五个文件，并比较 `xcode-select -p` 与 `xcrun --no-cache --find git` 的精确输出。缺少材料、文件变化、输出差异或命令失败都会使构建在 Cargo 前退出。独立 checker 通过审阅材料引用核对其字节，实时选择检查在包装器中执行。前后读取依赖已审阅宿主在快照期间保持选择器与工具稳定，覆盖两次检查时可观察到的变化。合成快照覆盖初始选择不匹配、快照期间解析结果或文件漂移，实机只读探针通过当前 Xcode，拒绝子进程限定的 Command Line Tools 选择。
 
 recorder 的生成字节和 Python 身份均进入输入，启动解释器固定 `-I -S -B`，关闭继承 wrapper。记录真实 canonical argv 后仅 exec 绑定的 rustc；允许精确 version / host / target probes 和四个编译单位（三个 lib + 唯一 bin），有序 flags 必须完整出现且仅一次，拒绝未知执行路径 / 单位 / 输出 / response file / 覆盖参数。最多 64 记录、每份 64 KiB；`-vv` 只作日志。源码闭包包含 recorder 实现，不另造通用 runner。
 

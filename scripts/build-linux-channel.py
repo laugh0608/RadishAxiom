@@ -24,6 +24,7 @@ TARGET = 'aarch64-unknown-linux-musl'
 TOOLCHAIN = '1.97.1-aarch64-apple-darwin'
 PACKAGES = ('digest', 'solver-supervision-core', 'solver-bootstrap-linux')
 SIDECARS = ('source-snapshot.json', 'target-payload.json', 'tool-inventory.json', 'build-plan.json', 'input-review.json')
+APPLE_GIT_SELECTION = 'materials/apple-git-selection.json'
 LIMITS = dict(total_seconds=600, task_bytes=536870912, source_bytes=134217728, source_files=4096,
               elf_bytes=16777216, map_bytes=8388608, why_extract_bytes=4194304,
               log_bytes=4194304, argv_bytes=65536, argv_records=64)
@@ -267,14 +268,50 @@ class Session:
             if p is not None: p.stdout.close(); p.stderr.close()
 
 
-def snapshot(repo, commit, git, session):
+def apple_git_selection(review, bundle, check):
+    refs = [ref for ref in review['decisions'] if ref['path'] == APPLE_GIT_SELECTION]
+    require(len(refs) == 1, 'apple-git-selection-required')
+    ref = refs[0]
+    raw = check['read_bounded'](bundle/APPLE_GIT_SELECTION, 16384)
+    require(len(raw) == ref['bytes'] and digest(raw) == ref['digest'], 'apple-git-selection-digest')
+    selection = check['sidecar'](raw)
+    check['shape'](selection, ('format', 'version', 'developer_dir', 'selector', 'resolver', 'git', 'xcode_version'))
+    check['identity'](selection, 'apple-git-selection')
+    developer = check['safe_path'](selection['developer_dir'], True)
+    require(developer.endswith('/Contents/Developer'), 'apple-git-xcode-directory')
+    paths = dict(selector='/usr/bin/xcode-select', resolver='/usr/bin/xcrun',
+                 git=developer+'/usr/bin/git', xcode_version=str(Path(developer).parent/'version.plist'))
+    for role, path in paths.items():
+        check['shape'](selection[role], ('path', 'bytes', 'digest'))
+        require(selection[role]['path'] == path, 'apple-git-'+role+'-path')
+    return selection
+
+
+def verify_apple_git(repo, session, env, shim, selection, reference):
+    files = dict(shim=shim, selector=selection['selector'], resolver=selection['resolver'],
+                 git=selection['git'], xcode_version=selection['xcode_version'])
+    for role, ref in files.items():
+        try:
+            reference(ref, repo, 16*1024**2, True)
+        except (OSError, ValueError) as error:
+            raise ValueError(f'apple-git-{role}: {error}') from error
+    selected, err = session.run([selection['selector']['path'], '-p'], repo, env, output_limit=4096)
+    require(not err and selected == (selection['developer_dir']+'\n').encode('ascii'),
+            'apple-git-developer-dir-drift')
+    resolved, err = session.run([selection['resolver']['path'], '--no-cache', '--find', 'git'],
+                                repo, env, output_limit=4096)
+    require(not err and resolved == (selection['git']['path']+'\n').encode('ascii'), 'apple-git-resolved-path-drift')
+
+
+def snapshot(repo, commit, git, session, selection, reference):
     require(re.fullmatch('[0-9a-f]{40}', commit), 'commit')
     env = dict(PATH='/usr/bin:/bin', LANG='C', LC_ALL='C', GIT_CONFIG_NOSYSTEM='1', GIT_CONFIG_GLOBAL='/dev/null',
                GIT_OPTIONAL_LOCKS='0', GIT_NO_LAZY_FETCH='1', GIT_TERMINAL_PROMPT='0', GIT_ATTR_NOSYSTEM='1')
     def call(args, limit=4194304):
-        out, err = session.run([git, '-c', 'core.fsmonitor=false', '-c', 'core.untrackedCache=false',
+        out, err = session.run([git['path'], '-c', 'core.fsmonitor=false', '-c', 'core.untrackedCache=false',
                                 '-c', 'core.hooksPath=/dev/null', '-C', str(repo), *args], repo, env, output_limit=limit)
         require(not err, 'git-stderr'); return out
+    verify_apple_git(repo, session, env, git, selection, reference)
     require(call(['rev-parse','HEAD']).decode().strip() == commit and
             not call(['status','--porcelain=v1','--untracked-files=normal']), 'source-not-final-clean-commit')
     entries = call(['ls-tree','-rlz',commit]).split(b'\0'); rows = []; total = 0
@@ -295,6 +332,7 @@ def snapshot(repo, commit, git, session):
         # Git verifies the object too; this independent check binds the exact blob.
         require(hashlib.sha1(b'blob '+str(size).encode()+b'\0'+b).hexdigest() == blob, 'git-blob-identity')
         p = out/name; p.parent.mkdir(parents=True, exist_ok=True); new_file(p, b, int(mode[3:], 8))
+    verify_apple_git(repo, session, env, git, selection, reference)
     session.measure(); return out
 
 
@@ -444,18 +482,22 @@ def build(repo, bundle, commit, review_digest, task):
         require(binding['source_commit'] == commit and
                 tuple(r['path'] for r in binding['sidecars']) == SIDECARS, 'input-sidecars')
         for ref in binding['sidecars']: check['reference'](ref, bundle)
-        review = check['sidecar'](load('input-review.json'))
-        require(binding['sidecars'][-1]['digest'] == review_digest and review['source_commit'] == commit and
+        review_raw = load('input-review.json')
+        review = check['sidecar'](review_raw)
+        require(binding['sidecars'][-1]['digest'] == review_digest and digest(review_raw) == review_digest and
+                review['source_commit'] == commit and
                 review['decision'] == 'accepted-for-one-diagnostic-build' and review['synthetic'] is False and
                 review['objects'] == binding['sidecars'][:-1] and review['decisions'] and review['licenses'] and
                 review['trust'] and review['limitations'], 'input-review-not-accepted')
         for ref in review['decisions']+review['licenses']: check['material'](ref, bundle)
-        inventory = check['sidecar'](load('tool-inventory.json'))
+        git_selection = apple_git_selection(review, bundle, check)
+        inventory_raw = load('tool-inventory.json')
+        require(digest(inventory_raw) == binding['sidecars'][2]['digest'], 'tool-inventory-drift')
+        inventory = check['sidecar'](inventory_raw)
         check['check_tools'](inventory, bundle, False)
         tools = inventory['tools']
         plan = make_plan(str(task), tools)
-        require(load('build-plan.json') == canonical(plan) and digest(load('input-review.json')) == review_digest,
-                'plan-or-review-drift')
+        require(load('build-plan.json') == canonical(plan), 'build-plan-drift')
         # Never start Cargo to find out whether target components are present.
         payload = json.loads(load('target-payload.json'))
         target_root = Path(payload['installed_root'])/'lib/rustlib'/TARGET
@@ -463,7 +505,7 @@ def build(repo, bundle, commit, review_digest, task):
         cargo_configs(task/'source', task/'cargo-home')
         task.parent.mkdir(exist_ok=True); task.mkdir(); created = True
         for name in ('records','cargo-home','target','tools'): (task/name).mkdir()
-        source = snapshot(repo, commit, plan['recorder']['git'], session)
+        source = snapshot(repo, commit, tools[-1]['file'], session, git_selection, check['reference'])
         graph(source); cargo_configs(source, task/'cargo-home')
         check['check_cargo_resolution'](inventory['cargo_resolution'], bundle, source, False)
         # Copy only inventoried bundle materials to the owned records directory.
