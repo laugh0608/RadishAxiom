@@ -66,18 +66,7 @@ fn generator() -> GeneratorIdentity {
 fn setup(path: &str, l: SolverLimits) -> (CanonicalDocument, ObligationSet, EncodedQuery) {
     let doc = check_canonical_document(&std::fs::read(root().join(path)).unwrap(), l.query.ir_json)
         .unwrap();
-    let set = generate_obligations(
-        &doc,
-        ObligationProfile::VerificationV0_2,
-        ObligationLimits {
-            ir_json: l.query.ir_json,
-            max_obligations: 100000,
-            max_definition_bytes: 16000000,
-            max_path_bytes: 8000000,
-            max_output_bytes: 24000000,
-        },
-    )
-    .unwrap();
+    let set = obligation_set(&doc, l.query.ir_json);
     let id = set
         .obligations()
         .iter()
@@ -94,6 +83,21 @@ fn setup(path: &str, l: SolverLimits) -> (CanonicalDocument, ObligationSet, Enco
     )
     .unwrap();
     (doc, set, q)
+}
+
+fn obligation_set(document: &CanonicalDocument, ir_json: JsonLimits) -> ObligationSet {
+    generate_obligations(
+        document,
+        ObligationProfile::VerificationV0_2,
+        ObligationLimits {
+            ir_json,
+            max_obligations: 100000,
+            max_definition_bytes: 16000000,
+            max_path_bytes: 8000000,
+            max_output_bytes: 24000000,
+        },
+    )
+    .unwrap()
 }
 fn plan(
     doc: &CanonicalDocument,

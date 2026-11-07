@@ -407,6 +407,170 @@ fn compact_ax_b01_original_capacity_all_supported_targets_fit_stdin() {
 }
 
 #[test]
+fn m1_prepares_exact_source_migration_and_nine_backend_requests() {
+    use crate::{
+        effects::{EffectLimits, EffectProfile, check_empty_effects},
+        migration::migrate_v0_1_to_v0_2,
+        obligations::raw_digest,
+        origins::{OriginLimits, OriginProfile, check_field_origin},
+    };
+
+    let root = root();
+    let source_blobs = root.join(
+        "contracts/keyed-finite-table-checker-bundles-v0.1/s/chk-proof-02/bundle/blobs/sha256",
+    );
+    let evidence_pin = "b519aef5b208d8ef93d7559a000c56ab78eb59f99dca95ae6a7f58264c964e4d";
+    let ir_pin = "8d6ec839cf3cf795539e121c488b3bc4be84a33f24ac8c349d5ceebb29e559e7";
+    let source_evidence = std::fs::read(source_blobs.join(evidence_pin)).unwrap();
+    let source_ir = std::fs::read(source_blobs.join(ir_pin)).unwrap();
+    assert_eq!(
+        raw_digest(&source_evidence),
+        format!("sha256:{evidence_pin}")
+    );
+    assert_eq!(raw_digest(&source_ir), format!("sha256:{ir_pin}"));
+    let l = limits();
+    let json = l.query.ir_json;
+    let evidence = crate::json::parse(&source_evidence, json).unwrap();
+    let subject = get(&evidence, "subject");
+    let migrated = migrate_v0_1_to_v0_2(&source_ir, json).unwrap();
+    assert_eq!(text(get(subject, "ir_artifact")), raw_digest(&source_ir));
+    assert_eq!(
+        text(get(subject, "ir_document_digest")),
+        migrated.record().source_document_id()
+    );
+    let d = migrated.target();
+    let expected = include_bytes!("../../../tests/fixtures/v0.2/migrated/ax-b01-correct.jcs");
+    assert_eq!(d.canonical_bytes(), expected);
+    assert_eq!(&check_canonical_document(expected, json).unwrap(), d);
+    let s = obligation_set(d, json);
+    assert_eq!(
+        s.canonical_bytes(),
+        include_bytes!(
+            "../../../../../contracts/ir-derived-obligations-v0.2/sets/ax-b01-correct.jcs"
+        )
+    );
+    assert_eq!(s.obligations().len(), 13);
+    let Value::Array(source_obligations) = get(&evidence, "obligations") else {
+        panic!("source obligations must be an array");
+    };
+    assert!(source_obligations.iter().all(|source| {
+        let id = text(get(source, "id"));
+        s.obligations().iter().all(|target| target.id() != id)
+    }));
+    eprintln!(
+        "M1 IR rule={} / {} target={} artifact={} p2={} mappings={}",
+        migrated.record().rule_name(),
+        migrated.record().rule_version(),
+        d.document_id(),
+        s.ir_artifact(),
+        s.artifact_digest(),
+        migrated.record().mappings().len(),
+    );
+
+    let effect_limits = EffectLimits {
+        ir_json: json,
+        max_steps: 200_000,
+        max_premise_edges: 500_000,
+        max_path_bytes: 16_000_000,
+        max_output_bytes: 32_000_000,
+    };
+    let origin_limits = OriginLimits {
+        ir_json: json,
+        max_steps: effect_limits.max_steps,
+        max_premise_edges: effect_limits.max_premise_edges,
+        max_descriptors: 2_000_000,
+        max_path_bytes: effect_limits.max_path_bytes,
+        max_output_bytes: effect_limits.max_output_bytes,
+    };
+    // The existing component vectors and plans use synthetic generator / tool identities.
+    for (kind, path) in [
+        (
+            ObligationKind::EffectEmpty,
+            "contracts/core-empty-effects-v0.1/records/ax-b01-correct.jcs",
+        ),
+        (
+            ObligationKind::FieldOrigin,
+            "contracts/core-field-origin-v0.1/records/ax-b01-correct-000.jcs",
+        ),
+        (
+            ObligationKind::FieldOrigin,
+            "contracts/core-field-origin-v0.1/records/ax-b01-correct-001.jcs",
+        ),
+    ] {
+        let bytes = std::fs::read(root.join(path)).unwrap();
+        let value = crate::json::parse(&bytes, json).unwrap();
+        let target = text(get(get(&value, "binding"), "obligation"));
+        let digest = match kind {
+            ObligationKind::EffectEmpty => check_empty_effects(
+                EffectProfile::CoreV0_1,
+                &bytes,
+                d,
+                &s,
+                target,
+                &generator(),
+                effect_limits,
+            )
+            .unwrap()
+            .artifact_digest()
+            .to_owned(),
+            ObligationKind::FieldOrigin => check_field_origin(
+                OriginProfile::CoreFieldOriginV0_1,
+                &bytes,
+                d,
+                &s,
+                target,
+                &generator(),
+                origin_limits,
+            )
+            .unwrap()
+            .artifact_digest()
+            .to_owned(),
+            _ => unreachable!(),
+        };
+        eprintln!("M1 component {} {target} {digest}", kind.as_str());
+    }
+
+    let measurements = include_str!(
+        "../../../../../docs/query/compact-query-production-validation/ax-measurements.tsv"
+    );
+    let mut planned = std::collections::BTreeSet::new();
+    for row in measurements.lines().skip(1) {
+        let cols: Vec<_> = row.split('\t').collect();
+        if cols[0] != "ax-b01-correct" {
+            continue;
+        }
+        let (kind, target, query_pin) = (cols[6], cols[7], cols[9]);
+        let obligation = s
+            .obligations()
+            .iter()
+            .find(|item| item.id() == target)
+            .unwrap();
+        assert_eq!(kind, obligation.kind().as_str());
+        assert!(planned.insert(target));
+        let query = encode(d, &s, target, l);
+        let request = plan_compact(d, &s, &query, l);
+        assert_eq!(request.query().binding().obligation(), target);
+        assert_eq!(
+            request.query().binding().obligation_set_artifact(),
+            s.artifact_digest()
+        );
+        assert_eq!(query.artifact_digest(), query_pin);
+        assert_eq!(request.stdin_bytes(), query.bytes());
+        assert_eq!(
+            request.stdin_bytes().len(),
+            cols[10].parse::<usize>().unwrap()
+        );
+        assert!(request.stdin_bytes().len() <= 1_048_576);
+        eprintln!(
+            "M1 plan {kind} {target} {query_pin} {} {}",
+            request.stdin_bytes().len(),
+            request.artifact_digest()
+        );
+    }
+    assert_eq!(planned.len(), 9);
+}
+
+#[test]
 fn compact_models_keep_protocol_faults_masked_payloads_and_transport_precedence() {
     let (d, s, _, q) = pair("contracts/map-filter-query-v0.1/inputs/identity.jcs");
     let req = plan_compact(&d, &s, &q, limits());
