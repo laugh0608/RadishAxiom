@@ -1,6 +1,6 @@
 # Evidence v0.2 S1 结构检查结果支持审阅
 
-日期为 2026-11-07，基线为 `dev` 的 `4c3f6f0`。状态为待审阅。本文细化 AX-B01 的 `ir-structure / check`，供生产记录与独立检查实现评审。下面的材料和判定关系是拟议要求，外层规范 JSON、完整 profile 和公开读取仍由 Evidence v0.2 单独验收。P6 为 `closed / p6-not-evaluated`。 [AX-B01 契约审阅](ax-b01-evidence-v0.2-contract-review.md)
+日期为 2026-11-07，审阅基线为 `dev` 的 `4c3f6f0`。项目所有者已批准文末三条支持边界。本文细化 AX-B01 的 `ir-structure / check`，供生产记录与独立检查实现评审。外层规范 JSON、完整 profile 和公开读取仍由 Evidence v0.2 单独验收。P6 为 `closed / p6-not-evaluated`。 [AX-B01 契约审阅](ax-b01-evidence-v0.2-contract-review.md)
 
 ## 严格调用与材料绑定
 
@@ -72,6 +72,6 @@ S1-LF 的原始摘要为 `sha256:0f8220a6f3f8915341179a306bc75cbe4a9ee8a2af3e43f
 
 ## 审阅出口
 
-S1 需要明确审定三处 v0.2 支持。第一，允许严格 `normalize` 支撑合法 subject 的 `checked`。第二，允许它作为有限比较支撑三类确定性拒绝，并为 `rejected-ir` 定义可重建的单独义务。第三，未确立 subject 的中止尝试停在装配前。旧 v0.1 的支持映射、规范字节和结果按原身份保存。迁移须按 ADR 0009 重建目标 IR、义务与执行结果。 [迁移边界](../adr/0009-axiom-evidence-v0-drift-and-migration.md#决策)
+2026-11-07，项目所有者明确批准三条 v0.2 支持边界。第一，严格通过支持 `checked`。第二，非规范字节、无效 UTF-8 和未知顶层成员经独立复现后支持 `failed`。第三，无法确立 subject 的中止停在 Evidence 装配前。具体机器编码、拒绝义务形状和独立实现随完整契约验收。旧 v0.1 的支持映射、规范字节和结果按原身份保存。迁移须按 ADR 0009 重建目标 IR、义务与执行结果。 [迁移边界](../adr/0009-axiom-evidence-v0-drift-and-migration.md#决策)
 
-S1 审定后再进入 S2 的空效果重演规则和 S3 的字段来源充分条件。本轮验证只覆盖现有 P1/P2 和审阅材料，独立 v0.2 支持、迁移演练和公共验收矩阵仍待落地。
+接续审阅 S2 的空效果重演规则，之后审阅 S3 的字段来源充分条件。本文的验证覆盖现有 P1/P2 和审阅材料，独立 v0.2 支持、迁移演练和公共验收矩阵仍待落地。 [S2 专项审阅](effect-empty-result-v0.2-review.md)
