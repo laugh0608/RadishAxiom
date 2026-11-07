@@ -13,6 +13,7 @@ use crate::{
 };
 
 pub mod case;
+pub mod receipt;
 
 pub const MAX_OBSERVED_INPUT_BYTES: usize = 128 * 1024;
 pub const MAX_TOOL_BYTES: usize = 32 * 1024 * 1024;

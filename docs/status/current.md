@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-11-07（AX-B01 P5 用例关联与 L3 精确输入有限接受审阅）
+更新日期：2026-11-07（AX-B01 P5 公开回执与 L3 精确输入有限接受审阅）
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。整体目标见[开发计划](../development-plan.md)，归属与任务来源见[能力专题地图](../topics.md)；历史流水见[整理前快照](../records/status-before-planning-alignment-2026-11-01.md)与[早期归档](../records/status-through-2026-09-03.md)。
 
@@ -28,7 +28,7 @@
 
 ### 下一步
 
-AX-B01 的 P5 内部检查、宿主封套 v0.2 和同案执行关联已按 [ADR 0032](../adr/0032-ax-b01-p5-component-entry.md)与 [ADR 0033](../adr/0033-p5-host-data-ir-v02-pairing.md)实现。本机候选已从冻结源集合实际构建并绑定工具制品，独立复核通过七次用例执行与重新散列的跨案替换拒绝。核心线接续审阅 [ADR 0034（Proposed）](../adr/0034-p5-case-receipt-v02.md)的公开回执版本及同案引用，接受后物化新回执并核定生产工具接受。Evidence 和 P7 / P8 各自审阅，P6 继续受原门控约束。 [用例与候选工具核对](../records/2026-11-07-ax-b01-p5-case-review.md)
+AX-B01 的 P5 已实现输入检查、宿主封套 v0.2 和同案执行关联。[ADR 0034（Accepted）](../adr/0034-p5-case-receipt-v02.md)的公开 v0.2 部分回执已有生成、读回和独立字节核对，保留真实尝试与阻断原因。留存 `fixture-checker` 候选的源集合和实际制品匹配，生产工具保持 `not-accepted`。核心线接续核定生产 target/profile 的构建与加载边界、独立复核范围和精确接受记录。Evidence 和 P7 / P8 各自审阅，P6 继续受原门控约束。 [回执与工具接受核对](../records/2026-11-07-ax-b01-p5-receipt-v02-review.md)
 
 运行线恢复条件见下文“接下来的事项”。`--no-poly` 可作为后续单独评估的校准候选，任何选型变化须重审配置、实际依赖和工具身份。各切片的契约和验收从[专题地图](../topics.md)进入。
 

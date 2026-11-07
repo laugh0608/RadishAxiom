@@ -51,6 +51,10 @@ impl FixtureCaseExecution {
         self.status
     }
 
+    pub(super) fn result_value(&self) -> Value {
+        case_result(self.status, &self.input, self.golden.as_ref())
+    }
+
     /// P5 的两个成功封套。调用方还须单独核对生成门控。
     pub fn completed_pair(&self) -> Option<(&HostData, &HostData)> {
         Some((
@@ -74,17 +78,9 @@ pub fn execute_fixture_case(
         fixture_bytes: request.input,
     };
     let input = execute_fixture(tool, input_request, limits)?;
-    let (golden, status, result) = match (input.outcome(), request.golden) {
-        (Err(cause), _) => (
-            None,
-            FixtureCaseStatus::InputFailed,
-            stopped("input", failure_kind(cause), cause.code()),
-        ),
-        (Ok(_), None) => (
-            None,
-            FixtureCaseStatus::MissingGolden,
-            stopped("golden", "error", "missing-golden"),
-        ),
+    let (golden, status) = match (input.outcome(), request.golden) {
+        (Err(_), _) => (None, FixtureCaseStatus::InputFailed),
+        (Ok(_), None) => (None, FixtureCaseStatus::MissingGolden),
         (Ok(_), Some(bytes)) => {
             let golden_request = FixtureConversion {
                 slot: FixtureSlot::Golden,
@@ -93,23 +89,14 @@ pub fn execute_fixture_case(
             };
             match execute_fixture(tool, golden_request, limits) {
                 Ok(golden) => {
-                    let (status, result) = match golden.outcome() {
-                        Ok(_) => (
-                            FixtureCaseStatus::Completed,
-                            object([("kind", string("completed"))]),
-                        ),
-                        Err(cause) => (
-                            FixtureCaseStatus::GoldenFailed,
-                            stopped("golden", failure_kind(cause), cause.code()),
-                        ),
+                    let status = if golden.outcome().is_ok() {
+                        FixtureCaseStatus::Completed
+                    } else {
+                        FixtureCaseStatus::GoldenFailed
                     };
-                    (Some(golden), status, result)
+                    (Some(golden), status)
                 }
-                Err(error) => (
-                    None,
-                    FixtureCaseStatus::GoldenPreflight(error),
-                    stopped("golden", "error", error.code()),
-                ),
+                Err(error) => (None, FixtureCaseStatus::GoldenPreflight(error)),
             }
         }
     };
@@ -123,7 +110,7 @@ pub fn execute_fixture_case(
         ("expected_ir", string(request.canonical_ir.sha256)),
         ("expected_task", string(request.task.sha256)),
         ("format", string("radishaxiom-private-p5-case")),
-        ("result", result),
+        ("result", case_result(status, &input, golden.as_ref())),
         ("rule", string(&raw_digest(RULE))),
         ("tool", string(&tool.id)),
         ("version", string("0.1")),
@@ -136,6 +123,27 @@ pub fn execute_fixture_case(
         golden,
         status,
     })
+}
+
+fn case_result(
+    status: FixtureCaseStatus,
+    input: &FixtureExecution,
+    golden: Option<&FixtureExecution>,
+) -> Value {
+    match status {
+        FixtureCaseStatus::Completed => object([("kind", string("completed"))]),
+        FixtureCaseStatus::MissingGolden => stopped("golden", "error", "missing-golden"),
+        FixtureCaseStatus::GoldenPreflight(error) => stopped("golden", "error", error.code()),
+        FixtureCaseStatus::InputFailed | FixtureCaseStatus::GoldenFailed => {
+            let (slot, attempt) = if status == FixtureCaseStatus::InputFailed {
+                ("input", input)
+            } else {
+                ("golden", golden.expect("executed golden"))
+            };
+            let error = attempt.outcome().expect_err("failed attempt");
+            stopped(slot, failure_kind(error), error.code())
+        }
+    }
 }
 
 fn stopped(slot: &str, kind: &str, code: &str) -> Value {

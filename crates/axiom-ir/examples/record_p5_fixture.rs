@@ -17,6 +17,7 @@ use radishaxiom_ir::{
             FixtureCheckerTool, MAX_OBSERVED_INPUT_BYTES, MAX_TOOL_BYTES,
             case::{FixtureCaseRequest, execute_fixture_case},
             execute_fixture,
+            receipt::{MAX_RECEIPT_BYTES, check_p5_receipt, record_p5_receipt},
         },
     },
     json::JsonLimits,
@@ -51,7 +52,11 @@ fn main() -> ExitCode {
 fn observe() -> Result<bool, Box<dyn Error>> {
     enum Mode<'a> {
         Slot(FixtureSlot),
-        Case(Option<&'a str>),
+        Case {
+            golden: Option<&'a str>,
+            receipt: bool,
+            check: Option<(&'a str, &'a str)>,
+        },
     }
     let args: Vec<_> = env::args().skip(1).collect();
     let [
@@ -72,8 +77,21 @@ fn observe() -> Result<bool, Box<dyn Error>> {
     let mode = match (slot.as_str(), rest) {
         ("input", []) => Mode::Slot(FixtureSlot::Input),
         ("golden", []) => Mode::Slot(FixtureSlot::Golden),
-        ("case", [golden]) => Mode::Case((golden != "-").then_some(golden.as_str())),
-        _ => return Err("expected input, golden or case mode with its required arguments".into()),
+        ("case" | "receipt", [golden]) => Mode::Case {
+            golden: (golden != "-").then_some(golden.as_str()),
+            receipt: slot == "receipt",
+            check: None,
+        },
+        ("receipt-check", [golden, path, pin]) => Mode::Case {
+            golden: (golden != "-").then_some(golden.as_str()),
+            receipt: false,
+            check: Some((path.as_str(), pin.as_str())),
+        },
+        _ => {
+            return Err(
+                "expected input, golden, case, receipt or receipt-check with its required arguments".into(),
+            );
+        }
     };
     let envelope_bytes = limit.parse::<usize>()?;
     if envelope_bytes > JSON.max_input_bytes || envelope_bytes.to_string() != *limit {
@@ -105,21 +123,41 @@ fn observe() -> Result<bool, Box<dyn Error>> {
     let mut output = io::stdout().lock();
     let slot = match mode {
         Mode::Slot(slot) => slot,
-        Mode::Case(golden_path) => {
+        Mode::Case {
+            golden: golden_path,
+            receipt,
+            check,
+        } => {
             let golden = golden_path
                 .map(|path| read_bounded(Path::new(path), MAX_OBSERVED_INPUT_BYTES))
                 .transpose()?;
-            let execution = execute_fixture_case(
-                &tool,
-                FixtureCaseRequest {
-                    canonical_ir,
-                    task,
-                    case,
-                    input: &fixture,
-                    golden: golden.as_deref(),
-                },
-                limits,
-            )?;
+            let request = FixtureCaseRequest {
+                canonical_ir,
+                task,
+                case,
+                input: &fixture,
+                golden: golden.as_deref(),
+            };
+            if let Some((path, pin)) = check {
+                let bytes = read_bounded(Path::new(path), MAX_RECEIPT_BYTES)?;
+                check_p5_receipt(
+                    PinnedBytes {
+                        bytes: &bytes,
+                        sha256: pin,
+                    },
+                    &tool,
+                    request,
+                    limits,
+                )?;
+                return Ok(true);
+            }
+            if receipt {
+                let run = record_p5_receipt(&tool, request, limits)?;
+                output.write_all(run.canonical_receipt())?;
+                output.flush()?;
+                return Ok(run.execution().completed_pair().is_some());
+            }
+            let execution = execute_fixture_case(&tool, request, limits)?;
             output.write_all(execution.canonical_record())?;
             for attempt in
                 std::iter::once(execution.input_execution()).chain(execution.golden_execution())

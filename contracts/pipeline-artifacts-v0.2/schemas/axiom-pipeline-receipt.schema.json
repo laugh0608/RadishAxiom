@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://radishaxiom.dev/schema/pipeline-artifacts/axiom-pipeline-receipt/0.2",
+  "title": "Axiom pipeline receipt v0.2 P5",
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "uint": {"type": "string", "pattern": "^(0|[1-9][0-9]*)$"},
+    "code": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
+    "slot": {"enum": ["input", "golden"]},
+    "ref": {
+      "type": "object", "additionalProperties": false, "required": ["artifact", "role"],
+      "properties": {
+        "artifact": {"$ref": "#/$defs/digest"},
+        "role": {"enum": ["benchmark-task", "canonical-ir", "fixture", "host-input", "golden-host-output"]}
+      }
+    },
+    "artifact": {
+      "type": "object", "additionalProperties": false,
+      "required": ["byte_length", "content_digest", "format", "format_version"],
+      "properties": {
+        "byte_length": {"$ref": "#/$defs/uint"},
+        "content_digest": {"$ref": "#/$defs/digest"},
+        "format": {"enum": ["axiom-ir", "axiom-benchmark-task", "axiom-p5-rule", "native-executable", "axiom-benchmark-data", "axiom-host-data"]},
+        "format_version": {"enum": ["0.1", "0.2"]}
+      }
+    },
+    "json_limits": {
+      "type": "object", "additionalProperties": false,
+      "required": ["max_input_bytes", "max_nesting", "max_values"],
+      "properties": {
+        "max_input_bytes": {"$ref": "#/$defs/uint"},
+        "max_nesting": {"$ref": "#/$defs/uint"},
+        "max_values": {"$ref": "#/$defs/uint"}
+      }
+    },
+    "limits": {
+      "type": "object", "additionalProperties": false,
+      "required": ["envelope_bytes", "fixture_json", "ir_json", "max_integer_digits", "max_output_bytes", "max_precondition_checks", "max_rows", "max_tables", "task_json"],
+      "properties": {
+        "envelope_bytes": {"$ref": "#/$defs/uint"},
+        "fixture_json": {"$ref": "#/$defs/json_limits"},
+        "ir_json": {"$ref": "#/$defs/json_limits"},
+        "max_integer_digits": {"$ref": "#/$defs/uint"},
+        "max_output_bytes": {"$ref": "#/$defs/uint"},
+        "max_precondition_checks": {"$ref": "#/$defs/uint"},
+        "max_rows": {"$ref": "#/$defs/uint"},
+        "max_tables": {"$ref": "#/$defs/uint"},
+        "task_json": {"$ref": "#/$defs/json_limits"}
+      }
+    },
+    "failure_kind": {"enum": ["invalid", "resource-exhausted", "unsupported", "error"]},
+    "attempt_result": {
+      "oneOf": [
+        {"const": {"kind": "completed"}},
+        {
+          "type": "object", "additionalProperties": false, "required": ["code", "kind"],
+          "properties": {"code": {"$ref": "#/$defs/code"}, "kind": {"$ref": "#/$defs/failure_kind"}}
+        }
+      ]
+    },
+    "attempt": {
+      "type": "object", "additionalProperties": false, "required": ["definition", "id"],
+      "properties": {
+        "id": {"$ref": "#/$defs/digest"},
+        "definition": {
+          "type": "object", "additionalProperties": false,
+          "required": ["cache_key", "inputs", "kind", "limits", "options", "ordinal", "outputs", "result", "rule", "tool"],
+          "properties": {
+            "cache_key": {"$ref": "#/$defs/digest"},
+            "inputs": {"type": "array", "items": {"$ref": "#/$defs/ref"}, "minItems": 3, "maxItems": 3},
+            "kind": {"const": "check-fixture"},
+            "limits": {"$ref": "#/$defs/limits"},
+            "options": {
+              "type": "object", "additionalProperties": false,
+              "required": ["case", "expected_ir", "expected_task", "slot"],
+              "properties": {
+                "case": {"type": "string", "minLength": 1, "maxLength": 128},
+                "expected_ir": {"$ref": "#/$defs/digest"},
+                "expected_task": {"$ref": "#/$defs/digest"},
+                "slot": {"$ref": "#/$defs/slot"}
+              }
+            },
+            "ordinal": {"enum": ["0", "1"]},
+            "outputs": {"type": "array", "items": {"$ref": "#/$defs/ref"}, "maxItems": 1},
+            "result": {"$ref": "#/$defs/attempt_result"},
+            "rule": {"$ref": "#/$defs/digest"},
+            "tool": {"$ref": "#/$defs/digest"}
+          }
+        }
+      }
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["artifacts", "attempts", "evidence", "format", "format_version", "ir", "mode", "outcome", "p5", "pipeline_profile", "tool", "verification_gate"],
+  "properties": {
+    "artifacts": {"type": "array", "items": {"$ref": "#/$defs/artifact"}, "minItems": 5, "maxItems": 8},
+    "attempts": {"type": "array", "items": {"$ref": "#/$defs/attempt"}, "minItems": 1, "maxItems": 2},
+    "evidence": {"const": {"kind": "not-assembled"}},
+    "format": {"const": "axiom-pipeline-receipt"},
+    "format_version": {"const": "0.2"},
+    "ir": {
+      "type": "object", "additionalProperties": false, "required": ["artifact", "document_id", "semantics", "version"],
+      "properties": {
+        "artifact": {"$ref": "#/$defs/digest"},
+        "document_id": {"$ref": "#/$defs/digest"},
+        "semantics": {"const": "sha256:a40ec7c4eecfde23a340fb61b67727b5393f01b7288d151a34168ec88a87dac7"},
+        "version": {"const": "0.2"}
+      }
+    },
+    "mode": {"const": "benchmark-node24"},
+    "outcome": {"enum": ["partial", "blocked"]},
+    "p5": {
+      "type": "object", "additionalProperties": false, "required": ["attempts", "case", "result", "task"],
+      "properties": {
+        "attempts": {"type": "array", "items": {"$ref": "#/$defs/digest"}, "minItems": 1, "maxItems": 2, "uniqueItems": true},
+        "case": {"type": "string", "minLength": 1, "maxLength": 128},
+        "result": {
+          "oneOf": [
+            {"const": {"kind": "completed"}},
+            {
+              "type": "object", "additionalProperties": false, "required": ["code", "kind", "slot"],
+              "properties": {
+                "code": {"$ref": "#/$defs/code"},
+                "kind": {"$ref": "#/$defs/failure_kind"},
+                "slot": {"$ref": "#/$defs/slot"}
+              }
+            }
+          ]
+        },
+        "task": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "pipeline_profile": {"const": "raxc-keyed-finite-table-pipeline-v0.2"},
+    "tool": {
+      "type": "object", "additionalProperties": false, "required": ["acceptance", "definition", "id"],
+      "properties": {
+        "acceptance": {"const": {"kind": "not-accepted"}},
+        "definition": {
+          "type": "object", "additionalProperties": false, "required": ["artifact", "name", "roles", "version"],
+          "properties": {
+            "artifact": {"$ref": "#/$defs/digest"},
+            "name": {"const": "radishaxiom-p5-fixture-check"},
+            "roles": {"const": ["fixture-checker"]},
+            "version": {"$ref": "#/$defs/digest"}
+          }
+        },
+        "id": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "verification_gate": {"const": {"decision": "closed", "reason": "p6-not-evaluated"}}
+  }
+}

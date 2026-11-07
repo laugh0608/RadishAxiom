@@ -197,6 +197,8 @@ REQUIRED_FILES = (
     "contracts/pipeline-artifacts-v0.1/schemas/axiom-host-data.schema.json",
     "contracts/pipeline-artifacts-v0.1/schemas/axiom-obligation-set.schema.json",
     "contracts/pipeline-artifacts-v0.1/schemas/axiom-pipeline-receipt.schema.json",
+    "contracts/pipeline-artifacts-v0.2/README.md",
+    "contracts/pipeline-artifacts-v0.2/schemas/axiom-pipeline-receipt.schema.json",
     "contracts/toolchain-adapters-v0.1/README.md",
     "contracts/toolchain-adapters-v0.1/registry.json",
     "contracts/toolchain-adapters-v0.1/schemas/toolchain-adapter-identities.schema.json",

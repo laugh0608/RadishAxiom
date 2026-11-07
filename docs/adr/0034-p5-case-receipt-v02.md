@@ -1,6 +1,6 @@
 # ADR 0034：IR v0.2 管线回执的 P5 用例关联
 
-日期：2026-11-07。状态：Proposed。
+日期：2026-11-07。状态：Accepted，项目所有者已接受并授权实现公开回执 v0.2。
 
 本文供管线实施者、回执消费者和独立复核者评审 IR v0.2 的回执版本与 P5 用例绑定。范围是 P5 的输入和黄金数据检查、失败归因及向后续阶段交接。完整 P0–P9、Evidence 迁移、公开工具接受和宿主执行各按其契约验收。
 
@@ -8,11 +8,11 @@
 
 [ADR 0033](0033-p5-host-data-ir-v02-pairing.md)接受 IR v0.2 与宿主封套 v0.2 的配对，要求分别绑定同一用例的输入与黄金转换。[既有 receipt v0.1](../../contracts/pipeline-artifacts-v0.1/README.md)固定 IR v0.1 和 Evidence v0.1，阶段结果还要求与最后一次 attempt 一致。新用例关联需要同时检查两个不同槽位，且可能在第二次实际执行前缺少材料。旧读取器的版本和阶段规则不能表达这些差异。
 
-## 拟议版本边界
+## 版本边界
 
 - 新配对使用 `axiom-pipeline-receipt` v0.2、`raxc-keyed-finite-table-pipeline-v0.2`、IR v0.2 和 `axiom-host-data` v0.2。首批审阅范围为 `benchmark-node24` 模式的 P5 接续。旧 profile、回执、schema、生成器和规范字节各按原规则读取，跨版本默认拒绝。
 - 回执绑定实际 IR 制品 SHA-256、IR 文档域 ID 和语义摘要。采用明确的 Evidence 关联状态。没有 Evidence 时记 `evidence: {kind: "not-assembled"}`，只有独立的 Evidence 版本审阅完成后才定义精确制品引用。遵守 [ADR 0009](0009-axiom-evidence-v0-drift-and-migration.md)，旧 `checked`、`proved` 或 `trusted` 结果不随回执迁移。
-- 新回执的 tool、attempt 和 cache key 各自使用版本化的管线域。工具 ID 建议用 `axiom-pipeline-v0.2:tool`，attempt 与 cache key 对应 `axiom-pipeline-v0.2:attempt` 和 `axiom-pipeline-v0.2:cache-key`。私有观察的工具 ID、历史 Evidence 工具 ID 和新版回执身份分别重算，不能按同名工具或相同制品摘要替换 ID。
+- 新回执的 tool、attempt 和 cache key 各自使用版本化的管线域。工具 ID 用 `axiom-pipeline-v0.2:tool`，attempt 与 cache key 对应 `axiom-pipeline-v0.2:attempt` 和 `axiom-pipeline-v0.2:cache-key`。私有观察的工具 ID、历史 Evidence 工具 ID 和新版回执身份分别重算，不能按同名工具或相同制品摘要替换 ID。
 
 ## P5 记录与交接
 
@@ -31,4 +31,4 @@
 
 ## 实施与验收入口
 
-本批使用 [私有用例记录与独立重建](../records/2026-11-07-ax-b01-p5-case-review.md)评估上述关联。接受版本边界后，再物化 v0.2 回执规范、格式检查器及生成入口，并用正式工具接受记录绑定生产身份。验收至少覆盖 `base` / `boundary`、`invalid`、资源耗尽、黄金缺失和预检失败、跨版本、角色错配、篡改后重新计算摘要的跨 case 替换，以及旧版字节回归。独立路径依据固定源制品重建结果。完整回执和 Evidence 的接受继续遵循各自标准。
+本批使用 [私有用例记录与独立重建](../records/2026-11-07-ax-b01-p5-case-review.md)评估上述关联。公开字节、生成和重建检查见 [v0.2 回执契约](../../contracts/pipeline-artifacts-v0.2/README.md)。验收覆盖 `base` / `boundary`、`invalid`、资源耗尽、黄金缺失和预检失败、跨版本、角色错配、篡改后重新计算摘要的跨 case 替换，以及旧版字节回归。独立路径依据固定源制品重建结果。生产身份仍须正式工具接受记录，完整回执和 Evidence 的接受继续遵循各自标准。
