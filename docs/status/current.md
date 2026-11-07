@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-11-07（AX-B01 P5 Darwin 本机生产接受与 L3 精确输入审阅）
+更新日期：2026-11-07（AX-B01 Evidence v0.2 契约待审与 L3 精确输入审阅）
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。整体目标见[开发计划](../development-plan.md)，归属与任务来源见[能力专题地图](../topics.md)；历史流水见[整理前快照](../records/status-before-planning-alignment-2026-11-01.md)与[早期归档](../records/status-through-2026-09-03.md)。
 
@@ -29,6 +29,8 @@
 ### 下一步
 
 AX-B01 的 P5 已有输入检查、宿主封套 v0.2 和同案公开回执。所有者已批准精确 Darwin arm64 release 制品及本机 macOS 27.0.1（26A434）宿主范围。受保护入口从仓库外独立受信配置读取接受摘要，实际七案通过独立规范字节重建、Schema 与 Rust 读回。本地 P5 工具为 `accepted`，P6 保持 `closed / p6-not-evaluated`。Evidence 和 P7 / P8 各自审阅。 [本机生产接受](../records/2026-11-07-ax-b01-p5-darwin-release-review.md#本机生产接受)
+
+Evidence v0.2 契约草案已列明 AX-B01 的 13 项义务、执行材料、结果支持、迁移边界与拒绝用例。当前待审 P1 结构检查的结果支持，以及 P3-E / F 的公开重演规则和充分条件。 [义务与结果契约审阅](../evidence/ax-b01-evidence-v0.2-contract-review.md)
 
 运行线恢复条件见下文“接下来的事项”。`--no-poly` 可作为后续单独评估的校准候选，任何选型变化须重审配置、实际依赖和工具身份。各切片的契约和验收从[专题地图](../topics.md)进入。
 
