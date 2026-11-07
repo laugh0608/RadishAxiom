@@ -6,6 +6,7 @@ pub mod contracts;
 pub mod declarations;
 pub mod document;
 pub mod effects;
+pub mod evidence_review;
 pub mod expressions;
 pub mod fixtures;
 pub mod host_data;

@@ -44,7 +44,7 @@ kind 与 tool role 按[登记映射](contract.json)检查，每次执行都须�
 | unknown | attempts 是非空、严格递增的执行 ID 数组，均绑定同一目标及相符的中止原因。reason 映射见登记。本稿的 unavailable 指已调度后有记录的工具不可用。未确立 subject 时停止装配。 |
 | trusted | trust 指向该 trust-boundary 目标对应的实际 trust 项。核心义务仍按 check 或 prove 的规则处理。 |
 
-checked、failed、proved 的 assumptions 是按 trust ID 严格递增的实际依赖。S1 failed 的 counterexample 恰含 kind: structure-path、minimality: {kind: unreduced}、observed: {reason}、空 preconditions、空 worlds 和单项 trace。trace 在 location 的字段上加 artifact 指向原候选。独立路径须复现确定性拒绝和精确定位。可规范化但不规范的候选用首个不同字节或共同前缀结束位置，EOF 可用长度零表示。仅有诊断文本不足以完成支持。
+checked、failed、proved 的 assumptions 是按 trust ID 严格递增的实际依赖。S1 failed 的 counterexample 恰含 kind: structure-path、minimality: {kind: unreduced}、observed: {reason}、空 preconditions、空 worlds 和单项 trace。trace 在 location 的字段上加 artifact 指向原候选。独立路径须复现确定性拒绝和精确定位。非规范字节以首个不同字节或共同前缀结束位置为起点。无效 UTF-8 以首个无效序列的起点定位。原件内的定位长度为一字节，EOF 为零。仅有诊断文本不足以完成支持。
 
 完整结论在首版支持范围内采用以下规则。拒绝分支的结论为 structure_rejected，refs 为结构义务 ID。合法 verification 已具备全义务结果但有真实 unknown 时为 inconclusive，refs 为对应义务 ID。全部期望成立且无必需材料阻断时为 satisfied，refs 为空。缺义务或缺真实执行的装配停在文档形成前。独立 checker 依自身规则核对 P1、P2 与 S1–S3，保留 missing artifacts、剩余 trust 与 TCB。独立结果绑定新 Evidence 原始及文档域摘要，另有自身请求和 checker 身份。现有 v0.1 reader 按原支持集合拒绝本草案版本。 [ADR 0008](../../adr/0008-independent-checker-isolation-and-artifact-exchange.md#独立检查行为) · [ADR 0009](../../adr/0009-axiom-evidence-v0-drift-and-migration.md#决策)
 
@@ -58,4 +58,14 @@ python3 -I -B docs/evidence/evidence-v0.2-machine-contract/check_vectors.py
 
 脚本复用本仓 Python JCS、P2 与 P3-E/F 对照入口。合成执行来源明确标记，真实 IR / P2 原件沿用冻结材料。三个完整的 S1 拒绝样例固定原始和文档域摘要；S1 通过与预算中止、S2、S3 两字段以单目标投影核对执行及义务 ID。五个投影送入整份文档校验时均因缺全集被拒绝。脚本同时检查 UTF-16 键序、非规范 JSON、重复成员、旧版本和域、错字节或缺制品、错角色、错预算、跨字段换绑、敏感行控制和两项 group 义务分别省略。
 
-[固定摘要](fingerprints.json)由脚本的 --show-fingerprints 输出形成，正常核对只读。草案变化需审阅摘要差异后再更新。向量有意限定为固定材料，未覆盖任意输入读取、实际执行来源认证、完整 P1 独立重建、trust / uncovered 验收或 Evidence 迁移。公共入口、生产装配与独立 checker 仍按审定后的契约实现。
+[固定摘要](fingerprints.json)由脚本的 --show-fingerprints 输出形成，正常核对只读。草案变化需审阅摘要差异后再更新。Python 向量有意限定为固定材料。
+
+## Rust 本地读回
+
+本仓的 `evidence_review::readback_v02` 显式读取候选 verification 文档。调用方提供字节、只读摘要解析器和 `ReviewLimits`。入口检查规范字节、制品、条目身份、角色、执行顺序和限额，按实际 IR 重建 P2 全集，再从记录绑定重做 S1 检查和 S2 / S3 推导。实际执行及其中止的来源材料由独立信任边界核实。读回返回两种文档摘要，错误保留发生阶段及缺失制品。合法 AX-B01 的部分义务集在进入结果检查前拒绝。 [Rust 入口](../../../crates/axiom-ir/src/evidence_review.rs)
+
+Rust 定向测试通过 Python 的 --rust-vectors 只读输出取得相同的三个完整拒绝样例、五个 AX-B01 部分样例，以及两份仅含 input 的完整合成文档，分别核对 checked、proved 和已确立 subject 的资源中止。负例核对旧版本、非规范字节、错角色、缺失 / 错误制品、错结论、重算执行身份后的跨字段错绑，以及公开值但敏感行控制的字段。公共入口、生产 Evidence 装配、实际执行认证、独立 checker 与完整迁移演练仍须分别验收。
+
+```bash
+cargo +1.97.1-aarch64-apple-darwin test -p radishaxiom-ir evidence_review::tests --lib --locked --offline
+```

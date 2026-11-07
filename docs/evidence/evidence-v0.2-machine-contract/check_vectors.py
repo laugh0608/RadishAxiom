@@ -100,7 +100,7 @@ def vector(mode_name, field=None, *, reject=None, stop=False, source=None, deriv
                             "format": fmt, "format_version": version}
         return pin
 
-    ir_raw = (source or IR / "ax-b01-correct.jcs").read_bytes()
+    ir_raw = source if isinstance(source, bytes) else (source or IR / "ax-b01-correct.jcs").read_bytes()
     ir = strict(ir_raw)
     p2 = effects.make_set(ir)
     if source is None:
@@ -140,8 +140,13 @@ def vector(mode_name, field=None, *, reject=None, stop=False, source=None, deriv
         generator = add(b"synthetic generator source", "generator-source")
         inputs = {"canonical-ir": candidate, "generator-source": generator,
                   "obligation-set": add(encode(p2), "axiom-obligation-set", "0.2")}
-        record = strict(derivation.read_bytes())
-        record["binding"]["generator"] = generator
+        if derivation is not None:
+            record = strict(derivation.read_bytes())
+            record["binding"]["generator"] = generator
+        elif mode["obligation_kind"] == "effect-empty":
+            record = effects.derive(ir, p2, generator)
+        else:
+            record, _ = origins.derive(ir, p2, target["id"], generator)
         outputs = {"derivation": add(encode(record), record["format"], record["format_version"])}
         result = {"kind": "proved", "assumptions": []}
 
@@ -335,7 +340,50 @@ def rebind(document):
     execution, = document["executions"]
     execution["id"] = identity("execution", execution["definition"])
     result = document["obligations"][0]["result"]
-    result.get("support", result)["execution"] = execution["id"]
+    if result["kind"] == "unknown":
+        result["attempts"] = [execution["id"]]
+    else:
+        result.get("support", result)["execution"] = execution["id"]
+
+
+def input_only_document(*, stop):
+    # An input-only graph gives a complete synthetic verification document
+    # without inventing results for the nine AX-B01 solver targets.
+    ir = strict((IR / "ax-b01-correct.jcs").read_bytes())
+    node, = [row for row in ir["nodes"] if row["definition"]["kind"] == "input"]
+    ir.update(nodes=[node], contracts=[], outputs=[{"name": "orders", "node": node["id"]}])
+    raw = encode(ir)
+    fields = [row["definition"]["subject"]["name"] for row in effects.make_set(ir)["obligations"]
+              if row["definition"]["kind"] == "field-origin"]
+    packets = [
+        vector("strict-ir-v0.2", stop=stop, source=raw),
+        vector("core-empty-effects-v0.1", source=raw),
+        *(vector("core-field-origin-v0.1", field, source=raw) for field in fields),
+    ]
+    document = copy.deepcopy(packets[0][0])
+    for key, identity_key in (("artifacts", "content_digest"), ("tools", "id"),
+                              ("executions", "id"), ("obligations", "id")):
+        if key == "executions":
+            for ordinal, (packet, _) in enumerate(packets):
+                packet["executions"][0]["definition"]["ordinal"] = str(ordinal)
+                rebind(packet)
+        indexed = {row[identity_key]: row for packet, _ in packets for row in packet[key]}
+        document[key] = [indexed[pin] for pin in sorted(indexed)]
+    unknown = [row["id"] for row in document["obligations"] if row["result"]["kind"] == "unknown"]
+    document["conclusion"] = {"kind": "inconclusive" if unknown else "satisfied", "refs": unknown}
+    return document, {pin: data for _, blobs in packets for pin, data in blobs.items()}
+
+
+def emit_rust_vectors(samples):
+    whole = {name: value for name, value in samples.items() if value[0]["subject"]["kind"] == "rejected-ir"}
+    whole.update({"input-only-checked": input_only_document(stop=False),
+                  "input-only-resource": input_only_document(stop=True)})
+    print(encode([{
+        "name": name, "document": encode(document).decode(),
+        "blobs": {pin: raw.hex() for pin, raw in blobs.items()},
+        "artifact_digest": effects.digest(encode(document)), "document_digest": identity("document", document),
+        "complete": name in whole,
+    } for name, (document, blobs) in {**samples, **whole}.items()]).decode())
 
 
 def main():
@@ -363,7 +411,7 @@ def main():
     if sys.argv[1:] == ["--show-fingerprints"]:
         print(json.dumps(fingerprints, sort_keys=True, indent=2))
         return
-    require(not sys.argv[1:], "unexpected-argument")
+    require(sys.argv[1:] in ([], ["--rust-vectors"]), "unexpected-argument")
     require(fingerprints == json.loads((HERE / "fingerprints.json").read_bytes()), "vector-fingerprint")
 
     rejected = samples["s1-rejected"][0]
@@ -442,7 +490,11 @@ def main():
                                                   and r["definition"]["subject"] == group)]
         require(len(omitted) == len(definitions) - 1, "group-p2")
         rejects("obligation-set", check_definitions, omitted, definitions, complete=True)
-    print("8 review vectors passed; 5 partial documents refused; byte, binding and group checks passed")
+    if sys.argv[1:] == ["--rust-vectors"]:
+        samples["s3-sensitive-control"] = (doc, blobs)
+        emit_rust_vectors(samples)
+    else:
+        print("8 review vectors passed; 5 partial documents refused; byte, binding and group checks passed")
 
 
 if __name__ == "__main__":
