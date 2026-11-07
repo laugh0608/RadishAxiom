@@ -24,6 +24,8 @@ L2 已提交为 `5dab738`；L3 源码实现已提交为 **`bb9d963b38273bfd9ec7a
 
 2026-11-07 的有限输入审阅重核了归档与 Cargo 解析数据，并记录实际宿主工具及加载边界。后续核对确认 installer 匹配官方发布摘要、实际加载的 Rust driver 与已接受 Darwin 组件成员逐块相等。Python 已对回精确发布制品与构建清单，`_ctypes` 的静态 libffi 来源和许可原文已核对。总体决定为 `not-accepted`，单次 target 安装仍以剩余输入审阅为前置条件。 [有限输入审阅](../records/2026-11-07-linux-channel-l3-input-acceptance-review.md) · [Rust 来源核对](../records/2026-11-07-linux-channel-l3-rust-source-readback.md) · [Python 来源核对与剩余缺口](../records/2026-11-07-linux-channel-l3-python-source-readback.md)
 
+Apple Git 的实际执行链已核对。固定入口 `/usr/bin/git` 经当前选择器执行 Xcode 27.2（27B52）内的 Apple Git-157。记录绑定了本机程序、安装收据、Apple 签名与随包 GPL v2 声明。构建前后的选择状态读回及漂移阻断仍待接入。 [Apple Git 执行链核对](../records/2026-11-07-linux-channel-l3-apple-git-readback.md)
+
 ## 未来安装：只增加一个 target
 
 候选安装仍使用现有 rustup 的 `target add --toolchain 1.97.1-aarch64-apple-darwin aarch64-unknown-linux-musl`，不是 archive 内的 install.sh。该参数和下面写入目标只是供审阅，**本页不授权执行**。

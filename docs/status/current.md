@@ -38,6 +38,8 @@ PR #5 已以 `7c9d14c` 合入 `master` 并快进回流 `dev`。L3 精确输入�
 
 本机 Python `3.14.5` 已对回 Astral `20260510` Darwin arm64 发布制品与完整构建清单。两份发布资产的构建证明已验证，`_ctypes` 链到 libffi `3.4.6` 的静态构建，许可原文和随包年份差异已留存。真实构建前仍需固定或重核实际启动文件和字节码。 [Python 来源核对](../records/2026-11-07-linux-channel-l3-python-source-readback.md)
 
+已在包装器的精简环境观察到 `/usr/bin/git` 执行 Xcode 27.2（27B52）内的 Apple Git-157。Apple 签名、安装收据及 Git 的 GPL v2 随包声明均已核对。仍需接入选择器漂移阻断，并在有限宿主信任审阅中处理精确 Apple 源码缺口。 [Apple Git 执行链核对](../records/2026-11-07-linux-channel-l3-apple-git-readback.md)
+
 ### 当前接续（2026-11-01）
 
 G0 以证据不足结束，真实接线仍未放行。L1 / L2 的源绑定、报告与管道 / 截止 / 回收源码已完成原范围本机或离线验证；[L3](../query/solver-linux-channel-l3.md)现已实现私有 v0.2 纯生成 / sidecar 独立复核、native 编译捕获与有界 build / argv recorder，并完成宿主静态 / 合成验证。保留的 v0.1 当前为 53 源；native 拒绝 v0.1 / null / 漂移。没有真实完整 root、target 安装、Linux 制品或环境资格。空 Cargo home 的 workspace 解析缺口已用既有两份索引数据的精确绑定补正，不引入新的 normal 编译依赖。实现已提交为 `bb9d963`；实际命令和边界见[实现记录](../records/2026-11-01-linux-channel-l3-implementation.md)，全天提交与本次文档复核见[日终记录](../records/2026-11-01-closeout.md)；不从离线材料推导实际资格或执行授权。
@@ -57,7 +59,7 @@ G0 以证据不足结束，真实接线仍未放行。L1 / L2 的源绑定、报
 下一次恢复时，先围绕“让原容量 AX-B01 在原资源限制下取得真实 solver 校准”核对以下直接前置；每批只有明确出口，不将来源清单扩展为无期限的工具链研究。这里保存建议，不延续历史批次的外部动作授权。
 
 1. **取得 LibPoly 固定版本的许可澄清后，再作 C1 接受审阅。** [历史核对](../records/2026-10-23-libpoly-license-history.md)已收敛为整体许可冲突、Polyxx 覆盖与旧 `open_memstream.c` 来源授权三项；[issue #113](https://github.com/SRI-CSL/libpoly/issues/113)已按 10 月 27 日明确授权发送。后续依据须适用固定提交并覆盖这些缺口；不重复查同一历史、下载已匹配材料或把风险接受写成许可事实。未安排自动轮询，不自动追加消息。
-2. **L3 保持阻断，收口剩余输入审阅。** 复用已核对的 target 归档、Rust 工具、Python 构建和宿主材料。恢复时核定 target 发布清单的有限信任范围、Apple Git 选择链、Cargo 解析数据来源 / 许可及固定宿主信任。新增来源链或信任假设先核定范围。 [剩余缺口](../records/2026-11-07-linux-channel-l3-python-source-readback.md#复核材料与剩余缺口)
+2. **L3 保持阻断，收口剩余输入审阅。** 复用已核对的 target 归档、Rust 工具、Python 构建和 Apple Git 实际执行链。恢复时核定 target 发布清单的有限信任范围、Apple Git 的选择器漂移阻断与精确源码缺口、Cargo 解析数据来源 / 许可及固定宿主信任。新增来源链或信任假设先核定范围。 [Apple Git 剩余边界](../records/2026-11-07-linux-channel-l3-apple-git-readback.md#漂移时如何阻断)
 
    若接受条件闭合，**再单独核定并授权一次 target 安装**：列明原归档 cache 新副本、120 s / 新增磁盘观测 512 MiB、唯一 target / 元数据写入和失败保留 / 清理边界；安装后双向核对 66 文件、原五个 component / 三工具及元数据差异。真实安装观察齐备后，绑定执行前最终干净 commit 的完整树与五份 sidecar / 外部 review pin，生成并独立复核真实 v0.2 root；不能用 53 源选定闭包替代全树或把 `bb9d963` 预填成尚未发生构建的来源。此后一次 600 s / 512 MiB Linux 构建、L4 离线制品验收、L5 交付 / 挂载 / 诊断执行分别授权；不因为输入机制已有源码就跳过安装观察 / 工具接受，或创建环境试错。旧原包不重下，合成 root / 回执和 source-only v0.1 均不充作真实输入。C1 / G0 / E0 / E4、实际 std / CRT / allocator / syscall、proc / seccomp / bind、无写别名、独立终止 / 存储硬限仍未闭合。
 3. **等待 C1 时，F2 可按明确边界继续静态审阅。** AArch64 调用约定和 FD 所有权交接已完成本轮有限静态复核。后续待核对目标工具链、outer setup policy、精确实例读回和 Mac adapter 接线，出口为具体问题修正或有限待验清单。Linux 目标构建、实际 syscall 与真实负向矩阵在工具 / 制品条件具备并获准后分别验证。 [F2 本轮范围](../records/2026-11-07-linux-channel-l3-input-acceptance-review.md#f2-小范围静态审阅)
