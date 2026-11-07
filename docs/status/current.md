@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-11-07（L3 精确输入有限接受审阅）
+更新日期：2026-11-07（AX-B01 P5 内部组件与 L3 精确输入有限接受审阅）
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。整体目标见[开发计划](../development-plan.md)，归属与任务来源见[能力专题地图](../topics.md)；历史流水见[整理前快照](../records/status-before-planning-alignment-2026-11-01.md)与[早期归档](../records/status-through-2026-09-03.md)。
 
@@ -13,7 +13,7 @@
 | 主线 | 已有基线与未关闭范围 | 任务 / 验收来源 |
 | --- | --- | --- |
 | 语义与 IR | P1 / P2 内部组件已有本机证据；不等于完整生产阶段或 Evidence v0.2 | [语义与义务来源](../topics.md#semantics-ir) |
-| 验证管线 | 限定 P3、P4-A / B 与紧凑表示已有组件证据；真实 solver、完整 P0–P9 与四题闭环未验收 | [管线与反例来源](../topics.md#verification-pipeline) |
+| 验证管线 | 限定 P3、P4-A / B、紧凑表示和 AX-B01 P5 内部检查已有组件证据；真实 solver、完整 P0–P9 与四题闭环未验收 | [管线与反例来源](../topics.md#verification-pipeline) |
 | Evidence / Checker | 格式、指定态制品与受限消费已有材料；生产声明、接受和独立证明分别判断 | [独立复核来源](../topics.md#independent-checker) |
 | 运行交付 | F / C 及 L1 / L2 等已有本机或离线材料；L3 完整输入 / 包装器源码已有静态与合成验证；工具 / 宿主 / 实际执行资格未闭合 | [运行与交付来源](../topics.md#runtime-delivery) |
 | 实验评估 | 三表示、两模型、四任务、72 个 trial bundle 已预注册；execution lock、完整装置、正式模型与收益未验收 | [实验来源](../topics.md#evaluation) |
@@ -24,11 +24,13 @@
 
 ## 近期顺位
 
-核心语义优先，实际工作服务原容量 AX-B01 的有界 solver 校准；完整范围与退出标准按开发计划，来源准备不代替产品进展。原 P1 / P2 / query 顺位表已保留在[日期化快照](../records/status-before-planning-alignment-2026-11-01.md#下一步)。
+核心主线优先推进 AX-B01 首个纵向切片。P5 纯组件和有界 solver 校准按各自的前置推进，C1、L3 和宿主资格归入运行交付。完整范围与退出标准按[开发计划](../development-plan.md#里程碑与完成标准)。原 P1 / P2 / query 顺位表保留在[日期化快照](../records/status-before-planning-alignment-2026-11-01.md#下一步)。
 
 ### 下一步
 
-直接后续见下文“接下来的事项”；各 P / E / F / C / G / L 切片的合同和验收从[地图](../topics.md)进入，不新增并行任务库。
+AX-B01 的 P5 内部检查已按 [ADR 0032（Accepted）](../adr/0032-ax-b01-p5-component-entry.md)实现。IR v0.2 路径通过 `base` / `boundary` 的独立表值对照，并依据实际前置条件拒绝 `invalid` 的 `orders:OX`。核心线接续先审阅 IR v0.2 与宿主封套的版本配对及生产 `check-fixture` 的绑定，P6 继续受原门控约束。 [样本与组件核对记录](../records/2026-11-07-ax-b01-p5-entry-review.md)
+
+运行线恢复条件见下文“接下来的事项”。`--no-poly` 可作为后续单独评估的校准候选，任何选型变化须重审配置、实际依赖和工具身份。各切片的契约和验收从[专题地图](../topics.md)进入。
 
 ### 当前接续（2026-11-07）
 
@@ -56,7 +58,7 @@ G0 以证据不足结束，真实接线仍未放行。L1 / L2 的源绑定、报
 
 恢复基线：C1 **500 / 500 文件、691,605,464 bytes** 已取得并独立复核；172 包内容、copyright 路径及 101 `.dsc` 关联已核对，历史三角色签名与五负例按明确接受的有限信任范围通过，旧失败保留，见[输入审阅](../records/2026-10-23-cvc5-c1-input-review.md)。20 个短时验签容器均已退出并删除，未安装、组装或执行 SDK / solver；验签宿主接受不能转用为构建资格。LibPoly [原草稿及发送接续](../records/2026-10-23-libpoly-upstream-clarification-draft.md)已发布，缺口仍待权威依据；C2 已交付离线配方、布局与事件检查，**C1 仍 not-accepted，build_ready=false**。
 
-下一次恢复时，先围绕“让原容量 AX-B01 在原资源限制下取得真实 solver 校准”核对以下直接前置；每批只有明确出口，不将来源清单扩展为无期限的工具链研究。这里保存建议，不延续历史批次的外部动作授权。
+以下顺位用于恢复现有候选的运行交付，目标是在原资源限制下完成原容量 AX-B01 的真实 solver 校准。每批须有明确出口，历史批次的外部动作授权不随计划延续。
 
 1. **取得 LibPoly 固定版本的许可澄清后，再作 C1 接受审阅。** [历史核对](../records/2026-10-23-libpoly-license-history.md)已收敛为整体许可冲突、Polyxx 覆盖与旧 `open_memstream.c` 来源授权三项；[issue #113](https://github.com/SRI-CSL/libpoly/issues/113)已按 10 月 27 日明确授权发送。后续依据须适用固定提交并覆盖这些缺口；不重复查同一历史、下载已匹配材料或把风险接受写成许可事实。未安排自动轮询，不自动追加消息。
 2. **L3 保持阻断，收口剩余输入审阅。** 复用已核对的 target 归档、Rust 工具、Python 构建和 Apple Git 实际执行链。恢复时核定 target 发布清单的有限信任范围、Apple Git 的精确源码缺口、Cargo 解析数据来源 / 许可及固定宿主信任。新增来源链或信任假设先核定范围。 [Apple Git 剩余边界](../records/2026-11-07-linux-channel-l3-apple-git-readback.md#漂移时如何阻断)

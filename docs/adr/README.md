@@ -42,3 +42,4 @@
 - [ADR 0029：solver Linux 监督与能力边界（Accepted）](0029-solver-linux-supervision-and-capabilities.md)
 - [ADR 0030：solver 原生 bootstrap 实施与构建来源（Accepted）](0030-solver-bootstrap-ffi-and-build-provenance.md)
 - [ADR 0031：本地 cvc5 构建候选的来源保证边界（Accepted）](0031-local-cvc5-build-provenance-boundary.md)
+- [ADR 0032：AX-B01 的 P5 具体输入检查组件入口（Accepted）](0032-ax-b01-p5-component-entry.md)
