@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-11-07（AX-B01 P5 宿主封套转换与 L3 精确输入有限接受审阅）
+更新日期：2026-11-07（AX-B01 P5 本地执行记录与 L3 精确输入有限接受审阅）
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。整体目标见[开发计划](../development-plan.md)，归属与任务来源见[能力专题地图](../topics.md)；历史流水见[整理前快照](../records/status-before-planning-alignment-2026-11-01.md)与[早期归档](../records/status-through-2026-09-03.md)。
 
@@ -28,7 +28,7 @@
 
 ### 下一步
 
-AX-B01 的 P5 内部检查已按 [ADR 0032](../adr/0032-ax-b01-p5-component-entry.md)实现。按 [ADR 0033（Accepted）](../adr/0033-p5-host-data-ir-v02-pairing.md)实现的转换已绑定 IR v0.2、任务清单、case 和原始夹具，并复现四份宿主封套 v0.2 的独立参考字节。核心线接续核定实际 `fixture-checker` 工具身份及生产 `check-fixture` 记录入口。公开 receipt、Evidence 配对和 P7 / P8 消费各自审阅，P6 继续受原门控约束。 [封套对照与组件记录](../records/2026-11-07-ax-b01-p5-pairing-review.md)
+AX-B01 的 P5 内部检查和宿主封套 v0.2 转换已按 [ADR 0032](../adr/0032-ax-b01-p5-component-entry.md)与 [ADR 0033](../adr/0033-p5-host-data-ir-v02-pairing.md)实现。本机 `fixture-checker` 观察入口已绑定实际可执行制品和规则字节，外部复核通过四条成功及四条失败记录。核心线接续核定生产工具制品和 `check-fixture` 的同案执行关联及 receipt 配对。Evidence 和 P7 / P8 各自审阅，P6 继续受原门控约束。 [本地执行记录](../records/2026-11-07-ax-b01-p5-execution-review.md)
 
 运行线恢复条件见下文“接下来的事项”。`--no-poly` 可作为后续单独评估的校准候选，任何选型变化须重审配置、实际依赖和工具身份。各切片的契约和验收从[专题地图](../topics.md)进入。
 

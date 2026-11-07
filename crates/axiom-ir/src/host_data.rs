@@ -12,6 +12,7 @@ use crate::{
     version::IrVersion,
 };
 
+pub mod execution;
 mod manifest;
 #[cfg(test)]
 mod tests;
