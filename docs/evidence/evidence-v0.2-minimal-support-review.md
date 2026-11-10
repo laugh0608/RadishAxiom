@@ -2,6 +2,14 @@
 
 日期为 2026-11-07，基线为 `dev` 的 `90d2593`。状态为待审阅。本文汇总已批准的 S1–S3 结果边界，提出公共契约、独立 checker 和迁移演练的验收矩阵。P6 为 `closed / p6-not-evaluated`。 [AX-B01 义务与材料](ax-b01-evidence-v0.2-contract-review.md) · [ADR 0009](../adr/0009-axiom-evidence-v0-drift-and-migration.md)
 
+## 本轮收口边界（2026-11-10）
+
+本专题承接[首题中间交付](../development-plan.md#里程碑与完成标准)：后端结果契约、生产严格读回与独立 checker 完成绑定，取得全义务实际/规则支持后装配并独立复核。当前只是规划顺位获确认，下文待审的公共机器契约、B1–B3 及独立矩阵没有被自动接受。
+
+必须保留缺义务、跨目标换绑、结果冲突、多次尝试历史、缺独立来源与信任政策拒绝；S1–S3 四项不能冒充全部 13 项，合成投影不能填为九项真实结果。受信假设按原策略显式保留，独立正向 proof 不额外成为 attestation-allowed 首条流程的前置，certificate-required 仍拒绝无支持材料。
+
+下面 ADR 0009 的 M1/M2/M3 是迁移演练轨道，不是产品阶段；其 group、历史与版本拒绝条件保持。中间结果不关闭完整 P0–P9，也不授权新格式发布、checker 跨仓修改或真实执行。
+
 ## 公共结果支持
 
 拟议入口显式选择 `evidence_version: "0.2"`、义务 profile `version: "0.2"` 和精确 IR / 语义版本。沿用闭合 JCS、规范十进制字符串、排序和唯一性要求。义务 ID 沿已冻结的 v0.2 规则，按 definition 计算。建议 tool、execution、trust、uncovered 和 Evidence document 各用 `axiom-evidence-v0.2:<kind>` 重新计算身份，制品仍以原始字节 SHA-256 寻址。具体成员、角色引用编码、版本域和独立请求 / 结果版本随公共格式审定。v0.1 的读取器继续只按其精确支持集合工作。 [旧格式与域](axiom-evidence-v0.md#json规范字节与内容标识) · [P2 义务身份](ir-derived-obligations-v0.2.md#版本与身份)

@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-11-07（P5 本机接受、Evidence v0.2 候选与 L3 日终交接）
+更新日期：2026-11-10（收口顺位；沿用 11 月 7 日证据，无新增真实执行）
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。整体目标见[开发计划](../development-plan.md)，归属与任务来源见[能力专题地图](../topics.md)；历史流水见[整理前快照](../records/status-before-planning-alignment-2026-11-01.md)与[早期归档](../records/status-through-2026-09-03.md)。
 
@@ -24,7 +24,20 @@
 
 ## 近期顺位
 
-核心主线优先推进 AX-B01 首个纵向切片。Evidence 与有界 solver 校准按各自前置推进，C1、L3 和宿主资格归入运行交付。完整范围与退出标准按[开发计划](../development-plan.md#里程碑与完成标准)。原 P1 / P2 / query 顺位表保留在[日期化快照](../records/status-before-planning-alignment-2026-11-01.md#下一步)。
+2026-11-10 所有者确认：**下一交付固定为 AX-B01 的实际验证结果、完整 Evidence 支持与独立复核**，随后接通完整 P0–P9；不以运行准备或来源取证数量代替语义成果。两级出口见[开发计划](../development-plan.md#里程碑与完成标准)与[首切片依赖](../axiom-pipeline-first-slice-dependency-review.md#收口顺序与两级出口2026-11-10)。
+
+| 顺位 | 必须继续 | 必要阻塞 / 结束条件 |
+| --- | --- | --- |
+| 1 | 审定 Evidence v0.2 后端结果绑定，接入严格读回与独立 checker | B1–B3、独立来源、信任政策及多次结果聚合尚待审；覆盖缺义务、错绑、冲突与拒绝。本次规划确认不等于机器契约已接受 |
+| 2 | 有限裁决真实 solver 路径 | C1/LibPoly、L3 剩余来源与有限宿主信任、目标制品及运行资格仍未关闭。复用已有材料；选择继续固定候选、评估一个替代或等待，不同时展开多条来源链 |
+| 3 | 实际受限校准，再取得 AX-B01 全部结果 | 保持原容量及 128 MiB / 6 s；按 E0/E4/E5 和具体授权取真实结果。九项后端结果与四项结构类义务支持齐备后装配，独立核对精确目标、信任与同一 Evidence 摘要 |
+| 4 | P6–P9 与首个真实纵向闭环 | 提前登记 Node P7 的来源、宿主和硬资源缺口；P4/P5 真结果不足时 P6 继续 closed。correct 全链、两个 wrong、invalid、真实 timeout 与篡改/门控拒绝按原契约验收 |
+
+后置：通用 guest/runner 产品化、安装/更新与额外平台，非当前实际构建所需的来源链，新领域/IR 扩展，表面语法、SDK/IDE 与正式 Agent 实验。首条独立正向证明单列研究成果，不额外阻塞允许 attestation 的首个流程；独立复核仍必需，accepted-with-trust 不等于独立 proof，certificate-required 对缺支持材料仍拒绝。
+
+投入控制：下一运行准备批次前盘清实际投入与剩余估算，沿用既有装置/维护预算；当前没有工时账，不声称已超支或尚有余额。每批只解除一个具名执行阻塞，以取得资格、明确改选或等待结束。失败不得自动追加取证链、提高资源上限、缩小声明容量或开放 native 旁路。路径仍不可行时暂停该运行线，可独立完成的契约收尾不继续扩张为新语义功能。
+
+原 P1/P2/query 顺位见[历史快照](../records/status-before-planning-alignment-2026-11-01.md#下一步)。本轮只改规划，不改变 ADR、IR/Evidence/fixture 原字节、候选接受或执行授权；下述记录提供证据与恢复入口。
 
 ### AX-B01 当前交付
 
@@ -76,13 +89,13 @@ G0 以证据不足结束，真实接线仍未放行。L1 / L2 的源绑定、报
 
 恢复基线：C1 **500 / 500 文件、691,605,464 bytes** 已取得并独立复核；172 包内容、copyright 路径及 101 `.dsc` 关联已核对，历史三角色签名与五负例按明确接受的有限信任范围通过，旧失败保留，见[输入审阅](../records/2026-10-23-cvc5-c1-input-review.md)。20 个短时验签容器均已退出并删除，未安装、组装或执行 SDK / solver；验签宿主接受不能转用为构建资格。LibPoly [原草稿及发送接续](../records/2026-10-23-libpoly-upstream-clarification-draft.md)已发布，缺口仍待权威依据；C2 已交付离线配方、布局与事件检查，**C1 仍 not-accepted，build_ready=false**。
 
-以下顺位用于恢复现有候选的运行交付，目标是在原资源限制下完成原容量 AX-B01 的真实 solver 校准。每批须有明确出口，历史批次的外部动作授权不随计划延续。`--no-poly` 仍属单独评估的候选，任何选型变化须重审配置、实际依赖和工具身份。
+以下为保留现有候选时的内部恢复顺序，不是独立于首题目标的全项目队列。进入新批次前先按[有限路径裁决](../query/solver-cvc5-build-candidate-plan.md#首题运行交付的有限裁决2026-11-10)明确投入、具名阻塞与结束决定。目标是在原资源限制下完成原容量 AX-B01 的真实 solver 校准；外部动作授权不随计划延续。`--no-poly` 仍属待评估候选，本轮未选择；任何选型变化须重审所需查询能力、配置、实际依赖和工具身份。
 
 1. **取得 LibPoly 固定版本的许可澄清后，再作 C1 接受审阅。** [历史核对](../records/2026-10-23-libpoly-license-history.md)已收敛为整体许可冲突、Polyxx 覆盖与旧 `open_memstream.c` 来源授权三项；[issue #113](https://github.com/SRI-CSL/libpoly/issues/113)已按 10 月 27 日明确授权发送。后续依据须适用固定提交并覆盖这些缺口；不重复查同一历史、下载已匹配材料或把风险接受写成许可事实。未安排自动轮询，不自动追加消息。
 2. **L3 保持阻断，收口剩余输入审阅。** 复用已核对的 target 归档、Rust 工具、Python 构建和 Apple Git 实际执行链。恢复时核定 target 发布清单的有限信任范围、Apple Git 的精确源码缺口、Cargo 解析数据来源 / 许可及固定宿主信任。新增来源链或信任假设先核定范围。 [Apple Git 剩余边界](../records/2026-11-07-linux-channel-l3-apple-git-readback.md#漂移时如何阻断)
 
    若接受条件闭合，**再单独核定并授权一次 target 安装**：列明原归档 cache 新副本、120 s / 新增磁盘观测 512 MiB、唯一 target / 元数据写入和失败保留 / 清理边界；安装后双向核对 66 文件、原五个 component / 三工具及元数据差异。真实安装观察齐备后，绑定执行前最终干净 commit 的完整树与五份 sidecar / 外部 review pin，生成并独立复核真实 v0.2 root；不能用 53 源选定闭包替代全树或把 `bb9d963` 预填成尚未发生构建的来源。此后一次 600 s / 512 MiB Linux 构建、L4 离线制品验收、L5 交付 / 挂载 / 诊断执行分别授权；不因为输入机制已有源码就跳过安装观察 / 工具接受，或创建环境试错。旧原包不重下，合成 root / 回执和 source-only v0.1 均不充作真实输入。C1 / G0 / E0 / E4、实际 std / CRT / allocator / syscall、proc / seccomp / bind、无写别名、独立终止 / 存储硬限仍未闭合。
-3. **等待 C1 时，F2 可按明确边界继续静态审阅。** AArch64 调用约定和 FD 所有权交接已完成本轮有限静态复核。后续待核对目标工具链、outer setup policy、精确实例读回和 Mac adapter 接线，出口为具体问题修正或有限待验清单。Linux 目标构建、实际 syscall 与真实负向矩阵在工具 / 制品条件具备并获准后分别验证。 [F2 本轮范围](../records/2026-11-07-linux-channel-l3-input-acceptance-review.md#f2-小范围静态审阅)
+3. **等待 C1 时，F2 只收口已有静态清单。** AArch64 调用约定和 FD 所有权交接已完成本轮有限静态复核。后续待核对目标工具链、outer setup policy、精确实例读回和 Mac adapter 接线，出口为具体问题修正或有限待验清单。Linux 目标构建、实际 syscall 与真实负向矩阵在工具 / 制品条件具备并获准后分别验证。 [F2 本轮范围](../records/2026-11-07-linux-channel-l3-input-acceptance-review.md#f2-小范围静态审阅)
 4. **条件闭合后按原顺序进入实际路径。** C1 与构建环境资格闭合后，按[C3–C5](../query/solver-cvc5-build-candidate-plan.md#批次占用授权与停止线)先构建依赖、审阅实际 ABI / Editline 有序闭包和 manifest，再配置 / 构建主目标；C4 决定 E0，实际 E4 通过后才进入 E5 的最多八份校准及一次精确 wrong-add guarantee 尝试。保持原容量、128 MiB / 6 s 和旧四版字节 / 拒绝，不因不足增限或绕过门禁；这仍不等于完整 P0–P9 / Evidence / 独立 checker 验收。
 
 ### 当前接续（2026-10-17）

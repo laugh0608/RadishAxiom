@@ -137,6 +137,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 | 2026-11-01 新通道离线核对 | [最小方案提交、精确镜像 / 来源 / 许可与读取权限核对、PID 1 超时设计缺口](records/2026-11-01-linux-channel-offline-review.md) |
 | 2026-11-01 L3 实现 | [v0.2 / native 捕获 / 有界包装器、Cargo 解析输入补正与宿主进程组身份修正](records/2026-11-01-linux-channel-l3-implementation.md) |
 | 2026-11-01 日终回顾 | [全天提交、代码对应文档复核与下一批有限输入接受审阅](records/2026-11-01-closeout.md) |
+| 2026-11-10 收口规划 | [首题两级出口、有限运行投入与后置范围](records/2026-11-10-planning-closeout.md) |
 | 2026-11-07 日终回顾 | [全天提交、L3／P5／Evidence 代码与文档复核](records/2026-11-07-closeout.md) |
 | Rust Linux 与静态目标输入 | [签名 / 归档盘点、安装候选与 kernel 许可审阅](records/rust-linux-input-review/README.md) |
 | 2026-10-17 日终回顾 | [紧凑查询、监督组件与 C0 全天提交、代码 / 文档复核及接续事项](records/2026-10-17-closeout.md) |

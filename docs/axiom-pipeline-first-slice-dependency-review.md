@@ -32,6 +32,16 @@
 
 **cvc5 和 Node 的 Darwin 执行限制是独立缺口。** 它们的 outer profile 也要求 OS hard memory，Node Permission Model / cvc5 内部预算都不能自动提供该保证。ADR 0013 只选择 checker 宿主，不授权把 solver / Node 放进该 guest。可以先做来源与 adapter 静态审阅；真实 P4 / P7 前需各自证明已有 profile 能执行，或按对应 ADR 重新决定宿主 / profile。若选其他平台，也必须有该平台精确工具 acceptance 和执行授权。
 
+### 收口顺序与两级出口（2026-11-10）
+
+所有者确认沿既有语义和运行边界收口。先审定后端结果/信任绑定并接入独立检查，有限裁决实际 solver 路径，再做受限真实校准及全义务结果。必要来源、制品、宿主、128 MiB / 6 s 和精确执行授权不因排期变化放宽；Node P7 的同类缺口提前列入剩余清单。
+
+第一出口是 AX-B01 验证与 Evidence 接通：13 项核心义务都有实际后端结果或独立规则支持，精确目标归因、来源/信任和同一摘要经独立路径核对。它是中间交付，不要求以虚构 host attempt 补齐 P6–P8；公共读取消费仍遵守 ADR 0009，不能跳过 group、历史状态与版本拒绝矩阵。
+
+第二出口是下节定义的首个真实 P0–P9 闭环：P4/P5 门满足后生成并执行正确候选，汇集真实制品与独立结果；错误、invalid、timeout 和篡改路径按原要求关闭。不以第一出口宣布编译器完成，也不把首条独立正向证明额外添加为 attestation-allowed 流程前置。
+
+仅服务通用安装、更新或平台扩张的工作后置；当前真实执行所需的受控 launcher/guest 和验收能力不能后置。具体状态及投入停止条件见[current](status/current.md#近期顺位)。
+
 ### 首个纵向切片的验收材料
 
 沿用 [AX-B01 task](../benchmarks/keyed-finite-table-v0.1/ax-b01/task.json) 与 [readiness manifest](../contracts/implementation-readiness-v0.1/manifest.jcs)，不另造状态或成功码：
