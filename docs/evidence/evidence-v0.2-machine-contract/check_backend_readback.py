@@ -3,6 +3,7 @@
 import copy
 import hashlib
 import json
+import os
 from pathlib import Path
 import runpy
 import sys
@@ -94,6 +95,13 @@ def main():
     }
     expected = json.loads(Path(__file__).with_name("backend-readback-fingerprints.json").read_bytes())
     assert fingerprints == expected[packet["name"]], (packet["name"], fingerprints)
+    # Separate exchange-only review; the existing Evidence bytes and finite
+    # semantic expectations above remain unchanged.
+    from evidence_exchange_review import review_packet_exchange
+    review_packet_exchange(packet, os.environ.get("AXIOM_EXCHANGE_REVIEW_EXPORT"))
+    exchange_tests = runpy.run_path(str(ROOT / "scripts/test-evidence-exchange-review.py"))
+    negatives = exchange_tests["packet_negative_checks"](packet)
+    print(f"{packet['name']}: {negatives} rebound exchange mutations rejected")
     print(f"{packet['name']}: {count} independent finite replay results matched; producer mismatch rejected")
 
 

@@ -1,0 +1,9 @@
+{
+  "artifact_count": "15",
+  "bundle_bytes": "88517",
+  "evidence_raw": "sha256:9329d0651041d8ec766a9719641239491b463f004c374e7467c1c6511da740da",
+  "manifest_document": "sha256:f32dab77c205af265a1e48ff28bd7ffbdf22eef38a6c2ae6ca3f6d52d4bef77b",
+  "manifest_raw": "sha256:4f48427a92aeb6f6e1a9d288a2c81f3089422ddbd4ebe4bb485cd09cd9fee284",
+  "request_document": "sha256:5564ab92fb1b7fb52c595dac38b448f756701efb55d82751af9571b5be7e8cc5",
+  "request_raw": "sha256:98d49db1e6e742ffb8d378901b39f7bb5569e62381de43c420781fd787d888ec"
+}

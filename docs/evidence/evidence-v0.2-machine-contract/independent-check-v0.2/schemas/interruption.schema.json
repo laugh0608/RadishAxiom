@@ -1,0 +1,193 @@
+{
+  "$id": "urn:radishaxiom:schema:axiom-evidence-replay-interruption:0.2",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "cause": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "resource-limit"
+            },
+            "limit": {
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string"
+            },
+            "resource": {
+              "enum": [
+                "candidate-bytes",
+                "comparisons",
+                "decode-steps",
+                "digit-work",
+                "evaluation-steps",
+                "integer-digits",
+                "output-bytes",
+                "path-bytes",
+                "rows",
+                "text-bytes",
+                "type-items",
+                "value-cells",
+                "world-bytes",
+                "world-depth",
+                "world-nodes"
+              ]
+            }
+          },
+          "required": [
+            "kind",
+            "resource",
+            "limit"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "artifact": {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "kind": {
+              "const": "input-error"
+            },
+            "reason": {
+              "enum": [
+                "binding-mismatch",
+                "invalid-model",
+                "invalid-world",
+                "noncanonical-world"
+              ]
+            }
+          },
+          "required": [
+            "kind",
+            "artifact",
+            "reason"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "feature": {
+              "enum": [
+                "ir-version",
+                "obligation-kind",
+                "profile",
+                "semantic-feature"
+              ]
+            },
+            "kind": {
+              "const": "unsupported"
+            }
+          },
+          "required": [
+            "kind",
+            "feature"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "component-error"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "code": {
+      "enum": [
+        "component-limit",
+        "model-decode",
+        "replay-error",
+        "unsupported"
+      ]
+    },
+    "component_policy": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "diagnostic": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "absent"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "artifact"
+            },
+            "ref": {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "ref"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "format": {
+      "const": "axiom-evidence-replay-interruption"
+    },
+    "generator": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "request": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "scope": {
+      "const": "simulation"
+    },
+    "solve_execution": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "stage": {
+      "enum": [
+        "model",
+        "replay"
+      ]
+    },
+    "version": {
+      "const": "0.2"
+    }
+  },
+  "required": [
+    "format",
+    "version",
+    "scope",
+    "generator",
+    "request",
+    "solve_execution",
+    "component_policy",
+    "stage",
+    "code",
+    "cause",
+    "diagnostic"
+  ],
+  "type": "object"
+}

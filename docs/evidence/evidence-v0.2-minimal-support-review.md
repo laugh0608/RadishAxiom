@@ -89,4 +89,6 @@ M2 的两个 group 目标须绑定同一目标节点，却有不同 ID。以直�
 
 接续草案已将 verification 的字节、身份、执行、制品和结果绑定写入机器登记。S1–S3 已接入本仓严格读回。九项后端结果另有单目标合成向量，生产来源认证、正式装配和独立 checker 继续按各自范围验收。 [机器契约与本仓读回](evidence-v0.2-machine-contract/README.md) · [后端绑定候选](evidence-v0.2-machine-contract/README.md#后端绑定候选)
 
+11 月 13 日 C1–C6 已获准推进本仓契约草案与离线材料。[独立交换审阅](evidence-v0.2-independent-check-review.md)固定候选 request / manifest / result v0.2、外部请求与批次 pin、稳定中止事实及分层验收。四份完整合成包保留原 Evidence 身份；新批次与交换身份另行固定。公共接受、生产新格式适配、分仓 checker 和完整 M1 仍未完成。
+
 M1 已严格核验主仓源包并完成目标 IR、P2 全集和九份离线请求重建。演练保留未完成，阻断项按实际执行和独立验收分别记录。 [M1 迁移准备记录](../records/2026-11-07-ax-b01-evidence-m1-preflight.md)

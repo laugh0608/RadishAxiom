@@ -2,6 +2,8 @@
 
 2026-11-07，基线为 dev 的 90d2593 及已核对的 S1–S3 审阅材料。状态为待审阅。本文与[机器登记](contract.json)定义 verification profile 的候选字节、身份和结果绑定。其余九项 AX-B01 核心义务仍按完整全集检查，所需真实执行和公共支持待补齐。P6 保持 closed / p6-not-evaluated。 [支持汇总与迁移演练](../evidence-v0.2-minimal-support-review.md)
 
+2026-11-13 接续：所有者确认 C1–C6 后，新增[独立交换 v0.2 审阅](../evidence-v0.2-independent-check-review.md)及[单独候选机器包](independent-check-v0.2/contract.json)，包含新来源绑定、结构化中止与离线交接材料。本页原登记、旧指纹及 Rust 接口不变；新交换检查不代表公共接受或分仓验收。
+
 ## 字节、版本与身份
 
 顶层精确使用登记的 document 成员，format 为 axiom-evidence，evidence_version 为 0.2，digest_algorithm 为 sha-256，obligation_profile 为 keyed-finite-table-verification / 0.2。本稿仅选择 verification。benchmark profile、额外执行模式以及新的独立 request / manifest / result 字节另行审定。读取器从受信的契约标识选定规则，不因输入中的版本串自动启用支持。

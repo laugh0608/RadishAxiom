@@ -1,0 +1,42 @@
+{
+  "correct": {
+    "artifact_count": "132",
+    "batch_raw": "sha256:0f0d7efff222c9f32641495d6c359a41e3f4f54fa863fbadc15fbba6c8155315",
+    "bundle_bytes": "5843966",
+    "evidence_raw": "sha256:7081025debf869351834d0ed8ce84a56f5e01de7ac7721f93aeab704289f44b7",
+    "manifest_document": "sha256:58d2de7dcd10d0a9a9c9f0343c1c5aa26e915dfaae205390cebc39bacfaca4b4",
+    "manifest_raw": "sha256:543b87efd75d383479ab7a4701618be689f987ba8ef6101b67117b35f72c16c8",
+    "request_document": "sha256:a04f4e3e593d45145b8fbee6a1c7d7742f166c07bcdd384e840196adbd0895a9",
+    "request_raw": "sha256:73e930cfd5bb1fea536d33b7d59605f0014c1613cb8febef61c22fe7ce78e02c"
+  },
+  "pre-false": {
+    "artifact_count": "43",
+    "batch_raw": "sha256:846945aa0fb6e9ebd0e3879b10b698d638cbbb37c2b561e262b24e3b42d1b4d2",
+    "bundle_bytes": "146757",
+    "evidence_raw": "sha256:80ac7c293c6a61f64ddd2c7290fc52b9b025fdcce310f88b5bab585567df22cf",
+    "manifest_document": "sha256:2b92dc4ec9d063fa44e448cc45a2e22c72dab793873c1b468c31947221dc7d83",
+    "manifest_raw": "sha256:c0200d9975e235ffca1a833355205850314f226305997076988d5690c83af32d",
+    "request_document": "sha256:3f19018f9bef8f891eda34af0697bc289d6fb2a9a6ed3bc970af00fb7fb8f5f0",
+    "request_raw": "sha256:ca43db33fe2c7ea0f65f6dd3f1de13262d6d1025d714edd48e28b2009956c562"
+  },
+  "wrong-add": {
+    "artifact_count": "132",
+    "batch_raw": "sha256:9f2b6bb8f3b78b9ee0f6c5830fbdfb48553ea88d7814bd99515da9ef524e0212",
+    "bundle_bytes": "5843816",
+    "evidence_raw": "sha256:8959afe07cbe79c941ddc7fef72f427d4887689e8825d7b151ae0c4b2b5f5396",
+    "manifest_document": "sha256:b29f3bb8a852f52a7fe641eac56c8352d07344ff6c390e389fcad03e2e58fc35",
+    "manifest_raw": "sha256:3898c8df0f0a418b86cd1acbb1081cd43d45993ed3a603bd9267110482b10b2f",
+    "request_document": "sha256:3cee094f137fd5286d32d71974f7ffcef2ca45e1089396447bc47bfb3c406d66",
+    "request_raw": "sha256:686364c5dd9d7aedb57721ba98c78cc042a9acc327ffb5cad7a4a7ebeff9ad0b"
+  },
+  "wrong-drop-zero": {
+    "artifact_count": "132",
+    "batch_raw": "sha256:6afc4e8f32b96ab2ee66eea6ea17389aebb76f374c86ee06a814d9b50395e4e9",
+    "bundle_bytes": "5883809",
+    "evidence_raw": "sha256:79d3f54f7d1e8c655ef6234b08a7a924285b71a42cf68ec07b86e9e2f053cf70",
+    "manifest_document": "sha256:a04546b7af52bce7c4348a5cf418bc5c5e0b3b1a41d70fb8c40bb3e9701b1cab",
+    "manifest_raw": "sha256:b87e10cbc68198d4484400ce4dae071c792aedafcce3f9562939e834cd255f4d",
+    "request_document": "sha256:9f635e6c2eb0a8507fc7e5bc7192b6e459b257a0e1713be987f73c185967ab24",
+    "request_raw": "sha256:0b4a09021de7dce2962bb2f96b0a592ebb73c3cb54bb7f622efddcd2a3f25f57"
+  }
+}
