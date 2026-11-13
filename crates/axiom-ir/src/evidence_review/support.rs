@@ -31,11 +31,12 @@ pub(super) fn rebuild(
     artifacts: &Artifacts<'_, '_>,
     limits: ReviewLimits,
 ) -> Result<Verdict> {
-    if run.mode.target() != target_kind {
+    if run.mode.target() != Some(target_kind) {
         return Err(invalid("execution", "target kind"));
     }
     match run.mode {
         Mode::Structure => structure(run, subject, artifacts),
+        Mode::Solve | Mode::Replay => Err(invalid("execution", "backend context required")),
         Mode::Effect | Mode::Origin => proof(run, subject, artifacts, limits.evidence_json),
     }
 }
@@ -69,7 +70,7 @@ fn structure(
             return Err(invalid("normalize", "unclassified subject"));
         }
         if kind == "resource-exhausted" {
-            let error = check_canonical_document(raw, run.limits.ir_json).err();
+            let error = check_canonical_document(raw, run.core_limits()?.ir_json).err();
             if resource_code(error.as_ref()) != Some(code) {
                 return Err(invalid("normalize", "resource observation"));
             }
@@ -86,7 +87,7 @@ fn structure(
         run.outputs["structure-observation"],
         Some(("axiom-ir-structure-observation", "0.1")),
     )?;
-    let outcome = check_canonical_document(raw, run.limits.ir_json);
+    let outcome = check_canonical_document(raw, run.core_limits()?.ir_json);
     if let Some(document) = valid {
         let rebuilt = outcome.map_err(ReviewError::Ir)?;
         if rebuilt.document_id() != document.document_id() || run.outputs["canonical-ir"] != pin {
@@ -112,7 +113,7 @@ fn structure(
         let error = outcome
             .err()
             .ok_or(invalid("normalize", "candidate passed"))?;
-        let rejection = rejection(raw, run.limits.ir_json, error)?;
+        let rejection = rejection(raw, run.core_limits()?.ir_json, error)?;
         if observation
             != encode(&value_object([
                 ("kind", value_string("rejected")),
@@ -273,11 +274,11 @@ fn proof(
             run.target,
             &generator,
             EffectLimits {
-                ir_json: run.limits.ir_json,
-                max_steps: run.limits.max_steps,
-                max_premise_edges: run.limits.max_premise_edges,
-                max_path_bytes: run.limits.max_path_bytes,
-                max_output_bytes: run.limits.max_output_bytes,
+                ir_json: run.core_limits()?.ir_json,
+                max_steps: run.core_limits()?.max_steps,
+                max_premise_edges: run.core_limits()?.max_premise_edges,
+                max_path_bytes: run.core_limits()?.max_path_bytes,
+                max_output_bytes: run.core_limits()?.max_output_bytes,
             },
         )
         .map_err(ReviewError::Effect)?;
@@ -289,10 +290,12 @@ fn proof(
             p2,
             run.target,
             &generator,
-            run.limits,
+            run.core_limits()?,
         )
         .map_err(ReviewError::Origin)?;
-        record_json.max_input_bytes = record_json.max_input_bytes.min(run.limits.max_output_bytes);
+        record_json.max_input_bytes = record_json
+            .max_input_bytes
+            .min(run.core_limits()?.max_output_bytes);
         check_origin_conditions(
             document,
             &strict(record.canonical_bytes(), record_json, "origin record")?,

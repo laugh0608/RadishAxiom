@@ -13,7 +13,7 @@
     "completed": {"members": ["kind", "status"], "statuses": ["sat", "unknown", "unsat"]},
     "interrupted": {
       "members": ["code", "kind"],
-      "codes": ["cleanup", "deadline", "exit", "memory", "protocol", "stderr-limit", "stdout-limit", "streams-incomplete", "tool-unavailable"]
+      "codes": ["cleanup", "component-limit", "deadline", "exit", "memory", "protocol", "stderr-limit", "stdout-limit", "streams-incomplete", "tool-unavailable"]
     }
   },
   "replay_source": {
@@ -67,6 +67,62 @@
         "world-depth": "level",
         "world-nodes": "node"
       }
+    }
+  },
+  "local_readback": {
+    "scope": "simulation",
+    "public_status": "candidate-not-public-not-qualified",
+    "batch": {
+      "format": "axiom-evidence-backend-batch",
+      "version": "0.1",
+      "members": ["contract", "executions", "format", "obligation_set", "proof_policy", "scope", "subject", "version"],
+      "entry_members": ["execution", "invocation", "provenance", "request", "upstream"],
+      "upstream": {"none": ["kind"], "solve": ["execution", "kind"]},
+      "order": "numeric-execution-ordinal",
+      "authority": "caller-supplied-raw-digest-outside-evidence",
+      "completeness": "all-backend-executions-in-this-sealed-batch"
+    },
+    "capture_observation": {
+      "format": "axiom-evidence-capture-observation",
+      "version": "0.1",
+      "members": ["cleanup", "elapsed_ms", "exit", "failures", "format", "invocation", "request", "scheduled", "scope", "source", "started", "stderr", "stderr_observed", "stdin", "stdout", "stdout_observed", "version"],
+      "exit": {"unavailable": ["kind"], "exited": ["code", "kind"], "signaled": ["code", "kind"]},
+      "cleanup": ["confirmed-empty", "incomplete"],
+      "failure_members": ["at_ms", "code"],
+      "failure_tie_order": ["deadline", "memory", "stdout-limit", "stderr-limit", "exit", "protocol", "cleanup", "tool-unavailable"],
+      "source_format": ["captured-source", "0.1"]
+    },
+    "replay_interruption": {
+      "format": "axiom-evidence-replay-interruption",
+      "version": "0.1",
+      "members": ["code", "detail", "format", "generator", "request", "scope", "solve_execution", "stage", "version"],
+      "stages": ["model", "replay"],
+      "detail": "exact-debug-diagnostic-of-bound-local-component-version"
+    },
+    "launch_formats": {
+      "acceptance": ["tool-acceptance", "0.1"],
+      "archive": ["tool-archive", "0.1"],
+      "cli": ["tool-executable", "0.1"],
+      "dependencies": ["tool-dependencies", "0.1"],
+      "host": ["host-qualification", "0.1"],
+      "policy": ["execution-policy", "0.1"],
+      "qualification": ["tool-qualification", "0.1"],
+      "supervisor": ["tool-executable", "0.1"]
+    },
+    "inner_formats": {
+      "base_execution_profile": ["execution-profile", "0.1"],
+      "generator": ["generator-source", "0.1"],
+      "query_rules": ["evidence-rule", "0.1"],
+      "stderr": ["raw-stream", "0.1"],
+      "stdout": ["raw-stream", "0.1"]
+    },
+    "aggregation": {
+      "completed": "last-compatible-completed-support",
+      "later_unknown": "retain-earlier-usable-completed-support",
+      "conflict": "reject-unsat-and-target-violated-for-same-target",
+      "unknown": "last-solve-chain-terminal-reason-all-matching-terminal-refs",
+      "history": "retain-every-execution-and-actual-runtime-trust",
+      "conclusion_order": ["violated", "inconclusive", "satisfied"]
     }
   },
   "attestation_members": ["execution", "kind", "query", "response", "trust"],

@@ -1,8 +1,83 @@
 # AX-B01 Evidence v0.2 后端结果与信任审阅
 
-2026-11-07，基线为 `dev` 的 `dd21754`。状态为待审阅。范围为 verification profile 下 AX-B01 的五类、九项后端义务。S1–S3 的已批准边界继续适用。P6 为 `closed / p6-not-evaluated`。 [九项精确目标](ax-b01-evidence-v0.2-contract-review.md#精确义务与现有材料) · [M1 原件与逐项对照](../records/2026-11-07-ax-b01-evidence-m1-preflight.md)
+2026-11-07，基线为 `dev` 的 `dd21754`。2026-11-13 所有者已确认 D1–D5 的候选实施选择；新机器字节与公共支持仍待审。范围为 verification profile 下 AX-B01 的五类、九项后端义务。S1–S3 的已批准边界继续适用。P6 为 `closed / p6-not-evaluated`。 [九项精确目标](ax-b01-evidence-v0.2-contract-review.md#精确义务与现有材料) · [M1 原件与逐项对照](../records/2026-11-07-ax-b01-evidence-m1-preflight.md)
 
-M1 的九份请求由 query v0.5 / query0.3 与 P4-A v0.2 生成，使用合成工具身份。最宽的一份为 960,250 bytes，原容量和 1,048,576 bytes stdin 上限均保留。以下规则用于审阅未来实际结果的装配与独立检查，机器登记、Rust 读回和独立 checker 的当前支持集维持原样。 [P4-A 精确配对](../query/p4-request-response-model-v0.2.md#精确支持矩阵) · [当前机器登记](evidence-v0.2-machine-contract/contract.json)
+M1 的九份请求由 query v0.5 / query0.3 与 P4-A v0.2 生成，使用合成工具身份。最宽的一份为 960,250 bytes，原容量和 1,048,576 bytes stdin 上限均保留。以下规则用于审阅未来实际结果的装配与独立检查。本仓已增加只接 simulation 批次的 Rust 候选读回；独立 checker 和公共支持集不变。 [P4-A 精确配对](../query/p4-request-response-model-v0.2.md#精确支持矩阵) · [当前机器登记](evidence-v0.2-machine-contract/contract.json)
+
+<a id="待所有者确认的决定2026-11-13"></a>
+
+## 所有者确认的实施决定（2026-11-13）
+
+用途：把 B1–B3 的待决语义、信任和机器集成选择收敛为可审阅范围。以下 D1–D5 **已由所有者确认，用于本仓候选实现与离线验证**；新生成的机器字节仍待审，不是公共规范发布、实际工具接受或执行授权。此前探针的事实保留于[审查记录](../records/2026-11-13-evidence-backend-review.md)，本次实现及验证见[实施记录](../records/2026-11-13-evidence-backend-implementation.md)。
+
+B1–B3 作为候选实现基础；旧单目标投影仍不承担完整 Evidence 验收。本仓候选已补来源批次输入、重放工具严格检查、未决结果运行信任、多次尝试和模式专属中止规则；真实来源资格与独立产品验收继续分开。已接受的 ADR 0008 四态、ADR 0009 迁移要求、原容量和资源限额无需重新选择。
+
+### D1 · 正向结果允许 attestation，保留三类实际信任
+
+首批按 B1 实施：实际、完整、来源合格的 `unsat`，仅在生产策略允许时形成 `proved / backend-attestation`。首批保留 `proof-backend`、`production-generator` 和实际采集 / 运行所依赖的 `host-runtime`，按精确 scope 引用；不提供默认全允许的消费策略。只有独立请求明确允许全部剩余信任时，独立接受上限才是 `accepted-with-trust`。
+
+只重建 IR / P2、匹配 query 摘要或跑有限对照，不能解除 generator 的反例覆盖假设。生产策略为 `certificate-required` 而没有可接受证书时，产生有实际 attempt 的 `unknown / incomplete-certificate`；消费侧改用该策略时，已有 attestation Evidence 保持原样，独立结果为 `incomplete`。
+
+影响：首题流程可以在独立证书 profile 尚为空时继续，但交付仍带显式信任，不计为独立正向 proof。若选择“首题必须具备独立 certificate”，需先实现并独立验收证书规则，将增加当前中间交付的前置；本次不建议更改该规划。
+
+### D2 · 求解、重放和完整尝试清单由独立受信入口绑定
+
+由**受控采集 / 调度端**提供求解与重放原件，由**调用方独立配置的验证入口**固定本批来源摘要；Evidence producer 只消费这些材料，不能自行签发自己要通过的预期摘要。这里的独立是相对于 producer 的信任分离，不声明采集端脱离宿主 TCB，也不假定自动具备签名或远程认证。
+
+绑定范围至少包括：本批精确 subject / P2、生产策略、每个 invocation 的请求、目标、工具、规则、预算、来源封套 raw 摘要、调度顺序，以及 replay 到 solve 的唯一上游关系。采集端应结束并封存一个明确批次的完整尝试清单；仅比较 Evidence 内连续 ordinal 无法发现“删掉失败再重新编号”。原件缺失按实际阶段停止装配或产生独立 `incomplete`，已知身份矛盾拒绝，不以信任声明代替缺原件。
+
+清单是本批边界内的完整性声明，不声称掌握历史上一切执行。为避免摘要循环，先固定请求与捕获，再生成 execution 身份及封存清单，最后装配 Evidence；清单不反向包含最终 Evidence 摘要。独立消费入口再同时绑定清单与 Evidence。需要进入公共 request / manifest 的新字段须按 ADR 0008 版本化，当前不能私加到 v0.1。
+
+同时确认：`unknown` 也保留实际依赖的运行来源信任。首批不增加 `unknown.assumptions`，将这些依赖登记在顶层 trust，以各 solve / replay execution 为 scope，并生成对应 trust-boundary 义务。`failed` 的来源涉及 solve 和 replay 时，两者的实际依赖分别登记；仅有一条 solve scope 的 trust 不能默认覆盖 replay。独立结果对全部未缓解 trust 执行政策检查。
+
+影响：新增的是批次来源接口及信任覆盖要求，不能直接沿用 P5 的接受回执为 solver 背书；模拟 pin 仍只用于模拟。若只接受 producer 自填 pin 或不封存批次清单，就无法兑现来源独立性或历史完整性，本审阅不建议接受该路径。具体真实宿主、采集工具与资格仍单独审阅。
+
+### D3 · 反例采用精确目标重放投影，失败不外推
+
+B2 的首批边界为：只接来源合格 `sat` 的模型；经 P4-A 解码及 P4-B 对 WF、全部 Pre 和**指定目标**重放为 `target-violated`，才支持 `failed`。投影采用现有候选的 `target-replay`、一个规范 world、全部已满足 assume ID、原观察 witness、两步 trace 和 `unreduced`。独立 checker 必须自己求值，不能复制生产观察结论。
+
+WF / Pre 被拒绝或目标未违反时，按 B3 保留 `unknown / indeterminate`；world 结构错误、解码错误与运行失败按各自原因处理。`wrong-drop-zero` 的 guarantee 失败不构成 filter coverage 失败。直接提供 world 的内部对照入口继续可用，但不扩展为首批公共反例来源。
+
+影响：明确了 `failed` 的来源与公共投影字节方向，不修改五类目标的语义，也不宣称最小反例或程序所有目标均失败。若要接受直接 world、多个 world 或新的最小性声明，需要另审来源及字节，而非复用本批批准。
+
+### D4 · 多次尝试按求解链聚合，完成支持与未决历史分开
+
+首批只支持批次内有明确调度顺序的串行尝试；每次 solve 及其 replay 构成一条尝试链，replay 不能误算为另一次求解。ordinal 作为规范非负整数比较，不能按字符串字典序决定先后；不同目标的最后一次执行不相互覆盖。
+
+按以下规则实现并验证聚合：
+
+| 同一目标的历史 | 已确认结果 |
+| --- | --- |
+| timeout → 合格 unsat，且策略允许 attestation | `proved`，结果引用完成支持；timeout 与全部来源仍保留。 |
+| 合格 unsat → timeout | 仍保留已有可用的 `proved`；后次未决不自动撤销有效支持。若后续材料实际否定来源或资格，转入拒绝 / 调查。 |
+| 多次未知或中止，始终没有可用完成支持 | 用最后一条实际尝试链的终态确定 reason；attempts 引用该目标与该 reason 相符的终态执行，其他历史 executions 全部保留。 |
+| 多个相容的可用完成支持 | 确定性选择最后一个匹配支持作为 result 引用，其余完成执行仍保留。 |
+| 同目标合格 unsat 与有效 `target-violated` 并存 | 保留原件并停止正常装配，进入矛盾调查；收到声称正常的包时独立拒绝，不择一、也不降格成普通 unknown。 |
+| sat 但 WF / Pre 不成立，或目标未违反 | 本身不是目标反例，也不能与 unsat 自动构成上项逻辑矛盾；保留未决链和诊断。 |
+
+完整合法文档仍按 `failed → violated`、否则 `unknown → inconclusive`、否则全部期望成立才 `satisfied` 聚合；缺义务或缺真实尝试停在装配前。独立四态另外计算。
+
+影响：补充了原稿没有唯一确定的“完成后又失败”行为，结果及文档身份会随保留的历史而变。另一选择是“一律以最后一次运行覆盖结果”，会丢弃先前仍有效支持，也无法单靠覆盖规则解决互相矛盾的完成支持，因此不建议采用。
+
+### D5 · 保留既有模式字节，按后端模式补齐机器契约
+
+本次实现范围限定为 verification 候选的后端接入，继续保留 S1–S3 与旧版本的原规则：
+
+| 集成项 | 已确认方案 |
+| --- | --- |
+| 中止结果 | S1–S3 保留现有 `timeout/resource-exhausted/unsupported/error/unavailable` 的 kind 与映射；后端模式使用候选的 `{kind: interrupted, code}` 并按 backend 原因表判定。统一入口按 mode 分派，不能全局重写旧状态。 |
+| 来源制品 descriptor | S1–S3 继续 `execution-provenance / 0.1`；后端分别使用 `axiom-evidence-backend-capture / 0.1` 与 `axiom-evidence-backend-replay-source / 0.1`。实际格式由模式严格匹配，不把所有 JSON 冒充同一 provenance 类型。 |
+| 内层引用闭包 | 逐项核对封套、request、response、模型、world、replay、generator 及规则原件；摘要存在不等于原件可得。原始流按实际 bytes 登记，未知成员、非法角色和格式错配拒绝。所有 descriptor 唯一、引用可解析，无未引用制品。 |
+| 无流与中止重放 | 分别实现 `complete/prefix/absent`，空完整流不等于 absent；仅受控调度失败可支撑 tool-unavailable。按 `inputs_before_world` 处理真实解码中止，不合成 world；资源中止保留真实阶段与原因。 |
+| 兼容与公开 | 后端候选及新来源材料先物化、固定字节并跑正负例，再接入 Rust 和分仓交接。保留现有指纹作为历史基线，变更须逐项解释；公共 v0.2 读取仍待 ADR 0009 完整迁移与独立验收。 |
+
+影响：需要扩展模式解析、制品闭包、来源接口和结果聚合，不能只把 backend.json 两个模式名加入白名单。相较于统一改写 S1–S3 字节，按模式扩展可保留已有兼容边界；独立 request / manifest / result 的新版本仍须具名审定。
+
+### 确认范围与本仓实现
+
+所有者确认按 D1–D5 推荐方案推进，先补重放工具拒绝回归并修复检查器，再按顺序完成本仓候选实现与离线验证。授权只覆盖上述语义 / 信任 / 集成选择；**不代表新生成的机器字节已接受**，不包含跨仓写入、真实 solver / 安装 / 宿主资格、P6 放行、commit 或远程操作。
+
+重放工具四类缺口已先复现拒绝回归失败，再修正检查器；旧 12 份投影指纹不变。D2 / D5 的来源接口和模式字节、D4 的聚合及完整合成文档已接入 Rust。当前接口只接 simulation；受信 pin 由调用方在 Evidence 外提供，测试自建 pin 仅用于合成验证，不能认证真实采集端。新字节、公共验证矩阵及独立跨仓验收仍待后续审定。
 
 ## 从请求到观察
 

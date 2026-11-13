@@ -352,7 +352,12 @@ def input_only_document(*, stop):
     ir = strict((IR / "ax-b01-correct.jcs").read_bytes())
     node, = [row for row in ir["nodes"] if row["definition"]["kind"] == "input"]
     ir.update(nodes=[node], contracts=[], outputs=[{"name": "orders", "node": node["id"]}])
-    raw = encode(ir)
+    return core_document(encode(ir), stop=stop)
+
+
+def core_document(raw, *, stop=False):
+    """Build only S1-S3 support; backend obligations must be supplied separately."""
+    ir = strict(raw)
     fields = [row["definition"]["subject"]["name"] for row in effects.make_set(ir)["obligations"]
               if row["definition"]["kind"] == "field-origin"]
     packets = [
@@ -499,4 +504,9 @@ def main():
 
 if __name__ == "__main__":
     require(not sys.flags.optimize, "review vectors require enabled assertions")
-    main()
+    if len(sys.argv) == 3 and sys.argv[1] == "--backend-core":
+        document, blobs = core_document(Path(sys.argv[2]).read_bytes())
+        print(encode({"document": document, "blobs": {pin: raw.hex() for pin, raw in blobs.items()},
+                      "scope": "simulation-core-support-only"}).decode())
+    else:
+        main()

@@ -276,6 +276,21 @@ def check_run(row, mode, source, actor, record, ordinal):
     return run
 
 
+def check_tool(definition):
+    require(set(definition) == set(SPEC["members"]["tool"]), "tool-shape")
+    require(isinstance(definition["name"], str) and definition["name"].strip(), "tool-name")
+    version = definition["version"]
+    require(isinstance(version, str) and version.strip()
+            and version not in {"latest", "main", "master", "dev"}, "tool-version")
+    pin = definition["artifact"]
+    require(isinstance(pin, str) and pin.startswith("sha256:") and len(pin) == 71
+            and all(c in "0123456789abcdef" for c in pin[7:]), "tool-artifact")
+    roles = definition["roles"]
+    known = {"evidence-producer", *SPEC["execution_roles"].values()}
+    require(isinstance(roles, list) and roles and all(isinstance(role, str) for role in roles)
+            and roles == sorted(set(roles)) and set(roles) <= known, "tool-roles")
+
+
 def check_packet(raw, artifacts, source, expected_capture, *, consumer_policy, allowed_trust):
     """Validate the packet's references using prevalidated simulation inputs."""
     packet = strict(raw)
@@ -292,6 +307,8 @@ def check_packet(raw, artifacts, source, expected_capture, *, consumer_policy, a
         for row in packet[field]:
             require(set(row) == {"id", "definition"}
                     and row["id"] == identity(domain, row["definition"]), "entry-identity")
+            if field == "tools":
+                check_tool(row["definition"])
 
     executions = sorted(packet["executions"], key=lambda row: row["definition"]["ordinal"])
     kind, code = source["terminal"]
@@ -421,6 +438,26 @@ def checks(directory):
         row["id"] = identity("execution", definition)
         packet["executions"].sort(key=lambda item: item["id"])
 
+    # Rebind the entire affected tool/execution/result chain so each mutation
+    # reaches tool validation rather than failing an outer identity check.
+    for field, value, diagnostic in (
+        ("unexpected", "synthetic-review-marker", "tool-shape"),
+        ("version", "latest", "tool-version"),
+        ("roles", ["counterexample-replayer"] * 2, "tool-roles"),
+        ("roles", ["counterexample-replayer", "unregistered-role"], "tool-roles"),
+    ):
+        packet, blobs, source = copy.deepcopy(packets["wrong-add-sat"])
+        replay, = [row for row in packet["executions"] if row["definition"]["mode"] == REPLAY]
+        actor, = [row for row in packet["tools"] if row["id"] == replay["definition"]["tool"]]
+        actor["definition"][field] = value
+        actor["id"] = identity("tool", actor["definition"])
+        replay["definition"]["tool"] = actor["id"]
+        replay["id"] = identity("execution", replay["definition"])
+        packet["obligation"]["result"]["execution"] = replay["id"]
+        for key in ("tools", "executions"):
+            packet[key].sort(key=lambda row: row["id"])
+        rejects(diagnostic, verify, packet, blobs, source)
+
     packet, blobs, source = copy.deepcopy(packets["minimal-unsat"])
     require(check_packet(encode(packet), blobs, source, source["expected-capture"],
                          consumer_policy="certificate-required", allowed_trust=ALLOWED_TRUST)
@@ -506,4 +543,4 @@ if __name__ == "__main__":
         print(json.dumps(actual, sort_keys=True, indent=2))
     else:
         require(actual == json.loads((HERE / "backend-fingerprints.json").read_bytes()), "packet-fingerprint")
-        print("12 backend binding review vectors passed; 16 negative cases refused (simulation only)")
+        print("12 backend binding review vectors passed; 20 negative cases refused (simulation only)")

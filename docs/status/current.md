@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-11-10（收口顺位；沿用 11 月 7 日证据，无新增真实执行）
+更新日期：2026-11-13（后端候选实现与离线验证；无新增真实后端执行）
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。整体目标见[开发计划](../development-plan.md)，归属与任务来源见[能力专题地图](../topics.md)；历史流水见[整理前快照](../records/status-before-planning-alignment-2026-11-01.md)与[早期归档](../records/status-through-2026-09-03.md)。
 
@@ -14,7 +14,7 @@
 | --- | --- | --- |
 | 语义与 IR | P1 / P2 内部组件已有本机证据；不等于完整生产阶段或 Evidence v0.2 | [语义与义务来源](../topics.md#semantics-ir) |
 | 验证管线 | 限定 P3、P4-A / B 与紧凑表示已有组件证据，AX-B01 P5 已完成限定本机生产接受。真实 solver、P6 和完整 P0–P9 仍待验收 | [管线与反例来源](../topics.md#verification-pipeline) |
-| Evidence / Checker | v0.1 有受限离线消费。v0.2 有 S1–S3 本仓读回、后端合成绑定和 M1 迁移准备，公共读取及独立验收待完成 | [独立复核来源](../topics.md#independent-checker) |
+| Evidence / Checker | v0.1 有受限离线消费。v0.2 有 S1–S3 及后端完整合成文档的本仓候选读回、M1 迁移准备，公共读取及独立验收待完成 | [独立复核来源](../topics.md#independent-checker) |
 | 运行交付 | F / C 及 L1 / L2 等已有本机或离线材料；L3 完整输入 / 包装器源码已有静态与合成验证；工具 / 宿主 / 实际执行资格未闭合 | [运行与交付来源](../topics.md#runtime-delivery) |
 | 实验评估 | 三表示、两模型、四任务、72 个 trial bundle 已预注册；execution lock、完整装置、正式模型与收益未验收 | [实验来源](../topics.md#evaluation) |
 
@@ -28,7 +28,7 @@
 
 | 顺位 | 必须继续 | 必要阻塞 / 结束条件 |
 | --- | --- | --- |
-| 1 | 审定 Evidence v0.2 后端结果绑定，接入严格读回与独立 checker | B1–B3、独立来源、信任政策及多次结果聚合尚待审；覆盖缺义务、错绑、冲突与拒绝。本次规划确认不等于机器契约已接受 |
+| 1 | 审定 Evidence v0.2 后端结果绑定，接入严格读回与独立 checker | D1–D5 已确认并完成本仓候选实现；新机器字节、真实来源资格、独立 checker 及完整迁移仍待验收，合成通过不等于公共接受 |
 | 2 | 有限裁决真实 solver 路径 | C1/LibPoly、L3 剩余来源与有限宿主信任、目标制品及运行资格仍未关闭。复用已有材料；选择继续固定候选、评估一个替代或等待，不同时展开多条来源链 |
 | 3 | 实际受限校准，再取得 AX-B01 全部结果 | 保持原容量及 128 MiB / 6 s；按 E0/E4/E5 和具体授权取真实结果。九项后端结果与四项结构类义务支持齐备后装配，独立核对精确目标、信任与同一 Evidence 摘要 |
 | 4 | P6–P9 与首个真实纵向闭环 | 提前登记 Node P7 的来源、宿主和硬资源缺口；P4/P5 真结果不足时 P6 继续 closed。correct 全链、两个 wrong、invalid、真实 timeout 与篡改/门控拒绝按原契约验收 |
@@ -37,7 +37,7 @@
 
 投入控制：下一运行准备批次前盘清实际投入与剩余估算，沿用既有装置/维护预算；当前没有工时账，不声称已超支或尚有余额。每批只解除一个具名执行阻塞，以取得资格、明确改选或等待结束。失败不得自动追加取证链、提高资源上限、缩小声明容量或开放 native 旁路。路径仍不可行时暂停该运行线，可独立完成的契约收尾不继续扩张为新语义功能。
 
-原 P1/P2/query 顺位见[历史快照](../records/status-before-planning-alignment-2026-11-01.md#下一步)。本轮只改规划，不改变 ADR、IR/Evidence/fixture 原字节、候选接受或执行授权；下述记录提供证据与恢复入口。
+原 P1/P2/query 顺位见[历史快照](../records/status-before-planning-alignment-2026-11-01.md#下一步)。11 月 10 日规划确认不改变 ADR、IR/Evidence/fixture 原字节、候选接受或执行授权；下述记录提供证据与恢复入口。
 
 ### AX-B01 当前交付
 
@@ -49,7 +49,9 @@ verification 机器契约已有本仓 Rust 严格读回与 S1–S3 结果绑定�
 
 ADR 0009 的 M1 已使用主仓 `CHK-PROOF-02` 精确源包复跑 Go checker 源码级严格检查，在旧策略下得到 `accepted-with-trust`。具名 IR 迁移重建了 13 项核心义务。S1–S3 已复跑本仓组件，九项后端目标已重生成精确查询与离线请求。缺合格的实际执行及新结果支持，目标 Evidence 装配停在迁移准备。 [M1 原件、逐项对照与阻断记录](../records/2026-11-07-ax-b01-evidence-m1-preflight.md)
 
-九项后端结果与信任已有审阅稿和机器绑定候选，覆盖来源封套、attestation、精确反例与未决原因。离线投影使用既有 P4 合成导出，复核 12 份投影及 16 项拒绝用例。 [后端结果与信任审阅](../evidence/ax-b01-evidence-v0.2-backend-support-review.md) · [后端机器绑定候选](../evidence/evidence-v0.2-machine-contract/README.md#后端绑定候选)
+九项后端结果与信任已有审阅稿和机器绑定候选，覆盖来源封套、attestation、精确反例与未决原因。离线投影使用既有 P4 合成导出，复核 12 份投影及 20 项拒绝用例。 [后端结果与信任审阅](../evidence/ax-b01-evidence-v0.2-backend-support-review.md) · [后端机器绑定候选](../evidence/evidence-v0.2-machine-contract/README.md#后端绑定候选)
+
+11 月 13 日所有者已确认 [D1–D5 候选实施范围](../evidence/ax-b01-evidence-v0.2-backend-support-review.md#所有者确认的实施决定2026-11-13)。重放工具四类漏拒绝已修复；本仓新增外部固定批次 pin、全部运行信任、模式专属中止与历史聚合，完整合成 AX-B01 的 13 项核心义务和九项后端结果可严格读回。五类目标由 Python 有限语义另行核对；真实 solver、独立产品 checker、公共新字节接受及完整 M1 尚未完成，P6 仍关闭。来源事实与验证边界见[实施记录](../records/2026-11-13-evidence-backend-implementation.md)，修复前观察保留于[审查记录](../records/2026-11-13-evidence-backend-review.md)。
 
 全天提交与代码／文档核对见[11 月 7 日日终回顾](../records/2026-11-07-closeout.md)。各切片的契约和验收从[专题地图](../topics.md)进入。
 

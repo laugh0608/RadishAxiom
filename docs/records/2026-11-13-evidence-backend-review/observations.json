@@ -1,0 +1,51 @@
+{
+  "baseline": "12 vectors matched; 16 negative cases refused",
+  "export_manifest_sha256": "c4f5bbf06a71ebf76810b7a10a878ef565251055dc7c2d7ee67718a02e9a1d9f",
+  "observations": [
+    {
+      "case": "replay-tool-extra-member",
+      "observed": "replay-bound",
+      "required_by_base_contract": "reject-tool"
+    },
+    {
+      "case": "replay-tool-mutable-version",
+      "observed": "replay-bound",
+      "required_by_base_contract": "reject-tool"
+    },
+    {
+      "case": "replay-tool-duplicate-role",
+      "observed": "replay-bound",
+      "required_by_base_contract": "reject-tool"
+    },
+    {
+      "case": "replay-tool-unknown-role",
+      "observed": "replay-bound",
+      "required_by_base_contract": "reject-tool"
+    },
+    {
+      "case": "unknown-with-empty-allowed-trust",
+      "meaning": "unknown runtime trust representation needs a decision",
+      "observed": "indeterminate",
+      "trust_entries": "0"
+    },
+    {
+      "case": "second-execution-cardinality",
+      "meaning": "single-attempt projection; no retry acceptance tested",
+      "observed": "execution-closure"
+    }
+  ],
+  "scope": "simulation-review-only-not-acceptance",
+  "source_sha256": {
+    "crates/axiom-ir/src/evidence_review.rs": "cb74e33d727bc06e9dfc1926aaedb4fcb2f9db86a47604808f62996f16dbb205",
+    "crates/axiom-ir/src/evidence_review/execution.rs": "efa65e51ef34b48cf2095465de5b2d4812b88915a3d9363f015d0863eeeae8b0",
+    "crates/axiom-ir/src/evidence_review/support.rs": "01b6b77226661b7507d7e4da4b7f716ff488bcc3f5f097471a8f281590c6abb1",
+    "crates/solver-diagnostic-host/examples/export_simulation_observations.rs": "54522cb8a12f5b8cbf8e3431024edcdca273a25169813d8a7b3110f950d77324",
+    "docs/evidence/evidence-v0.2-machine-contract/backend-fingerprints.json": "d9dbd3537e077b4d016545a91e976a08e16cb8dc8eab7c08760373e79309c3b1",
+    "docs/evidence/evidence-v0.2-machine-contract/backend.json": "7a081427e309562398adee4e2307c278adc119e6a986ee995ca2ee92ba5b67a5",
+    "docs/evidence/evidence-v0.2-machine-contract/check_backend_vectors.py": "5e156e23cc66c84c1e4cdaa13046de208b445349adafc9a47c78da7c17f4e6b7",
+    "docs/evidence/evidence-v0.2-machine-contract/check_vectors.py": "995aaa7071c36803498cc0501213fcab0a5cd449b785f246f73a4347965d4948",
+    "docs/evidence/evidence-v0.2-machine-contract/contract.json": "bdf816cef8236752d706ad3deb9349287d0b7d1a422f6cf1df1c508fd77f6ad8",
+    "docs/records/2026-11-13-evidence-backend-review/probe.py": "4a4ed943e398d00f7f2aa041d5ddc8187167693fafb8a2e2b388d63092626594",
+    "scripts/check-solver-simulation-export.py": "893a49419927bd297037816a00d22ef6dd2b9182a3c38eb19b7e482cb52f481b"
+  }
+}

@@ -72,7 +72,9 @@ cargo +1.97.1-aarch64-apple-darwin test -p radishaxiom-ir evidence_review::tests
 
 ## 后端绑定候选
 
-[后端登记](backend.json)把 [B1–B3 审阅](../ax-b01-evidence-v0.2-backend-support-review.md)具体化为来源封套、执行模式和结果引用。它使用本页的 Evidence 域、执行成员、ID 与排序规则。离线投影只有一项 P2 义务、一次求解及其可选重放、所用工具和信任条目。投影单独计算原始 SHA-256，用于比对向量。完整 Evidence 的义务全集、trust-boundary 条目及结论仍由正式入口验收。基础登记及 Rust 读回的模式集合保持原样。
+[后端登记](backend.json)把 [B1–B3 审阅](../ax-b01-evidence-v0.2-backend-support-review.md)具体化为来源封套、执行模式和结果引用。它使用本页的 Evidence 域、执行成员、ID 与排序规则。离线投影只有一项 P2 义务、一次求解及其可选重放、所用工具和信任条目。投影单独计算原始 SHA-256，用于比对向量。完整 Evidence 的义务全集、trust-boundary 条目及结论仍由正式入口验收。基础登记保留 S1–S3 原字节；后端模式通过显式本地候选入口扩展。
+
+2026-11-13 所有者已确认 [D1–D5](../ax-b01-evidence-v0.2-backend-support-review.md#所有者确认的实施决定2026-11-13)。重放工具四类漏拒绝已修复；原 12 个投影指纹不变，拒绝用例增至 20 项。旧脚本仍只检查固定投影；完整合成文档、来源批次、信任与历史由下述 Rust 候选入口验证。此前观察留存于[审查记录](../../records/2026-11-13-evidence-backend-review.md)，不得把修复后的结果覆盖回历史记录。
 
 | 对象 | 闭合绑定 |
 | --- | --- |
@@ -101,4 +103,24 @@ cargo +1.97.1-aarch64-apple-darwin run -p radishaxiom-solver-diagnostic-host \
 python3 -I -B docs/evidence/evidence-v0.2-machine-contract/check_backend_vectors.py "$out"
 ```
 
-[固定指纹](backend-fingerprints.json)由同一脚本加 `--show-fingerprints` 输出。12 份投影覆盖实际生成的 P4 合成字节，包括原容量 AX-B01-wrong-add 的 guarantee、未见违例的有限重放、后端 unknown、证书策略、截断、清理故障与内存／期限归因。16 项负例核对缺独立来源 pin、重算身份后改写来源或宿主、归档冒充 CLI、错角色、旧 attestation 挪用、目标换绑、错上游执行、丢 Pre 或 trust，以及摘要和原件缺失。脚本只验证合成投影，实际执行来源、完整 M1 及公共读回仍待验收。P6 为 `closed / p6-not-evaluated`。
+[固定指纹](backend-fingerprints.json)由同一脚本加 `--show-fingerprints` 输出。12 份投影覆盖实际生成的 P4 合成字节，包括原容量 AX-B01-wrong-add 的 guarantee、未见违例的有限重放、后端 unknown、证书策略、截断、清理故障与内存／期限归因。20 项负例核对缺独立来源 pin、重算身份后改写来源或宿主、归档冒充 CLI、错角色、旧 attestation 挪用、目标换绑、错上游执行、丢 Pre 或 trust，以及摘要和原件缺失。脚本只验证合成投影，实际执行来源、完整 M1 及公共读回仍待验收。P6 为 `closed / p6-not-evaluated`。
+
+### 完整文档的本地候选读回（2026-11-13）
+
+`readback_v02_with_backend` 复用基础读回，显式接收 `BackendReviewContext`。旧 `readback_v02` 不会隐式启用后端来源。新增登记位于 `backend.json.local_readback`，限 `simulation`；`qualified` 等范围拒绝。所有接受、资格、可执行文件和 captured-source 在测试中均为明确合成字节，引用闭包不代表真实资格认证。
+
+批次先按 `ReviewLimits.evidence_json.max_input_bytes` 检查原件长度，再计算摘要和解析，避免超限输入消耗完整摘要扫描成本。
+
+调用方传入规范 `batch` 原件及 Evidence 外固定的 `expected_batch_digest`，另传消费侧 `ProofPolicy`、有序信任类别允许集和本机 solver / replay 组件资源上限。batch 绑定本版 backend 登记原始摘要、精确 subject / P2、生产策略和全部后端 executions，按整数 ordinal 排序。每项包含 execution ID、唯一 invocation、provenance、request 和 upstream。execution ID 进一步绑定目标、工具、规则、预算及输入输出；replay 必须在后端清单中紧跟同目标 solve。清单不包含最终 Evidence 摘要，避免循环。删除历史再重编号或换批次必须同时违背外部固定 pin，不能凭 producer 自填新 pin 通过。
+
+`capture_observation` 记录已调度 / 已启动、实际 stdin、完整 / 前缀 / absent 流、观察长度、exit、cleanup、资源事件及耗时；完整空流仍不同于 absent。同一时间的事件按登记顺序判定，保留最先原因。固定外层 128 MiB / 6 s 及原传输限额不变；这里只核对记录，不实现强制执行或资格检查。请求、响应、模型、world 和重放由现有 P4 组件重建；模型解码前中止无 world，到达重放后的中止保留真实输入与具名诊断。诊断 `detail` 绑定本地组件版本的完整 Debug 文本，尚不是公共稳定错误协议。
+
+每个 solve / replay 都必须存在精确 execution scope 的 host-runtime，包括 unknown 和已被后续支持取代的历史。允许 attestation 的 unsat 另需 solver tool scope 的 proof-backend 与 solve execution scope 的 production-generator。全部 trust 参与 trust-boundary 义务和消费政策检查。生产 certificate-required 产生 unknown；消费 certificate-required 对已有 attestation 返回本地 `BackendPolicyStatus::Incomplete`。`TrustAllowed` 只说明本地允许集满足，**不是**独立四态、来源接受或 P6 放行；缺原件保留 `MissingArtifact`，已知矛盾返回结构化错误，不伪造独立结果。
+
+聚合按 D4：完成支持不被后次 unknown 覆盖；多个相容完成支持取最后一个，同目标 unsat 与有效反例冲突则拒绝；全未决取最后求解链 reason 并引用所有匹配终态，保留其他历史。完整 P2 和 trust-boundary 全集必须齐备，结论按 failed、unknown、全部满足依次重算。读回返回 Evidence 两类摘要及 batch / backend 契约摘要，尚未形成新的独立 request / manifest / result。
+
+```sh
+cargo +1.97.1-aarch64-apple-darwin test -p radishaxiom-ir evidence_review:: --lib --locked --offline
+```
+
+测试源码构造完整合成包，复用 `check_vectors.py --backend-core <IR>` 生成 S1–S3 前缀；该前缀不是合法完整 Evidence。Rust 测试随后补全部后端结果、信任、制品和结论。`check_backend_readback.py` 从 stdin 接收测试包，用已有 Python 有限解释器核对五类目标、两种 wrong 归因及 Pre 拒绝，并验证生产结果不一致会被拒绝；它不认证 batch、不复核 unsat，也不是分仓独立 checker。四份完整测试包的两类 Evidence 摘要、批次及契约摘要固定在 [backend-readback-fingerprints.json](backend-readback-fingerprints.json)，正常测试只读核对；修改字节需先审阅差异再更新该候选基线。生成入口、验证范围和仍待完成的交接见[实施记录](../../records/2026-11-13-evidence-backend-implementation.md)。

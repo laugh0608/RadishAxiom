@@ -16,11 +16,16 @@ const ROLES: &[(&str, &str)] = &[
     ("replay-counterexample", "counterexample-replayer"),
 ];
 
+pub(super) struct Tool<'a> {
+    pub roles: BTreeSet<&'a str>,
+    pub artifact: &'a str,
+}
+
 pub(super) fn read_tools<'a>(
     rows: &'a [Value],
     producer: &str,
     artifacts: &Artifacts<'_, '_>,
-) -> Result<BTreeMap<&'a str, BTreeSet<&'a str>>> {
+) -> Result<BTreeMap<&'a str, Tool<'a>>> {
     let mut tools = BTreeMap::new();
     for (id, row) in entries(rows, TOOL, "tools", false)? {
         let definition = shape(
@@ -46,11 +51,17 @@ pub(super) fn read_tools<'a>(
         if roles.is_empty() {
             return Err(invalid("tool", "missing role"));
         }
-        tools.insert(id, roles);
+        tools.insert(
+            id,
+            Tool {
+                roles,
+                artifact: text(definition, "artifact")?,
+            },
+        );
     }
     if !tools
         .get(producer)
-        .is_some_and(|roles| roles.contains(PRODUCER))
+        .is_some_and(|tool| tool.roles.contains(PRODUCER))
     {
         return Err(invalid("producer", "role"));
     }
@@ -62,6 +73,8 @@ pub(super) enum Mode {
     Structure,
     Effect,
     Origin,
+    Solve,
+    Replay,
 }
 
 impl Mode {
@@ -70,15 +83,22 @@ impl Mode {
             ("strict-ir-v0.2", "normalize") => Ok(Self::Structure),
             ("core-empty-effects-v0.1", "prove") => Ok(Self::Effect),
             ("core-field-origin-v0.1", "prove") => Ok(Self::Origin),
+            ("p4-solver-response-v0.2", "prove") => Ok(Self::Solve),
+            ("p4-target-replay-v0.1", "replay-counterexample") => Ok(Self::Replay),
             _ => Err(invalid("execution", "unsupported mode")),
         }
     }
 
-    pub(super) fn target(self) -> &'static str {
+    pub(super) fn is_backend(self) -> bool {
+        matches!(self, Self::Solve | Self::Replay)
+    }
+
+    pub(super) fn target(self) -> Option<&'static str> {
         match self {
-            Self::Structure => "ir-structure",
-            Self::Effect => "effect-empty",
-            Self::Origin => "field-origin",
+            Self::Structure => Some("ir-structure"),
+            Self::Effect => Some("effect-empty"),
+            Self::Origin => Some("field-origin"),
+            Self::Solve | Self::Replay => None,
         }
     }
 
@@ -96,6 +116,8 @@ impl Mode {
                 "sha256:2a88689852fba4f505224d2f2043ae0382ba9a18b18e35d83b77fa1d5746878f",
                 include_bytes!("../../../../docs/query/core-field-origin-v0.1.md"),
             ),
+            Self::Solve => super::backend::SOLVE_RULE,
+            Self::Replay => super::backend::REPLAY_RULE,
         }
     }
 }
@@ -110,7 +132,7 @@ pub(super) enum Attempt<'a> {
     },
 }
 
-fn attempt(value: &Value) -> Result<Attempt<'_>> {
+fn attempt(value: &Value, mode: Mode) -> Result<Attempt<'_>> {
     let tag = kind(value)?;
     if tag == "completed" {
         shape(value, "/execution/result", &["kind"])?;
@@ -125,12 +147,19 @@ fn attempt(value: &Value) -> Result<Attempt<'_>> {
     {
         return Err(invalid("execution", "diagnostic code"));
     }
-    let reason = match tag {
-        "timeout" => "timeout",
-        "resource-exhausted" => "resource-exhausted",
-        "unsupported" => "unsupported",
-        "error" | "unavailable" => "operational-error",
-        _ => return Err(invalid("execution", "attempt state")),
+    let reason = if mode.is_backend() {
+        if tag != "interrupted" {
+            return Err(invalid("execution", "backend attempt state"));
+        }
+        super::backend::interrupted_reason(mode, code)?
+    } else {
+        match tag {
+            "timeout" => "timeout",
+            "resource-exhausted" => "resource-exhausted",
+            "unsupported" => "unsupported",
+            "error" | "unavailable" => "operational-error",
+            _ => return Err(invalid("execution", "attempt state")),
+        }
     };
     Ok(Attempt::Interrupted {
         kind: tag,
@@ -144,13 +173,30 @@ pub(super) struct Execution<'a> {
     pub target: &'a str,
     pub inputs: BTreeMap<&'a str, &'a str>,
     pub outputs: BTreeMap<&'a str, &'a str>,
-    pub limits: OriginLimits,
+    pub limits: ExecutionLimits<'a>,
     pub attempt: Attempt<'a>,
+    pub tool: &'a str,
+    pub provenance: &'a str,
+    pub ordinal: usize,
+}
+
+pub(super) enum ExecutionLimits<'a> {
+    Core(OriginLimits),
+    Backend(&'a [Value]),
+}
+
+impl Execution<'_> {
+    pub fn core_limits(&self) -> Result<OriginLimits> {
+        match self.limits {
+            ExecutionLimits::Core(limits) => Ok(limits),
+            ExecutionLimits::Backend(_) => Err(invalid("execution", "not a core mode")),
+        }
+    }
 }
 
 pub(super) fn read_executions<'a>(
     rows: &'a [Value],
-    tools: &BTreeMap<&str, BTreeSet<&str>>,
+    tools: &BTreeMap<&str, Tool<'_>>,
     artifacts: &Artifacts<'_, '_>,
     limits: ReviewLimits,
 ) -> Result<BTreeMap<&'a str, Execution<'a>>> {
@@ -183,7 +229,10 @@ pub(super) fn read_executions<'a>(
             .iter()
             .find_map(|&(tag, role)| (tag == kind).then_some(role))
             .ok_or(invalid("execution", "unknown kind"))?;
-        if !tools.get(tool).is_some_and(|roles| roles.contains(role)) {
+        if !tools
+            .get(tool)
+            .is_some_and(|tool| tool.roles.contains(role))
+        {
             return Err(invalid("execution", "tool role"));
         }
         let mode = Mode::read(text(definition, "mode")?, kind)?;
@@ -199,11 +248,18 @@ pub(super) fn read_executions<'a>(
         }
         artifacts.get(
             text(definition, "provenance")?,
-            Some(("execution-provenance", "0.1")),
+            Some((
+                match mode {
+                    Mode::Solve => "axiom-evidence-backend-capture",
+                    Mode::Replay => "axiom-evidence-backend-replay-source",
+                    _ => "execution-provenance",
+                },
+                "0.1",
+            )),
         )?;
         let inputs = references(items(definition, "inputs")?, artifacts)?;
         let outputs = references(items(definition, "outputs")?, artifacts)?;
-        let attempt = attempt(member(definition, "result"))?;
+        let attempt = attempt(member(definition, "result"), mode)?;
         if matches!(attempt, Attempt::Interrupted { .. }) && !outputs.is_empty() {
             return Err(invalid("execution", "interrupted output"));
         }
@@ -215,7 +271,18 @@ pub(super) fn read_executions<'a>(
                 inputs,
                 outputs,
                 attempt,
-                limits: read_limits(items(definition, "limits")?, mode, limits.derivation)?,
+                tool,
+                provenance: text(definition, "provenance")?,
+                ordinal,
+                limits: if mode.is_backend() {
+                    ExecutionLimits::Backend(items(definition, "limits")?)
+                } else {
+                    ExecutionLimits::Core(read_limits(
+                        items(definition, "limits")?,
+                        mode,
+                        limits.derivation,
+                    )?)
+                },
             },
         );
     }
@@ -241,7 +308,7 @@ fn references<'a>(
     Ok(refs)
 }
 
-fn read_limits(values: &[Value], mode: Mode, cap: OriginLimits) -> Result<OriginLimits> {
+pub(super) fn limit_values(values: &[Value]) -> Result<BTreeMap<(&str, &str), usize>> {
     let mut limits = BTreeMap::new();
     let mut previous = None;
     for value in values {
@@ -251,6 +318,11 @@ fn read_limits(values: &[Value], mode: Mode, cap: OriginLimits) -> Result<Origin
         ordered(&mut previous, (name, unit), "execution limits")?;
         limits.insert((name, unit), decimal(text(row, "value")?, "limit value")?);
     }
+    Ok(limits)
+}
+
+fn read_limits(values: &[Value], mode: Mode, cap: OriginLimits) -> Result<OriginLimits> {
+    let mut limits = limit_values(values)?;
     let mut take = |name, unit, max| {
         let value = limits
             .remove(&(name, unit))

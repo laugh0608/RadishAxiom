@@ -1,5 +1,6 @@
 //! Explicit local readback of the proposed Evidence v0.2 verification contract.
 
+mod backend;
 mod execution;
 mod support;
 #[cfg(test)]
@@ -24,7 +25,8 @@ use crate::{
     version::{IrVersion, V0_2_SEMANTICS_SHA256},
 };
 
-use execution::{Execution, read_executions, read_tools};
+pub use backend::{BackendPolicyStatus, BackendReadback, BackendReviewContext, ProofPolicy};
+use execution::{Execution, Tool, read_executions, read_tools};
 
 const PROFILE: &str = "keyed-finite-table-verification";
 const DOCUMENT: &str = "axiom-evidence-v0.2:document";
@@ -51,6 +53,8 @@ pub enum ReviewError {
     Obligations(GenerationError),
     Effect(crate::effects::EffectError),
     Origin(crate::origins::OriginError),
+    Solver(crate::solver::SolverError),
+    Query(crate::query::QueryError),
     NonCanonical(&'static str),
     Version,
     Limit(&'static str),
@@ -77,6 +81,8 @@ impl std::error::Error for ReviewError {
             Self::Obligations(error) => Some(error),
             Self::Effect(error) => Some(error),
             Self::Origin(error) => Some(error),
+            Self::Solver(error) => Some(error),
+            Self::Query(error) => Some(error),
             _ => None,
         }
     }
@@ -86,6 +92,8 @@ impl std::error::Error for ReviewError {
 pub struct Readback {
     pub artifact_digest: String,
     pub document_digest: String,
+    /// Local simulation binding/policy assessment, never an independent result.
+    pub backend: Option<BackendReadback>,
 }
 
 /// Rebuilds the proposed verification document and checks its local support bindings.
@@ -93,8 +101,29 @@ pub struct Readback {
 /// Readback does not authenticate execution provenance or produce an independent result.
 pub fn readback_v02<'a>(
     bytes: &[u8],
+    resolve: impl FnMut(&str) -> Option<&'a [u8]>,
+    limits: ReviewLimits,
+) -> Result<Readback> {
+    readback(bytes, resolve, limits, None)
+}
+
+/// Explicit candidate backend entry. The caller must supply the batch pin from
+/// a trust boundary separate from the Evidence producer. Only simulation scope
+/// is implemented; this entry cannot qualify a tool, execute it, or open P6.
+pub fn readback_v02_with_backend<'a>(
+    bytes: &[u8],
+    resolve: impl FnMut(&str) -> Option<&'a [u8]>,
+    limits: ReviewLimits,
+    context: BackendReviewContext<'_>,
+) -> Result<Readback> {
+    readback(bytes, resolve, limits, Some(context))
+}
+
+fn readback<'a>(
+    bytes: &[u8],
     mut resolve: impl FnMut(&str) -> Option<&'a [u8]>,
     limits: ReviewLimits,
+    context: Option<BackendReviewContext<'_>>,
 ) -> Result<Readback> {
     let value = strict(bytes, limits.evidence_json, "evidence")?;
     let root = shape(
@@ -228,6 +257,12 @@ pub fn readback_v02<'a>(
             "/obligation/definition",
             &["expectation", "kind", "subject"],
         )?;
+        if execution.mode.is_backend() {
+            if !backend::target_kind(text(definition, "kind")?) {
+                return Err(invalid("backend", "target kind"));
+            }
+            continue;
+        }
         checked.insert(
             id,
             support::rebuild(
@@ -239,8 +274,33 @@ pub fn readback_v02<'a>(
             )?,
         );
     }
+    let backend = backend::rebuild(
+        context,
+        &subject,
+        &artifacts,
+        &tools,
+        &executions,
+        &trust,
+        limits,
+    )?;
     let mut unknown = Vec::new();
+    let mut failed = Vec::new();
     for (&id, row) in &obligations {
+        if backend::target_kind(kind(member(row, "definition"))?) {
+            let result = backend
+                .as_ref()
+                .and_then(|b| b.results.get(id))
+                .ok_or(invalid("backend", "missing target attempt"))?;
+            if encode(member(row, "result")) != encode(result) {
+                return Err(invalid("backend", "result support or aggregation"));
+            }
+            match kind(result)? {
+                "unknown" => unknown.push(id),
+                "failed" => failed.push(id),
+                _ => {}
+            }
+            continue;
+        }
         if support::check_result(id, row, &trust, &checked, &executions)? {
             unknown.push(id);
         }
@@ -251,6 +311,8 @@ pub fn readback_v02<'a>(
             "structure_rejected",
             obligations.keys().copied().collect::<Vec<_>>(),
         )
+    } else if !failed.is_empty() {
+        ("violated", failed)
     } else if unknown.is_empty() {
         ("satisfied", Vec::new())
     } else {
@@ -265,6 +327,7 @@ pub fn readback_v02<'a>(
     Ok(Readback {
         artifact_digest: raw_digest(bytes),
         document_digest: content_id(DOCUMENT, bytes),
+        backend: backend.map(|b| b.readback),
     })
 }
 
@@ -272,7 +335,7 @@ fn check_scope(
     value: &Value,
     subject: &Subject<'_>,
     artifacts: &Artifacts<'_, '_>,
-    tools: &BTreeMap<&str, BTreeSet<&str>>,
+    tools: &BTreeMap<&str, Tool<'_>>,
     executions: &BTreeMap<&str, Execution<'_>>,
     obligations: &Entries<'_>,
 ) -> Result<()> {
