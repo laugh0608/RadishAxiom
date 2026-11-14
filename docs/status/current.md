@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-11-14（分仓 Go checker 合成 AX-B01 v0.2 语义验收）
+更新日期：2026-11-14（分仓 Go checker 合成 AX-B01 P4-A 独立解码复审）
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。整体目标见[开发计划](../development-plan.md)，归属与任务来源见[能力专题地图](../topics.md)；历史流水见[整理前快照](../records/status-before-planning-alignment-2026-11-01.md)与[早期归档](../records/status-through-2026-09-03.md)。
 
@@ -28,7 +28,7 @@
 
 | 顺位 | 必须继续 | 必要阻塞 / 结束条件 |
 | --- | --- | --- |
-| 1 | 闭合合成 AX-B01 的具体反例来源链 | 分仓已独立核验 P1 / P2、绑定世界上的精确目标及冲突拒绝。下一步在明确的 checker 预算内独立核对符号、布局与模型到 world 的重建，验证错绑和预算不足的回执。S1–S3 支持、未覆盖目标、attestation 聚合及结构化中止原因仍待独立验收 |
+| 1 | 补齐合成 AX-B01 的独立结果支持 | P1 / P2、P4-A 标量模型重建、绑定世界上的 guarantee / coverage 和冲突拒绝已有验收。下一步独立核对 S1–S3 四项支持，再推进其余精确目标、attestation 历史与结构化中止；未核实项保留 `incomplete` |
 | 2 | 有限裁决真实 solver 路径 | C1/LibPoly、L3 剩余来源与有限宿主信任、目标制品及运行资格仍未关闭。复用已有材料；选择继续固定候选、评估一个替代或等待，不同时展开多条来源链 |
 | 3 | 实际受限校准，再取得 AX-B01 全部结果 | 保持原容量及 128 MiB / 6 s；按 E0/E4/E5 和具体授权取真实结果。九项后端结果与四项结构类义务支持齐备后装配，独立核对精确目标、信任与同一 Evidence 摘要 |
 | 4 | P6–P9 与首个真实纵向闭环 | 提前登记 Node P7 的来源、宿主和硬资源缺口；P4/P5 真结果不足时 P6 继续 closed。correct 全链、两个 wrong、invalid、真实 timeout 与篡改/门控拒绝按原契约验收 |
@@ -59,7 +59,9 @@ C1–C6 的[独立交换审阅](../evidence/evidence-v0.2-independent-check-revi
 
 11 月 14 日完成 R1–R6 本仓候选及复审。新 Rust 入口显式选择 batch / interruption v0.2，从类型化错误生成结构化事实、终态原因码与生产策略，保留旧入口和原指纹。合成验证覆盖 model／replay 资源中止、无效模型、终态及输入错绑和历史信任。分仓独立 checker、真实来源、公共接受与完整迁移仍待验收。 [适配与复审记录](../records/2026-11-14-evidence-structured-backend.md)
 
-分仓 `091c6163bb429ce201f7284797cdafc67e9ce47a` 完成首批合成交换验收。分仓 `ec3eb6fe7bee30a39030c9d6d27da7c72eb821d6` 独立核验 AX-B01 的 P1 / P2 共 13 项核心义务，拒绝错误的覆盖归因及同目标冲突。十个原生包中，缺历史运行信任与同目标冲突两包为 `rejected`，其余八包为 `incomplete`。目前重放使用绑定的具体世界，P4-A 模型到世界的重建尚未独立验收。 [交换及语义验收记录](../records/2026-11-14-evidence-checker-v0.2-exchange.md)
+分仓 `091c6163bb429ce201f7284797cdafc67e9ce47a` 完成首批合成交换验收。分仓 `ec3eb6fe7bee30a39030c9d6d27da7c72eb821d6` 独立核验 AX-B01 的 P1 / P2 共 13 项核心义务，拒绝错误的覆盖归因及同目标冲突。十个原生包中，缺历史运行信任与同目标冲突两包为 `rejected`，其余八包为 `incomplete`。该批重放使用绑定的具体世界。 [交换及语义验收记录](../records/2026-11-14-evidence-checker-v0.2-exchange.md)
+
+分仓 `92960b77838b602135101164b63c7f2ac849da7c` 已独立从原始合成 SAT 重建符号来源、输入布局及规范世界。调用方提供充足 checker 预算时，三套 AX-B01 的 27 份 world 与 Text 等价类逐字节匹配；错绑拒绝，预算耗尽保留 `incomplete`。原交接请求保留原字节。 [P4-A 复审与预算断点](../records/2026-11-14-evidence-checker-v0.2-exchange.md#第三批合成-p4-a-独立解码复审)
 
 ### 当前接续（2026-11-07）
 
