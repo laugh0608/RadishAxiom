@@ -197,6 +197,8 @@ REQUIRED_FILES = (
     "contracts/pipeline-artifacts-v0.1/schemas/axiom-host-data.schema.json",
     "contracts/pipeline-artifacts-v0.1/schemas/axiom-obligation-set.schema.json",
     "contracts/pipeline-artifacts-v0.1/schemas/axiom-pipeline-receipt.schema.json",
+    "contracts/pipeline-artifacts-v0.2/README.md",
+    "contracts/pipeline-artifacts-v0.2/schemas/axiom-pipeline-receipt.schema.json",
     "contracts/toolchain-adapters-v0.1/README.md",
     "contracts/toolchain-adapters-v0.1/registry.json",
     "contracts/toolchain-adapters-v0.1/schemas/toolchain-adapter-identities.schema.json",
@@ -655,6 +657,17 @@ def check_independent_check_contracts(errors: list[str]) -> None:
     if result.returncode != 0:
         detail = (result.stdout + result.stderr).strip()
         errors.append(f"independent check contracts failed: {detail}")
+
+    for name, arguments in [
+        ("generate-evidence-exchange-review.py", ["--check"]),
+        ("test-evidence-exchange-review.py", []),
+    ]:
+        result = subprocess.run(
+            [sys.executable, "-I", "-B", str(REPO_ROOT / "scripts" / name), *arguments],
+            cwd=REPO_ROOT, check=False, capture_output=True, text=True,
+        )
+        if result.returncode != 0:
+            errors.append(f"Evidence exchange review failed ({name}): {(result.stdout + result.stderr).strip()}")
 
 
 def check_toolchain_adapter_identities(errors: list[str]) -> None:

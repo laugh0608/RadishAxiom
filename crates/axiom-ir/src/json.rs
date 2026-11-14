@@ -8,7 +8,7 @@ pub const MAX_NESTING: usize = 128;
 
 /// 调用方必须显式提供预算。输入字节还约束字符串总量与输出字节量；
 /// 此子集的规范编码不会比合法输入更长。对象成员名也计入 value 预算。
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub struct JsonLimits {
     pub max_input_bytes: usize,
     pub max_values: usize,
@@ -318,31 +318,36 @@ impl Parser<'_> {
 }
 
 pub(crate) fn encode(value: &Value, output: &mut Vec<u8>) {
+    emit(value, &mut |bytes| output.extend_from_slice(bytes));
+}
+
+/// 将同一规范编码送往写入或计数入口。
+pub(crate) fn emit(value: &Value, output: &mut impl FnMut(&[u8])) {
     match value {
-        Value::String(text) => encode_string(text, output),
-        Value::Bool(true) => output.extend_from_slice(b"true"),
-        Value::Bool(false) => output.extend_from_slice(b"false"),
+        Value::String(text) => emit_string(text, output),
+        Value::Bool(true) => output(b"true"),
+        Value::Bool(false) => output(b"false"),
         Value::Array(values) => {
-            output.push(b'[');
+            output(b"[");
             for (index, value) in values.iter().enumerate() {
                 if index > 0 {
-                    output.push(b',');
+                    output(b",");
                 }
-                encode(value, output);
+                emit(value, output);
             }
-            output.push(b']');
+            output(b"]");
         }
         Value::Object(members) => {
-            output.push(b'{');
+            output(b"{");
             for (index, (key, value, _)) in members.iter().enumerate() {
                 if index > 0 {
-                    output.push(b',');
+                    output(b",");
                 }
-                encode_string(key, output);
-                output.push(b':');
-                encode(value, output);
+                emit_string(key, output);
+                output(b":");
+                emit(value, output);
             }
-            output.push(b'}');
+            output(b"}");
         }
     }
 }

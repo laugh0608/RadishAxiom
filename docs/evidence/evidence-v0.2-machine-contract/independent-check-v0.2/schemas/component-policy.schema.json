@@ -1,0 +1,463 @@
+{
+  "$id": "urn:radishaxiom:schema:axiom-evidence-component-policy:0.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "additionalProperties": false,
+      "properties": {
+        "format": {
+          "const": "axiom-evidence-component-policy"
+        },
+        "limits": {
+          "items": false,
+          "maxItems": 6,
+          "minItems": 6,
+          "prefixItems": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "const": "candidate-bytes"
+                },
+                "unit": {
+                  "const": "byte"
+                },
+                "value": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "unit",
+                "value"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "const": "decode-steps"
+                },
+                "unit": {
+                  "const": "step"
+                },
+                "value": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "unit",
+                "value"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "const": "integer-digits"
+                },
+                "unit": {
+                  "const": "digit"
+                },
+                "value": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "unit",
+                "value"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "const": "text-bytes"
+                },
+                "unit": {
+                  "const": "byte"
+                },
+                "value": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "unit",
+                "value"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "const": "value-cells"
+                },
+                "unit": {
+                  "const": "cell"
+                },
+                "value": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "unit",
+                "value"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "const": "world-bytes"
+                },
+                "unit": {
+                  "const": "byte"
+                },
+                "value": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "unit",
+                "value"
+              ],
+              "type": "object"
+            }
+          ],
+          "type": "array"
+        },
+        "stage": {
+          "const": "model"
+        },
+        "version": {
+          "const": "0.1"
+        }
+      },
+      "required": [
+        "format",
+        "version",
+        "stage",
+        "limits"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "format": {
+          "const": "axiom-evidence-component-policy"
+        },
+        "limits": {
+          "items": false,
+          "maxItems": 13,
+          "minItems": 13,
+          "prefixItems": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "const": "comparisons"
+                },
+                "unit": {
+                  "const": "comparison"
+                },
+                "value": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "unit",
+                "value"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "const": "digit-work"
+                },
+                "unit": {
+                  "const": "digit"
+                },
+                "value": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "unit",
+                "value"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "const": "evaluation-steps"
+                },
+                "unit": {
+                  "const": "step"
+                },
+                "value": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "unit",
+                "value"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "const": "integer-digits"
+                },
+                "unit": {
+                  "const": "digit"
+                },
+                "value": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "unit",
+                "value"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "const": "output-bytes"
+                },
+                "unit": {
+                  "const": "byte"
+                },
+                "value": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "unit",
+                "value"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "const": "path-bytes"
+                },
+                "unit": {
+                  "const": "byte"
+                },
+                "value": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "unit",
+                "value"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "const": "rows"
+                },
+                "unit": {
+                  "const": "row"
+                },
+                "value": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "unit",
+                "value"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "const": "text-bytes"
+                },
+                "unit": {
+                  "const": "byte"
+                },
+                "value": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "unit",
+                "value"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "const": "type-items"
+                },
+                "unit": {
+                  "const": "item"
+                },
+                "value": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "unit",
+                "value"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "const": "value-cells"
+                },
+                "unit": {
+                  "const": "cell"
+                },
+                "value": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "unit",
+                "value"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "const": "world-bytes"
+                },
+                "unit": {
+                  "const": "byte"
+                },
+                "value": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "unit",
+                "value"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "const": "world-depth"
+                },
+                "unit": {
+                  "const": "level"
+                },
+                "value": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "unit",
+                "value"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "const": "world-nodes"
+                },
+                "unit": {
+                  "const": "node"
+                },
+                "value": {
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "unit",
+                "value"
+              ],
+              "type": "object"
+            }
+          ],
+          "type": "array"
+        },
+        "stage": {
+          "const": "replay"
+        },
+        "version": {
+          "const": "0.1"
+        }
+      },
+      "required": [
+        "format",
+        "version",
+        "stage",
+        "limits"
+      ],
+      "type": "object"
+    }
+  ]
+}

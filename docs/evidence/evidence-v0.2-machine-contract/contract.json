@@ -1,0 +1,106 @@
+{
+  "format": "axiom-evidence",
+  "evidence_version": "0.2",
+  "obligation_profile": {
+    "name": "keyed-finite-table-verification",
+    "version": "0.2"
+  },
+  "domains": {
+    "document": "axiom-evidence-v0.2:document",
+    "execution": "axiom-evidence-v0.2:execution",
+    "obligation": "axiom-evidence-v0.2:obligation",
+    "tool": "axiom-evidence-v0.2:tool",
+    "trust": "axiom-evidence-v0.2:trust",
+    "uncovered": "axiom-evidence-v0.2:uncovered"
+  },
+  "execution_roles": {
+    "check-certificate": "certificate-checker",
+    "check-fixture": "fixture-checker",
+    "compare-output": "output-comparator",
+    "execute-host": "host-executor",
+    "generate-obligations": "obligation-generator",
+    "normalize": "ir-normalizer",
+    "prove": "prover",
+    "replay-counterexample": "counterexample-replayer"
+  },
+  "members": {
+    "artifact": ["byte_length", "content_digest", "format", "format_version"],
+    "conclusion": ["kind", "refs"],
+    "document": ["artifacts", "conclusion", "digest_algorithm", "evidence_version", "executions", "format", "obligation_profile", "obligations", "producer", "subject", "tools", "trust", "uncovered"],
+    "entry": ["definition", "id"],
+    "execution": ["inputs", "kind", "limits", "mode", "obligation", "ordinal", "outputs", "provenance", "result", "rule", "tool"],
+    "limit": ["name", "unit", "value"],
+    "obligation": ["expectation", "kind", "subject"],
+    "obligation_entry": ["definition", "id", "result"],
+    "reference": ["artifact", "role"],
+    "subject_ir": ["ir_artifact", "ir_document_digest", "ir_version", "kind", "semantics"],
+    "subject_rejected_ir": ["artifact", "kind"],
+    "tool": ["artifact", "name", "roles", "version"],
+    "trust": ["category", "claim", "mitigations", "scope"],
+    "uncovered": ["category", "scope", "statement"]
+  },
+  "result_members": {
+    "checked": ["artifacts", "assumptions", "execution", "kind"],
+    "failed": ["assumptions", "counterexample", "execution", "kind"],
+    "proved": ["assumptions", "kind", "support"],
+    "trusted": ["kind", "trust"],
+    "unknown": ["attempts", "kind", "reason"]
+  },
+  "modes": {
+    "core-empty-effects-v0.1": {
+      "execution_kind": "prove",
+      "obligation_kind": "effect-empty",
+      "inputs": ["canonical-ir", "generator-source", "obligation-set"],
+      "outputs": ["derivation"],
+      "limits": {
+        "max-input-bytes": "byte",
+        "max-nesting": "level",
+        "max-output-bytes": "byte",
+        "max-path-bytes": "byte",
+        "max-premise-edges": "edge",
+        "max-steps": "step",
+        "max-values": "value"
+      },
+      "rule": "docs/query/core-empty-effects-v0.1.md",
+      "rule_digest": "sha256:80ec918ae8e5d952ebd7d984db452f22b65d69ebe8fa9f084150bd8d5353bb9b"
+    },
+    "core-field-origin-v0.1": {
+      "execution_kind": "prove",
+      "obligation_kind": "field-origin",
+      "inputs": ["canonical-ir", "generator-source", "obligation-set"],
+      "outputs": ["derivation"],
+      "limits": {
+        "max-descriptors": "descriptor",
+        "max-input-bytes": "byte",
+        "max-nesting": "level",
+        "max-output-bytes": "byte",
+        "max-path-bytes": "byte",
+        "max-premise-edges": "edge",
+        "max-steps": "step",
+        "max-values": "value"
+      },
+      "rule": "docs/query/core-field-origin-v0.1.md",
+      "rule_digest": "sha256:2a88689852fba4f505224d2f2043ae0382ba9a18b18e35d83b77fa1d5746878f"
+    },
+    "strict-ir-v0.2": {
+      "execution_kind": "normalize",
+      "obligation_kind": "ir-structure",
+      "inputs": ["candidate"],
+      "outputs": ["structure-observation"],
+      "limits": {
+        "max-input-bytes": "byte",
+        "max-nesting": "level",
+        "max-values": "value"
+      },
+      "rule": "docs/ir/axiom-ir-v0.2.md",
+      "rule_digest": "sha256:6d4fd0366adc15ab79ea7143b5cd656c0e3dc06df90be446c72c210e53a5480c"
+    }
+  },
+  "unknown_reasons": {
+    "error": "operational-error",
+    "resource-exhausted": "resource-exhausted",
+    "timeout": "timeout",
+    "unavailable": "operational-error",
+    "unsupported": "unsupported"
+  }
+}

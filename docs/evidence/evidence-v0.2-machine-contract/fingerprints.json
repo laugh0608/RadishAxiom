@@ -1,0 +1,40 @@
+{
+  "s1-checked": {
+    "execution": "sha256:16eeb0da16e7b4e3a814ce2ef640272748f14fa4e53c9059de124bd745635f9f",
+    "obligation": "sha256:b804c9369a2c23dec3b1459599f8ef81561d47ee8655cb19e002bfc87a70c61c"
+  },
+  "s1-rejected": {
+    "document": "sha256:278bc6e98e3a32fcceb39e5da40e01270ce9629530802c7e898e825d9c820339",
+    "execution": "sha256:627ff311887dcc2f252b55d2ba06d3dbbe51ae08f8f2873ffce6515797d198a2",
+    "obligation": "sha256:7becb82401461021b65c292ba49c2d4deceb88885feec3ea5e4d6b0b9b3c7130",
+    "raw": "sha256:e93297d5072334b7fcee23404e6ac1b0dc4e73b3f198bf9a6673fcc39b56013d"
+  },
+  "s1-resource": {
+    "execution": "sha256:ec6564fa2837d2b255c312a1a8f36788cf17d64df8c0bbaf694b96ba82787e4c",
+    "obligation": "sha256:b804c9369a2c23dec3b1459599f8ef81561d47ee8655cb19e002bfc87a70c61c"
+  },
+  "s1-unknown-member": {
+    "document": "sha256:f037803d9675b38627a49be919b60e0da4d048609fa8d15c27a20e2532ea0310",
+    "execution": "sha256:4e1fcba657b8fabc6caf9ba5d35e6b775e9c274572d42f7f6fd43ff5054c1195",
+    "obligation": "sha256:2b9fa85fab8c3c62be0c1ed4dafc5ef7988c4584f6b6361e6f6f27e875f958bb",
+    "raw": "sha256:867d8d56b8a65b13b3c01711078b94ee9eedcb51400f9c71d435646be561c05e"
+  },
+  "s1-utf8": {
+    "document": "sha256:eaf774ba12b6158933fb1a13869d946c69c92640fce891af9200b37ac4f85a02",
+    "execution": "sha256:033cfa880e0fbab51e315974124754bb1e5b78ee925f0852d228e334e249cd8c",
+    "obligation": "sha256:868c639ceb1533a8a1040317f07a4200a7964932bd31ab0ab9245cee3c170f19",
+    "raw": "sha256:8611e5db93d0bcdc71a45d78f36c97e704f8cb23299a15c339866c1c3da3b83c"
+  },
+  "s2-effect": {
+    "execution": "sha256:ebce97955024c4f51d33dba3b7e9d35118af6aa2d76be6cdd636b0c3c59531e7",
+    "obligation": "sha256:64bd44f0489b89d0912ce46e659f393de494341a5c960cf23f9efb7698308a70"
+  },
+  "s3-net-cents": {
+    "execution": "sha256:5c0b1083ee40692141619c788d0fb4c75baa21802109c008b3fb4acb0d77a813",
+    "obligation": "sha256:e4b0331b7d9caf004b695af957e6e2751bed2d666515634d7295e4f72847671a"
+  },
+  "s3-order-id": {
+    "execution": "sha256:0316182ed79a9f7b2961ce3119310fdff51a0bead338e3a8af869fe0da56b076",
+    "obligation": "sha256:4f97f098d0782f88070ab89ced9749d603fe316f79c826f828b3561ce51711f5"
+  }
+}

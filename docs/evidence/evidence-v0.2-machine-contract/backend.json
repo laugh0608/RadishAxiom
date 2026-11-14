@@ -1,0 +1,163 @@
+{
+  "format": "axiom-evidence-backend-binding-review",
+  "version": "0.1",
+  "packet_members": ["executions", "format", "obligation", "tools", "trust", "version"],
+  "target_kinds": ["contract-guarantee", "key-cardinality", "numeric-range", "row-coverage", "totality"],
+  "capture": {
+    "format": "axiom-evidence-backend-capture",
+    "version": "0.1",
+    "members": ["format", "invocation", "launch", "observation", "proof_policy", "request", "scope", "stderr", "stdout", "terminal", "version"],
+    "launch_members": ["acceptance", "archive", "cli", "dependencies", "host", "policy", "qualification", "supervisor"],
+    "streams": {"absent": ["kind"], "complete": ["artifact", "kind"], "prefix": ["artifact", "kind"]},
+    "proof_policies": ["attestation-allowed", "certificate-required"],
+    "completed": {"members": ["kind", "status"], "statuses": ["sat", "unknown", "unsat"]},
+    "interrupted": {
+      "members": ["code", "kind"],
+      "codes": ["cleanup", "component-limit", "deadline", "exit", "memory", "protocol", "stderr-limit", "stdout-limit", "streams-incomplete", "tool-unavailable"]
+    }
+  },
+  "replay_source": {
+    "format": "axiom-evidence-backend-replay-source",
+    "version": "0.1",
+    "members": ["format", "invocation", "observation", "scope", "solve_execution", "terminal", "version"],
+    "completed": {
+      "members": ["kind", "outcome"],
+      "statuses": ["input-rejected", "pre-rejected", "target-not-violated", "target-violated"]
+    },
+    "interrupted": {
+      "members": ["code", "kind"],
+      "codes": ["component-limit", "model-decode", "replay-error", "unsupported"]
+    }
+  },
+  "modes": {
+    "p4-solver-response-v0.2": {
+      "kind": "prove",
+      "inputs": ["canonical-ir", "layout", "obligation-set", "query", "request", "symbols"],
+      "outputs": ["response"],
+      "limit_units": {
+        "internal-semantic-steps": "step",
+        "internal-wall-clock": "millisecond",
+        "outer-stderr": "byte",
+        "outer-stdin": "byte",
+        "outer-stdout": "byte",
+        "outer-wall-clock": "millisecond",
+        "outer-working-memory": "byte"
+      }
+    },
+    "p4-target-replay-v0.1": {
+      "kind": "replay-counterexample",
+      "inputs": ["canonical-ir", "model-world-candidate", "obligation-set", "request", "response", "world"],
+      "inputs_before_world": ["canonical-ir", "obligation-set", "request", "response"],
+      "outputs": ["target-replay"],
+      "limit_units": {
+        "comparisons": "comparison",
+        "digit-work": "digit",
+        "evaluation-steps": "step",
+        "integer-digits": "digit",
+        "ir-input-bytes": "byte",
+        "ir-nesting": "level",
+        "ir-values": "value",
+        "output-bytes": "byte",
+        "path-bytes": "byte",
+        "rows": "row",
+        "text-bytes": "byte",
+        "type-items": "item",
+        "value-cells": "cell",
+        "world-bytes": "byte",
+        "world-depth": "level",
+        "world-nodes": "node"
+      }
+    }
+  },
+  "local_readback": {
+    "scope": "simulation",
+    "public_status": "candidate-not-public-not-qualified",
+    "batch": {
+      "format": "axiom-evidence-backend-batch",
+      "version": "0.1",
+      "members": ["contract", "executions", "format", "obligation_set", "proof_policy", "scope", "subject", "version"],
+      "entry_members": ["execution", "invocation", "provenance", "request", "upstream"],
+      "upstream": {"none": ["kind"], "solve": ["execution", "kind"]},
+      "order": "numeric-execution-ordinal",
+      "authority": "caller-supplied-raw-digest-outside-evidence",
+      "completeness": "all-backend-executions-in-this-sealed-batch"
+    },
+    "capture_observation": {
+      "format": "axiom-evidence-capture-observation",
+      "version": "0.1",
+      "members": ["cleanup", "elapsed_ms", "exit", "failures", "format", "invocation", "request", "scheduled", "scope", "source", "started", "stderr", "stderr_observed", "stdin", "stdout", "stdout_observed", "version"],
+      "exit": {"unavailable": ["kind"], "exited": ["code", "kind"], "signaled": ["code", "kind"]},
+      "cleanup": ["confirmed-empty", "incomplete"],
+      "failure_members": ["at_ms", "code"],
+      "failure_tie_order": ["deadline", "memory", "stdout-limit", "stderr-limit", "exit", "protocol", "cleanup", "tool-unavailable"],
+      "source_format": ["captured-source", "0.1"]
+    },
+    "replay_interruption": {
+      "format": "axiom-evidence-replay-interruption",
+      "version": "0.1",
+      "members": ["code", "detail", "format", "generator", "request", "scope", "solve_execution", "stage", "version"],
+      "stages": ["model", "replay"],
+      "detail": "exact-debug-diagnostic-of-bound-local-component-version"
+    },
+    "launch_formats": {
+      "acceptance": ["tool-acceptance", "0.1"],
+      "archive": ["tool-archive", "0.1"],
+      "cli": ["tool-executable", "0.1"],
+      "dependencies": ["tool-dependencies", "0.1"],
+      "host": ["host-qualification", "0.1"],
+      "policy": ["execution-policy", "0.1"],
+      "qualification": ["tool-qualification", "0.1"],
+      "supervisor": ["tool-executable", "0.1"]
+    },
+    "inner_formats": {
+      "base_execution_profile": ["execution-profile", "0.1"],
+      "generator": ["generator-source", "0.1"],
+      "query_rules": ["evidence-rule", "0.1"],
+      "stderr": ["raw-stream", "0.1"],
+      "stdout": ["raw-stream", "0.1"]
+    },
+    "aggregation": {
+      "completed": "last-compatible-completed-support",
+      "later_unknown": "retain-earlier-usable-completed-support",
+      "conflict": "reject-unsat-and-target-violated-for-same-target",
+      "unknown": "last-solve-chain-terminal-reason-all-matching-terminal-refs",
+      "history": "retain-every-execution-and-actual-runtime-trust",
+      "conclusion_order": ["violated", "inconclusive", "satisfied"]
+    }
+  },
+  "attestation_members": ["execution", "kind", "query", "response", "trust"],
+  "formats": {
+    "canonical-ir": ["axiom-ir", "0.2"],
+    "layout": ["axiom-p4-input-layout", "0.1"],
+    "model-world-candidate": ["axiom-p4-model-world-candidate", "0.1"],
+    "obligation-set": ["axiom-obligation-set", "0.2"],
+    "query": ["axiom-smtlib2-qf-uflia-query0.3", "0.3"],
+    "request": ["axiom-p4-solver-request", "0.2"],
+    "response": ["axiom-p4-solver-response-observation", "0.1"],
+    "symbols": ["axiom-p4-query-symbols", "0.1"],
+    "target-replay": ["axiom-p4-target-replay-observation", "0.1"],
+    "world": ["axiom-p4-world", "0.1"]
+  },
+  "counterexample_members": ["kind", "minimality", "observed", "preconditions", "trace", "worlds"],
+  "counterexample_kind": "target-replay",
+  "reason_by_code": {
+    "backend-unknown": "indeterminate",
+    "certificate-unavailable": "incomplete-certificate",
+    "cleanup": "operational-error",
+    "component-limit": "resource-exhausted",
+    "deadline": "timeout",
+    "exit": "operational-error",
+    "memory": "resource-exhausted",
+    "model-decode": "operational-error",
+    "pre-rejected": "indeterminate",
+    "protocol": "operational-error",
+    "replay-error": "operational-error",
+    "stderr-limit": "resource-exhausted",
+    "stdout-limit": "resource-exhausted",
+    "streams-incomplete": "operational-error",
+    "target-not-violated": "indeterminate",
+    "tool-unavailable": "backend-unavailable",
+    "unsupported": "unsupported",
+    "input-rejected": "indeterminate"
+  }
+}

@@ -122,6 +122,32 @@ class Binding(unittest.TestCase):
         result = self.check(); self.assertEqual(result['scope'], 'synthetic-v02-binding-only')
         self.assertFalse(result['build_ready']); self.assertGreater(len(json.loads((self.bundle/'target-payload.json').read_bytes())['files']),64)
         with self.assertRaises(ValueError): self.check(False)
+
+    def test_apple_git_selection_must_be_bound_to_the_review(self):
+        name = W['APPLE_GIT_SELECTION']
+        developer = '/Applications/Xcode.app/Contents/Developer'
+        def ref(path):
+            return dict(path=path, bytes=1, digest=digest(b'x'))
+        selection = dict(format='radishaxiom-private-linux-channel-apple-git-selection', version='0.2',
+                         developer_dir=developer, selector=ref('/usr/bin/xcode-select'),
+                         resolver=ref('/usr/bin/xcrun'), git=ref(developer+'/usr/bin/git'),
+                         xcode_version=ref('/Applications/Xcode.app/Contents/version.plist'))
+        path = self.bundle/name
+        put(path, selection)
+        material = row(path, name)
+        load = W['apple_git_selection']
+        self.assertEqual(load(dict(decisions=[material]), self.bundle, I), selection)
+        for refs in ([], [material, material]):
+            with self.subTest(refs=refs), self.assertRaisesRegex(ValueError, 'apple-git-selection-required'):
+                load(dict(decisions=refs), self.bundle, I)
+        bad = copy.deepcopy(selection)
+        bad['git']['path'] = '/Library/Developer/CommandLineTools/usr/bin/git'
+        put(path, bad)
+        with self.assertRaisesRegex(ValueError, 'apple-git-selection-digest'):
+            load(dict(decisions=[material]), self.bundle, I)
+        with self.assertRaisesRegex(ValueError, 'apple-git-git-path'):
+            load(dict(decisions=[row(path, name)]), self.bundle, I)
+
     def test_legacy_null_missing_scope_and_readiness(self):
         original = copy.deepcopy(self.root)
         for change in (dict(version='0.1'), dict(scope='offline-source-binding-only'), dict(build_inputs=None), dict(build_inputs={}),
@@ -311,21 +337,70 @@ class Runner(unittest.TestCase):
             s.run(self.command(code),self.root,self.env)
         self.assertTrue(all(not s.group_present(pid) for pid in s.children))
 
-    def test_snapshot_from_exact_scripted_git_blobs(self):
-        data=b'synthetic\n'; blob=hashlib.sha1(b'blob 10\0'+data).hexdigest()
-        class Git:
-            root=self.root
-            def run(_self,argv,*_args,**_kwargs):
-                op=argv[argv.index('-C')+2:]
-                if op==['rev-parse','HEAD']:return (COMMIT+'\n').encode(),b''
-                if op[0]=='status':return b'',b''
-                if op[0]=='ls-tree':return f'100644 blob {blob}      10\tfile\0'.encode(),b''
-                if op[0]=='cat-file':return data,b''
-                raise AssertionError(op)
-            def checkpoint(_self):pass
-            def measure(_self):pass
-        source=W['snapshot'](self.root,COMMIT,'/synthetic/git',Git())
-        self.assertEqual((source/'file').read_bytes(),data)
+    def test_snapshot_checks_apple_git_before_and_after_copying_blobs(self):
+        data = b'synthetic\n'
+        blob = hashlib.sha1(b'blob 10\0'+data).hexdigest()
+        clt = '/Library/Developer/CommandLineTools'
+        cases = (('match', ''), ('before-selector', 'apple-git-developer-dir-drift'),
+                 ('before-resolver', 'apple-git-resolved-path-drift'),
+                 ('after-resolver', 'apple-git-resolved-path-drift'),
+                 ('after-git', 'apple-git-git: reference-drift'),
+                 ('after-version', 'apple-git-xcode_version: reference-drift'))
+        for name, failure in cases:
+            with self.subTest(name=name):
+                task = self.root/name
+                task.mkdir()
+                def host_file(file):
+                    p = task/file
+                    p.write_bytes(b'bound synthetic bytes')
+                    return row(p)
+                shim = host_file('shim')
+                selection = dict(developer_dir='/Applications/Xcode.app/Contents/Developer',
+                                 selector=host_file('selector'), resolver=host_file('resolver'),
+                                 git=host_file('resolved-git'), xcode_version=host_file('version.plist'))
+                calls = []
+                class Git:
+                    root = task
+                    def run(_self, argv, cwd, env, **_kwargs):
+                        self.assertNotIn('DEVELOPER_DIR', env)
+                        self.assertEqual(cwd, self.root)
+                        after = 'cat-file' in calls
+                        if argv[0] == selection['selector']['path']:
+                            calls.append('selector')
+                            self.assertEqual(argv[1:], ['-p'])
+                            p = clt if name == 'before-selector' else selection['developer_dir']
+                            return (p+'\n').encode(), b''
+                        if argv[0] == selection['resolver']['path']:
+                            calls.append('resolver')
+                            self.assertEqual(argv[1:], ['--no-cache', '--find', 'git'])
+                            p = (clt+'/usr/bin/git' if name == 'before-resolver' or
+                                 (after and name == 'after-resolver') else selection['git']['path'])
+                            return (p+'\n').encode(), b''
+                        self.assertEqual(argv[0], shim['path'])
+                        op = argv[argv.index('-C')+2:]
+                        calls.append(op[0])
+                        if op == ['rev-parse','HEAD']: return (COMMIT+'\n').encode(), b''
+                        if op[0] == 'status': return b'', b''
+                        if op[0] == 'ls-tree': return f'100644 blob {blob}      10\tfile\0'.encode(), b''
+                        if op[0] == 'cat-file':
+                            if name == 'after-git':
+                                Path(selection['git']['path']).write_bytes(b'changed Git')
+                            if name == 'after-version':
+                                Path(selection['xcode_version']['path']).write_bytes(b'changed Xcode')
+                            return data, b''
+                        raise AssertionError(op)
+                    def checkpoint(_self): pass
+                    def measure(_self): pass
+                args = (self.root, COMMIT, shim, Git(), selection, I['reference'])
+                if failure:
+                    with self.assertRaisesRegex(ValueError, failure):
+                        W['snapshot'](*args)
+                    self.assertEqual((task/'source').exists(), name.startswith('after-'))
+                    self.assertEqual('cat-file' in calls, name.startswith('after-'))
+                else:
+                    source = W['snapshot'](*args)
+                    self.assertEqual((source/'file').read_bytes(), data)
+                    self.assertEqual(calls, ['selector','resolver','rev-parse','status','ls-tree','cat-file','selector','resolver'])
 
 
 class Argv(unittest.TestCase):
