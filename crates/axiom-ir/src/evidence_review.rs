@@ -25,7 +25,10 @@ use crate::{
     version::{IrVersion, V0_2_SEMANTICS_SHA256},
 };
 
-pub use backend::{BackendPolicyStatus, BackendReadback, BackendReviewContext, ProofPolicy};
+pub use backend::{
+    BackendPolicyStatus, BackendReadback, BackendReviewContext, InterruptionBinding, ProofPolicy,
+    ReplayInterruptionV02,
+};
 use execution::{Execution, Tool, read_executions, read_tools};
 
 const PROFILE: &str = "keyed-finite-table-verification";
@@ -55,6 +58,8 @@ pub enum ReviewError {
     Origin(crate::origins::OriginError),
     Solver(crate::solver::SolverError),
     Query(crate::query::QueryError),
+    UnsupportedModelInterruption(crate::solver::SolverError),
+    UnsupportedReplayInterruption(crate::replay::ReplayError),
     NonCanonical(&'static str),
     Version,
     Limit(&'static str),
@@ -83,6 +88,8 @@ impl std::error::Error for ReviewError {
             Self::Origin(error) => Some(error),
             Self::Solver(error) => Some(error),
             Self::Query(error) => Some(error),
+            Self::UnsupportedModelInterruption(error) => Some(error),
+            Self::UnsupportedReplayInterruption(error) => Some(error),
             _ => None,
         }
     }
@@ -116,14 +123,37 @@ pub fn readback_v02_with_backend<'a>(
     limits: ReviewLimits,
     context: BackendReviewContext<'_>,
 ) -> Result<Readback> {
-    readback(bytes, resolve, limits, Some(context))
+    readback(
+        bytes,
+        resolve,
+        limits,
+        Some((context, backend::BackendContract::Legacy)),
+    )
+}
+
+/// Explicit opt-in to backend batch and structured interruption v0.2.
+/// The pinned candidate contract is selected here, never by untrusted input.
+/// This shares the legacy semantic checks but does not upgrade legacy bytes,
+/// authenticate provenance, execute a backend, or emit an independent result.
+pub fn readback_v02_with_backend_v02<'a>(
+    bytes: &[u8],
+    resolve: impl FnMut(&str) -> Option<&'a [u8]>,
+    limits: ReviewLimits,
+    context: BackendReviewContext<'_>,
+) -> Result<Readback> {
+    readback(
+        bytes,
+        resolve,
+        limits,
+        Some((context, backend::BackendContract::StructuredV02)),
+    )
 }
 
 fn readback<'a>(
     bytes: &[u8],
     mut resolve: impl FnMut(&str) -> Option<&'a [u8]>,
     limits: ReviewLimits,
-    context: Option<BackendReviewContext<'_>>,
+    context: Option<(BackendReviewContext<'_>, backend::BackendContract)>,
 ) -> Result<Readback> {
     let value = strict(bytes, limits.evidence_json, "evidence")?;
     let root = shape(

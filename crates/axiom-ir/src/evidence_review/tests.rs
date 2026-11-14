@@ -122,6 +122,27 @@ fn contract_vectors_round_trip_with_exact_identity_and_reject_partial_documents(
             continue;
         }
         let found = found.unwrap_or_else(|err| panic!("{name}: {err}"));
+        // No backend means no batch, including rejected IR without legal P1/P2.
+        // The explicit new backend entry must not silently ignore extra authority.
+        assert!(matches!(
+            readback_v02_with_backend_v02(
+                raw,
+                resolve,
+                limits(),
+                BackendReviewContext {
+                    batch: b"{}",
+                    expected_batch_digest: &raw_digest(b"{}"),
+                    consumer_policy: ProofPolicy::AttestationAllowed,
+                    allowed_trust_categories: &[],
+                    solver_limits: backend::tests::fixtures::solver_limits(),
+                    replay_limits: backend::tests::fixtures::replay_limits(),
+                }
+            ),
+            Err(ReviewError::Invalid {
+                at: "backend",
+                reason: "batch without backend executions"
+            })
+        ));
         assert_eq!(
             found.artifact_digest,
             text(packet, "artifact_digest").unwrap(),

@@ -1,10 +1,11 @@
 //! Candidate-only backend binding. No process, filesystem, or qualification entry.
+mod interruption;
 mod limits;
 mod replay;
 mod solve;
 mod source;
 #[cfg(test)]
-mod tests;
+pub(super) mod tests;
 
 use super::*;
 use crate::{replay::ReplayLimits, solver::SolverBudgets};
@@ -20,6 +21,32 @@ pub(super) const REPLAY_RULE: (&str, &[u8]) = (
 );
 const CONTRACT: &[u8] =
     include_bytes!("../../../../docs/evidence/evidence-v0.2-machine-contract/backend.json");
+const STRUCTURED_CONTRACT: &[u8] = include_bytes!(
+    "../../../../docs/evidence/evidence-v0.2-machine-contract/independent-check-v0.2/backend.json"
+);
+
+pub use interruption::{InterruptionBinding, ReplayInterruptionV02};
+
+#[derive(Clone, Copy, Eq, PartialEq)]
+pub(super) enum BackendContract {
+    Legacy,
+    StructuredV02,
+}
+
+impl BackendContract {
+    fn version(self) -> &'static str {
+        match self {
+            Self::Legacy => "0.1",
+            Self::StructuredV02 => "0.2",
+        }
+    }
+    fn bytes(self) -> &'static [u8] {
+        match self {
+            Self::Legacy => CONTRACT,
+            Self::StructuredV02 => STRUCTURED_CONTRACT,
+        }
+    }
+}
 const HOST_CLAIM: &str = "The scoped runtime and capture report the execution faithfully.";
 const GENERATOR_CLAIM: &str = "Every valid violating world has a satisfying query assignment.";
 const BACKEND_CLAIM: &str = "The scoped backend is sound for the bound unsat query.";
@@ -77,6 +104,7 @@ struct Materials<'a, 'document, 'blob> {
     subject: &'a Subject<'document>,
     artifacts: &'a Artifacts<'document, 'blob>,
     limits: ReviewLimits,
+    contract: BackendContract,
 }
 
 pub(super) fn target_kind(kind: &str) -> bool {
@@ -100,7 +128,7 @@ pub(super) fn interrupted_reason(mode: Mode, code: &str) -> Result<&'static str>
 }
 
 pub(super) fn rebuild(
-    context: Option<BackendReviewContext<'_>>,
+    context: Option<(BackendReviewContext<'_>, BackendContract)>,
     subject: &Subject<'_>,
     artifacts: &Artifacts<'_, '_>,
     tools: &BTreeMap<&str, Tool<'_>>,
@@ -114,12 +142,14 @@ pub(super) fn rebuild(
         }
         return Ok(None);
     }
-    let context = context.ok_or(invalid("backend", "separate source authority required"))?;
-    let batch = source::Batch::read(context, subject, executions, review_limits)?;
+    let (context, contract) =
+        context.ok_or(invalid("backend", "separate source authority required"))?;
+    let batch = source::Batch::read(context, subject, executions, review_limits, contract)?;
     let materials = Materials {
         subject,
         artifacts,
         limits: review_limits,
+        contract,
     };
     let mut previous = None;
     for &category in context.allowed_trust_categories {
@@ -292,7 +322,7 @@ pub(super) fn rebuild(
         readback: BackendReadback {
             scope: "simulation",
             batch_digest: raw_digest(context.batch),
-            contract_digest: raw_digest(CONTRACT),
+            contract_digest: raw_digest(contract.bytes()),
             policy,
             remaining_trust: trust.keys().map(|id| (*id).to_owned()).collect(),
         },

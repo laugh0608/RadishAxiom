@@ -14,9 +14,9 @@ import evidence_exchange_review as r
 G = runpy.run_path(str(Path(__file__).with_name("generate-evidence-exchange-review.py")))
 
 
-def packet_negative_checks(packet):
+def packet_negative_checks(packet, *, native_backend=False):
     """Rebind synthetic outer IDs so each case reaches its intended boundary."""
-    request, manifest, blobs = r.wrap_packet(packet)
+    request, manifest, blobs = r.wrap_packet(packet, native_backend=native_backend)
     original_batch = request["source_binding"]["batch"]
     base = r.strict(blobs[original_batch])
     r.require(len(base["executions"]) >= 2, "packet-needs-solve-replay")
@@ -89,7 +89,7 @@ def packet_negative_checks(packet):
     missing_source["document"]["artifacts"] = [d for d in missing_source["document"]["artifacts"] if d["content_digest"] != host]
     del missing_source["blobs"][host]
     try:
-        r.check_packet(missing_source)
+        r.check_packet(missing_source, native_backend=native_backend)
     except r.Error as error:
         r.require(error.code == "batch-source-artifact-missing", "wrong-capture-closure-boundary")
     else:
@@ -368,5 +368,122 @@ class ExchangeReview(unittest.TestCase):
         self.rejects("result-reference-mismatch", r.validate_result, result)
 
 
+def structured_packet_checks(packet):
+    """Rust-observed synthetic errors: protocol/source checks, not independent causality."""
+    expected = {
+        "model-world-limit": ("model", "component-limit", "resource-limit"),
+        "replay-world-limit": ("replay", "component-limit", "resource-limit"),
+        "model-invalid": ("model", "model-decode", "input-error"),
+    }
+    r.require(packet["name"] in expected, "unknown-packet")
+    stage, code, cause = expected[packet["name"]]
+    summary = r.check_packet(packet, native_backend=True)
+    request, manifest, blobs = r.wrap_packet(packet, native_backend=True)
+    document = packet["document"]
+    batch = r.strict(blobs[request["source_binding"]["batch"]])
+    count = 0
+    for row in document["executions"]:
+        run = row["definition"]
+        if run["mode"] != "p4-target-replay-v0.1":
+            continue
+        count += 1
+        source = r.strict(blobs[run["provenance"]])
+        value = r.strict(blobs[source["observation"]])
+        r.require((value["stage"], value["code"], value["cause"]["kind"]) == (stage, code, cause), "unexpected-component-outcome")
+        inputs = {v["role"]: v["artifact"] for v in run["inputs"]}
+        expected_cause = {"kind": "resource-limit", "resource": "world-bytes", "limit": "0"} if cause == "resource-limit" else {
+            "kind": "input-error", "artifact": inputs["response"], "reason": "invalid-model"}
+        r.require(value["cause"] == expected_cause, "unexpected-component-outcome")
+        r.require(value["diagnostic"] == {"kind": "absent"}, "unexpected-diagnostic")
+        r.interruption_policy_binding(value, blobs[value["component_policy"]])
+        for missing in (value["component_policy"], value["generator"]):
+            partial = {k: v for k, v in blobs.items() if k != missing}
+            r.require(r.bundle_binding(r.encode(request), r.encode(manifest), partial,
+                                      r.digest(r.encode(request)), request["source_binding"]["batch"]) == [missing], "missing-artifact-lost")
+    r.require(count == (9 if packet["name"] == "model-invalid" else 1), "unexpected-replay-count")
+
+    entry = batch["executions"][1]
+    source = r.strict(blobs[entry["provenance"]])
+    observation = source["observation"]
+    value = r.strict(blobs[observation])
+    # Rebind the synthetic references so each mutation reaches the inventory check.
+    for case, expected_code in (
+        ("completed-source", "interruption-source-mismatch"),
+        ("relabelled-completion", "replay-observation-format"),
+        ("missing-legacy-observation", "interruption-artifact-format"),
+        ("unrelated-input", "interruption-input-binding"),
+        ("wrong-production-policy", "component-policy-source-mismatch"),
+        ("missing-model-budget", "component-policy-source-mismatch"),
+    ):
+        if case == "unrelated-input" and cause != "input-error":
+            continue
+        if case == "missing-model-budget" and stage != "model":
+            continue
+        changed_document = copy.deepcopy(document)
+        changed_batch = copy.deepcopy(batch)
+        changed_blobs = blobs.copy()
+        changed_entry = changed_batch["executions"][1]
+        changed_run = next(row["definition"] for row in changed_document["executions"] if row["id"] == entry["execution"])
+        changed_source = copy.deepcopy(source)
+        changed_value = copy.deepcopy(value)
+        if case in {"completed-source", "relabelled-completion"}:
+            changed_source["terminal"] = {"kind": "completed", "outcome": "target-not-violated"}
+            if case == "relabelled-completion":
+                changed_run["result"] = {"kind": "completed"}
+                changed_run["outputs"] = [{"role": "target-replay", "artifact": observation}]
+                descriptor = next(d for d in changed_document["artifacts"] if d["content_digest"] == observation)
+                descriptor.update(format="axiom-p4-target-replay-observation", format_version="0.1")
+        elif case == "missing-legacy-observation":
+            next(d for d in changed_document["artifacts"] if d["content_digest"] == observation)["format_version"] = "0.1"
+            del changed_blobs[observation]
+        elif case == "missing-model-budget":
+            req = r.strict(blobs[value["request"]])
+            del req["limits"]["component"]["world_bytes"]
+            changed_blobs[value["request"]] = r.encode(req)
+        else:
+            if case == "unrelated-input":
+                changed_value["cause"]["artifact"] = next(i["artifact"] for i in changed_run["inputs"] if i["role"] == "canonical-ir")
+            else:
+                policy = r.strict(blobs[value["component_policy"]])
+                limit = next(v for v in policy["limits"] if v["name"] == "world-bytes")
+                limit["value"] = str(int(limit["value"]) + 1)
+                if cause == "resource-limit":
+                    changed_value["cause"]["limit"] = limit["value"]
+                policy_raw = r.encode(policy)
+                changed_value["component_policy"] = r.digest(policy_raw)
+                changed_blobs[changed_value["component_policy"]] = policy_raw
+                next(d for d in changed_document["artifacts"] if d["content_digest"] == value["component_policy"])["content_digest"] = changed_value["component_policy"]
+            changed_raw = r.encode(changed_value)
+            changed_source["observation"] = r.digest(changed_raw)
+            changed_blobs[changed_source["observation"]] = changed_raw
+            next(d for d in changed_document["artifacts"] if d["content_digest"] == observation)["content_digest"] = changed_source["observation"]
+        source_raw = r.encode(changed_source)
+        changed_entry["provenance"] = changed_run["provenance"] = r.digest(source_raw)
+        changed_blobs[changed_entry["provenance"]] = source_raw
+        try:
+            r.validate_batch_inventory(changed_batch, changed_document, changed_blobs)
+        except r.Error as error:
+            r.require(error.code == expected_code, f"wrong-interruption-boundary-{case}:{error.code}")
+        else:
+            raise AssertionError(f"structured inventory accepted {case}")
+
+    try:
+        r.wrap_packet(packet)
+    except r.Error as error:
+        r.require(str(error) == "fixture-source-mismatch", "unexpected-legacy-refusal")
+    else:
+        raise AssertionError("native batch was silently accepted by the legacy converter")
+    negatives = packet_negative_checks(packet, native_backend=True)
+    print(f"{packet['name']}: {count} Rust-observed interruptions matched structured contract; {negatives} rebound exchange mutations rejected")
+    print(json.dumps({"name": packet["name"], "fingerprints": summary}, sort_keys=True))
+    fingerprints = json.loads((r.HERE / "backend-structured-fingerprints.json").read_bytes())
+    r.require(summary == fingerprints[packet["name"]], "structured-fingerprint-mismatch")
+
+
 if __name__ == "__main__":
-    unittest.main()
+    if sys.flags.optimize:
+        raise RuntimeError("review tests require enabled assertions")
+    if sys.argv[1:] == ["--structured-packet"]:
+        structured_packet_checks(json.load(sys.stdin))
+    else:
+        unittest.main()

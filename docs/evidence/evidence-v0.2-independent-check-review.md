@@ -1,8 +1,8 @@
 # Evidence v0.2 机器字节与独立 checker 交接审阅
 
-日期：2026-11-13（Asia/Shanghai）。基线：`dev` 的 `ed4f4d0`。所有者已确认 C1–C6 的本仓候选实施范围；同日提交前复审与后续授权见实施记录。
+日期：2026-11-13（Asia/Shanghai）；2026-11-14 接续本仓 Rust 适配。交换草案基线为 `dev` 的 `ed4f4d0`，Rust 接续基线为 `bc25628`。所有者已确认 C1–C6 与下述 R1–R6 的本仓候选实施范围。
 
-用途：供规范、生产读回与独立 checker 维护者审阅版本、来源、稳定中止事实和跨仓验收。本文及[机器包](evidence-v0.2-machine-contract/independent-check-v0.2/contract.json)是候选，未发布、未获产品运行资格。不包含分仓写入、生产 Rust 新格式接入、真实 solver、公共发布、完整迁移或 P6 放行。P6 仍为 `closed / p6-not-evaluated`。
+用途：供规范、生产读回与独立 checker 维护者审阅版本、来源、稳定中止事实和跨仓验收。本文及[机器包](evidence-v0.2-machine-contract/independent-check-v0.2/contract.json)是候选，未发布、未获产品运行资格。本仓 Rust 适配仍是显式候选入口；不包含分仓写入、真实 solver、公共发布、完整迁移或 P6 放行。P6 仍为 `closed / p6-not-evaluated`。
 
 ## C1 · 版本、字节与兼容
 
@@ -19,7 +19,7 @@
 
 manifest descriptor 的 `format` 在新版本明确使用 `[a-z][a-z0-9]*(?:[.-][a-z0-9]+)*`，以表示已经存在的 `axiom-smtlib2-qf-uflia-query0.3`。这是一项具名的版本差异：旧 `0.1` 不允许点号，旧规则不修补。新格式仍拒绝大写、空段、路径和下划线；合法词法不代表某个格式已受语义支持。
 
-固定输入与旧身份见机器包 `bindings`；本批生成器、源文件与新产物身份也登记于包内。当前本仓 Rust 入口继续消费旧 backend 候选。新交换封套的检查由离线审阅工具执行，不能据此声称 Rust 已支持新 batch 或中止格式。
+固定输入与旧身份见机器包 `bindings`；本批生成器、源文件与新产物身份也登记于包内。旧 Rust 入口继续消费旧 backend 候选；R1–R6 新入口显式消费 batch / interruption v0.2。request / manifest / result 的交换检查仍由离线审阅工具执行，不是 Rust runtime consumer 或独立 checker 新协议接入。
 
 ## C2 · 调用方来源与无环绑定
 
@@ -66,7 +66,28 @@ batch 不包含最终 Evidence 身份，避免循环；request 同时绑定 Evid
 
 diagnostic 为 `{kind: absent}` 或 `{kind: artifact, ref}`。附属原件仍受 manifest 字节限制和摘要核对，但文本不参与 code / cause 判定。它不得包含路径、凭据或真实输入。没有附件不阻断已齐备的结构化事实；声明了附件却缺少字节按缺件处理。Debug 文本既不被解析为事实，也不要求跨语言一致。
 
-生产适配的后续验收须覆盖：错误枚举到登记原因的映射、模型阶段没有 world、重放阶段保留已取得 world、component policy 的真实采集、输入定位与来源绑定。此次仅提供结构及绑定向量，没有修改 Rust 错误或把旧中止升级为新支持。
+生产适配的后续验收须覆盖：错误枚举到登记原因的映射、模型阶段没有 world、重放阶段保留已取得 world、component policy 的真实采集、输入定位与来源绑定。C1–C6 首批仅提供结构及绑定向量；R1–R6 已接入下述 Rust 映射，但不修改原错误语义或把旧中止升级为新支持。
+
+## R1–R6 · 本仓 Rust 适配（2026-11-14）
+
+所有者确认本仓 Rust 适配、复审、相关验证及本地 `dev` 提交。
+
+| 决定 | 实施边界 |
+| --- | --- |
+| R1 版本 | `readback_v02_with_backend` 保留 backend / batch / Debug interruption `0.1`；`readback_v02_with_backend_v02` 显式选择新登记及 batch / interruption `0.2`，复用原语义检查。输入版本串不选择受信契约，无混搭、降级或 Debug 转换。 |
+| R2 来源 | 共用外部 batch raw pin、完整后端清单、数值顺序、invocation、请求、生产策略及父项核对；仅 simulation。无后端继续调用 `readback_v02`，额外提供 batch 拒绝，S1 拒绝输入无需合法 IR / P2。 |
+| R3 中止 | `ReplayInterruptionV02::from_model_error` / `from_replay_error` 从类型化错误和调用输入生成中止及组件策略两份规范制品；调用方仍须将它们接入 provenance / execution / batch。序列化不是来源认证。 |
+| R4 预算 | model 策略从绑定 request 的实际预算提取六项；replay 策略从生产 ReplayLimits 提取十三项，并与 execution 限额重建结果逐字比较。其余既有限额仍检查；零为零预算。consumer cap 不足返回本次 `ReviewError::Limit`，不能改写生产原因。 |
+| R5 输入 | model 中止只有四项原输入，不生成 candidate / world；replay 中止保留六项输入，并重建 candidate / world。原因中的错误制品绑定到实际 response 或 world。diagnostic 可 absent，若引用则须有正确格式及摘要原件；文本不参与判定。 |
+| R6 结果 | 保留 D1–D5 的历史、冲突及全部运行信任；返回本仓 Readback / policy，不生成独立四态回执，不改变旧 runtime consumer。 |
+
+映射的明确上限：model 支持 Decode 阶段已登记六资源、`BindingMismatch` 与 `InvalidInput` / `LiteralClassConflict`；replay 支持十三资源、`WorldFormat` / `NonCanonicalWorld` 和四类 Unsupported 枚举。model 其余阶段／资源、replay 无法定位输入的 `BindingMismatch` / `Json`、嵌套 Model、未知义务、非规范 observation 及 Internal 等保留原错误，返回 `UnsupportedModelInterruption` / `UnsupportedReplayInterruption`。`component-error` 在协议中仍可表示，但本入口缺少独立受信运行事实，不生成或接受该支持；没有通用 fallback。
+
+本仓读回重新调用同一 Rust 解码／重放组件，再比较结构化事实、原生产策略、引用及终态。这是生产侧一致性复核，不是独立 checker。模型无效、world 预算耗尽及 replay world 预算耗尽已有合成输入上的实际 Rust 调用；其他已登记错误类别的映射测试不等于每条路径已端到端发生。原容量和 solver 的 128 MiB / 6 s 不变。
+
+离线 `wrap_packet(..., native_backend=True)` 显式接收原生新包；默认路径仍只重封装没有中止的旧包。新增三包的指纹固定于 [backend-structured-fingerprints.json](evidence-v0.2-machine-contract/backend-structured-fingerprints.json)，生成入口为 Rust `backend::tests::structured` 中的具名合成测试。Python 对照重放来源与 execution 的终态，并在原件缺失时仍核对已知 descriptor 的版本。输入错误按阶段指向实际 response 或 world，策略对回生产 request 或 execution。错误因果与生产计数由本仓 Rust 复现。正常测试只读这些指纹；变更输入时先审阅测试输出、结构与语义，再更新该独立基线。旧四包 Evidence、batch / 交换指纹及旧登记不变。
+
+详细实施、失败记录与实际验证见[本仓 Rust 适配记录](../records/2026-11-14-evidence-structured-backend.md)。公共格式接受、独立 Go 验收和完整 M1 仍未完成。
 
 ## C4 · 历史、信任与独立结果
 
@@ -122,4 +143,4 @@ AXIOM_EXCHANGE_REVIEW_EXPORT="$PWD/.tmp/evidence-exchange-review-<new-batch>" \
 
 此模式显式重生成合成交换包，不覆盖已存在的题目目录；仍先核对原 Evidence 指纹及有限语义。新摘要须审阅后才用生成器 `--write --packet-dir <该目录>` 更新候选指纹；然后回到正常只读检查。fixture 的 artifact / bundle 字节预算由实际导出量形成，不改变 solver 或 launcher 上限，不声称独立 Go 已在该预算内运行。
 
-本批事实、失败及验证结果见[实施记录](../records/2026-11-13-evidence-exchange-review.md)。公开前仍需正式格式审定、生产适配、分仓独立验收及 ADR 0009 完整迁移，任何一项不得由本地通过代签。
+本批事实、失败及验证结果见[实施记录](../records/2026-11-13-evidence-exchange-review.md)。公开前仍需正式格式审定、产品入口集成、真实来源、分仓独立验收及 ADR 0009 完整迁移，任何一项不得由本地通过代签。

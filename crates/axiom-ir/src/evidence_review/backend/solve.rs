@@ -26,6 +26,7 @@ pub(super) fn rebuild(
         subject,
         artifacts,
         limits: review_limits,
+        ..
     } = materials;
     limits::solve(run)?;
     roles(

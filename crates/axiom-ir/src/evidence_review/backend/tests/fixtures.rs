@@ -241,6 +241,9 @@ pub struct Bundle {
     pub budgets: SolverBudgets,
     pub replay_budget: ReplayLimits,
     pub empty_model: bool,
+    pub duplicate_model_keys: bool,
+    pub contract: BackendContract,
+    pub interruption_diagnostic: Option<&'static [u8]>,
 }
 
 impl Bundle {
@@ -299,7 +302,18 @@ impl Bundle {
             budgets: solver_limits(),
             replay_budget: replay_limits(),
             empty_model: false,
+            duplicate_model_keys: false,
+            contract: BackendContract::Legacy,
+            interruption_diagnostic: None,
         }
+    }
+    pub fn structured(path: &str) -> Self {
+        Self::with_contract(path, BackendContract::StructuredV02)
+    }
+    pub fn with_contract(path: &str, contract: BackendContract) -> Self {
+        let mut bundle = Self::new(path);
+        bundle.contract = contract;
+        bundle
     }
     pub fn add(&mut self, raw: &[u8], format: &str, version: &str) -> String {
         let pin = raw_digest(raw);
@@ -510,7 +524,7 @@ impl Bundle {
         let stdout = match run {
             Run::Unsat => b"unsat\n".to_vec(),
             Run::Unknown => b"unknown\n".to_vec(),
-            Run::Sat => model(&request, self.empty_model),
+            Run::Sat => model(&request, self.empty_model, self.duplicate_model_keys),
             Run::Protocol => b"bad response\n".to_vec(),
             Run::StdoutLimit => vec![b'x'; 4_194_304],
             _ => b"sat\n".to_vec(),
@@ -847,7 +861,7 @@ pub fn test_strings(mut values: Vec<String>) -> Value {
     Value::Array(values.into_iter().map(Value::String).collect())
 }
 
-fn model(request: &SolverRequest, empty: bool) -> Vec<u8> {
+fn model(request: &SolverRequest, empty: bool, duplicate_keys: bool) -> Vec<u8> {
     let mut out = String::from("sat\n(\n");
     for symbol in request.query().symbols() {
         let value = match symbol.origin() {
@@ -859,7 +873,7 @@ fn model(request: &SolverRequest, empty: bool) -> Vec<u8> {
             } if interface.as_ref() == "orders" && !empty => match component {
                 None => (*slot < 3).to_string(),
                 Some(0) => ["10", "5", "0"].get(*slot).unwrap_or(&"0").to_string(),
-                Some(1) => format!("@Text_{}", slot + 1),
+                Some(1) => format!("@Text_{}", if duplicate_keys { 1 } else { slot + 1 }),
                 Some(2) => if *slot < 2 { "1" } else { "0" }.to_owned(),
                 Some(3) => ["10", "20", "8"].get(*slot).unwrap_or(&"0").to_string(),
                 _ => panic!("AX-B01 canonical leaf"),

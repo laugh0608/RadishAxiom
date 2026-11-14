@@ -482,21 +482,86 @@ def validate_batch_inventory(batch, document, blobs):
                 require(captured["solve_execution"] == entry["upstream"]["execution"], "batch-source-mismatch")
                 references = [captured["observation"]]
             require(all(ref in descriptors for ref in references), "batch-source-artifact-missing")
+            if name == "replay_source":
+                replay_observation_inventory(captured, entry, run, inputs, descriptors, blobs)
 
 
-def wrap_packet(packet):
+def replay_observation_inventory(source, entry, run, inputs, descriptors, blobs):
+    """Check structured references and production policy, not error causality."""
+    def declared(content, fmt, version):
+        require(content in descriptors, "interruption-artifact-missing")
+        require((descriptors[content]["format"], descriptors[content]["format_version"]) == (fmt, version), "interruption-artifact-format")
+
+    observation = source["observation"]
+    terminal = source["terminal"]
+    require(type(terminal) is dict and terminal.get("kind") in ("completed", "interrupted")
+            and type(run["result"]) is dict and terminal["kind"] == run["result"].get("kind"),
+            "interruption-source-mismatch")
+    if terminal["kind"] == "completed":
+        require((descriptors[observation]["format"], descriptors[observation]["format_version"])
+                == ("axiom-p4-target-replay-observation", "0.1"), "replay-observation-format")
+        require(run["outputs"] == [{"role": "target-replay", "artifact": observation}], "replay-observation-binding")
+        if observation in blobs:
+            value = strict(blobs[observation])
+            require(type(value) is dict and value.get("format") == "axiom-p4-target-replay-observation"
+                    and value.get("version") == "0.1", "replay-observation-format")
+        return
+    require(run["result"] == terminal, "interruption-source-mismatch")
+    require(run["outputs"] == [], "interruption-input-binding")
+    declared(observation, "axiom-evidence-replay-interruption", "0.2")
+    if observation not in blobs:
+        return
+    value = strict(blobs[observation])
+    validate_interruption(value)
+    require(value["request"] == entry["request"] and value["solve_execution"] == entry["upstream"]["execution"]
+            and terminal == {"kind": "interrupted", "code": value["code"]}, "interruption-source-mismatch")
+    stage = value["stage"]
+    expected_inputs = {"canonical-ir", "obligation-set", "request", "response"}
+    if stage == "replay":
+        expected_inputs |= {"model-world-candidate", "world"}
+    require(set(inputs) == expected_inputs and len(run["inputs"]) == len(expected_inputs),
+            "interruption-input-binding")
+    declared(value["generator"], "generator-source", "0.1")
+    declared(value["component_policy"], "axiom-evidence-component-policy", "0.1")
+    if value["diagnostic"]["kind"] == "artifact":
+        declared(value["diagnostic"]["ref"], "component-diagnostic-text", "0.1")
+    if value["cause"]["kind"] == "input-error":
+        blamed_role = "response" if stage == "model" else "world"
+        require(value["cause"]["artifact"] == inputs[blamed_role], "interruption-input-binding")
+    if value["component_policy"] in blobs:
+        policy_raw = blobs[value["component_policy"]]
+        interruption_policy_binding(value, policy_raw)
+        policy = strict(policy_raw)
+        if stage == "model":
+            if entry["request"] not in blobs:
+                return
+            request = strict(blobs[entry["request"]])
+            require(type(request) is dict and type(request.get("limits")) is dict
+                    and type(request["limits"].get("component")) is dict, "component-policy-source-mismatch")
+            limits = request["limits"]["component"]
+            expected = [{"name": name, "unit": unit, "value": limits.get(name.replace("-", "_"))}
+                        for name, unit in sorted(COMPONENT_LIMITS[stage].items())]
+        else:
+            expected = [v for v in run["limits"] if v["name"] in COMPONENT_LIMITS[stage]]
+        require(policy["limits"] == expected, "component-policy-source-mismatch")
+
+
+def wrap_packet(packet, *, native_backend=False):
     """Keep Evidence bytes; explicitly rebind synthetic batch to the new draft."""
     document = packet["document"]
     has_backend = any(row["definition"]["mode"] not in VECTORS["SPEC"]["modes"] for row in document["executions"])
     batch = copy.deepcopy(packet.get("batch"))
+    candidate_raw = pretty(backend_candidate())
     if has_backend:
-        require(type(batch) is dict and batch["version"] == "0.1" and batch["scope"] == "simulation"
-                and batch["contract"] == digest((HERE / "backend.json").read_bytes()), "fixture-source-mismatch")
+        version = "0.2" if native_backend else "0.1"
+        contract = candidate_raw if native_backend else (HERE / "backend.json").read_bytes()
+        require(type(batch) is dict and batch["version"] == version and batch["scope"] == "simulation"
+                and batch["contract"] == digest(contract), "fixture-source-mismatch")
     # Existing completed replay packets need no diagnostic conversion. An old
     # Debug interruption cannot be upgraded by merely changing its version.
     for d in document["artifacts"]:
-        require(d["format"] != "axiom-evidence-replay-interruption", "interruption-conversion-required")
-    candidate_raw = pretty(backend_candidate())
+        if d["format"] == "axiom-evidence-replay-interruption":
+            require(native_backend and d["format_version"] == "0.2", "interruption-conversion-required")
     if has_backend:
         batch.update(version="0.2", contract=digest(candidate_raw))
     blobs = {k: bytes.fromhex(v) for k, v in packet["blobs"].items()}
@@ -533,8 +598,8 @@ def wrap_packet(packet):
     return request, manifest, blobs
 
 
-def check_packet(packet):
-    request, manifest, blobs = wrap_packet(packet)
+def check_packet(packet, *, native_backend=False):
+    request, manifest, blobs = wrap_packet(packet, native_backend=native_backend)
     raw, manifest_raw = encode(request), encode(manifest)
     expected_request, expected_batch = digest(raw), request["source_binding"].get("batch")
     require(not bundle_binding(raw, manifest_raw, blobs, expected_request, expected_batch), "artifact-missing")

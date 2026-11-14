@@ -2,57 +2,61 @@ use super::*;
 
 #[test]
 fn qualified_scope_duplicate_invocations_and_wrong_replay_parent_are_refused() {
-    let mut bundle = Bundle::new(MINIMAL);
-    bundle.add_all(Run::Sat);
-    bundle.finish();
-    let original = copied(&bundle.batch);
-    *field_mut(&mut bundle.batch, "scope") = value_string("qualified");
-    assert!(matches!(
-        bundle.verify(),
-        Err(ReviewError::Invalid {
-            at: "backend source",
-            reason: "batch scope or binding"
-        })
-    ));
-    bundle.batch = copied(&original);
-    let entries = array_mut(field_mut(&mut bundle.batch, "executions"));
-    let invocation = copied(get(&entries[0], "invocation"));
-    *field_mut(&mut entries[1], "invocation") = invocation;
-    assert!(matches!(
-        bundle.verify(),
-        Err(ReviewError::Invalid {
-            at: "backend source",
-            reason: "entry binding or repeated invocation"
-        })
-    ));
-    bundle.batch = original;
-    let entries = array_mut(field_mut(&mut bundle.batch, "executions"));
-    let own = copied(get(&entries[1], "execution"));
-    *field_mut(field_mut(&mut entries[1], "upstream"), "execution") = own;
-    assert!(matches!(
-        bundle.verify(),
-        Err(ReviewError::Invalid {
-            at: "backend source",
-            reason: "serial replay upstream"
-        })
-    ));
+    for contract in [BackendContract::Legacy, BackendContract::StructuredV02] {
+        let mut bundle = Bundle::with_contract(MINIMAL, contract);
+        bundle.add_all(Run::Sat);
+        bundle.finish();
+        let original = copied(&bundle.batch);
+        *field_mut(&mut bundle.batch, "scope") = value_string("qualified");
+        assert!(matches!(
+            bundle.verify(),
+            Err(ReviewError::Invalid {
+                at: "backend source",
+                reason: "batch scope or binding"
+            })
+        ));
+        bundle.batch = copied(&original);
+        let entries = array_mut(field_mut(&mut bundle.batch, "executions"));
+        let invocation = copied(get(&entries[0], "invocation"));
+        *field_mut(&mut entries[1], "invocation") = invocation;
+        assert!(matches!(
+            bundle.verify(),
+            Err(ReviewError::Invalid {
+                at: "backend source",
+                reason: "entry binding or repeated invocation"
+            })
+        ));
+        bundle.batch = original;
+        let entries = array_mut(field_mut(&mut bundle.batch, "executions"));
+        let own = copied(get(&entries[1], "execution"));
+        *field_mut(field_mut(&mut entries[1], "upstream"), "execution") = own;
+        assert!(matches!(
+            bundle.verify(),
+            Err(ReviewError::Invalid {
+                at: "backend source",
+                reason: "serial replay upstream"
+            })
+        ));
+    }
 }
 
 #[test]
 fn missing_unknown_runtime_trust_is_refused_even_with_a_matching_obligation_set() {
-    let mut bundle = Bundle::new(MINIMAL);
-    bundle.add_all(Run::Unknown);
-    bundle.finish();
-    array_mut(field_mut(&mut bundle.document, "trust")).clear();
-    array_mut(field_mut(&mut bundle.document, "obligations"))
-        .retain(|row| kind(get(row, "definition")).unwrap() != "trust-boundary");
-    assert!(matches!(
-        bundle.verify(),
-        Err(ReviewError::Invalid {
-            at: "backend trust",
-            reason: "missing exact dependency"
-        })
-    ));
+    for contract in [BackendContract::Legacy, BackendContract::StructuredV02] {
+        let mut bundle = Bundle::with_contract(MINIMAL, contract);
+        bundle.add_all(Run::Unknown);
+        bundle.finish();
+        array_mut(field_mut(&mut bundle.document, "trust")).clear();
+        array_mut(field_mut(&mut bundle.document, "obligations"))
+            .retain(|row| kind(get(row, "definition")).unwrap() != "trust-boundary");
+        assert!(matches!(
+            bundle.verify(),
+            Err(ReviewError::Invalid {
+                at: "backend trust",
+                reason: "missing exact dependency"
+            })
+        ));
+    }
 }
 
 #[test]

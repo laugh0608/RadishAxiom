@@ -29,8 +29,27 @@ impl Bundle {
         let mut candidate = None;
         let mut observed = None;
         let mut failure = None;
+        let mut structured = None;
         match decode_model_world(request, model) {
             Err(error) => {
+                if self.contract == BackendContract::StructuredV02 {
+                    let diagnostic = self
+                        .interruption_diagnostic
+                        .map(|raw| self.add(raw, "component-diagnostic-text", "0.1"));
+                    structured = Some(
+                        ReplayInterruptionV02::from_model_error(
+                            InterruptionBinding {
+                                request,
+                                solve_execution: solve,
+                                generator: &generator_pin,
+                                diagnostic: diagnostic.as_deref(),
+                            },
+                            response.artifact_digest(),
+                            &error,
+                        )
+                        .unwrap(),
+                    );
+                }
                 failure = Some((
                     "model",
                     if matches!(error, crate::solver::SolverError::ResourceLimit { .. }) {
@@ -73,6 +92,25 @@ impl Bundle {
                         observed = Some(value);
                     }
                     Err(error) => {
+                        if self.contract == BackendContract::StructuredV02 {
+                            let diagnostic = self
+                                .interruption_diagnostic
+                                .map(|raw| self.add(raw, "component-diagnostic-text", "0.1"));
+                            structured = Some(
+                                ReplayInterruptionV02::from_replay_error(
+                                    InterruptionBinding {
+                                        request,
+                                        solve_execution: solve,
+                                        generator: &generator_pin,
+                                        diagnostic: diagnostic.as_deref(),
+                                    },
+                                    &raw_digest(decoded.world_bytes()),
+                                    self.replay_budget,
+                                    &error,
+                                )
+                                .unwrap(),
+                            );
+                        }
                         let code = match error {
                             crate::replay::ReplayError::ResourceLimit { .. } => "component-limit",
                             crate::replay::ReplayError::UnsupportedProfile
@@ -91,22 +129,36 @@ impl Bundle {
         }
         let (observation, terminal, state, outputs) = if let Some((stage, code, detail)) = &failure
         {
-            let diagnostic = value_object([
-                ("format", value_string("axiom-evidence-replay-interruption")),
-                ("version", value_string("0.1")),
-                ("scope", value_string("simulation")),
-                ("request", value_string(request.artifact_digest())),
-                ("solve_execution", value_string(solve)),
-                ("generator", value_string(&generator_pin)),
-                ("stage", value_string(stage)),
-                ("code", value_string(code)),
-                ("detail", value_string(detail)),
-            ]);
-            let pin = self.add(
-                &encode(&diagnostic),
-                "axiom-evidence-replay-interruption",
-                "0.1",
-            );
+            let pin = if let Some(structured) = &structured {
+                assert_eq!(structured.code(), *code);
+                self.add(
+                    structured.component_policy_bytes(),
+                    "axiom-evidence-component-policy",
+                    "0.1",
+                );
+                self.add(
+                    structured.canonical_bytes(),
+                    "axiom-evidence-replay-interruption",
+                    "0.2",
+                )
+            } else {
+                let diagnostic = value_object([
+                    ("format", value_string("axiom-evidence-replay-interruption")),
+                    ("version", value_string("0.1")),
+                    ("scope", value_string("simulation")),
+                    ("request", value_string(request.artifact_digest())),
+                    ("solve_execution", value_string(solve)),
+                    ("generator", value_string(&generator_pin)),
+                    ("stage", value_string(stage)),
+                    ("code", value_string(code)),
+                    ("detail", value_string(detail)),
+                ]);
+                self.add(
+                    &encode(&diagnostic),
+                    "axiom-evidence-replay-interruption",
+                    "0.1",
+                )
+            };
             let state = value_object([
                 ("kind", value_string("interrupted")),
                 ("code", value_string(code)),
@@ -331,9 +383,9 @@ impl Bundle {
         }
         self.batch = value_object([
             ("format", value_string("axiom-evidence-backend-batch")),
-            ("version", value_string("0.1")),
+            ("version", value_string(self.contract.version())),
             ("scope", value_string("simulation")),
-            ("contract", value_string(&raw_digest(CONTRACT))),
+            ("contract", value_string(&raw_digest(self.contract.bytes()))),
             ("subject", value_string(self.ir.document_id())),
             ("obligation_set", value_string(self.p2.artifact_digest())),
             ("proof_policy", value_string(self.production_policy)),
@@ -348,18 +400,21 @@ impl Bundle {
     }
     pub fn verify_policy(&self, policy: ProofPolicy, allowed: &[&str]) -> Result<Readback> {
         let batch = encode(&self.batch);
-        readback_v02_with_backend(
+        readback(
             &encode(&self.document),
             |pin| self.blobs.get(pin).map(Vec::as_slice),
             review_limits(),
-            BackendReviewContext {
-                batch: &batch,
-                expected_batch_digest: &raw_digest(&batch),
-                consumer_policy: policy,
-                allowed_trust_categories: allowed,
-                solver_limits: solver_limits(),
-                replay_limits: replay_limits(),
-            },
+            Some((
+                BackendReviewContext {
+                    batch: &batch,
+                    expected_batch_digest: &raw_digest(&batch),
+                    consumer_policy: policy,
+                    allowed_trust_categories: allowed,
+                    solver_limits: solver_limits(),
+                    replay_limits: replay_limits(),
+                },
+                self.contract,
+            )),
         )
     }
 }

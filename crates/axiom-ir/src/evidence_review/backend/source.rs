@@ -19,6 +19,7 @@ impl Batch {
         subject: &Subject<'_>,
         executions: &BTreeMap<&str, Execution<'_>>,
         limits: ReviewLimits,
+        contract: BackendContract,
     ) -> Result<Self> {
         if context.batch.len() > limits.evidence_json.max_input_bytes {
             return Err(ReviewError::Limit("backend batch bytes"));
@@ -43,7 +44,11 @@ impl Batch {
                 "executions",
             ],
         )?;
-        format(batch, "axiom-evidence-backend-batch")?;
+        if text(batch, "format")? != "axiom-evidence-backend-batch"
+            || text(batch, "version")? != contract.version()
+        {
+            return Err(ReviewError::Version);
+        }
         let document = subject
             .document
             .as_ref()
@@ -53,7 +58,7 @@ impl Batch {
             .as_ref()
             .ok_or(invalid("backend source", "P2 required"))?;
         if text(batch, "scope")? != "simulation"
-            || text(batch, "contract")? != raw_digest(CONTRACT)
+            || text(batch, "contract")? != raw_digest(contract.bytes())
             || text(batch, "subject")? != document.document_id()
             || text(batch, "obligation_set")? != p2.artifact_digest()
         {

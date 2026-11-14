@@ -19,6 +19,7 @@ pub(super) fn rebuild(
         subject,
         artifacts,
         limits: review_limits,
+        contract,
     } = materials;
     let limits = limits::replay(run, context.replay_limits)?;
     let source_value = record(
@@ -80,22 +81,22 @@ pub(super) fn rebuild(
                 &run.inputs,
                 &["canonical-ir", "obligation-set", "request", "response"],
             )?;
-            let code = if matches!(error, SolverError::ResourceLimit { .. }) {
-                "component-limit"
-            } else {
-                "model-decode"
-            };
+            let observation = strict(
+                artifacts.get(
+                    observation_pin,
+                    Some(("axiom-evidence-replay-interruption", contract.version())),
+                )?,
+                review_limits.evidence_json,
+                "replay interruption",
+            )?;
             return interrupted(
                 run,
                 entry,
                 source,
                 materials,
-                observation_pin,
-                Interruption {
-                    stage: "model",
-                    code,
-                    detail: format!("{error:?}"),
-                },
+                &observation,
+                request,
+                ComponentError::Model(error),
             );
         }
     };
@@ -120,15 +121,17 @@ pub(super) fn rebuild(
         return Err(invalid("backend replay", "candidate or world rebuild"));
     }
     let completed = matches!(run.attempt, Attempt::Completed);
-    let observation = record(
-        artifacts,
-        observation_pin,
-        if completed {
-            "axiom-p4-target-replay-observation"
-        } else {
-            "axiom-evidence-replay-interruption"
-        },
+    let observation = strict(
+        artifacts.get(
+            observation_pin,
+            Some(if completed {
+                ("axiom-p4-target-replay-observation", "0.1")
+            } else {
+                ("axiom-evidence-replay-interruption", contract.version())
+            }),
+        )?,
         review_limits.evidence_json,
+        "replay observation",
     )?;
     let generator_pin = if completed {
         string(
@@ -157,25 +160,14 @@ pub(super) fn rebuild(
     ) {
         Ok(rebuilt) => rebuilt,
         Err(error) => {
-            let code = match error {
-                ReplayError::ResourceLimit { .. } => "component-limit",
-                ReplayError::UnsupportedProfile
-                | ReplayError::UnsupportedIrVersion(_)
-                | ReplayError::UnsupportedKind(_)
-                | ReplayError::UnsupportedFeature { .. } => "unsupported",
-                _ => "replay-error",
-            };
             return interrupted(
                 run,
                 entry,
                 source,
                 materials,
-                observation_pin,
-                Interruption {
-                    stage: "replay",
-                    code,
-                    detail: format!("{error:?}"),
-                },
+                &observation,
+                request,
+                ComponentError::Replay(error, limits),
             );
         }
     };
@@ -261,10 +253,9 @@ pub(super) fn rebuild(
     ]))
 }
 
-struct Interruption {
-    stage: &'static str,
-    code: &'static str,
-    detail: String,
+enum ComponentError {
+    Model(SolverError),
+    Replay(ReplayError, ReplayLimits),
 }
 
 fn interrupted(
@@ -272,56 +263,99 @@ fn interrupted(
     entry: &source::Entry,
     source: &Members,
     materials: Materials<'_, '_, '_>,
-    pin: &str,
-    interruption: Interruption,
+    value: &Value,
+    request: &crate::solver::SolverRequest,
+    error: ComponentError,
 ) -> Result<Value> {
     let Materials {
-        artifacts, limits, ..
+        artifacts,
+        contract,
+        ..
     } = materials;
-    let Interruption {
-        stage,
-        code,
-        detail,
-    } = interruption;
+    let generator = string(named(value, "generator")?, "interruption generator")?;
+    artifacts.get(generator, Some(("generator-source", "0.1")))?;
+    let code = if contract == BackendContract::StructuredV02 {
+        let row = interruption::members(value)?;
+        let binding = InterruptionBinding {
+            request,
+            solve_execution: entry
+                .upstream
+                .as_deref()
+                .ok_or(invalid("backend replay", "solve parent"))?,
+            generator,
+            diagnostic: interruption::diagnostic(row, artifacts)?,
+        };
+        let expected = match &error {
+            ComponentError::Model(error) => {
+                ReplayInterruptionV02::from_model_error(binding, run.inputs["response"], error)?
+            }
+            ComponentError::Replay(error, limits) => ReplayInterruptionV02::from_replay_error(
+                binding,
+                run.inputs["world"],
+                *limits,
+                error,
+            )?,
+        };
+        interruption::check(value, row, &expected, artifacts)?;
+        expected.code()
+    } else {
+        let diagnostic = shape(
+            value,
+            "replay interruption",
+            &[
+                "format",
+                "version",
+                "scope",
+                "request",
+                "solve_execution",
+                "generator",
+                "stage",
+                "code",
+                "detail",
+            ],
+        )?;
+        format(diagnostic, "axiom-evidence-replay-interruption")?;
+        let (stage, code, detail) = match &error {
+            ComponentError::Model(error) => (
+                "model",
+                if matches!(error, SolverError::ResourceLimit { .. }) {
+                    "component-limit"
+                } else {
+                    "model-decode"
+                },
+                format!("{error:?}"),
+            ),
+            ComponentError::Replay(error, _) => (
+                "replay",
+                match error {
+                    ReplayError::ResourceLimit { .. } => "component-limit",
+                    ReplayError::UnsupportedProfile
+                    | ReplayError::UnsupportedIrVersion(_)
+                    | ReplayError::UnsupportedKind(_)
+                    | ReplayError::UnsupportedFeature { .. } => "unsupported",
+                    _ => "replay-error",
+                },
+                format!("{error:?}"),
+            ),
+        };
+        if text(diagnostic, "scope")? != "simulation"
+            || text(diagnostic, "request")? != entry.request
+            || Some(text(diagnostic, "solve_execution")?) != entry.upstream.as_deref()
+            || text(diagnostic, "stage")? != stage
+            || text(diagnostic, "code")? != code
+            || text(diagnostic, "detail")? != detail
+        {
+            return Err(invalid("backend replay", "interruption rebuild"));
+        }
+        code
+    };
     execution_terminal(run, Some(code))?;
     solve::roles(&run.outputs, &[])?;
-    let value = record(
-        artifacts,
-        pin,
-        "axiom-evidence-replay-interruption",
-        limits.evidence_json,
-    )?;
-    let diagnostic = shape(
-        &value,
-        "replay interruption",
-        &[
-            "format",
-            "version",
-            "scope",
-            "request",
-            "solve_execution",
-            "generator",
-            "stage",
-            "code",
-            "detail",
-        ],
-    )?;
-    format(diagnostic, "axiom-evidence-replay-interruption")?;
-    artifacts.get(
-        text(diagnostic, "generator")?,
-        Some(("generator-source", "0.1")),
-    )?;
-    if text(diagnostic, "scope")? != "simulation"
-        || text(diagnostic, "request")? != entry.request
-        || Some(text(diagnostic, "solve_execution")?) != entry.upstream.as_deref()
-        || text(diagnostic, "stage")? != stage
-        || text(diagnostic, "code")? != code
-        || text(diagnostic, "detail")? != detail
-        || encode(member(source, "terminal"))
-            != encode(&value_object([
-                ("kind", value_string("interrupted")),
-                ("code", value_string(code)),
-            ]))
+    if encode(member(source, "terminal"))
+        != encode(&value_object([
+            ("kind", value_string("interrupted")),
+            ("code", value_string(code)),
+        ]))
     {
         return Err(invalid("backend replay", "interruption rebuild"));
     }

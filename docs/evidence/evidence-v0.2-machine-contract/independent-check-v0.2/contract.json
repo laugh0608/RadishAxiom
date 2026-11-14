@@ -437,11 +437,11 @@
     },
     {
       "path": "scripts/evidence_exchange_review.py",
-      "raw_sha256": "sha256:80583576672388725cf10720c1fd55e28ac353a9101656d0d90b5f2372a8051a"
+      "raw_sha256": "sha256:7c3f3a495ac8b042a039dfed50bada4aa13b118befb5ed2fa18f397a66b55731"
     },
     {
       "path": "scripts/test-evidence-exchange-review.py",
-      "raw_sha256": "sha256:c5702e96cc785e54ec329e1196de1ee122bede105764aab39ea545dceb0a55e3"
+      "raw_sha256": "sha256:d3d0fd2baf538c1089dce59ca277fd18048af40674087af21bbeedffc29dcba5"
     },
     {
       "path": "scripts/generate-independent-check-contracts.py",
@@ -458,7 +458,7 @@
   ],
   "specification": {
     "path": "docs/evidence/evidence-v0.2-independent-check-review.md",
-    "raw_sha256": "sha256:0edec779d6657f07665f44af50fc8a41bb8b4313c334bec928b471996e5c0b9e"
+    "raw_sha256": "sha256:d4629fc353b78c5b727cab45bea2a6b343f1dbb26a9a69f831c22483c52c8d96"
   },
   "status": "candidate-not-public-not-qualified",
   "trust_discharge_rules": [],

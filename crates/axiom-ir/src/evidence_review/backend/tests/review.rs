@@ -15,7 +15,7 @@ fn replace(value: &mut Value, changes: &BTreeMap<String, String>) {
     }
 }
 
-fn rekey(bundle: &mut Bundle) {
+pub(super) fn rekey(bundle: &mut Bundle) {
     for _ in 0..32 {
         let mut changes = BTreeMap::new();
         for (pin, raw) in &bundle.blobs {
@@ -76,7 +76,7 @@ fn rekey(bundle: &mut Bundle) {
     panic!("synthetic mutation did not converge");
 }
 
-fn mutate_artifact(bundle: &mut Bundle, format: &str, mutate: impl FnOnce(&mut Value)) {
+pub(super) fn mutate_artifact(bundle: &mut Bundle, format: &str, mutate: impl FnOnce(&mut Value)) {
     let row = array_mut(field_mut(&mut bundle.document, "artifacts"))
         .iter()
         .find(|row| string(get(row, "format"), "format").unwrap() == format)
@@ -92,38 +92,40 @@ fn mutate_artifact(bundle: &mut Bundle, format: &str, mutate: impl FnOnce(&mut V
 
 #[test]
 fn sealed_source_rejects_semantic_rebinding_after_all_outer_identities_are_recomputed() {
-    for case in ["request", "invocation", "scheduled", "launch", "terminal"] {
-        let mut bundle = Bundle::new(MINIMAL);
-        bundle.add_all(Run::Unsat);
-        bundle.finish();
-        if case == "launch" || case == "terminal" {
-            mutate_artifact(&mut bundle, "axiom-evidence-backend-capture", |value| {
-                if case == "launch" {
-                    let other = copied(get(get(value, "launch"), "supervisor"));
-                    *field_mut(field_mut(value, "launch"), "cli") = other;
-                } else {
-                    *field_mut(field_mut(value, "terminal"), "status") = value_string("sat");
-                }
-            });
-        } else {
-            mutate_artifact(&mut bundle, "axiom-evidence-capture-observation", |value| {
-                *field_mut(value, case) = if case == "scheduled" {
-                    Value::Bool(false)
-                } else {
-                    value_string(&raw_digest(b"different synthetic invocation or request"))
-                };
-            });
+    for contract in [BackendContract::Legacy, BackendContract::StructuredV02] {
+        for case in ["request", "invocation", "scheduled", "launch", "terminal"] {
+            let mut bundle = Bundle::with_contract(MINIMAL, contract);
+            bundle.add_all(Run::Unsat);
+            bundle.finish();
+            if case == "launch" || case == "terminal" {
+                mutate_artifact(&mut bundle, "axiom-evidence-backend-capture", |value| {
+                    if case == "launch" {
+                        let other = copied(get(get(value, "launch"), "supervisor"));
+                        *field_mut(field_mut(value, "launch"), "cli") = other;
+                    } else {
+                        *field_mut(field_mut(value, "terminal"), "status") = value_string("sat");
+                    }
+                });
+            } else {
+                mutate_artifact(&mut bundle, "axiom-evidence-capture-observation", |value| {
+                    *field_mut(value, case) = if case == "scheduled" {
+                        Value::Bool(false)
+                    } else {
+                        value_string(&raw_digest(b"different synthetic invocation or request"))
+                    };
+                });
+            }
+            assert!(
+                matches!(
+                    bundle.verify(),
+                    Err(ReviewError::Invalid {
+                        at: "backend source",
+                        ..
+                    })
+                ),
+                "{case}"
+            );
         }
-        assert!(
-            matches!(
-                bundle.verify(),
-                Err(ReviewError::Invalid {
-                    at: "backend source",
-                    ..
-                })
-            ),
-            "{case}"
-        );
     }
 }
 
@@ -222,7 +224,8 @@ fn batch_byte_limit_precedes_digest_work_and_identity_checks() {
                 p2: None,
             },
             &BTreeMap::new(),
-            limits
+            limits,
+            BackendContract::Legacy
         ),
         Err(ReviewError::Limit("backend batch bytes"))
     ));
@@ -230,24 +233,27 @@ fn batch_byte_limit_precedes_digest_work_and_identity_checks() {
 
 #[test]
 fn replay_source_cannot_change_parent_or_invocation_after_rekeying() {
-    for field in ["solve_execution", "invocation"] {
-        let mut bundle = Bundle::new(MINIMAL);
-        bundle.add_all(Run::Sat);
-        bundle.finish();
-        mutate_artifact(
-            &mut bundle,
-            "axiom-evidence-backend-replay-source",
-            |source| {
-                *field_mut(source, field) = value_string(&raw_digest(b"other synthetic source"));
-            },
-        );
-        assert!(matches!(
-            bundle.verify(),
-            Err(ReviewError::Invalid {
-                at: "backend source",
-                reason: "replay binding"
-            })
-        ));
+    for contract in [BackendContract::Legacy, BackendContract::StructuredV02] {
+        for field in ["solve_execution", "invocation"] {
+            let mut bundle = Bundle::with_contract(MINIMAL, contract);
+            bundle.add_all(Run::Sat);
+            bundle.finish();
+            mutate_artifact(
+                &mut bundle,
+                "axiom-evidence-backend-replay-source",
+                |source| {
+                    *field_mut(source, field) =
+                        value_string(&raw_digest(b"other synthetic source"));
+                },
+            );
+            assert!(matches!(
+                bundle.verify(),
+                Err(ReviewError::Invalid {
+                    at: "backend source",
+                    reason: "replay binding"
+                })
+            ));
+        }
     }
 }
 

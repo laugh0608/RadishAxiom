@@ -55,6 +55,39 @@ fn five_target_kinds_and_counterexample_attribution_match_independent_finite_sem
             readback.document_digest,
             content_id(DOCUMENT, &encode(&bundle.document))
         );
+        // Rewrap the very same Evidence with the separately selected new batch.
+        // Neither the old fixture nor its fixed fingerprints are rewritten.
+        let mut new_batch = copied(&bundle.batch);
+        *field_mut(&mut new_batch, "version") = value_string("0.2");
+        *field_mut(&mut new_batch, "contract") = value_string(&raw_digest(STRUCTURED_CONTRACT));
+        let new_batch = encode(&new_batch);
+        let exchange_pins = json::parse(include_bytes!(
+            "../../../../../../docs/evidence/evidence-v0.2-machine-contract/independent-check-v0.2/packet-fingerprints.json"
+        ), json_limits()).unwrap();
+        assert_eq!(
+            raw_digest(&new_batch),
+            string(get(get(&exchange_pins, name), "batch_raw"), "batch pin").unwrap()
+        );
+        let new_readback = readback_v02_with_backend_v02(
+            &encode(&bundle.document),
+            |pin| bundle.blobs.get(pin).map(Vec::as_slice),
+            review_limits(),
+            BackendReviewContext {
+                batch: &new_batch,
+                expected_batch_digest: &raw_digest(&new_batch),
+                consumer_policy: ProofPolicy::AttestationAllowed,
+                allowed_trust_categories: ALLOWED,
+                solver_limits: solver_limits(),
+                replay_limits: replay_limits(),
+            },
+        )
+        .unwrap();
+        assert_eq!(readback.artifact_digest, new_readback.artifact_digest);
+        assert_eq!(readback.document_digest, new_readback.document_digest);
+        assert_eq!(
+            readback.backend.as_ref().unwrap().remaining_trust,
+            new_readback.backend.as_ref().unwrap().remaining_trust
+        );
         let blobs = Value::Object(
             bundle
                 .blobs
