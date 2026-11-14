@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-11-14（本仓 Rust 新 batch／结构化中止适配；无新增真实后端执行）
+更新日期：2026-11-14（分仓 Go checker 首批 v0.2 合成交换验收）
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。整体目标见[开发计划](../development-plan.md)，归属与任务来源见[能力专题地图](../topics.md)；历史流水见[整理前快照](../records/status-before-planning-alignment-2026-11-01.md)与[早期归档](../records/status-through-2026-09-03.md)。
 
@@ -28,7 +28,7 @@
 
 | 顺位 | 必须继续 | 必要阻塞 / 结束条件 |
 | --- | --- | --- |
-| 1 | 审定 Evidence v0.2 后端结果绑定，接入严格读回与独立 checker | D1–D5 已完成本仓候选实现；C1–C6 已形成独立交换候选与离线材料。R1–R6 已接入本仓 Rust 新 batch／结构化中止候选；公共机器字节、产品入口集成、真实来源、分仓 checker 及完整迁移仍待验收 |
+| 1 | 推进 Evidence v0.2 独立语义验收 | 本仓 Rust 候选读回和分仓 Go 合成交换切片已完成。下一步独立重建 P1 / P2 并复核准确目标；公共机器字节、产品入口集成、真实来源及完整迁移仍待验收 |
 | 2 | 有限裁决真实 solver 路径 | C1/LibPoly、L3 剩余来源与有限宿主信任、目标制品及运行资格仍未关闭。复用已有材料；选择继续固定候选、评估一个替代或等待，不同时展开多条来源链 |
 | 3 | 实际受限校准，再取得 AX-B01 全部结果 | 保持原容量及 128 MiB / 6 s；按 E0/E4/E5 和具体授权取真实结果。九项后端结果与四项结构类义务支持齐备后装配，独立核对精确目标、信任与同一 Evidence 摘要 |
 | 4 | P6–P9 与首个真实纵向闭环 | 提前登记 Node P7 的来源、宿主和硬资源缺口；P4/P5 真结果不足时 P6 继续 closed。correct 全链、两个 wrong、invalid、真实 timeout 与篡改/门控拒绝按原契约验收 |
@@ -59,7 +59,7 @@ C1–C6 的[独立交换审阅](../evidence/evidence-v0.2-independent-check-revi
 
 11 月 14 日完成 R1–R6 本仓候选及复审。新 Rust 入口显式选择 batch / interruption v0.2，从类型化错误生成结构化事实、终态原因码与生产策略，保留旧入口和原指纹。合成验证覆盖 model／replay 资源中止、无效模型、终态及输入错绑和历史信任。分仓独立 checker、真实来源、公共接受与完整迁移仍待验收。 [适配与复审记录](../records/2026-11-14-evidence-structured-backend.md)
 
-分仓交接准备已补齐 Evidence 原件缺失的回执表达及十个原生 v0.2 合成包的可复现导出。下一步使用包外 pin 验收交换协议、来源和拒绝，再验收独立语义。分仓基线与逐案预期见[交换审阅](../evidence/evidence-v0.2-independent-check-review.md#checker-handoff)。
+十个原生 v0.2 包已通过分仓 Go 首批合成交换验收。分仓 `091c6163bb429ce201f7284797cdafc67e9ce47a` 对九包返回 `incomplete`，对缺历史运行信任的一包返回 `rejected`。下一切片独立重建 AX-B01 的 P1 / P2，复核精确目标及同目标冲突。 [首批验收记录](../records/2026-11-14-evidence-checker-v0.2-exchange.md)
 
 ### 当前接续（2026-11-07）
 
