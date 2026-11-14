@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-11-14（分仓 Go checker 合成 AX-B01 P4-A 独立解码复审）
+更新日期：2026-11-14（合成 AX-B01 分仓验收与日终交接）
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。整体目标见[开发计划](../development-plan.md)，归属与任务来源见[能力专题地图](../topics.md)；历史流水见[整理前快照](../records/status-before-planning-alignment-2026-11-01.md)与[早期归档](../records/status-through-2026-09-03.md)。
 
@@ -14,7 +14,7 @@
 | --- | --- | --- |
 | 语义与 IR | P1 / P2 内部组件已有本机证据；不等于完整生产阶段或 Evidence v0.2 | [语义与义务来源](../topics.md#semantics-ir) |
 | 验证管线 | 限定 P3、P4-A / B 与紧凑表示已有组件证据，AX-B01 P5 已完成限定本机生产接受。真实 solver、P6 和完整 P0–P9 仍待验收 | [管线与反例来源](../topics.md#verification-pipeline) |
-| Evidence / Checker | v0.1 有受限离线消费。v0.2 已完成本仓合成文档候选读回、分仓 AX-B01 的 P1 / P2、绑定世界精确重放及冲突拒绝。完整独立验收、M1 和公共读取待完成 | [独立复核来源](../topics.md#independent-checker) |
+| Evidence / Checker | v0.1 有受限离线消费。v0.2 已完成本仓合成文档候选读回、分仓 AX-B01 的 P1 / P2、S1–S3、P4-A 独立解码、限定精确重放及冲突拒绝。完整独立验收、M1 和公共读取待完成 | [独立复核来源](../topics.md#independent-checker) |
 | 运行交付 | F / C 及 L1 / L2 等已有本机或离线材料；L3 完整输入 / 包装器源码已有静态与合成验证；工具 / 宿主 / 实际执行资格未闭合 | [运行与交付来源](../topics.md#runtime-delivery) |
 | 实验评估 | 三表示、两模型、四任务、72 个 trial bundle 已预注册；execution lock、完整装置、正式模型与收益未验收 | [实验来源](../topics.md#evaluation) |
 
@@ -28,7 +28,7 @@
 
 | 顺位 | 必须继续 | 必要阻塞 / 结束条件 |
 | --- | --- | --- |
-| 1 | 补齐合成 AX-B01 的独立结果支持 | P1 / P2、P4-A 标量模型重建、绑定世界上的 guarantee / coverage 和冲突拒绝已有验收。下一步独立核对 S1–S3 四项支持，再推进其余精确目标、attestation 历史与结构化中止；未核实项保留 `incomplete` |
+| 1 | 补齐合成 AX-B01 的独立结果支持 | P1 / P2、S1–S3 四项支持、P4-A 标量模型重建和限定 guarantee / coverage 重放已有验收。下一步补 P4-B 数值范围、总性与键基数的精确重放，再核对历史与结构化中止；未核实项保留 `incomplete` |
 | 2 | 有限裁决真实 solver 路径 | C1/LibPoly、L3 剩余来源与有限宿主信任、目标制品及运行资格仍未关闭。复用已有材料；选择继续固定候选、评估一个替代或等待，不同时展开多条来源链 |
 | 3 | 实际受限校准，再取得 AX-B01 全部结果 | 保持原容量及 128 MiB / 6 s；按 E0/E4/E5 和具体授权取真实结果。九项后端结果与四项结构类义务支持齐备后装配，独立核对精确目标、信任与同一 Evidence 摘要 |
 | 4 | P6–P9 与首个真实纵向闭环 | 提前登记 Node P7 的来源、宿主和硬资源缺口；P4/P5 真结果不足时 P6 继续 closed。correct 全链、两个 wrong、invalid、真实 timeout 与篡改/门控拒绝按原契约验收 |
@@ -53,15 +53,17 @@ ADR 0009 的 M1 已使用主仓 `CHK-PROOF-02` 精确源包复跑 Go checker 源
 
 11 月 13 日所有者已确认 [D1–D5 候选实施范围](../evidence/ax-b01-evidence-v0.2-backend-support-review.md#所有者确认的实施决定2026-11-13)。重放工具四类漏拒绝已修复；本仓新增外部固定批次 pin、全部运行信任、模式专属中止与历史聚合，完整合成 AX-B01 的 13 项核心义务和九项后端结果可严格读回。五类目标由 Python 有限语义另行核对；真实 solver、独立产品 checker、公共新字节接受及完整 M1 尚未完成，P6 仍关闭。来源事实与验证边界见[实施记录](../records/2026-11-13-evidence-backend-implementation.md)，修复前观察保留于[审查记录](../records/2026-11-13-evidence-backend-review.md)。
 
-全天提交与代码／文档核对见[11 月 7 日日终回顾](../records/2026-11-07-closeout.md)。各切片的契约和验收从[专题地图](../topics.md)进入。
+当天两仓提交与代码、文档对照见[11 月 14 日日终回顾](../records/2026-11-14-closeout.md)。
 
 C1–C6 的[独立交换审阅](../evidence/evidence-v0.2-independent-check-review.md)已物化新 request / manifest / result、来源 pin、结构化中止及合成验收材料，旧 Evidence 与机器基线保持原字节。新包只标记 simulation；没有改写旧 runtime consumer、独立 checker 制品或公共门禁。复核与实际验证见[交换草案实施记录](../records/2026-11-13-evidence-exchange-review.md)。
 
-11 月 14 日完成 R1–R6 本仓候选及复审。新 Rust 入口显式选择 batch / interruption v0.2，从类型化错误生成结构化事实、终态原因码与生产策略，保留旧入口和原指纹。合成验证覆盖 model／replay 资源中止、无效模型、终态及输入错绑和历史信任。分仓独立 checker、真实来源、公共接受与完整迁移仍待验收。 [适配与复审记录](../records/2026-11-14-evidence-structured-backend.md)
+11 月 14 日完成 R1–R6 本仓候选及复审。新 Rust 入口显式选择 batch / interruption v0.2，从类型化错误生成结构化事实、终态原因码与生产策略，保留旧入口和原指纹。合成验证覆盖 model／replay 资源中止、无效模型、终态及输入错绑和历史信任。真实来源、公共接受与完整迁移仍待验收。 [适配与复审记录](../records/2026-11-14-evidence-structured-backend.md)
 
 分仓 `091c6163bb429ce201f7284797cdafc67e9ce47a` 完成首批合成交换验收。分仓 `ec3eb6fe7bee30a39030c9d6d27da7c72eb821d6` 独立核验 AX-B01 的 P1 / P2 共 13 项核心义务，拒绝错误的覆盖归因及同目标冲突。十个原生包中，缺历史运行信任与同目标冲突两包为 `rejected`，其余八包为 `incomplete`。该批重放使用绑定的具体世界。 [交换及语义验收记录](../records/2026-11-14-evidence-checker-v0.2-exchange.md)
 
 分仓 `92960b77838b602135101164b63c7f2ac849da7c` 已独立从原始合成 SAT 重建符号来源、输入布局及规范世界。调用方提供充足 checker 预算时，三套 AX-B01 的 27 份 world 与 Text 等价类逐字节匹配；错绑拒绝，预算耗尽保留 `incomplete`。原交接请求保留原字节。 [P4-A 复审与预算断点](../records/2026-11-14-evidence-checker-v0.2-exchange.md#第三批合成-p4-a-独立解码复审)
+
+分仓 `1d8a5d384fc15915e9a5af9a1006831696c348a4` 已独立复核三套合成 AX-B01 的 S1 结构判定、S2 空效果推导以及 S3 两项字段来源，共 12 项支持。范围为合法 subject 与公开标量片段。旧 v0.1 反例、一般构造及 rejected-ir 的独立失败重演仍按各自范围验收。 [S1–S3 验收记录](../records/2026-11-14-evidence-checker-v0.2-exchange.md#第四批合成-s1s3-独立支持)
 
 ### 当前接续（2026-11-07）
 
@@ -91,9 +93,9 @@ G0 以证据不足结束，真实接线仍未放行。L1 / L2 的源绑定、报
 
 #### AX-B01 Evidence v0.2
 
-1. **先审定后端绑定候选。** 确认 B1–B3 的结果与信任规则、执行和重放来源由谁提供受信摘要、完整流与前缀／缺流的边界，以及多次真实尝试的终态与保留规则。确认 `certificate-required`、显式剩余信任与错绑拒绝的预期。 [后端结果与信任](../evidence/ax-b01-evidence-v0.2-backend-support-review.md) · [机器绑定候选](../evidence/evidence-v0.2-machine-contract/README.md#后端绑定候选)
-2. **按审定范围接入 Rust 严格读回与独立 checker。** 复用 P4 已有请求、解码、重放和 P2 全集重建。补齐多次尝试的结果聚合，覆盖后次完成仍留历史、同目标结果冲突、跨目标换绑、缺独立来源及信任策略拒绝。独立 checker 通过版本化材料分仓验收，生产读回与模拟结果分别留证。 [独立检查与拒绝矩阵](../evidence/evidence-v0.2-minimal-support-review.md#独立检查矩阵)
-3. **资格和实际结果齐备后恢复 M1。** AX-B01 correct 九项后端实际执行须有覆盖相应制品、宿主和目标的范围。用新的结果与实际 trust 装配全集，取得绑定新 Evidence 原始和文档域摘要的独立结果；按 ADR 0009 补齐 group、旧历史及版本拒绝矩阵后再审定公共读取。P6 继续保持 `closed / p6-not-evaluated`。 [M1 阻断与恢复](../records/2026-11-07-ax-b01-evidence-m1-preflight.md#阻断与恢复顺序) · [ADR 0009](../adr/0009-axiom-evidence-v0-drift-and-migration.md)
+1. **先补 P4-B 的数值范围、总性与键基数。** 从已核验的 IR / P2 和 P4-A 重建的 world 独立复核原 anchor / path、依赖故障、Ready 与容量前候选。用完整重封装包验证同目标正反例、跨目标错绑、WF / Pre 阻断、预算耗尽和既有 guarantee / coverage 回归。 [P4-B 具体目标规则](../query/p4-concrete-target-replay-v0.1.md#五类目标与精确归因)
+2. **复核 attestation 历史与结构化中止。** 比较同目标完成支持的选择、消费侧 `certificate-required`、历史信任及结论聚合，再独立复核 `model-invalid`、`model-world-limit`、`replay-world-limit`。生产中止、checker 自身预算耗尽和已证实错绑分别保留实际回执。 [后端结果与信任](../evidence/ax-b01-evidence-v0.2-backend-support-review.md) · [分仓交接矩阵](../evidence/evidence-v0.2-independent-check-review.md#checker-handoff)
+3. **资格和实际结果齐备后恢复 M1。** AX-B01 correct 九项后端实际执行须覆盖相应制品、宿主和目标。以实际结果和 trust 装配全部 13 项核心义务，取得绑定新 Evidence 原始与文档域摘要的独立结果。再按 ADR 0009 补 M2 group 与 M3 旧历史的迁移、版本拒绝矩阵，进入公共读取审阅。P6 继续保持 `closed / p6-not-evaluated`。 [M1 阻断与恢复](../records/2026-11-07-ax-b01-evidence-m1-preflight.md#阻断与恢复顺序) · [ADR 0009](../adr/0009-axiom-evidence-v0-drift-and-migration.md)
 
 #### Solver 与运行交付
 
