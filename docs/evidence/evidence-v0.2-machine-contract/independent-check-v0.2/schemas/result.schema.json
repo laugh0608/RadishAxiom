@@ -8,6 +8,71 @@
   "$id": "urn:radishaxiom:schema:axiom-independent-check-result:0.2",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "evidence": {
+            "additionalProperties": false,
+            "properties": {
+              "document_digest": {
+                "additionalProperties": false,
+                "properties": {
+                  "kind": {
+                    "const": "unavailable"
+                  }
+                },
+                "required": [
+                  "kind"
+                ],
+                "type": "object"
+              },
+              "expected_content_digest": {
+                "pattern": "^sha256:[0-9a-f]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "expected_content_digest",
+              "document_digest"
+            ],
+            "type": "object"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "missing_artifacts": {
+            "minItems": 1
+          },
+          "remaining_trust": {
+            "maxItems": 0
+          },
+          "request": {
+            "properties": {
+              "document_digest": {
+                "properties": {
+                  "kind": {
+                    "const": "available"
+                  }
+                }
+              }
+            }
+          },
+          "result": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "incomplete",
+                  "rejected"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
   "properties": {
     "checker": {
       "additionalProperties": false,
@@ -131,30 +196,56 @@
       "uniqueItems": true
     },
     "evidence": {
-      "additionalProperties": false,
-      "properties": {
-        "content_digest": {
-          "$ref": "#/$defs/digest"
-        },
-        "document_digest": {
-          "oneOf": [
-            {
-              "additionalProperties": false,
-              "properties": {
-                "kind": {
-                  "const": "available"
-                },
-                "value": {
-                  "$ref": "#/$defs/digest"
-                }
-              },
-              "required": [
-                "kind",
-                "value"
-              ],
-              "type": "object"
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "content_digest": {
+              "$ref": "#/$defs/digest"
             },
-            {
+            "document_digest": {
+              "oneOf": [
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "const": "available"
+                    },
+                    "value": {
+                      "$ref": "#/$defs/digest"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "value"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "const": "unavailable"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "required": [
+            "content_digest",
+            "document_digest"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "document_digest": {
               "additionalProperties": false,
               "properties": {
                 "kind": {
@@ -165,15 +256,19 @@
                 "kind"
               ],
               "type": "object"
+            },
+            "expected_content_digest": {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
             }
-          ]
+          },
+          "required": [
+            "expected_content_digest",
+            "document_digest"
+          ],
+          "type": "object"
         }
-      },
-      "required": [
-        "content_digest",
-        "document_digest"
-      ],
-      "type": "object"
+      ]
     },
     "missing_artifacts": {
       "items": {

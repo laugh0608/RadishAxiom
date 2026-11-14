@@ -14,6 +14,10 @@
       "raw_sha256": "sha256:2415b12a166ae27fe156458558461e84937bc50c530d35d20e98f82acd632c65"
     },
     {
+      "path": "docs/evidence/evidence-v0.2-machine-contract/backend-structured-fingerprints.json",
+      "raw_sha256": "sha256:e9e6f1921cf8a4a3d86dd2b78d847d0dc4d49fa4a33ff27af70635fe44e246b9"
+    },
+    {
       "path": "contracts/independent-check-v0.1/contract.json",
       "raw_sha256": "sha256:8cd14c2078b6f930150ecfdccaa8dad99c7b926cdf173190d8229d79ac53accf"
     },
@@ -75,6 +79,7 @@
       "verification-checked"
     ],
     "state-support": [
+      "interruption-cause-unverified",
       "invalid-state-support",
       "simulation-only",
       "source-unavailable",
@@ -293,9 +298,24 @@
       "sha256": "sha256:f0811675256030083f8c8661e8fa4af0af95924cfffc07e03bc0a20a59fed53a"
     },
     {
+      "byte_length": "1877",
+      "path": "fixtures/protocol-results/incomplete-interruption-cause.jcs",
+      "sha256": "sha256:6e9f2f641c10fa3e32df37ceca67535e0a7c274d32ba7019082a3765b3e69bc8"
+    },
+    {
+      "byte_length": "1861",
+      "path": "fixtures/protocol-results/incomplete-missing-evidence.jcs",
+      "sha256": "sha256:234ba46101c4137a0ab87f18a3c38546eb2d941c3905fdc7f88aa2f1e11bf132"
+    },
+    {
       "byte_length": "3515",
       "path": "fixtures/protocol-results/incomplete.jcs",
       "sha256": "sha256:936822708d5cc2d48229fe9ba71664f0e0df79bf6f5504f753bc40935e3c7057"
+    },
+    {
+      "byte_length": "2034",
+      "path": "fixtures/protocol-results/rejected-missing-evidence.jcs",
+      "sha256": "sha256:6fcfb3c8dd7dbf1023c0bf5e1126793fa894cdef589114e73db30aed4a63d72d"
     },
     {
       "byte_length": "3514",
@@ -348,6 +368,11 @@
       "sha256": "sha256:e27d16ec16a2cac3cc96c31240eaaddd67eb9f290e9c57ab6c0b09eb870602a4"
     },
     {
+      "byte_length": "4693",
+      "path": "handoff-fingerprints.json",
+      "sha256": "sha256:4b4b5bb3c49697ccb67e1781470774511db0a979d5887f29735c402ae41b35f7"
+    },
+    {
       "byte_length": "529",
       "path": "input-only-authority.json",
       "sha256": "sha256:2ccbe930a98f238668516d2cc038131cc3306b76cfbb9c351aec3a3e84aa9abe"
@@ -383,9 +408,9 @@
       "sha256": "sha256:6ddcfce2fcd890ac3d494839fc8ea4e6fd8cdd8d7ba07155d7032e6141ca1d8d"
     },
     {
-      "byte_length": "8681",
+      "byte_length": "11125",
       "path": "schemas/result.schema.json",
-      "sha256": "sha256:552d26064be747e1323860ce2fa8b6ccc8a3c801dbb9ea4c2869ffb7c854fc6b"
+      "sha256": "sha256:e5e4eeaf239abe9fe1fe6359a02ef2891b5bc898cc1c196b0d5dee1146cc2270"
     }
   ],
   "fixtures": {
@@ -417,6 +442,10 @@
     "strict-parse",
     "subject"
   ],
+  "result_evidence_binding": {
+    "missing": "expected-content-digest-from-request-and-document-digest-unavailable",
+    "present": "measured-content-digest"
+  },
   "result_precedence": [
     "rejected",
     "incomplete",
@@ -433,15 +462,15 @@
   "sources": [
     {
       "path": "scripts/generate-evidence-exchange-review.py",
-      "raw_sha256": "sha256:759cc510506a41279ab14eafd98ecca365237b92614b8c41c336e8a1cd250c15"
+      "raw_sha256": "sha256:b2f6f097062f7216a1ee207a1875513ff57ebf72b48b579f906ccac2df48f1e6"
     },
     {
       "path": "scripts/evidence_exchange_review.py",
-      "raw_sha256": "sha256:7c3f3a495ac8b042a039dfed50bada4aa13b118befb5ed2fa18f397a66b55731"
+      "raw_sha256": "sha256:6e2bd3a0a61b46afea6de8894d1a120ed0cae1c9b5db86a47a795b862d76fcc9"
     },
     {
       "path": "scripts/test-evidence-exchange-review.py",
-      "raw_sha256": "sha256:d3d0fd2baf538c1089dce59ca277fd18048af40674087af21bbeedffc29dcba5"
+      "raw_sha256": "sha256:03ba01427e8692476ba329daa0af0b393dce705b1f218aea77c00a89721423e3"
     },
     {
       "path": "scripts/generate-independent-check-contracts.py",
@@ -454,11 +483,19 @@
     {
       "path": "docs/evidence/evidence-v0.2-machine-contract/check_backend_readback.py",
       "raw_sha256": "sha256:0007dc5bf5239459ed1e1e32372f320c58a3d41caf113ae9e044f3a4c74251f6"
+    },
+    {
+      "path": "crates/axiom-ir/src/evidence_review/backend/tests.rs",
+      "raw_sha256": "sha256:3aa3e9fef7f3bd5873cb4ce897ec662c70c9883c8c6c24248bdcfd1071a03285"
+    },
+    {
+      "path": "crates/axiom-ir/src/evidence_review/backend/tests/structured.rs",
+      "raw_sha256": "sha256:686da988e53f70f709ab4a80d62ae1981f716ff3a42dbd747f52b5bb1503cbc1"
     }
   ],
   "specification": {
     "path": "docs/evidence/evidence-v0.2-independent-check-review.md",
-    "raw_sha256": "sha256:d4629fc353b78c5b727cab45bea2a6b343f1dbb26a9a69f831c22483c52c8d96"
+    "raw_sha256": "sha256:18f4b499e2ca36a8b87aae428e49556d89e1e74a7fdfdbf777ea045c8e075a4a"
   },
   "status": "candidate-not-public-not-qualified",
   "trust_discharge_rules": [],

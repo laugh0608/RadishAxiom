@@ -46,6 +46,26 @@ def protocol_result(request, evidence, kind):
     }
 
 
+def missing_evidence_result(request, evidence, kind="incomplete"):
+    result = protocol_result(request, evidence, kind)
+    expected = request["evidence"]
+    result["evidence"] = {"expected_content_digest": expected, "document_digest": {"kind": "unavailable"}}
+    result["missing_artifacts"] = [expected]
+    missing = {"kind": "identity", "outcome": "incomplete", "codes": ["artifact-missing"],
+               "refs": [{"kind": "artifact", "ref": expected}]}
+    missing_check = {"id": review.identity("check", missing), "definition": missing}
+    if kind == "incomplete":
+        result["checks"] = [missing_check]
+        result["result"]["refs"] = [missing_check["id"]]
+    else:
+        # A malformed manifest can be known even when the Evidence is absent.
+        rejected = {"kind": "identity", "outcome": "rejected", "codes": ["manifest-coverage"], "refs": []}
+        rejected_id = review.identity("check", rejected)
+        result["checks"] = sorted([missing_check, {"id": rejected_id, "definition": rejected}], key=lambda c: c["id"])
+        result["result"]["refs"] = [rejected_id]
+    return result
+
+
 def component_policy(stage):
     return {"format": "axiom-evidence-component-policy", "version": "0.1", "stage": stage,
             "limits": [{"name": name, "unit": unit, "value": "0" if stage == "model" else "1"}
@@ -102,7 +122,22 @@ def generated():
         if kind == "accepted":
             review.result_binding(result, review.encode(request), review.encode(packet["document"]))
         files[f"fixtures/protocol-results/{kind}.jcs"] = review.encode(result)
-    for name, interruption in interruptions().items():
+    for kind in ("incomplete", "rejected"):
+        result = missing_evidence_result(request, packet["document"], kind)
+        review.result_binding(result, review.encode(request), None)
+        files[f"fixtures/protocol-results/{kind}-missing-evidence.jcs"] = review.encode(result)
+    vectors = interruptions()
+    interruption = vectors["replay-replay-error-component-error"]
+    ref = review.digest(review.encode(interruption))
+    result = protocol_result(request, packet["document"], "incomplete")
+    check = {"kind": "state-support", "outcome": "incomplete", "codes": ["interruption-cause-unverified"],
+             "refs": [{"kind": "artifact", "ref": ref}]}
+    check_id = review.identity("check", check)
+    result["checks"] = [{"id": check_id, "definition": check}]
+    result["result"]["refs"] = [check_id]
+    review.validate_result(result)
+    files["fixtures/protocol-results/incomplete-interruption-cause.jcs"] = review.encode(result)
+    for name, interruption in vectors.items():
         files[f"fixtures/interruptions/{name}.jcs"] = review.encode(interruption)
     for stage in review.COMPONENT_LIMITS:
         files[f"fixtures/interruptions/{stage}-policy.jcs"] = review.encode(component_policy(stage))
@@ -122,6 +157,7 @@ def generated():
         "docs/evidence/evidence-v0.2-machine-contract/contract.json",
         "docs/evidence/evidence-v0.2-machine-contract/backend.json",
         "docs/evidence/evidence-v0.2-machine-contract/backend-readback-fingerprints.json",
+        "docs/evidence/evidence-v0.2-machine-contract/backend-structured-fingerprints.json",
         "contracts/independent-check-v0.1/contract.json",
         "docs/adr/0008-independent-checker-isolation-and-artifact-exchange.md",
         "docs/adr/0009-axiom-evidence-v0-drift-and-migration.md",
@@ -135,6 +171,8 @@ def generated():
         "source_authority": "caller-pins-request-raw-and-batch-raw-outside-bundle",
         "source_variants": {"backend-batch": "required-for-any-backend-execution", "no-backend": "only-S1-S3-modes-no-source-roles-no-expected-batch"},
         "manifest_binding": "v0.2-domain-digest", "evidence_binding": "raw-digest",
+        "result_evidence_binding": {"present": "measured-content-digest",
+                                    "missing": "expected-content-digest-from-request-and-document-digest-unavailable"},
         "completeness": "all-backend-executions-in-this-sealed-batch",
         "check_codes": {k: sorted(v) for k, v in review.CODE_REGISTRY.items()},
         "result_precedence": ["rejected", "incomplete", "accepted-with-trust", "accepted"],
@@ -155,10 +193,45 @@ def generated():
             "scripts/test-evidence-exchange-review.py", "scripts/generate-independent-check-contracts.py",
             "docs/evidence/evidence-v0.2-machine-contract/check_vectors.py",
             "docs/evidence/evidence-v0.2-machine-contract/check_backend_readback.py",
+            "crates/axiom-ir/src/evidence_review/backend/tests.rs",
+            "crates/axiom-ir/src/evidence_review/backend/tests/structured.rs",
         ]],
     }
     files["contract.json"] = review.pretty(contract)
     return files
+
+
+def exported_summary(packet_dir, name, *, expected=None):
+    output = packet_dir / name
+    summary = json.loads((output / "authority.json").read_bytes())
+    bundle = output / "bundle"
+    request_raw, manifest_raw = (bundle / "request.jcs").read_bytes(), (bundle / "manifest.jcs").read_bytes()
+    blobs = {"sha256:" + p.name: p.read_bytes() for p in (bundle / "blobs/sha256").iterdir()}
+    # Only explicit fingerprint generation uses the newly exported pin.
+    authority = summary if expected is None else expected
+    review.require(not review.bundle_binding(request_raw, manifest_raw, blobs,
+                                            authority["request_raw"], authority["batch_raw"]), "artifact-missing")
+    request, manifest = review.strict(request_raw), review.strict(manifest_raw)
+    actual = {"request_raw": review.digest(request_raw), "request_document": review.identity("request", request),
+              "manifest_raw": review.digest(manifest_raw), "manifest_document": review.identity("manifest", manifest),
+              "batch_raw": request["source_binding"]["batch"], "evidence_raw": request["evidence"],
+              "artifact_count": str(len(blobs)), "bundle_bytes": str(sum(map(len, blobs.values())))}
+    review.require(summary == actual, "exchange-fingerprint-mismatch")
+    if expected is not None:
+        review.require(expected == actual, "exchange-fingerprint-mismatch")
+    return actual
+
+
+def packet_fingerprints(path, names, export_dir, write):
+    if export_dir and write:
+        return review.pretty({name: exported_summary(export_dir, name) for name in names})
+    raw = path.read_bytes()
+    expected = json.loads(raw)
+    review.require(set(expected) == set(names), "packet-fingerprint-set")
+    if export_dir:
+        for name in names:
+            exported_summary(export_dir, name, expected=expected[name])
+    return raw
 
 
 def main():
@@ -166,40 +239,26 @@ def main():
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument("--write", action="store_true")
     mode.add_argument("--check", action="store_true")
-    parser.add_argument("--packet-dir", type=Path, help="with --write: import freshly exported four-packet identity summaries")
+    parser.add_argument("--packet-dir", type=Path, help="verify exported replay bundles; with --write, record their fingerprints")
+    parser.add_argument("--handoff-dir", type=Path, help="verify freshly exported native bundles; with --write, record history and attestation fingerprints")
     args = parser.parse_args()
-    if args.packet_dir and not args.write:
-        parser.error("--packet-dir requires --write")
     files = generated()
-    if args.packet_dir:
-        fingerprints = {}
-        legacy = json.loads((review.HERE / "backend-readback-fingerprints.json").read_bytes())
-        for name in review.PACKET_NAMES:
-            output = args.packet_dir / name
-            summary = json.loads((output / "authority.json").read_bytes())
-            bundle = output / "bundle"
-            request_raw, manifest_raw = (bundle / "request.jcs").read_bytes(), (bundle / "manifest.jcs").read_bytes()
-            blobs = {"sha256:" + p.name: p.read_bytes() for p in (bundle / "blobs/sha256").iterdir()}
-            review.require(not review.bundle_binding(request_raw, manifest_raw, blobs, summary["request_raw"], summary["batch_raw"]), "artifact-missing")
-            request, manifest = review.strict(request_raw), review.strict(manifest_raw)
-            actual = {"request_raw": review.digest(request_raw), "request_document": review.identity("request", request),
-                      "manifest_raw": review.digest(manifest_raw), "manifest_document": review.identity("manifest", manifest),
-                      "batch_raw": request["source_binding"]["batch"], "evidence_raw": request["evidence"],
-                      "artifact_count": str(len(blobs)), "bundle_bytes": str(sum(map(len, blobs.values())))}
-            review.require(summary == actual and actual["evidence_raw"] == legacy[name]["artifact_digest"], "exchange-fingerprint-mismatch")
-            fingerprints[name] = summary
-        files["packet-fingerprints.json"] = review.pretty(fingerprints)
-    packet_path = review.DEST / "packet-fingerprints.json"
-    if "packet-fingerprints.json" not in files:
-        review.require(packet_path.is_file(), "packet-fingerprints-required")
-        files["packet-fingerprints.json"] = packet_path.read_bytes()
+    packet_path = "packet-fingerprints.json"
+    files[packet_path] = packet_fingerprints(review.DEST / packet_path, review.PACKET_NAMES,
+                                             args.packet_dir, args.write)
     fingerprints = json.loads(files["packet-fingerprints.json"])
     review.require(set(fingerprints) == set(review.PACKET_NAMES), "packet-fingerprint-set")
     legacy = json.loads((review.HERE / "backend-readback-fingerprints.json").read_bytes())
     for name, summary in fingerprints.items():
         review.require(summary["evidence_raw"] == legacy[name]["artifact_digest"], "legacy-evidence-drift")
+    handoff_path = "handoff-fingerprints.json"
+    packet_fingerprints(review.HERE / "backend-structured-fingerprints.json",
+                        review.STRUCTURED_PACKET_NAMES, args.handoff_dir, False)
+    files[handoff_path] = packet_fingerprints(review.DEST / handoff_path, review.HANDOFF_PACKET_NAMES,
+                                              args.handoff_dir, args.write)
     contract = json.loads(files["contract.json"])
-    contract["files"].append(review.OLD["file_ref"]("packet-fingerprints.json", files["packet-fingerprints.json"]))
+    for path in ("packet-fingerprints.json", handoff_path):
+        contract["files"].append(review.OLD["file_ref"](path, files[path]))
     contract["files"].sort(key=lambda row: row["path"])
     files["contract.json"] = review.pretty(contract)
     errors = []

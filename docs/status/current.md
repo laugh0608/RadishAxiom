@@ -59,6 +59,8 @@ C1–C6 的[独立交换审阅](../evidence/evidence-v0.2-independent-check-revi
 
 11 月 14 日完成 R1–R6 本仓候选及复审。新 Rust 入口显式选择 batch / interruption v0.2，从类型化错误生成结构化事实、终态原因码与生产策略，保留旧入口和原指纹。合成验证覆盖 model／replay 资源中止、无效模型、终态及输入错绑和历史信任。分仓独立 checker、真实来源、公共接受与完整迁移仍待验收。 [适配与复审记录](../records/2026-11-14-evidence-structured-backend.md)
 
+分仓交接准备已补齐 Evidence 原件缺失的回执表达及十个原生 v0.2 合成包的可复现导出。下一步使用包外 pin 验收交换协议、来源和拒绝，再验收独立语义。分仓基线与逐案预期见[交换审阅](../evidence/evidence-v0.2-independent-check-review.md#checker-handoff)。
+
 ### 当前接续（2026-11-07）
 
 PR #5 已以 `7c9d14c` 合入 `master` 并快进回流 `dev`。L3 精确输入审阅以 **`not-accepted`** 收口。目标归档与 66 文件清单重核通过，两份 Cargo 解析数据与锁定项一致。宿主观察绑定了 Rust driver、Python / `ctypes`、Apple Git 选择链及系统身份。恢复前仍需补齐精确来源 / 许可与限定宿主信任，单次 target 安装继续阻断。F2 已核对 AArch64 调用约定和 FD 所有权交接，三项宿主单测通过，目标编译及真实 syscall 仍待验。 [审阅决定与原字节引用](../records/2026-11-07-linux-channel-l3-input-acceptance-review.md)

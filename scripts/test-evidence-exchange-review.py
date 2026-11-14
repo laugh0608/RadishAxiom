@@ -2,9 +2,11 @@
 """候选交换边界的正反例；不提供独立语义或真实来源验收。"""
 import copy
 import json
+import os
 from pathlib import Path
 import runpy
 import sys
+from tempfile import TemporaryDirectory
 import unittest
 from unittest.mock import patch
 
@@ -176,6 +178,21 @@ class ExchangeReview(unittest.TestCase):
         request = copy.deepcopy(self.request)
         request["assurance_policy"]["proof_support"] = "certificate-required"
         self.rejects("request-authority-mismatch", self.bind, request)
+
+    def test_export_readback_uses_fixed_request_pin(self):
+        fingerprint_path = r.DEST / "handoff-fingerprints.json"
+        fingerprints = json.loads(fingerprint_path.read_bytes())
+        fixture = "attestation"
+        pin = fingerprints[fixture]
+        with TemporaryDirectory() as directory:
+            path = Path(directory) / fixture
+            bundle = path / "bundle"
+            (bundle / "blobs/sha256").mkdir(parents=True)
+            (path / "authority.json").write_bytes(r.pretty({**pin, "request_raw": r.digest(b"replacement")}))
+            (bundle / "request.jcs").write_bytes(b"replacement")
+            (bundle / "manifest.jcs").write_bytes(b"")
+            self.rejects("request-authority-mismatch", G["packet_fingerprints"], fingerprint_path,
+                         r.HANDOFF_PACKET_NAMES, Path(directory), False)
 
     def test_manifest_domain_and_role_binding(self):
         request = copy.deepcopy(self.request)
@@ -358,6 +375,81 @@ class ExchangeReview(unittest.TestCase):
         result["evidence"] = {"content_digest": r.digest(raw), "document_digest": {"kind": "unavailable"}}
         r.result_binding(result, r.encode(request), raw)
 
+    def test_missing_evidence_reports_expected_digest_without_claiming_observation(self):
+        expected = self.request["evidence"]
+        blobs = self.blobs.copy()
+        evidence = blobs.pop(expected)
+        self.assertEqual(self.bind(blobs=blobs), [expected])
+        for kind in ("incomplete", "rejected"):
+            result = G["missing_evidence_result"](self.request, self.packet["document"], kind)
+            with self.subTest(kind=kind):
+                r.result_binding(result, self.request_raw, None)
+                self.rejects("evidence-binding-mismatch", r.result_binding, result, self.request_raw, evidence)
+                altered = copy.deepcopy(self.request)
+                altered["evidence"] = r.digest(b"another expected evidence")
+                raw = r.encode(altered)
+                result["request"] = {"content_digest": r.digest(raw), "document_digest": {
+                    "kind": "available", "value": r.identity("request", altered)}}
+                self.rejects("evidence-binding-mismatch", r.result_binding, result, raw, None)
+
+    def test_missing_evidence_requires_a_matching_missing_diagnostic(self):
+        result = G["missing_evidence_result"](self.request, self.packet["document"])
+        result["missing_artifacts"] = []
+        self.rejects("evidence-binding-mismatch", r.validate_result, result)
+        result = G["missing_evidence_result"](self.request, self.packet["document"])
+        result["evidence"]["content_digest"] = self.request["evidence"]
+        self.rejects("unknown-member", r.validate_result, result)
+        result = G["protocol_result"](self.request, self.packet["document"], "incomplete")
+        self.rejects("evidence-binding-mismatch", r.result_binding, result, self.request_raw, None)
+
+    def test_rejected_evidence_can_report_the_measured_wrong_digest(self):
+        wrong = b"{}\n"
+        expected = self.request["evidence"]
+        blobs = self.blobs.copy()
+        blobs[expected] = b"\x20" * len(blobs[expected])
+        self.rejects("digest-mismatch", r.bundle_binding, self.request_raw, self.manifest_raw,
+                     blobs, r.digest(self.request_raw), None)
+        result = G["protocol_result"](self.request, self.packet["document"], "rejected")
+        result["evidence"] = {"content_digest": r.digest(wrong), "document_digest": {"kind": "unavailable"}}
+        self.rejects("evidence-binding-mismatch", r.result_binding, result, self.request_raw, wrong)
+        row = next(c for c in result["checks"] if c["definition"]["outcome"] == "rejected")
+        row["definition"] = {"kind": "identity", "outcome": "rejected", "codes": ["digest-mismatch"],
+                             "refs": [{"kind": "artifact", "ref": expected}]}
+        row["id"] = r.identity("check", row["definition"])
+        result["checks"].sort(key=lambda c: c["id"])
+        result["result"]["refs"] = [row["id"]]
+        r.result_binding(result, self.request_raw, wrong)
+        result["evidence"]["content_digest"] = expected
+        self.rejects("evidence-binding-mismatch", r.result_binding, result, self.request_raw, wrong)
+
+    def test_evidence_digest_diagnostic_must_match_the_supplied_bytes(self):
+        evidence = self.blobs[self.request["evidence"]]
+        for missing in (False, True):
+            with self.subTest(missing=missing):
+                if missing:
+                    result = G["missing_evidence_result"](self.request, self.packet["document"], "rejected")
+                else:
+                    result = G["protocol_result"](self.request, self.packet["document"], "rejected")
+                row = next(c for c in result["checks"] if c["definition"]["outcome"] == "rejected")
+                row["definition"] = {"kind": "identity", "outcome": "rejected", "codes": ["digest-mismatch"],
+                                     "refs": [{"kind": "artifact", "ref": self.request["evidence"]}]}
+                row["id"] = r.identity("check", row["definition"])
+                result["checks"].sort(key=lambda c: c["id"])
+                result["result"]["refs"] = [row["id"]]
+                self.rejects("evidence-binding-mismatch", r.result_binding, result, self.request_raw,
+                             None if missing else evidence)
+
+    def test_missing_evidence_cannot_claim_an_unverified_interruption(self):
+        result = G["missing_evidence_result"](self.request, self.packet["document"])
+        definition = {"kind": "state-support", "outcome": "incomplete", "codes": ["interruption-cause-unverified"],
+                      "refs": [{"kind": "artifact", "ref": r.digest(b"unbound interruption")}]}
+        check_id = r.identity("check", definition)
+        result["checks"].append({"id": check_id, "definition": definition})
+        result["checks"].sort(key=lambda c: c["id"])
+        result["result"]["refs"].append(check_id)
+        result["result"]["refs"].sort()
+        self.rejects("result-reference-mismatch", r.result_binding, result, self.request_raw, None)
+
     def test_incomplete_result_cannot_reference_a_nonexistent_check(self):
         result = G["protocol_result"](self.request, self.packet["document"], "incomplete")
         row = next(c for c in result["checks"] if c["definition"]["outcome"] == "incomplete")
@@ -366,6 +458,15 @@ class ExchangeReview(unittest.TestCase):
         result["checks"].sort(key=lambda c: c["id"])
         result["result"]["refs"] = [row["id"]]
         self.rejects("result-reference-mismatch", r.validate_result, result)
+
+    def test_unverified_interruption_cause_cannot_be_used_to_accept_a_bundle(self):
+        result = G["protocol_result"](self.request, self.packet["document"], "accepted")
+        row = next(c for c in result["checks"] if c["definition"]["kind"] == "state-support")
+        row["definition"]["codes"] = ["interruption-cause-unverified"]
+        row["definition"]["refs"] = [{"kind": "artifact", "ref": r.digest(b"synthetic interruption")}]
+        row["id"] = r.identity("check", row["definition"])
+        result["checks"].sort(key=lambda c: c["id"])
+        self.rejects("result-aggregation", r.validate_result, result)
 
 
 def structured_packet_checks(packet):
@@ -406,6 +507,23 @@ def structured_packet_checks(packet):
     source = r.strict(blobs[entry["provenance"]])
     observation = source["observation"]
     value = r.strict(blobs[observation])
+    # An independent implementation may have the bytes and still lack causality.
+    result = G["protocol_result"](request, document, "incomplete")
+    result["remaining_trust"] = [row["id"] for row in document["trust"]]
+    check = {"kind": "state-support", "outcome": "incomplete", "codes": ["interruption-cause-unverified"],
+             "refs": [{"kind": "artifact", "ref": observation}]}
+    check_id = r.identity("check", check)
+    result["checks"] = [{"id": check_id, "definition": check}]
+    result["result"]["refs"] = [check_id]
+    evidence = blobs[request["evidence"]]
+    r.result_binding(result, r.encode(request), evidence)
+    result["remaining_trust"].pop()
+    try:
+        r.result_binding(result, r.encode(request), evidence)
+    except r.Error as error:
+        r.require(error.code == "trust-binding-mismatch", "wrong-unverified-interruption-trust-boundary")
+    else:
+        raise AssertionError("unverified causality erased historical trust")
     # Rebind the synthetic references so each mutation reaches the inventory check.
     for case, expected_code in (
         ("completed-source", "interruption-source-mismatch"),
@@ -478,6 +596,31 @@ def structured_packet_checks(packet):
     print(json.dumps({"name": packet["name"], "fingerprints": summary}, sort_keys=True))
     fingerprints = json.loads((r.HERE / "backend-structured-fingerprints.json").read_bytes())
     r.require(summary == fingerprints[packet["name"]], "structured-fingerprint-mismatch")
+    export_root = os.environ.get("AXIOM_HANDOFF_REVIEW_EXPORT")
+    if export_root:
+        r.export_packet(packet, export_root, summary, native_backend=True)
+
+
+def handoff_packet_checks(packet):
+    name = packet["name"]
+    r.require(name in r.HANDOFF_PACKET_NAMES, "unknown-packet")
+    summary = r.check_packet(packet, native_backend=True)
+    request, manifest, blobs = r.wrap_packet(packet, native_backend=True)
+    raw = r.encode(request)
+    wrong_batch = r.digest(b"another sealed batch")
+    try:
+        r.bundle_binding(raw, r.encode(manifest), blobs, summary["request_raw"], wrong_batch)
+    except r.Error as error:
+        r.require(error.code == "source-binding-mismatch", "wrong-external-batch-boundary")
+    else:
+        raise AssertionError("a mismatched external batch pin was accepted")
+    export_root = os.environ.get("AXIOM_HANDOFF_REVIEW_EXPORT")
+    if export_root:
+        r.export_packet(packet, export_root, summary, native_backend=True)
+    else:
+        fingerprints = json.loads((r.DEST / "handoff-fingerprints.json").read_bytes())
+        r.require(summary == fingerprints[name], "handoff-fingerprint-mismatch")
+    print(f"{name}: exchange bytes checked; semantic expectation is evaluated separately")
 
 
 if __name__ == "__main__":
@@ -485,5 +628,7 @@ if __name__ == "__main__":
         raise RuntimeError("review tests require enabled assertions")
     if sys.argv[1:] == ["--structured-packet"]:
         structured_packet_checks(json.load(sys.stdin))
+    elif sys.argv[1:] == ["--handoff-packet"]:
+        handoff_packet_checks(json.load(sys.stdin))
     else:
         unittest.main()

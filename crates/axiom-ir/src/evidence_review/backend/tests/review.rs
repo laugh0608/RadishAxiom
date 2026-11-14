@@ -260,7 +260,7 @@ fn replay_source_cannot_change_parent_or_invocation_after_rekeying() {
 #[test]
 fn replayed_failure_survives_timeout_and_conflicts_with_later_unsat() {
     for later in [Run::Timeout, Run::Sat, Run::Unsat] {
-        let mut bundle = Bundle::new(WRONG);
+        let mut bundle = Bundle::structured(WRONG);
         let target = bundle
             .p2
             .obligations()
@@ -285,13 +285,18 @@ fn replayed_failure_survives_timeout_and_conflicts_with_later_unsat() {
         }
         bundle.finish();
         if matches!(later, Run::Unsat) {
-            assert!(matches!(
-                bundle.verify(),
-                Err(ReviewError::Invalid {
-                    at: "backend",
-                    reason: "conflicting completed supports"
-                })
-            ));
+            for proof in [
+                ProofPolicy::AttestationAllowed,
+                ProofPolicy::CertificateRequired,
+            ] {
+                assert!(matches!(
+                    bundle.verify_policy(proof, ALLOWED),
+                    Err(ReviewError::Invalid {
+                        at: "backend",
+                        reason: "conflicting completed supports"
+                    })
+                ));
+            }
         } else {
             bundle.verify().unwrap();
         }

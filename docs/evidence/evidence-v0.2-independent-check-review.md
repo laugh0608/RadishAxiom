@@ -1,6 +1,6 @@
 # Evidence v0.2 机器字节与独立 checker 交接审阅
 
-日期：2026-11-13（Asia/Shanghai）；2026-11-14 接续本仓 Rust 适配。交换草案基线为 `dev` 的 `ed4f4d0`，Rust 接续基线为 `bc25628`。所有者已确认 C1–C6 与下述 R1–R6 的本仓候选实施范围。
+日期：2026-11-13（Asia/Shanghai）；2026-11-14 接续本仓 Rust 适配与交接准备。交换草案基线为 `ed4f4d0`，Rust 适配基线为 `bc25628`，本次交接准备基于 `302e890`。所有者已确认 C1–C6、R1–R6、缺件回执补充及主仓合成语料导出。
 
 用途：供规范、生产读回与独立 checker 维护者审阅版本、来源、稳定中止事实和跨仓验收。本文及[机器包](evidence-v0.2-machine-contract/independent-check-v0.2/contract.json)是候选，未发布、未获产品运行资格。本仓 Rust 适配仍是显式候选入口；不包含分仓写入、真实 solver、公共发布、完整迁移或 P6 放行。P6 仍为 `closed / p6-not-evaluated`。
 
@@ -62,7 +62,7 @@ batch 不包含最终 Evidence 身份，避免循环；request 同时绑定 Evid
 
 [组件策略 schema](evidence-v0.2-machine-contract/independent-check-v0.2/schemas/component-policy.schema.json)绑定生产侧阶段及完整限额集合。model 首批为 candidate-bytes、decode-steps、integer-digits、text-bytes、value-cells、world-bytes；replay 首批为既有 ReplayResource 的十三项。单位与排序固定于 schema。缺项、多项、阶段或 limit 错配拒绝。未覆盖的组件错误或计数维度保留未支持，不能强制映射为已登记原因。
 
-这里不伪造当前组件没有暴露的消耗计数。独立实现须核对生产策略的来源和因果事实；自己的预算只决定自身是否完成核验，不替代生产预算。若不能独立重现生产计数语义，须保留来源信任和明确不足，不能把自身耗尽写成原尝试耗尽。
+独立实现须核对生产策略的来源和因果事实。首批语义验收要求独立复核 `model-world-limit`、`replay-world-limit`、`model-invalid` 的原因。已知矛盾须拒绝。遇到无法独立复核的计数语义、`component-error` 或其他未核实原因时，记录 `state-support / incomplete / interruption-cause-unverified`，引用对应中止制品并保留 Evidence 信任全集。checker 自身的核验预算耗尽单独报告。
 
 diagnostic 为 `{kind: absent}` 或 `{kind: artifact, ref}`。附属原件仍受 manifest 字节限制和摘要核对，但文本不参与 code / cause 判定。它不得包含路径、凭据或真实输入。没有附件不阻断已齐备的结构化事实；声明了附件却缺少字节按缺件处理。Debug 文本既不被解析为事实，也不要求跨语言一致。
 
@@ -95,11 +95,22 @@ D1–D5 的聚合继续适用：保留每次 solve / replay 及其 host-runtime 
 
 result `0.2` 在原闭合成员之外必需 `scope: simulation`，新 check ID 使用 v0.2 域。每项 kind 的闭合 codes 见机器登记；新增 source-binding 等来源诊断，保留旧 code 含义。`verification-checked` 只表示该检查类别完成，不能独自证明逐义务覆盖。
 
-聚合顺序仍为 rejected → incomplete → accepted-with-trust → accepted。带 refs 的结果列出该次选定 outcome 的全部 check ID，排序且非空。缺件、资源未完成、未支持规则或不允许的信任必须有相应 incomplete check；拒绝优先但不足事实仍保留。只有 rejected 允许无法形成受支持规范文档的 request / Evidence 使用文档域 ID unavailable；已有 raw 字节仍绑定。合法原件不得借 unavailable 隐藏身份，格式不合法原件也不得被强行赋予规范文档 ID。check 引用在所有四态中均须解析到实际 check，不允许悬空或自引用。
+聚合顺序仍为 rejected → incomplete → accepted-with-trust → accepted。带 refs 的结果列出该次选定 outcome 的全部 check ID，排序且非空。缺件、资源未完成、未支持规则或不允许的信任必须有相应 incomplete check；拒绝优先但不足事实仍保留。check 引用在所有四态中均须解析到实际 check，不允许悬空或自引用。
+
+基于 `302e890` 的候选补充保持 `result_version: "0.2"` 及既有已取得输入的结构，由精确候选契约摘要标明支持范围：
+
+| Evidence 输入状态 | result.evidence 及核验要求 |
+| --- | --- |
+| 已取得字节 | `content_digest` 是实测 raw 摘要。`document_digest` 绑定可严格解析的文档，只有 `rejected` 可为无法建立规范身份的原件使用 `unavailable`。若实测 raw 与 request 的预期不同，`rejected` 的 `identity / digest-mismatch` 须引用 request 所声明的预期摘要。替换件的信任条目不进入回执。 |
+| 原件缺失 | 恰含 `expected_content_digest`（有效 request 中的 Evidence raw pin）和 `document_digest: {kind: unavailable}`。该 pin 同时列在 `missing_artifacts`，且由 `identity / incomplete / artifact-missing` 引用。回执绑定已取得的有效 request，剩余信任为空，因为尚未读取 Evidence 信任清单。 |
+
+缺件变体允许 `incomplete`，也允许因另一项已知矛盾形成的 `rejected`。同一个 Evidence pin 的缺失、实测匹配和实测不匹配互斥。缺件或摘要错配时无法将中止原因绑定到该 Evidence。缺件用例保留 manifest 描述和原 request，错字节用例检验实测摘要与拒绝。request 的结果绑定规则沿用原候选。旧 v0.1 result 字节及规则保持原样。
 
 接受前须完成所有必需检查类别及全部义务支持核对，来源 identity check 在 backend-batch 分支引用 batch 与 backend 原件，在 no-backend 分支引用经核对确无后端执行的 Evidence；所有 check refs 都须在对应命名空间解析。`remaining_trust` 必须来自该 Evidence，逐条说明 scope 与剩余原因，不得凭类别许可消除信任。本候选尚未登记 trust 消除规则，接受时 remaining_trust 必须与 Evidence trust 全集一致；将来要消除依赖仍须另行登记独立支持与验收。attestation 的 backend / generator / host 依赖按原边界保留；certificate profile 集合为空。certificate-required 或任一未允许的剩余信任产生 incomplete，源 Evidence 不改写。
 
 `accepted-with-trust` 不等于独立 proof。accepted 接受的是 Evidence 对自身结论的忠实表达，程序可能是 violated。simulation 的任何接受都不能当作实际 solver、真实来源、产品制品或 P6 接受。checker 未形成规范结果即崩溃或被外层终止时，只保留运行失败记录。
+
+<a id="checker-handoff"></a>
 
 ## C5–C6 · 交接包与验收分层
 
@@ -107,6 +118,7 @@ result `0.2` 在原闭合成员之外必需 `scope: simulation`，新 check ID �
 | --- | --- | --- |
 | 本仓字节 | 五份 schema、新 backend 登记、最小完整 input-only 及 S1 结构拒绝合成 bundle、四态协议形状、六份中止记录、两个组件策略及字节负例。 | 协议形状样例不是 checker 执行回执；accepted-with-trust 等独立形状向量不与 input-only 包声明语义关联。 |
 | 完整合成交接 | 复用 Rust 的 correct、wrong-add、wrong-drop-zero、pre-false 四包；重新形成 batch / request / manifest，保留 Evidence 原始及文档域身份。固定交换摘要、制品数量及总字节量。 | Rust 原候选读回和 Python 有限语义对照不构成分仓 Go 验收；没有 unsat 独立证明或真实来源认证。 |
+| 本次新增目录导出 | 三个结构化中止包与七个 attestation、历史及冲突包。每案生成 `bundle/request.jcs`、`bundle/manifest.jcs`、`bundle/blobs/sha256/`，指纹置于同案包外的 `authority.json`。 | 调用方按固定清单独立核定 pin。已在本仓复现的错误仍由分仓自行判定。 |
 | 分仓独立语义 | 精确提交与文件摘要导入规范、schema、黄金输入和期望；独立实现 parser、P1、P2、S1–S3、五类目标、全部历史与四态。测试 helpers 和生产源码不导入实现依赖。 | 本轮不写分仓，不复用旧 checker binary 身份、acceptance 或发布。 |
 | 真实 M1／产品运行 | 九项真实后端结果及四项结构支持齐备，完成来源／工具／宿主资格后装配全 13 项与信任项；取得绑定同一新 Evidence 的独立结果。 | 继续按既有授权与实际能力验收。M2 的 group 两义务和 M3 历史迁移不被省略；原容量、128 MiB / 6 s、P6 门禁不变。 |
 
@@ -120,6 +132,16 @@ result `0.2` 在原闭合成员之外必需 `scope: simulation`，新 check ID �
 - M1 完整新材料、M2 group 覆盖与守恒区分、M3 旧 timeout / failed / role。先验收部分边界不宣称完整迁移完成。
 
 合成导出的 `bundle` 不包含 expected-result 文件；分仓真正运行后自行产生结果。四态协议形状单独存放，禁止作为实际回执导入。交接清单必须另记录分仓精确提交、构建、工具链、平台及实际结果；当前均待执行。
+
+本次只读核对的分仓本地起点是 `RadishAxiomChecker` 的 `dev` / `15001af778204b1a4fdc379eceeb0e26d02f7bd7`。后续在该基线之上为候选 v0.2 加显式入口，先验收协议、来源和拒绝，再独立重建语义。验收调用方提供包外 request raw、适用时的 batch raw 及获准契约摘要。
+
+| 导出包 | 分仓应核对的事实 |
+| --- | --- |
+| `model-world-limit`、`replay-world-limit`、`model-invalid` | 分别为解码与重放的零 world 字节预算、模型重复键导致的输入错误。核对阶段、实际输入原件、生产预算和全部终态。 |
+| `attestation` | AX-B01 全部 13 项核心义务，九项合成 unsat。允许全部依赖时为 `accepted-with-trust`；同一 Evidence 使用消费侧 `certificate-required` 为 `incomplete`。 |
+| `timeout-then-attestation`、`attestation-then-timeout`、`last-compatible-attestation` | 按数值 ordinal 检查同目标历史。两种顺序都保留完成支持，交错目标中选最后相容支持，保留全部历史信任。 |
+| `attestation-then-replay-limit`、`missing-historical-trust` | 两包都保留 attestation 后的中止执行。完整包保留五条信任，删除该 replay 的运行信任及对应义务后应拒绝。 |
+| `conflicting-completed-supports` | 同一目标具有合成 unsat 和违反该目标的有效重放反例，交换身份完整，语义为 `rejected`。 |
 
 ## 离线复现与停止线
 
@@ -142,5 +164,16 @@ AXIOM_EXCHANGE_REVIEW_EXPORT="$PWD/.tmp/evidence-exchange-review-<new-batch>" \
 ```
 
 此模式显式重生成合成交换包，不覆盖已存在的题目目录；仍先核对原 Evidence 指纹及有限语义。新摘要须审阅后才用生成器 `--write --packet-dir <该目录>` 更新候选指纹；然后回到正常只读检查。fixture 的 artifact / bundle 字节预算由实际导出量形成，不改变 solver 或 launcher 上限，不声称独立 Go 已在该预算内运行。
+
+在另一个全新的 `.tmp` 子目录重现十个原生 v0.2 包：
+
+```sh
+export AXIOM_HANDOFF_REVIEW_EXPORT="$PWD/.tmp/evidence-handoff-<new-batch>"
+cargo +1.97.1-aarch64-apple-darwin test -p radishaxiom-ir evidence_review::backend::tests:: --lib --locked --offline
+python3 -I -B scripts/generate-evidence-exchange-review.py --check --handoff-dir "$AXIOM_HANDOFF_REVIEW_EXPORT"
+unset AXIOM_HANDOFF_REVIEW_EXPORT
+```
+
+只读检查直接从[结构化三包固定指纹](evidence-v0.2-machine-contract/backend-structured-fingerprints.json)与[其余七包固定指纹](evidence-v0.2-machine-contract/independent-check-v0.2/handoff-fingerprints.json)取得请求和批次 pin，再核对出包字节及随附的 `authority.json`。若有意改变合成七包的输入，经审阅后用 `--write --handoff-dir` 从完整导出重算七包指纹。结构化三包仍与原基线比较。对既有四包可用 `--check --packet-dir <目录>` 比较。
 
 本批事实、失败及验证结果见[实施记录](../records/2026-11-13-evidence-exchange-review.md)。公开前仍需正式格式审定、产品入口集成、真实来源、分仓独立验收及 ADR 0009 完整迁移，任何一项不得由本地通过代签。

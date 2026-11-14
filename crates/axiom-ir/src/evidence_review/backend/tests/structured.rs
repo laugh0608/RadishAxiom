@@ -37,7 +37,7 @@ fn artifact(bundle: &Bundle, format: &str) -> String {
     .to_owned()
 }
 
-fn check_exchange(name: &str, bundle: &Bundle) {
+pub(super) fn check_exchange(name: &str, bundle: &Bundle, check: &str) {
     let packet = value_object([
         ("name", value_string(name)),
         ("document", copied(&bundle.document)),
@@ -59,7 +59,7 @@ fn check_exchange(name: &str, bundle: &Bundle) {
     let mut child = Command::new("python3")
         .args(["-I", "-B"])
         .arg(root().join("scripts/test-evidence-exchange-review.py"))
-        .arg("--structured-packet")
+        .arg(check)
         .stdin(Stdio::piped())
         .stdout(Stdio::piped())
         .stderr(Stdio::piped())
@@ -167,6 +167,7 @@ fn structured_facts_keep_production_limits_and_stage_specific_inputs() {
                 "replay-world-limit"
             },
             &bundle,
+            "--structured-packet",
         );
         let interruption = strict(
             &bundle.blobs[&artifact(&bundle, INTERRUPTION)],
@@ -410,7 +411,7 @@ fn invalid_model_is_observed_and_bound_to_the_actual_response() {
     bundle.add_all(Run::Sat);
     bundle.finish();
     bundle.verify().unwrap();
-    check_exchange("model-invalid", &bundle);
+    check_exchange("model-invalid", &bundle, "--structured-packet");
     let Value::Array(runs) = get(&bundle.document, "executions") else {
         panic!("executions")
     };
@@ -473,6 +474,7 @@ fn structured_batch_preserves_history_authority_and_all_trust() {
         .collect();
     assert_eq!(expected.len(), 5);
     assert_eq!(result.backend.unwrap().remaining_trust, expected);
+    check_exchange("attestation-then-replay-limit", &bundle, "--handoff-packet");
     assert_eq!(
         bundle
             .verify_policy(ProofPolicy::CertificateRequired, ALLOWED)
@@ -566,4 +568,5 @@ fn structured_batch_preserves_history_authority_and_all_trust() {
             reason: "missing exact dependency"
         })
     ));
+    check_exchange("missing-historical-trust", &bundle, "--handoff-packet");
 }

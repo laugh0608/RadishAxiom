@@ -1,0 +1,72 @@
+{
+  "attestation": {
+    "artifact_count": "101",
+    "batch_raw": "sha256:e9ce4791a81c5a79e0e3df27bb787a21789e1ea74eb8031dd7e2fb0e9879b4f2",
+    "bundle_bytes": "5738838",
+    "evidence_raw": "sha256:393700e22a948a512db9d7ed1750c3528a0c26e1c0bccc7678becb653cc0e8e7",
+    "manifest_document": "sha256:7dbf2e3f7ab463be61d24ae58ca6f5683b42b9c2c7e2bd2d3165ee0b9866b44b",
+    "manifest_raw": "sha256:72c824a91ea2890e829dcb5d4e45b7cc843851afbd1352c913196fe3c038dd44",
+    "request_document": "sha256:d6faf2a9abee1c1bdc732f9d59de66a97c656be0715331d11abdf05a06cfda64",
+    "request_raw": "sha256:0ed8b12904e5f00c21f8efc4ff2567cb1a5326ded4742b2ef77233cc9e46e6f2"
+  },
+  "attestation-then-replay-limit": {
+    "artifact_count": "49",
+    "batch_raw": "sha256:35292317f7db6c88c7853af8d8aedfbb0a36bc64f34265665ddbbcd426b2113a",
+    "bundle_bytes": "153656",
+    "evidence_raw": "sha256:bc0edff08b40f31161002af508c6813a542c5aec9b859b848f92779466ad3d60",
+    "manifest_document": "sha256:af090c49600a262c03c197f37b6b61d2be5b120529274955655e703038bf8ff4",
+    "manifest_raw": "sha256:c3a2f11a049cfa92c935f5bb88b32613819d963b0d9e3a5f4718f2a08a38101a",
+    "request_document": "sha256:31c06fb966fc69e0e1427b2e4516cd7f7a89c59154f76a0f8926e1b2337b989e",
+    "request_raw": "sha256:fa2f6b2e1bea73673fae2d5df9374142b7b06bea835fb80a6b60396b46de41f5"
+  },
+  "attestation-then-timeout": {
+    "artifact_count": "40",
+    "batch_raw": "sha256:42e749436e2f835ea04ddc5c8340f9d2e5ce515945b9ace6a010407edb8d7e87",
+    "bundle_bytes": "122797",
+    "evidence_raw": "sha256:d620d84d8065e82c1920fe9fab3f054baa9cca4f0ad62797253a72ce49016f45",
+    "manifest_document": "sha256:ea6a179c218f25344c29bf1bc4b5fe937b01320655af1757eeea4c8b235c9272",
+    "manifest_raw": "sha256:1d75e69a1bc02d5cbfe4eeb0994bae7a630fd227ccb86658dcef58f3d1201dc2",
+    "request_document": "sha256:a4360e59fb8f6611907f654a23b2b6ede9cb58768f0268f800171d0a6bdb219c",
+    "request_raw": "sha256:fac3e625bcbdbd9856acb9b1d5b93a73e31eb55bc448d4b9ed1632c369ce8b2b"
+  },
+  "conflicting-completed-supports": {
+    "artifact_count": "114",
+    "batch_raw": "sha256:a603f8e071ad6089941f013895eae1de17a923cbadc885abad7e3a94a9d3c6ca",
+    "bundle_bytes": "5784262",
+    "evidence_raw": "sha256:d6457e496bf3c4b55c8ab84b3493c465fc1ac7521bae7720be6deffc6e092637",
+    "manifest_document": "sha256:3b0e3b62e2713310ee260ee109a79efda1ac5bf836c2fc38e06c82f1e8799c4e",
+    "manifest_raw": "sha256:492ff54c3295e86c6a6101b967db5b1edfcd08d9ec463f6640763ff412dd8cac",
+    "request_document": "sha256:f87119a4e0fdcb27abe6412d056d62ecc809fec6b0fde7b9a11c68062bfb928a",
+    "request_raw": "sha256:a33c101ad3038f9bef4e7225277e1184b7474501eff9a70a8a8d761f487f3c85"
+  },
+  "last-compatible-attestation": {
+    "artifact_count": "111",
+    "batch_raw": "sha256:d01c9a755cc736cfaac6aa9b3da8408c0c909ab10f96f77fae8669f8480a6b54",
+    "bundle_bytes": "5757089",
+    "evidence_raw": "sha256:37a780c8f71663452d70303b0156890907be97ac0ef3f50cd05e827d447accfb",
+    "manifest_document": "sha256:ebef77e314db9bf29ab78d882680c2627c89358f753d4379d153475e4f72c0a5",
+    "manifest_raw": "sha256:84641b3dbaf6f76a4b363b88152307a5a973a9f4e99c5374deb9337b6f2349dd",
+    "request_document": "sha256:7312e0e9377032ac297ec6bed7220e4951da4e8a581134b2ae6bbae3303f9680",
+    "request_raw": "sha256:ddbb6236766fa73f8e0afb73f202217f9904556e39a8dfbe51134ee7c1666396"
+  },
+  "missing-historical-trust": {
+    "artifact_count": "49",
+    "batch_raw": "sha256:35292317f7db6c88c7853af8d8aedfbb0a36bc64f34265665ddbbcd426b2113a",
+    "bundle_bytes": "152947",
+    "evidence_raw": "sha256:dfa509beda2abdc8a38734de323074f53b76ffd9c3ea4310942ed25635c7d8c0",
+    "manifest_document": "sha256:2d2213b241ca95f62746e8d3f19112dd3067749d27b02b76f18bdc35d2556465",
+    "manifest_raw": "sha256:30e04b51991a203a0c7f773bf78a3d303e6f3416c95b34126198b2fd4cd797fa",
+    "request_document": "sha256:eaa5c07481eec8e9bf55b4a47986555ee1501dc6dd8d39886b571171f0053daf",
+    "request_raw": "sha256:2474be9059a67a7d55b1d0e439d07b515b335cb5f65ab4a377e1f6e5dcaae694"
+  },
+  "timeout-then-attestation": {
+    "artifact_count": "40",
+    "batch_raw": "sha256:959a370164a0033261a986433ed65964ffde503244d328a7c7fb2ff3d055381a",
+    "bundle_bytes": "122797",
+    "evidence_raw": "sha256:c34795761c779975a44d1486cbc838de44d56e6147551547e9ab57102e79b577",
+    "manifest_document": "sha256:dc831136771b9e2a0ca3ab9e6d5c07f51594e510e29ab6fcf0bc8038b9697026",
+    "manifest_raw": "sha256:56362885f4dcf0b9b6dc495c7450f29947521d1ee241ca1f9a2a98f7fa26244f",
+    "request_document": "sha256:7f109b76db32c83a8b7b9424ff50f5a380927047d574363a412f7669def7d1fe",
+    "request_raw": "sha256:41dcfca0d45a98a9d2eb1ec2ddf0675f9dd2b167160f4d9cee3a1314c680b0ba"
+  }
+}

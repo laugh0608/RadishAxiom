@@ -33,7 +33,7 @@ PROFILE = {"name": OLD["PROFILE_NAME"], "version": "0.2"}
 DOMAINS = {k: f"axiom-independent-check-v0.2:{k}" for k in ("request", "manifest", "check", "result")}
 CODE_REGISTRY = copy.deepcopy(OLD["CHECK_CODE_REGISTRY"])
 CODE_REGISTRY["identity"] += ("source-binding", "source-binding-mismatch", "request-authority-mismatch")
-CODE_REGISTRY["state-support"] += ("simulation-only", "source-unavailable", "state-support-checked")
+CODE_REGISTRY["state-support"] += ("simulation-only", "source-unavailable", "state-support-checked", "interruption-cause-unverified")
 for _kind in CODE_REGISTRY:
     CODE_REGISTRY[_kind] += ("verification-checked",)
 
@@ -78,6 +78,19 @@ def schema_set():
     schemas["manifest"]["properties"]["artifacts"]["items"]["properties"]["format"] = {"type": "string", "pattern": FORMAT_PATTERN}
     schemas["result"]["properties"]["scope"] = {"const": "simulation"}
     schemas["result"]["required"].append("scope")
+    evidence_binding = schemas["result"]["properties"]["evidence"]
+    missing_binding = obj({"expected_content_digest": PIN,
+                           "document_digest": obj({"kind": {"const": "unavailable"}})})
+    schemas["result"]["properties"]["evidence"] = {"oneOf": [evidence_binding, missing_binding]}
+    schemas["result"]["allOf"] = [{
+        "if": {"properties": {"evidence": missing_binding}},
+        "then": {"properties": {
+            "result": {"properties": {"kind": {"enum": ["incomplete", "rejected"]}}},
+            "request": {"properties": {"document_digest": {"properties": {"kind": {"const": "available"}}}}},
+            "missing_artifacts": {"minItems": 1},
+            "remaining_trust": {"maxItems": 0},
+        }},
+    }]
     # Stable facts, never language-specific debug text. Counters not exposed by
     # current components are deliberately not invented here.
     limit = obj({"kind": {"const": "resource-limit"}, "resource": {"enum": [
@@ -224,6 +237,14 @@ def interruption_policy_binding(value, policy_raw):
         require(limits[value["cause"]["resource"]] == value["cause"]["limit"], "component-policy-mismatch")
 
 
+def identity_check(result, outcome, code, content):
+    ref = {"kind": "artifact", "ref": content}
+    return any(check["definition"]["kind"] == "identity"
+               and check["definition"]["outcome"] == outcome
+               and code in check["definition"]["codes"]
+               and ref in check["definition"]["refs"] for check in result["checks"])
+
+
 def validate_result(value):
     keys(value, "checker checks evidence missing_artifacts remaining_trust request result result_version scope tcb")
     require(value["result_version"] == "0.2", "unsupported-version")
@@ -234,7 +255,16 @@ def validate_result(value):
     pin(checker["source"])
     require(checker["name"] == "radishaxiom-independent-checker-go" and checker["toolchain"] == "go1.26.7", "checker-identity")
     require(isinstance(checker["version"], str) and checker["version"] not in {"", "latest"}, "checker-identity")
-    availability = [OLD["validate_binding"](value[k]) for k in ("evidence", "request")]
+    request_availability = OLD["validate_binding"](value["request"])
+    evidence = value["evidence"]
+    require(type(evidence) is dict, "invalid-shape")
+    missing_evidence = "expected_content_digest" in evidence
+    if missing_evidence:
+        keys(evidence, "expected_content_digest document_digest")
+        pin(evidence["expected_content_digest"])
+        require(evidence["document_digest"] == {"kind": "unavailable"}, "evidence-binding-mismatch")
+    else:
+        evidence_availability = OLD["validate_binding"](evidence)
     for field in ("missing_artifacts", "remaining_trust"):
         ordered(value[field])
         for content in value[field]:
@@ -251,6 +281,9 @@ def validate_result(value):
         require(all(c in CODE_REGISTRY[kind] for c in codes), "unknown-tag")
         require(definition["outcome"] in OLD["CHECK_OUTCOMES"], "unknown-tag")
         OLD["validate_refs"](definition["refs"])
+        if "interruption-cause-unverified" in codes:
+            require(definition["outcome"] == "incomplete"
+                    and any(ref["kind"] == "artifact" for ref in definition["refs"]), "result-aggregation")
         require(row["id"] == identity("check", definition), "check-id-mismatch")
         ids.append(row["id"])
     ordered(ids)
@@ -272,7 +305,14 @@ def validate_result(value):
     kind = value["result"].get("kind")
     keys(value["result"], "kind" if kind == "accepted" else "kind refs")
     require(kind in {"accepted", "accepted-with-trust", "incomplete", "rejected"}, "unknown-tag")
-    require(kind == "rejected" or availability == ["available", "available"], "result-aggregation")
+    if missing_evidence:
+        require(kind in {"incomplete", "rejected"} and request_availability == "available", "result-aggregation")
+        expected_digest = evidence["expected_content_digest"]
+        require(expected_digest in value["missing_artifacts"] and not value["remaining_trust"]
+                and identity_check(value, "incomplete", "artifact-missing", expected_digest), "evidence-binding-mismatch")
+        require(not identity_check(value, "rejected", "digest-mismatch", expected_digest), "evidence-binding-mismatch")
+    else:
+        require(kind == "rejected" or request_availability == evidence_availability == "available", "result-aggregation")
     require(not any(row["definition"]["outcome"] == "trusted" for row in value["checks"]) or value["remaining_trust"], "result-aggregation")
     checks = value["checks"]
     outcomes = [r["definition"]["outcome"] for r in checks]
@@ -625,14 +665,42 @@ def companion_input(binding, raw, kind, result_kind):
 def result_binding(result, request_raw, evidence_raw):
     """Check identity/policy of a supplied companion, never create acceptance."""
     validate_result(result)
-    request = companion_input(result["request"], request_raw, "request", result["result"]["kind"])
-    document = companion_input(result["evidence"], evidence_raw, "evidence", result["result"]["kind"])
+    kind = result["result"]["kind"]
+    request = companion_input(result["request"], request_raw, "request", kind)
+    evidence = result["evidence"]
+    unverified = [c["definition"] for c in result["checks"]
+                  if "interruption-cause-unverified" in c["definition"]["codes"]]
+    if "expected_content_digest" in evidence:
+        require(evidence_raw is None and request is not None
+                and evidence["expected_content_digest"] == request["evidence"], "evidence-binding-mismatch")
+        require(not unverified, "result-reference-mismatch")
+        return
+    require(evidence_raw is not None, "evidence-binding-mismatch")
     if request is not None:
-        require(result["evidence"]["content_digest"] == request["evidence"], "evidence-binding-mismatch")
+        expected = request["evidence"]
+        require(expected not in result["missing_artifacts"]
+                and not identity_check(result, "incomplete", "artifact-missing", expected), "evidence-binding-mismatch")
+        mismatch = identity_check(result, "rejected", "digest-mismatch", expected)
+        if evidence["content_digest"] != expected:
+            require(kind == "rejected" and mismatch and not result["remaining_trust"], "evidence-binding-mismatch")
+            require(not unverified, "result-reference-mismatch")
+            companion_input(evidence, evidence_raw, "evidence", kind)
+            return
+        require(not mismatch, "evidence-binding-mismatch")
+    document = companion_input(evidence, evidence_raw, "evidence", kind)
+    if unverified:
+        require(request is not None and document is not None, "result-reference-mismatch")
     if request is None or document is None:
         return
     trust = {row["id"]: row["definition"]["category"] for row in document["trust"]}
     require(set(result["remaining_trust"]) <= set(trust), "trust-binding-mismatch")
+    if unverified:
+        interruptions = {d["content_digest"] for d in document["artifacts"]
+                         if (d["format"], d["format_version"]) == ("axiom-evidence-replay-interruption", "0.2")}
+        for check in unverified:
+            refs = {ref["ref"] for ref in check["refs"] if ref["kind"] == "artifact"}
+            require(refs <= interruptions, "result-reference-mismatch")
+        require(set(result["remaining_trust"]) == set(trust), "trust-binding-mismatch")
     accepted = result["result"]["kind"] in {"accepted", "accepted-with-trust"}
     if accepted:
         # This draft registers no trust discharge rule. A consumer cannot erase
@@ -661,6 +729,12 @@ def result_binding(result, request_raw, evidence_raw):
 
 
 PACKET_NAMES = ("correct", "pre-false", "wrong-add", "wrong-drop-zero")
+STRUCTURED_PACKET_NAMES = ("model-invalid", "model-world-limit", "replay-world-limit")
+HANDOFF_PACKET_NAMES = (
+    "attestation", "timeout-then-attestation", "attestation-then-timeout",
+    "last-compatible-attestation", "attestation-then-replay-limit",
+    "missing-historical-trust", "conflicting-completed-supports",
+)
 
 
 def review_packet_exchange(packet, export_root=None):
@@ -671,18 +745,25 @@ def review_packet_exchange(packet, export_root=None):
         expected = json.loads((DEST / "packet-fingerprints.json").read_bytes())
         require(summary == expected[name], "exchange-fingerprint-mismatch")
     else:
-        # Deliberate fixture regeneration, with no existing output overwritten.
-        base = Path(export_root).resolve()
-        require(base.is_relative_to((ROOT / ".tmp").resolve()) and base != (ROOT / ".tmp").resolve(), "export-outside-task-temp")
-        output = base / name
-        output.mkdir(parents=True, exist_ok=False)
-        request, manifest, blobs = wrap_packet(packet)
-        bundle = output / "bundle"
-        blob_dir = bundle / "blobs/sha256"
-        blob_dir.mkdir(parents=True)
-        (bundle / "request.jcs").write_bytes(encode(request))
-        (bundle / "manifest.jcs").write_bytes(encode(manifest))
-        for content, raw in blobs.items():
-            (blob_dir / content[7:]).write_bytes(raw)
-        (output / "authority.json").write_bytes(pretty(summary))
+        export_packet(packet, export_root, summary)
     print(f"{name}: exchange bindings matched ({summary['artifact_count']} artifacts); no independent acceptance")
+
+
+def export_packet(packet, export_root, summary, *, native_backend=False):
+    # Create a new directory for each fixture and keep caller pins beside it.
+    name = packet["name"]
+    require(name in PACKET_NAMES + STRUCTURED_PACKET_NAMES + HANDOFF_PACKET_NAMES, "unknown-packet")
+    base = Path(export_root).resolve()
+    tmp = (ROOT / ".tmp").resolve()
+    require(base.is_relative_to(tmp) and base != tmp, "export-outside-task-temp")
+    output = base / name
+    output.mkdir(parents=True, exist_ok=False)
+    request, manifest, blobs = wrap_packet(packet, native_backend=native_backend)
+    bundle = output / "bundle"
+    blob_dir = bundle / "blobs/sha256"
+    blob_dir.mkdir(parents=True)
+    (bundle / "request.jcs").write_bytes(encode(request))
+    (bundle / "manifest.jcs").write_bytes(encode(manifest))
+    for content, raw in blobs.items():
+        (blob_dir / content[7:]).write_bytes(raw)
+    (output / "authority.json").write_bytes(pretty(summary))

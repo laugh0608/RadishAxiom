@@ -133,6 +133,14 @@ fn completed_support_survives_later_unknown_and_preserves_every_attempt() {
                 array_mut(field_mut(&mut bundle.batch, "executions")).len(),
                 2
             );
+            if contract == BackendContract::StructuredV02 {
+                let name = if matches!(sequence[0], Run::Timeout) {
+                    "timeout-then-attestation"
+                } else {
+                    "attestation-then-timeout"
+                };
+                structured::check_exchange(name, &bundle, "--handoff-packet");
+            }
             let row = array_mut(field_mut(&mut bundle.document, "obligations"))
                 .iter_mut()
                 .find(|o| string(get(o, "id"), "id").unwrap() == target)
@@ -277,7 +285,7 @@ fn production_certificate_policy_and_replay_budget_failures_have_real_attempts()
 
 #[test]
 fn full_ax_b01_has_thirteen_core_obligations_and_nine_bound_solver_results() {
-    let mut bundle = Bundle::new(CORRECT);
+    let mut bundle = Bundle::structured(CORRECT);
     assert_eq!(bundle.p2.obligations().len(), 13);
     assert_eq!(bundle.targets.len(), 9);
     bundle.add_all(Run::Unsat);
@@ -291,6 +299,16 @@ fn full_ax_b01_has_thirteen_core_obligations_and_nine_bound_solver_results() {
         string(get(get(&bundle.document, "conclusion"), "kind"), "kind").unwrap(),
         "satisfied"
     );
+    assert_eq!(
+        bundle
+            .verify_policy(ProofPolicy::CertificateRequired, ALLOWED)
+            .unwrap()
+            .backend
+            .unwrap()
+            .policy,
+        BackendPolicyStatus::Incomplete
+    );
+    structured::check_exchange("attestation", &bundle, "--handoff-packet");
     let target = bundle.targets[0].clone();
     array_mut(field_mut(&mut bundle.document, "obligations"))
         .retain(|o| string(get(o, "id"), "id").unwrap() != target);
@@ -324,13 +342,25 @@ fn valid_replayed_violation_conflicts_with_a_bound_unsat_for_the_same_target() {
         bundle.attempt(&target, Run::Sat);
         assert_eq!(kind(&bundle.results[&target]).unwrap(), "failed");
         bundle.finish();
-        assert!(matches!(
-            bundle.verify(),
-            Err(ReviewError::Invalid {
-                at: "backend",
-                reason: "conflicting completed supports"
-            })
-        ));
+        for proof in [
+            ProofPolicy::AttestationAllowed,
+            ProofPolicy::CertificateRequired,
+        ] {
+            assert!(matches!(
+                bundle.verify_policy(proof, ALLOWED),
+                Err(ReviewError::Invalid {
+                    at: "backend",
+                    reason: "conflicting completed supports"
+                })
+            ));
+        }
+        if contract == BackendContract::StructuredV02 {
+            structured::check_exchange(
+                "conflicting-completed-supports",
+                &bundle,
+                "--handoff-packet",
+            );
+        }
     }
 }
 
@@ -350,5 +380,8 @@ fn interleaved_targets_select_the_last_compatible_completed_support() {
         bundle.results.insert(target, completed);
         bundle.finish();
         bundle.verify().unwrap();
+        if contract == BackendContract::StructuredV02 {
+            structured::check_exchange("last-compatible-attestation", &bundle, "--handoff-packet");
+        }
     }
 }
