@@ -26,6 +26,8 @@ L2 已提交为 `5dab738`；L3 源码实现已提交为 **`bb9d963b38273bfd9ec7a
 
 Apple Git 的实际执行链已核对。固定入口 `/usr/bin/git` 经当前选择器执行 Xcode 27.2（27B52）内的 Apple Git-157。记录绑定了本机程序、安装收据、Apple 签名与随包 GPL v2 声明。构建包装器已在源码快照前后检查选择结果和文件摘要。 [Apple Git 执行链核对](../records/2026-11-07-linux-channel-l3-apple-git-readback.md)
 
+2026-11-22 接续，干净提交的完整 Git blob 树及两份 Cargo 缓存与留存副本已离线核对。记录明确了缓存所含的 209 条版本记录、锁定条目和待核许可范围，并列明安装前须裁定的具体输入信任。L3 继续为 `not-accepted`。 [输入待决项](../records/2026-11-22-linux-channel-l3-input-decision-preparation.md)
+
 ## 未来安装：只增加一个 target
 
 候选安装仍使用现有 rustup 的 `target add --toolchain 1.97.1-aarch64-apple-darwin aarch64-unknown-linux-musl`，不是 archive 内的 install.sh。该参数和下面写入目标只是供审阅，**本页不授权执行**。
