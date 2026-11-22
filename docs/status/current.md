@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-11-22（AX-B01 G0 无盘首启宿主部署与凭据复核）
+更新日期：2026-11-22（AX-B01 日终回顾与接续顺位）
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。整体目标见[开发计划](../development-plan.md)，归属与任务来源见[能力专题地图](../topics.md)；历史流水见[整理前快照](../records/status-before-planning-alignment-2026-11-01.md)与[早期归档](../records/status-through-2026-09-03.md)。
 
@@ -15,7 +15,7 @@
 | 语义与 IR | P1 / P2 内部组件已有本机证据；不等于完整生产阶段或 Evidence v0.2 | [语义与义务来源](../topics.md#semantics-ir) |
 | 验证管线 | 限定 P3、P4-A / B 与紧凑表示已有组件证据，AX-B01 P5 已完成限定本机生产接受。真实 solver、P6 和完整 P0–P9 仍待验收 | [管线与反例来源](../topics.md#verification-pipeline) |
 | Evidence / Checker | v0.1 有受限离线消费。v0.2 已完成合成 AX-B01 的 P1 / P2、S1–S3、P4-A、五类 P4-B、attestation 历史与消费策略、结论聚合和三类结构化中止验收。真实结果的独立验收、M1 和公共读取待完成 | [独立复核来源](../topics.md#independent-checker) |
-| 运行交付 | F / C 及 L1 / L2 等已有本机或离线材料；诊断启动器已完成 L3 构建和 L4 离线制品验收，G0 与 L5 运行前条件待取得 | [运行与交付来源](../topics.md#runtime-delivery) |
+| 运行交付 | 诊断启动器完成 L3 构建与 L4 离线制品验收。G0 专用宿主首启阻塞于凭据预检，L5 仍待精确执行环境验收 | [运行与交付来源](../topics.md#runtime-delivery) |
 | 实验评估 | 三表示、两模型、四任务、72 个 trial bundle 已预注册；execution lock、完整装置、正式模型与收益未验收 | [实验来源](../topics.md#evaluation) |
 
 独立 checker 的产品制品与动态基线沿用历史记录。M1 的旧包已完成源码级核验，独立证明数为 0。合成 AX-B01 v0.2 完整包的五类精确归因已有独立验收。旧 v0.1 与首题以外的一般归因仍待复核。跨仓交接见[开发计划](../development-plan.md#独立-checker-语义验收与跨仓交接)，group 义务版本边界见 [ADR 0009](../adr/0009-axiom-evidence-v0-drift-and-migration.md)。
@@ -29,7 +29,7 @@
 | 顺位 | 必须继续 | 必要阻塞 / 结束条件 |
 | --- | --- | --- |
 | 1 | 合成 AX-B01 独立结果支持已验收 | 五类精确重放、历史 / 信任 / 结论及具名三类中止均已复核。实际 Evidence 仍须按同一摘要逐义务独立核对。 [验收记录](../records/2026-11-22-ax-b01-checker-and-solver-path-review.md#合成-ax-b01-独立复核) |
-| 2 | 唯一待审候选 `cvc5 1.3.4 / USE_POLY=OFF` 的 C1 固定输入已限定接受 | 诊断启动器已完成 L3 和 L4，G0 的专用 Linux AArch64 虚拟机获准单独评审。启动材料、私有根及资格待核，L5 等待镜像接受和实际权限证据。 [C1 接受](../records/2026-11-22-cvc5-no-poly-c1-acceptance.md) · [G0 宿主决定](../records/2026-11-22-ax-b01-g0-linux-host-decision.md) |
+| 2 | 唯一待审候选 `cvc5 1.3.4 / USE_POLY=OFF` 的 C1 固定输入已限定接受 | L3 / L4 已交付，G0 先收口固定启动器的宿主凭据预检，再单独评审无盘首启。真实接线仍需 G0 资格，L5 仍需镜像及实际权限验收。 [C1 接受](../records/2026-11-22-cvc5-no-poly-c1-acceptance.md) · [G0 部署与凭据回执](../records/2026-11-22-ax-b01-g0-diskless-host-deployment.md) |
 | 3 | 实际受限校准，再取得 AX-B01 全部结果 | 保持原容量及 128 MiB / 6 s；按 E0、E4–E6 和具体授权取真实结果。九项后端结果与四项结构类义务支持齐备后装配，独立核对精确目标、信任与同一 Evidence 摘要 |
 | 4 | P6–P9 与首个真实纵向闭环 | 提前登记 Node P7 的来源、宿主和硬资源缺口；P4/P5 真结果不足时 P6 继续 closed。correct 全链、两个 wrong、invalid、真实 timeout 与篡改/门控拒绝按原契约验收 |
 
@@ -53,7 +53,7 @@ ADR 0009 的 M1 已使用主仓 `CHK-PROOF-02` 精确源包复跑 Go checker 源
 
 11 月 13 日所有者已确认 [D1–D5 候选实施范围](../evidence/ax-b01-evidence-v0.2-backend-support-review.md#所有者确认的实施决定2026-11-13)。重放工具四类漏拒绝已修复；本仓新增外部固定批次 pin、全部运行信任、模式专属中止与历史聚合，完整合成 AX-B01 的 13 项核心义务和九项后端结果可严格读回。五类目标由 Python 有限语义另行核对；真实 solver、独立产品 checker、公共新字节接受及完整 M1 尚未完成，P6 仍关闭。来源事实与验证边界见[实施记录](../records/2026-11-13-evidence-backend-implementation.md)，修复前观察保留于[审查记录](../records/2026-11-13-evidence-backend-review.md)。
 
-当天两仓提交与代码、文档对照见[11 月 14 日日终回顾](../records/2026-11-14-closeout.md)。
+两仓提交与代码、文档对照见[11 月 22 日日终回顾](../records/2026-11-22-closeout.md)和[11 月 14 日日终回顾](../records/2026-11-14-closeout.md)。
 
 C1–C6 的[独立交换审阅](../evidence/evidence-v0.2-independent-check-review.md)已物化新 request / manifest / result、来源 pin、结构化中止及合成验收材料，旧 Evidence 与机器基线保持原字节。新包只标记 simulation；没有改写旧 runtime consumer、独立 checker 制品或公共门禁。复核与实际验证见[交换草案实施记录](../records/2026-11-13-evidence-exchange-review.md)。
 
@@ -69,6 +69,8 @@ C1–C6 的[独立交换审阅](../evidence/evidence-v0.2-independent-check-revi
 
 ### 当前接续（2026-11-07）
 
+本节保留该日的 L3 输入审阅进度。随后安装、构建以及交付结果见[11 月 22 日回顾](../records/2026-11-22-closeout.md#代码与文档复核)。
+
 PR #5 已以 `7c9d14c` 合入 `master` 并快进回流 `dev`。L3 精确输入审阅以 **`not-accepted`** 收口。目标归档与 66 文件清单重核通过，两份 Cargo 解析数据与锁定项一致。宿主观察绑定了 Rust driver、Python / `ctypes`、Apple Git 选择链及系统身份。恢复前仍需补齐精确来源 / 许可与限定宿主信任，单次 target 安装继续阻断。F2 已核对 AArch64 调用约定和 FD 所有权交接，三项宿主单测通过，目标编译及真实 syscall 仍待验。 [审阅决定与原字节引用](../records/2026-11-07-linux-channel-l3-input-acceptance-review.md)
 
 后续已核对两项 Rust 工具来源。本机 `rustup 1.29.0` 匹配官方 Darwin arm64 发布摘要，实际加载的 `librustc_driver` 与已接受的 Rust `1.97.1` Darwin 组件成员逐块相等。L3 总体保持 `not-accepted`。 [来源核对记录](../records/2026-11-07-linux-channel-l3-rust-source-readback.md)
@@ -78,6 +80,8 @@ PR #5 已以 `7c9d14c` 合入 `master` 并快进回流 `dev`。L3 精确输入�
 已在包装器的精简环境观察到 `/usr/bin/git` 执行 Xcode 27.2（27B52）内的 Apple Git-157。Apple 签名、安装收据及 Git 的 GPL v2 随包声明均已核对。源码快照前后已接入选择器和文件摘要检查，覆盖合成漂移与实机 Command Line Tools 选择拒绝。精确 Apple 源码缺口和快照期间宿主稳定约束仍由有限宿主信任审阅处理。 [Apple Git 执行链核对](../records/2026-11-07-linux-channel-l3-apple-git-readback.md) · [包装器检查](../query/solver-linux-channel-l3.md#native-捕获与一次包装器)
 
 ### 当前接续（2026-11-01）
+
+本节保留该日的实现基线，现行顺位见[接下来的事项](#接下来的事项)。
 
 G0 以证据不足结束，真实接线仍未放行。L1 / L2 的源绑定、报告与管道 / 截止 / 回收源码已完成原范围本机或离线验证；[L3](../query/solver-linux-channel-l3.md)现已实现私有 v0.2 纯生成 / sidecar 独立复核、native 编译捕获与有界 build / argv recorder，并完成宿主静态 / 合成验证。保留的 v0.1 当前为 53 源；native 拒绝 v0.1 / null / 漂移。没有真实完整 root、target 安装、Linux 制品或环境资格。空 Cargo home 的 workspace 解析缺口已用既有两份索引数据的精确绑定补正，不引入新的 normal 编译依赖。实现已提交为 `bb9d963`；实际命令和边界见[实现记录](../records/2026-11-01-linux-channel-l3-implementation.md)，全天提交与本次文档复核见[日终记录](../records/2026-11-01-closeout.md)；不从离线材料推导实际资格或执行授权。
 
@@ -92,6 +96,12 @@ G0 以证据不足结束，真实接线仍未放行。L1 / L2 的源绑定、报
 <a id="下一步"></a>
 
 ### 接下来的事项
+
+#### 下一批：G0 宿主凭据与首启评审
+
+1. **先做只读凭据复核。** 按原投入边界核定本批上限。沿拟用执行入口核对真实和有效 UID/GID 均为 `850`、附加组为空或仅有主组、账户无 admin 资格。保留 `sudo` 与原生降权的失败回执，以同一签名制品的 `--preflight-paths` 返回 0 为本批出口。若现宿主无法满足原守卫，登记精确原因和代价，提交宿主或执行身份方案的单独评审。
+2. **预检通过后单独评审一次无盘首启。** 绑定原三份制品和精确配置，按 1 vCPU、512 MiB 来宾内存和原 90 s 外层窗口核对单向回执、端口、只读挂载、cgroup 控制器与同一实例退出。回执缺失、异常或退出未确认时保留现场。私有盘块与 inode 硬限、写别名、失联时的独立整树终止仍须按 G0 矩阵验收。 [首启配置](../records/2026-11-22-ax-b01-g0-diskless-first-boot.md#单次启动参数) · [G0 真实资格矩阵](../query/solver-local-cvc5-control-plane-plan.md#a3--a4--a7--a8-真实负向矩阵)
+3. **继续核对 L5 和 solver 的前置条件。** L5 复用现有 L4 只读交付，就固定镜像接受、实际权限、proc / seccomp、bind 写别名和清理范围给出结论。solver 路线沿唯一无 Poly 候选推进。环境资格和执行授权齐备后，依 C3 至 E6 的现有顺位取得九项实际后端结果，再恢复 M1。提前登记 P7 所需 Node 目标制品、宿主和硬限制缺口，P6 继续关闭。 [L5 运行前复核](../records/2026-11-22-linux-channel-g0-l5-preflight.md) · [solver 批次与停止线](../query/solver-cvc5-build-candidate-plan.md#批次占用授权与停止线)
 
 #### AX-B01 Evidence v0.2
 

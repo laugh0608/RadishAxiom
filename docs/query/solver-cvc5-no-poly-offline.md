@@ -25,6 +25,6 @@ python3 -O scripts/prepare-cvc5-no-poly.py check-manifest --material-root <已�
 
 ## 停止线
 
-1. 按已登记的 C1 范围复用固定 SDK、来源和许可材料。L3 与 G0 仍需宿主及工具信任、真实输入封闭、冻结与独立终止、磁盘和 inode 硬限。
+1. 按已登记的 C1 范围复用固定 SDK、来源和许可材料。L3 构建与 L4 离线验收覆盖本地诊断启动器。solver 构建仍须核对实际宿主、工具及输入封闭，并取得 G0 所要求的冻结、独立终止、块和 inode 硬限等资格。当前先收口专用宿主的凭据预检。 [接下来的事项](../status/current.md#接下来的事项)
 2. 具备资格并获单独授权后，C3 才能生成依赖、核对 GCC/CRT/ABI 与实际 Editline 链接闭包、绑定 manifest，再留存主配置、编译及链接观察。有效配置、头文件、对象和 map 都须能追溯到固定候选。阶段计划中的 manifest 参数保持待填写，直到真实值有独立复核。
 3. 新 ELF 通过 E0 与实际 E4 后再依次恢复 E5 和 E6。沿用原容量和 128 MiB / 6 s，P6 按真实义务结果与独立复核门禁恢复。 [原停止线与执行授权](solver-cvc5-build-candidate-plan.md#批次占用授权与停止线)

@@ -139,6 +139,7 @@ ADR 定义决策和重评条件，不表示相关生产能力已完成；实现�
 | 2026-11-01 日终回顾 | [全天提交、代码对应文档复核与下一批有限输入接受审阅](records/2026-11-01-closeout.md) |
 | 2026-11-10 收口规划 | [首题两级出口、有限运行投入与后置范围](records/2026-11-10-planning-closeout.md) |
 | 2026-11-07 日终回顾 | [全天提交、L3／P5／Evidence 代码与文档复核](records/2026-11-07-closeout.md) |
+| 2026-11-22 日终回顾 | [两仓提交、L3／L4 实际回执与 G0 首启交接](records/2026-11-22-closeout.md) |
 | Rust Linux 与静态目标输入 | [签名 / 归档盘点、安装候选与 kernel 许可审阅](records/rust-linux-input-review/README.md) |
 | 2026-10-17 日终回顾 | [紧凑查询、监督组件与 C0 全天提交、代码 / 文档复核及接续事项](records/2026-10-17-closeout.md) |
 | 2026-10-08 日终回顾 | [P3-B–F 全天提交、代码与文档核对及明日交接](records/2026-10-08-closeout.md) |

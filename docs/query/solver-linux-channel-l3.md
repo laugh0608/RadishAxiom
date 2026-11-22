@@ -1,14 +1,14 @@
 # 诊断通道 L3：精确 target 组件与完整构建输入方案
 
-日期：2026-11-01。状态：**方案及 v0.2 / native 捕获 / 包装器源码已实现，完成宿主静态与合成验证；未安装 target 或构建 Linux 制品**。读者：项目所有者、实施者与输入 / 制品审阅者。用途：收口[交付方案](solver-linux-channel-build-and-delivery-plan.md)中 L3 的具体组件、安装副作用、输入绑定和有界包装器；不另开工具链路线、修改公共 Evidence / solver 格式或接受新运行资格。方案基线为 [L2](solver-linux-channel-l2.md)；原包观察见[方案记录](../records/2026-11-01-linux-channel-l3-review.md)，本次实现、发现与验证见[实现记录](../records/2026-11-01-linux-channel-l3-implementation.md)。
+始于 2026-11-01，更新至 2026-11-22。状态：**固定 target 已安装，真实 v0.2 输入已复核，诊断启动器已通过一次 L3 构建和 L4 离线制品验收。** 读者为项目所有者、实施者与输入 / 制品审阅者。本文限定 L3 的具体组件、安装副作用、输入绑定和有界包装器。完整运行资格与后续授权见当前状态。root 和构建 manifest 按各自 readiness 字段解释。 [原方案记录](../records/2026-11-01-linux-channel-l3-review.md) · [实际安装、构建和制品回执](../records/2026-11-22-closeout.md#l3--l4-留存回执) · [当前状态](../status/current.md#接下来的事项)
 
 ## 已冻结的选择与现有材料
 
 唯一目标继续是 macOS AArch64 的 `1.97.1-aarch64-apple-darwin` 交叉构建 `aarch64-unknown-linux-musl`，使用已有 rust-lld 的 GNU flavor，产出静态非 PIE ET_EXEC。无新 GNU SDK / GCC / Linux builder、QEMU 或动态 libc 路线。
 
-L2 已提交为 `5dab738`；L3 源码实现已提交为 **`bb9d963b38273bfd9ec7aefe69cc13417a4a8f34`**，其中含 v0.2 纯生成 / 独立复核、native 捕获与有界包装器。它是本次已验证的实现基线；未来完整构建输入仍须绑定执行前最终干净 commit 的完整树，不把 L2 或本页日终文档提交误记为已构建制品来源。原方案批次只形成方案和诊断记录。具体候选参数见[候选计划 JSON](../records/cvc5-control-plane-2026-11-01/channel-l3-candidate-plan.json)，其 scope 为 proposal-only-not-native-build-inputs，final_implementation_commit=null 是方案生成时的历史状态，旧 JSON 不回填；所有安装 / 构建授权和 readiness=false；它不能被原生入口当 inputs 消费。
+L2 提交为 `5dab738`，L3 初版 `bb9d963` 实现了 v0.2 纯生成、独立复核、native 捕获与有界包装器。实际构建绑定 `cf49e07` 的完整树、真实安装回执、五份 sidecar 及独立提供的审阅摘要。早期候选计划的 scope 是 `proposal-only-not-native-build-inputs`，保留方案生成时的空提交引用与 `false` readiness。 [原候选计划 JSON](../records/cvc5-control-plane-2026-11-01/channel-l3-candidate-plan.json) · [L3 初版实现记录](../records/2026-11-01-linux-channel-l3-implementation.md) · [实际构建绑定](../records/2026-11-22-closeout.md#l3--l4-留存回执)
 
-[只读观察 JSON](../records/cvc5-control-plane-2026-11-01/channel-l3-input-observation.json)绑定以下真实对象，全部以本机实际字节重核：
+[安装前只读观察 JSON](../records/cvc5-control-plane-2026-11-01/channel-l3-input-observation.json)绑定当时的实际字节：
 
 | 对象 | 精确身份 / 当前状态 |
 | --- | --- |
@@ -18,19 +18,21 @@ L2 已提交为 `5dab738`；L3 源码实现已提交为 **`bb9d963b38273bfd9ec7a
 | 完整逻辑归档 | 新扫描与旧库存逐项相等：7 目录 / 78 文件；tar 152,835,072 bytes，SHA256 `f0314c4b28d4d5d89cd7fba9144e3a97e2643d6918a3807458b5b8d35c8e7d77`；没有释放成员到文件系统 |
 | 实际 component payload | `rust-std-aarch64-unknown-linux-musl` 的 66 个 file claim，共 152,642,974 bytes；完整路径 / mode / 长度 / SHA256 在观察 JSON，不把安装器 / 根许可文件算成已安装 payload |
 | 宿主工具 | rustc / cargo / rust-lld 三文件与交付批观察完全匹配；installer 为已有 rustup `1.29.0 (28d1352db 2026-03-05)`，11,053,296 bytes，SHA256 `aeb4105778ca1bd3c6b0e75768f581c656633cd51368fa61289b6a71696ac7e1` |
-| 当前安装元数据 | 已安装 multirust 清单的 target URL / 哈希投影与发行清单一致；其原文件另按自身摘要绑定，不声称两份 TOML 原字节相等。现行五个 host component 不变，target 目录 / component manifest 和所选下载 cache 文件均不存在 |
+| 安装前元数据 | 已安装 multirust 清单的 target URL / 哈希投影与发行清单一致，两份 TOML 各自绑定原始摘要。安装前已有五个 host component，target 目录、component manifest 和所选下载 cache 文件均缺席 |
 
-旧 Rust 分离签名诊断、SHA-1 自认证缺口和 [payload 接受的有限范围](../checker-runtime-rust-first-slice-review.md)保持原义；本批没有重新验签或把历史 GNU host / musl 原包接受转移到此 component。后续可按既有受控二进制输入方式，单独审阅这个精确归档、installer 与宿主运行时的有限信任范围；不要求重建整套 Rust / GCC，也不把摘要匹配写成发布构建证明。未形成该对象的接受决定前，停止安装与构建。
+旧 Rust 分离签名诊断、SHA-1 自认证缺口和原 payload 接受范围按各自记录解释。2026-11-22 针对本次固定归档、安装器与宿主另行作出限定信任决定。现有摘要把本机字节绑定到受审发布材料。 [原 payload 接受](../checker-runtime-rust-first-slice-review.md) · [L3 限定信任](../records/2026-11-22-linux-channel-l3-limited-trust.md)
 
 2026-11-07 的有限输入审阅重核了归档与 Cargo 解析数据，并记录实际宿主工具及加载边界。后续核对确认 installer 匹配官方发布摘要、实际加载的 Rust driver 与已接受 Darwin 组件成员逐块相等。Python 已对回精确发布制品与构建清单，`_ctypes` 的静态 libffi 来源和许可原文已核对。总体决定为 `not-accepted`，单次 target 安装仍以剩余输入审阅为前置条件。 [有限输入审阅](../records/2026-11-07-linux-channel-l3-input-acceptance-review.md) · [Rust 来源核对](../records/2026-11-07-linux-channel-l3-rust-source-readback.md) · [Python 来源核对与剩余缺口](../records/2026-11-07-linux-channel-l3-python-source-readback.md)
 
 Apple Git 的实际执行链已核对。固定入口 `/usr/bin/git` 经当前选择器执行 Xcode 27.2（27B52）内的 Apple Git-157。记录绑定了本机程序、安装收据、Apple 签名与随包 GPL v2 声明。构建包装器已在源码快照前后检查选择结果和文件摘要。 [Apple Git 执行链核对](../records/2026-11-07-linux-channel-l3-apple-git-readback.md)
 
-2026-11-22 接续，已离线核对干净提交的完整 Git blob 树和两份 Cargo 缓存，并登记 Cargo 官方元数据、Rust target 与安装器、固定 Darwin 宿主、Apple Git-157 的限定信任。Cargo 限于一次本地离线解析，Apple Git 限于一次本地只读快照。libproc ABI 证据已绑定固定 Xcode 的 macOS 27.2 SDK。L3 整体继续为 `not-accepted`，等待单独授权安装、真实回执和外部审阅。 [完整树与原输入证据](../records/2026-11-22-linux-channel-l3-input-decision-preparation.md) · [限定信任与 ABI 证据](../records/2026-11-22-linux-channel-l3-limited-trust.md)
+2026-11-22 已登记 Cargo 官方元数据、Rust target 与安装器、固定 Darwin 宿主及 Apple Git-157 的限定信任。Cargo 限于本地离线解析，Apple Git 限于本地只读快照，libproc ABI 绑定 macOS 27.2 SDK。单次离线安装核对了 66 个 target 文件、原五个宿主组件、三项工具和元数据差异。实际构建的前后两次 `xcrun` 路径与零 stderr 检查通过，G0 与 L5 的实际执行资格另行验收。 [完整树与原输入证据](../records/2026-11-22-linux-channel-l3-input-decision-preparation.md) · [限定信任与 ABI 证据](../records/2026-11-22-linux-channel-l3-limited-trust.md) · [实际回执](../records/2026-11-22-closeout.md#l3--l4-留存回执)
 
 ## 未来安装：只增加一个 target
 
-候选安装仍使用现有 rustup 的 `target add --toolchain 1.97.1-aarch64-apple-darwin aarch64-unknown-linux-musl`，不是 archive 内的 install.sh。该参数和下面写入目标只是供审阅，**本页不授权执行**。
+本节保留原安装预案。2026-11-22 已按单个 target 的范围完成一次安装，实际差异见正式回执。对不同宿主或重新安装须另行授权。 [安装结果](../records/2026-11-22-closeout.md#l3--l4-留存回执)
+
+预案使用现有 rustup 的 `target add --toolchain 1.97.1-aarch64-apple-darwin aarch64-unknown-linux-musl`。
 
 核对了 rustup [1.29.0 add_component](https://github.com/rust-lang/rustup/blob/1.29.0/src/toolchain/distributable.rs)、[缓存检查](https://github.com/rust-lang/rustup/blob/1.29.0/src/dist/download.rs)和[组件事务](https://github.com/rust-lang/rustup/blob/1.29.0/src/dist/manifestation.rs)：该版本的静态路径读取已安装清单；命中按哈希命名且重算相等的 cache 时使用本地文件，成功后可能删除该 cache 并重写 component 元数据。这是精确版本源码的预期，不是已安装 binary 的源码重建证明或真实安装回执。
 
@@ -50,7 +52,7 @@ Apple Git 的实际执行链已核对。固定入口 `/usr/bin/git` 经当前选
 
 ## 完整输入 v0.2 与无自引用绑定
 
-**本节为私有输入约束；实现接口和宿主验证发现的补正见下文。尚未生成真实完整 v0.2 root。** 保留现有 v0.1 offline-source-binding-only 的纯导出和严格拒绝；不把 null 改成空对象或把 readiness 改 true 冒充迁移。
+本节为私有输入约束。真实完整 v0.2 root 已生成并独立复核，实际字节绑定见日终回执。v0.1 的 offline-source-binding-only 纯导出继续保留，native 严格要求 v0.2。 [实际 root 与审阅摘要](../records/2026-11-22-closeout.md#l3--l4-留存回执)
 
 候选 root 继续 format=radishaxiom-private-linux-channel-inputs，version 升为 `0.2`、scope=target-build-input-binding。原 profile / budgets / collector / collector_reads / 有序源码闭包仍由类型化常量与编译捕获源双向核对。build_inputs 必须完整，包含最终 source commit、安装观察与有限接受引用、有序构建参数 / 环境和以下清单的 path / bytes / `sha256:` 原字节引用。native_build=not-accepted 与两个产品 readiness=false 保持，有限构建许可来自独立的对象接受和本次执行授权，不用内嵌布尔值开关代替它们。
 
@@ -97,11 +99,11 @@ root ≤1 MiB、维持现有控制 JSON 的深度 / 64 项数组等边界；大�
 | libunwind.a | 既有源码树 LLVM libunwind 配方与 LICENSE，含 legacy / 第三方说明；panic=abort 不证明 archive 或其中对象未参与链接 |
 | 编译 / 安装宿主工具 | 与静态嵌入 guest 的材料分开记录；rustup / compiler / LLVM / dylib / 系统运行时的许可与可信输入范围不能从版本文本推导，也不自动传递成诊断 ELF 的许可证 |
 
-[旧精确配方与许可材料](../records/rust-linux-input-review/source-recipes-2026-09-10.md)继续作为起点。本轮重核其 255 份留存文本与已提交元数据逐项一致，并单列六份 Rust / compiler-builtins / compiler-rt / libunwind 许可摘要，没有重扫 / 重建整套源码工具链。目标 .a 当前只在归档 / 文件层绑定；最终 trace / map / why-extract、对象解析、ELF 与必要来源 / 归属文件的对应仍属 L4。必要许可材料放 records、不挂入只含单 ELF 的 runtime 目录；具体分发接受不在本批发生。
+[旧精确配方与许可材料](../records/rust-linux-input-review/source-recipes-2026-09-10.md)继续作为来源依据。预审重核了 255 份留存文本与六份 Rust / compiler-builtins / compiler-rt / libunwind 许可摘要。L4 依据 trace、map 和 why-extract 对账 329 个归档成员及许可，三个 rustc 临时对象只保留调用和链接关联。许可与归属材料放在 `records/`，单文件 `runtime/` 的验收范围为本地离线交付。 [L4 回执](../records/2026-11-22-closeout.md#l3--l4-留存回执)
 
-本次源码切片已实现 v0.2 纯生成 / 独立复核、native 捕获与有界包装器，使用合成安装观察 / argv / 短时宿主进程覆盖旧版 / null / 篡改 / 配置注入 / 超额 / 取消 / 失败拒绝；实际边界与命令见实现记录。不自动安装或构建 Linux。真实完整 root 只有实际组件安装观察、精确工具 / 系统范围和接受材料齐备后才能生成，不能用合成 fixture 替代。随后按独立授权安装这一 target，再单独授权一次构建；L4 离线制品核对和 L5 执行前收口顺序不变。
+初版以合成安装观察、argv 和短时宿主进程核对旧版、空输入、篡改、配置注入、超额、取消和失败拒绝。真实完整 root 须绑定实际安装观察、精确工具 / 系统范围及接受材料，安装和实际构建分别授权。当前已有该批真实 root 与 L4 离线验收，接续为 G0 与 L5 各自的运行前条件。 [初版验证](../records/2026-11-01-linux-channel-l3-implementation.md) · [后续顺位](../status/current.md#接下来的事项)
 
-C1 / LibPoly、E0 / E4、G0 / A1–A10、镜像 / 权限 / 无写别名 / 独立终止 / 存储硬限仍未闭合。输入方案、签名历史或元数据成功均不授权诊断环境，不创建 / 启动 Linux 环境试错，也不推进 solver 真实路径。
+无 Poly 候选的 C1 固定输入已限定接受，原含 Poly 方案的 LibPoly 缺口仍开放。solver 制品 E0 / E4、G0 / A1–A10 和 L5 的镜像、权限、无写别名、独立终止及存储硬限按各自边界审阅，真实执行须单独授权。 [C1 限定接受](../records/2026-11-22-cvc5-no-poly-c1-acceptance.md)
 
 
 ## v0.2 实现接口与静态出口
@@ -138,7 +140,7 @@ installation-receipt 必须声明 installed-reconciled，绑定 archive / files_
 
 原生入口仅在原精确 cfg 内使用 `include_bytes!(env!("RADISHAXIOM_LINUX_CHANNEL_INPUTS"))`。缺变量 / 文件在编译期失败；`prepare` 和宿主测试共用 `native_binding` 校验被捕获 root 并散列原字节，拒绝 v0.1 / null / 错误 scope / 源漂移。runtime argv 仅保留 run-id，runtime 不加载 inputs 环境或 sidecar；wire v0.1 不变。
 
-`build-linux-channel.py plan` 是纯输出，不创建任务；`build` 接受已生成且完成外部审阅的 bundle / source commit / review digest 与明确任务根。必要的 Rust 纯导出在执行请求前完成，build 不隐式编译 host generator。build 的同一 600 s 从前检起覆盖输入复核、Git 精确 blob 快照、两份解析数据、只读 Cargo metadata、唯一 cargo build、前后复核与外置 manifest。只有独立执行授权后才能调用 build，本批没有调用其真实构建路径。
+`build-linux-channel.py plan` 是纯输出，不创建任务。`build` 接受已生成且完成外部审阅的 bundle、source commit、review digest 与明确任务根。先完成 Rust 纯导出。构建从前检起在同一 600 s 内完成输入复核、Git 精确 blob 快照、两份解析数据、只读 Cargo metadata、唯一 cargo build、前后复核与外置 manifest。2026-11-22 成功批次的包装器退出 0，实测约 156 s，峰值观测为 120,829,772 bytes，实际构建仍逐次授权。 [构建回执](../records/2026-11-22-closeout.md#l3--l4-留存回执)
 
 Git 只读调用禁用用户全局 / 系统配置、fsmonitor hook、可选锁和 lazy fetch；保持完整七包快照，拒绝脏源、symlink / 其他模式，另核对三个 normal 包无 build.rs / build-dependency / proc macro / 注册表依赖及实际 metadata。所有工具直指已绑定文件，不使用 rustup proxy。
 
@@ -146,6 +148,6 @@ Git 只读调用禁用用户全局 / 系统配置、fsmonitor hook、可选锁�
 
 源码快照前后，在 Git 只读命令的同一精简环境中重核上述五个文件，并比较 `xcode-select -p` 与 `xcrun --no-cache --find git` 的精确输出。缺少材料、文件变化、stdout 差异、非空 stderr 或命令失败都会使构建在 Cargo 前退出。独立 checker 通过审阅材料引用核对其字节，实时选择检查在包装器中执行。前后读取依赖已审阅宿主在快照期间保持选择器与工具稳定，覆盖两次检查时可观察到的变化。合成快照覆盖初始选择不匹配、快照期间解析结果或文件漂移。历史实机探针曾确认固定 Xcode 的路径，拒绝子进程限定的 Command Line Tools 选择。 [实时路径与 stderr 复核](../records/2026-11-22-linux-channel-l3-limited-trust.md#xcrun-路径与-stderr-复核)
 
-recorder 的生成字节和 Python 身份均进入输入，启动解释器固定 `-I -S -B`，关闭继承 wrapper。记录真实 canonical argv 后仅 exec 绑定的 rustc；允许精确 version / host / target probes 和四个编译单位（三个 lib + 唯一 bin），有序 flags 必须完整出现且仅一次，拒绝未知执行路径 / 单位 / 输出 / response file / 覆盖参数。库固定使用 `--emit=dep-info,metadata,link`，启动器二进制固定使用 `--emit=dep-info,link`。Cargo 的 `--extern` 可传入目标 `linux-channel/deps` 下的 `.rmeta`，依赖必须是当前编译单元的固定直接依赖（含二进制自己的库），文件名必须匹配库名和 Cargo 的小写十六进制后缀。最多 64 记录、每份 64 KiB；`-vv` 只作日志。源码闭包包含 recorder 实现，不另造通用 runner。
+recorder 的生成字节和 Python 身份均进入输入，启动解释器固定 `-I -S -B`，关闭继承 wrapper。记录真实 canonical argv 后仅 exec 绑定的 rustc。允许精确 version / host / target probes 和四个编译单位（三个 lib、一个 bin），有序 flags 必须完整出现且仅一次，拒绝未知执行路径 / 单位 / 输出 / response file / 覆盖参数。库固定使用 `--emit=dep-info,metadata,link`，启动器二进制固定使用 `--emit=dep-info,link`。Cargo 的 `--extern` 可传入 `target/aarch64-unknown-linux-musl/linux-channel/deps` 下的 `.rmeta`，依赖须为当前编译单元的固定直接依赖（含二进制自己的库），文件名匹配库名及 1–32 位小写十六进制后缀。最多 64 条记录，每份 64 KiB。`-vv` 只作日志。源码闭包包含 recorder 实现。 [参数守卫](../../scripts/build-linux-channel.py) · [定向回归](../../scripts/test-linux-channel-build.py)
 
 超时、取消、流超额、文件增长、短写 / ENOSPC、非零退出、未知存活组或未确认停止全部保留失败；cleanup 失败同时保留主因。只停止自己创建的进程组，不自动重试 / 更改 linker / 清理缓存。宿主监督要求 SIGCHLD 为默认处置且本进程为唯一 waiter；通过 waitid(WNOWAIT) 保留组长 PID，在其回收前用固定 macOS libproc 的 PROC_PGRP_ONLY 枚举（≤64）核对 / 停止原组，回收后不再发组信号。libproc / ctypes / Python 扩展按固定宿主范围受信任，实际执行仍须绑定运行时输入；未知成员或查询失败不认定成功。枚举只覆盖原组，不能证明不存在改变 session / PGID 后逃逸的后代；工具不得产生此类逃逸，仍依赖有限宿主信任。失败中的数值 PID / PGID 仅作诊断，不能用于事后发信号。600 s / 512 MiB 及单文件限额为受信宿主下的截止与观测：Popen 所有权交接、文件 IO、SIGKILL / wait 依赖宿主 OS，停止确认最多另观察 1 s；不是 OS 硬 quota、RSS 限制或独立终止证明。manifest 始终 built-not-accepted，须同时核对包装器实际退出和失败记录，不能仅凭 manifest 判定成功，更不能据此执行 ELF。 [宿主限定信任与 27.2 SDK ABI](../records/2026-11-22-linux-channel-l3-limited-trust.md#3-固定-darwin-宿主与-libproc-abi)

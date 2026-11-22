@@ -1,14 +1,14 @@
 # 本地 cvc5：新 Linux 管理通道的最小方案
 
-日期：2026-11-01。状态：**方案及 PID 1 / L1–L3 源码已完成限定静态验证；未接受镜像、未创建环境、未授权执行**。本文记录同一 OrbStack daemon 的一次性诊断候选和权限、资源、清理、停止条件，覆盖已有 Linux 环境的有限拓扑读回。G0 的专用宿主评审沿 [AX-B01 宿主决定](../records/2026-11-22-ax-b01-g0-linux-host-decision.md)，现行顺位见[当前状态](../status/current.md)，原方案的实际静态核对见[本批记录](../records/2026-11-01-linux-channel-minimum-review.md)。
+始于 2026-11-01，更新至 2026-11-22。状态：**L3 / L4 已交付诊断启动器，OrbStack 诊断镜像仍待接受，L5 环境执行待单独评审。** 本文记录 OrbStack 一次性诊断候选的权限、资源、清理和停止条件。G0 优先沿 AX-B01 专用 Linux AArch64 虚拟机与单向 virtio 串行通道评审，部署后的实际阻塞是宿主凭据预检。 [原方案记录](../records/2026-11-01-linux-channel-minimum-review.md) · [AX-B01 宿主决定](../records/2026-11-22-ax-b01-g0-linux-host-decision.md) · [当前状态](../status/current.md)
 
 后续[离线核对](../records/2026-11-01-linux-channel-offline-review.md)已完成所选平台字节链、原 minirootfs 514 项相对树、16 包 / 10 配方的版本 / 许可声明及参考内核读取路径核对；APK shadow 校验差异和 SBOM 来源记录区分均保留。**仍未接受镜像或实际权限，且发现直接作为 PID 1 的 BusyBox timeout 不能提供原设想的内部强杀保证**；下文启动拓扑与根 cgroup 文件范围据此修正。没有创建或启动环境。
 
-随后按授权完成 [PID 1 启动器的最小源码实现与静态验证](../records/2026-11-01-linux-channel-init-review.md)。实现复用现有 Rust Linux syscall 边界，由 PID 1 自行计时、直接启动非 PID 1 采集子进程，并按精确 pidfd 回收被接管的子进程；不再叠加 BusyBox timeout。固定普通 clone 路径避免依赖上游默认 seccomp 对 clone3 的额外 capability 条件，仍须核对本机有效策略。该批只有库内私有入口；后续 L2 源码接续见下方，仍无 Linux 制品或镜像接入，真实执行停止。
+随后完成 PID 1 启动器源码与静态验证。实现复用 Rust Linux syscall 边界，由 PID 1 自行计时、直接启动非 PID 1 采集子进程，并按精确 pidfd 回收被接管的子进程。固定普通 clone 路径所需的实际 seccomp 策略由 L5 核验。该批交付库内私有入口，后续 L2 和制品验收见下文。 [PID 1 实现记录](../records/2026-11-01-linux-channel-init-review.md)
 
-启动器源码已提交为 `be8c620`；后续[目标构建与交付方案](solver-linux-channel-build-and-delivery-plan.md)选择 Rust 1.97.1 / aarch64-unknown-linux-musl / bundled rust-lld 的静态非 PIE 候选、内嵌采集原字节、单文件 runtime 目录只读挂 `/mnt`，以及 PID 1 独占 stdout 的私有帧报告 / raw exit。Linux target std 实际未安装；核定时上述接线未实现。后续 L1 / L2 已形成正文 / codec / 管道 / 最终入口源码，在原 20 s 内安排 18 s 工作、1.8 s 收束、0.2 s 最终导出；这不是运行保证。详细参数、绑定、预算和验收以该方案为准，本批未安装 / 构建或交付挂载。
+启动器初版为 `be8c620`。后续交付方案选择 Rust 1.97.1 / aarch64-unknown-linux-musl / bundled rust-lld 的静态非 PIE 候选、内嵌采集原字节、单文件 runtime 目录只读挂 `/mnt`，以及 PID 1 独占 stdout 的私有帧报告与 raw exit。L1 / L2 已形成正文、codec、管道与退出源码。20 s 配置窗口分为 18 s 工作、1.8 s 收束、0.2 s 最终导出，实际退出仍待合格宿主观测。 [构建及交付参数](solver-linux-channel-build-and-delivery-plan.md)
 
-交付方案已提交为 `2e5da3a`；后续 [L1](solver-linux-channel-l1.md)已完成正文、源绑定与报告纯组件，本机静态 / 合成检查及独立互操作结果见[记录](../records/2026-11-01-linux-channel-l1-review.md)。L1 随后提交为 `5609e6a`；[L2](solver-linux-channel-l2.md)已完成独占管道 / 最终入口源码与宿主验证，见[记录](../records/2026-11-01-linux-channel-l2-review.md)。L2 已提交为 `5dab738`；[L3](solver-linux-channel-l3.md)源码已提交为 `bb9d963`，具备 v0.2 纯输入 / 独立复核、native 捕获与有界包装器，保留的 v0.1 当前为 53 源。尚无真实完整 root、采集、目标组件安装或 Linux 制品；真实安装观察、工具 / 系统 / 许可接受未闭合，不能用合成材料替代。旧 target 原包已重核，不重复下载。
+11 月 22 日已完成独立 target 安装、真实 v0.2 输入审阅、有界 L3 构建和 L4 离线制品验收。L5 可复用既有固定单文件交付，真实采集仍待精确镜像、宿主和权限条件以及单独授权。 [L3 输入审阅](solver-linux-channel-l3.md) · [L4 交付回执](../records/2026-11-22-closeout.md#l3--l4-留存回执) · [L5 运行前复核](../records/2026-11-22-linux-channel-g0-l5-preflight.md)
 
 ## 核定结论与选项
 
@@ -118,7 +118,7 @@
 
 ## 验收出口与下一步
 
-静态方案、镜像离线核对、PID 1 与 L1–L3 源码已有本机有限结果，**仍不接受新信任、镜像或诊断执行例外**。后续沿 [L3](solver-linux-channel-l3.md)先审阅精确 target / installer / 宿主运行时及两份 Cargo 解析元数据的有限接受，再就单 target 安装单独核定；实际安装观察闭合后才生成真实完整 root。L1 离线源输入不等于完整工具构建输入。目标安装、构建、交付挂载和诊断分别授权，真实宿主权限及来源 / 许可接受继续是执行前置。不重复完整来源清单或运行旧 timeout 入口，不先创建环境试错。
+L5 的剩余出口为固定 OCI 镜像的独立接受、精确宿主权限、proc / seccomp / bind 的实际读回、一次诊断参数及清理范围。交付挂载与诊断分别授权。G0 的无盘首启沿独立宿主路线，须在固定启动器的凭据预检通过后单独评审。下述 Docker 观测仍适用于本页的 OrbStack 诊断候选。 [L5 运行前复核](../records/2026-11-22-linux-channel-g0-l5-preflight.md) · [G0 凭据预检回执](../records/2026-11-22-ax-b01-g0-diskless-host-deployment.md)
 
 真实执行如果另获授权，必须分别报告：创建 / 配置读回是否一致；采集是否真实完整；宿主 / namespace 来源是否可定位；资源 / 退出 / Docker 清理各自观察与缺失。身份 / 数据矛盾为失败，缺失为未取得，不合成为资格 success。只能用结果决定同宿主后续具体根 / quota / 控制权限的可行性，不能把本次读回写成 A3 / A4 / A7 / A8 或 C1 / E0 / E4 通过。
 
