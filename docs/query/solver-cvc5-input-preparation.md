@@ -1,6 +1,6 @@
 # cvc5 C1 输入接受与 C2 离线准备
 
-更新日期：2026-10-23。用途：供输入审阅者和构建实施者核对 C1 的精确缺口、原字节获取结果与 C2 离线检查入口；接续[构建候选方案](solver-cvc5-build-candidate-plan.md)。本文不改变公共契约、许可或信任决定，不提供实际构建 / 运行授权；当前均未 accepted。
+更新日期：2026-11-22。下文保留原启用 Poly 候选的 C1 与 C2 准备记录。AX-B01 的 `USE_POLY=OFF` 候选已另行登记[限定 C1 接受](../records/2026-11-22-cvc5-no-poly-c1-acceptance.md)。实际构建与运行各自需要资格和授权。 [构建候选方案](solver-cvc5-build-candidate-plan.md)
 
 
 2026-10-22，按项目所有者要求先收口 C1 缺口、准备精确获取清单并推进可离线完成的 C2。现已完成全部原包获取、独立原字节核对，以及[后续留存、包内容和真实验签审阅](../records/2026-10-23-cvc5-c1-input-review.md)，**C1 尚未接受，C2 已形成可审阅的离线配方与预检，尚无执行资格**。实际复核见[本批记录](../records/2026-10-22-cvc5-c1-c2-preparation.md)。旧 C0 / Production / patch 记录与公共格式不改写。

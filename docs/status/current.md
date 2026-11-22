@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-11-22（合成独立验收与真实 solver 候选离线准备）
+更新日期：2026-11-22（AX-B01 无 Poly 候选 C1 限定接受）
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。整体目标见[开发计划](../development-plan.md)，归属与任务来源见[能力专题地图](../topics.md)；历史流水见[整理前快照](../records/status-before-planning-alignment-2026-11-01.md)与[早期归档](../records/status-through-2026-09-03.md)。
 
@@ -29,7 +29,7 @@
 | 顺位 | 必须继续 | 必要阻塞 / 结束条件 |
 | --- | --- | --- |
 | 1 | 合成 AX-B01 独立结果支持已验收 | 五类精确重放、历史 / 信任 / 结论及具名三类中止均已复核。实际 Evidence 仍须按同一摘要逐义务独立核对。 [验收记录](../records/2026-11-22-ax-b01-checker-and-solver-path-review.md#合成-ax-b01-独立复核) |
-| 2 | 唯一待审候选 `cvc5 1.3.4 / USE_POLY=OFF` 已形成独立离线材料 | C1 输入及许可接受、L3/G0、实际 C3 配置和链接闭包、目标制品及运行资格仍阻断。 [候选与停止线](../query/solver-cvc5-no-poly-offline.md#停止线) |
+| 2 | 唯一待审候选 `cvc5 1.3.4 / USE_POLY=OFF` 的 C1 固定输入已限定接受 | L3/G0、实际 C3 配置和链接闭包、目标制品及运行资格仍阻断。 [C1 接受与边界](../records/2026-11-22-cvc5-no-poly-c1-acceptance.md) |
 | 3 | 实际受限校准，再取得 AX-B01 全部结果 | 保持原容量及 128 MiB / 6 s；按 E0、E4–E6 和具体授权取真实结果。九项后端结果与四项结构类义务支持齐备后装配，独立核对精确目标、信任与同一 Evidence 摘要 |
 | 4 | P6–P9 与首个真实纵向闭环 | 提前登记 Node P7 的来源、宿主和硬资源缺口；P4/P5 真结果不足时 P6 继续 closed。correct 全链、两个 wrong、invalid、真实 timeout 与篡改/门控拒绝按原契约验收 |
 
@@ -101,7 +101,7 @@ G0 以证据不足结束，真实接线仍未放行。L1 / L2 的源绑定、报
 
 恢复基线：C1 **500 / 500 文件、691,605,464 bytes** 已取得并独立复核；172 包内容、copyright 路径及 101 `.dsc` 关联已核对，历史三角色签名与五负例按明确接受的有限信任范围通过，旧失败保留，见[输入审阅](../records/2026-10-23-cvc5-c1-input-review.md)。20 个短时验签容器均已退出并删除，未安装、组装或执行 SDK / solver；验签宿主接受不能转用为构建资格。LibPoly [原草稿及发送接续](../records/2026-10-23-libpoly-upstream-clarification-draft.md)已发布，缺口仍待权威依据；C2 已交付离线配方、布局与事件检查，**C1 仍 not-accepted，build_ready=false**。
 
-唯一待审路线为固定版本 cvc5 `1.3.4`、Linux AArch64 glibc Production 静态 CLI、`USE_POLY=OFF`。已形成独立身份、补丁、输入清单、离线配方和拒绝检查。仍须完成 C1 接受和 L3/G0 资格再进入实际构建；E0/E4/E5/E6 继续按序。 [候选离线入口](../query/solver-cvc5-no-poly-offline.md)
+唯一待审路线为固定版本 cvc5 `1.3.4`、Linux AArch64 glibc Production 静态 CLI、`USE_POLY=OFF`。固定输入及其许可范围已获 C1 限定接受，用于本地诊断。实际构建等待 L3/G0 资格与单独授权；E0/E4/E5/E6 继续按序。 [C1 接受记录](../records/2026-11-22-cvc5-no-poly-c1-acceptance.md) · [候选离线入口](../query/solver-cvc5-no-poly-offline.md)
 
 1. **原启用 Poly 的候选保留暂停。** 若未来重新审议该候选，须取得 LibPoly 固定版本的许可澄清后再作 C1 接受审阅。 [历史核对](../records/2026-10-23-libpoly-license-history.md)已收敛为整体许可冲突、Polyxx 覆盖与旧 `open_memstream.c` 来源授权三项；[issue #113](https://github.com/SRI-CSL/libpoly/issues/113)已按 10 月 27 日明确授权发送。后续依据须适用固定提交并覆盖这些缺口；不重复查同一历史、下载已匹配材料或把风险接受写成许可事实。未安排自动轮询，不自动追加消息。
 2. **L3 保持阻断，收口剩余输入审阅。** 复用已核对的 target 归档、Rust 工具、Python 构建和 Apple Git 实际执行链。恢复时核定 target 发布清单的有限信任范围、Apple Git 的精确源码缺口、Cargo 解析数据来源 / 许可及固定宿主信任。新增来源链或信任假设先核定范围。 [Apple Git 剩余边界](../records/2026-11-07-linux-channel-l3-apple-git-readback.md#漂移时如何阻断)
@@ -136,7 +136,7 @@ Checker 语义线的目标归因、同域泛化与独立证明链仍待独立验
 
 - ADR 0027 与 query v0.5 / P4-A v0.2 已 Accepted，A–C 已完成本机组件验收。保持原容量、旧 profile 字节及 1 MiB；不启动真实 solver，不 push。紧凑字节与有限比较不代表实际求解、运行资源资格或证明。
 - ADR 0028 D1–D3 与执行层设计范围已 Accepted；E1–E2 已完成纯组件与模拟验收，真实适配与运行资格尚未闭合。cvc5 Linux arm64 ZIP 静态检查通过但未 accepted，OrbStack 宿主仅选为候选；完整依赖 / 许可证、固定加载与能力限制、128 MiB / 6 s 资格尚未闭合。准备授权不扩大为安装、构建镜像、容器探针、solver 执行或系统配置。
-- ADR 0029 D1–D3 已 Accepted；E3 离线组件已验收。ADR 0030 D1–D3 已 Accepted；F1 / F2、C0 与后续 C1 / C2 离线改动已提交。SDK 原包 / 内容及限定历史签名已核对，LibPoly 许可、SDK / 构建宿主接受、实际配置 / 链接输入与运行资格仍未闭合。不得用布局或事件检查宣称 SDK 已组装，也不得用 PID 1 / timerfd 的纸面方案宣称失联回收或 6 s 资格；不能以 USER_NOTIF 检查不可信 pathname 后放行。真实路径继续受 E0、ABI 审查、实际资格及精确执行授权约束。
+- ADR 0029 D1–D3 已 Accepted；E3 离线组件已验收。ADR 0030 D1–D3 已 Accepted；F1 / F2、C0 与后续 C1 / C2 离线改动已提交。无 Poly 候选的 C1 固定输入已限定接受，原 Poly 候选的 LibPoly 许可、两条路径的构建宿主、实际配置 / 链接输入与运行资格仍未闭合。不得用布局或事件检查宣称 SDK 已组装，也不得用 PID 1 / timerfd 的纸面方案宣称失联回收或 6 s 资格；不能以 USER_NOTIF 检查不可信 pathname 后放行。真实路径继续受 E0、ABI 审查、实际资格及精确执行授权约束。
 - 精确 CLI 补证保持系统库和实际构建输入缺口，不因固定配方、许可文本或 CI success 转为 accepted。日志 403 路径停止，不自动申请上游管理权限、联系发布者、换工具或展开全工具链取证；执行层按 E0–E6 清单分别收口。
 - P1、限定 P2 与 P3-A / B / C / D / E / F 已完成本机组件验收；完整生产阶段尚未验收。P3 进一步扩展须明确目标范围；新 IR / P2 / query 不能配给旧 Evidence 结果，完整 Evidence v0.2 仍须按 ADR 0009 补齐。
 - P4-A 按 ADR 0025 已完成本机组件验收；没有真实 cvc5 校准。纯 parser / 世界候选不认证响应来源，不产生 attempt、反例或 Evidence 五态；旧四版 AX-B01 stdin 尺寸拒绝保持，新 v0.5 已通过字节门槛。

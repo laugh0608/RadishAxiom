@@ -1,6 +1,6 @@
 # AX-B01 cvc5 1.3.4 的 Poly 关闭候选
 
-日期：2026-11-22。私有候选标识为 `ax-b01-cvc5-1.3.4-linux-aarch64-no-poly`。固定 cvc5 提交 `f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341`、Linux AArch64 little-endian、glibc/GCC、Production、静态、non-GPL、Editline 及原 AX-B01 请求。状态为 `not-accepted`、`build_ready=false`、`execution_ready=false`。候选标识用于区分配方，真实工具身份由后续 E0 对新制品字节裁定。 [选型及原包核对](../records/2026-11-22-ax-b01-checker-and-solver-path-review.md)
+日期：2026-11-22。私有候选标识为 `ax-b01-cvc5-1.3.4-linux-aarch64-no-poly`。固定 cvc5 提交 `f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341`、Linux AArch64 little-endian、glibc/GCC、Production、静态、non-GPL、Editline 及原 AX-B01 请求。C1 固定输入已限定接受用于本地诊断。制品仍待 E0，`build_ready=false`、`execution_ready=false`。 [选型及原包核对](../records/2026-11-22-ax-b01-checker-and-solver-path-review.md) · [C1 接受记录](../records/2026-11-22-cvc5-no-poly-c1-acceptance.md)
 
 ## 输入与补丁
 
@@ -25,6 +25,6 @@ python3 -O scripts/prepare-cvc5-no-poly.py check-manifest --material-root <已�
 
 ## 停止线
 
-1. 收口 C1 的限定 SDK、来源和许可接受。L3 与 G0 仍需宿主及工具信任、真实输入封闭、冻结与独立终止、磁盘和 inode 硬限。
+1. 按已登记的 C1 范围复用固定 SDK、来源和许可材料。L3 与 G0 仍需宿主及工具信任、真实输入封闭、冻结与独立终止、磁盘和 inode 硬限。
 2. 具备资格并获单独授权后，C3 才能生成依赖、核对 GCC/CRT/ABI 与实际 Editline 链接闭包、绑定 manifest，再留存主配置、编译及链接观察。有效配置、头文件、对象和 map 都须能追溯到固定候选。阶段计划中的 manifest 参数保持待填写，直到真实值有独立复核。
 3. 新 ELF 通过 E0 与实际 E4 后再依次恢复 E5 和 E6。沿用原容量和 128 MiB / 6 s，P6 按真实义务结果与独立复核门禁恢复。 [原停止线与执行授权](solver-cvc5-build-candidate-plan.md#批次占用授权与停止线)
