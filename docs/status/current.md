@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-11-22（AX-B01 无 Poly 候选 C1 限定接受与 L3 输入限定信任）
+更新日期：2026-11-22（AX-B01 的 L3 单次构建失败与参数记录器修正）
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。整体目标见[开发计划](../development-plan.md)，归属与任务来源见[能力专题地图](../topics.md)；历史流水见[整理前快照](../records/status-before-planning-alignment-2026-11-01.md)与[早期归档](../records/status-through-2026-09-03.md)。
 
@@ -29,7 +29,7 @@
 | 顺位 | 必须继续 | 必要阻塞 / 结束条件 |
 | --- | --- | --- |
 | 1 | 合成 AX-B01 独立结果支持已验收 | 五类精确重放、历史 / 信任 / 结论及具名三类中止均已复核。实际 Evidence 仍须按同一摘要逐义务独立核对。 [验收记录](../records/2026-11-22-ax-b01-checker-and-solver-path-review.md#合成-ax-b01-独立复核) |
-| 2 | 唯一待审候选 `cvc5 1.3.4 / USE_POLY=OFF` 的 C1 固定输入已限定接受 | L3 四项输入已登记限定信任，单次 target 安装、真实 L3 构建输入与制品、G0、实际 C3 和运行资格仍阻断。 [C1 接受](../records/2026-11-22-cvc5-no-poly-c1-acceptance.md) · [L3 限定信任](../records/2026-11-22-linux-channel-l3-limited-trust.md) |
+| 2 | 唯一待审候选 `cvc5 1.3.4 / USE_POLY=OFF` 的 C1 固定输入已限定接受 | L3 target 已安装并对账，`1bab7d6` 的真实 v0.2 root 已独立复核。单次构建停在参数记录器拒绝 `.rmeta`，修正后须重新绑定。L3 制品、G0、实际 C3 和运行资格仍阻断。 [C1 接受](../records/2026-11-22-cvc5-no-poly-c1-acceptance.md) · [L3 专题](../query/solver-linux-channel-l3.md#native-捕获与一次包装器) |
 | 3 | 实际受限校准，再取得 AX-B01 全部结果 | 保持原容量及 128 MiB / 6 s；按 E0、E4–E6 和具体授权取真实结果。九项后端结果与四项结构类义务支持齐备后装配，独立核对精确目标、信任与同一 Evidence 摘要 |
 | 4 | P6–P9 与首个真实纵向闭环 | 提前登记 Node P7 的来源、宿主和硬资源缺口；P4/P5 真结果不足时 P6 继续 closed。correct 全链、两个 wrong、invalid、真实 timeout 与篡改/门控拒绝按原契约验收 |
 
@@ -104,9 +104,9 @@ G0 以证据不足结束，真实接线仍未放行。L1 / L2 的源绑定、报
 唯一待审路线为固定版本 cvc5 `1.3.4`、Linux AArch64 glibc Production 静态 CLI、`USE_POLY=OFF`。固定输入及其许可范围已获 C1 限定接受，用于本地诊断。实际构建等待 L3/G0 资格与单独授权；E0/E4/E5/E6 继续按序。 [C1 接受记录](../records/2026-11-22-cvc5-no-poly-c1-acceptance.md) · [候选离线入口](../query/solver-cvc5-no-poly-offline.md)
 
 1. **原启用 Poly 的候选保留暂停。** 若未来重新审议该候选，须取得 LibPoly 固定版本的许可澄清后再作 C1 接受审阅。 [历史核对](../records/2026-10-23-libpoly-license-history.md)已收敛为整体许可冲突、Polyxx 覆盖与旧 `open_memstream.c` 来源授权三项；[issue #113](https://github.com/SRI-CSL/libpoly/issues/113)已按 10 月 27 日明确授权发送。后续依据须适用固定提交并覆盖这些缺口；不重复查同一历史、下载已匹配材料或把风险接受写成许可事实。未安排自动轮询，不自动追加消息。
-2. **L3 四项输入已登记限定信任，整体仍阻断。** 范围为两份 Cargo 官方解析元数据、Rust target 与安装器、固定 Darwin 宿主及 Apple Git-157 二进制。libproc ABI 证据采用固定 Xcode 的 27.2 SDK。`xcrun` 在 Codex 执行沙盒内出现 FSEvents stderr，普通宿主对照的 stderr 为空。实际快照仍须在拟用执行环境通过固定路径、文件摘要及零 stderr 守卫。 [限定信任与只读复核](../records/2026-11-22-linux-channel-l3-limited-trust.md)
+2. **L3 首次真实构建失败，等待修正后的输入绑定。** Rust target 已离线安装并双向核对 66 文件、原五个组件、三项工具和元数据。`1bab7d6` 的完整树、五份 sidecar、外部审阅摘要及真实 v0.2 root 已通过独立复核。该次构建快照前后的 `xcrun` 守卫均通过，Cargo 在 `solver-supervision-core` 的 `--extern` 传入 `.rmeta` 时被记录器拒绝，未生成 ELF。失败回执和原日志保存在本机忽略目录 `.tmp/linux-channel-build-l3-01/records/`。 [限定信任与只读复核](../records/2026-11-22-linux-channel-l3-limited-trust.md)
 
-   **下一次安装须单独核定并授权**，列明原归档 cache 新副本、120 s / 新增磁盘观测 512 MiB、唯一 target / 元数据写入和失败保留 / 清理边界；安装后双向核对 66 文件、原五个 component / 三工具及元数据差异。真实安装观察齐备后，绑定执行前最终干净 commit 的完整树与五份 sidecar / 外部 review pin，生成并独立复核真实 v0.2 root；不能用 53 源选定闭包代替全树或把 `bb9d963` 预填成尚未发生构建的来源。此后一次 600 s / 512 MiB Linux 构建、L4 离线制品验收、L5 交付 / 挂载 / 诊断执行分别授权；不因为输入机制已有源码就跳过安装观察 / 工具接受，或创建环境试错。旧原包不重下，合成 root / 回执和 source-only v0.1 均不充作真实输入。G0 / E0 / E4、实际 std / CRT / allocator / syscall、proc / seccomp / bind、无写别名、独立终止 / 存储硬限仍未闭合。
+   记录器现仅接受固定直接依赖在目标 `deps` 目录中的 `.rmeta`。下次构建前须保留失败目录，选用空的新任务路径，在最终干净提交上重做完整树快照与五份 sidecar，登记新外部审阅摘要并生成、独立复核新 v0.2 root。安装回执、宿主工具与 Cargo 数据可在原字节和信任范围重新核对后沿用。下一次 600 s / 512 MiB L3 构建、L4 制品验收和 L5 交付 / 挂载 / 诊断执行分别授权。实际快照继续执行两次固定路径、文件摘要和零 stderr 守卫。G0 / E0 / E4、实际 std / CRT / allocator / syscall、proc / seccomp / bind、无写别名、独立终止 / 存储硬限仍未闭合。 [L3 输入与守卫](../query/solver-linux-channel-l3.md#native-捕获与一次包装器)
 3. **F2 按实际依赖复用已有静态清单。** AArch64 调用约定和 FD 所有权交接已完成本轮有限静态复核。后续待核对目标工具链、outer setup policy、精确实例读回和 Mac adapter 接线，出口为具体问题修正或有限待验清单。Linux 目标构建、实际 syscall 与真实负向矩阵在工具 / 制品条件具备并获准后分别验证。 [F2 本轮范围](../records/2026-11-07-linux-channel-l3-input-acceptance-review.md#f2-小范围静态审阅)
 4. **条件闭合后按原顺序进入实际路径。** C1 与构建环境资格闭合后，按[C3–C5](../query/solver-cvc5-build-candidate-plan.md#批次占用授权与停止线)先构建依赖、审阅实际 ABI / Editline 有序闭包和 manifest，再配置 / 构建主目标；C4 决定 E0，实际 E4 通过后才进入 E5 的最多八份校准，随后单独评审 E6 的一次精确 wrong-add guarantee 尝试。保持原容量、128 MiB / 6 s 和旧四版字节 / 拒绝，不因不足增限或绕过门禁；这仍不等于完整 P0–P9 / Evidence / 独立 checker 验收。
 

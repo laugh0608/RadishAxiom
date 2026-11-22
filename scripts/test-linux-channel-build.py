@@ -407,9 +407,10 @@ class Argv(unittest.TestCase):
     def setUp(self):
         self.plan=W['make_plan']('/tmp/linux-channel-build-synthetic',[dict(role=r,file=dict(path='/tmp/'+r)) for r in
                       ('cargo','rustc','lld','installer','python','git')])
-    def unit(self):
+    def unit(self, package='digest'):
         p=self.plan; out=p['task_root']+'/target/'+I['TARGET']+'/linux-channel/deps'
-        return [p['env']['RUSTC'],'--crate-name','radishaxiom_digest','--edition=2024','crates/digest/src/lib.rs',
+        crate = 'radishaxiom_'+package.replace('-', '_')
+        return [p['env']['RUSTC'],'--crate-name',crate,'--edition=2024',f'crates/{package}/src/lib.rs',
                 '--error-format=json','--json=diagnostic-rendered-ansi,artifacts,future-incompat','--crate-type','lib',
                 '--emit=dep-info,metadata,link','-C','opt-level=2','-C','panic=abort','--out-dir',out,'--target',I['TARGET'],
                 '-L','dependency='+out,*p['rustflags']]
@@ -424,6 +425,41 @@ class Argv(unittest.TestCase):
                     [*a[:-28],'-C','opt-level=3',*a[-28:]],
                     [*a[:-28],'--sysroot','/unreviewed',*a[-28:]]):
             with self.assertRaises(ValueError):W['rustc_argv'](self.plan,bad)
+    def test_registered_target_externs(self):
+        argv = self.unit('solver-supervision-core')
+        out = argv[argv.index('--out-dir')+1]
+        for suffix in ('rmeta', 'rlib'):
+            with self.subTest(suffix=suffix):
+                dependency = f'radishaxiom_digest={out}/libradishaxiom_digest-9c7bac32bec7bdd5.{suffix}'
+                self.assertEqual(W['rustc_argv'](self.plan, [*argv, '--extern', dependency]),
+                                 'radishaxiom_solver_supervision_core')
+        argv = self.unit('solver-bootstrap-linux')
+        digest_dep = f'radishaxiom_digest={out}/libradishaxiom_digest-01.rmeta'
+        supervision_dep = f'radishaxiom_solver_supervision_core={out}/libradishaxiom_solver_supervision_core-02.rmeta'
+        self.assertEqual(W['rustc_argv'](self.plan, [*argv, '--extern', digest_dep, '--extern', supervision_dep]),
+                         'radishaxiom_solver_bootstrap_linux')
+        argv[argv.index('--crate-name')+1] = 'axiom_linux_channel_init'
+        argv[argv.index('crates/solver-bootstrap-linux/src/lib.rs')] = 'crates/solver-bootstrap-linux/src/bin/linux_channel_init.rs'
+        argv[argv.index('--crate-type')+1] = 'bin'
+        same_package = f'radishaxiom_solver_bootstrap_linux={out}/libradishaxiom_solver_bootstrap_linux-03.rmeta'
+        self.assertEqual(W['rustc_argv'](self.plan, [*argv, '--extern', same_package]), 'axiom_linux_channel_init')
+    def test_target_rmeta_rejects_wrong_edges_and_paths(self):
+        argv = self.unit('solver-supervision-core')
+        out = argv[argv.index('--out-dir')+1]
+        filename = 'libradishaxiom_digest-9c7bac32bec7bdd5.rmeta'
+        invalid = (
+            f'libc={out}/liblibc-01.rmeta',
+            f'radishaxiom_solver_bootstrap_linux={out}/libradishaxiom_solver_bootstrap_linux-01.rmeta',
+            f'radishaxiom_solver_supervision_core={out}/libradishaxiom_solver_supervision_core-01.rmeta',
+            f'radishaxiom_digest={self.plan["task_root"]}/target/linux-channel/deps/{filename}',
+            f'radishaxiom_digest={out}/nested/{filename}',
+            f'radishaxiom_digest={out}/../deps/{filename}',
+            f'radishaxiom_digest={out}/libradishaxiom_digest-bridge.rmeta',
+            f'radishaxiom_digest={out}/libradishaxiom_digest-01.so',
+        )
+        for dependency in invalid:
+            with self.subTest(dependency=dependency), self.assertRaisesRegex(ValueError, '^rustc-extern$'):
+                W['rustc_argv'](self.plan, [*argv, '--extern', dependency])
     def test_target_probe_is_closed(self):
         a=['/tmp/rustc','-','--crate-name','___','--print=sysroot','--target',I['TARGET'],'--crate-type','bin',*self.plan['rustflags']]
         self.assertEqual(W['rustc_argv'](self.plan,a),'target-probe')

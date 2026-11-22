@@ -22,7 +22,13 @@ import tomllib
 
 TARGET = 'aarch64-unknown-linux-musl'
 TOOLCHAIN = '1.97.1-aarch64-apple-darwin'
-PACKAGES = ('digest', 'solver-supervision-core', 'solver-bootstrap-linux')
+PACKAGE_DEPENDENCIES = {
+    'digest': (),
+    'solver-supervision-core': ('digest',),
+    'solver-bootstrap-linux': ('digest', 'solver-supervision-core'),
+}
+PACKAGES = tuple(PACKAGE_DEPENDENCIES)
+LIB_CRATES = tuple('radishaxiom_'+package.replace('-', '_') for package in PACKAGES)
 SIDECARS = ('source-snapshot.json', 'target-payload.json', 'tool-inventory.json', 'build-plan.json', 'input-review.json')
 APPLE_GIT_SELECTION = 'materials/apple-git-selection.json'
 LIMITS = dict(total_seconds=600, task_bytes=536870912, source_bytes=134217728, source_files=4096,
@@ -124,9 +130,8 @@ def graph(source):
         require(d['package']['name'] == 'radishaxiom-'+package and d['package']['edition'] == '2024', 'package-identity')
         require(not d.get('build-dependencies') and not d.get('target'), 'conditional-or-build-dependency')
         require(not d.get('lib', {}).get('proc-macro', False), 'proc-macro')
-        wanted = {} if package == 'digest' else {'radishaxiom-solver-supervision-core': '../solver-supervision-core',
-                 'radishaxiom-digest': '../digest'} if package == 'solver-bootstrap-linux' else {'radishaxiom-digest': '../digest'}
-        require(d.get('dependencies', {}) == {n:dict(path=p) for n,p in wanted.items()}, 'normal-dependency-closure')
+        wanted = {'radishaxiom-'+dep: dict(path='../'+dep) for dep in PACKAGE_DEPENDENCIES[package]}
+        require(d.get('dependencies', {}) == wanted, 'normal-dependency-closure')
     leaf = tomllib.loads((source/'crates/solver-bootstrap-linux/Cargo.toml').read_text())
     require(leaf['features'] == {'default':[], 'linux-channel-entry':[]} and
             leaf['bin'] == [dict(name='axiom-linux-channel-init', path='src/bin/linux_channel_init.rs',
@@ -401,10 +406,15 @@ def rustc_argv(plan, args):
     out = plan['task_root']+'/target/'+TARGET+'/linux-channel/deps'
     require(pairs.get('--out-dir') == [out] and all(v.startswith('dependency='+plan['task_root']+'/target/') and
             '..' not in v.split('/') for v in pairs.get('-L', [])), 'rustc-output-paths')
+    metadata_deps = {'radishaxiom_'+dep.replace('-', '_') for dep in PACKAGE_DEPENDENCIES[package]}
+    if crate == 'axiom_linux_channel_init':
+        metadata_deps.add('radishaxiom_solver_bootstrap_linux')
     for v in pairs.get('--extern', []):
         name, sep, p = v.partition('=')
-        require(sep and name in {'radishaxiom_digest','radishaxiom_solver_supervision_core','radishaxiom_solver_bootstrap_linux'} and
-                p.startswith(out+'/lib'+name+'-') and '/' not in p[len(out)+1:] and p.endswith('.rlib'), 'rustc-extern')
+        prefix = out+'/lib'+name+'-'
+        require(sep and name in LIB_CRATES and p.startswith(prefix) and '/' not in p[len(out)+1:], 'rustc-extern')
+        require(p.endswith('.rlib') or
+                (name in metadata_deps and re.fullmatch(r'[0-9a-f]{1,32}\.rmeta', p[len(prefix):])), 'rustc-extern')
     require(set(pairs.get('--cfg', [])) <= ({'feature="linux-channel-entry"'} if package == 'solver-bootstrap-linux' else set()), 'rustc-cfg')
     require(set(pairs.get('--check-cfg', [])) <= {'cfg(docsrs,test)', 'cfg(feature, values())',
             'cfg(feature, values("default", "linux-channel-entry"))'}, 'rustc-check-cfg')
