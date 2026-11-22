@@ -4,7 +4,7 @@
 
 2026-10-27 接续：[ADR 0031 D1–D3（Accepted）](../adr/0031-local-cvc5-build-provenance-boundary.md)仅对本地 cvc5 新构建候选的来源要求作限定替代：完整逐次读取观察改由受控输入集合、阶段来源、稳定链接输入与独立对账验收；不重解释原发布 CLI 的缺口，保留旧配方字节与默认 v0.1 拒绝；[私有 v0.2 离线入口](solver-local-cvc5-offline-v0.2.md)已显式接续。C1、实际构建环境资格、E0 / E4 / E5 及外部动作授权保持独立；有限离线切片已按后续授权完成，见[本批记录](../records/2026-10-27-cvc5-offline-phases.md)；没有组装、构建或运行 solver。
 
-2026-11-22 路径裁决已选择同版本 `USE_POLY=OFF` 为 AX-B01 唯一待审替代候选。下文的启用 Poly 配方及精确输入继续作为原候选基线；下一批按[替代路径决议](../records/2026-11-22-ax-b01-checker-and-solver-path-review.md#唯一待审替代路径)单独审阅差分，原候选保持暂停。
+2026-11-22 路径裁决选择同版本 `USE_POLY=OFF` 为 AX-B01 唯一待审候选。[独立候选材料](solver-cvc5-no-poly-offline.md)已形成，候选等待 C1、L3/G0 和实际资格。下文保留启用 Poly 的原基线，原候选继续暂停。
 
 ## 首题运行交付的有限裁决（2026-11-10）
 

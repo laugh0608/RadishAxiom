@@ -1,0 +1,167 @@
+diff --git a/cmake/cvc5-c0-inputs.cmake b/cmake/cvc5-c0-inputs.cmake
+--- a/cmake/cvc5-c0-inputs.cmake
++++ b/cmake/cvc5-c0-inputs.cmake
+@@ -1,4 +1,4 @@
+-# RadishAxiom private C0 input selection, for one fixed archive candidate.
++# RadishAxiom private C0 input selection, for the AX-B01 Poly-disabled candidate.
+ # This checks reviewed bytes; it does not establish ABI or tool acceptance.
+ include_guard(GLOBAL)
+ if(CMAKE_VERSION VERSION_LESS 3.19)
+@@ -81,14 +81,16 @@
+ 
+ cvc5_c0_get(format format)
+ cvc5_c0_get(version version)
++cvc5_c0_get(candidate candidate_id)
+ cvc5_c0_get(upstream upstream_commit)
+ cvc5_c0_get(target target_abi)
+ cvc5_c0_get(review review_state)
+ cvc5_c0_keys(root_keys)
+-if(NOT root_keys STREQUAL "archives;closure_review;editline_link_order;format;header_roots;review_state;target_abi;upstream_commit;version;versions")
++if(NOT root_keys STREQUAL "archives;candidate_id;closure_review;editline_link_order;format;header_roots;review_state;target_abi;upstream_commit;version;versions")
+   message(FATAL_ERROR "C0 manifest has unknown/missing root fields")
+ endif()
+-if(NOT format STREQUAL "radishaxiom-cvc5-private-build-inputs" OR NOT version STREQUAL "0.1"
++if(NOT format STREQUAL "radishaxiom-cvc5-no-poly-build-inputs" OR NOT version STREQUAL "0.1"
++   OR NOT candidate STREQUAL "ax-b01-cvc5-1.3.4-linux-aarch64-no-poly"
+    OR NOT upstream STREQUAL "f3b21c4483d3b88dc63cb7cd3e5eb092eee5e341"
+    OR NOT target STREQUAL "linux-aarch64-le-glibc-gcc12"
+    OR NOT review STREQUAL "reviewed-for-configuration")
+@@ -105,7 +107,7 @@
+ if(NOT closure_state STREQUAL "static-closure-and-abi-reviewed")
+   message(FATAL_ERROR "C0 static closure/ABI review is not complete")
+ endif()
+-foreach(field IN ITEMS upstream_commit target_abi versions archives header_roots editline_link_order)
++foreach(field IN ITEMS candidate_id upstream_commit target_abi versions archives header_roots editline_link_order)
+   string(JSON expected ERROR_VARIABLE expected_error GET "${CVC5_C0_JSON}" ${field})
+   string(JSON observed ERROR_VARIABLE observed_error GET "${closure_json}" ${field})
+   if(NOT expected_error STREQUAL "NOTFOUND" OR NOT observed_error STREQUAL "NOTFOUND"
+@@ -116,27 +118,37 @@
+ # These are checked assertions of an external package/archive/object review.
+ # This helper cannot replace that review or establish tool acceptance itself.
+ cvc5_c0_get(gmp_version versions gmp)
+-cvc5_c0_get(poly_version versions poly)
++cvc5_c0_keys(version_roles versions)
++if(NOT version_roles STREQUAL "cadical;gmp;symfpu")
++  message(FATAL_ERROR "C0 exact dependency version roles required")
++endif()
+ cvc5_c0_get(cadical_version versions cadical)
+ cvc5_c0_get(symfpu_version versions symfpu)
+-if(NOT gmp_version STREQUAL "6.3.0" OR NOT poly_version STREQUAL "0.2.1"
++if(NOT gmp_version STREQUAL "6.3.0"
+    OR NOT cadical_version STREQUAL "rel-2.1.3-elevate"
+    OR NOT symfpu_version STREQUAL "227a7246b8ce513b393cc2645d6d65d3490ea1de")
+   message(FATAL_ERROR "C0 dependency source version mismatch")
+ endif()
+ 
+ cvc5_c0_keys(header_roles header_roots)
+-if(NOT header_roles STREQUAL "cadical;editline;gmp;gmpxx;poly;symfpu")
++if(NOT header_roles STREQUAL "cadical;editline;gmp;gmpxx;symfpu")
+   message(FATAL_ERROR "C0 exact header role set required")
+ endif()
+ set(CVC5_C0_REQUIRED_gmp gmp.h)
+ set(CVC5_C0_REQUIRED_gmpxx gmpxx.h)
+ set(CVC5_C0_REQUIRED_cadical cadical/cadical.hpp cadical/tracer.hpp)
+-set(CVC5_C0_REQUIRED_poly poly/poly.h poly/version.h)
+ set(CVC5_C0_REQUIRED_symfpu symfpu/core/unpackedFloat.h)
+-set(CVC5_C0_REQUIRED_editline histedit.h)
++set(CVC5_C0_REQUIRED_editline histedit.h editline/readline.h)
++set(CVC5_C0_ROOT_gmp /work/prefix/gmp/include)
++set(CVC5_C0_ROOT_gmpxx /work/prefix/gmp/include)
++set(CVC5_C0_ROOT_cadical /work/prefix/cadical/include)
++set(CVC5_C0_ROOT_symfpu /work/prefix/symfpu/include)
++set(CVC5_C0_ROOT_editline /work/prefix/editline/include)
+ foreach(role IN LISTS header_roles)
+   cvc5_c0_get(root header_roots ${role} path)
++  if(NOT root STREQUAL CVC5_C0_ROOT_${role})
++    message(FATAL_ERROR "C0 header root differs from fixed candidate path")
++  endif()
+   cvc5_c0_path("${root}")
+   if(NOT IS_DIRECTORY "${root}")
+     message(FATAL_ERROR "C0 header root is not a directory")
+@@ -150,7 +162,7 @@
+   foreach(i RANGE 0 ${last})
+     cvc5_c0_get(relative header_roots ${role} files ${i} path)
+     if(IS_ABSOLUTE "${relative}" OR NOT relative MATCHES "^[A-Za-z0-9_./+@=-]+$"
+-       OR relative MATCHES "(^|/)\\.\\.?(/|$)" OR relative IN_LIST expected_files)
++       OR relative MATCHES "(^|/)\\.\\.?(/|$)" OR relative IN_LIST expected_files OR relative MATCHES "(^|/)(lib)?poly(xx)?([/._-]|$)")
+       message(FATAL_ERROR "C0 unsafe or duplicate header inventory path")
+     endif()
+     cvc5_c0_file("${root}/${relative}" header_roots ${role} files ${i})
+@@ -178,15 +190,25 @@
+ endforeach()
+ 
+ cvc5_c0_keys(archive_roles archives)
+-foreach(role IN ITEMS gmp gmpxx cadical poly polyxx editline)
++set(CVC5_C0_PATH_gmp /work/prefix/gmp/lib/libgmp.a)
++set(CVC5_C0_PATH_gmpxx /work/prefix/gmp/lib/libgmpxx.a)
++set(CVC5_C0_PATH_cadical /work/prefix/cadical/lib/libcadical.a)
++foreach(role IN ITEMS editline tinfo bsd md)
++  if(role STREQUAL "editline")
++    set(CVC5_C0_PATH_editline /usr/lib/aarch64-linux-gnu/libedit.a)
++  else()
++    set(CVC5_C0_PATH_${role} /usr/lib/aarch64-linux-gnu/lib${role}.a)
++  endif()
++endforeach()
++foreach(role IN ITEMS gmp gmpxx cadical editline tinfo bsd)
+   if(NOT role IN_LIST archive_roles)
+     message(FATAL_ERROR "C0 missing required archive role: ${role}")
+   endif()
+ endforeach()
+ foreach(role IN LISTS archive_roles)
+   cvc5_c0_get(path archives ${role} path)
+-  if(NOT path MATCHES "\\.a$")
+-    message(FATAL_ERROR "C0 requires explicit static archives")
++  if(NOT DEFINED CVC5_C0_PATH_${role} OR NOT path STREQUAL CVC5_C0_PATH_${role})
++    message(FATAL_ERROR "C0 requires the fixed candidate archive role and path")
+   endif()
+   cvc5_c0_file("${path}" archives ${role})
+   set(CVC5_C0_ARCHIVE_${role} "${path}")
+@@ -200,16 +222,17 @@
+ foreach(i RANGE 0 ${last})
+   cvc5_c0_get(role editline_link_order ${i})
+   if(NOT role MATCHES "^[a-z][a-z0-9_]*$" OR NOT role IN_LIST archive_roles
+-     OR role MATCHES "^(gmp|gmpxx|cadical|poly|polyxx)$")
++     OR NOT role MATCHES "^(editline|tinfo|bsd|md)$")
+     message(FATAL_ERROR "C0 Editline closure has an invalid or missing archive")
+   endif()
+   # Repeated archive roles are retained if the reviewed static order needs them.
+   list(APPEND CVC5_C0_EDITLINE_ROLES "${role}")
+ endforeach()
+-if(NOT "editline" IN_LIST CVC5_C0_EDITLINE_ROLES)
+-  message(FATAL_ERROR "C0 Editline link order omits Editline")
+-endif()
+-set(used_roles ${CVC5_C0_EDITLINE_ROLES} gmp gmpxx cadical poly polyxx)
++list(GET CVC5_C0_EDITLINE_ROLES 0 first_editline_role)
++if(NOT first_editline_role STREQUAL "editline")
++  message(FATAL_ERROR "C0 Editline link order must start with Editline")
++endif()
++set(used_roles ${CVC5_C0_EDITLINE_ROLES} gmp gmpxx cadical)
+ list(REMOVE_DUPLICATES used_roles)
+ list(SORT used_roles)
+ if(NOT used_roles STREQUAL archive_roles)
+@@ -232,6 +255,7 @@
+ set(CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH FALSE)
+ set(CMAKE_FIND_PACKAGE_PREFER_CONFIG FALSE)
+ set(CMAKE_DISABLE_FIND_PACKAGE_Git TRUE)
++set(CMAKE_DISABLE_FIND_PACKAGE_Poly TRUE)
+ 
+ function(cvc5_c0_check_configuration)
+   if(NOT CMAKE_BUILD_TYPE STREQUAL "Production" OR BUILD_SHARED_LIBS OR NOT STATIC_BINARY
+@@ -239,7 +263,7 @@
+      OR NOT WASM STREQUAL "OFF")
+     message(FATAL_ERROR "C0 requires the reviewed Production Linux AArch64 static candidate")
+   endif()
+-  foreach(option IN ITEMS ENABLE_STATISTICS STATIC_BINARY USE_EDITLINE USE_POLY TREAT_WARNING_AS_ERROR)
++  foreach(option IN ITEMS ENABLE_STATISTICS STATIC_BINARY USE_EDITLINE TREAT_WARNING_AS_ERROR)
+     if(NOT "${${option}}" STREQUAL "ON")
+       message(FATAL_ERROR "C0 requires ON: ${option}")
+     endif()
+@@ -257,7 +281,7 @@
+   foreach(option IN ITEMS BUILD_SHARED_LIBS BUILD_GMP BUILD_CLN ENABLE_GPL
+       ENABLE_CLANG_TIDY ENABLE_COVERAGE ENABLE_PROFILING ENABLE_DEBUG_CONTEXT_MM
+       USE_CLN USE_GLPK USE_COCOA USE_CRYPTOMINISAT USE_KISSAT USE_MPFR
+-      NO_GLOBAL_POLY_CTX BUILD_BINDINGS_PYTHON BUILD_BINDINGS_JAVA
++      USE_POLY NO_GLOBAL_POLY_CTX BUILD_BINDINGS_PYTHON BUILD_BINDINGS_JAVA
+       BUILD_DOCS BUILD_DOCS_GA ONLY_PYTHON_EXT_SRC
+       SKIP_COMPRESS_DEBUG SKIP_SET_RPATH USE_DEFAULT_LINKER)
+     if(NOT "${${option}}" STREQUAL "OFF")

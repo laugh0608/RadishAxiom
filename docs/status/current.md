@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-11-22（合成独立验收与真实 solver 候选裁决）
+更新日期：2026-11-22（合成独立验收与真实 solver 候选离线准备）
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。整体目标见[开发计划](../development-plan.md)，归属与任务来源见[能力专题地图](../topics.md)；历史流水见[整理前快照](../records/status-before-planning-alignment-2026-11-01.md)与[早期归档](../records/status-through-2026-09-03.md)。
 
@@ -29,7 +29,7 @@
 | 顺位 | 必须继续 | 必要阻塞 / 结束条件 |
 | --- | --- | --- |
 | 1 | 合成 AX-B01 独立结果支持已验收 | 五类精确重放、历史 / 信任 / 结论及具名三类中止均已复核。实际 Evidence 仍须按同一摘要逐义务独立核对。 [验收记录](../records/2026-11-22-ax-b01-checker-and-solver-path-review.md#合成-ax-b01-独立复核) |
-| 2 | 已裁决唯一待审替代候选 `cvc5 1.3.4 / USE_POLY=OFF` | 下一步仅作该候选的配置、闭包与许可差分。C0/C1/C2 差分、L3/G0、目标制品及运行资格仍阻断。 [裁决与恢复条件](../records/2026-11-22-ax-b01-checker-and-solver-path-review.md#阻塞项与恢复条件) |
+| 2 | 唯一待审候选 `cvc5 1.3.4 / USE_POLY=OFF` 已形成独立离线材料 | C1 输入及许可接受、L3/G0、实际 C3 配置和链接闭包、目标制品及运行资格仍阻断。 [候选与停止线](../query/solver-cvc5-no-poly-offline.md#停止线) |
 | 3 | 实际受限校准，再取得 AX-B01 全部结果 | 保持原容量及 128 MiB / 6 s；按 E0、E4–E6 和具体授权取真实结果。九项后端结果与四项结构类义务支持齐备后装配，独立核对精确目标、信任与同一 Evidence 摘要 |
 | 4 | P6–P9 与首个真实纵向闭环 | 提前登记 Node P7 的来源、宿主和硬资源缺口；P4/P5 真结果不足时 P6 继续 closed。correct 全链、两个 wrong、invalid、真实 timeout 与篡改/门控拒绝按原契约验收 |
 
@@ -101,7 +101,7 @@ G0 以证据不足结束，真实接线仍未放行。L1 / L2 的源绑定、报
 
 恢复基线：C1 **500 / 500 文件、691,605,464 bytes** 已取得并独立复核；172 包内容、copyright 路径及 101 `.dsc` 关联已核对，历史三角色签名与五负例按明确接受的有限信任范围通过，旧失败保留，见[输入审阅](../records/2026-10-23-cvc5-c1-input-review.md)。20 个短时验签容器均已退出并删除，未安装、组装或执行 SDK / solver；验签宿主接受不能转用为构建资格。LibPoly [原草稿及发送接续](../records/2026-10-23-libpoly-upstream-clarification-draft.md)已发布，缺口仍待权威依据；C2 已交付离线配方、布局与事件检查，**C1 仍 not-accepted，build_ready=false**。
 
-唯一待审路线为固定版本 cvc5 `1.3.4`、Linux AArch64 glibc Production 静态 CLI，评估 `--no-poly` 对应的 `USE_POLY=OFF`。下一离线批次仅核定这一候选的配置、实际依赖、许可、输入与工具身份差分。共享的 L3/G0 和 E0/E4/E5/E6 停止线继续适用。 [11 月 22 日裁决](../records/2026-11-22-ax-b01-checker-and-solver-path-review.md#唯一待审替代路径)
+唯一待审路线为固定版本 cvc5 `1.3.4`、Linux AArch64 glibc Production 静态 CLI、`USE_POLY=OFF`。已形成独立身份、补丁、输入清单、离线配方和拒绝检查。仍须完成 C1 接受和 L3/G0 资格再进入实际构建；E0/E4/E5/E6 继续按序。 [候选离线入口](../query/solver-cvc5-no-poly-offline.md)
 
 1. **原启用 Poly 的候选保留暂停。** 若未来重新审议该候选，须取得 LibPoly 固定版本的许可澄清后再作 C1 接受审阅。 [历史核对](../records/2026-10-23-libpoly-license-history.md)已收敛为整体许可冲突、Polyxx 覆盖与旧 `open_memstream.c` 来源授权三项；[issue #113](https://github.com/SRI-CSL/libpoly/issues/113)已按 10 月 27 日明确授权发送。后续依据须适用固定提交并覆盖这些缺口；不重复查同一历史、下载已匹配材料或把风险接受写成许可事实。未安排自动轮询，不自动追加消息。
 2. **L3 保持阻断，收口剩余输入审阅。** 复用已核对的 target 归档、Rust 工具、Python 构建和 Apple Git 实际执行链。恢复时核定 target 发布清单的有限信任范围、Apple Git 的精确源码缺口、Cargo 解析数据来源 / 许可及固定宿主信任。新增来源链或信任假设先核定范围。 [Apple Git 剩余边界](../records/2026-11-07-linux-channel-l3-apple-git-readback.md#漂移时如何阻断)
