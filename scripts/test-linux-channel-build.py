@@ -414,6 +414,13 @@ class Argv(unittest.TestCase):
                 '--error-format=json','--json=diagnostic-rendered-ansi,artifacts,future-incompat','--crate-type','lib',
                 '--emit=dep-info,metadata,link','-C','opt-level=2','-C','panic=abort','--out-dir',out,'--target',I['TARGET'],
                 '-L','dependency='+out,*p['rustflags']]
+    def launcher_unit(self):
+        argv = self.unit('solver-bootstrap-linux')
+        argv[argv.index('--crate-name')+1] = 'axiom_linux_channel_init'
+        argv[argv.index('crates/solver-bootstrap-linux/src/lib.rs')] = 'crates/solver-bootstrap-linux/src/bin/linux_channel_init.rs'
+        argv[argv.index('--crate-type')+1] = 'bin'
+        argv[argv.index('--emit=dep-info,metadata,link')] = '--emit=dep-info,link'
+        return argv
     def test_registered_unit_and_version_probe(self):
         self.assertEqual(W['rustc_argv'](self.plan,self.unit()),'radishaxiom_digest')
         self.assertEqual(W['rustc_argv'](self.plan,['/tmp/rustc','-vV']),'version-probe')
@@ -438,11 +445,21 @@ class Argv(unittest.TestCase):
         supervision_dep = f'radishaxiom_solver_supervision_core={out}/libradishaxiom_solver_supervision_core-02.rmeta'
         self.assertEqual(W['rustc_argv'](self.plan, [*argv, '--extern', digest_dep, '--extern', supervision_dep]),
                          'radishaxiom_solver_bootstrap_linux')
-        argv[argv.index('--crate-name')+1] = 'axiom_linux_channel_init'
-        argv[argv.index('crates/solver-bootstrap-linux/src/lib.rs')] = 'crates/solver-bootstrap-linux/src/bin/linux_channel_init.rs'
-        argv[argv.index('--crate-type')+1] = 'bin'
         same_package = f'radishaxiom_solver_bootstrap_linux={out}/libradishaxiom_solver_bootstrap_linux-03.rmeta'
-        self.assertEqual(W['rustc_argv'](self.plan, [*argv, '--extern', same_package]), 'axiom_linux_channel_init')
+        self.assertEqual(W['rustc_argv'](self.plan, [*self.launcher_unit(), '--extern', same_package]),
+                         'axiom_linux_channel_init')
+    def test_emit_is_exact_for_each_unit_type(self):
+        for argv, unit, expected, other in (
+            (self.unit(), 'radishaxiom_digest', 'dep-info,metadata,link', 'dep-info,link'),
+            (self.launcher_unit(), 'axiom_linux_channel_init', 'dep-info,link', 'dep-info,metadata,link'),
+        ):
+            self.assertEqual(W['rustc_argv'](self.plan, argv), unit)
+            index = argv.index('--emit='+expected)
+            for invalid in (other, 'link', 'dep-info,link,asm', 'dep-info,link=/tmp/other'):
+                with self.subTest(unit=unit, emit=invalid), self.assertRaisesRegex(ValueError, '^rustc-unit-options$'):
+                    W['rustc_argv'](self.plan, [*argv[:index], '--emit='+invalid, *argv[index+1:]])
+            with self.assertRaisesRegex(ValueError, '^rustc-option$'):
+                W['rustc_argv'](self.plan, [*argv, '--emit='+expected])
     def test_target_rmeta_rejects_wrong_edges_and_paths(self):
         argv = self.unit('solver-supervision-core')
         out = argv[argv.index('--out-dir')+1]

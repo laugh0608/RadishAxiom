@@ -396,18 +396,20 @@ def rustc_argv(plan, args):
     package = {'radishaxiom_digest':'digest', 'radishaxiom_solver_supervision_core':'solver-supervision-core',
                'radishaxiom_solver_bootstrap_linux':'solver-bootstrap-linux', 'axiom_linux_channel_init':'solver-bootstrap-linux'}.get(crate)
     require(package is not None, 'rustc-unregistered-unit')
-    suffix = 'src/bin/linux_channel_init.rs' if crate == 'axiom_linux_channel_init' else 'src/lib.rs'
+    is_launcher = crate == 'axiom_linux_channel_init'
+    suffix = 'src/bin/linux_channel_init.rs' if is_launcher else 'src/lib.rs'
     source = Path(plan['source']); wanted = source/'crates'/package/suffix
     got = Path(positional[0]); got = got if got.is_absolute() else source/got
     require(got == wanted, 'rustc-unit-source')
     require('-W' not in pairs, 'rustc-unit-warning-override')
-    require(pairs.get('--edition') == ['2024'] and pairs.get('--crate-type') == (['bin'] if crate == 'axiom_linux_channel_init' else ['lib']) and
-            pairs.get('--emit') == ['dep-info,metadata,link'], 'rustc-unit-options')
+    crate_type, emit = ('bin', 'dep-info,link') if is_launcher else ('lib', 'dep-info,metadata,link')
+    require(pairs.get('--edition') == ['2024'] and pairs.get('--crate-type') == [crate_type] and
+            pairs.get('--emit') == [emit], 'rustc-unit-options')
     out = plan['task_root']+'/target/'+TARGET+'/linux-channel/deps'
     require(pairs.get('--out-dir') == [out] and all(v.startswith('dependency='+plan['task_root']+'/target/') and
             '..' not in v.split('/') for v in pairs.get('-L', [])), 'rustc-output-paths')
     metadata_deps = {'radishaxiom_'+dep.replace('-', '_') for dep in PACKAGE_DEPENDENCIES[package]}
-    if crate == 'axiom_linux_channel_init':
+    if is_launcher:
         metadata_deps.add('radishaxiom_solver_bootstrap_linux')
     for v in pairs.get('--extern', []):
         name, sep, p = v.partition('=')
