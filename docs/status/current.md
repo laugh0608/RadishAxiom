@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-11-22（AX-B01 诊断启动器 L3 构建与 L4 离线验收）
+更新日期：2026-11-22（AX-B01 诊断启动器 G0 与 L5 运行前复核）
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。整体目标见[开发计划](../development-plan.md)，归属与任务来源见[能力专题地图](../topics.md)；历史流水见[整理前快照](../records/status-before-planning-alignment-2026-11-01.md)与[早期归档](../records/status-through-2026-09-03.md)。
 
@@ -29,7 +29,7 @@
 | 顺位 | 必须继续 | 必要阻塞 / 结束条件 |
 | --- | --- | --- |
 | 1 | 合成 AX-B01 独立结果支持已验收 | 五类精确重放、历史 / 信任 / 结论及具名三类中止均已复核。实际 Evidence 仍须按同一摘要逐义务独立核对。 [验收记录](../records/2026-11-22-ax-b01-checker-and-solver-path-review.md#合成-ax-b01-独立复核) |
-| 2 | 唯一待审候选 `cvc5 1.3.4 / USE_POLY=OFF` 的 C1 固定输入已限定接受 | `cf49e07` 的诊断启动器已完成 L3 构建与 L4 离线制品验收。G0、L5 运行前条件、实际 C3 和求解资格仍待取得。 [C1 接受](../records/2026-11-22-cvc5-no-poly-c1-acceptance.md) · [诊断通道交付](../query/solver-linux-channel-build-and-delivery-plan.md) |
+| 2 | 唯一待审候选 `cvc5 1.3.4 / USE_POLY=OFF` 的 C1 固定输入已限定接受 | `cf49e07` 的诊断启动器已完成 L3 构建与 L4 离线制品验收。G0 等待同一 Linux 宿主的管理入口与私有根，L5 等待镜像接受和实际权限边界。 [C1 接受](../records/2026-11-22-cvc5-no-poly-c1-acceptance.md) · [G0 / L5 复核](../records/2026-11-22-linux-channel-g0-l5-preflight.md) |
 | 3 | 实际受限校准，再取得 AX-B01 全部结果 | 保持原容量及 128 MiB / 6 s；按 E0、E4–E6 和具体授权取真实结果。九项后端结果与四项结构类义务支持齐备后装配，独立核对精确目标、信任与同一 Evidence 摘要 |
 | 4 | P6–P9 与首个真实纵向闭环 | 提前登记 Node P7 的来源、宿主和硬资源缺口；P4/P5 真结果不足时 P6 继续 closed。correct 全链、两个 wrong、invalid、真实 timeout 与篡改/门控拒绝按原契约验收 |
 
@@ -106,7 +106,9 @@ G0 以证据不足结束，真实接线仍未放行。L1 / L2 的源绑定、报
 1. **原启用 Poly 的候选保留暂停。** 若未来重新审议该候选，须取得 LibPoly 固定版本的许可澄清后再作 C1 接受审阅。 [历史核对](../records/2026-10-23-libpoly-license-history.md)已收敛为整体许可冲突、Polyxx 覆盖与旧 `open_memstream.c` 来源授权三项；[issue #113](https://github.com/SRI-CSL/libpoly/issues/113)已按 10 月 27 日明确授权发送。后续依据须适用固定提交并覆盖这些缺口；不重复查同一历史、下载已匹配材料或把风险接受写成许可事实。未安排自动轮询，不自动追加消息。
 2. **L3 构建与 L4 离线制品验收完成。** `cf49e07` 的真实 v0.2 root、五份 sidecar 和外部摘要通过独立复核。单次包装器退出 0，快照前后两次通过 `xcrun` 守卫，四个编译单元及链接完成，观测峰值 120,829,772 bytes。ELF 为 6,263,080 bytes，SHA-256 `a888541af00efe30f85ef4222f2914266d864d156045fc28dde90b45caaccbcc`。两轮失败回执和日志保留于本机忽略的 `.tmp/linux-channel-build-l3-01/records/` 和 `.tmp/linux-channel-build-l3-02/records/`。 [输入限定信任](../records/2026-11-22-linux-channel-l3-limited-trust.md)
 
-   L4 核对了静态 AArch64 ELF、内嵌 root / 正文、启动与失败分支、329 个归档成员及对应许可材料。三个编译器临时对象沿用实测 argv、链接 trace 与 map 或抽取关系的关联，原始对象字节未留存。单文件 `runtime/` 与 `records/l4-acceptance.json` 位于本机忽略的 `.tmp/linux-channel-delivery/<ELF-SHA-256>/`。本批未挂载或执行制品。接续先明确同一 Linux 宿主的 G0 管理入口、私有候选根、块与 inode 硬限、无写别名及独立终止范围，并核定 L5 的实际权限、proc / seccomp / bind 与单次诊断参数。实际执行、C3 / E0 / E4 仍按现有门禁分别授权。 [交付边界](../query/solver-linux-channel-build-and-delivery-plan.md#交付一个只读-runtime-目录) · [G0 恢复条件](../records/2026-11-01-cvc5-g0-capability-review.md#g0-各项结果与停止决定)
+   L4 核对了静态 AArch64 ELF、内嵌 root / 正文、启动与失败分支、329 个归档成员及对应许可材料。三个编译器临时对象沿用实测 argv、链接 trace 与 map 或抽取关系的关联，原始对象字节未留存。单文件 `runtime/` 与 `records/l4-acceptance.json` 位于本机忽略的 `.tmp/linux-channel-delivery/<ELF-SHA-256>/`。 [交付边界](../query/solver-linux-channel-build-and-delivery-plan.md#交付一个只读-runtime-目录)
+
+   G0 维持 `evidence-insufficient-stop-before-wiring`。恢复时先指定同一 Linux 宿主的管理入口与私有候选根，再核对块与 inode 硬限、写别名及独立终止。L5 已复核本机固定 Alpine 镜像、L4 交付、BusyBox 入口，并复现 APK 唯一摘要差异的上游成像步骤。镜像仍为 `not-accepted`，实际权限、proc / seccomp / bind、单次诊断参数与清理范围待核定。实际执行、C3 / E0 / E4 仍按现有门禁分别授权。 [运行前复核与恢复条件](../records/2026-11-22-linux-channel-g0-l5-preflight.md)
 3. **F2 按实际依赖复用已有静态清单。** AArch64 调用约定和 FD 所有权交接已完成本轮有限静态复核。后续待核对目标工具链、outer setup policy、精确实例读回和 Mac adapter 接线，出口为具体问题修正或有限待验清单。Linux 目标构建、实际 syscall 与真实负向矩阵在工具 / 制品条件具备并获准后分别验证。 [F2 本轮范围](../records/2026-11-07-linux-channel-l3-input-acceptance-review.md#f2-小范围静态审阅)
 4. **条件闭合后按原顺序进入实际路径。** C1 与构建环境资格闭合后，按[C3–C5](../query/solver-cvc5-build-candidate-plan.md#批次占用授权与停止线)先构建依赖、审阅实际 ABI / Editline 有序闭包和 manifest，再配置 / 构建主目标；C4 决定 E0，实际 E4 通过后才进入 E5 的最多八份校准，随后单独评审 E6 的一次精确 wrong-add guarantee 尝试。保持原容量、128 MiB / 6 s 和旧四版字节 / 拒绝，不因不足增限或绕过门禁；这仍不等于完整 P0–P9 / Evidence / 独立 checker 验收。
 
