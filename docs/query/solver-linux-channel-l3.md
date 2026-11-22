@@ -26,7 +26,7 @@ L2 已提交为 `5dab738`；L3 源码实现已提交为 **`bb9d963b38273bfd9ec7a
 
 Apple Git 的实际执行链已核对。固定入口 `/usr/bin/git` 经当前选择器执行 Xcode 27.2（27B52）内的 Apple Git-157。记录绑定了本机程序、安装收据、Apple 签名与随包 GPL v2 声明。构建包装器已在源码快照前后检查选择结果和文件摘要。 [Apple Git 执行链核对](../records/2026-11-07-linux-channel-l3-apple-git-readback.md)
 
-2026-11-22 接续，干净提交的完整 Git blob 树及两份 Cargo 缓存与留存副本已离线核对。记录明确了缓存所含的 209 条版本记录、锁定条目和待核许可范围，并列明安装前须裁定的具体输入信任。L3 继续为 `not-accepted`。 [输入待决项](../records/2026-11-22-linux-channel-l3-input-decision-preparation.md)
+2026-11-22 接续，已离线核对干净提交的完整 Git blob 树和两份 Cargo 缓存，并登记 Cargo 官方元数据、Rust target 与安装器、固定 Darwin 宿主、Apple Git-157 的限定信任。Cargo 限于一次本地离线解析，Apple Git 限于一次本地只读快照。libproc ABI 证据已绑定固定 Xcode 的 macOS 27.2 SDK。L3 整体继续为 `not-accepted`，等待单独授权安装、真实回执和外部审阅。 [完整树与原输入证据](../records/2026-11-22-linux-channel-l3-input-decision-preparation.md) · [限定信任与 ABI 证据](../records/2026-11-22-linux-channel-l3-limited-trust.md)
 
 ## 未来安装：只增加一个 target
 
@@ -144,8 +144,8 @@ Git 只读调用禁用用户全局 / 系统配置、fsmonitor hook、可选锁�
 
 构建要求 `input-review.json` 的 `decisions` 唯一引用 `materials/apple-git-selection.json`。该材料按顺序含 `format=radishaxiom-private-linux-channel-apple-git-selection`、`version=0.2`、`developer_dir`、`selector`、`resolver`、`git`、`xcode_version`。开发者目录须为 Xcode 的 `Contents/Developer`，四个文件引用分别绑定 `/usr/bin/xcode-select`、`/usr/bin/xcrun`、该目录的 `usr/bin/git` 和相邻 `Contents/version.plist`。引用形状为 `path / bytes / digest`。输入审阅的外部摘要绑定该材料，`tool-inventory` 继续绑定入口 `/usr/bin/git`。构建读取并验证实际使用的审阅和工具清单字节。
 
-源码快照前后，在 Git 只读命令的同一精简环境中重核上述五个文件，并比较 `xcode-select -p` 与 `xcrun --no-cache --find git` 的精确输出。缺少材料、文件变化、输出差异或命令失败都会使构建在 Cargo 前退出。独立 checker 通过审阅材料引用核对其字节，实时选择检查在包装器中执行。前后读取依赖已审阅宿主在快照期间保持选择器与工具稳定，覆盖两次检查时可观察到的变化。合成快照覆盖初始选择不匹配、快照期间解析结果或文件漂移，实机只读探针通过当前 Xcode，拒绝子进程限定的 Command Line Tools 选择。
+源码快照前后，在 Git 只读命令的同一精简环境中重核上述五个文件，并比较 `xcode-select -p` 与 `xcrun --no-cache --find git` 的精确输出。缺少材料、文件变化、stdout 差异、非空 stderr 或命令失败都会使构建在 Cargo 前退出。独立 checker 通过审阅材料引用核对其字节，实时选择检查在包装器中执行。前后读取依赖已审阅宿主在快照期间保持选择器与工具稳定，覆盖两次检查时可观察到的变化。合成快照覆盖初始选择不匹配、快照期间解析结果或文件漂移。历史实机探针曾确认固定 Xcode 的路径，拒绝子进程限定的 Command Line Tools 选择。 [实时路径与 stderr 复核](../records/2026-11-22-linux-channel-l3-limited-trust.md#xcrun-路径与-stderr-复核)
 
 recorder 的生成字节和 Python 身份均进入输入，启动解释器固定 `-I -S -B`，关闭继承 wrapper。记录真实 canonical argv 后仅 exec 绑定的 rustc；允许精确 version / host / target probes 和四个编译单位（三个 lib + 唯一 bin），有序 flags 必须完整出现且仅一次，拒绝未知执行路径 / 单位 / 输出 / response file / 覆盖参数。最多 64 记录、每份 64 KiB；`-vv` 只作日志。源码闭包包含 recorder 实现，不另造通用 runner。
 
-超时、取消、流超额、文件增长、短写 / ENOSPC、非零退出、未知存活组或未确认停止全部保留失败；cleanup 失败同时保留主因。只停止自己创建的进程组，不自动重试 / 更改 linker / 清理缓存。宿主监督要求 SIGCHLD 为默认处置且本进程为唯一 waiter；通过 waitid(WNOWAIT) 保留组长 PID，在其回收前用固定 macOS libproc 的 PROC_PGRP_ONLY 枚举（≤64）核对 / 停止原组，回收后不再发组信号。libproc / ctypes / Python 扩展属于待审宿主运行时输入；未知成员或查询失败不认定成功。枚举只覆盖原组，不能证明不存在改变 session / PGID 后逃逸的后代；工具不得产生此类逃逸，仍依赖有限宿主信任。失败中的数值 PID / PGID 仅作诊断，不能用于事后发信号。600 s / 512 MiB 及单文件限额为受信宿主下的截止与观测：Popen 所有权交接、文件 IO、SIGKILL / wait 依赖宿主 OS，停止确认最多另观察 1 s；不是 OS 硬 quota、RSS 限制或独立终止证明。manifest 始终 built-not-accepted，须同时核对包装器实际退出和失败记录，不能仅凭 manifest 判定成功，更不能据此执行 ELF。
+超时、取消、流超额、文件增长、短写 / ENOSPC、非零退出、未知存活组或未确认停止全部保留失败；cleanup 失败同时保留主因。只停止自己创建的进程组，不自动重试 / 更改 linker / 清理缓存。宿主监督要求 SIGCHLD 为默认处置且本进程为唯一 waiter；通过 waitid(WNOWAIT) 保留组长 PID，在其回收前用固定 macOS libproc 的 PROC_PGRP_ONLY 枚举（≤64）核对 / 停止原组，回收后不再发组信号。libproc / ctypes / Python 扩展按固定宿主范围受信任，实际执行仍须绑定运行时输入；未知成员或查询失败不认定成功。枚举只覆盖原组，不能证明不存在改变 session / PGID 后逃逸的后代；工具不得产生此类逃逸，仍依赖有限宿主信任。失败中的数值 PID / PGID 仅作诊断，不能用于事后发信号。600 s / 512 MiB 及单文件限额为受信宿主下的截止与观测：Popen 所有权交接、文件 IO、SIGKILL / wait 依赖宿主 OS，停止确认最多另观察 1 s；不是 OS 硬 quota、RSS 限制或独立终止证明。manifest 始终 built-not-accepted，须同时核对包装器实际退出和失败记录，不能仅凭 manifest 判定成功，更不能据此执行 ELF。 [宿主限定信任与 27.2 SDK ABI](../records/2026-11-22-linux-channel-l3-limited-trust.md#3-固定-darwin-宿主与-libproc-abi)

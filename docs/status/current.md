@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-11-22（AX-B01 无 Poly 候选 C1 限定接受与 L3 输入待决项）
+更新日期：2026-11-22（AX-B01 无 Poly 候选 C1 限定接受与 L3 输入限定信任）
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。整体目标见[开发计划](../development-plan.md)，归属与任务来源见[能力专题地图](../topics.md)；历史流水见[整理前快照](../records/status-before-planning-alignment-2026-11-01.md)与[早期归档](../records/status-through-2026-09-03.md)。
 
@@ -15,7 +15,7 @@
 | 语义与 IR | P1 / P2 内部组件已有本机证据；不等于完整生产阶段或 Evidence v0.2 | [语义与义务来源](../topics.md#semantics-ir) |
 | 验证管线 | 限定 P3、P4-A / B 与紧凑表示已有组件证据，AX-B01 P5 已完成限定本机生产接受。真实 solver、P6 和完整 P0–P9 仍待验收 | [管线与反例来源](../topics.md#verification-pipeline) |
 | Evidence / Checker | v0.1 有受限离线消费。v0.2 已完成合成 AX-B01 的 P1 / P2、S1–S3、P4-A、五类 P4-B、attestation 历史与消费策略、结论聚合和三类结构化中止验收。真实结果的独立验收、M1 和公共读取待完成 | [独立复核来源](../topics.md#independent-checker) |
-| 运行交付 | F / C 及 L1 / L2 等已有本机或离线材料；L3 完整输入 / 包装器源码已有静态与合成验证；工具 / 宿主 / 实际执行资格未闭合 | [运行与交付来源](../topics.md#runtime-delivery) |
+| 运行交付 | F / C 及 L1 / L2 等已有本机或离线材料；L3 输入限定信任已登记，完整输入 / 包装器源码已有静态与合成验证，实际构建和执行资格待取得 | [运行与交付来源](../topics.md#runtime-delivery) |
 | 实验评估 | 三表示、两模型、四任务、72 个 trial bundle 已预注册；execution lock、完整装置、正式模型与收益未验收 | [实验来源](../topics.md#evaluation) |
 
 独立 checker 的产品制品与动态基线沿用历史记录。M1 的旧包已完成源码级核验，独立证明数为 0。合成 AX-B01 v0.2 完整包的五类精确归因已有独立验收。旧 v0.1 与首题以外的一般归因仍待复核。跨仓交接见[开发计划](../development-plan.md#独立-checker-语义验收与跨仓交接)，group 义务版本边界见 [ADR 0009](../adr/0009-axiom-evidence-v0-drift-and-migration.md)。
@@ -29,7 +29,7 @@
 | 顺位 | 必须继续 | 必要阻塞 / 结束条件 |
 | --- | --- | --- |
 | 1 | 合成 AX-B01 独立结果支持已验收 | 五类精确重放、历史 / 信任 / 结论及具名三类中止均已复核。实际 Evidence 仍须按同一摘要逐义务独立核对。 [验收记录](../records/2026-11-22-ax-b01-checker-and-solver-path-review.md#合成-ax-b01-独立复核) |
-| 2 | 唯一待审候选 `cvc5 1.3.4 / USE_POLY=OFF` 的 C1 固定输入已限定接受 | 已核对 L3 全树及两份 Cargo 解析数据。L3 输入决定、G0、实际 C3、目标制品及运行资格仍阻断。 [C1 接受](../records/2026-11-22-cvc5-no-poly-c1-acceptance.md) · [L3 待决项](../records/2026-11-22-linux-channel-l3-input-decision-preparation.md) |
+| 2 | 唯一待审候选 `cvc5 1.3.4 / USE_POLY=OFF` 的 C1 固定输入已限定接受 | L3 四项输入已登记限定信任，单次 target 安装、真实 L3 构建输入与制品、G0、实际 C3 和运行资格仍阻断。 [C1 接受](../records/2026-11-22-cvc5-no-poly-c1-acceptance.md) · [L3 限定信任](../records/2026-11-22-linux-channel-l3-limited-trust.md) |
 | 3 | 实际受限校准，再取得 AX-B01 全部结果 | 保持原容量及 128 MiB / 6 s；按 E0、E4–E6 和具体授权取真实结果。九项后端结果与四项结构类义务支持齐备后装配，独立核对精确目标、信任与同一 Evidence 摘要 |
 | 4 | P6–P9 与首个真实纵向闭环 | 提前登记 Node P7 的来源、宿主和硬资源缺口；P4/P5 真结果不足时 P6 继续 closed。correct 全链、两个 wrong、invalid、真实 timeout 与篡改/门控拒绝按原契约验收 |
 
@@ -104,9 +104,9 @@ G0 以证据不足结束，真实接线仍未放行。L1 / L2 的源绑定、报
 唯一待审路线为固定版本 cvc5 `1.3.4`、Linux AArch64 glibc Production 静态 CLI、`USE_POLY=OFF`。固定输入及其许可范围已获 C1 限定接受，用于本地诊断。实际构建等待 L3/G0 资格与单独授权；E0/E4/E5/E6 继续按序。 [C1 接受记录](../records/2026-11-22-cvc5-no-poly-c1-acceptance.md) · [候选离线入口](../query/solver-cvc5-no-poly-offline.md)
 
 1. **原启用 Poly 的候选保留暂停。** 若未来重新审议该候选，须取得 LibPoly 固定版本的许可澄清后再作 C1 接受审阅。 [历史核对](../records/2026-10-23-libpoly-license-history.md)已收敛为整体许可冲突、Polyxx 覆盖与旧 `open_memstream.c` 来源授权三项；[issue #113](https://github.com/SRI-CSL/libpoly/issues/113)已按 10 月 27 日明确授权发送。后续依据须适用固定提交并覆盖这些缺口；不重复查同一历史、下载已匹配材料或把风险接受写成许可事实。未安排自动轮询，不自动追加消息。
-2. **L3 保持阻断，等待精确输入决定。** 已核对 `330fb3b` 完整源码树、两份 Cargo 数据与原试验副本。剩余范围为 Rust target 发布信任、固定 Darwin 宿主信任、Apple Git-157 精确来源或限定二进制信任，以及覆盖实际复制的 Cargo 索引和 config 的来源与许可。 [已核对证据与待决范围](../records/2026-11-22-linux-channel-l3-input-decision-preparation.md)
+2. **L3 四项输入已登记限定信任，整体仍阻断。** 范围为两份 Cargo 官方解析元数据、Rust target 与安装器、固定 Darwin 宿主及 Apple Git-157 二进制。libproc ABI 证据采用固定 Xcode 的 27.2 SDK。`xcrun` 在 Codex 执行沙盒内出现 FSEvents stderr，普通宿主对照的 stderr 为空。实际快照仍须在拟用执行环境通过固定路径、文件摘要及零 stderr 守卫。 [限定信任与只读复核](../records/2026-11-22-linux-channel-l3-limited-trust.md)
 
-   若接受条件闭合，**再单独核定并授权一次 target 安装**：列明原归档 cache 新副本、120 s / 新增磁盘观测 512 MiB、唯一 target / 元数据写入和失败保留 / 清理边界；安装后双向核对 66 文件、原五个 component / 三工具及元数据差异。真实安装观察齐备后，绑定执行前最终干净 commit 的完整树与五份 sidecar / 外部 review pin，生成并独立复核真实 v0.2 root；不能用 53 源选定闭包代替全树或把 `bb9d963` 预填成尚未发生构建的来源。此后一次 600 s / 512 MiB Linux 构建、L4 离线制品验收、L5 交付 / 挂载 / 诊断执行分别授权；不因为输入机制已有源码就跳过安装观察 / 工具接受，或创建环境试错。旧原包不重下，合成 root / 回执和 source-only v0.1 均不充作真实输入。G0 / E0 / E4、实际 std / CRT / allocator / syscall、proc / seccomp / bind、无写别名、独立终止 / 存储硬限仍未闭合。
+   **下一次安装须单独核定并授权**，列明原归档 cache 新副本、120 s / 新增磁盘观测 512 MiB、唯一 target / 元数据写入和失败保留 / 清理边界；安装后双向核对 66 文件、原五个 component / 三工具及元数据差异。真实安装观察齐备后，绑定执行前最终干净 commit 的完整树与五份 sidecar / 外部 review pin，生成并独立复核真实 v0.2 root；不能用 53 源选定闭包代替全树或把 `bb9d963` 预填成尚未发生构建的来源。此后一次 600 s / 512 MiB Linux 构建、L4 离线制品验收、L5 交付 / 挂载 / 诊断执行分别授权；不因为输入机制已有源码就跳过安装观察 / 工具接受，或创建环境试错。旧原包不重下，合成 root / 回执和 source-only v0.1 均不充作真实输入。G0 / E0 / E4、实际 std / CRT / allocator / syscall、proc / seccomp / bind、无写别名、独立终止 / 存储硬限仍未闭合。
 3. **F2 按实际依赖复用已有静态清单。** AArch64 调用约定和 FD 所有权交接已完成本轮有限静态复核。后续待核对目标工具链、outer setup policy、精确实例读回和 Mac adapter 接线，出口为具体问题修正或有限待验清单。Linux 目标构建、实际 syscall 与真实负向矩阵在工具 / 制品条件具备并获准后分别验证。 [F2 本轮范围](../records/2026-11-07-linux-channel-l3-input-acceptance-review.md#f2-小范围静态审阅)
 4. **条件闭合后按原顺序进入实际路径。** C1 与构建环境资格闭合后，按[C3–C5](../query/solver-cvc5-build-candidate-plan.md#批次占用授权与停止线)先构建依赖、审阅实际 ABI / Editline 有序闭包和 manifest，再配置 / 构建主目标；C4 决定 E0，实际 E4 通过后才进入 E5 的最多八份校准，随后单独评审 E6 的一次精确 wrong-add guarantee 尝试。保持原容量、128 MiB / 6 s 和旧四版字节 / 拒绝，不因不足增限或绕过门禁；这仍不等于完整 P0–P9 / Evidence / 独立 checker 验收。
 
