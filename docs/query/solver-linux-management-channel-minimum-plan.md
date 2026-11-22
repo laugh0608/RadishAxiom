@@ -1,6 +1,6 @@
 # 本地 cvc5：新 Linux 管理通道的最小方案
 
-日期：2026-11-01。状态：**方案及 PID 1 / L1–L3 源码已完成限定静态验证；未接受镜像、未创建环境、未授权执行**。用途：在 [G0 现有入口不足](../records/2026-11-01-cvc5-g0-capability-review.md)后，给出唯一下一候选的权限、资源、退出 / 清理与停止条件。读者为项目所有者、实施者和审阅者。本文只解决如何取得必要 Linux 读回，不提供常驻控制服务、构建或 solver 入口，不扩张 [ADR 0031](../adr/0031-local-cvc5-build-provenance-boundary.md)的信任 / 接受范围。现行顺位见[当前状态](../status/current.md)，实际静态核对见[本批记录](../records/2026-11-01-linux-channel-minimum-review.md)。
+日期：2026-11-01。状态：**方案及 PID 1 / L1–L3 源码已完成限定静态验证；未接受镜像、未创建环境、未授权执行**。本文记录同一 OrbStack daemon 的一次性诊断候选和权限、资源、清理、停止条件，覆盖已有 Linux 环境的有限拓扑读回。G0 的专用宿主评审沿 [AX-B01 宿主决定](../records/2026-11-22-ax-b01-g0-linux-host-decision.md)，现行顺位见[当前状态](../status/current.md)，原方案的实际静态核对见[本批记录](../records/2026-11-01-linux-channel-minimum-review.md)。
 
 后续[离线核对](../records/2026-11-01-linux-channel-offline-review.md)已完成所选平台字节链、原 minirootfs 514 项相对树、16 包 / 10 配方的版本 / 许可声明及参考内核读取路径核对；APK shadow 校验差异和 SBOM 来源记录区分均保留。**仍未接受镜像或实际权限，且发现直接作为 PID 1 的 BusyBox timeout 不能提供原设想的内部强杀保证**；下文启动拓扑与根 cgroup 文件范围据此修正。没有创建或启动环境。
 
@@ -14,11 +14,11 @@
 
 推荐在**同一 OrbStack Docker daemon** 上，另经授权创建最多一个短时、非 root、无 capabilities 的只读诊断容器。它只读固定的 Linux 内核 / 挂载 / cgroup 元数据并导出有界报告，随后停止并移除精确实例。使用 Docker 创建后，先检查未启动实例的配置，再启动固定采集命令；不进入交互式 shell，不开放 SSH / 端口，不安装服务。
 
-这是新管理通道的第一步，**不是已经具备冻结、quota 设置或独立整树终止的管理器**。该步骤仍依赖 daemon 创建 / 回收，不能用于证明 daemon 失联时的独立终止。若读回表明未来管理器必须取得新的写权限或私有存储，这些目标再按实际对象给出精确方案和授权，不在本通道里逐步增加权限。
+此通道的覆盖范围为只读采集，创建 / 回收依赖同一个 daemon。冻结、quota 和 daemon 失联后的独立终止须各自取得新宿主的证据。
 
 | 方案 | 本次判断 |
 | --- | --- |
-| 一次性非 root、只读诊断容器 | 推荐为唯一候选：同一 daemon、固定本机镜像、少量只读挂载、无持久卷；新增状态限一个可精确回收的实例 |
+| 一次性非 root、只读诊断容器 | 原 OrbStack 方案选用同一 daemon、固定本机镜像、少量只读挂载、无持久卷，新增状态限一个可精确回收的实例 |
 | 新建 OrbStack Linux machine / SSH 服务 | 暂不选：引入新的 rootfs、账户 / 服务、网络与持久磁盘，machine 内 root 也不能自动等同 Docker 宿主的管理权限；不直接解决原生文件视图与同宿主关联 |
 | privileged 容器、宿主 `/` / socket 挂载、nsenter 宿主 shell | 不选：为少量读回授予可修改宿主的宽泛能力，不符合本步最小权限；失败不得自动切换此路 |
 
