@@ -1,6 +1,6 @@
 # RadishAxiom 当前状态
 
-更新日期：2026-11-22（AX-B01 G0 无盘首启制品离线复核）
+更新日期：2026-11-22（AX-B01 G0 无盘首启宿主部署与凭据复核）
 
 用途：供日常协作者读取现状、顺位、停止线和验证入口。整体目标见[开发计划](../development-plan.md)，归属与任务来源见[能力专题地图](../topics.md)；历史流水见[整理前快照](../records/status-before-planning-alignment-2026-11-01.md)与[早期归档](../records/status-through-2026-09-03.md)。
 
@@ -108,7 +108,7 @@ G0 以证据不足结束，真实接线仍未放行。L1 / L2 的源绑定、报
 
    L4 核对了静态 AArch64 ELF、内嵌 root / 正文、启动与失败分支、329 个归档成员及对应许可材料。三个编译器临时对象沿用实测 argv、链接 trace 与 map 或抽取关系的关联，原始对象字节未留存。单文件 `runtime/` 与 `records/l4-acceptance.json` 位于本机忽略的 `.tmp/linux-channel-delivery/<ELF-SHA-256>/`。 [交付边界](../query/solver-linux-channel-build-and-delivery-plan.md#交付一个只读-runtime-目录)
 
-   AX-B01 专用 Linux AArch64 虚拟机的首启程序、来宾 initramfs 和 entitlement 已固定，普通 Darwin 宿主通过单次无盘启动的配置对象校验。`_raxcg0` 和受保护路径尚待单独授权部署、权限读回和普通开发身份防写验证，随后才评审一次实际首启。G0 维持 `evidence-insufficient-stop-before-wiring`，块与 inode 硬限、写别名和独立终止仍待真实资格。 [G0 宿主决定](../records/2026-11-22-ax-b01-g0-linux-host-decision.md) · [Alpine 发布验签](../records/2026-11-22-ax-b01-g0-alpine-release-signatures.md) · [无盘首启制品与离线复核](../records/2026-11-22-ax-b01-g0-diskless-first-boot.md)
+   AX-B01 专用 Linux AArch64 虚拟机的首启配置对象已通过离线校验。`_raxcg0`、同名组（UID/GID `850`）、受保护目录及三个固定制品已部署。实际身份的路径、ACL、制品摘要和签名复核通过，普通开发身份七项写入均被拒绝。Darwin 进程仍带入四个额外组，原启动器的 `--preflight-paths` 拒绝执行。须固定满足原守卫的执行方式并通过完整预检，才评审一次实际首启。G0 维持 `evidence-insufficient-stop-before-wiring`，块与 inode 硬限、写别名和独立终止仍待真实资格。 [G0 宿主决定](../records/2026-11-22-ax-b01-g0-linux-host-decision.md) · [Alpine 发布验签](../records/2026-11-22-ax-b01-g0-alpine-release-signatures.md) · [无盘首启制品与离线复核](../records/2026-11-22-ax-b01-g0-diskless-first-boot.md) · [宿主部署与凭据复核](../records/2026-11-22-ax-b01-g0-diskless-host-deployment.md)
 
    L5 已复核本机固定 Alpine 镜像、L4 交付、BusyBox 入口，并复现 APK 唯一摘要差异的上游成像步骤。镜像仍为 `not-accepted`，实际权限、proc / seccomp / bind、单次诊断参数与清理范围待核定。实际执行、C3 / E0 / E4 仍按现有门禁分别授权。 [L5 运行前复核](../records/2026-11-22-linux-channel-g0-l5-preflight.md)
 3. **F2 按实际依赖复用已有静态清单。** AArch64 调用约定和 FD 所有权交接已完成本轮有限静态复核。后续待核对目标工具链、outer setup policy、精确实例读回和 Mac adapter 接线，出口为具体问题修正或有限待验清单。Linux 目标构建、实际 syscall 与真实负向矩阵在工具 / 制品条件具备并获准后分别验证。 [F2 本轮范围](../records/2026-11-07-linux-channel-l3-input-acceptance-review.md#f2-小范围静态审阅)
