@@ -1,0 +1,6 @@
+# Tab-separated entries. See the family asset policy v1 documentation.
+version	1.0.0
+baseline	88fd2f9522c5ddf092de9f24e6b6c2787de77cb6
+allow	docs/records/linux-builder-source-chain/Packages.xz	8689464	2ddb1737692e8c45c53e8d57c0ce4cd21c78c5703b830c3226b1423566a06c00	用于复算发布签名与摘要的索引原件	docs/records/linux-builder-source-chain/README.md
+allow	docs/records/linux-builder-source-chain/Sources.xz	9491888	92d11a035571df011f06f28c61cb9825130ef1d92abb2f2e0525e8674dc44af8	用于复算发布签名与摘要的索引原件	docs/records/linux-builder-source-chain/README.md
+allow	docs/records/linux-6.18.49-archive-inventory/inventory.json.gz	5243991	6e8492675028fef8312954b3ecaf9aa94b3e038e349c7890d2e4ddc7b0664878	可复核的归档完整清单	docs/records/linux-6.18.49-archive-inventory/README.md
